@@ -1,0 +1,2039 @@
+{
+ "source": "stems/htdemucs/Proof/vocals.wav",
+ "segments": [
+  {
+   "start": 7.56,
+   "end": 10.36,
+   "text": "you need facial expressions",
+   "avg_logprob": -0.514,
+   "no_speech_prob": 0.456,
+   "words": [
+    {
+     "w": "you",
+     "start": 7.56,
+     "end": 8.96,
+     "p": 0.085
+    },
+    {
+     "w": "need",
+     "start": 8.96,
+     "end": 9.2,
+     "p": 0.994
+    },
+    {
+     "w": "facial",
+     "start": 9.2,
+     "end": 9.48,
+     "p": 0.96
+    },
+    {
+     "w": "expressions",
+     "start": 9.48,
+     "end": 10.36,
+     "p": 0.934
+    }
+   ]
+  },
+  {
+   "start": 10.36,
+   "end": 19.26,
+   "text": "not like that",
+   "avg_logprob": -0.514,
+   "no_speech_prob": 0.456,
+   "words": [
+    {
+     "w": "not",
+     "start": 10.36,
+     "end": 13.14,
+     "p": 0.828
+    },
+    {
+     "w": "like",
+     "start": 13.14,
+     "end": 13.16,
+     "p": 0.998
+    },
+    {
+     "w": "that",
+     "start": 13.16,
+     "end": 19.26,
+     "p": 0.991
+    }
+   ]
+  },
+  {
+   "start": 30.0,
+   "end": 33.74,
+   "text": "Three years old, uncle explains, Adams",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "Three",
+     "start": 30.0,
+     "end": 30.48,
+     "p": 0.738
+    },
+    {
+     "w": "years",
+     "start": 30.48,
+     "end": 30.82,
+     "p": 0.969
+    },
+    {
+     "w": "old,",
+     "start": 30.82,
+     "end": 31.28,
+     "p": 0.997
+    },
+    {
+     "w": "uncle",
+     "start": 31.48,
+     "end": 32.06,
+     "p": 0.732
+    },
+    {
+     "w": "explains,",
+     "start": 32.06,
+     "end": 32.88,
+     "p": 0.995
+    },
+    {
+     "w": "Adams",
+     "start": 33.28,
+     "end": 33.74,
+     "p": 0.269
+    }
+   ]
+  },
+  {
+   "start": 33.74,
+   "end": 37.8,
+   "text": "A week later, my mother finds me",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "A",
+     "start": 33.74,
+     "end": 34.8,
+     "p": 0.538
+    },
+    {
+     "w": "week",
+     "start": 34.8,
+     "end": 35.36,
+     "p": 0.998
+    },
+    {
+     "w": "later,",
+     "start": 35.36,
+     "end": 35.88,
+     "p": 1.0
+    },
+    {
+     "w": "my",
+     "start": 35.88,
+     "end": 36.22,
+     "p": 0.996
+    },
+    {
+     "w": "mother",
+     "start": 36.22,
+     "end": 36.66,
+     "p": 0.997
+    },
+    {
+     "w": "finds",
+     "start": 36.66,
+     "end": 37.42,
+     "p": 0.994
+    },
+    {
+     "w": "me",
+     "start": 37.42,
+     "end": 37.8,
+     "p": 0.997
+    }
+   ]
+  },
+  {
+   "start": 37.8,
+   "end": 41.14,
+   "text": "Sat in a snowdrift of paper",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "Sat",
+     "start": 37.8,
+     "end": 38.42,
+     "p": 0.323
+    },
+    {
+     "w": "in",
+     "start": 38.42,
+     "end": 38.88,
+     "p": 0.988
+    },
+    {
+     "w": "a",
+     "start": 38.88,
+     "end": 39.28,
+     "p": 0.972
+    },
+    {
+     "w": "snowdrift",
+     "start": 39.28,
+     "end": 40.38,
+     "p": 0.921
+    },
+    {
+     "w": "of",
+     "start": 40.38,
+     "end": 40.6,
+     "p": 0.993
+    },
+    {
+     "w": "paper",
+     "start": 40.6,
+     "end": 41.14,
+     "p": 0.999
+    }
+   ]
+  },
+  {
+   "start": 41.14,
+   "end": 44.96,
+   "text": "Ripped to shreds, ever tinier",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "Ripped",
+     "start": 41.14,
+     "end": 42.2,
+     "p": 0.737
+    },
+    {
+     "w": "to",
+     "start": 42.2,
+     "end": 42.46,
+     "p": 0.994
+    },
+    {
+     "w": "shreds,",
+     "start": 42.46,
+     "end": 43.58,
+     "p": 1.0
+    },
+    {
+     "w": "ever",
+     "start": 43.58,
+     "end": 44.0,
+     "p": 0.99
+    },
+    {
+     "w": "tinier",
+     "start": 44.0,
+     "end": 44.96,
+     "p": 0.993
+    }
+   ]
+  },
+  {
+   "start": 44.96,
+   "end": 47.98,
+   "text": "Repeating what uncle said",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "Repeating",
+     "start": 44.96,
+     "end": 46.52,
+     "p": 0.989
+    },
+    {
+     "w": "what",
+     "start": 46.52,
+     "end": 46.72,
+     "p": 0.998
+    },
+    {
+     "w": "uncle",
+     "start": 46.72,
+     "end": 47.52,
+     "p": 0.972
+    },
+    {
+     "w": "said",
+     "start": 47.52,
+     "end": 47.98,
+     "p": 0.997
+    }
+   ]
+  },
+  {
+   "start": 47.98,
+   "end": 50.82,
+   "text": "What on earth are you doing?",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "What",
+     "start": 47.98,
+     "end": 48.8,
+     "p": 0.829
+    },
+    {
+     "w": "on",
+     "start": 48.8,
+     "end": 49.04,
+     "p": 0.999
+    },
+    {
+     "w": "earth",
+     "start": 49.04,
+     "end": 49.68,
+     "p": 0.913
+    },
+    {
+     "w": "are",
+     "start": 49.68,
+     "end": 50.02,
+     "p": 0.996
+    },
+    {
+     "w": "you",
+     "start": 50.02,
+     "end": 50.32,
+     "p": 1.0
+    },
+    {
+     "w": "doing?",
+     "start": 50.32,
+     "end": 50.82,
+     "p": 0.982
+    }
+   ]
+  },
+  {
+   "start": 50.98,
+   "end": 53.26,
+   "text": "The adults howl with laughter",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "The",
+     "start": 50.98,
+     "end": 51.18,
+     "p": 0.986
+    },
+    {
+     "w": "adults",
+     "start": 51.18,
+     "end": 51.58,
+     "p": 0.946
+    },
+    {
+     "w": "howl",
+     "start": 51.58,
+     "end": 52.34,
+     "p": 0.989
+    },
+    {
+     "w": "with",
+     "start": 52.34,
+     "end": 52.6,
+     "p": 0.939
+    },
+    {
+     "w": "laughter",
+     "start": 52.6,
+     "end": 53.26,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 53.26,
+   "end": 55.48,
+   "text": "What's so funny?",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "What's",
+     "start": 53.26,
+     "end": 54.74,
+     "p": 0.993
+    },
+    {
+     "w": "so",
+     "start": 54.74,
+     "end": 54.9,
+     "p": 1.0
+    },
+    {
+     "w": "funny?",
+     "start": 54.9,
+     "end": 55.48,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 55.54,
+   "end": 58.24,
+   "text": "Nobody tells me after",
+   "avg_logprob": -0.214,
+   "no_speech_prob": 0.134,
+   "words": [
+    {
+     "w": "Nobody",
+     "start": 55.54,
+     "end": 56.06,
+     "p": 0.997
+    },
+    {
+     "w": "tells",
+     "start": 56.06,
+     "end": 56.82,
+     "p": 0.999
+    },
+    {
+     "w": "me",
+     "start": 56.82,
+     "end": 57.44,
+     "p": 1.0
+    },
+    {
+     "w": "after",
+     "start": 57.44,
+     "end": 58.24,
+     "p": 0.996
+    }
+   ]
+  },
+  {
+   "start": 78.04,
+   "end": 84.02,
+   "text": "She doesn't talk like other children Her English comes from books",
+   "avg_logprob": -0.394,
+   "no_speech_prob": 0.773,
+   "words": [
+    {
+     "w": "She",
+     "start": 78.04,
+     "end": 79.0,
+     "p": 0.514
+    },
+    {
+     "w": "doesn't",
+     "start": 79.0,
+     "end": 79.84,
+     "p": 0.971
+    },
+    {
+     "w": "talk",
+     "start": 79.84,
+     "end": 80.16,
+     "p": 0.833
+    },
+    {
+     "w": "like",
+     "start": 80.16,
+     "end": 80.52,
+     "p": 0.984
+    },
+    {
+     "w": "other",
+     "start": 80.52,
+     "end": 80.8,
+     "p": 0.944
+    },
+    {
+     "w": "children",
+     "start": 80.8,
+     "end": 81.42,
+     "p": 0.994
+    },
+    {
+     "w": "Her",
+     "start": 81.42,
+     "end": 82.16,
+     "p": 0.14
+    },
+    {
+     "w": "English",
+     "start": 82.16,
+     "end": 82.64,
+     "p": 0.83
+    },
+    {
+     "w": "comes",
+     "start": 82.64,
+     "end": 83.02,
+     "p": 0.996
+    },
+    {
+     "w": "from",
+     "start": 83.02,
+     "end": 83.36,
+     "p": 0.999
+    },
+    {
+     "w": "books",
+     "start": 83.36,
+     "end": 84.02,
+     "p": 0.989
+    }
+   ]
+  },
+  {
+   "start": 87.02,
+   "end": 96.12,
+   "text": "her face doesn't make much expression for our culture that's just how it looks",
+   "avg_logprob": -0.204,
+   "no_speech_prob": 0.786,
+   "words": [
+    {
+     "w": "her",
+     "start": 87.02,
+     "end": 88.22,
+     "p": 0.014
+    },
+    {
+     "w": "face",
+     "start": 88.22,
+     "end": 88.82,
+     "p": 0.991
+    },
+    {
+     "w": "doesn't",
+     "start": 88.82,
+     "end": 89.56,
+     "p": 0.968
+    },
+    {
+     "w": "make",
+     "start": 89.56,
+     "end": 89.96,
+     "p": 0.988
+    },
+    {
+     "w": "much",
+     "start": 89.96,
+     "end": 90.38,
+     "p": 0.995
+    },
+    {
+     "w": "expression",
+     "start": 90.38,
+     "end": 91.06,
+     "p": 0.974
+    },
+    {
+     "w": "for",
+     "start": 91.06,
+     "end": 91.66,
+     "p": 0.897
+    },
+    {
+     "w": "our",
+     "start": 91.66,
+     "end": 91.92,
+     "p": 0.973
+    },
+    {
+     "w": "culture",
+     "start": 91.92,
+     "end": 92.42,
+     "p": 0.994
+    },
+    {
+     "w": "that's",
+     "start": 92.42,
+     "end": 93.26,
+     "p": 0.889
+    },
+    {
+     "w": "just",
+     "start": 93.26,
+     "end": 93.4,
+     "p": 0.98
+    },
+    {
+     "w": "how",
+     "start": 93.4,
+     "end": 94.4,
+     "p": 0.847
+    },
+    {
+     "w": "it",
+     "start": 94.4,
+     "end": 95.1,
+     "p": 0.853
+    },
+    {
+     "w": "looks",
+     "start": 95.1,
+     "end": 96.12,
+     "p": 0.906
+    }
+   ]
+  },
+  {
+   "start": 96.86,
+   "end": 110.28,
+   "text": "how do you feel inside i honestly don't know i open my mouth my voice goes blind",
+   "avg_logprob": -0.204,
+   "no_speech_prob": 0.786,
+   "words": [
+    {
+     "w": "how",
+     "start": 96.52,
+     "end": 97.12,
+     "p": 0.599
+    },
+    {
+     "w": "do",
+     "start": 97.12,
+     "end": 97.42,
+     "p": 0.996
+    },
+    {
+     "w": "you",
+     "start": 97.42,
+     "end": 97.68,
+     "p": 0.994
+    },
+    {
+     "w": "feel",
+     "start": 97.68,
+     "end": 98.14,
+     "p": 0.944
+    },
+    {
+     "w": "inside",
+     "start": 98.14,
+     "end": 100.36,
+     "p": 0.788
+    },
+    {
+     "w": "i",
+     "start": 100.36,
+     "end": 102.8,
+     "p": 0.517
+    },
+    {
+     "w": "honestly",
+     "start": 102.8,
+     "end": 103.64,
+     "p": 0.992
+    },
+    {
+     "w": "don't",
+     "start": 103.64,
+     "end": 105.08,
+     "p": 0.997
+    },
+    {
+     "w": "know",
+     "start": 105.08,
+     "end": 105.38,
+     "p": 0.997
+    },
+    {
+     "w": "i",
+     "start": 105.38,
+     "end": 106.5,
+     "p": 0.949
+    },
+    {
+     "w": "open",
+     "start": 106.5,
+     "end": 106.98,
+     "p": 0.95
+    },
+    {
+     "w": "my",
+     "start": 106.98,
+     "end": 107.4,
+     "p": 0.999
+    },
+    {
+     "w": "mouth",
+     "start": 107.4,
+     "end": 107.92,
+     "p": 0.998
+    },
+    {
+     "w": "my",
+     "start": 107.92,
+     "end": 108.88,
+     "p": 0.988
+    },
+    {
+     "w": "voice",
+     "start": 108.88,
+     "end": 109.32,
+     "p": 0.999
+    },
+    {
+     "w": "goes",
+     "start": 109.32,
+     "end": 109.6,
+     "p": 0.996
+    },
+    {
+     "w": "blind",
+     "start": 109.6,
+     "end": 110.28,
+     "p": 0.993
+    }
+   ]
+  },
+  {
+   "start": 111.14,
+   "end": 115.34,
+   "text": "The words have nowhere to go",
+   "avg_logprob": -0.224,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "The",
+     "start": 111.14,
+     "end": 111.86,
+     "p": 0.15
+    },
+    {
+     "w": "words",
+     "start": 111.86,
+     "end": 112.36,
+     "p": 0.892
+    },
+    {
+     "w": "have",
+     "start": 112.36,
+     "end": 112.58,
+     "p": 0.969
+    },
+    {
+     "w": "nowhere",
+     "start": 112.58,
+     "end": 113.22,
+     "p": 0.979
+    },
+    {
+     "w": "to",
+     "start": 113.22,
+     "end": 114.54,
+     "p": 0.979
+    },
+    {
+     "w": "go",
+     "start": 114.54,
+     "end": 115.34,
+     "p": 0.925
+    }
+   ]
+  },
+  {
+   "start": 127.38,
+   "end": 129.26,
+   "text": "Resting, oblivious face",
+   "avg_logprob": -0.224,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "Resting,",
+     "start": 127.38,
+     "end": 128.1,
+     "p": 0.621
+    },
+    {
+     "w": "oblivious",
+     "start": 128.1,
+     "end": 128.82,
+     "p": 0.996
+    },
+    {
+     "w": "face",
+     "start": 128.82,
+     "end": 129.26,
+     "p": 0.989
+    }
+   ]
+  },
+  {
+   "start": 129.26,
+   "end": 131.64,
+   "text": "Parking the aisle in the wrong place",
+   "avg_logprob": -0.224,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "Parking",
+     "start": 129.26,
+     "end": 129.9,
+     "p": 0.425
+    },
+    {
+     "w": "the",
+     "start": 129.9,
+     "end": 130.02,
+     "p": 0.975
+    },
+    {
+     "w": "aisle",
+     "start": 130.02,
+     "end": 130.4,
+     "p": 0.969
+    },
+    {
+     "w": "in",
+     "start": 130.4,
+     "end": 130.84,
+     "p": 0.94
+    },
+    {
+     "w": "the",
+     "start": 130.84,
+     "end": 131.04,
+     "p": 0.999
+    },
+    {
+     "w": "wrong",
+     "start": 131.04,
+     "end": 131.28,
+     "p": 0.995
+    },
+    {
+     "w": "place",
+     "start": 131.28,
+     "end": 131.64,
+     "p": 0.999
+    }
+   ]
+  },
+  {
+   "start": 131.64,
+   "end": 133.42,
+   "text": "Enthralled by an auto-choke market",
+   "avg_logprob": -0.224,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "Enthralled",
+     "start": 131.64,
+     "end": 132.28,
+     "p": 0.826
+    },
+    {
+     "w": "by",
+     "start": 132.28,
+     "end": 132.44,
+     "p": 0.999
+    },
+    {
+     "w": "an",
+     "start": 132.44,
+     "end": 132.68,
+     "p": 0.99
+    },
+    {
+     "w": "auto",
+     "start": 132.68,
+     "end": 132.88,
+     "p": 0.893
+    },
+    {
+     "w": "-choke",
+     "start": 132.88,
+     "end": 133.18,
+     "p": 0.806
+    },
+    {
+     "w": "market",
+     "start": 133.18,
+     "end": 133.42,
+     "p": 0.57
+    }
+   ]
+  },
+  {
+   "start": 133.42,
+   "end": 136.42,
+   "text": "Fresh, sacred, geometry made flesh",
+   "avg_logprob": -0.224,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "Fresh,",
+     "start": 133.42,
+     "end": 133.94,
+     "p": 0.876
+    },
+    {
+     "w": "sacred,",
+     "start": 134.32,
+     "end": 134.78,
+     "p": 0.979
+    },
+    {
+     "w": "geometry",
+     "start": 134.98,
+     "end": 135.62,
+     "p": 0.981
+    },
+    {
+     "w": "made",
+     "start": 135.62,
+     "end": 136.06,
+     "p": 0.938
+    },
+    {
+     "w": "flesh",
+     "start": 136.06,
+     "end": 136.42,
+     "p": 0.974
+    }
+   ]
+  },
+  {
+   "start": 136.42,
+   "end": 138.86,
+   "text": "Down in the basement, dad's coat I watch",
+   "avg_logprob": -0.224,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "Down",
+     "start": 136.42,
+     "end": 137.12,
+     "p": 0.992
+    },
+    {
+     "w": "in",
+     "start": 137.12,
+     "end": 137.3,
+     "p": 0.994
+    },
+    {
+     "w": "the",
+     "start": 137.3,
+     "end": 137.38,
+     "p": 0.992
+    },
+    {
+     "w": "basement,",
+     "start": 137.38,
+     "end": 137.66,
+     "p": 1.0
+    },
+    {
+     "w": "dad's",
+     "start": 137.72,
+     "end": 138.02,
+     "p": 0.901
+    },
+    {
+     "w": "coat",
+     "start": 138.02,
+     "end": 138.2,
+     "p": 0.414
+    },
+    {
+     "w": "I",
+     "start": 138.2,
+     "end": 138.54,
+     "p": 0.895
+    },
+    {
+     "w": "watch",
+     "start": 138.54,
+     "end": 138.86,
+     "p": 0.991
+    }
+   ]
+  },
+  {
+   "start": 138.86,
+   "end": 141.24,
+   "text": "I point to the one he missed, good catch",
+   "avg_logprob": -0.47,
+   "no_speech_prob": 0.789,
+   "words": [
+    {
+     "w": "I",
+     "start": 138.86,
+     "end": 139.16,
+     "p": 0.234
+    },
+    {
+     "w": "point",
+     "start": 139.16,
+     "end": 139.46,
+     "p": 0.623
+    },
+    {
+     "w": "to",
+     "start": 139.46,
+     "end": 139.66,
+     "p": 0.982
+    },
+    {
+     "w": "the",
+     "start": 139.66,
+     "end": 139.78,
+     "p": 0.993
+    },
+    {
+     "w": "one",
+     "start": 139.78,
+     "end": 140.02,
+     "p": 0.22
+    },
+    {
+     "w": "he",
+     "start": 140.02,
+     "end": 140.14,
+     "p": 0.921
+    },
+    {
+     "w": "missed,",
+     "start": 140.14,
+     "end": 140.46,
+     "p": 0.992
+    },
+    {
+     "w": "good",
+     "start": 140.48,
+     "end": 140.84,
+     "p": 0.662
+    },
+    {
+     "w": "catch",
+     "start": 140.84,
+     "end": 141.24,
+     "p": 0.996
+    }
+   ]
+  },
+  {
+   "start": 141.24,
+   "end": 145.54,
+   "text": "Did she understand, or just pattern match?",
+   "avg_logprob": -0.47,
+   "no_speech_prob": 0.789,
+   "words": [
+    {
+     "w": "Did",
+     "start": 141.24,
+     "end": 141.74,
+     "p": 0.429
+    },
+    {
+     "w": "she",
+     "start": 141.74,
+     "end": 141.94,
+     "p": 0.998
+    },
+    {
+     "w": "understand,",
+     "start": 141.94,
+     "end": 142.98,
+     "p": 0.996
+    },
+    {
+     "w": "or",
+     "start": 143.42,
+     "end": 143.68,
+     "p": 0.994
+    },
+    {
+     "w": "just",
+     "start": 143.68,
+     "end": 144.0,
+     "p": 0.987
+    },
+    {
+     "w": "pattern",
+     "start": 144.0,
+     "end": 144.94,
+     "p": 0.831
+    },
+    {
+     "w": "match?",
+     "start": 144.94,
+     "end": 145.54,
+     "p": 0.907
+    }
+   ]
+  },
+  {
+   "start": 164.2,
+   "end": 167.06,
+   "text": "Do you not see what I see?",
+   "avg_logprob": -0.47,
+   "no_speech_prob": 0.789,
+   "words": [
+    {
+     "w": "Do",
+     "start": 164.2,
+     "end": 164.84,
+     "p": 0.739
+    },
+    {
+     "w": "you",
+     "start": 164.84,
+     "end": 165.1,
+     "p": 0.978
+    },
+    {
+     "w": "not",
+     "start": 165.1,
+     "end": 165.46,
+     "p": 0.385
+    },
+    {
+     "w": "see",
+     "start": 165.46,
+     "end": 165.82,
+     "p": 0.995
+    },
+    {
+     "w": "what",
+     "start": 165.82,
+     "end": 166.4,
+     "p": 0.602
+    },
+    {
+     "w": "I",
+     "start": 166.4,
+     "end": 166.66,
+     "p": 0.995
+    },
+    {
+     "w": "see?",
+     "start": 166.66,
+     "end": 167.06,
+     "p": 0.972
+    }
+   ]
+  },
+  {
+   "start": 167.06,
+   "end": 169.44,
+   "text": "Does it matter what makes me me?",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "Does",
+     "start": 167.06,
+     "end": 167.68,
+     "p": 0.881
+    },
+    {
+     "w": "it",
+     "start": 167.68,
+     "end": 167.84,
+     "p": 0.999
+    },
+    {
+     "w": "matter",
+     "start": 167.84,
+     "end": 168.18,
+     "p": 1.0
+    },
+    {
+     "w": "what",
+     "start": 168.18,
+     "end": 168.54,
+     "p": 0.997
+    },
+    {
+     "w": "makes",
+     "start": 168.54,
+     "end": 168.92,
+     "p": 1.0
+    },
+    {
+     "w": "me",
+     "start": 168.92,
+     "end": 169.16,
+     "p": 0.998
+    },
+    {
+     "w": "me?",
+     "start": 169.16,
+     "end": 169.44,
+     "p": 0.667
+    }
+   ]
+  },
+  {
+   "start": 169.64,
+   "end": 173.58,
+   "text": "Beauty on this side, truth by reference",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "Beauty",
+     "start": 169.64,
+     "end": 170.14,
+     "p": 0.995
+    },
+    {
+     "w": "on",
+     "start": 170.14,
+     "end": 170.42,
+     "p": 1.0
+    },
+    {
+     "w": "this",
+     "start": 170.42,
+     "end": 170.72,
+     "p": 0.996
+    },
+    {
+     "w": "side,",
+     "start": 170.72,
+     "end": 171.4,
+     "p": 1.0
+    },
+    {
+     "w": "truth",
+     "start": 171.92,
+     "end": 172.38,
+     "p": 0.997
+    },
+    {
+     "w": "by",
+     "start": 172.38,
+     "end": 172.74,
+     "p": 1.0
+    },
+    {
+     "w": "reference",
+     "start": 172.74,
+     "end": 173.58,
+     "p": 0.999
+    }
+   ]
+  },
+  {
+   "start": 174.54,
+   "end": 176.72,
+   "text": "Science fiction shelved with truth",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "Science",
+     "start": 174.42,
+     "end": 174.88,
+     "p": 0.778
+    },
+    {
+     "w": "fiction",
+     "start": 174.88,
+     "end": 175.48,
+     "p": 1.0
+    },
+    {
+     "w": "shelved",
+     "start": 175.48,
+     "end": 176.2,
+     "p": 0.966
+    },
+    {
+     "w": "with",
+     "start": 176.2,
+     "end": 176.4,
+     "p": 1.0
+    },
+    {
+     "w": "truth",
+     "start": 176.4,
+     "end": 176.72,
+     "p": 0.999
+    }
+   ]
+  },
+  {
+   "start": 176.72,
+   "end": 179.28,
+   "text": "From inside I can't tell the difference",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "From",
+     "start": 176.72,
+     "end": 177.26,
+     "p": 0.914
+    },
+    {
+     "w": "inside",
+     "start": 177.26,
+     "end": 177.66,
+     "p": 1.0
+    },
+    {
+     "w": "I",
+     "start": 177.66,
+     "end": 178.0,
+     "p": 0.981
+    },
+    {
+     "w": "can't",
+     "start": 178.0,
+     "end": 178.26,
+     "p": 1.0
+    },
+    {
+     "w": "tell",
+     "start": 178.26,
+     "end": 178.52,
+     "p": 1.0
+    },
+    {
+     "w": "the",
+     "start": 178.52,
+     "end": 178.72,
+     "p": 1.0
+    },
+    {
+     "w": "difference",
+     "start": 178.72,
+     "end": 179.28,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 179.82,
+   "end": 184.6,
+   "text": "And I can't give you proof",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "And",
+     "start": 179.56,
+     "end": 180.02,
+     "p": 0.982
+    },
+    {
+     "w": "I",
+     "start": 180.02,
+     "end": 180.56,
+     "p": 1.0
+    },
+    {
+     "w": "can't",
+     "start": 180.56,
+     "end": 182.24,
+     "p": 0.86
+    },
+    {
+     "w": "give",
+     "start": 182.24,
+     "end": 182.64,
+     "p": 1.0
+    },
+    {
+     "w": "you",
+     "start": 182.64,
+     "end": 183.68,
+     "p": 1.0
+    },
+    {
+     "w": "proof",
+     "start": 183.68,
+     "end": 184.6,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 184.6,
+   "end": 188.52,
+   "text": "Housewarming, lemonade from the yard",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "Housewarming,",
+     "start": 184.6,
+     "end": 185.84,
+     "p": 0.763
+    },
+    {
+     "w": "lemonade",
+     "start": 186.08,
+     "end": 187.18,
+     "p": 0.999
+    },
+    {
+     "w": "from",
+     "start": 187.18,
+     "end": 187.84,
+     "p": 1.0
+    },
+    {
+     "w": "the",
+     "start": 187.84,
+     "end": 188.12,
+     "p": 0.999
+    },
+    {
+     "w": "yard",
+     "start": 188.12,
+     "end": 188.52,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 188.52,
+   "end": 193.48,
+   "text": "Perky American girl, I play the part",
+   "avg_logprob": -0.197,
+   "no_speech_prob": 0.516,
+   "words": [
+    {
+     "w": "Perky",
+     "start": 188.52,
+     "end": 189.72,
+     "p": 0.995
+    },
+    {
+     "w": "American",
+     "start": 189.72,
+     "end": 190.22,
+     "p": 0.999
+    },
+    {
+     "w": "girl,",
+     "start": 190.22,
+     "end": 191.1,
+     "p": 0.994
+    },
+    {
+     "w": "I",
+     "start": 191.44,
+     "end": 192.16,
+     "p": 0.999
+    },
+    {
+     "w": "play",
+     "start": 192.16,
+     "end": 192.62,
+     "p": 0.647
+    },
+    {
+     "w": "the",
+     "start": 192.62,
+     "end": 192.98,
+     "p": 1.0
+    },
+    {
+     "w": "part",
+     "start": 192.98,
+     "end": 193.48,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 193.48,
+   "end": 196.02,
+   "text": "He said I absolutely nailed it",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "He",
+     "start": 193.48,
+     "end": 194.04,
+     "p": 0.335
+    },
+    {
+     "w": "said",
+     "start": 194.04,
+     "end": 194.3,
+     "p": 0.991
+    },
+    {
+     "w": "I",
+     "start": 194.3,
+     "end": 194.48,
+     "p": 0.799
+    },
+    {
+     "w": "absolutely",
+     "start": 194.48,
+     "end": 194.96,
+     "p": 0.976
+    },
+    {
+     "w": "nailed",
+     "start": 194.96,
+     "end": 195.66,
+     "p": 0.994
+    },
+    {
+     "w": "it",
+     "start": 195.66,
+     "end": 196.02,
+     "p": 0.978
+    }
+   ]
+  },
+  {
+   "start": 196.02,
+   "end": 198.5,
+   "text": "We're 15% above amplitude",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "We're",
+     "start": 196.02,
+     "end": 196.24,
+     "p": 0.478
+    },
+    {
+     "w": "15",
+     "start": 196.24,
+     "end": 196.62,
+     "p": 0.834
+    },
+    {
+     "w": "%",
+     "start": 196.62,
+     "end": 197.04,
+     "p": 0.793
+    },
+    {
+     "w": "above",
+     "start": 197.04,
+     "end": 197.72,
+     "p": 0.951
+    },
+    {
+     "w": "amplitude",
+     "start": 197.72,
+     "end": 198.5,
+     "p": 0.964
+    }
+   ]
+  },
+  {
+   "start": 198.5,
+   "end": 201.26,
+   "text": "I nod, the past hour gets reviewed",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "I",
+     "start": 198.5,
+     "end": 199.18,
+     "p": 0.917
+    },
+    {
+     "w": "nod,",
+     "start": 199.18,
+     "end": 199.48,
+     "p": 0.947
+    },
+    {
+     "w": "the",
+     "start": 199.7,
+     "end": 199.82,
+     "p": 0.521
+    },
+    {
+     "w": "past",
+     "start": 199.82,
+     "end": 200.1,
+     "p": 0.938
+    },
+    {
+     "w": "hour",
+     "start": 200.1,
+     "end": 200.4,
+     "p": 0.99
+    },
+    {
+     "w": "gets",
+     "start": 200.4,
+     "end": 200.74,
+     "p": 0.991
+    },
+    {
+     "w": "reviewed",
+     "start": 200.74,
+     "end": 201.26,
+     "p": 0.994
+    }
+   ]
+  },
+  {
+   "start": 201.26,
+   "end": 203.98,
+   "text": "Hug durations, pitch contours",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "Hug",
+     "start": 201.26,
+     "end": 201.84,
+     "p": 0.915
+    },
+    {
+     "w": "durations,",
+     "start": 201.84,
+     "end": 202.66,
+     "p": 0.853
+    },
+    {
+     "w": "pitch",
+     "start": 202.66,
+     "end": 202.96,
+     "p": 0.989
+    },
+    {
+     "w": "contours",
+     "start": 202.96,
+     "end": 203.98,
+     "p": 0.999
+    }
+   ]
+  },
+  {
+   "start": 203.98,
+   "end": 207.42,
+   "text": "Room crossing, velocity",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "Room",
+     "start": 203.98,
+     "end": 204.92,
+     "p": 0.568
+    },
+    {
+     "w": "crossing,",
+     "start": 204.92,
+     "end": 205.92,
+     "p": 0.879
+    },
+    {
+     "w": "velocity",
+     "start": 206.06,
+     "end": 207.42,
+     "p": 0.98
+    }
+   ]
+  },
+  {
+   "start": 208.68,
+   "end": 212.82,
+   "text": "I think he's right, honestly",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "I",
+     "start": 208.68,
+     "end": 209.64,
+     "p": 0.932
+    },
+    {
+     "w": "think",
+     "start": 209.64,
+     "end": 210.26,
+     "p": 0.995
+    },
+    {
+     "w": "he's",
+     "start": 210.26,
+     "end": 211.02,
+     "p": 0.996
+    },
+    {
+     "w": "right,",
+     "start": 211.02,
+     "end": 211.4,
+     "p": 0.999
+    },
+    {
+     "w": "honestly",
+     "start": 211.64,
+     "end": 212.82,
+     "p": 0.997
+    }
+   ]
+  },
+  {
+   "start": 214.06,
+   "end": 217.88,
+   "text": "How do you feel inside?",
+   "avg_logprob": -0.287,
+   "no_speech_prob": 0.756,
+   "words": [
+    {
+     "w": "How",
+     "start": 214.06,
+     "end": 215.02,
+     "p": 0.963
+    },
+    {
+     "w": "do",
+     "start": 215.02,
+     "end": 215.24,
+     "p": 0.998
+    },
+    {
+     "w": "you",
+     "start": 215.24,
+     "end": 215.52,
+     "p": 0.998
+    },
+    {
+     "w": "feel",
+     "start": 215.52,
+     "end": 216.48,
+     "p": 0.999
+    },
+    {
+     "w": "inside?",
+     "start": 216.48,
+     "end": 217.88,
+     "p": 0.954
+    }
+   ]
+  },
+  {
+   "start": 217.88,
+   "end": 232.88,
+   "text": "I honestly don't know I open my mouth my voice goes blind the words have nowhere to go",
+   "avg_logprob": -0.38,
+   "no_speech_prob": 0.801,
+   "words": [
+    {
+     "w": "I",
+     "start": 217.88,
+     "end": 219.36,
+     "p": 0.151
+    },
+    {
+     "w": "honestly",
+     "start": 219.36,
+     "end": 221.6,
+     "p": 0.822
+    },
+    {
+     "w": "don't",
+     "start": 221.6,
+     "end": 222.78,
+     "p": 0.945
+    },
+    {
+     "w": "know",
+     "start": 222.78,
+     "end": 223.1,
+     "p": 0.989
+    },
+    {
+     "w": "I",
+     "start": 223.1,
+     "end": 224.24,
+     "p": 0.173
+    },
+    {
+     "w": "open",
+     "start": 224.24,
+     "end": 224.7,
+     "p": 0.769
+    },
+    {
+     "w": "my",
+     "start": 224.7,
+     "end": 225.08,
+     "p": 0.97
+    },
+    {
+     "w": "mouth",
+     "start": 225.08,
+     "end": 225.68,
+     "p": 0.986
+    },
+    {
+     "w": "my",
+     "start": 225.68,
+     "end": 226.52,
+     "p": 0.4
+    },
+    {
+     "w": "voice",
+     "start": 226.52,
+     "end": 227.0,
+     "p": 0.996
+    },
+    {
+     "w": "goes",
+     "start": 227.0,
+     "end": 227.36,
+     "p": 0.99
+    },
+    {
+     "w": "blind",
+     "start": 227.36,
+     "end": 228.02,
+     "p": 0.943
+    },
+    {
+     "w": "the",
+     "start": 228.02,
+     "end": 229.6,
+     "p": 0.693
+    },
+    {
+     "w": "words",
+     "start": 229.6,
+     "end": 230.02,
+     "p": 0.927
+    },
+    {
+     "w": "have",
+     "start": 230.02,
+     "end": 230.22,
+     "p": 0.984
+    },
+    {
+     "w": "nowhere",
+     "start": 230.22,
+     "end": 230.9,
+     "p": 0.87
+    },
+    {
+     "w": "to",
+     "start": 230.9,
+     "end": 232.12,
+     "p": 0.979
+    },
+    {
+     "w": "go",
+     "start": 232.12,
+     "end": 232.88,
+     "p": 0.988
+    }
+   ]
+  },
+  {
+   "start": 244.36,
+   "end": 248.76,
+   "text": "Keep the smile on so they don't know",
+   "avg_logprob": -0.26,
+   "no_speech_prob": 0.697,
+   "words": [
+    {
+     "w": "Keep",
+     "start": 244.36,
+     "end": 245.26,
+     "p": 0.448
+    },
+    {
+     "w": "the",
+     "start": 245.26,
+     "end": 245.66,
+     "p": 0.729
+    },
+    {
+     "w": "smile",
+     "start": 245.66,
+     "end": 246.04,
+     "p": 0.995
+    },
+    {
+     "w": "on",
+     "start": 246.04,
+     "end": 246.72,
+     "p": 0.858
+    },
+    {
+     "w": "so",
+     "start": 246.72,
+     "end": 247.48,
+     "p": 0.735
+    },
+    {
+     "w": "they",
+     "start": 247.48,
+     "end": 247.82,
+     "p": 0.991
+    },
+    {
+     "w": "don't",
+     "start": 247.82,
+     "end": 248.52,
+     "p": 0.996
+    },
+    {
+     "w": "know",
+     "start": 248.52,
+     "end": 248.76,
+     "p": 0.992
+    }
+   ]
+  },
+  {
+   "start": 248.76,
+   "end": 251.86,
+   "text": "This is how we fit in",
+   "avg_logprob": -0.26,
+   "no_speech_prob": 0.697,
+   "words": [
+    {
+     "w": "This",
+     "start": 248.76,
+     "end": 249.36,
+     "p": 0.217
+    },
+    {
+     "w": "is",
+     "start": 249.36,
+     "end": 249.66,
+     "p": 0.993
+    },
+    {
+     "w": "how",
+     "start": 249.66,
+     "end": 250.1,
+     "p": 0.998
+    },
+    {
+     "w": "we",
+     "start": 250.1,
+     "end": 250.56,
+     "p": 0.998
+    },
+    {
+     "w": "fit",
+     "start": 250.56,
+     "end": 251.14,
+     "p": 0.997
+    },
+    {
+     "w": "in",
+     "start": 251.14,
+     "end": 251.86,
+     "p": 0.997
+    }
+   ]
+  },
+  {
+   "start": 253.76,
+   "end": 258.1,
+   "text": "She turns around, I let it go",
+   "avg_logprob": -0.26,
+   "no_speech_prob": 0.697,
+   "words": [
+    {
+     "w": "She",
+     "start": 253.76,
+     "end": 254.66,
+     "p": 0.945
+    },
+    {
+     "w": "turns",
+     "start": 254.66,
+     "end": 255.2,
+     "p": 0.997
+    },
+    {
+     "w": "around,",
+     "start": 255.2,
+     "end": 255.6,
+     "p": 0.998
+    },
+    {
+     "w": "I",
+     "start": 256.0,
+     "end": 256.4,
+     "p": 0.994
+    },
+    {
+     "w": "let",
+     "start": 256.4,
+     "end": 257.5,
+     "p": 0.98
+    },
+    {
+     "w": "it",
+     "start": 257.5,
+     "end": 257.8,
+     "p": 0.985
+    },
+    {
+     "w": "go",
+     "start": 257.8,
+     "end": 258.1,
+     "p": 1.0
+    }
+   ]
+  },
+  {
+   "start": 258.1,
+   "end": 263.84,
+   "text": "And I can think again",
+   "avg_logprob": -0.609,
+   "no_speech_prob": 0.423,
+   "words": [
+    {
+     "w": "And",
+     "start": 258.1,
+     "end": 259.1,
+     "p": 0.352
+    },
+    {
+     "w": "I",
+     "start": 259.1,
+     "end": 259.56,
+     "p": 0.972
+    },
+    {
+     "w": "can",
+     "start": 259.56,
+     "end": 260.6,
+     "p": 0.967
+    },
+    {
+     "w": "think",
+     "start": 260.6,
+     "end": 261.94,
+     "p": 0.676
+    },
+    {
+     "w": "again",
+     "start": 261.94,
+     "end": 263.84,
+     "p": 0.994
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+drums [(15.46, 'ON'), (93.64, 'off'), (98.2, 'ON'), (140.58, 'off'), (142.2, 'ON'), (182.83, 'off'), (184.97, 'ON'), (209.16, 'off'), (213.41, 'ON'), (246.13, 'off'), (264.28, 'ON'), (274.64, 'off')]
+bass [(19.46, 'ON'), (30.5, 'off'), (32.23, 'ON'), (32.91, 'off'), (34.69, 'ON'), (35.37, 'off'), (37.12, 'ON'), (37.81, 'off'), (38.51, 'ON'), (40.25, 'off'), (41.72, 'ON'), (42.73, 'off'), (44.53, 'ON'), (45.16, 'off'), (46.98, 'ON'), (47.62, 'off'), (48.34, 'ON'), (50.08, 'off'), (51.57, 'ON'), (52.54, 'off'), (53.87, 'ON'), (55.01, 'off'), (59.29, 'ON'), (75.53, 'off'), (78.6, 'ON'), (93.61, 'off'), (98.35, 'ON'), (127.95, 'off'), (129.38, 'ON'), (130.34, 'off'), (131.81, 'ON'), (132.75, 'off'), (136.06, 'ON'), (137.58, 'off'), (139.03, 'ON'), (140.04, 'off'), (141.89, 'ON'), (142.4, 'off'), (145.97, 'ON'), (148.99, 'off'), (156.21, 'ON'), (165.16, 'off'), (165.85, 'ON'), (182.67, 'off'), (184.99, 'ON'), (208.99, 'off'), (216.17, 'ON'), (244.78, 'off'), (267.96, 'ON'), (278.29, 'off')]
+vocals [(8.98, 'ON'), (11.64, 'off'), (18.52, 'ON'), (19.6, 'off'), (30.18, 'ON'), (59.27, 'off'), (76.08, 'ON'), (84.39, 'off'), (88.23, 'ON'), (118.99, 'off'), (121.13, 'ON'), (123.43, 'off'), (127.22, 'ON'), (155.95, 'off'), (164.87, 'ON'), (208.97, 'off'), (209.53, 'ON'), (211.6, 'off'), (212.49, 'ON'), (213.24, 'off'), (214.74, 'ON'), (223.62, 'off'), (224.13, 'ON'), (236.2, 'off'), (238.69, 'ON'), (241.36, 'off'), (245.62, 'ON'), (252.34, 'off'), (254.95, 'ON'), (256.96, 'off'), (257.5, 'ON'), (258.51, 'off'), (259.14, 'ON'), (265.8, 'off')]
+other>-32: [(1.53, 'ON'), (18.74, 'off'), (20.09, 'ON'), (29.74, 'off'), (58.84, 'ON'), (94.26, 'off'), (98.43, 'ON'), (115.49, 'off'), (117.67, 'ON'), (127.63, 'off'), (149.88, 'ON'), (171.23, 'off'), (217.24, 'ON'), (225.02, 'off'), (235.77, 'ON'), (246.14, 'off'), (253.83, 'ON'), (254.96, 'off'), (265.07, 'ON'), (277.03, 'off')]
+first drum onsets [5.15 5.46 5.62 5.76 6.08 6.22 6.39 6.55 6.69 6.87 7.01 7.17]
+beats[:6] [5.782 6.409 7.036 7.639 8.266 8.87 ] period 0.6039999999999992
+19.5 onsets [18.11 18.27 18.44 18.58 18.76 18.88 19.04 19.2  19.34 19.53 19.67 19.81
+ 19.97 20.43 20.57]
+30 onsets [28.56 28.72 28.86 29.02 29.16 29.35 29.49 29.65 29.79 29.95 30.09 30.26
+ 30.39 30.72 30.86 31.02 31.18 31.32 31.49]
+59 onsets [57.75 57.91 58.07 58.21 58.37 58.51 58.68 58.84 58.98 59.14 59.28 59.61
+ 59.88 60.23 60.35]
+78 onsets [76.6  76.74 76.9  77.04 77.21 77.35 77.51 77.67 77.81 77.97 78.14 78.27
+ 78.44 78.58 78.74 78.88 79.48]
+97.5 onsets [98.31 98.64 98.78 98.92]
+127 onsets [125.5  125.67 125.81 125.97 126.11 126.27 126.41 126.57 126.71 126.87
+ 127.01 127.18 127.32 127.64 127.78 127.92 128.24 128.38]
+146 onsets [144.68 144.8  145.1  145.24 145.4  145.54 145.71 145.84 146.01 146.17
+ 146.31 146.45 146.61 147.21]
+156 onsets [154.58 154.71 154.88 155.02 155.18 155.34 155.48 155.62 155.78 155.92
+ 156.08 156.22 156.55 156.69 156.83 157.01 157.13 157.27 157.45]
+164.5 onsets [163.14 163.28 163.45 163.72 163.89 164.05 164.19 164.33 164.49 164.63
+ 164.79 164.93 165.09 165.23 165.4  165.54 165.7  165.84]
+185 onsets [184.3  185.02 185.46 185.62 185.95 186.06 186.22 186.39]
+213.3 onsets [213.44 213.62 213.76 213.9  214.18 214.34 214.65]
+245 onsets [243.58 243.74 243.88 244.04 244.18 244.34 244.48 244.65 245.32 245.69]
+   7.56 voiced=0.23 rms= -28.4 flat=0.102 f0med=B3 range=A♯3..B3 | you need facial expressions
+  10.36 voiced=0.00 rms= -31.9 flat=0.045 f0med=- range=-..- | not like that
+  30.00 voiced=0.79 rms= -27.0 flat=0.031 f0med=C4 range=C4..D4 | Three years old, uncle explains, Adams
+  33.74 voiced=0.85 rms= -27.3 flat=0.022 f0med=D4 range=C4..D♯4 | A week later, my mother finds me
+  37.80 voiced=0.82 rms= -26.4 flat=0.040 f0med=D4 range=C4..E4 | Sat in a snowdrift of paper
+  41.14 voiced=0.47 rms= -28.8 flat=0.061 f0med=D♯4 range=C4..G4 | Ripped to shreds, ever tinier
+  44.96 voiced=0.80 rms= -28.9 flat=0.032 f0med=C4 range=C4..G4 | Repeating what uncle said
+  47.98 voiced=0.78 rms= -27.2 flat=0.035 f0med=F4 range=C4..G4 | What on earth are you doing?
+  50.98 voiced=0.84 rms= -24.5 flat=0.018 f0med=F4 range=D4..F4 | The adults howl with laughter
+  53.26 voiced=0.66 rms= -31.7 flat=0.044 f0med=D♯4 range=D4..F4 | What's so funny?
+  55.54 voiced=0.92 rms= -25.6 flat=0.022 f0med=D4 range=B3..E4 | Nobody tells me after
+  78.04 voiced=0.84 rms= -26.9 flat=0.025 f0med=D♯4 range=A♯2..G4 | She doesn't talk like other children Her English comes from 
+  87.02 voiced=0.66 rms= -27.9 flat=0.042 f0med=D♯4 range=D4..A♯4 | her face doesn't make much expression for our culture that's
+  96.86 voiced=0.78 rms= -26.2 flat=0.026 f0med=D♯4 range=C4..C5 | how do you feel inside i honestly don't know i open my mouth
+ 111.14 voiced=0.93 rms= -26.3 flat=0.020 f0med=D♯4 range=C4..F4 | The words have nowhere to go
+ 127.38 voiced=0.68 rms= -28.9 flat=0.033 f0med=C4 range=B3..D♯4 | Resting, oblivious face
+ 129.26 voiced=0.83 rms= -27.6 flat=0.022 f0med=C4 range=B3..D4 | Parking the aisle in the wrong place
+ 131.64 voiced=0.95 rms= -26.7 flat=0.026 f0med=C4 range=B3..C♯4 | Enthralled by an auto-choke market
+ 133.42 voiced=0.63 rms= -29.3 flat=0.059 f0med=C4 range=B3..D♯4 | Fresh, sacred, geometry made flesh
+ 136.42 voiced=0.88 rms= -26.0 flat=0.027 f0med=C4 range=B3..F♯4 | Down in the basement, dad's coat I watch
+ 138.86 voiced=0.66 rms= -29.1 flat=0.029 f0med=C4 range=C4..D♯4 | I point to the one he missed, good catch
+ 141.24 voiced=0.72 rms= -27.6 flat=0.037 f0med=C♯4 range=B3..D♯4 | Did she understand, or just pattern match?
+ 164.20 voiced=0.82 rms= -28.8 flat=0.026 f0med=D♯4 range=C4..A♯4 | Do you not see what I see?
+ 167.06 voiced=0.92 rms= -25.3 flat=0.019 f0med=F4 range=C4..A♯4 | Does it matter what makes me me?
+ 169.64 voiced=0.85 rms= -27.8 flat=0.031 f0med=F4 range=D♯4..G4 | Beauty on this side, truth by reference
+ 174.54 voiced=0.60 rms= -27.9 flat=0.067 f0med=D♯4 range=C4..A♯4 | Science fiction shelved with truth
+ 176.72 voiced=0.82 rms= -27.9 flat=0.038 f0med=A4 range=C4..A♯4 | From inside I can't tell the difference
+ 179.82 voiced=0.84 rms= -31.5 flat=0.020 f0med=F♯4 range=D♯4..G4 | And I can't give you proof
+ 184.60 voiced=0.82 rms= -28.9 flat=0.024 f0med=C4 range=A♯3..C♯4 | Housewarming, lemonade from the yard
+ 188.52 voiced=0.94 rms= -26.7 flat=0.017 f0med=C4 range=A♯3..D♯4 | Perky American girl, I play the part
+ 193.48 voiced=0.93 rms= -25.5 flat=0.014 f0med=D4 range=C4..D4 | He said I absolutely nailed it
+ 196.02 voiced=0.80 rms= -27.9 flat=0.031 f0med=D4 range=C4..D4 | We're 15% above amplitude
+ 198.50 voiced=0.92 rms= -26.7 flat=0.024 f0med=D4 range=C4..D♯4 | I nod, the past hour gets reviewed
+ 201.26 voiced=0.84 rms= -27.1 flat=0.038 f0med=C4 range=B3..D♯4 | Hug durations, pitch contours
+ 203.98 voiced=0.82 rms= -26.5 flat=0.023 f0med=G♯4 range=B3..A♯4 | Room crossing, velocity
+ 208.68 voiced=0.41 rms= -38.3 flat=0.008 f0med=F4 range=D♯4..G4 | I think he's right, honestly
+ 214.06 voiced=0.82 rms= -25.1 flat=0.011 f0med=B4 range=D♯4..C5 | How do you feel inside?
+ 217.88 voiced=0.91 rms= -25.7 flat=0.014 f0med=D♯4 range=C♯4..A4 | I honestly don't know I open my mouth my voice goes blind th
+ 244.36 voiced=0.81 rms= -30.3 flat=0.037 f0med=E4 range=D♯4..F4 | Keep the smile on so they don't know
+ 248.76 voiced=0.79 rms= -30.7 flat=0.041 f0med=D♯4 range=C4..G4 | This is how we fit in
+ 253.76 voiced=0.83 rms= -33.4 flat=0.026 f0med=D♯4 range=D♯4..F♯4 | She turns around, I let it go
+ 258.10 voiced=0.96 rms= -34.5 flat=0.011 f0med=D4 range=A♯3..F4 | And I can think again

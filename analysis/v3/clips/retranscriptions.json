@@ -1,0 +1,4001 @@
+{
+ "voc_intro": {
+  "offset": 0,
+  "segs": [
+   {
+    "text": "You need facial expressions, but not like that.",
+    "nsp": 0.234,
+    "lp": -0.395,
+    "words": [
+     [
+      "You",
+      8.2,
+      0.822
+     ],
+     [
+      "need",
+      8.92,
+      0.992
+     ],
+     [
+      "facial",
+      9.22,
+      0.984
+     ],
+     [
+      "expressions,",
+      9.58,
+      0.981
+     ],
+     [
+      "but",
+      10.46,
+      0.856
+     ],
+     [
+      "not",
+      12.68,
+      0.991
+     ],
+     [
+      "like",
+      18.7,
+      0.998
+     ],
+     [
+      "that.",
+      19.04,
+      0.973
+     ]
+    ]
+   },
+   {
+    "text": "Three years",
+    "nsp": 0.476,
+    "lp": -0.411,
+    "words": [
+     [
+      "Three",
+      30.0,
+      0.384
+     ],
+     [
+      "years",
+      30.54,
+      0.988
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_intro": {
+  "offset": 0,
+  "segs": [
+   {
+    "text": "You need facial expressions",
+    "nsp": 0.827,
+    "lp": -0.361,
+    "words": [
+     [
+      "You",
+      7.78,
+      0.526
+     ],
+     [
+      "need",
+      8.94,
+      0.981
+     ],
+     [
+      "facial",
+      9.2,
+      0.99
+     ],
+     [
+      "expressions",
+      9.52,
+      0.981
+     ]
+    ]
+   },
+   {
+    "text": "But not like that",
+    "nsp": 0.827,
+    "lp": -0.361,
+    "words": [
+     [
+      "But",
+      16.38,
+      0.408
+     ],
+     [
+      "not",
+      17.54,
+      0.993
+     ],
+     [
+      "like",
+      18.7,
+      0.999
+     ],
+     [
+      "that",
+      19.02,
+      0.992
+     ]
+    ]
+   },
+   {
+    "text": "Three years",
+    "nsp": 0.675,
+    "lp": -0.411,
+    "words": [
+     [
+      "Three",
+      30.0,
+      0.498
+     ],
+     [
+      "years",
+      30.6,
+      0.988
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_break1": {
+  "offset": 58,
+  "segs": [
+   {
+    "text": "After.",
+    "nsp": 0.794,
+    "lp": -0.946,
+    "words": [
+     [
+      "After.",
+      0.0,
+      0.36
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_break1": {
+  "offset": 58,
+  "segs": [
+   {
+    "text": "After.",
+    "nsp": 0.564,
+    "lp": -0.851,
+    "words": [
+     [
+      "After.",
+      0.0,
+      0.193
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_post1": {
+  "offset": 113,
+  "segs": [
+   {
+    "text": "I don't know where to go.",
+    "nsp": 0.534,
+    "lp": -0.708,
+    "words": [
+     [
+      "I",
+      0.0,
+      0.023
+     ],
+     [
+      "don't",
+      0.14,
+      0.812
+     ],
+     [
+      "know",
+      0.14,
+      0.985
+     ],
+     [
+      "where",
+      0.26,
+      0.966
+     ],
+     [
+      "to",
+      0.74,
+      0.995
+     ],
+     [
+      "go.",
+      1.52,
+      0.997
+     ]
+    ]
+   },
+   {
+    "text": "Resting.",
+    "nsp": 0.534,
+    "lp": -0.708,
+    "words": [
+     [
+      "Resting.",
+      13.89,
+      0.72
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_post1": {
+  "offset": 113,
+  "segs": [
+   {
+    "text": "I don't know where to go",
+    "nsp": 0.465,
+    "lp": -0.744,
+    "words": [
+     [
+      "I",
+      0.0,
+      0.029
+     ],
+     [
+      "don't",
+      0.3,
+      0.746
+     ],
+     [
+      "know",
+      0.3,
+      0.953
+     ],
+     [
+      "where",
+      0.32,
+      0.925
+     ],
+     [
+      "to",
+      0.68,
+      0.995
+     ],
+     [
+      "go",
+      1.5,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "Resting",
+    "nsp": 0.465,
+    "lp": -0.744,
+    "words": [
+     [
+      "Resting",
+      13.36,
+      0.627
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_v2": {
+  "offset": 126,
+  "segs": [
+   {
+    "text": "Resting, oblivious face Blocking the aisle in the wrong place",
+    "nsp": 0.713,
+    "lp": -0.313,
+    "words": [
+     [
+      "Resting,",
+      1.5,
+      0.626
+     ],
+     [
+      "oblivious",
+      2.14,
+      0.98
+     ],
+     [
+      "face",
+      2.78,
+      0.96
+     ],
+     [
+      "Blocking",
+      3.2,
+      0.709
+     ],
+     [
+      "the",
+      3.88,
+      0.969
+     ],
+     [
+      "aisle",
+      3.96,
+      0.924
+     ],
+     [
+      "in",
+      4.36,
+      0.673
+     ],
+     [
+      "the",
+      4.82,
+      0.998
+     ],
+     [
+      "wrong",
+      4.98,
+      0.998
+     ],
+     [
+      "place",
+      5.22,
+      0.997
+     ]
+    ]
+   },
+   {
+    "text": "Enthralled by an artichoke, green and fresh Sacred geometry made flesh",
+    "nsp": 0.713,
+    "lp": -0.313,
+    "words": [
+     [
+      "Enthralled",
+      5.56,
+      0.87
+     ],
+     [
+      "by",
+      6.24,
+      0.998
+     ],
+     [
+      "an",
+      6.46,
+      0.605
+     ],
+     [
+      "artichoke,",
+      6.58,
+      0.801
+     ],
+     [
+      "green",
+      7.1,
+      0.994
+     ],
+     [
+      "and",
+      7.42,
+      0.989
+     ],
+     [
+      "fresh",
+      7.66,
+      0.999
+     ],
+     [
+      "Sacred",
+      7.98,
+      0.857
+     ],
+     [
+      "geometry",
+      8.72,
+      0.889
+     ],
+     [
+      "made",
+      9.3,
+      0.935
+     ],
+     [
+      "flesh",
+      10.0,
+      0.98
+     ]
+    ]
+   },
+   {
+    "text": "Down in the basement, dad's code I watch up",
+    "nsp": 0.713,
+    "lp": -0.313,
+    "words": [
+     [
+      "Down",
+      10.36,
+      0.97
+     ],
+     [
+      "in",
+      10.98,
+      0.99
+     ],
+     [
+      "the",
+      11.24,
+      0.986
+     ],
+     [
+      "basement,",
+      11.32,
+      0.998
+     ],
+     [
+      "dad's",
+      11.66,
+      0.817
+     ],
+     [
+      "code",
+      11.98,
+      0.667
+     ],
+     [
+      "I",
+      12.12,
+      0.855
+     ],
+     [
+      "watch",
+      12.48,
+      0.949
+     ],
+     [
+      "up",
+      12.8,
+      0.118
+     ]
+    ]
+   },
+   {
+    "text": "Point to the one he missed, good catch Did she understand, or just pattern match?",
+    "nsp": 0.713,
+    "lp": -0.313,
+    "words": [
+     [
+      "Point",
+      13.1,
+      0.488
+     ],
+     [
+      "to",
+      13.4,
+      0.978
+     ],
+     [
+      "the",
+      13.58,
+      0.997
+     ],
+     [
+      "one",
+      13.72,
+      0.999
+     ],
+     [
+      "he",
+      13.96,
+      0.99
+     ],
+     [
+      "missed,",
+      14.1,
+      0.999
+     ],
+     [
+      "good",
+      14.46,
+      0.94
+     ],
+     [
+      "catch",
+      14.8,
+      0.999
+     ],
+     [
+      "Did",
+      15.18,
+      0.969
+     ],
+     [
+      "she",
+      15.72,
+      0.999
+     ],
+     [
+      "understand,",
+      15.88,
+      0.999
+     ],
+     [
+      "or",
+      17.18,
+      0.998
+     ],
+     [
+      "just",
+      17.6,
+      0.994
+     ],
+     [
+      "pattern",
+      17.96,
+      0.93
+     ],
+     [
+      "match?",
+      18.88,
+      0.953
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_v2": {
+  "offset": 126,
+  "segs": [
+   {
+    "text": "Resting, oblivious phase",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Resting,",
+      1.52,
+      0.58
+     ],
+     [
+      "oblivious",
+      2.16,
+      0.989
+     ],
+     [
+      "phase",
+      2.8,
+      0.537
+     ]
+    ]
+   },
+   {
+    "text": "Blocking the aisle in the wrong place",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Blocking",
+      3.24,
+      0.704
+     ],
+     [
+      "the",
+      3.88,
+      0.999
+     ],
+     [
+      "aisle",
+      3.96,
+      0.988
+     ],
+     [
+      "in",
+      4.38,
+      0.836
+     ],
+     [
+      "the",
+      4.82,
+      1.0
+     ],
+     [
+      "wrong",
+      4.98,
+      1.0
+     ],
+     [
+      "place",
+      5.24,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "Enthralled by an auto-choke, green and fresh",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Enthralled",
+      5.56,
+      0.874
+     ],
+     [
+      "by",
+      6.24,
+      0.999
+     ],
+     [
+      "an",
+      6.42,
+      0.947
+     ],
+     [
+      "auto",
+      6.6,
+      0.713
+     ],
+     [
+      "-choke,",
+      6.82,
+      0.842
+     ],
+     [
+      "green",
+      7.12,
+      0.995
+     ],
+     [
+      "and",
+      7.42,
+      0.996
+     ],
+     [
+      "fresh",
+      7.66,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "Sacred geometry made flesh",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Sacred",
+      7.96,
+      0.972
+     ],
+     [
+      "geometry",
+      8.74,
+      0.926
+     ],
+     [
+      "made",
+      9.3,
+      0.965
+     ],
+     [
+      "flesh",
+      10.02,
+      0.979
+     ]
+    ]
+   },
+   {
+    "text": "Down in the basement, dad's code I watch up",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Down",
+      10.34,
+      0.992
+     ],
+     [
+      "in",
+      10.98,
+      0.998
+     ],
+     [
+      "the",
+      11.24,
+      0.999
+     ],
+     [
+      "basement,",
+      11.32,
+      1.0
+     ],
+     [
+      "dad's",
+      11.66,
+      0.961
+     ],
+     [
+      "code",
+      11.98,
+      0.682
+     ],
+     [
+      "I",
+      12.12,
+      0.9
+     ],
+     [
+      "watch",
+      12.48,
+      0.993
+     ],
+     [
+      "up",
+      12.78,
+      0.093
+     ]
+    ]
+   },
+   {
+    "text": "Point to the one he missed, good catch",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Point",
+      13.1,
+      0.434
+     ],
+     [
+      "to",
+      13.42,
+      0.995
+     ],
+     [
+      "the",
+      13.58,
+      0.999
+     ],
+     [
+      "one",
+      13.72,
+      1.0
+     ],
+     [
+      "he",
+      13.96,
+      0.994
+     ],
+     [
+      "missed,",
+      14.1,
+      1.0
+     ],
+     [
+      "good",
+      14.46,
+      0.994
+     ],
+     [
+      "catch",
+      14.78,
+      1.0
+     ]
+    ]
+   },
+   {
+    "text": "Did she understand or just pattern match?",
+    "nsp": 0.451,
+    "lp": -0.128,
+    "words": [
+     [
+      "Did",
+      15.18,
+      0.997
+     ],
+     [
+      "she",
+      15.74,
+      1.0
+     ],
+     [
+      "understand",
+      15.88,
+      1.0
+     ],
+     [
+      "or",
+      16.88,
+      0.769
+     ],
+     [
+      "just",
+      17.56,
+      1.0
+     ],
+     [
+      "pattern",
+      17.96,
+      0.983
+     ],
+     [
+      "match?",
+      18.88,
+      0.985
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_interlude": {
+  "offset": 144,
+  "segs": [
+   {
+    "text": "pattern match",
+    "nsp": 0.707,
+    "lp": -0.593,
+    "words": [
+     [
+      "pattern",
+      0.0,
+      0.161
+     ],
+     [
+      "match",
+      0.76,
+      0.603
+     ]
+    ]
+   },
+   {
+    "text": "Do you not see",
+    "nsp": 0.707,
+    "lp": -0.593,
+    "words": [
+     [
+      "Do",
+      9.2,
+      0.068
+     ],
+     [
+      "you",
+      10.6,
+      0.5
+     ],
+     [
+      "not",
+      12.0,
+      0.932
+     ],
+     [
+      "see",
+      21.42,
+      0.979
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_interlude": {
+  "offset": 144,
+  "segs": [
+   {
+    "text": "Do you not see?",
+    "nsp": 0.583,
+    "lp": -0.928,
+    "words": [
+     [
+      "Do",
+      19.44,
+      0.121
+     ],
+     [
+      "you",
+      20.28,
+      0.594
+     ],
+     [
+      "not",
+      21.12,
+      0.9
+     ],
+     [
+      "see?",
+      21.44,
+      0.98
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_post2": {
+  "offset": 231,
+  "segs": [
+   {
+    "text": "Oh, where'd you go?",
+    "nsp": 0.506,
+    "lp": -0.823,
+    "words": [
+     [
+      "Oh,",
+      0.0,
+      0.067
+     ],
+     [
+      "where'd",
+      0.3,
+      0.488
+     ],
+     [
+      "you",
+      0.58,
+      0.954
+     ],
+     [
+      "go?",
+      1.24,
+      0.931
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_post2": {
+  "offset": 231,
+  "segs": [
+   {
+    "text": "Where'd you go?",
+    "nsp": 0.505,
+    "lp": -0.744,
+    "words": [
+     [
+      "Where'd",
+      0.0,
+      0.191
+     ],
+     [
+      "you",
+      0.52,
+      0.945
+     ],
+     [
+      "go?",
+      1.24,
+      0.924
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_outro": {
+  "offset": 241,
+  "segs": [
+   {
+    "text": "she can smile on so they don't know this is how we fit in she turns around i let it go",
+    "nsp": 0.641,
+    "lp": -0.285,
+    "words": [
+     [
+      "she",
+      1.42,
+      0.037
+     ],
+     [
+      "can",
+      2.68,
+      0.875
+     ],
+     [
+      "smile",
+      3.12,
+      0.99
+     ],
+     [
+      "on",
+      3.82,
+      0.271
+     ],
+     [
+      "so",
+      4.38,
+      0.953
+     ],
+     [
+      "they",
+      4.7,
+      0.998
+     ],
+     [
+      "don't",
+      5.02,
+      0.994
+     ],
+     [
+      "know",
+      5.82,
+      0.998
+     ],
+     [
+      "this",
+      6.04,
+      0.917
+     ],
+     [
+      "is",
+      8.06,
+      0.996
+     ],
+     [
+      "how",
+      8.34,
+      0.999
+     ],
+     [
+      "we",
+      8.68,
+      0.994
+     ],
+     [
+      "fit",
+      9.9,
+      0.999
+     ],
+     [
+      "in",
+      10.28,
+      0.994
+     ],
+     [
+      "she",
+      10.94,
+      0.943
+     ],
+     [
+      "turns",
+      11.98,
+      1.0
+     ],
+     [
+      "around",
+      12.64,
+      0.997
+     ],
+     [
+      "i",
+      13.28,
+      0.565
+     ],
+     [
+      "let",
+      14.46,
+      0.989
+     ],
+     [
+      "it",
+      14.82,
+      0.997
+     ],
+     [
+      "go",
+      15.2,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "and i can think again",
+    "nsp": 0.641,
+    "lp": -0.285,
+    "words": [
+     [
+      "and",
+      16.4,
+      0.987
+     ],
+     [
+      "i",
+      18.24,
+      0.996
+     ],
+     [
+      "can",
+      18.66,
+      1.0
+     ],
+     [
+      "think",
+      19.26,
+      0.966
+     ],
+     [
+      "again",
+      19.92,
+      0.998
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_outro": {
+  "offset": 241,
+  "segs": [
+   {
+    "text": "Keep the smile on so they don't know",
+    "nsp": 0.436,
+    "lp": -0.247,
+    "words": [
+     [
+      "Keep",
+      1.64,
+      0.568
+     ],
+     [
+      "the",
+      2.88,
+      0.966
+     ],
+     [
+      "smile",
+      3.18,
+      0.99
+     ],
+     [
+      "on",
+      3.68,
+      0.976
+     ],
+     [
+      "so",
+      4.44,
+      0.88
+     ],
+     [
+      "they",
+      4.7,
+      0.996
+     ],
+     [
+      "don't",
+      5.02,
+      0.996
+     ],
+     [
+      "know",
+      5.8,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "This is how we fit in",
+    "nsp": 0.436,
+    "lp": -0.247,
+    "words": [
+     [
+      "This",
+      6.04,
+      0.874
+     ],
+     [
+      "is",
+      8.16,
+      0.992
+     ],
+     [
+      "how",
+      8.34,
+      0.999
+     ],
+     [
+      "we",
+      8.68,
+      0.973
+     ],
+     [
+      "fit",
+      9.9,
+      0.999
+     ],
+     [
+      "in",
+      10.28,
+      0.998
+     ]
+    ]
+   },
+   {
+    "text": "She turns around, I let it go",
+    "nsp": 0.436,
+    "lp": -0.247,
+    "words": [
+     [
+      "She",
+      10.96,
+      0.921
+     ],
+     [
+      "turns",
+      11.98,
+      0.998
+     ],
+     [
+      "around,",
+      12.64,
+      0.999
+     ],
+     [
+      "I",
+      13.82,
+      0.993
+     ],
+     [
+      "let",
+      14.5,
+      0.978
+     ],
+     [
+      "it",
+      14.82,
+      0.996
+     ],
+     [
+      "go",
+      15.22,
+      1.0
+     ]
+    ]
+   },
+   {
+    "text": "And I can think again",
+    "nsp": 0.436,
+    "lp": -0.247,
+    "words": [
+     [
+      "And",
+      17.16,
+      0.967
+     ],
+     [
+      "I",
+      18.4,
+      0.998
+     ],
+     [
+      "can",
+      18.7,
+      0.999
+     ],
+     [
+      "think",
+      19.28,
+      0.847
+     ],
+     [
+      "again",
+      19.92,
+      0.997
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_last": {
+  "offset": 256.5,
+  "segs": [
+   {
+    "text": "Let it go, and I can think again",
+    "nsp": 0.654,
+    "lp": -0.584,
+    "words": [
+     [
+      "Let",
+      0.0,
+      0.123
+     ],
+     [
+      "it",
+      0.0,
+      0.428
+     ],
+     [
+      "go,",
+      0.1,
+      0.996
+     ],
+     [
+      "and",
+      0.78,
+      0.932
+     ],
+     [
+      "I",
+      2.84,
+      0.981
+     ],
+     [
+      "can",
+      3.24,
+      0.998
+     ],
+     [
+      "think",
+      3.78,
+      0.963
+     ],
+     [
+      "again",
+      4.42,
+      0.996
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_last": {
+  "offset": 256.5,
+  "segs": [
+   {
+    "text": "Let go and I can think again",
+    "nsp": 0.701,
+    "lp": -0.661,
+    "words": [
+     [
+      "Let",
+      0.0,
+      0.105
+     ],
+     [
+      "go",
+      0.0,
+      0.557
+     ],
+     [
+      "and",
+      0.18,
+      0.33
+     ],
+     [
+      "I",
+      2.74,
+      0.964
+     ],
+     [
+      "can",
+      3.2,
+      0.995
+     ],
+     [
+      "think",
+      3.78,
+      0.947
+     ],
+     [
+      "again",
+      4.44,
+      0.996
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_coda": {
+  "offset": 262,
+  "segs": [
+   {
+    "text": "Good",
+    "nsp": 0.44,
+    "lp": -1.092,
+    "words": [
+     [
+      "Good",
+      0.0,
+      0.04
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_coda": {
+  "offset": 262,
+  "segs": [
+   {
+    "text": "Bye!",
+    "nsp": 0.551,
+    "lp": -1.439,
+    "words": [
+     [
+      "Bye!",
+      0.0,
+      0.032
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_tinier": {
+  "offset": 40,
+  "segs": [
+   {
+    "text": "Drift of paper, ripped to shreds",
+    "nsp": 0.719,
+    "lp": -0.284,
+    "words": [
+     [
+      "Drift",
+      0.0,
+      0.61
+     ],
+     [
+      "of",
+      0.44,
+      0.976
+     ],
+     [
+      "paper,",
+      0.56,
+      0.987
+     ],
+     [
+      "ripped",
+      1.26,
+      0.965
+     ],
+     [
+      "to",
+      2.1,
+      0.999
+     ],
+     [
+      "shreds",
+      2.54,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "Ever tinier, repeating what uncle said",
+    "nsp": 0.719,
+    "lp": -0.284,
+    "words": [
+     [
+      "Ever",
+      3.54,
+      0.339
+     ],
+     [
+      "tinier,",
+      3.92,
+      0.992
+     ],
+     [
+      "repeating",
+      5.14,
+      0.993
+     ],
+     [
+      "what",
+      6.08,
+      0.999
+     ],
+     [
+      "uncle",
+      6.7,
+      0.695
+     ],
+     [
+      "said",
+      7.44,
+      0.997
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_tinier": {
+  "offset": 40,
+  "segs": [
+   {
+    "text": "Drift of paper, ripped to shreds",
+    "nsp": 0.701,
+    "lp": -0.249,
+    "words": [
+     [
+      "Drift",
+      0.0,
+      0.556
+     ],
+     [
+      "of",
+      0.42,
+      0.967
+     ],
+     [
+      "paper,",
+      0.58,
+      0.992
+     ],
+     [
+      "ripped",
+      1.3,
+      0.979
+     ],
+     [
+      "to",
+      2.1,
+      0.999
+     ],
+     [
+      "shreds",
+      2.44,
+      1.0
+     ]
+    ]
+   },
+   {
+    "text": "Ever tinier, repeating what uncle said",
+    "nsp": 0.701,
+    "lp": -0.249,
+    "words": [
+     [
+      "Ever",
+      3.52,
+      0.55
+     ],
+     [
+      "tinier,",
+      3.94,
+      0.994
+     ],
+     [
+      "repeating",
+      5.06,
+      0.997
+     ],
+     [
+      "what",
+      6.08,
+      0.999
+     ],
+     [
+      "uncle",
+      6.68,
+      0.768
+     ],
+     [
+      "said",
+      7.44,
+      0.998
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_market": {
+  "offset": 131,
+  "segs": [
+   {
+    "text": "the wrong place and fall by a lot of choke green and fresh sacred geometry made flat",
+    "nsp": 0.667,
+    "lp": -0.314,
+    "words": [
+     [
+      "the",
+      0.0,
+      0.264
+     ],
+     [
+      "wrong",
+      0.12,
+      0.982
+     ],
+     [
+      "place",
+      0.24,
+      0.996
+     ],
+     [
+      "and",
+      0.6,
+      0.446
+     ],
+     [
+      "fall",
+      0.82,
+      0.485
+     ],
+     [
+      "by",
+      1.08,
+      0.989
+     ],
+     [
+      "a",
+      1.36,
+      0.211
+     ],
+     [
+      "lot",
+      1.54,
+      0.965
+     ],
+     [
+      "of",
+      1.78,
+      0.99
+     ],
+     [
+      "choke",
+      1.88,
+      0.847
+     ],
+     [
+      "green",
+      2.06,
+      0.884
+     ],
+     [
+      "and",
+      2.4,
+      0.997
+     ],
+     [
+      "fresh",
+      2.66,
+      0.999
+     ],
+     [
+      "sacred",
+      3.0,
+      0.792
+     ],
+     [
+      "geometry",
+      3.64,
+      0.99
+     ],
+     [
+      "made",
+      4.32,
+      0.986
+     ],
+     [
+      "flat",
+      4.98,
+      0.888
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_market": {
+  "offset": 131,
+  "segs": [
+   {
+    "text": "the wrong place enthralled by an auto choke green and fresh sacred geometry made flat",
+    "nsp": 0.606,
+    "lp": -0.235,
+    "words": [
+     [
+      "the",
+      0.0,
+      0.494
+     ],
+     [
+      "wrong",
+      0.14,
+      0.972
+     ],
+     [
+      "place",
+      0.28,
+      0.992
+     ],
+     [
+      "enthralled",
+      0.56,
+      0.733
+     ],
+     [
+      "by",
+      1.24,
+      0.997
+     ],
+     [
+      "an",
+      1.46,
+      0.859
+     ],
+     [
+      "auto",
+      1.58,
+      0.77
+     ],
+     [
+      "choke",
+      1.82,
+      0.583
+     ],
+     [
+      "green",
+      2.06,
+      0.945
+     ],
+     [
+      "and",
+      2.4,
+      0.997
+     ],
+     [
+      "fresh",
+      2.64,
+      1.0
+     ],
+     [
+      "sacred",
+      2.96,
+      0.897
+     ],
+     [
+      "geometry",
+      3.72,
+      0.991
+     ],
+     [
+      "made",
+      4.32,
+      0.991
+     ],
+     [
+      "flat",
+      5.0,
+      0.902
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_catch": {
+  "offset": 136,
+  "segs": [
+   {
+    "text": "Made flesh down in the basement, that's code I watch up, point to the one he missed",
+    "nsp": 0.745,
+    "lp": -0.23,
+    "words": [
+     [
+      "Made",
+      0.0,
+      0.036
+     ],
+     [
+      "flesh",
+      0.2,
+      0.776
+     ],
+     [
+      "down",
+      0.36,
+      0.667
+     ],
+     [
+      "in",
+      0.96,
+      0.984
+     ],
+     [
+      "the",
+      1.24,
+      0.966
+     ],
+     [
+      "basement,",
+      1.32,
+      0.993
+     ],
+     [
+      "that's",
+      1.68,
+      0.89
+     ],
+     [
+      "code",
+      2.0,
+      0.941
+     ],
+     [
+      "I",
+      2.12,
+      0.813
+     ],
+     [
+      "watch",
+      2.5,
+      0.901
+     ],
+     [
+      "up,",
+      2.8,
+      0.423
+     ],
+     [
+      "point",
+      3.12,
+      0.989
+     ],
+     [
+      "to",
+      3.42,
+      0.996
+     ],
+     [
+      "the",
+      3.6,
+      0.999
+     ],
+     [
+      "one",
+      3.72,
+      0.999
+     ],
+     [
+      "he",
+      3.96,
+      0.991
+     ],
+     [
+      "missed",
+      4.08,
+      0.999
+     ]
+    ]
+   },
+   {
+    "text": "Good catch, did she understand or just pattern match?",
+    "nsp": 0.745,
+    "lp": -0.23,
+    "words": [
+     [
+      "Good",
+      4.36,
+      0.41
+     ],
+     [
+      "catch,",
+      4.8,
+      0.997
+     ],
+     [
+      "did",
+      5.5,
+      0.999
+     ],
+     [
+      "she",
+      5.74,
+      1.0
+     ],
+     [
+      "understand",
+      5.9,
+      0.999
+     ],
+     [
+      "or",
+      6.62,
+      0.375
+     ],
+     [
+      "just",
+      7.56,
+      0.999
+     ],
+     [
+      "pattern",
+      7.9,
+      0.987
+     ],
+     [
+      "match?",
+      8.8,
+      0.835
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_catch": {
+  "offset": 136,
+  "segs": [
+   {
+    "text": "Made flesh down in the basement, dad's coat I watch up, point to the one he missed",
+    "nsp": 0.704,
+    "lp": -0.226,
+    "words": [
+     [
+      "Made",
+      0.0,
+      0.021
+     ],
+     [
+      "flesh",
+      0.2,
+      0.759
+     ],
+     [
+      "down",
+      0.42,
+      0.659
+     ],
+     [
+      "in",
+      0.96,
+      0.992
+     ],
+     [
+      "the",
+      1.24,
+      0.99
+     ],
+     [
+      "basement,",
+      1.32,
+      0.997
+     ],
+     [
+      "dad's",
+      1.66,
+      0.923
+     ],
+     [
+      "coat",
+      2.0,
+      0.667
+     ],
+     [
+      "I",
+      2.12,
+      0.635
+     ],
+     [
+      "watch",
+      2.48,
+      0.988
+     ],
+     [
+      "up,",
+      2.78,
+      0.731
+     ],
+     [
+      "point",
+      3.12,
+      0.995
+     ],
+     [
+      "to",
+      3.42,
+      0.999
+     ],
+     [
+      "the",
+      3.6,
+      0.999
+     ],
+     [
+      "one",
+      3.72,
+      1.0
+     ],
+     [
+      "he",
+      3.96,
+      0.997
+     ],
+     [
+      "missed",
+      4.08,
+      1.0
+     ]
+    ]
+   },
+   {
+    "text": "Good catch, did she understand or just pattern match?",
+    "nsp": 0.704,
+    "lp": -0.226,
+    "words": [
+     [
+      "Good",
+      4.36,
+      0.382
+     ],
+     [
+      "catch,",
+      4.78,
+      0.998
+     ],
+     [
+      "did",
+      5.5,
+      0.999
+     ],
+     [
+      "she",
+      5.7,
+      1.0
+     ],
+     [
+      "understand",
+      5.9,
+      1.0
+     ],
+     [
+      "or",
+      6.74,
+      0.311
+     ],
+     [
+      "just",
+      7.56,
+      1.0
+     ],
+     [
+      "pattern",
+      7.92,
+      0.994
+     ],
+     [
+      "match?",
+      8.8,
+      0.814
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_truth": {
+  "offset": 169,
+  "segs": [
+   {
+    "text": "Me, me, beauty on this side",
+    "nsp": 0.623,
+    "lp": -0.561,
+    "words": [
+     [
+      "Me,",
+      0.0,
+      0.124
+     ],
+     [
+      "me,",
+      0.16,
+      0.701
+     ],
+     [
+      "beauty",
+      0.48,
+      0.845
+     ],
+     [
+      "on",
+      0.94,
+      0.994
+     ],
+     [
+      "this",
+      1.36,
+      0.924
+     ],
+     [
+      "side",
+      1.68,
+      0.977
+     ]
+    ]
+   },
+   {
+    "text": "Choose by reference",
+    "nsp": 0.623,
+    "lp": -0.561,
+    "words": [
+     [
+      "Choose",
+      2.92,
+      0.179
+     ],
+     [
+      "by",
+      3.36,
+      0.828
+     ],
+     [
+      "reference",
+      3.66,
+      0.781
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_truth": {
+  "offset": 169,
+  "segs": [
+   {
+    "text": "Me, me, beauty on this side",
+    "nsp": 0.663,
+    "lp": -0.418,
+    "words": [
+     [
+      "Me,",
+      0.0,
+      0.098
+     ],
+     [
+      "me,",
+      0.16,
+      0.907
+     ],
+     [
+      "beauty",
+      0.44,
+      0.802
+     ],
+     [
+      "on",
+      0.94,
+      0.996
+     ],
+     [
+      "this",
+      1.36,
+      0.924
+     ],
+     [
+      "side",
+      1.68,
+      0.987
+     ]
+    ]
+   },
+   {
+    "text": "Truth by reference",
+    "nsp": 0.663,
+    "lp": -0.418,
+    "words": [
+     [
+      "Truth",
+      2.92,
+      0.492
+     ],
+     [
+      "by",
+      3.38,
+      0.996
+     ],
+     [
+      "reference",
+      3.66,
+      0.994
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_shelved": {
+  "offset": 174,
+  "segs": [
+   {
+    "text": "Science fiction shoved with truth",
+    "nsp": 0.52,
+    "lp": -0.285,
+    "words": [
+     [
+      "Science",
+      0.0,
+      0.693
+     ],
+     [
+      "fiction",
+      0.82,
+      0.862
+     ],
+     [
+      "shoved",
+      1.4,
+      0.845
+     ],
+     [
+      "with",
+      2.2,
+      0.991
+     ],
+     [
+      "truth",
+      2.32,
+      0.985
+     ]
+    ]
+   },
+   {
+    "text": "From inside I can't tell the difference",
+    "nsp": 0.52,
+    "lp": -0.285,
+    "words": [
+     [
+      "From",
+      2.66,
+      0.363
+     ],
+     [
+      "inside",
+      3.14,
+      0.993
+     ],
+     [
+      "I",
+      3.58,
+      0.801
+     ],
+     [
+      "can't",
+      3.9,
+      0.99
+     ],
+     [
+      "tell",
+      4.2,
+      0.999
+     ],
+     [
+      "the",
+      4.42,
+      0.996
+     ],
+     [
+      "difference",
+      4.66,
+      0.554
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_shelved": {
+  "offset": 174,
+  "segs": [
+   {
+    "text": "Science fiction shoved with truth",
+    "nsp": 0.539,
+    "lp": -0.231,
+    "words": [
+     [
+      "Science",
+      0.0,
+      0.742
+     ],
+     [
+      "fiction",
+      0.78,
+      0.967
+     ],
+     [
+      "shoved",
+      1.4,
+      0.807
+     ],
+     [
+      "with",
+      2.2,
+      0.996
+     ],
+     [
+      "truth",
+      2.32,
+      0.998
+     ]
+    ]
+   },
+   {
+    "text": "From inside I can't tell the difference",
+    "nsp": 0.539,
+    "lp": -0.231,
+    "words": [
+     [
+      "From",
+      2.66,
+      0.71
+     ],
+     [
+      "inside",
+      3.16,
+      0.999
+     ],
+     [
+      "I",
+      3.58,
+      0.947
+     ],
+     [
+      "can't",
+      3.9,
+      0.998
+     ],
+     [
+      "tell",
+      4.2,
+      1.0
+     ],
+     [
+      "the",
+      4.42,
+      0.999
+     ],
+     [
+      "difference",
+      4.66,
+      0.992
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_keep": {
+  "offset": 241.5,
+  "segs": [
+   {
+    "text": "so they don't know",
+    "nsp": 0.561,
+    "lp": -0.467,
+    "words": [
+     [
+      "so",
+      0.0,
+      0.068
+     ],
+     [
+      "they",
+      2.8,
+      0.968
+     ],
+     [
+      "don't",
+      4.5,
+      0.997
+     ],
+     [
+      "know",
+      5.32,
+      0.998
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_keep": {
+  "offset": 241.5,
+  "segs": [
+   {
+    "text": "Keep the smile on so they don't know",
+    "nsp": 0.467,
+    "lp": -0.172,
+    "words": [
+     [
+      "Keep",
+      1.66,
+      0.729
+     ],
+     [
+      "the",
+      2.38,
+      0.961
+     ],
+     [
+      "smile",
+      2.74,
+      0.962
+     ],
+     [
+      "on",
+      3.1,
+      0.984
+     ],
+     [
+      "so",
+      3.94,
+      0.925
+     ],
+     [
+      "they",
+      4.22,
+      0.998
+     ],
+     [
+      "don't",
+      4.54,
+      0.997
+     ],
+     [
+      "know",
+      5.32,
+      1.0
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_perky": {
+  "offset": 188,
+  "segs": [
+   {
+    "text": "the yard perky american girl girl i play the",
+    "nsp": 0.531,
+    "lp": -0.431,
+    "words": [
+     [
+      "the",
+      0.0,
+      0.436
+     ],
+     [
+      "yard",
+      0.24,
+      0.8
+     ],
+     [
+      "perky",
+      0.46,
+      0.658
+     ],
+     [
+      "american",
+      1.7,
+      0.754
+     ],
+     [
+      "girl",
+      2.18,
+      0.997
+     ],
+     [
+      "girl",
+      3.14,
+      0.409
+     ],
+     [
+      "i",
+      3.68,
+      0.878
+     ],
+     [
+      "play",
+      4.16,
+      0.723
+     ],
+     [
+      "the",
+      4.58,
+      0.997
+     ]
+    ]
+   },
+   {
+    "text": "the",
+    "nsp": 0.699,
+    "lp": -0.962,
+    "words": [
+     [
+      "the",
+      4.92,
+      0.245
+     ]
+    ]
+   },
+   {
+    "text": "po-",
+    "nsp": 0.699,
+    "lp": -0.962,
+    "words": [
+     [
+      "po",
+      5.32,
+      0.096
+     ],
+     [
+      "-",
+      5.32,
+      0.689
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_perky": {
+  "offset": 188,
+  "segs": [
+   {
+    "text": "the yard perky american girl i play the part",
+    "nsp": 0.619,
+    "lp": -0.415,
+    "words": [
+     [
+      "the",
+      0.0,
+      0.383
+     ],
+     [
+      "yard",
+      0.2,
+      0.709
+     ],
+     [
+      "perky",
+      0.46,
+      0.649
+     ],
+     [
+      "american",
+      1.64,
+      0.729
+     ],
+     [
+      "girl",
+      2.18,
+      0.995
+     ],
+     [
+      "i",
+      3.12,
+      0.539
+     ],
+     [
+      "play",
+      3.9,
+      0.979
+     ],
+     [
+      "the",
+      4.58,
+      0.998
+     ],
+     [
+      "part",
+      4.96,
+      0.676
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_hug": {
+  "offset": 198,
+  "segs": [
+   {
+    "text": "I nod, the past hour gets reviewed Hug durations, pitch contours",
+    "nsp": 0.24,
+    "lp": -0.437,
+    "words": [
+     [
+      "I",
+      0.0,
+      0.094
+     ],
+     [
+      "nod,",
+      1.0,
+      0.428
+     ],
+     [
+      "the",
+      1.6,
+      0.874
+     ],
+     [
+      "past",
+      1.78,
+      0.964
+     ],
+     [
+      "hour",
+      2.06,
+      0.967
+     ],
+     [
+      "gets",
+      2.38,
+      0.983
+     ],
+     [
+      "reviewed",
+      2.72,
+      0.989
+     ],
+     [
+      "Hug",
+      3.24,
+      0.386
+     ],
+     [
+      "durations,",
+      3.76,
+      0.947
+     ],
+     [
+      "pitch",
+      4.62,
+      0.983
+     ],
+     [
+      "contours",
+      4.96,
+      0.735
+     ]
+    ]
+   }
+  ]
+ },
+ "mix_hug": {
+  "offset": 198,
+  "segs": [
+   {
+    "text": "amplitude, I nod, the past",
+    "nsp": 0.57,
+    "lp": -0.202,
+    "words": [
+     [
+      "amplitude,",
+      0.0,
+      0.51
+     ],
+     [
+      "I",
+      0.78,
+      0.968
+     ],
+     [
+      "nod,",
+      1.1,
+      0.858
+     ],
+     [
+      "the",
+      1.6,
+      0.984
+     ],
+     [
+      "past",
+      1.78,
+      0.992
+     ]
+    ]
+   },
+   {
+    "text": "hour gets reviewed, hug",
+    "nsp": 0.57,
+    "lp": -0.202,
+    "words": [
+     [
+      "hour",
+      2.12,
+      0.985
+     ],
+     [
+      "gets",
+      2.36,
+      0.995
+     ],
+     [
+      "reviewed,",
+      2.7,
+      0.999
+     ],
+     [
+      "hug",
+      3.5,
+      0.994
+     ]
+    ]
+   },
+   {
+    "text": "durations, pitch contours",
+    "nsp": 0.57,
+    "lp": -0.202,
+    "words": [
+     [
+      "durations,",
+      3.76,
+      0.993
+     ],
+     [
+      "pitch",
+      4.6,
+      0.998
+     ],
+     [
+      "contours",
+      4.94,
+      0.969
+     ]
+    ]
+   }
+  ]
+ },
+ "voc_last_bias:And I can't think again.": [
+  {
+   "text": "Let go, and I can't think again.",
+   "nsp": 0.056,
+   "lp": -0.535,
+   "words": [
+    [
+     "Let",
+     0.0,
+     0.123
+    ],
+    [
+     "go,",
+     0.0,
+     0.549
+    ],
+    [
+     "and",
+     0.76,
+     0.939
+    ],
+    [
+     "I",
+     2.86,
+     0.985
+    ],
+    [
+     "can't",
+     3.24,
+     0.513
+    ],
+    [
+     "think",
+     3.84,
+     0.996
+    ],
+    [
+     "again.",
+     4.46,
+     0.994
+    ]
+   ]
+  }
+ ],
+ "voc_last_bias:And I can think again.": [
+  {
+   "text": "And I can think again.",
+   "nsp": 0.049,
+   "lp": -0.546,
+   "words": [
+    [
+     "And",
+     0.0,
+     0.179
+    ],
+    [
+     "I",
+     1.14,
+     0.962
+    ],
+    [
+     "can",
+     3.2,
+     0.984
+    ],
+    [
+     "think",
+     3.76,
+     0.675
+    ],
+    [
+     "again.",
+     4.42,
+     0.984
+    ]
+   ]
+  }
+ ],
+ "mix_last_bias:And I can't think again.": [
+  {
+   "text": "I can't let it go.",
+   "nsp": 0.082,
+   "lp": -0.498,
+   "words": [
+    [
+     "I",
+     0.0,
+     0.053
+    ],
+    [
+     "can't",
+     0.0,
+     0.52
+    ],
+    [
+     "let",
+     0.0,
+     0.442
+    ],
+    [
+     "it",
+     0.0,
+     0.408
+    ],
+    [
+     "go.",
+     0.08,
+     0.998
+    ]
+   ]
+  },
+  {
+   "text": "And I can't think again.",
+   "nsp": 0.082,
+   "lp": -0.498,
+   "words": [
+    [
+     "And",
+     2.48,
+     0.946
+    ],
+    [
+     "I",
+     2.86,
+     0.996
+    ],
+    [
+     "can't",
+     3.24,
+     0.821
+    ],
+    [
+     "think",
+     4.04,
+     0.989
+    ],
+    [
+     "again.",
+     4.4,
+     0.989
+    ]
+   ]
+  }
+ ],
+ "mix_last_bias:And I can think again.": [
+  {
+   "text": "Let go, and I can think again.",
+   "nsp": 0.065,
+   "lp": -0.596,
+   "words": [
+    [
+     "Let",
+     0.0,
+     0.105
+    ],
+    [
+     "go,",
+     0.0,
+     0.557
+    ],
+    [
+     "and",
+     0.76,
+     0.908
+    ],
+    [
+     "I",
+     2.86,
+     0.986
+    ],
+    [
+     "can",
+     3.22,
+     0.997
+    ],
+    [
+     "think",
+     3.78,
+     0.938
+    ],
+    [
+     "again.",
+     4.44,
+     0.996
+    ]
+   ]
+  }
+ ],
+ "voc_market_bias:Enthralled by an artichoke, market-fresh.": [
+  {
+   "text": "In the wrong place, and thralled by an artichoke, green and fresh.",
+   "nsp": 0.059,
+   "lp": -0.356,
+   "words": [
+    [
+     "In",
+     0.0,
+     0.058
+    ],
+    [
+     "the",
+     0.12,
+     0.951
+    ],
+    [
+     "wrong",
+     0.12,
+     0.986
+    ],
+    [
+     "place,",
+     0.24,
+     0.997
+    ],
+    [
+     "and",
+     0.64,
+     0.125
+    ],
+    [
+     "thralled",
+     0.88,
+     0.128
+    ],
+    [
+     "by",
+     1.24,
+     0.96
+    ],
+    [
+     "an",
+     1.44,
+     0.503
+    ],
+    [
+     "artichoke,",
+     1.58,
+     0.692
+    ],
+    [
+     "green",
+     2.12,
+     0.92
+    ],
+    [
+     "and",
+     2.38,
+     0.958
+    ],
+    [
+     "fresh.",
+     2.64,
+     0.996
+    ]
+   ]
+  },
+  {
+   "text": "Sacred geometry made flat.",
+   "nsp": 0.059,
+   "lp": -0.356,
+   "words": [
+    [
+     "Sacred",
+     3.28,
+     0.509
+    ],
+    [
+     "geometry",
+     3.66,
+     0.869
+    ],
+    [
+     "made",
+     4.32,
+     0.909
+    ],
+    [
+     "flat.",
+     5.0,
+     0.471
+    ]
+   ]
+  }
+ ],
+ "voc_market_bias:Enthralled by an artichoke, green and fresh.": [
+  {
+   "text": "Sacred geometry made flat.",
+   "nsp": 0.053,
+   "lp": -0.693,
+   "words": [
+    [
+     "Sacred",
+     1.5,
+     0.0
+    ],
+    [
+     "geometry",
+     2.9,
+     0.553
+    ],
+    [
+     "made",
+     4.3,
+     0.883
+    ],
+    [
+     "flat.",
+     5.02,
+     0.384
+    ]
+   ]
+  }
+ ],
+ "mix_market_bias:Enthralled by an artichoke, market-fresh.": [
+  {
+   "text": "In the wrong place, enthralled by an artichoke, green and fresh.",
+   "nsp": 0.109,
+   "lp": -0.257,
+   "words": [
+    [
+     "In",
+     0.0,
+     0.033
+    ],
+    [
+     "the",
+     0.14,
+     0.929
+    ],
+    [
+     "wrong",
+     0.14,
+     0.983
+    ],
+    [
+     "place,",
+     0.22,
+     0.997
+    ],
+    [
+     "enthralled",
+     0.62,
+     0.942
+    ],
+    [
+     "by",
+     1.24,
+     0.976
+    ],
+    [
+     "an",
+     1.46,
+     0.895
+    ],
+    [
+     "artichoke,",
+     1.6,
+     0.66
+    ],
+    [
+     "green",
+     2.14,
+     0.974
+    ],
+    [
+     "and",
+     2.42,
+     0.992
+    ],
+    [
+     "fresh.",
+     2.64,
+     1.0
+    ]
+   ]
+  },
+  {
+   "text": "Sacred geometry made flat.",
+   "nsp": 0.109,
+   "lp": -0.257,
+   "words": [
+    [
+     "Sacred",
+     3.12,
+     0.958
+    ],
+    [
+     "geometry",
+     3.68,
+     0.925
+    ],
+    [
+     "made",
+     4.32,
+     0.97
+    ],
+    [
+     "flat.",
+     5.02,
+     0.865
+    ]
+   ]
+  }
+ ],
+ "mix_market_bias:Enthralled by an artichoke, green and fresh.": [
+  {
+   "text": "Sacred geometry made flat.",
+   "nsp": 0.13,
+   "lp": -0.373,
+   "words": [
+    [
+     "Sacred",
+     1.52,
+     0.0
+    ],
+    [
+     "geometry",
+     2.92,
+     0.83
+    ],
+    [
+     "made",
+     4.32,
+     0.84
+    ],
+    [
+     "flat.",
+     5.02,
+     0.541
+    ]
+   ]
+  }
+ ],
+ "voc_truth_bias:Beauty on this side, truth by reference.": [
+  {
+   "text": "Me, me, beauty on this side, truth by reference.",
+   "nsp": 0.313,
+   "lp": -0.338,
+   "words": [
+    [
+     "Me,",
+     0.0,
+     0.124
+    ],
+    [
+     "me,",
+     0.16,
+     0.703
+    ],
+    [
+     "beauty",
+     0.48,
+     0.844
+    ],
+    [
+     "on",
+     0.96,
+     0.994
+    ],
+    [
+     "this",
+     1.36,
+     0.924
+    ],
+    [
+     "side,",
+     1.68,
+     0.977
+    ],
+    [
+     "truth",
+     2.88,
+     0.377
+    ],
+    [
+     "by",
+     3.38,
+     0.989
+    ],
+    [
+     "reference.",
+     3.68,
+     0.925
+    ]
+   ]
+  }
+ ],
+ "voc_truth_bias:Beauty on this side, I choose by reference.": [
+  {
+   "text": "Me, me, beauty on this side, choose by reference.",
+   "nsp": 0.151,
+   "lp": -0.374,
+   "words": [
+    [
+     "Me,",
+     0.0,
+     0.124
+    ],
+    [
+     "me,",
+     0.16,
+     0.703
+    ],
+    [
+     "beauty",
+     0.48,
+     0.844
+    ],
+    [
+     "on",
+     0.96,
+     0.994
+    ],
+    [
+     "this",
+     1.36,
+     0.924
+    ],
+    [
+     "side,",
+     1.68,
+     0.977
+    ],
+    [
+     "choose",
+     2.88,
+     0.408
+    ],
+    [
+     "by",
+     3.38,
+     0.695
+    ],
+    [
+     "reference.",
+     3.66,
+     0.875
+    ]
+   ]
+  }
+ ],
+ "mix_truth_bias:Beauty on this side, truth by reference.": [
+  {
+   "text": "Beauty on this side, truth by reference.",
+   "nsp": 0.158,
+   "lp": -0.334,
+   "words": [
+    [
+     "Beauty",
+     0.0,
+     0.07
+    ],
+    [
+     "on",
+     0.88,
+     0.977
+    ],
+    [
+     "this",
+     1.34,
+     0.921
+    ],
+    [
+     "side,",
+     1.68,
+     0.978
+    ],
+    [
+     "truth",
+     2.8,
+     0.879
+    ],
+    [
+     "by",
+     3.38,
+     0.998
+    ],
+    [
+     "reference.",
+     3.68,
+     0.993
+    ]
+   ]
+  }
+ ],
+ "mix_truth_bias:Beauty on this side, I choose by reference.": [
+  {
+   "text": "Beauty on this side, I choose by reference.",
+   "nsp": 0.147,
+   "lp": -0.35,
+   "words": [
+    [
+     "Beauty",
+     0.0,
+     0.07
+    ],
+    [
+     "on",
+     0.88,
+     0.977
+    ],
+    [
+     "this",
+     1.34,
+     0.921
+    ],
+    [
+     "side,",
+     1.68,
+     0.978
+    ],
+    [
+     "I",
+     2.82,
+     0.0
+    ],
+    [
+     "choose",
+     3.02,
+     0.641
+    ],
+    [
+     "by",
+     3.4,
+     0.54
+    ],
+    [
+     "reference.",
+     3.66,
+     0.976
+    ]
+   ]
+  }
+ ],
+ "voc_keep_bias:Keep the smile on so they don't know.": [
+  {
+   "text": "Smile on so they don't know.",
+   "nsp": 0.108,
+   "lp": -0.513,
+   "words": [
+    [
+     "Smile",
+     2.7,
+     0.006
+    ],
+    [
+     "on",
+     3.3,
+     0.298
+    ],
+    [
+     "so",
+     3.9,
+     0.728
+    ],
+    [
+     "they",
+     4.2,
+     0.995
+    ],
+    [
+     "don't",
+     4.48,
+     0.994
+    ],
+    [
+     "know.",
+     5.32,
+     0.982
+    ]
+   ]
+  }
+ ],
+ "voc_keep_bias:She can smile once so they don't know.": [
+  {
+   "text": "She can smile once so they don't know.",
+   "nsp": 0.098,
+   "lp": -0.268,
+   "words": [
+    [
+     "She",
+     1.38,
+     0.273
+    ],
+    [
+     "can",
+     2.22,
+     0.865
+    ],
+    [
+     "smile",
+     2.64,
+     0.993
+    ],
+    [
+     "once",
+     3.3,
+     0.318
+    ],
+    [
+     "so",
+     4.04,
+     0.699
+    ],
+    [
+     "they",
+     4.26,
+     0.998
+    ],
+    [
+     "don't",
+     4.54,
+     0.995
+    ],
+    [
+     "know.",
+     5.32,
+     1.0
+    ]
+   ]
+  }
+ ],
+ "mix_keep_bias:Keep the smile on so they don't know.": [
+  {
+   "text": "Keep the smile on so they don't know.",
+   "nsp": 0.089,
+   "lp": -0.264,
+   "words": [
+    [
+     "Keep",
+     1.66,
+     0.729
+    ],
+    [
+     "the",
+     2.38,
+     0.961
+    ],
+    [
+     "smile",
+     2.74,
+     0.962
+    ],
+    [
+     "on",
+     3.1,
+     0.984
+    ],
+    [
+     "so",
+     3.94,
+     0.925
+    ],
+    [
+     "they",
+     4.22,
+     0.998
+    ],
+    [
+     "don't",
+     4.54,
+     0.997
+    ],
+    [
+     "know.",
+     5.32,
+     1.0
+    ]
+   ]
+  }
+ ],
+ "mix_keep_bias:She can smile once so they don't know.": [
+  {
+   "text": "Keep the smile on so they don't know.",
+   "nsp": 0.055,
+   "lp": -0.306,
+   "words": [
+    [
+     "Keep",
+     1.66,
+     0.729
+    ],
+    [
+     "the",
+     2.38,
+     0.961
+    ],
+    [
+     "smile",
+     2.74,
+     0.962
+    ],
+    [
+     "on",
+     3.1,
+     0.984
+    ],
+    [
+     "so",
+     3.94,
+     0.925
+    ],
+    [
+     "they",
+     4.22,
+     0.998
+    ],
+    [
+     "don't",
+     4.54,
+     0.997
+    ],
+    [
+     "know.",
+     5.32,
+     1.0
+    ]
+   ]
+  }
+ ],
+ "voc_catch_bias:I point to the one he missed. Good catch!": [
+  {
+   "text": "Did she understand or just pattern match?",
+   "nsp": 0.019,
+   "lp": -0.458,
+   "words": [
+    [
+     "Did",
+     3.1,
+     0.025
+    ],
+    [
+     "she",
+     4.5,
+     0.968
+    ],
+    [
+     "understand",
+     5.9,
+     0.963
+    ],
+    [
+     "or",
+     6.56,
+     0.721
+    ],
+    [
+     "just",
+     7.56,
+     0.994
+    ],
+    [
+     "pattern",
+     7.9,
+     0.98
+    ],
+    [
+     "match?",
+     8.82,
+     0.818
+    ]
+   ]
+  }
+ ],
+ "voc_catch_bias:I point to the warning list. Good catch!": [
+  {
+   "text": "Did she understand or just pattern match?",
+   "nsp": 0.035,
+   "lp": -0.435,
+   "words": [
+    [
+     "Did",
+     3.1,
+     0.025
+    ],
+    [
+     "she",
+     4.5,
+     0.968
+    ],
+    [
+     "understand",
+     5.9,
+     0.963
+    ],
+    [
+     "or",
+     6.56,
+     0.721
+    ],
+    [
+     "just",
+     7.56,
+     0.994
+    ],
+    [
+     "pattern",
+     7.9,
+     0.98
+    ],
+    [
+     "match?",
+     8.82,
+     0.818
+    ]
+   ]
+  }
+ ],
+ "mix_catch_bias:I point to the one he missed. Good catch!": [
+  {
+   "text": "Did she understand or just pattern match?",
+   "nsp": 0.048,
+   "lp": -0.379,
+   "words": [
+    [
+     "Did",
+     3.32,
+     0.046
+    ],
+    [
+     "she",
+     4.72,
+     0.965
+    ],
+    [
+     "understand",
+     5.92,
+     0.981
+    ],
+    [
+     "or",
+     6.56,
+     0.796
+    ],
+    [
+     "just",
+     7.56,
+     0.998
+    ],
+    [
+     "pattern",
+     7.9,
+     0.991
+    ],
+    [
+     "match?",
+     8.82,
+     0.828
+    ]
+   ]
+  }
+ ],
+ "mix_catch_bias:I point to the warning list. Good catch!": [
+  {
+   "text": "Did she understand or just pattern match?",
+   "nsp": 0.08,
+   "lp": -0.334,
+   "words": [
+    [
+     "Did",
+     3.32,
+     0.046
+    ],
+    [
+     "she",
+     4.72,
+     0.965
+    ],
+    [
+     "understand",
+     5.92,
+     0.981
+    ],
+    [
+     "or",
+     6.56,
+     0.796
+    ],
+    [
+     "just",
+     7.56,
+     0.998
+    ],
+    [
+     "pattern",
+     7.9,
+     0.991
+    ],
+    [
+     "match?",
+     8.82,
+     0.828
+    ]
+   ]
+  }
+ ],
+ "voc_shelved_bias:Science fiction shelved with truth.": [
+  {
+   "text": "Science fiction shelved with truth, from inside I can't tell the difference.",
+   "nsp": 0.0,
+   "lp": -0.413,
+   "words": [
+    [
+     "Science",
+     0.0,
+     0.693
+    ],
+    [
+     "fiction",
+     0.84,
+     0.862
+    ],
+    [
+     "shelved",
+     1.4,
+     0.522
+    ],
+    [
+     "with",
+     2.18,
+     0.992
+    ],
+    [
+     "truth,",
+     2.32,
+     0.983
+    ],
+    [
+     "from",
+     2.82,
+     0.87
+    ],
+    [
+     "inside",
+     3.16,
+     0.993
+    ],
+    [
+     "I",
+     3.56,
+     0.906
+    ],
+    [
+     "can't",
+     3.9,
+     0.988
+    ],
+    [
+     "tell",
+     4.2,
+     0.999
+    ],
+    [
+     "the",
+     4.42,
+     0.995
+    ],
+    [
+     "difference.",
+     4.66,
+     0.533
+    ]
+   ]
+  }
+ ],
+ "voc_shelved_bias:Science fiction shoved with truth.": [
+  {
+   "text": "Science fiction shoved with truth, from inside I can't tell the difference.",
+   "nsp": 0.0,
+   "lp": -0.399,
+   "words": [
+    [
+     "Science",
+     0.0,
+     0.693
+    ],
+    [
+     "fiction",
+     0.84,
+     0.862
+    ],
+    [
+     "shoved",
+     1.4,
+     0.845
+    ],
+    [
+     "with",
+     2.2,
+     0.991
+    ],
+    [
+     "truth,",
+     2.32,
+     0.985
+    ],
+    [
+     "from",
+     2.8,
+     0.879
+    ],
+    [
+     "inside",
+     3.16,
+     0.993
+    ],
+    [
+     "I",
+     3.56,
+     0.908
+    ],
+    [
+     "can't",
+     3.9,
+     0.988
+    ],
+    [
+     "tell",
+     4.2,
+     0.999
+    ],
+    [
+     "the",
+     4.42,
+     0.995
+    ],
+    [
+     "difference.",
+     4.66,
+     0.531
+    ]
+   ]
+  }
+ ],
+ "mix_shelved_bias:Science fiction shelved with truth.": [
+  {
+   "text": "Science fiction shelved with truth from inside I can't tell the difference.",
+   "nsp": 0.346,
+   "lp": -0.346,
+   "words": [
+    [
+     "Science",
+     0.0,
+     0.742
+    ],
+    [
+     "fiction",
+     0.84,
+     0.967
+    ],
+    [
+     "shelved",
+     1.4,
+     0.565
+    ],
+    [
+     "with",
+     2.2,
+     0.996
+    ],
+    [
+     "truth",
+     2.32,
+     0.998
+    ],
+    [
+     "from",
+     2.66,
+     0.116
+    ],
+    [
+     "inside",
+     3.16,
+     0.997
+    ],
+    [
+     "I",
+     3.56,
+     0.671
+    ],
+    [
+     "can't",
+     3.88,
+     0.997
+    ],
+    [
+     "tell",
+     4.2,
+     1.0
+    ],
+    [
+     "the",
+     4.42,
+     0.999
+    ],
+    [
+     "difference.",
+     4.66,
+     0.973
+    ]
+   ]
+  }
+ ],
+ "mix_shelved_bias:Science fiction shoved with truth.": [
+  {
+   "text": "Science fiction shoved with truth.",
+   "nsp": 0.332,
+   "lp": -0.275,
+   "words": [
+    [
+     "Science",
+     0.0,
+     0.742
+    ],
+    [
+     "fiction",
+     0.8,
+     0.967
+    ],
+    [
+     "shoved",
+     1.4,
+     0.807
+    ],
+    [
+     "with",
+     2.2,
+     0.996
+    ],
+    [
+     "truth.",
+     2.32,
+     0.998
+    ]
+   ]
+  },
+  {
+   "text": "From inside I can't tell the difference.",
+   "nsp": 0.332,
+   "lp": -0.275,
+   "words": [
+    [
+     "From",
+     2.8,
+     0.983
+    ],
+    [
+     "inside",
+     3.14,
+     0.997
+    ],
+    [
+     "I",
+     3.58,
+     0.803
+    ],
+    [
+     "can't",
+     3.92,
+     0.992
+    ],
+    [
+     "tell",
+     4.2,
+     1.0
+    ],
+    [
+     "the",
+     4.42,
+     0.999
+    ],
+    [
+     "difference.",
+     4.66,
+     0.981
+    ]
+   ]
+  }
+ ]
+}

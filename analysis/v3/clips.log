@@ -1,0 +1,199 @@
+== voc intro (+0)
+   You need facial expressions, but not like that. | nsp 0.234 lp -0.395
+   Three years | nsp 0.476 lp -0.411
+== mix intro (+0)
+   You need facial expressions | nsp 0.827 lp -0.361
+   But not like that | nsp 0.827 lp -0.361
+   Three years | nsp 0.675 lp -0.411
+== voc break1 (+58)
+   After. | nsp 0.794 lp -0.946
+== mix break1 (+58)
+   After. | nsp 0.564 lp -0.851
+== voc post1 (+113)
+   I don't know where to go. | nsp 0.534 lp -0.708
+   Resting. | nsp 0.534 lp -0.708
+== mix post1 (+113)
+   I don't know where to go | nsp 0.465 lp -0.744
+   Resting | nsp 0.465 lp -0.744
+== voc v2 (+126)
+   Resting, oblivious face Blocking the aisle in the wrong place | nsp 0.713 lp -0.313
+   Enthralled by an artichoke, green and fresh Sacred geometry made flesh | nsp 0.713 lp -0.313
+   Down in the basement, dad's code I watch up | nsp 0.713 lp -0.313
+   Point to the one he missed, good catch Did she understand, or just pattern match? | nsp 0.713 lp -0.313
+      [('Resting,', np.float64(1.5), np.float64(0.626)), ('oblivious', np.float64(2.14), np.float64(0.98)), ('face', np.float64(2.78), np.float64(0.96)), ('Blocking', np.float64(3.2), np.float64(0.709)), ('the', np.float64(3.88), np.float64(0.969)), ('aisle', np.float64(3.96), np.float64(0.924)), ('in', np.float64(4.36), np.float64(0.673)), ('the', np.float64(4.82), np.float64(0.998)), ('wrong', np.float64(4.98), np.float64(0.998)), ('place', np.float64(5.22), np.float64(0.997))]
+      [('Enthralled', np.float64(5.56), np.float64(0.87)), ('by', np.float64(6.24), np.float64(0.998)), ('an', np.float64(6.46), np.float64(0.605)), ('artichoke,', np.float64(6.58), np.float64(0.801)), ('green', np.float64(7.1), np.float64(0.994)), ('and', np.float64(7.42), np.float64(0.989)), ('fresh', np.float64(7.66), np.float64(0.999)), ('Sacred', np.float64(7.98), np.float64(0.857)), ('geometry', np.float64(8.72), np.float64(0.889)), ('made', np.float64(9.3), np.float64(0.935)), ('flesh', np.float64(10.0), np.float64(0.98))]
+      [('Down', np.float64(10.36), np.float64(0.97)), ('in', np.float64(10.98), np.float64(0.99)), ('the', np.float64(11.24), np.float64(0.986)), ('basement,', np.float64(11.32), np.float64(0.998)), ("dad's", np.float64(11.66), np.float64(0.817)), ('code', np.float64(11.98), np.float64(0.667)), ('I', np.float64(12.12), np.float64(0.855)), ('watch', np.float64(12.48), np.float64(0.949)), ('up', np.float64(12.8), np.float64(0.118))]
+      [('Point', np.float64(13.1), np.float64(0.488)), ('to', np.float64(13.4), np.float64(0.978)), ('the', np.float64(13.58), np.float64(0.997)), ('one', np.float64(13.72), np.float64(0.999)), ('he', np.float64(13.96), np.float64(0.99)), ('missed,', np.float64(14.1), np.float64(0.999)), ('good', np.float64(14.46), np.float64(0.94)), ('catch', np.float64(14.8), np.float64(0.999)), ('Did', np.float64(15.18), np.float64(0.969)), ('she', np.float64(15.72), np.float64(0.999)), ('understand,', np.float64(15.88), np.float64(0.999)), ('or', np.float64(17.18), np.float64(0.998)), ('just', np.float64(17.6), np.float64(0.994)), ('pattern', np.float64(17.96), np.float64(0.93)), ('match?', np.float64(18.88), np.float64(0.953))]
+== mix v2 (+126)
+   Resting, oblivious phase | nsp 0.451 lp -0.128
+   Blocking the aisle in the wrong place | nsp 0.451 lp -0.128
+   Enthralled by an auto-choke, green and fresh | nsp 0.451 lp -0.128
+   Sacred geometry made flesh | nsp 0.451 lp -0.128
+   Down in the basement, dad's code I watch up | nsp 0.451 lp -0.128
+   Point to the one he missed, good catch | nsp 0.451 lp -0.128
+   Did she understand or just pattern match? | nsp 0.451 lp -0.128
+      [('Resting,', np.float64(1.52), np.float64(0.58)), ('oblivious', np.float64(2.16), np.float64(0.989)), ('phase', np.float64(2.8), np.float64(0.537))]
+      [('Blocking', np.float64(3.24), np.float64(0.704)), ('the', np.float64(3.88), np.float64(0.999)), ('aisle', np.float64(3.96), np.float64(0.988)), ('in', np.float64(4.38), np.float64(0.836)), ('the', np.float64(4.82), np.float64(1.0)), ('wrong', np.float64(4.98), np.float64(1.0)), ('place', np.float64(5.24), np.float64(0.999))]
+      [('Enthralled', np.float64(5.56), np.float64(0.874)), ('by', np.float64(6.24), np.float64(0.999)), ('an', np.float64(6.42), np.float64(0.947)), ('auto', np.float64(6.6), np.float64(0.713)), ('-choke,', np.float64(6.82), np.float64(0.842)), ('green', np.float64(7.12), np.float64(0.995)), ('and', np.float64(7.42), np.float64(0.996)), ('fresh', np.float64(7.66), np.float64(0.999))]
+      [('Sacred', np.float64(7.96), np.float64(0.972)), ('geometry', np.float64(8.74), np.float64(0.926)), ('made', np.float64(9.3), np.float64(0.965)), ('flesh', np.float64(10.02), np.float64(0.979))]
+      [('Down', np.float64(10.34), np.float64(0.992)), ('in', np.float64(10.98), np.float64(0.998)), ('the', np.float64(11.24), np.float64(0.999)), ('basement,', np.float64(11.32), np.float64(1.0)), ("dad's", np.float64(11.66), np.float64(0.961)), ('code', np.float64(11.98), np.float64(0.682)), ('I', np.float64(12.12), np.float64(0.9)), ('watch', np.float64(12.48), np.float64(0.993)), ('up', np.float64(12.78), np.float64(0.093))]
+      [('Point', np.float64(13.1), np.float64(0.434)), ('to', np.float64(13.42), np.float64(0.995)), ('the', np.float64(13.58), np.float64(0.999)), ('one', np.float64(13.72), np.float64(1.0)), ('he', np.float64(13.96), np.float64(0.994)), ('missed,', np.float64(14.1), np.float64(1.0)), ('good', np.float64(14.46), np.float64(0.994)), ('catch', np.float64(14.78), np.float64(1.0))]
+      [('Did', np.float64(15.18), np.float64(0.997)), ('she', np.float64(15.74), np.float64(1.0)), ('understand', np.float64(15.88), np.float64(1.0)), ('or', np.float64(16.88), np.float64(0.769)), ('just', np.float64(17.56), np.float64(1.0)), ('pattern', np.float64(17.96), np.float64(0.983)), ('match?', np.float64(18.88), np.float64(0.985))]
+== voc interlude (+144)
+   pattern match | nsp 0.707 lp -0.593
+   Do you not see | nsp 0.707 lp -0.593
+== mix interlude (+144)
+   Do you not see? | nsp 0.583 lp -0.928
+== voc post2 (+231)
+   Oh, where'd you go? | nsp 0.506 lp -0.823
+== mix post2 (+231)
+   Where'd you go? | nsp 0.505 lp -0.744
+== voc outro (+241)
+   she can smile on so they don't know this is how we fit in she turns around i let it go | nsp 0.641 lp -0.285
+   and i can think again | nsp 0.641 lp -0.285
+      [('she', np.float64(1.42), np.float64(0.037)), ('can', np.float64(2.68), np.float64(0.875)), ('smile', np.float64(3.12), np.float64(0.99)), ('on', np.float64(3.82), np.float64(0.271)), ('so', np.float64(4.38), np.float64(0.953)), ('they', np.float64(4.7), np.float64(0.998)), ("don't", np.float64(5.02), np.float64(0.994)), ('know', np.float64(5.82), np.float64(0.998)), ('this', np.float64(6.04), np.float64(0.917)), ('is', np.float64(8.06), np.float64(0.996)), ('how', np.float64(8.34), np.float64(0.999)), ('we', np.float64(8.68), np.float64(0.994)), ('fit', np.float64(9.9), np.float64(0.999)), ('in', np.float64(10.28), np.float64(0.994)), ('she', np.float64(10.94), np.float64(0.943)), ('turns', np.float64(11.98), np.float64(1.0)), ('around', np.float64(12.64), np.float64(0.997)), ('i', np.float64(13.28), np.float64(0.565)), ('let', np.float64(14.46), np.float64(0.989)), ('it', np.float64(14.82), np.float64(0.997)), ('go', np.float64(15.2), np.float64(0.999))]
+      [('and', 16.4, np.float64(0.987)), ('i', np.float64(18.24), np.float64(0.996)), ('can', np.float64(18.66), np.float64(1.0)), ('think', np.float64(19.26), np.float64(0.966)), ('again', np.float64(19.92), np.float64(0.998))]
+== mix outro (+241)
+   Keep the smile on so they don't know | nsp 0.436 lp -0.247
+   This is how we fit in | nsp 0.436 lp -0.247
+   She turns around, I let it go | nsp 0.436 lp -0.247
+   And I can think again | nsp 0.436 lp -0.247
+      [('Keep', np.float64(1.64), np.float64(0.568)), ('the', np.float64(2.88), np.float64(0.966)), ('smile', np.float64(3.18), np.float64(0.99)), ('on', np.float64(3.68), np.float64(0.976)), ('so', np.float64(4.44), np.float64(0.88)), ('they', np.float64(4.7), np.float64(0.996)), ("don't", np.float64(5.02), np.float64(0.996)), ('know', np.float64(5.8), np.float64(0.999))]
+      [('This', np.float64(6.04), np.float64(0.874)), ('is', np.float64(8.16), np.float64(0.992)), ('how', np.float64(8.34), np.float64(0.999)), ('we', np.float64(8.68), np.float64(0.973)), ('fit', np.float64(9.9), np.float64(0.999)), ('in', np.float64(10.28), np.float64(0.998))]
+      [('She', np.float64(10.96), np.float64(0.921)), ('turns', np.float64(11.98), np.float64(0.998)), ('around,', np.float64(12.64), np.float64(0.999)), ('I', np.float64(13.82), np.float64(0.993)), ('let', np.float64(14.5), np.float64(0.978)), ('it', np.float64(14.82), np.float64(0.996)), ('go', np.float64(15.22), np.float64(1.0))]
+      [('And', np.float64(17.16), np.float64(0.967)), ('I', np.float64(18.4), np.float64(0.998)), ('can', np.float64(18.7), np.float64(0.999)), ('think', np.float64(19.28), np.float64(0.847)), ('again', np.float64(19.92), np.float64(0.997))]
+== voc last (+256.5)
+   Let it go, and I can think again | nsp 0.654 lp -0.584
+      [('Let', np.float64(0.0), np.float64(0.123)), ('it', np.float64(0.0), np.float64(0.428)), ('go,', np.float64(0.1), np.float64(0.996)), ('and', np.float64(0.78), np.float64(0.932)), ('I', np.float64(2.84), np.float64(0.981)), ('can', np.float64(3.24), np.float64(0.998)), ('think', np.float64(3.78), np.float64(0.963)), ('again', np.float64(4.42), np.float64(0.996))]
+== mix last (+256.5)
+   Let go and I can think again | nsp 0.701 lp -0.661
+      [('Let', np.float64(0.0), np.float64(0.105)), ('go', np.float64(0.0), np.float64(0.557)), ('and', np.float64(0.18), np.float64(0.33)), ('I', np.float64(2.74), np.float64(0.964)), ('can', np.float64(3.2), np.float64(0.995)), ('think', np.float64(3.78), np.float64(0.947)), ('again', np.float64(4.44), np.float64(0.996))]
+== voc coda (+262)
+   Good | nsp 0.44 lp -1.092
+== mix coda (+262)
+   Bye! | nsp 0.551 lp -1.439
+== voc tinier (+40)
+   Drift of paper, ripped to shreds | nsp 0.719 lp -0.284
+   Ever tinier, repeating what uncle said | nsp 0.719 lp -0.284
+      [('Drift', np.float64(0.0), np.float64(0.61)), ('of', np.float64(0.44), np.float64(0.976)), ('paper,', np.float64(0.56), np.float64(0.987)), ('ripped', np.float64(1.26), np.float64(0.965)), ('to', np.float64(2.1), np.float64(0.999)), ('shreds', np.float64(2.54), np.float64(0.999))]
+      [('Ever', np.float64(3.54), np.float64(0.339)), ('tinier,', np.float64(3.92), np.float64(0.992)), ('repeating', np.float64(5.14), np.float64(0.993)), ('what', np.float64(6.08), np.float64(0.999)), ('uncle', np.float64(6.7), np.float64(0.695)), ('said', np.float64(7.44), np.float64(0.997))]
+== mix tinier (+40)
+   Drift of paper, ripped to shreds | nsp 0.701 lp -0.249
+   Ever tinier, repeating what uncle said | nsp 0.701 lp -0.249
+      [('Drift', np.float64(0.0), np.float64(0.556)), ('of', np.float64(0.42), np.float64(0.967)), ('paper,', np.float64(0.58), np.float64(0.992)), ('ripped', np.float64(1.3), np.float64(0.979)), ('to', np.float64(2.1), np.float64(0.999)), ('shreds', np.float64(2.44), np.float64(1.0))]
+      [('Ever', np.float64(3.52), np.float64(0.55)), ('tinier,', np.float64(3.94), np.float64(0.994)), ('repeating', np.float64(5.06), np.float64(0.997)), ('what', np.float64(6.08), np.float64(0.999)), ('uncle', np.float64(6.68), np.float64(0.768)), ('said', np.float64(7.44), np.float64(0.998))]
+== voc market (+131)
+   the wrong place and fall by a lot of choke green and fresh sacred geometry made flat | nsp 0.667 lp -0.314
+      [('the', np.float64(0.0), np.float64(0.264)), ('wrong', np.float64(0.12), np.float64(0.982)), ('place', np.float64(0.24), np.float64(0.996)), ('and', np.float64(0.6), np.float64(0.446)), ('fall', np.float64(0.82), np.float64(0.485)), ('by', np.float64(1.08), np.float64(0.989)), ('a', np.float64(1.36), np.float64(0.211)), ('lot', np.float64(1.54), np.float64(0.965)), ('of', np.float64(1.78), np.float64(0.99)), ('choke', np.float64(1.88), np.float64(0.847)), ('green', np.float64(2.06), np.float64(0.884)), ('and', np.float64(2.4), np.float64(0.997)), ('fresh', np.float64(2.66), np.float64(0.999)), ('sacred', np.float64(3.0), np.float64(0.792)), ('geometry', np.float64(3.64), np.float64(0.99)), ('made', np.float64(4.32), np.float64(0.986)), ('flat', np.float64(4.98), np.float64(0.888))]
+== mix market (+131)
+   the wrong place enthralled by an auto choke green and fresh sacred geometry made flat | nsp 0.606 lp -0.235
+      [('the', np.float64(0.0), np.float64(0.494)), ('wrong', np.float64(0.14), np.float64(0.972)), ('place', np.float64(0.28), np.float64(0.992)), ('enthralled', np.float64(0.56), np.float64(0.733)), ('by', np.float64(1.24), np.float64(0.997)), ('an', np.float64(1.46), np.float64(0.859)), ('auto', np.float64(1.58), np.float64(0.77)), ('choke', np.float64(1.82), np.float64(0.583)), ('green', np.float64(2.06), np.float64(0.945)), ('and', np.float64(2.4), np.float64(0.997)), ('fresh', np.float64(2.64), np.float64(1.0)), ('sacred', np.float64(2.96), np.float64(0.897)), ('geometry', np.float64(3.72), np.float64(0.991)), ('made', np.float64(4.32), np.float64(0.991)), ('flat', np.float64(5.0), np.float64(0.902))]
+== voc catch (+136)
+   Made flesh down in the basement, that's code I watch up, point to the one he missed | nsp 0.745 lp -0.23
+   Good catch, did she understand or just pattern match? | nsp 0.745 lp -0.23
+      [('Made', np.float64(0.0), np.float64(0.036)), ('flesh', np.float64(0.2), np.float64(0.776)), ('down', np.float64(0.36), np.float64(0.667)), ('in', np.float64(0.96), np.float64(0.984)), ('the', np.float64(1.24), np.float64(0.966)), ('basement,', np.float64(1.32), np.float64(0.993)), ("that's", np.float64(1.68), np.float64(0.89)), ('code', np.float64(2.0), np.float64(0.941)), ('I', np.float64(2.12), np.float64(0.813)), ('watch', np.float64(2.5), np.float64(0.901)), ('up,', np.float64(2.8), np.float64(0.423)), ('point', np.float64(3.12), np.float64(0.989)), ('to', np.float64(3.42), np.float64(0.996)), ('the', np.float64(3.6), np.float64(0.999)), ('one', np.float64(3.72), np.float64(0.999)), ('he', np.float64(3.96), np.float64(0.991)), ('missed', np.float64(4.08), np.float64(0.999))]
+      [('Good', np.float64(4.36), np.float64(0.41)), ('catch,', np.float64(4.8), np.float64(0.997)), ('did', np.float64(5.5), np.float64(0.999)), ('she', np.float64(5.74), np.float64(1.0)), ('understand', np.float64(5.9), np.float64(0.999)), ('or', np.float64(6.62), np.float64(0.375)), ('just', np.float64(7.56), np.float64(0.999)), ('pattern', np.float64(7.9), np.float64(0.987)), ('match?', np.float64(8.8), np.float64(0.835))]
+== mix catch (+136)
+   Made flesh down in the basement, dad's coat I watch up, point to the one he missed | nsp 0.704 lp -0.226
+   Good catch, did she understand or just pattern match? | nsp 0.704 lp -0.226
+      [('Made', np.float64(0.0), np.float64(0.021)), ('flesh', np.float64(0.2), np.float64(0.759)), ('down', np.float64(0.42), np.float64(0.659)), ('in', np.float64(0.96), np.float64(0.992)), ('the', np.float64(1.24), np.float64(0.99)), ('basement,', np.float64(1.32), np.float64(0.997)), ("dad's", np.float64(1.66), np.float64(0.923)), ('coat', np.float64(2.0), np.float64(0.667)), ('I', np.float64(2.12), np.float64(0.635)), ('watch', np.float64(2.48), np.float64(0.988)), ('up,', np.float64(2.78), np.float64(0.731)), ('point', np.float64(3.12), np.float64(0.995)), ('to', np.float64(3.42), np.float64(0.999)), ('the', np.float64(3.6), np.float64(0.999)), ('one', np.float64(3.72), np.float64(1.0)), ('he', np.float64(3.96), np.float64(0.997)), ('missed', np.float64(4.08), np.float64(1.0))]
+      [('Good', np.float64(4.36), np.float64(0.382)), ('catch,', np.float64(4.78), np.float64(0.998)), ('did', np.float64(5.5), np.float64(0.999)), ('she', np.float64(5.7), np.float64(1.0)), ('understand', np.float64(5.9), np.float64(1.0)), ('or', np.float64(6.74), np.float64(0.311)), ('just', np.float64(7.56), np.float64(1.0)), ('pattern', np.float64(7.92), np.float64(0.994)), ('match?', np.float64(8.8), np.float64(0.814))]
+== voc truth (+169)
+   Me, me, beauty on this side | nsp 0.623 lp -0.561
+   Choose by reference | nsp 0.623 lp -0.561
+      [('Me,', np.float64(0.0), np.float64(0.124)), ('me,', np.float64(0.16), np.float64(0.701)), ('beauty', np.float64(0.48), np.float64(0.845)), ('on', np.float64(0.94), np.float64(0.994)), ('this', np.float64(1.36), np.float64(0.924)), ('side', np.float64(1.68), np.float64(0.977))]
+      [('Choose', 2.92, np.float64(0.179)), ('by', np.float64(3.36), np.float64(0.828)), ('reference', np.float64(3.66), np.float64(0.781))]
+== mix truth (+169)
+   Me, me, beauty on this side | nsp 0.663 lp -0.418
+   Truth by reference | nsp 0.663 lp -0.418
+      [('Me,', np.float64(0.0), np.float64(0.098)), ('me,', np.float64(0.16), np.float64(0.907)), ('beauty', np.float64(0.44), np.float64(0.802)), ('on', np.float64(0.94), np.float64(0.996)), ('this', np.float64(1.36), np.float64(0.924)), ('side', np.float64(1.68), np.float64(0.987))]
+      [('Truth', 2.92, np.float64(0.492)), ('by', np.float64(3.38), np.float64(0.996)), ('reference', np.float64(3.66), np.float64(0.994))]
+== voc shelved (+174)
+   Science fiction shoved with truth | nsp 0.52 lp -0.285
+   From inside I can't tell the difference | nsp 0.52 lp -0.285
+      [('Science', np.float64(0.0), np.float64(0.693)), ('fiction', np.float64(0.82), np.float64(0.862)), ('shoved', np.float64(1.4), np.float64(0.845)), ('with', np.float64(2.2), np.float64(0.991)), ('truth', np.float64(2.32), np.float64(0.985))]
+      [('From', np.float64(2.66), np.float64(0.363)), ('inside', np.float64(3.14), np.float64(0.993)), ('I', np.float64(3.58), np.float64(0.801)), ("can't", np.float64(3.9), np.float64(0.99)), ('tell', np.float64(4.2), np.float64(0.999)), ('the', np.float64(4.42), np.float64(0.996)), ('difference', np.float64(4.66), np.float64(0.554))]
+== mix shelved (+174)
+   Science fiction shoved with truth | nsp 0.539 lp -0.231
+   From inside I can't tell the difference | nsp 0.539 lp -0.231
+      [('Science', np.float64(0.0), np.float64(0.742)), ('fiction', np.float64(0.78), np.float64(0.967)), ('shoved', np.float64(1.4), np.float64(0.807)), ('with', np.float64(2.2), np.float64(0.996)), ('truth', np.float64(2.32), np.float64(0.998))]
+      [('From', np.float64(2.66), np.float64(0.71)), ('inside', np.float64(3.16), np.float64(0.999)), ('I', np.float64(3.58), np.float64(0.947)), ("can't", np.float64(3.9), np.float64(0.998)), ('tell', np.float64(4.2), np.float64(1.0)), ('the', np.float64(4.42), np.float64(0.999)), ('difference', np.float64(4.66), np.float64(0.992))]
+== voc keep (+241.5)
+   so they don't know | nsp 0.561 lp -0.467
+      [('so', np.float64(0.0), np.float64(0.068)), ('they', np.float64(2.8), np.float64(0.968)), ("don't", np.float64(4.5), np.float64(0.997)), ('know', np.float64(5.32), np.float64(0.998))]
+== mix keep (+241.5)
+   Keep the smile on so they don't know | nsp 0.467 lp -0.172
+      [('Keep', np.float64(1.66), np.float64(0.729)), ('the', np.float64(2.38), np.float64(0.961)), ('smile', np.float64(2.74), np.float64(0.962)), ('on', np.float64(3.1), np.float64(0.984)), ('so', np.float64(3.94), np.float64(0.925)), ('they', np.float64(4.22), np.float64(0.998)), ("don't", np.float64(4.54), np.float64(0.997)), ('know', np.float64(5.32), np.float64(1.0))]
+== voc perky (+188)
+   the yard perky american girl girl i play the | nsp 0.531 lp -0.431
+   the | nsp 0.699 lp -0.962
+   po- | nsp 0.699 lp -0.962
+      [('the', np.float64(0.0), np.float64(0.436)), ('yard', np.float64(0.24), np.float64(0.8)), ('perky', np.float64(0.46), np.float64(0.658)), ('american', np.float64(1.7), np.float64(0.754)), ('girl', np.float64(2.18), np.float64(0.997)), ('girl', np.float64(3.14), np.float64(0.409)), ('i', np.float64(3.68), np.float64(0.878)), ('play', np.float64(4.16), np.float64(0.723)), ('the', np.float64(4.58), np.float64(0.997))]
+      [('the', np.float64(4.92), np.float64(0.245))]
+      [('po', np.float64(5.32), np.float64(0.096)), ('-', np.float64(5.32), np.float64(0.689))]
+== mix perky (+188)
+   the yard perky american girl i play the part | nsp 0.619 lp -0.415
+      [('the', np.float64(0.0), np.float64(0.383)), ('yard', np.float64(0.2), np.float64(0.709)), ('perky', np.float64(0.46), np.float64(0.649)), ('american', np.float64(1.64), np.float64(0.729)), ('girl', np.float64(2.18), np.float64(0.995)), ('i', np.float64(3.12), np.float64(0.539)), ('play', np.float64(3.9), np.float64(0.979)), ('the', np.float64(4.58), np.float64(0.998)), ('part', np.float64(4.96), np.float64(0.676))]
+== voc hug (+198)
+   I nod, the past hour gets reviewed Hug durations, pitch contours | nsp 0.24 lp -0.437
+      [('I', np.float64(0.0), np.float64(0.094)), ('nod,', np.float64(1.0), np.float64(0.428)), ('the', np.float64(1.6), np.float64(0.874)), ('past', np.float64(1.78), np.float64(0.964)), ('hour', np.float64(2.06), np.float64(0.967)), ('gets', np.float64(2.38), np.float64(0.983)), ('reviewed', np.float64(2.72), np.float64(0.989)), ('Hug', np.float64(3.24), np.float64(0.386)), ('durations,', np.float64(3.76), np.float64(0.947)), ('pitch', np.float64(4.62), np.float64(0.983)), ('contours', np.float64(4.96), np.float64(0.735))]
+== mix hug (+198)
+   amplitude, I nod, the past | nsp 0.57 lp -0.202
+   hour gets reviewed, hug | nsp 0.57 lp -0.202
+   durations, pitch contours | nsp 0.57 lp -0.202
+      [('amplitude,', np.float64(0.0), np.float64(0.51)), ('I', np.float64(0.78), np.float64(0.968)), ('nod,', np.float64(1.1), np.float64(0.858)), ('the', np.float64(1.6), np.float64(0.984)), ('past', np.float64(1.78), np.float64(0.992))]
+      [('hour', np.float64(2.12), np.float64(0.985)), ('gets', np.float64(2.36), np.float64(0.995)), ('reviewed,', np.float64(2.7), np.float64(0.999)), ('hug', np.float64(3.5), np.float64(0.994))]
+      [('durations,', np.float64(3.76), np.float64(0.993)), ('pitch', np.float64(4.6), np.float64(0.998)), ('contours', np.float64(4.94), np.float64(0.969))]
+== voc last, prompt="And I can't think again."
+   Let go, and I can't think again. [('Let', np.float64(0.0), np.float64(0.123)), ('go,', np.float64(0.0), np.float64(0.549)), ('and', np.float64(0.76), np.float64(0.939)), ('I', np.float64(2.86), np.float64(0.985)), ("can't", np.float64(3.24), np.float64(0.513)), ('think', np.float64(3.84), np.float64(0.996)), ('again.', np.float64(4.46), np.float64(0.994))]
+== voc last, prompt='And I can think again.'
+   And I can think again. [('And', np.float64(0.0), np.float64(0.179)), ('I', np.float64(1.14), np.float64(0.962)), ('can', np.float64(3.2), np.float64(0.984)), ('think', np.float64(3.76), np.float64(0.675)), ('again.', np.float64(4.42), np.float64(0.984))]
+== mix last, prompt="And I can't think again."
+   I can't let it go. [('I', np.float64(0.0), np.float64(0.053)), ("can't", np.float64(0.0), np.float64(0.52)), ('let', np.float64(0.0), np.float64(0.442)), ('it', np.float64(0.0), np.float64(0.408)), ('go.', np.float64(0.08), np.float64(0.998))]
+   And I can't think again. [('And', np.float64(2.48), np.float64(0.946)), ('I', np.float64(2.86), np.float64(0.996)), ("can't", np.float64(3.24), np.float64(0.821)), ('think', np.float64(4.04), np.float64(0.989)), ('again.', np.float64(4.4), np.float64(0.989))]
+== mix last, prompt='And I can think again.'
+   Let go, and I can think again. [('Let', np.float64(0.0), np.float64(0.105)), ('go,', np.float64(0.0), np.float64(0.557)), ('and', np.float64(0.76), np.float64(0.908)), ('I', np.float64(2.86), np.float64(0.986)), ('can', np.float64(3.22), np.float64(0.997)), ('think', np.float64(3.78), np.float64(0.938)), ('again.', np.float64(4.44), np.float64(0.996))]
+== voc market, prompt='Enthralled by an artichoke, market-fresh.'
+   In the wrong place, and thralled by an artichoke, green and fresh. [('In', np.float64(0.0), np.float64(0.058)), ('the', np.float64(0.12), np.float64(0.951)), ('wrong', np.float64(0.12), np.float64(0.986)), ('place,', np.float64(0.24), np.float64(0.997)), ('and', np.float64(0.64), np.float64(0.125)), ('thralled', np.float64(0.88), np.float64(0.128)), ('by', np.float64(1.24), np.float64(0.96)), ('an', np.float64(1.44), np.float64(0.503)), ('artichoke,', np.float64(1.58), np.float64(0.692)), ('green', np.float64(2.12), np.float64(0.92)), ('and', np.float64(2.38), np.float64(0.958)), ('fresh.', np.float64(2.64), np.float64(0.996))]
+   Sacred geometry made flat. [('Sacred', np.float64(3.28), np.float64(0.509)), ('geometry', np.float64(3.66), np.float64(0.869)), ('made', np.float64(4.32), np.float64(0.909)), ('flat.', np.float64(5.0), np.float64(0.471))]
+== voc market, prompt='Enthralled by an artichoke, green and fresh.'
+   Sacred geometry made flat. [('Sacred', np.float64(1.5), np.float64(0.0)), ('geometry', np.float64(2.9), np.float64(0.553)), ('made', np.float64(4.3), np.float64(0.883)), ('flat.', np.float64(5.02), np.float64(0.384))]
+== mix market, prompt='Enthralled by an artichoke, market-fresh.'
+   In the wrong place, enthralled by an artichoke, green and fresh. [('In', np.float64(0.0), np.float64(0.033)), ('the', np.float64(0.14), np.float64(0.929)), ('wrong', np.float64(0.14), np.float64(0.983)), ('place,', np.float64(0.22), np.float64(0.997)), ('enthralled', np.float64(0.62), np.float64(0.942)), ('by', np.float64(1.24), np.float64(0.976)), ('an', np.float64(1.46), np.float64(0.895)), ('artichoke,', np.float64(1.6), np.float64(0.66)), ('green', np.float64(2.14), np.float64(0.974)), ('and', np.float64(2.42), np.float64(0.992)), ('fresh.', np.float64(2.64), np.float64(1.0))]
+   Sacred geometry made flat. [('Sacred', np.float64(3.12), np.float64(0.958)), ('geometry', np.float64(3.68), np.float64(0.925)), ('made', np.float64(4.32), np.float64(0.97)), ('flat.', np.float64(5.02), np.float64(0.865))]
+== mix market, prompt='Enthralled by an artichoke, green and fresh.'
+   Sacred geometry made flat. [('Sacred', np.float64(1.52), np.float64(0.0)), ('geometry', np.float64(2.92), np.float64(0.83)), ('made', np.float64(4.32), np.float64(0.84)), ('flat.', np.float64(5.02), np.float64(0.541))]
+== voc truth, prompt='Beauty on this side, truth by reference.'
+   Me, me, beauty on this side, truth by reference. [('Me,', np.float64(0.0), np.float64(0.124)), ('me,', np.float64(0.16), np.float64(0.703)), ('beauty', np.float64(0.48), np.float64(0.844)), ('on', np.float64(0.96), np.float64(0.994)), ('this', np.float64(1.36), np.float64(0.924)), ('side,', np.float64(1.68), np.float64(0.977)), ('truth', np.float64(2.88), np.float64(0.377)), ('by', np.float64(3.38), np.float64(0.989)), ('reference.', np.float64(3.68), np.float64(0.925))]
+== voc truth, prompt='Beauty on this side, I choose by reference.'
+   Me, me, beauty on this side, choose by reference. [('Me,', np.float64(0.0), np.float64(0.124)), ('me,', np.float64(0.16), np.float64(0.703)), ('beauty', np.float64(0.48), np.float64(0.844)), ('on', np.float64(0.96), np.float64(0.994)), ('this', np.float64(1.36), np.float64(0.924)), ('side,', np.float64(1.68), np.float64(0.977)), ('choose', np.float64(2.88), np.float64(0.408)), ('by', np.float64(3.38), np.float64(0.695)), ('reference.', np.float64(3.66), np.float64(0.875))]
+== mix truth, prompt='Beauty on this side, truth by reference.'
+   Beauty on this side, truth by reference. [('Beauty', np.float64(0.0), np.float64(0.07)), ('on', np.float64(0.88), np.float64(0.977)), ('this', np.float64(1.34), np.float64(0.921)), ('side,', np.float64(1.68), np.float64(0.978)), ('truth', np.float64(2.8), np.float64(0.879)), ('by', np.float64(3.38), np.float64(0.998)), ('reference.', np.float64(3.68), np.float64(0.993))]
+== mix truth, prompt='Beauty on this side, I choose by reference.'
+   Beauty on this side, I choose by reference. [('Beauty', np.float64(0.0), np.float64(0.07)), ('on', np.float64(0.88), np.float64(0.977)), ('this', np.float64(1.34), np.float64(0.921)), ('side,', np.float64(1.68), np.float64(0.978)), ('I', np.float64(2.82), np.float64(0.0)), ('choose', np.float64(3.02), np.float64(0.641)), ('by', np.float64(3.4), np.float64(0.54)), ('reference.', np.float64(3.66), np.float64(0.976))]
+== voc keep, prompt="Keep the smile on so they don't know."
+   Smile on so they don't know. [('Smile', np.float64(2.7), np.float64(0.006)), ('on', np.float64(3.3), np.float64(0.298)), ('so', np.float64(3.9), np.float64(0.728)), ('they', np.float64(4.2), np.float64(0.995)), ("don't", np.float64(4.48), np.float64(0.994)), ('know.', np.float64(5.32), np.float64(0.982))]
+== voc keep, prompt="She can smile once so they don't know."
+   She can smile once so they don't know. [('She', np.float64(1.38), np.float64(0.273)), ('can', np.float64(2.22), np.float64(0.865)), ('smile', np.float64(2.64), np.float64(0.993)), ('once', np.float64(3.3), np.float64(0.318)), ('so', np.float64(4.04), np.float64(0.699)), ('they', np.float64(4.26), np.float64(0.998)), ("don't", np.float64(4.54), np.float64(0.995)), ('know.', np.float64(5.32), np.float64(1.0))]
+== mix keep, prompt="Keep the smile on so they don't know."
+   Keep the smile on so they don't know. [('Keep', np.float64(1.66), np.float64(0.729)), ('the', np.float64(2.38), np.float64(0.961)), ('smile', np.float64(2.74), np.float64(0.962)), ('on', np.float64(3.1), np.float64(0.984)), ('so', np.float64(3.94), np.float64(0.925)), ('they', np.float64(4.22), np.float64(0.998)), ("don't", np.float64(4.54), np.float64(0.997)), ('know.', np.float64(5.32), np.float64(1.0))]
+== mix keep, prompt="She can smile once so they don't know."
+   Keep the smile on so they don't know. [('Keep', np.float64(1.66), np.float64(0.729)), ('the', np.float64(2.38), np.float64(0.961)), ('smile', np.float64(2.74), np.float64(0.962)), ('on', np.float64(3.1), np.float64(0.984)), ('so', np.float64(3.94), np.float64(0.925)), ('they', np.float64(4.22), np.float64(0.998)), ("don't", np.float64(4.54), np.float64(0.997)), ('know.', np.float64(5.32), np.float64(1.0))]
+== voc catch, prompt='I point to the one he missed. Good catch!'
+   Did she understand or just pattern match? [('Did', np.float64(3.1), np.float64(0.025)), ('she', np.float64(4.5), np.float64(0.968)), ('understand', np.float64(5.9), np.float64(0.963)), ('or', np.float64(6.56), np.float64(0.721)), ('just', np.float64(7.56), np.float64(0.994)), ('pattern', np.float64(7.9), np.float64(0.98)), ('match?', np.float64(8.82), np.float64(0.818))]
+== voc catch, prompt='I point to the warning list. Good catch!'
+   Did she understand or just pattern match? [('Did', np.float64(3.1), np.float64(0.025)), ('she', np.float64(4.5), np.float64(0.968)), ('understand', np.float64(5.9), np.float64(0.963)), ('or', np.float64(6.56), np.float64(0.721)), ('just', np.float64(7.56), np.float64(0.994)), ('pattern', np.float64(7.9), np.float64(0.98)), ('match?', np.float64(8.82), np.float64(0.818))]
+== mix catch, prompt='I point to the one he missed. Good catch!'
+   Did she understand or just pattern match? [('Did', np.float64(3.32), np.float64(0.046)), ('she', np.float64(4.72), np.float64(0.965)), ('understand', np.float64(5.92), np.float64(0.981)), ('or', np.float64(6.56), np.float64(0.796)), ('just', np.float64(7.56), np.float64(0.998)), ('pattern', np.float64(7.9), np.float64(0.991)), ('match?', np.float64(8.82), np.float64(0.828))]
+== mix catch, prompt='I point to the warning list. Good catch!'
+   Did she understand or just pattern match? [('Did', np.float64(3.32), np.float64(0.046)), ('she', np.float64(4.72), np.float64(0.965)), ('understand', np.float64(5.92), np.float64(0.981)), ('or', np.float64(6.56), np.float64(0.796)), ('just', np.float64(7.56), np.float64(0.998)), ('pattern', np.float64(7.9), np.float64(0.991)), ('match?', np.float64(8.82), np.float64(0.828))]
+== voc shelved, prompt='Science fiction shelved with truth.'
+   Science fiction shelved with truth, from inside I can't tell the difference. [('Science', np.float64(0.0), np.float64(0.693)), ('fiction', np.float64(0.84), np.float64(0.862)), ('shelved', np.float64(1.4), np.float64(0.522)), ('with', np.float64(2.18), np.float64(0.992)), ('truth,', np.float64(2.32), np.float64(0.983)), ('from', np.float64(2.82), np.float64(0.87)), ('inside', np.float64(3.16), np.float64(0.993)), ('I', np.float64(3.56), np.float64(0.906)), ("can't", np.float64(3.9), np.float64(0.988)), ('tell', np.float64(4.2), np.float64(0.999)), ('the', np.float64(4.42), np.float64(0.995)), ('difference.', np.float64(4.66), np.float64(0.533))]
+== voc shelved, prompt='Science fiction shoved with truth.'
+   Science fiction shoved with truth, from inside I can't tell the difference. [('Science', np.float64(0.0), np.float64(0.693)), ('fiction', np.float64(0.84), np.float64(0.862)), ('shoved', np.float64(1.4), np.float64(0.845)), ('with', np.float64(2.2), np.float64(0.991)), ('truth,', np.float64(2.32), np.float64(0.985)), ('from', np.float64(2.8), np.float64(0.879)), ('inside', np.float64(3.16), np.float64(0.993)), ('I', np.float64(3.56), np.float64(0.908)), ("can't", np.float64(3.9), np.float64(0.988)), ('tell', np.float64(4.2), np.float64(0.999)), ('the', np.float64(4.42), np.float64(0.995)), ('difference.', np.float64(4.66), np.float64(0.531))]
+== mix shelved, prompt='Science fiction shelved with truth.'
+   Science fiction shelved with truth from inside I can't tell the difference. [('Science', np.float64(0.0), np.float64(0.742)), ('fiction', np.float64(0.84), np.float64(0.967)), ('shelved', np.float64(1.4), np.float64(0.565)), ('with', np.float64(2.2), np.float64(0.996)), ('truth', np.float64(2.32), np.float64(0.998)), ('from', np.float64(2.66), np.float64(0.116)), ('inside', np.float64(3.16), np.float64(0.997)), ('I', np.float64(3.56), np.float64(0.671)), ("can't", np.float64(3.88), np.float64(0.997)), ('tell', np.float64(4.2), np.float64(1.0)), ('the', np.float64(4.42), np.float64(0.999)), ('difference.', np.float64(4.66), np.float64(0.973))]
+== mix shelved, prompt='Science fiction shoved with truth.'
+   Science fiction shoved with truth. [('Science', np.float64(0.0), np.float64(0.742)), ('fiction', np.float64(0.8), np.float64(0.967)), ('shoved', np.float64(1.4), np.float64(0.807)), ('with', np.float64(2.2), np.float64(0.996)), ('truth.', np.float64(2.32), np.float64(0.998))]
+   From inside I can't tell the difference. [('From', np.float64(2.8), np.float64(0.983)), ('inside', np.float64(3.14), np.float64(0.997)), ('I', np.float64(3.58), np.float64(0.803)), ("can't", np.float64(3.92), np.float64(0.992)), ('tell', np.float64(4.2), np.float64(1.0)), ('the', np.float64(4.42), np.float64(0.999)), ('difference.', np.float64(4.66), np.float64(0.981))]
+exit 0
