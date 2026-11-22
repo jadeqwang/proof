@@ -1,0 +1,101 @@
+{
+ "source": "clips/voc_c_231.wav",
+ "segments": [
+  {
+   "start": 0.0,
+   "end": 2.1,
+   "text": "I don't know where to go",
+   "avg_logprob": -0.523,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "I",
+     "start": 0.0,
+     "end": 0.12,
+     "p": 0.035
+    },
+    {
+     "w": "don't",
+     "start": 0.12,
+     "end": 0.12,
+     "p": 0.725
+    },
+    {
+     "w": "know",
+     "start": 0.12,
+     "end": 0.24,
+     "p": 0.936
+    },
+    {
+     "w": "where",
+     "start": 0.24,
+     "end": 0.52,
+     "p": 0.95
+    },
+    {
+     "w": "to",
+     "start": 0.52,
+     "end": 1.26,
+     "p": 0.992
+    },
+    {
+     "w": "go",
+     "start": 1.26,
+     "end": 2.1,
+     "p": 0.995
+    }
+   ]
+  },
+  {
+   "start": 11.26,
+   "end": 15.98,
+   "text": "Keep the smile on so they don't",
+   "avg_logprob": -0.523,
+   "no_speech_prob": 0.74,
+   "words": [
+    {
+     "w": "Keep",
+     "start": 11.26,
+     "end": 12.28,
+     "p": 0.411
+    },
+    {
+     "w": "the",
+     "start": 12.28,
+     "end": 13.3,
+     "p": 0.627
+    },
+    {
+     "w": "smile",
+     "start": 13.3,
+     "end": 13.76,
+     "p": 0.978
+    },
+    {
+     "w": "on",
+     "start": 13.76,
+     "end": 14.32,
+     "p": 0.898
+    },
+    {
+     "w": "so",
+     "start": 14.32,
+     "end": 14.76,
+     "p": 0.585
+    },
+    {
+     "w": "they",
+     "start": 14.76,
+     "end": 15.12,
+     "p": 0.996
+    },
+    {
+     "w": "don't",
+     "start": 15.12,
+     "end": 15.98,
+     "p": 0.995
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "source": "clips/voc_d_0.wav",
+ "segments": [
+  {
+   "start": 8.12,
+   "end": 19.26,
+   "text": "You need facial expressions, but not like that.",
+   "avg_logprob": -0.535,
+   "no_speech_prob": 0.225,
+   "words": [
+    {
+     "w": "You",
+     "start": 8.12,
+     "end": 8.88,
+     "p": 0.836
+    },
+    {
+     "w": "need",
+     "start": 8.88,
+     "end": 9.16,
+     "p": 0.992
+    },
+    {
+     "w": "facial",
+     "start": 9.16,
+     "end": 9.54,
+     "p": 0.987
+    },
+    {
+     "w": "expressions,",
+     "start": 9.54,
+     "end": 10.52,
+     "p": 0.989
+    },
+    {
+     "w": "but",
+     "start": 10.52,
+     "end": 13.24,
+     "p": 0.865
+    },
+    {
+     "w": "not",
+     "start": 13.24,
+     "end": 18.72,
+     "p": 0.993
+    },
+    {
+     "w": "like",
+     "start": 18.72,
+     "end": 19.04,
+     "p": 0.999
+    },
+    {
+     "w": "that.",
+     "start": 19.04,
+     "end": 19.26,
+     "p": 0.975
+    }
+   ]
+  },
+  {
+   "start": 19.26,
+   "end": 20.32,
+   "text": "Thank you.",
+   "avg_logprob": -0.895,
+   "no_speech_prob": 0.837,
+   "words": [
+    {
+     "w": "Thank",
+     "start": 19.26,
+     "end": 19.74,
+     "p": 0.07
+    },
+    {
+     "w": "you.",
+     "start": 19.74,
+     "end": 20.32,
+     "p": 0.995
+    }
+   ]
+  }
+ ]
+}

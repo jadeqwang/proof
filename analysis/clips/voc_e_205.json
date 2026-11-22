@@ -1,0 +1,77 @@
+{
+ "source": "clips/voc_e_205.wav",
+ "segments": [
+  {
+   "start": 3.64,
+   "end": 7.74,
+   "text": "I think he's right, honestly",
+   "avg_logprob": -0.603,
+   "no_speech_prob": 0.493,
+   "words": [
+    {
+     "w": "I",
+     "start": 3.64,
+     "end": 4.4,
+     "p": 0.136
+    },
+    {
+     "w": "think",
+     "start": 4.4,
+     "end": 5.16,
+     "p": 0.736
+    },
+    {
+     "w": "he's",
+     "start": 5.16,
+     "end": 6.08,
+     "p": 0.965
+    },
+    {
+     "w": "right,",
+     "start": 6.08,
+     "end": 6.44,
+     "p": 0.985
+    },
+    {
+     "w": "honestly",
+     "start": 6.66,
+     "end": 7.74,
+     "p": 0.991
+    }
+   ]
+  },
+  {
+   "start": 9.2,
+   "end": 10.96,
+   "text": "How do you feel?",
+   "avg_logprob": -0.603,
+   "no_speech_prob": 0.493,
+   "words": [
+    {
+     "w": "How",
+     "start": 9.2,
+     "end": 9.96,
+     "p": 0.369
+    },
+    {
+     "w": "do",
+     "start": 9.96,
+     "end": 10.28,
+     "p": 0.99
+    },
+    {
+     "w": "you",
+     "start": 10.28,
+     "end": 10.58,
+     "p": 0.997
+    },
+    {
+     "w": "feel?",
+     "start": 10.58,
+     "end": 10.96,
+     "p": 0.433
+    }
+   ]
+  }
+ ]
+}
