@@ -1,0 +1,514 @@
+{
+ "shot": "K9_mote_out",
+ "set": "kitchen90",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0.5,
+   1.12,
+   -1
+  ],
+  "target": [
+   0.5616,
+   1.1031,
+   0.999
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.9995,
+   0,
+   0.0308,
+   0,
+   0.0003,
+   1,
+   0.0084,
+   0,
+   -0.0308,
+   0.0084,
+   -0.9995,
+   0,
+   0.5,
+   1.12,
+   -1,
+   1
+  ],
+  "viewMatrix": [
+   -0.9995,
+   0.0003,
+   -0.0308,
+   0,
+   0,
+   1,
+   0.0084,
+   0,
+   0.0308,
+   0.0084,
+   -0.9995,
+   0,
+   0.5306,
+   -1.1116,
+   -0.9936,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "window_upper": {
+   "px": [
+    [
+     -2092.9,
+     2722.3
+    ],
+    [
+     443.5,
+     2789.3
+    ],
+    [
+     441.5,
+     1597.7
+    ],
+    [
+     -2104.2,
+     1565.7
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_lower": {
+   "px": [
+    [
+     -2104.2,
+     1565.7
+    ],
+    [
+     441.5,
+     1597.7
+    ],
+    [
+     439.5,
+     397
+    ],
+    [
+     -2115.5,
+     400.6
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.07,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.07,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "cabinet_glass": {
+   "px": [
+    [
+     -386.1,
+     -624.9
+    ],
+    [
+     -2111.3,
+     -2004.8
+    ],
+    [
+     -2078.3,
+     1418.5
+    ],
+    [
+     -379.5,
+     928
+    ]
+   ],
+   "world": [
+    [
+     1.4,
+     1.84,
+     0.66
+    ],
+    [
+     1.4,
+     1.84,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     0.66
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade7": {
+   "px": [
+    937.8,
+    477.5
+   ],
+   "eyes": [
+    960.1,
+    453.6
+   ],
+   "mouth": [
+    960.4,
+    576.3
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 7
+  }
+ },
+ "hands": {
+  "jade7.L": {
+   "px": [
+    1278.3,
+    1753.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade7.R": {
+   "px": [
+    592.2,
+    1744.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "pendant",
+   "kind": "tungsten pendant over the table (night scene; the only light)",
+   "on": false,
+   "color": "#ffc98a",
+   "world": [
+    -0.7,
+    1.6,
+    0.3
+   ],
+   "px": [
+    3586.7,
+    -499.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.929,
+    0.371
+   ],
+   "toward_camera": -0.013,
+   "aim_world": [
+    -0.7,
+    0,
+    0.3
+   ]
+  },
+  {
+   "name": "sun",
+   "kind": "low sun through the window (day scene; the only direct light)",
+   "on": true,
+   "color": "#fff0d0",
+   "world": [
+    -1.7149,
+    3.427,
+    -6.5215
+   ],
+   "px": [
+    -12.1,
+    1614.8
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.669,
+    0.743
+   ],
+   "toward_camera": -0.918,
+   "aim_world": [
+    -0.3,
+    1.57,
+    -2.1
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Frontal, level, locked off from the window side, over the empty chair: her face at rest, eyes tracking one mote in the shaft just in front of her.",
+ "time": "4:19.3-4:21.3 \"And I can think again\" (v3)",
+ "position": "outside",
+ "scene": "day (outro)",
+ "beam": {
+  "name": "sun through the window over the sink",
+  "model": "parallel shaft: the window opening extruded along dir until it meets floor or wall",
+  "color": "#fff0d0",
+  "dir": [
+   0.283,
+   -0.3714,
+   0.8843
+  ],
+  "elevation_deg": 21.8,
+  "source_corners": [
+   {
+    "world": [
+     -0.85,
+     2.07,
+     -2.1
+    ],
+    "px": [
+     -2092.9,
+     2722.3
+    ]
+   },
+   {
+    "world": [
+     0.25,
+     2.07,
+     -2.1
+    ],
+    "px": [
+     443.5,
+     2789.3
+    ]
+   },
+   {
+    "world": [
+     0.25,
+     1.07,
+     -2.1
+    ],
+    "px": [
+     439.5,
+     397
+    ]
+   },
+   {
+    "world": [
+     -0.85,
+     1.07,
+     -2.1
+    ],
+    "px": [
+     -2115.5,
+     400.6
+    ]
+   }
+  ],
+  "end_corners": [
+   {
+    "world": [
+     0.494,
+     0.306,
+     2.1
+    ],
+    "px": [
+     1047.2,
+     1216.6
+    ]
+   },
+   {
+    "world": [
+     1.594,
+     0.306,
+     2.1
+    ],
+    "px": [
+     112.2,
+     1209
+    ]
+   },
+   {
+    "world": [
+     1.0652,
+     0,
+     0.4476
+    ],
+    "px": [
+     18.4,
+     2544.1
+    ]
+   },
+   {
+    "world": [
+     -0.0348,
+     0,
+     0.4476
+    ],
+    "px": [
+     2032.5,
+     2591.8
+    ]
+   }
+  ],
+  "corner_order": "TL,TR,BR,BL of the window seen from inside",
+  "note": "a parallel shaft with the window’s section (1.1 x 1.0 m), slanting down toward the front-right; it crosses Mother’s chair and the child’s body and lands on the floor from z 0.45 forward",
+  "section_at_child_z": [
+   {
+    "world": [
+     -0.0948,
+     1.0788,
+     0.26
+    ],
+    "px": [
+     2320.5,
+     606
+    ]
+   },
+   {
+    "world": [
+     1.0052,
+     1.0788,
+     0.26
+    ],
+    "px": [
+     -14.8,
+     603.6
+    ]
+   },
+   {
+    "world": [
+     1.0052,
+     0.0788,
+     0.26
+    ],
+    "px": [
+     -8.3,
+     2680.4
+    ]
+   },
+   {
+    "world": [
+     -0.0948,
+     0.0788,
+     0.26
+    ],
+    "px": [
+     2311.3,
+     2739.1
+    ]
+   }
+  ],
+  "mote": {
+   "world": [
+    0.42,
+    1.16,
+    -0.55
+   ],
+   "px": [
+    1519.8,
+    278.8
+   ],
+   "in_shaft": true
+  },
+  "heads_in_shaft": {
+   "jade7": false
+  }
+ },
+ "figure_report": {
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 9
+  }
+ }
+}

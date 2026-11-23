@@ -1,0 +1,565 @@
+{
+ "shot": "K5_thumbs",
+ "set": "kitchen90",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0.55,
+   1.1545,
+   -0.3183
+  ],
+  "target": [
+   0.55,
+   1.039,
+   1.6784
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 5,
+  "matrixWorld": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.9983,
+   0.0577,
+   0,
+   0,
+   0.0577,
+   -0.9983,
+   0,
+   0.55,
+   1.1545,
+   -0.3183,
+   1
+  ],
+  "viewMatrix": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.9983,
+   0.0577,
+   0,
+   0,
+   0.0577,
+   -0.9983,
+   0,
+   0.55,
+   -1.1342,
+   -0.3844,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0202,
+   -1,
+   0,
+   0,
+   -0.101,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "window_upper": {
+   "px": [
+    [
+     -466.8,
+     1366.6
+    ],
+    [
+     654.3,
+     1366.6
+    ],
+    [
+     649.4,
+     863
+    ],
+    [
+     -489.7,
+     863
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_lower": {
+   "px": [
+    [
+     -489.7,
+     863
+    ],
+    [
+     649.4,
+     863
+    ],
+    [
+     644.3,
+     343
+    ],
+    [
+     -513.3,
+     343
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.07,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.07,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "cabinet_glass": {
+   "px": [
+    [
+     -733.2,
+     -935.8
+    ],
+    [
+     -84272.1,
+     -68420.1
+    ],
+    [
+     -20136.6,
+     7753.6
+    ],
+    [
+     -636.8,
+     986.2
+    ]
+   ],
+   "world": [
+    [
+     1.4,
+     1.84,
+     0.66
+    ],
+    [
+     1.4,
+     1.84,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     0.66
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade7": {
+   "px": [
+    960,
+    482.1
+   ],
+   "eyes": [
+    960,
+    431.9
+   ],
+   "mouth": [
+    960,
+    633.9
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 4
+  },
+  "mama90": {
+   "px": [
+    960,
+    -9.3
+   ],
+   "eyes": [
+    960,
+    214
+   ],
+   "mouth": [
+    960,
+    648.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 156
+  }
+ },
+ "hands": {
+  "jade7.L": {
+   "px": [
+    1469.9,
+    2375.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade7.R": {
+   "px": [
+    450.1,
+    2375.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama90.L": {
+   "px": [
+    658.4,
+    789.4
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "mama90.R": {
+   "px": [
+    1261.6,
+    789.4
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [
+  {
+   "name": "pendant",
+   "kind": "tungsten pendant over the table (night scene; the only light)",
+   "on": false,
+   "color": "#ffc98a",
+   "world": [
+    -0.7,
+    1.6,
+    0.3
+   ],
+   "px": [
+    4904.5,
+    -976.1
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.928,
+    0.372
+   ],
+   "toward_camera": -0.005,
+   "aim_world": [
+    -0.7,
+    0,
+    0.3
+   ]
+  },
+  {
+   "name": "sun",
+   "kind": "low sun through the window (day scene; the only direct light)",
+   "on": true,
+   "color": "#fff0d0",
+   "world": [
+    -1.7149,
+    3.427,
+    -6.5215
+   ],
+   "px": [
+    291.5,
+    1103.9
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.803,
+    0.596
+   ],
+   "toward_camera": -0.927,
+   "aim_world": [
+    -0.3,
+    1.57,
+    -2.1
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Frontal, level, locked off on the child’s face from where Mother’s face is (Mother’s head hidden): two adult hands come in from the bottom corners, thumbs on the cheeks, and push them into a smile.",
+ "time": "4:05.0-4:09.0 Outro 1 (v3)",
+ "position": "outside",
+ "scene": "day (outro)",
+ "beam": {
+  "name": "sun through the window over the sink",
+  "model": "parallel shaft: the window opening extruded along dir until it meets floor or wall",
+  "color": "#fff0d0",
+  "dir": [
+   0.283,
+   -0.3714,
+   0.8843
+  ],
+  "elevation_deg": 21.8,
+  "source_corners": [
+   {
+    "world": [
+     -0.85,
+     2.07,
+     -2.1
+    ],
+    "px": [
+     -466.8,
+     1366.6
+    ]
+   },
+   {
+    "world": [
+     0.25,
+     2.07,
+     -2.1
+    ],
+    "px": [
+     654.3,
+     1366.6
+    ]
+   },
+   {
+    "world": [
+     0.25,
+     1.07,
+     -2.1
+    ],
+    "px": [
+     644.3,
+     343
+    ]
+   },
+   {
+    "world": [
+     -0.85,
+     1.07,
+     -2.1
+    ],
+    "px": [
+     -513.3,
+     343
+    ]
+   }
+  ],
+  "end_corners": [
+   {
+    "world": [
+     0.494,
+     0.306,
+     2.1
+    ],
+    "px": [
+     1002.4,
+     1076.1
+    ]
+   },
+   {
+    "world": [
+     1.594,
+     0.306,
+     2.1
+    ],
+    "px": [
+     168.9,
+     1076.1
+    ]
+   },
+   {
+    "world": [
+     1.0652,
+     0,
+     0.4476
+    ],
+    "px": [
+     -196.9,
+     3028.7
+    ]
+   },
+   {
+    "world": [
+     -0.0348,
+     0,
+     0.4476
+    ],
+    "px": [
+     2273.1,
+     3028.7
+    ]
+   }
+  ],
+  "corner_order": "TL,TR,BR,BL of the window seen from inside",
+  "note": "a parallel shaft with the window’s section (1.1 x 1.0 m), slanting down toward the front-right; it crosses Mother’s chair and the child’s body and lands on the floor from z 0.45 forward",
+  "section_at_child_z": [
+   {
+    "world": [
+     -0.0948,
+     1.0788,
+     0.26
+    ],
+    "px": [
+     3029.1,
+     675.3
+    ]
+   },
+   {
+    "world": [
+     1.0052,
+     1.0788,
+     0.26
+    ],
+    "px": [
+     -500.7,
+     675.3
+    ]
+   },
+   {
+    "world": [
+     1.0052,
+     0.0788,
+     0.26
+    ],
+    "px": [
+     -368.8,
+     3577.4
+    ]
+   },
+   {
+    "world": [
+     -0.0948,
+     0.0788,
+     0.26
+    ],
+    "px": [
+     2842.3,
+     3577.4
+    ]
+   }
+  ],
+  "mote": {
+   "world": [
+    0.42,
+    1.16,
+    -0.55
+   ],
+   "px": [
+    -87.6,
+    476.4
+   ],
+   "in_shaft": true
+  },
+  "heads_in_shaft": {
+   "jade7": false,
+   "mama90": true
+  }
+ },
+ "figure_report": {
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "mama90": {
+   "legs": {
+    "L": {
+     "reach": 0.84
+    },
+    "R": {
+     "reach": 0.84
+    }
+   },
+   "arms": {
+    "L": 0.64,
+    "R": 0.64
+   },
+   "headTurn": 0
+  }
+ }
+}

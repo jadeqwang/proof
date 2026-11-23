@@ -1,0 +1,575 @@
+{
+ "shot": "REF_wide",
+ "set": "shanghai86",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.3,
+   1.5,
+   2.08
+  ],
+  "target": [
+   -0.061,
+   0.6785,
+   0.2723
+  ],
+  "lens_mm": 22,
+  "frame_width_mm": 36,
+  "hfov_deg": 78.579,
+  "vfov_deg": 49.426,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0.9914,
+   0,
+   0.1311,
+   0,
+   0.0538,
+   0.9117,
+   -0.4072,
+   0,
+   -0.1195,
+   0.4108,
+   0.9039,
+   0,
+   -0.3,
+   1.5,
+   2.08,
+   1
+  ],
+  "viewMatrix": [
+   0.9914,
+   0.0538,
+   -0.1195,
+   0,
+   0,
+   0.9117,
+   0.4108,
+   0,
+   0.1311,
+   -0.4072,
+   0.9039,
+   0,
+   0.0248,
+   -0.5044,
+   -2.5321,
+   1
+  ],
+  "projectionMatrix": [
+   1.2222,
+   0,
+   0,
+   0,
+   0,
+   2.1728,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "window": {
+   "px": [
+    [
+     -1695.3,
+     -1044.5
+    ],
+    [
+     -321.5,
+     -460.8
+    ],
+    [
+     -34.3,
+     347.2
+    ],
+    [
+     -653.2,
+     599.4
+    ]
+   ],
+   "world": [
+    [
+     -1.8,
+     2.1,
+     0.8
+    ],
+    [
+     -1.8,
+     2.1,
+     -0.2
+    ],
+    [
+     -1.8,
+     0.95,
+     -0.2
+    ],
+    [
+     -1.8,
+     0.95,
+     0.8
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade3": {
+   "px": [
+    867.3,
+    552.7
+   ],
+   "eyes": [
+    869.8,
+    588.9
+   ],
+   "mouth": [
+    869.2,
+    594.6
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 75
+  },
+  "mama86": {
+   "px": [
+    1794.5,
+    9.2
+   ],
+   "eyes": [
+    1750.3,
+    21.8
+   ],
+   "mouth": [
+    1751.5,
+    53.4
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 51
+  },
+  "aunt": {
+   "px": [
+    1444.5,
+    15.4
+   ],
+   "eyes": [
+    1418.4,
+    17.4
+   ],
+   "mouth": [
+    1416.6,
+    44.9
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 39
+  },
+  "uncle": {
+   "px": [
+    2006.7,
+    -69.8
+   ],
+   "eyes": [
+    1940,
+    -110.7
+   ],
+   "mouth": [
+    1900.2,
+    -60.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 78
+  },
+  "grandma": {
+   "px": [
+    1266.5,
+    145.1
+   ],
+   "eyes": [
+    1244.7,
+    158.9
+   ],
+   "mouth": [
+    1248.1,
+    180.3
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 45
+  }
+ },
+ "hands": {
+  "jade3.L": {
+   "px": [
+    925.9,
+    698.9
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade3.R": {
+   "px": [
+    846,
+    706.5
+   ],
+   "shape": "pinch",
+   "in_frame": true,
+   "visible": true
+  },
+  "mama86.L": {
+   "px": [
+    1788.4,
+    416
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "mama86.R": {
+   "px": [
+    1693.2,
+    141.9
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "aunt.L": {
+   "px": [
+    1434,
+    352.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "aunt.R": {
+   "px": [
+    1389.9,
+    63.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "uncle.L": {
+   "px": [
+    1699.8,
+    533.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "uncle.R": {
+   "px": [
+    1674.2,
+    446.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "grandma.L": {
+   "px": [
+    1259.1,
+    386.9
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "grandma.R": {
+   "px": [
+    1202.7,
+    372.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [
+  {
+   "name": "sun_through_window",
+   "kind": "sun through the window, a shaft in humid air (parallel light)",
+   "on": true,
+   "color": "#fff1d0",
+   "world": [
+    -2.924,
+    2.4892,
+    0.5389
+   ],
+   "px": [
+    -3926.9,
+    -1879.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.878,
+    0.479
+   ],
+   "toward_camera": -0.56,
+   "aim_world": [
+    -0.1,
+    0,
+    -0.08
+   ]
+  },
+  {
+   "name": "sky",
+   "kind": "soft skylight through the same window",
+   "on": true,
+   "color": "#cfd8e0",
+   "world": [
+    -2.2,
+    1.725,
+    0.3
+   ],
+   "px": [
+    -966.3,
+    -213.2
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.89,
+    0.456
+   ],
+   "toward_camera": -0.529
+  }
+ ],
+ "warnings": [],
+ "intent": "The room as every verse-1 camera sees it: window left, shaft falling to the floor mid-room, the child in it, adults out of it. Not a shot.",
+ "beam": {
+  "kind": "sun through the window, a shaft in humid air (parallel light)",
+  "travel_dir": [
+   0.7493,
+   -0.6428,
+   -0.1593
+  ],
+  "elevation_deg": 40,
+  "source_world": [
+   [
+    -1.8,
+    2.0999999999999996,
+    0.8
+   ],
+   [
+    -1.8,
+    2.0999999999999996,
+    -0.2
+   ],
+   [
+    -1.8,
+    0.95,
+    -0.2
+   ],
+   [
+    -1.8,
+    0.95,
+    0.8
+   ]
+  ],
+  "source_px": [
+   [
+    -1695.3,
+    -1044.5
+   ],
+   [
+    -321.5,
+    -460.8
+   ],
+   [
+    -34.3,
+    347.2
+   ],
+   [
+    -653.2,
+    599.4
+   ]
+  ],
+  "footprint_floor_world": [
+   [
+    0.648,
+    0,
+    0.28
+   ],
+   [
+    0.648,
+    0,
+    -0.72
+   ],
+   [
+    -0.693,
+    0,
+    -0.435
+   ],
+   [
+    -0.693,
+    0,
+    0.565
+   ]
+  ],
+  "footprint_floor_px": [
+   [
+    1310.4,
+    830.5
+   ],
+   [
+    1166.1,
+    603.4
+   ],
+   [
+    663.3,
+    690.4
+   ],
+   [
+    604.3,
+    1007
+   ]
+  ],
+  "corner_order": "window TL, TR, BR, BL as seen from inside; the footprint corners are the same rays landed on the floor",
+  "note": "the lit volume is the prism between source and footprint, minus what stands in it; render the mask from these 8 points with the scene as occluder",
+  "in_beam": {
+   "jade3": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "hip": true
+   },
+   "mama86": {
+    "head": false,
+    "eyes": false,
+    "handL": false,
+    "handR": false,
+    "hip": false
+   },
+   "aunt": {
+    "head": false,
+    "eyes": false,
+    "handL": false,
+    "handR": false,
+    "hip": false
+   },
+   "uncle": {
+    "head": false,
+    "eyes": false,
+    "handL": false,
+    "handR": false,
+    "hip": false
+   },
+   "grandma": {
+    "head": false,
+    "eyes": false,
+    "handL": false,
+    "handR": false,
+    "hip": false
+   }
+  }
+ },
+ "state": "B: a week later, the drift",
+ "tissue_pieces": 8,
+ "times": null,
+ "figure_report": {
+  "jade3": {
+   "legs": {
+    "L": {
+     "reach": 0.58
+    },
+    "R": {
+     "reach": 0.58
+    }
+   },
+   "arms": {
+    "L": 0.94,
+    "R": 0.94
+   },
+   "headTurn": 0
+  },
+  "mama86": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.45
+   },
+   "headTurn": 1
+  },
+  "aunt": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": 4
+  },
+  "uncle": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "grandma": {
+   "legs": {
+    "L": {
+     "reach": 0.88
+    },
+    "R": {
+     "reach": 0.88
+    }
+   },
+   "arms": {
+    "L": 0.78,
+    "R": 0.78
+   },
+   "headTurn": -2
+  }
+ }
+}

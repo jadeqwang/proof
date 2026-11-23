@@ -1,0 +1,1403 @@
+{
+ "shot": "V3a",
+ "set": "mv10",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   2.05,
+   1.55,
+   2.86
+  ],
+  "target": [
+   4.0206,
+   1.4303,
+   2.5397
+  ],
+  "lens_mm": 24,
+  "frame_width_mm": 36,
+  "hfov_deg": 73.74,
+  "vfov_deg": 45.747,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 16,
+  "matrixWorld": [
+   0.1604,
+   0,
+   0.987,
+   0,
+   0.0591,
+   0.9982,
+   -0.0096,
+   0,
+   -0.9853,
+   0.0598,
+   0.1601,
+   0,
+   2.05,
+   1.55,
+   2.86,
+   1
+  ],
+  "viewMatrix": [
+   0.1604,
+   0.0591,
+   -0.9853,
+   0,
+   0,
+   0.9982,
+   0.0598,
+   0,
+   0.987,
+   -0.0096,
+   0.1601,
+   0,
+   -3.1518,
+   -1.6409,
+   1.469,
+   1
+  ],
+  "projectionMatrix": [
+   1.3333,
+   0,
+   0,
+   0,
+   0,
+   2.3704,
+   0,
+   0,
+   0,
+   0,
+   -1.0063,
+   -1,
+   0,
+   0,
+   -0.1003,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "slider_fixed_glass": {
+   "px": [
+    [
+     -315.8,
+     -56.5
+    ],
+    [
+     600.6,
+     -128.5
+    ],
+    [
+     638.2,
+     2174.4
+    ],
+    [
+     -197.1,
+     1985.5
+    ]
+   ],
+   "world": [
+    [
+     3.06,
+     2.03,
+     1.5
+    ],
+    [
+     3.06,
+     2.03,
+     2.4
+    ],
+    [
+     3.06,
+     0,
+     2.4
+    ],
+    [
+     3.06,
+     0,
+     1.5
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "slider_opening": {
+   "px": [
+    [
+     600.6,
+     -128.5
+    ],
+    [
+     1812,
+     -223.7
+    ],
+    [
+     1710.2,
+     2416.8
+    ],
+    [
+     638.2,
+     2174.4
+    ]
+   ],
+   "world": [
+    [
+     3.06,
+     2.03,
+     2.4
+    ],
+    [
+     3.06,
+     2.03,
+     3.3
+    ],
+    [
+     3.06,
+     0,
+     3.3
+    ],
+    [
+     3.06,
+     0,
+     2.4
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "A1": {
+   "px": [
+    1036.4,
+    502.8
+   ],
+   "eyes": [
+    1042.4,
+    500.2
+   ],
+   "mouth": [
+    1041.6,
+    479.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 15
+  },
+  "A2": {
+   "px": [
+    1068,
+    457.8
+   ],
+   "eyes": [
+    1061.5,
+    463.4
+   ],
+   "mouth": [
+    1061.2,
+    443
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 167
+  },
+  "A3": {
+   "px": [
+    875.4,
+    529.1
+   ],
+   "eyes": [
+    906.5,
+    525.2
+   ],
+   "mouth": [
+    901.7,
+    502.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 64
+  },
+  "S1": {
+   "px": [
+    1429,
+    369.1
+   ],
+   "eyes": [
+    1405.1,
+    375
+   ],
+   "mouth": [
+    1404.6,
+    355.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 51
+  },
+  "B1": {
+   "px": [
+    -15788.9,
+    -361.4
+   ],
+   "eyes": [
+    -17270.6,
+    -325
+   ],
+   "mouth": [
+    -16618.2,
+    270.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 166
+  },
+  "B2": {
+   "px": [
+    -2101.6,
+    535.8
+   ],
+   "eyes": [
+    -2627.4,
+    505.6
+   ],
+   "mouth": [
+    -2639.1,
+    646.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 108
+  },
+  "E1": {
+   "px": [
+    -1470.2,
+    -35.7
+   ],
+   "eyes": [
+    -932.9,
+    31.9
+   ],
+   "mouth": [
+    -929.1,
+    199
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 85
+  },
+  "C1": {
+   "px": [
+    1861,
+    424.1
+   ],
+   "eyes": [
+    1859.9,
+    417.4
+   ],
+   "mouth": [
+    1858.2,
+    458
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 179,
+   "blocked_by": "house wall (sliding door to the yard)"
+  },
+  "C2": {
+   "px": [
+    1855.8,
+    367.3
+   ],
+   "eyes": [
+    1856.6,
+    369.7
+   ],
+   "mouth": [
+    1855,
+    406.3
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 8,
+   "blocked_by": "house wall (sliding door to the yard)"
+  },
+  "C3": {
+   "px": [
+    2292.9,
+    496.9
+   ],
+   "eyes": [
+    2217.9,
+    482.2
+   ],
+   "mouth": [
+    2208,
+    517.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 94
+  },
+  "W1": {
+   "px": [
+    1985.6,
+    432.8
+   ],
+   "eyes": [
+    1954.2,
+    434.2
+   ],
+   "mouth": [
+    1955.9,
+    451.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 112
+  },
+  "W2": {
+   "px": [
+    1581.8,
+    462.9
+   ],
+   "eyes": [
+    1580.6,
+    462.9
+   ],
+   "mouth": [
+    1580.2,
+    479
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 174,
+   "blocked_by": "H1 guest H1, the hug (face undrawn)"
+  },
+  "T1": {
+   "px": [
+    408.3,
+    442.9
+   ],
+   "eyes": [
+    368.3,
+    466.5
+   ],
+   "mouth": [
+    385.9,
+    492.8
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 113
+  },
+  "H1": {
+   "px": [
+    1631.1,
+    439.5
+   ],
+   "eyes": [
+    1655.5,
+    435.1
+   ],
+   "mouth": [
+    1654.6,
+    461.6
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 32
+  },
+  "G1": {
+   "px": [
+    2113.2,
+    333.3
+   ],
+   "eyes": [
+    2092.1,
+    339
+   ],
+   "mouth": [
+    2090.2,
+    393.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 166
+  },
+  "poi": {
+   "px": [
+    1564.4,
+    442.5
+   ],
+   "eyes": [
+    1560.1,
+    444.4
+   ],
+   "mouth": [
+    1560.3,
+    457.8
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 15
+  },
+  "jade27": {
+   "px": [
+    768,
+    459.7
+   ],
+   "eyes": [
+    768,
+    453.6
+   ],
+   "mouth": [
+    768.2,
+    472
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 7,
+   "blocked_by": "firstLove27 first love (27, never face-on)"
+  },
+  "firstLove27": {
+   "px": [
+    767.8,
+    408.6
+   ],
+   "eyes": [
+    767.8,
+    410.1
+   ],
+   "mouth": [
+    768,
+    433.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 172,
+   "blocked_by": "firstLove27 first love (27, never face-on)"
+  }
+ },
+ "hands": {
+  "A1.L": {
+   "px": [
+    1091,
+    232.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A1.R": {
+   "px": [
+    968.5,
+    376.2
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "A2.L": {
+   "px": [
+    1002.6,
+    288.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A2.R": {
+   "px": [
+    1108.4,
+    195
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A3.L": {
+   "px": [
+    944.9,
+    395.3
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "A3.R": {
+   "px": [
+    868.1,
+    224
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "S1.L": {
+   "px": [
+    1501.7,
+    132.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "S1.R": {
+   "px": [
+    1423.8,
+    135.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B1.L": {
+   "px": [
+    285568.5,
+    -109548
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B1.R": {
+   "px": [
+    -7399.2,
+    903.6
+   ],
+   "shape": "pinch",
+   "in_frame": false,
+   "visible": false
+  },
+  "B2.L": {
+   "px": [
+    -1999.3,
+    2313.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B2.R": {
+   "px": [
+    -3841.3,
+    1661.4
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "E1.L": {
+   "px": [
+    -552.4,
+    897.6
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "E1.R": {
+   "px": [
+    -874.9,
+    2548.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C1.L": {
+   "px": [
+    1711.6,
+    912.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "C1.R": {
+   "px": [
+    1999.4,
+    678.1
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "C2.L": {
+   "px": [
+    1961.8,
+    817
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C2.R": {
+   "px": [
+    1861.1,
+    538.3
+   ],
+   "shape": "palmUp",
+   "in_frame": true,
+   "visible": false
+  },
+  "C3.L": {
+   "px": [
+    2122.4,
+    728.2
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "C3.R": {
+   "px": [
+    2159.6,
+    917.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W1.L": {
+   "px": [
+    1944.8,
+    663.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W1.R": {
+   "px": [
+    2001.2,
+    654.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W2.L": {
+   "px": [
+    1517.7,
+    668.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "W2.R": {
+   "px": [
+    1604.1,
+    560.9
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  },
+  "T1.L": {
+   "px": [
+    451.4,
+    866.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "T1.R": {
+   "px": [
+    244.1,
+    688.1
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "H1.L": {
+   "px": [
+    1704.7,
+    766.4
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "H1.R": {
+   "px": [
+    1545.8,
+    769.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "G1.L": {
+   "px": [
+    1852.9,
+    1013.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "G1.R": {
+   "px": [
+    2150.9,
+    663
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "poi.L": {
+   "px": [
+    1658.6,
+    548.6
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  },
+  "poi.R": {
+   "px": [
+    1467.2,
+    543.1
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade27.L": {
+   "px": [
+    829.6,
+    691.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "jade27.R": {
+   "px": [
+    738.1,
+    579
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  },
+  "firstLove27.L": {
+   "px": [
+    691.1,
+    720.2
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.R": {
+   "px": [
+    834.7,
+    522.4
+   ],
+   "shape": "palmUp",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [
+  {
+   "name": "lamp1",
+   "kind": "paper floor lamp (omni, warm)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    0.5,
+    1.3,
+    4.15
+   ],
+   "px": [
+    197,
+    276.7
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.959,
+    -0.282
+   ],
+   "toward_camera": -0.992,
+   "aim_world": [
+    0,
+    1,
+    0.285
+   ]
+  },
+  {
+   "name": "lamp2",
+   "kind": "paper floor lamp (omni, warm)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    1.6,
+    1.3,
+    4.15
+   ],
+   "px": [
+    -1461.1,
+    -41.6
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.972,
+    -0.235
+   ],
+   "toward_camera": -0.978,
+   "aim_world": [
+    0,
+    1,
+    0.285
+   ]
+  },
+  {
+   "name": "lamp3",
+   "kind": "paper floor lamp (omni, warm)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    2.7,
+    1.3,
+    4.15
+   ],
+   "px": [
+    4888.9,
+    1177.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.985,
+    -0.171
+   ],
+   "toward_camera": -0.946,
+   "aim_world": [
+    0,
+    1,
+    0.285
+   ]
+  },
+  {
+   "name": "dusk",
+   "kind": "low sun over the west fence (parallel); pos is a point 14 m up the beam",
+   "on": true,
+   "color": "#ff8a4a",
+   "world": [
+    18.6558,
+    2.8353,
+    -0.2312
+   ],
+   "px": [
+    930.5,
+    365
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.857,
+    0.514
+   ],
+   "toward_camera": 0.981,
+   "aim_world": [
+    5,
+    1.4,
+    2.5
+   ]
+  },
+  {
+   "name": "poi",
+   "kind": "fire poi (two moving flames; effective point between the circles)",
+   "on": true,
+   "color": "#ff7a20",
+   "world": [
+    8.8,
+    1.15,
+    4.8
+   ],
+   "px": [
+    1563,
+    543.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.994,
+    -0.108
+   ],
+   "toward_camera": 0.329
+  }
+ ],
+ "warnings": [],
+ "intent": "Wide from inside the room out through the open slider, into the low sun: patio, guests, the lemon tree with pomelo-sized lemons at left, the fire poi starting at right. She and first love under the tree. Sun only reaches what stands above the fence shadow: heads, lemons.",
+ "layout_set": "mv10",
+ "space": "yard",
+ "time": "3:05-3:08",
+ "section": "Verse 3",
+ "light_state": {
+  "lamps": true,
+  "dusk": true,
+  "poi": true
+ },
+ "amplitude_pct": 115,
+ "dusk": {
+  "travel_dir_world": [
+   -0.9754,
+   -0.1025,
+   0.1951
+  ],
+  "elevation_deg": 6,
+  "lit_above_y_at": {
+   "house_wall": 0.97,
+   "tree": 1.38
+  },
+  "shaft_in_room": {
+   "at_slider": {
+    "z0": 1.5,
+    "z1": 3.3,
+    "y0": 0.9591661178745884,
+    "y1": 2.03
+   },
+   "at_x0": {
+    "z0": 2.1,
+    "z1": 3.9,
+    "y0": 0.643853412077559,
+    "y1": 1.7146872942029705
+   },
+   "at_left_wall": {
+    "z0": 2.7,
+    "z1": 4.5,
+    "y0": 0.32854070628052967,
+    "y1": 1.3993745884059412
+   }
+  }
+ },
+ "footprints_world": {
+  "lamps_on_shelf": {
+   "surface": "spine plane z = 0.285",
+   "rect": {
+    "x0": -2.8,
+    "x1": 2.8,
+    "y0": 0,
+    "y1": 2.1
+   },
+   "note": "all three lamps reach the whole shelf; the lit figure is the shelf MINUS the three shadows of whoever stands at it (see three_shadows in the sidecar)"
+  },
+  "dusk_shaft_room": {
+   "note": "slab of sun through the slider; cross-sections from duskShaftAt(x)",
+   "at_slider": {
+    "z0": 1.5,
+    "z1": 3.3,
+    "y0": 0.9591661178745884,
+    "y1": 2.03
+   },
+   "at_room_centre": {
+    "z0": 2.1,
+    "z1": 3.9,
+    "y0": 0.643853412077559,
+    "y1": 1.7146872942029705
+   },
+   "at_left_wall": {
+    "z0": 2.7,
+    "z1": 4.5,
+    "y0": 0.32854070628052967,
+    "y1": 1.3993745884059412
+   },
+   "lands_on": "left wall x = -3 (z 2.7 .. 4.4, y 0.34 .. 1.40) and the left end of the front wall; it never reaches the shelf wall"
+  },
+  "dusk_yard": {
+   "note": "everything above duskFloorY(x): tree canopy and lemons, heads and shoulders; lawn and patio are in the fence shadow",
+   "y_at_tree": 1.3795830589372942,
+   "y_at_house_wall": 0.9717786261064696
+  },
+  "poi_ground": {
+   "centre": [
+    8.8,
+    0,
+    4.8
+   ],
+   "radius": 4.5,
+   "note": "falls off with distance; the second light source of verse 3 and the only one at 3:29"
+  },
+  "lamp_spill_patio": {
+   "note": "lamp light leaving the open slider: a wedge on the patio from the mean lamp position through the two jambs",
+   "polygon": [
+    [
+     3.12,
+     0,
+     1.5
+    ],
+    [
+     3.12,
+     0,
+     3.3
+    ],
+    [
+     5.6,
+     0,
+     1.72
+    ],
+    [
+     5.6,
+     0,
+     0.2
+    ],
+    [
+     3.69,
+     0,
+     0.2
+    ]
+   ]
+  }
+ },
+ "shelf": {
+  "spine_plane_z": 0.285,
+  "seam_x": 0,
+  "seam_px": [
+   [
+    3385.8,
+    -848.9
+   ],
+   [
+    3199.9,
+    893.2
+   ]
+  ],
+  "truth_half_px": [
+   [
+    1925.9,
+    623.6
+   ],
+   [
+    3175.8,
+    888.1
+   ],
+   [
+    3357.3,
+    -832.1
+   ],
+   [
+    1954.3,
+    -1.8
+   ]
+  ],
+  "beauty_half_px": [
+   [
+    3234.7,
+    805
+   ],
+   [
+    -1793.5,
+    -26.6
+   ],
+   [
+    -1531.2,
+    2060.8
+   ],
+   [
+    3415,
+    -866.2
+   ]
+  ]
+ },
+ "lemon_tree_px": [
+  603.1,
+  102.4
+ ],
+ "poi_px": [
+  1563,
+  543.9
+ ],
+ "figure_report": {
+  "A1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.59
+   },
+   "headTurn": 40
+  },
+  "A2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.49,
+    "R": 0.97
+   },
+   "headTurn": -34
+  },
+  "A3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.58,
+    "R": 0.97
+   },
+   "headTurn": -23
+  },
+  "S1": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 1.11,
+    "R": 1.11
+   },
+   "headTurn": -62
+  },
+  "B1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 1
+   },
+   "headTurn": 12
+  },
+  "B2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.62
+   },
+   "headTurn": -20
+  },
+  "E1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.58,
+    "R": 0.97
+   },
+   "headTurn": -14
+  },
+  "C1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.6
+   },
+   "headTurn": 25
+  },
+  "C2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.52
+   },
+   "headTurn": -33
+  },
+  "C3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.62,
+    "R": 0.97
+   },
+   "headTurn": -35
+  },
+  "W1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "W2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.61
+   },
+   "headTurn": 0
+  },
+  "T1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 1.33
+   },
+   "headTurn": 4
+  },
+  "H1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "G1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.58
+   },
+   "headTurn": 0
+  },
+  "poi": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.64,
+    "R": 0.64
+   },
+   "headTurn": -7
+  },
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.61
+   },
+   "headTurn": 0
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.51
+   },
+   "headTurn": 0
+  }
+ }
+}

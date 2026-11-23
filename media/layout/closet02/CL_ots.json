@@ -1,0 +1,435 @@
+{
+ "shot": "CL_ots",
+ "set": "closet02",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   1.12,
+   0.86,
+   -0.42
+  ],
+  "target": [
+   -0.759,
+   0.7168,
+   0.2501
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.3359,
+   0,
+   -0.9419,
+   0,
+   -0.0674,
+   0.9974,
+   0.0241,
+   0,
+   0.9395,
+   0.0716,
+   -0.335,
+   0,
+   1.12,
+   0.86,
+   -0.42,
+   1
+  ],
+  "viewMatrix": [
+   -0.3359,
+   -0.0674,
+   0.9395,
+   0,
+   0,
+   0.9974,
+   0.0716,
+   0,
+   -0.9419,
+   0.0241,
+   -0.335,
+   0,
+   -0.0194,
+   -0.7722,
+   -1.2545,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "jade19": {
+   "px": [
+    1123.9,
+    421.1
+   ],
+   "eyes": [
+    1075.2,
+    410.3
+   ],
+   "mouth": [
+    1075.1,
+    525.6
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 16
+  },
+  "firstLove19": {
+   "px": [
+    609.8,
+    229.6
+   ],
+   "eyes": [
+    735.6,
+    265.8
+   ],
+   "mouth": [
+    722.9,
+    444
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 150,
+   "blocked_by": "firstLove19 first love (19)"
+  }
+ },
+ "hands": {
+  "meet_world": [
+   0,
+   0.3,
+   0
+  ],
+  "meet_px": [
+   918.1,
+   1562.8
+  ],
+  "each_px": {
+   "jade19.L": [
+    1044.2,
+    1572
+   ],
+   "jade19.R": [
+    846.3,
+    1540
+   ],
+   "firstLove19.L": [
+    788.4,
+    1553.4
+   ],
+   "firstLove19.R": [
+    996,
+    1587.5
+   ]
+  }
+ },
+ "lights": [
+  {
+   "name": "door",
+   "kind": "afternoon sun through the door gap (parallel)",
+   "on": true,
+   "color": "#ffe6b8",
+   "world": [
+    0.0003,
+    3.3119,
+    -2.6182
+   ],
+   "px": [
+    47581.1,
+    -46493.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.696,
+    0.718
+   ],
+   "toward_camera": -0.529,
+   "aim_world": [
+    0,
+    0.3,
+    0
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Over his right shoulder, level with her eyes, locked off. Sung shot (synced). Her face is above the shaft, the hands below it in the light; his shoulder and the back of his head are the dark frame-left edge. Same question as the school office; here the answer is enough.",
+ "film": {
+  "time": "3:40-3:42",
+  "section": "Chorus 2a (\"I honestly don't know\", sung to him)",
+  "position": "outside"
+ },
+ "beam": {
+  "name": "door",
+  "kind": "afternoon sun from the bedroom through the gap of the door left ajar (parallel)",
+  "model": "parallel (sunlight)",
+  "source_world": null,
+  "direction_of_travel": [
+   0,
+   -0.7547,
+   0.6561
+  ],
+  "aperture_world": [
+   [
+    0.058,
+    1.1927,
+    -0.65
+   ],
+   [
+    -0.0575,
+    1.1927,
+    -0.65
+   ],
+   [
+    -0.0575,
+    0.9027,
+    -0.65
+   ],
+   [
+    0.058,
+    0.9027,
+    -0.65
+   ]
+  ],
+  "aperture_px": [
+   [
+    2664.8,
+    -643.3
+   ],
+   [
+    2583.8,
+    -536.3
+   ],
+   [
+    2550.9,
+    237.2
+   ],
+   [
+    2626.3,
+    224.1
+   ]
+  ],
+  "footprints": {
+   "floor": {
+    "world": [
+     [
+      0.058,
+      0,
+      0.3868
+     ],
+     [
+      -0.0575,
+      0,
+      0.3868
+     ],
+     [
+      -0.0575,
+      0,
+      0.1347
+     ],
+     [
+      0.058,
+      0,
+      0.1347
+     ]
+    ],
+    "px": [
+     [
+      151.3,
+      2077.8
+     ],
+     [
+      284.2,
+      1947.4
+     ],
+     [
+      709.8,
+      2047.1
+     ],
+     [
+      605,
+      2195.1
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   0,
+   0.3,
+   0
+  ],
+  "anchor_px": [
+   918.1,
+   1562.8
+  ],
+  "on_screen": {
+   "from_px": [
+    1053.8,
+    1423
+   ],
+   "to_px": [
+    788.3,
+    1696.5
+   ],
+   "angle_deg": 45.9,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": 5.9,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "sun_altitude_deg": 49,
+  "door_ajar_deg": 32,
+  "gap_m": 0.115,
+  "note": "upper and lower edges of the shaft come from the unmodelled bedroom (stand-in blockers); the gap gives its width"
+ },
+ "motes": {
+  "seed": 2002,
+  "count": 80
+ },
+ "points_world": {
+  "jade19": {
+   "eyes": [
+    -0.2404,
+    0.8272,
+    0
+   ],
+   "head": [
+    -0.334,
+    0.8191,
+    0
+   ],
+   "chin": [
+    -0.2798,
+    0.7141,
+    0
+   ],
+   "handL": [
+    -0.035,
+    0.288,
+    -0.05
+   ],
+   "handR": [
+    -0.035,
+    0.288,
+    0.05
+   ],
+   "hip": [
+    -0.45,
+    0.1386,
+    0
+   ],
+   "shoulderC": [
+    -0.3664,
+    0.6158,
+    0
+   ]
+  },
+  "firstLove19": {
+   "eyes": [
+    0.1947,
+    0.8912,
+    0
+   ],
+   "head": [
+    0.2981,
+    0.9005,
+    0
+   ],
+   "chin": [
+    0.2594,
+    0.7759,
+    0
+   ],
+   "handL": [
+    0.035,
+    0.312,
+    0.05
+   ],
+   "handR": [
+    0.035,
+    0.312,
+    -0.05
+   ],
+   "hip": [
+    0.45,
+    0.153,
+    0
+   ],
+   "shoulderC": [
+    0.3577,
+    0.68,
+    0
+   ]
+  }
+ },
+ "figure_report": {
+  "jade19": {
+   "legs": {
+    "L": {
+     "reach": 0.56
+    },
+    "R": {
+     "reach": 0.56
+    }
+   },
+   "arms": {
+    "L": 0.81,
+    "R": 0.81
+   },
+   "headTurn": 0
+  },
+  "firstLove19": {
+   "legs": {
+    "L": {
+     "reach": 0.56
+    },
+    "R": {
+     "reach": 0.56
+    }
+   },
+   "arms": {
+    "L": 0.77,
+    "R": 0.77
+   },
+   "headTurn": 0
+  }
+ }
+}

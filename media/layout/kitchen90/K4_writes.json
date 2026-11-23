@@ -1,0 +1,527 @@
+{
+ "shot": "K4_writes",
+ "set": "kitchen90",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.712,
+   1.1978,
+   -0.1117
+  ],
+  "target": [
+   -0.984,
+   -0.6293,
+   0.655
+  ],
+  "lens_mm": 45,
+  "frame_width_mm": 36,
+  "hfov_deg": 43.603,
+  "vfov_deg": 25.361,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 4,
+  "matrixWorld": [
+   -0.9424,
+   0,
+   -0.3343,
+   0,
+   -0.3054,
+   0.4068,
+   0.861,
+   0,
+   0.136,
+   0.9135,
+   -0.3833,
+   0,
+   -0.712,
+   1.1978,
+   -0.1117,
+   1
+  ],
+  "viewMatrix": [
+   -0.9424,
+   -0.3054,
+   0.136,
+   0,
+   0,
+   0.4068,
+   0.9135,
+   0,
+   -0.3343,
+   0.861,
+   -0.3833,
+   0,
+   -0.7084,
+   -0.6085,
+   -1.0402,
+   1
+  ],
+  "projectionMatrix": [
+   2.5,
+   0,
+   0,
+   0,
+   0,
+   4.4444,
+   0,
+   0,
+   0,
+   0,
+   -1.0253,
+   -1,
+   0,
+   0,
+   -0.1013,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "window_upper": {
+   "px": [
+    [
+     -278.5,
+     -1508.9
+    ],
+    [
+     1303.5,
+     -1804.7
+    ],
+    [
+     1430.7,
+     -3069.2
+    ],
+    [
+     -800.7,
+     -2823.3
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_lower": {
+   "px": [
+    [
+     -800.7,
+     -2823.3
+    ],
+    [
+     1430.7,
+     -3069.2
+    ],
+    [
+     1707.7,
+     -5821.6
+    ],
+    [
+     -2084,
+     -6053.5
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.07,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.07,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "cabinet_glass": {
+   "px": [
+    [
+     10295,
+     1704.7
+    ],
+    [
+     5964.6,
+     -779.1
+    ],
+    [
+     132228.6,
+     -61018.7
+    ],
+    [
+     -16052.8,
+     1433.5
+    ]
+   ],
+   "world": [
+    [
+     1.4,
+     1.84,
+     0.66
+    ],
+    [
+     1.4,
+     1.84,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     0.66
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    false
+   ]
+  },
+  "paper": {
+   "px": [
+    [
+     1505.7,
+     797.2
+    ],
+    [
+     875.4,
+     1127.6
+    ],
+    [
+     462.1,
+     301.6
+    ],
+    [
+     1029.3,
+     54.2
+    ]
+   ],
+   "world": [
+    [
+     -0.8632,
+     0.742,
+     -0.0093
+    ],
+    [
+     -0.7246,
+     0.742,
+     -0.0288
+    ],
+    [
+     -0.6968,
+     0.742,
+     0.1693
+    ],
+    [
+     -0.8354,
+     0.742,
+     0.1888
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade7": {
+   "px": [
+    857.3,
+    1092.8
+   ],
+   "eyes": [
+    879.8,
+    597.9
+   ],
+   "mouth": [
+    936.9,
+    1044.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 147
+  },
+  "dad": {
+   "px": [
+    -2076.2,
+    -399.4
+   ],
+   "eyes": [
+    -2091.7,
+    -310.8
+   ],
+   "mouth": [
+    -2536.2,
+    -613.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 9
+  },
+  "mama90": {
+   "px": [
+    2140.1,
+    -1868.8
+   ],
+   "eyes": [
+    1837.8,
+    -1734.2
+   ],
+   "mouth": [
+    1917.9,
+    -2062.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 47
+  }
+ },
+ "hands": {
+  "jade7.L": {
+   "px": [
+    326.7,
+    703.6
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.R": {
+   "px": [
+    1164.6,
+    500.2
+   ],
+   "shape": "pinch",
+   "in_frame": true,
+   "visible": true
+  },
+  "dad.L": {
+   "px": [
+    18752.1,
+    19209.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    7646.3,
+    3973.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama90.L": {
+   "px": [
+    -6527.2,
+    14172.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama90.R": {
+   "px": [
+    -18761.4,
+    117106.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "pendant",
+   "kind": "tungsten pendant over the table (night scene; the only light)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    -0.7,
+    1.6,
+    0.3
+   ],
+   "px": [
+    2652.5,
+    6384.4
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.353,
+    0.936
+   ],
+   "toward_camera": -0.847,
+   "aim_world": [
+    -0.7,
+    0,
+    0.3
+   ]
+  },
+  {
+   "name": "sun",
+   "kind": "low sun through the window (day scene; the only direct light)",
+   "on": false,
+   "color": "#fff0d0",
+   "world": [
+    -1.7149,
+    3.427,
+    -6.5215
+   ],
+   "px": [
+    -741,
+    -1831.5
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.422,
+    -0.907
+   ],
+   "toward_camera": -0.404,
+   "aim_world": [
+    -0.3,
+    1.57,
+    -2.1
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Her eye-line onto the sheet (her head hidden for the POV): right hand with the pencil, left hand steadying the paper. The only words she ever writes. Paper quad in the sidecar (panes.paper) for the lettering.",
+ "time": "2:26-2:30 Interlude, thinned",
+ "position": "inside",
+ "scene": "night (verse 2 / interlude)",
+ "beam": {
+  "name": "pendant lamp over the table",
+  "model": "cone straight down from the bulb, cut off by the shade rim",
+  "color": "#ffc98a",
+  "apex": {
+   "world": [
+    -0.7,
+    1.6,
+    0.3
+   ],
+   "px": [
+    2652.5,
+    6384.4
+   ]
+  },
+  "axis": [
+   0,
+   -1,
+   0
+  ],
+  "half_angle_deg": 63.4,
+  "cutoff_plane_y": 1.5,
+  "radius_on_table_m": 1.72,
+  "radius_on_floor_m": 3.2,
+  "note": "a cone straight down from the bulb, cut off by the shade rim: everything above the rim plane (y 1.5) is unlit, so the standing parents’ heads are out of it and her hands and face are in it",
+  "heads_in_cone": {
+   "jade7": true,
+   "dad": false,
+   "mama90": false
+  }
+ },
+ "figure_report": {
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 0.92
+    },
+    "R": {
+     "reach": 0.92
+    }
+   },
+   "arms": {
+    "L": 0.71,
+    "R": 0.59
+   },
+   "headTurn": -16
+  },
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": -38
+  },
+  "mama90": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": -15
+  }
+ }
+}

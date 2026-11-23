@@ -1,0 +1,479 @@
+{
+ "shot": "K2_taps",
+ "set": "kitchen90",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.7083,
+   1.3124,
+   -0.241
+  ],
+  "target": [
+   -0.6817,
+   -0.44,
+   0.7225
+  ],
+  "lens_mm": 40,
+  "frame_width_mm": 36,
+  "hfov_deg": 48.455,
+  "vfov_deg": 28.409,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 4,
+  "matrixWorld": [
+   -0.9996,
+   0,
+   0.0276,
+   0,
+   0.0242,
+   0.4819,
+   0.8759,
+   0,
+   -0.0133,
+   0.8762,
+   -0.4818,
+   0,
+   -0.7083,
+   1.3124,
+   -0.241,
+   1
+  ],
+  "viewMatrix": [
+   -0.9996,
+   0.0242,
+   -0.0133,
+   0,
+   0,
+   0.4819,
+   0.8762,
+   0,
+   0.0276,
+   0.8759,
+   -0.4818,
+   0,
+   -0.7014,
+   -0.4043,
+   -1.2755,
+   1
+  ],
+  "projectionMatrix": [
+   2.2222,
+   0,
+   0,
+   0,
+   0,
+   3.9506,
+   0,
+   0,
+   0,
+   0,
+   -1.0253,
+   -1,
+   0,
+   0,
+   -0.1013,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "window_upper": {
+   "px": [
+    [
+     836.6,
+     -1190.6
+    ],
+    [
+     2352.1,
+     -1170.3
+    ],
+    [
+     2902.2,
+     -2310
+    ],
+    [
+     788.4,
+     -2323.4
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     2.07,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_lower": {
+   "px": [
+    [
+     788.4,
+     -2323.4
+    ],
+    [
+     2902.2,
+     -2310
+    ],
+    [
+     4171.4,
+     -4939
+    ],
+    [
+     678.7,
+     -4904.9
+    ]
+   ],
+   "world": [
+    [
+     -0.85,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.57,
+     -2.1
+    ],
+    [
+     0.25,
+     1.07,
+     -2.1
+    ],
+    [
+     -0.85,
+     1.07,
+     -2.1
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "cabinet_glass": {
+   "px": [
+    [
+     23890184.4,
+     12554190.3
+    ],
+    [
+     11102.4,
+     1928.6
+    ],
+    [
+     -9869,
+     1483.6
+    ],
+    [
+     -4215.3,
+     -1005.9
+    ]
+   ],
+   "world": [
+    [
+     1.4,
+     1.84,
+     0.66
+    ],
+    [
+     1.4,
+     1.84,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     -0.26
+    ],
+    [
+     1.4,
+     0.86,
+     0.66
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade7": {
+   "px": [
+    898.1,
+    1122.3
+   ],
+   "eyes": [
+    907.5,
+    529.9
+   ],
+   "mouth": [
+    913.1,
+    750.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 114
+  },
+  "dad": {
+   "px": [
+    -1059.3,
+    -793.9
+   ],
+   "eyes": [
+    -672.2,
+    -780.2
+   ],
+   "mouth": [
+    -880.1,
+    -1072.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 48
+  },
+  "mama90": {
+   "px": [
+    3825.1,
+    -1277.9
+   ],
+   "eyes": [
+    3306.1,
+    -1203.1
+   ],
+   "mouth": [
+    3599,
+    -1597.1
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 47
+  }
+ },
+ "hands": {
+  "jade7.L": {
+   "px": [
+    543.6,
+    590.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.R": {
+   "px": [
+    1370.7,
+    549.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "dad.L": {
+   "px": [
+    11817.9,
+    22381.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    -4724.6,
+    -7215.4
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama90.L": {
+   "px": [
+    -3203.1,
+    4242.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama90.R": {
+   "px": [
+    -34383,
+    30524.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "pendant",
+   "kind": "tungsten pendant over the table (night scene; the only light)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    -0.7,
+    1.6,
+    0.3
+   ],
+   "px": [
+    2578.7,
+    -148965.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.011,
+    1
+   ],
+   "toward_camera": -0.661,
+   "aim_world": [
+    -0.7,
+    0,
+    0.3
+   ]
+  },
+  {
+   "name": "sun",
+   "kind": "low sun through the window (day scene; the only direct light)",
+   "on": false,
+   "color": "#fff0d0",
+   "world": [
+    -1.7149,
+    3.427,
+    -6.5215
+   ],
+   "px": [
+    596.8,
+    -1425.1
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.144,
+    -0.99
+   ],
+   "toward_camera": -0.643,
+   "aim_world": [
+    -0.3,
+    1.57,
+    -2.1
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Her eye-line down onto her own hands on the table top (her head hidden for the POV): the tapping, then one beat of stillness.",
+ "time": "2:24.5-2:25.5 the question",
+ "position": "inside",
+ "scene": "night (verse 2 / interlude)",
+ "beam": {
+  "name": "pendant lamp over the table",
+  "model": "cone straight down from the bulb, cut off by the shade rim",
+  "color": "#ffc98a",
+  "apex": {
+   "world": [
+    -0.7,
+    1.6,
+    0.3
+   ],
+   "px": [
+    2578.7,
+    -148965.9
+   ]
+  },
+  "axis": [
+   0,
+   -1,
+   0
+  ],
+  "half_angle_deg": 63.4,
+  "cutoff_plane_y": 1.5,
+  "radius_on_table_m": 1.72,
+  "radius_on_floor_m": 3.2,
+  "note": "a cone straight down from the bulb, cut off by the shade rim: everything above the rim plane (y 1.5) is unlit, so the standing parents’ heads are out of it and her hands and face are in it",
+  "heads_in_cone": {
+   "jade7": true,
+   "dad": false,
+   "mama90": false
+  }
+ },
+ "figure_report": {
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 0.92
+    },
+    "R": {
+     "reach": 0.92
+    }
+   },
+   "arms": {
+    "L": 0.68,
+    "R": 0.71
+   },
+   "headTurn": 2
+  },
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.59
+   },
+   "headTurn": 22
+  },
+  "mama90": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.84
+   },
+   "headTurn": -22
+  }
+ }
+}

@@ -1,0 +1,924 @@
+{
+ "shot": "BO1",
+ "set": "office91",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.372,
+   1.1036,
+   -0.4287
+  ],
+  "target": [
+   -0.372,
+   -0.3887,
+   0.9028
+  ],
+  "lens_mm": 40,
+  "frame_width_mm": 36,
+  "hfov_deg": 48.455,
+  "vfov_deg": 28.409,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.6658,
+   0.7462,
+   0,
+   0,
+   0.7462,
+   -0.6658,
+   0,
+   -0.372,
+   1.1036,
+   -0.4287,
+   1
+  ],
+  "viewMatrix": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.6658,
+   0.7462,
+   0,
+   0,
+   0.7462,
+   -0.6658,
+   0,
+   -0.372,
+   -0.4149,
+   -1.1089,
+   1
+  ],
+  "projectionMatrix": [
+   2.2222,
+   0,
+   0,
+   0,
+   0,
+   3.9506,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "jade7": {
+   "px": [
+    -2285.6,
+    2624
+   ],
+   "eyes": [
+    8.4,
+    823.7
+   ],
+   "mouth": [
+    68.5,
+    1629.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 104
+  },
+  "sw": {
+   "px": [
+    -1395.3,
+    -2558.9
+   ],
+   "eyes": [
+    -1414.2,
+    -2578.1
+   ],
+   "mouth": [
+    -1175.7,
+    -2122.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 4
+  },
+  "mama91": {
+   "px": [
+    21300.7,
+    186.4
+   ],
+   "eyes": [
+    -730010.7,
+    -1387.2
+   ],
+   "mouth": [
+    -177314.1,
+    12871
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 98
+  },
+  "dad": {
+   "px": [
+    -18185.7,
+    -5024.5
+   ],
+   "eyes": [
+    -13139.4,
+    -4371.7
+   ],
+   "mouth": [
+    -10129.1,
+    -2919.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 53
+  }
+ },
+ "hands": {
+  "jade7.L": {
+   "px": [
+    -462.8,
+    1271.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade7.R": {
+   "px": [
+    1095.2,
+    711
+   ],
+   "shape": "point",
+   "in_frame": true,
+   "visible": true
+  },
+  "sw.L": {
+   "px": [
+    -407.2,
+    -267.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "sw.R": {
+   "px": [
+    -1154.6,
+    -296.4
+   ],
+   "shape": "pinch",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama91.L": {
+   "px": [
+    -6321,
+    1828.9
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama91.R": {
+   "px": [
+    -6292.6,
+    1977.3
+   ],
+   "shape": "thumbsUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.L": {
+   "px": [
+    -2240.9,
+    186.9
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    -3669.9,
+    987.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "fluorescent_tube",
+   "kind": "one fluorescent tube behind a louvre, straight down",
+   "on": true,
+   "color": "#eef4ff",
+   "world": [
+    -0.3,
+    2.56,
+    -0.08
+   ],
+   "px": [
+    1139.7,
+    3610.1
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.147,
+    0.989
+   ],
+   "toward_camera": -0.722,
+   "aim_world": [
+    -0.3,
+    0.72,
+    -0.06
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Inside, the gap camera: her small index finger comes down on the empty cell at the end of the short row.",
+ "beam": {
+  "kind": "one fluorescent tube behind a louvre, straight down",
+  "travel_dir": [
+   0,
+   -1,
+   0
+  ],
+  "cutoff_deg": {
+   "across": 22,
+   "along": 12
+  },
+  "source_world": [
+   [
+    -0.8999999999999999,
+    2.56,
+    -0.099
+   ],
+   [
+    0.3,
+    2.56,
+    -0.099
+   ],
+   [
+    0.3,
+    2.56,
+    -0.061
+   ],
+   [
+    -0.8999999999999999,
+    2.56,
+    -0.061
+   ]
+  ],
+  "source_px": [
+   [
+    -338.9,
+    3530.4
+   ],
+   [
+    2613.1,
+    3530.4
+   ],
+   [
+    2662.8,
+    3692.1
+   ],
+   [
+    -377.9,
+    3692.1
+   ]
+  ],
+  "footprint_table_world": [
+   [
+    -1.291,
+    0.72,
+    -0.842
+   ],
+   [
+    0.691,
+    0.72,
+    -0.842
+   ],
+   [
+    0.691,
+    0.72,
+    0.682
+   ],
+   [
+    -1.291,
+    0.72,
+    0.682
+   ]
+  ],
+  "footprint_table_px": [
+   [
+    182560.7,
+    111993.6
+   ],
+   [
+    -209092.9,
+    111993.6
+   ],
+   [
+    -1250.6,
+    -652.9
+   ],
+   [
+    2871.1,
+    -652.9
+   ]
+  ],
+  "footprint_floor_world": [
+   [
+    -1.444,
+    0,
+    -1.133
+   ],
+   [
+    0.844,
+    0,
+    -1.133
+   ],
+   [
+    0.844,
+    0,
+    0.973
+   ],
+   [
+    -1.444,
+    0,
+    0.973
+   ]
+  ],
+  "footprint_floor_px": [
+   [
+    7414.5,
+    8128.3
+   ],
+   [
+    -6361.4,
+    8128.3
+   ],
+   [
+    -516.7,
+    161.9
+   ],
+   [
+    2261.9,
+    161.9
+   ]
+  ],
+  "note": "the lit volume is the wedge between the tube (source) and footprint_floor, minus what stands in it; footprint_table is its section at the table top",
+  "in_beam": {
+   "jade7": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "chest": true
+   },
+   "sw": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "chest": true
+   },
+   "mama91": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "chest": true
+   },
+   "dad": {
+    "head": false,
+    "eyes": false,
+    "handL": true,
+    "handR": false,
+    "chest": false
+   }
+  }
+ },
+ "handout": {
+  "corners_world": [
+   [
+    -0.192,
+    0.7206,
+    0.07950000000000002
+   ],
+   [
+    -0.408,
+    0.7206,
+    0.07950000000000002
+   ],
+   [
+    -0.408,
+    0.7206,
+    -0.1995
+   ],
+   [
+    -0.192,
+    0.7206,
+    -0.1995
+   ]
+  ],
+  "corners_px": [
+   [
+    344.7,
+    115.4
+   ],
+   [
+    1083.1,
+    115.4
+   ],
+   [
+    1135.2,
+    948.6
+   ],
+   [
+    84,
+    948.6
+   ]
+  ],
+  "corner_order": "TL, TR, BR, BL as little Jade reads the page (a flat page image maps straight on)",
+  "cells": [
+   {
+    "row": 0,
+    "col": 0,
+    "label": "HAPPY",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     438.6,
+     231.8
+    ]
+   },
+   {
+    "row": 0,
+    "col": 1,
+    "label": "SAD",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     569,
+     231.8
+    ]
+   },
+   {
+    "row": 0,
+    "col": 2,
+    "label": "ANGRY",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     699.3,
+     231.8
+    ]
+   },
+   {
+    "row": 0,
+    "col": 3,
+    "label": "SCARED",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     829.7,
+     231.8
+    ]
+   },
+   {
+    "row": 0,
+    "col": 4,
+    "label": "SURPRISED",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     960,
+     231.8
+    ]
+   },
+   {
+    "row": 1,
+    "col": 0,
+    "label": "PROUD",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     410.8,
+     342.9
+    ]
+   },
+   {
+    "row": 1,
+    "col": 1,
+    "label": "SHY",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     548.1,
+     342.9
+    ]
+   },
+   {
+    "row": 1,
+    "col": 2,
+    "label": "BORED",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     685.4,
+     342.9
+    ]
+   },
+   {
+    "row": 1,
+    "col": 3,
+    "label": "EXCITED",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     822.7,
+     342.9
+    ]
+   },
+   {
+    "row": 1,
+    "col": 4,
+    "label": "LONELY",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     960,
+     342.9
+    ]
+   },
+   {
+    "row": 2,
+    "col": 0,
+    "label": "TIRED",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     379.9,
+     466.4
+    ]
+   },
+   {
+    "row": 2,
+    "col": 1,
+    "label": "SILLY",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     524.9,
+     466.4
+    ]
+   },
+   {
+    "row": 2,
+    "col": 2,
+    "label": "CONFUSED",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     670,
+     466.4
+    ]
+   },
+   {
+    "row": 2,
+    "col": 3,
+    "label": "JEALOUS",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     815,
+     466.4
+    ]
+   },
+   {
+    "row": 2,
+    "col": 4,
+    "label": "HURT",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     960,
+     466.4
+    ]
+   },
+   {
+    "row": 3,
+    "col": 0,
+    "label": "CALM",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     345.3,
+     604.8
+    ]
+   },
+   {
+    "row": 3,
+    "col": 1,
+    "label": "WORRIED",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     499,
+     604.8
+    ]
+   },
+   {
+    "row": 3,
+    "col": 2,
+    "label": "GUILTY",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     652.7,
+     604.8
+    ]
+   },
+   {
+    "row": 3,
+    "col": 3,
+    "label": "ANXIOUS",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     806.3,
+     604.8
+    ]
+   },
+   {
+    "row": 3,
+    "col": 4,
+    "label": null,
+    "empty": true,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     960,
+     604.8
+    ]
+   },
+   {
+    "row": 4,
+    "col": 0,
+    "label": "FRUSTRATED",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     306.3,
+     760.6
+    ]
+   },
+   {
+    "row": 4,
+    "col": 1,
+    "label": "HOPEFUL",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     469.7,
+     760.6
+    ]
+   },
+   {
+    "row": 4,
+    "col": 2,
+    "label": "EMBARRASSED",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     633.1,
+     760.6
+    ]
+   },
+   {
+    "row": 4,
+    "col": 3,
+    "label": "DISAPPOINTED",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     796.6,
+     760.6
+    ]
+   },
+   {
+    "row": 4,
+    "col": 4,
+    "label": "LOVED",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     960,
+     760.6
+    ]
+   }
+  ],
+  "gap_px": [
+   960,
+   604.8
+  ],
+  "anxious_px": [
+   806.3,
+   604.8
+  ],
+  "cell_pitch_m": {
+   "x": 0.036,
+   "z": 0.044800000000000006
+  },
+  "face_radius_m": 0.0115
+ },
+ "times": [
+  93.6,
+  95.1
+ ],
+ "figure_report": {
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 0.71
+    },
+    "R": {
+     "reach": 0.71
+    }
+   },
+   "arms": {
+    "L": 0.64,
+    "R": 0.87
+   },
+   "headTurn": -9
+  },
+  "sw": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 0.6,
+    "R": 0.58
+   },
+   "headTurn": 31
+  },
+  "mama91": {
+   "legs": {
+    "L": {
+     "reach": 0.78
+    },
+    "R": {
+     "reach": 0.78
+    }
+   },
+   "arms": {
+    "L": 0.52,
+    "R": 0.56
+   },
+   "headTurn": 17
+  },
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 0.74
+    },
+    "R": {
+     "reach": 0.74
+    }
+   },
+   "arms": {
+    "L": 0.85,
+    "R": 0.68
+   },
+   "headTurn": 37
+  }
+ }
+}

@@ -1,0 +1,577 @@
+{
+ "shot": "B0_plan",
+ "set": "basement90",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.55,
+   9,
+   0
+  ],
+  "target": [
+   -0.55,
+   0,
+   0
+  ],
+  "lens_mm": 0,
+  "frame_width_mm": 36,
+  "hfov_deg": null,
+  "vfov_deg": null,
+  "ortho": {
+   "w": 6.4
+  },
+  "roll_deg": 0,
+  "near": 5,
+  "far": 12,
+  "matrixWorld": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   -1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   -0.55,
+   9,
+   0,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   -1,
+   0,
+   0,
+   0.55,
+   0,
+   -9,
+   1
+  ],
+  "projectionMatrix": [
+   0.3125,
+   0,
+   0,
+   0,
+   0,
+   0.5556,
+   0,
+   0,
+   0,
+   0,
+   -0.2857,
+   0,
+   0,
+   0,
+   -2.4286,
+   1
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "screen": {
+   "px": [
+    [
+     1264.5,
+     51.6
+    ],
+    [
+     1345.5,
+     51.6
+    ],
+    [
+     1345.5,
+     51.6
+    ],
+    [
+     1264.5,
+     51.6
+    ]
+   ],
+   "world": [
+    [
+     0.465,
+     1.185,
+     -1.628
+    ],
+    [
+     0.735,
+     1.185,
+     -1.628
+    ],
+    [
+     0.735,
+     0.985,
+     -1.628
+    ],
+    [
+     0.465,
+     0.985,
+     -1.628
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "dad": {
+   "px": [
+    1305,
+    172.7
+   ],
+   "eyes": [
+    1305,
+    143.6
+   ],
+   "mouth": [
+    1305,
+    149.4
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 116,
+   "blocked_by": "dad Dad"
+  },
+  "jade7": {
+   "px": [
+    1236.2,
+    152.5
+   ],
+   "eyes": [
+    1247.2,
+    130.5
+   ],
+   "mouth": [
+    1248.1,
+    134
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 111
+  }
+ },
+ "hands": {
+  "dad.L": {
+   "px": [
+    1272.1,
+    90.2
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "dad.R": {
+   "px": [
+    1338,
+    90
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.L": {
+   "px": [
+    1185.2,
+    105
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.R": {
+   "px": [
+    1282.4,
+    77.4
+   ],
+   "shape": "point",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [
+  {
+   "name": "screen",
+   "kind": "CRT screen (blue, area source); the ONLY light",
+   "on": true,
+   "color": "#3f6dff",
+   "world": [
+    0.6,
+    1.085,
+    -1.608
+   ],
+   "px": [
+    1305,
+    57.6
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.314,
+    0.949
+   ],
+   "toward_camera": 0.205,
+   "aim_world": [
+    0.6,
+    0.885,
+    0.872
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Set reference: plan of the basement with the pointing blocking. Blue lines = where the desk stops cutting the screen light on the floor.",
+ "time": null,
+ "position": null,
+ "beam": {
+  "name": "CRT screen glow",
+  "model": "area source (the screen rectangle), radiating into +z; frustum spreading by half_angle from the rectangle, faded out at range",
+  "color": "#3f6dff",
+  "on": true,
+  "source_corners": [
+   {
+    "world": [
+     0.465,
+     1.185,
+     -1.628
+    ],
+    "px": [
+     1264.5,
+     51.6
+    ]
+   },
+   {
+    "world": [
+     0.735,
+     1.185,
+     -1.628
+    ],
+    "px": [
+     1345.5,
+     51.6
+    ]
+   },
+   {
+    "world": [
+     0.735,
+     0.985,
+     -1.628
+    ],
+    "px": [
+     1345.5,
+     51.6
+    ]
+   },
+   {
+    "world": [
+     0.465,
+     0.985,
+     -1.628
+    ],
+    "px": [
+     1264.5,
+     51.6
+    ]
+   }
+  ],
+  "corner_order": "TL,TR,BR,BL as the screen is read",
+  "axis": [
+   0,
+   -0.08,
+   1
+  ],
+  "half_angle_deg": 62,
+  "range_m": 2.6,
+  "falloff": "inverse-square from an area source: full on faces 0.4-0.6 m away, about 1/10 at 1.5 m",
+  "far_rect": [
+   {
+    "world": [
+     5.6249,
+     5.8669,
+     0.972
+    ],
+    "px": [
+     2812.5,
+     831.6
+    ]
+   },
+   {
+    "world": [
+     -4.4249,
+     5.8669,
+     0.972
+    ],
+    "px": [
+     -202.5,
+     831.6
+    ]
+   },
+   {
+    "world": [
+     -4.4249,
+     -4.1129,
+     0.972
+    ],
+    "px": [
+     -202.5,
+     831.6
+    ]
+   },
+   {
+    "world": [
+     5.6249,
+     -4.1129,
+     0.972
+    ],
+    "px": [
+     2812.5,
+     831.6
+    ]
+   }
+  ],
+  "light_point_world": [
+   0.6,
+   1.085,
+   -1.608
+  ],
+  "floor": {
+   "desk_shadow_ends_z": -0.968,
+   "fully_lit_from_z": -0.631,
+   "lines": [
+    [
+     {
+      "world": [
+       -0.7763,
+       0.006,
+       -0.968
+      ],
+      "px": [
+       892.1,
+       249.6
+      ]
+     },
+     {
+      "world": [
+       1.78,
+       0.006,
+       -0.968
+      ],
+      "px": [
+       1659,
+       249.6
+      ]
+     }
+    ],
+    [
+     {
+      "world": [
+       -1.4101,
+       0.006,
+       -0.631
+      ],
+      "px": [
+       702,
+       350.7
+      ]
+     },
+     {
+      "world": [
+       1.78,
+       0.006,
+       -0.631
+      ],
+      "px": [
+       1659,
+       350.7
+      ]
+     }
+    ]
+   ],
+   "note": "the desk top cuts the light: floor nearer the desk than desk_shadow_ends_z, and everything under the desk, is unlit"
+  }
+ },
+ "word": {
+  "centre": {
+   "world": [
+    0.5406,
+    1.1002,
+    -1.628
+   ],
+   "px": [
+    1287.2,
+    51.6
+   ]
+  },
+  "underline": [
+   {
+    "world": [
+     0.519,
+     1.0946,
+     -1.627
+    ],
+    "px": [
+     1280.7,
+     51.9
+    ]
+   },
+   {
+    "world": [
+     0.5622,
+     1.0946,
+     -1.627
+    ],
+    "px": [
+     1293.7,
+     51.9
+    ]
+   }
+  ],
+  "note": "gold underline goes here (renderer layer)"
+ },
+ "chair": {
+  "hub": {
+   "world": [
+    0.6,
+    0.1,
+    -1.12
+   ],
+   "px": [
+    1305,
+    204
+   ]
+  },
+  "spoke_tips": [
+   {
+    "world": [
+     0.333,
+     0.1,
+     -0.926
+    ],
+    "px": [
+     1224.9,
+     262.2
+    ]
+   },
+   {
+    "world": [
+     0.333,
+     0.1,
+     -1.314
+    ],
+    "px": [
+     1224.9,
+     145.8
+    ]
+   },
+   {
+    "world": [
+     0.702,
+     0.1,
+     -1.4338
+    ],
+    "px": [
+     1335.6,
+     109.8
+    ]
+   },
+   {
+    "world": [
+     0.93,
+     0.1,
+     -1.12
+    ],
+    "px": [
+     1404,
+     204
+    ]
+   },
+   {
+    "world": [
+     0.702,
+     0.1,
+     -0.8062
+    ],
+    "px": [
+     1335.6,
+     298.2
+    ]
+   }
+  ],
+  "feet_stand_at": [
+   {
+    "world": [
+     0.3654,
+     0.1,
+     -1.2905
+    ],
+    "px": [
+     1234.6,
+     152.9
+    ]
+   },
+   {
+    "world": [
+     0.3654,
+     0.1,
+     -0.9495
+    ],
+    "px": [
+     1234.6,
+     255.1
+    ]
+   }
+  ]
+ },
+ "figure_report": {
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 0.72
+    },
+    "R": {
+     "reach": 0.72
+    }
+   },
+   "arms": {
+    "L": 0.69,
+    "R": 0.68
+   },
+   "headTurn": 0
+  },
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 0.99
+    },
+    "R": {
+     "reach": 1.01
+    }
+   },
+   "arms": {
+    "L": 0.66,
+    "R": 0.91
+   },
+   "headTurn": -7
+  }
+ }
+}

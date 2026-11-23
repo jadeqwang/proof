@@ -1,0 +1,652 @@
+{
+ "shot": "PG1",
+ "set": "playground23",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0.12,
+   2.3,
+   2.75
+  ],
+  "target": [
+   0.1207,
+   1.7262,
+   0.8341
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   1,
+   0,
+   0.0004,
+   0,
+   0.0001,
+   0.958,
+   -0.2869,
+   0,
+   -0.0004,
+   0.2869,
+   0.958,
+   0,
+   0.12,
+   2.3,
+   2.75,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0.0001,
+   -0.0004,
+   0,
+   0,
+   0.958,
+   0.2869,
+   0,
+   0.0004,
+   -0.2869,
+   0.958,
+   0,
+   -0.121,
+   -1.4143,
+   -3.2942,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "glass": {
+   "px": [
+    [
+     368.5,
+     264.5
+    ],
+    [
+     1387.1,
+     264.4
+    ],
+    [
+     1339.5,
+     988.7
+    ],
+    [
+     434.4,
+     988.9
+    ]
+   ],
+   "world": [
+    [
+     -0.75,
+     1.9,
+     0
+    ],
+    [
+     0.75,
+     1.9,
+     0
+    ],
+    [
+     0.75,
+     0.7,
+     0
+    ],
+    [
+     -0.75,
+     0.7,
+     0
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "back_window": {
+   "px": [
+    [
+     952.2,
+     129.7
+    ],
+    [
+     1165.9,
+     129.7
+    ],
+    [
+     1157.3,
+     408.5
+    ],
+    [
+     952.5,
+     408.5
+    ]
+   ],
+   "world": [
+    [
+     0.1,
+     1.9,
+     -2.6
+    ],
+    [
+     0.7,
+     1.9,
+     -2.6
+    ],
+    [
+     0.7,
+     1.1,
+     -2.6
+    ],
+    [
+     0.1,
+     1.1,
+     -2.6
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade": {
+   "px": [
+    1412.8,
+    717
+   ],
+   "eyes": [
+    1348.6,
+    702.2
+   ],
+   "mouth": [
+    1355.2,
+    757.8
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 134,
+   "blocked_by": "jade Jade"
+  },
+  "partner": {
+   "px": [
+    736.9,
+    630.3
+   ],
+   "eyes": [
+    747.9,
+    591
+   ],
+   "mouth": [
+    749.8,
+    652.4
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 161,
+   "blocked_by": "partner partner"
+  },
+  "toddler": {
+   "px": [
+    998.3,
+    823
+   ],
+   "eyes": [
+    997.1,
+    797.1
+   ],
+   "mouth": [
+    996.6,
+    831.8
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 158,
+   "blocked_by": "toddler child (toddler, carried)"
+  }
+ },
+ "hands": {
+  "jade.L": {
+   "px": [
+    1211.7,
+    1366.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade.R": {
+   "px": [
+    1546.2,
+    1332.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "partner.L": {
+   "px": [
+    575.9,
+    1339.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "partner.R": {
+   "px": [
+    1009.2,
+    1133
+   ],
+   "shape": "cup",
+   "in_frame": false,
+   "visible": false
+  },
+  "toddler.L": {
+   "px": [
+    939.3,
+    825.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "toddler.R": {
+   "px": [
+    1046.1,
+    1035.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [
+  {
+   "name": "sun",
+   "kind": "low sun behind the clubhouse, through its back window (parallel)",
+   "on": true,
+   "color": "#ffd9a0",
+   "world": [
+    3.7177,
+    5.3036,
+    -10.0516
+   ],
+   "px": [
+    1548.2,
+    -532.3
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.547,
+    0.837
+   ],
+   "toward_camera": 0.528,
+   "aim_world": [
+    0.4,
+    1.5,
+    -2.6
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "From behind and above the family: three backs at the bottom of frame, and above them in the pane their three faces at rest, reflected as silhouettes. Through the glass, in the dim room behind, the low sun from the back window makes one diagonal beam. Adult Jade’s reflected eyes are not on herself: they are on a mote in that beam.",
+ "film": {
+  "time": "4:33.2-4:35.3 (v3)",
+  "section": "Drum coda, last bar (header: 4. Austin, 2023)",
+  "position": "inside"
+ },
+ "beam": {
+  "name": "sun",
+  "kind": "low sun through the clubhouse back window",
+  "model": "parallel (sunlight)",
+  "source_world": null,
+  "direction_of_travel": [
+   -0.3686,
+   -0.4226,
+   0.828
+  ],
+  "aperture_world": [
+   [
+    0.7,
+    1.9,
+    -2.6
+   ],
+   [
+    0.1,
+    1.9,
+    -2.6
+   ],
+   [
+    0.1,
+    1.1,
+    -2.6
+   ],
+   [
+    0.7,
+    1.1,
+    -2.6
+   ]
+  ],
+  "aperture_px": [
+   [
+    1165.9,
+    129.7
+   ],
+   [
+    952.2,
+    129.7
+   ],
+   [
+    952.5,
+    408.5
+   ],
+   [
+    1157.3,
+    408.5
+   ]
+  ],
+  "footprints": {
+   "floor": {
+    "world": [
+     [
+      -1.0576,
+      0,
+      0
+     ],
+     [
+      -0.8595,
+      0,
+      -0.445
+     ],
+     [
+      -0.2595,
+      0,
+      -0.445
+     ],
+     [
+      -0.4576,
+      0,
+      0
+     ]
+    ],
+    "px": [
+     [
+      292.1,
+      1341.6
+     ],
+     [
+      467.9,
+      1185.7
+     ],
+     [
+      769,
+      1185.6
+     ],
+     [
+      632.1,
+      1341.5
+     ]
+    ]
+   },
+   "front wall": {
+    "world": [
+     [
+      -0.4576,
+      0.5729,
+      0
+     ],
+     [
+      -1.0576,
+      0.5729,
+      0
+     ],
+     [
+      -1.0576,
+      0,
+      0
+     ],
+     [
+      -0.4576,
+      0,
+      0
+     ]
+    ],
+    "px": [
+     [
+      614.9,
+      1056.3
+     ],
+     [
+      257,
+      1056.3
+     ],
+     [
+      292.1,
+      1341.6
+     ],
+     [
+      632.1,
+      1341.5
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   -0.4478,
+   0.728,
+   -0.6957
+  ],
+  "anchor_px": [
+   676.8,
+   797.4
+  ],
+  "on_screen": {
+   "from_px": [
+    699.8,
+    761.5
+   ],
+   "to_px": [
+    653,
+    834.7
+   ],
+   "angle_deg": 57.4,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": 17.4,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "sun": {
+   "altitude_deg": 25,
+   "off_pane_normal_deg": 24,
+   "time": "about two hours before sunset"
+  }
+ },
+ "mote": {
+  "seed": 2023,
+  "count": 400,
+  "hero_world": [
+   -0.4478457498533116,
+   0.7279779979963913,
+   -0.6957072672310671
+  ],
+  "hero_px": [
+   676.8,
+   797.4
+  ],
+  "path_px": [
+   [
+    676.8,
+    797.4
+   ],
+   [
+    695.7,
+    657.1
+   ],
+   [
+    727.7,
+    559.9
+   ]
+  ],
+  "note": "hero -> exit (leaves the beam, 4:35) -> after (where the gold dotted line stops)"
+ },
+ "reflections": {
+  "model": "virtual images: the family mirrored in the pane plane z = 0, drawn as silhouettes behind the glass",
+  "pane_px": [
+   [
+    368.5,
+    264.5
+   ],
+   [
+    1387.1,
+    264.4
+   ],
+   [
+    1339.5,
+    988.7
+   ],
+   [
+    434.4,
+    988.9
+   ]
+  ],
+  "faces": {
+   "jade": {
+    "eyes_world": [
+     0.5474,
+     1.5414,
+     -0.838
+    ],
+    "eyes_px": [
+     1177.6,
+     385.4
+    ],
+    "head_px": [
+     1199,
+     370
+    ]
+   },
+   "partner": {
+    "eyes_world": [
+     -0.1,
+     1.6919,
+     -0.9047
+    ],
+    "eyes_px": [
+     847.6,
+     303.3
+    ],
+    "head_px": [
+     850.6,
+     298.4
+    ]
+   },
+   "toddler": {
+    "eyes_world": [
+     0.1627,
+     1.4159,
+     -0.8114
+    ],
+    "eyes_px": [
+     981.1,
+     451
+    ],
+    "head_px": [
+     980.7,
+     444.2
+    ]
+   }
+  }
+ },
+ "figure_report": {
+  "jade": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 25
+  },
+  "partner": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.86
+   },
+   "headTurn": 4
+  },
+  "toddler": {
+   "legs": {
+    "L": {
+     "reach": 0.49
+    },
+    "R": {
+     "reach": 0.49
+    }
+   },
+   "arms": {
+    "L": 0.72,
+    "R": 0.76
+   },
+   "headTurn": 8
+  }
+ }
+}

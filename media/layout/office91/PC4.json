@@ -1,0 +1,924 @@
+{
+ "shot": "PC4",
+ "set": "office91",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.4878,
+   1.0681,
+   1.6359
+  ],
+  "target": [
+   -0.4551,
+   1.0183,
+   -0.3632
+  ],
+  "lens_mm": 65,
+  "frame_width_mm": 36,
+  "hfov_deg": 30.957,
+  "vfov_deg": 17.708,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0.9999,
+   0,
+   0.0164,
+   0,
+   0.0004,
+   0.9997,
+   -0.0249,
+   0,
+   -0.0164,
+   0.0249,
+   0.9996,
+   0,
+   -0.4878,
+   1.0681,
+   1.6359,
+   1
+  ],
+  "viewMatrix": [
+   0.9999,
+   0.0004,
+   -0.0164,
+   0,
+   0,
+   0.9997,
+   0.0249,
+   0,
+   0.0164,
+   -0.0249,
+   0.9996,
+   0,
+   0.461,
+   -1.0268,
+   -1.6697,
+   1
+  ],
+  "projectionMatrix": [
+   3.6111,
+   0,
+   0,
+   0,
+   0,
+   6.4198,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "jade7": {
+   "px": [
+    1211.2,
+    440.2
+   ],
+   "eyes": [
+    1267.2,
+    453.7
+   ],
+   "mouth": [
+    1263.2,
+    540.9
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 27
+  },
+  "sw": {
+   "px": [
+    2921.9,
+    11.6
+   ],
+   "eyes": [
+    2670.1,
+    51.9
+   ],
+   "mouth": [
+    2681.7,
+    220.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 121
+  },
+  "mama91": {
+   "px": [
+    2403.1,
+    308.7
+   ],
+   "eyes": [
+    2492.6,
+    394.9
+   ],
+   "mouth": [
+    2448.2,
+    470
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 55
+  },
+  "dad": {
+   "px": [
+    3688.8,
+    100.2
+   ],
+   "eyes": [
+    3625.8,
+    83.8
+   ],
+   "mouth": [
+    3647.7,
+    218.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 13
+  }
+ },
+ "hands": {
+  "jade7.L": {
+   "px": [
+    1546.7,
+    1025.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.R": {
+   "px": [
+    935.6,
+    1027.2
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "sw.L": {
+   "px": [
+    2297.5,
+    1222.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "sw.R": {
+   "px": [
+    2919.8,
+    1213.4
+   ],
+   "shape": "pinch",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama91.L": {
+   "px": [
+    2693.9,
+    928.9
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama91.R": {
+   "px": [
+    2467,
+    874.1
+   ],
+   "shape": "thumbsUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.L": {
+   "px": [
+    3005.1,
+    1164.6
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    3272.2,
+    1263.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "fluorescent_tube",
+   "kind": "one fluorescent tube behind a louvre, straight down",
+   "on": true,
+   "color": "#eef4ff",
+   "world": [
+    -0.3,
+    2.56,
+    -0.08
+   ],
+   "px": [
+    1289.4,
+    -2623.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.001,
+    1
+   ],
+   "toward_camera": -0.189,
+   "aim_world": [
+    -0.3,
+    0.72,
+    -0.06
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Identical camera to PC1 (the film's rhyme); a second toner label lands in the same place.",
+ "beam": {
+  "kind": "one fluorescent tube behind a louvre, straight down",
+  "travel_dir": [
+   0,
+   -1,
+   0
+  ],
+  "cutoff_deg": {
+   "across": 22,
+   "along": 12
+  },
+  "source_world": [
+   [
+    -0.8999999999999999,
+    2.56,
+    -0.099
+   ],
+   [
+    0.3,
+    2.56,
+    -0.099
+   ],
+   [
+    0.3,
+    2.56,
+    -0.061
+   ],
+   [
+    -0.8999999999999999,
+    2.56,
+    -0.061
+   ]
+  ],
+  "source_px": [
+   [
+    56.5,
+    -2607.2
+   ],
+   [
+    2499.5,
+    -2572
+   ],
+   [
+    2535.8,
+    -2640.8
+   ],
+   [
+    37,
+    -2677.5
+   ]
+  ],
+  "footprint_table_world": [
+   [
+    -1.291,
+    0.72,
+    -0.842
+   ],
+   [
+    0.691,
+    0.72,
+    -0.842
+   ],
+   [
+    0.691,
+    0.72,
+    0.682
+   ],
+   [
+    -1.291,
+    0.72,
+    0.682
+   ]
+  ],
+  "footprint_table_px": [
+   [
+    -222.9,
+    941.8
+   ],
+   [
+    2535.1,
+    935.5
+   ],
+   [
+    5070.3,
+    1684.1
+   ],
+   [
+    -2032.3,
+    1726.2
+   ]
+  ],
+  "footprint_floor_world": [
+   [
+    -1.444,
+    0,
+    -1.133
+   ],
+   [
+    0.844,
+    0,
+    -1.133
+   ],
+   [
+    0.844,
+    0,
+    0.973
+   ],
+   [
+    -1.444,
+    0,
+    0.973
+   ]
+  ],
+  "footprint_floor_px": [
+   [
+    -289.4,
+    1786.5
+   ],
+   [
+    2543.5,
+    1768.8
+   ],
+   [
+    7403.5,
+    5665.5
+   ],
+   [
+    -4019.4,
+    5955.1
+   ]
+  ],
+  "note": "the lit volume is the wedge between the tube (source) and footprint_floor, minus what stands in it; footprint_table is its section at the table top",
+  "in_beam": {
+   "jade7": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "chest": true
+   },
+   "sw": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "chest": true
+   },
+   "mama91": {
+    "head": true,
+    "eyes": true,
+    "handL": true,
+    "handR": true,
+    "chest": true
+   },
+   "dad": {
+    "head": false,
+    "eyes": false,
+    "handL": true,
+    "handR": false,
+    "chest": false
+   }
+  }
+ },
+ "handout": {
+  "corners_world": [
+   [
+    -0.192,
+    0.7206,
+    0.07950000000000002
+   ],
+   [
+    -0.408,
+    0.7206,
+    0.07950000000000002
+   ],
+   [
+    -0.408,
+    0.7206,
+    -0.1995
+   ],
+   [
+    -0.192,
+    0.7206,
+    -0.1995
+   ]
+  ],
+  "corners_px": [
+   [
+    1557.2,
+    1221.6
+   ],
+   [
+    1080.3,
+    1223.3
+   ],
+   [
+    1053.5,
+    1107
+   ],
+   [
+    1458.5,
+    1105.7
+   ]
+  ],
+  "corner_order": "TL, TR, BR, BL as little Jade reads the page (a flat page image maps straight on)",
+  "cells": [
+   {
+    "row": 0,
+    "col": 0,
+    "label": "HAPPY",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1459.3,
+     1197.1
+    ]
+   },
+   {
+    "row": 0,
+    "col": 1,
+    "label": "SAD",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1382.4,
+     1197.3
+    ]
+   },
+   {
+    "row": 0,
+    "col": 2,
+    "label": "ANGRY",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1305.6,
+     1197.6
+    ]
+   },
+   {
+    "row": 0,
+    "col": 3,
+    "label": "SCARED",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1228.6,
+     1197.9
+    ]
+   },
+   {
+    "row": 0,
+    "col": 4,
+    "label": "SURPRISED",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1151.6,
+     1198.1
+    ]
+   },
+   {
+    "row": 1,
+    "col": 0,
+    "label": "PROUD",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1444.3,
+     1177.1
+    ]
+   },
+   {
+    "row": 1,
+    "col": 1,
+    "label": "SHY",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1369.6,
+     1177.3
+    ]
+   },
+   {
+    "row": 1,
+    "col": 2,
+    "label": "BORED",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1294.7,
+     1177.6
+    ]
+   },
+   {
+    "row": 1,
+    "col": 3,
+    "label": "EXCITED",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1219.9,
+     1177.8
+    ]
+   },
+   {
+    "row": 1,
+    "col": 4,
+    "label": "LONELY",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1144.9,
+     1178.1
+    ]
+   },
+   {
+    "row": 2,
+    "col": 0,
+    "label": "TIRED",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1430.2,
+     1158.1
+    ]
+   },
+   {
+    "row": 2,
+    "col": 1,
+    "label": "SILLY",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1357.3,
+     1158.4
+    ]
+   },
+   {
+    "row": 2,
+    "col": 2,
+    "label": "CONFUSED",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1284.5,
+     1158.6
+    ]
+   },
+   {
+    "row": 2,
+    "col": 3,
+    "label": "JEALOUS",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1211.6,
+     1158.9
+    ]
+   },
+   {
+    "row": 2,
+    "col": 4,
+    "label": "HURT",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1138.6,
+     1159.1
+    ]
+   },
+   {
+    "row": 3,
+    "col": 0,
+    "label": "CALM",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     1416.7,
+     1140.2
+    ]
+   },
+   {
+    "row": 3,
+    "col": 1,
+    "label": "WORRIED",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     1345.8,
+     1140.4
+    ]
+   },
+   {
+    "row": 3,
+    "col": 2,
+    "label": "GUILTY",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     1274.7,
+     1140.6
+    ]
+   },
+   {
+    "row": 3,
+    "col": 3,
+    "label": "ANXIOUS",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     1203.7,
+     1140.8
+    ]
+   },
+   {
+    "row": 3,
+    "col": 4,
+    "label": null,
+    "empty": true,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     1132.6,
+     1141.1
+    ]
+   },
+   {
+    "row": 4,
+    "col": 0,
+    "label": "FRUSTRATED",
+    "empty": false,
+    "world": [
+     -0.228,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     1403.9,
+     1123.1
+    ]
+   },
+   {
+    "row": 4,
+    "col": 1,
+    "label": "HOPEFUL",
+    "empty": false,
+    "world": [
+     -0.264,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     1334.7,
+     1123.3
+    ]
+   },
+   {
+    "row": 4,
+    "col": 2,
+    "label": "EMBARRASSED",
+    "empty": false,
+    "world": [
+     -0.3,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     1265.5,
+     1123.5
+    ]
+   },
+   {
+    "row": 4,
+    "col": 3,
+    "label": "DISAPPOINTED",
+    "empty": false,
+    "world": [
+     -0.336,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     1196.2,
+     1123.7
+    ]
+   },
+   {
+    "row": 4,
+    "col": 4,
+    "label": "LOVED",
+    "empty": false,
+    "world": [
+     -0.372,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     1126.9,
+     1124
+    ]
+   }
+  ],
+  "gap_px": [
+   1132.6,
+   1141.1
+  ],
+  "anxious_px": [
+   1203.7,
+   1140.8
+  ],
+  "cell_pitch_m": {
+   "x": 0.036,
+   "z": 0.044800000000000006
+  },
+  "face_radius_m": 0.0115
+ },
+ "times": [
+  88.2,
+  91.05
+ ],
+ "figure_report": {
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 0.71
+    },
+    "R": {
+     "reach": 0.71
+    }
+   },
+   "arms": {
+    "L": 0.76,
+    "R": 0.76
+   },
+   "headTurn": 19
+  },
+  "sw": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 0.6,
+    "R": 0.58
+   },
+   "headTurn": 26
+  },
+  "mama91": {
+   "legs": {
+    "L": {
+     "reach": 0.78
+    },
+    "R": {
+     "reach": 0.78
+    }
+   },
+   "arms": {
+    "L": 0.52,
+    "R": 0.56
+   },
+   "headTurn": 17
+  },
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 0.74
+    },
+    "R": {
+     "reach": 0.74
+    }
+   },
+   "arms": {
+    "L": 0.85,
+    "R": 0.68
+   },
+   "headTurn": 38
+  }
+ }
+}

@@ -1,0 +1,453 @@
+{
+ "shot": "WL_eye",
+ "set": "wall88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0,
+   0.5892,
+   0.2992
+  ],
+  "target": [
+   -0.0226,
+   0.565,
+   -1.7005
+  ],
+  "lens_mm": 85,
+  "frame_width_mm": 36,
+  "hfov_deg": 23.913,
+  "vfov_deg": 13.586,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0.9999,
+   0,
+   -0.0113,
+   0,
+   -0.0001,
+   0.9999,
+   -0.0121,
+   0,
+   0.0113,
+   0.0121,
+   0.9999,
+   0,
+   0,
+   0.5892,
+   0.2992,
+   1
+  ],
+  "viewMatrix": [
+   0.9999,
+   -0.0001,
+   0.0113,
+   0,
+   0,
+   0.9999,
+   0.0121,
+   0,
+   -0.0113,
+   -0.0121,
+   0.9999,
+   0,
+   0.0034,
+   -0.5855,
+   -0.3063,
+   1
+  ],
+  "projectionMatrix": [
+   4.7222,
+   0,
+   0,
+   0,
+   0,
+   8.3951,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "littleJade": {
+   "px": [
+    1011.2,
+    507.6
+   ],
+   "eyes": [
+    1011.2,
+    484.9
+   ],
+   "mouth": [
+    1011.2,
+    862.9
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 3
+  }
+ },
+ "hands": {
+  "littleJade.L": {
+   "px": [
+    1592.4,
+    2938.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "littleJade.R": {
+   "px": [
+    431,
+    2931.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "blade",
+   "kind": "bare bulb in the room beyond, through the crack",
+   "on": true,
+   "color": "#ffe2b0",
+   "world": [
+    -1.45,
+    1.7907,
+    0.2
+   ],
+   "px": [
+    -64046.6,
+    -53429.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.769,
+    0.639
+   ],
+   "toward_camera": -0.236,
+   "aim_world": [
+    -0.23,
+    0.767,
+    -0.25
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "Same axis as WL_out, pushed in to her eyes. The lit eye tracks the mote; the other is in the dark. In full depth: the mote and one eye.",
+ "film": {
+  "time": "1:42-1:47",
+  "section": "Chorus 1 (\"I honestly don't know\")",
+  "position": "outside"
+ },
+ "beam": {
+  "name": "blade",
+  "kind": "a blade of light through a crack between two boards (bare bulb in the room beyond)",
+  "model": "diverging from a point source",
+  "source_world": [
+   -1.45,
+   1.7907,
+   0.2
+  ],
+  "direction_of_travel": [
+   0.7357,
+   -0.6216,
+   -0.269
+  ],
+  "aperture_world": [
+   [
+    -0.23,
+    0.7652,
+    -0.6
+   ],
+   [
+    -0.23,
+    0.7652,
+    0.1
+   ],
+   [
+    -0.23,
+    0.752,
+    0.1
+   ],
+   [
+    -0.23,
+    0.752,
+    -0.6
+   ]
+  ],
+  "aperture_px": [
+   [
+    -147.8,
+    -402
+   ],
+   [
+    -4211.2,
+    -3512
+   ],
+   [
+    -4207.1,
+    -3208.9
+   ],
+   [
+    -147.6,
+    -335.2
+   ]
+  ],
+  "footprints": {
+   "outer wall": {
+    "world": [
+     [
+      0.23,
+      0.3786,
+      -0.9016
+     ],
+     [
+      0.23,
+      0.3786,
+      0.0623
+     ],
+     [
+      0.23,
+      0.3604,
+      0.0623
+     ],
+     [
+      0.23,
+      0.3604,
+      -0.9016
+     ]
+    ],
+    "px": [
+     [
+      1879.6,
+      1280.5
+     ],
+     [
+      5413.7,
+      4517.6
+     ],
+     [
+      5409.6,
+      4862
+     ],
+     [
+      1879.5,
+      1349.1
+     ]
+    ]
+   },
+   "closed end": {
+    "world": [
+     [
+      -0.0013,
+      0.5572,
+      -0.75
+     ],
+     [
+      -0.0012,
+      0.5729,
+      -0.75
+     ],
+     [
+      0.23,
+      0.3786,
+      -0.75
+     ],
+     [
+      0.23,
+      0.3604,
+      -0.75
+     ]
+    ],
+    "px": [
+     [
+      1005.8,
+      623.2
+     ],
+     [
+      1005.8,
+      555.4
+     ],
+     [
+      2005.1,
+      1395.5
+     ],
+     [
+      2004.9,
+      1474
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   -0.028,
+   0.5891,
+   -0.32
+  ],
+  "anchor_px": [
+   806.3,
+   485.8
+  ],
+  "on_screen": {
+   "from_px": [
+    234.3,
+    10.3
+   ],
+   "to_px": [
+    1330.8,
+    921.9
+   ],
+   "angle_deg": 39.7,
+   "travel": "left-to-right"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": -0.3,
+   "travel_ok": false
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "physical_slope_deg": 40,
+  "thickness_m": 0.0132,
+  "crack_px": [
+   [
+    -147.8,
+    -402
+   ],
+   [
+    -4211.2,
+    -3512
+   ],
+   [
+    -4207.1,
+    -3208.9
+   ],
+   [
+    -147.6,
+    -335.2
+   ]
+  ],
+  "note": "a thin planar sheet, level along the cavity: seen along the cavity it is a line at the physical slope"
+ },
+ "mote": {
+  "seed": 1988,
+  "count": 120,
+  "hero_world": [
+   -0.028,
+   0.5891108781904166,
+   0.12
+  ],
+  "hero_px": [
+   304,
+   487.4
+  ],
+  "path_px": [
+   [
+    304,
+    487.4
+   ],
+   [
+    103,
+    2156
+   ],
+   [
+    916.3,
+    694845.8
+   ]
+  ],
+  "note": "hero -> exit (drops out of the sheet) -> gone"
+ },
+ "points_world": {
+  "littleJade": {
+   "eyes": [
+    0,
+    0.5892,
+    -0.3208
+   ],
+   "head": [
+    0,
+    0.5857,
+    -0.4
+   ],
+   "mouth": [
+    0,
+    0.5373,
+    -0.3234
+   ],
+   "handL": [
+    0.0719,
+    0.286,
+    -0.2582
+   ],
+   "handR": [
+    -0.0719,
+    0.286,
+    -0.2582
+   ],
+   "hip": [
+    0,
+    0.0864,
+    -0.45
+   ]
+  }
+ },
+ "blade_on_face": {
+  "right_eye_world": [
+   -0.0279,
+   0.5892,
+   -0.3208
+  ],
+  "right_eye_px": [
+   807.6,
+   484.9
+  ],
+  "sheet_height_at_right_eye_m": 0.589,
+  "right_eye_above_sheet_cm": 0,
+  "mouth_above_sheet_cm": -2.8,
+  "in_lit_length": true
+ },
+ "figure_report": {
+  "littleJade": {
+   "legs": {
+    "L": {
+     "reach": 0.61
+    },
+    "R": {
+     "reach": 0.61
+    }
+   },
+   "arms": {
+    "L": 0.61,
+    "R": 0.61
+   },
+   "headTurn": 0
+  }
+ }
+}

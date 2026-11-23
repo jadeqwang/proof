@@ -1,0 +1,453 @@
+{
+ "shot": "WL_in",
+ "set": "wall88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0,
+   0.5909,
+   -0.2108
+  ],
+  "target": [
+   -0.1687,
+   0.5802,
+   1.782
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.9964,
+   0,
+   -0.0844,
+   0,
+   -0.0005,
+   1,
+   0.0053,
+   0,
+   0.0844,
+   0.0054,
+   -0.9964,
+   0,
+   0,
+   0.5909,
+   -0.2108,
+   1
+  ],
+  "viewMatrix": [
+   -0.9964,
+   -0.0005,
+   0.0844,
+   0,
+   0,
+   1,
+   0.0054,
+   0,
+   -0.0844,
+   0.0053,
+   -0.9964,
+   0,
+   -0.0178,
+   -0.5898,
+   -0.2132,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "littleJade": {
+   "px": [
+    802,
+    478.9
+   ],
+   "eyes": [
+    802,
+    501.6
+   ],
+   "mouth": [
+    801.6,
+    -364.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 4
+  }
+ },
+ "hands": {
+  "littleJade.L": {
+   "px": [
+    3400.9,
+    -10479.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "littleJade.R": {
+   "px": [
+    -2606.2,
+    -13852.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "blade",
+   "kind": "bare bulb in the room beyond, through the crack",
+   "on": true,
+   "color": "#ffe2b0",
+   "world": [
+    -1.45,
+    1.7907,
+    0.2
+   ],
+   "px": [
+    5971.9,
+    -3734.2
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.761,
+    0.649
+   ],
+   "toward_camera": 0.104,
+   "aim_world": [
+    -0.23,
+    0.767,
+    -0.25
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "The inside position, and the frame that rhymes with the attic beam. From her eyes along the cavity: the crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees, through the centre of frame. The mote hangs in it, then drops out of the light. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.",
+ "film": {
+  "time": "1:51-1:55, start of the 1:55 pull-back",
+  "section": "Chorus 1 (\"Nowhere to go\") into Tail 1",
+  "position": "inside"
+ },
+ "beam": {
+  "name": "blade",
+  "kind": "a blade of light through a crack between two boards (bare bulb in the room beyond)",
+  "model": "diverging from a point source",
+  "source_world": [
+   -1.45,
+   1.7907,
+   0.2
+  ],
+  "direction_of_travel": [
+   0.7631,
+   -0.6448,
+   -0.0429
+  ],
+  "aperture_world": [
+   [
+    -0.23,
+    0.7652,
+    -0.6
+   ],
+   [
+    -0.23,
+    0.7652,
+    0.1
+   ],
+   [
+    -0.23,
+    0.752,
+    0.1
+   ],
+   [
+    -0.23,
+    0.752,
+    -0.6
+   ]
+  ],
+  "aperture_px": [
+   [
+    -364.2,
+    1411
+   ],
+   [
+    2114.5,
+    -461.6
+   ],
+   [
+    2114.3,
+    -386.2
+   ],
+   [
+    -364.5,
+    1344.4
+   ]
+  ],
+  "footprints": {
+   "outer wall": {
+    "world": [
+     [
+      0.23,
+      0.3786,
+      -0.9016
+     ],
+     [
+      0.23,
+      0.3786,
+      0.0623
+     ],
+     [
+      0.23,
+      0.3604,
+      0.0623
+     ],
+     [
+      0.23,
+      0.3604,
+      -0.9016
+     ]
+    ],
+    "px": [
+     [
+      1411.5,
+      -30.9
+     ],
+     [
+      -894.6,
+      2091.4
+     ],
+     [
+      -893.9,
+      2224.6
+     ],
+     [
+      1411.5,
+      -79.1
+     ]
+    ]
+   },
+   "closed end": {
+    "world": [
+     [
+      -0.0013,
+      0.5572,
+      -0.75
+     ],
+     [
+      -0.0012,
+      0.5729,
+      -0.75
+     ],
+     [
+      0.23,
+      0.3786,
+      -0.75
+     ],
+     [
+      0.23,
+      0.3604,
+      -0.75
+     ]
+    ],
+    "px": [
+     [
+      797.6,
+      413
+     ],
+     [
+      797.6,
+      467.6
+     ],
+     [
+      1577.2,
+      -183.5
+     ],
+     [
+      1577.4,
+      -244.8
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   -0.028,
+   0.5891,
+   0.12
+  ],
+  "anchor_px": [
+   960,
+   540.1
+  ],
+  "on_screen": {
+   "from_px": [
+    1372.6,
+    188.2
+   ],
+   "to_px": [
+    520.7,
+    914.7
+   ],
+   "angle_deg": 40.5,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": 0.5,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "physical_slope_deg": 40,
+  "thickness_m": 0.0132,
+  "crack_px": [
+   [
+    -364.2,
+    1411
+   ],
+   [
+    2114.5,
+    -461.6
+   ],
+   [
+    2114.3,
+    -386.2
+   ],
+   [
+    -364.5,
+    1344.4
+   ]
+  ],
+  "note": "a thin planar sheet, level along the cavity: seen along the cavity it is a line at the physical slope"
+ },
+ "mote": {
+  "seed": 1988,
+  "count": 120,
+  "hero_world": [
+   -0.028,
+   0.5891108781904166,
+   0.12
+  ],
+  "hero_px": [
+   960,
+   540.1
+  ],
+  "path_px": [
+   [
+    960,
+    540.1
+   ],
+   [
+    893.2,
+    704.8
+   ],
+   [
+    802.2,
+    1062
+   ]
+  ],
+  "note": "hero -> exit (drops out of the sheet) -> gone"
+ },
+ "points_world": {
+  "littleJade": {
+   "eyes": [
+    0,
+    0.5892,
+    -0.3208
+   ],
+   "head": [
+    0,
+    0.5857,
+    -0.4
+   ],
+   "mouth": [
+    0,
+    0.5373,
+    -0.3234
+   ],
+   "handL": [
+    0.0719,
+    0.286,
+    -0.2582
+   ],
+   "handR": [
+    -0.0719,
+    0.286,
+    -0.2582
+   ],
+   "hip": [
+    0,
+    0.0864,
+    -0.45
+   ]
+  }
+ },
+ "blade_on_face": {
+  "right_eye_world": [
+   -0.0279,
+   0.5892,
+   -0.3208
+  ],
+  "right_eye_px": [
+   315.2,
+   501
+  ],
+  "sheet_height_at_right_eye_m": 0.589,
+  "right_eye_above_sheet_cm": 0,
+  "mouth_above_sheet_cm": -2.8,
+  "in_lit_length": true
+ },
+ "figure_report": {
+  "littleJade": {
+   "legs": {
+    "L": {
+     "reach": 0.61
+    },
+    "R": {
+     "reach": 0.61
+    }
+   },
+   "arms": {
+    "L": 0.61,
+    "R": 0.61
+   },
+   "headTurn": 0
+  }
+ }
+}
