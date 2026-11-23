@@ -10,17 +10,15 @@ Checkpoint written 2026-11-22. Read this first if a session was interrupted.
 - **3D sets** (three.js, engine copied from `chaosmonkey-video/layout` into `layout/`), under `layout/sets/`:
   `attic88_day`, `wall88`, `closet02`, `shanghai86`, `office91`, `market93`, `basement90`, `kitchen90`, `mv10`, `playground23`. Renders in `media/layout/<set>/`, contact sheets in `media/layout/_sheets/` or `_sheet_*.jpg` in the set's media folder. Each set has a `NOTES.md` with its assumptions.
 
-## In progress: integration pass across all sets
+## Integration pass across all sets: finished
 
-One agent, interrupted once by a usage limit and resumed. Its five items:
-
-1. Fix the left-hand orientation bug in `layout/engine/mannequin.js`; remove the local `fixLeftHands` workarounds in `shanghai86`/`office91`; re-render and check hands.
-2. One cast table: `layout/sets/_cast.js` and `layout/CAST.md` (both exist on disk as of this checkpoint).
-3. Beam masks for every set via a shared `layout/sets/_beam.js` (exists on disk; it was working on this when interrupted). Sets that lacked masks: `shanghai86`, `office91`, `market93`, `basement90`, `kitchen90`, `mv10`.
-4. Match the forearm-grab framing between `attic88_day` AD_grab and `market93` M4.
-5. Relabel outro/coda shot times to the v3 map (`kitchen90` K5-K10, `playground23`, `attic88_day`, `market93` M9).
-
-If it is interrupted again: check which sets have `media/layout/_sheets/<set>_beam.jpg`, whether all sets import `_cast.js`, and whether every set still renders (`node layout/render.mjs --set <set>`), before continuing.
+- **Left hands fixed in the engine** (`handFrame()` in `layout/engine/mannequin.js`, also used by `body.js`). The `fixLeftHands` workarounds in `shanghai86`/`office91` are now no-ops. This copy of the engine now differs from `chaosmonkey-video/layout/engine`; the fix has not been ported back there.
+- **One cast table**: `layout/sets/_cast.js`, recorded in `layout/CAST.md`; all ten sets import it. Dad is 1.72 m everywhere (was 1.75 in the basement/kitchen).
+- **Beam masks for all ten sets** via `layout/sets/_beam.js`: `beam_<id>` twins, plus `beam_<id>__surf` (lit surfaces only) in six sets and per-light twins in `mv10` (`__lamps`, `__dusk`, `__poi`). Sheets: `media/layout/_sheets/<set>_beam.jpg`. Masks are all white in her-eye-line shots that look straight down into the light (correct, but useless as mattes); `mv10` V3b is all black; the yard dusk light has no mask; cast shadows are not cut out of any mask.
+- **Forearm grab matched** between `attic88_day` AD_grab and `market93` M4 (50 mm, 0.92 m, 31 deg above, 30 deg round) except the entry side: the two frames are mirror images. M4 lost the grandmother from its background; M4b still shows her.
+- **Outro/coda shot labels moved to v3 times** (labels only).
+- Only flat renders and masks were looked at after the final render; line, label, lit and depth were not. `__surf` and `mv10` per-light masks were checked by white-fraction only.
+- `kitchen90` K5: the thumbs meet under the mouth, not on the cheeks.
 
 ## Not pushed
 
