@@ -2,7 +2,7 @@
 // band-out (1:34-1:37). Times are seconds from analysis/v2/song_map.md; `t` = [start, end] of the clip a camera serves.
 // The plan's two camera positions:  OUTSIDE = frontal, level, locked off on her face, with bare wall frame-left of it for
 // the toner label.  INSIDE = along her eye-line, close (her head is hidden in those guides: the camera is her eyes).
-import { SEATS, CHAIR, GAP, ANXIOUS, DICT, DAD_PALM, HANDOUT, TABLE } from './layout.js';
+import { SEATS, CHAIR, JADE_TIP, SW_TIP, DICT, DAD_PALM, HANDOUT, TABLE } from './layout.js';
 import { pointAt } from './common.js';
 
 const TOP = TABLE.h, HX = HANDOUT.cx;
@@ -11,10 +11,10 @@ const dangle = { seatH: CHAIR.hipChild, ankleL: [0.07, -0.3, 0.25], ankleR: [0.0
 const jade = (o = {}) => ({ at: SEATS.jade, legs: 'seat', legOpts: dangle, yaw: 0, spine: { bend: 8 }, head: { look: [0.0, 0.86, 0.3] },   // eyes on the sweatshirt and the table, never the face
   L: { to: [HX + 0.17, TOP + 0.03, -0.28], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [HX - 0.17, TOP + 0.03, -0.28], hand: 'relax', palm: 'down', fingers: 'fwd' }, ...o });
 const jadeRead = (o = {}) => jade({ spine: { bend: 20 }, head: { look: 'handout' }, ...o });
-const jadePoint = (o = {}) => jadeRead({ R: pointAt(GAP, [0.1, -0.5, 0.86], 0.122, 'R'), head: { look: 'gap' }, ...o });
+const jadePoint = (o = {}) => jadeRead({ R: pointAt(JADE_TIP, [0.1, -0.5, 0.86], 0.122, 'R'), head: { look: 'anxious' }, ...o });
 const sw = (o = {}) => ({ at: SEATS.socialWorker, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 180, spine: { bend: 8 }, head: { look: 'jade7:eyes' },
   L: { to: [0.08, TOP + 0.035, 0.24], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [0.33, TOP + 0.04, 0.25], hand: 'pinch', palm: 'down', fingers: 'fwd' }, ...o });
-const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: pointAt(ANXIOUS, [-0.45, -0.5, -0.6], 0.178, 'L') });
+const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: pointAt(SW_TIP, [-0.45, -0.5, -0.6], 0.178, 'L') });
 const mom = (o = {}) => ({ at: SEATS.mom, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 0, spine: { bend: 12 }, head: { look: 'dict' },
   L: { to: DICT.at, off: [0.06, -0.03, -0.01], hand: 'grip', palm: 'up', fingers: [-0.5, 0.2, 0.8] }, R: { to: DICT.at, off: [-0.065, 0.0, -0.03], hand: 'thumbsUp', palm: 'in', fingers: [0.4, 0.3, 0.85], thumb: [0.9, 0.3, 0.2] }, ...o });
 const dad = (o = {}) => ({ at: SEATS.dad, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: -90, spine: { bend: 12 }, head: { look: 'sw:head' },
@@ -36,9 +36,9 @@ export const SHOTS = [
   { id: 'H1', t: [19.46, 26.0], lens: 40, orbit: { at: 'handout', az: 180, el: 62, dist: 0.52 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
     move: { end: 'H1b', note: 'the camera drifts from the whole sheet and settles on the gap in the short row' },
     header: '0:19 INSIDE groove in: the yellow handout under the tube, the whole grid (start)',
-    intent: 'Inside: the yellow handout as she sees it, a grid of labelled cartoon faces, one row short. The first colour in the film. Steeper than her true eye-line so the grid reads square; her hands rest either side.' },
+    intent: 'Inside: the yellow handout as she sees it, a grid of labelled cartoon faces, seven to a row, one centred row of six. The first colour in the film. Steeper than her true eye-line so the grid reads square; her hands rest either side.' },
   { id: 'H1b', t: [26.0, 30.18], lens: 60, orbit: { at: 'gap', az: 180, el: 62, dist: 0.36 }, aim: ['gap', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
-    header: '0:26 INSIDE groove in: settled on the gap in the short row. Title: PROOF', intent: 'End of the H1 move: the empty cell at the end of the fourth row, the face beside it (ANXIOUS). The title sits over this frame.' },
+    header: '0:26 INSIDE groove in: settled on the gap in the short row. Title: PROOF', intent: 'End of the H1 move: the end of the fourth row, which is one face short, and its last face (ANXIOUS). The title sits over this frame.' },
 
   // ---------------------------------------------------------------- pre-chorus, 1:18-1:34
   { id: 'PC1', t: [78.1, 81.4], ...OUTSIDE_CAM, figs: ALL(),
@@ -56,11 +56,11 @@ export const SHOTS = [
 
   // ---------------------------------------------------------------- band out, 1:34-1:37
   { id: 'BO1', t: [93.6, 95.1], ...GAP_CAM, figs: ALL(jadePoint()),
-    header: '1:34 INSIDE band out "that\'s just how it looks": she points at the short row (gold circle round the gap)',
-    intent: 'Inside, the gap camera: her small index finger comes down on the empty cell at the end of the short row.' },
+    header: '1:34 INSIDE band out "that\'s just how it looks": she points at the last face in the row of six (gold circle round the gap beside it)',
+    intent: 'Inside, the gap camera: her small index finger comes down on the last face in the row of six, where the row stops short.' },
   { id: 'BO2', t: [95.1, 96.8], ...GAP_CAM, figs: ALL(jadePoint(), swPoint()),
-    header: '1:35 INSIDE the adult\'s finger lands on the nearest face instead: ANXIOUS',
-    intent: 'Same camera. An adult index finger arrives from across the table and lands on the face next to the gap. Her finger has not moved. Match cut on the pointing finger follows.' },
+    header: '1:35 INSIDE the adult\'s finger lands on the same face and reads its label: ANXIOUS',
+    intent: 'Same camera. An adult index finger arrives from across the table and lands on the face she is pointing at, the one next to the gap. Her finger has not moved. Match cut on the pointing finger follows.' },
 
   // ---------------------------------------------------------------- spare (not placed in the Structure table)
   { id: 'X_sw', lens: 50, orbit: { at: 'sw:chest', az: -156, el: 4, dist: 1.05 }, aim: ['sw:chest', 0.5, 0.45], ...INSIDE, figs: ALL(),

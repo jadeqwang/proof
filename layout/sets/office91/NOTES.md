@@ -14,8 +14,10 @@ Numbers live in `layout.js`.
 - **Seating**: little Jade at the long side facing the cameras; the social worker across from her but offset
   diagonally (so the frontal camera looks past her shoulder); Mom beside little Jade; Dad at the table's end. Dad sits
   outside the wedge and reaches in. Mom's face is inside it.
-- **Handout**: US Letter, canary yellow, 5 columns x 5 rows of faces, the fourth row has four. The gap is the last
-  cell of that row; ANXIOUS is the face next to it. The other 23 labels in `LABELS` are placeholders. The sidecar's
+- **Handout**: US Letter, canary yellow, 5 rows of faces, 7 to a row, except the fourth row, which has 6. Every row
+  is centred, so the short row is inset half a cell at each end. `GAP` is where a seventh face would follow at the same
+  spacing, at the end she reads to; ANXIOUS is the row's last face. She points at that last face (`JADE_TIP`, its near edge) and
+  the adult's finger lands on the same face (`SW_TIP`, its far edge); the gold circle still goes round the gap beside it. The other 33 labels in `LABELS` are placeholders. The sidecar's
   `handout` gives page corners and every cell centre in world and px.
 - **Outside camera** (`OUTSIDE_CAM`, PC1 = PC4): level at her eye height, 6 deg off her axis, her face at u = 0.66, bare
   wall frame-left for the toner label. Her eyes are on the sweatshirt and the table.

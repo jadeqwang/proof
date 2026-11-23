@@ -29,21 +29,29 @@ export const BEAM = { kind: 'one fluorescent tube behind a louvre, straight down
 // her hands and face, the social worker's sweatshirt and forearms, Mom's hands. Dad sits past its +x edge and reaches in.
 
 // ---------------------------------------------------------------- the handout
-// US Letter, canary yellow, a photocopied "How do you feel today?" chart: 5 columns x 5 rows of labelled cartoon faces,
-// except row 3 (the fourth), which has only four: the gap is its last cell. Read from little Jade's side (she sits at
-// -z facing +z), so reading left-to-right runs toward -x and the top of the page is at +z.
-export const HANDOUT = { cx: -0.3, cz: -0.06, w: 0.216, h: 0.279, t: 0.0006, cols: 5, rows: 5, shortRow: 3, shortCount: 4,
-  margin: 0.018, title: 0.035, bottom: 0.02, faceR: 0.0115, color: 0xf2df6a };
+// US Letter, canary yellow, a photocopied "How do you feel today?" chart: 5 rows of labelled cartoon faces, 7 to a row,
+// except row 3 (the fourth), which has only six. Every row is centred on the page, so the short row sits half a cell in
+// from the others at both ends. Read from little Jade's side (she sits at -z facing +z), so reading left-to-right runs
+// toward -x and the top of the page is at +z.
+export const HANDOUT = { cx: -0.3, cz: -0.06, w: 0.216, h: 0.279, t: 0.0006, cols: 7, rows: 5, shortRow: 3, shortCount: 6,
+  margin: 0.018, title: 0.035, bottom: 0.02, faceR: 0.0098, labelW: 0.02, color: 0xf2df6a };
 const HG = HANDOUT;
 export const cellPitch = { x: (HG.w - 2 * HG.margin) / HG.cols, z: (HG.h - HG.title - HG.bottom) / HG.rows };
-// centre of the face in row r (0 = top), column c (0 = first as she reads)
-export const cell = (r, c) => [HG.cx + ((HG.cols - 1) / 2 - c) * cellPitch.x, TOP + HG.t, HG.cz + HG.h / 2 - HG.title - (r + 0.5) * cellPitch.z + 0.005];
-export const hasFace = (r, c) => !(r === HG.shortRow && c >= HG.shortCount);
-export const GAP = cell(HG.shortRow, HG.shortCount);          // the empty cell
-export const ANXIOUS = cell(HG.shortRow, HG.shortCount - 1);  // the nearest face, where the adult's finger lands
+export const rowCount = (r) => (r === HG.shortRow ? HG.shortCount : HG.cols);
+// centre of the face in row r (0 = top), column c (0 = first as she reads); each row is centred on the page
+export const cell = (r, c) => [HG.cx + ((rowCount(r) - 1) / 2 - c) * cellPitch.x, TOP + HG.t, HG.cz + HG.h / 2 - HG.title - (r + 0.5) * cellPitch.z + 0.005];
+export const hasFace = (r, c) => c >= 0 && c < rowCount(r);
+// the gap: where a seventh face would follow the short row's last one, at the same spacing (the row is centred, so the
+// missing width is split between its two ends; this is the end she reads to)
+export const GAP = cell(HG.shortRow, HG.shortCount);
+export const ANXIOUS = cell(HG.shortRow, HG.shortCount - 1);  // the short row's last face: she points at it, and the adult's finger lands on it too
+// the two fingertips share that one face: hers on its near edge (her side, -z), the adult's on its far edge
+export const JADE_TIP = [ANXIOUS[0], ANXIOUS[1], ANXIOUS[2] - 0.006];
+export const SW_TIP = [ANXIOUS[0], ANXIOUS[1], ANXIOUS[2] + 0.007];
 export const LABELS = [
-  ['HAPPY', 'SAD', 'ANGRY', 'SCARED', 'SURPRISED'], ['PROUD', 'SHY', 'BORED', 'EXCITED', 'LONELY'], ['TIRED', 'SILLY', 'CONFUSED', 'JEALOUS', 'HURT'],
-  ['CALM', 'WORRIED', 'GUILTY', 'ANXIOUS', null], ['FRUSTRATED', 'HOPEFUL', 'EMBARRASSED', 'DISAPPOINTED', 'LOVED'],
+  ['HAPPY', 'SAD', 'ANGRY', 'SCARED', 'SURPRISED', 'SLEEPY', 'GRUMPY'], ['PROUD', 'SHY', 'BORED', 'EXCITED', 'LONELY', 'BRAVE', 'SORRY'],
+  ['TIRED', 'SILLY', 'CONFUSED', 'JEALOUS', 'HURT', 'CURIOUS', 'UPSET'], ['CALM', 'WORRIED', 'GUILTY', 'NERVOUS', 'THANKFUL', 'ANXIOUS'],
+  ['FRUSTRATED', 'HOPEFUL', 'EMBARRASSED', 'DISAPPOINTED', 'LOVED', 'SAFE', 'MAD'],
 ];
 
 // ---------------------------------------------------------------- seats (floor positions [x, z]) and hand props

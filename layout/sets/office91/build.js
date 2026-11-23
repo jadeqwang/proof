@@ -4,7 +4,7 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { CAST, PROP } from '../../engine/mannequin.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, splitAtTop, applyBeamMask } from '../_beam.js';
-import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, hasFace, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, POSTER } from './layout.js';
+import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, POSTER } from './layout.js';
 
 // set-local extra only; little Jade (7) = `jade7`, Mama = `mama91` and `dad` come from ../_cast.js
 addCast({
@@ -81,10 +81,10 @@ function handout() {
   const g = new THREE.Group(), H = HANDOUT, INK = { grey: 0.15, col: 0x222018 };
   g.add(tag(box(H.w, H.t, H.h, { grey: 0.9, col: H.color, recvShadowLine: true }, [H.cx, TOP + H.t / 2, H.cz]), 'yellow handout'));
   g.add(tag(box(H.w * 0.72, 0.0004, 0.012, INK, [H.cx, TOP + H.t + 0.0002, H.cz + H.h / 2 - 0.02]), 'handout title'));
-  for (let r = 0; r < H.rows; r++) for (let c = 0; c < H.cols; c++) { if (!hasFace(r, c)) continue; const p = cell(r, c);
-    const short = r === H.shortRow, name = short ? 'handout: the short row (4 faces)' : 'handout: cartoon faces with labels';
+  for (let r = 0; r < H.rows; r++) for (let c = 0; c < rowCount(r); c++) { const p = cell(r, c);
+    const short = r === H.shortRow, name = short ? `handout: the short row (${H.shortCount} faces)` : 'handout: cartoon faces with labels';
     g.add(tag(cyl(H.faceR, H.faceR, 0.0005, { grey: 0.97, col: 0xf8ec9a }, [p[0], p[1] + 0.00025, p[2]], null, 20), name));
-    g.add(tag(box(0.024, 0.0004, 0.0035, INK, [p[0], p[1] + 0.0002, p[2] - H.faceR - 0.0055]), name)); }
+    g.add(tag(box(H.labelW, 0.0004, 0.0035, INK, [p[0], p[1] + 0.0002, p[2] - H.faceR - 0.0055]), name)); }
   return g;
 }
 const handoutCorners = () => { const H = HANDOUT, y = TOP + H.t; return [[H.cx + H.w / 2, y, H.cz + H.h / 2], [H.cx - H.w / 2, y, H.cz + H.h / 2], [H.cx - H.w / 2, y, H.cz - H.h / 2], [H.cx + H.w / 2, y, H.cz - H.h / 2]]; };
@@ -130,12 +130,12 @@ export function build(shot, { makeCam }) {
   };
   const extraOut = (c, P) => {
     const inB = {}; for (const [who, f] of Object.entries(figs)) { const Q = f.userData.P; inB[who] = { head: inBeam(Q.head.toArray()), eyes: inBeam(Q.eyes.toArray()), handL: inBeam(Q.handL.toArray()), handR: inBeam(Q.handR.toArray()), chest: inBeam(Q.chest.toArray()) }; }
-    const cells = []; for (let r = 0; r < HANDOUT.rows; r++) for (let cc = 0; cc < HANDOUT.cols; cc++) { const p = cell(r, cc); cells.push({ row: r, col: cc, label: LABELS[r][cc], empty: !hasFace(r, cc), world: p.map((v) => +v.toFixed(4)), px: P(V(p)) }); }
+    const cells = []; for (let r = 0; r < HANDOUT.rows; r++) for (let cc = 0; cc < rowCount(r); cc++) { const p = cell(r, cc); cells.push({ row: r, col: cc, label: LABELS[r][cc], world: p.map((v) => +v.toFixed(4)), px: P(V(p)) }); }
     return { beam: { kind: BEAM.kind, travel_dir: [0, -1, 0], cutoff_deg: CUT, source_world: BEAM_SOURCE, source_px: BEAM_SOURCE.map((p) => P(V(p))),
       footprint_table_world: foot.map((p) => p.map((v) => +v.toFixed(3))), footprint_table_px: foot.map((p) => P(V(p))), footprint_floor_world: footFloor.map((p) => p.map((v) => +v.toFixed(3))), footprint_floor_px: footFloor.map((p) => P(V(p))),
       note: 'the lit volume is the wedge between the tube (source) and footprint_floor, minus what stands in it; footprint_table is its section at the table top', in_beam: inB },
       handout: { corners_world: handoutCorners(), corners_px: handoutCorners().map((p) => P(V(p))), corner_order: 'TL, TR, BR, BL as little Jade reads the page (a flat page image maps straight on)',
-        cells, gap_px: P(V(GAP)), anxious_px: P(V(ANXIOUS)), cell_pitch_m: cellPitch, face_radius_m: HANDOUT.faceR },
+        cells, row_counts: Array.from({ length: HANDOUT.rows }, (_, r) => rowCount(r)), rows_centred: true, gap_world: GAP.map((v) => +v.toFixed(4)), gap_px: P(V(GAP)), anxious_px: P(V(ANXIOUS)), cell_pitch_m: cellPitch, face_radius_m: HANDOUT.faceR },
       times: shot.t || null };
   };
   // the mask twin (beam_<id>): the tube's louvred wedge white (source rectangle -> floor footprint; under the table top

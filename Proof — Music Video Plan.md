@@ -137,13 +137,13 @@ The film starts and ends on a mote in a beam, and in between it moves from looki
 | Time | Section | Image |
 | --- | --- | --- |
 | 0:00-0:05 | Pad | Bare paper. Dark wash gathers on both sides and leaves a diagonal band unpainted. The beam is made by painting around it. |
-| 0:05-0:19 | Taps, whisper 1 at 0:09 | Attic, 1988. Her fingers tap on a paper keyboard in the light. Outside shot of her face, eyes on one mote. It drifts out of the beam; her eyes keep travelling through the dark; it re-enters where she is looking. Gold ring. The whisper lands on that face. |
+| 0:05-0:19 | Taps, whisper 1 at 0:09 | Attic, 1988. Inside: her hands unfold, like a map, a black and white printout of piano keys (sheets of ordinary printer paper taped end to end) and smooth it flat on the floorboards in the light, so it is plain from the first frame that she practises on paper. Her fingers tap on it. Outside shot of her face, eyes on one mote. It drifts out of the beam; her eyes keep travelling through the dark; it re-enters where she is looking. Gold ring. The whisper lands on that face. |
 | 0:18-0:19 | Whisper 2 | Two adult thumbs enter frame toward her cheeks. Cut before they touch. |
 | 0:19-0:30 | Groove in | The yellow handout: a grid of labelled cartoon faces, one row short. The camera settles on the gap. Title: PROOF. |
 | 0:30-0:59 | Verse 1 | *1. Shanghai, 1986.* An uncle's hands shaping something small; his face is not drawn. Then the tissue drift in full depth, gold dots doubling: 1, 2, 4, 8. Mother in the doorway. Adults laughing, seen from below, out of the light. One gold "?". |
 | 0:59-1:18 | Piano break | Four bars down into the tissue: fibre, lattice, points. Four bars in the attic: the paper keys, her fingers playing the melody we hear. She looks up at the frost on the pane. |
 | 1:18-1:34 | Pre-chorus | School office. Outside shots: each sung line arrives as a toner label beside her face. Each bracketed reply is a parent's hand: Dad's open palm, Mom's thumb racing through the little red dictionary. Inside shots: her eye runs down the grid. |
-| 1:34-1:37 | Band out | She points at the short row. Gold circle round the gap. The adult's finger lands on the nearest face instead: ANXIOUS. |
+| 1:34-1:37 | Band out | She points at the last face in the row of six, where the row stops short. Gold circle round the gap beside it. The adult's finger lands on the same face and reads its label: ANXIOUS. |
 | 1:37-1:38 | "How do you feel?" | Match cut on the pointing finger: five years old, tracing the frost fern. |
 | 1:38 | Band hits | A hand closes on her forearm. Cut to black. The biggest value change in the film. |
 | 1:38-1:55 | Chorus 1 | "Inside?": dark. "I honestly don't know": a blade of light, one mote, one eye following it. "My voice goes blind": her mouth opens in the light, and closes. "Nowhere to go": the mote drifts out of the crack-light. No header, no gold. |
@@ -221,6 +221,7 @@ Shanghai room, school office, wall cavity, Marketplace produce aisle, Decatur ba
 - **Undrawn faces can read as horror.** They should read as unfinished: jaw and hair in light line, features simply not reached, and usually turned, cropped or out of the beam. Test on the social worker first.
 - **The anti-sync shot can read as a mistake.** Put a correctly synced line just before it, hold it long, and let her breathe.
 - **Fingers on paper keys** need note-level timing. If it will not hold, shoot the hands wide and let the taps carry it.
+- **The unfolding has to fit before the taps.** It is about two seconds at the top of the 0:05 section; if the taps start on the downbeat, the last fold opens over the pad's final second. The map-fold creases and the tape seams between sheets stay on the printout in every later keys shot (piano break, coda), which is what keeps it reading as paper. `attic88_day` has no camera for the unfolding yet.
 - **Three new ages of one child** is the biggest consistency load in the cast.
 
 Generated sheets only go to outside services. No real photos, per the canon.
@@ -245,6 +246,7 @@ These are yours to decide or to remember. Each has my recommendation, and none b
 - [ ] Where the cheek-pushing happened, and how old you were. The plan puts it at home in the school years and reuses the Decatur kitchen.
 - [ ] Whether you tried to speak inside the wall, or knew not to.
 - [ ] Whether the paper keyboard was in the beam by the window, and whether you tapped it with both hands.
+- [x] How the printout was kept. Answered 2026-11-22: regular printer paper (A4 or Letter), printed, taped together, and folded like a map.
 - [ ] Roughly which years the school office and the closet were. The plan guesses about 1991 and about 2002.
 - [ ] Whether the attic window faced a way that let low winter sun in.
 

@@ -32,6 +32,19 @@ The film does not exist yet. What exists is the groundwork for the plan's "Order
 - **Delegation:** Jade prefers work handed to subagents with only conclusions relayed. Agents writing sets in parallel were kept to their own `layout/sets/<set>/` directory and told not to edit `layout/engine/`.
 - **`layout/` is a copy** of `/home/jade/Documents/chaosmonkey-video/layout`, taken because that repo had uncommitted engine work. The copy has since diverged: left-hand fix (`handFrame()` in `engine/mannequin.js` and `body.js`), a `spec.costume` field, one line in `engine/render.js` for the mask shader, and `--exclude` in `render.mjs`. Nothing has been ported back, and that repo must not be edited without asking. `layout/sets/attic88/` is the original night attic and is kept unmodified.
 
+## Session of 2026-11-22 (evening): handout grid and the paper keys
+
+Jade gave four directions in this session. All are done unless marked.
+
+- **The school office handout is 7 faces to a row, with one row of 6, every row centred.** Five rows, 34 faces, the fourth row short. Numbers in `layout/sets/office91/layout.js` (`HANDOUT`, `rowCount`, `cell`). Because the short row is centred, the missing width is split between its two ends; `GAP` is where a seventh face would follow, at the end she reads to. The 10 extra labels are placeholders like the rest.
+- **She points at the last face in the row of 6** (`JADE_TIP`), not at the empty space. The adult's finger lands on the same face (`SW_TIP`) and reads ANXIOUS. That the adult lands on the same face is Claude's reading of Jade's note, flagged to Jade and not yet confirmed. In `BO2` the adult's finger covers most of that face and her fingertip; the camera may want a nudge.
+- **A new clip: she unfolds the paper piano keys.** It is in the plan's 0:05 row: her hands unfold the printout like a map and smooth it flat before the taps. Jade's memory of the object: regular printer paper (A4 or Letter), printed, taped together, folded like a map. `attic88_day`'s `KEYS` is already two A4 sheets landscape end to end. **Not built:** the unfolding camera, the tape seam and the fold creases, which should stay visible in every later keys shot.
+- **The plan was edited** in three places, each at Jade's direct request: the 0:05 row, the 1:34 row, and the risks and open-question entries for the printout. The wider v3 revision of the plan is still waiting on Jade, as below.
+
+Re-rendered: all of `office91`, its masks, its contact sheets, and the gallery. Looked at: `H1` and `BO1`/`BO2` flat renders only.
+
+**Rendering gotcha found:** `node layout/render.mjs --set <set>` with no filter also renders every `beam_` twin in all five modes and writes sidecars for them, about 120 stray files per set. Use `--exclude beam_` for the normal pass, then the mask pass with `--prefix beam_ --modes flat --nojson`.
+
 ## Git
 
 - Remote `origin` is `github.com/jadeqwang/proof`, **public**.
@@ -51,4 +64,4 @@ The film does not exist yet. What exists is the groundwork for the plan's "Order
 
 - Times in the plan's Structure table are v2 times. Shot labels in the sets were moved to v3 for the outro and coda only.
 - A beam mask that is all white is not a bug in the eye-line shots that look down into the light; use the `__surf` twin there, or accept that the whole frame is lit.
-- Clothing, hair, the playground family, the kitchen's pendant lamp, the handout's 23 other labels and several room layouts were invented by agents where the plan was silent. Each set's `NOTES.md` and each sheet's sidecar says what was assumed. Treat them as proposals until Jade confirms.
+- Clothing, hair, the playground family, the kitchen's pendant lamp, the handout's 33 other labels and several room layouts were invented by agents where the plan was silent. Each set's `NOTES.md` and each sheet's sidecar says what was assumed. Treat them as proposals until Jade confirms.

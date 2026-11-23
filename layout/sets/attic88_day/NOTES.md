@@ -10,6 +10,9 @@ window, stair door and v4 fixed furniture are imported from `../attic88/layout.j
 - **The neon blade sign of attic88 v3/v4 is not in this set.** At this bearing it would shade a 0.37 m wide vertical
   stripe of the window (it hangs at z = -1.0, 0.3-1.0 m out). Either the sign is not there in "Proof", or the sun has
   to come from 40 degrees or more on the west side, which puts the beam on the sleeping mats. Director's call.
+- **The printout** (from Jade, 2026-11-22): regular printer paper (A4 or Letter), printed, taped together and folded like a
+  map. `KEYS` at 0.594 x 0.21 m already equals two A4 sheets landscape, taped end to end; A4 is this set's guess for the
+  Netherlands. Tape seam, map-fold creases and the unfolding camera are not built yet (see the plan's 0:05 row).
 - **Paper keyboard is in the beam and she plays it with both hands**, sitting cross-legged in the tail of the beam
   facing up it (`SEAT`, `KEYS`). The light there is below chest height: hands, knees and paper are lit, her face is
   above the light. The keyboard was moved from attic88's position and turned to face her.

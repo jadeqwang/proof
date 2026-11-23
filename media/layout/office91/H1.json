@@ -157,7 +157,7 @@
   "end": "H1b",
   "note": "the shot moves from camera.position/target to these over its length; the guide shows the start"
  },
- "intent": "Inside: the yellow handout as she sees it, a grid of labelled cartoon faces, one row short. The first colour in the film. Steeper than her true eye-line so the grid reads square; her hands rest either side.",
+ "intent": "Inside: the yellow handout as she sees it, a grid of labelled cartoon faces, seven to a row, one centred row of six. The first colour in the film. Steeper than her true eye-line so the grid reads square; her hands rest either side.",
  "beam": {
   "kind": "one fluorescent tube behind a louvre, straight down",
   "travel_dir": [
@@ -347,14 +347,13 @@
     "row": 0,
     "col": 0,
     "label": "HAPPY",
-    "empty": false,
     "world": [
-     -0.228,
+     -0.2229,
      0.7206,
      0.0271
     ],
     "px": [
-     685.9,
+     666.3,
      246.1
     ]
    },
@@ -362,14 +361,13 @@
     "row": 0,
     "col": 1,
     "label": "SAD",
-    "empty": false,
     "world": [
-     -0.264,
+     -0.2486,
      0.7206,
      0.0271
     ],
     "px": [
-     822.9,
+     764.2,
      246.1
     ]
    },
@@ -377,14 +375,13 @@
     "row": 0,
     "col": 2,
     "label": "ANGRY",
-    "empty": false,
     "world": [
-     -0.3,
+     -0.2743,
      0.7206,
      0.0271
     ],
     "px": [
-     960,
+     862.1,
      246.1
     ]
    },
@@ -392,14 +389,13 @@
     "row": 0,
     "col": 3,
     "label": "SCARED",
-    "empty": false,
     "world": [
-     -0.336,
+     -0.3,
      0.7206,
      0.0271
     ],
     "px": [
-     1097.1,
+     960,
      246.1
     ]
    },
@@ -407,14 +403,41 @@
     "row": 0,
     "col": 4,
     "label": "SURPRISED",
-    "empty": false,
     "world": [
-     -0.372,
+     -0.3257,
      0.7206,
      0.0271
     ],
     "px": [
-     1234.1,
+     1057.9,
+     246.1
+    ]
+   },
+   {
+    "row": 0,
+    "col": 5,
+    "label": "SLEEPY",
+    "world": [
+     -0.3514,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1155.8,
+     246.1
+    ]
+   },
+   {
+    "row": 0,
+    "col": 6,
+    "label": "GRUMPY",
+    "world": [
+     -0.3771,
+     0.7206,
+     0.0271
+    ],
+    "px": [
+     1253.7,
      246.1
     ]
    },
@@ -422,14 +445,13 @@
     "row": 1,
     "col": 0,
     "label": "PROUD",
-    "empty": false,
     "world": [
-     -0.228,
+     -0.2229,
      0.7206,
      -0.0177
     ],
     "px": [
-     675.2,
+     654.8,
      391.1
     ]
    },
@@ -437,14 +459,13 @@
     "row": 1,
     "col": 1,
     "label": "SHY",
-    "empty": false,
     "world": [
-     -0.264,
+     -0.2486,
      0.7206,
      -0.0177
     ],
     "px": [
-     817.6,
+     756.6,
      391.1
     ]
    },
@@ -452,14 +473,13 @@
     "row": 1,
     "col": 2,
     "label": "BORED",
-    "empty": false,
     "world": [
-     -0.3,
+     -0.2743,
      0.7206,
      -0.0177
     ],
     "px": [
-     960,
+     858.3,
      391.1
     ]
    },
@@ -467,14 +487,13 @@
     "row": 1,
     "col": 3,
     "label": "EXCITED",
-    "empty": false,
     "world": [
-     -0.336,
+     -0.3,
      0.7206,
      -0.0177
     ],
     "px": [
-     1102.4,
+     960,
      391.1
     ]
    },
@@ -482,14 +501,41 @@
     "row": 1,
     "col": 4,
     "label": "LONELY",
-    "empty": false,
     "world": [
-     -0.372,
+     -0.3257,
      0.7206,
      -0.0177
     ],
     "px": [
-     1244.8,
+     1061.7,
+     391.1
+    ]
+   },
+   {
+    "row": 1,
+    "col": 5,
+    "label": "BRAVE",
+    "world": [
+     -0.3514,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1163.4,
+     391.1
+    ]
+   },
+   {
+    "row": 1,
+    "col": 6,
+    "label": "SORRY",
+    "world": [
+     -0.3771,
+     0.7206,
+     -0.0177
+    ],
+    "px": [
+     1265.2,
      391.1
     ]
    },
@@ -497,14 +543,13 @@
     "row": 2,
     "col": 0,
     "label": "TIRED",
-    "empty": false,
     "world": [
-     -0.228,
+     -0.2229,
      0.7206,
      -0.0625
     ],
     "px": [
-     663.6,
+     642.5,
      547.9
     ]
    },
@@ -512,14 +557,13 @@
     "row": 2,
     "col": 1,
     "label": "SILLY",
-    "empty": false,
     "world": [
-     -0.264,
+     -0.2486,
      0.7206,
      -0.0625
     ],
     "px": [
-     811.8,
+     748.3,
      547.9
     ]
    },
@@ -527,14 +571,13 @@
     "row": 2,
     "col": 2,
     "label": "CONFUSED",
-    "empty": false,
     "world": [
-     -0.3,
+     -0.2743,
      0.7206,
      -0.0625
     ],
     "px": [
-     960,
+     854.2,
      547.9
     ]
    },
@@ -542,14 +585,13 @@
     "row": 2,
     "col": 3,
     "label": "JEALOUS",
-    "empty": false,
     "world": [
-     -0.336,
+     -0.3,
      0.7206,
      -0.0625
     ],
     "px": [
-     1108.2,
+     960,
      547.9
     ]
    },
@@ -557,14 +599,41 @@
     "row": 2,
     "col": 4,
     "label": "HURT",
-    "empty": false,
     "world": [
-     -0.372,
+     -0.3257,
      0.7206,
      -0.0625
     ],
     "px": [
-     1256.4,
+     1065.8,
+     547.9
+    ]
+   },
+   {
+    "row": 2,
+    "col": 5,
+    "label": "CURIOUS",
+    "world": [
+     -0.3514,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1171.7,
+     547.9
+    ]
+   },
+   {
+    "row": 2,
+    "col": 6,
+    "label": "UPSET",
+    "world": [
+     -0.3771,
+     0.7206,
+     -0.0625
+    ],
+    "px": [
+     1277.5,
      547.9
     ]
    },
@@ -572,14 +641,13 @@
     "row": 3,
     "col": 0,
     "label": "CALM",
-    "empty": false,
     "world": [
-     -0.228,
+     -0.2357,
      0.7206,
      -0.1073
     ],
     "px": [
-     651.1,
+     684.2,
      718
     ]
    },
@@ -587,14 +655,13 @@
     "row": 3,
     "col": 1,
     "label": "WORRIED",
-    "empty": false,
     "world": [
-     -0.264,
+     -0.2614,
      0.7206,
      -0.1073
     ],
     "px": [
-     805.5,
+     794.5,
      718
     ]
    },
@@ -602,44 +669,55 @@
     "row": 3,
     "col": 2,
     "label": "GUILTY",
-    "empty": false,
     "world": [
-     -0.3,
+     -0.2871,
      0.7206,
      -0.1073
     ],
     "px": [
-     960,
+     904.8,
      718
     ]
    },
    {
     "row": 3,
     "col": 3,
-    "label": "ANXIOUS",
-    "empty": false,
+    "label": "NERVOUS",
     "world": [
-     -0.336,
+     -0.3129,
      0.7206,
      -0.1073
     ],
     "px": [
-     1114.5,
+     1015.2,
      718
     ]
    },
    {
     "row": 3,
     "col": 4,
-    "label": null,
-    "empty": true,
+    "label": "THANKFUL",
     "world": [
-     -0.372,
+     -0.3386,
      0.7206,
      -0.1073
     ],
     "px": [
-     1268.9,
+     1125.5,
+     718
+    ]
+   },
+   {
+    "row": 3,
+    "col": 5,
+    "label": "ANXIOUS",
+    "world": [
+     -0.3643,
+     0.7206,
+     -0.1073
+    ],
+    "px": [
+     1235.8,
      718
     ]
    },
@@ -647,14 +725,13 @@
     "row": 4,
     "col": 0,
     "label": "FRUSTRATED",
-    "empty": false,
     "world": [
-     -0.228,
+     -0.2229,
      0.7206,
      -0.1521
     ],
     "px": [
-     637.4,
+     614.4,
      903
     ]
    },
@@ -662,14 +739,13 @@
     "row": 4,
     "col": 1,
     "label": "HOPEFUL",
-    "empty": false,
     "world": [
-     -0.264,
+     -0.2486,
      0.7206,
      -0.1521
     ],
     "px": [
-     798.7,
+     729.6,
      903
     ]
    },
@@ -677,7 +753,20 @@
     "row": 4,
     "col": 2,
     "label": "EMBARRASSED",
-    "empty": false,
+    "world": [
+     -0.2743,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     844.8,
+     903
+    ]
+   },
+   {
+    "row": 4,
+    "col": 3,
+    "label": "DISAPPOINTED",
     "world": [
      -0.3,
      0.7206,
@@ -690,48 +779,73 @@
    },
    {
     "row": 4,
-    "col": 3,
-    "label": "DISAPPOINTED",
-    "empty": false,
+    "col": 4,
+    "label": "LOVED",
     "world": [
-     -0.336,
+     -0.3257,
      0.7206,
      -0.1521
     ],
     "px": [
-     1121.3,
+     1075.2,
      903
     ]
    },
    {
     "row": 4,
-    "col": 4,
-    "label": "LOVED",
-    "empty": false,
+    "col": 5,
+    "label": "SAFE",
     "world": [
-     -0.372,
+     -0.3514,
      0.7206,
      -0.1521
     ],
     "px": [
-     1282.6,
+     1190.4,
+     903
+    ]
+   },
+   {
+    "row": 4,
+    "col": 6,
+    "label": "MAD",
+    "world": [
+     -0.3771,
+     0.7206,
+     -0.1521
+    ],
+    "px": [
+     1305.6,
      903
     ]
    }
   ],
+  "row_counts": [
+   7,
+   7,
+   7,
+   6,
+   7
+  ],
+  "rows_centred": true,
+  "gap_world": [
+   -0.39,
+   0.7206,
+   -0.1073
+  ],
   "gap_px": [
-   1268.9,
+   1346.1,
    718
   ],
   "anxious_px": [
-   1114.5,
+   1235.8,
    718
   ],
   "cell_pitch_m": {
-   "x": 0.036,
+   "x": 0.025714285714285714,
    "z": 0.044800000000000006
   },
-  "face_radius_m": 0.0115
+  "face_radius_m": 0.0098
  },
  "times": [
   19.46,
