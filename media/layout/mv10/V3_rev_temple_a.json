@@ -1,0 +1,2922 @@
+{
+ "shot": "V3_rev_temple_a",
+ "set": "mv10",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   8.9938,
+   1.0074,
+   18.1578
+  ],
+  "target": [
+   10.9021,
+   0.8729,
+   17.5744
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.03,
+  "far": 60,
+  "matrixWorld": [
+   0.2924,
+   0,
+   0.9563,
+   0,
+   0.0643,
+   0.9977,
+   -0.0197,
+   0,
+   -0.9541,
+   0.0672,
+   0.2917,
+   0,
+   8.9938,
+   1.0074,
+   18.1578,
+   1
+  ],
+  "viewMatrix": [
+   0.2924,
+   0.0643,
+   -0.9541,
+   0,
+   0,
+   0.9977,
+   0.0672,
+   0,
+   0.9563,
+   -0.0197,
+   0.2917,
+   0,
+   -19.9939,
+   -1.2265,
+   3.217,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.001,
+   -1,
+   0,
+   0,
+   -0.06,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "front_door": {
+   "px": [
+    [
+     -167228.4,
+     -8810.5
+    ],
+    [
+     -41765.2,
+     -2002.5
+    ],
+    [
+     -37255.2,
+     2442.2
+    ],
+    [
+     -114389.8,
+     6556.4
+    ]
+   ],
+   "world": [
+    [
+     3.85,
+     2.03,
+     0.075
+    ],
+    [
+     4.75,
+     2.03,
+     0.075
+    ],
+    [
+     4.75,
+     0,
+     0.075
+    ],
+    [
+     3.85,
+     0,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "living_room_window_wnw": {
+   "px": [
+    [
+     19737.7,
+     1353.9
+    ],
+    [
+     44379.7,
+     2717.3
+    ],
+    [
+     47418.8,
+     100.5
+    ],
+    [
+     20270.2,
+     255
+    ]
+   ],
+   "world": [
+    [
+     0.6,
+     2.05,
+     0.075
+    ],
+    [
+     2.3,
+     2.05,
+     0.075
+    ],
+    [
+     2.3,
+     0.9,
+     0.075
+    ],
+    [
+     0.6,
+     0.9,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "living_room_window_ssw": {
+   "px": [
+    [
+     11654.9,
+     1021.1
+    ],
+    [
+     14074,
+     1103.3
+    ],
+    [
+     14350.2,
+     282.1
+    ],
+    [
+     11854.7,
+     290.9
+    ]
+   ],
+   "world": [
+    [
+     0.075,
+     2.05,
+     3.2
+    ],
+    [
+     0.075,
+     2.05,
+     1.6
+    ],
+    [
+     0.075,
+     0.9,
+     1.6
+    ],
+    [
+     0.075,
+     0.9,
+     3.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "french_doors_to_the_yard": {
+   "px": [
+    [
+     6896.2,
+     967.8
+    ],
+    [
+     5843.9,
+     842.9
+    ],
+    [
+     5964.5,
+     -127
+    ],
+    [
+     7082,
+     -257
+    ]
+   ],
+   "world": [
+    [
+     1.82,
+     2.03,
+     9.879
+    ],
+    [
+     0.6,
+     2.03,
+     9.879
+    ],
+    [
+     0.6,
+     0,
+     9.879
+    ],
+    [
+     1.82,
+     0,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "kitchen_window_over_the_sink_ese": {
+   "px": [
+    [
+     13345.3,
+     1760.1
+    ],
+    [
+     9597.1,
+     1306.5
+    ],
+    [
+     9798.9,
+     399.8
+    ],
+    [
+     13778.3,
+     419.5
+    ]
+   ],
+   "world": [
+    [
+     4.45,
+     2.05,
+     9.879
+    ],
+    [
+     3.45,
+     2.05,
+     9.879
+    ],
+    [
+     3.45,
+     1.05,
+     9.879
+    ],
+    [
+     4.45,
+     1.05,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "dining_window_ssw": {
+   "px": [
+    [
+     6585.8,
+     848.8
+    ],
+    [
+     7609,
+     883.5
+    ],
+    [
+     7702.7,
+     331
+    ],
+    [
+     6659.8,
+     333
+    ]
+   ],
+   "world": [
+    [
+     0.075,
+     2.05,
+     8.3
+    ],
+    [
+     0.075,
+     2.05,
+     7
+    ],
+    [
+     0.075,
+     0.95,
+     7
+    ],
+    [
+     0.075,
+     0.95,
+     8.3
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "tea_room_window_wnw": {
+   "px": [
+    [
+     -9548.4,
+     -266.3
+    ],
+    [
+     -6147.8,
+     -78.2
+    ],
+    [
+     -6062.4,
+     404.9
+    ],
+    [
+     -9368.7,
+     423.7
+    ]
+   ],
+   "world": [
+    [
+     8.2,
+     2.05,
+     0.075
+    ],
+    [
+     10.2,
+     2.05,
+     0.075
+    ],
+    [
+     10.2,
+     0.9,
+     0.075
+    ],
+    [
+     8.2,
+     0.9,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "tea_room_window_nne": {
+   "px": [
+    [
+     -4443.8,
+     -6.8
+    ],
+    [
+     -4225.1,
+     -30.8
+    ],
+    [
+     -4169.4,
+     400.1
+    ],
+    [
+     -4389.3,
+     397.7
+    ]
+   ],
+   "world": [
+    [
+     11.84,
+     2.05,
+     1.2
+    ],
+    [
+     11.84,
+     2.05,
+     2.8
+    ],
+    [
+     11.84,
+     0.9,
+     2.8
+    ],
+    [
+     11.84,
+     0.9,
+     1.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "bathroom_window_wnw": {
+   "px": [
+    [
+     -23751.6,
+     -916.5
+    ],
+    [
+     -17295.6,
+     -593.6
+    ],
+    [
+     -16998.4,
+     69
+    ],
+    [
+     -23216,
+     -27.5
+    ]
+   ],
+   "world": [
+    [
+     5.6,
+     1.95,
+     0.075
+    ],
+    [
+     6.3,
+     1.95,
+     0.075
+    ],
+    [
+     6.3,
+     1.3,
+     0.075
+    ],
+    [
+     5.6,
+     1.3,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "bedroom_window_ese": {
+   "px": [
+    [
+     -4162.1,
+     -358.4
+    ],
+    [
+     -9917.9,
+     -1054.9
+    ],
+    [
+     -9506.8,
+     500.5
+    ],
+    [
+     -4061.9,
+     432.8
+    ]
+   ],
+   "world": [
+    [
+     10.6,
+     2.05,
+     9.879
+    ],
+    [
+     8.6,
+     2.05,
+     9.879
+    ],
+    [
+     8.6,
+     0.9,
+     9.879
+    ],
+    [
+     10.6,
+     0.9,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "bedroom_window_nne": {
+   "px": [
+    [
+     -3443.5,
+     -116.7
+    ],
+    [
+     -3066.8,
+     -158.2
+    ],
+    [
+     -3009.7,
+     412.9
+    ],
+    [
+     -3386,
+     408.8
+    ]
+   ],
+   "world": [
+    [
+     11.84,
+     2.05,
+     7.2
+    ],
+    [
+     11.84,
+     2.05,
+     8.8
+    ],
+    [
+     11.84,
+     0.9,
+     8.8
+    ],
+    [
+     11.84,
+     0.9,
+     7.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "bath_2_window_ese": {
+   "px": [
+    [
+     47388.8,
+     5349
+    ],
+    [
+     23154.4,
+     2698.4
+    ],
+    [
+     24092.9,
+     1116.8
+    ],
+    [
+     51788.4,
+     2055.6
+    ]
+   ],
+   "world": [
+    [
+     6,
+     1.95,
+     9.879
+    ],
+    [
+     5.4,
+     1.95,
+     9.879
+    ],
+    [
+     5.4,
+     1.3,
+     9.879
+    ],
+    [
+     6,
+     1.3,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "heads": {
+  "A1": {
+   "px": [
+    243299.1,
+    9462.5
+   ],
+   "eyes": [
+    456473,
+    17478.8
+   ],
+   "mouth": [
+    448295.1,
+    15502
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 65
+  },
+  "A2": {
+   "px": [
+    -98619.1,
+    -2603.2
+   ],
+   "eyes": [
+    -120489.5,
+    -3342.9
+   ],
+   "mouth": [
+    -120219.1,
+    -2916.6
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 113
+  },
+  "A3": {
+   "px": [
+    1119058.5,
+    48824.5
+   ],
+   "eyes": [
+    687422.3,
+    29645.1
+   ],
+   "mouth": [
+    772901.6,
+    30233.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 161
+  },
+  "S1": {
+   "px": [
+    25289.8,
+    651.1
+   ],
+   "eyes": [
+    26276.2,
+    673.4
+   ],
+   "mouth": [
+    26272.7,
+    588.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 57
+  },
+  "B2": {
+   "px": [
+    33796.9,
+    700.7
+   ],
+   "eyes": [
+    31968.7,
+    705.4
+   ],
+   "mouth": [
+    31957.4,
+    605.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 102
+  },
+  "B1": {
+   "px": [
+    14302.4,
+    849.8
+   ],
+   "eyes": [
+    14644.5,
+    855.9
+   ],
+   "mouth": [
+    14627.7,
+    804.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 121
+  },
+  "E1": {
+   "px": [
+    -74179.9,
+    -2576.1
+   ],
+   "eyes": [
+    -71262,
+    -2476.7
+   ],
+   "mouth": [
+    -70813.7,
+    -2191
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 165
+  },
+  "C1": {
+   "px": [
+    19633.5,
+    1241.8
+   ],
+   "eyes": [
+    18954.9,
+    1227.7
+   ],
+   "mouth": [
+    18997.7,
+    1138.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 43
+  },
+  "C2": {
+   "px": [
+    14532.7,
+    1189
+   ],
+   "eyes": [
+    14994,
+    1211.7
+   ],
+   "mouth": [
+    14994.8,
+    1131.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 133
+  },
+  "C3": {
+   "px": [
+    20044.7,
+    1145.4
+   ],
+   "eyes": [
+    20004.5,
+    1162.3
+   ],
+   "mouth": [
+    20048.6,
+    1068.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 177
+  },
+  "T1": {
+   "px": [
+    6435.1,
+    725.4
+   ],
+   "eyes": [
+    6327.1,
+    686
+   ],
+   "mouth": [
+    6380.7,
+    652.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 64
+  },
+  "G1": {
+   "px": [
+    5877.9,
+    715
+   ],
+   "eyes": [
+    5926.1,
+    717.4
+   ],
+   "mouth": [
+    5929.4,
+    680.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 155
+  },
+  "H1": {
+   "px": [
+    7394.9,
+    788
+   ],
+   "eyes": [
+    7262.9,
+    784
+   ],
+   "mouth": [
+    7270.7,
+    735.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 137
+  },
+  "W1": {
+   "px": [
+    4232,
+    437.6
+   ],
+   "eyes": [
+    4065.6,
+    434.7
+   ],
+   "mouth": [
+    4081.3,
+    349.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 125
+  },
+  "W2": {
+   "px": [
+    1539.7,
+    306.1
+   ],
+   "eyes": [
+    1587.3,
+    310.3
+   ],
+   "mouth": [
+    1586.3,
+    251.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 149
+  },
+  "poi": {
+   "px": [
+    2306.4,
+    389.4
+   ],
+   "eyes": [
+    2310.3,
+    394.8
+   ],
+   "mouth": [
+    2311.7,
+    354.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 3
+  },
+  "jade27": {
+   "px": [
+    1082.8,
+    500.4
+   ],
+   "eyes": [
+    832.5,
+    523
+   ],
+   "mouth": [
+    858.2,
+    708.8
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 60
+  },
+  "firstLove27": {
+   "px": [
+    -2907,
+    -46.7
+   ],
+   "eyes": [
+    -2127.4,
+    -9.3
+   ],
+   "mouth": [
+    -2147.3,
+    317.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 63
+  }
+ },
+ "hands": {
+  "A1.L": {
+   "px": [
+    -2120368.4,
+    22478.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A1.R": {
+   "px": [
+    467631.3,
+    7338
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "A2.L": {
+   "px": [
+    -108423.3,
+    98.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A2.R": {
+   "px": [
+    -99077.4,
+    1828.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A3.L": {
+   "px": [
+    1849369.3,
+    34730.1
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "A3.R": {
+   "px": [
+    -180214.5,
+    1960.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "S1.L": {
+   "px": [
+    24861.1,
+    -210.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "S1.R": {
+   "px": [
+    22716.3,
+    -157.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B2.L": {
+   "px": [
+    33856.7,
+    -465
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B2.R": {
+   "px": [
+    30561.7,
+    71.8
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "B1.L": {
+   "px": [
+    14096.8,
+    204.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B1.R": {
+   "px": [
+    15438.4,
+    555.4
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "E1.L": {
+   "px": [
+    -74856.9,
+    -847.7
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "E1.R": {
+   "px": [
+    -51546.6,
+    851
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C1.L": {
+   "px": [
+    22633.6,
+    -25.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C1.R": {
+   "px": [
+    18218.1,
+    642
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "C2.L": {
+   "px": [
+    14567.6,
+    180.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C2.R": {
+   "px": [
+    17207.4,
+    920.2
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "C3.L": {
+   "px": [
+    18151.7,
+    522.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "C3.R": {
+   "px": [
+    22757,
+    -149.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "T1.L": {
+   "px": [
+    7042,
+    159.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "T1.R": {
+   "px": [
+    5878.7,
+    350
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "G1.L": {
+   "px": [
+    5717.6,
+    238.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "G1.R": {
+   "px": [
+    6128.4,
+    489.8
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "H1.L": {
+   "px": [
+    7163.9,
+    149.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "H1.R": {
+   "px": [
+    7794.8,
+    138.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W1.L": {
+   "px": [
+    4036.8,
+    -748.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W1.R": {
+   "px": [
+    4586,
+    -732.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W2.L": {
+   "px": [
+    1390.3,
+    -442.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W2.R": {
+   "px": [
+    1745,
+    -58
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "poi.L": {
+   "px": [
+    2620.8,
+    64.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "poi.R": {
+   "px": [
+    2036.8,
+    89.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade27.L": {
+   "px": [
+    1419.8,
+    3246.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade27.R": {
+   "px": [
+    829,
+    2339.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "firstLove27.L": {
+   "px": [
+    -1943.2,
+    3149.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "firstLove27.R": {
+   "px": [
+    -1127,
+    1765.1
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "sun",
+   "kind": "the sun, 2010-10-02 18:25 PDT: elev 4.27 az 261.98 (pos: a point 30 m up the beam)",
+   "on": true,
+   "color": "#ffb070",
+   "world": [
+    -11.0181,
+    2.2337,
+    -11.6048
+   ],
+   "px": [
+    9678.5,
+    672.6
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    1,
+    0.02
+   ],
+   "toward_camera": -0.358,
+   "aim_world": [
+    6,
+    0,
+    13
+   ]
+  },
+  {
+   "name": "ceiling1",
+   "kind": "living room ceiling light (flush glass dome) (ASSUMED type and place)",
+   "on": true,
+   "color": "#ffd6a0",
+   "world": [
+    2.55,
+    2.38,
+    2.55
+   ],
+   "px": [
+    27518.1,
+    2533.8
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.997,
+    0.077
+   ],
+   "toward_camera": -0.196
+  },
+  {
+   "name": "ceiling2",
+   "kind": "dining pendant (paper drum) (ASSUMED type and place)",
+   "on": true,
+   "color": "#ffd6a0",
+   "world": [
+    1.05,
+    1.52,
+    7.65
+   ],
+   "px": [
+    8212.3,
+    661.4
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    1,
+    0.023
+   ],
+   "toward_camera": -0.444
+  },
+  {
+   "name": "ceiling3",
+   "kind": "kitchen ceiling light (flush glass dome) (ASSUMED type and place)",
+   "on": true,
+   "color": "#ffd6a0",
+   "world": [
+    3.35,
+    2.38,
+    7.45
+   ],
+   "px": [
+    14430.1,
+    1918.8
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.994,
+    0.105
+   ],
+   "toward_camera": -0.305
+  },
+  {
+   "name": "poi",
+   "kind": "fire poi (two moving flames; effective point between the circles)",
+   "on": true,
+   "color": "#ff7a20",
+   "world": [
+    4,
+    0.55,
+    17.3
+   ],
+   "px": [
+    2316.2,
+    87.6
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.948,
+    -0.319
+   ],
+   "toward_camera": -0.93
+  }
+ ],
+ "warnings": [],
+ "camera_move": {
+  "to_shot": "V3_rev_temple_b",
+  "kind": "dolly in along the same line, same 50 mm lens",
+  "start_s": 189.11,
+  "end_s": 191.52,
+  "timeline": "-2sm full mix",
+  "note": "the shot moves from camera.position/target to these over its length; the guide shows the start"
+ },
+ "intent": "Start of the push-in: her head and shoulders, her left temple, three-quarter toward profile, mid-nod toward first love under the lemons; the party behind (the house with lit windows, guests, the fire poi) in the dusk shade.",
+ "layout_set": "mv10",
+ "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
+ "space": "yard",
+ "time": "3:09.1",
+ "section": "Verse 3",
+ "scene": {
+  "date": "2010-10-02",
+  "clock": "18:25",
+  "tz": "PDT",
+  "sun_elev_deg": 4.27,
+  "sun_az_deg": 261.98,
+  "sun_up": true,
+  "sunset": {
+   "time": "18:52",
+   "az": 266.09
+  },
+  "civil_dusk_end": {
+   "time": "19:17",
+   "az": 269.87
+  },
+  "date_note": "housewarming date unknown (\"likely fall 2010\", Jade): 2 Oct 2010 is OUR pick"
+ },
+ "light_state": {
+  "sun": true,
+  "ceiling": true,
+  "poi": true,
+  "sky": 0.55
+ },
+ "amplitude_pct": 115,
+ "sun_through_openings": {
+  "section": "verse3",
+  "time": "18:25",
+  "elev": 4.27,
+  "az": 261.98,
+  "openings": [
+   {
+    "name": "front door",
+    "frac": 0,
+    "by": {
+     "357 View St": 35
+    }
+   },
+   {
+    "name": "living room window (WNW)",
+    "frac": 0,
+    "by": {
+     "357 View St": 35
+    }
+   },
+   {
+    "name": "living room window (SSW)",
+    "frac": 0,
+    "by": {
+     "357 View St": 35
+    }
+   },
+   {
+    "name": "French doors to the yard",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "kitchen window over the sink (ESE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "dining window (SSW)",
+    "frac": 0,
+    "by": {
+     "357 View St": 35
+    }
+   },
+   {
+    "name": "tea room window (WNW)",
+    "frac": 0,
+    "by": {
+     "345A View St": 35
+    }
+   },
+   {
+    "name": "tea room window (NNE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "bathroom window (WNW)",
+    "frac": 0,
+    "by": {
+     "357 View St": 35
+    }
+   },
+   {
+    "name": "bedroom window (ESE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "bedroom window (NNE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "bath 2 window (ESE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   }
+  ]
+ },
+ "sun_tests": {
+  "her_head": "shaded by house",
+  "first_love_head": "shaded by house",
+  "lemon_canopy_top": "sunlit",
+  "lemon_canopy_side_toward_house": "shaded by house",
+  "expedit_top_centre": "shaded by exterior wall (WNW)",
+  "lawn_mid": "shaded by house"
+ },
+ "footprints_world": {
+  "sun_rooms": {
+   "note": "sunlit shafts through each opening that sees the sun (fraction of the aperture lit, what blocks the rest); the shaft volumes are clipped by the room box and drawn in the beam masks",
+   "per_section": {
+    "bridge": {
+     "section": "bridge",
+     "time": "16:30",
+     "elev": 25.84,
+     "az": 242.43,
+     "openings": [
+      {
+       "name": "front door",
+       "frac": 1,
+       "by": {}
+      },
+      {
+       "name": "living room window (WNW)",
+       "frac": 0.89,
+       "by": {
+        "357 View St": 4
+       }
+      },
+      {
+       "name": "living room window (SSW)",
+       "frac": 0.2,
+       "by": {
+        "357 View St": 28
+       }
+      },
+      {
+       "name": "French doors to the yard",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "kitchen window over the sink (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "dining window (SSW)",
+       "frac": 0.63,
+       "by": {
+        "357 View St": 13
+       }
+      },
+      {
+       "name": "tea room window (WNW)",
+       "frac": 1,
+       "by": {}
+      },
+      {
+       "name": "tea room window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bathroom window (WNW)",
+       "frac": 1,
+       "by": {}
+      },
+      {
+       "name": "bedroom window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bedroom window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bath 2 window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      }
+     ]
+    },
+    "verse3": {
+     "section": "verse3",
+     "time": "18:25",
+     "elev": 4.27,
+     "az": 261.98,
+     "openings": [
+      {
+       "name": "front door",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "living room window (WNW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "living room window (SSW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "French doors to the yard",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "kitchen window over the sink (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "dining window (SSW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "tea room window (WNW)",
+       "frac": 0,
+       "by": {
+        "345A View St": 35
+       }
+      },
+      {
+       "name": "tea room window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bathroom window (WNW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "bedroom window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bedroom window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bath 2 window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      }
+     ]
+    }
+   }
+  },
+  "sun_yard": {
+   "note": "NOT masked: in the yard the sun is the shadow-mapped directional light in flat / lit; the analytic test (sunlit) gives the numbers in NOTES"
+  },
+  "poi_ground": {
+   "centre": [
+    4,
+    -0.6,
+    17.3
+   ],
+   "radius": 4.5,
+   "note": "falls off with distance; the light source of the silence and of the yard after sunset"
+  },
+  "ceiling": {
+   "note": "omni fixtures: no shaft and no mask; they fill the room they hang in"
+  }
+ },
+ "shelf": {
+  "model": "IKEA Expedit 5x5 (2010), espresso / black-brown",
+  "world": {
+   "centre_X": 3.595,
+   "front_Z": 4.535,
+   "spines_Z": 4.55,
+   "back_Z": 4.925,
+   "faces": "WNW (-Z)"
+  },
+  "outer_m": [
+   1.85,
+   1.85,
+   0.39
+  ],
+  "cube_m": 0.3372,
+  "seam_world_X": 3.595,
+  "seam_px": [
+   [
+    36057.7,
+    -2066
+   ],
+   [
+    32519.6,
+    2185
+   ]
+  ],
+  "beauty_half": "LEFT as you face it = NNE (art and literature)",
+  "truth_half": "RIGHT as you face it = SSW (science fiction, textbooks, popular science)",
+  "cubes": [
+   {
+    "cube": "0,0",
+    "col": 0,
+    "row": 0,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      128134.5,
+      -5148.6
+     ],
+     [
+      62841.7,
+      -2302
+     ],
+     [
+      65180.7,
+      -3904.8
+     ],
+     [
+      138499.8,
+      -8836.8
+     ]
+    ],
+    "contents": [
+     "Michelangelo: The Complete Works",
+     "Leonardo da Vinci: The Graphic Work",
+     "Magnum Contact Sheets"
+    ]
+   },
+   {
+    "cube": "1,0",
+    "col": 1,
+    "row": 0,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      61380.3,
+      -2238.3
+     ],
+     [
+      41397.3,
+      -1367.1
+     ],
+     [
+      42376,
+      -2370.7
+     ],
+     [
+      63607.4,
+      -3798.9
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "2,0",
+    "col": 2,
+    "row": 0,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      40776.9,
+      -1340
+     ],
+     [
+      31099.9,
+      -918.1
+     ],
+     [
+      31636.3,
+      -1648.3
+     ],
+     [
+      41725.1,
+      -2327
+     ]
+    ],
+    "contents": {
+     "left": [
+      "Phaidon Atlas of Contemporary Architecture",
+      "1000 Chairs",
+      "Seven Japanese Tales"
+     ],
+     "right": [
+      "The Man Who Mistook His Wife for a Hat",
+      "Phantoms in the Brain",
+      "Chaos: Making a New Science",
+      "The Blind Watchmaker"
+     ]
+    }
+   },
+   {
+    "cube": "3,0",
+    "col": 3,
+    "row": 0,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      30758.6,
+      -903.3
+     ],
+     [
+      25050.9,
+      -654.4
+     ],
+     [
+      25390,
+      -1228.1
+     ],
+     [
+      31282.8,
+      -1624.5
+     ]
+    ],
+    "contents": [
+     "Firefox fox figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,0",
+    "col": 4,
+    "row": 0,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      24835.4,
+      -645
+     ],
+     [
+      21070.8,
+      -480.9
+     ],
+     [
+      21304.9,
+      -953.3
+     ],
+     [
+      25168.4,
+      -1213.2
+     ]
+    ],
+    "contents": [
+     "The Stars My Destination",
+     "A Fire Upon the Deep",
+     "Diaspora",
+     "Blindsight",
+     "Cryptonomicon",
+     "The Moon Is a Harsh Mistress",
+     "Accelerando",
+     "Permutation City",
+     "Contact",
+     "Dune (a second, battered copy)",
+     "The Foundation Trilogy"
+    ]
+   },
+   {
+    "cube": "0,1",
+    "col": 0,
+    "row": 1,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      118830.1,
+      -1837.8
+     ],
+     [
+      60567.8,
+      -743.7
+     ],
+     [
+      62735,
+      -2228.8
+     ],
+     [
+      127681.4,
+      -4987.3
+     ]
+    ],
+    "contents": [
+     "PostgreSQL elephant (Slonik) figurine"
+    ]
+   },
+   {
+    "cube": "1,1",
+    "col": 1,
+    "row": 1,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      59211.3,
+      -718.3
+     ],
+     [
+      40420.6,
+      -365.4
+     ],
+     [
+      41352,
+      -1320.6
+     ],
+     [
+      61278.6,
+      -2167
+     ]
+    ],
+    "contents": [
+     "Gardner’s Art Through the Ages",
+     "The Art Book",
+     "Understanding Comics",
+     "Dream of the Red Chamber, vol. 1",
+     "Dream of the Red Chamber, vol. 2",
+     "Moby-Dick"
+    ]
+   },
+   {
+    "cube": "2,1",
+    "col": 2,
+    "row": 1,
+    "kind": "objects",
+    "half": "split",
+    "px": [
+     [
+      39829.9,
+      -354.3
+     ],
+     [
+      30557.7,
+      -180.2
+     ],
+     [
+      31074.9,
+      -884.1
+     ],
+     [
+      40733,
+      -1294.3
+     ]
+    ],
+    "contents": [
+     "candle"
+    ]
+   },
+   {
+    "cube": "3,1",
+    "col": 3,
+    "row": 1,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      30228.7,
+      -174
+     ],
+     [
+      24705.7,
+      -70.3
+     ],
+     [
+      25035.1,
+      -627.6
+     ],
+     [
+      30734.2,
+      -869.6
+     ]
+    ],
+    "contents": [
+     "Stranger in a Strange Land",
+     "The Hitchhiker’s Guide to the Galaxy",
+     "I, Robot",
+     "Childhood’s End",
+     "Ubik",
+     "The Martian Chronicles",
+     "Fahrenheit 451",
+     "Snow Crash",
+     "The Forever War",
+     "Speaker for the Dead",
+     "Dune Messiah",
+     "Children of Dune",
+     "Foundation and Empire"
+    ]
+   },
+   {
+    "cube": "4,1",
+    "col": 4,
+    "row": 1,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      24496.4,
+      -66.4
+     ],
+     [
+      20831.3,
+      2.5
+     ],
+     [
+      21059.9,
+      -458.7
+     ],
+     [
+      24819.9,
+      -618.4
+     ]
+    ],
+    "contents": [
+     "Tux (Linux penguin) figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "0,2",
+    "col": 0,
+    "row": 2,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      110794.4,
+      1021.5
+     ],
+     [
+      58455.1,
+      704
+     ],
+     [
+      60468.8,
+      -675.9
+     ],
+     [
+      118440.8,
+      -1699.3
+     ]
+    ],
+    "contents": [
+     "Van Gogh: The Complete Paintings",
+     "Matisse",
+     "Agnes Martin",
+     "Sketchbook"
+    ]
+   },
+   {
+    "cube": "1,2",
+    "col": 1,
+    "row": 2,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      57192.7,
+      696.4
+     ],
+     [
+      39490,
+      589
+     ],
+     [
+      40377.5,
+      -321.2
+     ],
+     [
+      59116.8,
+      -652
+     ]
+    ],
+    "contents": [
+     "Firefox fox figurine"
+    ]
+   },
+   {
+    "cube": "2,2",
+    "col": 2,
+    "row": 2,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      38926.9,
+      585.6
+     ],
+     [
+      30034.7,
+      531.7
+     ],
+     [
+      30533.6,
+      -147.4
+     ],
+     [
+      39788,
+      -310.8
+     ]
+    ],
+    "contents": {
+     "left": [
+      "Dalí",
+      "Escher: The Graphic Work",
+      "Calligraphy"
+     ],
+     "right": [
+      "Gödel, Escher, Bach",
+      "The Selfish Gene",
+      "Cosmos"
+     ]
+    }
+   },
+   {
+    "cube": "3,2",
+    "col": 3,
+    "row": 2,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      29717.3,
+      529.7
+     ],
+     [
+      24370.2,
+      497.3
+     ],
+     [
+      24690.3,
+      -44.2
+     ],
+     [
+      30205.2,
+      -141.6
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,2",
+    "col": 4,
+    "row": 2,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      24166.8,
+      496.1
+     ],
+     [
+      20597.4,
+      474.4
+     ],
+     [
+      20820.6,
+      24.1
+     ],
+     [
+      24481.3,
+      -40.5
+     ]
+    ],
+    "contents": [
+     "The Dragons of Eden",
+     "A Short History of Nearly Everything",
+     "Surely You’re Joking, Mr. Feynman!",
+     "The Elegant Universe",
+     "A Brief History of Time",
+     "The Demon-Haunted World",
+     "Synaptic Self",
+     "The Quark and the Jaguar",
+     "QED"
+    ]
+   },
+   {
+    "cube": "0,3",
+    "col": 0,
+    "row": 3,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      103784.4,
+      3515.9
+     ],
+     [
+      56487,
+      2052.7
+     ],
+     [
+      58362.9,
+      767.2
+     ],
+     [
+      110456.2,
+      1141.8
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "1,3",
+    "col": 1,
+    "row": 3,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      55309.2,
+      2016.3
+     ],
+     [
+      38602.2,
+      1499.5
+     ],
+     [
+      39448.8,
+      631.2
+     ],
+     [
+      57104.5,
+      758.2
+     ]
+    ],
+    "contents": [
+     "One Hundred Years of Solitude",
+     "Invisible Cities",
+     "Ficciones",
+     "Pale Fire",
+     "Lolita",
+     "Mrs Dalloway",
+     "The Remains of the Day",
+     "Kafka on the Shore",
+     "The Little Prince",
+     "Middlemarch",
+     "The Waves"
+    ]
+   },
+   {
+    "cube": "2,3",
+    "col": 2,
+    "row": 3,
+    "kind": "objects",
+    "half": "split",
+    "px": [
+     [
+      38064.8,
+      1482.8
+     ],
+     [
+      29529.8,
+      1218.8
+     ],
+     [
+      30011.4,
+      563.3
+     ],
+     [
+      38886.9,
+      627.1
+     ]
+    ],
+    "contents": [
+     "BSD daemon figurine"
+    ]
+   },
+   {
+    "cube": "3,3",
+    "col": 3,
+    "row": 3,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      29223.5,
+      1209.3
+     ],
+     [
+      24044,
+      1049.1
+     ],
+     [
+      24355.2,
+      522.6
+     ],
+     [
+      29694.6,
+      561
+     ]
+    ],
+    "contents": [
+     "Principles of Neural Science (4th ed.)",
+     "Fundamental Neuroscience (3rd ed.)",
+     "Theoretical Neuroscience",
+     "Nonlinear Dynamics and Chaos",
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
+    ]
+   },
+   {
+    "cube": "4,3",
+    "col": 4,
+    "row": 3,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      23846.4,
+      1043
+     ],
+     [
+      20369,
+      935.4
+     ],
+     [
+      20587,
+      495.5
+     ],
+     [
+      24152.1,
+      521.2
+     ]
+    ],
+    "contents": [
+     "GNU figurine"
+    ]
+   },
+   {
+    "cube": "0,4",
+    "col": 0,
+    "row": 4,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      97615.5,
+      5710.9
+     ],
+     [
+      54649.2,
+      3312.1
+     ],
+     [
+      56401,
+      2111.6
+     ],
+     [
+      103488,
+      3621.3
+     ]
+    ],
+    "contents": [
+     "Hokusai",
+     "Rothko",
+     "Klimt",
+     "Interaction of Color",
+     "The Story of Art",
+     "Ways of Seeing",
+     "Leaves of Grass",
+     "Collected Poems"
+    ]
+   },
+   {
+    "cube": "1,4",
+    "col": 1,
+    "row": 4,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      53547.9,
+      3250.6
+     ],
+     [
+      37754.4,
+      2368.9
+     ],
+     [
+      38563,
+      1539.7
+     ],
+     [
+      55226.9,
+      2074
+     ]
+    ],
+    "contents": [
+     "ceramic polar bear"
+    ]
+   },
+   {
+    "cube": "2,4",
+    "col": 2,
+    "row": 4,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      37241.1,
+      2340.2
+     ],
+     [
+      29042.2,
+      1882.5
+     ],
+     [
+      29507.3,
+      1249.4
+     ],
+     [
+      38026.7,
+      1522.5
+     ]
+    ],
+    "contents": {
+     "left": [
+      "Collected Fictions",
+      "The Book of Tea",
+      "The Collected Poems"
+     ],
+     "right": [
+      "Dune",
+      "Foundation",
+      "Neuromancer",
+      "The Left Hand of Darkness"
+     ]
+    }
+   },
+   {
+    "cube": "3,4",
+    "col": 3,
+    "row": 4,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      28746.3,
+      1866
+     ],
+     [
+      23726.8,
+      1585.7
+     ],
+     [
+      24029.5,
+      1073.7
+     ],
+     [
+      29201.5,
+      1239.6
+     ]
+    ],
+    "contents": [
+     "Tux (Linux penguin) figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,4",
+    "col": 4,
+    "row": 4,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      23534.7,
+      1575
+     ],
+     [
+      20145.8,
+      1385.8
+     ],
+     [
+      20358.8,
+      956
+     ],
+     [
+      23832.1,
+      1067.4
+     ]
+    ],
+    "contents": [
+     "The Feynman Lectures on Physics, Vol. I",
+     "The Feynman Lectures on Physics, Vol. II",
+     "The Feynman Lectures on Physics, Vol. III",
+     "Ender’s Game",
+     "Hyperion",
+     "Do Androids Dream of Electric Sheep?",
+     "Solaris",
+     "Rendezvous with Rama",
+     "The Dispossessed"
+    ]
+   }
+  ]
+ },
+ "expedit_2x2": {
+  "world": {
+   "X": [
+    1.9099999999999997,
+    2.3
+   ],
+   "Z": [
+    4.605,
+    5.395
+   ],
+   "faces": "SSW (-X)"
+  },
+  "printer_on_top": true,
+  "px": [
+   15258.1,
+   245
+  ]
+ },
+ "lemon_tree_px": [
+  3775,
+  -3359.8
+ ],
+ "poi_px": [
+  2316.2,
+  87.6
+ ],
+ "opening_px": [
+  11535.3,
+  355
+ ],
+ "timing": {
+  "timeline": "media/karaoke_v2/lyrics_timed.json (-2sm render), full-mix time (*_full); instrumental-track time = s/e",
+  "line": "I nod, past hour reviewed",
+  "line_s": [
+   189.11,
+   191.52
+  ],
+  "nod_word_s": [
+   189.231,
+   189.79
+  ],
+  "push_in": [
+   189.11,
+   191.52
+  ],
+  "instrumental_track_s": {
+   "line": [
+    189.122,
+    191.537
+   ],
+   "nod": [
+    189.243,
+    189.802
+   ]
+  }
+ },
+ "face_marks": {
+  "note": "her eye and temple, px in THIS frame (start or end key of the push-in): where the overlay begins",
+  "who": "jade27",
+  "eyeL_px": [
+   874.4,
+   528.3
+  ],
+  "eyeR_px": [
+   793.2,
+   518
+  ],
+  "eyes_mid_px": [
+   832.5,
+   523
+  ],
+  "templeL_px": [
+   960,
+   453.6
+  ],
+  "templeR_px": [
+   857,
+   446.9
+  ],
+  "eyeL_world": [
+   9.7917,
+   0.9543,
+   17.8855
+  ],
+  "templeL_world": [
+   9.8062,
+   0.9777,
+   17.9094
+  ],
+  "head_pose": {
+   "look": "firstLove27:eyes",
+   "nod": 14
+  }
+ },
+ "first_love_costume": {
+  "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
+  "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
+  "height_m": 1.78
+ },
+ "figure_report": {
+  "A1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": 24
+  },
+  "A2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.49,
+    "R": 0.97
+   },
+   "headTurn": -31
+  },
+  "A3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.46,
+    "R": 0.97
+   },
+   "headTurn": 32
+  },
+  "S1": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 1.11,
+    "R": 1.11
+   },
+   "headTurn": 80
+  },
+  "B2": {
+   "legs": {
+    "L": {
+     "reach": 0.78
+    },
+    "R": {
+     "reach": 0.78
+    }
+   },
+   "arms": {
+    "L": 1.13,
+    "R": 0.51
+   },
+   "headTurn": -80
+  },
+  "B1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": 1
+  },
+  "E1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.47,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "C1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.49
+   },
+   "headTurn": -24
+  },
+  "C2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.52
+   },
+   "headTurn": 27
+  },
+  "C3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.51,
+    "R": 0.97
+   },
+   "headTurn": -28
+  },
+  "T1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 1.26
+   },
+   "headTurn": -15
+  },
+  "G1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.47
+   },
+   "headTurn": 0
+  },
+  "H1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "W1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "W2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.5
+   },
+   "headTurn": 0
+  },
+  "poi": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.64,
+    "R": 0.64
+   },
+   "headTurn": 4
+  },
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.51
+   },
+   "headTurn": 0
+  }
+ }
+}

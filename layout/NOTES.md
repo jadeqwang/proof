@@ -63,3 +63,44 @@
 - Beam masks: `sets/_beam.js` is the one beam file (the four set-local beam.js re-export it). New: prismSolid, coneSolid,
   splitAtTop, clipFaces, applyBeamMask (surface-in-volume shader + white volumes), maskTwins(BASE, { surf }).
   `engine/render.js`: a look may carry its own `material` for flat/label. `sets/_sheet.sh <set> [modes]` = shared sheets.
+
+## 2026-11-25: articulated mannequin
+Goal (director): much more detailed, articulated mannequins before anything goes to the image models: five fingers with
+three phalanges and real knuckles, an opposable thumb (CMC, MCP, IP), a shoulder girdle so arms grow out of the torso.
+- Plan: new `engine/hand.js` (hand shapes as per-joint angles + per-shot overrides, thumb-to-finger contact solver,
+  five-finger geometry), new `engine/anatomy.js` (tapered limbs, merged geometry, torso/girdle/feet), `buildFigure`
+  rebuilt on them with the SAME pose solve (palm-centre target, wrist = target - 0.26 Lh along the fingers, IK, anchors).
+  `render.js`: meshes may share a line-mode id (`userData.idGroup`) so the phalanges / arm segments of one limb read
+  as one surface (no seam rings), while shadows and hulls still see separate meshes.
+- Baseline: line + flat renders of the ten sets copied before any change (scratchpad `before/`).
+- Checkpoint A (engine done, first pass): `engine/anatomy.js` (taperGeo sphere-cones, sweptGeo torso along a Bezier
+  spine with the frame slerped pelvis -> chest, palmGeo superellipsoid, mergeGeos, partMesh + idGroup),
+  `engine/hand.js` (HANDS as joint angles, resolveHand overrides, thumb `touch` solver, buildHand, handFrame moved
+  here; mannequin.js re-exports HANDS / handFrame / resolveHand / buildHand). `body.js` hand5 now calls buildHand.
+  render.js: `userData.idGroup` -> shared line-mode id. Child hand lengths 0.10 -> child3 .112, child4 .111,
+  child5 .11, child7 .107, child10 .106 (of height; published hand-length norms). Test set `sets/mtest/`.
+- Lessons: coincident surfaces of two id groups z-fight into zigzag lines (thumb MCP, sleeve edge at the elbow):
+  the outer part must enclose the joint (radius x1.1). Clavicle as a chain of tubes reads as a bead necklace: one
+  straight half-buried bone is enough. Armpit folds on a hanging arm stand off the chest: scaled by arm elevation.
+- Checkpoint B (sets): rendered the nine sets twice (after the hand/body pass, then after the clavicle fix); sheets
+  rebuilt with `_sheet.sh`. Engine additions found necessary in the sets:
+  - arm `tip: { finger, at, off }`: the engine solves the palm so a fingertip lands on a point. kitchen90 K5: the
+    thumb TIPS now sit on her cheeks, palms against the sides of her face, fingers up to the temples (the old palm
+    targets put the mitts' thumbs across her chin; now visible as such with real thumbs).
+  - arm `hold: { r, h, label, prop, centre, axis }`: a cylinder across the palm that the fingers and thumb wrap
+    (chord-per-phalanx wrap solve, thumb goal solve). mv10 `cupArm` holds a real cup (`cup of lemonade`, fingers
+    'fwd', palm 'in'; was fingers 'up' round nothing: the old mitt only read as a block). market93 mamaGrab /
+    mamaLead: `hold: { r: 0.027, prop: false, centre: true, axis: along her forearm }` so the hand closes ON the
+    forearm (it sat under it with the fingers along it).
+  - kitchen90 build: the pencil runs through the pinch (index/thumb tips), slanting back over the hand (was a fixed
+    offset from the palm, made for the mitt).
+  - Clavicle: sternal end sunk, acromial end tucked in (read as breast-like arcs / shoulder knobs on the children).
+- attic88 (not one of the ten): v4 setups (engine/body.js) dry-rendered to scratch only: they build, new hands.
+- Done (2026-11-25 15:05): the ten sets re-rendered (shots + beam masks), sheets rebuilt, `python3 layout/gallery.py`
+  (10 sets, 100 shots). shanghai86 was being rebuilt by another agent while this ran (build/layout/shots/paper.js
+  changing at 14:57-14:59); it was re-rendered from whatever was on disk at 15:00 and its geometry was not touched.
+  Render times unchanged (0.1-0.8 s a mode). Test sheets: media/layout/_sheets/mtest_{line,flat}.jpg and
+  mtest_hands_{line,flat}.jpg (`sh layout/sets/mtest/sheet.sh`).
+- Still open: hands at wide-shot scale fill in as dark blobs in line mode (fingers 1-2 px wide; unavoidable at that
+  size); the raised-arm armpit fold draws a small flap line; AD_keys / AD_piano are flat hands as staged (a curled
+  "tapping" hand would be a staging choice: hand: { shape: 'relax' }).

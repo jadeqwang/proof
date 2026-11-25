@@ -1,0 +1,2373 @@
+{
+ "shot": "BR4a",
+ "set": "mv10",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.45,
+   1,
+   4.33
+  ],
+  "target": [
+   -0.45,
+   0.95,
+   0.39
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0.9999,
+   -0.0127,
+   0,
+   0,
+   0.0127,
+   0.9999,
+   0,
+   -0.45,
+   1,
+   4.33,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0.9999,
+   0.0127,
+   0,
+   0,
+   -0.0127,
+   0.9999,
+   0,
+   0.45,
+   -0.945,
+   -4.3423,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "slider_fixed_glass": {
+   "px": [
+    [
+     3286.1,
+     -166.3
+    ],
+    [
+     4378.2,
+     -486.8
+    ],
+    [
+     4332.9,
+     1477.3
+    ],
+    [
+     3265,
+     1173.1
+    ]
+   ],
+   "world": [
+    [
+     3.06,
+     2.03,
+     1.5
+    ],
+    [
+     3.06,
+     2.03,
+     2.4
+    ],
+    [
+     3.06,
+     0,
+     2.4
+    ],
+    [
+     3.06,
+     0,
+     1.5
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "slider_opening": {
+   "px": [
+    [
+     4378.2,
+     -486.8
+    ],
+    [
+     7403.4,
+     -1374.7
+    ],
+    [
+     7244.3,
+     2306.8
+    ],
+    [
+     4332.9,
+     1477.3
+    ]
+   ],
+   "world": [
+    [
+     3.06,
+     2.03,
+     2.4
+    ],
+    [
+     3.06,
+     2.03,
+     3.3
+    ],
+    [
+     3.06,
+     0,
+     3.3
+    ],
+    [
+     3.06,
+     0,
+     2.4
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "A1": {
+   "px": [
+    -2141.1,
+    -714.3
+   ],
+   "eyes": [
+    -1883.4,
+    -660
+   ],
+   "mouth": [
+    -1915,
+    -547.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 47
+  },
+  "A2": {
+   "px": [
+    -1025.8,
+    -333
+   ],
+   "eyes": [
+    -1215.1,
+    -379.6
+   ],
+   "mouth": [
+    -1224.4,
+    -280.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 120
+  },
+  "A3": {
+   "px": [
+    -3667.2,
+    -1996
+   ],
+   "eyes": [
+    -2878.2,
+    -1564.1
+   ],
+   "mouth": [
+    -2974.4,
+    -1413.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 92
+  },
+  "S1": {
+   "px": [
+    -664.1,
+    328.5
+   ],
+   "eyes": [
+    -689.2,
+    303.5
+   ],
+   "mouth": [
+    -684.4,
+    355.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 18
+  },
+  "B1": {
+   "px": [
+    -351.8,
+    -75.2
+   ],
+   "eyes": [
+    -460,
+    -57.7
+   ],
+   "mouth": [
+    -430.5,
+    2.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 96
+  },
+  "B2": {
+   "px": [
+    -1181.5,
+    307.9
+   ],
+   "eyes": [
+    -1066,
+    270.3
+   ],
+   "mouth": [
+    -1038.1,
+    330
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 65
+  },
+  "E1": {
+   "px": [
+    3511.8,
+    -66.5
+   ],
+   "eyes": [
+    3639.2,
+    -82.5
+   ],
+   "mouth": [
+    3634.9,
+    -25.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 118
+  },
+  "C1": {
+   "px": [
+    21618.3,
+    -2190.2
+   ],
+   "eyes": [
+    24274.8,
+    -2545.3
+   ],
+   "mouth": [
+    24300.6,
+    -2231.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 150
+  },
+  "C2": {
+   "px": [
+    73089.2,
+    -9582.2
+   ],
+   "eyes": [
+    54396,
+    -6989.5
+   ],
+   "mouth": [
+    56009.7,
+    -6473.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 26
+  },
+  "C3": {
+   "px": [
+    -26363.8,
+    3284.2
+   ],
+   "eyes": [
+    -33440.4,
+    4118.5
+   ],
+   "mouth": [
+    -34519.6,
+    3804.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 128
+  },
+  "W1": {
+   "px": [
+    -8444.3,
+    1309.8
+   ],
+   "eyes": [
+    -8936.6,
+    1339.1
+   ],
+   "mouth": [
+    -8900.6,
+    1254.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 129
+  },
+  "W2": {
+   "px": [
+    -173785.5,
+    13076.5
+   ],
+   "eyes": [
+    -137216.4,
+    10332.8
+   ],
+   "mouth": [
+    -140040,
+    9418.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 164
+  },
+  "T1": {
+   "px": [
+    4018.5,
+    146.9
+   ],
+   "eyes": [
+    3928.1,
+    186.5
+   ],
+   "mouth": [
+    3964.2,
+    215.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 109
+  },
+  "H1": {
+   "px": [
+    35622.5,
+    -3039.4
+   ],
+   "eyes": [
+    37808.5,
+    -3381
+   ],
+   "mouth": [
+    37702.8,
+    -2965.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 12
+  },
+  "G1": {
+   "px": [
+    22618.1,
+    -3092.8
+   ],
+   "eyes": [
+    25739,
+    -3531.4
+   ],
+   "mouth": [
+    25502.1,
+    -3110.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 150
+  },
+  "poi": {
+   "px": [
+    -36270.6,
+    3150.5
+   ],
+   "eyes": [
+    -39882.9,
+    3386
+   ],
+   "mouth": [
+    -39442.3,
+    3064.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 25
+  },
+  "jade27": {
+   "px": [
+    1598.6,
+    154
+   ],
+   "eyes": [
+    1542.6,
+    159.5
+   ],
+   "mouth": [
+    1544,
+    198.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 117
+  },
+  "firstLove27": {
+   "px": [
+    320.6,
+    136.2
+   ],
+   "eyes": [
+    368.6,
+    156.8
+   ],
+   "mouth": [
+    359.1,
+    190
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 117
+  }
+ },
+ "hands": {
+  "A1.L": {
+   "px": [
+    -1539.1,
+    793.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A1.R": {
+   "px": [
+    -2522.9,
+    -94
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "A2.L": {
+   "px": [
+    -1256.9,
+    423.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A2.R": {
+   "px": [
+    -1106.6,
+    886.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "A3.L": {
+   "px": [
+    -2834.5,
+    -303.6
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "A3.R": {
+   "px": [
+    -2698.4,
+    965
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "S1.L": {
+   "px": [
+    -253.4,
+    848
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "S1.R": {
+   "px": [
+    -374.6,
+    881.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B1.L": {
+   "px": [
+    -369.2,
+    721.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B1.R": {
+   "px": [
+    -534.5,
+    292.9
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "B2.L": {
+   "px": [
+    -635.2,
+    963.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "B2.R": {
+   "px": [
+    -966.7,
+    708.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "E1.L": {
+   "px": [
+    3640.1,
+    278.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "E1.R": {
+   "px": [
+    3743.4,
+    661
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C1.L": {
+   "px": [
+    17444,
+    1261.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C1.R": {
+   "px": [
+    52499.3,
+    -1790.4
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "C2.L": {
+   "px": [
+    -102041.7,
+    -2476
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "C2.R": {
+   "px": [
+    34441.6,
+    -2328.2
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "C3.L": {
+   "px": [
+    -141068.8,
+    4068.2
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "C3.R": {
+   "px": [
+    -29638.2,
+    -1125.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W1.L": {
+   "px": [
+    -9521.6,
+    257.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W1.R": {
+   "px": [
+    -7733.1,
+    309.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W2.L": {
+   "px": [
+    117787.6,
+    4235
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W2.R": {
+   "px": [
+    -63174.1,
+    1872.8
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "T1.L": {
+   "px": [
+    4085.5,
+    655.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "T1.R": {
+   "px": [
+    3658.4,
+    474.9
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "H1.L": {
+   "px": [
+    92818.2,
+    3875.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "H1.R": {
+   "px": [
+    21649,
+    1286.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "G1.L": {
+   "px": [
+    14909.8,
+    1074.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "G1.R": {
+   "px": [
+    44344.9,
+    -2324.2
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "poi.L": {
+   "px": [
+    -19903.5,
+    871.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "poi.R": {
+   "px": [
+    -1871354.3,
+    31397.7
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade27.L": {
+   "px": [
+    1224.5,
+    340
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade27.R": {
+   "px": [
+    1448.3,
+    347.9
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.L": {
+   "px": [
+    211.4,
+    608.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.R": {
+   "px": [
+    410.5,
+    612.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [
+  {
+   "name": "lamp1",
+   "kind": "paper floor lamp (omni, warm)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    1.15,
+    1.3,
+    4.15
+   ],
+   "px": [
+    17912.5,
+    -2662.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.985,
+    0.17
+   ],
+   "toward_camera": -0.852,
+   "aim_world": [
+    -0.45,
+    1,
+    0.375
+   ]
+  },
+  {
+   "name": "lamp2",
+   "kind": "paper floor lamp (omni, warm)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    1.93,
+    1.3,
+    4.15
+   ],
+   "px": [
+    26176.8,
+    -2662.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.993,
+    0.116
+   ],
+   "toward_camera": -0.697,
+   "aim_world": [
+    -0.45,
+    1,
+    0.375
+   ]
+  },
+  {
+   "name": "lamp3",
+   "kind": "paper floor lamp (omni, warm)",
+   "on": true,
+   "color": "#ffc98a",
+   "world": [
+    2.71,
+    1.3,
+    4.15
+   ],
+   "px": [
+    34441.2,
+    -2662.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.996,
+    0.085
+   ],
+   "toward_camera": -0.542,
+   "aim_world": [
+    -0.45,
+    1,
+    0.375
+   ]
+  },
+  {
+   "name": "dusk",
+   "kind": "low sun over the west fence (parallel); pos is a point 14 m up the beam",
+   "on": true,
+   "color": "#ff8a4a",
+   "world": [
+    18.6558,
+    2.8353,
+    -0.2312
+   ],
+   "px": [
+    8819.9,
+    -238.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.999,
+    0.055
+   ],
+   "toward_camera": 0.413,
+   "aim_world": [
+    5,
+    1.4,
+    2.5
+   ]
+  },
+  {
+   "name": "poi",
+   "kind": "fire poi (two moving flames; effective point between the circles)",
+   "on": false,
+   "color": "#ff7a20",
+   "world": [
+    8.8,
+    1.15,
+    4.8
+   ],
+   "px": [
+    -35632.3,
+    1109.7
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -1,
+    0.027
+   ],
+   "toward_camera": -0.066
+  }
+ ],
+ "warnings": [],
+ "intent": "Square-on elevation of the Expedit with the seam (the middle column) on the centre line: BEAUTY (art and literature) frame-left, TRUTH (science fiction, textbooks, popular science) frame-right, every other cube books, the rest small objects. She has turned to the shelf at its right end: her left hand out toward the beauty half, her right on the truth books in front of her; he stands past the shelf’s left end reading the art books, back to us, out of the lamps’ paths. Her three shadows lie on the truth half.",
+ "layout_set": "mv10",
+ "space": "room",
+ "time": "2:49-2:54",
+ "section": "Bridge",
+ "light_state": {
+  "lamps": true,
+  "dusk": true,
+  "poi": false
+ },
+ "amplitude_pct": 100,
+ "dusk": {
+  "travel_dir_world": [
+   -0.9754,
+   -0.1025,
+   0.1951
+  ],
+  "elevation_deg": 6,
+  "lit_above_y_at": {
+   "house_wall": 0.97,
+   "tree": 1.38
+  },
+  "shaft_in_room": {
+   "at_slider": {
+    "z0": 1.5,
+    "z1": 3.3,
+    "y0": 0.9591661178745884,
+    "y1": 2.03
+   },
+   "at_x0": {
+    "z0": 2.1,
+    "z1": 3.9,
+    "y0": 0.643853412077559,
+    "y1": 1.7146872942029705
+   },
+   "at_left_wall": {
+    "z0": 2.7,
+    "z1": 4.5,
+    "y0": 0.32854070628052967,
+    "y1": 1.3993745884059412
+   }
+  }
+ },
+ "footprints_world": {
+  "lamps_on_shelf": {
+   "surface": "the Expedit face: frame front z = 0.39, book spines z = 0.375 (13 book cubes), back wall z = 0 inside the 12 object cubes",
+   "rect": {
+    "x0": -1.375,
+    "x1": 0.47500000000000003,
+    "y0": 0,
+    "y1": 1.85
+   },
+   "note": "all three lamps reach the whole shelf; the lit figure is the shelf MINUS the three shadows of whoever stands at it (see three_shadows in the sidecar). The sides, floor and top of each cube are not in the mask."
+  },
+  "dusk_shaft_room": {
+   "note": "slab of sun through the slider; cross-sections from duskShaftAt(x)",
+   "at_slider": {
+    "z0": 1.5,
+    "z1": 3.3,
+    "y0": 0.9591661178745884,
+    "y1": 2.03
+   },
+   "at_room_centre": {
+    "z0": 2.1,
+    "z1": 3.9,
+    "y0": 0.643853412077559,
+    "y1": 1.7146872942029705
+   },
+   "at_left_wall": {
+    "z0": 2.7,
+    "z1": 4.5,
+    "y0": 0.32854070628052967,
+    "y1": 1.3993745884059412
+   },
+   "lands_on": "left wall x = -3 (z 2.7 .. 4.4, y 0.34 .. 1.40) and the left end of the front wall; it never reaches the shelf wall"
+  },
+  "dusk_yard": {
+   "note": "everything above duskFloorY(x): tree canopy and lemons, heads and shoulders; lawn and patio are in the fence shadow",
+   "y_at_tree": 1.3795830589372942,
+   "y_at_house_wall": 0.9717786261064696
+  },
+  "poi_ground": {
+   "centre": [
+    8.8,
+    0,
+    4.8
+   ],
+   "radius": 4.5,
+   "note": "falls off with distance; the second light source of verse 3 and the only one at 3:29"
+  },
+  "lamp_spill_patio": {
+   "note": "lamp light leaving the open slider: a wedge on the patio from the mean lamp position through the two jambs",
+   "polygon": [
+    [
+     3.12,
+     0,
+     1.5
+    ],
+    [
+     3.12,
+     0,
+     3.3
+    ],
+    [
+     5.6,
+     0,
+     1.72
+    ],
+    [
+     5.6,
+     0,
+     0.2
+    ],
+    [
+     3.69,
+     0,
+     0.2
+    ]
+   ]
+  }
+ },
+ "shelf": {
+  "model": "IKEA Expedit 5x5 (2010), espresso / black-brown",
+  "centre_x": -0.45,
+  "outer_m": [
+   1.85,
+   1.85,
+   0.39
+  ],
+  "cube_m": 0.3372,
+  "spine_plane_z": 0.375,
+  "seam_x": -0.45,
+  "seam_px": [
+   [
+    960,
+    988.6
+   ],
+   [
+    960,
+    112.4
+   ]
+  ],
+  "beauty_half": "LEFT (art and literature)",
+  "truth_half": "RIGHT (science fiction, textbooks, popular science)",
+  "truth_half_px": [
+   [
+    960,
+    112.4
+   ],
+   [
+    1399.5,
+    112.4
+   ],
+   [
+    1396.9,
+    988.6
+   ],
+   [
+    960,
+    988.6
+   ]
+  ],
+  "beauty_half_px": [
+   [
+    520.5,
+    112.4
+   ],
+   [
+    960,
+    112.4
+   ],
+   [
+    960,
+    988.6
+   ],
+   [
+    523.1,
+    988.6
+   ]
+  ],
+  "cubes": [
+   {
+    "cube": "0,0",
+    "col": 0,
+    "row": 0,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      546.2,
+      806.1
+     ],
+     [
+      705.7,
+      806.1
+     ],
+     [
+      706,
+      965.1
+     ],
+     [
+      546.7,
+      965.1
+     ]
+    ],
+    "contents": [
+     "Michelangelo: The Complete Works",
+     "Leonardo da Vinci: The Graphic Work",
+     "Magnum Contact Sheets"
+    ]
+   },
+   {
+    "cube": "1,0",
+    "col": 1,
+    "row": 0,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      713.3,
+      806.1
+     ],
+     [
+      872.7,
+      806.1
+     ],
+     [
+      872.8,
+      965.1
+     ],
+     [
+      713.5,
+      965.1
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "2,0",
+    "col": 2,
+    "row": 0,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      880.3,
+      806.1
+     ],
+     [
+      1039.7,
+      806.1
+     ],
+     [
+      1039.6,
+      965.1
+     ],
+     [
+      880.4,
+      965.1
+     ]
+    ],
+    "contents": {
+     "left": [
+      "Phaidon Atlas of Contemporary Architecture",
+      "1000 Chairs",
+      "Seven Japanese Tales"
+     ],
+     "right": [
+      "The Man Who Mistook His Wife for a Hat",
+      "Phantoms in the Brain",
+      "Chaos: Making a New Science",
+      "The Blind Watchmaker"
+     ]
+    }
+   },
+   {
+    "cube": "3,0",
+    "col": 3,
+    "row": 0,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      1047.3,
+      806.1
+     ],
+     [
+      1206.7,
+      806.1
+     ],
+     [
+      1206.5,
+      965.1
+     ],
+     [
+      1047.2,
+      965.1
+     ]
+    ],
+    "contents": [
+     "Firefox fox figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,0",
+    "col": 4,
+    "row": 0,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      1214.3,
+      806.1
+     ],
+     [
+      1373.8,
+      806.1
+     ],
+     [
+      1373.3,
+      965.1
+     ],
+     [
+      1214,
+      965.1
+     ]
+    ],
+    "contents": [
+     "The Stars My Destination",
+     "A Fire Upon the Deep",
+     "Diaspora",
+     "Blindsight",
+     "Cryptonomicon",
+     "The Moon Is a Harsh Mistress",
+     "Accelerando",
+     "Permutation City",
+     "Contact",
+     "Dune (a second, battered copy)",
+     "The Foundation Trilogy"
+    ]
+   },
+   {
+    "cube": "0,1",
+    "col": 0,
+    "row": 1,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      545.8,
+      639.2
+     ],
+     [
+      705.4,
+      639.2
+     ],
+     [
+      705.7,
+      798.6
+     ],
+     [
+      546.2,
+      798.6
+     ]
+    ],
+    "contents": [
+     "PostgreSQL elephant (Slonik) figurine"
+    ]
+   },
+   {
+    "cube": "1,1",
+    "col": 1,
+    "row": 1,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      713,
+      639.2
+     ],
+     [
+      872.6,
+      639.2
+     ],
+     [
+      872.7,
+      798.6
+     ],
+     [
+      713.2,
+      798.6
+     ]
+    ],
+    "contents": [
+     "Gardner’s Art Through the Ages",
+     "The Art Book",
+     "Understanding Comics",
+     "Dream of the Red Chamber, vol. 1",
+     "Dream of the Red Chamber, vol. 2",
+     "Moby-Dick"
+    ]
+   },
+   {
+    "cube": "2,1",
+    "col": 2,
+    "row": 1,
+    "kind": "objects",
+    "half": "split",
+    "px": [
+     [
+      880.2,
+      639.2
+     ],
+     [
+      1039.8,
+      639.2
+     ],
+     [
+      1039.7,
+      798.6
+     ],
+     [
+      880.3,
+      798.6
+     ]
+    ],
+    "contents": [
+     "candle"
+    ]
+   },
+   {
+    "cube": "3,1",
+    "col": 3,
+    "row": 1,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      1047.4,
+      639.2
+     ],
+     [
+      1207,
+      639.2
+     ],
+     [
+      1206.8,
+      798.6
+     ],
+     [
+      1047.3,
+      798.6
+     ]
+    ],
+    "contents": [
+     "Stranger in a Strange Land",
+     "The Hitchhiker’s Guide to the Galaxy",
+     "I, Robot",
+     "Childhood’s End",
+     "Ubik",
+     "The Martian Chronicles",
+     "Fahrenheit 451",
+     "Snow Crash",
+     "The Forever War",
+     "Speaker for the Dead",
+     "Dune Messiah",
+     "Children of Dune",
+     "Foundation and Empire"
+    ]
+   },
+   {
+    "cube": "4,1",
+    "col": 4,
+    "row": 1,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      1214.6,
+      639.2
+     ],
+     [
+      1374.2,
+      639.2
+     ],
+     [
+      1373.8,
+      798.6
+     ],
+     [
+      1214.3,
+      798.6
+     ]
+    ],
+    "contents": [
+     "Tux (Linux penguin) figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "0,2",
+    "col": 0,
+    "row": 2,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      545.3,
+      471.9
+     ],
+     [
+      705.1,
+      471.9
+     ],
+     [
+      705.4,
+      631.7
+     ],
+     [
+      545.7,
+      631.7
+     ]
+    ],
+    "contents": [
+     "Van Gogh: The Complete Paintings",
+     "Matisse",
+     "Agnes Martin",
+     "Sketchbook"
+    ]
+   },
+   {
+    "cube": "1,2",
+    "col": 1,
+    "row": 2,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      712.7,
+      471.9
+     ],
+     [
+      872.5,
+      471.9
+     ],
+     [
+      872.6,
+      631.7
+     ],
+     [
+      713,
+      631.7
+     ]
+    ],
+    "contents": [
+     "Firefox fox figurine"
+    ]
+   },
+   {
+    "cube": "2,2",
+    "col": 2,
+    "row": 2,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      880.1,
+      471.9
+     ],
+     [
+      1039.9,
+      471.9
+     ],
+     [
+      1039.8,
+      631.7
+     ],
+     [
+      880.2,
+      631.7
+     ]
+    ],
+    "contents": {
+     "left": [
+      "Dalí",
+      "Escher: The Graphic Work",
+      "Calligraphy"
+     ],
+     "right": [
+      "Gödel, Escher, Bach",
+      "The Selfish Gene",
+      "Cosmos"
+     ]
+    }
+   },
+   {
+    "cube": "3,2",
+    "col": 3,
+    "row": 2,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      1047.5,
+      471.9
+     ],
+     [
+      1207.3,
+      471.9
+     ],
+     [
+      1207,
+      631.7
+     ],
+     [
+      1047.4,
+      631.7
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,2",
+    "col": 4,
+    "row": 2,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      1214.9,
+      471.9
+     ],
+     [
+      1374.7,
+      471.9
+     ],
+     [
+      1374.3,
+      631.7
+     ],
+     [
+      1214.6,
+      631.7
+     ]
+    ],
+    "contents": [
+     "The Dragons of Eden",
+     "A Short History of Nearly Everything",
+     "Surely You’re Joking, Mr. Feynman!",
+     "The Elegant Universe",
+     "A Brief History of Time",
+     "The Demon-Haunted World",
+     "Synaptic Self",
+     "The Quark and the Jaguar",
+     "QED"
+    ]
+   },
+   {
+    "cube": "0,3",
+    "col": 0,
+    "row": 3,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      544.8,
+      304.3
+     ],
+     [
+      704.8,
+      304.3
+     ],
+     [
+      705.1,
+      464.4
+     ],
+     [
+      545.3,
+      464.4
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "1,3",
+    "col": 1,
+    "row": 3,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      712.4,
+      304.3
+     ],
+     [
+      872.4,
+      304.3
+     ],
+     [
+      872.5,
+      464.4
+     ],
+     [
+      712.7,
+      464.4
+     ]
+    ],
+    "contents": [
+     "One Hundred Years of Solitude",
+     "Invisible Cities",
+     "Ficciones",
+     "Pale Fire",
+     "Lolita",
+     "Mrs Dalloway",
+     "The Remains of the Day",
+     "Kafka on the Shore",
+     "The Little Prince",
+     "Middlemarch",
+     "The Waves"
+    ]
+   },
+   {
+    "cube": "2,3",
+    "col": 2,
+    "row": 3,
+    "kind": "objects",
+    "half": "split",
+    "px": [
+     [
+      880,
+      304.3
+     ],
+     [
+      1040,
+      304.3
+     ],
+     [
+      1039.9,
+      464.4
+     ],
+     [
+      880.1,
+      464.4
+     ]
+    ],
+    "contents": [
+     "BSD daemon figurine"
+    ]
+   },
+   {
+    "cube": "3,3",
+    "col": 3,
+    "row": 3,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      1047.6,
+      304.3
+     ],
+     [
+      1207.6,
+      304.3
+     ],
+     [
+      1207.3,
+      464.4
+     ],
+     [
+      1047.5,
+      464.4
+     ]
+    ],
+    "contents": [
+     "Principles of Neural Science (4th ed.)",
+     "Fundamental Neuroscience (3rd ed.)",
+     "Theoretical Neuroscience",
+     "Nonlinear Dynamics and Chaos",
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
+    ]
+   },
+   {
+    "cube": "4,3",
+    "col": 4,
+    "row": 3,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      1215.2,
+      304.3
+     ],
+     [
+      1375.2,
+      304.3
+     ],
+     [
+      1374.7,
+      464.4
+     ],
+     [
+      1214.9,
+      464.4
+     ]
+    ],
+    "contents": [
+     "GNU figurine"
+    ]
+   },
+   {
+    "cube": "0,4",
+    "col": 0,
+    "row": 4,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      544.3,
+      136.3
+     ],
+     [
+      704.5,
+      136.3
+     ],
+     [
+      704.8,
+      296.7
+     ],
+     [
+      544.8,
+      296.7
+     ]
+    ],
+    "contents": [
+     "Hokusai",
+     "Rothko",
+     "Klimt",
+     "Interaction of Color",
+     "The Story of Art",
+     "Ways of Seeing",
+     "Leaves of Grass",
+     "Collected Poems"
+    ]
+   },
+   {
+    "cube": "1,4",
+    "col": 1,
+    "row": 4,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      712.1,
+      136.3
+     ],
+     [
+      872.3,
+      136.3
+     ],
+     [
+      872.4,
+      296.7
+     ],
+     [
+      712.4,
+      296.7
+     ]
+    ],
+    "contents": [
+     "ceramic polar bear"
+    ]
+   },
+   {
+    "cube": "2,4",
+    "col": 2,
+    "row": 4,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      879.9,
+      136.3
+     ],
+     [
+      1040.1,
+      136.3
+     ],
+     [
+      1040,
+      296.7
+     ],
+     [
+      880,
+      296.7
+     ]
+    ],
+    "contents": {
+     "left": [
+      "Collected Fictions",
+      "The Book of Tea",
+      "The Collected Poems"
+     ],
+     "right": [
+      "Dune",
+      "Foundation",
+      "Neuromancer",
+      "The Left Hand of Darkness"
+     ]
+    }
+   },
+   {
+    "cube": "3,4",
+    "col": 3,
+    "row": 4,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      1047.7,
+      136.3
+     ],
+     [
+      1207.9,
+      136.3
+     ],
+     [
+      1207.6,
+      296.7
+     ],
+     [
+      1047.6,
+      296.7
+     ]
+    ],
+    "contents": [
+     "Tux (Linux penguin) figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,4",
+    "col": 4,
+    "row": 4,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      1215.5,
+      136.3
+     ],
+     [
+      1375.7,
+      136.3
+     ],
+     [
+      1375.2,
+      296.7
+     ],
+     [
+      1215.2,
+      296.7
+     ]
+    ],
+    "contents": [
+     "The Feynman Lectures on Physics, Vol. I",
+     "The Feynman Lectures on Physics, Vol. II",
+     "The Feynman Lectures on Physics, Vol. III",
+     "Ender’s Game",
+     "Hyperion",
+     "Do Androids Dream of Electric Sheep?",
+     "Solaris",
+     "Rendezvous with Rama",
+     "The Dispossessed"
+    ]
+   }
+  ]
+ },
+ "lemon_tree_px": [
+  4714.2,
+  -491.6
+ ],
+ "poi_px": [
+  -35632.3,
+  1109.7
+ ],
+ "three_shadows": {
+  "receiver": "the Expedit face: numbers below are on the spine plane (as if the face were flat); the line ribbons are on frame front / spines / back wall",
+  "note": "three point lamps at one height and one distance from the spines: same magnification, shifted copies. Outline ribbons in line/label; real shadow maps in flat/lit.",
+  "geometry": {
+   "D": 3.775,
+   "d_pelvis": 1.065,
+   "magnification": 1.393,
+   "k": 0.393,
+   "lamp_offsets_right_of_her": [
+    0.6,
+    1.38,
+    2.16
+   ],
+   "pelvis_shadow_x": [
+    0.314,
+    0.008,
+    -0.299
+   ]
+  },
+  "shadows": [
+   {
+    "lamp": 1,
+    "lamp_world": [
+     1.15,
+     1.3,
+     4.15
+    ],
+    "head_shadow_world": [
+     0.303,
+     1.663,
+     0.375
+    ],
+    "head_lands_on": {
+     "cube": "4,4",
+     "kind": "books",
+     "half": "truth"
+    },
+    "bbox_world": {
+     "x0": -0.433,
+     "x1": 0.643,
+     "y0": 0.002,
+     "y1": 1.838
+    },
+    "width_m": 1.076,
+    "height_m": 1.836,
+    "area_m2": 0.869,
+    "pct_on_expedit": 84.8,
+    "pct_on_truth_half": 84.8,
+    "pct_on_beauty_half": 0,
+    "pct_off_shelf": 15.2,
+    "head_shadow_px": [
+     1316.2,
+     202.7
+    ],
+    "bbox_px": [
+     [
+      968,
+      119.7
+     ],
+     [
+      1474.3,
+      985.9
+     ]
+    ]
+   },
+   {
+    "lamp": 2,
+    "lamp_world": [
+     1.93,
+     1.3,
+     4.15
+    ],
+    "head_shadow_world": [
+     0.001,
+     1.663,
+     0.375
+    ],
+    "head_lands_on": {
+     "cube": "3,4",
+     "kind": "objects",
+     "half": "truth"
+    },
+    "bbox_world": {
+     "x0": -0.621,
+     "x1": 0.343,
+     "y0": 0.002,
+     "y1": 1.838
+    },
+    "width_m": 0.964,
+    "height_m": 1.836,
+    "area_m2": 0.896,
+    "pct_on_expedit": 100,
+    "pct_on_truth_half": 96.4,
+    "pct_on_beauty_half": 3.6,
+    "pct_off_shelf": 0,
+    "head_shadow_px": [
+     1173.3,
+     202.7
+    ],
+    "bbox_px": [
+     [
+      879.1,
+      119.7
+     ],
+     [
+      1333.1,
+      985.9
+     ]
+    ]
+   },
+   {
+    "lamp": 3,
+    "lamp_world": [
+     2.71,
+     1.3,
+     4.15
+    ],
+    "head_shadow_world": [
+     -0.301,
+     1.663,
+     0.375
+    ],
+    "head_lands_on": {
+     "cube": "2,4",
+     "kind": "books",
+     "half": "split"
+    },
+    "bbox_world": {
+     "x0": -0.849,
+     "x1": 0.059,
+     "y0": 0.002,
+     "y1": 1.838
+    },
+    "width_m": 0.908,
+    "height_m": 1.836,
+    "area_m2": 0.965,
+    "pct_on_expedit": 100,
+    "pct_on_truth_half": 75.6,
+    "pct_on_beauty_half": 24.4,
+    "pct_off_shelf": 0,
+    "head_shadow_px": [
+     1030.5,
+     202.7
+    ],
+    "bbox_px": [
+     [
+      771.2,
+      119.7
+     ],
+     [
+      1199.5,
+      985.9
+     ]
+    ]
+   }
+  ]
+ },
+ "figure_report": {
+  "A1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.47
+   },
+   "headTurn": 40
+  },
+  "A2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.49,
+    "R": 0.97
+   },
+   "headTurn": -34
+  },
+  "A3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.46,
+    "R": 0.97
+   },
+   "headTurn": -23
+  },
+  "S1": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 1.11,
+    "R": 1.11
+   },
+   "headTurn": -62
+  },
+  "B1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": 0
+  },
+  "B2": {
+   "legs": {
+    "L": {
+     "reach": 0.78
+    },
+    "R": {
+     "reach": 0.78
+    }
+   },
+   "arms": {
+    "L": 1.13,
+    "R": 0.51
+   },
+   "headTurn": 20
+  },
+  "E1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.47,
+    "R": 0.97
+   },
+   "headTurn": -15
+  },
+  "C1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.49
+   },
+   "headTurn": 25
+  },
+  "C2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.52
+   },
+   "headTurn": -33
+  },
+  "C3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.51,
+    "R": 0.97
+   },
+   "headTurn": -35
+  },
+  "W1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "W2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.5
+   },
+   "headTurn": 0
+  },
+  "T1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 1.33
+   },
+   "headTurn": 4
+  },
+  "H1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "G1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.47
+   },
+   "headTurn": 0
+  },
+  "poi": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.64,
+    "R": 0.64
+   },
+   "headTurn": -7
+  },
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.79,
+    "R": 0.91
+   },
+   "headTurn": 42
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": -18
+  }
+ }
+}

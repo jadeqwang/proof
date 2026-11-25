@@ -186,12 +186,12 @@
   },
   "mama.R": {
    "px": [
-    843.8,
-    852.5
+    820.6,
+    834.7
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   }
  },
  "lights": [
@@ -3932,7 +3932,7 @@
    },
    "arms": {
     "L": 0.69,
-    "R": 0.7
+    "R": 0.69
    },
    "headTurn": 0
   },
@@ -3962,7 +3962,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.94
+    "R": 0.95
    },
    "headTurn": 33
   }

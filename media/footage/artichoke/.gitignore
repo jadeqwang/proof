@@ -1,0 +1,3 @@
+# large or regenerable: the ProRes master (4 GB), candidates, flow cache
+out/*.mov
+work/

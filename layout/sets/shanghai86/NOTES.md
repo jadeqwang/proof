@@ -1,5 +1,7 @@
 # shanghai86 — notes and assumptions
 
+**Read the 2026-11-25 sections at the bottom first. Each later one overrides the earlier ones where they differ; "(4)" is current.**
+
 Set for verse 1 (0:30-0:59) and bars 1-4 of the piano break (0:59-1:09). Numbers live in `layout.js`.
 
 ## Assumptions (the plan leaves these open)
@@ -44,3 +46,352 @@ Set for verse 1 (0:30-0:59) and bars 1-4 of the piano break (0:59-1:09). Numbers
   `beam_<id>__surf` = the lit surfaces only (no volume): use it where the camera looks through a broad volume.
   Cast shadows are not cut out of either (they are in the flat / lit renders).
   Looked at: REF_plan / REF_wide / V1a / V1c / V1e / V1g show the shaft. Saturated: `PB1`, `V1d_1/2/4/8`, `V1h` are white over the whole frame (her point of view down into the pool of light: everything in frame is lit); `V1f` is black (the camera is in the shaft, looking at the adults outside it).
+
+## 2026-11-25: Xiefa living room, from Jade + 1934 drawings (SUPERSEDES everything above)
+
+The lilong bedroom (bed, mosquito net, casement, 19 cm tissue on the floor, sun "elev 40, swung 12") is gone. Sources:
+`inputs/refs_shanghai/README.md` (1934 "1st, 2nd & 3rd FLOOR PLAN", elevations, plot plan) and Jade (HANDOFF.md).
+
+### Facts (Jade)
+- 协发公寓 / Xiefa Apartments ("Yafa Court"), 253 Wuyuan Rd, Robert Fan, 1933-34. **EAST flat** (the one 俞振飞 lived
+  in), **三楼** counted with the ground floor as 1st. The family had the whole floor. The scene is the LIVING ROOM.
+- French windows onto a balcony; French doors from the hallway (Mother's doorway); no bed.
+- Three-seat cushioned couch pushed against a side wall, coffee table near it, a few armchairs, a wicker lounger.
+- She sat equidistant from the couch, an armchair and the coffee table.
+- 草纸 sheets ~16 x 23 cm; she brought a STACK to the table; hand-torn halves, quarters ... down to fingertip confetti
+  (1/256 ~ 1.0 x 1.4 cm, 1/512 ~ 0.7 x 1.0 cm). Steaming mugs of green tea on the table.
+
+### Staging choices (not memory) and research numbers
+- **Date and time: 1986-12-15, 15:00 CST.** Jade does not remember the season; mid-December mid-afternoon is chosen
+  for the long low beam. `SCENE` in `layout.js` is the only switch: sun, aperture, footprints, `inBeam`, sidecars follow.
+- **Sun** (NOAA equations in `sunPosition`, 31.2138 N 121.4390 E, UTC+8; checks against `sun_table_1986.txt` to
+  0.1 deg): elevation **18.97 deg**, azimuth **225.9 deg** = 59.1 deg west of the facade normal (166.8 deg); profile
+  angle in section 33.8 deg. Per metre into the room the light goes 1.67 m east and drops 0.67 m.
+  `SUN_DIR = [0.812, -0.325, -0.486]` in room axes.
+- **Axes are the building's**: x = along the facade (+ = building east, 76.8 deg), z = out through the windows
+  (166.8 deg). Floor y = 0. Window wall inner face z = 0, north wall z = -6.1.
+- Room 5.0 x 6.1 m, ceiling 3.05 (storey 3.25), waxed wooden floor; 3.0 m opening (head 2.65) north into a 5.0 x 4.4 m
+  dining room (round table, chairs, sideboard, north window); south wall 0.28 thick with six steel French windows,
+  3.6 m wide, glass 0.16 m in, head 2.3 m, 6 lites per leaf; balcony 5.5 x 1.25 one step down with a **solid parapet**
+  0.95 m (east flat), the balcony above = 1.25 m overhang (soffit 3.08). Hall French doors (pair, glazed, opening
+  into the hall) in the **east wall** from 2.45 to 3.55 m back, transom 气窗 above (2.28-2.72), hall with closets.
+- The opening's position along the north wall, the door leaves' swing (into the hall), the exact wall thicknesses and
+  the window's glass depth are guesses; the drawing is read at +/-0.2 m.
+- Outside, for the views: garden 6.6 m below (三楼), Residences A/B as boxes ~18-26 m south, hazy sky. At 15:00 the
+  ray to the sun passes ~11 m above their roofs: they do not shade the window. Plane trees are not modelled (unknown).
+- `FLAT = 'west'` mirrors the hall side (doors in the west wall, iron-railed balcony that cuts no light at the
+  bottom, TV / far armchair / photo moved clear of the doors). The sun is never mirrored and the furniture group stays
+  on the building-east side. In the west flat Mother is ~6 m west of the beam: the shaft does not point at her.
+
+### The beam (honest)
+- Lit aperture = window opening minus the shadows of the outer west jamb, the head, the overhang, the front parapet
+  and the west end of the parapet, each a half-plane (`HALF` in layout.js), so it is convex. `BEAM_SOURCE` = that
+  polygon carried to the inner wall face: top 2.06 m (the overhang trims 0.24 m off the 2.3 m head), west edge
+  x -1.33 (the jamb hides the westmost 0.2 m), west parapet notch at the bottom-west, east edge x 1.8. Glazing bars and
+  stiles are real geometry: their shadows are in flat / lit / line, not cut out of the mask (as before).
+- **Where it lands**: on the floor, a quadrilateral (-0.40,0)-(1.80,0)-(2.50,-0.42)-(2.50,-2.29)-(-0.40,-0.56): it
+  never comes west of x -0.4 at the glass or deeper than 2.29 m; on the east wall a parallelogram from 0.42 to 2.29 m
+  in, its top falling from 1.78 to 0.52 m (the couch takes most of it; the calendar above the couch is half lit). It
+  does not reach the ceiling, the west wall or the dining room.
+- **Her**: face, eyes, hands, hips all in the light (eyes 0.45 m inside the beam's west edge in state B, 0.9 m in state
+  A). Her face is lit because she faces WEST, into the light (31 deg off the sun).
+- **The table**: south-east part lit (the focus patch, all three mugs, the eight hero pieces); the light's west edge
+  crosses the table diagonally, so its north-west corner and **the stack are in shade** (honest, not moved).
+- **Steam**: all 66 sampled steam points of the six wisps are inside the beam.
+- **Mother**: NOT lit. The light on the east wall stops 0.16 m short of the near door jamb (at the floor) and she
+  stands 1.0-1.5 m outside the beam's west edge (`mother_west_margin_m` -1.12 at her hips): the shaft slants across the
+  couch toward her doorway and dies just before it. As the plan wants.
+- In state A the uncle's hands are in the light (0.09 / 0.29 m inside), his head and hips are not (-0.20 / -0.49).
+
+### Furniture and staging (my choices; flag to Jade)
+- **Couch on the EAST wall** (the hall wall in the east flat), 1.8 m, 0.15-1.95 m back from the windows, 0.5 m short
+  of the doors. Reason: the honest 15:00 December beam never reaches west of x -1.33 (and only within 0.5 m of the
+  glass there); a couch on the west wall would put the couch, the table near it and her in shadow. With the couch on
+  the east wall the light falls across the table, her, and the couch. The cost: the couch stands beside Mother's
+  doorway rather than opposite it. (In the west flat the same couch is "opposite the doors".)
+- Coffee table 0.55 x 0.95 x 0.42 m, 0.57 m in front of the couch. North armchair at the couch's north end facing the
+  windows; west armchair across the table facing the couch (the uncle's in state A, grandmother's in state B); a third
+  ("far") by the west wall. Wicker lounger (藤躺椅) by the west end of the windows, feet to the light. TV cabinet,
+  photo, clock on the west wall; cold radiator by the windows; crocheted antimacassars; pendant light off.
+- **Her (state B)**: sitting back on her heels between the couch and the table, facing west, working on the table top:
+  clear gaps 0.27 m to the couch, 0.30 m to the table, 0.38 m to the north armchair (the "equidistant" spot).
+  Mother is behind her right shoulder; the laughing adults (grandmother in the west armchair, aunt and uncle
+  standing) are in front of her on the dark side, so V1g lifts her eyes toward them, not toward the door.
+- **State A**: the uncle sits in the west armchair leaning in, hands low over the table in the light; she stands
+  across the table facing him (face lit). The table is bare (tea and steam are state-B details).
+
+### Paper (`paper.js`)
+- One sheet 16 x 23 cm, 0.35 mm. Each tear goes across the longer side, 0.38-0.62 of the way, a little askew; a torn
+  edge wanders (six random partials, 1/k^1.4) with a fibre fringe; mill edges stay straight. Pieces are quads with
+  flagged edges, so a corner piece keeps two straight edges.
+- Hero pieces (`tissue: 1|2|4|8` = which generation the gold dots count): one sheet torn into n pieces that fit back
+  together; 1 and 2 held over the table, 4 and 8 laid a little apart on the clear patch (`PLACES.focus`). Sidecar
+  `tissue.gold_dot_px` gives one point per hero piece.
+- Stack of 34 sheets at the table's north end. Drift (`DRIFT_COUNTS`, ~6 sheets' worth, generations 1-9): big pieces
+  mostly on the table, confetti on the floor round her (piling where dense) and a few on the couch seat.
+
+### Cameras (re-derived)
+- REF_plan (east up, windows right), REF_wide (from the dining opening, SE), REF_beam (new: from the windows' west end
+  along the light). V1a (outside, behind the uncle's right shoulder; his head out of frame), V1b (her eye-line onto
+  his hands), V1c / V1g (outside across the table from the west, level), V1d_1/2/4/8 + V1h (one locked tissue camera,
+  her eye-line onto the table), V1e (low from the window, her frame left, Mother in the doorway frame right beyond
+  the lit couch), V1f (her eyes up at the adults on the dark side), PB1 (down into the eight pieces on the table).
+- Beam masks: the 33 `beam_` twins re-rendered. `beam_V1f` is black (the camera looks at the dark side);
+  `beam_V1d_*`, `beam_PB1`, `beam_V1g` are white over most of the frame (camera in or looking through the light): use
+  the `__surf` twins there.
+
+### Known issues / open
+- The mannequin engine was being upgraded by another agent during this rebuild (hair block on the forehead etc. is
+  the engine's); re-render after it lands: `node layout/render.mjs --set shanghai86 --exclude beam_` and the beam twins.
+- The held sheet (V1d_1/2) is lit from behind (honest: the sun is beyond it); real 草纸 would glow through.
+- Steam is drawn as thin tubes (line/label) and faint glass (lit), not a volume.
+- Ask Jade: was the couch against the hallway wall or the far wall? which way did the hall doors open? curtains?
+- The `sun` light in the sidecar `lights` list is a directional light; `pos` is a point 14 m back along the rays.
+
+## 2026-11-25 (2): Jade's corrections (OVERRIDES the section above where they differ)
+
+### What Jade corrected (memory wins over the 1934 drawing)
+1. **Hall French doors**: a double-wide glazed pair in the **NORTH wall**, opposite the balcony, centred (x -0.8..0.8,
+   head 2.2, transom 2.28-2.72), opening into the hall. Mother stands there. The east wall has no doors now.
+   - **Conflict with the drawings**: on the 1934 plan the ~3 m opening to the dining room is in the north wall. Jade's
+     doors take that wall, so the opening (3.0 m, head 2.65) has been **moved to the EAST wall** (z -1.95..-4.95), with a
+     4.4 x 4.4 m dining room beyond it (round table, chairs, sideboard, window). Whether the dining room was really
+     there, or reached some other way, is open: ask Jade.
+2. **Couch on the WEST wall**, 0.45 m from the window-wall corner (z -0.45..-2.25), facing east. A potted plant
+   stands in that gap.
+3. **Spacing as people arrange furniture**: the coffee table is 0.44 m in front of the couch, centred on it
+   (0.55 x 0.95 x 0.42). The armchair beside the couch makes the usual L at the couch's north end, facing the
+   windows (turned 12 deg toward the table), with 0.35 m from armrest to armrest; no seat is blocked. The "across"
+   armchair faces the couch 0.42 m beyond the table. The "far" armchair sits in the north-east corner. The wicker
+   lounger is at the windows' east end, 0.45 m off the east wall, feet to the light. The TV cabinet is on the north
+   wall west of the doors; the radiator is on the east wall behind the lounger.
+4. **Her spot** is computed (`HER_SPOT` in layout.js): the nearest point whose clear gaps to the couch, the L
+   armchair and the table agree within 2 cm. It is **(-1.27, -2.205)**, with gaps of 0.37 / 0.39 / 0.39 m. She sits
+   back on her heels there, facing the table and the light (yaw 20), working at the table's north-west corner.
+   - With the armchair placed along the wall instead, the equidistant point was 0.9 m from everything, an odd spot.
+     The L is the normal arrangement and gives the snug spot Jade describes.
+
+### The light: date and time swept (`node layout/sets/shanghai86/sweep.mjs`)
+- Jade remembers neither the season nor the hour, so both were swept: 1 Nov - 28 Feb x 08:30-15:00, every 5 days and
+  10 minutes, 960 honest suns. A sun is accepted when:
+  - her face is ≥ 8 cm inside the beam, and she faces ≤ 55 deg off the sun;
+  - ≥ 80 % of the steam samples are in the beam;
+  - ≥ 25 % of the table top is lit;
+  - nothing of the north doors is lit, and the floor pool stops > 1 m short of the north wall.
+  It is ranked by how well the shaft "points" at the doors (travel direction vs pool-centroid-to-door bearing).
+- **Result**: 170 of 960 pass. Every one of them is a **winter MORNING**: Dec-Jan 08:30-10:30, Nov 08:30-09:40,
+  Feb 08:30-09:20. No afternoon sun works: after noon the light runs east (away from the west-wall group, as the old
+  15:00 staging showed), and at noon the December sun is ~35 deg high, so her eyes at 2.1 m into the room fall just
+  above the beam's top.
+- **Chosen: 1986-12-21 (the solstice), 10:20 CST.** Elevation **31.1 deg**, azimuth **155.2 deg** = 11.6 deg EAST of the
+  facade normal, profile 31.6 deg. Per metre into the room the light drops 0.62 m and drifts 0.2 m west.
+  `SUN_DIR = [-0.172, -0.517, -0.839]`. Among the passing suns, the late-morning ones point best at the doors (16.6 deg
+  off); 10:30 points 4 deg better but leaves her face only 11 cm inside the beam.
+- Lit aperture: the overhang no longer cuts (profile 31.6 deg); the window head does, giving a top at 2.13 m. The
+  east jamb and east parapet end shade on the sun's side. The front parapet takes only the bottom 2 cm.
+- **Where it lands**: a floor pool from the windows straight back to 3.46 m. Its west edge runs along x -1.8 → -2.5,
+  so the couch and the floor in front of it are lit; its east edge goes from x 1.74 to 1.04. The pool reaches the west
+  wall only at a sliver behind the couch. It does not touch the north wall, the doors, the ceiling or the dining room.
+- **(a) Her face and the steam: yes.** Eyes 0.25-0.36 m inside the beam, depending on the shot; all 66 steam
+  samples and all 3 mugs are lit.
+- **(b) The table: yes, all of it,** including the focus patch, the eight hero pieces and the stack.
+- **(c) Toward Mother but short of her: yes.** The light runs straight back toward the north doors and ends on the
+  boards 2.6 m short of the door line. Mother is 2.4 m outside the beam at her nearest point (`mother_margin_m`
+  -2.36).
+- State A: the uncle's hands are in the light (0.23 / 0.25 m), his head and hips are out (-0.18 / -0.28). Her face is
+  in (0.25).
+- Adults out of the light (state B): grandmother on the lounger (her nearest point, the left hand, is 7 cm outside),
+  the aunt by the dining opening, the uncle standing north-east. All are east of the beam's east edge.
+
+### Staging and cameras (re-derived)
+- **State A**: the uncle sits on the lounger's west edge, just east of the beam, leaning in. His left hand is cupped
+  palm-up in the light with the small thing in it; his right thumb and index pinch it from above. She stands
+  north-west of his hands (0.85, -1.78), facing them and the sun.
+- **State B**: she kneels at `HER_SPOT` facing the table and windows. Mother is in the north doorway behind her, the
+  laughing adults to her left (east), out of the light.
+- **Paper**: the stack is at the table's south-west, the focus patch at its north-west corner, and the mugs along
+  its east edge beside her.
+- **Cameras**:
+  - REF_plan: east up, doors left, windows right.
+  - REF_wide: from beside the doors, looking at the windows.
+  - REF_beam: from the windows' east end.
+  - V1a: from the window side; she is frontal, his arms come in frame right, his head is out of frame.
+  - V1b: her eye-line onto his hands; `edgeNT: 0.12`.
+  - V1c / V1g: across the table from the window side; north wall and doors behind her.
+  - V1d_* / V1h: the tissue camera over the table corner.
+  - V1e: low, from the windows' west half. Child frame left in the light; Mother in the doorway frame right, beyond
+    the end of the pool.
+  - V1f: her eyes up at the adults on the east side.
+  - PB1: down into the eight pieces.
+- **V1b fix**: the hands were two curled mitts merging into one slab from above. Now there are two different hand
+  shapes (a fanned cupped palm-up left, a pinch with splayed fingers on the right), a lower camera (el 36, 0.6 m, 40 mm)
+  so his knees read as knees rather than wedges, and the per-shot line-mode crease threshold `edgeNT: 0.12` (default
+  0.25; `build()` passes it to the renderer). Fingers now read separately in line mode.
+  Remaining: zigzag seam lines at the sleeve edges, from the engine (not edited).
+- Re-rendered with the new articulated mannequins (engine landed), all shots + the 33 beam twins; sheets and gallery
+  rebuilt. `FLAT = 'west'` now only swaps the parapet for the railing (the doors are centred).
+
+### Open (ask Jade)
+- Where the dining room really was relative to the north doors (the drawing puts it north).
+- Morning light is the only honest way to light this layout: does a winter morning fit the memory?
+- Which way the hall doors opened; what was on the north wall beside them (TV placed there by me).
+
+## 2026-11-25 (3): one long room, bookshelves, wall art, early-morning sun (OVERRIDES (1) and (2) where they differ)
+
+### Why the room is ~9.5 m wide, and what I had read wrong
+- **Jade**: the room was "maybe 1.5 or 2x" wider than 5.0 m. Her grandparents had joined the living room and the
+  dining room into one space long before 1986.
+- **The texts** say the living room and the dining room interconnect and *both* open directly onto the south balcony
+  ("另一侧为客厅与餐厅相互贯通，并直接连接南向阳台。并设置六扇落地长窗", Xuhui 2026). That only works if the
+  dining room lies BESIDE the living room along the facade.
+- **My earlier mistake**: from the 640 px scan of the 1934 plan, I took the room NORTH of the living room for the
+  dining room and read "相互贯通" as a ~3 m opening in the north wall.
+  - The PSA text ("北侧则设卧室、餐厅和厨房") seemed to agree, but it describes the flat as a whole (dining room on
+    the north side of the flat), not where the dining room sits relative to the living room.
+  - At ~13 px/m the scan cannot settle room boundaries, and Jade's memory together with the Xuhui text outweigh my
+    reading.
+- **Model now**: ONE continuous room. x -2.5 (west wall) to 7.0 (east wall), 9.5 m along the windows and 6.1 m deep,
+  ceiling 3.05.
+  - The old 1934 living room is the west ~5 m; the old dining room the east ~4.5 m.
+  - **Trace of the old partition** (my guess; Jade only said the two rooms were joined): a shallow soffit across the
+    ceiling at x 2.5, 0.24 m wide and 0.10 m deep. It is deliberately subtle. No floorboard change is modelled (a flush
+    strip would draw hard lines in line mode).
+  - Where this puts the rest of the flat (bedroom wing, hall, service rooms) relative to the 1934 drawing is
+    unresolved.
+- **Windows** (French, steel, full height, on one continuous balcony 10 m long, solid parapet):
+  - the six-leaf set (3.6 m) in the old living room, x -1.8..1.8, opposite the hall doors;
+  - a four-leaf set (2.4 m) in the old dining room, x 3.55..5.95: an ASSUMPTION from "both open onto the balcony";
+    its width and position are guesses.
+  - A balcony spanning both rooms is also a guess: the research measured 5.5 m for one bay.
+- **Hall doors**: double-wide, in the north wall opposite the six windows (x -0.8..0.8).
+
+### Furniture (Jade)
+- **Bookshelf cabinets** fill the north wall on both sides of the doors (x -2.5..-0.87 and 0.87..6.02), 0.38 m deep,
+  2.05 m high: cupboards below, glazed shelves of books above.
+- **TV cabinet** (Jade, round 3b): on the **east wall**, z -3.05..-3.95, facing west down the room, where the sideboard was (toward the clock, which is my invention). The **sideboard moved to the north-east corner** (x 6.07..7.0, against the north wall at the end of the bookshelves), beside the dining table: my choice, flag to Jade.
+- **West wall**: three calligraphy hanging scrolls (书法挂轴, 0.42 x 1.5 m) between the couch and the window corner, and
+  **one large framed traditional Chinese painting** (国画, 1.3 x 0.72 m) over the couch. Jade did not say which wall
+  the painting hung on: **the west wall is my choice, flag to Jade.** The framed photograph is removed: no photographs
+  anywhere.
+- **Shelf clearance** (Jade): the L armchair's back is **0.68 m** from the bookshelf fronts (z -5.72), room to stand and
+  reach the books. The couch, the table and her spot moved north with it, keeping:
+  - the armrest gap 0.36 m;
+  - table 0.44 m in front of the couch;
+  - armchair facing the windows.
+- **Result (flag to Jade)**: the couch now runs z -2.14..-3.94, **2.14 m from the window-wall corner** (it was 0.45). Her
+  equidistant spot is (-1.27, -3.89), 3.9 m from the windows, with gaps 0.37 / 0.39 / 0.39 m.
+- **Other armchairs**: "across" faces the couch 0.42 m beyond the table; "third" (the uncle's in state A, grandmother's
+  in state B) is in front of the six windows' east half, facing the group.
+- **Lounger** at the old partition line. Round dining table at the east end, sideboard in the north-east corner. Radiator, TV, calendar and clock
+  on the east wall (the clock and calendar are inventions). A pendant light over each half.
+
+### The light: swept again (`node layout/sets/shanghai86/sweep.mjs [--diag]`)
+- **Grid**: 1 Nov - 28 Feb x 07:30-15:00, every 5 days and 10 minutes (1097 suns with direct light on the facade).
+- **Why it is hard now**: her face is 3.8 m into the room and 0.6 m above the floor. The light only reaches that deep
+  under the window head when the profile angle is ≤ ~22 deg, i.e. a low sun. A low winter sun stands far to the SE in the
+  morning, so the light slants north-west and drifts 0.7 m west per metre into the room, and its far end runs on toward
+  the north wall.
+- **No afternoon sun works** (the light runs east, away from the west-end group). With the old acceptance test (light
+  stays ≥ 0.6 m from the doorway), **no sun passes at all**:
+  - **Late-December mornings around 08:30** light her face, the steam and the table, but the far end of the shaft lands
+    0.1-0.3 m from the doorway, on the bookshelves just west of it.
+  - **Mid-February 07:30** keeps 1.3-1.5 m off the doorway, but with a 10-deg sun: only part of the steam (67 %) and the
+    table (36-53 %) are lit, and the light runs west toward the couch, not toward the doors.
+- **Chosen** (1-minute sweep, 14-28 Dec, 08:22-08:40): **1986-12-21, 08:31 CST**.
+  - **Sun**: elevation **17.2 deg**, azimuth **132.4 deg** = 34.4 deg EAST of the facade normal; profile 20.6 deg.
+    `SUN_DIR = [-0.540, -0.296, -0.788]`. Per metre into the room: 0.38 m down, 0.69 m west.
+  - **Lit aperture** (six windows): x -1.80..1.61, y 0.36..2.19 at the inner face. The front parapet now trims the
+    bottom 0.36 m; the east jamb and the balcony's far east end barely matter.
+- **(a) Her face: yes, but thin.** About 9 cm inside the light by the sweep's face samples; the posed figure's eyes are
+  0.20-0.27 m in, depending on the shot. **The steam: 65 of 66 samples lit.**
+- **(b) The table: 95 % lit**, including the patch, the hero pieces, the mugs and the stack.
+- **(c) Toward Mother and short of her: yes, narrowly.** The shaft crosses the couch group and runs on to the north
+  wall; the lit floor ends **0.28 m short of the doorway** (sidecar `door_gap_m`), on the boards and bookshelves just
+  west of it. Mother, in the doorway, is 0.83 m outside the beam at her nearest point.
+  - The plan's "where the shaft points but does not reach" survives, but only as a near miss. Any later in the morning
+    and her face drops out of the light; any earlier and the light reaches the doorway.
+- **The four east windows** throw a second shaft into the old dining half. It does not reach the group, Mother or the
+  laughing adults, who stand in the dark between the two shafts.
+- **State A**: the uncle sits in the "third" armchair just outside the shaft's east edge. His hands are in the light (a
+  few cm; moved 8 cm further west after the check); his head and hips are out. She stands north-west of his hands,
+  facing them and the sun (face 0.24 m inside the light).
+
+### Cameras (re-derived)
+- REF_plan: now NORTH UP (doors and shelves top, windows bottom, couch left).
+- REF_wide: from the east (old dining) end along the whole room.
+- REF_beam: along the shaft from the windows.
+- V1a: from the window side; his head out of frame, his arms in from the right.
+- V1b: unchanged pose logic; its camera follows the new hands.
+- V1c / V1g: across the table from the window side, the bookshelves behind her.
+- V1e: low, from the windows' west half; child frame left in the light, Mother in the dark doorway right of centre;
+  the across armchair stays out of the line to Mother.
+- V1f: up at the adults east of her.
+- V1d_* / V1h / PB1: on the table corner.
+
+### Open (ask Jade)
+- **Does an early winter morning (about 08:30) fit her memory?** It is the only honest sun that lights her this deep in
+  the room, and even then the margins are thin.
+- Which wall the large painting was on (west, over the couch, is my guess).
+- Whether the four east windows existed, and how long the balcony was.
+- The couch now sits 2.1 m from the window corner (it follows the shelf clearance): is that right?
+
+## 2026-11-25 (4): Jade's answers and round-4 furniture (OVERRIDES (3) where they differ)
+
+### Confirmed by Jade
+- The couch 2.14 m from the window corner: fine.
+- One long balcony along the whole room: yes. The four-leaf windows in the old dining half stay.
+- The large framed painting on the west wall (over the couch): right.
+
+### Changes
+- **No curtains** (Jade does not remember any): curtains and rails removed.
+- **Opposite armchair**: the third armchair now stands at the couch's SOUTH end, facing the L armchair across the
+  coffee table's long axis (centre (-1.27, -1.25), yaw 168, turned 12 deg toward the table). The group is now the couch
+  plus two facing armchairs round the table. This is the coordinator's reading of "opposite the other armchair";
+  flag if Jade meant across the table from the couch.
+- **Side table** (Jade) in the gap between the couch's south arm and the opposite armchair, reachable from the
+  couch-end seat and the armchair: 0.45 x 0.45 m, 0.55 m high (armrest 0.6), centre (-1.86, -1.87).
+  - **Flag**: to fit it, that armrest gap is widened from 0.36 to 0.55 m. The L side keeps 0.36.
+- **Dining table** (Jade, NOT SURE): a long rectangular table, 1.9 x 0.88 m, 0.76 high, centre (4.6, -2.6), long axis
+  along the room, eight chairs (three a side, one at each end). Replaces the round table; the second pendant hangs
+  over it.
+- **Child's table and chair** (Jade's REVISED memory, which supersedes the earlier placements by the couch group and
+  at the dining table): a pair where the wicker lounger stood.
+  - Table 0.6 x 0.45 m, 0.48 high, centre (3.0, -1.3).
+  - Chair: seat 0.27 m, at (3.0, -1.72) on the table's north side, facing the windows.
+  - Both sit in the **four-window shaft** of the 08:31 sun: the table top and the chair are lit (the table centre is
+    0.34 m inside the light), and the table throws its shadow north-west onto the floor toward the long room's
+    middle. It is a sunny corner, but not her drift spot.
+- **Wicker lounger** moved WEST along the six windows: centre (0.7, -1.2), yaw -20, feet to the windows.
+  - That is between the couch group's opposite armchair (2.0 m to its west) and the old partition line, 1.9 m
+    east-south-east of the coffee table.
+  - It straddles the six-window shaft's east edge: its south (foot) half is in the light (9-23 cm inside), its north
+    (head) half in shadow.
+  - It does not shade her, the table or the steam: the rays to them pass 0.5-1.0 m above it.
+- **State A, re-seated**: the third armchair left its old spot, so the uncle now sits in the "across" armchair.
+  - That armchair is east of the coffee table, just outside the light's east edge.
+  - He leans in with his hands low over the table's east half, in the light (~0.15 m inside); his head is ~0.6 m outside.
+  - She KNEELS at her own spot (where she sits a week later), facing his hands. In (3) she stood; standing at that
+    depth would put her face above the beam.
+  - V1a looks along her eye-line from the table's south-east; he is out of frame right, only his hands come in.
+- **Grandmother (state B)** sits in the "across" armchair, out of the light. The aunt and the uncle stand east of the
+  table, out of the light.
+- **Her equidistant spot is unchanged**: (-1.27, -3.89), with gaps 0.37 / 0.39 / 0.39 m to the couch, the L armchair and
+  the table. None of the round-4 pieces stand between her and the sun: the ray to her face passes ~1.6 m above the
+  lounger's spot. Light numbers as in (3): face, steam (65 of 66), table 95 %, Mother outside, floor light 0.28 m
+  short of the doorway.
+
+### Light study (for Jade to judge the timing by eye)
+- `lightstudy/` is a sub-set: the same build with a per-shot `scene` override, so the set's `SCENE` stays at
+  1986-12-21 08:31. `build()` takes `shot.scene` = { date, time } or { cheat: { elev, rel } }.
+  - Render: `node layout/render.mjs --set shanghai86/lightstudy --modes lit,flat --nojson`
+    (to `media/layout/shanghai86/lightstudy/`).
+  - Sheets: `sh layout/sets/shanghai86/lightstudy/sheet.sh`
+- **Rows (suns)**:
+  1. 1986-12-21 08:31 (chosen);
+  2. 1986-12-21 09:30;
+  3. 1987-02-14 07:30;
+  4. 1986-12-21 15:00, the honest afternoon (the light runs east and misses the group);
+  5. **CHEATED**: a sun 16 deg high from azimuth 143 (24 deg east of the facade normal). The real sun stands ~25 deg high
+     there; at 16 deg it lights her and the table with room to spare and still keeps off the doorway.
+- **Columns (views)**: REF_wide, V1e, and her eye level looking toward the windows.
+- **Sheets**: `media/layout/_sheets/shanghai86_lightstudy.jpg` (lit) and `shanghai86_lightstudy_flat.jpg`.

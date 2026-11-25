@@ -1,0 +1,19 @@
+route: codex image_gen (headless codex exec in tmux session proof-kf; on plan, $0)
+date: 2026-11-22 21:14
+references (generated sheets and set renders only, no photos):
+  image 1: cast/dad/dad_H_heads_v1.jpg  [the father's sheet]
+  image 2: inputs/refs_chaosmonkey/mama/mama_H_heads_v3.jpg  [the mother's sheet]
+  image 3: inputs/refs_chaosmonkey/little_jade/lj_H_heads_v3.jpg  [the daughter at 5]
+  image 4: inputs/refs_chaosmonkey/jade/jade_H_heads_v3.jpg  [the daughter grown up]
+
+REFERENCE IMAGES. Image 1: the father's sheet. Image 2: the mother's sheet. Image 3: the daughter at 5. Image 4: the daughter grown up.
+
+A design sheet on bare paper: exactly four head-and-shoulders portraits in ONE row, all the same size, evenly spaced, all in the same three-quarter view facing the same way, all with the same quiet resting face: mouth closed and level, jaw loose, brows resting, eyes lowered a little and steady on one exact point off to the side, as if each of them were separately counting something. No one smiles, no one frowns, no one looks at the viewer or at each other. They are a family, and the point of the sheet is that the four faces are doing exactly the same thing: the same tilt of the head, the same held stillness, the same bright fixed eyes. Left to right:
+
+(1) the father, a Chinese man aged 37 (image 1 is his sheet: reproduce that man; large thin-metal square-ish glasses with a double bridge, side-parted black hair, pale-blue short-sleeved shirt), drawn a little older than on his sheet, a settled grown man.
+(2) the mother, a Chinese woman aged 37 (image 2 is her sheet: reproduce that woman; jaw-length black perm, thin round wire-rim glasses, cream collarless blouse).
+(3) their daughter aged 5 (image 3 is her sheet: reproduce that child, with eyes as large as in image 3; a light parted fringe, half-ponytail high at the back, white zip jacket with one orange band and a small pale-blue dot).
+(4) the same daughter grown up, aged about 30 (image 4 is her sheet: reproduce that woman; long black hair with an open forehead, thin dark rectangular half-rim glasses, white stand-collar jacket with an orange band over a black top).
+
+Each person keeps their own face exactly as on their own sheet; only the expression and the angle are shared. Use the images for likeness only; draw a new sheet.
+Painting hand: Chinese fine-line figure painting on plain cream xuan paper, delicate thin baimiao ink outlines for faces, hands and clothing folds, light transparent colour washes, hair in soft black ink wash with a gloss, paper grain showing. Skin warm and rosy, never grey. Not anime, not cel shading, not a photograph, not a 3D render. Plain bare cream paper, no text, no labels, no numbers, no arrows, no motion lines, no signature, no seal, no border, no panel frames.

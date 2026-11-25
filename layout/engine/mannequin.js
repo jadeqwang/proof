@@ -19,6 +19,12 @@
 // 'to:<target>' (toward a target).
 import * as THREE from 'three';
 import { mk, limb, ball, slab, V, rad, UP, ik, basisQ, tag } from './core.js';
+import { taperGeo, chainGeos, ellipsoidGeo, sweptGeo, sweptPoint, partMesh } from './anatomy.js';
+import { buildHand, ageOf, tipLocal } from './hand.js';
+
+let BUILD_ID = 0;   // line-mode id groups are per built figure
+// limb girth factor by age: 1 for adults, rounder for small children
+export function girthK(kind) { const a = Math.min(16, ageOf(kind)); return 1 + 0.17 * (16 - a) / 13; }
 
 export const CAST = {
   mama: { name: 'Mama', h: 1.60, kind: 'adult', skin: 0xd8a27c, hair: 0x15110f, top: 0x6e3a33, legs: 0x3a3632, apron: 0xb9b2a0, hairStyle: 'bun', sleeves: 'pushed' },
@@ -28,77 +34,14 @@ export const CAST = {
 };
 export const PROP = {
   adult: { hip: 0.52, sh: 0.82, head: 0.135, shW: 0.112, hipW: 0.056, ua: 0.186, fa: 0.146, hand: 0.108, foot: 0.15, wk: 0.72, chestW: 0.19, chestD: 0.125 },
-  child5: { hip: 0.46, sh: 0.785, head: 0.172, shW: 0.112, hipW: 0.052, ua: 0.172, fa: 0.138, hand: 0.10, foot: 0.155, wk: 0.8, chestW: 0.19, chestD: 0.14 },
-  child4: { hip: 0.45, sh: 0.78, head: 0.182, shW: 0.112, hipW: 0.052, ua: 0.17, fa: 0.136, hand: 0.10, foot: 0.155, wk: 0.8, chestW: 0.19, chestD: 0.145 },
+  child5: { hip: 0.46, sh: 0.785, head: 0.172, shW: 0.112, hipW: 0.052, ua: 0.172, fa: 0.138, hand: 0.11, foot: 0.155, wk: 0.8, chestW: 0.19, chestD: 0.14 },
+  child4: { hip: 0.45, sh: 0.78, head: 0.182, shW: 0.112, hipW: 0.052, ua: 0.17, fa: 0.136, hand: 0.111, foot: 0.155, wk: 0.8, chestW: 0.19, chestD: 0.145 },
 };
 const GREY = { skin: 0.78, hair: 0.12, top: 0.62, legs: 0.42, apron: 0.72, band: 0.5, dark: 0.08 };
 
 // ---------------------------------------------------------------- hands
-// local hand frame: x = thumb side, y = fingers, z = palm normal (out of the palm). Units of hand length.
-export const HANDS = {
-  flat: { mitt: [0, 0], idx: [0, 0], spread: 4, thumb: [[0.55, 0.83, 0.05], [0.5, 0.86, 0.05]] },
-  relax: { mitt: [25, 25], idx: [20, 20], spread: 4, thumb: [[0.5, 0.75, 0.4], [0.25, 0.8, 0.55]] },
-  palmUp: { mitt: [12, 10], idx: [10, 8], spread: 6, thumb: [[0.6, 0.78, 0.15], [0.5, 0.85, 0.2]] },
-  cup: { mitt: [35, 35], idx: [30, 30], spread: 0, thumb: [[0.35, 0.85, 0.4], [0.15, 0.85, 0.5]] },
-  grip: { mitt: [80, 75], idx: [75, 70], spread: 0, thumb: [[0.3, 0.6, 0.75], [-0.35, 0.5, 0.8]] },
-  pinch: { mitt: [60, 50], idx: [35, 30], spread: 0, thumb: [[0.2, 0.75, 0.6], [-0.1, 0.7, 0.7]] },
-  point: { mitt: [100, 95], idx: [0, 0], spread: 0, thumb: [[0.2, 0.6, 0.75], [-0.6, 0.3, 0.7]] },
-  fist: { mitt: [100, 100], idx: [100, 100], spread: 0, thumb: [[0.2, 0.6, 0.75], [-0.6, 0.3, 0.7]] },
-  ring: { mitt: [8, 6], idx: [72, 88], spread: 0, thumb: [[0.08, 0.7, 0.7], [-0.4, 0.5, 0.75]] },
-  switch: { mitt: [85, 80], idx: [80, 75], spread: 0, thumb: [[0.75, 0.62, 0.2], [0.9, 0.42, 0.05]] },
-  // hand-shadow monkey: head in profile (index up = ear, fingers bent = brow and snout, thumb out = jaw)
-  monkeyHead: { mitt: [55, 70], idx: [-5, 0], spread: -6, thumb: [[0.05, 0.45, 0.89], [0.0, 0.2, 0.98]] },
-  // the second hand: a raised paw / arm under the jaw
-  monkeyPaw: { mitt: [20, 30], idx: [10, 20], spread: 14, thumb: [[0.7, 0.7, 0.1], [0.75, 0.65, 0.1]] },
-  // v4: index + middle extended together (sword-hand 剑指, the rapper's counting hand), ring + little curled, thumb over them
-  two: { mitt: [95, 95], mid: [0, 2], idx: [0, 2], spread: 2, thumb: [[0.1, 0.6, 0.78], [-0.5, 0.35, 0.75]] },
-  thumbsUp: { mitt: [100, 100], idx: [100, 100], spread: 0, thumb: [[0.1, 0.99, 0.0], [0.05, 1, 0.0]] },
-};
-
-// Hand frame (t = thumb side, f = fingers, n = palm normal). A RIGHT hand's (t, f, n) is a rotation; a LEFT hand's is
-// its mirror image (t = n x f, determinant -1), which no quaternion can represent: pushing it through basisQ() gave an
-// unrelated rotation, so left hands ignored `fingers` / `palm` and the palm centre missed its target. Points and
-// directions are therefore mapped with the basis vectors themselves, which is exact for both sides.
-// q is kept for callers that want an orientation (the proper rotation with the thumb axis flipped for a left hand).
-export function handFrame(t, f, n, Lh, wrist) {
-  const M = (x, y, z) => new THREE.Vector3().addScaledVector(t, x).addScaledVector(f, y).addScaledVector(n, z);
-  const L = (x, y, z) => M(x * Lh, y * Lh, z * Lh).add(wrist);
-  const Ld = (v) => { const u = new THREE.Vector3(...v).normalize(); return M(u.x, u.y, u.z); };
-  const q = basisQ(t.clone().multiplyScalar(t.clone().cross(f).dot(n) < 0 ? -1 : 1), f, n);
-  return { q, L, Ld };
-}
-
-function buildHand(side, Lh, shapeName, wrist, f, n, look, g) {
-  const sh = HANDS[shapeName] || HANDS.relax;
-  const t = side === 'R' ? new THREE.Vector3().crossVectors(f, n) : new THREE.Vector3().crossVectors(n, f);
-  t.normalize();
-  const { q, L, Ld } = handFrame(t, f, n, Lh, wrist);
-  const out = { meshes: [] };
-  const add = (m) => { g.add(m); out.meshes.push(m); return m; };
-  // palm
-  const palm = slab(L(0, 0.02, 0), L(0, 0.52, 0), 0.42 * Lh, 0.13 * Lh, t, look); add(palm);
-  // mitt (middle, ring, little): two segments curling toward the palm normal
-  const mitt = (c1, c2) => {
-    const a = L(-0.07, 0.48, 0); const d1 = Ld([0, Math.cos(rad(c1)), Math.sin(rad(c1))]);
-    const b = a.clone().addScaledVector(d1, 0.27 * Lh); const d2 = Ld([0, Math.cos(rad(c1 + c2)), Math.sin(rad(c1 + c2))]);
-    const c = b.clone().addScaledVector(d2, 0.24 * Lh);
-    add(slab(a, b, 0.28 * Lh, 0.11 * Lh, t, look)); add(slab(b, c, 0.27 * Lh, 0.1 * Lh, t, look));
-    out.mittTip = c;
-  };
-  mitt(...sh.mitt);
-  // index: spread rotates about the palm normal toward the thumb side
-  { const sp = rad(sh.spread || 0), [c1, c2] = sh.idx;
-    const base = L(0.15, 0.48, 0);
-    const dir = (c) => Ld([Math.sin(sp) * Math.cos(rad(c)), Math.cos(sp) * Math.cos(rad(c)), Math.sin(rad(c))]);
-    const b = base.clone().addScaledVector(dir(c1), 0.26 * Lh), e = b.clone().addScaledVector(dir(c1 + c2), 0.23 * Lh);
-    add(limb(base, b, 0.05 * Lh, look)); add(limb(b, e, 0.047 * Lh, look)); out.indexTip = e; }
-  // thumb
-  { const base = L(0.17, 0.1, 0.03); const b = base.clone().addScaledVector(Ld(sh.thumb[0]), 0.23 * Lh);
-    const e = b.clone().addScaledVector(Ld(sh.thumb[1]), 0.2 * Lh);
-    add(limb(base, b, 0.06 * Lh, look)); add(limb(b, e, 0.052 * Lh, look)); out.thumbTip = e; }
-  out.palm = L(0, 0.26, 0); out.t = t; out.q = q;
-  return out;
-}
+// The hand shapes, the hand frame and the five-finger hand live in engine/hand.js (re-exported here for old imports).
+export { HANDS, handFrame, resolveHand, buildHand } from './hand.js';
 
 // ---------------------------------------------------------------- legs
 function legPreset(name, s, D, o = {}) {
@@ -150,18 +93,45 @@ export function buildFigure(spec, ctx) {
   const hip = at.clone();
   const waist = hip.clone().addScaledVector(by, torsoLen * 0.38);
   const shC = waist.clone().addScaledVector(cy, torsoLen * 0.62);
-  const P = { hip, waist, chest: shC.clone().addScaledVector(cy, -0.06 * H).addScaledVector(cz, 0.03 * H), shoulderC: shC, fwd: new THREE.Vector3(bz.x, 0, bz.z).normalize(), left: bx, up: by, cx, cy, cz, H, headH, who: spec.who };
+  const P = { qB, hip, waist, chest: shC.clone().addScaledVector(cy, -0.06 * H).addScaledVector(cz, 0.03 * H), shoulderC: shC, fwd: new THREE.Vector3(bz.x, 0, bz.z).normalize(), left: bx, up: by, cx, cy, cz, H, headH, who: spec.who };
   P.right = bx.clone().negate();
   g.userData.P = P; g.userData.spec = spec;
 
-  // pelvis + abdomen + chest
-  add(ball(1, spec.who === 'daughter' ? LK.top : LK.legs, hip.clone().addScaledVector(by, 0.02 * H).toArray(), [0.105 * H, 0.075 * H, 0.08 * H])).quaternion.copy(qB);
-  add(slab(hip.clone().addScaledVector(by, 0.02 * H), waist.clone().addScaledVector(ay, 0.04 * H), pr.chestW * H * 0.85, pr.chestD * H * 0.95, bx, LK.top));
-  const chestM = mk(new THREE.CapsuleGeometry(pr.chestD * H * 0.5, torsoLen * 0.42, 6, 16), LK.top);
-  chestM.position.copy(waist.clone().addScaledVector(cy, torsoLen * 0.34)); chestM.quaternion.copy(qC); chestM.scale.set(pr.chestW / pr.chestD, 1, 1); add(chestM);
-  if (c.band) { // the jacket's orange band, round the chest
-    const bm = mk(new THREE.CylinderGeometry(1, 1, 0.035 * H, 24, 1, true), LK.band); bm.position.copy(waist.clone().addScaledVector(cy, torsoLen * 0.2)); bm.quaternion.copy(qC);
-    bm.scale.set(pr.chestW * H * 0.5 + 0.004, 1, pr.chestD * H * 0.5 + 0.004); bm.userData.double = true; add(bm); }
+  // ---- body geometry (2026-11-25 articulated mannequin): smooth tapered limbs whose joints are shared spheres, a torso
+  // of ribcage + abdomen + chest / back masses, a shoulder girdle (clavicles, trapezius, deltoids, armpit folds),
+  // feet with heel and toe box. Pieces of one part are merged into one mesh and carry a line-mode id group
+  // (userData.idGroup, see render.js) so line renders show silhouettes and creases, not the seams between pieces.
+  const uid = 'f' + (++BUILD_ID) + ':';
+  const kg = girthK(c.kind);                                    // children are rounder
+  const part = (geos, lk, grp) => add(partMesh(geos, lk, uid + grp));
+  const dR = pr.chestD * H * 0.5, wR = pr.chestW / pr.chestD;
+  const CF = { x: cx, y: cy, z: cz };
+  const SH = { L: shC.clone().addScaledVector(cx, pr.shW * H).addScaledVector(cy, -0.012 * H), R: shC.clone().addScaledVector(cx, -pr.shW * H).addScaledVector(cy, -0.012 * H) };
+  // pelvis (stays children[0]: engine/body.js reads its quaternion)
+  const pelvis = add(ball(1, spec.who === 'daughter' ? LK.top : LK.legs, hip.clone().addScaledVector(by, 0.02 * H).addScaledVector(bz, -0.006 * H).toArray(), [0.1 * H, 0.072 * H, 0.07 * H])); pelvis.quaternion.copy(qB); pelvis.userData.idGroup = uid + 'pelvis';
+  let torsoFrame, torsoProf;
+  { const T = [];
+    // one torso surface swept along the spine (pelvis frame at the bottom, chest frame at the top), widest at the armpits
+    const p0 = hip.clone().addScaledVector(by, 0.01 * H), p2 = shC.clone().addScaledVector(cy, 0.004 * H), tw = 0.35;
+    const pc = waist.clone().addScaledVector(p0, -((1 - tw) ** 2)).addScaledVector(p2, -tw * tw).multiplyScalar(1 / (2 * tw * (1 - tw)));
+    const qT = new THREE.Quaternion(), ex = new THREE.Vector3(), ez = new THREE.Vector3();
+    const kw = pr.chestW / 0.19 * H, kd = pr.chestD / 0.125 * H;
+    torsoFrame = (t) => { const k = THREE.MathUtils.smoothstep(t, 0.15, 0.75); qT.copy(qB).slerp(qC, k);
+      return { o: p0.clone().multiplyScalar((1 - t) ** 2).addScaledVector(pc, 2 * t * (1 - t)).addScaledVector(p2, t * t), x: ex.set(1, 0, 0).applyQuaternion(qT).clone(), z: ez.set(0, 0, 1).applyQuaternion(qT).clone() }; };
+    torsoProf = [[0, 0.084 * kw, 0.058 * kd], [0.2, 0.081 * kw, 0.056 * kd], [0.35, 0.075 * kw, 0.055 * kd], [0.62, 0.088 * kw, 0.06 * kd], [0.8, 0.095 * kw, 0.0625 * kd], [1, 0.092 * kw, 0.055 * kd]];
+    T.push(sweptGeo(torsoFrame, torsoProf, { nu: 30, nv: 36 }));
+    for (const s of [1, -1]) {
+      const S = SH[s > 0 ? 'L' : 'R'], out = cx.clone().multiplyScalar(s);
+      T.push(taperGeo(shC.clone().addScaledVector(cy, 0.022 * H).addScaledVector(cz, -0.014 * H), S.clone().addScaledVector(cy, 0.01 * H).addScaledVector(cz, -0.004 * H), 0.024 * H * kg, 0.019 * H * kg));   // trapezius
+      { const rc = 0.0075 * H * kg;   // clavicle: one straight bone from the sternal notch to the acromion, half buried in the chest's top edge
+        T.push(taperGeo(sweptPoint(torsoFrame, torsoProf, 0.965, s > 0 ? rad(80) : Math.PI - rad(80), { inset: rc * 1.9 }), S.clone().addScaledVector(cy, 0.002 * H).addScaledVector(cz, 0.006 * H).addScaledVector(out, -0.024 * H), rc * 0.85, rc * 0.9, { radial: 16, cap: 5 }));   // the sternal end sinks in (no bumps on the chest)
+      }
+    }
+    part(T, LK.top, 'torso'); }
+  if (c.band) { // the jacket's orange band, round the ribcage just above its lower edge
+    const bc = waist.clone().addScaledVector(cy, torsoLen * 0.2), kd = pr.chestD / 0.125 * H, kw = pr.chestW / 0.19 * H;
+    const bm = mk(new THREE.CylinderGeometry(1, 1, 0.035 * H, 32, 1, true), LK.band); bm.position.copy(bc); bm.quaternion.copy(qC);
+    bm.scale.set(0.083 * kw * 1.04 + 0.002, 1, 0.058 * kd * 1.04 + 0.002); bm.userData.double = true; add(bm); }
   if (c.apron && !spec.noApron) add(slab(waist.clone().addScaledVector(cz, pr.chestD * H * 0.5 + 0.004).addScaledVector(cy, torsoLen * 0.12), waist.clone().addScaledVector(cz, pr.chestD * H * 0.55 + 0.004).addScaledVector(ay, -0.1 * H), 0.17 * H, 0.008, cx, LK.apron));
   if (c.dress) { // a short skirt
     const sk = mk(new THREE.CylinderGeometry(0.075 * H, 0.16 * H, 0.17 * H, 20, 1, true), LK.top); sk.userData.double = true;
@@ -169,17 +139,33 @@ export function buildFigure(spec, ctx) {
 
   // legs
   const legInfo = {};
+  const legLook = spec.who === 'daughter' ? LK.skin : LK.legs, footLook = spec.who === 'daughter' ? LK.skin : LK.sock;
   for (const [s, n, pre] of [[1, 'L', preL], [-1, 'R', preR]]) {
     const hj = hip.clone().addScaledVector(bx, s * D.hipW);
     const ov = spec.legOpts?.['ankle' + n];
     const anc = ov ? B([s * ov[0], ov[1], ov[2]]).add(hip) : B(pre.ankle).add(hip);
     const pv = spec.legOpts?.['pole' + n];   // v9: optional world-space pole (knee direction) override
-    const r = ik(hj, anc, D.thigh, D.shin, pv ? new THREE.Vector3(...pv) : B(pre.pole));
-    add(limb(hj, r.mid, 0.052 * H * (c.kind === 'adult' ? 1 : 0.95), spec.who === 'daughter' ? LK.skin : LK.legs));
-    add(limb(r.mid, r.end, 0.037 * H, spec.who === 'daughter' ? LK.skin : LK.legs));
-    const fd = B(pre.foot).normalize();
-    add(slab(r.end, r.end.clone().addScaledVector(fd, pr.foot * H * 0.85), 0.055 * H, 0.04 * H, bx, spec.who === 'daughter' ? LK.skin : LK.sock));
-    P['knee' + n] = r.mid; P['ankle' + n] = r.end; P['foot' + n] = r.end.clone().addScaledVector(fd, pr.foot * H * 0.6);
+    const pole = pv ? new THREE.Vector3(...pv) : B(pre.pole);
+    const r = ik(hj, anc, D.thigh, D.shin, pole);
+    const K = r.mid, A = r.end, shinDir = A.clone().sub(K).normalize();
+    const front = pole.clone().addScaledVector(shinDir, -pole.dot(shinDir)); if (front.lengthSq() < 1e-6) front.copy(bz); front.normalize();
+    const calf = K.clone().lerp(A, 0.3).addScaledVector(front, -0.006 * H);
+    const rK = 0.034 * H * kg, rA = 0.019 * H * kg;
+    part([taperGeo(hj, K, 0.058 * H * kg, rK, { radial: 18 }), taperGeo(K, calf, rK, 0.036 * H * kg, { radial: 16 }), taperGeo(calf, A, 0.036 * H * kg, rA, { radial: 16 })], legLook, 'leg' + n);
+    // foot: heel, sole to the ball, toe box, instep (P.foot as before: 0.6 of the foot length along the foot)
+    const fd = B(pre.foot).normalize(), FL = pr.foot * H, ah = D.ankleH;
+    let w = bx.clone().addScaledVector(fd, -bx.dot(fd)), up;
+    if (w.lengthSq() > 0.09) { w.normalize(); up = new THREE.Vector3().crossVectors(fd, w); }
+    else { up = K.clone().sub(A); up.addScaledVector(fd, -up.dot(fd)).normalize(); w = new THREE.Vector3().crossVectors(up, fd); }
+    const rH = 0.62 * ah * kg, rB = 0.42 * ah * kg, rT = 0.34 * ah * kg;
+    const heel = A.clone().addScaledVector(up, -(ah - rH)).addScaledVector(fd, -(0.2 * FL - rH));
+    const ballP = A.clone().addScaledVector(up, -(ah - rB)).addScaledVector(fd, 0.6 * FL);
+    const toe = A.clone().addScaledVector(up, -(ah - rT)).addScaledVector(fd, 0.8 * FL - rT);
+    const FF = { x: w, y: up, z: new THREE.Vector3().crossVectors(w, up) };
+    part([ellipsoidGeo(heel, [rH, rH, rH * 1.1], FF), taperGeo(heel, ballP, rH * 0.78, rB, { side: w, sx: 1.5 }), taperGeo(ballP, toe, rB, rT, { side: w, sx: 1.7 }),
+      taperGeo(A, ballP.clone().addScaledVector(up, rB * 0.45), rA * 0.98, rB * 0.85, { side: w, sx: 1.35 })], footLook, 'foot' + n);
+    P['knee' + n] = K; P['ankle' + n] = A; P['foot' + n] = A.clone().addScaledVector(fd, pr.foot * H * 0.6); P['hip' + n] = hj;
+    P['heel' + n] = heel.clone().addScaledVector(up, -rH); P['toe' + n] = toe.clone().addScaledVector(fd, rT);
     legInfo[n] = { reach: +r.reach.toFixed(2) };
   }
   P.knees = P.kneeL.clone().add(P.kneeR).multiplyScalar(0.5);
@@ -203,7 +189,8 @@ export function buildFigure(spec, ctx) {
   const qH = basisQ(hx, hy, hdir);
   const neckTop = neckBase.clone().addScaledVector(cy, neckLen * 0.7).addScaledVector(hy, neckLen * 0.3);
   const head = neckTop.clone().addScaledVector(hy, headH * 0.42).addScaledVector(hdir, headH * 0.04);
-  add(limb(neckBase, neckTop.clone().addScaledVector(hy, headH * 0.1), 0.03 * H * (c.kind === 'adult' ? 1 : 1.15), LK.skin));
+  { const nk = ageOf(c.kind) >= 16 ? 1 : 1.15;   // adult* kinds (per-person hand/foot, sets/_cast.js) are adults part([taperGeo(neckBase.clone().addScaledVector(cy, -0.012 * H), neckTop.clone().addScaledVector(hy, headH * 0.1), 0.031 * H * nk, 0.027 * H * nk, { radial: 18 })], LK.skin, 'neck');
+    P.neck = neckBase.clone().lerp(neckTop, 0.5); }
   const R = headH / 2;
   const HL = (x, y, z) => new THREE.Vector3(x * R, y * R, z * R).applyQuaternion(qH).add(head);
   const skull = add(ball(R, LK.skin, head.toArray(), [pr.wk, 1, 0.9])); skull.quaternion.copy(qH); skull.userData.part = 'head';
@@ -247,15 +234,26 @@ export function buildFigure(spec, ctx) {
     if (a.to === 'side') { target = shoulder.clone().addScaledVector(cy, -(ua + fa + Lh * 0.25) * 0.97).addScaledVector(cz, 0.03).addScaledVector(cx, s * 0.02); a = { palm: 'in', fingers: 'down', ...a }; }
     else if (a.to === 'lap') target = P.lap.clone().addScaledVector(cx, s * 0.06 * H).addScaledVector(UP, 0.03 * H);
     else if (a.to === 'kneeL' || a.to === 'kneeR') target = P[a.to === 'kneeL' ? 'kneeL' : 'kneeR'].clone().addScaledVector(UP, 0.045 * H);
-    else target = ctx.resolve(a.to, P);
+    else target = (a.to == null && a.tip) ? ctx.resolve(a.tip.at, P) : ctx.resolve(a.to, P);
     if (a.off) target.add(V(a.off));
     const resolveDir = (d) => (typeof d === 'string' && d.startsWith('to:')) ? ctx.resolve(d.slice(3), P).sub(target).normalize() : dirOf(d);
     let f = resolveDir(a.fingers), nrm = resolveDir(a.palm);
     const thumbDir = a.thumb ? resolveDir(a.thumb) : null;
     const pole = a.elbow ? (resolveDir(a.elbow) || V(a.elbow)) : UP.clone().negate().addScaledVector(cx, s * 0.65).addScaledVector(cz, -0.3);
+    const hold = a.hold ? (typeof a.hold === 'number' ? { r: a.hold } : a.hold) : null;
+    // hold.axis: turn the hand about its palm normal so the held cylinder (a forearm, a rail) runs along this direction
+    if (hold?.axis && nrm) { const ax = resolveDir(hold.axis); const nn = nrm.clone().normalize(); ax.addScaledVector(nn, -ax.dot(nn)).normalize();
+      f = n === 'R' ? new THREE.Vector3().crossVectors(nn, ax) : new THREE.Vector3().crossVectors(ax, nn); }
+    // hold.centre: `to` is the centre of the held cylinder, not the palm
+    if (hold?.centre && f && nrm) { const nn = nrm.clone().addScaledVector(f, -nrm.dot(f)).normalize(); target.addScaledVector(f, -0.12 * Lh).addScaledVector(nn, -(0.064 * Lh + hold.r)); }
     let r, ff = f;
-    for (let it = 0; it < 3; it++) {
+    // tip: { finger: 'thumb' | 'index' | ..., at: target, off } puts that fingertip (not the palm centre) on the point
+    const tipAt = a.tip ? ctx.resolve(a.tip.at, P).add(V(a.tip.off || [0, 0, 0])) : null, tipL = a.tip ? tipLocal(shape, c.kind, a.tip.finger || 'index') : null;
+    for (let it = 0; it < (tipAt ? 6 : 3); it++) {
       if (!ff) ff = target.clone().sub(shoulder).normalize(); // first guess
+      if (tipAt) { let nn = nrm ? nrm.clone() : UP.clone().negate(); if (Math.abs(nn.dot(ff)) > 0.9) nn = cz.clone(); nn.addScaledVector(ff, -nn.dot(ff)).normalize();
+        const tt = n === 'R' ? new THREE.Vector3().crossVectors(ff, nn) : new THREE.Vector3().crossVectors(nn, ff);
+        target = tipAt.clone().addScaledVector(tt, -tipL.x * Lh).addScaledVector(ff, -(tipL.y - 0.26) * Lh).addScaledVector(nn, -tipL.z * Lh); }
       const wrist = target.clone().addScaledVector(ff, -0.26 * Lh);
       r = ik(shoulder, wrist, ua, fa, pole);
       if (!f) ff = r.end.clone().sub(r.mid).normalize();
@@ -267,15 +265,38 @@ export function buildFigure(spec, ctx) {
     }
     if (!nrm) { nrm = UP.clone().negate(); if (Math.abs(nrm.dot(f)) > 0.9) nrm = cz.clone(); }
     nrm.addScaledVector(f, -nrm.dot(f)).normalize();
-    const sleeveLook = LK.top, foreLook = c.sleeves === 'long' ? LK.top : LK.skin, upperLook = c.sleeves === 'short' ? LK.skin : LK.top;
-    if (c.sleeves === 'short') add(limb(shoulder, shoulder.clone().lerp(r.mid, 0.4), 0.034 * H, sleeveLook));
-    add(limb(shoulder, r.mid, 0.03 * H, upperLook));
-    add(limb(r.mid, r.end, 0.024 * H, foreLook));
-    if (c.sleeves === 'long') add(limb(r.end.clone().lerp(r.mid, 0.12), r.end, 0.0265 * H, LK.top));
+    // ---- arm geometry: deltoid cap from the acromion down the humerus, upper arm and forearm as one smooth chain
+    // (the elbow is their shared sphere), the distal forearm flattened like a wrist, armpit folds into the torso
+    const S = shoulder, E = r.mid, Wr = r.end, u = E.clone().sub(S).normalize(), out = cx.clone().multiplyScalar(s);
+    const tH = n === 'R' ? new THREE.Vector3().crossVectors(f, nrm) : new THREE.Vector3().crossVectors(nrm, f); tH.normalize();
+    const foreLook = c.sleeves === 'long' ? LK.top : LK.skin, upperLook = c.sleeves === 'short' ? LK.skin : LK.top;
+    const rS = 0.0285 * H * kg, rE = 0.0205 * H * kg, rF = 0.0215 * H * kg, rW = 0.0145 * H * kg, F1 = E.clone().lerp(Wr, 0.3);
+    const gU = upperLook === foreLook ? 'arm' + n : 'uarm' + n, gF = upperLook === foreLook ? 'arm' + n : 'farm' + n;
+    const delt = taperGeo(S.clone().addScaledVector(cy, 0.006 * H), S.clone().addScaledVector(u, 0.42 * ua), 0.03 * H * kg, 0.024 * H * kg, { radial: 18 });
+    const upper = taperGeo(S, E, rS, upperLook === foreLook ? rE : rE * 1.1, { radial: 18 });   // a sleeve edge at the elbow: the sleeve encloses the joint (no coincident surfaces)
+    const fore = [taperGeo(E, F1, rE, rF, { radial: 16 }), taperGeo(F1, Wr, rF, rW, { radial: 16, side: tH, sz: 0.72 })];
+    if (c.sleeves === 'short') {
+      part([delt, taperGeo(S, S.clone().lerp(E, 0.42), rS * 1.12, (rS + (rE - rS) * 0.42) * 1.14, { radial: 18 })], LK.top, 'sleeve' + n);
+      part([upper, ...fore], LK.skin, gU);
+    } else if (gU === gF) part([delt, upper, ...fore], upperLook, gU);
+    else { part([delt, upper], upperLook, gU); part(fore, foreLook, gF); }
+    if (c.sleeves === 'long') part([taperGeo(Wr.clone().lerp(E, 0.17), Wr.clone().lerp(E, 0.035), (rF + (rW - rF) * 0.75) * 1.1, rW * 1.12, { radial: 16, side: tH, sz: 0.8 })], LK.top, 'cuff' + n);
+    // armpit folds (pectoral in front, latissimus behind), part of the upper arm's surface (so they draw no seam along
+    // the arm); they only grow as the upper arm leaves the side (a hanging arm has none: they would stand off the chest)
+    { const el = Math.acos(THREE.MathUtils.clamp(-u.dot(cy), -1, 1)), k = THREE.MathUtils.smoothstep(el, rad(35), rad(95));
+      if (k > 0.05) { const fu = S.clone().addScaledVector(u, 0.28 * ua);
+        part([taperGeo(sweptPoint(torsoFrame, torsoProf, 0.8, Math.PI / 2 - s * 1.05, { inset: 0.018 * H * kg }), fu.clone().addScaledVector(cz, 0.004 * H), 0.016 * H * kg * k, 0.018 * H * kg),
+          taperGeo(sweptPoint(torsoFrame, torsoProf, 0.74, -Math.PI / 2 + s * 1.0, { inset: 0.02 * H * kg }), fu.clone().addScaledVector(cz, -0.004 * H), 0.018 * H * kg * k, 0.019 * H * kg)], LK.top, c.sleeves === 'short' ? 'sleeve' + n : gU); } }
     const hg = new THREE.Group(); hg.name = spec.who + '.hand' + n; add(hg);
-    const hand = buildHand(n, Lh, shape, r.end, f, nrm, LK.skin, hg);
-    P['elbow' + n] = r.mid; P['wrist' + n] = r.end; P['hand' + n] = hand.palm; P['index' + n] = hand.indexTip; P['thumb' + n] = hand.thumbTip;
-    P.hands[n] = { group: hg, shape, f, n: nrm, t: hand.t, reach: +r.reach.toFixed(2) };
+    const hand = buildHand(n, Lh, shape, Wr, f, nrm, LK.skin, hg, { kind: c.kind, id: uid + 'hand' + n, palmGroup: foreLook === LK.skin ? uid + gF : null, hold: hold?.r });
+    if (hand.held && hold.prop !== false) { const hh = hold.h ?? hold.r * 2.6, ax = hand.held.axis.clone(), ctr = hand.held.centre.clone().addScaledVector(ax, hold.off ?? hh * 0.12);
+      const cm = mk(new THREE.CylinderGeometry(hold.r, hold.r * (hold.taper ?? 0.85), hh, 20), hold.look || { grey: 0.9, col: 0xf0e8d0 }); cm.position.copy(ctr); cm.quaternion.setFromUnitVectors(UP, ax); tag(cm, hold.label || 'cup (held)'); hg.add(cm);
+      P['held' + n] = ctr; }
+    P['elbow' + n] = E; P['wrist' + n] = Wr; P['hand' + n] = hand.palm; P['index' + n] = hand.tips.index; P['thumb' + n] = hand.tips.thumb;
+    P['middle' + n] = hand.tips.middle; P['ring' + n] = hand.tips.ring; P['little' + n] = hand.tips.little; P['knuckle' + n] = hand.knuckles.middle;
+    P['forearm' + n] = E.clone().lerp(Wr, 0.55); P['upperArm' + n] = S.clone().lerp(E, 0.5);
+    const shapeName = typeof shape === 'string' ? shape : (shape.shape || 'relax');
+    P.hands[n] = { group: hg, shape: shapeName, pose: hand.pose, f, n: nrm, t: hand.t, reach: +r.reach.toFixed(2) };
   }
   g.traverse((o) => { o.userData.who = spec.who; });
   tag(g, c.name);

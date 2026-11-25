@@ -1,0 +1,21 @@
+A flat black-and-white clip-art sheet on a perfectly clean pure white background, wide 16:9: a neat grid of exactly TWELVE round cartoon faces, 4 columns by 3 rows, in the plain generic style of a 1980s-1990s American elementary-school "feelings chart" worksheet drawn by a school counsellor with a black felt-tip marker.
+
+EVERY FACE. One simple circle for the head, all twelve circles exactly the same size, each circle about 220 pixels across in a 1672 pixel wide picture, evenly spaced with wide empty white gaps between neighbours so that no face or its marks touches another. Inside each circle only: two simple eyes, two short eyebrow strokes, one mouth, and where stated a tear, a sweat drop or a few short lines. No nose unless stated, no ears, no hair, no neck, no body, no hands. One consistent hand for all twelve: an even, medium-bold black marker line of the same weight everywhere, slightly hand-drawn, not mechanical. Pure black line on pure white: no grey, no shading, no colour, no fills except small solid black pupils.
+
+THE TWELVE FACES, in reading order (row 1 left to right, then row 2, then row 3). Each one must be clearly different from the others and readable at a glance as its feeling:
+1. NERVOUS: wide eyes, raised brows, a wide wobbly forced grin showing clenched teeth, two sweat drops, short shaky double lines either side of the head.
+2. THANKFUL: eyes closed as two happy upward arcs, soft raised brows, a wide warm closed smile with small curved dimple marks at its corners.
+3. ANXIOUS: wide round eyes with small pupils looking to one side, brows raised and pinched together in the middle, the mouth a tight zigzag line, two sweat drops on the forehead.
+4. FRUSTRATED: eyes squeezed shut as angled lines like > and <, brows down, a clenched-teeth grimace, a small scribbled tangle cloud just above the head.
+5. HOPEFUL: big open eyes looking up toward one upper corner, brows gently raised, a small gentle closed smile.
+6. EMBARRASSED: eyes cast down, an awkward crooked closed smile, a band of short slanted blush hatching across both cheeks, one sweat drop at the temple.
+7. DISAPPOINTED: half-closed downcast eyes, long flat sagging brows, the mouth a line turned down at one end, a small puff of a sigh beside the mouth.
+8. LOVED: eyes closed as happy upward arcs, a big soft smile, three small outline hearts floating close around the top of the head.
+9. SAFE: soft relaxed open eyes, easy brows, a small contented smile, and a simple blanket edge drawn snugly across the bottom of the circle as if tucked in up to the chin.
+10. MAD: brows in a hard V, small glaring eyes, a big deep downturned scowling closed mouth, one small puff of steam on each side of the head.
+11. ANXIOUS, second version: wide eyes looking straight out, brows tilted up in the middle, the upper teeth biting the lower lip, one sweat drop on the temple and short wavy tremble lines beside the cheeks.
+12. WORRIED, second version: big eyes looking sideways, brows slanted up to the middle, a small downturned wavy mouth, one sweat drop.
+
+Any small extra marks (drops, lines, puffs) stay close to their own circle, within a quarter of a circle's width of it.
+
+Not emoji, not smiley-sticker style, no yellow, no gradients, no 3D, no shadows, not a copy of any published chart. NO TEXT of any kind: no letters, no words, no labels, no numbers, no captions, no question marks, no exclamation marks, no "Z"s, no title, no grid lines, no boxes, no border, no frame, no signature.

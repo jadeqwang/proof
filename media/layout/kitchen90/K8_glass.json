@@ -270,8 +270,8 @@
  "hands": {
   "jade7.L": {
    "px": [
-    1417.8,
-    4369.3
+    1417.6,
+    4380.2
    ],
    "shape": "relax",
    "in_frame": false,
@@ -279,8 +279,8 @@
   },
   "jade7.R": {
    "px": [
-    1569.8,
-    2532.6
+    1569.6,
+    2539
    ],
    "shape": "relax",
    "in_frame": false,

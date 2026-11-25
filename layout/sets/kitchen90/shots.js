@@ -32,8 +32,11 @@ const child = (o = {}) => ({ at: CH, legs: 'stand', yaw: 180, head: { look: 'mam
 // Mother sits in the pulled-out chair, knees apart, the child standing between them; thumbs on the child's cheeks
 const hipM = seatHip('mama90', SEAT);
 const mamaThumbs = (o = {}) => ({ at: [MC[0], MC[1] + 0.04], legs: 'seat', legOpts: { seatH: hipM, ankleL: [0.26, -hipM + 0.05, 0.4], ankleR: [0.26, -hipM + 0.05, 0.4] }, yaw: 0, spine: { bend: 20 }, head: { look: 'jade7:eyes' },
-  R: { to: 'jade7:mouth', off: [-0.075, -0.035, -0.035], hand: 'relax', palm: [1, 0, 0.2], fingers: [0.1, 0.55, 0.8], thumb: [0.8, 0.5, 0.2] },
-  L: { to: 'jade7:mouth', off: [0.075, -0.035, -0.035], hand: 'relax', palm: [-1, 0, 0.2], fingers: [-0.1, 0.55, 0.8], thumb: [-0.8, 0.5, 0.2] }, ...o });   // mirror of R (left hands honour directions since the engine fix)
+  // (2026-11-25, articulated hands) the hands cup her face: palms against the sides of her face, fingers up toward her
+  // ears, each THUMB TIP placed on a cheek beside the mouth corner (engine arm `tip`); the old palm targets put the
+  // mitts' thumbs across her chin
+  R: { tip: { finger: 'thumb', at: 'jade7:mouth', off: [-0.036, 0.016, 0.0] }, hand: { shape: 'relax', curl: { all: [22, 26, 12] }, thumb: { opp: 0.3, sweep: 38, abd: 26, mcp: 8, ip: 10 } }, palm: [1, 0, 0.25], fingers: [-0.12, 0.95, 0.2] },
+  L: { tip: { finger: 'thumb', at: 'jade7:mouth', off: [0.036, 0.016, 0.0] }, hand: { shape: 'relax', curl: { all: [22, 26, 12] }, thumb: { opp: 0.3, sweep: 38, abd: 26, mcp: 8, ip: 10 } }, palm: [-1, 0, 0.25], fingers: [0.12, 0.95, 0.2] }, ...o });   // mirror of R (left hands honour directions since the engine fix)
 const THUMBS = { jade7: child(), mama90: mamaThumbs() };
 // Mother has turned and is walking to the hall doorway; she passes between the child and the front of the room
 const mamaAway = (at, o = {}) => ({ at, legs: 'stand', yaw: 52, spine: { bend: 2 }, head: { look: [1.9, 1.4, 1.6] }, L: 'side', R: 'side', ...o });

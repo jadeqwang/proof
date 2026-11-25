@@ -1,0 +1,17 @@
+route: codex image_gen (headless codex exec in tmux session proof-kf; on plan, $0)
+date: 2026-11-22 21:07
+references (generated sheets and set renders only, no photos):
+  image 1: inputs/refs_chaosmonkey/mama/mama_H_heads_v3.jpg  [her accepted face sheet (identity)]
+  image 2: inputs/refs_chaosmonkey/mama/mama_H2_heads_v3.jpg  [the same woman in the film's painting hand]
+  image 3: inputs/refs_chaosmonkey/mama/mama_C_expressions_mouths_v3.jpg  [her acted expressions, for the hand only]
+
+REFERENCE IMAGES. Image 1: her accepted face sheet (identity). Image 2: the same woman in the film's painting hand. Image 3: her acted expressions, for the hand only.
+
+A character likeness sheet: exactly six head-and-shoulders portraits of the SAME woman, all the same size, evenly spaced in two rows of three on bare paper. Mama: a Chinese woman in her mid to late thirties, young and attractive, smooth unlined warm skin; a soft oval face with a gently pointed chin, long almond dark eyes, clearly drawn dark straight-ish eyebrows that read strongly behind her glasses, a straight nose, a full mouth; glossy jet-black hair in a soft late-1980s perm of loose springy curls, side-parted, ending at the jaw (never longer); thin round wire-rim glasses. The straight strong shoulders and upright carriage of a former competitive swimmer. No wrinkles, no sagging, no grey hair, no lines from nose to mouth. She wears a plain cream cotton collarless blouse with a small notched neckline.
+
+TOP ROW, her face at rest, three views: front view; three-quarter view; pure profile facing left. At rest her face is quiet and held, the same kind of face her small daughter has: mouth closed and level, jaw loose, brows resting, and all the life in the eyes, which are steady and exact on one point a little way off, like a swimmer on the blocks watching the water. It is the face of someone concentrating, with no smile and no frown; she has no idea how still it looks.
+
+BOTTOM ROW, three acted moments: (1) the smile she puts on for strangers in a new country: a correct, bright, closed-lip smile lifted into the cheeks and held a moment too long, eyebrows a little raised, while her eyes stay careful and are checking how it is received; (2) alarm: she has just seen her child standing lost in thought in a dangerous place: eyes wide, brows up and drawn together, lips parted on a caught breath, head already turning; (3) speaking fast and low to someone beside her, in the middle of a word: eyes slid sideways toward that person, brows slightly drawn in concentration, mouth shaping a quick syllable.
+
+Image 1 is her accepted face sheet: it is the identity, reproduce THAT woman exactly. Image 2 is the same woman in the film's painting hand: draw with image 2's thin ink line and pale wash. Image 3 shows her acted expressions in the same hand, for the quality of line only. Every head on the new sheet is the same woman, on-model, the same age. Use the images for likeness only; draw a new sheet.
+Painting hand: Chinese fine-line figure painting on plain cream xuan paper, delicate thin baimiao ink outlines for faces, hands and clothing folds, light transparent colour washes, hair in soft black ink wash with a gloss, paper grain showing. Skin warm and rosy, never grey. Not anime, not cel shading, not a photograph, not a 3D render. Plain bare cream paper, no text, no labels, no numbers, no arrows, no motion lines, no signature, no seal, no border, no panel frames.

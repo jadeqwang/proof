@@ -1,0 +1,12 @@
+route: codex image_gen (headless codex exec in tmux session proof-kf; on plan, $0)
+date: 2026-11-24 16:18
+references (generated sheets and set renders only, no photos):
+  image 1: media/footage/artichoke/stages/s06.png  [the neighbouring plate in the series, to edit]
+
+REFERENCE IMAGES. Image 1: the neighbouring plate in the series, to edit.
+
+Image 1 is a plate from a series of botanical plates showing one globe artichoke plant (Cynara cardunculus var. scolymus) growing. Make the plate that comes just BEFORE it: the same plant about three weeks EARLIER, so younger and smaller. Change ONLY the plant, as follows. The young plant is smaller: six leaves, about 75% as long, spanning about 17% of the sheet's width, the leaves more upright, their lobes a little shallower.
+
+Keep EVERYTHING else exactly as it is in image 1: the same sheet of paper, the same plate mark, the same caption in the same place and size, the same low mound of earth with the same pebbles in exactly the same place and size, the plant's base exactly where it is (where the stem leaves the earth), the same viewpoint, the same scale, the same engraving line, hatching and pale watercolour washes. Every leaf that is still there keeps its position, direction and character, only smaller and younger. Do not move, re-centre, zoom or re-compose anything.
+
+STYLE. A hand-coloured botanical engraving in the manner of an early nineteenth-century plate from Curtis's Botanical Magazine, Besler's Hortus Eystettensis or Redouté: fine copperplate line work, crisp black-brown engraved outlines, delicate parallel hatching, cross-hatching and stipple for the shading, and over the engraving thin, transparent, restrained watercolour washes laid by hand, a little uneven in places, luminous, with the paper showing through. The sheet is pale warm cream laid paper with very faint chain lines and laid lines, very even and quiet, and a soft plate mark impressed a little inside the edge of the sheet. Wide landscape 16:9 sheet seen flat and straight on, evenly lit, the whole sheet filling the image edge to edge. Not a photograph, not a 3D render, not digital painting, no drop shadow, no table, no frame, no vignette, no signature, no extra text beyond the caption.

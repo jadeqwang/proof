@@ -1,0 +1,21 @@
+A flat black-and-white clip-art sheet on a perfectly clean pure white background, wide 16:9: a neat grid of exactly TWELVE round cartoon faces, 4 columns by 3 rows, in the plain generic style of a 1980s-1990s American elementary-school "feelings chart" worksheet drawn by a school counsellor with a black felt-tip marker.
+
+EVERY FACE. One simple circle for the head, all twelve circles exactly the same size, each circle about 220 pixels across in a 1672 pixel wide picture, evenly spaced with wide empty white gaps between neighbours so that no face or its marks touches another. Inside each circle only: two simple eyes, two short eyebrow strokes, one mouth, and where stated a tear, a sweat drop or a few short lines. No nose unless stated, no ears, no hair, no neck, no body, no hands. One consistent hand for all twelve: an even, medium-bold black marker line of the same weight everywhere, slightly hand-drawn, not mechanical. Pure black line on pure white: no grey, no shading, no colour, no fills except small solid black pupils.
+
+THE TWELVE FACES, in reading order (row 1 left to right, then row 2, then row 3). Each one must be clearly different from the others and readable at a glance as its feeling:
+1. HAPPY: a big open smiling mouth like a wide D lying on its side, round dot eyes, brows lifted.
+2. SAD: the mouth a deep downturned curve, brows slanted up toward the middle, eyes looking down, ONE teardrop on one cheek.
+3. ANGRY: heavy brows slanted steeply down to the middle in a V, glaring eyes, an open rectangular mouth showing clenched teeth as a grid.
+4. SCARED: very wide round eyes with tiny pupils, brows shot high up, a tall open mouth with a wavy trembling outline, short shiver lines on both sides of the head.
+5. SURPRISED: round wide eyes, high arched brows, the mouth a small perfect round O.
+6. SLEEPY: heavy half-closed eyelids covering the top half of each eye, a wide open oval yawning mouth.
+7. GRUMPY: flat low straight brows pressed down on the eyes, eyes looking off to one side, a small tight lopsided frown.
+8. PROUD: eyes closed as two contented upward arcs, brows high, a broad closed smug smile, a small upturned nose line, the features placed a little high as if the chin is lifted.
+9. SHY: eyes glancing down and to one side, a tiny closed smile, three short slanted blush lines on each cheek.
+10. BORED: eyes half-lidded and rolled up toward one upper corner, flat brows, a perfectly straight flat line for a mouth.
+11. EXCITED: huge wide eyes with a little sparkle highlight, brows high, an enormous open laughing grin showing a row of top teeth, short straight burst lines radiating outside the circle all round the head.
+12. LONELY: small eyes looking down, brows tilted up toward the middle, a very small downturned mouth, all the features small and close together in the big empty circle, no tear.
+
+Any small extra marks (drops, lines, puffs) stay close to their own circle, within a quarter of a circle's width of it.
+
+Not emoji, not smiley-sticker style, no yellow, no gradients, no 3D, no shadows, not a copy of any published chart. NO TEXT of any kind: no letters, no words, no labels, no numbers, no captions, no question marks, no exclamation marks, no "Z"s, no title, no grid lines, no boxes, no border, no frame, no signature.

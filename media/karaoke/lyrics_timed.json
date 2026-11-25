@@ -1,0 +1,1929 @@
+{
+ "source": "inputs/Proof.wav (v3, 278.40 s)",
+ "sections": [
+  {
+   "name": "Intro",
+   "start": 0.0,
+   "end": 30.16
+  },
+  {
+   "name": "Verse 1",
+   "start": 30.16,
+   "end": 59.18
+  },
+  {
+   "name": "Instrumental",
+   "start": 59.18,
+   "end": 78.0
+  },
+  {
+   "name": "Pre-Chorus",
+   "start": 78.0,
+   "end": 96.8
+  },
+  {
+   "name": "Chorus 1",
+   "start": 96.8,
+   "end": 115.3
+  },
+  {
+   "name": "Post-Chorus",
+   "start": 115.3,
+   "end": 127.16
+  },
+  {
+   "name": "Verse 2",
+   "start": 127.16,
+   "end": 145.8
+  },
+  {
+   "name": "Interlude",
+   "start": 145.8,
+   "end": 163.84
+  },
+  {
+   "name": "Bridge",
+   "start": 163.84,
+   "end": 184.56
+  },
+  {
+   "name": "Verse 3",
+   "start": 184.56,
+   "end": 209.0
+  },
+  {
+   "name": "Breakdown",
+   "start": 209.0,
+   "end": 213.38
+  },
+  {
+   "name": "Chorus 2",
+   "start": 213.38,
+   "end": 232.96
+  },
+  {
+   "name": "Post-Chorus 2",
+   "start": 232.96,
+   "end": 243.52
+  },
+  {
+   "name": "Outro",
+   "start": 243.52,
+   "end": 263.4
+  },
+  {
+   "name": "Coda",
+   "start": 263.4,
+   "end": 278.4
+  }
+ ],
+ "lines": [
+  {
+   "section": "Intro",
+   "start": 8.9,
+   "end": 11.02,
+   "backing": false,
+   "words": [
+    {
+     "w": "You",
+     "start": 8.9,
+     "end": 9.05
+    },
+    {
+     "w": "need",
+     "start": 9.05,
+     "end": 9.22
+    },
+    {
+     "w": "facial",
+     "start": 9.22,
+     "end": 9.52
+    },
+    {
+     "w": "expressions",
+     "start": 9.52,
+     "end": 11.02
+    }
+   ],
+   "delivery": "whisper"
+  },
+  {
+   "section": "Intro",
+   "start": 18.55,
+   "end": 19.92,
+   "backing": false,
+   "words": [
+    {
+     "w": "But",
+     "start": 18.55,
+     "end": 18.8
+    },
+    {
+     "w": "not",
+     "start": 18.8,
+     "end": 19.08
+    },
+    {
+     "w": "like",
+     "start": 19.12,
+     "end": 19.45
+    },
+    {
+     "w": "that",
+     "start": 19.45,
+     "end": 19.92
+    }
+   ],
+   "delivery": "whisper"
+  },
+  {
+   "section": "Verse 1",
+   "start": 30.16,
+   "end": 33.74,
+   "backing": false,
+   "words": [
+    {
+     "w": "Three",
+     "start": 30.16,
+     "end": 30.48
+    },
+    {
+     "w": "years",
+     "start": 30.48,
+     "end": 30.8
+    },
+    {
+     "w": "old,",
+     "start": 30.8,
+     "end": 31.24
+    },
+    {
+     "w": "uncle",
+     "start": 31.42,
+     "end": 32.14
+    },
+    {
+     "w": "explains",
+     "start": 32.14,
+     "end": 32.86
+    },
+    {
+     "w": "atoms",
+     "start": 33.24,
+     "end": 33.74
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 34.74,
+   "end": 37.8,
+   "backing": false,
+   "words": [
+    {
+     "w": "A",
+     "start": 34.74,
+     "end": 34.92
+    },
+    {
+     "w": "week",
+     "start": 34.92,
+     "end": 35.36
+    },
+    {
+     "w": "later",
+     "start": 35.36,
+     "end": 35.86
+    },
+    {
+     "w": "my",
+     "start": 35.86,
+     "end": 36.2
+    },
+    {
+     "w": "mother",
+     "start": 36.2,
+     "end": 36.64
+    },
+    {
+     "w": "finds",
+     "start": 36.64,
+     "end": 37.4
+    },
+    {
+     "w": "me",
+     "start": 37.4,
+     "end": 37.8
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 37.8,
+   "end": 41.12,
+   "backing": false,
+   "words": [
+    {
+     "w": "sat",
+     "start": 37.8,
+     "end": 38.36
+    },
+    {
+     "w": "in",
+     "start": 38.36,
+     "end": 38.86
+    },
+    {
+     "w": "a",
+     "start": 38.86,
+     "end": 39.26
+    },
+    {
+     "w": "snow",
+     "start": 39.26,
+     "end": 39.73
+    },
+    {
+     "w": "drift",
+     "start": 39.73,
+     "end": 40.32
+    },
+    {
+     "w": "of",
+     "start": 40.32,
+     "end": 40.58
+    },
+    {
+     "w": "paper",
+     "start": 40.58,
+     "end": 41.12
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 41.12,
+   "end": 43.52,
+   "backing": false,
+   "words": [
+    {
+     "w": "ripped",
+     "start": 41.12,
+     "end": 42.12
+    },
+    {
+     "w": "to",
+     "start": 42.12,
+     "end": 42.44
+    },
+    {
+     "w": "shreds",
+     "start": 42.44,
+     "end": 43.52
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 43.52,
+   "end": 44.9,
+   "backing": false,
+   "words": [
+    {
+     "w": "Ever",
+     "start": 43.52,
+     "end": 43.96
+    },
+    {
+     "w": "tinier",
+     "start": 43.96,
+     "end": 44.9
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 45.56,
+   "end": 47.94,
+   "backing": false,
+   "words": [
+    {
+     "w": "repeating",
+     "start": 45.56,
+     "end": 46.5
+    },
+    {
+     "w": "what",
+     "start": 46.5,
+     "end": 46.68
+    },
+    {
+     "w": "uncle",
+     "start": 46.68,
+     "end": 47.42
+    },
+    {
+     "w": "said",
+     "start": 47.42,
+     "end": 47.94
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 47.94,
+   "end": 50.78,
+   "backing": false,
+   "words": [
+    {
+     "w": "What",
+     "start": 47.94,
+     "end": 48.76
+    },
+    {
+     "w": "on",
+     "start": 48.78,
+     "end": 49.02
+    },
+    {
+     "w": "earth",
+     "start": 49.04,
+     "end": 49.58
+    },
+    {
+     "w": "are",
+     "start": 49.58,
+     "end": 49.98
+    },
+    {
+     "w": "you",
+     "start": 49.98,
+     "end": 50.28
+    },
+    {
+     "w": "doing?",
+     "start": 50.28,
+     "end": 50.78
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 50.86,
+   "end": 53.2,
+   "backing": false,
+   "words": [
+    {
+     "w": "The",
+     "start": 50.86,
+     "end": 51.16
+    },
+    {
+     "w": "adults",
+     "start": 51.16,
+     "end": 51.56
+    },
+    {
+     "w": "howl",
+     "start": 51.56,
+     "end": 52.24
+    },
+    {
+     "w": "with",
+     "start": 52.24,
+     "end": 52.52
+    },
+    {
+     "w": "laughter",
+     "start": 52.54,
+     "end": 53.2
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 54.0,
+   "end": 55.44,
+   "backing": false,
+   "words": [
+    {
+     "w": "What's",
+     "start": 54.0,
+     "end": 54.7
+    },
+    {
+     "w": "so",
+     "start": 54.7,
+     "end": 54.86
+    },
+    {
+     "w": "funny?",
+     "start": 54.86,
+     "end": 55.44
+    }
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "start": 55.48,
+   "end": 59.2,
+   "backing": false,
+   "words": [
+    {
+     "w": "Nobody",
+     "start": 55.48,
+     "end": 56.04
+    },
+    {
+     "w": "tells",
+     "start": 56.04,
+     "end": 56.76
+    },
+    {
+     "w": "me",
+     "start": 56.8,
+     "end": 57.42
+    },
+    {
+     "w": "after",
+     "start": 57.42,
+     "end": 59.2
+    }
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "start": 78.0,
+   "end": 81.36,
+   "backing": false,
+   "words": [
+    {
+     "w": "She",
+     "start": 78.0,
+     "end": 78.92
+    },
+    {
+     "w": "doesn't",
+     "start": 78.92,
+     "end": 79.8
+    },
+    {
+     "w": "talk",
+     "start": 79.8,
+     "end": 80.1
+    },
+    {
+     "w": "like",
+     "start": 80.1,
+     "end": 80.46
+    },
+    {
+     "w": "other",
+     "start": 80.46,
+     "end": 80.74
+    },
+    {
+     "w": "children",
+     "start": 80.74,
+     "end": 81.36
+    }
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "start": 81.7,
+   "end": 84.28,
+   "backing": true,
+   "words": [
+    {
+     "w": "(Her",
+     "start": 81.7,
+     "end": 82.1
+    },
+    {
+     "w": "English",
+     "start": 82.1,
+     "end": 82.56
+    },
+    {
+     "w": "comes",
+     "start": 82.56,
+     "end": 82.94
+    },
+    {
+     "w": "from",
+     "start": 82.96,
+     "end": 83.26
+    },
+    {
+     "w": "books)",
+     "start": 83.28,
+     "end": 84.28
+    }
+   ],
+   "parenthetical": true
+  },
+  {
+   "section": "Pre-Chorus",
+   "start": 88.14,
+   "end": 91.24,
+   "backing": false,
+   "words": [
+    {
+     "w": "Her",
+     "start": 88.14,
+     "end": 88.22
+    },
+    {
+     "w": "face",
+     "start": 88.22,
+     "end": 88.7
+    },
+    {
+     "w": "doesn't",
+     "start": 88.86,
+     "end": 89.5
+    },
+    {
+     "w": "make",
+     "start": 89.5,
+     "end": 89.88
+    },
+    {
+     "w": "much",
+     "start": 89.88,
+     "end": 90.3
+    },
+    {
+     "w": "expression",
+     "start": 90.3,
+     "end": 91.24
+    }
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "start": 91.24,
+   "end": 96.65,
+   "backing": true,
+   "words": [
+    {
+     "w": "For",
+     "start": 91.24,
+     "end": 91.6
+    },
+    {
+     "w": "our",
+     "start": 91.6,
+     "end": 91.84
+    },
+    {
+     "w": "culture,",
+     "start": 91.84,
+     "end": 92.4
+    },
+    {
+     "w": "that's",
+     "start": 92.56,
+     "end": 93.2
+    },
+    {
+     "w": "just",
+     "start": 93.2,
+     "end": 93.52
+    },
+    {
+     "w": "how",
+     "start": 93.52,
+     "end": 94.32
+    },
+    {
+     "w": "it",
+     "start": 94.32,
+     "end": 95.12
+    },
+    {
+     "w": "looks",
+     "start": 95.12,
+     "end": 96.65
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "start": 96.84,
+   "end": 100.32,
+   "backing": false,
+   "words": [
+    {
+     "w": "How",
+     "start": 96.84,
+     "end": 97.04
+    },
+    {
+     "w": "do",
+     "start": 97.04,
+     "end": 97.36
+    },
+    {
+     "w": "you",
+     "start": 97.36,
+     "end": 97.68
+    },
+    {
+     "w": "feel?",
+     "start": 97.68,
+     "end": 98.38
+    },
+    {
+     "w": "Inside?",
+     "start": 98.38,
+     "end": 100.32
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "start": 102.16,
+   "end": 105.36,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 102.16,
+     "end": 102.76
+    },
+    {
+     "w": "honestly",
+     "start": 102.76,
+     "end": 103.56
+    },
+    {
+     "w": "don't",
+     "start": 103.56,
+     "end": 105.0
+    },
+    {
+     "w": "know",
+     "start": 105.0,
+     "end": 105.36
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "start": 105.36,
+   "end": 110.38,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 105.36,
+     "end": 106.4
+    },
+    {
+     "w": "open",
+     "start": 106.4,
+     "end": 106.94
+    },
+    {
+     "w": "my",
+     "start": 106.94,
+     "end": 107.34
+    },
+    {
+     "w": "mouth,",
+     "start": 107.34,
+     "end": 107.94
+    },
+    {
+     "w": "my",
+     "start": 108.38,
+     "end": 108.8
+    },
+    {
+     "w": "voice",
+     "start": 108.8,
+     "end": 109.26
+    },
+    {
+     "w": "goes",
+     "start": 109.26,
+     "end": 109.6
+    },
+    {
+     "w": "blind",
+     "start": 109.6,
+     "end": 110.38
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "start": 111.18,
+   "end": 119.2,
+   "backing": false,
+   "words": [
+    {
+     "w": "The",
+     "start": 111.18,
+     "end": 111.88
+    },
+    {
+     "w": "words",
+     "start": 111.88,
+     "end": 112.32
+    },
+    {
+     "w": "have",
+     "start": 112.32,
+     "end": 112.54
+    },
+    {
+     "w": "nowhere",
+     "start": 112.54,
+     "end": 113.2
+    },
+    {
+     "w": "to",
+     "start": 113.2,
+     "end": 114.5
+    },
+    {
+     "w": "go",
+     "start": 114.5,
+     "end": 119.2
+    }
+   ]
+  },
+  {
+   "section": "Post-Chorus",
+   "start": 121.06,
+   "end": 123.96,
+   "backing": true,
+   "words": [
+    {
+     "w": "(aaah)",
+     "start": 121.06,
+     "end": 123.96
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 127.18,
+   "end": 129.18,
+   "backing": false,
+   "words": [
+    {
+     "w": "Resting",
+     "start": 127.18,
+     "end": 128.1
+    },
+    {
+     "w": "oblivious",
+     "start": 128.1,
+     "end": 128.76
+    },
+    {
+     "w": "face",
+     "start": 128.76,
+     "end": 129.18
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 129.18,
+   "end": 131.56,
+   "backing": false,
+   "words": [
+    {
+     "w": "Blocking",
+     "start": 129.18,
+     "end": 129.88
+    },
+    {
+     "w": "the",
+     "start": 129.88,
+     "end": 129.96
+    },
+    {
+     "w": "aisle,",
+     "start": 129.96,
+     "end": 130.36
+    },
+    {
+     "w": "in",
+     "start": 130.36,
+     "end": 130.82
+    },
+    {
+     "w": "the",
+     "start": 130.82,
+     "end": 130.98
+    },
+    {
+     "w": "wrong",
+     "start": 130.98,
+     "end": 131.24
+    },
+    {
+     "w": "place",
+     "start": 131.24,
+     "end": 131.56
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 131.56,
+   "end": 133.0,
+   "backing": false,
+   "words": [
+    {
+     "w": "Enthralled",
+     "start": 131.56,
+     "end": 132.22
+    },
+    {
+     "w": "by",
+     "start": 132.22,
+     "end": 132.42
+    },
+    {
+     "w": "an",
+     "start": 132.44,
+     "end": 132.58
+    },
+    {
+     "w": "artichoke",
+     "start": 132.58,
+     "end": 133.0
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 133.12,
+   "end": 133.96,
+   "backing": false,
+   "words": [
+    {
+     "w": "green",
+     "start": 133.12,
+     "end": 133.42
+    },
+    {
+     "w": "and",
+     "start": 133.42,
+     "end": 133.66
+    },
+    {
+     "w": "fresh",
+     "start": 133.66,
+     "end": 133.96
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 133.96,
+   "end": 136.32,
+   "backing": false,
+   "words": [
+    {
+     "w": "Sacred",
+     "start": 133.96,
+     "end": 134.74
+    },
+    {
+     "w": "geometry",
+     "start": 134.74,
+     "end": 135.32
+    },
+    {
+     "w": "made",
+     "start": 135.32,
+     "end": 136.0
+    },
+    {
+     "w": "flesh",
+     "start": 136.0,
+     "end": 136.32
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 136.32,
+   "end": 138.78,
+   "backing": false,
+   "words": [
+    {
+     "w": "Down",
+     "start": 136.32,
+     "end": 137.06
+    },
+    {
+     "w": "in",
+     "start": 137.06,
+     "end": 137.24
+    },
+    {
+     "w": "the",
+     "start": 137.24,
+     "end": 137.32
+    },
+    {
+     "w": "basement,",
+     "start": 137.32,
+     "end": 137.62
+    },
+    {
+     "w": "Dad's",
+     "start": 137.62,
+     "end": 137.98
+    },
+    {
+     "w": "code,",
+     "start": 137.98,
+     "end": 138.16
+    },
+    {
+     "w": "I",
+     "start": 138.16,
+     "end": 138.48
+    },
+    {
+     "w": "watch",
+     "start": 138.48,
+     "end": 138.78
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 138.8,
+   "end": 140.36,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 138.8,
+     "end": 139.12
+    },
+    {
+     "w": "point",
+     "start": 139.12,
+     "end": 139.4
+    },
+    {
+     "w": "to",
+     "start": 139.4,
+     "end": 139.58
+    },
+    {
+     "w": "the",
+     "start": 139.58,
+     "end": 139.72
+    },
+    {
+     "w": "one",
+     "start": 139.72,
+     "end": 139.96
+    },
+    {
+     "w": "he",
+     "start": 139.96,
+     "end": 140.1
+    },
+    {
+     "w": "missed.",
+     "start": 140.1,
+     "end": 140.36
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 140.46,
+   "end": 141.18,
+   "backing": true,
+   "words": [
+    {
+     "w": "\"Good",
+     "start": 140.46,
+     "end": 140.8
+    },
+    {
+     "w": "catch!\"",
+     "start": 140.8,
+     "end": 141.18
+    }
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "start": 141.18,
+   "end": 145.6,
+   "backing": false,
+   "words": [
+    {
+     "w": "Did",
+     "start": 141.18,
+     "end": 141.68
+    },
+    {
+     "w": "she",
+     "start": 141.68,
+     "end": 141.9
+    },
+    {
+     "w": "understand",
+     "start": 141.9,
+     "end": 142.92
+    },
+    {
+     "w": "or",
+     "start": 143.36,
+     "end": 143.62
+    },
+    {
+     "w": "just",
+     "start": 143.62,
+     "end": 143.96
+    },
+    {
+     "w": "pattern",
+     "start": 143.96,
+     "end": 144.88
+    },
+    {
+     "w": "match?",
+     "start": 144.88,
+     "end": 145.6
+    }
+   ]
+  },
+  {
+   "section": "Interlude",
+   "start": 145.8,
+   "end": 156.0,
+   "backing": true,
+   "hide": true,
+   "words": [
+    {
+     "w": "(match,",
+     "start": 145.8,
+     "end": 149.2
+    },
+    {
+     "w": "match,",
+     "start": 149.2,
+     "end": 152.6
+    },
+    {
+     "w": "match\u2026)",
+     "start": 152.6,
+     "end": 156.0
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "start": 163.84,
+   "end": 167.0,
+   "backing": false,
+   "words": [
+    {
+     "w": "Do",
+     "start": 163.84,
+     "end": 164.18
+    },
+    {
+     "w": "you",
+     "start": 164.18,
+     "end": 164.96
+    },
+    {
+     "w": "not",
+     "start": 164.96,
+     "end": 165.42
+    },
+    {
+     "w": "see",
+     "start": 165.42,
+     "end": 165.76
+    },
+    {
+     "w": "what",
+     "start": 165.76,
+     "end": 166.36
+    },
+    {
+     "w": "I",
+     "start": 166.36,
+     "end": 166.6
+    },
+    {
+     "w": "see?",
+     "start": 166.6,
+     "end": 167.0
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "start": 167.24,
+   "end": 169.42,
+   "backing": false,
+   "words": [
+    {
+     "w": "Does",
+     "start": 167.24,
+     "end": 167.56
+    },
+    {
+     "w": "it",
+     "start": 167.58,
+     "end": 167.78
+    },
+    {
+     "w": "matter",
+     "start": 167.78,
+     "end": 168.12
+    },
+    {
+     "w": "what",
+     "start": 168.12,
+     "end": 168.48
+    },
+    {
+     "w": "makes",
+     "start": 168.48,
+     "end": 168.86
+    },
+    {
+     "w": "me",
+     "start": 168.86,
+     "end": 169.1
+    },
+    {
+     "w": "me?",
+     "start": 169.1,
+     "end": 169.42
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "start": 169.42,
+   "end": 173.52,
+   "backing": false,
+   "words": [
+    {
+     "w": "Beauty",
+     "start": 169.42,
+     "end": 170.08
+    },
+    {
+     "w": "on",
+     "start": 170.08,
+     "end": 170.36
+    },
+    {
+     "w": "this",
+     "start": 170.36,
+     "end": 170.7
+    },
+    {
+     "w": "side,",
+     "start": 170.7,
+     "end": 171.28
+    },
+    {
+     "w": "truth",
+     "start": 171.8,
+     "end": 172.36
+    },
+    {
+     "w": "by",
+     "start": 172.36,
+     "end": 172.66
+    },
+    {
+     "w": "reference",
+     "start": 172.66,
+     "end": 173.52
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "start": 174.44,
+   "end": 176.68,
+   "backing": false,
+   "words": [
+    {
+     "w": "Science",
+     "start": 174.44,
+     "end": 174.96
+    },
+    {
+     "w": "fiction",
+     "start": 174.96,
+     "end": 175.44
+    },
+    {
+     "w": "shelved",
+     "start": 175.44,
+     "end": 176.14
+    },
+    {
+     "w": "with",
+     "start": 176.14,
+     "end": 176.32
+    },
+    {
+     "w": "truth",
+     "start": 176.32,
+     "end": 176.68
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "start": 176.68,
+   "end": 179.24,
+   "backing": false,
+   "words": [
+    {
+     "w": "From",
+     "start": 176.68,
+     "end": 177.2
+    },
+    {
+     "w": "inside,",
+     "start": 177.2,
+     "end": 177.58
+    },
+    {
+     "w": "I",
+     "start": 177.58,
+     "end": 177.94
+    },
+    {
+     "w": "can't",
+     "start": 177.94,
+     "end": 178.2
+    },
+    {
+     "w": "tell",
+     "start": 178.2,
+     "end": 178.46
+    },
+    {
+     "w": "the",
+     "start": 178.46,
+     "end": 178.66
+    },
+    {
+     "w": "difference",
+     "start": 178.66,
+     "end": 179.24
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "start": 179.46,
+   "end": 184.5,
+   "backing": false,
+   "words": [
+    {
+     "w": "And",
+     "start": 179.46,
+     "end": 179.96
+    },
+    {
+     "w": "I",
+     "start": 179.96,
+     "end": 180.56
+    },
+    {
+     "w": "can't",
+     "start": 180.56,
+     "end": 182.14
+    },
+    {
+     "w": "give",
+     "start": 182.14,
+     "end": 182.54
+    },
+    {
+     "w": "you",
+     "start": 182.54,
+     "end": 183.58
+    },
+    {
+     "w": "proof",
+     "start": 183.58,
+     "end": 184.5
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 184.56,
+   "end": 188.5,
+   "backing": false,
+   "words": [
+    {
+     "w": "Housewarming,",
+     "start": 184.56,
+     "end": 185.76
+    },
+    {
+     "w": "lemonade",
+     "start": 186.02,
+     "end": 187.12
+    },
+    {
+     "w": "from",
+     "start": 187.12,
+     "end": 187.78
+    },
+    {
+     "w": "the",
+     "start": 187.78,
+     "end": 188.06
+    },
+    {
+     "w": "yard",
+     "start": 188.06,
+     "end": 188.5
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 188.5,
+   "end": 191.08,
+   "backing": false,
+   "words": [
+    {
+     "w": "Perky",
+     "start": 188.5,
+     "end": 189.66
+    },
+    {
+     "w": "American",
+     "start": 189.66,
+     "end": 190.14
+    },
+    {
+     "w": "girl",
+     "start": 190.14,
+     "end": 191.08
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 191.36,
+   "end": 193.42,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 191.36,
+     "end": 192.08
+    },
+    {
+     "w": "play",
+     "start": 192.08,
+     "end": 192.58
+    },
+    {
+     "w": "the",
+     "start": 192.58,
+     "end": 192.92
+    },
+    {
+     "w": "part",
+     "start": 192.92,
+     "end": 193.42
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 193.48,
+   "end": 195.96,
+   "backing": false,
+   "words": [
+    {
+     "w": "He",
+     "start": 193.48,
+     "end": 193.96
+    },
+    {
+     "w": "said",
+     "start": 193.98,
+     "end": 194.26
+    },
+    {
+     "w": "I",
+     "start": 194.26,
+     "end": 194.44
+    },
+    {
+     "w": "absolutely",
+     "start": 194.44,
+     "end": 194.9
+    },
+    {
+     "w": "nailed",
+     "start": 194.9,
+     "end": 195.6
+    },
+    {
+     "w": "it",
+     "start": 195.6,
+     "end": 195.96
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 195.96,
+   "end": 198.46,
+   "backing": false,
+   "words": [
+    {
+     "w": "Well,",
+     "start": 195.96,
+     "end": 196.16
+    },
+    {
+     "w": "fifteen",
+     "start": 196.16,
+     "end": 196.6
+    },
+    {
+     "w": "percent",
+     "start": 196.6,
+     "end": 197.02
+    },
+    {
+     "w": "above",
+     "start": 197.02,
+     "end": 197.68
+    },
+    {
+     "w": "amplitude",
+     "start": 197.68,
+     "end": 198.46
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 198.46,
+   "end": 201.16,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 198.46,
+     "end": 199.08
+    },
+    {
+     "w": "nod,",
+     "start": 199.08,
+     "end": 199.44
+    },
+    {
+     "w": "the",
+     "start": 199.6,
+     "end": 199.78
+    },
+    {
+     "w": "past",
+     "start": 199.78,
+     "end": 200.06
+    },
+    {
+     "w": "hour",
+     "start": 200.06,
+     "end": 200.38
+    },
+    {
+     "w": "gets",
+     "start": 200.4,
+     "end": 200.7
+    },
+    {
+     "w": "reviewed",
+     "start": 200.7,
+     "end": 201.16
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 201.18,
+   "end": 203.78,
+   "backing": false,
+   "words": [
+    {
+     "w": "Hug",
+     "start": 201.18,
+     "end": 201.72
+    },
+    {
+     "w": "durations,",
+     "start": 201.72,
+     "end": 202.6
+    },
+    {
+     "w": "pitch",
+     "start": 202.62,
+     "end": 202.94
+    },
+    {
+     "w": "contours",
+     "start": 202.94,
+     "end": 203.78
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "start": 203.86,
+   "end": 208.84,
+   "backing": false,
+   "words": [
+    {
+     "w": "Room",
+     "start": 203.86,
+     "end": 204.92
+    },
+    {
+     "w": "crossing",
+     "start": 204.92,
+     "end": 205.88
+    },
+    {
+     "w": "velocity",
+     "start": 206.2,
+     "end": 208.84
+    }
+   ]
+  },
+  {
+   "section": "Breakdown",
+   "start": 209.52,
+   "end": 213.15,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 209.52,
+     "end": 209.7
+    },
+    {
+     "w": "think",
+     "start": 209.7,
+     "end": 210.24
+    },
+    {
+     "w": "he's",
+     "start": 210.24,
+     "end": 210.98
+    },
+    {
+     "w": "right.",
+     "start": 210.98,
+     "end": 211.38
+    },
+    {
+     "w": "Honestly.",
+     "start": 212.46,
+     "end": 213.15
+    }
+   ],
+   "delivery": "hushed"
+  },
+  {
+   "section": "Chorus 2",
+   "start": 214.74,
+   "end": 217.9,
+   "backing": false,
+   "words": [
+    {
+     "w": "How",
+     "start": 214.74,
+     "end": 214.94
+    },
+    {
+     "w": "do",
+     "start": 214.94,
+     "end": 215.24
+    },
+    {
+     "w": "you",
+     "start": 215.24,
+     "end": 215.52
+    },
+    {
+     "w": "feel?",
+     "start": 215.52,
+     "end": 216.3
+    },
+    {
+     "w": "Inside?",
+     "start": 216.3,
+     "end": 217.9
+    }
+   ]
+  },
+  {
+   "section": "Chorus 2",
+   "start": 220.0,
+   "end": 223.16,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 220.0,
+     "end": 220.58
+    },
+    {
+     "w": "honestly",
+     "start": 220.58,
+     "end": 221.36
+    },
+    {
+     "w": "don't",
+     "start": 221.36,
+     "end": 222.84
+    },
+    {
+     "w": "know",
+     "start": 222.84,
+     "end": 223.16
+    }
+   ]
+  },
+  {
+   "section": "Chorus 2",
+   "start": 223.16,
+   "end": 228.08,
+   "backing": false,
+   "words": [
+    {
+     "w": "I",
+     "start": 223.16,
+     "end": 224.16
+    },
+    {
+     "w": "open",
+     "start": 224.16,
+     "end": 224.74
+    },
+    {
+     "w": "my",
+     "start": 224.74,
+     "end": 225.1
+    },
+    {
+     "w": "mouth,",
+     "start": 225.1,
+     "end": 225.68
+    },
+    {
+     "w": "my",
+     "start": 225.94,
+     "end": 226.52
+    },
+    {
+     "w": "voice",
+     "start": 226.52,
+     "end": 227.0
+    },
+    {
+     "w": "goes",
+     "start": 227.0,
+     "end": 227.34
+    },
+    {
+     "w": "blind",
+     "start": 227.34,
+     "end": 228.08
+    }
+   ]
+  },
+  {
+   "section": "Chorus 2",
+   "start": 228.96,
+   "end": 237.2,
+   "backing": false,
+   "words": [
+    {
+     "w": "The",
+     "start": 228.96,
+     "end": 229.5
+    },
+    {
+     "w": "words",
+     "start": 229.52,
+     "end": 230.04
+    },
+    {
+     "w": "have",
+     "start": 230.04,
+     "end": 230.24
+    },
+    {
+     "w": "nowhere",
+     "start": 230.24,
+     "end": 230.96
+    },
+    {
+     "w": "to",
+     "start": 230.96,
+     "end": 232.16
+    },
+    {
+     "w": "go",
+     "start": 232.16,
+     "end": 237.2
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "start": 243.55,
+   "end": 247.38,
+   "backing": false,
+   "words": [
+    {
+     "w": "Keep",
+     "start": 243.55,
+     "end": 244.05
+    },
+    {
+     "w": "the",
+     "start": 244.1,
+     "end": 244.5
+    },
+    {
+     "w": "smile",
+     "start": 244.5,
+     "end": 244.95
+    },
+    {
+     "w": "on",
+     "start": 244.95,
+     "end": 245.45
+    },
+    {
+     "w": "so",
+     "start": 245.46,
+     "end": 245.7
+    },
+    {
+     "w": "they",
+     "start": 245.76,
+     "end": 246.02
+    },
+    {
+     "w": "don't",
+     "start": 246.02,
+     "end": 246.8
+    },
+    {
+     "w": "know",
+     "start": 246.8,
+     "end": 247.38
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "start": 249.08,
+   "end": 252.25,
+   "backing": false,
+   "words": [
+    {
+     "w": "This",
+     "start": 249.08,
+     "end": 249.3
+    },
+    {
+     "w": "is",
+     "start": 249.3,
+     "end": 249.55
+    },
+    {
+     "w": "how",
+     "start": 249.55,
+     "end": 250.2
+    },
+    {
+     "w": "we",
+     "start": 250.86,
+     "end": 251.15
+    },
+    {
+     "w": "fit",
+     "start": 251.2,
+     "end": 251.75
+    },
+    {
+     "w": "in",
+     "start": 251.75,
+     "end": 252.25
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "start": 252.92,
+   "end": 257.35,
+   "backing": false,
+   "words": [
+    {
+     "w": "She",
+     "start": 252.92,
+     "end": 252.98
+    },
+    {
+     "w": "turns",
+     "start": 252.98,
+     "end": 253.62
+    },
+    {
+     "w": "around,",
+     "start": 253.64,
+     "end": 254.86
+    },
+    {
+     "w": "I",
+     "start": 255.48,
+     "end": 255.7
+    },
+    {
+     "w": "let",
+     "start": 255.7,
+     "end": 255.95
+    },
+    {
+     "w": "it",
+     "start": 255.95,
+     "end": 256.18
+    },
+    {
+     "w": "go",
+     "start": 256.18,
+     "end": 257.35
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "start": 259.28,
+   "end": 263.35,
+   "backing": false,
+   "words": [
+    {
+     "w": "And",
+     "start": 259.28,
+     "end": 259.38
+    },
+    {
+     "w": "I",
+     "start": 259.38,
+     "end": 259.72
+    },
+    {
+     "w": "can",
+     "start": 259.72,
+     "end": 260.28
+    },
+    {
+     "w": "think",
+     "start": 260.28,
+     "end": 260.94
+    },
+    {
+     "w": "again",
+     "start": 260.94,
+     "end": 263.35
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+s12 <- work/anchor_v3 (no reference; prompts/s12.full.txt)
+s11 <- v1
+s13 <- v1
+s10 <- v2
+plate <- plate_v1
+s14 <- v1
+s09 <- v2
+s15 <- v1
+s08 <- v1
+s16 <- v1
+s07 <- v1
+s06 <- v1
+s00 <- v2
+s05 <- v1
+s04 <- v2
+s03 <- v1
+s02 <- v1
+s01 <- v1

@@ -12,7 +12,8 @@
 // Extra named points: forearmL/R, upperArmL/R (mid-segment), hipL/R, neck, palmL/R (= handL/R).
 import * as THREE from 'three';
 import { mk, limb, ball, slab, V, rad, UP, basisQ, tag } from './core.js';
-import { buildFigure, CAST, PROP, HANDS, handFrame } from './mannequin.js';
+import { buildFigure, CAST, PROP } from './mannequin.js';
+import { buildHand } from './hand.js';
 
 const GREY = { skin: 0.78, hair: 0.12, top: 0.62, legs: 0.42, band: 0.5, dark: 0.08, sock: 0.5, joint: 0.7 };
 // limits (degrees). Children are a little more flexible.
@@ -31,27 +32,11 @@ const HAIR4 = { mama: 'perm', littleJade: 'halfUp', jade: 'longOpen', daughter: 
 const angle = (a, b) => Math.acos(THREE.MathUtils.clamp(a.clone().normalize().dot(b.clone().normalize()), -1, 1)) * 180 / Math.PI;
 function segDist(p, a, b) { const ab = b.clone().sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / ab.lengthSq(), 0, 1); return p.distanceTo(a.clone().addScaledVector(ab, t)); }
 
-// five-finger hand in the v1 hand frame (x = thumb side, y = fingers, z = palm normal), Lh = hand length
-function hand5(side, Lh, shapeName, wrist, f, n, look, g, gf) {
-  const sh = HANDS[shapeName] || HANDS.relax;
-  const t = side === 'R' ? new THREE.Vector3().crossVectors(f, n) : new THREE.Vector3().crossVectors(n, f); t.normalize();
-  const { L, Ld } = handFrame(t, f, n, Lh, wrist);   // exact for left hands too (see mannequin.js handFrame)
-  const add = (m) => { g.add(m); return m; };
-  add(slab(L(0, 0.0, 0), L(0, 0.5, 0), 0.4 * Lh, 0.12 * Lh, t, look));                  // palm
-  const r = gf * Lh / 0.108 * 0.108;                                                     // finger radius
-  // fingers: [x across the knuckles, length, curl source, fan]
-  const F = [[0.15, 0.44, 'idx', 1], [0.05, 0.48, 'mitt', 0.3], [-0.05, 0.45, 'mitt', -0.3], [-0.15, 0.36, 'mitt', -1]];
-  const tips = {};
-  F.forEach(([x, len, src, fan], i) => {
-    const [c1, c2] = (i === 1 && sh.mid) ? sh.mid : sh[src]; const c3 = c2 * 0.75; const sp = rad((sh.spread || 0) * fan + (i === 3 ? -4 : 0));
-    let p = L(x, 0.5, 0); let a = 0; const segs = [0.45, 0.32, 0.23];
-    [c1, c2, c3].forEach((c, k) => { a += c; const d = Ld([Math.sin(sp) * Math.cos(rad(a)), Math.cos(sp) * Math.cos(rad(a)), Math.sin(rad(a))]);
-      const e = p.clone().addScaledVector(d, segs[k] * len * Lh); add(limb(p, e, r * (1 - 0.1 * k) * (i === 3 ? 0.85 : 1), look)); p = e; });
-    tips[['index', 'middle', 'ring', 'little'][i]] = p;
-  });
-  { const base = L(0.17, 0.1, 0.03); const b = base.clone().addScaledVector(Ld(sh.thumb[0]), 0.25 * Lh); const e = b.clone().addScaledVector(Ld(sh.thumb[1]), 0.21 * Lh);
-    add(limb(base, b, r * 1.25, look)); add(limb(b, e, r * 1.1, look)); tips.thumb = e; }
-  return { palm: L(0, 0.26, 0), t, tips };
+// five-finger hand: the engine's articulated hand (engine/hand.js, 2026-11-25), which replaced this module's own
+// three-phalanx hand built from the old two-segment shape table
+function hand5(side, Lh, shapeName, wrist, f, n, look, g, gf, kind) {
+  const h = buildHand(side, Lh, shapeName, wrist, f, n, look, g, { kind });
+  return { palm: h.palm, t: h.t, tips: h.tips };
 }
 
 function hairCap(g, P, R, pr, look, style) {
@@ -80,7 +65,7 @@ export function buildBody(spec0, ctx) {
   // a hanging arm ('side') gets its fingers along the arm (toward the knee), so a lying figure's hands do not bend 90 deg
   const spec = { ...spec0 }; for (const n of ['L', 'R']) if (!spec[n] || spec[n] === 'side') spec[n] = { to: 'side', fingers: `to:self:knee${n}`, palm: 'in', _side: true };
   const old = buildFigure(spec, ctx);           // pose solve (P); its blob meshes are discarded
-  const P = old.userData.P, c = CAST[spec.who], pr = PROP[c.kind], H = c.h, G = GIRTH[c.kind], kid = c.kind !== 'adult';
+  const P = old.userData.P, c = CAST[spec.who], pr = PROP[c.kind], H = c.h, G = GIRTH[c.kind] || (/^child/.test(c.kind) ? GIRTH.child5 : GIRTH.adult), kid = /^child/.test(c.kind);   // adult* kinds (per-person hand/foot) are adults
   const lim = LIMITS[kid ? 'child' : 'adult'];
   const g = new THREE.Group(); g.name = spec.who;
   const look = (k) => ({ grey: GREY[k] ?? 0.6, col: c[k] ?? 0x808080 });
@@ -120,7 +105,7 @@ export function buildBody(spec0, ctx) {
     add(ball(G.fa * H * 0.72, LK.skin, W.toArray()));
     // rebuild the hand group in place (stage.casterMeshes / hideParts use P.hands[n].group)
     const hg = new THREE.Group(); hg.name = spec.who + '.hand' + n; add(hg);
-    const h5 = hand5(n, pr.hand * H, hd.shape, W, hd.f, hd.n, LK.skin, hg, G.finger);
+    const h5 = hand5(n, pr.hand * H, spec[n]?.hand || hd.shape, W, hd.f, hd.n, LK.skin, hg, G.finger, c.kind);
     hd.group = hg; P['index' + n] = h5.tips.index; P['thumb' + n] = h5.tips.thumb;
     P['forearm' + n] = E.clone().lerp(W, 0.55); P['upperArm' + n] = S.clone().lerp(E, 0.5);
     // ---- limits

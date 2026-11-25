@@ -11,12 +11,13 @@ import html, json, os, re, sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'media', 'layout')
 ORDER = ['attic88_day', 'shanghai86', 'office91', 'wall88', 'market93', 'basement90', 'kitchen90',
-         'mv10', 'closet02', 'playground23']
+         'mv10', 'mortongrove07', 'closet02', 'playground23']
 TITLES = {
     'attic88_day': 'Attic, Netherlands, winter 1988', 'shanghai86': 'Shanghai, 1986',
     'office91': 'School office, about 1991', 'wall88': 'Inside the wall, 1988',
     'market93': 'Marketplace on Oakton, Skokie, 1993', 'basement90': 'Basement, Decatur, 1990',
     'kitchen90': 'Kitchen, Decatur, 1990 and the outro', 'mv10': 'Housewarming, Mountain View, 2010',
+    'mortongrove07': 'Living room, Morton Grove, about 2007 (the sweatshirt)',
     'closet02': 'Closet, about 2002', 'playground23': 'Playground, Austin, 2023',
 }
 MODES = ['line', 'label', 'flat', 'lit', 'depth', 'beam']

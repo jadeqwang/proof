@@ -18,12 +18,12 @@ const mamaAhead = { at: MAMA_AHEAD.at, yaw: MAMA_AHEAD.yaw, legs: 'stand', noApr
   L: 'side', R: { to: [-0.92, 1.28, 2.82], hand: 'relax', palm: 'down' } };
 // Mama back at her right side: her right hand comes down onto Jade's right forearm
 const mamaGrab = (o = {}) => ({ at: MAMA_GRAB.at, yaw: MAMA_GRAB.yaw, legs: 'stand', noApron: true, spine: { bend: 12 }, head: { look: 'jade10:head' },
-  R: { to: 'forearm:jade10:R', off: [0, 0.022, 0], hand: 'grip', palm: 'down' }, L: 'side', ...o });
+  R: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: 0.027, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.1' } }, L: 'side', ...o });   // (2026-11-25) the fingers wrap her forearm (engine hold, no prop); was a palm target 2.2 cm above it
 // walked away up the aisle (+z): Mama leads by the forearm, Jade is turned side-on and looks back at the artichoke
 const jadeLed = { at: WALK.jade.at, yaw: WALK.jade.yaw, legs: 'stand', legOpts: { ankleL: [0.075, -0.63, 0.12], ankleR: [0.075, -0.63, -0.12] }, spine: { twist: 30, bend: 2 },
   head: { look: 'art', pitchK: 0.9 }, R: { to: WALK.hold, hand: 'relax', palm: 'down' }, L: 'side' };
 const mamaLead = { at: WALK.mama.at, yaw: WALK.mama.yaw, legs: 'stand', noApron: true, legOpts: { ankleL: [0.09, -0.75, 0.18], ankleR: [0.09, -0.75, -0.18] }, spine: { bend: 4, twist: 8 },
-  head: { turn: 0 }, L: { to: 'forearm:jade10:R', off: [0, 0.022, 0], hand: 'grip', palm: 'down' }, R: 'side' };
+  head: { turn: 0 }, L: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: 0.027, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.1' } }, R: 'side' };
 const grandmaPass = grandma(GRANDMA_PASS, { head: { nod: 6 }, legOpts: { ankleL: [0.09, -0.715, 0.13], ankleR: [0.09, -0.715, -0.13] } });
 
 const WAIT = { figs: { jade10: jadeStudy(), grandma: grandma(GRANDMA_WAIT), mama: mamaAhead }, cart: GRANDMA_WAIT.cart, art: 'held' };

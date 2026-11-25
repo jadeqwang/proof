@@ -1,0 +1,263 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cur,Cantarell,76,&H0055D8FF,&H00FFFFFF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,3,2,5,0,0,0,1
+Style: Next,Cantarell,54,&H40E6E6E6,&H40E6E6E6,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,1,5,0,0,0,1
+Style: Prev,Cantarell,44,&HA0C8C8C8,&HA0C8C8C8,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,1,0,5,0,0,0,1
+Style: Label,Cantarell,40,&H0055D8FF,&H0055D8FF,&H00000000,&H80000000,0,1,0,0,100,100,4,0,1,1,1,5,0,0,0,1
+Style: Title,Cantarell,110,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,1,0,0,0,100,100,6,0,1,3,2,5,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:03.90,Title,,0,0,0,,{\an5\pos(960,500)}{\fad(800,600)}Proof
+Dialogue: 0,0:00:00.00,0:00:03.90,Label,,0,0,0,,{\an5\pos(960,610)}{\fad(800,600)}karaoke
+Dialogue: 2,0:00:03.90,0:00:12.02,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf15}You {\kf17}need {\kf30}facial {\kf150}expressions
+Dialogue: 0,0:00:03.90,0:00:12.02,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}But not like that
+Dialogue: 0,0:00:03.90,0:00:12.02,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Three years old, uncle explains atoms
+Dialogue: 0,0:00:12.02,0:00:18.20,Label,,0,0,0,,{\an5\pos(960,330)}{\fad(300,200)}INSTRUMENTAL
+Dialogue: 0,0:00:12.02,0:00:18.20,Next,,0,0,0,,{\an5\pos(960,470)}{\fad(400,0)\fs54}But not like that
+Dialogue: 0,0:00:12.02,0:00:18.20,Next,,0,0,0,,{\an5\pos(960,600)}{\fad(400,0)\fs48}Three years old, uncle explains atoms
+Dialogue: 0,0:00:12.02,0:00:18.20,Next,,0,0,0,,{\an5\pos(960,700)}{\fad(400,0)\fs48}A week later my mother finds me
+Dialogue: 3,0:00:15.00,0:00:15.80,Label,,0,0,0,,{\an5\pos(870,400)}{\fs50}●
+Dialogue: 3,0:00:15.00,0:00:16.60,Label,,0,0,0,,{\an5\pos(930,400)}{\fs50}●
+Dialogue: 3,0:00:15.00,0:00:17.40,Label,,0,0,0,,{\an5\pos(990,400)}{\fs50}●
+Dialogue: 3,0:00:15.00,0:00:18.20,Label,,0,0,0,,{\an5\pos(1050,400)}{\fs50}●
+Dialogue: 2,0:00:18.20,0:00:20.92,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf25}But {\kf28}not {\k4}{\kf33}like {\kf47}that
+Dialogue: 0,0:00:18.20,0:00:20.92,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Three years old, uncle explains atoms
+Dialogue: 0,0:00:18.20,0:00:20.92,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}A week later my mother finds me
+Dialogue: 0,0:00:20.92,0:00:29.81,Label,,0,0,0,,{\an5\pos(960,330)}{\fad(300,200)}INSTRUMENTAL
+Dialogue: 0,0:00:20.92,0:00:29.81,Next,,0,0,0,,{\an5\pos(960,470)}{\fad(400,0)\fs54}Three years old, uncle explains atoms
+Dialogue: 0,0:00:20.92,0:00:29.81,Next,,0,0,0,,{\an5\pos(960,600)}{\fad(400,0)\fs48}A week later my mother finds me
+Dialogue: 0,0:00:20.92,0:00:29.81,Next,,0,0,0,,{\an5\pos(960,700)}{\fad(400,0)\fs48}sat in a snow drift of paper
+Dialogue: 3,0:00:26.61,0:00:27.41,Label,,0,0,0,,{\an5\pos(870,400)}{\fs50}●
+Dialogue: 3,0:00:26.61,0:00:28.21,Label,,0,0,0,,{\an5\pos(930,400)}{\fs50}●
+Dialogue: 3,0:00:26.61,0:00:29.01,Label,,0,0,0,,{\an5\pos(990,400)}{\fs50}●
+Dialogue: 3,0:00:26.61,0:00:29.81,Label,,0,0,0,,{\an5\pos(1050,400)}{\fs50}●
+Dialogue: 2,0:00:29.81,0:00:34.39,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf32}Three {\kf32}years {\kf44}old, {\k18}{\kf72}uncle {\kf72}explains {\k38}{\kf50}atoms
+Dialogue: 0,0:00:29.81,0:00:34.39,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}A week later my mother finds me
+Dialogue: 0,0:00:29.81,0:00:34.39,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}sat in a snow drift of paper
+Dialogue: 2,0:00:34.39,0:00:37.45,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf18}A {\kf44}week {\kf50}later {\kf34}my {\kf44}mother {\kf76}finds {\kf40}me
+Dialogue: 0,0:00:34.39,0:00:37.45,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Three years old, uncle explains atoms
+Dialogue: 0,0:00:34.39,0:00:37.45,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}sat in a snow drift of paper
+Dialogue: 0,0:00:34.39,0:00:37.45,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}ripped to shreds
+Dialogue: 2,0:00:37.45,0:00:40.77,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf56}sat {\kf50}in {\kf40}a {\kf47}snow {\kf59}drift {\kf26}of {\kf54}paper
+Dialogue: 0,0:00:37.45,0:00:40.77,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}A week later my mother finds me
+Dialogue: 0,0:00:37.45,0:00:40.77,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}ripped to shreds
+Dialogue: 0,0:00:37.45,0:00:40.77,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Ever tinier
+Dialogue: 2,0:00:40.77,0:00:43.17,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf100}ripped {\kf32}to {\kf108}shreds
+Dialogue: 0,0:00:40.77,0:00:43.17,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}sat in a snow drift of paper
+Dialogue: 0,0:00:40.77,0:00:43.17,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Ever tinier
+Dialogue: 0,0:00:40.77,0:00:43.17,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}repeating what uncle said
+Dialogue: 2,0:00:43.17,0:00:45.21,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf44}Ever {\kf94}tinier
+Dialogue: 0,0:00:43.17,0:00:45.21,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}ripped to shreds
+Dialogue: 0,0:00:43.17,0:00:45.21,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}repeating what uncle said
+Dialogue: 0,0:00:43.17,0:00:45.21,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}What on earth are you doing?
+Dialogue: 2,0:00:45.21,0:00:47.59,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf94}repeating {\kf18}what {\kf74}uncle {\kf52}said
+Dialogue: 0,0:00:45.21,0:00:47.59,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Ever tinier
+Dialogue: 0,0:00:45.21,0:00:47.59,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}What on earth are you doing?
+Dialogue: 0,0:00:45.21,0:00:47.59,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}The adults howl with laughter
+Dialogue: 2,0:00:47.59,0:00:50.51,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf82}What {\k2}{\kf24}on {\k2}{\kf54}earth {\kf40}are {\kf30}you {\kf50}doing?
+Dialogue: 0,0:00:47.59,0:00:50.51,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}repeating what uncle said
+Dialogue: 0,0:00:47.59,0:00:50.51,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}The adults howl with laughter
+Dialogue: 0,0:00:47.59,0:00:50.51,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}What's so funny?
+Dialogue: 2,0:00:50.51,0:00:53.65,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf30}The {\kf40}adults {\kf68}howl {\kf28}with {\k2}{\kf66}laughter
+Dialogue: 0,0:00:50.51,0:00:53.65,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}What on earth are you doing?
+Dialogue: 0,0:00:50.51,0:00:53.65,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}What's so funny?
+Dialogue: 0,0:00:50.51,0:00:53.65,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Nobody tells me after
+Dialogue: 2,0:00:53.65,0:00:55.13,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf70}What's {\kf16}so {\kf58}funny?
+Dialogue: 0,0:00:53.65,0:00:55.13,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}The adults howl with laughter
+Dialogue: 0,0:00:53.65,0:00:55.13,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Nobody tells me after
+Dialogue: 0,0:00:53.65,0:00:55.13,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}She doesn't talk like other children
+Dialogue: 2,0:00:55.13,0:01:00.20,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf56}Nobody {\kf72}tells {\k4}{\kf62}me {\kf178}after
+Dialogue: 0,0:00:55.13,0:01:00.20,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}What's so funny?
+Dialogue: 0,0:00:55.13,0:01:00.20,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}She doesn't talk like other children
+Dialogue: 0,0:00:55.13,0:01:00.20,Next,,0,0,0,,{\an5\pos(960,700)}{\i1\c&HE0C090&\fs54}(Her English comes from books)
+Dialogue: 0,0:01:00.20,0:01:17.65,Label,,0,0,0,,{\an5\pos(960,330)}{\fad(300,200)}INSTRUMENTAL
+Dialogue: 0,0:01:00.20,0:01:17.65,Next,,0,0,0,,{\an5\pos(960,470)}{\fad(400,0)\fs54}She doesn't talk like other children
+Dialogue: 0,0:01:00.20,0:01:17.65,Next,,0,0,0,,{\an5\pos(960,600)}{\fad(400,0)\i1\c&HE0C090&\fs48}(Her English comes from books)
+Dialogue: 0,0:01:00.20,0:01:17.65,Next,,0,0,0,,{\an5\pos(960,700)}{\fad(400,0)\fs48}Her face doesn't make much expression
+Dialogue: 3,0:01:14.45,0:01:15.25,Label,,0,0,0,,{\an5\pos(870,400)}{\fs50}●
+Dialogue: 3,0:01:14.45,0:01:16.05,Label,,0,0,0,,{\an5\pos(930,400)}{\fs50}●
+Dialogue: 3,0:01:14.45,0:01:16.85,Label,,0,0,0,,{\an5\pos(990,400)}{\fs50}●
+Dialogue: 3,0:01:14.45,0:01:17.65,Label,,0,0,0,,{\an5\pos(1050,400)}{\fs50}●
+Dialogue: 2,0:01:17.65,0:01:21.35,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf92}She {\kf88}doesn't {\kf30}talk {\kf36}like {\kf28}other {\kf62}children
+Dialogue: 0,0:01:17.65,0:01:21.35,Next,,0,0,0,,{\an5\pos(960,600)}{\i1\c&HE0C090&\fs54}(Her English comes from books)
+Dialogue: 0,0:01:17.65,0:01:21.35,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Her face doesn't make much expression
+Dialogue: 2,0:01:21.35,0:01:27.79,Cur,,0,0,0,,{\an5\pos(960,470)\i1\c&HE0C090&}{\fs76}{\k35}{\kf40}(Her {\kf46}English {\kf38}comes {\k2}{\kf30}from {\k2}{\kf100}books)
+Dialogue: 0,0:01:21.35,0:01:27.79,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}She doesn't talk like other children
+Dialogue: 0,0:01:21.35,0:01:27.79,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Her face doesn't make much expression
+Dialogue: 0,0:01:21.35,0:01:27.79,Next,,0,0,0,,{\an5\pos(960,700)}{\i1\c&HE0C090&\fs54}For our culture, that's just how it looks
+Dialogue: 2,0:01:27.79,0:01:30.89,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf8}Her {\kf48}face {\k16}{\kf64}doesn't {\kf38}make {\kf42}much {\kf94}expression
+Dialogue: 0,0:01:27.79,0:01:30.89,Prev,,0,0,0,,{\an5\pos(960,330)}{\i1\c&HE0C090&\fs44}(Her English comes from books)
+Dialogue: 0,0:01:27.79,0:01:30.89,Next,,0,0,0,,{\an5\pos(960,600)}{\i1\c&HE0C090&\fs54}For our culture, that's just how it looks
+Dialogue: 0,0:01:27.79,0:01:30.89,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}How do you feel? Inside?
+Dialogue: 2,0:01:30.89,0:01:36.49,Cur,,0,0,0,,{\an5\pos(960,470)\i1\c&HE0C090&}{\fs76}{\k35}{\kf36}For {\kf24}our {\kf56}culture, {\k16}{\kf64}that's {\kf32}just {\kf80}how {\kf80}it {\kf153}looks
+Dialogue: 0,0:01:30.89,0:01:36.49,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Her face doesn't make much expression
+Dialogue: 0,0:01:30.89,0:01:36.49,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}How do you feel? Inside?
+Dialogue: 0,0:01:30.89,0:01:36.49,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I honestly don't know
+Dialogue: 2,0:01:36.49,0:01:41.81,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf20}How {\kf32}do {\kf32}you {\kf70}feel? {\kf194}Inside?
+Dialogue: 0,0:01:36.49,0:01:41.81,Prev,,0,0,0,,{\an5\pos(960,330)}{\i1\c&HE0C090&\fs44}For our culture, that's just how it looks
+Dialogue: 0,0:01:36.49,0:01:41.81,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I honestly don't know
+Dialogue: 0,0:01:36.49,0:01:41.81,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I open my mouth, my voice goes blind
+Dialogue: 2,0:01:41.81,0:01:45.01,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf60}I {\kf80}honestly {\kf144}don't {\kf36}know
+Dialogue: 0,0:01:41.81,0:01:45.01,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}How do you feel? Inside?
+Dialogue: 0,0:01:41.81,0:01:45.01,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I open my mouth, my voice goes blind
+Dialogue: 0,0:01:41.81,0:01:45.01,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}The words have nowhere to go
+Dialogue: 2,0:01:45.01,0:01:50.83,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf104}I {\kf54}open {\kf40}my {\kf60}mouth, {\k44}{\kf42}my {\kf46}voice {\kf34}goes {\kf78}blind
+Dialogue: 0,0:01:45.01,0:01:50.83,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I honestly don't know
+Dialogue: 0,0:01:45.01,0:01:50.83,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}The words have nowhere to go
+Dialogue: 0,0:01:45.01,0:01:50.83,Next,,0,0,0,,{\an5\pos(960,700)}{\i1\c&HE0C090&\fs54}(aaah)
+Dialogue: 2,0:01:50.83,0:02:00.71,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf70}The {\kf44}words {\kf22}have {\kf66}nowhere {\kf130}to {\kf470}go
+Dialogue: 0,0:01:50.83,0:02:00.71,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I open my mouth, my voice goes blind
+Dialogue: 0,0:01:50.83,0:02:00.71,Next,,0,0,0,,{\an5\pos(960,600)}{\i1\c&HE0C090&\fs54}(aaah)
+Dialogue: 0,0:01:50.83,0:02:00.71,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Resting oblivious face
+Dialogue: 2,0:02:00.71,0:02:06.83,Cur,,0,0,0,,{\an5\pos(960,470)\i1\c&HE0C090&}{\fs76}{\k35}{\kf290}(aaah)
+Dialogue: 0,0:02:00.71,0:02:06.83,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}The words have nowhere to go
+Dialogue: 0,0:02:00.71,0:02:06.83,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Resting oblivious face
+Dialogue: 0,0:02:00.71,0:02:06.83,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Blocking the aisle, in the wrong place
+Dialogue: 2,0:02:06.83,0:02:08.83,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf92}Resting {\kf66}oblivious {\kf42}face
+Dialogue: 0,0:02:06.83,0:02:08.83,Prev,,0,0,0,,{\an5\pos(960,330)}{\i1\c&HE0C090&\fs44}(aaah)
+Dialogue: 0,0:02:06.83,0:02:08.83,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Blocking the aisle, in the wrong place
+Dialogue: 0,0:02:06.83,0:02:08.83,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Enthralled by an artichoke
+Dialogue: 2,0:02:08.83,0:02:11.21,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf70}Blocking {\kf8}the {\kf40}aisle, {\kf46}in {\kf16}the {\kf26}wrong {\kf32}place
+Dialogue: 0,0:02:08.83,0:02:11.21,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Resting oblivious face
+Dialogue: 0,0:02:08.83,0:02:11.21,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Enthralled by an artichoke
+Dialogue: 0,0:02:08.83,0:02:11.21,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}green and fresh
+Dialogue: 2,0:02:11.21,0:02:12.77,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf66}Enthralled {\kf20}by {\k2}{\kf14}an {\kf42}artichoke
+Dialogue: 0,0:02:11.21,0:02:12.77,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Blocking the aisle, in the wrong place
+Dialogue: 0,0:02:11.21,0:02:12.77,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}green and fresh
+Dialogue: 0,0:02:11.21,0:02:12.77,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Sacred geometry made flesh
+Dialogue: 2,0:02:12.77,0:02:13.61,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf30}green {\kf24}and {\kf30}fresh
+Dialogue: 0,0:02:12.77,0:02:13.61,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Enthralled by an artichoke
+Dialogue: 0,0:02:12.77,0:02:13.61,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Sacred geometry made flesh
+Dialogue: 0,0:02:12.77,0:02:13.61,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Down in the basement, Dad's code, I watch
+Dialogue: 2,0:02:13.61,0:02:15.97,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf78}Sacred {\kf58}geometry {\kf68}made {\kf32}flesh
+Dialogue: 0,0:02:13.61,0:02:15.97,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}green and fresh
+Dialogue: 0,0:02:13.61,0:02:15.97,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Down in the basement, Dad's code, I watch
+Dialogue: 0,0:02:13.61,0:02:15.97,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I point to the one he missed.
+Dialogue: 2,0:02:15.97,0:02:18.45,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf74}Down {\kf18}in {\kf8}the {\kf30}basement, {\kf36}Dad's {\kf18}code, {\kf32}I {\kf30}watch
+Dialogue: 0,0:02:15.97,0:02:18.45,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Sacred geometry made flesh
+Dialogue: 0,0:02:15.97,0:02:18.45,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I point to the one he missed.
+Dialogue: 0,0:02:15.97,0:02:18.45,Next,,0,0,0,,{\an5\pos(960,700)}{\i1\c&HE0C090&\fs54}"Good catch!"
+Dialogue: 2,0:02:18.45,0:02:20.11,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf32}I {\kf28}point {\kf18}to {\kf14}the {\kf24}one {\kf14}he {\kf26}missed.
+Dialogue: 0,0:02:18.45,0:02:20.11,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Down in the basement, Dad's code, I watch
+Dialogue: 0,0:02:18.45,0:02:20.11,Next,,0,0,0,,{\an5\pos(960,600)}{\i1\c&HE0C090&\fs54}"Good catch!"
+Dialogue: 0,0:02:18.45,0:02:20.11,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Did she understand or just pattern match?
+Dialogue: 2,0:02:20.11,0:02:20.83,Cur,,0,0,0,,{\an5\pos(960,470)\i1\c&HE0C090&}{\fs76}{\k35}{\kf34}"Good {\kf38}catch!"
+Dialogue: 0,0:02:20.11,0:02:20.83,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I point to the one he missed.
+Dialogue: 0,0:02:20.11,0:02:20.83,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Did she understand or just pattern match?
+Dialogue: 0,0:02:20.11,0:02:20.83,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Do you not see what I see?
+Dialogue: 2,0:02:20.83,0:02:26.60,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf50}Did {\kf22}she {\kf102}understand {\k44}{\kf26}or {\kf34}just {\kf92}pattern {\kf72}match?
+Dialogue: 0,0:02:20.83,0:02:26.60,Prev,,0,0,0,,{\an5\pos(960,330)}{\i1\c&HE0C090&\fs44}"Good catch!"
+Dialogue: 0,0:02:20.83,0:02:26.60,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Do you not see what I see?
+Dialogue: 0,0:02:20.83,0:02:26.60,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Does it matter what makes me me?
+Dialogue: 0,0:02:26.60,0:02:43.49,Label,,0,0,0,,{\an5\pos(960,330)}{\fad(300,200)}INTERLUDE
+Dialogue: 0,0:02:26.60,0:02:43.49,Next,,0,0,0,,{\an5\pos(960,470)}{\fad(400,0)\fs54}Do you not see what I see?
+Dialogue: 0,0:02:26.60,0:02:43.49,Next,,0,0,0,,{\an5\pos(960,600)}{\fad(400,0)\fs48}Does it matter what makes me me?
+Dialogue: 0,0:02:26.60,0:02:43.49,Next,,0,0,0,,{\an5\pos(960,700)}{\fad(400,0)\fs48}Beauty on this side, truth by reference
+Dialogue: 3,0:02:40.29,0:02:41.09,Label,,0,0,0,,{\an5\pos(870,400)}{\fs50}●
+Dialogue: 3,0:02:40.29,0:02:41.89,Label,,0,0,0,,{\an5\pos(930,400)}{\fs50}●
+Dialogue: 3,0:02:40.29,0:02:42.69,Label,,0,0,0,,{\an5\pos(990,400)}{\fs50}●
+Dialogue: 3,0:02:40.29,0:02:43.49,Label,,0,0,0,,{\an5\pos(1050,400)}{\fs50}●
+Dialogue: 2,0:02:43.49,0:02:46.89,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf34}Do {\kf78}you {\kf46}not {\kf34}see {\kf60}what {\kf24}I {\kf40}see?
+Dialogue: 0,0:02:43.49,0:02:46.89,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Does it matter what makes me me?
+Dialogue: 0,0:02:43.49,0:02:46.89,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Beauty on this side, truth by reference
+Dialogue: 2,0:02:46.89,0:02:49.07,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf32}Does {\k2}{\kf20}it {\kf34}matter {\kf36}what {\kf38}makes {\kf24}me {\kf32}me?
+Dialogue: 0,0:02:46.89,0:02:49.07,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Do you not see what I see?
+Dialogue: 0,0:02:46.89,0:02:49.07,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Beauty on this side, truth by reference
+Dialogue: 0,0:02:46.89,0:02:49.07,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Science fiction shelved with truth
+Dialogue: 2,0:02:49.07,0:02:54.09,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf66}Beauty {\kf28}on {\kf34}this {\kf58}side, {\k52}{\kf56}truth {\kf30}by {\kf86}reference
+Dialogue: 0,0:02:49.07,0:02:54.09,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Does it matter what makes me me?
+Dialogue: 0,0:02:49.07,0:02:54.09,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Science fiction shelved with truth
+Dialogue: 0,0:02:49.07,0:02:54.09,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}From inside, I can't tell the difference
+Dialogue: 2,0:02:54.09,0:02:56.33,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf52}Science {\kf48}fiction {\kf70}shelved {\kf18}with {\kf36}truth
+Dialogue: 0,0:02:54.09,0:02:56.33,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Beauty on this side, truth by reference
+Dialogue: 0,0:02:54.09,0:02:56.33,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}From inside, I can't tell the difference
+Dialogue: 0,0:02:54.09,0:02:56.33,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}And I can't give you proof
+Dialogue: 2,0:02:56.33,0:02:59.11,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf52}From {\kf38}inside, {\kf36}I {\kf26}can't {\kf26}tell {\kf20}the {\kf58}difference
+Dialogue: 0,0:02:56.33,0:02:59.11,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Science fiction shelved with truth
+Dialogue: 0,0:02:56.33,0:02:59.11,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}And I can't give you proof
+Dialogue: 0,0:02:56.33,0:02:59.11,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Housewarming, lemonade from the yard
+Dialogue: 2,0:02:59.11,0:03:04.21,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf50}And {\kf60}I {\kf158}can't {\kf40}give {\kf104}you {\kf92}proof
+Dialogue: 0,0:02:59.11,0:03:04.21,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}From inside, I can't tell the difference
+Dialogue: 0,0:02:59.11,0:03:04.21,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Housewarming, lemonade from the yard
+Dialogue: 0,0:02:59.11,0:03:04.21,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Perky American girl
+Dialogue: 2,0:03:04.21,0:03:08.15,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf120}Housewarming, {\k26}{\kf110}lemonade {\kf66}from {\kf28}the {\kf44}yard
+Dialogue: 0,0:03:04.21,0:03:08.15,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}And I can't give you proof
+Dialogue: 0,0:03:04.21,0:03:08.15,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Perky American girl
+Dialogue: 0,0:03:04.21,0:03:08.15,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I play the part
+Dialogue: 2,0:03:08.15,0:03:11.01,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf116}Perky {\kf48}American {\kf94}girl
+Dialogue: 0,0:03:08.15,0:03:11.01,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Housewarming, lemonade from the yard
+Dialogue: 0,0:03:08.15,0:03:11.01,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I play the part
+Dialogue: 0,0:03:08.15,0:03:11.01,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}He said I absolutely nailed it
+Dialogue: 2,0:03:11.01,0:03:13.13,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf72}I {\kf50}play {\kf34}the {\kf50}part
+Dialogue: 0,0:03:11.01,0:03:13.13,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Perky American girl
+Dialogue: 0,0:03:11.01,0:03:13.13,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}He said I absolutely nailed it
+Dialogue: 0,0:03:11.01,0:03:13.13,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Well, fifteen percent above amplitude
+Dialogue: 2,0:03:13.13,0:03:15.61,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf48}He {\k2}{\kf28}said {\kf18}I {\kf46}absolutely {\kf70}nailed {\kf36}it
+Dialogue: 0,0:03:13.13,0:03:15.61,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I play the part
+Dialogue: 0,0:03:13.13,0:03:15.61,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Well, fifteen percent above amplitude
+Dialogue: 0,0:03:13.13,0:03:15.61,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I nod, the past hour gets reviewed
+Dialogue: 2,0:03:15.61,0:03:18.11,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf20}Well, {\kf44}fifteen {\kf42}percent {\kf66}above {\kf78}amplitude
+Dialogue: 0,0:03:15.61,0:03:18.11,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}He said I absolutely nailed it
+Dialogue: 0,0:03:15.61,0:03:18.11,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I nod, the past hour gets reviewed
+Dialogue: 0,0:03:15.61,0:03:18.11,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Hug durations, pitch contours
+Dialogue: 2,0:03:18.11,0:03:20.83,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf62}I {\kf36}nod, {\k16}{\kf18}the {\kf28}past {\kf32}hour {\k2}{\kf30}gets {\kf46}reviewed
+Dialogue: 0,0:03:18.11,0:03:20.83,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Well, fifteen percent above amplitude
+Dialogue: 0,0:03:18.11,0:03:20.83,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Hug durations, pitch contours
+Dialogue: 0,0:03:18.11,0:03:20.83,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Room crossing velocity
+Dialogue: 2,0:03:20.83,0:03:23.51,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf54}Hug {\kf88}durations, {\k2}{\kf32}pitch {\kf84}contours
+Dialogue: 0,0:03:20.83,0:03:23.51,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I nod, the past hour gets reviewed
+Dialogue: 0,0:03:20.83,0:03:23.51,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Room crossing velocity
+Dialogue: 0,0:03:20.83,0:03:23.51,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I think he's right. Honestly.
+Dialogue: 2,0:03:23.51,0:03:29.17,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf106}Room {\kf96}crossing {\k32}{\kf264}velocity
+Dialogue: 0,0:03:23.51,0:03:29.17,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Hug durations, pitch contours
+Dialogue: 0,0:03:23.51,0:03:29.17,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I think he's right. Honestly.
+Dialogue: 0,0:03:23.51,0:03:29.17,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}How do you feel? Inside?
+Dialogue: 2,0:03:29.17,0:03:34.39,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf18}I {\kf54}think {\kf74}he's {\kf40}right. {\k108}{\kf69}Honestly.
+Dialogue: 0,0:03:29.17,0:03:34.39,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Room crossing velocity
+Dialogue: 0,0:03:29.17,0:03:34.39,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}How do you feel? Inside?
+Dialogue: 0,0:03:29.17,0:03:34.39,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I honestly don't know
+Dialogue: 2,0:03:34.39,0:03:39.65,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf20}How {\kf30}do {\kf28}you {\kf78}feel? {\kf160}Inside?
+Dialogue: 0,0:03:34.39,0:03:39.65,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I think he's right. Honestly.
+Dialogue: 0,0:03:34.39,0:03:39.65,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I honestly don't know
+Dialogue: 0,0:03:34.39,0:03:39.65,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}I open my mouth, my voice goes blind
+Dialogue: 2,0:03:39.65,0:03:42.81,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf58}I {\kf78}honestly {\kf148}don't {\kf32}know
+Dialogue: 0,0:03:39.65,0:03:42.81,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}How do you feel? Inside?
+Dialogue: 0,0:03:39.65,0:03:42.81,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}I open my mouth, my voice goes blind
+Dialogue: 0,0:03:39.65,0:03:42.81,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}The words have nowhere to go
+Dialogue: 2,0:03:42.81,0:03:48.61,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf100}I {\kf58}open {\kf36}my {\kf58}mouth, {\k26}{\kf58}my {\kf48}voice {\kf34}goes {\kf74}blind
+Dialogue: 0,0:03:42.81,0:03:48.61,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I honestly don't know
+Dialogue: 0,0:03:42.81,0:03:48.61,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}The words have nowhere to go
+Dialogue: 0,0:03:42.81,0:03:48.61,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}Keep the smile on so they don't know
+Dialogue: 2,0:03:48.61,0:03:58.20,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf54}The {\k2}{\kf52}words {\kf20}have {\kf72}nowhere {\kf120}to {\kf504}go
+Dialogue: 0,0:03:48.61,0:03:58.20,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}I open my mouth, my voice goes blind
+Dialogue: 0,0:03:48.61,0:03:58.20,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}Keep the smile on so they don't know
+Dialogue: 0,0:03:48.61,0:03:58.20,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}This is how we fit in
+Dialogue: 0,0:03:58.20,0:04:03.20,Label,,0,0,0,,{\an5\pos(960,330)}{\fad(300,200)}POST-CHORUS 2
+Dialogue: 0,0:03:58.20,0:04:03.20,Next,,0,0,0,,{\an5\pos(960,470)}{\fad(400,0)\fs54}Keep the smile on so they don't know
+Dialogue: 0,0:03:58.20,0:04:03.20,Next,,0,0,0,,{\an5\pos(960,600)}{\fad(400,0)\fs48}This is how we fit in
+Dialogue: 0,0:03:58.20,0:04:03.20,Next,,0,0,0,,{\an5\pos(960,700)}{\fad(400,0)\fs48}She turns around, I let it go
+Dialogue: 3,0:04:00.00,0:04:00.80,Label,,0,0,0,,{\an5\pos(870,400)}{\fs50}●
+Dialogue: 3,0:04:00.00,0:04:01.60,Label,,0,0,0,,{\an5\pos(930,400)}{\fs50}●
+Dialogue: 3,0:04:00.00,0:04:02.40,Label,,0,0,0,,{\an5\pos(990,400)}{\fs50}●
+Dialogue: 3,0:04:00.00,0:04:03.20,Label,,0,0,0,,{\an5\pos(1050,400)}{\fs50}●
+Dialogue: 2,0:04:03.20,0:04:08.73,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf50}Keep {\k5}{\kf40}the {\kf45}smile {\kf50}on {\k1}{\kf24}so {\k6}{\kf26}they {\kf78}don't {\kf58}know
+Dialogue: 0,0:04:03.20,0:04:08.73,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}This is how we fit in
+Dialogue: 0,0:04:03.20,0:04:08.73,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}She turns around, I let it go
+Dialogue: 2,0:04:08.73,0:04:12.57,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf22}This {\kf25}is {\kf65}how {\k66}{\kf29}we {\k5}{\kf55}fit {\kf50}in
+Dialogue: 0,0:04:08.73,0:04:12.57,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}Keep the smile on so they don't know
+Dialogue: 0,0:04:08.73,0:04:12.57,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}She turns around, I let it go
+Dialogue: 0,0:04:08.73,0:04:12.57,Next,,0,0,0,,{\an5\pos(960,700)}{\fs54}And I can think again
+Dialogue: 2,0:04:12.57,0:04:18.93,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf6}She {\kf64}turns {\k2}{\kf122}around, {\k62}{\kf22}I {\kf25}let {\kf23}it {\kf117}go
+Dialogue: 0,0:04:12.57,0:04:18.93,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}This is how we fit in
+Dialogue: 0,0:04:12.57,0:04:18.93,Next,,0,0,0,,{\an5\pos(960,600)}{\fs54}And I can think again
+Dialogue: 2,0:04:18.93,0:04:24.35,Cur,,0,0,0,,{\an5\pos(960,470)}{\fs76}{\k35}{\kf10}And {\kf34}I {\kf56}can {\kf66}think {\kf241}again
+Dialogue: 0,0:04:18.93,0:04:24.35,Prev,,0,0,0,,{\an5\pos(960,330)}{\fs44}She turns around, I let it go
+Dialogue: 0,0:04:24.35,0:04:43.35,Label,,0,0,0,,{\an5\pos(960,540)}{\fad(1000,1500)}♪

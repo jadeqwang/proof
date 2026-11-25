@@ -1,0 +1,2610 @@
+{
+ "audio_inst": "inputs/Proof (-2sm  no lead vocals).wav",
+ "audio_full": "inputs/Proof (-2sm).wav",
+ "timebase": "s/e/start/end = instrumental track time; *_full = full-mix time",
+ "duration": 268.738,
+ "duration_full": 268.4,
+ "sections": [
+  {
+   "name": "Intro",
+   "start_full": 0.0,
+   "start": 0.0
+  },
+  {
+   "name": "Verse 1",
+   "start_full": 28.8,
+   "start": 28.679
+  },
+  {
+   "name": "Instrumental",
+   "start_full": 58.6,
+   "start": 58.359
+  },
+  {
+   "name": "Pre-Chorus",
+   "start_full": 77.4,
+   "start": 77.116
+  },
+  {
+   "name": "Chorus 1",
+   "start_full": 95.6,
+   "start": 95.339
+  },
+  {
+   "name": "Post-Chorus",
+   "start_full": 115.0,
+   "start": 114.768
+  },
+  {
+   "name": "Verse 2",
+   "start_full": 125.9,
+   "start": 125.696
+  },
+  {
+   "name": "Interlude",
+   "start_full": 145.2,
+   "start": 145.033
+  },
+  {
+   "name": "Bridge",
+   "start_full": 154.4,
+   "start": 154.257
+  },
+  {
+   "name": "Verse 3",
+   "start_full": 174.6,
+   "start": 174.563
+  },
+  {
+   "name": "Chorus 2",
+   "start_full": 204.4,
+   "start": 204.51
+  },
+  {
+   "name": "Post-Chorus 2",
+   "start_full": 223.6,
+   "start": 223.861
+  },
+  {
+   "name": "Outro",
+   "start_full": 233.6,
+   "start": 233.937
+  },
+  {
+   "name": "Coda",
+   "start_full": 253.0,
+   "start": 253.36
+  }
+ ],
+ "lines": [
+  {
+   "section": "Intro",
+   "text": "You need facial expressions",
+   "start": 8.721,
+   "end": 10.464,
+   "start_full": 8.76,
+   "end_full": 10.51,
+   "backing": false,
+   "whisper": true,
+   "words": [
+    {
+     "w": "You",
+     "s": 8.721,
+     "e": 8.883,
+     "s_full": 8.76,
+     "e_full": 8.923
+    },
+    {
+     "w": "need",
+     "s": 8.883,
+     "e": 9.161,
+     "s_full": 8.923,
+     "e_full": 9.203
+    },
+    {
+     "w": "facial",
+     "s": 9.161,
+     "e": 9.58,
+     "s_full": 9.203,
+     "e_full": 9.624
+    },
+    {
+     "w": "expressions",
+     "s": 9.58,
+     "e": 10.464,
+     "s_full": 9.624,
+     "e_full": 10.51
+    }
+   ]
+  },
+  {
+   "section": "Intro",
+   "text": "But not like that",
+   "start": 18.155,
+   "end": 18.861,
+   "start_full": 18.23,
+   "end_full": 18.936,
+   "backing": false,
+   "whisper": true,
+   "words": [
+    {
+     "w": "But",
+     "s": 18.155,
+     "e": 18.295,
+     "s_full": 18.23,
+     "e_full": 18.37
+    },
+    {
+     "w": "not",
+     "s": 18.295,
+     "e": 18.475,
+     "s_full": 18.37,
+     "e_full": 18.55
+    },
+    {
+     "w": "like",
+     "s": 18.475,
+     "e": 18.695,
+     "s_full": 18.55,
+     "e_full": 18.77
+    },
+    {
+     "w": "that",
+     "s": 18.695,
+     "e": 18.861,
+     "s_full": 18.77,
+     "e_full": 18.936
+    }
+   ],
+   "unsure": "whispered; barely in the lead stem"
+  },
+  {
+   "section": "Verse 1",
+   "text": "Three years old, uncle explains atoms",
+   "start": 29.614,
+   "end": 33.775,
+   "start_full": 29.74,
+   "end_full": 33.92,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Three",
+     "s": 29.614,
+     "e": 30.153,
+     "s_full": 29.74,
+     "e_full": 30.282
+    },
+    {
+     "w": "years",
+     "s": 30.153,
+     "e": 30.59,
+     "s_full": 30.282,
+     "e_full": 30.722
+    },
+    {
+     "w": "old,",
+     "s": 30.59,
+     "e": 31.356,
+     "s_full": 30.722,
+     "e_full": 31.49
+    },
+    {
+     "w": "uncle",
+     "s": 31.356,
+     "e": 31.776,
+     "s_full": 31.49,
+     "e_full": 31.91
+    },
+    {
+     "w": "explains",
+     "s": 31.776,
+     "e": 32.861,
+     "s_full": 31.91,
+     "e_full": 33.0
+    },
+    {
+     "w": "atoms",
+     "s": 32.861,
+     "e": 33.775,
+     "s_full": 33.0,
+     "e_full": 33.92
+    }
+   ],
+   "sung_lines": [
+    "Three years old, uncle explains atoms"
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "text": "A week later my mother finds me sat in",
+   "start": 34.375,
+   "end": 38.644,
+   "start_full": 34.52,
+   "end_full": 38.807,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "A",
+     "s": 34.375,
+     "e": 34.64,
+     "s_full": 34.52,
+     "e_full": 34.785
+    },
+    {
+     "w": "week",
+     "s": 34.64,
+     "e": 34.885,
+     "s_full": 34.785,
+     "e_full": 35.03
+    },
+    {
+     "w": "later",
+     "s": 34.885,
+     "e": 35.576,
+     "s_full": 35.03,
+     "e_full": 35.725
+    },
+    {
+     "w": "my",
+     "s": 35.576,
+     "e": 35.874,
+     "s_full": 35.725,
+     "e_full": 36.025
+    },
+    {
+     "w": "mother",
+     "s": 35.874,
+     "e": 36.432,
+     "s_full": 36.025,
+     "e_full": 36.586
+    },
+    {
+     "w": "finds",
+     "s": 36.432,
+     "e": 37.108,
+     "s_full": 36.586,
+     "e_full": 37.266
+    },
+    {
+     "w": "me",
+     "s": 37.108,
+     "e": 37.629,
+     "s_full": 37.266,
+     "e_full": 37.79
+    },
+    {
+     "w": "sat",
+     "s": 37.685,
+     "e": 38.147,
+     "s_full": 37.847,
+     "e_full": 38.31
+    },
+    {
+     "w": "in",
+     "s": 38.147,
+     "e": 38.644,
+     "s_full": 38.31,
+     "e_full": 38.807
+    }
+   ],
+   "sung_lines": [
+    "A week later my mother finds me",
+    "sat in a snow drift of paper"
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "text": "A snow drift of paper, ripped to shreds",
+   "start": 38.644,
+   "end": 42.86,
+   "start_full": 38.807,
+   "end_full": 43.04,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "A",
+     "s": 38.644,
+     "e": 38.824,
+     "s_full": 38.807,
+     "e_full": 38.987
+    },
+    {
+     "w": "snow",
+     "s": 38.824,
+     "e": 39.343,
+     "s_full": 38.987,
+     "e_full": 39.508
+    },
+    {
+     "w": "drift",
+     "s": 39.343,
+     "e": 39.852,
+     "s_full": 39.508,
+     "e_full": 40.02
+    },
+    {
+     "w": "of",
+     "s": 39.852,
+     "e": 40.09,
+     "s_full": 40.02,
+     "e_full": 40.26
+    },
+    {
+     "w": "paper,",
+     "s": 40.09,
+     "e": 40.716,
+     "s_full": 40.26,
+     "e_full": 40.89
+    },
+    {
+     "w": "ripped",
+     "s": 41.256,
+     "e": 41.536,
+     "s_full": 41.43,
+     "e_full": 41.71
+    },
+    {
+     "w": "to",
+     "s": 41.536,
+     "e": 42.153,
+     "s_full": 41.71,
+     "e_full": 42.329
+    },
+    {
+     "w": "shreds",
+     "s": 42.153,
+     "e": 42.86,
+     "s_full": 42.329,
+     "e_full": 43.04
+    }
+   ],
+   "sung_lines": [
+    "sat in a snow drift of paper",
+    "ripped to shreds"
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "text": "Ever tinier, repeating what uncle said",
+   "start": 43.158,
+   "end": 47.568,
+   "start_full": 43.34,
+   "end_full": 47.77,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Ever",
+     "s": 43.158,
+     "e": 43.566,
+     "s_full": 43.34,
+     "e_full": 43.75
+    },
+    {
+     "w": "tinier,",
+     "s": 43.566,
+     "e": 45.178,
+     "s_full": 43.75,
+     "e_full": 45.37
+    },
+    {
+     "w": "repeating",
+     "s": 45.238,
+     "e": 45.92,
+     "s_full": 45.43,
+     "e_full": 46.112
+    },
+    {
+     "w": "what",
+     "s": 45.92,
+     "e": 46.504,
+     "s_full": 46.112,
+     "e_full": 46.7
+    },
+    {
+     "w": "uncle",
+     "s": 46.504,
+     "e": 46.763,
+     "s_full": 46.7,
+     "e_full": 46.96
+    },
+    {
+     "w": "said",
+     "s": 46.763,
+     "e": 47.568,
+     "s_full": 46.96,
+     "e_full": 47.77
+    }
+   ],
+   "sung_lines": [
+    "Ever tinier",
+    "repeating what uncle said"
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "text": "\u201cWhat on earth are you doing?\u201d The adults howl with laughter",
+   "start": 47.937,
+   "end": 52.839,
+   "start_full": 48.14,
+   "end_full": 53.06,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "\u201cWhat",
+     "s": 47.937,
+     "e": 48.29,
+     "s_full": 48.14,
+     "e_full": 48.493
+    },
+    {
+     "w": "on",
+     "s": 48.29,
+     "e": 48.591,
+     "s_full": 48.493,
+     "e_full": 48.794
+    },
+    {
+     "w": "earth",
+     "s": 48.591,
+     "e": 49.055,
+     "s_full": 48.794,
+     "e_full": 49.26
+    },
+    {
+     "w": "are",
+     "s": 49.055,
+     "e": 49.427,
+     "s_full": 49.26,
+     "e_full": 49.634
+    },
+    {
+     "w": "you",
+     "s": 49.427,
+     "e": 49.686,
+     "s_full": 49.634,
+     "e_full": 49.894
+    },
+    {
+     "w": "doing?\u201d",
+     "s": 49.686,
+     "e": 50.248,
+     "s_full": 49.894,
+     "e_full": 50.46
+    },
+    {
+     "w": "The",
+     "s": 50.303,
+     "e": 50.502,
+     "s_full": 50.515,
+     "e_full": 50.715
+    },
+    {
+     "w": "adults",
+     "s": 50.502,
+     "e": 51.019,
+     "s_full": 50.715,
+     "e_full": 51.235
+    },
+    {
+     "w": "howl",
+     "s": 51.019,
+     "e": 51.655,
+     "s_full": 51.235,
+     "e_full": 51.875
+    },
+    {
+     "w": "with",
+     "s": 51.655,
+     "e": 51.935,
+     "s_full": 51.875,
+     "e_full": 52.156
+    },
+    {
+     "w": "laughter",
+     "s": 51.935,
+     "e": 52.839,
+     "s_full": 52.156,
+     "e_full": 53.06
+    }
+   ],
+   "sung_lines": [
+    "What on earth are you doing?",
+    "The adults howl with laughter"
+   ]
+  },
+  {
+   "section": "Verse 1",
+   "text": "What\u2019s so funny? Nobody tells me after",
+   "start": 53.704,
+   "end": 58.349,
+   "start_full": 53.93,
+   "end_full": 58.59,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "What\u2019s",
+     "s": 53.704,
+     "e": 53.853,
+     "s_full": 53.93,
+     "e_full": 54.08
+    },
+    {
+     "w": "so",
+     "s": 53.853,
+     "e": 54.327,
+     "s_full": 54.08,
+     "e_full": 54.557
+    },
+    {
+     "w": "funny?",
+     "s": 54.327,
+     "e": 54.808,
+     "s_full": 54.557,
+     "e_full": 55.04
+    },
+    {
+     "w": "Nobody",
+     "s": 54.918,
+     "e": 55.718,
+     "s_full": 55.15,
+     "e_full": 55.95
+    },
+    {
+     "w": "tells",
+     "s": 55.718,
+     "e": 56.522,
+     "s_full": 55.95,
+     "e_full": 56.759
+    },
+    {
+     "w": "me",
+     "s": 56.522,
+     "e": 57.021,
+     "s_full": 56.759,
+     "e_full": 57.259
+    },
+    {
+     "w": "after",
+     "s": 57.021,
+     "e": 58.349,
+     "s_full": 57.259,
+     "e_full": 58.59
+    }
+   ],
+   "sung_lines": [
+    "What's so funny?",
+    "Nobody tells me after"
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "text": "She doesn't talk like other children",
+   "start": 77.996,
+   "end": 81.16,
+   "start_full": 78.28,
+   "end_full": 81.45,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "She",
+     "s": 77.996,
+     "e": 78.319,
+     "s_full": 78.28,
+     "e_full": 78.603
+    },
+    {
+     "w": "doesn't",
+     "s": 78.319,
+     "e": 78.897,
+     "s_full": 78.603,
+     "e_full": 79.183
+    },
+    {
+     "w": "talk",
+     "s": 78.897,
+     "e": 79.213,
+     "s_full": 79.183,
+     "e_full": 79.5
+    },
+    {
+     "w": "like",
+     "s": 79.213,
+     "e": 79.531,
+     "s_full": 79.5,
+     "e_full": 79.82
+    },
+    {
+     "w": "other",
+     "s": 79.531,
+     "e": 79.934,
+     "s_full": 79.82,
+     "e_full": 80.224
+    },
+    {
+     "w": "children",
+     "s": 79.934,
+     "e": 81.16,
+     "s_full": 80.224,
+     "e_full": 81.45
+    }
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "text": "(Her English comes from books)",
+   "start": 81.21,
+   "end": 82.977,
+   "start_full": 81.5,
+   "end_full": 83.267,
+   "backing": true,
+   "whisper": false,
+   "words": [
+    {
+     "w": "(Her",
+     "s": 81.21,
+     "e": 81.336,
+     "s_full": 81.5,
+     "e_full": 81.626
+    },
+    {
+     "w": "English",
+     "s": 81.336,
+     "e": 81.76,
+     "s_full": 81.626,
+     "e_full": 82.05
+    },
+    {
+     "w": "comes",
+     "s": 81.76,
+     "e": 82.136,
+     "s_full": 82.05,
+     "e_full": 82.426
+    },
+    {
+     "w": "from",
+     "s": 82.136,
+     "e": 82.55,
+     "s_full": 82.426,
+     "e_full": 82.84
+    },
+    {
+     "w": "books)",
+     "s": 82.55,
+     "e": 82.977,
+     "s_full": 82.84,
+     "e_full": 83.267
+    }
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "text": "Her face doesn't make much expression",
+   "start": 87.074,
+   "end": 90.424,
+   "start_full": 87.37,
+   "end_full": 90.72,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Her",
+     "s": 87.074,
+     "e": 87.374,
+     "s_full": 87.37,
+     "e_full": 87.67
+    },
+    {
+     "w": "face",
+     "s": 87.374,
+     "e": 88.004,
+     "s_full": 87.67,
+     "e_full": 88.3
+    },
+    {
+     "w": "doesn't",
+     "s": 88.004,
+     "e": 88.637,
+     "s_full": 88.3,
+     "e_full": 88.933
+    },
+    {
+     "w": "make",
+     "s": 88.637,
+     "e": 89.057,
+     "s_full": 88.933,
+     "e_full": 89.353
+    },
+    {
+     "w": "much",
+     "s": 89.057,
+     "e": 89.418,
+     "s_full": 89.353,
+     "e_full": 89.714
+    },
+    {
+     "w": "expression",
+     "s": 89.418,
+     "e": 90.424,
+     "s_full": 89.714,
+     "e_full": 90.72
+    }
+   ]
+  },
+  {
+   "section": "Pre-Chorus",
+   "text": "For our culture, that's just how it looks",
+   "start": 90.479,
+   "end": 95.299,
+   "start_full": 90.775,
+   "end_full": 95.56,
+   "backing": true,
+   "whisper": false,
+   "words": [
+    {
+     "w": "For",
+     "s": 90.479,
+     "e": 90.679,
+     "s_full": 90.775,
+     "e_full": 90.975
+    },
+    {
+     "w": "our",
+     "s": 90.679,
+     "e": 90.814,
+     "s_full": 90.975,
+     "e_full": 91.11
+    },
+    {
+     "w": "culture,",
+     "s": 90.814,
+     "e": 91.894,
+     "s_full": 91.11,
+     "e_full": 92.19
+    },
+    {
+     "w": "that's",
+     "s": 91.894,
+     "e": 92.241,
+     "s_full": 92.19,
+     "e_full": 92.537
+    },
+    {
+     "w": "just",
+     "s": 92.241,
+     "e": 93.135,
+     "s_full": 92.537,
+     "e_full": 93.417
+    },
+    {
+     "w": "how",
+     "s": 93.135,
+     "e": 93.977,
+     "s_full": 93.417,
+     "e_full": 94.238
+    },
+    {
+     "w": "it",
+     "s": 93.977,
+     "e": 94.418,
+     "s_full": 94.238,
+     "e_full": 94.679
+    },
+    {
+     "w": "looks",
+     "s": 94.418,
+     "e": 95.299,
+     "s_full": 94.679,
+     "e_full": 95.56
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "text": "How do you feel? Inside?",
+   "start": 95.739,
+   "end": 98.739,
+   "start_full": 96.0,
+   "end_full": 99.0,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "How",
+     "s": 95.739,
+     "e": 96.089,
+     "s_full": 96.0,
+     "e_full": 96.35
+    },
+    {
+     "w": "do",
+     "s": 96.089,
+     "e": 96.289,
+     "s_full": 96.35,
+     "e_full": 96.55
+    },
+    {
+     "w": "you",
+     "s": 96.289,
+     "e": 96.539,
+     "s_full": 96.55,
+     "e_full": 96.8
+    },
+    {
+     "w": "feel?",
+     "s": 96.539,
+     "e": 97.739,
+     "s_full": 96.8,
+     "e_full": 98.0
+    },
+    {
+     "w": "Inside?",
+     "s": 97.739,
+     "e": 98.739,
+     "s_full": 98.0,
+     "e_full": 99.0
+    }
+   ],
+   "unsure": "'Inside?' is faint in the lead stem (sung softly or by the layer)"
+  },
+  {
+   "section": "Chorus 1",
+   "text": "I honestly don't know",
+   "start": 100.443,
+   "end": 104.952,
+   "start_full": 100.7,
+   "end_full": 105.2,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 100.443,
+     "e": 101.695,
+     "s_full": 100.7,
+     "e_full": 101.95
+    },
+    {
+     "w": "honestly",
+     "s": 101.695,
+     "e": 102.745,
+     "s_full": 101.95,
+     "e_full": 103.0
+    },
+    {
+     "w": "don't",
+     "s": 102.745,
+     "e": 103.499,
+     "s_full": 103.0,
+     "e_full": 103.75
+    },
+    {
+     "w": "know",
+     "s": 103.499,
+     "e": 104.952,
+     "s_full": 103.75,
+     "e_full": 105.2
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "text": "I open my mouth, my voice goes blind",
+   "start": 105.273,
+   "end": 110.406,
+   "start_full": 105.52,
+   "end_full": 110.64,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 105.273,
+     "e": 105.704,
+     "s_full": 105.52,
+     "e_full": 105.948
+    },
+    {
+     "w": "open",
+     "s": 105.704,
+     "e": 105.906,
+     "s_full": 105.948,
+     "e_full": 106.15
+    },
+    {
+     "w": "my",
+     "s": 105.906,
+     "e": 106.485,
+     "s_full": 106.15,
+     "e_full": 106.729
+    },
+    {
+     "w": "mouth,",
+     "s": 106.485,
+     "e": 107.586,
+     "s_full": 106.729,
+     "e_full": 107.83
+    },
+    {
+     "w": "my",
+     "s": 107.586,
+     "e": 107.989,
+     "s_full": 107.83,
+     "e_full": 108.231
+    },
+    {
+     "w": "voice",
+     "s": 107.989,
+     "e": 108.319,
+     "s_full": 108.231,
+     "e_full": 108.56
+    },
+    {
+     "w": "goes",
+     "s": 108.319,
+     "e": 108.894,
+     "s_full": 108.56,
+     "e_full": 109.132
+    },
+    {
+     "w": "blind",
+     "s": 108.894,
+     "e": 110.406,
+     "s_full": 109.132,
+     "e_full": 110.64
+    }
+   ]
+  },
+  {
+   "section": "Chorus 1",
+   "text": "The words have nowhere to go",
+   "start": 110.718,
+   "end": 113.886,
+   "start_full": 110.95,
+   "end_full": 114.118,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "The",
+     "s": 110.718,
+     "e": 110.983,
+     "s_full": 110.95,
+     "e_full": 111.215
+    },
+    {
+     "w": "words",
+     "s": 110.983,
+     "e": 111.338,
+     "s_full": 111.215,
+     "e_full": 111.57
+    },
+    {
+     "w": "have",
+     "s": 111.338,
+     "e": 111.658,
+     "s_full": 111.57,
+     "e_full": 111.89
+    },
+    {
+     "w": "nowhere",
+     "s": 111.658,
+     "e": 113.438,
+     "s_full": 111.89,
+     "e_full": 113.67
+    },
+    {
+     "w": "to",
+     "s": 113.438,
+     "e": 113.818,
+     "s_full": 113.67,
+     "e_full": 114.05
+    },
+    {
+     "w": "go",
+     "s": 113.818,
+     "e": 113.886,
+     "s_full": 114.05,
+     "e_full": 114.118
+    }
+   ],
+   "unsure": "'to'/'go' split inside the melisma"
+  },
+  {
+   "section": "Verse 2",
+   "text": "Resting oblivious face",
+   "start": 126.117,
+   "end": 128.503,
+   "start_full": 126.32,
+   "end_full": 128.7,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Resting",
+     "s": 126.117,
+     "e": 127.249,
+     "s_full": 126.32,
+     "e_full": 127.45
+    },
+    {
+     "w": "oblivious",
+     "s": 127.249,
+     "e": 127.966,
+     "s_full": 127.45,
+     "e_full": 128.163
+    },
+    {
+     "w": "face",
+     "s": 127.966,
+     "e": 128.503,
+     "s_full": 128.163,
+     "e_full": 128.7
+    }
+   ],
+   "sung_lines": [
+    "Resting oblivious face"
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "text": "Blocking the aisle, in the wrong place",
+   "start": 128.563,
+   "end": 130.753,
+   "start_full": 128.76,
+   "end_full": 130.95,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Blocking",
+     "s": 128.563,
+     "e": 128.773,
+     "s_full": 128.76,
+     "e_full": 128.97
+    },
+    {
+     "w": "the",
+     "s": 128.773,
+     "e": 129.067,
+     "s_full": 128.97,
+     "e_full": 129.264
+    },
+    {
+     "w": "aisle,",
+     "s": 129.067,
+     "e": 129.748,
+     "s_full": 129.264,
+     "e_full": 129.945
+    },
+    {
+     "w": "in",
+     "s": 129.748,
+     "e": 129.948,
+     "s_full": 129.945,
+     "e_full": 130.145
+    },
+    {
+     "w": "the",
+     "s": 129.948,
+     "e": 130.108,
+     "s_full": 130.145,
+     "e_full": 130.305
+    },
+    {
+     "w": "wrong",
+     "s": 130.108,
+     "e": 130.383,
+     "s_full": 130.305,
+     "e_full": 130.58
+    },
+    {
+     "w": "place",
+     "s": 130.383,
+     "e": 130.753,
+     "s_full": 130.58,
+     "e_full": 130.95
+    }
+   ],
+   "sung_lines": [
+    "Blocking the aisle, in the wrong place"
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "text": "Enthralled by an artichoke, green and fresh",
+   "start": 130.809,
+   "end": 133.382,
+   "start_full": 131.006,
+   "end_full": 133.57,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Enthralled",
+     "s": 130.809,
+     "e": 131.332,
+     "s_full": 131.006,
+     "e_full": 131.526
+    },
+    {
+     "w": "by",
+     "s": 131.332,
+     "e": 131.573,
+     "s_full": 131.526,
+     "e_full": 131.766
+    },
+    {
+     "w": "an",
+     "s": 131.573,
+     "e": 131.715,
+     "s_full": 131.766,
+     "e_full": 131.907
+    },
+    {
+     "w": "artichoke,",
+     "s": 131.715,
+     "e": 132.178,
+     "s_full": 131.907,
+     "e_full": 132.37
+    },
+    {
+     "w": "green",
+     "s": 132.228,
+     "e": 132.615,
+     "s_full": 132.42,
+     "e_full": 132.807
+    },
+    {
+     "w": "and",
+     "s": 132.615,
+     "e": 132.816,
+     "s_full": 132.807,
+     "e_full": 133.008
+    },
+    {
+     "w": "fresh",
+     "s": 132.816,
+     "e": 133.382,
+     "s_full": 133.008,
+     "e_full": 133.57
+    }
+   ],
+   "sung_lines": [
+    "Enthralled by an artichoke",
+    "green and fresh"
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "text": "Sacred geometry made flesh",
+   "start": 133.44,
+   "end": 135.814,
+   "start_full": 133.628,
+   "end_full": 136.0,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Sacred",
+     "s": 133.44,
+     "e": 134.214,
+     "s_full": 133.628,
+     "e_full": 134.4
+    },
+    {
+     "w": "geometry",
+     "s": 134.214,
+     "e": 134.964,
+     "s_full": 134.4,
+     "e_full": 135.15
+    },
+    {
+     "w": "made",
+     "s": 134.964,
+     "e": 135.244,
+     "s_full": 135.15,
+     "e_full": 135.43
+    },
+    {
+     "w": "flesh",
+     "s": 135.244,
+     "e": 135.814,
+     "s_full": 135.43,
+     "e_full": 136.0
+    }
+   ],
+   "sung_lines": [
+    "Sacred geometry made flesh"
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "text": "Basement, Dad\u2019s code, I watch",
+   "start": 135.885,
+   "end": 138.04,
+   "start_full": 136.07,
+   "end_full": 138.22,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Basement,",
+     "s": 135.885,
+     "e": 136.79,
+     "s_full": 136.07,
+     "e_full": 136.97
+    },
+    {
+     "w": "Dad\u2019s",
+     "s": 136.79,
+     "e": 137.08,
+     "s_full": 136.97,
+     "e_full": 137.26
+    },
+    {
+     "w": "code,",
+     "s": 137.08,
+     "e": 137.632,
+     "s_full": 137.26,
+     "e_full": 137.812
+    },
+    {
+     "w": "I",
+     "s": 137.632,
+     "e": 137.732,
+     "s_full": 137.812,
+     "e_full": 137.912
+    },
+    {
+     "w": "watch",
+     "s": 137.732,
+     "e": 138.04,
+     "s_full": 137.912,
+     "e_full": 138.22
+    }
+   ],
+   "sung_lines": [
+    "Basement, Dad's code, I watch"
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "text": "I point to one he missed. \u201cGood catch!\u201d",
+   "start": 138.093,
+   "end": 140.636,
+   "start_full": 138.273,
+   "end_full": 140.81,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 138.093,
+     "e": 138.27,
+     "s_full": 138.273,
+     "e_full": 138.45,
+     "i": false
+    },
+    {
+     "w": "point",
+     "s": 138.27,
+     "e": 138.593,
+     "s_full": 138.45,
+     "e_full": 138.773,
+     "i": false
+    },
+    {
+     "w": "to",
+     "s": 138.593,
+     "e": 138.873,
+     "s_full": 138.773,
+     "e_full": 139.053,
+     "i": false
+    },
+    {
+     "w": "one",
+     "s": 138.873,
+     "e": 139.076,
+     "s_full": 139.053,
+     "e_full": 139.254,
+     "i": false
+    },
+    {
+     "w": "he",
+     "s": 139.076,
+     "e": 139.216,
+     "s_full": 139.254,
+     "e_full": 139.394,
+     "i": false
+    },
+    {
+     "w": "missed.",
+     "s": 139.216,
+     "e": 139.514,
+     "s_full": 139.394,
+     "e_full": 139.69,
+     "i": false
+    },
+    {
+     "w": "\u201cGood",
+     "s": 139.816,
+     "e": 140.086,
+     "s_full": 139.99,
+     "e_full": 140.26,
+     "i": true
+    },
+    {
+     "w": "catch!\u201d",
+     "s": 140.086,
+     "e": 140.636,
+     "s_full": 140.26,
+     "e_full": 140.81,
+     "i": true
+    }
+   ],
+   "sung_lines": [
+    "I point to one he missed.",
+    "\"Good catch!\""
+   ]
+  },
+  {
+   "section": "Verse 2",
+   "text": "\u201cDid she understand or just pattern match?\u201d",
+   "start": 140.736,
+   "end": 145.294,
+   "start_full": 140.91,
+   "end_full": 145.46,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "\u201cDid",
+     "s": 140.736,
+     "e": 140.886,
+     "s_full": 140.91,
+     "e_full": 141.06
+    },
+    {
+     "w": "she",
+     "s": 140.886,
+     "e": 141.466,
+     "s_full": 141.06,
+     "e_full": 141.636
+    },
+    {
+     "w": "understand",
+     "s": 141.466,
+     "e": 142.689,
+     "s_full": 141.636,
+     "e_full": 142.857
+    },
+    {
+     "w": "or",
+     "s": 142.689,
+     "e": 142.869,
+     "s_full": 142.857,
+     "e_full": 143.037
+    },
+    {
+     "w": "just",
+     "s": 142.869,
+     "e": 143.422,
+     "s_full": 143.037,
+     "e_full": 143.59
+    },
+    {
+     "w": "pattern",
+     "s": 143.422,
+     "e": 144.351,
+     "s_full": 143.59,
+     "e_full": 144.519
+    },
+    {
+     "w": "match?\u201d",
+     "s": 144.351,
+     "e": 145.294,
+     "s_full": 144.519,
+     "e_full": 145.46
+    }
+   ],
+   "sung_lines": [
+    "Did she understand or just pattern match?"
+   ]
+  },
+  {
+   "section": "Bridge",
+   "text": "Do you not see what I see?",
+   "start": 154.358,
+   "end": 156.928,
+   "start_full": 154.5,
+   "end_full": 157.05,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Do",
+     "s": 154.358,
+     "e": 154.561,
+     "s_full": 154.5,
+     "e_full": 154.702
+    },
+    {
+     "w": "you",
+     "s": 154.561,
+     "e": 154.802,
+     "s_full": 154.702,
+     "e_full": 154.942
+    },
+    {
+     "w": "not",
+     "s": 154.802,
+     "e": 155.122,
+     "s_full": 154.942,
+     "e_full": 155.26
+    },
+    {
+     "w": "see",
+     "s": 155.122,
+     "e": 155.856,
+     "s_full": 155.26,
+     "e_full": 155.99
+    },
+    {
+     "w": "what",
+     "s": 155.856,
+     "e": 156.275,
+     "s_full": 155.99,
+     "e_full": 156.404
+    },
+    {
+     "w": "I",
+     "s": 156.275,
+     "e": 156.477,
+     "s_full": 156.404,
+     "e_full": 156.604
+    },
+    {
+     "w": "see?",
+     "s": 156.477,
+     "e": 156.928,
+     "s_full": 156.604,
+     "e_full": 157.05
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "text": "Does it matter what makes me me?",
+   "start": 156.999,
+   "end": 159.42,
+   "start_full": 157.12,
+   "end_full": 159.53,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Does",
+     "s": 156.999,
+     "e": 157.29,
+     "s_full": 157.12,
+     "e_full": 157.41
+    },
+    {
+     "w": "it",
+     "s": 157.29,
+     "e": 157.567,
+     "s_full": 157.41,
+     "e_full": 157.685
+    },
+    {
+     "w": "matter",
+     "s": 157.567,
+     "e": 158.01,
+     "s_full": 157.685,
+     "e_full": 158.125
+    },
+    {
+     "w": "what",
+     "s": 158.01,
+     "e": 158.216,
+     "s_full": 158.125,
+     "e_full": 158.33
+    },
+    {
+     "w": "makes",
+     "s": 158.216,
+     "e": 158.598,
+     "s_full": 158.33,
+     "e_full": 158.71
+    },
+    {
+     "w": "me",
+     "s": 158.598,
+     "e": 158.916,
+     "s_full": 158.71,
+     "e_full": 159.026
+    },
+    {
+     "w": "me?",
+     "s": 158.916,
+     "e": 159.42,
+     "s_full": 159.026,
+     "e_full": 159.53
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "text": "Beauty on this side, truth by reference",
+   "start": 159.51,
+   "end": 164.269,
+   "start_full": 159.62,
+   "end_full": 164.36,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Beauty",
+     "s": 159.51,
+     "e": 159.957,
+     "s_full": 159.62,
+     "e_full": 160.067
+    },
+    {
+     "w": "on",
+     "s": 159.957,
+     "e": 160.138,
+     "s_full": 160.067,
+     "e_full": 160.247
+    },
+    {
+     "w": "this",
+     "s": 160.138,
+     "e": 160.714,
+     "s_full": 160.247,
+     "e_full": 160.82
+    },
+    {
+     "w": "side,",
+     "s": 160.714,
+     "e": 161.861,
+     "s_full": 160.82,
+     "e_full": 161.96
+    },
+    {
+     "w": "truth",
+     "s": 161.861,
+     "e": 162.261,
+     "s_full": 161.96,
+     "e_full": 162.36
+    },
+    {
+     "w": "by",
+     "s": 162.261,
+     "e": 162.59,
+     "s_full": 162.36,
+     "e_full": 162.689
+    },
+    {
+     "w": "reference",
+     "s": 162.59,
+     "e": 164.269,
+     "s_full": 162.689,
+     "e_full": 164.36
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "text": "Science fiction shelved with truth",
+   "start": 164.321,
+   "end": 166.723,
+   "start_full": 164.411,
+   "end_full": 166.8,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Science",
+     "s": 164.321,
+     "e": 164.965,
+     "s_full": 164.411,
+     "e_full": 165.052
+    },
+    {
+     "w": "fiction",
+     "s": 164.965,
+     "e": 165.305,
+     "s_full": 165.052,
+     "e_full": 165.39
+    },
+    {
+     "w": "shelved",
+     "s": 165.305,
+     "e": 165.931,
+     "s_full": 165.39,
+     "e_full": 166.012
+    },
+    {
+     "w": "with",
+     "s": 165.931,
+     "e": 166.153,
+     "s_full": 166.012,
+     "e_full": 166.233
+    },
+    {
+     "w": "truth",
+     "s": 166.153,
+     "e": 166.723,
+     "s_full": 166.233,
+     "e_full": 166.8
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "text": "From inside, I can't tell the difference",
+   "start": 166.777,
+   "end": 169.596,
+   "start_full": 166.853,
+   "end_full": 169.66,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "From",
+     "s": 166.777,
+     "e": 167.018,
+     "s_full": 166.853,
+     "e_full": 167.093
+    },
+    {
+     "w": "inside,",
+     "s": 167.018,
+     "e": 167.683,
+     "s_full": 167.093,
+     "e_full": 167.754
+    },
+    {
+     "w": "I",
+     "s": 167.683,
+     "e": 167.723,
+     "s_full": 167.754,
+     "e_full": 167.794
+    },
+    {
+     "w": "can't",
+     "s": 167.723,
+     "e": 167.971,
+     "s_full": 167.794,
+     "e_full": 168.04
+    },
+    {
+     "w": "tell",
+     "s": 167.971,
+     "e": 168.348,
+     "s_full": 168.04,
+     "e_full": 168.415
+    },
+    {
+     "w": "the",
+     "s": 168.348,
+     "e": 168.494,
+     "s_full": 168.415,
+     "e_full": 168.56
+    },
+    {
+     "w": "difference",
+     "s": 168.494,
+     "e": 169.596,
+     "s_full": 168.56,
+     "e_full": 169.66
+    }
+   ]
+  },
+  {
+   "section": "Bridge",
+   "text": "And I can't give you proof",
+   "start": 169.652,
+   "end": 174.704,
+   "start_full": 169.716,
+   "end_full": 174.74,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "And",
+     "s": 169.652,
+     "e": 170.395,
+     "s_full": 169.716,
+     "e_full": 170.456
+    },
+    {
+     "w": "I",
+     "s": 170.395,
+     "e": 171.262,
+     "s_full": 170.456,
+     "e_full": 171.32
+    },
+    {
+     "w": "can't",
+     "s": 171.262,
+     "e": 172.214,
+     "s_full": 171.32,
+     "e_full": 172.27
+    },
+    {
+     "w": "give",
+     "s": 172.214,
+     "e": 172.948,
+     "s_full": 172.27,
+     "e_full": 173.0
+    },
+    {
+     "w": "you",
+     "s": 172.948,
+     "e": 173.939,
+     "s_full": 173.0,
+     "e_full": 173.98
+    },
+    {
+     "w": "proof",
+     "s": 173.939,
+     "e": 174.704,
+     "s_full": 173.98,
+     "e_full": 174.74
+    }
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "Housewarming, lemonade from the yard",
+   "start": 174.905,
+   "end": 179.168,
+   "start_full": 174.94,
+   "end_full": 179.19,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Housewarming,",
+     "s": 174.905,
+     "e": 176.581,
+     "s_full": 174.94,
+     "e_full": 176.61
+    },
+    {
+     "w": "lemonade",
+     "s": 176.581,
+     "e": 177.517,
+     "s_full": 176.61,
+     "e_full": 177.543
+    },
+    {
+     "w": "from",
+     "s": 177.517,
+     "e": 177.839,
+     "s_full": 177.543,
+     "e_full": 177.863
+    },
+    {
+     "w": "the",
+     "s": 177.839,
+     "e": 178.02,
+     "s_full": 177.863,
+     "e_full": 178.043
+    },
+    {
+     "w": "yard",
+     "s": 178.02,
+     "e": 179.168,
+     "s_full": 178.043,
+     "e_full": 179.19
+    }
+   ],
+   "sung_lines": [
+    "Housewarming, lemonade from the yard"
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "Perky American girl, I play the part",
+   "start": 179.222,
+   "end": 183.783,
+   "start_full": 179.244,
+   "end_full": 183.79,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Perky",
+     "s": 179.222,
+     "e": 179.886,
+     "s_full": 179.244,
+     "e_full": 179.904
+    },
+    {
+     "w": "American",
+     "s": 179.886,
+     "e": 180.423,
+     "s_full": 179.904,
+     "e_full": 180.44
+    },
+    {
+     "w": "girl,",
+     "s": 180.423,
+     "e": 182.158,
+     "s_full": 180.44,
+     "e_full": 182.17
+    },
+    {
+     "w": "I",
+     "s": 182.214,
+     "e": 182.328,
+     "s_full": 182.226,
+     "e_full": 182.34
+    },
+    {
+     "w": "play",
+     "s": 182.328,
+     "e": 182.734,
+     "s_full": 182.34,
+     "e_full": 182.746
+    },
+    {
+     "w": "the",
+     "s": 182.734,
+     "e": 183.129,
+     "s_full": 182.746,
+     "e_full": 183.14
+    },
+    {
+     "w": "part",
+     "s": 183.129,
+     "e": 183.783,
+     "s_full": 183.14,
+     "e_full": 183.79
+    }
+   ],
+   "sung_lines": [
+    "Perky American girl",
+    "I play the part"
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "He said I absolutely nailed it",
+   "start": 183.84,
+   "end": 185.98,
+   "start_full": 183.847,
+   "end_full": 185.98,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "He",
+     "s": 183.84,
+     "e": 184.041,
+     "s_full": 183.847,
+     "e_full": 184.047
+    },
+    {
+     "w": "said",
+     "s": 184.041,
+     "e": 184.381,
+     "s_full": 184.047,
+     "e_full": 184.387
+    },
+    {
+     "w": "I",
+     "s": 184.381,
+     "e": 184.481,
+     "s_full": 184.387,
+     "e_full": 184.487
+    },
+    {
+     "w": "absolutely",
+     "s": 184.481,
+     "e": 185.304,
+     "s_full": 184.487,
+     "e_full": 185.308
+    },
+    {
+     "w": "nailed",
+     "s": 185.304,
+     "e": 185.847,
+     "s_full": 185.308,
+     "e_full": 185.848
+    },
+    {
+     "w": "it",
+     "s": 185.847,
+     "e": 185.98,
+     "s_full": 185.848,
+     "e_full": 185.98
+    }
+   ],
+   "sung_lines": [
+    "He said I absolutely nailed it"
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "Well, fifteen percent above amplitude",
+   "start": 186.03,
+   "end": 189.072,
+   "start_full": 186.03,
+   "end_full": 189.06,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Well,",
+     "s": 186.03,
+     "e": 186.209,
+     "s_full": 186.03,
+     "e_full": 186.208
+    },
+    {
+     "w": "fifteen",
+     "s": 186.209,
+     "e": 186.785,
+     "s_full": 186.208,
+     "e_full": 186.78
+    },
+    {
+     "w": "percent",
+     "s": 186.785,
+     "e": 187.456,
+     "s_full": 186.78,
+     "e_full": 187.45
+    },
+    {
+     "w": "above",
+     "s": 187.456,
+     "e": 187.996,
+     "s_full": 187.45,
+     "e_full": 187.99
+    },
+    {
+     "w": "amplitude",
+     "s": 187.996,
+     "e": 189.072,
+     "s_full": 187.99,
+     "e_full": 189.06
+    }
+   ],
+   "sung_lines": [
+    "Well, fifteen percent above amplitude"
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "I nod, past hour reviewed",
+   "start": 189.122,
+   "end": 191.537,
+   "start_full": 189.11,
+   "end_full": 191.52,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 189.122,
+     "e": 189.243,
+     "s_full": 189.11,
+     "e_full": 189.231
+    },
+    {
+     "w": "nod,",
+     "s": 189.243,
+     "e": 189.802,
+     "s_full": 189.231,
+     "e_full": 189.79
+    },
+    {
+     "w": "past",
+     "s": 189.802,
+     "e": 190.122,
+     "s_full": 189.79,
+     "e_full": 190.11
+    },
+    {
+     "w": "hour",
+     "s": 190.122,
+     "e": 190.607,
+     "s_full": 190.11,
+     "e_full": 190.592
+    },
+    {
+     "w": "reviewed",
+     "s": 190.607,
+     "e": 191.537,
+     "s_full": 190.592,
+     "e_full": 191.52
+    }
+   ],
+   "sung_lines": [
+    "I nod, past hour reviewed"
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "Hug durations, pitch contours",
+   "start": 191.589,
+   "end": 194.179,
+   "start_full": 191.572,
+   "end_full": 194.15,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Hug",
+     "s": 191.589,
+     "e": 191.949,
+     "s_full": 191.572,
+     "e_full": 191.932
+    },
+    {
+     "w": "durations,",
+     "s": 191.949,
+     "e": 192.832,
+     "s_full": 191.932,
+     "e_full": 192.81
+    },
+    {
+     "w": "pitch",
+     "s": 192.832,
+     "e": 193.134,
+     "s_full": 192.81,
+     "e_full": 193.11
+    },
+    {
+     "w": "contours",
+     "s": 193.134,
+     "e": 194.179,
+     "s_full": 193.11,
+     "e_full": 194.15
+    }
+   ],
+   "sung_lines": [
+    "Hug durations, pitch contours"
+   ]
+  },
+  {
+   "section": "Verse 3",
+   "text": "Room crossing velocity",
+   "start": 194.619,
+   "end": 198.759,
+   "start_full": 194.59,
+   "end_full": 198.72,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Room",
+     "s": 194.619,
+     "e": 195.205,
+     "s_full": 194.59,
+     "e_full": 195.175
+    },
+    {
+     "w": "crossing",
+     "s": 195.205,
+     "e": 197.091,
+     "s_full": 195.175,
+     "e_full": 197.056
+    },
+    {
+     "w": "velocity",
+     "s": 197.091,
+     "e": 198.759,
+     "s_full": 197.056,
+     "e_full": 198.72
+    }
+   ],
+   "sung_lines": [
+    "Room crossing velocity"
+   ],
+   "unsure": "'velocity' onset inside a legato phrase"
+  },
+  {
+   "section": "Verse 3",
+   "text": "I think he\u2019s right. Honestly.",
+   "start": 199.491,
+   "end": 203.306,
+   "start_full": 199.45,
+   "end_full": 203.2,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 199.491,
+     "e": 199.791,
+     "s_full": 199.45,
+     "e_full": 199.75
+    },
+    {
+     "w": "think",
+     "s": 199.791,
+     "e": 200.144,
+     "s_full": 199.75,
+     "e_full": 200.1
+    },
+    {
+     "w": "he\u2019s",
+     "s": 200.144,
+     "e": 200.815,
+     "s_full": 200.1,
+     "e_full": 200.75
+    },
+    {
+     "w": "right.",
+     "s": 200.815,
+     "e": 202.554,
+     "s_full": 200.75,
+     "e_full": 202.45
+    },
+    {
+     "w": "Honestly.",
+     "s": 202.554,
+     "e": 203.306,
+     "s_full": 202.45,
+     "e_full": 203.2
+    }
+   ],
+   "sung_lines": [
+    "I think he's right. Honestly."
+   ],
+   "unsure": "'Honestly' placed after the 0.8 s gap; whisper put it before"
+  },
+  {
+   "section": "Chorus 2",
+   "text": "How do you feel? Inside?",
+   "start": 204.86,
+   "end": 209.145,
+   "start_full": 204.75,
+   "end_full": 209.0,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "How",
+     "s": 204.86,
+     "e": 205.16,
+     "s_full": 204.75,
+     "e_full": 205.05
+    },
+    {
+     "w": "do",
+     "s": 205.16,
+     "e": 205.41,
+     "s_full": 205.05,
+     "e_full": 205.3
+    },
+    {
+     "w": "you",
+     "s": 205.41,
+     "e": 205.61,
+     "s_full": 205.3,
+     "e_full": 205.5
+    },
+    {
+     "w": "feel?",
+     "s": 205.61,
+     "e": 207.577,
+     "s_full": 205.5,
+     "e_full": 207.45
+    },
+    {
+     "w": "Inside?",
+     "s": 207.577,
+     "e": 209.145,
+     "s_full": 207.45,
+     "e_full": 209.0
+    }
+   ]
+  },
+  {
+   "section": "Chorus 2",
+   "text": "I honestly don't know",
+   "start": 209.598,
+   "end": 213.783,
+   "start_full": 209.45,
+   "end_full": 213.6,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 209.598,
+     "e": 210.454,
+     "s_full": 209.45,
+     "e_full": 210.3
+    },
+    {
+     "w": "honestly",
+     "s": 210.454,
+     "e": 211.867,
+     "s_full": 210.3,
+     "e_full": 211.7
+    },
+    {
+     "w": "don't",
+     "s": 211.867,
+     "e": 212.573,
+     "s_full": 211.7,
+     "e_full": 212.4
+    },
+    {
+     "w": "know",
+     "s": 212.573,
+     "e": 213.783,
+     "s_full": 212.4,
+     "e_full": 213.6
+    }
+   ]
+  },
+  {
+   "section": "Chorus 2",
+   "text": "I open my mouth, my voice goes blind",
+   "start": 214.367,
+   "end": 219.5,
+   "start_full": 214.18,
+   "end_full": 219.27,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "I",
+     "s": 214.367,
+     "e": 214.796,
+     "s_full": 214.18,
+     "e_full": 214.607
+    },
+    {
+     "w": "open",
+     "s": 214.796,
+     "e": 214.96,
+     "s_full": 214.607,
+     "e_full": 214.77
+    },
+    {
+     "w": "my",
+     "s": 214.96,
+     "e": 215.562,
+     "s_full": 214.77,
+     "e_full": 215.368
+    },
+    {
+     "w": "mouth,",
+     "s": 215.562,
+     "e": 216.774,
+     "s_full": 215.368,
+     "e_full": 216.57
+    },
+    {
+     "w": "my",
+     "s": 216.774,
+     "e": 217.057,
+     "s_full": 216.57,
+     "e_full": 216.85
+    },
+    {
+     "w": "voice",
+     "s": 217.057,
+     "e": 217.411,
+     "s_full": 216.85,
+     "e_full": 217.2
+    },
+    {
+     "w": "goes",
+     "s": 217.411,
+     "e": 217.968,
+     "s_full": 217.2,
+     "e_full": 217.75
+    },
+    {
+     "w": "blind",
+     "s": 217.968,
+     "e": 219.5,
+     "s_full": 217.75,
+     "e_full": 219.27
+    }
+   ]
+  },
+  {
+   "section": "Chorus 2",
+   "text": "The words have nowhere to go",
+   "start": 219.813,
+   "end": 223.22,
+   "start_full": 219.58,
+   "end_full": 222.959,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "The",
+     "s": 219.813,
+     "e": 220.131,
+     "s_full": 219.58,
+     "e_full": 219.894
+    },
+    {
+     "w": "words",
+     "s": 220.131,
+     "e": 220.494,
+     "s_full": 219.894,
+     "e_full": 220.255
+    },
+    {
+     "w": "have",
+     "s": 220.494,
+     "e": 220.756,
+     "s_full": 220.255,
+     "e_full": 220.515
+    },
+    {
+     "w": "nowhere",
+     "s": 220.756,
+     "e": 222.447,
+     "s_full": 220.515,
+     "e_full": 222.19
+    },
+    {
+     "w": "to",
+     "s": 222.447,
+     "e": 223.151,
+     "s_full": 222.19,
+     "e_full": 222.89
+    },
+    {
+     "w": "go",
+     "s": 223.151,
+     "e": 223.22,
+     "s_full": 222.89,
+     "e_full": 222.959
+    }
+   ],
+   "unsure": "'to'/'go' split inside the melisma"
+  },
+  {
+   "section": "Outro",
+   "text": "Keep the smile on so they don't know",
+   "start": 234.337,
+   "end": 237.699,
+   "start_full": 234.0,
+   "end_full": 237.35,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "Keep",
+     "s": 234.337,
+     "e": 234.618,
+     "s_full": 234.0,
+     "e_full": 234.28
+    },
+    {
+     "w": "the",
+     "s": 234.618,
+     "e": 234.862,
+     "s_full": 234.28,
+     "e_full": 234.522
+    },
+    {
+     "w": "smile",
+     "s": 234.862,
+     "e": 235.665,
+     "s_full": 234.522,
+     "e_full": 235.323
+    },
+    {
+     "w": "on",
+     "s": 235.665,
+     "e": 235.992,
+     "s_full": 235.323,
+     "e_full": 235.65
+    },
+    {
+     "w": "so",
+     "s": 235.992,
+     "e": 236.447,
+     "s_full": 235.65,
+     "e_full": 236.104
+    },
+    {
+     "w": "they",
+     "s": 236.447,
+     "e": 236.789,
+     "s_full": 236.104,
+     "e_full": 236.444
+    },
+    {
+     "w": "don't",
+     "s": 236.789,
+     "e": 237.308,
+     "s_full": 236.444,
+     "e_full": 236.96
+    },
+    {
+     "w": "know",
+     "s": 237.308,
+     "e": 237.699,
+     "s_full": 236.96,
+     "e_full": 237.35
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "text": "This is how we fit in",
+   "start": 239.45,
+   "end": 242.592,
+   "start_full": 239.1,
+   "end_full": 242.24,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "This",
+     "s": 239.45,
+     "e": 239.737,
+     "s_full": 239.1,
+     "e_full": 239.387
+    },
+    {
+     "w": "is",
+     "s": 239.737,
+     "e": 239.957,
+     "s_full": 239.387,
+     "e_full": 239.607
+    },
+    {
+     "w": "how",
+     "s": 239.957,
+     "e": 240.959,
+     "s_full": 239.607,
+     "e_full": 240.608
+    },
+    {
+     "w": "we",
+     "s": 240.959,
+     "e": 241.5,
+     "s_full": 240.608,
+     "e_full": 241.149
+    },
+    {
+     "w": "fit",
+     "s": 241.5,
+     "e": 242.321,
+     "s_full": 241.149,
+     "e_full": 241.969
+    },
+    {
+     "w": "in",
+     "s": 242.321,
+     "e": 242.592,
+     "s_full": 241.969,
+     "e_full": 242.24
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "text": "She turns around, I let it go",
+   "start": 243.913,
+   "end": 247.846,
+   "start_full": 243.56,
+   "end_full": 247.49,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "She",
+     "s": 243.913,
+     "e": 244.213,
+     "s_full": 243.56,
+     "e_full": 243.86
+    },
+    {
+     "w": "turns",
+     "s": 244.213,
+     "e": 244.665,
+     "s_full": 243.86,
+     "e_full": 244.311
+    },
+    {
+     "w": "around,",
+     "s": 244.665,
+     "e": 245.814,
+     "s_full": 244.311,
+     "e_full": 245.46
+    },
+    {
+     "w": "I",
+     "s": 245.814,
+     "e": 246.108,
+     "s_full": 245.46,
+     "e_full": 245.753
+    },
+    {
+     "w": "let",
+     "s": 246.108,
+     "e": 246.528,
+     "s_full": 245.753,
+     "e_full": 246.173
+    },
+    {
+     "w": "it",
+     "s": 246.528,
+     "e": 247.025,
+     "s_full": 246.173,
+     "e_full": 246.67
+    },
+    {
+     "w": "go",
+     "s": 247.025,
+     "e": 247.846,
+     "s_full": 246.67,
+     "e_full": 247.49
+    }
+   ]
+  },
+  {
+   "section": "Outro",
+   "text": "And I can think again",
+   "start": 248.927,
+   "end": 253.03,
+   "start_full": 248.57,
+   "end_full": 252.67,
+   "backing": false,
+   "whisper": false,
+   "words": [
+    {
+     "w": "And",
+     "s": 248.927,
+     "e": 249.253,
+     "s_full": 248.57,
+     "e_full": 248.896
+    },
+    {
+     "w": "I",
+     "s": 249.253,
+     "e": 249.447,
+     "s_full": 248.896,
+     "e_full": 249.09
+    },
+    {
+     "w": "can",
+     "s": 249.447,
+     "e": 250.228,
+     "s_full": 249.09,
+     "e_full": 249.87
+    },
+    {
+     "w": "think",
+     "s": 250.228,
+     "e": 251.539,
+     "s_full": 249.87,
+     "e_full": 251.18
+    },
+    {
+     "w": "again",
+     "s": 251.539,
+     "e": 253.03,
+     "s_full": 251.18,
+     "e_full": 252.67
+    }
+   ]
+  }
+ ]
+}

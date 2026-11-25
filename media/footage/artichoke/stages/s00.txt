@@ -1,0 +1,10 @@
+route: codex image_gen (headless codex exec in tmux session proof-kf; on plan, $0)
+date: 2026-11-24 16:18
+references (generated sheets and set renders only, no photos):
+  image 1: media/footage/artichoke/stages/s12.png  [the mature plate, to empty of its plant]
+
+REFERENCE IMAGES. Image 1: the mature plate, to empty of its plant.
+
+Image 1 is a plate from a series of botanical plates showing one globe artichoke plant growing. Make the very first plate of the series, before the seed has sprouted: remove the plant ENTIRELY (every leaf, the stem, the buds, and their shadows), leaving only the bare low mound of earth exactly as it is in image 1, with the same outline, the same fine engraved hatching, the same umber wash and the same pebbles in exactly the same places and sizes. Where the leaves and stem covered parts of the mound, continue the mound's hatching and wash naturally; where leaves covered the paper, leave bare clean paper continuing the paper's texture. Keep EVERYTHING else exactly as it is in image 1: the same sheet of paper, the same plate mark, the same caption in the same place and size, the same viewpoint and scale. Do not move, re-centre, zoom or re-compose anything. Nothing on the sheet but the mound of earth and the caption.
+
+STYLE. A hand-coloured botanical engraving in the manner of an early nineteenth-century plate from Curtis's Botanical Magazine, Besler's Hortus Eystettensis or Redouté: fine copperplate line work, crisp black-brown engraved outlines, delicate parallel hatching, cross-hatching and stipple for the shading, and over the engraving thin, transparent, restrained watercolour washes. Pale warm cream laid paper with very faint chain lines and laid lines and a soft plate mark. Wide landscape 16:9 sheet seen flat and straight on, evenly lit, the whole sheet filling the image edge to edge. Not a photograph, no drop shadow, no frame, no vignette, no extra text beyond the caption.

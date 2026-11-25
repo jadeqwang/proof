@@ -116,7 +116,9 @@ export class ModeRenderer {
     ud.mats[key] = mat; return mat;
   }
   _prep(scene, pass, vis) {
-    const ids = new Map(); let i = 1; const meshes = [];
+    // meshes sharing userData.idGroup (the pieces of one mannequin limb, the phalanges of one finger) share one id, so
+    // line mode draws no id edge between them: only their silhouette and real creases (normal / depth discontinuities)
+    const ids = new Map(); let i = 1; const meshes = []; const groups = new Map();
     scene.traverse((o) => {
       if (!o.isMesh) return; const L = o.userData.look; if (!L) return;
       if (o.userData.baseVisible === undefined) o.userData.baseVisible = o.visible;
@@ -125,7 +127,9 @@ export class ModeRenderer {
       if (L.hide && L.hide.includes(vis)) v = false;
       if (L.glass && vis !== 'lit') v = false;
       o.visible = v; if (!v) return;
-      meshes.push(o); ids.set(o, (i * 2654435761) & 0xffffff || 1); o.userData.idx = i; i++;
+      const gk = o.userData.idGroup; let k = gk != null ? groups.get(gk) : undefined;
+      if (k === undefined) { k = i++; if (gk != null) groups.set(gk, k); }
+      meshes.push(o); ids.set(o, (k * 2654435761) & 0xffffff || 1); o.userData.idx = k;
     });
     for (const m of meshes) m.material = this._mat(m, pass, ids);
     return { ids, meshes };

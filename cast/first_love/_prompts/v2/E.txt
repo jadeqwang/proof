@@ -1,0 +1,11 @@
+A costume sheet of ONE young man at two ages on bare paper: six full figures, all the same scale, in one row, in two groups of three with a wider gap of bare paper between the groups. LEFT GROUP, aged 19 (2002): (1) standing, straight back view; (2) standing, three-quarter back view; (3) seated cross-legged on the floor in three-quarter back view, back slightly rounded, both hands held forward in his lap as if holding someone's hands, head bowed a little, his sandals slipped off beside him. RIGHT GROUP, aged 27 (2010): (4) standing, straight back view; (5) standing, three-quarter back view; (6) standing in pure profile seen from slightly behind, left forearm slightly raised, head bowed, looking down at his forearm. The haircut is IDENTICAL in all six figures: only the clothes, the stubble and the build change with age.
+
+{hair}
+
+{d27} {d19} He is the same height at both ages; at 19 he is narrower and lighter.
+
+{never}
+
+Image 1 is his accepted back-of-head sheet: his HAIR exactly as there, at both ages. Image 2 is his older costume sheet with the heads painted out: copy its layout, poses and clothes, but NOT its desert boots or white socks (he now wears two-strap cork-footbed sandals on bare feet at both ages), and make him of ordinary height, not lanky, with small hands and feet. Image 3 is a turnaround sheet from the same film: figure scale, spacing and painting hand only, not the woman.
+
+{style}

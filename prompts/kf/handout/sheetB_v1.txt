@@ -1,0 +1,21 @@
+A flat black-and-white clip-art sheet on a perfectly clean pure white background, wide 16:9: a neat grid of exactly TWELVE round cartoon faces, 4 columns by 3 rows, in the plain generic style of a 1980s-1990s American elementary-school "feelings chart" worksheet drawn by a school counsellor with a black felt-tip marker.
+
+EVERY FACE. One simple circle for the head, all twelve circles exactly the same size, each circle about 220 pixels across in a 1672 pixel wide picture, evenly spaced with wide empty white gaps between neighbours so that no face or its marks touches another. Inside each circle only: two simple eyes, two short eyebrow strokes, one mouth, and where stated a tear, a sweat drop or a few short lines. No nose unless stated, no ears, no hair, no neck, no body, no hands. One consistent hand for all twelve: an even, medium-bold black marker line of the same weight everywhere, slightly hand-drawn, not mechanical. Pure black line on pure white: no grey, no shading, no colour, no fills except small solid black pupils.
+
+THE TWELVE FACES, in reading order (row 1 left to right, then row 2, then row 3). Each one must be clearly different from the others and readable at a glance as its feeling:
+1. BRAVE: level determined brows angled slightly down, steady wide-open eyes looking straight ahead, a firm confident closed smile pulled to one side, chin up.
+2. SORRY: eyes closed and cast down as two downward arcs, brows raised toward the middle, a small wobbly downturned mouth.
+3. TIRED: drooping eyelids with a curved bag line under each eye, brows sagging outward, a slack slightly open drooping mouth, one sweat drop at the temple.
+4. SILLY: one eye a round open eye and the other winking shut, brows at different heights, a big grin with the tongue sticking out to one side.
+5. CONFUSED: one brow raised high and the other pulled down, one eye bigger than the other, the mouth a wavy squiggle line, a small spiral scribble floating just above the head.
+6. JEALOUS: narrowed eyes glancing sharply sideways, one brow pulled down, a sour pinched mouth pushed over to one side.
+7. HURT: eyes squeezed shut, a teardrop under each eye, a trembling wavy downturned mouth, a small crossed sticking-plaster on the forehead.
+8. CURIOUS: one brow raised, wide eyes looking up and to one side with pupils in the upper corner, a small round slightly open mouth.
+9. UPSET: eyes screwed shut as tight curved lines, a wide open wailing mouth, several teardrops flying off both sides of the face.
+10. CALM: eyes gently closed as two soft downward-curving arcs with lashes, relaxed brows, a small soft level smile.
+11. WORRIED: brows slanted up to the middle, eyes looking upward, two short wavy wrinkle lines on the forehead, a small crooked wavy mouth.
+12. GUILTY: eyes looking away to the side, brows raised and tilted, a small tight grimace pulled down at one corner, one sweat drop on the forehead.
+
+Any small extra marks (drops, lines, puffs) stay close to their own circle, within a quarter of a circle's width of it.
+
+Not emoji, not smiley-sticker style, no yellow, no gradients, no 3D, no shadows, not a copy of any published chart. NO TEXT of any kind: no letters, no words, no labels, no numbers, no captions, no question marks, no exclamation marks, no "Z"s, no title, no grid lines, no boxes, no border, no frame, no signature.

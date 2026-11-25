@@ -199,7 +199,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "mama91.R": {
    "px": [

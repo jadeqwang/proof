@@ -1,0 +1,18 @@
+route: codex image_gen (headless codex exec in tmux session proof-dad-sheets; on plan, $0)
+date: 2026-11-25 14:36
+size: 1672x941
+likeness: inputs/family_photos/dad_age37/dad37_v5_t1.jpg is a GENERATED image (Codex image_gen), derived from a real
+  family photo of Jade's father aged back to about 37; Jade, the director, approved it as Dad's likeness and approved its
+  use as a reference (2026-11-25). The real photo itself was not sent with this sheet. This sheet is a real private
+  person's likeness. Jade, 2026-11-25: the source is his public Twitter photo; fine to push.
+references (generated images only; dad37_v5_t1.jpg, where listed, is the generated likeness described above):
+  image 1: cast/dad/dad_H_heads_v5_likeness.jpg  [his accepted head sheet, his identity]
+  image 2: cast/dad/_superseded/dad_D_hands_v2.jpg  [older hands sheet, layout hands and painting hand]
+
+prompt:
+REFERENCE IMAGES. Image 1: his accepted head sheet, his identity. Image 2: older hands sheet, layout hands and painting hand.
+
+A hands study sheet of ONE man on bare paper: seven separate studies of his hands and bare forearms, drawn large, in two rows, well separated. Every hand has exactly five fingers, correct anatomy, clean thin outlines with a light warm flesh wash. They are the hands of a slim, light 37-year-old Chinese man who types all day: long fingers, neat short nails, clear knuckles, lean forearms with almost no hair, a plain steel wristwatch on the LEFT wrist only; where a sleeve shows it is the hem of a pale-blue short sleeve above the elbow. Top row: (1) his right hand held out low, open, palm up, fingers relaxed and slightly curved, offered, seen from the front three-quarter; (2) the same open offered palm seen from directly above; (3) the same open offered palm seen from the side, at a child's eye level; (4) the same open palm with a small child's hand (about seven years old) resting in it. Bottom row: (5) both hands typing on a beige 1990 keyboard, seen from above and behind him (his own point of view), so his LEFT hand with the wristwatch is at the LEFT of the picture and his bare right wrist at the right; (6) his right index finger pointing at one exact spot, as at a word on a screen; (7) his RIGHT hand (bare wrist, no watch) pushing his glasses up by the bridge (only the hand, the glasses and a hint of his wide, low-bridged nose, his narrow eyes and straight black brows). The glasses in study 7 are HIS: thin GOLD wire aviators with a DOUBLE bridge (a straight gold brow bar above the nose bridge) and large teardrop-leaning lenses, exactly as in image 1; he pushes them up by the lower bridge.
+Image 1 is his accepted head sheet: his glasses, skin tone, build and shirt. Image 2 is an older hands sheet of his from this film: copy its layout, the hands themselves and the painting hand; but its glasses (silver, rectangular) are WRONG and must be replaced by his gold aviators from image 1.
+Painting hand: Chinese fine-line figure painting on plain cream xuan paper, delicate thin baimiao ink outlines for face, hands and clothing folds, light transparent colour washes, hair in soft black ink wash with a gloss, the gold of the glasses a thin warm ochre-gold line, the paper grain showing through. Skin warm and rosy, never grey. Not anime, not cel shading, not a photograph, not a 3D or digital render. Plain bare cream paper, no text, no labels, no numbers, no arrows, no motion lines, no signature, no seal, no border, no panel frames.
+note: take 1. Hands, layout and watch side carried over from the superseded v2 (watch on the LEFT wrist in the typing study). Study 7 now shows the gold double-bridge aviators, his narrow eyes and wide low nose bridge.

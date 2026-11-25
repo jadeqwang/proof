@@ -1,3 +1,25 @@
 .venv/
 __pycache__/
 *.pyc
+work/
+media/gen/
+inputs/refs_house/
+inputs/family_photos/
+inputs/refs_shanghai/
+inputs/refs_mortongrove/
+
+# Kept out of the repo (2026-11-25): large or regenerable media, and folders Jade keeps private
+inputs/edits/
+inputs/art style inspo/
+media/footage/*/out/*.mov
+media/footage/*/out/*.mp4
+media/footage/*/state/
+media/footage/*/work/
+media/footage/*/takes/
+media/karaoke/*.mp4
+media/karaoke/audio/
+media/karaoke_v2/*.mp4
+media/karaoke_v2/audio/
+# not to be pushed without Jade's say: long verbatim poem quotes; keyframes painted from superseded guides
+docs/poem_digest.md
+media/keyframes/

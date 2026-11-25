@@ -1,0 +1,16 @@
+route: codex image_gen (headless codex exec in tmux session proof-kf; on plan, $0)
+date: 2026-11-22 21:08
+references (generated sheets and set renders only, no photos):
+  image 1: inputs/refs_chaosmonkey/mama/mama_A_turnaround_v3.jpg  [the film's painting hand and this woman (line, wash, blouse, skin)]
+  image 2: cast/little_jade_07/lj07_H_heads_v1.jpg  [the small girl whose cheeks and forearm appear]
+
+REFERENCE IMAGES. Image 1: the film's painting hand and this woman (line, wash, blouse, skin). Image 2: the small girl whose cheeks and forearm appear.
+
+A hands study sheet on bare paper: six separate close studies of the hands and forearms of ONE woman, evenly spaced in two rows of three, each study cropped at the elbow or the edge of a sleeve, no faces of adults anywhere. Her hands: a Chinese woman in her late thirties, strong capable swimmer's hands with short plain nails, no rings, no jewellery; the sleeves of a plain cream cotton blouse pushed up above the elbow. Every hand has five fingers, carefully drawn.
+
+TOP ROW: (1) seen from the front, both of her hands coming in from the two sides toward a small child's face that is NOT drawn (leave that space empty paper): palms toward the cheeks, thumbs leading, a hand-width apart, about to touch. (2) the same two hands now ON the cheeks of a small girl of about seven, seen from the front and cropped from the girl's eyebrows to her chin: the pads of both thumbs press upward on the soft cheeks just beside the corners of the mouth and push them up into the shape of a smile, the fingers resting along the jaw; above the pushed-up smile the girl's brows are pulled down and together and her eyes look sideways, wanting to get away. (3) one of her hands closed firmly around the bare forearm of a small child, seen from above at a three-quarter angle: the grip of someone moving a child quickly out of the way, fingers wrapped round, thumb on top, the child's small hand below it relaxed with the index finger still extended as if it had been pointing at something.
+
+BOTTOM ROW: (4) her two hands holding a small thick pocket dictionary with a plain red cloth cover and no lettering, the thumb of the right hand riffling fast through the thin pages, pages fanned in a blur of fine lines. (5) one hand resting flat on the top of a small child's head of glossy black hair, seen from behind the child: a pat. (6) both hands and forearms flushed a clear pink-red from hot dishwater, distinctly pinker than the upper arm, wringing out a cloth.
+
+Image 1 is the film's painting hand and shows this woman (for the line, the wash, the blouse and her skin tone). Image 2 is the model sheet of the small girl whose cheeks and forearm appear (for her skin, hair and face only). Use the images for likeness only; draw a new sheet.
+Painting hand: Chinese fine-line figure painting on plain cream xuan paper, delicate thin baimiao ink outlines for faces, hands and clothing folds, light transparent colour washes, hair in soft black ink wash with a gloss, paper grain showing. Skin warm and rosy, never grey. Not anime, not cel shading, not a photograph, not a 3D render. Plain bare cream paper, no text, no labels, no numbers, no arrows, no motion lines, no signature, no seal, no border, no panel frames.

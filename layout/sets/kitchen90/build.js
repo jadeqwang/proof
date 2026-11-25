@@ -85,7 +85,10 @@ export function build(shot, { makeCam }) {
   const extra = (t) => (t === 'mote' ? V(MOTE) : t === 'paper' ? V(PAPER.c) : null);
   const { figs } = stage(shot.figs, null, extra);
   for (const f of Object.values(figs)) root.add(f);
-  if (shot.pencil && figs[shot.pencil]) { const P = figs[shot.pencil].userData.P; const tip = V(shot.pencilTip || PAPER.c); const d = P.handR.clone().add(V(-0.02, 0.09, -0.05)).sub(tip).normalize();
+  if (shot.pencil && figs[shot.pencil]) { // (2026-11-25) held in the pinch, resting in the web of the thumb, slanting back over the hand; tip on the paper
+    const P = figs[shot.pencil].userData.P, h = P.hands.R; const pinch = P.indexR.clone().add(P.thumbR).multiplyScalar(0.5);
+    const d = h.f.clone().multiplyScalar(-0.75).addScaledVector(h.t, 0.45).addScaledVector(h.n, -0.2).add(V(0, 0.55, 0)).normalize();
+    const tipY = V(shot.pencilTip || PAPER.c).y; const tip = pinch.clone().addScaledVector(d, -(pinch.y - tipY) / Math.max(d.y, 0.2));
     root.add(tag(limb(tip, tip.clone().addScaledVector(d, 0.17), 0.0035, { grey: 0.75, col: 0xd9b23a }), 'pencil')); }
   // beam guides: label mode = outline of the lit volume / footprint; lit preview = the volume itself
   const GL = { grey: 0.1, col: 0x2040ff, only: ['label'], noCast: true };

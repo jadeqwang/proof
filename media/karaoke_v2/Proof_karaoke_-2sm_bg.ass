@@ -1,0 +1,86 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Lyric,EB Garamond Karaoke,74,&H001C2F9B,&H001F262E,&H10D0E7F1,&HFF000000,0,0,0,0,100,100,0.6,0,1,4.5,0,5,0,0,0,1
+Style: Backing,EB Garamond Karaoke,66,&H001C2F9B,&H00485A6B,&H10D0E7F1,&HFF000000,0,1,0,0,100,100,0.6,0,1,4.5,0,5,0,0,0,1
+Style: Label,EB Garamond Karaoke,40,&H00485A6B,&H00485A6B,&H10D0E7F1,&HFF000000,0,1,0,0,100,100,3,0,1,4,0,5,0,0,0,1
+Style: Title,EB Garamond Karaoke,150,&H001F262E,&H001F262E,&H10D0E7F1,&HFF000000,0,0,0,0,100,100,4,0,1,5,0,5,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.40,0:00:04.42,Title,,0,0,0,,{\pos(960,450)\fad(900,700)\blur0.6}Proof
+Dialogue: 1,0:00:00.90,0:00:04.42,Label,,0,0,0,,{\pos(960,575)\fad(900,700)}karaoke · −2 semitones
+Dialogue: 1,0:00:04.72,0:00:12.06,Backing,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf16}You {\kf28}need {\kf42}facial {\kf88}expressions
+Dialogue: 1,0:00:06.91,0:00:07.51,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:00:07.51,0:00:08.12,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:00:08.12,0:00:08.72,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:00:14.16,0:00:20.46,Backing,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf14}But {\kf18}not {\kf22}like {\kf17}that
+Dialogue: 1,0:00:16.34,0:00:16.95,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:00:16.95,0:00:17.55,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:00:17.55,0:00:18.16,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:00:25.61,0:00:34.59,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf54}Three {\kf44}years {\kf77}old, {\kf42}uncle {\kf108}explains {\kf91}atoms
+Dialogue: 1,0:00:27.80,0:00:28.41,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:00:28.41,0:00:29.01,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:00:29.01,0:00:29.61,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:00:30.38,0:00:39.11,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf27}A {\kf24}week {\kf69}later {\kf30}my {\kf56}mother {\kf68}finds {\kf52}me {\k6}{\kf46}sat {\kf50}in
+Dialogue: 1,0:00:34.64,0:00:43.89,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf18}A {\kf52}snow {\kf51}drift {\kf24}of {\kf63}paper, {\k54}{\kf28}ripped {\kf62}to {\kf71}shreds
+Dialogue: 1,0:00:39.16,0:00:49.17,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf41}Ever {\kf161}tinier, {\k6}{\kf68}repeating {\kf58}what {\kf26}uncle {\kf80}said
+Dialogue: 1,0:00:43.94,0:00:54.44,Lyric,,0,0,0,,{\pos(960,795)\fs63\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf35}“What {\kf30}on {\kf46}earth {\kf37}are {\kf26}you {\kf56}doing?” {\k5}{\kf20}The {\kf52}adults {\kf64}howl {\kf28}with {\kf90}laughter
+Dialogue: 1,0:00:49.70,0:00:59.95,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf15}What’s {\kf47}so {\kf48}funny? {\k11}{\kf80}Nobody {\kf80}tells {\kf50}me {\kf133}after
+Dialogue: 1,0:01:14.00,0:01:22.76,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf32}She {\kf58}doesn’t {\kf32}talk {\kf32}like {\kf40}other {\kf123}children
+Dialogue: 1,0:01:16.19,0:01:16.79,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:01:16.79,0:01:17.39,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:01:17.39,0:01:18.00,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:01:17.21,0:01:24.58,Backing,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf13}(Her {\kf42}English {\kf38}comes {\kf41}from {\kf43}books)
+Dialogue: 1,0:01:23.07,0:01:31.69,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf30}Her {\kf63}face {\kf63}doesn’t {\kf42}make {\kf36}much {\kf101}expression
+Dialogue: 1,0:01:26.48,0:01:36.39,Backing,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf20}For {\kf13}our {\kf108}culture, {\kf35}that’s {\kf89}just {\kf84}how {\kf44}it {\kf88}looks
+Dialogue: 1,0:01:31.74,0:01:40.34,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf35}How {\kf20}do {\kf25}you {\kf120}feel? {\kf100}Inside?
+Dialogue: 1,0:01:36.44,0:01:46.55,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf125}I {\kf105}honestly {\kf75}don’t {\kf145}know
+Dialogue: 1,0:01:41.27,0:01:52.01,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf43}I {\kf20}open {\kf58}my {\kf110}mouth, {\kf40}my {\kf33}voice {\kf58}goes {\kf151}blind
+Dialogue: 1,0:01:46.72,0:01:55.49,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf27}The {\kf35}words {\kf32}have {\kf178}nowhere {\kf38}to {\kf7}go
+Dialogue: 1,0:02:02.12,0:02:08.75,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf113}Resting {\kf72}oblivious {\kf54}face
+Dialogue: 1,0:02:04.31,0:02:04.91,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:02:04.91,0:02:05.51,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:02:05.51,0:02:06.12,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:02:04.56,0:02:11.00,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf21}Blocking {\kf29}the {\kf68}aisle, {\kf20}in {\kf16}the {\kf28}wrong {\kf37}place
+Dialogue: 1,0:02:08.62,0:02:13.63,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(1836,2136,\alpha&H00&)}{\k219}{\kf52}Enthralled {\kf24}by {\kf14}an {\kf46}artichoke, {\k5}{\kf39}green {\kf20}and {\kf57}fresh
+Dialogue: 1,0:02:10.87,0:02:16.06,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(2217,2517,\alpha&H00&)}{\k257}{\kf77}Sacred {\kf75}geometry {\kf28}made {\kf57}flesh
+Dialogue: 1,0:02:13.50,0:02:18.29,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(2032,2332,\alpha&H00&)}{\k238}{\kf91}Basement, {\kf29}Dad’s {\kf55}code, {\kf10}I {\kf31}watch
+Dialogue: 1,0:02:15.93,0:02:22.24,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(1808,2108,\alpha&H00&)}{\k216}{\kf18\i0}I {\kf32\i0}point {\kf28\i0}to {\kf20\i0}one {\kf14\i0}he {\kf30\i0}missed. {\k30}{\kf27\i1}“Good {\kf55\i1}catch!”
+Dialogue: 1,0:02:18.16,0:02:26.89,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(2225,2525,\alpha&H00&)}{\k258}{\kf15}“Did {\kf58}she {\kf122}understand {\kf18}or {\kf55}just {\kf93}pattern {\kf94}match?”
+Dialogue: 1,0:02:30.36,0:02:37.18,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf20}Do {\kf24}you {\kf32}not {\kf73}see {\kf42}what {\kf20}I {\kf45}see?
+Dialogue: 1,0:02:32.55,0:02:33.15,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:02:33.15,0:02:33.75,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:02:33.75,0:02:34.36,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:02:33.00,0:02:40.27,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf29}Does {\kf28}it {\kf44}matter {\kf21}what {\kf38}makes {\kf32}me {\kf50}me?
+Dialogue: 1,0:02:37.05,0:02:44.52,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(2111,2411,\alpha&H00&)}{\k246}{\kf45}Beauty {\kf18}on {\kf58}this {\kf115}side, {\kf40}truth {\kf33}by {\kf168}reference
+Dialogue: 1,0:02:40.32,0:02:46.97,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf64}Science {\kf34}fiction {\kf63}shelved {\kf22}with {\kf57}truth
+Dialogue: 1,0:02:44.39,0:02:50.85,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(2037,2337,\alpha&H00&)}{\k239}{\kf24}From {\kf66}inside, {\kf5}I {\kf24}can’t {\kf38}tell {\kf15}the {\kf110}difference
+Dialogue: 1,0:02:46.84,0:02:55.17,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(2458,2758,\alpha&H00&)}{\k281}{\kf74}And {\kf87}I {\kf95}can’t {\kf73}give {\kf99}you {\kf77}proof
+Dialogue: 1,0:02:50.91,0:02:59.79,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf168}Housewarming, {\kf94}lemonade {\kf32}from {\kf18}the {\kf115}yard
+Dialogue: 1,0:02:55.22,0:03:04.03,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf66}Perky {\kf54}American {\kf173}girl, {\k6}{\kf11}I {\kf41}play {\kf39}the {\kf65}part
+Dialogue: 1,0:02:59.84,0:03:06.23,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf20}He {\kf34}said {\kf10}I {\kf82}absolutely {\kf54}nailed {\kf13}it
+Dialogue: 1,0:03:03.90,0:03:09.32,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(1777,2077,\alpha&H00&)}{\k213}{\kf18}Well, {\kf58}fifteen {\kf67}percent {\kf54}above {\kf108}amplitude
+Dialogue: 1,0:03:06.10,0:03:11.79,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(2672,2972,\alpha&H00&)}{\k302}{\kf12}I {\kf56}nod, {\kf32}past {\kf48}hour {\kf93}reviewed
+Dialogue: 1,0:03:09.19,0:03:15.44,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(2046,2346,\alpha&H00&)}{\k240}{\kf36}Hug {\kf88}durations, {\kf30}pitch {\kf105}contours
+Dialogue: 1,0:03:11.66,0:03:20.36,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(2611,2911,\alpha&H00&)}{\k296}{\kf59}Room {\kf189}crossing {\kf167}velocity
+Dialogue: 1,0:03:15.49,0:03:24.91,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf30}I {\kf35}think {\kf67}he’s {\kf174}right. {\kf75}Honestly.
+Dialogue: 1,0:03:20.86,0:03:30.32,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf30}How {\kf25}do {\kf20}you {\kf197}feel? {\kf157}Inside?
+Dialogue: 1,0:03:25.60,0:03:35.38,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf86}I {\kf141}honestly {\kf71}don’t {\kf121}know
+Dialogue: 1,0:03:30.37,0:03:41.10,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf43}I {\kf16}open {\kf60}my {\kf121}mouth, {\kf28}my {\kf35}voice {\kf56}goes {\kf153}blind
+Dialogue: 1,0:03:35.81,0:03:44.82,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf32}The {\kf36}words {\kf26}have {\kf169}nowhere {\kf70}to {\kf7}go
+Dialogue: 1,0:03:50.34,0:03:59.30,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf28}Keep {\kf24}the {\kf80}smile {\kf33}on {\kf46}so {\kf34}they {\kf52}don’t {\kf39}know
+Dialogue: 1,0:03:52.53,0:03:53.13,Label,,0,0,0,,{\pos(960,717)\fs44}•  •  •
+Dialogue: 1,0:03:53.13,0:03:53.73,Label,,0,0,0,,{\pos(960,717)\fs44}•  •
+Dialogue: 1,0:03:53.73,0:03:54.34,Label,,0,0,0,,{\pos(960,717)\fs44}•
+Dialogue: 1,0:03:55.45,0:04:04.19,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf29}This {\kf22}is {\kf100}how {\kf54}we {\kf82}fit {\kf27}in
+Dialogue: 1,0:03:59.91,0:04:09.45,Lyric,,0,0,0,,{\pos(960,795)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf30}She {\kf45}turns {\kf115}around, {\kf29}I {\kf42}let {\kf50}it {\kf82}go
+Dialogue: 1,0:04:04.93,0:04:14.63,Lyric,,0,0,0,,{\pos(960,900)\blur0.4\fad(250,300)\alpha&H55&\t(3650,3950,\alpha&H00&)}{\k400}{\kf33}And {\kf19}I {\kf78}can {\kf131}think {\kf149}again
+Dialogue: 1,0:01:00.25,0:01:13.50,Label,,0,0,0,,{\pos(960,847)\fad(600,500)}— instrumental —

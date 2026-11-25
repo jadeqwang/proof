@@ -274,8 +274,8 @@
   },
   "toddler.L": {
    "px": [
-    123330.2,
-    -5772.7
+    126223.5,
+    -5934.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -283,8 +283,8 @@
   },
   "toddler.R": {
    "px": [
-    -1429,
-    3461.4
+    -1429.6,
+    3459.4
    ],
    "shape": "relax",
    "in_frame": false,
