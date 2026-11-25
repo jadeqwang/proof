@@ -23,6 +23,7 @@ F32 = np.float32
 GOLD_LIGHT = np.array([0.76, 0.57, 0.20], F32)     # comp.py's gold pencil, light pressure
 GOLD_DARK = np.array([0.50, 0.36, 0.12], F32)      # ... where the lead bit
 GOLD_LEAF = np.array([0.93, 0.79, 0.43], F32)      # burnished: where the stroke runs across the light
+PAPER = np.array([0.925, 0.885, 0.795], F32)       # frost's paper (the clearance)
 KEY_PAD = 1.4                                       # keyline: canvas px beyond the gold on each side
 UMBER = np.array([0.30, 0.20, 0.08], F32)          # the keyline under the gold (as gold leaf is laid over a drawn line)
 
@@ -67,7 +68,7 @@ def smooth_noise(n, wavelength, r):
 class Stroke:
     """pts in canvas px (already supersampled). width in canvas px."""
 
-    def __init__(self, pts, width, W, H, seed=0, wobble=0.5, taper=True, pressure=1.0):
+    def __init__(self, pts, width, W, H, seed=0, wobble=0.5, taper=True, pressure=1.0, halo=0.0):
         r = np.random.default_rng(seed)
         p = resample(pts, 0.5)
         n = len(p)
@@ -91,12 +92,12 @@ class Stroke:
         u = L / max(L[-1], 1e-6)
         ang = np.arctan2(tan[:, 1], tan[:, 0])
         # pixels near the line
-        pad = float(wd.max()) / 2 + 2 + KEY_PAD
+        pad = float(wd.max()) / 2 + 2 + max(KEY_PAD, halo)
         x0, y0 = int(max(0, math.floor(p[:, 0].min() - pad))), int(max(0, math.floor(p[:, 1].min() - pad)))
         x1, y1 = int(min(W, math.ceil(p[:, 0].max() + pad) + 1)), int(min(H, math.ceil(p[:, 1].max() + pad) + 1))
         if x1 <= x0 or y1 <= y0:
             self.idx = np.zeros(0, np.int64)
-            self.cov = self.arr = self.ang = self.pr = np.zeros(0, F32)
+            self.cov = self.arr = self.ang = self.pr = self.key = self.halo = np.zeros(0, F32)
             return
         tree = cKDTree(p)
         yy, xx = np.mgrid[y0:y1, x0:x1]
@@ -105,7 +106,7 @@ class Stroke:
         ok = np.isfinite(d)
         d, j, q = d[ok], j[ok], q[ok]
         cov = np.clip(wd[j] / 2 - d + 0.5, 0, 1)
-        keep = np.clip(wd[j] / 2 + KEY_PAD - d + 0.5, 0, 1) > 0.004
+        keep = np.clip(wd[j] / 2 + max(KEY_PAD, halo) - d + 0.5, 0, 1) > 0.004
         self.idx = ((q[keep, 1] - 0.5).astype(np.int64) * W + (q[keep, 0] - 0.5).astype(np.int64))
         self.cov = cov[keep].astype(F32)
         self.arr = u[j[keep]].astype(F32)
@@ -114,9 +115,12 @@ class Stroke:
         kw = wd[j] / 2 + KEY_PAD
         kc = np.clip(kw - d + 0.5, 0, 1)
         self.key = kc[keep].astype(F32)
+        # the engraver's clearance: a soft knock-out of the ground round a numeral, in paper colour
+        self.halo = (np.clip((wd[j] / 2 + halo - d) / max(halo * 0.6, 1e-3), 0, 1)[keep] if halo > 0
+                     else np.zeros(int(keep.sum()))).astype(F32)
 
 
-def glyph_strokes(text, x, y, size, width, W, H, seed=0, ss=2):
+def glyph_strokes(text, x, y, size, width, W, H, seed=0, ss=2, halo=0.0):
     """Numerals in the film's gold-pencil hand (comp.py GLYPHS). (x, y): centre of the text, canvas px.
     Returns a list of Strokes in writing order (each with its share of the writing time)."""
     r = np.random.default_rng(seed)
@@ -137,7 +141,7 @@ def glyph_strokes(text, x, y, size, width, W, H, seed=0, ss=2):
             q = np.stack([q[:, 0] * ca - q[:, 1] * sa + 0.31, q[:, 0] * sa + q[:, 1] * ca], 1) * sc
             q = q + [x, y + dy]
             q = catmull(q, 0.5) if kind == 's' else resample(q, 0.5)
-            out.append(Stroke(q, width, W, H, seed=int(r.integers(1 << 30)), wobble=0.25, taper=True))
+            out.append(Stroke(q, width, W, H, seed=int(r.integers(1 << 30)), wobble=0.25, taper=True, halo=halo))
         x += adv
     return out
 
@@ -158,15 +162,30 @@ class Gold:
         self.tooth = tooth.ravel()
         self.items = []
 
-    def add(self, strokes, t0, t1, alpha_fn=None, ease=True, light_ang=math.radians(-135)):
+    def add(self, strokes, t0, t1, alpha_fn=None, ease=True, clear=False):
         Ls = np.array([max(s.length, 1e-3) for s in strokes])
         c = np.concatenate([[0], np.cumsum(Ls)]) / Ls.sum()
-        self.items.append(dict(strokes=strokes, t0=t0, t1=t1, c=c, alpha=alpha_fn, ease=ease))
+        self.items.append(dict(strokes=strokes, t0=t0, t1=t1, c=c, alpha=alpha_fn, ease=ease, clear=clear))
 
     def render(self, t):
         """-> (rgb premultiplied? no: straight colour (H, W, 3), alpha (H, W)) at output resolution."""
         A = np.zeros(self.CW * self.CH, F32)
         C = np.zeros((self.CW * self.CH, 3), F32)
+        # clearances first (paper colour, under everything gold), as soon as the numeral begins
+        for it in self.items:
+            if t < it['t0'] or not it.get('clear'):
+                continue
+            fa = it['alpha'](t) if it['alpha'] else 1.0
+            ramp = min(1.0, (t - it['t0']) / 0.25)
+            for s in it['strokes']:
+                if len(s.idx) == 0:
+                    continue
+                a = s.halo * 0.80 * ramp * fa
+                old = A[s.idx]
+                new = np.maximum(old, a)
+                w = np.where(new > 0, (new - old) / np.maximum(new, 1e-6), 0)[:, None]
+                C[s.idx] = C[s.idx] * (1 - w) + PAPER[None] * w
+                A[s.idx] = new
         for it in self.items:
             if t < it['t0']:
                 continue
@@ -195,11 +214,10 @@ class Gold:
                 a_tot = a + ka * (1 - a)
                 col = (col * a[:, None] + UMBER[None] * (ka * (1 - a))[:, None]) / np.maximum(a_tot, 1e-6)[:, None]
                 a = a_tot
+                # over: the gold (with its keyline) laid on whatever is there
                 old = A[s.idx]
-                new = np.maximum(old, a)
-                # colour of the topmost: blend by the new contribution
-                w = np.where(new > 0, (new - old) / np.maximum(new, 1e-6), 0)[:, None]
-                C[s.idx] = C[s.idx] * (1 - w) + col * w
+                new = a + old * (1 - a)
+                C[s.idx] = (col * a[:, None] + C[s.idx] * (old * (1 - a))[:, None]) / np.maximum(new, 1e-6)[:, None]
                 A[s.idx] = new
         A = A.reshape(self.CH, self.CW)
         C = C.reshape(self.CH, self.CW, 3)

@@ -166,7 +166,7 @@ def cfg_aloe(S):
 CONFIGS = dict(artichoke=cfg_artichoke, romanesco=cfg_romanesco, aloe=cfg_aloe)
 CAPTIONS = dict(
     artichoke=("Fig. 1.—Head of the globe artichoke, viewed from above: the bracts in spirals of 5 and 8.",
-               "*Cynara cardunculus* var. *scolymus*, 'Green Globe'. Each family of spirals is counted in gold."),
+               "*Cynara cardunculus* var. *scolymus*, ‘Green Globe’. Each family of spirals is counted in gold."),
     aloe=("Fig. 3.—Rosette of the spiral aloe, viewed from above: the leaves in five spiral ranks.",
           "*Aloe polyphylla*, about 150 leaves. Here the ranks wind anticlockwise outward; plants of either hand are found."),
     romanesco=("Fig. 2.—Head of the Romanesco cauliflower, viewed from above: the florets in spirals of 8 and 13.",
@@ -177,7 +177,7 @@ CAPTIONS = dict(
 LAYOUTS = dict(
     artichoke=dict(radius=400),
     aloe=dict(radius=392),
-    romanesco=dict(radius=338, centre=(500, 440),
+    romanesco=dict(radius=318, centre=(492, 440),
                    inset=dict(centre=(1318, 440), r=318, fill=0.72, pick_r=0.56, pick_ang=0.0)),
 )
 
@@ -228,6 +228,10 @@ class Plate:
         cx2, cy2 = ins['centre'][0] * k * ss, ins['centre'][1] * k * ss
         A = e2['apex'][fl]
         view2 = engine.View(self.pw, self.ph, cx2 - S2 * A[0], cy2 - S2 * A[1], S2)
+        lay2 = PL.PlantLayer(e2, view2, self.cfg, sel=sub)
+        ys, xs = torch.nonzero(lay2.inside, as_tuple=True)
+        mx, my = float(xs.float().mean()), float(ys.float().mean())      # centre the drawn floret in its circle
+        view2 = engine.View(self.pw, self.ph, view2.cx + (cx2 - mx), view2.cy + (cy2 - my), S2)
         self.views['inset'] = dict(view=view2, el=e2, sel=sub, layer=PL.PlantLayer(e2, view2, self.cfg, sel=sub),
                                    centre=(cx2, cy2), r=ins['r'] * k * ss)
 
@@ -347,12 +351,12 @@ class Plate:
         el = self.views[vk]['el']
         return el['n'] if 'n' in el else el['k']
 
-    def families(self, fams, vk='main', min_area=30.0, r_max=None):
+    def families(self, fams, vk='main', min_area=30.0, r_max=None, n_min=0):
         """For each family F, F arms; arm k = the counted, visible elements with index = k (mod F), centre outward.
         r_max (fraction of the view's radius): an arm ends at its first element beyond it (it has reached the rim)."""
         pts, area = self.anchor_points(vk)
         nidx = self.index(vk)
-        ok = (area >= min_area) & self.counted(vk)
+        ok = (area >= min_area) & self.counted(vk) & (nidx >= n_min)
         idx = np.arange(len(nidx))
         c = self.centre_out(vk)
         rad = np.hypot(pts[:, 0] - c[0], pts[:, 1] - c[1])
@@ -371,13 +375,13 @@ class Plate:
             out.append(dict(F=int(F), arms=arms))
         return out
 
-    def verify(self, fams, vk='main', min_area=30.0):
+    def verify(self, fams, vk='main', min_area=30.0, n_min=0):
         """Independent check on the drawing: Delaunay neighbours among the visible anchors, histogram of their index
         differences. The contact parastichies show as the dominant differences."""
         from scipy.spatial import Delaunay
         pts, area = self.anchor_points(vk)
         nidx = self.index(vk)
-        ok = (area >= min_area) & self.counted(vk)
+        ok = (area >= min_area) & self.counted(vk) & (nidx >= n_min)
         I = np.where(ok)[0]
         tri = Delaunay(pts[I])
         E = set()
@@ -481,33 +485,46 @@ def place_numeral(path, size, taken, frame_box, start=0.75, mask=None, centre=No
             if mask[yi, xi]:
                 return True
         return False
-    best = None
+    best = first = None
+    nrm = np.array([-d[1], d[0]])
     for k in range(60):
-        c = end + d * size * (start + 0.2 * k)
-        box = (c[0] - size * 0.5, c[1] - size * 0.6, c[0] + size * 0.5, c[1] + size * 0.6)
-        clash = any(not (box[2] < b[0] or box[0] > b[2] or box[3] < b[1] or box[1] > b[3]) for b in taken)
-        inside = (box[0] > frame_box[0] and box[1] > frame_box[1] and box[2] < frame_box[2] and box[3] < frame_box[3])
-        if not inside:
+        found = False
+        for lat in (0.0, 0.9, -0.9, 1.8, -1.8):                 # straight out first, then sideways
+            c = end + d * size * (start + 0.2 * k) + nrm * size * lat
+            box = (c[0] - size * 0.5, c[1] - size * 0.6, c[0] + size * 0.5, c[1] + size * 0.6)
+            m = size * 0.55                                     # clearance, so two numerals never read as one
+            clash = any(not (box[2] + m < b[0] or box[0] - m > b[2] or box[3] + m < b[1] or box[1] - m > b[3])
+                        for b in taken)
+            inside = (box[0] > frame_box[0] and box[1] > frame_box[1] and box[2] < frame_box[2] and box[3] < frame_box[3])
+            if not inside:
+                continue
+            found = True
+            if first is None:
+                first = (c, box)
+            if not clash and best is None:
+                best = (c, box)
+            if not clash and not on_plant(box):
+                taken.append(box)
+                return c
+        if not found:
             break
-        if not clash and best is None:
-            best = (c, box)
-        if not clash and not on_plant(box):
-            taken.append(box)
-            return c
     if best is None:
-        best = (c, box)
+        best = first
+    if best is None:                                            # nowhere inside the pane: at the arm's end
+        c = end
+        best = (c, (c[0] - size * 0.5, c[1] - size * 0.6, c[0] + size * 0.5, c[1] + size * 0.6))
     taken.append(best[1])
     return best[0]
 
 
 CLIPS = dict(
-    artichoke=dict(dur=17.0, passes=[dict(F=5, t=(1.5, 7.6)), dict(F=8, t=(8.6, 14.6))]),
-    aloe=dict(dur=13.0, passes=[dict(F=5, t=(1.5, 9.5), first=1.8, r_max=0.92, smooth=14.0)]),
-    romanesco=dict(dur=22.0, passes=[dict(F=8, t=(1.5, 6.6)), dict(F=13, t=(7.4, 12.6)),
-                                     dict(F=8, view='inset', t=(14.4, 17.0), descend=(13.1, 14.2), num=26, line=2.8),
-                                     dict(F=13, view='inset', t=(17.5, 20.3), num=26, line=2.8)]),
+    artichoke=dict(dur=17.0, passes=[dict(F=5, t=(1.5, 7.6), n_min=5, smooth=6.0), dict(F=8, t=(8.6, 14.6), n_min=5, smooth=6.0)]),
+    aloe=dict(dur=13.0, passes=[dict(F=5, t=(1.5, 9.5), first=1.8, r_max=0.92, smooth=20.0)]),
+    romanesco=dict(dur=20.0, passes=[dict(F=8, t=(1.4, 5.8), line=3.4), dict(F=13, t=(6.4, 10.8), line=3.4),
+                                     dict(F=8, view='inset', t=(12.3, 14.6), descend=(11.1, 12.1), num=28, line=2.8),
+                                     dict(F=13, view='inset', t=(15.0, 17.6), num=28, line=2.8)]),
 )
-NUM_SIZE = 30.0          # numeral height, output px at 1080
+NUM_SIZE = 34.0          # numeral height, output px at 1080
 LINE_W = 3.2             # gold line width, output px at 1080
 
 
@@ -546,13 +563,15 @@ class Clip:
         n_pass = len(self.spec['passes'])
         for pi, ps in enumerate(self.spec['passes']):
             F, vk = ps['F'], ps.get('view', 'main')
-            fam = P.families([F], vk, r_max=ps.get('r_max'))[0]
+            fam = P.families([F], vk, r_max=ps.get('r_max'), n_min=ps.get('n_min', 0))[0]
             arms = [a for a in fam['arms'] if len(a['anchors']) >= 2]
             cx, cy = P.centre_out(vk)
             # count order: from the arm that ends nearest 12 o'clock, going round clockwise
             ends = np.array([a['anchors'][-1] for a in arms])
             ang = np.arctan2(ends[:, 1] - cy, ends[:, 0] - cx)
-            order = np.argsort(np.mod(ang + math.pi / 2, 2 * math.pi))
+            prev_same = [q for q in self.spec['passes'][:pi] if q.get('view', 'main') == vk]
+            start = ps.get('start', -math.pi / 2 if not prev_same else math.pi / 2)   # 12 o'clock, then 6 o'clock
+            order = np.argsort(np.mod(ang - start, 2 * math.pi))
             times = pass_times(len(arms), *ps['t'], first=ps.get('first', 2.2))
             pass_end = ps['t'][1]
             nsize = ps.get('num', NUM_SIZE) * k
@@ -575,32 +594,33 @@ class Clip:
                 dev = deviation(path, arm['anchors'])
                 st = thread.Stroke(path * ss, lw * ss, self.W * ss, self.H * ss, seed=1000 * F + arm['k'] + 97 * pi)
 
-                def line_alpha(t, pe=pass_end):
-                    return 1.0 if t < pe + 0.3 else 1 - 0.30 * min(1.0, (t - pe - 0.3) / 0.8)
+                def line_alpha(t, pe=pass_end, solo=(n_pass == 1)):
+                    return 1.0 if (solo or t < pe + 0.3) else 1 - 0.30 * min(1.0, (t - pe - 0.3) / 0.8)
                 self.gold.add([st], t0, t1, line_alpha)
                 num = str(j + 1)
                 c = place_numeral(path, nsize, taken, fb, mask=self.plant_mask, centre=(cx, cy))
-                strokes = thread.glyph_strokes(num, c[0] * ss, c[1] * ss, nsize * ss, 2.7 * k * ss,
-                                               self.W * ss, self.H * ss, seed=77 + 100 * F + j + 1000 * pi)
+                strokes = thread.glyph_strokes(num, c[0] * ss, c[1] * ss, nsize * ss, 2.9 * k * ss,
+                                               self.W * ss, self.H * ss, seed=77 + 100 * F + j + 1000 * pi,
+                                               halo=4.5 * k * ss)
                 is_total = (j == len(arms) - 1)
 
-                def num_alpha(t, pe=pass_end, tot=is_total):
-                    if tot or t < pe + 0.3:
+                def num_alpha(t, pe=pass_end, tot=is_total, solo=(n_pass == 1)):
+                    if solo or tot or t < pe + 0.3:
                         return 1.0
                     return 1 - 0.40 * min(1.0, (t - pe - 0.3) / 0.8)
                 tn0 = t1 - 0.04
-                self.gold.add(strokes, tn0, tn0 + 0.20 + 0.12 * len(num), num_alpha, ease=False)
+                self.gold.add(strokes, tn0, tn0 + 0.20 + 0.12 * len(num), num_alpha, ease=False, clear=True)
                 pd['arms'].append(dict(count=j + 1, arm=arm['k'], elements=arm['elements'],
                                        anchors=arm['anchors'], path=path[::8].round(1).tolist(),
                                        numeral=num, numeral_at=[round(float(c[0]), 1), round(float(c[1]), 1)],
                                        t_start=round(t0, 3), t_end=round(t1, 3),
                                        anchor_deviation_px=dict(max=round(dev[0], 2), mean=round(dev[1], 2))))
             pd['total'] = len(arms)
-            pd['winding'] = P.verify([F], vk)['outward_winding_on_screen'][F]['direction']
+            pd['winding'] = P.verify([F], vk, n_min=ps.get('n_min', 0))['outward_winding_on_screen'][F]['direction']
             data['passes'].append(pd)
         for vk in P.views:
-            fams = [p_['F'] for p_ in self.spec['passes'] if p_.get('view', 'main') == vk]
-            data['verify'].append(P.verify(fams, vk))
+            pp = [p_ for p_ in self.spec['passes'] if p_.get('view', 'main') == vk]
+            data['verify'].append(P.verify([p_['F'] for p_ in pp], vk, n_min=min(p_.get('n_min', 0) for p_ in pp)))
         self.data = data
 
     def frame(self, t):

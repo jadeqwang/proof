@@ -1,0 +1,4 @@
+# large or regenerable: the ProRes masters and gold layers, test renders
+out/*.mov
+work/
+__pycache__/

@@ -33,8 +33,9 @@ ahead of `origin/main`). Nothing is pushed. Whether to push is a decision-page c
 - *Cast*: Dad rebuilt from Jade's approved portrait (`cast/dad/*_v5_likeness.jpg`, OK to push); first love's hair
   corrected (`cast/first_love/*_v2*`, new `fl_G_ots_hair_v1.jpg`); superseded sheets in `_superseded/` folders.
 - *Plates* (`media/footage/`): new `neuron/` (PLATE IX, Purkinje cell), `spectrogram/` (PLATE XXI, "pitch
-  contours"); `spirals/` (artichoke, romanesco, spiral aloe with a gold counting thread) was IN PROGRESS at the end
-  of the session: check its NOTES.md, finish or re-run it.
+  contours"); `spirals/` (PLATE XVIII "PHYLLOTAXIS.": artichoke counts 5 then 8, romanesco 8 then 13 with a floret
+  inset, spiral aloe 5 ranks; gold counting thread as a separate alpha layer; arm timings in `data/*_arms.json`;
+  count 7's end on the artichoke is the market's "one short" cut). Weak spots in its NOTES.md.
 - *Plan* (`Proof — Music Video Plan.md`) edited row by row at Jade's request: plates placed, shelf pan, sweatshirt
   scene, three shadows dropped, the verse-3 review beats. Not yet revised for the current song (decision card).
 - *Song*: the current master is `inputs/Proof (-2sm).wav`; its lyric times are in `media/karaoke_v2/lyrics_timed.json`
@@ -384,3 +385,6 @@ session has been seen or approved by her. Nothing was committed.
   where the melody reads. Short (5 s, first frame at master 3:10.45) and long (12 s, 3:08.05, all three review lines)
   variants, ink-in variants, alpha overlays. Sync checked to the frame.
   Jade: each plant must be accurate to that specific plant (species-true morphology and counts, references cited).
+- **Spiral plates done** (`media/footage/spirals/`, renumbered PLATE XVIII to avoid clashing with the spectrogram's
+  XXI). Counts changed to the true ones: artichoke 5 and 8 (not 8 and 13), aloe 5 ranks only (divergence ~143°,
+  not golden). Code-drawn; sources cited in NOTES.md.

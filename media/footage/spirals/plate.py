@@ -20,8 +20,8 @@ F32 = np.float32
 INK = np.array([0.13, 0.11, 0.10], F32)          # frost's ink
 PAPER = np.array([0.925, 0.885, 0.795], F32)      # frost's paper
 PANE = (80, 58, 1840, 938)                         # frost's pane
-HEADER_L = 'THE ARRANGEMENT OF LEAVES.'
-HEADER = 'PLATE XXI.'
+HEADER_L = 'PHYLLOTAXIS.'
+HEADER = 'PLATE XVIII.'
 
 
 def fbm(h, w, seed, octaves=5, base=6):

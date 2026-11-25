@@ -43,13 +43,20 @@ def _grid(ns, nt, dev=DEV):
 # ---------------------------------------------------------------------------------------------------------------
 # globe artichoke
 
-def artichoke(a=5, b=8, N=54, theta0=0.06, flat=0.9, seed=1):
-    """Involucral bracts of a closed globe-artichoke head on a slightly flattened globe (z scaled by `flat`).
-    tan(theta_n / 2) = tan(theta0 / 2) exp(lnG n): a conformal (logarithmic) lattice on the sphere."""
+def artichoke(a=5, b=8, N=34, theta_max=1.95, n0=1.2, flat=0.9, lattice='equal', theta0=0.06, seed=1):
+    """Involucral bracts of a closed globe-artichoke head (z scaled by `flat`), seen from above.
+    The bracts rise from the receptacle at the base and their tips crowd together at the crown at much the same size,
+    so the tips are placed on an equal-area (Vogel) lattice on the globe: bract n at azimuth n x 137.5 deg and
+    cos(theta_n) = 1 - (n + n0) (1 - cos theta_max) / (N + n0). On such a lattice the contact spirals change with
+    distance from the centre (3 and 5 at the crown, 5 and 8 over the outer bracts); verify() measures them.
+    lattice='log' gives the older conformal lattice, tan(theta_n / 2) = tan(theta0 / 2) exp(lnG n)."""
     r = np.random.default_rng(seed)
     g = lnG(a, b)
     n = np.arange(N + b + 2)
-    theta = 2 * np.arctan(np.tan(theta0 / 2) * np.exp(g * n))
+    if lattice == 'log':
+        theta = 2 * np.arctan(np.tan(theta0 / 2) * np.exp(g * n))
+    else:
+        theta = np.arccos(np.clip(1 - (n + n0) * (1 - math.cos(theta_max)) / (N + n0), -1, 1))
     phi = n * GA
     Nn, Un, En = frame_on_sphere(theta, phi)
     P = Nn.copy()
