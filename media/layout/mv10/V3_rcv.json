@@ -231,43 +231,43 @@
     false
    ]
   },
-  "french_doors_to_the_yard": {
+  "sliding_glass_door_to_the_deck": {
    "px": [
     [
      1642.5,
-     636
+     527.8
     ],
     [
      1642.5,
-     821.9
+     806.7
     ],
     [
      1642.5,
-     821.9
+     806.7
     ],
     [
      1642.5,
-     636
+     527.8
     ]
    ],
    "world": [
     [
-     1.82,
+     2.53,
      2.03,
      9.879
     ],
     [
-     0.6,
+     0.7,
      2.03,
      9.879
     ],
     [
-     0.6,
+     0.7,
      0,
      9.879
     ],
     [
-     1.82,
+     2.53,
      0,
      9.879
     ]
@@ -856,20 +856,20 @@
   },
   "G1": {
    "px": [
-    1811.1,
-    647.5
+    1810.7,
+    647.7
    ],
    "eyes": [
-    1796.4,
-    653.3
+    1796,
+    653.4
    ],
    "mouth": [
-    1796.8,
-    653.1
+    1796.6,
+    653.2
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 71
+   "facing_camera_deg": 72
   },
   "H1": {
    "px": [
@@ -886,58 +886,126 @@
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 84
+   "facing_camera_deg": 83
   },
   "W1": {
    "px": [
-    2637.3,
-    -58.9
+    1731.9,
+    -61.9
    ],
    "eyes": [
-    2642.7,
-    -44.4
+    1747.3,
+    -61.6
    ],
    "mouth": [
-    2642.4,
-    -45.2
+    1746.9,
+    -61.6
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 94
+   "facing_camera_deg": 112
   },
   "W2": {
    "px": [
-    2939.8,
-    -29.2
+    1754.3,
+    -160.7
    ],
    "eyes": [
-    2933.4,
-    -16.3
+    1768.5,
+    -158.5
    ],
    "mouth": [
-    2933.6,
-    -16.8
+    1768.2,
+    -158.6
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 64
+   "facing_camera_deg": 109
+  },
+  "W3": {
+   "px": [
+    1723.9,
+    -267.1
+   ],
+   "eyes": [
+    1738.2,
+    -263.1
+   ],
+   "mouth": [
+    1737.8,
+    -263.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 105
+  },
+  "W4": {
+   "px": [
+    1739.3,
+    -457
+   ],
+   "eyes": [
+    1753.3,
+    -449.5
+   ],
+   "mouth": [
+    1752.9,
+    -449.8
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 98
+  },
+  "D1": {
+   "px": [
+    2062.2,
+    575.3
+   ],
+   "eyes": [
+    2070.6,
+    563.7
+   ],
+   "mouth": [
+    2070,
+    564.6
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 112
+  },
+  "D2": {
+   "px": [
+    2069.2,
+    468.1
+   ],
+   "eyes": [
+    2079.3,
+    456.4
+   ],
+   "mouth": [
+    2078.4,
+    457.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 119
   },
   "poi": {
    "px": [
-    2773.5,
-    302.1
+    2512.5,
+    -46.2
    ],
    "eyes": [
-    2775.2,
-    286.8
+    2497.6,
+    -42.5
    ],
    "mouth": [
-    2775.2,
-    287
+    2497.8,
+    -42.5
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 100
+   "facing_camera_deg": 52
   },
   "jade27": {
    "px": [
@@ -958,16 +1026,16 @@
   },
   "firstLove27": {
    "px": [
-    747.5,
-    409.6
+    699.4,
+    409.5
    ],
    "eyes": [
-    752.8,
+    704.8,
     424.2
    ],
    "mouth": [
-    752.6,
-    423.9
+    704.6,
+    423.8
    ],
    "in_frame": true,
    "visible": true,
@@ -1211,8 +1279,8 @@
   },
   "W1.L": {
    "px": [
-    2668.8,
-    -69.3
+    1734.7,
+    -94.9
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1220,8 +1288,8 @@
   },
   "W1.R": {
    "px": [
-    2606.8,
-    -46
+    1733.5,
+    -28.7
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1229,8 +1297,8 @@
   },
   "W2.L": {
    "px": [
-    2966.7,
-    -13.4
+    1761.5,
+    -191
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1238,17 +1306,89 @@
   },
   "W2.R": {
    "px": [
-    2910.3,
-    -4.3
+    1787.7,
+    -140.3
    ],
    "shape": "grip",
    "in_frame": false,
    "visible": false
   },
+  "W3.L": {
+   "px": [
+    1734.9,
+    -297.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W3.R": {
+   "px": [
+    1717.7,
+    -235.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W4.L": {
+   "px": [
+    1778.6,
+    -453.5
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "W4.R": {
+   "px": [
+    1725.3,
+    -426
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D1.L": {
+   "px": [
+    2037.9,
+    556.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D1.R": {
+   "px": [
+    2094.7,
+    556.4
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "D2.L": {
+   "px": [
+    2044.1,
+    446.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D2.R": {
+   "px": [
+    2094.4,
+    489.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
   "poi.L": {
    "px": [
-    2715.6,
-    262.7
+    2500.2,
+    22.8
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1256,8 +1396,8 @@
   },
   "poi.R": {
    "px": [
-    2841.6,
-    284.9
+    2469.3,
+    -101.4
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1283,7 +1423,7 @@
   },
   "firstLove27.L": {
    "px": [
-    759.4,
+    711.4,
     438.7
    ],
    "shape": "relax",
@@ -1292,7 +1432,7 @@
   },
   "firstLove27.R": {
    "px": [
-    726,
+    678,
     380.8
    ],
    "shape": "relax",
@@ -1396,24 +1536,24 @@
    "on": true,
    "color": "#ff7a20",
    "world": [
-    4,
-    0.55,
-    17.3
+    6.3,
+    0.45,
+    15.6
    ],
    "px": [
-    2773.3,
-    303.8
+    2514.3,
+    -46.7
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.983,
-    0.186
+    -0.9,
+    0.437
    ],
-   "toward_camera": 0.161
+   "toward_camera": 0.162
   }
  ],
  "warnings": [],
- "intent": "Straight down, NNE up the frame, the front (WNW) at left and the French doors at right. Her whole indoor route with a margin: the Expedit 5x5, the opening by the 2x2 and its printer, round the dining table and benches, to the open French doors. She is mid-crossing (the time midpoint); guests in their places. The compositor draws gold vectors, labels and v = ds/dt from the sidecar `crossing`.",
+ "intent": "Straight down, NNE up the frame, the front (WNW) at left and the sliding door at right. Kept as a true-scale reference for the overlay data, not as a shot. Her whole indoor route with a margin: the Expedit 5x5, the opening by the 2x2 and its printer, round the dining table and benches, to the open sliding door. She is mid-crossing (the time midpoint); guests in their places. The compositor draws gold vectors, labels and v = ds/dt from the sidecar `crossing`.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "room",
@@ -1471,7 +1611,7 @@
     }
    },
    {
-    "name": "French doors to the yard",
+    "name": "sliding glass door to the deck",
     "frac": 0,
     "by": "the sun is behind this wall"
    },
@@ -1525,7 +1665,7 @@
  },
  "sun_tests": {
   "her_head": "shaded by exterior wall (SSW)",
-  "first_love_head": "shaded by exterior wall (WNW)",
+  "first_love_head": "shaded by 357 View St",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -1548,9 +1688,9 @@
       },
       {
        "name": "living room window (WNW)",
-       "frac": 0.89,
+       "frac": 0.91,
        "by": {
-        "357 View St": 4
+        "357 View St": 3
        }
       },
       {
@@ -1561,7 +1701,7 @@
        }
       },
       {
-       "name": "French doors to the yard",
+       "name": "sliding glass door to the deck",
        "frac": 0,
        "by": "the sun is behind this wall"
       },
@@ -1572,9 +1712,9 @@
       },
       {
        "name": "dining window (SSW)",
-       "frac": 0.63,
+       "frac": 0.71,
        "by": {
-        "357 View St": 13
+        "357 View St": 10
        }
       },
       {
@@ -1637,7 +1777,7 @@
        }
       },
       {
-       "name": "French doors to the yard",
+       "name": "sliding glass door to the deck",
        "frac": 0,
        "by": "the sun is behind this wall"
       },
@@ -1696,9 +1836,9 @@
   },
   "poi_ground": {
    "centre": [
-    4,
-    -0.6,
-    17.3
+    6.3,
+    -0.7,
+    15.6
    ],
    "radius": 4.5,
    "note": "falls off with distance; the light source of the silence and of the yard after sunset"
@@ -1711,9 +1851,9 @@
   "model": "IKEA Expedit 5x5 (2010), espresso / black-brown",
   "world": {
    "centre_X": 3.595,
-   "front_Z": 4.535,
-   "spines_Z": 4.55,
-   "back_Z": 4.925,
+   "front_Z": 4.220000000000001,
+   "spines_Z": 4.235,
+   "back_Z": 4.61,
    "faces": "WNW (-Z)"
   },
   "outer_m": [
@@ -1725,11 +1865,11 @@
   "seam_world_X": 3.595,
   "seam_px": [
    [
-    828.2,
+    780.2,
     365.5
    ],
    [
-    828.2,
+    780.2,
     365.5
    ]
   ],
@@ -1744,19 +1884,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       232.2
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       232.2
      ]
     ],
@@ -1774,19 +1914,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       286
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       286
      ]
     ],
@@ -1803,19 +1943,19 @@
     "half": "split",
     "px": [
      [
-      828.2,
+      780.2,
       339.8
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       339.8
      ]
     ],
@@ -1841,19 +1981,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       393.7
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       393.7
      ]
     ],
@@ -1870,19 +2010,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       447.5
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       447.5
      ]
     ],
@@ -1908,19 +2048,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       232.2
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       232.2
      ]
     ],
@@ -1936,19 +2076,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       286
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       286
      ]
     ],
@@ -1969,19 +2109,19 @@
     "half": "split",
     "px": [
      [
-      828.2,
+      780.2,
       339.8
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       339.8
      ]
     ],
@@ -1997,19 +2137,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       393.7
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       393.7
      ]
     ],
@@ -2037,19 +2177,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       447.5
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       447.5
      ]
     ],
@@ -2066,19 +2206,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       232.2
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       232.2
      ]
     ],
@@ -2097,19 +2237,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       286
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       286
      ]
     ],
@@ -2125,19 +2265,19 @@
     "half": "split",
     "px": [
      [
-      828.2,
+      780.2,
       339.8
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       339.8
      ]
     ],
@@ -2162,19 +2302,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       393.7
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       393.7
      ]
     ],
@@ -2192,19 +2332,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       447.5
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       447.5
      ]
     ],
@@ -2228,19 +2368,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       232.2
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       232.2
      ]
     ],
@@ -2257,19 +2397,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       286
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       286
      ]
     ],
@@ -2295,19 +2435,19 @@
     "half": "split",
     "px": [
      [
-      828.2,
+      780.2,
       339.8
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       339.8
      ]
     ],
@@ -2323,19 +2463,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       393.7
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       393.7
      ]
     ],
@@ -2356,19 +2496,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       447.5
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       447.5
      ]
     ],
@@ -2384,19 +2524,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       232.2
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       283.6
      ],
      [
-      828.2,
+      780.2,
       232.2
      ]
     ],
@@ -2419,19 +2559,19 @@
     "half": "beauty",
     "px": [
      [
-      828.2,
+      780.2,
       286
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       337.4
      ],
      [
-      828.2,
+      780.2,
       286
      ]
     ],
@@ -2447,19 +2587,19 @@
     "half": "split",
     "px": [
      [
-      828.2,
+      780.2,
       339.8
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       391.2
      ],
      [
-      828.2,
+      780.2,
       339.8
      ]
     ],
@@ -2485,19 +2625,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       393.7
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       445
      ],
      [
-      828.2,
+      780.2,
       393.7
      ]
     ],
@@ -2514,19 +2654,19 @@
     "half": "truth",
     "px": [
      [
-      828.2,
+      780.2,
       447.5
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       498.9
      ],
      [
-      828.2,
+      780.2,
       447.5
      ]
     ],
@@ -2567,8 +2707,8 @@
   -730.9
  ],
  "poi_px": [
-  2773.3,
-  303.8
+  2514.3,
+  -46.7
  ],
  "opening_px": [
   899,
@@ -2584,7 +2724,7 @@
   "points": [
    [
     2.72,
-    3.62
+    3.3
    ],
    [
     2,
@@ -2624,19 +2764,19 @@
     "i": 0,
     "from": [
      2.72,
-     3.62
+     3.3
     ],
     "to": [
      2,
      4.15
     ],
-    "length_m": 0.894,
+    "length_m": 1.114,
     "speed_mps": 1.15,
-    "dt_s": 0.777,
-    "heading_bearing_deg": 170.3,
+    "dt_s": 0.969,
+    "heading_bearing_deg": 156.9,
     "note": "leaving the shelf",
     "from_px": [
-     688.8,
+     640,
      498.9
     ],
     "to_px": [
@@ -2778,7 +2918,7 @@
     "speed_mps": 1.1,
     "dt_s": 1.001,
     "heading_bearing_deg": 167.2,
-    "note": "turning toward the French doors",
+    "note": "turning toward the sliding door",
     "from_px": [
      1447.6,
      547.6
@@ -2802,7 +2942,7 @@
     "speed_mps": 0.9,
     "dt_s": 0.815,
     "heading_bearing_deg": 144.3,
-    "note": "slowing at the French doors",
+    "note": "slowing at the sliding door",
     "from_px": [
      1554.3,
      677.1
@@ -2818,12 +2958,12 @@
     "i": 0,
     "at": [
      2.72,
-     3.62
+     3.3
     ],
     "t_s": 0,
     "s_m": 0,
     "px": [
-     688.8,
+     640,
      498.9
     ]
    },
@@ -2833,8 +2973,8 @@
      2,
      4.15
     ],
-    "t_s": 0.777,
-    "s_m": 0.894,
+    "t_s": 0.969,
+    "s_m": 1.114,
     "px": [
      769.5,
      608.6
@@ -2846,8 +2986,8 @@
      1.15,
      5
     ],
-    "t_s": 2.192,
-    "s_m": 2.096,
+    "t_s": 2.383,
+    "s_m": 2.316,
     "px": [
      899,
      738.1
@@ -2859,8 +2999,8 @@
      1.55,
      6.05
     ],
-    "t_s": 3.44,
-    "s_m": 3.22,
+    "t_s": 3.631,
+    "s_m": 3.44,
     "px": [
      1059,
      677.1
@@ -2872,8 +3012,8 @@
      2.45,
      6.75
     ],
-    "t_s": 4.39,
-    "s_m": 4.36,
+    "t_s": 4.581,
+    "s_m": 4.58,
     "px": [
      1165.7,
      540
@@ -2885,8 +3025,8 @@
      2.55,
      7.65
     ],
-    "t_s": 5.098,
-    "s_m": 5.265,
+    "t_s": 5.289,
+    "s_m": 5.485,
     "px": [
      1302.9,
      524.8
@@ -2898,8 +3038,8 @@
      2.4,
      8.6
     ],
-    "t_s": 5.867,
-    "s_m": 6.227,
+    "t_s": 6.058,
+    "s_m": 6.447,
     "px": [
      1447.6,
      547.6
@@ -2911,8 +3051,8 @@
      1.55,
      9.3
     ],
-    "t_s": 6.868,
-    "s_m": 7.328,
+    "t_s": 7.059,
+    "s_m": 7.548,
     "px": [
      1554.3,
      677.1
@@ -2924,8 +3064,8 @@
      1.21,
      9.95
     ],
-    "t_s": 7.683,
-    "s_m": 8.062,
+    "t_s": 7.874,
+    "s_m": 8.282,
     "px": [
      1653.3,
      729
@@ -2938,8 +3078,8 @@
      2,
      4.15
     ],
-    "turn_deg": 8.6,
-    "side": "left",
+    "turn_deg": -4.7,
+    "side": "right",
     "px": [
      769.5,
      608.6
@@ -3018,15 +3158,15 @@
     ]
    }
   ],
-  "total_m": 8.062,
-  "total_s": 7.683,
-  "mean_speed_mps": 1.049,
-  "straight_line_m": 6.508,
-  "shortest_walkable_m": 7.33,
+  "total_m": 8.282,
+  "total_s": 7.874,
+  "mean_speed_mps": 1.052,
+  "straight_line_m": 6.819,
+  "shortest_walkable_m": 7.536,
   "shortest_walkable_path": [
    [
     2.72,
-    3.62
+    3.3
    ],
    [
     1.66,
@@ -3049,7 +3189,7 @@
     9.95
    ]
   ],
-  "detour_ratio_vs_shortest": 1.1,
+  "detour_ratio_vs_shortest": 1.099,
   "clearance_m": 0.25,
   "obstacles": [
    {
@@ -3081,23 +3221,23 @@
     "name": "partition wall",
     "x0": 2.3,
     "x1": 4.95,
-    "z0": 4.925,
-    "z1": 5.075,
+    "z0": 4.61,
+    "z1": 5.39,
     "corners_px_at_0_75m": [
      [
-      887.6,
+      839.6,
       562.9
      ],
      [
-      910.5,
+      958.5,
       562.9
      ],
      [
-      910.5,
+      958.5,
       159
      ],
      [
-      887.6,
+      839.6,
       159
      ]
     ]
@@ -3106,23 +3246,23 @@
     "name": "Expedit 5x5",
     "x0": 2.67,
     "x1": 4.5200000000000005,
-    "z0": 4.535,
-    "z1": 4.925,
+    "z0": 4.220000000000001,
+    "z1": 4.61,
     "corners_px_at_0_75m": [
      [
-      828.2,
+      780.2,
       506.5
      ],
      [
-      887.6,
+      839.6,
       506.5
      ],
      [
-      887.6,
+      839.6,
       224.6
      ],
      [
-      828.2,
+      780.2,
       224.6
      ]
     ]
@@ -3131,23 +3271,23 @@
     "name": "counter along the partition",
     "x0": 2.82,
     "x1": 4.89,
-    "z0": 5.075,
-    "z1": 5.71,
+    "z0": 5.39,
+    "z1": 6.0249999999999995,
     "corners_px_at_0_75m": [
      [
-      910.5,
+      958.5,
       483.6
      ],
      [
-      1007.2,
+      1055.2,
       483.6
      ],
      [
-      1007.2,
+      1055.2,
       168.2
      ],
      [
-      910.5,
+      958.5,
       168.2
      ]
     ]
@@ -3197,11 +3337,11 @@
     207.4
    ]
   },
-  "fit_note": "the invented walk takes 7.7 s; the line lasts 4.13 s (194.59-198.72): to play the whole walk under it, run it 1.86x fast, or let the shot show its middle",
+  "fit_note": "the invented walk takes 7.9 s; the line lasts 4.13 s (194.59-198.72): to play the whole walk under it, run it 1.91x fast, or let the shot show its middle",
   "invented": "speeds and timestamps are OURS (plausible pace), not Jade’s; the route is set by her drawing of the rooms and furniture",
   "points_px": [
    [
-    688.8,
+    640,
     498.9
    ],
    [
@@ -3239,7 +3379,7 @@
   ],
   "shortest_walkable_path_px": [
    [
-    688.8,
+    640,
     498.9
    ],
    [
@@ -3320,17 +3460,17 @@
     "label": "first love (27, never face-on)",
     "floor_world": [
      3.32,
-     4
+     3.685
     ],
     "floor_px": [
-     746.7,
+     698.7,
      407.4
     ],
     "head_px": [
-     747.5,
-     409.6
+     699.4,
+     409.5
     ],
-    "clearance_to_path_m": 0.71
+    "clearance_to_path_m": 0.713
    }
   ],
   "her_now": {
@@ -3342,17 +3482,17 @@
     1117.2,
     618.1
    ],
-   "t_s": 3.84,
+   "t_s": 3.94,
    "note": "posed at the time midpoint of the walk"
   }
  },
  "path": {
-  "note": "her route, one line: shelf, the opening, round the dining table, the French doors, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]",
+  "note": "her route, one line: shelf, the opening, round the dining table, the sliding door, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]",
   "world": [
    [
     2.72,
     0,
-    3.62
+    3.3
    ],
    [
     2,
@@ -3396,53 +3536,53 @@
    ],
    [
     1.6,
-    -0.05,
+    0,
     10.6
    ],
    [
     2.6,
-    -0.05,
+    0,
     10.85
    ],
    [
     4,
-    -0.05,
+    0,
     10.75
    ],
    [
     4.87,
-    -0.05,
+    0,
     11.1
    ],
    [
     4.87,
-    -0.6,
+    -0.7,
     12.9
    ],
    [
     5.7,
-    -0.6,
+    -0.7,
     13.6
    ],
    [
     7.2,
-    -0.6,
+    -0.7,
     15.5
    ],
    [
     9,
-    -0.6,
+    -0.7,
     17.2
    ],
    [
     9.9,
-    -0.6,
+    -0.7,
     17.95
    ]
   ],
   "px": [
    [
-    688.8,
+    640,
     498.9
    ],
    [
@@ -3741,6 +3881,66 @@
    },
    "headTurn": 0
   },
+  "W3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "W4": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.47,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "D1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.5
+   },
+   "headTurn": 0
+  },
+  "D2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
   "poi": {
    "legs": {
     "L": {
@@ -3754,7 +3954,7 @@
     "L": 0.64,
     "R": 0.64
    },
-   "headTurn": 4
+   "headTurn": 0
   },
   "jade27": {
    "legs": {

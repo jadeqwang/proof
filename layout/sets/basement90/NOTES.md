@@ -45,3 +45,38 @@ Render: `node layout/render.mjs --set basement90` -> `media/layout/basement90/` 
   `beam_<id>__surf` = the lit surfaces only (no volume): use it where the camera looks through a broad volume.
   Cast shadows are not cut out of either (they are in the flat / lit renders).
   Looked at: B0_plan shows the frustum with the desk's shadow cut out; B1, B3, B4, B5 show the lit figures and floor. `B0_wide` is white over the whole frame in `beam_` (the glow's far face fills the view) and useful in `__surf`.
+
+## "Good catch!" restaged, 2026-11-25 late (Jade's decision-page answer; supersedes the cat-under-the-desk notes above)
+
+Jade: replace "she is already a cat under the desk" with: she holds her RIGHT hand in a fist and pretends to lick her
+wrist, imitating a cat cleaning itself. She does NOT hide under the desk (that reads as fearful body language).
+
+- **New pose** (`jadeGroom` / `GROOM` in `shots.js`): she has hopped off the spokes and stands barefoot on the open floor a
+  step to Dad's left (pelvis [-0.25, -0.85]), yaw 70 (three-quarter toward Dad and the open room, her right side toward
+  the cameras), in the screen light (face and paw lit; feet in the desk-edge penumbra, like B1). Right hand `fist`,
+  forearm raised from an elbow low at her side, the fist jutting FORWARD from the wrist like a paw (drooping a little,
+  palm down), the back of the wrist at her lips (wrist centre 2.6 cm in front of the `mouth` anchor; sidecar `contacts`
+  in B5 report mouth / wristR / handR with their world positions). Head bowed about 35 deg to the paw and cocked 20 deg
+  to her right; spine bent 10. Left arm at her side. The tongue is not modelled: paint it touching the wrist.
+- **Dad's double take**: unchanged (rolled back 14 cm, swivelled to his left, hands still over the keys), except that his
+  head now looks at her eyes instead of at the empty spokes; she stands almost exactly where he used to look.
+- **B4_doubletake** (time kept, 2:21-2:22.5): camera moved to the open floor front-left (pos [-0.35, 0.92, 0.45]), a
+  two-shot: Dad three-quarter (35 deg off the lens) at frame right staring at her; her at frame left, the paw at her
+  mouth against the lit monitor (in the lit render she is a near-silhouette against the screen glow).
+- **B5_cat** (id kept so filenames and references stay valid; time kept, 2:22.5-2:23): close, 40 mm, level from her
+  front-right (60 deg off her facing, 3 deg below the mouth) so the paw reads as a silhouette in front of her chin in line
+  mode. Was: floor level under the desk.
+- Assumptions (flagged): standing rather than kneeling or sitting on her heels (standing in the open is the clearest
+  not-hiding read); the paw juts forward and licks the back of the wrist (a kid's cat imitation), not the inside.
+- Looked at: B4 and B5 in line, lit, label and the beam masks (both figures inside the glow). Debug views from four
+  azimuths were used to choose B5's angle (a pure profile loses the face under the bob; a frontal view puts the paw
+  over the chest).
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- B1_feet 2:16.1-2:17.2 ("Basement" sung 2:16.1, after the market's last beat), B2_face 2:17.2-2:18.3, B3_finger 2:18.3-2:19.8
+  ("I point to one he missed"), B4_doubletake 2:19.8-2:21.4 (band stop 2:19.8), B5_cat 2:21.4-2:22.2; then kitchen90.

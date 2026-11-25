@@ -1,4 +1,4 @@
-// LIGHT STUDY for Jade (round 4): five suns x three views, so the timing can be judged by eye. The set's default sun
+// LIGHT STUDY for Jade (round 4; re-rendered on the decision-page layout): five suns x three views. Jade chose row 2 (09:30). The set's default sun
 // (layout.js SCENE) is NOT changed by this file: each shot carries its own `scene`.
 //   node layout/render.mjs --set shanghai86/lightstudy --modes lit,flat --nojson
 //   -> media/layout/shanghai86/lightstudy/, sheet: media/layout/_sheets/shanghai86_lightstudy.jpg (sh lightstudy/sheet.sh)
@@ -6,8 +6,8 @@ import { SHOTS as BASE } from '../shots.js';
 import { PLACES } from '../layout.js';
 
 export const SUNS = [
-  { k: '1', label: '1986-12-21 08:31 (chosen)', scene: { date: '1986-12-21', time: '08:31' } },
-  { k: '2', label: '1986-12-21 09:30', scene: { date: '1986-12-21', time: '09:30' } },
+  { k: '1', label: '1986-12-21 08:31 (round-4 pick)', scene: { date: '1986-12-21', time: '08:31' } },
+  { k: '2', label: '1986-12-21 09:30 (Jade chose; set default)', scene: { date: '1986-12-21', time: '09:30' } },
   { k: '3', label: '1987-02-14 07:30', scene: { date: '1987-02-14', time: '07:30' } },
   { k: '4', label: '1986-12-21 15:00 (honest afternoon)', scene: { date: '1986-12-21', time: '15:00' } },
   { k: '5', label: 'CHEATED: 16 deg high from az 143 (the real sun there is ~25 deg high)', scene: { cheat: { elev: 16, rel: -24 } } },

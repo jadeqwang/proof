@@ -53,3 +53,12 @@ are in each sidecar (`mote.path_px`).
 
 - **Times** follow `analysis/v3/song_map.md`: PG1 4:33.2-4:35.3 (last bar of the coda groove), PG2 4:33.2-4:38.4, drums stop 4:35.3, PG2_plate 4:35.3-4:38.4 (final tone gone by about 4:37.5, file ends 4:38.4). Labels only.
 - `beam.js` is now a re-export of `layout/sets/_beam.js`; `build.js` takes `CAST` from `../_cast.js` (`jade` is the engine's; `partner`, `toddler` stay local). Renders re-made after the engine's left-hand fix.
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- PG1 4:21.7-4:24.1 (coda's last bar), PG2 4:21.7-4:28.4, PG2_plate 4:24.1 (last hit)-4:28.4 (the bass note rings and
+  fades, gone by ~4:28.0).

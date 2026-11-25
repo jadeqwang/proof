@@ -32,8 +32,10 @@ export const horiz = (bearing) => [Math.cos((bearing - BEARING.X) * D2R), Math.s
 //   silence  19:20 / chorus2b 19:22  just past the end of civil dusk (19:17): no sun, a deep blue sky; ceiling lights
 //                   inside, the fire poi outside.
 export const SCENE = { date: '2010-10-02', tzHours: -7, tz: 'PDT', lat: 37.39095, lon: -122.07744,
-  times: { bridge: '16:30', hardstop: '16:31', verse3: '18:25', silence: '19:20', chorus2b: '19:22' } };
-export const SECTION_KEY = { 'Bridge': 'bridge', 'Hard stop': 'hardstop', 'Verse 3': 'verse3', 'Silence': 'silence', 'Chorus 2b': 'chorus2b' };
+  times: { prep: '14:00', bridge: '16:30', hardstop: '16:31', verse3: '18:25', silence: '19:20', chorus2b: '19:22' } };
+// prep 14:00: picking the lemons before the party (Jade 2026-11-25 (late): she and the childhood friend picked them
+// and made the lemonade BEFORE first love, Z and the guests arrived). The clock time is OUR pick (ASSUMED).
+export const SECTION_KEY = { 'Before the party': 'prep', 'Bridge': 'bridge', 'Hard stop': 'hardstop', 'Verse 3': 'verse3', 'Silence': 'silence', 'Chorus 2b': 'chorus2b' };
 
 // sun position (NOAA solar calculator equations; same code as shanghai86): { elev (deg, refracted), az (deg from N, cw) }
 export function sunPosition({ date, time, tzHours, lat, lon }) {
@@ -76,7 +78,9 @@ export const SUN_EVENTS = sunEvents();
 // Floor above grade, ceiling, roof form: OURS (assumed). The stairs Jade drew from the patio down to the yard say the
 // floor is raised; 0.6 m (four risers) is a typical California crawl space. Roof: a gable with the ridge along the
 // long (NNE-SSW) axis, as the aerial's roof reads today (two planes, a ridge NNE-SSW); 5.6 m to the ridge above grade.
-export const FLOOR_ABOVE_GRADE = 0.6;
+// Jade (2026-11-25 late): the deck is level with the floor and the yard is "at least 3-4 steps" below it. 0.70 m =
+// four 17.5 cm risers: OUR number inside her 0.6-0.75 m (ASSUMED). (Was 0.6.)
+export const FLOOR_ABOVE_GRADE = 0.7;
 export const GRADE = -FLOOR_ABOVE_GRADE;
 export const HOUSE = { X: 11.915, Z: 9.954, wallT: 0.15, intT: 0.12, ceil: 2.44, plate: 2.64, ridgeY: 5.6 - FLOOR_ABOVE_GRADE, ridgeZ: 9.954 / 2, eave: 0.45, rake: 0.3 };
 HOUSE.roofSlope = (HOUSE.ridgeY - HOUSE.plate) / (HOUSE.ridgeZ + HOUSE.eave * 0);   // rise per metre of run from the wall line
@@ -85,16 +89,23 @@ export const roofY = (z) => HOUSE.plate + HOUSE.roofSlope * Math.min(z, HOUSE.Z 
 
 // rooms (interior faces). From Jade's site plan (page 1), registered at +/-0.15 m (interior_plan.json).
 const T = HOUSE.wallT;
-export const LIVING = { name: 'living room', x0: T, x1: 4.89, z0: T, z1: 4.925 };
-export const KITCHEN = { name: 'kitchen and dining', x0: T, x1: 4.89, z0: 5.075, z1: HOUSE.Z - T };
-// the partition between them (Jade: "wall"), from the core to its open end; the opening is SSW of the 2x2
-export const PARTITION = { z0: 4.925, z1: 5.075, x0: 2.30, x1: 4.89 };
+// the partition between them (Jade: "wall"), from the core to its open end; the opening is SSW of the 2x2.
+// Jade (2026-11-25 late): the wall really was THICK ("built-in, chimney, closet..."), "as thick as the 2x2 Expedit is
+// deep, so the 2x2 sits almost flush with it". OUR READING (ASSUMED, flagged): the 2x2 stands at the wall's end facing
+// SSW as she drew it (its 79 cm across the wall), so "flush" means the wall is about 79 cm thick: 0.78 m here, the 2x2
+// 5 mm proud on each face. Both drawings agree (page 1: 0.7 m double line; page 2: a band as wide as the 2x2's long side).
+// The other reading (0.39 m = the Expedit's literal depth, with the 2x2 turned to continue the wall line) is an open
+// question for Jade. Centre line Z 5.0 (unchanged); solid, no chimney or closet modelled inside it.
+export const PARTITION_T = 0.78;
+export const PARTITION = { zc: 5.0, z0: 5.0 - PARTITION_T / 2, z1: 5.0 + PARTITION_T / 2, x0: 2.30, x1: 4.89, t: PARTITION_T };
+export const LIVING = { name: 'living room', x0: T, x1: 4.89, z0: T, z1: PARTITION.z0 };
+export const KITCHEN = { name: 'kitchen and dining', x0: T, x1: 4.89, z0: PARTITION.z1, z1: HOUSE.Z - T };
 export const OPENING = { x0: T, x1: 1.91, z: 5.0, note: 'between the SSW wall and the 2x2 Expedit standing at the partition end' };
 // the core: bathroom, hall, laundry, bath 2; tea room and bedroom on the NNE side. Walls as [X0, Z0, X1, Z1] centre
 // lines (axis-aligned), thickness intT, full ceiling height; openings are [s0, s1] metres along the wall from its first end.
 export const CORE_WALLS = [
-  { name: 'living / core wall (NNE wall of the living room)', a: [4.95, T], b: [4.95, 4.925], doors: [[3.5, 4.3]] },   // door to the hall: Z 3.65..4.45
-  { name: 'kitchen / core wall', a: [4.95, 5.075], b: [4.95, HOUSE.Z - T] },
+  { name: 'living / core wall (NNE wall of the living room)', a: [4.95, T], b: [4.95, PARTITION.z0], doors: [[3.5, 4.3]] },   // door to the hall: Z 3.65..4.45
+  { name: 'kitchen / core wall', a: [4.95, PARTITION.z1], b: [4.95, HOUSE.Z - T] },
   { name: 'bathroom / hall wall', a: [5.01, 3.6], b: [6.72, 3.6], doors: [[0.3, 1.05]] },
   { name: 'bathroom / tea room wall', a: [6.72, T], b: [6.72, 3.97] },
   { name: 'hall / tea room (jog)', a: [6.72, 3.97], b: [7.9, 3.97] },
@@ -105,14 +116,17 @@ export const CORE_WALLS = [
   { name: 'laundry / bath 2', a: [5.01, 7.07], b: [6.58, 7.07] },
   { name: 'laundry + bath 2 / bedroom wall', a: [6.58, 5.73], b: [6.58, HOUSE.Z - T], doors: [[1.7, 2.4]] },
 ];
-// exterior openings (OURS unless noted: Jade drew only the front door and the French doors). wall: 'WNW' (Z = 0),
+// exterior openings (OURS unless noted: Jade drew the front door and the door to the yard; 2026-11-25 late she placed
+// the two living-room windows and made the yard door a sliding glass door). wall: 'WNW' (Z = 0),
 // 'ESE' (Z = HOUSE.Z), 'SSW' (X = 0), 'NNE' (X = HOUSE.X); s0..s1 along the wall (X for WNW / ESE, Z for SSW / NNE);
 // y0..y1 above the floor.
 export const OPENINGS = [
   { name: 'front door', wall: 'WNW', s0: 3.85, s1: 4.75, y0: 0, y1: 2.03, kind: 'door', leaf: { hinge: 4.75, openDeg: 30 }, src: 'Jade (page 1 "door"; page 2 leaf at the top right, hinged NNE, opening in)' },
-  { name: 'living room window (WNW)', wall: 'WNW', s0: 0.6, s1: 2.3, y0: 0.9, y1: 2.05, kind: 'window', src: 'ASSUMED: above the couch, on the front wall' },
-  { name: 'living room window (SSW)', wall: 'SSW', s0: 1.6, s1: 3.2, y0: 0.9, y1: 2.05, kind: 'window', src: 'ASSUMED: side wall; 357 View St stands 5.2 m beyond it' },
-  { name: 'French doors to the yard', wall: 'ESE', s0: 0.6, s1: 1.82, y0: 0, y1: 2.03, kind: 'french', leaves: { openDeg: 95 }, src: 'Jade (page 2, bottom left); width 1.22 m (a 48" pair) is OURS' },
+  { name: 'living room window (WNW)', wall: 'WNW', s0: 0.6, s1: 2.3, y0: 0.9, y1: 2.05, kind: 'window', src: 'Jade (2026-11-25 late): a window in the front wall; size and place along it (above the couch) OURS' },
+  { name: 'living room window (SSW)', wall: 'SSW', s0: 1.6, s1: 3.2, y0: 0.9, y1: 2.05, kind: 'window', src: 'Jade (2026-11-25 late, "I think"): a window along the side wall. SSW is the living room\'s only exterior side wall (NNE is the core), so it is here; size and place along it OURS. 357 View St stands 5.2 m beyond it' },
+  // Jade (2026-11-25 late): a SLIDING GLASS DOOR, not French doors. 6 ft (1.83 m) two-panel slider: OUR size. Its SSW
+  // panel slides open behind the fixed NNE panel (OURS), so the open half (X 0.70..1.62) is where her path goes out.
+  { name: 'sliding glass door to the deck', wall: 'ESE', s0: 0.70, s1: 2.53, y0: 0, y1: 2.03, kind: 'slider', openTo: 1.62, src: 'Jade (page 2 "french doors to yard", corrected 2026-11-25 late to a sliding glass door); width 1.83 m and which panel slides are OURS' },
   { name: 'kitchen window over the sink (ESE)', wall: 'ESE', s0: 3.45, s1: 4.45, y0: 1.05, y1: 2.05, kind: 'window', src: 'ASSUMED' },
   { name: 'dining window (SSW)', wall: 'SSW', s0: 7.0, s1: 8.3, y0: 0.95, y1: 2.05, kind: 'window', src: 'ASSUMED: above the table end' },
   { name: 'tea room window (WNW)', wall: 'WNW', s0: 8.2, s1: 10.2, y0: 0.9, y1: 2.05, kind: 'window', src: 'ASSUMED' },
@@ -300,11 +314,34 @@ export const PRINTER = { w: 0.45, d: 0.36, h: 0.21, y: EXPEDIT2.H, kind: '2010 i
 // "modern white couch" with a "chaise": an L-sectional, back to the WNW (front) wall, the chaise at the SSW end running
 // ESE along the SSW wall. Lengths: OURS from typical 2010 sectionals, kept to Jade's proportions (couch = half the room width).
 export const COUCH = { kind: 'modern white sectional with chaise', x0: T, x1: 2.55, z0: T, z1: T + 0.95, chaise: { x0: T, x1: T + 0.85, z1: T + 1.65 }, seatH: 0.42, backH: 0.74, backD: 0.2, armW: 0.14, col: 0xeeeeea };
-// Noguchi coffee table (Jade, correction 2026-11-25): rounded-triangle glass top on two curved black wooden supports.
-// Real IN-50: 128 x 93 cm, 40 cm high, 19 mm glass. Flat side toward the couch, the apex toward the shelf (ESE), as drawn.
-export const NOGUCHI = { at: [1.72, 1.98], W: 1.28, D: 0.93, h: 0.40, glass: 0.019, src: 'Jade' };
-// "glass top table" at the NNE wall: drawn as a D against the page edge. OURS: a round glass-top table, 0.9 m, dining height.
-export const GLASS_TABLE = { at: [4.39, 2.35], r: 0.45, h: 0.74 };
+// Noguchi coffee table, IN-50 (Isamu Noguchi, Herman Miller, 1947/48). Jade (2026-11-25): her table; the first base was
+// "wrong, right in spirit", so it was rebuilt from the real table (2026-11-25 late). Sources (NOTES.md has the list):
+//   Herman Miller store page: 50" x 36" x 15 3/4" (127 x 91.4 x 40 cm), 3/4" (19 mm) glass, two identical solid-wood legs.
+//   Herman Miller assembly sheet 113963-K: the legs pivot on a dowel; pins fix the angle between them (52 deg there).
+//   Vitra factsheet (plan + elevation drawings, 1280 x 920 x 400): "two identical wooden elements", ground rounded edges.
+// The glass outline, the leg profile and the plan layout are ESTIMATES measured off Vitra's scale drawings (~1.4 mm/px).
+// One leg (the upper): a long bar whose top edge carries the glass, a tapering foot to the floor at its far end, and a
+// short stub at the pivot end that hangs to mid-height. The lower leg is the SAME piece turned 180 deg in its own plane:
+// its bottom edge on the floor, its far-end tip up to the glass, its stub rising to meet the upper stub at the pivot.
+// Three points carry the glass, three touch the floor. Plan layout as Vitra's drawing (a "^": pivot under the apex side,
+// the far ends toward the two front corners, ~85 deg apart); Herman Miller's sheet says 52 deg: a discrepancy, noted.
+// Black legs (Jade: "curved black wooden supports" = the ebonised / black ash finish). Flat side toward the couch (WNW),
+// apex toward the shelf (ESE), as she drew it. Where: (1.72, 1.98) as before.
+export const NOGUCHI = { at: [1.72, 1.98], W: 1.27, D: 0.914, h: 0.40, glass: 0.019, legT: 0.04, legH: 0.381, src: 'Jade (her table); dimensions Herman Miller; shapes from Vitra drawings (estimates)',
+  // glass, right half (cm; x from the centre line, y + toward the apex); mirrored for the left half
+  glassHalf: [[0, 46], [9.1, 45.2], [17.7, 42.4], [26.5, 36.9], [32.9, 31.3], [40.8, 23.0], [47.9, 14.7], [54.1, 6.4], [59.2, -1.9], [62.7, -10.3], [64.0, -18.6], [62.9, -24.1], [59.9, -29.7], [54.4, -35.2], [43.4, -40.7], [33.0, -43.5], [16, -46], [0, -46]],
+  // one leg's side profile (cm; x along its 80 cm length, 0 = far end, 70.7 = the pivot; y up, 0 = floor), the upper leg
+  legProfile: [[7.4, 0], [10.1, 0], [11.3, 4.6], [12.4, 8.8], [13.8, 14.3], [15.9, 19.9], [18.3, 24.0], [21.0, 26.8], [23.9, 28.2], [35.1, 29.6], [53.0, 29.6], [60.6, 28.2], [64.3, 24.0], [67.4, 19.9],
+    [67.4, 18.5], [74.0, 18.5], [74.0, 19.9], [76.7, 24.0], [79.4, 29.6], [80.0, 32.4], [79.4, 35.4], [78.0, 37.4], [57.9, 37.4], [40.8, 37.1], [31.7, 37.1], [21.5, 37.4], [6.4, 37.7], [2.9, 37.4],
+    [1.6, 36.3], [0.2, 32.4], [0, 28.2], [0.4, 22.7], [1.4, 17.1], [2.7, 11.5], [4.3, 7.4], [5.8, 3.2]],
+  legLen: 80, pivotX: 70.7,
+  // plan (cm, table frame: x across, y + toward the apex): the pivot, and the far end of each leg
+  pivot: [0, 26], ends: { upper: [47, -25.5], lower: [-47, -25.5] } };
+// "glass top table" at the NNE wall (Jade, 2026-11-25 late): a SEMICIRCLE, flat side against the wall, ~3 ft (0.91 m) wide,
+// ~1 ft (0.30 m) deep at the centre. Read as a half-ellipse (semi-axes 0.455 x 0.30), the flat side on the core wall's
+// face (X 4.89), centred where she drew the D (Z 2.35). Height 0.76 m (console height), 12 mm glass, three slim
+// chrome legs on a thin metal apron: OURS (ASSUMED).
+export const GLASS_TABLE = { wallX: 4.89, zc: 2.35, W: 0.91, D: 0.30, h: 0.76, glass: 0.012, shape: 'half-ellipse (demilune)' };
 
 // ---------------------------------------------------------------- kitchen and dining (Jade, page 2)
 // "kitchen counters": a U along the partition, the core wall and the ESE wall (OUR depth 0.635, height 0.91).
@@ -327,11 +364,14 @@ export const CEILING_LIGHTS = [
   { name: 'kitchen ceiling light (flush glass dome)', at: [3.35, HOUSE.ceil - 0.08, 7.45], r: 0.16 },
 ];
 // on / off per section: OURS (daylight bridge: off; from verse 3 on)
-export const CEILING_ON = { bridge: false, hardstop: false, verse3: true, silence: true, chorus2b: true };
+export const CEILING_ON = { prep: false, bridge: false, hardstop: false, verse3: true, silence: true, chorus2b: true };
 
 // ---------------------------------------------------------------- the yard (Jade, page 1; ESE of the house)
 // Registered from the 1:200 site plan (+/-0.3 m). Heights above grade are OURS.
-export const PATIO = { x0: 0.93, x1: 3.88, z0: HOUSE.Z, z1: 12.97, top: -0.05, kind: 'raised wooden deck at floor level, one step down from the French doors (OUR reading of "patio" with "stairs")' };
+// Jade (2026-11-25 late): the patio is a WOOD DECK level with the house floor, with wood stairs and a wood railing down to
+// the yard. Railing 0.91 m (36") with 2x2 balusters at ~12 cm, posts at the corners and <= 1.8 m: OUR details.
+export const PATIO = { x0: 0.93, x1: 3.88, z0: HOUSE.Z, z1: 12.97, top: 0, kind: 'wood deck level with the house floor (Jade), wood railing and wood stairs down to the yard' };
+export const RAIL = { h: 0.91, post: 0.09, rail: [0.09, 0.04], baluster: 0.035, gap: 0.12 };
 export const STAIRS = { x0: 3.88, x1: 5.86, landing: { z0: HOUSE.Z, z1: 11.3 }, z0: 11.3, z1: 12.9, risers: 4 };   // descending ESE to the lawn by the mint
 export const STRAWBERRY = { x0: 1.03, x1: 3.89, z0: 13.07, z1: 15.06, h: 0.25, kind: 'strawberry plants and flowers, a raised timber bed' };
 export const MINT = { at: [4.84, 14.2], r: 0.33, h: 0.45, kind: 'half whisky barrel of mint (drawn ~1.7 m across: real size used)' };
@@ -347,21 +387,26 @@ export const LAWN = { x0: -0.3, x1: 13.1, z0: HOUSE.Z, z1: 20.2 };
 export const TREE = { at: [10.79, 19.07], trunkH: 1.75, trunkR: 0.14, canopyR: 2.3, canopyY: GRADE + 3.45, canopyK: 0.62, lemonR: 0.085, lemons: 26 };
 // the neighbour's grapefruit tree; its branches spill over the NNE fence (Jade). Trunk beyond the fence: OURS.
 export const GRAPEFRUIT = { trunk: [14.3, 12.85], at: [13.45, 12.85], canopyR: 1.55, canopyY: GRADE + 3.0, canopyK: 0.75, fruitR: 0.06, fruits: 14 };
-export const DRINKS = { x0: 2.55, x1: 3.45, z0: 11.9, z1: 12.5, h: 0.74, y: PATIO.top, kind: 'lemonade table on the deck (OURS)' };
-// the fire-poi spinner: on the open lawn in the SSW half ("grass yard"), 7 m from the lemon tree, 4 m from the
-// clothesline: OUR pick. Two burning heads on 0.62 m tethers, each sweeping a circle beside the body.
-export const POI = { at: [4.0, 17.3], floor: GRADE, yaw: 80, centreY: GRADE + 1.15, r: 0.72, side: 0.42, headR: 0.045 };
+// the lemonade: Jade (2026-11-25 late) made it BEFORE the party with the childhood friend, from lemons they picked off
+// the tree; first love, Z and the guests had not arrived. During the party it stands on this table on the deck (OURS).
+export const DRINKS = { x0: 2.55, x1: 3.45, z0: 11.9, z1: 12.5, h: 0.74, y: PATIO.top, kind: 'lemonade table on the deck (OURS); the lemonade was made before the party (Jade)' };
+// the fire-poi spinner (Jade, 2026-11-25 late): in the yard, performing TOWARD the audience, who stand along the house's
+// ESE wall and on the deck. Mark: the open lawn 5 m out from the wall, between the mint barrel and the clothesline,
+// facing the audience's middle (AUDIENCE_AT): OUR pick. Two burning heads, each sweeping a circle beside the body.
+export const AUDIENCE_AT = [5.2, 11.2];
+export const POI = { at: [6.3, 15.6], floor: GRADE, yaw: +(Math.atan2(AUDIENCE_AT[0] - 6.3, AUDIENCE_AT[1] - 15.6) * 180 / Math.PI).toFixed(1), centreY: GRADE + 1.15, r: 0.72, side: 0.42, headR: 0.045 };
 export const poiCentre = (s) => { const a = POI.yaw * Math.PI / 180, lx = Math.cos(a), lz = -Math.sin(a), fx = Math.sin(a), fz = Math.cos(a);
   return [POI.at[0] + s * POI.side * lx + 0.2 * fx, POI.centreY, POI.at[1] + s * POI.side * lz + 0.2 * fz]; };
 
 // ---------------------------------------------------------------- her path (the gold line of verse 3): [X, Z, floor y]
-// shelf -> through the opening -> round the dining table's NNE end -> the French doors (greeting) -> the deck (hug)
+// shelf -> through the opening -> round the dining table's NNE end -> the sliding door (greeting) -> the deck (hug)
 // -> the landing and down the stairs -> across the lawn -> under the lemon tree (first love).
-export const MARK = { shelf: [2.72, 3.62] };
-export const PATH = [[2.72, 3.62, 0], [2.0, 4.15, 0], [1.15, 5.0, 0], [1.55, 6.05, 0], [2.45, 6.75, 0], [2.55, 7.65, 0], [2.4, 8.6, 0], [1.55, 9.3, 0], [1.21, 9.95, 0],
+// the shelf mark keeps its old 0.92 m from the Expedit's front (which moved 0.32 m WNW with the thick wall)
+export const MARK = { shelf: [2.72, 3.30] };
+export const PATH = [[2.72, 3.30, 0], [2.0, 4.15, 0], [1.15, 5.0, 0], [1.55, 6.05, 0], [2.45, 6.75, 0], [2.55, 7.65, 0], [2.4, 8.6, 0], [1.55, 9.3, 0], [1.21, 9.95, 0],
   [1.6, 10.6, PATIO.top], [2.6, 10.85, PATIO.top], [4.0, 10.75, PATIO.top], [4.87, 11.1, PATIO.top], [4.87, 12.9, GRADE], [5.7, 13.6, GRADE], [7.2, 15.5, GRADE], [9.0, 17.2, GRADE], [9.9, 17.95, GRADE]];
 export const MARKS = { shelf: MARK.shelf, crossing: [1.9, 6.4], greeting: [1.21, 9.62], hug: [2.6, 10.85], stairs: [4.87, 12.1], tree: [9.9, 17.95] };
-export const MARK_FLOOR = { shelf: 0, crossing: 0, greeting: 0, hug: PATIO.top, stairs: GRADE + 0.3, tree: GRADE };
+export const MARK_FLOOR = { shelf: 0, crossing: 0, greeting: 0, hug: PATIO.top, stairs: GRADE + (PATIO.top - GRADE) / 2, tree: GRADE };
 
 // ---------------------------------------------------------------- sun visibility (analytic, for the numbers in NOTES and the sidecars)
 // March from p toward the sun; blocked by: the house (walls to the plate, the gable roof, the eaves), the neighbour
@@ -415,6 +460,7 @@ export function apertureLit(o, sun) {
 // ceiling: the three ceiling fixtures (CEILING_ON per section).
 // poi: the fire, from verse 3 on (Jade: the fire spinning came later, at dusk and into dark).
 export const SECTION_LIGHT = {
+  prep: { sun: true, ceiling: false, poi: false, sky: 1.0 },
   bridge: { sun: true, ceiling: CEILING_ON.bridge, poi: false, sky: 1.0 },
   hardstop: { sun: true, ceiling: CEILING_ON.hardstop, poi: false, sky: 1.0 },
   verse3: { sun: true, ceiling: CEILING_ON.verse3, poi: true, sky: 0.55 },
@@ -442,13 +488,13 @@ export const FOOTPRINTS = {
 // ---------------------------------------------------------------- the room crossing, as data (V3_rcv; "Room crossing velocity")
 // Timeline: the -2sm render, media/karaoke_v2/lyrics_timed.json, full mix: "Room crossing velocity" 194.59-198.72 s
 // ("Room" 194.59, "crossing" 195.18, "velocity" 197.06). The older v3 song map had 203.8-207.4 (tail ~208.9). The walk: shelf -> the opening by the 2x2
-// and the printer -> round the dining table's NNE end -> the French doors = PATH[0..8]. Speeds per segment are INVENTED
+// and the printer -> round the dining table's NNE end -> the sliding door = PATH[0..8]. Speeds per segment are INVENTED
 // (a plausible party walk, 1.1-1.3 m/s, slowing for the opening and at the doors), for the compositor's v = ds/dt.
 export const CROSSING = (() => {
   const pts = PATH.slice(0, 9).map(([x, z]) => [x, z]);
   const speeds = [1.15, 0.85, 0.9, 1.2, 1.28, 1.25, 1.1, 0.9];
   const notes = ['leaving the shelf', 'slowing for the opening (2x2 Expedit and printer at her right)', 'through the opening', 'into the dining area',
-    'past the dining table’s NNE end', 'along the counter side', 'turning toward the French doors', 'slowing at the French doors'];
+    'past the dining table’s NNE end', 'along the counter side', 'turning toward the sliding door', 'slowing at the sliding door'];
   const len = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
   let t = 0, s = 0; const segs = [], stamps = [{ i: 0, at: pts[0], t_s: 0, s_m: 0 }];
   for (let i = 0; i + 1 < pts.length; i++) { const L = len(pts[i], pts[i + 1]), dt = L / speeds[i]; t += dt; s += L;

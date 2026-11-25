@@ -1,4 +1,4 @@
-// LIVING ROOM, 5748 CAPRI LANE, MORTON GROVE, IL, ABOUT 2007 ("Proof": bridge, "Beauty on this side", v3 169.4 s on).
+// LIVING ROOM, 5748 CAPRI LANE, MORTON GROVE, IL, ABOUT 2007 ("Proof": bridge, "Beauty on this side", -2sm 159.62 s on).
 // Single source of truth (metres, y up, floor at y = 0). Grad school: she commutes from this house to Northwestern.
 // First love hands her a folded white sweatshirt with the Institute for Advanced Study seal (TRUTH left, BEAUTY right)
 // in dark blue. He is a real person: never named, never face-on; every camera is behind him.
@@ -21,10 +21,10 @@ const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a
 const comb = (p, ...terms) => terms.reduce((s, [v, k]) => add(s, mul(v, k)), p.slice());
 
 export const YEAR = 2007;   // ASSUMPTION: grad school was about 2005-2009
-export const FILM = { t: [169.4, 171.8], line: [169.4, 173.5], time: '2:49.4-2:51.8', section: 'Bridge',
+export const FILM = { t: [159.62, 161.96], line: [159.62, 164.36], time: '2:39.6-2:42.0', section: 'Bridge',
   lyric: 'Beauty on this side, truth by reference', sung_here: 'Beauty on this side',
-  next: 'cut to the pan across the Expedit (mv10 bridge) on "truth by reference" (171.8 s); the line itself ends 173.5 s',
-  map: 'analysis/v3/song_map.md (bridge row 169.4-173.5)' };
+  next: 'cut to the pan across the Expedit (mv10 bridge) on "truth by reference" (161.96 s, "truth" sung); the line itself ends 164.36 s',
+  map: 'analysis/m2sm/song_map.md (-2sm master, bridge line 159.62-164.36; was v3 169.4-173.5, retimed 2026-11-25)' };
 
 export const HOUSE = { address: '5748 Capri Lane, Morton Grove, IL', built: 1955, type: 'split-level', sqft: 1296, ew: 11.1, ns: 11.6, ns_note: 'README says 11.8; the OSM corners give 11.63', front: 'south (Capri Lane)',
   lat: 42.0525, lon: -87.7709, livingRoomInHouse: { x0: 6.0, x1: 10.9, y0: 0.2, y1: 4.5, note: 'GUESS: SE corner of the footprint (house frame: origin SW corner, x east, y north)' } };
@@ -59,6 +59,16 @@ export function sunPosition({ date, time, tzHours, lat, lon }) {
 export const travelDir = ({ az, elev }) => { const a = az * D2R, e = elev * D2R; return [-Math.sin(a) * Math.cos(e), -Math.sin(e), Math.cos(a) * Math.cos(e)]; };
 
 export const ROOM = { x0: 0, x1: 4.9, z0: -4.3, z1: 0, h: 2.44, wallT: 0.2, wallInt: 0.12 };
+// THE CEILING IS VAULTED (Jade, decision page 2026-11-25). A cathedral ceiling under the roof of the main-level wing:
+// two plain drywall planes rising from the east and west walls (plate at ROOM.h = 8 ft) to a ridge running NORTH-SOUTH
+// along the room's centre line, so the south (picture-window) wall and the north (dining) wall are gable ends.
+// GUESS, flagged: the ridge direction. The footprint (11.1 m E-W x 11.6 m N-S) puts the main-level wing (living room at
+// the front, dining and kitchen behind) in a strip about 5.5 m wide E-W running the full N-S depth, so its roof most
+// plausibly spans the short E-W width with the ridge front-to-back (gable facing the street over the picture window),
+// as on most Chicago-area split-levels of the 1950s. Pitch 4 in 12 (a low 1950s roof) -> peak 0.82 m above the plate.
+export const VAULT = { ridge: 'north-south', x: (ROOM.x0 + ROOM.x1) / 2, pitch: 4 / 12, t: 0.06 };
+VAULT.peak = +(ROOM.h + (VAULT.x - ROOM.x0) * VAULT.pitch).toFixed(3);   // 3.257 m
+export const ceilY = (x) => VAULT.peak - Math.abs(x - VAULT.x) * VAULT.pitch;   // height of the ceiling surface over x
 
 // ---------------------------------------------------------------- the front (south) wall: picture window + couch
 // ASSUMPTION: a fixed picture window (big centre light, a narrow casement each side) in the WEST part of the south wall,
@@ -129,7 +139,7 @@ export function sunMargin(p) { const d = SUN_DIR; if (d[2] >= -1e-3) return -9; 
   const x = p[0] - d[0] * t, y = p[1] - d[1] * t; const [[x1, y1], [x0]] = APERTURE, y0 = APERTURE[2][1];
   return +Math.min(x - x0, x1 - x, y - y0, y1 - y).toFixed(3); }
 export const BEAM = { name: 'picture window', kind: 'low afternoon sun through the picture window beside the couch (parallel)', dir: SUN_DIR, aperture: APERTURE,
-  clip: [{ name: 'floor', n: [0, -1, 0], d: 0.0 }, { name: 'west wall', n: [-1, 0, 0], d: -ROOM.x0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 }, { name: 'ceiling', n: [0, 1, 0], d: ROOM.h }] };
+  clip: [{ name: 'floor', n: [0, -1, 0], d: 0.0 }, { name: 'west wall', n: [-1, 0, 0], d: -ROOM.x0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 }, { name: 'ceiling (plate height: the sun enters below the window head and only falls, so the vault never meets it)', n: [0, 1, 0], d: ROOM.h }] };
 
 export const LIGHTS = {
   sun: { kind: 'low soft afternoon sun through the picture window (the beam)', dir: SUN_DIR, color: SUN.color },

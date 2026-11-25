@@ -83,3 +83,53 @@ green hoodie with cork sandals vs. charcoal hoodie, olive chinos, canvas sneaker
 and need redoing; `media/keyframes/index.html` and `media/keyframes/closet02/NOTES.md` cite
 `fl_D_hands_forearms_v2.jpg`, now in `_superseded/` (gallery not regenerated). `layout/CAST.md` / `_cast.js` give him
 1.80 m; Jade says ~1.78 m. Not reviewed by Jade yet. Nothing committed.
+
+# v3: Jade's corrections from the decision page (2026-11-25, late)
+
+Jade: hair close but adjust: LESS ROUND from behind; a CENTRE PART; a clean, crisp line running back from the curtain
+bangs (the v2 taper into sides/nape was too gradual); the centre part leads to the crown whorl, which is NOT obvious
+and sits at the TOP of the head, not far down the back. No bracelet anywhere. One slate-blue profile image had a
+wrong-facing hand. The slate-blue shirt at 27 is a plain long-sleeve shirt, not a henley. Older unconfirmed details
+stay as guessed.
+
+- Prompt blocks in `_prompts/v3/` (`hair.txt` rewritten; `d27/d19/d24.txt` without henley/bracelet; `never.txt`
+  tightened to LOST profiles only, no eye/nose/mouth; new `hands.txt` anatomy block). Generator `_prompts/v3/flgen.py`,
+  tmux session `proof-fl3`. Layout refs with heads, bracelets and the henley placket painted out:
+  `_prompts/v3/refs/fl_{A,E}_v2_headless.jpg`.
+- Wrong hand (my read): A v2 fig 5 has a raised forearm with no upper arm (a third arm: one arm hangs at image left,
+  one goes into the pocket, plus the raised one), and E v2 fig 6 the raised fist with the bracelet reads as the wrong
+  hand for the facing. Both poses existed only to show the bracelet; replaced (A5: leaning in to whisper at the shelf,
+  as in mv10; E6: lost profile, near LEFT hand in the LEFT front pocket).
+- Also fixed: v2 A fig 4 / E fig 6 / B 2,5 / G showed nose, lips or an eye; v3 asks for lost profiles only.
+- D: studies 2-3 (closet, aged 19) now in green hoodie sleeves instead of the slate-blue shirt.
+
+## v3 progress log
+- B take 1 (with B v2 as a "wrong shape" ref) and take 2 (no hair ref) launched in parallel.
+- B t1/t2 (images 2): both still too round/bowl from behind; t1 has a good crisp side line and a correct centre part in study 3; t2 study 3 runs the part down the back of the head (wrong). New block `round.txt`; B t3 (t1 as draft ref) and t4 (no hair ref) launched.
+- B t3 ACCEPTED as `fl_B_backhead_neck_v3.jpg` (images used: 4): taller-than-wide outline from behind, centre part from the front to a quiet crown point at the top (study 3), crisp side line running back from the fringe tip above the ear (2, 5), lost profiles only (cheek and jaw, no eye/nose/mouth). t4 rejected (part runs down the back of the head in study 3). Still a slight overhang bulge over the two-block in the 3/4 views. A, E, G, D take 1 launched with B v3 as image 1.
+- A t1, E t1, D t1 (images used: 8): ACCEPTED. A: plain crew-neck slate-blue tee, no bracelet, lost profiles (cheek
+  and jaw only), fig 5 bowed toward someone at his right (face hidden), hands in pockets on the correct sides. E: same;
+  fig 6 near LEFT hand in LEFT front pocket, far arm hidden. D: bracelet gone, green hoodie sleeves in 2-3, palms-up
+  study 1 has thumbs outward (correct), study 4 lost profile.
+- G t1: settings, faces and hands fine, but in study 6 (and slightly 3) the centre part runs down the BACK of the head
+  (a back parting); G t2 launched with t1 as draft.
+- G t2 (images 9): part shorter in study 6 but study 6 still reads as a straight-behind view with a part partway down. G t3 launched (no draft ref; study 6 as a bird's-eye view).
+- G t3 (images used: 10, the total for this pass; no plan limit hit): ACCEPTED as `fl_G_ots_hair_v2.jpg`. Study 6
+  now a high view onto the bowed head, the part ending at the crown point near the top; study 2 bowed toward
+  someone at his right (face hidden), arms hanging; study 1 hands hold the sweatshirt from below. t2 kept in takes.
+- Moved to `_superseded/`: A v2, B v2, E v2, D v3, G v1 (README.txt updated). tmux session `proof-fl3` closed.
+
+## v3 result
+| Sheet | File | Takes |
+|---|---|---|
+| B back of head and neck, 27 and 19 (anchor) | `fl_B_backhead_neck_v3.jpg` | 4 (t3) |
+| A turnaround from behind, 27 | `fl_A_turnaround_back_v3.jpg` | 1 |
+| E costume 19 and 27 | `fl_E_costume_19_27_v3.jpg` | 1 |
+| D hands and forearms | `fl_D_hands_forearms_v4.jpg` | 1 |
+| G over-the-shoulder hair studies | `fl_G_ots_hair_v2.jpg` | 3 (t3) |
+
+Weak spots: in three-quarter views the top layer still overhangs the two-block with a slight mushroom bulge (the crisp
+line Jade asked for makes the overhang read harder); the crown point is placed at the top but in the bowed views the
+part still reaches roughly halfway down the visible head; D study 4's hand at his chin reads as a curled fist, not
+clearly the back of HER hand (unchanged from D v3); the seal on G is still a generic emblem, not the IAS seal.
+Not done here: `media/decisions.html` fl_ cards still link the old file names (now in `_superseded/`).

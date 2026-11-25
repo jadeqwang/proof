@@ -52,8 +52,8 @@ export const AXIS_FLOOR_T = BEAM.centre[1] / -SUN_DIR[1];
 export const beamAt = (x) => { const t = (W.x - x) / -SUN_DIR[0]; return { z0: zA + t * SUN_DIR[2], z1: zB + t * SUN_DIR[2], top: y1 + t * SUN_DIR[1], bottom: Math.max(0, y0 + t * SUN_DIR[1]) }; };
 
 // ---------------------------------------------------------------- frost
-// Frost on all four panes, thickest in the lower corners; the FERN is the one she traces (1:37) and the one that
-// grows into a neuron (3:53): on the lower pane nearest the reading spot. The fern itself is a renderer layer; the
+// Frost on all four panes, thickest in the lower corners; the FERN is the one she traces (1:36.0, -2sm) and the one that
+// grows into a neuron (3:43.0): on the lower pane nearest the reading spot. The fern itself is a renderer layer; the
 // set gives its root, tip and pane.
 export const FROST = { x: W.x - 0.012, cover: 0.55 };   // fraction of each pane's height the frost reaches in its corner
 export const FERN = { pane: 'window_BR', root: [W.x - 0.012, W.sill + 0.03, zB - 0.03], tip: [W.x - 0.012, W.sill + 0.27, W.z + 0.12], branches: 5 };

@@ -7,8 +7,8 @@ import { aim } from '../../engine/aim.js';
 import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
 import { CAST } from '../_cast.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
-  COUCH, NOGUCHI, GLASS_TABLE, COUNTERS, COUNTER_H, SINK, STOVE, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
-  TREE, GRAPEFRUIT, DRINKS, POI, poiCentre, PATH, MARKS, CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
+  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
+  TREE, GRAPEFRUIT, DRINKS, POI, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
 
 // ---------------------------------------------------------------- cast (set-local, additive: engine/mannequin.js is not edited)
 // Guests are costume and posture only: their eyes, nose and mouth are removed after the figure is built.
@@ -24,6 +24,13 @@ const NEW_CAST = {
   T1: GUEST('guest T1, at the lemonade (face undrawn)', 1.72, 0x5a8a8a, 0x44403a, 'bob'),
   H1: GUEST('guest H1, the hug (face undrawn)', 1.7, 0x7a5a8a, 0x30343c, 'long'), G1: GUEST('guest G1, the greeting (face undrawn)', 1.8, 0xb8b06a, 0x3a3a44, 'short', 'short'),
   poi: GUEST('poi spinner (face undrawn)', 1.75, 0x2a2a2e, 0x2a2a2e, 'bun', 'short'),
+  // the poi audience (Jade, 2026-11-25 late: along the side of the house by the wall, and on the deck). W1 W2 kept.
+  W3: GUEST('guest W3, poi audience (face undrawn)', 1.69, 0x4a6a5a, 0x3a3a44, 'long'), W4: GUEST('guest W4, poi audience (face undrawn)', 1.81, 0x8a7a5a, 0x2c2c34, 'short', 'short'),
+  D1: GUEST('guest D1, poi audience on the deck (face undrawn)', 1.63, 0xa86a5a, 0x2c3140, 'bob', 'short'), D2: GUEST('guest D2, poi audience on the deck (face undrawn)', 1.77, 0x5a5a7a, 0x44403a, 'short'),
+  // the childhood friend (童友): he and Jade picked the lemons and made the lemonade before the party (Jade, 2026-11-25
+  // late). Not in _cast.js (no adult figure there), so set-local. Height 1.73 and costume are OURS (ASSUMED); face
+  // undrawn like first love (back, hands). Not the charcoal hoodie: Jade says that old artwork matches Z, not him.
+  friend: GUEST('childhood friend (27; face undrawn, back and hands only)', 1.73, 0x9a7a52, 0x3a3e48, 'short', 'pushed'),
 };
 for (const [k, v] of Object.entries(NEW_CAST)) if (!CAST[k]) CAST[k] = v;
 // first love at the housewarming (Jade, 2026-11-25): forearm hair clearly visible, so his sleeves are rolled up here
@@ -63,8 +70,8 @@ const wallOf = { WNW: { axis: 'X', at: HOUSE.wallT / 2 }, ESE: { axis: 'X', at: 
 function house(shot) {
   const g = new THREE.Group(), H = HOUSE, T = H.wallT, panes = {};
   // floors: oak in the living room, tile in the kitchen, oak elsewhere; ceiling (hidden in the plan view)
-  g.add(tag(box(LIVING.x1 - LIVING.x0, 0.04, LIVING.z1 - LIVING.z0 + 0.15, FLOORW, [(LIVING.x0 + LIVING.x1) / 2, -0.02, (LIVING.z0 + LIVING.z1) / 2 + 0.075]), 'living room floor (oak)'));
-  g.add(tag(box(KITCHEN.x1 - KITCHEN.x0, 0.04, KITCHEN.z1 - KITCHEN.z0, TILE, [(KITCHEN.x0 + KITCHEN.x1) / 2, -0.02, (KITCHEN.z0 + KITCHEN.z1) / 2]), 'kitchen floor (tile)'));
+  g.add(tag(box(LIVING.x1 - LIVING.x0, 0.04, PARTITION.zc - LIVING.z0, FLOORW, [(LIVING.x0 + LIVING.x1) / 2, -0.02, (LIVING.z0 + PARTITION.zc) / 2]), 'living room floor (oak)'));
+  g.add(tag(box(KITCHEN.x1 - KITCHEN.x0, 0.04, KITCHEN.z1 - PARTITION.zc, TILE, [(KITCHEN.x0 + KITCHEN.x1) / 2, -0.02, (PARTITION.zc + KITCHEN.z1) / 2]), 'kitchen floor (tile)'));
   g.add(tag(box(H.X - 4.89 - T, 0.04, H.Z - 2 * T, FLOORW, [(4.89 + H.X - T) / 2, -0.02, H.Z / 2]), 'floor (core, tea room, bedroom)'));
   g.add(tag(box(H.X, 0.06, H.Z, { ...PLASTER, noCast: true }, [H.X / 2, H.ceil + 0.03, H.Z / 2]), 'ceiling'));
   // crawl-space skirt below the floor, then the four exterior walls with their openings (from grade to the plate)
@@ -79,11 +86,11 @@ function house(shot) {
     g.add(tag(slab(V(xc, ye, -H.eave), V(xc, H.ridgeY + 0.02, H.ridgeZ), w, 0.1, V(1, 0, 0), ROOF), 'roof'));
     g.add(tag(slab(V(xc, ye, H.Z + H.eave), V(xc, H.ridgeY + 0.02, H.ridgeZ), w, 0.1, V(1, 0, 0), ROOF), 'roof')); }
   // the partition (Jade's "wall") and the core walls
-  g.add(wallSeg({ axis: 'X', at: (PARTITION.z0 + PARTITION.z1) / 2, s0: PARTITION.x0, s1: PARTITION.x1 + 0.06, t: PARTITION.z1 - PARTITION.z0, y0: 0, y1: H.ceil, look: PLASTER, label: 'partition wall (living room | kitchen)' }));
+  g.add(wallSeg({ axis: 'X', at: PARTITION.zc, s0: PARTITION.x0, s1: PARTITION.x1 + 0.06, t: PARTITION.t, y0: 0, y1: H.ceil, look: PLASTER, label: 'thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)' }));
   for (const w of CORE_WALLS) { const alongZ = w.a[0] === w.b[0], s0 = alongZ ? w.a[1] : w.a[0], s1 = alongZ ? w.b[1] : w.b[0];
     g.add(wallSeg({ axis: alongZ ? 'Z' : 'X', at: alongZ ? w.a[0] : w.a[1], s0: Math.min(s0, s1), s1: Math.max(s0, s1), t: H.intT, y0: 0, y1: H.ceil,
       holes: (w.doors || []).map(([d0, d1]) => ({ s0: Math.min(s0, s1) + d0, s1: Math.min(s0, s1) + d1, y0: 0, y1: 2.03 })), look: PLASTER, label: w.name })); }
-  // glass in every window; the front door leaf (open 30 deg in); the French doors (both leaves open in, 90 deg)
+  // glass in every window; the front door leaf (open 30 deg in); the sliding glass door (SSW panel open behind the fixed one)
   for (const o of OPENINGS) { const A = apertureOf(o), inset = T / 2, n = o.wall === 'WNW' ? [0, 0, 1] : o.wall === 'ESE' ? [0, 0, -1] : o.wall === 'SSW' ? [1, 0, 0] : [-1, 0, 0];
     const C = A.map((p) => V(p[0] + n[0] * inset, p[1], p[2] + n[2] * inset)); const inside = [C[1], C[0], C[3], C[2]];   // TL, TR, BR, BL from inside
     const key = o.name.replace(/[^a-z0-9]+/gi, '_').replace(/_$/, '').toLowerCase();
@@ -95,15 +102,20 @@ function house(shot) {
       g.add(tag(box(...(o.wall === 'WNW' || o.wall === 'ESE' ? [0.04, o.y1 - o.y0, T + 0.02] : [T + 0.02, o.y1 - o.y0, 0.04]), F, [mid.x, (o.y0 + o.y1) / 2, mid.z]), o.name + ' (mullion)')); } }
   { const o = OPENINGS.find((q) => q.name === 'front door'), w = o.s1 - o.s0, hg = new THREE.Group(); hg.position.set(o.s1 - 0.02, 0, T + 0.025); hg.rotation.y = rad(o.leaf.openDeg);
     hg.add(tag(box(w - 0.02, o.y1 - 0.01, 0.045, { grey: 0.55, col: 0x6a4a36 }, [-(w - 0.02) / 2, (o.y1 - 0.01) / 2, 0]), 'front door (leaf, open)')); g.add(hg);
-    // front steps down to grade (OURS: the floor is 0.6 m up)
-    for (let k = 1; k <= 3; k++) g.add(tag(box(1.5, 0.04 + (3 - k + 1) * 0.15 - 0.15, 0.3, { grey: 0.7, col: 0x9a968c }, [(o.s0 + o.s1) / 2, GRADE + ((3 - k + 1) * 0.15 - 0.15 + 0.04) / 2, -0.3 * k + 0.15]), 'front steps')); }
-  { const o = OPENINGS.find((q) => q.kind === 'french'), lw = (o.s1 - o.s0) / 2, z = H.Z - T - 0.02, FR = { grey: 0.88, col: 0xeeeae2 };
-    [[o.s0, 1], [o.s1, -1]].forEach(([hx, s], i) => { const hg = new THREE.Group(); hg.position.set(hx, 0, z); hg.rotation.y = rad(-s * o.leaves.openDeg);
-      const lab = `French door (leaf ${i + 1}, open)`, add = (m) => hg.add(tag(m, lab));
-      add(box(lw, 0.06, 0.04, FR, [s * lw / 2, o.y1 - 0.03, 0])); add(box(lw, 0.12, 0.04, FR, [s * lw / 2, 0.06, 0]));
-      add(box(0.05, o.y1, 0.04, FR, [s * 0.025, o.y1 / 2, 0])); add(box(0.05, o.y1, 0.04, FR, [s * (lw - 0.025), o.y1 / 2, 0]));
-      for (const y of [0.62, 1.12, 1.56]) add(box(lw - 0.08, 0.025, 0.03, FR, [s * lw / 2, y, 0]));
-      const gl = quad([V(s * 0.05, o.y1 - 0.06, 0), V(s * (lw - 0.05), o.y1 - 0.06, 0), V(s * (lw - 0.05), 0.12, 0), V(s * 0.05, 0.12, 0)], GLASS); hg.add(tag(gl, 'French door glass')); g.add(hg); }); }
+    // front steps down to grade (OURS): four risers, a 0.3 m landing at the door then three treads WNW
+    { const n = 4, rise = FLOOR_ABOVE_GRADE / n; for (let k = 0; k < n; k++) { const top = -k * rise, h = top - GRADE;
+      g.add(tag(box(1.5, h, 0.3, { grey: 0.7, col: 0x9a968c }, [(o.s0 + o.s1) / 2, GRADE + h / 2, -0.3 * k - 0.15]), 'front steps')); } } }
+  // the sliding glass door (Jade, 2026-11-25 late): two panels in a white frame; the fixed panel on the outer track at
+  // the NNE half, the sliding panel on the inner track, slid open behind it (OURS)
+  { const o = OPENINGS.find((q) => q.kind === 'slider'), FR = { grey: 0.88, col: 0xeeeae2 }, pw = (o.s1 - o.s0) / 2 + 0.03, zo = H.Z - T * 0.35, zi = H.Z - T * 0.65;
+    const panel = (x0, z, lab) => { const add = (m) => g.add(tag(m, lab));
+      add(box(pw, 0.07, 0.035, FR, [x0 + pw / 2, o.y1 - 0.035, z])); add(box(pw, 0.09, 0.035, FR, [x0 + pw / 2, 0.045, z]));
+      add(box(0.06, o.y1, 0.035, FR, [x0 + 0.03, o.y1 / 2, z])); add(box(0.06, o.y1, 0.035, FR, [x0 + pw - 0.03, o.y1 / 2, z]));
+      add(quad([V(x0 + 0.06, o.y1 - 0.07, z), V(x0 + pw - 0.06, o.y1 - 0.07, z), V(x0 + pw - 0.06, 0.09, z), V(x0 + 0.06, 0.09, z)], GLASS)); };
+    panel(o.s1 - pw, zo, 'sliding glass door (fixed panel)');
+    panel(o.s1 - pw - 0.08, zi, 'sliding glass door (sliding panel, open)');
+    g.add(tag(box(o.s1 - o.s0, 0.025, T, { grey: 0.6, col: 0x9a9a9a }, [(o.s0 + o.s1) / 2, 0.0125, H.Z - T / 2]), 'sliding glass door (track)'));
+    g.add(tag(box(o.s1 - o.s0, 0.03, T, FR, [(o.s0 + o.s1) / 2, o.y1 + 0.015, H.Z - T / 2]), 'sliding glass door (head)')); }
   return { g, panes };
 }
 
@@ -207,22 +219,36 @@ function furniture(lt) {
     add(box(C.armW, 0.58 - 0.08, C.z1 - C.z0, W, [C.x1 - C.armW / 2, 0.08 + 0.25, (C.z0 + C.z1) / 2]));
     addc(box(C.chaise.x1 - C.chaise.x0, C.seatH - 0.08, C.chaise.z1 - C.z1, W, [(C.chaise.x0 + C.chaise.x1) / 2, 0.08 + (C.seatH - 0.08) / 2, (C.z1 + C.chaise.z1) / 2]));
     for (const [x, z] of [[C.x0 + 0.05, C.z0 + 0.05], [C.x1 - 0.05, C.z0 + 0.05], [C.x1 - 0.05, C.z1 - 0.05], [C.x0 + 0.05, C.chaise.z1 - 0.05], [C.chaise.x1 - 0.05, C.chaise.z1 - 0.05]]) add(box(0.04, 0.08, 0.04, DARK, [x, 0.04, z])); }
-  // Noguchi: rounded-triangle glass top (hull of three circles), two curved black supports crossing under it
-  { const N = NOGUCHI, [cx, cz] = N.at, pts = [], rc = 0.17, V3 = [[-N.W / 2 + rc, -N.D / 2 + rc], [N.W / 2 - rc, -N.D / 2 + rc], [0.08, N.D / 2 - rc]];
-    for (const [vx, vz] of V3) for (let k = 0; k < 24; k++) { const a = k / 24 * Math.PI * 2; pts.push([vx + rc * Math.cos(a), vz + rc * Math.sin(a)]); }
-    const hullPts = (() => { const p = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]), cr = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]), lo = [], up = [];
-      for (const q of p) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
-      for (const q of p.slice().reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
-      return lo.slice(0, -1).concat(up.slice(0, -1)); })();
-    const sh = new THREE.Shape(); hullPts.forEach(([x, z], i) => (i ? sh.lineTo(x, -z) : sh.moveTo(x, -z)));   // shape y = -local z
-    const top = mk(new THREE.ExtrudeGeometry(sh, { depth: N.glass, bevelEnabled: false }), { glass: true, col: 0x9ac0b8, opacity: 0.35, grey: 0.8 });
-    top.rotation.x = -Math.PI / 2; top.position.set(cx, N.h - N.glass, cz); g.add(tag(top, 'Noguchi coffee table (glass top)'));
-    const arch = new THREE.Shape(); arch.moveTo(-0.4, 0); arch.quadraticCurveTo(0, 0.76, 0.4, 0); arch.lineTo(0.3, 0); arch.quadraticCurveTo(0, 0.5, -0.3, 0); arch.lineTo(-0.4, 0);
-    [[25, 0.12], [-35, -0.12]].forEach(([yaw, off]) => { const m = mk(new THREE.ExtrudeGeometry(arch, { depth: 0.045, bevelEnabled: false }), { grey: 0.1, col: 0x141210 });
-      m.geometry.translate(0, 0, -0.0225); m.position.set(cx + off * 0.5, 0, cz + off * 0.3); m.rotation.y = rad(yaw); g.add(tag(m, 'Noguchi coffee table (curved black wood base)')); }); }
-  { const G = GLASS_TABLE, [x, z] = G.at, CH = { grey: 0.7, col: 0xb8b8bc };
-    g.add(tag(cyl(G.r, G.r, 0.012, { glass: true, col: 0x9ac0b8, opacity: 0.35, grey: 0.8 }, [x, G.h - 0.006, z], null, 40), 'round glass-top table'));
-    g.add(tag(cyl(0.035, 0.035, G.h - 0.012, CH, [x, (G.h - 0.012) / 2, z], null, 12), 'round glass-top table')); g.add(tag(cyl(0.28, 0.3, 0.02, CH, [x, 0.01, z], null, 24), 'round glass-top table')); }
+  // Noguchi IN-50 (layout.js NOGUCHI: Herman Miller dimensions, Vitra-drawing shapes): the glass outline, and two
+  // IDENTICAL curved legs (the lower one the upper turned 180 deg in its own plane) meeting at a pivot under the apex side.
+  { const N = NOGUCHI, [cx, cz] = N.at, cm = 0.01;
+    const outline = [...N.glassHalf, ...N.glassHalf.slice(1, -1).reverse().map(([x, y]) => [-x, y])];
+    const sx = N.W / 2 / (Math.max(...N.glassHalf.map((p) => p[0])) * cm), sy = N.D / 2 / (Math.max(...N.glassHalf.map((p) => Math.abs(p[1]))) * cm);
+    const sh = new THREE.Shape(); outline.forEach(([x, y], i) => { const X = x * cm * sx, Y = -y * cm * sy; i ? sh.lineTo(X, Y) : sh.moveTo(X, Y); });   // shape y = -(toward the apex)
+    const top = mk(new THREE.ExtrudeGeometry(sh, { depth: N.glass, bevelEnabled: false, curveSegments: 4 }), { glass: true, col: 0x9ac0b8, opacity: 0.35, grey: 0.8 });
+    top.rotation.x = -Math.PI / 2; top.position.set(cx, N.h - N.glass, cz); g.add(tag(top, 'Noguchi coffee table (glass top, 19 mm)'));
+    const ky = N.legH / Math.max(...N.legProfile.map((p) => p[1])), LEG = { grey: 0.1, col: 0x141210 }, bev = 0.006;
+    const legShape = (lower) => { const q = new THREE.Shape(); N.legProfile.forEach(([x, y], i) => { const sAl = (N.pivotX - x) * cm, yy = (lower ? N.legH - y * ky : y * ky);   // ky: cm -> m, scaled to legH
+      i ? q.lineTo(sAl, yy) : q.moveTo(sAl, yy); }); return q; };
+    const piv = [cx + N.pivot[0] * cm, cz + N.pivot[1] * cm];
+    for (const which of ['upper', 'lower']) { const e = N.ends[which], dx = cx + e[0] * cm - piv[0], dz = cz + e[1] * cm - piv[1], L = Math.hypot(dx, dz);
+      const geo = new THREE.ExtrudeGeometry(legShape(which === 'lower'), { depth: N.legT - 2 * bev, bevelEnabled: true, bevelSize: bev, bevelThickness: bev, bevelSegments: 2, curveSegments: 4 });
+      geo.translate(0, 0, -(N.legT - 2 * bev) / 2);
+      const m = mk(geo, LEG); m.position.set(piv[0], 0, piv[1]); m.rotation.y = Math.atan2(-dz / L, dx / L);
+      g.add(tag(m, `Noguchi coffee table (${which} leg, solid wood, black)`)); }
+    g.add(tag(cyl(0.008, 0.008, 0.06, DARK, [piv[0], N.legH * 0.5, piv[1]], null, 8), 'Noguchi coffee table (pivot dowel)')); }
+  // the semicircular glass-top console against the NNE (core) wall (Jade, 2026-11-25 late; layout.js GLASS_TABLE)
+  { const G = GLASS_TABLE, a = G.W / 2, b = G.D, CH = { grey: 0.7, col: 0xb8b8bc }, sh = new THREE.Shape(), n = 32;
+    for (let k = 0; k <= n; k++) { const t = Math.PI * k / n, x = a * Math.cos(t), y = b * Math.sin(t); k ? sh.lineTo(x, y) : sh.moveTo(x, y); }
+    sh.lineTo(a, 0);
+    // shape x = along the wall (world Z), shape y = out from the wall (world -X); extruded up
+    const top = mk(new THREE.ExtrudeGeometry(sh, { depth: G.glass, bevelEnabled: false }), { glass: true, col: 0x9ac0b8, opacity: 0.35, grey: 0.8 });
+    top.matrixAutoUpdate = false; top.matrix.set(0, -1, 0, G.wallX - 0.005, 0, 0, 1, G.h - G.glass, 1, 0, 0, G.zc, 0, 0, 0, 1); g.add(tag(top, 'semicircular glass-top console table'));
+    const apron = mk(new THREE.ExtrudeGeometry((() => { const q = new THREE.Shape(); for (let k = 0; k <= n; k++) { const t = Math.PI * k / n; const x = (a - 0.03) * Math.cos(t), y = (b - 0.03) * Math.sin(t); k ? q.lineTo(x, y) : q.moveTo(x, y); }
+      for (let k = n; k >= 0; k--) { const t = Math.PI * k / n; q.lineTo((a - 0.045) * Math.cos(t), (b - 0.045) * Math.sin(t)); } return q; })(), { depth: 0.05, bevelEnabled: false }), CH);
+    apron.matrixAutoUpdate = false; apron.matrix.set(0, -1, 0, G.wallX - 0.005, 0, 0, 1, G.h - G.glass - 0.05, 1, 0, 0, G.zc, 0, 0, 0, 1); g.add(tag(apron, 'semicircular glass-top console table (apron)'));
+    for (const t of [0.12, Math.PI / 2, Math.PI - 0.12]) { const lx = G.wallX - 0.005 - (b - 0.04) * Math.sin(t), lz = G.zc + (a - 0.04) * Math.cos(t);
+      g.add(tag(cyl(0.012, 0.012, G.h - G.glass - 0.05, CH, [lx, (G.h - G.glass - 0.05) / 2, lz], null, 10), 'semicircular glass-top console table (leg)')); } }
   // kitchen: counters (base cabinets + top), the sink, the stove
   for (const c of COUNTERS) { const cx = (c.x0 + c.x1) / 2, cz = (c.z0 + c.z1) / 2;
     g.add(tag(box(c.x1 - c.x0 - 0.04, COUNTER_H - 0.1 - 0.035, c.z1 - c.z0 - 0.04, { grey: 0.78, col: 0xd8d2c4 }, [cx, 0.1 + (COUNTER_H - 0.135) / 2, cz]), 'kitchen counters (base cabinets)'));
@@ -263,7 +289,20 @@ function yard(shot, lt) {
     deck(P.x0, P.x1, P.z0, P.z1, 'patio (deck)'); deck(STAIRS.x0, STAIRS.x1, STAIRS.landing.z0, STAIRS.landing.z1, 'stairs (landing)');
     const rise = (P.top - GRADE) / STAIRS.risers, run = 0.4;
     for (let k = 1; k < STAIRS.risers; k++) { const top = P.top - k * rise, z0 = STAIRS.z0 + (k - 1) * run;
-      g.add(tag(box(STAIRS.x1 - STAIRS.x0, top - GRADE, run, DK, [(STAIRS.x0 + STAIRS.x1) / 2, (top + GRADE) / 2, z0 + run / 2]), 'stairs')); } }
+      g.add(tag(box(STAIRS.x1 - STAIRS.x0, top - GRADE, run, DK, [(STAIRS.x0 + STAIRS.x1) / 2, (top + GRADE) / 2, z0 + run / 2]), 'stairs')); }
+    // the wood railing (Jade, 2026-11-25 late): round the deck and the landing, and both sides of the stairs, sloping with them.
+    // A run from a to b (world [x, yBase, z]), posts at the ends and <= 1.8 m, top and bottom rails, balusters.
+    const RW = { grey: 0.5, col: 0x8a6a48 };
+    const railRun = (a, b, lab) => { const A = V(...a), B = V(...b), d = B.clone().sub(A), L = Math.hypot(d.x, d.z), side = V(-d.z, 0, d.x).normalize(), nP = Math.max(1, Math.ceil(L / 1.8));
+      for (let k = 0; k <= nP; k++) { const p = A.clone().addScaledVector(d, k / nP); g.add(tag(box(RAIL.post, RAIL.h + 0.05, RAIL.post, RW, [p.x, p.y + (RAIL.h + 0.05) / 2, p.z]), lab + ' (post)')); }
+      for (const [yy, hh] of [[RAIL.h - RAIL.rail[1] / 2, RAIL.rail[1]], [0.1, 0.04]]) g.add(tag(slab(A.clone().add(V(0, yy, 0)), B.clone().add(V(0, yy, 0)), RAIL.rail[0], hh, side, RW), lab));
+      const nB = Math.floor(L / RAIL.gap); for (let k = 1; k < nB; k++) { const p = A.clone().addScaledVector(d, k / nB); g.add(tag(box(RAIL.baluster, RAIL.h - 0.14, RAIL.baluster, RW, [p.x, p.y + 0.12 + (RAIL.h - 0.14) / 2, p.z]), lab + ' (balusters)')); } };
+    const yT = P.top, sEnd = STAIRS.z0 + (STAIRS.risers - 1) * run;
+    railRun([P.x0, yT, P.z0 + 0.05], [P.x0, yT, P.z1], 'deck railing');
+    railRun([P.x0, yT, P.z1], [P.x1, yT, P.z1], 'deck railing');
+    railRun([P.x1, yT, P.z1], [P.x1, yT, STAIRS.z0], 'deck railing');
+    railRun([STAIRS.x1, yT, P.z0 + 0.05], [STAIRS.x1, yT, STAIRS.z0], 'deck railing');
+    railRun([STAIRS.x1, yT, STAIRS.z0], [STAIRS.x1, GRADE, sEnd + 0.3], 'stair railing (wood)'); }
   // strawberry bed (raised timber), mint barrel, hose, clothesline, fences
   { const S = STRAWBERRY, B = { grey: 0.45, col: 0x7a5a3a }, cx = (S.x0 + S.x1) / 2, cz = (S.z0 + S.z1) / 2, y = GRADE + S.h / 2;
     for (const z of [S.z0, S.z1]) g.add(tag(box(S.x1 - S.x0, S.h, 0.05, B, [cx, y, z]), 'strawberry bed'));
@@ -342,6 +381,10 @@ export function build(shot, { makeCam }) {
   const lt = { sun: SL.sun && sun.up, ceiling: SL.ceiling, poi: SL.poi, sky: SL.sky, ...(shot.light || {}) };
   const { g: houseG, panes } = house(shot); root.add(houseG); root.add(shelf()); root.add(expedit2()); root.add(furniture(lt)); root.add(yard(shot, lt));
   if (shot.path) root.add(pathRibbon());
+  // V3b (before the party): the bowl the childhood friend holds, with the first picked lemons in it
+  if (shot.bowl) { const [bx, by, bz] = shot.bowl, BW = { grey: 0.85, col: 0xd8d0c0 };
+    root.add(tag(mk(new THREE.SphereGeometry(0.16, 24, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), BW).translateX(bx).translateY(by + 0.1).translateZ(bz), 'bowl of picked lemons'));
+    for (const [dx, dz] of [[0.05, 0.02], [-0.06, -0.03], [0.0, -0.07]]) root.add(tag(ball(TREE.lemonR, { grey: 0.95, col: 0xf2d21c }, [bx + dx, by + 0.03, bz + dz], [1, 1.2, 1]), 'lemons (picked)')); }
   const extra = (t) => { if (t === 'poiL') return V(poiCentre(1)); if (t === 'poiR') return V(poiCentre(-1)); if (t.startsWith('mark:')) { const m = MARKS[t.slice(5)]; return V(m[0], 1.5, m[1]); } return null; };
   const { figs } = stage(shot.figs, null, extra);
   // extra face anchors for the push-ins (V3_rev_*): each eye (half the 6.2 cm interpupillary distance off the eyes' midpoint)
@@ -414,7 +457,7 @@ export function build(shot, { makeCam }) {
         segments: C.segments.map((g) => ({ ...g, from_px: px(...g.from), to_px: px(...g.to) })), shortest_walkable_path_px: C.shortest_walkable_path.map(([x, z]) => px(x, z)),
         obstacles: C.obstacles.map((o) => ({ ...o, corners_px_at_0_75m: cornersPx(o) })), people_near_the_route: people,
         her_now: figs.jade27 ? { floor_world: [+figs.jade27.userData.P.hip.x.toFixed(3), +figs.jade27.userData.P.hip.z.toFixed(3)], head_px: P(figs.jade27.userData.P.head.clone()), t_s: +(C.total_s / 2).toFixed(2), note: 'posed at the time midpoint of the walk' } : null }; }
-    if (shot.path) out.path = { note: 'her route, one line: shelf, the opening, round the dining table, the French doors, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]', world: PATH.map(([x, z, y]) => [x, y, z]), px: PATH.map(([x, z, y]) => P(V(x, y + 0.02, z))) };
+    if (shot.path) out.path = { note: 'her route, one line: shelf, the opening, round the dining table, the sliding door, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]', world: PATH.map(([x, z, y]) => [x, y, z]), px: PATH.map(([x, z, y]) => P(V(x, y + 0.02, z))) };
     return out;
   };
   // mask twins: white = what this shot's lights light, as declared in layout.js, everything else black.

@@ -65,3 +65,17 @@ The beam volume is also a mesh in the scene (`only: ['beam']`), invisible in the
   `beam_<id>__surf` = the lit surfaces only (no volume): use it where the camera looks through a broad volume.
   Cast shadows are not cut out of either (they are in the flat / lit renders).
   Looked at: PLAN, PLAN_B, WIDE, M5, M6 show the prism. Saturated: `M2`, `M3`, `M8`, `M8b` are white over the whole frame in both twins and `M4`, `M7`, `M9` nearly (close shots of things inside the beam); `M1`, `M4b` are white in `beam_` (the lens is inside or against the prism) and useful in `__surf`.
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- Verse 2a 2:06.3-2:16.1: M1 2:06.3-2:09.2, M2 -2:12.2, M3 -2:14.2, M4 (grab) 2:14.2-2:15.2, M4b 2:15.2-2:16.1.
+- Interlude (now one thinned interlude, 2:25.2-2:34.5): after kitchen90 K4 (2:25.2-2:27.6), M5 2:27.6-2:29.0 (walked away,
+  looking back), M6 2:29.0-2:30.0 (her eye-line; the count resumes from 8 on the artichoke plate, intercut), then the
+  romanesco plate (PLATE XVIII) 2:30.0-2:34.5 per the plan. **M7, M8, M8b** served v3's full interlude half (2:36-2:45),
+  which -2sm does not have; the plan gives their content to the plates, so they are kept as alternates, not in the cut
+  (renders kept; M9 reuses M7's camera). M7's intent no longer says "bass returns" (there is no bass there in -2sm).
+- M9 coda bar 2: 4:16.8-4:19.2.

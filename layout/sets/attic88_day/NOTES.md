@@ -55,3 +55,14 @@ window, stair door and v4 fixed furniture are imported from `../attic88/layout.j
   The mask `beam_AD_grab` is now white over the whole frame (the camera looks through the shaft at the sill).
 - **Times.** Tail and coda labels follow `analysis/v3/song_map.md`: `AD_fern` 3:53.0-4:05.0 (outro line 1 enters over it at 4:03.5); coda reuse of `AD_mote` = hit + bar 1 (4:24.5-4:28.4), of `AD_keys` = bar 3 (4:30.8-4:33.2). The split of the coda's bars between shots is this pass's reading of the plan's "one per bar" on the v3 grid (mote, count, keys, playground). Labels only.
 - `beam_AD_thumbs` is black over the whole frame, as before this pass (her face is above the shaft and the keyboard is out of frame).
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- AD_out 0:07-0:18.2 (whisper 1 at 0:08.8); AD_thumbs 0:18.2-0:19.0 (whisper 2); AD_piano 1:08.3-1:13.2 and AD_frost_look
+  1:13.2-1:17.2 (break bars 5 and 7 to the pre-chorus); AD_trace 1:36.0-1:37.4, AD_grab 1:37.4 (the band hit); AD_fern tail 2
+  3:43.0-3:55.0; coda: AD_mote hit + bar 1 4:14.3-4:16.8, AD_keys bar 3 4:19.2-4:21.7 (-2sm's coda has no sparse lead-in:
+  the groove starts on the hit).

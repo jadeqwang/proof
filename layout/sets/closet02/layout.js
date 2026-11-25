@@ -1,4 +1,4 @@
-// CLOSET, ABOUT 2002 ("Proof": chorus 2a, 3:33-3:43). Single source of truth (metres, y up, floor at y = 0).
+// CLOSET, ABOUT 2002 ("Proof": chorus 2a, 3:23.4-3:34.2, -2sm). Single source of truth (metres, y up, floor at y = 0).
 // A walk-in bedroom closet with the door left ajar. Two people sit cross-legged on the floor facing each other, all
 // four hands together between them; one shaft of sun from the bedroom comes through the door gap and lands on the hands.
 //   x: -0.80 = the end behind Jade ... +1.20 = the end behind first love (the cameras are at this end)

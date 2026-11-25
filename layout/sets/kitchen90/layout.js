@@ -4,8 +4,8 @@
 //   z: -2.1 = back wall (counter, sink, THE WINDOW) ... +2.1 = front wall
 // The "front" camera direction looks toward -z: the window wall.
 // TWO BEAMS, one per scene:
-//   night (2:21-2:36, the question / "it was correct"): the pendant lamp over the table, a cone straight down
-//   day   (4:05-4:24, outro): low sun through the window over the sink, a slanted shaft across the room
+//   night (2:22.2-2:27.6 -2sm, the question / "it was correct"): the pendant lamp over the table, a cone straight down
+//   day   (3:55.0-4:12.9 -2sm, outro): low sun through the window over the sink, a slanted shaft across the room
 import { HOUSE } from '../basement90/house.js';
 export { HOUSE };
 

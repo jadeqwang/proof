@@ -46,3 +46,14 @@ Render: `node layout/render.mjs --set kitchen90` -> `media/layout/kitchen90/` (s
   `beam_<id>__surf` = the lit surfaces only (no volume): use it where the camera looks through a broad volume.
   Cast shadows are not cut out of either (they are in the flat / lit renders).
   Looked at: both states are good in the plan, the wides, K1, K3, K5-K10. `K2_taps`, `K4_writes` are white over the whole frame (her view of the table top under the lamp). `K8_glass`: the mask is of the direct light only (no reflection in the cabinet glass).
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- The question K1-K3 2:22.2-2:25.2 (after the basement's cat beat; the interlude starts 2:25.2). K4_writes 2:25.2-2:27.6,
+  the interlude's first bar: -2sm has only the thinned interlude (2:25.2-2:34.5; v3's full half 2:36-2:45 is gone), and the
+  plan's merged interlude row follows the writing with the market walk-away (2:27.6-2:30.0) and the spiral plates to 2:34.5.
+- Outro: K5 3:55.0 (the cliff)-3:59.1, K6 -4:03.6, K7 -4:05.5, K8 -4:08.6, K9 -4:10.7, K10 -4:12.9 (pad swell).

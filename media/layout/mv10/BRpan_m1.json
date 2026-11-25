@@ -8,12 +8,12 @@
   "position": [
    3.595,
    1.45,
-   3.085
+   2.77
   ],
   "target": [
    3.595,
    1.41,
-   4.535
+   4.22
   ],
   "lens_mm": 35,
   "frame_width_mm": 36,
@@ -38,7 +38,7 @@
    0,
    3.595,
    1.45,
-   3.085,
+   2.77,
    1
   ],
   "viewMatrix": [
@@ -55,8 +55,8 @@
    -0.9996,
    0,
    3.595,
-   -1.5345,
-   3.0438,
+   -1.5258,
+   2.729,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "front_door": {
    "px": [
     [
-     1117.4,
-     846.6
+     1135.6,
+     888.2
     ],
     [
-     1672.8,
-     846.6
+     1755.6,
+     888.2
     ],
     [
-     1686.2,
-     -423.5
+     1772.4,
+     -531.7
     ],
     [
-     1120.3,
-     -423.5
+     1139.4,
+     -531.7
     ]
    ],
    "world": [
@@ -136,20 +136,20 @@
   "living_room_window_wnw": {
    "px": [
     [
-     -887.9,
-     858.8
+     -1102.6,
+     901.9
     ],
     [
-     161,
-     858.8
+     68.2,
+     901.9
     ],
     [
-     152.5,
-     145.4
+     57.6,
+     105.1
     ],
     [
-     -907.5,
-     145.4
+     -1127,
+     105.1
     ]
    ],
    "world": [
@@ -184,20 +184,20 @@
   "living_room_window_ssw": {
    "px": [
     [
-     67727.7,
-     -10896.7
+     16858.4,
+     -2222.5
     ],
     [
-     -3417.6,
-     1235
+     -4579.7,
+     1433.1
     ],
     [
-     -3512.1,
-     -210.5
+     -4731.9,
+     -401.2
     ],
     [
-     51455.8,
-     8381.5
+     15725.4,
+     2796.5
     ]
    ],
    "world": [
@@ -229,43 +229,43 @@
     false
    ]
   },
-  "french_doors_to_the_yard": {
+  "sliding_glass_door_to_the_deck": {
    "px": [
     [
-     1449,
-     328.7
+     1240.4,
+     335.8
     ],
     [
-     1785.1,
-     328.7
+     1722.2,
+     335.8
     ],
     [
-     1778.4,
-     884.9
+     1716.2,
+     867.4
     ],
     [
-     1445,
-     884.9
+     1238.2,
+     867.4
     ]
    ],
    "world": [
     [
-     1.82,
+     2.53,
      2.03,
      9.879
     ],
     [
-     0.6,
+     0.7,
      2.03,
      9.879
     ],
     [
-     0.6,
+     0.7,
      0,
      9.879
     ],
     [
-     1.82,
+     2.53,
      0,
      9.879
     ]
@@ -280,20 +280,20 @@
   "kitchen_window_over_the_sink_ese": {
    "px": [
     [
-     724.4,
-     323.1
+     734.9,
+     330.5
     ],
     [
-     1000,
-     323.1
+     998.2,
+     330.5
     ],
     [
-     999.8,
-     598.3
+     998,
+     593.5
     ],
     [
-     725.4,
-     598.3
+     735.8,
+     593.5
     ]
    ],
    "world": [
@@ -328,20 +328,20 @@
   "dining_window_ssw": {
    "px": [
     [
-     2224.4,
-     272.9
+     2152.2,
+     285.2
     ],
     [
-     2646.1,
-     201
+     2520,
+     222.5
     ],
     [
-     2633.1,
-     726.2
+     2508.9,
+     708.6
     ],
     [
-     2217.1,
-     667.1
+     2145.7,
+     657
     ]
    ],
    "world": [
@@ -376,20 +376,20 @@
   "tea_room_window_wnw": {
    "px": [
     [
-     3801.3,
-     858.8
+     4131.3,
+     901.9
     ],
     [
-     5035.3,
-     858.8
+     5508.7,
+     901.9
     ],
     [
-     5078.4,
-     145.4
+     5562.5,
+     105.1
     ],
     [
-     3831.4,
-     145.4
+     4168.9,
+     105.1
     ]
    ],
    "world": [
@@ -424,20 +424,20 @@
   "tea_room_window_nne": {
    "px": [
     [
-     9056.8,
-     1077.9
+     10664.4,
+     1195
     ],
     [
-     52017.6,
-     4205.5
+     -1143909.6,
+     -82856.9
     ],
     [
-     58020.6,
-     -3319.3
+     -339879,
+     23233.5
     ],
     [
-     9194.2,
-     -61
+     10862.4,
+     -172.3
     ]
    ],
    "world": [
@@ -464,28 +464,28 @@
    ],
    "behind_camera": [
     true,
-    true,
-    true,
+    false,
+    false,
     true
    ]
   },
   "bathroom_window_wnw": {
    "px": [
     [
-     2198.2,
-     797.4
+     2342.2,
+     833.3
     ],
     [
-     2630.5,
-     797.4
+     2824.8,
+     833.3
     ],
     [
-     2640.5,
-     395.3
+     2837.2,
+     384.4
     ],
     [
-     2205.6,
-     395.3
+     2351.4,
+     384.4
     ]
    ],
    "world": [
@@ -520,20 +520,20 @@
   "bedroom_window_ese": {
    "px": [
     [
-     -970.1,
-     323.1
+     -884.4,
+     330.5
     ],
     [
-     -419,
-     323.1
+     -357.8,
+     330.5
     ],
     [
-     -412.6,
-     639.4
+     -351.9,
+     632.7
     ],
     [
-     -961.1,
-     639.4
+     -876.1,
+     632.7
     ]
    ],
    "world": [
@@ -568,20 +568,20 @@
   "bedroom_window_nne": {
    "px": [
     [
-     -2796.7,
-     215
+     -2528.5,
+     234.5
     ],
     [
-     -1741.9,
-     291.8
+     -1600.3,
+     302.1
     ],
     [
-     -1726.9,
-     667.8
+     -1586.9,
+     658.5
     ],
     [
-     -2767.8,
-     737.3
+     -2503.7,
+     719.6
     ]
    ],
    "world": [
@@ -616,20 +616,20 @@
   "bath_2_window_ese": {
    "px": [
     [
-     297.6,
-     350.7
+     327,
+     356.9
     ],
     [
-     462.9,
-     350.7
+     484.9,
+     356.9
     ],
     [
-     464.2,
-     529.7
+     486.1,
+     527.9
     ],
     [
-     299.4,
-     529.7
+     328.6,
+     527.9
     ]
    ],
    "world": [
@@ -665,16 +665,16 @@
  "heads": {
   "A1": {
    "px": [
-    941.4,
-    692.4
+    938.1,
+    727.6
    ],
    "eyes": [
-    1030.6,
-    692.6
+    1042.9,
+    728.1
    ],
    "mouth": [
-    1024.4,
-    633.8
+    1035.7,
+    659.1
    ],
    "in_frame": false,
    "visible": false,
@@ -682,136 +682,136 @@
   },
   "A2": {
    "px": [
-    1604.7,
-    565.5
+    1722.6,
+    579.6
    ],
    "eyes": [
-    1517.4,
-    577.9
+    1618.6,
+    594.1
    ],
    "mouth": [
-    1514.5,
-    522.2
+    1615.3,
+    528.3
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 79
+   "facing_camera_deg": 76
   },
   "A3": {
    "px": [
-    1374.5,
-    865.8
+    1482.7,
+    964.4
    ],
    "eyes": [
-    1286.2,
-    836
+    1365.4,
+    920.3
    ],
    "mouth": [
-    1295.6,
-    757.5
+    1377.8,
+    823.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 131
+   "facing_camera_deg": 128
   },
   "S1": {
    "px": [
-    -650.5,
-    325.1
+    -885.7,
+    301.2
    ],
    "eyes": [
-    -588.5,
-    329.6
+    -816.4,
+    306.2
    ],
    "mouth": [
-    -595.3,
-    280.9
+    -825,
+    250.2
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 39
+   "facing_camera_deg": 36
   },
   "B2": {
    "px": [
-    -218.1,
-    299.5
+    -391.6,
+    271.6
    ],
    "eyes": [
-    -293.9,
-    309.4
+    -479.9,
+    282.8
    ],
    "mouth": [
-    -299.5,
-    262.7
+    -487,
+    229.1
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 112
+   "facing_camera_deg": 115
   },
   "B1": {
    "px": [
-    -8879.7,
-    1130.4
+    -21247.9,
+    1937.2
    ],
    "eyes": [
-    -7432,
-    1029
+    -15276.9,
+    1534.3
    ],
    "mouth": [
-    -7581.6,
-    848.4
+    -15818.9,
+    1195.5
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 70
+   "facing_camera_deg": 64
   },
   "E1": {
    "px": [
-    1450.3,
-    678.3
+    1515.4,
+    703.5
    ],
    "eyes": [
-    1431.8,
-    676.2
+    1491.9,
+    700.1
    ],
    "mouth": [
-    1432.4,
-    630.4
+    1492.6,
+    648.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 164
+   "facing_camera_deg": 162
   },
   "C1": {
    "px": [
-    986.6,
-    400.2
+    984.3,
+    407.7
    ],
    "eyes": [
-    1002.5,
-    397.7
+    999,
+    405.3
    ],
    "mouth": [
-    1002.5,
-    432.4
+    999,
+    437.1
    ],
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 162,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "C2": {
    "px": [
-    1109,
-    360.4
+    1098.7,
+    369.3
    ],
    "eyes": [
-    1097.5,
-    357
+    1087.7,
+    366.3
    ],
    "mouth": [
-    1098.1,
-    388.5
+    1088.3,
+    395.6
    ],
    "in_frame": true,
    "visible": false,
@@ -820,70 +820,70 @@
   },
   "C3": {
    "px": [
-    800.7,
-    467.8
+    811.9,
+    469.3
    ],
    "eyes": [
-    815.9,
-    460.4
+    826.2,
+    462.4
    ],
    "mouth": [
-    816.7,
+    827,
     487.7
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 22,
+   "facing_camera_deg": 23,
    "blocked_by": "literature (beauty)"
   },
   "T1": {
    "px": [
-    1093.1,
-    469.5
+    1088.4,
+    459.7
    ],
    "eyes": [
-    1097.1,
-    480.9
+    1092.3,
+    470.8
    ],
    "mouth": [
-    1096.1,
-    492.1
+    1091.3,
+    481.5
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 141,
-   "blocked_by": "IKEA Expedit 5x5 (espresso)"
+   "facing_camera_deg": 140,
+   "blocked_by": "science-fiction paperbacks (shelved with truth)"
   },
   "G1": {
    "px": [
-    1397.7,
-    440.3
+    1381.4,
+    430.9
    ],
    "eyes": [
-    1412.2,
-    438.4
+    1395.1,
+    429.4
    ],
    "mouth": [
-    1411.7,
-    454.8
+    1394.4,
+    445.1
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 35,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "facing_camera_deg": 34,
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "H1": {
    "px": [
-    1030.1,
-    463.3
+    1027.5,
+    453.2
    ],
    "eyes": [
-    1052.5,
-    461.2
+    1049,
+    451.1
    ],
    "mouth": [
-    1052.4,
-    476
+    1049,
+    465.4
    ],
    "in_frame": true,
    "visible": false,
@@ -892,80 +892,150 @@
   },
   "W1": {
    "px": [
-    569.9,
-    542.5
+    280.6,
+    605.9
    ],
    "eyes": [
-    584.2,
-    542.2
+    289.8,
+    603.1
    ],
    "mouth": [
-    583.5,
-    551.5
+    289.7,
+    619.1
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 99,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "facing_camera_deg": 159,
+   "blocked_by": "IKEA Expedit 5x5 (espresso)"
   },
   "W2": {
    "px": [
-    644.3,
-    549.3
+    139.5,
+    630.6
    ],
    "eyes": [
-    653.8,
-    549.1
+    152.4,
+    627.5
    ],
    "mouth": [
-    653.4,
-    556.6
+    152.3,
+    642.1
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 54,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "facing_camera_deg": 148,
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
+  },
+  "W3": {
+   "px": [
+    -52.3,
+    622.8
+   ],
+   "eyes": [
+    -33.8,
+    619.8
+   ],
+   "mouth": [
+    -34,
+    635.1
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 136
+  },
+  "W4": {
+   "px": [
+    -339.6,
+    593.8
+   ],
+   "eyes": [
+    -312.7,
+    591.3
+   ],
+   "mouth": [
+    -313.2,
+    607.6
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 117
+  },
+  "D1": {
+   "px": [
+    1220.7,
+    471.2
+   ],
+   "eyes": [
+    1204.9,
+    471.6
+   ],
+   "mouth": [
+    1206,
+    483.2
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 118,
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
+  },
+  "D2": {
+   "px": [
+    1086.9,
+    446.5
+   ],
+   "eyes": [
+    1071.6,
+    447.7
+   ],
+   "mouth": [
+    1073.1,
+    460.1
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 126,
+   "blocked_by": "science-fiction paperbacks (shelved with truth)"
   },
   "jade27": {
    "px": [
-    200279.3,
-    -10737.4
+    12095.7,
+    -138.8
    ],
    "eyes": [
-    54527.7,
-    -2818
+    10486.9,
+    -100.2
    ],
    "mouth": [
-    54066.2,
-    -1046.6
+    10477.1,
+    213.7
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 31
+   "facing_camera_deg": 34
   },
   "firstLove27": {
    "px": [
-    4789.5,
-    121.1
+    3987.3,
+    198
    ],
    "eyes": [
-    5064.7,
-    87.5
+    4146.1,
+    177.2
    ],
    "mouth": [
-    5040.9,
-    204
+    4132.3,
+    267.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 43
+   "facing_camera_deg": 38
   }
  },
  "hands": {
   "A1.L": {
    "px": [
-    1038.9,
-    -27.3
+    1051.5,
+    -109.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -973,8 +1043,8 @@
   },
   "A1.R": {
    "px": [
-    1074.6,
-    315.3
+    1097.2,
+    281.1
    ],
    "shape": "grip",
    "in_frame": false,
@@ -982,8 +1052,8 @@
   },
   "A2.L": {
    "px": [
-    1654.2,
-    79.2
+    1798.7,
+    -5.9
    ],
    "shape": "relax",
    "in_frame": false,
@@ -991,8 +1061,8 @@
   },
   "A2.R": {
    "px": [
-    1470.2,
-    -113.3
+    1556,
+    -214.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1000,8 +1070,8 @@
   },
   "A3.L": {
    "px": [
-    1234,
-    363.4
+    1294.7,
+    335.7
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1009,8 +1079,8 @@
   },
   "A3.R": {
    "px": [
-    1686.9,
-    -253
+    1880.3,
+    -450.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1018,8 +1088,8 @@
   },
   "S1.L": {
    "px": [
-    -919.5,
-    -329.3
+    -1266.6,
+    -480.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1027,8 +1097,8 @@
   },
   "S1.R": {
    "px": [
-    -1124.7,
-    -329.3
+    -1509.7,
+    -480.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1036,8 +1106,8 @@
   },
   "B2.L": {
    "px": [
-    -351.5,
-    -335.4
+    -590,
+    -485.2
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1045,8 +1115,8 @@
   },
   "B2.R": {
    "px": [
-    -453,
-    -47
+    -692.4,
+    -137.7
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1054,8 +1124,8 @@
   },
   "B1.L": {
    "px": [
-    -8095.3,
-    -1372.2
+    -16545.2,
+    -3108.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1063,8 +1133,8 @@
   },
   "B1.R": {
    "px": [
-    -6508.8,
-    -69.4
+    -12697.4,
+    -531.6
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1072,8 +1142,8 @@
   },
   "E1.L": {
    "px": [
-    1347.5,
-    394.4
+    1394.4,
+    383.1
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1081,8 +1151,8 @@
   },
   "E1.R": {
    "px": [
-    1607.7,
-    60.8
+    1694,
+    3.7
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1090,8 +1160,8 @@
   },
   "C1.L": {
    "px": [
-    868,
-    856.4
+    875.8,
+    825.1
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1099,8 +1169,8 @@
   },
   "C1.R": {
    "px": [
-    1022.4,
-    611
+    1017.4,
+    601.2
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1108,8 +1178,8 @@
   },
   "C2.L": {
    "px": [
-    1180.3,
-    763.7
+    1164.5,
+    744
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1117,8 +1187,8 @@
   },
   "C2.R": {
    "px": [
-    946,
-    502
+    947,
+    501.1
    ],
    "shape": "palmUp",
    "in_frame": true,
@@ -1126,8 +1196,8 @@
   },
   "C3.L": {
    "px": [
-    916.7,
-    638.1
+    919.8,
+    627.4
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1135,8 +1205,8 @@
   },
   "C3.R": {
    "px": [
-    752.6,
-    825.8
+    767.8,
+    801.2
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1144,8 +1214,8 @@
   },
   "T1.L": {
    "px": [
-    1045,
-    646.1
+    1041.9,
+    629.7
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1153,8 +1223,8 @@
   },
   "T1.R": {
    "px": [
-    1124.5,
-    583.6
+    1119,
+    570.4
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1162,8 +1232,8 @@
   },
   "G1.L": {
    "px": [
-    1442.2,
-    645.8
+    1424,
+    628.6
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1171,8 +1241,8 @@
   },
   "G1.R": {
    "px": [
-    1410.4,
-    540.3
+    1392.7,
+    526.5
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1180,8 +1250,8 @@
   },
   "H1.L": {
    "px": [
-    1038.8,
-    649.4
+    1035.9,
+    632.8
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1189,8 +1259,8 @@
   },
   "H1.R": {
    "px": [
-    1030.2,
-    657.9
+    1027.5,
+    640.1
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1198,8 +1268,8 @@
   },
   "W1.L": {
    "px": [
-    567.2,
-    659.4
+    232.1,
+    811.7
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1207,8 +1277,8 @@
   },
   "W1.R": {
    "px": [
-    576.7,
-    664.7
+    336,
+    812
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1216,8 +1286,8 @@
   },
   "W2.L": {
    "px": [
-    660.8,
-    644.5
+    99.8,
+    817.4
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1225,17 +1295,89 @@
   },
   "W2.R": {
    "px": [
-    660.6,
-    597.5
+    193.6,
+    715.7
    ],
    "shape": "grip",
    "in_frame": true,
    "visible": false
   },
+  "W3.L": {
+   "px": [
+    -87.4,
+    819.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W3.R": {
+   "px": [
+    -4.3,
+    824.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W4.L": {
+   "px": [
+    -290.6,
+    687.4
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "W4.R": {
+   "px": [
+    -301.5,
+    808.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D1.L": {
+   "px": [
+    1200.4,
+    623.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "D1.R": {
+   "px": [
+    1191.9,
+    542.4
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  },
+  "D2.L": {
+   "px": [
+    1061.3,
+    610.2
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "D2.R": {
+   "px": [
+    1110.8,
+    606.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
   "jade27.L": {
    "px": [
-    -26222.8,
-    -9614.5
+    19623.1,
+    7425
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1243,8 +1385,8 @@
   },
   "jade27.R": {
    "px": [
-    18038.3,
-    6208.4
+    8103.4,
+    2881
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1252,8 +1394,8 @@
   },
   "firstLove27.L": {
    "px": [
-    5556,
-    1634.6
+    4477.6,
+    1365.7
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1261,8 +1403,8 @@
   },
   "firstLove27.R": {
    "px": [
-    4024.2,
-    1325.2
+    3463.8,
+    1172.2
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1281,15 +1423,15 @@
     -11.7865
    ],
    "px": [
-    -1801.6,
-    2014.2
+    -1860,
+    2046.5
    ],
    "in_front": false,
    "travel_dir_px": [
-    -0.998,
-    0.063
+    -0.988,
+    0.155
    ],
-   "toward_camera": 0.746,
+   "toward_camera": 0.653,
    "aim_world": [
     3,
     0.8,
@@ -1307,15 +1449,15 @@
     2.55
    ],
    "px": [
-    -2520.6,
-    3587.2
+    -6983.7,
+    7560.7
    ],
    "in_front": false,
    "travel_dir_px": [
-    -0.998,
-    0.07
+    -0.927,
+    0.374
    ],
-   "toward_camera": -0.658
+   "toward_camera": -0.712
   },
   {
    "name": "ceiling2",
@@ -1328,15 +1470,15 @@
     7.65
    ],
    "px": [
-    2001.5,
-    459.8
+    1934.3,
+    461.7
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.998,
-    0.056
+    0.998,
+    -0.059
    ],
-   "toward_camera": 0.133
+   "toward_camera": 0.286
   },
   {
    "name": "ceiling3",
@@ -1349,15 +1491,15 @@
     7.45
    ],
    "px": [
-    1065.4,
-    88.1
+    1058.3,
+    115.2
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.999,
-    0.054
+    1,
+    -0.023
    ],
-   "toward_camera": -0.346
+   "toward_camera": -0.198
   },
   {
    "name": "poi",
@@ -1365,20 +1507,20 @@
    "on": false,
    "color": "#ff7a20",
    "world": [
-    4,
-    0.55,
-    17.3
+    6.3,
+    0.45,
+    15.6
    ],
    "px": [
-    906.9,
-    606.6
+    567.1,
+    633.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.998,
-    0.057
+    0.998,
+    -0.067
    ],
-   "toward_camera": -0.158
+   "toward_camera": -0.194
   }
  ],
  "warnings": [],
@@ -1386,7 +1528,7 @@
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "room",
- "time": "2:42.0",
+ "time": "2:43.2",
  "section": "Bridge",
  "scene": {
   "date": "2010-10-02",
@@ -1425,9 +1567,9 @@
    },
    {
     "name": "living room window (WNW)",
-    "frac": 0.89,
+    "frac": 0.91,
     "by": {
-     "357 View St": 4
+     "357 View St": 3
     }
    },
    {
@@ -1438,7 +1580,7 @@
     }
    },
    {
-    "name": "French doors to the yard",
+    "name": "sliding glass door to the deck",
     "frac": 0,
     "by": "the sun is behind this wall"
    },
@@ -1449,9 +1591,9 @@
    },
    {
     "name": "dining window (SSW)",
-    "frac": 0.63,
+    "frac": 0.71,
     "by": {
-     "357 View St": 13
+     "357 View St": 10
     }
    },
    {
@@ -1511,9 +1653,9 @@
       },
       {
        "name": "living room window (WNW)",
-       "frac": 0.89,
+       "frac": 0.91,
        "by": {
-        "357 View St": 4
+        "357 View St": 3
        }
       },
       {
@@ -1524,7 +1666,7 @@
        }
       },
       {
-       "name": "French doors to the yard",
+       "name": "sliding glass door to the deck",
        "frac": 0,
        "by": "the sun is behind this wall"
       },
@@ -1535,9 +1677,9 @@
       },
       {
        "name": "dining window (SSW)",
-       "frac": 0.63,
+       "frac": 0.71,
        "by": {
-        "357 View St": 13
+        "357 View St": 10
        }
       },
       {
@@ -1600,7 +1742,7 @@
        }
       },
       {
-       "name": "French doors to the yard",
+       "name": "sliding glass door to the deck",
        "frac": 0,
        "by": "the sun is behind this wall"
       },
@@ -1659,9 +1801,9 @@
   },
   "poi_ground": {
    "centre": [
-    4,
-    -0.6,
-    17.3
+    6.3,
+    -0.7,
+    15.6
    ],
    "radius": 4.5,
    "note": "falls off with distance; the light source of the silence and of the yard after sunset"
@@ -1674,9 +1816,9 @@
   "model": "IKEA Expedit 5x5 (2010), espresso / black-brown",
   "world": {
    "centre_X": 3.595,
-   "front_Z": 4.535,
-   "spines_Z": 4.55,
-   "back_Z": 4.925,
+   "front_Z": 4.220000000000001,
+   "spines_Z": 4.235,
+   "back_Z": 4.61,
    "faces": "WNW (-Z)"
   },
   "outer_m": [
@@ -2521,33 +2663,33 @@
   },
   "printer_on_top": true,
   "px": [
-   2396.5,
-   1030.4
+   2195,
+   954.4
   ]
  },
  "lemon_tree_px": [
-  117.4,
-  324.5
+  133.9,
+  339.2
  ],
  "poi_px": [
-  906.9,
-  606.6
+  567.1,
+  633.8
  ],
  "opening_px": [
-  3445.1,
-  924.7
+  3096,
+  863.4
  ],
  "timing": {
   "timeline": "media/karaoke_v2/lyrics_timed.json (-2sm render), full-mix time (*_full); instrumental-track time = s/e",
-  "start_s": 161.96,
+  "start_s": 163.19,
   "end_s": 164.41,
   "lyric": "truth by reference",
   "v3_song_map_s": [
    171.8,
    174.4
   ],
-  "move": "lateral track along the Expedit face, level, same lens (35 mm) and height (1.45 m), 1.45 m from the frame front; camera X 4.058 (beauty half centre) -> 3.595 (seam) -> 2.889 (cube 4,4)",
-  "her": "NOT in frame (our choice): the track is her eye-line; she stands back at the couch end"
+  "move": "lateral track along the Expedit face, level, same lens (35 mm) and height (1.45 m), 1.45 m from the frame front; camera X 4.058 (beauty half centre) -> 3.595 (seam) -> 2.889 (cube 4,4) -> back to 3.595 (the seam: end frame, held)",
+  "her": "NOT in frame (Jade, 2026-11-25 late: shelf only)"
  },
  "first_love_costume": {
   "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
@@ -2780,7 +2922,7 @@
    },
    "headTurn": 0
   },
-  "jade27": {
+  "W3": {
    "legs": {
     "L": {
      "reach": 1
@@ -2794,6 +2936,66 @@
     "R": 0.97
    },
    "headTurn": 0
+  },
+  "W4": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.47,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "D1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.5
+   },
+   "headTurn": 0
+  },
+  "D2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 5
   },
   "firstLove27": {
    "legs": {

@@ -37,7 +37,17 @@ First love is a real person: he is never named anywhere in this set, and no came
   beyond it a landing, a half flight up to the bedrooms and a half flight down to the rec room, a half wall between
   them); a cased opening to the dining room in the NORTH wall (x 0.5-2.3); the front door is in the stair hall (not
   modelled). Kitchen behind the dining room (not modelled).
-- **Ceiling** flat at 2.44 m (8 ft). Many 1950s split-levels have a vaulted living-room ceiling: ask Jade.
+- **Ceiling: VAULTED (Jade, 2026-11-25).** A cathedral ceiling: two plain drywall planes rising from the east and west
+  walls (plate 2.44 m = 8 ft) to a ridge running NORTH-SOUTH along the room's centre line (x 2.45), pitch 4 in 12, peak
+  3.26 m; the south (picture-window) wall and the north (dining) wall are gable ends (`VAULT`, `ceilY` in layout.js;
+  `vault()` / `gableWall()` in build.js). **GUESS, flag to Jade: the ridge direction.** The footprint puts the
+  main-level wing in a strip about 5.5 m wide E-W running the house's full 11.6 m N-S depth (living room at the front,
+  dining and kitchen behind), so its roof most plausibly spans the short E-W width with the ridge front-to-back and a
+  gable facing the street over the picture window. The alternative (ridge E-W, parallel to the street) would make the
+  side walls the gables and leave the front wall at 8 ft. Pitch and peak are also guesses (a low 1950s roof). The vault
+  is assumed to continue over the dining room beyond (not modelled; the north gable wall stands above the cased
+  opening). No exposed ridge beam, no gable/clerestory windows above the picture window (they would change the light
+  Jade approved).
 - **Furniture** (invented): small coffee table in front of the couch's east end, armchair on the east wall with a side
   table and lamp (off), TV on a low stand on the north wall facing the couch, rug, framed print over the couch, drapes
   pulled back at the window's two ends. The floral pattern is not modelled (pale dusty rose).
@@ -90,10 +100,25 @@ check bar, four registration squares, `registration.json` (made by `make_sheets.
 
 ## Open
 - His ear shows in MG1 (back three-quarter, 144 deg). Moving the camera further behind him hides the seal behind his arm.
-- Which end of the couch meets the window, stair-wing side, ceiling (flat or vaulted), date and hour: all guesses above.
+- Which end of the couch meets the window and the stair-wing side: guesses above. Ridge direction and pitch of the vault: guess (see Assumptions). Jade 2026-11-25: room, light, date (about right) and his ear in MG1 are fine.
 - Small shadow-line acne on the couch's east arm in MG1 line mode.
 - The folded sweatshirt is a plain slab with a hem band; folds and sleeves are for the painter.
 
 ## History
+- 2026-11-25 late: ceiling rebuilt as a vault (ridge N-S, 4/12, peak 3.26 m), from Jade's decision-page answer. Sun
+  check: the light enters below the window head (2.05 m) and only falls, so it never reaches the vault; the beam
+  sidecars are unchanged, MG1 and MG2 lit/line renders are pixel-identical to before (the ceiling is out of frame), the
+  in-sun margins are unchanged (her eyes 0.47 m, the seal 0.66). MG_wide shows the south gable rising over the window.
+  REF_plan's near plane cuts at 2.38 m, below the vault, as before.
 - 2026-11-25 first pass: an invented 4.0 x 5.0 m room, couch on the back wall under two windows, side window sun.
   Superseded the same day by the refit to the real house (this file).
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- `FILM` (layout.js): t 159.62-161.96 ("Beauty on this side" to "truth", where the plan cuts to the Expedit pan), line
+  159.62-164.36, time 2:39.6-2:42.0; MG2 insert header 2:40.2. NB mv10's `BRpan_a` also starts at 159.62 on "Beauty on this
+  side"; the plan starts the pan on "truth by reference" (2:42.0): one of the two wants settling.

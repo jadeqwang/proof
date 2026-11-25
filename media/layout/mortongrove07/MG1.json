@@ -313,25 +313,25 @@
  ],
  "warnings": [],
  "intent": "Over first love’s right shoulder, from behind and above it: the back of his head and his dark brown, fairly straight hair soft in the foreground at frame left (never his face). She sits forward on the floral couch against the front wall, looking up at him; the picture window beside her at frame right, its low afternoon sun across her face and hands. Between them the folded white sweatshirt, the dark-blue IAS seal (Truth, Beauty) on top; his hands on its near edges, hers closing on its far edges. Her face and the sweatshirt in focus. Then cut to the Expedit pan on \"truth by reference\".",
- "time": "2:49.4-2:51.8",
- "plan_time": "2:49.4-2:51.8",
+ "time": "2:39.6-2:42.0",
+ "plan_time": "2:39.6-2:42.0",
  "section": "Bridge",
  "position": "outside",
  "film": {
   "t": [
-   169.4,
-   171.8
+   159.62,
+   161.96
   ],
   "line": [
-   169.4,
-   173.5
+   159.62,
+   164.36
   ],
-  "time": "2:49.4-2:51.8",
+  "time": "2:39.6-2:42.0",
   "section": "Bridge",
   "lyric": "Beauty on this side, truth by reference",
   "sung_here": "Beauty on this side",
-  "next": "cut to the pan across the Expedit (mv10 bridge) on \"truth by reference\" (171.8 s); the line itself ends 173.5 s",
-  "map": "analysis/v3/song_map.md (bridge row 169.4-173.5)",
+  "next": "cut to the pan across the Expedit (mv10 bridge) on \"truth by reference\" (161.96 s, \"truth\" sung); the line itself ends 164.36 s",
+  "map": "analysis/m2sm/song_map.md (-2sm master, bridge line 159.62-164.36; was v3 169.4-173.5, retimed 2026-11-25)",
   "year": 2007,
   "place": "Morton Grove, IL: the house she commuted from to Northwestern (Evanston); he had transferred from Harvard to Princeton"
  },
@@ -353,12 +353,20 @@
    "y1": 4.5,
    "note": "GUESS: SE corner of the footprint (house frame: origin SW corner, x east, y north)"
   },
+  "ceiling": {
+   "kind": "vaulted (cathedral), Jade",
+   "ridge": "north-south at x 2.45 (GUESS: the main-level wing spans E-W, gable to the street)",
+   "plate_m": 2.44,
+   "peak_m": 3.257,
+   "pitch": "4 in 12"
+  },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
   "living_room_m": [
    4.9,
    4.3,
    2.44
   ],
+  "living_room_peak_m": 3.257,
   "couch": "against the FRONT (south) wall, its west end just short of the picture window (Jade); which end is nearer the window is a GUESS (the west end: the afternoon sun then reaches her)"
  },
  "sweatshirt": {

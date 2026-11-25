@@ -47,3 +47,13 @@ Numbers live in `layout.js`.
   `beam_<id>__surf` = the lit surfaces only (no volume): use it where the camera looks through a broad volume.
   Cast shadows are not cut out of either (they are in the flat / lit renders).
   Looked at: REF_plan, REF_wide, PC2, PC5, X_sw are good. Saturated: `H1`, `H1b`, `BO1`, `BO2`, `PC3` are white over the whole frame in both twins (her view of the page: all of it is under the tube); `PC1` / `PC4` are white in `beam_` (the lens looks through the wedge) and useful in `__surf` (her and the table lit, the wall behind black).
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- (This set was on v2 times, which match v3 to ~0.1 s here.) H1 19.00-25.63 (groove 19.0), H1b -29.74 (verse 1); PC1 77.24
+  (pre-chorus start; sung 78.28)-81.50, PC2 -83.27, PC3 (gap) -87.37, PC4 -90.78, PC5 -92.68 (band out), BO1 92.68-94.68
+  ("looks"), BO2 94.68-96.00 ("How do you feel?").

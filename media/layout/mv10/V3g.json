@@ -229,43 +229,43 @@
     false
    ]
   },
-  "french_doors_to_the_yard": {
+  "sliding_glass_door_to_the_deck": {
    "px": [
     [
-     -925.3,
-     623.5
+     -1210.2,
+     744.6
     ],
     [
-     -724.5,
-     538.1
+     -735.2,
+     542.7
     ],
     [
-     -523.6,
-     1471.7
+     -527.3,
+     1501.5
     ],
     [
-     -590.4,
-     1998.3
+     -671.4,
+     2636
     ]
    ],
    "world": [
     [
-     1.82,
+     2.53,
      2.03,
      9.879
     ],
     [
-     0.6,
+     0.7,
      2.03,
      9.879
     ],
     [
-     0.6,
+     0.7,
      0,
      9.879
     ],
     [
-     1.82,
+     2.53,
      0,
      9.879
     ]
@@ -679,7 +679,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 78,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "A2": {
    "px": [
@@ -697,7 +697,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 98,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "A3": {
    "px": [
@@ -715,7 +715,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 151,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "S1": {
    "px": [
@@ -733,7 +733,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 62,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "B2": {
    "px": [
@@ -751,7 +751,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 94,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "B1": {
    "px": [
@@ -786,7 +786,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 178,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "C1": {
    "px": [
@@ -843,33 +843,33 @@
   },
   "T1": {
    "px": [
-    4362.3,
-    -673
+    4332.7,
+    -594.4
    ],
    "eyes": [
-    4282.9,
-    -688.5
+    4255.4,
+    -613.7
    ],
    "mouth": [
-    4380.6,
-    -805.4
+    4351.1,
+    -726.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 156
+   "facing_camera_deg": 155
   },
   "G1": {
    "px": [
-    -5292.7,
-    1757.1
+    -5340.6,
+    1662.4
    ],
    "eyes": [
-    -4238.5,
-    1529.5
+    -4268.3,
+    1451.7
    ],
    "mouth": [
-    -4184.8,
-    1636.5
+    -4226.1,
+    1562.7
    ],
    "in_frame": false,
    "visible": false,
@@ -877,71 +877,139 @@
   },
   "H1": {
    "px": [
-    4383.3,
-    -938.6
+    4345.1,
+    -834.7
    ],
    "eyes": [
-    4961.2,
-    -1092.2
+    4910.8,
+    -973.2
    ],
    "mouth": [
-    5027,
-    -1249.5
+    4975,
+    -1126.5
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 112
+   "facing_camera_deg": 113
   },
   "W1": {
    "px": [
-    1414.5,
-    189.2
+    409.4,
+    -372.1
    ],
    "eyes": [
-    1432.6,
-    188.3
+    466.8,
+    -338.7
    ],
    "mouth": [
-    1432.2,
-    177
+    462.9,
+    -379.8
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 95
+   "facing_camera_deg": 113
   },
   "W2": {
    "px": [
-    1522.2,
-    210.2
+    339,
+    -262.1
    ],
    "eyes": [
-    1533.7,
-    208.6
+    385.7,
+    -242.1
    ],
    "mouth": [
-    1533.8,
-    200
+    382.8,
+    -272.1
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 53
+   "facing_camera_deg": 104
+  },
+  "W3": {
+   "px": [
+    136.4,
+    -172.8
+   ],
+   "eyes": [
+    184.7,
+    -158.6
+   ],
+   "mouth": [
+    181.2,
+    -186
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 91
+  },
+  "W4": {
+   "px": [
+    62.8,
+    1.1
+   ],
+   "eyes": [
+    102,
+    7.3
+   ],
+   "mouth": [
+    98.6,
+    -14.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 76
+  },
+  "D1": {
+   "px": [
+    4696.8,
+    -388.8
+   ],
+   "eyes": [
+    4378,
+    -328.6
+   ],
+   "mouth": [
+    4425.5,
+    -397.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 93
+  },
+  "D2": {
+   "px": [
+    3142.1,
+    -46.5
+   ],
+   "eyes": [
+    2997.9,
+    -23.2
+   ],
+   "mouth": [
+    3022.3,
+    -72.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 108
   },
   "poi": {
    "px": [
-    1927,
-    159.7
+    1387.1,
+    144.1
    ],
    "eyes": [
-    1901.9,
-    164.1
+    1385.9,
+    141.5
    ],
    "mouth": [
-    1903.6,
-    151.3
+    1386.6,
+    128.6
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 94
+   "facing_camera_deg": 13
   },
   "jade27": {
    "px": [
@@ -962,21 +1030,21 @@
   },
   "firstLove27": {
    "px": [
-    1517.6,
-    528.6
+    1532,
+    522.3
    ],
    "eyes": [
-    1493.2,
-    526.5
+    1508.7,
+    520.3
    ],
    "mouth": [
-    1492.9,
-    540.8
+    1508.3,
+    533.9
    ],
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 81,
-   "blocked_by": "partition wall (living room | kitchen)"
+   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   }
  },
  "hands": {
@@ -1086,7 +1154,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "E1.L": {
    "px": [
@@ -1162,8 +1230,8 @@
   },
   "T1.L": {
    "px": [
-    4501.7,
-    -2199.8
+    4465.1,
+    -2090.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1171,8 +1239,8 @@
   },
   "T1.R": {
    "px": [
-    4340.9,
-    -1171.9
+    4315.7,
+    -1100.8
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1180,8 +1248,8 @@
   },
   "G1.L": {
    "px": [
-    -3863.3,
-    2709.4
+    -3909.7,
+    2655
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1189,8 +1257,8 @@
   },
   "G1.R": {
    "px": [
-    -2989.8,
-    1891.6
+    -3025.1,
+    1833.9
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1198,8 +1266,8 @@
   },
   "H1.L": {
    "px": [
-    4569,
-    -2345.2
+    4529.9,
+    -2229.1
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1207,8 +1275,8 @@
   },
   "H1.R": {
    "px": [
-    6776.6,
-    -4771.5
+    6658.8,
+    -4505.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1216,8 +1284,8 @@
   },
   "W1.L": {
    "px": [
-    1420.8,
-    51.5
+    330.8,
+    -842.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1225,8 +1293,8 @@
   },
   "W1.R": {
    "px": [
-    1428.1,
-    28.6
+    443,
+    -1051
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1234,8 +1302,8 @@
   },
   "W2.L": {
    "px": [
-    1550.6,
-    99.9
+    296.9,
+    -602.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1243,17 +1311,89 @@
   },
   "W2.R": {
    "px": [
-    1545.6,
-    148.1
+    454.8,
+    -425.1
    ],
    "shape": "grip",
    "in_frame": false,
    "visible": false
   },
+  "W3.L": {
+   "px": [
+    113.9,
+    -484
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W3.R": {
+   "px": [
+    104,
+    -607.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "W4.L": {
+   "px": [
+    146.9,
+    -108
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "W4.R": {
+   "px": [
+    8.3,
+    -333.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D1.L": {
+   "px": [
+    5104.4,
+    -1482.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D1.R": {
+   "px": [
+    4151.7,
+    -602
+   ],
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
+  },
+  "D2.L": {
+   "px": [
+    3220.2,
+    -767.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "D2.R": {
+   "px": [
+    3412.9,
+    -705
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
   "poi.L": {
    "px": [
-    1877.5,
-    52.2
+    1480.1,
+    23.6
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1261,8 +1401,8 @@
   },
   "poi.R": {
    "px": [
-    1905.2,
-    83.3
+    1306,
+    46.1
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1288,8 +1428,8 @@
   },
   "firstLove27.L": {
    "px": [
-    1457.3,
-    706
+    1473.9,
+    691.8
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1297,8 +1437,8 @@
   },
   "firstLove27.R": {
    "px": [
-    1555.3,
-    710
+    1567.5,
+    695.5
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1401,28 +1541,28 @@
    "on": true,
    "color": "#ff7a20",
    "world": [
-    4,
-    0.55,
-    17.3
+    6.3,
+    0.45,
+    15.6
    ],
    "px": [
-    1941.7,
-    59.5
+    1392.3,
+    46.2
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.817,
-    -0.576
+    0.53,
+    -0.848
    ],
-   "toward_camera": -0.825
+   "toward_camera": -0.906
   }
  ],
  "warnings": [],
- "intent": "High from the kitchen’s back corner (over the counter U), looking back through the dining area to the opening and the living room beyond: guests in their groups, the dining table and benches, the open French doors at left. She is mid-stride on the route (drawn on the floor); faint gold schematics and vectors go over this frame.",
+ "intent": "High from the kitchen’s back corner (over the counter U), looking back through the dining area to the opening and the living room beyond: guests in their groups, the dining table and benches, the open sliding door at left. She is mid-stride on the route (drawn on the floor); faint gold schematics and vectors go over this frame.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "room",
- "time": "3:24-3:27",
+ "time": "alternate to V3_rcv_obl (3:14.6-3:18.7), not in the -2sm cut as planned",
  "section": "Verse 3",
  "scene": {
   "date": "2010-10-02",
@@ -1476,7 +1616,7 @@
     }
    },
    {
-    "name": "French doors to the yard",
+    "name": "sliding glass door to the deck",
     "frac": 0,
     "by": "the sun is behind this wall"
    },
@@ -1530,7 +1670,7 @@
  },
  "sun_tests": {
   "her_head": "shaded by exterior wall (SSW)",
-  "first_love_head": "shaded by exterior wall (WNW)",
+  "first_love_head": "shaded by 357 View St",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -1553,9 +1693,9 @@
       },
       {
        "name": "living room window (WNW)",
-       "frac": 0.89,
+       "frac": 0.91,
        "by": {
-        "357 View St": 4
+        "357 View St": 3
        }
       },
       {
@@ -1566,7 +1706,7 @@
        }
       },
       {
-       "name": "French doors to the yard",
+       "name": "sliding glass door to the deck",
        "frac": 0,
        "by": "the sun is behind this wall"
       },
@@ -1577,9 +1717,9 @@
       },
       {
        "name": "dining window (SSW)",
-       "frac": 0.63,
+       "frac": 0.71,
        "by": {
-        "357 View St": 13
+        "357 View St": 10
        }
       },
       {
@@ -1642,7 +1782,7 @@
        }
       },
       {
-       "name": "French doors to the yard",
+       "name": "sliding glass door to the deck",
        "frac": 0,
        "by": "the sun is behind this wall"
       },
@@ -1701,9 +1841,9 @@
   },
   "poi_ground": {
    "centre": [
-    4,
-    -0.6,
-    17.3
+    6.3,
+    -0.7,
+    15.6
    ],
    "radius": 4.5,
    "note": "falls off with distance; the light source of the silence and of the yard after sunset"
@@ -1716,9 +1856,9 @@
   "model": "IKEA Expedit 5x5 (2010), espresso / black-brown",
   "world": {
    "centre_X": 3.595,
-   "front_Z": 4.535,
-   "spines_Z": 4.55,
-   "back_Z": 4.925,
+   "front_Z": 4.220000000000001,
+   "spines_Z": 4.235,
+   "back_Z": 4.61,
    "faces": "WNW (-Z)"
   },
   "outer_m": [
@@ -1730,12 +1870,12 @@
   "seam_world_X": 3.595,
   "seam_px": [
    [
-    1537.1,
-    935
+    1551.5,
+    907.7
    ],
    [
-    1570.4,
-    506.4
+    1583.8,
+    500.4
    ]
   ],
   "beauty_half": "LEFT as you face it = NNE (art and literature)",
@@ -1749,20 +1889,20 @@
     "half": "beauty",
     "px": [
      [
-      1805.8,
-      910.9
+      1806.7,
+      881.1
      ],
      [
-      1696.9,
-      885.2
+      1703.6,
+      858.3
      ],
      [
-      1688.9,
-      965.5
+      1696.1,
+      934.5
      ],
      [
-      1796.3,
-      995
+      1797.7,
+      960.8
      ]
     ],
     "contents": [
@@ -1779,20 +1919,20 @@
     "half": "beauty",
     "px": [
      [
-      1692,
-      884.1
+      1699,
+      857.2
      ],
      [
-      1593.7,
-      860.9
+      1605.6,
+      836.5
      ],
      [
-      1587.3,
-      937.5
+      1599.4,
+      909.4
      ],
      [
-      1684.1,
-      964.2
+      1691.5,
+      933.3
      ]
     ],
     "contents": [
@@ -1808,20 +1948,20 @@
     "half": "split",
     "px": [
      [
-      1589.3,
-      859.9
+      1601.4,
+      835.6
      ],
      [
-      1500.3,
-      838.9
+      1516.4,
+      816.7
      ],
      [
-      1495.1,
-      912.2
+      1511.2,
+      886.6
      ],
      [
-      1582.9,
-      936.3
+      1595.2,
+      908.3
      ]
     ],
     "contents": {
@@ -1846,20 +1986,20 @@
     "half": "truth",
     "px": [
      [
-      1496.3,
-      838
+      1512.5,
+      815.9
      ],
      [
-      1415.4,
-      818.9
+      1434.8,
+      798.6
      ],
      [
-      1411.1,
-      889.1
+      1430.5,
+      865.7
      ],
      [
-      1491.1,
-      911.1
+      1507.4,
+      885.6
      ]
     ],
     "contents": [
@@ -1875,20 +2015,20 @@
     "half": "truth",
     "px": [
      [
-      1411.7,
-      818.1
+      1431.2,
+      797.8
      ],
      [
-      1337.7,
-      800.6
+      1359.9,
+      782
      ],
      [
-      1334.3,
-      868
+      1356.5,
+      846.4
      ],
      [
-      1407.5,
-      888.1
+      1427.1,
+      864.7
      ]
     ],
     "contents": [
@@ -1913,20 +2053,20 @@
     "half": "beauty",
     "px": [
      [
-      1816.1,
-      820.6
+      1816.4,
+      795.8
      ],
      [
-      1705.3,
-      799.2
+      1711.7,
+      776.8
      ],
      [
-      1697.2,
-      881.4
+      1704,
+      854.6
      ],
      [
-      1806.3,
-      906.8
+      1807.1,
+      877.3
      ]
     ],
     "contents": [
@@ -1941,20 +2081,20 @@
     "half": "beauty",
     "px": [
      [
-      1700.4,
-      798.3
+      1707,
+      775.9
      ],
      [
-      1600.7,
-      779
+      1612.3,
+      758.6
      ],
      [
-      1594.1,
-      857.3
+      1605.9,
+      833
      ],
      [
-      1692.3,
-      880.2
+      1699.4,
+      853.6
      ]
     ],
     "contents": [
@@ -1974,20 +2114,20 @@
     "half": "split",
     "px": [
      [
-      1596.2,
-      778.1
+      1608,
+      757.9
      ],
      [
-      1506,
-      760.7
+      1521.8,
+      742.2
      ],
      [
-      1500.6,
-      835.4
+      1516.6,
+      813.4
      ],
      [
-      1589.6,
-      856.2
+      1601.7,
+      832.1
      ]
     ],
     "contents": [
@@ -2002,20 +2142,20 @@
     "half": "truth",
     "px": [
      [
-      1501.9,
-      759.9
+      1517.9,
+      741.5
      ],
      [
-      1419.9,
-      744
+      1439.2,
+      727.1
      ],
      [
-      1415.6,
-      815.6
+      1435,
+      795.4
      ],
      [
-      1496.6,
-      834.5
+      1512.7,
+      812.5
      ]
     ],
     "contents": [
@@ -2042,20 +2182,20 @@
     "half": "truth",
     "px": [
      [
-      1416.2,
-      743.3
+      1435.7,
+      726.5
      ],
      [
-      1341.3,
-      728.8
+      1363.5,
+      713.3
      ],
      [
-      1337.9,
-      797.4
+      1360,
+      778.9
      ],
      [
-      1411.9,
-      814.7
+      1431.4,
+      794.6
      ]
     ],
     "contents": [
@@ -2071,20 +2211,20 @@
     "half": "beauty",
     "px": [
      [
-      1826.6,
-      728.2
+      1826.2,
+      708.5
      ],
      [
-      1714,
-      711.2
+      1720,
+      693.5
      ],
      [
-      1705.7,
-      795.3
+      1712.1,
+      773
      ],
      [
-      1816.6,
-      816.5
+      1816.8,
+      791.9
      ]
     ],
     "contents": [
@@ -2102,20 +2242,20 @@
     "half": "beauty",
     "px": [
      [
-      1708.9,
-      710.5
+      1715.2,
+      692.8
      ],
      [
-      1607.7,
-      695.2
+      1619.1,
+      679.1
      ],
      [
-      1601,
-      775.2
+      1612.6,
+      755.1
      ],
      [
-      1700.7,
-      794.3
+      1707.4,
+      772.2
      ]
     ],
     "contents": [
@@ -2130,20 +2270,20 @@
     "half": "split",
     "px": [
      [
-      1603.2,
-      694.5
+      1614.8,
+      678.5
      ],
      [
-      1511.7,
-      680.7
+      1527.5,
+      666.1
      ],
      [
-      1506.2,
-      757.1
+      1522.1,
+      738.8
      ],
      [
-      1596.5,
-      774.4
+      1608.3,
+      754.3
      ]
     ],
     "contents": {
@@ -2167,20 +2307,20 @@
     "half": "truth",
     "px": [
      [
-      1507.6,
-      680.1
+      1523.5,
+      665.6
      ],
      [
-      1424.5,
-      667.6
+      1443.8,
+      654.3
      ],
      [
-      1420.1,
-      740.6
+      1439.4,
+      723.9
      ],
      [
-      1502.2,
-      756.3
+      1518.2,
+      738.1
      ]
     ],
     "contents": [
@@ -2197,20 +2337,20 @@
     "half": "truth",
     "px": [
      [
-      1420.7,
-      667
+      1440.2,
+      653.8
      ],
      [
-      1345,
-      655.6
+      1367.2,
+      643.4
      ],
      [
-      1341.5,
-      725.5
+      1363.6,
+      710.2
      ],
      [
-      1416.4,
-      739.9
+      1435.9,
+      723.2
      ]
     ],
     "contents": [
@@ -2233,20 +2373,20 @@
     "half": "beauty",
     "px": [
      [
-      1837.3,
-      633.4
+      1836.3,
+      619.2
      ],
      [
-      1722.9,
-      621.1
+      1728.4,
+      608.3
      ],
      [
-      1714.4,
-      707.2
+      1720.4,
+      689.6
      ],
      [
-      1827.1,
-      723.9
+      1826.7,
+      704.5
      ]
     ],
     "contents": [
@@ -2262,20 +2402,20 @@
     "half": "beauty",
     "px": [
      [
-      1717.7,
-      620.6
+      1723.6,
+      607.8
      ],
      [
-      1615,
-      609.6
+      1626.1,
+      597.9
      ],
      [
-      1608.1,
-      691.4
+      1619.4,
+      675.5
      ],
      [
-      1709.3,
-      706.4
+      1715.6,
+      689
      ]
     ],
     "contents": [
@@ -2300,20 +2440,20 @@
     "half": "split",
     "px": [
      [
-      1610.4,
-      609.1
+      1621.7,
+      597.5
      ],
      [
-      1517.6,
-      599.1
+      1533.2,
+      588.6
      ],
      [
-      1512,
-      677.1
+      1527.7,
+      662.7
      ],
      [
-      1603.5,
-      690.7
+      1615.1,
+      674.9
      ]
     ],
     "contents": [
@@ -2328,20 +2468,20 @@
     "half": "truth",
     "px": [
      [
-      1513.4,
-      598.6
+      1529.2,
+      588.2
      ],
      [
-      1429.2,
-      589.6
+      1448.5,
+      580
      ],
      [
-      1424.7,
-      664.1
+      1444,
+      650.9
      ],
      [
-      1507.8,
-      676.4
+      1523.8,
+      662.1
      ]
     ],
     "contents": [
@@ -2361,20 +2501,20 @@
     "half": "truth",
     "px": [
      [
-      1425.4,
-      589.2
+      1444.8,
+      579.6
      ],
      [
-      1348.7,
-      581
+      1370.9,
+      572.2
      ],
      [
-      1345.1,
-      652.2
+      1367.3,
+      640.2
      ],
      [
-      1421,
-      663.5
+      1440.4,
+      650.4
      ]
     ],
     "contents": [
@@ -2389,20 +2529,20 @@
     "half": "beauty",
     "px": [
      [
-      1848.4,
-      536.3
+      1846.7,
+      527.8
      ],
      [
-      1732,
-      528.9
+      1737,
+      521.2
      ],
      [
-      1723.3,
-      617
+      1728.8,
+      604.4
      ],
      [
-      1837.8,
-      629.1
+      1836.8,
+      615.1
      ]
     ],
     "contents": [
@@ -2424,20 +2564,20 @@
     "half": "beauty",
     "px": [
      [
-      1726.7,
-      528.6
+      1732.1,
+      520.9
      ],
      [
-      1622.4,
-      522
+      1633.2,
+      515
      ],
      [
-      1615.3,
-      605.6
+      1626.4,
+      594.2
      ],
      [
-      1718.1,
-      616.5
+      1723.9,
+      603.9
      ]
     ],
     "contents": [
@@ -2452,20 +2592,20 @@
     "half": "split",
     "px": [
      [
-      1617.7,
-      521.7
+      1628.7,
+      514.8
      ],
      [
-      1523.6,
-      515.7
+      1539,
+      509.4
      ],
      [
-      1517.8,
-      595.4
+      1533.4,
+      585
      ],
      [
-      1610.7,
-      605.1
+      1622,
+      593.8
      ]
     ],
     "contents": {
@@ -2490,20 +2630,20 @@
     "half": "truth",
     "px": [
      [
-      1519.3,
-      515.4
+      1535,
+      509.2
      ],
      [
-      1434,
-      510
+      1453.2,
+      504.3
      ],
      [
-      1429.4,
-      586
+      1448.7,
+      576.6
      ],
      [
-      1513.7,
-      594.9
+      1529.4,
+      584.6
      ]
     ],
     "contents": [
@@ -2519,20 +2659,20 @@
     "half": "truth",
     "px": [
      [
-      1430.2,
-      509.8
+      1449.5,
+      504.1
      ],
      [
-      1352.5,
-      504.9
+      1374.8,
+      499.6
      ],
      [
-      1348.9,
-      577.5
+      1371.1,
+      568.9
      ],
      [
-      1425.6,
-      585.6
+      1445,
+      576.2
      ]
     ],
     "contents": [
@@ -2568,12 +2708,12 @@
   ]
  },
  "lemon_tree_px": [
-  1050.5,
-  446
+  1050.6,
+  436.7
  ],
  "poi_px": [
-  1941.7,
-  59.5
+  1392.3,
+  46.2
  ],
  "opening_px": [
   994.8,
@@ -2585,12 +2725,12 @@
   "height_m": 1.78
  },
  "path": {
-  "note": "her route, one line: shelf, the opening, round the dining table, the French doors, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]",
+  "note": "her route, one line: shelf, the opening, round the dining table, the sliding door, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]",
   "world": [
    [
     2.72,
     0,
-    3.62
+    3.3
    ],
    [
     2,
@@ -2634,54 +2774,54 @@
    ],
    [
     1.6,
-    -0.05,
+    0,
     10.6
    ],
    [
     2.6,
-    -0.05,
+    0,
     10.85
    ],
    [
     4,
-    -0.05,
+    0,
     10.75
    ],
    [
     4.87,
-    -0.05,
+    0,
     11.1
    ],
    [
     4.87,
-    -0.6,
+    -0.7,
     12.9
    ],
    [
     5.7,
-    -0.6,
+    -0.7,
     13.6
    ],
    [
     7.2,
-    -0.6,
+    -0.7,
     15.5
    ],
    [
     9,
-    -0.6,
+    -0.7,
     17.2
    ],
    [
     9.9,
-    -0.6,
+    -0.7,
     17.95
    ]
   ],
   "px": [
    [
-    1393.2,
-    815.7
+    1410.6,
+    798.5
    ],
    [
     1228.1,
@@ -2716,40 +2856,40 @@
     1711.6
    ],
    [
-    -1755,
-    2622.1
+    -1771.4,
+    2587.5
    ],
    [
-    -6655.6,
-    8385.6
+    -6823.1,
+    8386.1
    ],
    [
-    3397.6,
-    -4888
+    3363.4,
+    -4702.2
    ],
    [
-    1478.4,
-    -1559.1
+    1475.7,
+    -1507.1
    ],
    [
-    1676.3,
-    -796.6
+    1680.1,
+    -844.4
    ],
    [
-    1408.1,
-    -453
+    1409.7,
+    -485.7
    ],
    [
-    1233.2,
-    -117.4
+    1233.8,
+    -136.3
    ],
    [
-    1111.7,
-    29.2
+    1111.9,
+    15.9
    ],
    [
-    1067.7,
-    72.4
+    1067.9,
+    60.7
    ]
   ]
  },
@@ -2979,6 +3119,66 @@
    },
    "headTurn": 0
   },
+  "W3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "W4": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.47,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
+  "D1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.5
+   },
+   "headTurn": 0
+  },
+  "D2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0
+  },
   "poi": {
    "legs": {
     "L": {
@@ -2992,7 +3192,7 @@
     "L": 0.64,
     "R": 0.64
    },
-   "headTurn": 4
+   "headTurn": 0
   },
   "jade27": {
    "legs": {

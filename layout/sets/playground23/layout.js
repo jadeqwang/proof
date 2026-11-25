@@ -39,7 +39,7 @@ export const beamFrom = (p, t) => p.map((c, i) => c + SUN_DIR[i] * t);
 // ---------------------------------------------------------------- the mote
 // One seeded field for the set; the hero mote is fixed. It hangs 2.3 m down the beam, 0.2 m under the beam's top
 // face and nearer the front pane than the reflections' virtual images. It drifts up, out through the top of the light
-// (4:35), and the gold dotted line continues along `after` and stops.
+// (4:24.1, -2sm), and the gold dotted line continues along `after` and stops.
 const hero = beamFrom([0.4, 1.7, W.z], 2.3);
 export const MOTE = { seed: 2023, count: 400, hero, exit: [hero[0] + 0.05, hero[1] + 0.3, hero[2]], after: [hero[0] + 0.12, hero[1] + 0.5, hero[2]] };
 

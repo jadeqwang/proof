@@ -9,7 +9,8 @@ Checkpoint written 2026-11-22. Read this first if a session was interrupted.
 
 - **2026-11-22 night: look test, six new sheets, 72 picked and composited keyframes.** See the last section of `HANDOFF.md`, `docs/KEYFRAMES.md`, and the review page `media/keyframes/index.html`. Not reviewed by Jade.
 
-- **Song map v3**: `analysis/v3/song_map.md` describes the current `inputs/Proof.wav` (4:38.4, 99.4 BPM, C minor) and supersedes v2. Pushed to GitHub in commit `1b223b7` along with the plan doc, `analysis/v2/`, and `inputs/older version/`.
+- **Song: the master is `inputs/Proof (-2sm).wav`** (4:28.4, 99.4 BPM, Bb minor; Jade, 2026-11-25). Its map is `analysis/m2sm/song_map.md`; `analysis/m2sm/time_map.json` + `remap.py` convert v3 times (most `layout/sets/*/shots.js`) to it. The plan doc is on -2sm times as of 2026-11-25 (late).
+- **Song map v3** (superseded): `analysis/v3/song_map.md` describes the v3 render, now `inputs/older version/Proof.wav` (4:38.4, C minor). Pushed to GitHub in commit `1b223b7` along with the plan doc and `analysis/v2/`.
 - **Character sheets** (Codex image generation, 1672x941), under `cast/`:
   `little_jade_03`, `little_jade_07`, `little_jade_10`, `jade_19`, `jade_27`, `dad`, `first_love`, `strangers/` (uncle, social worker, grandmother, laughing adults, party guests). Each image has a `.txt` sidecar; rejects are in `_rejected/`, unused designs in `candidates/`.
 - **3D sets** (three.js, engine copied from `chaosmonkey-video/layout` into `layout/`), under `layout/sets/`:
@@ -21,7 +22,7 @@ Checkpoint written 2026-11-22. Read this first if a session was interrupted.
 - **One cast table**: `layout/sets/_cast.js`, recorded in `layout/CAST.md`; all ten sets import it. Dad is 1.72 m everywhere (was 1.75 in the basement/kitchen).
 - **Beam masks for all ten sets** via `layout/sets/_beam.js`: `beam_<id>` twins, plus `beam_<id>__surf` (lit surfaces only) in six sets and per-light twins in `mv10` (`__lamps`, `__dusk`, `__poi`). Sheets: `media/layout/_sheets/<set>_beam.jpg`. Masks are all white in her-eye-line shots that look straight down into the light (correct, but useless as mattes); `mv10` V3b is all black; the yard dusk light has no mask; cast shadows are not cut out of any mask.
 - **Forearm grab matched** between `attic88_day` AD_grab and `market93` M4 (50 mm, 0.92 m, 31 deg above, 30 deg round) except the entry side: the two frames are mirror images. M4 lost the grandmother from its background; M4b still shows her.
-- **Outro/coda shot labels moved to v3 times** (labels only).
+- **Outro/coda shot labels moved to v3 times** (labels only; the master is now -2sm, so every set needs `analysis/m2sm/remap.py`).
 - Only flat renders and masks were looked at after the final render; line, label, lit and depth were not. `__surf` and `mv10` per-light masks were checked by white-fraction only.
 - `kitchen90` K5: the thumbs meet under the mouth, not on the cheeks.
 
@@ -31,7 +32,7 @@ Checkpoint written 2026-11-22. Read this first if a session was interrupted.
 
 ## Waiting on Jade
 
-- **Plan doc is stale against v3**: no vocalise after chorus 2 (tail 2 and the sixth sung shot have nothing to sync to); the outro cliff at 4:05.0 now falls mid-line; coda is one hit at 4:24.5 then about 4.5 bars of groove to 4:35.3; final tone about 2 s. Revise the plan, or take it back to the instance it was discussed with?
+- ~~Plan doc stale against v3~~: settled 2026-11-25. Jade made -2sm the master and asked for the plan to be revised here; done (see `HANDOFF.md`, last entry). Open plan questions are now in the plan's "Open questions" (interlude merge, spiral aloe, shelf-pan end, ear checks). The sets still need retiming with `analysis/m2sm/remap.py`.
 - **Dad's age**: main sheets read 28-30, the age pass 40-45; target is mid-to-late 30s.
 - **First love's design**: chosen candidate is a white American with brown wavy hair (reads apart from Jade's black hair from behind); a Chinese-American alternative is in `cast/first_love/candidates/`.
 - **Little Jade's clothing and hair** at 3, 7, 10, and **Jade at 19**: glasses in 2002? straight centre-parted hair?

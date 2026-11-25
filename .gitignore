@@ -23,3 +23,6 @@ media/karaoke_v2/audio/
 # not to be pushed without Jade's say: long verbatim poem quotes; keyframes painted from superseded guides
 docs/poem_digest.md
 media/keyframes/
+
+# demucs stems for -2sm: large and regenerable (analysis/m2sm/*.py)
+analysis/m2sm/stems/

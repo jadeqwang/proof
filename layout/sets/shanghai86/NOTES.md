@@ -1,6 +1,6 @@
 # shanghai86 — notes and assumptions
 
-**Read the 2026-11-25 sections at the bottom first. Each later one overrides the earlier ones where they differ; "(4)" is current.**
+**Read the 2026-11-25 sections at the bottom first. Each later one overrides the earlier ones where they differ; "(5)" is current.**
 
 Set for verse 1 (0:30-0:59) and bars 1-4 of the piano break (0:59-1:09). Numbers live in `layout.js`.
 
@@ -395,3 +395,104 @@ The lilong bedroom (bed, mosquito net, casement, 19 cm tissue on the floor, sun 
      there; at 16 deg it lights her and the table with room to spare and still keeps off the doorway.
 - **Columns (views)**: REF_wide, V1e, and her eye level looking toward the windows.
 - **Sheets**: `media/layout/_sheets/shanghai86_lightstudy.jpg` (lit) and `shanghai86_lightstudy_flat.jpg`.
+
+## 2026-11-25 (5): Jade's decision-page answers (OVERRIDES (4) where they differ)
+
+Shot `t` times are unchanged (the retime to the -2sm master is a separate pass).
+
+### Applied
+- **Time (Jade)**: `SCENE` = **1986-12-21 09:30 CST**. She picked it from the light study ("the 8:30 and 9:30 views at
+  her eye level are really nice").
+  - **Sun**: elevation 25.7 deg, azimuth 143.8 deg (23.0 deg east of the facade normal), profile 27.6 deg.
+    Per metre into the room the light drops 0.52 m and moves 0.43 m west.
+  - **What it lights**: both floor pools end at z -4.12 (2.0 m short of the north wall).
+    - The six-window pool spans x -2.5..-0.07 at its north edge. It covers:
+      - the couch's south half, the side table and the "opposite" armchair;
+      - the lounger;
+      - the coffee table's south part (table 73 % lit; 2 of 3 mugs; the stack; NOT the clear patch / hero pieces);
+      - her lap: hip +0.04 m inside.
+    - **Her face and hands are NOT lit**: eyes -0.25..-0.33 m outside, hands -0.12..-0.19 m.
+    - **Steam**: 10 of 66 samples lit.
+    - The grandmother's hip and left hand (in the "across" armchair) are just inside.
+    - **State A**: the uncle's hands are now -0.19 / -0.32 m outside (they were in at 08:31); his hip is in.
+  - Jade chose this knowing the 09:30 study frames showed her in shadow at the light's edge. **Nothing has been moved
+    to put her back in the light: flag to Jade.** If she wants her face lit at 09:30, her spot would have to move
+    ~0.35 m south, toward the windows; it is fixed now by the couch/armchair/table equidistance.
+- **Cross-legged (Jade)**: state B uses `legs: 'cross'`.
+  - Her hip drops from 0.16 to 0.08 m. Her eyes are ~0.52 m up, only ~10 cm above the 0.42 m coffee-table top. That is
+    honest for a 0.95 m three-year-old at a coffee table: in V1c/V1g she peeks over the table edge.
+  - The held sheet (tissue 1, 2) is now held lower (y 0.45, was 0.47) and nearly flat (tilt 8 deg, was 28): at the
+    old tilt it hid her face in V1c.
+  - **State A keeps the kneel (my reading, flag)**: Jade's answer is about how she *sits* in the drift. A week earlier she
+    kneels up to watch the uncle's hands, which are above a cross-legged child's eyes.
+- **More paper, messier (Jade)**: `DRIFT_COUNTS` went from 177 to 720 pieces drawn (627 placed after the occupancy
+  skips: 128 on the table, 468 on the floor, 31 on the couch). They are weighted to the small generations, with a new
+  generation-10 confetti tier (~5 x 7 mm).
+  - **Same spread** (the gaussian sigmas 0.34 / 0.36 m round the same centre). 40 % of floor pieces gather into six
+    little heaps inside that spread.
+  - Pieces now tip (±0.3 / ±0.25 rad on the floor), about half bow upward, and they rest on an edge rather than
+    through the floor.
+- **Stray bit in her hair (Jade)**: one generation-9 piece (~7 x 10 mm), bent to the head on the top-left front of
+  the bob (her left, toward the frontal cameras).
+  - It reads as a small light fleck in V1c. In V1g it is nearly edge-on (her head turns toward the adults).
+  - Its position is in the sidecar: `tissue.hair_bit_world` / `hair_bit_px`.
+- **Armchairs face each other across the table**: confirmed, unchanged.
+- **Dining table (Jade)**: turned 90 deg, long axis now NORTH-SOUTH (`DINING_TABLE.axis = 'z'`), with 3 chairs on the
+  east and west sides and one at each of the north and south ends.
+  - **"Up" = north.** The plan she was shown (`REF_plan`, decision card) is drawn north-up: the hall wall and
+    bookshelves are at the top, the windows at the bottom. So "up" is world -z, toward the hall wall.
+  - **Shift**: the centre moves 0.4 m north, (4.6, -2.6) -> (4.6, -3.0). "A little" is my number.
+  - **Clearances**: the north end chair's back is 1.3 m from the sideboard; the south chair is 1.6 m from the windows;
+    the east chairs are 1.1 m from the TV cabinet; the west chairs are 0.45 m from her small table.
+  - The pendant follows the table.
+- **Sideboard and the invented details**: kept.
+- **Hall doors (Jade)**: they open into the hall (as before). The opening is "double or triple" the old 1.6 m:
+  - **Width**: built **2.5x = 4.0 m**, transom across the whole width.
+  - **Centred on the north wall** as a whole: x 0.25..4.25, centre 2.25. The old pair was centred at x 0, opposite
+    the six windows. Jade said "centred on that wall", and the plan she saw showed the old doors visibly left of the
+    wall's centre. **Flag**: if she meant "keep them where they are, just wider", set `DOOR_CX = 0` in layout.js. The
+    west shelf run would then shrink to ~0.4 m.
+  - **Leaves (my choice)**: four glazed leaves of 1.0 m. A pair of 2 m leaves is not a real door. They fold back in
+    pairs, each pair standing as a stack square to the wall at each jamb, in the hall.
+  - The hall is widened to the opening + 0.5 m each side.
+  - **Bookshelf cabinets**: the west run is now x -2.5..0.18 (3 units); the east run 4.32..6.02 (2 units), ending at
+    the sideboard as before.
+- **Mother**: in the doorway's west end, (0.75, -6.18), her right hand on the west jamb, looking at her daughter.
+- **Uncle's hands (V1b)**: unchanged (Jade: good enough as a guide).
+
+### Beam and Mother's doorway (rechecked)
+- **Nothing reaches the doorway.** The nearest lit floor is **1.98 m** from the opening (was 0.28 m at 08:31).
+  Mother is **1.74 m** outside the light at her nearest point (left hand).
+- **"Where the shaft points but does not reach"** now holds for the FOUR-window (dining-end) shaft, not the six-window
+  one. That shaft runs NNW and its pool ends at x 1.8..4.1, z -4.12, square in front of the 4 m doorway and 2 m short
+  of it.
+- The six-window shaft, the one that lights her, runs north-west toward the west bookshelves, away from the doors.
+- In V1e Mother stands frame right in the dark doorway, with the lit floor and the armchair in the foreground.
+
+### Light study
+- Re-rendered on this layout. Rows relabelled: row 1 = 08:31 (round-4 pick), row 2 = 09:30 (Jade's choice, now the set
+  default).
+- The EYE column still sits at the old kneeling eye height (0.62 m), as Jade saw it. Her cross-legged eyes are ~0.1 m
+  lower.
+
+### Open (ask Jade)
+- At 09:30 she sits just outside the light (face and hands in shadow, lap at its edge): intended?
+- Doors centred on the whole north wall (x 2.25, built) or still opposite the six windows (x 0)?
+- State A: kneeling up to watch, or cross-legged there too?
+- Dining-table shift: 0.4 m north is a guess at "a little".
+
+### Engine notes (not changed: outside this set)
+- V1g: with her head turned up toward the adults, the bob's fringe slab stands off her forehead as a flat plank
+  (`engine/mannequin.js` hair, the `slab(...)` fringe). This was already there before this round (see the committed
+  V1g). It is visible in the 85 mm close-up and needs an engine fix.
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- (This set was on v2 times.) Cuts on the -2sm sung onsets: V1a 29.74, V1b 31.58, V1c 34.52 ("A week later"), V1d_1 37.85
+  ("sat in"), V1d_2 41.43 ("ripped"), V1d_4 43.34 ("Ever tinier"), V1d_8 45.43 ("repeating"), V1e 48.14, V1f 50.52 ("The
+  adults"), V1g 53.93 ("What's so funny?"), V1h 55.15 ("Nobody")-58.55; PB1 58.55-68.34 (break bars 1-4). The sun
+  (21 Dec 09:30) is a clock time, not a song time: unchanged.

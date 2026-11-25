@@ -1,0 +1,1062 @@
+{
+ "about": "Piecewise-linear map from v3 times (inputs/older version/Proof.wav = the old inputs/Proof.wav; analysis/v3/song_map.md; the times in the plan before 2026-11-25 (late) and in most layout/sets/*/shots.js) to -2sm times (inputs/Proof (-2sm).wav, FULL-MIX time, the master from 2026-11-25). Interpolate linearly between consecutive anchors. Built by build_map.py; use remap.py.",
+ "from": "v3: inputs/older version/Proof.wav (278.40 s, C minor)",
+ "to": "-2sm: inputs/Proof (-2sm).wav (268.40 s, Bb minor; full-mix time). The no-lead track (inputs/Proof (-2sm  no lead vocals).wav) is a separate render that drifts -0.30..+0.37 s against it: media/karaoke_v2/lyrics_timed.json gives both (start = no-lead time, start_full = full-mix time). Always use full-mix time for the film.",
+ "accuracy_s": "+/-0.05 at stem events, +/-0.1 at lyric lines in the body, +/-0.3 inside the a-cappella outro and the coda groove entry",
+ "anchors": [
+  {
+   "v3": 0.0,
+   "m2sm": 0.0,
+   "label": "file start",
+   "source": "stem"
+  },
+  {
+   "v3": 5.1,
+   "m2sm": 4.85,
+   "label": "first hand tap",
+   "source": "stem"
+  },
+  {
+   "v3": 8.9,
+   "m2sm": 8.67,
+   "label": "whisper 1 'You need facial expressions'",
+   "source": "voc",
+   "m2sm_sung_onset": 8.76,
+   "first_word": "you"
+  },
+  {
+   "v3": 18.5,
+   "m2sm": 18.21,
+   "label": "whisper 2 'But not like that'",
+   "source": "voc",
+   "m2sm_sung_onset": 18.23,
+   "first_word": "but"
+  },
+  {
+   "v3": 19.3,
+   "m2sm": 19.0,
+   "label": "groove: bass + beat drop in",
+   "source": "stem"
+  },
+  {
+   "v3": 30.2,
+   "m2sm": 29.79,
+   "label": "verse 1 'Three years old'",
+   "source": "voc",
+   "m2sm_sung_onset": 29.74,
+   "first_word": "three"
+  },
+  {
+   "v3": 34.7,
+   "m2sm": 34.26,
+   "label": "'A week later'",
+   "source": "voc",
+   "m2sm_sung_onset": 34.52,
+   "first_word": "a"
+  },
+  {
+   "v3": 37.8,
+   "m2sm": 37.3,
+   "label": "'sat in a snow drift'",
+   "source": "voc",
+   "m2sm_sung_onset": 37.85,
+   "first_word": "sat"
+  },
+  {
+   "v3": 41.4,
+   "m2sm": 40.86,
+   "label": "'ripped to shreds'",
+   "source": "voc",
+   "m2sm_sung_onset": 41.43,
+   "first_word": "ripped"
+  },
+  {
+   "v3": 43.5,
+   "m2sm": 42.97,
+   "label": "'Ever tinier'",
+   "source": "voc",
+   "m2sm_sung_onset": 43.34,
+   "first_word": "ever"
+  },
+  {
+   "v3": 47.9,
+   "m2sm": 47.35,
+   "label": "'What on earth are you doing?'",
+   "source": "voc",
+   "m2sm_sung_onset": 48.14,
+   "first_word": "what"
+  },
+  {
+   "v3": 50.85,
+   "m2sm": 50.25,
+   "label": "'The adults howl with laughter'",
+   "source": "voc",
+   "m2sm_sung_onset": 50.52,
+   "first_word": "the"
+  },
+  {
+   "v3": 53.2,
+   "m2sm": 52.6,
+   "label": "'What's so funny?'",
+   "source": "voc",
+   "m2sm_sung_onset": 53.93,
+   "first_word": "what's"
+  },
+  {
+   "v3": 55.5,
+   "m2sm": 54.88,
+   "label": "'Nobody tells me after'",
+   "source": "voc",
+   "m2sm_sung_onset": 55.15,
+   "first_word": "nobody"
+  },
+  {
+   "v3": 59.2,
+   "m2sm": 58.55,
+   "label": "instrumental break: bass sustains",
+   "source": "stem"
+  },
+  {
+   "v3": 75.15,
+   "m2sm": 74.4,
+   "label": "bass leaves the break",
+   "source": "stem"
+  },
+  {
+   "v3": 78.05,
+   "m2sm": 77.24,
+   "label": "pre-chorus 'She doesn't talk like other children'",
+   "source": "voc",
+   "m2sm_sung_onset": 78.28,
+   "first_word": "she"
+  },
+  {
+   "v3": 81.4,
+   "m2sm": 80.59,
+   "label": "'(Her English comes from books)'",
+   "source": "voc",
+   "m2sm_sung_onset": 81.5,
+   "first_word": "her"
+  },
+  {
+   "v3": 88.15,
+   "m2sm": 87.31,
+   "label": "'Her face doesn't make much expression'",
+   "source": "voc",
+   "m2sm_sung_onset": 87.37,
+   "first_word": "her"
+  },
+  {
+   "v3": 91.1,
+   "m2sm": 90.24,
+   "label": "'For our culture, that's just how it looks'",
+   "source": "voc",
+   "m2sm_sung_onset": 90.78,
+   "first_word": "for"
+  },
+  {
+   "v3": 93.5,
+   "m2sm": 92.68,
+   "label": "band out (drums + bass drop)",
+   "source": "stem"
+  },
+  {
+   "v3": 96.8,
+   "m2sm": 95.94,
+   "label": "chorus 1 'How do you feel?' (exposed pickup)",
+   "source": "voc",
+   "m2sm_sung_onset": 96.0,
+   "first_word": "how"
+  },
+  {
+   "v3": 98.22,
+   "m2sm": 97.4,
+   "label": "chorus 1 full-band hit",
+   "source": "stem"
+  },
+  {
+   "v3": 102.2,
+   "m2sm": 101.34,
+   "label": "'I honestly don't know'",
+   "source": "voc",
+   "m2sm_sung_onset": 100.7,
+   "first_word": "i"
+  },
+  {
+   "v3": 105.35,
+   "m2sm": 104.49,
+   "label": "'I open my mouth, my voice goes blind'",
+   "source": "voc",
+   "m2sm_sung_onset": 105.52,
+   "first_word": "i"
+  },
+  {
+   "v3": 111.15,
+   "m2sm": 110.29,
+   "label": "'The words have nowhere to go'",
+   "source": "voc",
+   "m2sm_sung_onset": 110.95,
+   "first_word": "the"
+  },
+  {
+   "v3": 121.06,
+   "m2sm": 120.26,
+   "label": "tail 1 vocalise",
+   "source": "voc"
+  },
+  {
+   "v3": 127.2,
+   "m2sm": 126.38,
+   "label": "verse 2 'Resting oblivious face'",
+   "source": "voc",
+   "m2sm_sung_onset": 126.32,
+   "first_word": "resting"
+  },
+  {
+   "v3": 129.2,
+   "m2sm": 128.36,
+   "label": "'Blocking the aisle'",
+   "source": "voc",
+   "m2sm_sung_onset": 128.76,
+   "first_word": "blocking"
+  },
+  {
+   "v3": 131.56,
+   "m2sm": 130.73,
+   "label": "'Enthralled by an artichoke'",
+   "source": "voc",
+   "m2sm_sung_onset": 131.01,
+   "first_word": "enthralled"
+  },
+  {
+   "v3": 133.96,
+   "m2sm": 133.15,
+   "label": "'Sacred geometry made flesh'",
+   "source": "voc",
+   "m2sm_sung_onset": 133.63,
+   "first_word": "sacred"
+  },
+  {
+   "v3": 136.33,
+   "m2sm": 135.54,
+   "label": "'(Down in the) Basement, Dad's code, I watch'",
+   "source": "voc",
+   "m2sm_sung_onset": 136.07,
+   "first_word": "basement"
+  },
+  {
+   "v3": 138.8,
+   "m2sm": 138.01,
+   "label": "'I point to (the) one he missed'",
+   "source": "voc",
+   "m2sm_sung_onset": 138.27,
+   "first_word": "i"
+  },
+  {
+   "v3": 140.5,
+   "m2sm": 139.75,
+   "label": "band stop on 'Good catch!'",
+   "source": "stem"
+  },
+  {
+   "v3": 141.18,
+   "m2sm": 140.39,
+   "label": "'Did she understand or just pattern match?'",
+   "source": "voc",
+   "m2sm_sung_onset": 140.91,
+   "first_word": "did"
+  },
+  {
+   "v3": 141.7,
+   "m2sm": 140.9,
+   "label": "band back after 'Good catch!'",
+   "source": "stem"
+  },
+  {
+   "v3": 145.9,
+   "m2sm": 145.15,
+   "label": "interlude: bass pick-up note (thinned interlude begins)",
+   "source": "stem"
+  },
+  {
+   "v3": 154.1,
+   "m2sm": 153.4,
+   "label": "last v3 moment kept: end of the 4th thinned bar's first half",
+   "source": "dtw"
+  },
+  {
+   "v3": 163.8,
+   "m2sm": 153.48,
+   "label": "bridge vocal lead-in",
+   "source": "voc"
+  },
+  {
+   "v3": 164.4,
+   "m2sm": 154.06,
+   "label": "bridge 'Do you not see what I see?'",
+   "source": "voc",
+   "m2sm_sung_onset": 154.5,
+   "first_word": "do"
+  },
+  {
+   "v3": 167.0,
+   "m2sm": 156.69,
+   "label": "'Does it matter what makes me me?'",
+   "source": "voc",
+   "m2sm_sung_onset": 157.12,
+   "first_word": "does"
+  },
+  {
+   "v3": 169.4,
+   "m2sm": 159.11,
+   "label": "'Beauty on this side, truth by reference'",
+   "source": "voc",
+   "m2sm_sung_onset": 159.62,
+   "first_word": "beauty"
+  },
+  {
+   "v3": 174.4,
+   "m2sm": 164.14,
+   "label": "'Science fiction shelved with truth'",
+   "source": "voc",
+   "m2sm_sung_onset": 164.41,
+   "first_word": "science"
+  },
+  {
+   "v3": 176.67,
+   "m2sm": 166.43,
+   "label": "'From inside, I can't tell the difference'",
+   "source": "voc",
+   "m2sm_sung_onset": 166.85,
+   "first_word": "from"
+  },
+  {
+   "v3": 179.5,
+   "m2sm": 169.3,
+   "label": "'And I can't give you proof'",
+   "source": "voc",
+   "m2sm_sung_onset": 169.72,
+   "first_word": "and"
+  },
+  {
+   "v3": 182.72,
+   "m2sm": 172.5,
+   "label": "hard stop",
+   "source": "stem"
+  },
+  {
+   "v3": 184.9,
+   "m2sm": 174.7,
+   "label": "verse 3 full-band hit 'Housewarming'",
+   "source": "stem"
+  },
+  {
+   "v3": 188.46,
+   "m2sm": 178.31,
+   "label": "'Perky American girl'",
+   "source": "voc",
+   "m2sm_sung_onset": 179.24,
+   "first_word": "perky"
+  },
+  {
+   "v3": 193.5,
+   "m2sm": 183.37,
+   "label": "'He said I absolutely nailed it'",
+   "source": "voc",
+   "m2sm_sung_onset": 183.85,
+   "first_word": "he"
+  },
+  {
+   "v3": 195.97,
+   "m2sm": 185.87,
+   "label": "'Well, fifteen percent above amplitude'",
+   "source": "voc",
+   "m2sm_sung_onset": 186.03,
+   "first_word": "well"
+  },
+  {
+   "v3": 198.46,
+   "m2sm": 188.36,
+   "label": "'I nod, (the) past hour (gets) reviewed'",
+   "source": "voc",
+   "m2sm_sung_onset": 189.11,
+   "first_word": "i"
+  },
+  {
+   "v3": 201.17,
+   "m2sm": 191.07,
+   "label": "'Hug durations, pitch contours'",
+   "source": "voc",
+   "m2sm_sung_onset": 191.57,
+   "first_word": "hug"
+  },
+  {
+   "v3": 203.8,
+   "m2sm": 193.74,
+   "label": "'Room crossing velocity'",
+   "source": "voc",
+   "m2sm_sung_onset": 194.59,
+   "first_word": "room"
+  },
+  {
+   "v3": 209.1,
+   "m2sm": 199.05,
+   "label": "full stop",
+   "source": "stem"
+  },
+  {
+   "v3": 209.5,
+   "m2sm": 199.45,
+   "label": "'I think he's right. Honestly.'",
+   "source": "voc",
+   "m2sm_sung_onset": 199.45,
+   "first_word": "i"
+  },
+  {
+   "v3": 213.4,
+   "m2sm": 203.35,
+   "label": "chorus 2: drums alone",
+   "source": "stem"
+  },
+  {
+   "v3": 214.72,
+   "m2sm": 204.69,
+   "label": "chorus 2 'How do you feel? Inside?'",
+   "source": "voc",
+   "m2sm_sung_onset": 204.75,
+   "first_word": "how"
+  },
+  {
+   "v3": 216.1,
+   "m2sm": 206.1,
+   "label": "chorus 2 bass + full band",
+   "source": "stem"
+  },
+  {
+   "v3": 220.0,
+   "m2sm": 210.02,
+   "label": "'I honestly don't know'",
+   "source": "voc",
+   "m2sm_sung_onset": 209.45,
+   "first_word": "i"
+  },
+  {
+   "v3": 223.16,
+   "m2sm": 213.2,
+   "label": "'I open my mouth, my voice goes blind'",
+   "source": "voc",
+   "m2sm_sung_onset": 214.18,
+   "first_word": "i"
+  },
+  {
+   "v3": 228.95,
+   "m2sm": 219.01,
+   "label": "'The words have nowhere to go'",
+   "source": "voc",
+   "m2sm_sung_onset": 219.58,
+   "first_word": "the"
+  },
+  {
+   "v3": 237.2,
+   "m2sm": 227.2,
+   "label": "held 'go' ends",
+   "source": "stem"
+  },
+  {
+   "v3": 243.5,
+   "m2sm": 233.95,
+   "label": "outro line 1 'Keep the smile on' (over the band)",
+   "source": "stem"
+  },
+  {
+   "v3": 244.8,
+   "m2sm": 235.0,
+   "label": "cliff: bass + drums gone",
+   "source": "stem"
+  },
+  {
+   "v3": 249.05,
+   "m2sm": 239.1,
+   "label": "'This is how we fit in'",
+   "source": "stem"
+  },
+  {
+   "v3": 252.9,
+   "m2sm": 243.55,
+   "label": "'She turns around'",
+   "source": "stem"
+  },
+  {
+   "v3": 255.45,
+   "m2sm": 245.45,
+   "label": "'I let it go'",
+   "source": "stem"
+  },
+  {
+   "v3": 259.3,
+   "m2sm": 248.6,
+   "label": "'And I can think again'",
+   "source": "stem"
+  },
+  {
+   "v3": 263.26,
+   "m2sm": 252.85,
+   "label": "coda: pad swell",
+   "source": "stem"
+  },
+  {
+   "v3": 264.55,
+   "m2sm": 254.3,
+   "label": "coda: one big low hit (-2sm: also bar 1's downbeat)",
+   "source": "stem"
+  },
+  {
+   "v3": 265.94,
+   "m2sm": 254.4,
+   "label": "v3 coda groove start = v3 bar 1 (-2sm has no sparse lead-in: groove follows the hit at once)",
+   "source": "stem"
+  },
+  {
+   "v3": 268.36,
+   "m2sm": 256.81,
+   "label": "coda bar 2",
+   "source": "dtw"
+  },
+  {
+   "v3": 270.77,
+   "m2sm": 259.23,
+   "label": "coda bar 3",
+   "source": "dtw"
+  },
+  {
+   "v3": 273.19,
+   "m2sm": 261.67,
+   "label": "coda bar 4",
+   "source": "dtw"
+  },
+  {
+   "v3": 275.09,
+   "m2sm": 264.06,
+   "label": "last drum hit",
+   "source": "stem"
+  },
+  {
+   "v3": 278.4,
+   "m2sm": 268.4,
+   "label": "file end",
+   "source": "stem"
+  }
+ ],
+ "only_in_v3": [
+  {
+   "v3": [
+    154.1,
+    163.8
+   ],
+   "m2sm_collapses_to": 153.45,
+   "what": "The second half of the arpeggio interlude: v3's 'interlude b, full' (bass returns 156.14, arpeggio at its loudest) and the end of the thinned half. In -2sm the interlude is four thinned bars only (bass out, sparse drums creeping back), and the bridge's vocal lead-in arrives in its last bar. Anything placed in v3 2:34.1-2:43.8 has no music under it in -2sm and must be re-placed by hand.",
+   "flag": "NO COUNTERPART: v3 2:34.1-2:43.8 (the full half of the interlude) is not in -2sm",
+   "plan_rows": [
+    "2:36-2:45 Interlude, full (v3 2:36.1-2:44.4)"
+   ],
+   "note": "Musically -2sm drops v3 interlude b (4 bars, v3 156.14-165.9, bass back with the arpeggio forward) and sings the bridge pickup one bar earlier, over the last bar of the thinned interlude (-2sm 153.5-155.45). The map keeps the vocal: v3 154.10 -> 153.40 and v3 163.80 -> 153.48, so the last ~2 s of v3 interlude a fall inside the dropped span too."
+  },
+  {
+   "v3": [
+    264.55,
+    265.94
+   ],
+   "m2sm_collapses_to": 254.35,
+   "flag": "COMPRESSED: v3's sparse coda lead-in (4:24.5-4:25.9) is ~0.1 s in -2sm",
+   "what": "v3's coda opens with one big hit, three sparse hits and the groove 1.4 s later; in -2sm the groove follows the hit at once, so the coda is 4 bars from the hit (254.30) to the last hit (264.06) against v3's ~4.5."
+  }
+ ],
+ "only_in_m2sm": [],
+ "content_changes": [
+  {
+   "m2sm": [
+    228.8,
+    232.6
+   ],
+   "v3": [
+    238.7,
+    242.4
+   ],
+   "what": "A wordless vocalise returns in tail 2 (v3 had the band alone here; v2 had a vocalise at the same place). Pitch rises G#4 -> F#5/G5 like tail 1's. The band-only runway is now ~1.5 s each side of it."
+  },
+  {
+   "m2sm": [
+    264.06,
+    268.4
+   ],
+   "v3": [
+    275.09,
+    278.4
+   ],
+   "what": "Ending: after the last drum hit (264.06, ring to ~264.7) a loud low bass note (-19 dB on the bass stem) plus pad holds to ~266.3 and fades to the file end (v3: bass gone 2.2 s before the stop, a faint C1 note)."
+  },
+  {
+   "m2sm": [
+    254.3,
+    256.0
+   ],
+   "v3": [
+    264.55,
+    265.94
+   ],
+   "what": "Coda entry: the bass enters WITH the big hit (v3: fades in over 3 s) and a light sixteenth-note run follows at once (v3: three sparse hits)."
+  },
+  {
+   "m2sm": [
+    0,
+    268.4
+   ],
+   "v3": [
+    0,
+    278.4
+   ],
+   "what": "Key: Bb minor (2 semitones below v3's C minor). Tempo the same 99.4 BPM within the method; -2sm runs ~0.9% ahead over the first 96 s (offset grows 0 -> -0.86 s), holds to 145 s, and loses ~0.4 s again over 164-229 s."
+  },
+  {
+   "lyrics": true,
+   "what": "Words sung differently (media/karaoke_v2/lyrics_timed.json text): 'Basement, Dad's code, I watch' (v3 'Down in the basement, ...'); 'I point to one he missed' (v3 'the one'); 'I nod, past hour reviewed' (v3 'the past hour gets reviewed')."
+  }
+ ],
+ "lyric_lines": [
+  {
+   "text": "You need facial expressions",
+   "m2sm_start": 8.76,
+   "m2sm_end": 10.51,
+   "backing": false,
+   "whisper": true
+  },
+  {
+   "text": "But not like that",
+   "m2sm_start": 18.23,
+   "m2sm_end": 18.936,
+   "backing": false,
+   "whisper": true
+  },
+  {
+   "text": "Three years old, uncle explains atoms",
+   "m2sm_start": 29.74,
+   "m2sm_end": 33.92,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "A week later my mother finds me sat in",
+   "m2sm_start": 34.52,
+   "m2sm_end": 38.807,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "A snow drift of paper, ripped to shreds",
+   "m2sm_start": 38.807,
+   "m2sm_end": 43.04,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Ever tinier, repeating what uncle said",
+   "m2sm_start": 43.34,
+   "m2sm_end": 47.77,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "“What on earth are you doing?” The adults howl with laughter",
+   "m2sm_start": 48.14,
+   "m2sm_end": 53.06,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "What’s so funny? Nobody tells me after",
+   "m2sm_start": 53.93,
+   "m2sm_end": 58.59,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "She doesn't talk like other children",
+   "m2sm_start": 78.28,
+   "m2sm_end": 81.45,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "(Her English comes from books)",
+   "m2sm_start": 81.5,
+   "m2sm_end": 83.267,
+   "backing": true,
+   "whisper": false
+  },
+  {
+   "text": "Her face doesn't make much expression",
+   "m2sm_start": 87.37,
+   "m2sm_end": 90.72,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "For our culture, that's just how it looks",
+   "m2sm_start": 90.775,
+   "m2sm_end": 95.56,
+   "backing": true,
+   "whisper": false
+  },
+  {
+   "text": "How do you feel? Inside?",
+   "m2sm_start": 96.0,
+   "m2sm_end": 99.0,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I honestly don't know",
+   "m2sm_start": 100.7,
+   "m2sm_end": 105.2,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I open my mouth, my voice goes blind",
+   "m2sm_start": 105.52,
+   "m2sm_end": 110.64,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "The words have nowhere to go",
+   "m2sm_start": 110.95,
+   "m2sm_end": 114.118,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Resting oblivious face",
+   "m2sm_start": 126.32,
+   "m2sm_end": 128.7,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Blocking the aisle, in the wrong place",
+   "m2sm_start": 128.76,
+   "m2sm_end": 130.95,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Enthralled by an artichoke, green and fresh",
+   "m2sm_start": 131.006,
+   "m2sm_end": 133.57,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Sacred geometry made flesh",
+   "m2sm_start": 133.628,
+   "m2sm_end": 136.0,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Basement, Dad’s code, I watch",
+   "m2sm_start": 136.07,
+   "m2sm_end": 138.22,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I point to one he missed. “Good catch!”",
+   "m2sm_start": 138.273,
+   "m2sm_end": 140.81,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "“Did she understand or just pattern match?”",
+   "m2sm_start": 140.91,
+   "m2sm_end": 145.46,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Do you not see what I see?",
+   "m2sm_start": 154.5,
+   "m2sm_end": 157.05,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Does it matter what makes me me?",
+   "m2sm_start": 157.12,
+   "m2sm_end": 159.53,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Beauty on this side, truth by reference",
+   "m2sm_start": 159.62,
+   "m2sm_end": 164.36,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Science fiction shelved with truth",
+   "m2sm_start": 164.411,
+   "m2sm_end": 166.8,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "From inside, I can't tell the difference",
+   "m2sm_start": 166.853,
+   "m2sm_end": 169.66,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "And I can't give you proof",
+   "m2sm_start": 169.716,
+   "m2sm_end": 174.74,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Housewarming, lemonade from the yard",
+   "m2sm_start": 174.94,
+   "m2sm_end": 179.19,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Perky American girl, I play the part",
+   "m2sm_start": 179.244,
+   "m2sm_end": 183.79,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "He said I absolutely nailed it",
+   "m2sm_start": 183.847,
+   "m2sm_end": 185.98,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Well, fifteen percent above amplitude",
+   "m2sm_start": 186.03,
+   "m2sm_end": 189.06,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I nod, past hour reviewed",
+   "m2sm_start": 189.11,
+   "m2sm_end": 191.52,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Hug durations, pitch contours",
+   "m2sm_start": 191.572,
+   "m2sm_end": 194.15,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Room crossing velocity",
+   "m2sm_start": 194.59,
+   "m2sm_end": 198.72,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I think he’s right. Honestly.",
+   "m2sm_start": 199.45,
+   "m2sm_end": 203.2,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "How do you feel? Inside?",
+   "m2sm_start": 204.75,
+   "m2sm_end": 209.0,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I honestly don't know",
+   "m2sm_start": 209.45,
+   "m2sm_end": 213.6,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "I open my mouth, my voice goes blind",
+   "m2sm_start": 214.18,
+   "m2sm_end": 219.27,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "The words have nowhere to go",
+   "m2sm_start": 219.58,
+   "m2sm_end": 222.959,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "Keep the smile on so they don't know",
+   "m2sm_start": 234.0,
+   "m2sm_end": 237.35,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "This is how we fit in",
+   "m2sm_start": 239.1,
+   "m2sm_end": 242.24,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "She turns around, I let it go",
+   "m2sm_start": 243.56,
+   "m2sm_end": 247.49,
+   "backing": false,
+   "whisper": false
+  },
+  {
+   "text": "And I can think again",
+   "m2sm_start": 248.57,
+   "m2sm_end": 252.67,
+   "backing": false,
+   "whisper": false
+  }
+ ],
+ "downbeats_m2sm": {
+  "intro c groove": [
+   19.06,
+   21.5,
+   23.94,
+   26.36,
+   28.79
+  ],
+  "verse 1": [
+   31.23,
+   33.67,
+   36.11,
+   38.54,
+   40.96,
+   43.4,
+   45.84,
+   48.27,
+   50.71,
+   53.15,
+   55.56,
+   58.0
+  ],
+  "break": [
+   58.61,
+   61.04,
+   63.48,
+   65.9,
+   68.34,
+   70.77,
+   73.19,
+   75.63
+  ],
+  "pre-chorus": [
+   77.46,
+   79.88,
+   82.32,
+   84.73,
+   87.17,
+   89.58,
+   92.0,
+   94.41
+  ],
+  "chorus 1 + tail 1": [
+   97.43,
+   99.85,
+   102.26,
+   104.68,
+   107.09,
+   109.53,
+   111.94,
+   114.36,
+   116.77,
+   119.19,
+   121.63,
+   124.04
+  ],
+  "verse 2": [
+   126.46,
+   128.87,
+   131.29,
+   133.7,
+   136.12,
+   138.53,
+   140.94,
+   143.38
+  ],
+  "interlude": [
+   145.22,
+   147.63,
+   150.05,
+   152.46,
+   154.88
+  ],
+  "bridge": [
+   155.48,
+   157.9,
+   160.31,
+   162.72,
+   165.14,
+   167.53,
+   169.95,
+   172.36
+  ],
+  "verse 3": [
+   174.78,
+   177.19,
+   179.58,
+   182.02,
+   184.44,
+   186.85,
+   189.27,
+   191.7,
+   194.1,
+   196.53,
+   198.92
+  ],
+  "chorus 2 + tail 2": [
+   203.45,
+   206.12,
+   208.54,
+   210.95,
+   213.34,
+   215.76,
+   218.15,
+   220.57,
+   222.96,
+   225.37,
+   227.76,
+   230.18,
+   232.57,
+   234.99
+  ],
+  "coda": [
+   254.38,
+   256.81,
+   259.23,
+   261.67
+  ]
+ },
+ "downbeats_note": "Beat-tracker beats (features_mix.json) phase-locked to a measured hit in each section, every 4th beat [G]. Bar ~2.42 s."
+}

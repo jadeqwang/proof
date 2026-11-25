@@ -129,7 +129,7 @@ export function build(shot, { makeCam }) {
         floor: { desk_shadow_ends_z: term.umbra, fully_lit_from_z: term.full, lines: [lineAt(term.umbra), lineAt(term.full)].map((l) => l.map(pt)), note: 'the desk top cuts the light: floor nearer the desk than desk_shadow_ends_z, and everything under the desk, is unlit' } },
       word: { centre: pt(WORD_P), underline: [pt(screenPoint(WORD.u0, WORD.v, 0.001)), pt(screenPoint(WORD.u1, WORD.v, 0.001))], note: 'gold underline goes here (renderer layer)' },
       chair: { hub: pt([chairSpec.at[0], CHAIR.spokeTop, chairSpec.at[1]]), spoke_tips: [0, 1, 2, 3, 4].map((k) => pt(spokePoint(k, CHAIR.spokeR, chairSpec.at, chairSpec.spoke0))), feet_stand_at: [pt(FEET.front), pt(FEET.back)] } };
-    if (J && shot.contacts) out.contacts = shot.contacts.map(([part, target]) => { const a = J[part], b = target === 'word' ? V(WORD_P) : V(target); return { a: 'jade7:' + part, b: target, distance_cm: +(a.distanceTo(b) * 100).toFixed(1) }; });
+    if (J && shot.contacts) out.contacts = shot.contacts.map(([part, target]) => { const a = J[part], b = target === 'word' ? V(WORD_P) : V(target); return { a: 'jade7:' + part, a_world: r3(a), b: target, distance_cm: +(a.distanceTo(b) * 100).toFixed(1) }; });
     return out; };
   // the mask twin (beam_<id>): the screen's frustum (screen rectangle -> beamFar(), clipped by the room) white, everything
   // else black. Over the desk's width the desk top cuts it: nothing below the plane through the top of the screen and the

@@ -137,53 +137,53 @@
  "heads": {
   "jade3": {
    "px": [
-    979.8,
-    622.8
+    980.4,
+    642
    ],
    "eyes": [
-    974.8,
-    633.2
+    975.3,
+    650.3
    ],
    "mouth": [
-    976.6,
-    644.8
+    976.7,
+    662.7
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 37
+   "facing_camera_deg": 31
   },
   "mama86": {
    "px": [
-    1493.2,
-    382.5
+    1677.7,
+    379.4
    ],
    "eyes": [
-    1479.1,
-    384.9
+    1659.5,
+    381.8
    ],
    "mouth": [
-    1480.6,
-    397.7
+    1661.2,
+    395.8
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 42
+   "facing_camera_deg": 47
   }
  },
  "hands": {
   "jade3.L": {
    "px": [
-    994.4,
-    672.8
+    994.8,
+    679.8
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "jade3.R": {
    "px": [
     957.7,
-    665.3
+    670
    ],
    "shape": "pinch",
    "in_frame": true,
@@ -191,8 +191,8 @@
   },
   "mama86.L": {
    "px": [
-    1654.7,
-    459.6
+    1710.6,
+    564.3
    ],
    "shape": "relax",
    "in_frame": true,
@@ -200,8 +200,8 @@
   },
   "mama86.R": {
    "px": [
-    1459.2,
-    542.8
+    1558.9,
+    467.5
    ],
    "shape": "relax",
    "in_frame": true,
@@ -215,20 +215,20 @@
    "on": true,
    "color": "#fff1d0",
    "world": [
-    9.8042,
-    5.3492,
-    7.6326
+    7.1885,
+    7.2646,
+    8.2117
    ],
    "px": [
-    793.6,
-    819.3
+    1041.7,
+    1065.4
    ],
    "in_front": false,
    "travel_dir_px": [
-    -0.793,
-    -0.61
+    0.662,
+    0.75
    ],
-   "toward_camera": -0.996,
+   "toward_camera": -0.992,
    "aim_world": [
     2.25,
     1.2,
@@ -279,91 +279,91 @@
   }
  ],
  "warnings": [],
- "intent": "The beam from beside the windows: table, child and couch in the light, Mother in the doorway beyond its end. Not a shot.",
+ "intent": "The beam from beside the windows: the table's south half, the armchairs and the couch's south end in the light, the child at its north edge, Mother in the doorway far beyond its end. Not a shot.",
  "beam": {
   "kind": "low winter sun through the French windows (six + four leaves), under the balcony above and over the parapet (parallel light)",
   "travel_dir": [
-   -0.5396,
-   -0.2964,
-   -0.788
+   -0.3527,
+   -0.4332,
+   -0.8294
   ],
-  "elevation_deg": 17.24,
+  "elevation_deg": 25.67,
   "sun": {
    "date": "1986-12-21",
-   "time": "08:31 CST (UTC+8)",
+   "time": "09:30 CST (UTC+8)",
    "lat": 31.2138,
    "lon": 121.439,
-   "elevation_deg": 17.24,
-   "azimuth_deg": 132.4,
-   "west_of_facade_normal_deg": -34.4,
-   "profile_angle_deg": 20.61,
+   "elevation_deg": 25.67,
+   "azimuth_deg": 143.76,
+   "west_of_facade_normal_deg": -23.04,
+   "profile_angle_deg": 27.58,
    "facade_bearing_deg": 166.8,
    "flat": "east",
    "per_metre_into_room": {
-    "east_per_m_in": -0.685,
-    "down_per_m_in": 0.376
+    "east_per_m_in": -0.425,
+    "down_per_m_in": 0.522
    },
-   "status": "date and time are a staging choice (Jade remembers neither season nor hour), picked with sweep.mjs; east flat and 三楼 are facts"
+   "status": "date and time chosen by Jade from the light study (decision page, late 2026-11-25: 21 Dec, about 09:30); east flat and 三楼 are facts"
   },
   "source_world": [
    [
-    1.6083,
-    2.1947,
+    1.6809,
+    2.1538,
     0
    ],
    [
     -1.8,
-    2.1947,
+    2.1538,
     0
    ],
    [
     -1.8,
-    0.3622,
+    0.1531,
     0
    ],
    [
-    1.6083,
-    0.3622,
+    1.6809,
+    0.1531,
     0
    ]
   ],
   "source_px": [
    [
-    1055.3,
-    3033.1
+    887.6,
+    2667
    ],
    [
-    -882.5,
-    -161.9
+    -877.9,
+    -132.6
    ],
    [
-    -698.1,
-    1025.8
+    -679.4,
+    1146.4
    ],
    [
-    1151.6,
-    -5733.2
+    816.4,
+    -6229.9
    ]
   ],
   "aperture_glass_world": [
    [
-    1.7178,
-    0.4224,
+    1.749,
+    0.2367,
     0.16
    ],
    [
-    1.7178,
-    2.2549,
-    0.16
-   ],
-   [
-    -1.8,
-    2.2549,
+    1.749,
+    2.2373,
     0.16
    ],
    [
     -1.8,
-    0.4224,
+    2.2373,
+    0.16
+   ],
+   [
+    -1.8,
+    0.2367,
     0.16
    ]
   ],
@@ -377,45 +377,45 @@
   "sources_world": [
    [
     [
-     1.6083,
-     2.1947,
+     1.6809,
+     2.1538,
      0
     ],
     [
      -1.8,
-     2.1947,
+     2.1538,
      0
     ],
     [
      -1.8,
-     0.3622,
+     0.1531,
      0
     ],
     [
-     1.6083,
-     0.3622,
+     1.6809,
+     0.1531,
      0
     ]
    ],
    [
     [
-     5.7583,
-     2.1947,
+     5.8309,
+     2.1538,
      0
     ],
     [
      3.55,
-     2.1947,
+     2.1538,
      0
     ],
     [
      3.55,
-     0.3622,
+     0.1531,
      0
     ],
     [
-     5.7583,
-     0.3622,
+     5.8309,
+     0.1531,
      0
     ]
    ]
@@ -425,23 +425,23 @@
     "id": "six French windows (old living room)",
     "source_world": [
      [
-      1.6083,
-      2.1947,
+      1.6809,
+      2.1538,
       0
      ],
      [
       -1.8,
-      2.1947,
+      2.1538,
       0
      ],
      [
       -1.8,
-      0.3622,
+      0.1531,
       0
      ],
      [
-      1.6083,
-      0.3622,
+      1.6809,
+      0.1531,
       0
      ]
     ],
@@ -454,51 +454,51 @@
     ],
     "floor_world": [
      [
-      -2.459,
+      -1.925,
       0,
-      -0.963
+      -0.293
      ],
      [
       -2.5,
       0,
-      -1.022
+      -1.646
      ],
      [
       -2.5,
       0,
-      -5.836
+      -4.124
      ],
      [
-      -2.387,
+      -0.073,
       0,
-      -5.836
+      -4.124
      ],
      [
-      0.949,
+      1.556,
       0,
-      -0.963
+      -0.293
      ]
     ],
     "floor_px": [
      [
-      -30.1,
-      929
+      -402.1,
+      1122.5
      ],
      [
-      -6.1,
-      917.5
+      245.8,
+      851.1
      ],
      [
-      1022.1,
-      646.4
+      814.4,
+      701.2
      ],
      [
-      1037.9,
-      648.8
+      1305.8,
+      805
      ],
      [
-      1017.5,
-      1999.4
+      2143.7,
+      15014.2
      ]
     ]
    },
@@ -506,23 +506,23 @@
     "id": "four French windows (old dining room)",
     "source_world": [
      [
-      5.7583,
-      2.1947,
+      5.8309,
+      2.1538,
       0
      ],
      [
       3.55,
-      2.1947,
+      2.1538,
       0
      ],
      [
       3.55,
-      0.3622,
+      0.1531,
       0
      ],
      [
-      5.7583,
-      0.3622,
+      5.8309,
+      0.1531,
       0
      ]
     ],
@@ -535,93 +535,93 @@
     ],
     "floor_world": [
      [
-      2.891,
+      3.425,
       0,
-      -0.963
+      -0.293
      ],
      [
-      -0.446,
+      1.796,
       0,
-      -5.836
+      -4.124
      ],
      [
-      1.763,
+      4.077,
       0,
-      -5.836
+      -4.124
      ],
      [
-      5.099,
+      5.706,
       0,
-      -0.963
+      -0.293
      ]
     ],
     "floor_px": [
      [
-      -8666.3,
-      -7894.4
+      -811,
+      -1108.6
      ],
      [
-      1369.6,
-      697.8
+      2024.2,
+      956.9
      ],
      [
-      1971.3,
-      786.7
+      4357.2,
+      1449.9
      ],
      [
-      -1534.5,
-      -608
+      -650.5,
+      -232.9
      ]
     ]
    }
   ],
   "footprint_floor_world": [
    [
-    -2.459,
+    -1.925,
     0,
-    -0.963
+    -0.293
    ],
    [
     -2.5,
     0,
-    -1.022
+    -1.646
    ],
    [
     -2.5,
     0,
-    -5.836
+    -4.124
    ],
    [
-    -2.387,
+    -0.073,
     0,
-    -5.836
+    -4.124
    ],
    [
-    0.949,
+    1.556,
     0,
-    -0.963
+    -0.293
    ]
   ],
   "footprint_floor_px": [
    [
-    -30.1,
-    929
+    -402.1,
+    1122.5
    ],
    [
-    -6.1,
-    917.5
+    245.8,
+    851.1
    ],
    [
-    1022.1,
-    646.4
+    814.4,
+    701.2
    ],
    [
-    1037.9,
-    648.8
+    1305.8,
+    805
    ],
    [
-    1017.5,
-    1999.4
+    2143.7,
+    15014.2
    ]
   ],
   "footprint_east_wall": null,
@@ -630,31 +630,31 @@
     [
      -2.5,
      0,
-     -1.022
+     -1.646
     ],
     [
      -2.5,
-     1.81,
-     -1.022
+     1.294,
+     -1.646
     ],
     [
      -2.5,
      0,
-     -5.836
+     -4.124
     ]
    ],
    "px": [
     [
-     -6.1,
-     917.5
+     245.8,
+     851.1
     ],
     [
-     -67.2,
-     235.3
+     218.5,
+     435.4
     ],
     [
-     1022.1,
-     646.4
+     814.4,
+     701.2
     ]
    ]
   },
@@ -664,59 +664,59 @@
   "in_beam": {
    "jade3": {
     "head": {
-     "in": true,
-     "margin_m": 0.215
+     "in": false,
+     "margin_m": -0.301
     },
     "eyes": {
-     "in": true,
-     "margin_m": 0.268
+     "in": false,
+     "margin_m": -0.247
     },
     "handL": {
-     "in": true,
-     "margin_m": 0.182
+     "in": false,
+     "margin_m": -0.122
     },
     "handR": {
-     "in": true,
-     "margin_m": 0.346
+     "in": false,
+     "margin_m": -0.127
     },
     "hip": {
      "in": true,
-     "margin_m": 0.212
+     "margin_m": 0.039
     }
    },
    "mama86": {
     "head": {
      "in": false,
-     "margin_m": -1.62
+     "margin_m": -2.572
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.577
+     "margin_m": -2.533
     },
     "handL": {
      "in": false,
-     "margin_m": -1.275
+     "margin_m": -1.736
     },
     "handR": {
      "in": false,
-     "margin_m": -0.895
+     "margin_m": -2.274
     },
     "hip": {
      "in": false,
-     "margin_m": -0.962
+     "margin_m": -1.914
     }
    }
   },
-  "steam_points_in_beam": "65 of 66",
+  "steam_points_in_beam": "10 of 66",
   "mugs_in_beam": [
-   true,
+   false,
    true,
    true
   ],
-  "focus_in_beam": true,
+  "focus_in_beam": false,
   "stack_in_beam": true,
-  "mother_margin_m": -0.83,
-  "floor_reach_m": 5.84,
+  "mother_margin_m": -1.736,
+  "floor_reach_m": 4.12,
   "north_wall_m": 6.1,
   "her_spot": {
    "at": [
@@ -731,7 +731,7 @@
   },
   "couch_to_corner_m": 2.14,
   "shelf_clearance_m": 0.68,
-  "door_gap_m": 0.28
+  "door_gap_m": 1.98
  },
  "tissue": {
   "generation_pieces": 8,
@@ -817,21 +817,31 @@
   ],
   "stack_sheets": 34,
   "drift": {
-   "table": 32,
-   "floor": 104,
-   "couch": 13,
+   "table": 128,
+   "floor": 468,
+   "couch": 31,
    "by_gen": {
     "1": 1,
-    "2": 2,
-    "3": 3,
-    "4": 7,
-    "5": 12,
-    "6": 18,
-    "7": 31,
-    "8": 39,
-    "9": 36
+    "2": 3,
+    "3": 6,
+    "4": 14,
+    "5": 21,
+    "6": 45,
+    "7": 88,
+    "8": 145,
+    "9": 170,
+    "10": 134
    }
-  }
+  },
+  "hair_bit_world": [
+   -1.135,
+   0.545,
+   -3.691
+  ],
+  "hair_bit_px": [
+   988.9,
+   634.4
+  ]
  },
  "state": "B: a week later, the drift",
  "tissue_pieces": 8,
@@ -839,54 +849,54 @@
  "points_world": {
   "jade3": {
    "eyes": [
-    -1.183,
-    0.548,
-    -3.667
+    -1.186,
+    0.481,
+    -3.675
    ],
    "head": [
-    -1.213,
-    0.574,
-    -3.737
+    -1.217,
+    0.498,
+    -3.747
    ],
    "handL": [
-    -1.014,
-    0.439,
-    -3.563
+    -1.017,
+    0.412,
+    -3.57
    ],
    "handR": [
-    -1.153,
-    0.453,
-    -3.528
+    -1.161,
+    0.433,
+    -3.538
    ],
    "hip": [
     -1.27,
-    0.162,
+    0.081,
     -3.894
    ]
   },
   "mama86": {
    "eyes": [
-    -0.066,
-    1.497,
-    -6.049
+    0.657,
+    1.498,
+    -6.067
    ],
    "head": [
-    -0.026,
-    1.509,
-    -6.131
+    0.715,
+    1.51,
+    -6.139
    ],
    "handL": [
-    0.649,
-    1.165,
-    -6.128
+    0.889,
+    0.734,
+    -6.037
    ],
    "handR": [
-    -0.182,
-    0.734,
-    -6.263
+    0.27,
+    1.12,
+    -6.14
    ],
    "hip": [
-    0,
+    0.75,
     0.832,
     -6.18
    ]
@@ -896,17 +906,17 @@
   "jade3": {
    "legs": {
     "L": {
-     "reach": 0.35
+     "reach": 0.58
     },
     "R": {
-     "reach": 0.35
+     "reach": 0.58
     }
    },
    "arms": {
-    "L": 1.46,
-    "R": 1.24
+    "L": 1.5,
+    "R": 1.3
    },
-   "headTurn": 3
+   "headTurn": 4
   },
   "mama86": {
    "legs": {
@@ -918,10 +928,10 @@
     }
    },
    "arms": {
-    "L": 1.26,
-    "R": 0.97
+    "L": 0.97,
+    "R": 0.8
    },
-   "headTurn": 3
+   "headTurn": 2
   }
  }
 }

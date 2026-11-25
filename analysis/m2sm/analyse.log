@@ -1,0 +1,4 @@
+duration 268.4
+tempo 99.38401442307692 n beats 421 median ibi 0.6037188208616726
+regression beat 0.6051117410621828 BPM 99.15524014569444
+key [(np.float64(0.6635766406956243), 'Bb minor'), (np.float64(0.579486633409449), 'C# major'), (np.float64(0.4659687844281149), 'F# major'), (np.float64(0.43264280695744833), 'Ab major')]

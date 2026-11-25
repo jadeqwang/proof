@@ -7,6 +7,134 @@ sh layout/sets/mv10/sheet.sh label line lit flat                       # contact
 python3 layout/gallery.py
 ```
 
+## 2026-11-25 (late): Jade's decision-page answers applied (supersedes the section below where they differ)
+
+Each change is marked **Jade** (her answer), **ASSUMED** (our choice to make it buildable; she has not confirmed it), or
+**OPEN** (a question back to her). Existing shots keep their `time` strings; new shots use -2sm times
+(`media/karaoke_v2/lyrics_timed.json`, full mix).
+
+**The house**
+- **Date:** Saturday 2 Oct 2010 stays (**Jade**: fine).
+- **Partition (Jade: really THICK, "built-in, chimney, closet...", "as thick as the 2x2 Expedit is deep, so the 2x2 sits
+  almost flush"):** rebuilt 0.78 m thick, centred on Z 5.0 (`PARTITION_T`, `PARTITION.zc`). **ASSUMED reading:** the 2x2
+  stands at the wall's end facing SSW as she drew it, its 79 cm across the wall, so "flush" means a wall about 79 cm thick
+  (the 2x2 is 5 mm proud of each face). Page 1 (0.7 m double line) and page 2 (a band as wide as the 2x2's long side)
+  both agree. **OPEN:** if she meant the Expedit's literal 39 cm depth, the wall is 0.39 m and the 2x2 would have to turn
+  90 deg to sit flush (extending the wall line, facing the living room or the kitchen). That is a two-line change in
+  `layout.js`. The wall is modelled solid; no chimney or closet inside it.
+  - Knock-on: living room now 4.46 m deep (Z 0.15..4.61), kitchen 4.41 m (Z 5.39..9.80). The Expedit 5x5 sits 0.32 m
+    further WNW (front Z 4.22). The shelf mark (2.72, 3.30), first love's shelf mark and the outside lens all moved with it,
+    keeping their old distances. The kitchen counter along the partition moved with the wall.
+- **Living-room windows (Jade):** one in the front (WNW) wall, which already existed, AND one along the side wall. Her
+  words were "I think", so the side window is her recollection, not a certainty. The SSW wall is the living room's only
+  exterior side wall (NNE is the core), so the side window is the existing SSW one (Z 1.6..3.2), now credited to her.
+  Both windows' sizes and positions are still **ASSUMED**.
+- **Sun recheck, 16:30 bridge** (also after the floor-height change below):
+  - The WNW window is 91 % sunlit (357 View St clips the rest). The front door is 100 %, the SSW window 20 %, the SSW
+    dining window 71 %.
+  - **New:** a small patch of sun through the unshaded part of the SSW window now lands on the floor just in front of the
+    Expedit's truth end (about X 3.0-3.4, Z 3.8-4.4). It also lands on the bottom of the truth-end cubes (X 2.67-2.9,
+    below 0.5 m). This happens because the shelf moved 0.32 m toward that window.
+  - Her face and head at the shelf mark stay out of the sun. The shelf's upper rows and the pan's spines are not sunlit.
+  - Verse 3 (18:25): no sun through any opening, as before.
+- **Glass-top table (Jade):** a SEMICIRCLE, flat side against the NNE wall, 0.91 m wide, 0.30 m deep at the centre.
+  - Built as a half-ellipse (semi-axes 0.455 x 0.30) at Z 2.35, where she drew the D. **ASSUMED:** a half-ellipse rather
+    than a shallow circular segment.
+  - **ASSUMED:** 0.76 m high, 12 mm glass, a thin chrome apron, three slim chrome legs.
+- **Sliding glass door (Jade; replaces the French doors):** ESE wall. **ASSUMED:** a 6 ft (1.83 m) two-panel slider at
+  X 0.70..2.53; the SSW panel slides open behind the fixed NNE panel, leaving X 0.70..1.62 open. Her path and the greeting
+  mark use that open half.
+- **Deck (Jade):** level with the house floor (`PATIO.top` 0; was -0.05), wood, with wood stairs and a wood railing down
+  to the yard.
+  - The yard is "at least 3-4 steps" below the floor. `FLOOR_ABOVE_GRADE` is now 0.70 m: four 17.5 cm risers, **ASSUMED**
+    inside her 0.6-0.75 m (was 0.60).
+  - **ASSUMED:** railing 0.91 m, posts at most 1.8 m apart, a top and a bottom rail, balusters at about 12 cm. It runs
+    round the deck's SSW and ESE edges, along the stair side and round the landing, and down the stairs' NNE side
+    (sloped).
+  - The front steps were rebuilt to the same four risers.
+- **Noguchi coffee table, IN-50 (Jade: base wrong, right in spirit):** rebuilt from the real table.
+  - Glass: a softened triangle, 127 x 91.4 cm, 40 cm high, 19 mm thick, with ground rounded edges.
+  - Base: two IDENTICAL solid-wood pieces, black. Each is a long bar with a tapering foot at the far end and a short stub
+    at the pivot end. The lower piece is the upper turned 180 deg in its own plane. The stubs meet at mid-height on a
+    dowel. Three points carry the glass and three touch the floor.
+  - **Estimates, not published numbers:** the glass outline, the leg profile (about 80 cm long, 38 cm high, 4 cm thick)
+    and the plan layout were measured off Vitra's scale drawings. Plan layout: the pivot 26 cm toward the apex, the far
+    ends toward the front corners.
+  - **Discrepancy between the sources:** the legs sit about 85 deg apart in Vitra's plan; Herman Miller's assembly sheet
+    says 52 deg. We followed Vitra's drawing.
+  - Black legs follow Jade's "curved black wooden supports". Placement is unchanged: (1.72, 1.98), flat side to the
+    couch, apex to the shelf.
+  - Sources:
+    - Herman Miller store page (50" x 36" x 15 3/4", 3/4" glass, two identical solid-wood legs):
+      https://store.hermanmiller.com/living/coffee-tables-and-side-tables/noguchi-table/103688.html
+    - Herman Miller assembly instructions, part no. 113963-K (pivot dowel and pins, the 52 deg angle):
+      https://cdn.shopify.com/s/files/1/0435/8032/6038/files/productinstructions.pdf
+    - Vitra factsheet (1280 x 920 x 400; plan and elevation drawings; "two identical wooden elements"; ground rounded
+      edges): https://static.vitra.com/media/asset/191472/storage/master/download/Factsheet%2520Coffee%2520Table-EN.pdf
+    - Wikipedia (history; before 1965 the glass was 7/8" and the table 15" tall): https://en.wikipedia.org/wiki/Noguchi_table
+    - noguchi.org could not be reached (HTTP 402).
+
+**The party**
+- **Lemons and lemonade (Jade):** made BEFORE the party by her and the childhood friend. First love, Z and the guests had
+  not arrived yet.
+  - **Conflict found:** V3b ("lemons the size of pomelos", her hand up to a lemon) had first love standing beside her
+    under the tree during the party.
+  - **Fix:** V3b is restaged as the picking, a memory before the party. New section `Before the party` at 14:00
+    (**ASSUMED** clock; sun 46 deg, az 203). The childhood friend stands just ahead of her, back to us, looking up into the
+    tree and holding a bowl of picked lemons (in the sidecar, below frame). No first love, no guests, no poi. Same camera
+    position, same `t`.
+  - **OPEN:** Jade may prefer to keep V3b as a party moment and add the picking as a separate shot.
+  - The lemonade table on the deck during the party is unchanged; it no longer implies anyone made it there.
+  - V3a (the wide of the party) has no one picking or making lemonade.
+  - First love under the tree at "nod" stays as before: that is during the party.
+- **Childhood friend figure:** `_cast.js` has no adult childhood friend, so `friend` is set-local in `build.js`.
+  - **ASSUMED:** 1.73 m, male (the poem digest calls 童友 "he"), tan top, short black hair. Face undrawn, back and hands
+    only, like first love.
+  - Deliberately NOT the charcoal hoodie of `cast/childhood_friend/cf_A_back_v1`: Jade says that old artwork matches Z.
+  - **Z:** no figure built. Z arrives with the guests and is not singled out in any mv10 shot. If Z is wanted, the cf_A
+    look could be given to one guest (for example G1, who does the greeting).
+- **"He said I absolutely nailed it" (Jade):** she stands by the Expedit; first love stands close and whispers to her.
+  - New shot **V3_nailed** (-2sm 183.847-185.98, verse-3 light: ceiling on, dusk in the windows). 50 mm over his right
+    shoulder.
+  - He stands at her right-front, bent to her right ear. Back of his head only: in the sidecar his head is 116 deg from
+    facing the camera, so his jaw line shows but no features.
+  - She faces the room in front of the truth half with a cup. The opening, the dining pendant and the SSW dining window
+    are behind.
+  - **V3d** (the same line under the lemons) is RETIRED; its renders are in `_retired/`.
+  - **OPEN (continuity):** the push-in at "I nod, past hour reviewed" (189.1 s, three seconds later) is still under the
+    lemon tree, facing him. Jade may want the nod at the shelf too, right after the whisper.
+- **Poi audience (Jade):** the guests watch from along the side of the house by the wall, and from the deck. The spinner
+  is in the yard, performing toward them.
+  - W1-W4 stand on the lawn along the ESE wall, NNE of the stairs (X 6.4-9.0, Z about 10.5).
+  - D1 and D2 stand at the deck's ESE railing.
+  - **ASSUMED:** the spinner's mark is (6.3, 15.6), on the open lawn 5 m out, between the mint barrel and the
+    clothesline. Yaw -166, facing the audience's middle `AUDIENCE_AT` (5.2, 11.2). (It was at (4.0, 17.3), facing the tree.)
+  - Knock-on: SI1 now computes its axis from the poi, so the fire stays directly behind her. In V3e first love now stands
+    at her right, watching too, so he is no longer between her and the moved poi; V3e sees the spinner from behind,
+    playing to the deck. In V3a the deck audience fills the left foreground; acceptable, they are the audience. In SI1 the
+  moved axis put first love face-on behind her; he now turns to watch the fire, back to the lens (169 deg).
+
+**The shots**
+- **Shelf pan (Jade):** shelf only (unchanged: she is not in frame). "From inside, I can't tell the difference" holds on
+  the shelf. New END key **BRpan_c** at the seam (-2sm 166.853-169.66), held.
+  - `BRpan_a.move` now runs a (beauty) -> m1 (seam, passing, 161.96) -> b (cube 4,4, 164.41) -> back to the seam
+    (arrives 166.85, holds to 169.66).
+  - **ASSUMED:** the track reverses after b to land on the seam. The alternative is to make m1 not the seam, so the seam
+    is reached only once, at the end.
+- **Room crossing velocity (Jade):** the steep oblique **V3_rcv_obl** is THE shot. **V3_rcv** (straight down) is kept,
+  marked REFERENCE ONLY (`reference: true`, header), for true-scale overlay data.
+  - Crossing numbers now: 8.28 m in 7.87 s, against a 6.82 m straight line and a 7.54 m shortest walkable path
+    (1.10x). The route starts 0.32 m further WNW.
+- **"I nod, past hour reviewed" (Jade):** push into the TEMPLE. **V3_rev_temple_a/b** kept; **V3_rev_eye_a/b** RETIRED
+  (renders in `_retired/`).
+- **IAS seal mirroring:** unchanged (Jade: keep the shelf as remembered: beauty left, truth right).
+
+**Checked by eye** (2026-11-25 late):
+- Renders: V3_nailed (flat, label, lit); V3b (label, lit); V3e and V3a (lit); V3h (label, flat); BR3 (line, lit).
+- The Noguchi table and the console, through temporary close-up cameras since removed (line, flat, lit).
+- The full lit contact sheet.
+- Found and fixed: a scale bug that flattened the new Noguchi legs; first love blocking V3e; a guest at the V3a lens.
+
 ## 2026-11-25 (2): the real 345B, from Jade's drawings (supersedes everything below it)
 
 The set was rebuilt from Jade's own drawings of the house she lived in. The digitised plan, with what was read,
@@ -317,3 +445,19 @@ halves, seam, shadow receivers and the lamp mask all follow.
 BR2 / BR3 / BR6 / V3g beyond the sheet. Known look issues: shadows on the espresso frame and dark recesses read weakly
 in flat (dark surface, physically right); the 4 mm shadow grid shows stair-steps in close shots (BR4b, C2a), as it
 did before; the mannequin's hair fringe box reads oddly in C2a (engine, not this set).
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- Already on -2sm and left alone: BRpan_a/m1/b/c, V3_nailed, V3_rev_temple_*, V3_rcv, V3_rcv_obl (remap --skip-ids V3_rcv_obl).
+- Bridge: BR1 2:34.5, BR2 2:34.5-2:37.1 ("Do you not see"), BR3 2:37.1-2:39.6 (blank stares on "Does it matter..."; the plan
+  then cuts to mortongrove07 on "Beauty on this side" 2:39.6), BR6 2:49.7-2:52.5, HS1 2:52.5-2:54.7.
+- Verse 3: V3a 2:54.7-2:57.0 (band hit), V3b 2:57.0-2:59.2 (lemons, before the party), V3c 2:59.2-3:03.8 ("Perky American girl"),
+  V3_nailed 3:03.8-3:06.0, V3e 3:06.0-3:09.1 ("fifteen percent"), V3_rev_temple 3:09.1-3:11.5, V3f 3:11.6-3:12.8 ("Hug
+  durations"; the spectrogram plate takes "pitch contours"; judgment call), V3_rcv_obl 3:14.6-3:18.7. V3g is now an
+  alternate to V3_rcv_obl; V3h is the plan / overlay reference for the crossing. SI1 3:19.1-3:23.4; C2a 3:34.2-3:39.6,
+  C2b 3:39.6-3:43.0. Section names (so the sun and dusk per section) unchanged.
+- 2026-11-25 (late): BRpan_a moved to start at 161.96 ("truth by reference"), m1 at 163.19, so the sweatshirt (mortongrove07, 2:39.6-2:42.0) is not double-booked; per the plan and Jade's earlier direction (sweatshirt right before the cut to the pan).

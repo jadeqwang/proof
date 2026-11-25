@@ -1,5 +1,6 @@
-// SCHOOL OFFICE (about 1991) camera table: the "groove in" handout shot (0:19-0:30), the pre-chorus (1:18-1:34) and the
-// band-out (1:34-1:37). Times are seconds from analysis/v2/song_map.md; `t` = [start, end] of the clip a camera serves.
+// SCHOOL OFFICE (about 1991) camera table: the "groove in" handout shot (0:19.0-0:29.7), the pre-chorus (1:17.2-1:32.7) and
+// the band-out (1:32.7-1:36.0). Times are -2sm master seconds (analysis/m2sm/song_map.md; retimed from v2 2026-11-25,
+// cuts on the -2sm sung onsets and the measured groove / band-out hits); `t` = [start, end] of the clip a camera serves.
 // The plan's two camera positions:  OUTSIDE = frontal, level, locked off on her face, with bare wall frame-left of it for
 // the toner label.  INSIDE = along her eye-line, close (her head is hidden in those guides: the camera is her eyes).
 import { SEATS, CHAIR, JADE_TIP, SW_TIP, DICT, DAD_PALM, HANDOUT, TABLE } from './layout.js';
@@ -32,34 +33,34 @@ export const SHOTS = [
   { id: 'REF_wide', lens: 22, pos: [-1.5, 1.6, 1.8], aim: ['handout', 0.52, 0.62], figs: ALL(),
     header: 'MASTER (reference): the office from the door corner', intent: 'The whole set: the tube over the table, the four seats, bare wall behind her. Not a shot.' },
 
-  // ---------------------------------------------------------------- groove in, 0:19-0:30
-  { id: 'H1', t: [19.46, 26.0], lens: 40, orbit: { at: 'handout', az: 180, el: 62, dist: 0.52 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
+  // ---------------------------------------------------------------- groove in, 0:19.0-0:29.7
+  { id: 'H1', t: [19.00, 25.63], lens: 40, orbit: { at: 'handout', az: 180, el: 62, dist: 0.52 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
     move: { end: 'H1b', note: 'the camera drifts from the whole sheet and settles on the gap in the short row' },
-    header: '0:19 INSIDE groove in: the yellow handout under the tube, the whole grid (start)',
+    header: '0:19.0 INSIDE groove in: the yellow handout under the tube, the whole grid (start)',
     intent: 'Inside: the yellow handout as she sees it, a grid of labelled cartoon faces, seven to a row, one centred row of six. The first colour in the film. Steeper than her true eye-line so the grid reads square; her hands rest either side.' },
-  { id: 'H1b', t: [26.0, 30.18], lens: 60, orbit: { at: 'gap', az: 180, el: 62, dist: 0.36 }, aim: ['gap', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
-    header: '0:26 INSIDE groove in: settled on the gap in the short row. Title: PROOF', intent: 'End of the H1 move: the end of the fourth row, which is one face short, and its last face (ANXIOUS). The title sits over this frame.' },
+  { id: 'H1b', t: [25.63, 29.74], lens: 60, orbit: { at: 'gap', az: 180, el: 62, dist: 0.36 }, aim: ['gap', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
+    header: '0:25.6 INSIDE groove in: settled on the gap in the short row. Title: PROOF', intent: 'End of the H1 move: the end of the fourth row, which is one face short, and its last face (ANXIOUS). The title sits over this frame.' },
 
-  // ---------------------------------------------------------------- pre-chorus, 1:18-1:34
-  { id: 'PC1', t: [78.1, 81.4], ...OUTSIDE_CAM, figs: ALL(),
-    header: '1:18 OUTSIDE "She doesn\'t talk like other children": toner label lands frame-left of her face',
+  // ---------------------------------------------------------------- pre-chorus, 1:17.2-1:32.7
+  { id: 'PC1', t: [77.24, 81.50], ...OUTSIDE_CAM, figs: ALL(),
+    header: '1:17.2 OUTSIDE (sung 1:18.3) "She doesn\'t talk like other children": toner label lands frame-left of her face',
     intent: 'Outside: frontal, level, locked off, from beside the social worker\'s shoulder. Her face right of centre under the tube, eyes down on the sweatshirt and the table; bare wall frame-left for the toner label.' },
-  { id: 'PC2', t: [81.4, 84.4], lens: 50, orbit: { at: 'dadPalm', az: -155, el: 38, dist: 0.7 }, aim: ['dadPalm', 0.52, 0.55], figs: ALL(),
-    header: '1:21 "(Her English comes from books)": Dad\'s open palm on the table', intent: 'The reply is a hand: Dad\'s open palm, turned up on the table at the edge of the light, seen from her side of the table. No faces.' },
-  { id: 'PC3', t: [84.4, 88.2], lens: 35, orbit: { at: 'handout', az: 180, el: 47, dist: 0.46 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: ALL(jadeRead()),
+  { id: 'PC2', t: [81.50, 83.27], lens: 50, orbit: { at: 'dadPalm', az: -155, el: 38, dist: 0.7 }, aim: ['dadPalm', 0.52, 0.55], figs: ALL(),
+    header: '1:21.5 "(Her English comes from books)": Dad\'s open palm on the table', intent: 'The reply is a hand: Dad\'s open palm, turned up on the table at the edge of the light, seen from her side of the table. No faces.' },
+  { id: 'PC3', t: [83.27, 87.37], lens: 35, orbit: { at: 'handout', az: 180, el: 47, dist: 0.46 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: ALL(jadeRead()),
     move: { note: 'drifts down the page as her eye runs down the grid, column by column, toward the short row' },
-    header: '1:24 INSIDE lyric-free gap: her eye runs down the grid', intent: 'Inside: her true eye-line onto the handout, close and raking; the social worker\'s forearms and clipboard beyond the top of the page, no face.' },
-  { id: 'PC4', same: 'PC1', t: [88.2, 91.05], header: '1:28 OUTSIDE "Her face doesn\'t make much expression": the same frame, shorter',
+    header: '1:23.3 INSIDE lyric-free gap: her eye runs down the grid', intent: 'Inside: her true eye-line onto the handout, close and raking; the social worker\'s forearms and clipboard beyond the top of the page, no face.' },
+  { id: 'PC4', same: 'PC1', t: [87.37, 90.78], header: '1:27.4 OUTSIDE "Her face doesn\'t make much expression": the same frame, shorter',
     intent: 'Identical camera to PC1 (the film\'s rhyme); a second toner label lands in the same place.' },
-  { id: 'PC5', t: [91.05, 93.6], lens: 50, orbit: { at: 'dict', az: -100, el: 32, dist: 0.72 }, aim: ['dict', 0.5, 0.5], figs: ALL(),
-    header: '1:31 "(For our culture,": Mom\'s thumb racing through the little red dictionary', intent: 'The reply is a hand: Mom\'s thumb riffling the pages of a pocket dictionary, seen from little Jade\'s side. No faces.' },
+  { id: 'PC5', t: [90.78, 92.68], lens: 50, orbit: { at: 'dict', az: -100, el: 32, dist: 0.72 }, aim: ['dict', 0.5, 0.5], figs: ALL(),
+    header: '1:30.8 "(For our culture,": Mom\'s thumb racing through the little red dictionary', intent: 'The reply is a hand: Mom\'s thumb riffling the pages of a pocket dictionary, seen from little Jade\'s side. No faces.' },
 
-  // ---------------------------------------------------------------- band out, 1:34-1:37
-  { id: 'BO1', t: [93.6, 95.1], ...GAP_CAM, figs: ALL(jadePoint()),
-    header: '1:34 INSIDE band out "that\'s just how it looks": she points at the last face in the row of six (gold circle round the gap beside it)',
+  // ---------------------------------------------------------------- band out, 1:32.7-1:36.0
+  { id: 'BO1', t: [92.68, 94.68], ...GAP_CAM, figs: ALL(jadePoint()),
+    header: '1:32.7 INSIDE band out "that\'s just how it looks": she points at the last face in the row of six (gold circle round the gap beside it)',
     intent: 'Inside, the gap camera: her small index finger comes down on the last face in the row of six, where the row stops short.' },
-  { id: 'BO2', t: [95.1, 96.8], ...GAP_CAM, figs: ALL(jadePoint(), swPoint()),
-    header: '1:35 INSIDE the adult\'s finger lands on the same face and reads its label: ANXIOUS',
+  { id: 'BO2', t: [94.68, 96.00], ...GAP_CAM, figs: ALL(jadePoint(), swPoint()),
+    header: '1:34.7 INSIDE the adult\'s finger lands on the same face and reads its label: ANXIOUS',
     intent: 'Same camera. An adult index finger arrives from across the table and lands on the face she is pointing at, the one next to the gap. Her finger has not moved. Match cut on the pointing finger follows.' },
 
   // ---------------------------------------------------------------- spare (not placed in the Structure table)

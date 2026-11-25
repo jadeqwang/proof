@@ -1,7 +1,8 @@
 // PLAYGROUND 2023 camera table ("Proof"): the last bar of the drum coda, and the final shot.
 // Fields as attic88_day/shots.js: time, section, position ('outside' | 'inside'), eyeline { who, to, back }, beamAnchor.
-// Times are from analysis/v3/song_map.md: coda groove 4:25.94-4:35.3 in 2.416 s bars (last bar from 4:33.2), drums stop
-// dead at 4:35.3, final tone gone by ~4:37.5, file ends 4:38.4.
+// Times are -2sm master times (analysis/m2sm/song_map.md; retimed from v3 2026-11-25): coda hit 4:14.3, the groove at
+// once in 2.42 s bars (4:14.3, 4:16.8, 4:19.2; last bar from 4:21.7), drums stop dead on the last hit 4:24.1, then a
+// low bass note rings and fades (gone by ~4:28.0), file ends 4:28.4.
 // Every shot has a twin `beam_<id>` (same camera, beamMask: true): render it in flat mode for the beam mask.
 import { FAMILY } from './layout.js';
 
@@ -15,16 +16,16 @@ const family = (o = {}) => ({
 });
 
 const BASE = [
-  { id: 'PG1', lens: 35, pos: [0.12, 2.3, 2.75], aim: [[0.2, 1.5, -1.0], 0.52, 0.36], position: 'inside', time: '4:33.2-4:35.3 (v3)', section: 'Drum coda, last bar (header: 4. Austin, 2023)', beamAnchor: 'mote',
-    header: '4:33.2 coda, last bar: playground glass, low sun, three resting faces in reflection as silhouettes',
+  { id: 'PG1', lens: 35, pos: [0.12, 2.3, 2.75], aim: [[0.2, 1.5, -1.0], 0.52, 0.36], position: 'inside', time: '4:21.7-4:24.1 (-2sm)', section: 'Drum coda, last bar (header: 4. Austin, 2023)', beamAnchor: 'mote',
+    header: '4:21.7 coda, last bar: playground glass, low sun, three resting faces in reflection as silhouettes',
     intent: 'From behind and above the family: three backs at the bottom of frame, and above them in the pane their three faces at rest, reflected as silhouettes. Through the glass, in the dim room behind, the low sun from the back window makes one diagonal beam. Adult Jade’s reflected eyes are not on herself: they are on a mote in that beam.',
     figs: family() },
-  { id: 'PG2', lens: 35, eyeline: { who: 'jade', to: 'mote', back: 0.16 }, aim: ['mote', 0.5, 0.5], position: 'inside', time: '4:33.2-4:38.4 (v3)', section: 'Drum coda last bar; 4:35.3 drums stop; final tone to ~4:37.5', beamAnchor: 'mote',
-    header: '4:35.3 FINAL / RHYME FRAME: along her eye-line through the glass to the mote; the beam is the attic’s diagonal',
-    intent: 'The inside position and the film’s last frame. Along her eye-line through the pane: the mote at the centre, the beam crossing from upper right to lower left at about 40 degrees, as in the attic. The partner’s and child’s reflections stand as silhouettes at frame right (her own is out of frame: this is her view). At 4:35.3 the mote drifts up and right out of the light; hold; the wash goes to bare paper and the gold dotted line starts along its path and stops (path in the sidecar).',
+  { id: 'PG2', lens: 35, eyeline: { who: 'jade', to: 'mote', back: 0.16 }, aim: ['mote', 0.5, 0.5], position: 'inside', time: '4:21.7-4:28.4 (-2sm)', section: 'Drum coda last bar; 4:24.1 drums stop; final tone to ~4:28.0', beamAnchor: 'mote',
+    header: '4:24.1 FINAL / RHYME FRAME: along her eye-line through the glass to the mote; the beam is the attic’s diagonal',
+    intent: 'The inside position and the film’s last frame. Along her eye-line through the pane: the mote at the centre, the beam crossing from upper right to lower left at about 40 degrees, as in the attic. The partner’s and child’s reflections stand as silhouettes at frame right (her own is out of frame: this is her view). At 4:24.3 the mote drifts up and right out of the light; hold; the wash goes to bare paper and the gold dotted line starts along its path and stops (path in the sidecar).',
     figs: family() },
-  { id: 'PG2_plate', lens: 35, eyeline: { who: 'jade', to: 'mote', back: 0.16 }, aim: ['mote', 0.5, 0.5], position: 'inside', time: '4:35.3-4:38.4 (v3)', section: 'Drums stop dead; final tone', beamAnchor: 'mote', reflections: false,
-    header: '4:35.3 plate: PG2 without the reflections (the beam, the mote leaving it, then bare paper)',
+  { id: 'PG2_plate', lens: 35, eyeline: { who: 'jade', to: 'mote', back: 0.16 }, aim: ['mote', 0.5, 0.5], position: 'inside', time: '4:24.1-4:28.4 (-2sm)', section: 'Drums stop dead; final tone', beamAnchor: 'mote', reflections: false,
+    header: '4:24.1 plate: PG2 without the reflections (the beam, the mote leaving it, then bare paper)',
     intent: 'PG2’s exact camera with the reflection layer off: the clean plate for the beam mask, the mote’s exit and the unfinished gold dotted line. Use it when the reflections are composited as their own layer.',
     figs: family() },
 ];

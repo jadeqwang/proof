@@ -1,4 +1,4 @@
-// LIVING ROOM, 5748 CAPRI LANE, MORTON GROVE, ABOUT 2007: camera table ("Proof", bridge, "Beauty on this side", v3 169.4-171.8 s, then
+// LIVING ROOM, 5748 CAPRI LANE, MORTON GROVE, ABOUT 2007: camera table ("Proof", bridge, "Beauty on this side", -2sm 159.62-161.96 s, then
 // the cut to the Expedit pan on "truth by reference"). First love is a real person: never named, never face-on. Every
 // camera is behind him (his hair only). Set points usable as targets: shirt, seal, hisL, hisR, herL, herR.
 // Every shot has a twin `beam_<id>` (flat = the sun-shaft mask).
@@ -21,11 +21,11 @@ const T = { section: FILM.section, time: FILM.time, t: FILM.t, lyric: FILM.sung_
 
 const BASE = [
   { id: 'MG1', lens: 35, ...T, position: 'outside', orbit: { at: 'firstLove27:head', relBody: 'firstLove27', az: -140, el: 38, dist: 0.9 }, aim: [{ mid: ['jade27:eyes', 'seal'] }, 0.6, 0.45], focus: ['jade27'],
-    header: '2:49.4 "Beauty on this side": over his shoulder, he hands her the IAS sweatshirt',
+    header: '2:39.6 "Beauty on this side": over his shoulder, he hands her the IAS sweatshirt',
     intent: 'Over first love’s right shoulder, from behind and above it: the back of his head and his dark brown, fairly straight hair soft in the foreground at frame left (never his face). She sits forward on the floral couch against the front wall, looking up at him; the picture window beside her at frame right, its low afternoon sun across her face and hands. Between them the folded white sweatshirt, the dark-blue IAS seal (Truth, Beauty) on top; his hands on its near edges, hers closing on its far edges. Her face and the sweatshirt in focus. Then cut to the Expedit pan on "truth by reference".',
     figs: figs() },
   { id: 'MG2', lens: 24, ...T, position: 'inside', orbit: { at: 'seal', az: +(Math.atan2(SHIRT.w[0], SHIRT.w[2]) * 180 / Math.PI).toFixed(1), el: 58, dist: 0.55 }, aim: ['seal', 0.5, 0.5], hideParts: { jade27: ['head'] },
-    header: '2:50 INSERT: the sweatshirt changing hands, the seal upright (her eye-line)',
+    header: '2:40.2 INSERT: the sweatshirt changing hands, the seal upright (her eye-line)',
     intent: 'Her own view down onto the sweatshirt (her head hidden for the POV): the dark-blue IAS seal upright for her, TRUTH on the left, BEAUTY on the right; his two hands on the far edges with his bare forearms (forearm hair clearly visible), her two hands coming in from the bottom of frame and closing on the near edges, thumbs on top. The low sun comes in from the picture window on her left. His head is out of frame.',
     figs: figs({ head: { look: 'seal' } }, { head: { look: 'seal' } }) },
   { id: 'MG_wide', lens: 20, ...T, position: 'reference', pos: [3.3, 2.25, -4.15], aim: ['shirt', 0.5, 0.62],

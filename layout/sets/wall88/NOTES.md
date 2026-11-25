@@ -30,3 +30,12 @@
 ## Integration pass, 2026-11-22 (supersedes anything above that contradicts it)
 
 - `beam.js` is now a re-export of `layout/sets/_beam.js`; `build.js` imports `../_cast.js` (the engine's `littleJade`, see `layout/CAST.md`). Renders re-made after the engine's left-hand fix; the three masks are pixel-identical to before.
+
+## Retimed to the -2sm master, 2026-11-25 (late; supersedes song times above)
+
+Jade made `inputs/Proof (-2sm).wav` the master. Every song time in `shots.js` is now -2sm full-mix time
+(`analysis/m2sm/song_map.md`), converted with `analysis/m2sm/remap.py` and then placed by hand on the -2sm sung onsets
+and measured hits. Times written elsewhere in this file before this section are the old (v2/v3) clock.
+
+- WL_out 1:37.4-1:45.5 and 1:45.5-1:51.0, WL_eye 1:40.7-1:45.5 ("I honestly don't know"), WL_in 1:51.0-1:54.5 ("Nowhere to
+  go" into the tail).

@@ -74,16 +74,19 @@ function room() {
     g.add(tag(box(140, 70, 0.2, SKY, [0, 10, 45]), 'winter sky (hazy)'));
     for (const s of [-1, 1]) g.add(tag(box(0.2, 70, 60, SKY, [cx + s * 60, 10, 15]), 'winter sky (hazy)'));
   }
-  // ---- hall French doors: a double-wide glazed pair in the north wall (Jade), transom (气窗) above, open into the hall
+  // ---- hall doors: a 4.0 m glazed opening in the north wall (Jade: 2-3x the old pair, centred), transom (气窗) above;
+  //      four leaves, folded back in pairs against each jamb, into the hall
   { const zw = D.z - wallP / 2, FR = { grey: 0.45, col: 0x6a4a30 }, xc = (D.x0 + D.x1) / 2, wd = D.x1 - D.x0;
     g.add(tag(box(wd + 0.12, 0.06, wallP + 0.04, FR, [xc, D.h + 0.03, zw]), 'hall French doors (frame)'));
     for (const x of [D.x0 - 0.03, D.x1 + 0.03]) g.add(tag(box(0.06, D.trans1 + 0.03, wallP + 0.04, FR, [x, (D.trans1 + 0.03) / 2, zw]), 'hall French doors (frame)'));
     g.add(tag(box(wd + 0.12, 0.05, wallP + 0.04, FR, [xc, D.trans1 + 0.025, zw]), 'transom (气窗)'));
-    for (let k = 1; k < 6; k++) g.add(tag(box(0.025, D.trans1 - D.trans0, 0.03, FR, [D.x0 + (wd * k) / 6, (D.trans0 + D.trans1) / 2, zw]), 'transom (气窗)'));
+    const nT = 3 * D.leaves; for (let k = 1; k < nT; k++) g.add(tag(box(k % 3 ? 0.025 : 0.05, D.trans1 - D.trans0, 0.03, FR, [D.x0 + (wd * k) / nT, (D.trans0 + D.trans1) / 2, zw]), 'transom (气窗)'));
     g.add(tag(box(wd, D.trans1 - D.trans0, 0.004, GLASS, [xc, (D.trans0 + D.trans1) / 2, zw]), 'glass'));
-    const lw = wd / 2 - 0.005;
-    for (const [hx, sx] of [[D.x0, 1], [D.x1, -1]]) {   // hinge at each jamb on the hall side; a leaf runs toward the other jamb (sx)
-      const leaf = new THREE.Group(); leaf.position.set(hx, 0, D.z - wallP); leaf.rotation.y = sx * rad(D.openDeg);   // swings north, into the hall
+    const lw = wd / D.leaves - 0.005;
+    // hinge at each jamb on the hall side; leaf 1 swings north into the hall, leaf 2 (hinged to its free edge) folds back
+    // flat against it: each pair stands as a 1 m stack square to the wall (sx: the direction toward the other jamb)
+    for (const [hx, sx] of [[D.x0, 1], [D.x1, -1]]) for (let j = 0; j < D.leaves / 2; j++) {
+      const leaf = new THREE.Group(); leaf.position.set(hx + sx * 0.045 * j, 0, D.z - wallP); leaf.rotation.y = sx * rad(D.openDeg);   // swings north, into the hall
       const L = (w, hh, d, at) => leaf.add(box(w, hh, d, FR, at));
       L(0.06, D.h - 0.01, 0.035, [sx * 0.03, D.h / 2, 0]); L(0.06, D.h - 0.01, 0.035, [sx * (lw - 0.03), D.h / 2, 0]);
       L(lw, 0.07, 0.035, [sx * lw / 2, D.h - 0.04, 0]); L(lw, 0.2, 0.035, [sx * lw / 2, 0.1, 0]);
@@ -97,7 +100,7 @@ function room() {
     g.add(tag(box(hw, h, 0.12, DIM, [hcx, h / 2, HL.z0 - 0.06]), 'hall wall'));
     for (const x of [HL.x0 - 0.06, HL.x1 + 0.06]) g.add(tag(box(0.12, h, hzl, DIM, [x, h / 2, hzc]), 'hall wall'));
     g.add(tag(box(1.8, 2.4, 0.6, { grey: 0.45, col: 0x7a5a3a }, [hcx + 0.9, 1.2, HL.z0 + 0.3]), 'hall: built-in closets (壁橱)'));
-    g.add(tag(box(0.5, 0.02, 0.3, { grey: 0.4, col: 0x6a4a30 }, [0.6, 0.005, HL.z1 - 0.5]), 'hall: doormat'));
+    g.add(tag(box(0.5, 0.02, 0.3, { grey: 0.4, col: 0x6a4a30 }, [hcx + 0.6, 0.005, HL.z1 - 1.2]), 'hall: doormat'));
   }
   const W = WINDOWS[0], panes = { windows: [V(W.x1, W.y1, W.zg), V(W.x0, W.y1, W.zg), V(W.x0, W.y0, W.zg), V(W.x1, W.y0, W.zg)] };   // six windows: TL, TR, BR, BL from inside (east on the left)
   return { g, panes };
@@ -182,10 +185,10 @@ function furniture(shot) {
   g.add(tag(ball(0.2, { grey: 0.45, col: 0x4a6a3a }, [PLANT[0], 0.4, PLANT[1]], [1, 0.9, 1]), 'potted plant'));
   for (const P of [PENDANT, PENDANT2]) { g.add(tag(cyl(0.004, 0.004, P.drop, { grey: 0.1, col: 0x111111 }, [P.x, ROOM.h - P.drop / 2, P.z], null, 6), 'ceiling lights (off)'));
     g.add(tag(cyl(0.04, 0.2, 0.12, { grey: 0.88, col: 0xeeeae0 }, [P.x, ROOM.h - P.drop - 0.04, P.z], null, 20), 'ceiling lights (off)')); }
-  // the old dining room's end: round table, chairs, sideboard
-  { const T = DINING_TABLE, [xc, zc] = T.at; g.add(tableRect(xc, zc, T.l, T.w, T.h, { look: WOOD, topLook: WOOD_L, label: 'dining table (long, rectangular: Jade not sure)' }));
-    for (const i of [-1, 0, 1]) for (const s of [-1, 1]) g.add(chair(xc + i * 0.6, zc + s * (T.w / 2 + 0.2), s > 0 ? 180 : 0, { look: WOOD, label: 'dining chairs' }));   // three a side
-    for (const s of [-1, 1]) g.add(chair(xc + s * (T.l / 2 + 0.22), zc, s > 0 ? -90 : 90, { look: WOOD, label: 'dining chairs' }));                 // one at each end
+  // the old dining room's end: the long table (long axis north-south since the decision page), chairs, sideboard
+  { const T = DINING_TABLE, [xc, zc] = T.at; g.add(tableRect(xc, zc, T.w, T.l, T.h, { look: WOOD, topLook: WOOD_L, label: 'dining table (long, rectangular: Jade not sure)' }));
+    for (const i of [-1, 0, 1]) for (const s of [-1, 1]) g.add(chair(xc + s * (T.w / 2 + 0.2), zc + i * 0.6, s > 0 ? -90 : 90, { look: WOOD, label: 'dining chairs' }));   // three a side (east and west)
+    for (const s of [-1, 1]) g.add(chair(xc, zc + s * (T.l / 2 + 0.22), s > 0 ? 180 : 0, { look: WOOD, label: 'dining chairs' }));                 // one at each end (north and south)
   }
   { const C = CHILD_TABLE; g.add(tableRect(C.cx, C.cz, C.w, C.d, C.h, { look: WOOD_L, topLook: { ...WOOD_L, recvShadowLine: true }, top: 0.025, leg: 0.035, label: 'her small wooden table and chair' }));
     const H = CHILD_CHAIR; g.add(chair(H.at[0], H.at[1], H.yaw, { seat: H.seat, w: H.w, d: H.d, back: H.back, look: WOOD_L, label: 'her small wooden table and chair' })); }
@@ -202,7 +205,7 @@ function heroPieces(n, figs, out) {
   const g = new THREE.Group(); if (!n) return g; const depth = Math.round(Math.log2(n)); const P = tearTree(77 + depth, depth), F = PLACES.focus;
   const sc = [PAPER.w / 2, PAPER.h / 2];
   if (n <= 2 && figs.jade3) {   // held up in front of her, tipped toward her eyes; u across (world z), v away from her (world -x, rising)
-    const Q = figs.jade3.userData.P, mid = Q.handL.clone().add(Q.handR).multiplyScalar(0.5), tilt = rad(28);
+    const Q = figs.jade3.userData.P, mid = Q.handL.clone().add(Q.handR).multiplyScalar(0.5), tilt = rad(8);   // was 28 when she knelt; cross-legged a steeper sheet hides her face
     const across = Q.handL.clone().sub(Q.handR).setY(0).normalize(), fwd = across.clone().cross(V(0, 1, 0)).normalize();   // her left, her forward
     P.forEach((q, i) => { const hp = n === 1 ? mid : (i === 0 ? Q.handR : Q.handL);
       const c = centroid(q), base = hp.clone().addScaledVector(fwd, 0.03);
@@ -235,6 +238,7 @@ function drift(shot, figs) {
   const blocked = (x, z) => (Math.abs(x - F[0]) < 0.14 && Math.abs(z - F[2]) < 0.19) || PLACES.mugs.some(([mx, mz]) => Math.hypot(x - mx, z - mz) < 0.06)
     || (Math.abs(x - PLACES.stack[0]) < 0.1 && Math.abs(z - PLACES.stack[1]) < 0.13);
   const stats = { table: 0, floor: 0, couch: 0, by_gen: {} };
+  const CLUMPS = Array.from({ length: 6 }, () => [D.at[0] + gauss() * 0.26, D.at[1] + gauss() * 0.28]);
   for (const [gs, count] of Object.entries(DRIFT_COUNTS)) { const gen = +gs;
     for (let i = 0; i < count; i++) {
       const q = tearOne(D.seed * 1000 + gen * 97 + i * 7, gen); const c = centroid(q);
@@ -243,17 +247,33 @@ function drift(shot, figs) {
         let k = 0; do { x = T.cx + (r() - 0.5) * (T.w - 0.08); z = T.cz + (r() - 0.5) * (T.d - 0.08); } while (blocked(x, z) && k++ < 30); if (blocked(x, z)) continue; y = T.h + 0.0004; where = 'table';
       } else if (roll < (gen <= 4 ? 0.65 : 0.23)) { x = C.x1 - 0.08 - r() * 0.4; z = C.z0 + 0.25 + r() * (C.z1 - C.z0 - 0.5); y = C.seat + 0.001; where = 'couch'; }
       else { x = D.at[0] + gauss() * 0.34; z = D.at[1] + gauss() * 0.36; const A0 = ARMCHAIRS[0];
+        if (r() < 0.4) { const k = CLUMPS[Math.floor(r() * CLUMPS.length)]; x = k[0] + gauss() * 0.06; z = k[1] + gauss() * 0.06; }   // little heaps
         if ((x < C.x1 + 0.01 && z < C.z1 + 0.01 && z > C.z0 - 0.01) || Math.hypot(x - A0.at[0], z - A0.at[1]) < 0.4 || x < ROOM.x0 + 0.02) continue;
         if (onTable(x, z) && r() < 0.5) continue; y = 0.0004; where = 'floor'; }
       const key = cell(x, z), nOcc = (occ.get(key) || 0) + 1; occ.set(key, nOcc);
       y += (nOcc - 1) * 0.0007 + (where === 'floor' ? Math.max(0, 0.012 * Math.exp(-((x - D.at[0]) ** 2 + (z - D.at[1]) ** 2) / 0.05)) * r() : 0);
-      const yaw = r() * Math.PI * 2, tilt = where === 'floor' ? (r() - 0.5) * 0.25 : 0;
-      const map = (u, v) => { const a = u - c[0], b = v - c[1], ca = Math.cos(yaw), sa = Math.sin(yaw), lx = a * ca - b * sa, lz = a * sa + b * ca; return V(x + lx, y + lz * tilt, z + lz); };
+      // messier (decision page): pieces tip, curl and buckle instead of lying flat; on the floor some ride up on others
+      const yaw = r() * Math.PI * 2, tilt = (where === 'floor' ? 0.6 : 0.25) * (r() - 0.5), tiltX = (where === 'floor' ? 0.5 : 0.15) * (r() - 0.5);
+      const curl = (r() < 0.45 ? 1 : 0) * (r() - 0.35) * (where === 'floor' ? 9 : 4);   // a bow along the piece (1/m)
+      const ext = Math.max(...q.c.map((p) => Math.hypot(p[0] - c[0], p[1] - c[1]))); y += (Math.abs(tilt) + Math.abs(tiltX)) * ext;   // rests on an edge, not through the floor
+      const map = (u, v) => { const a = u - c[0], b = v - c[1], ca = Math.cos(yaw), sa = Math.sin(yaw), lx = a * ca - b * sa, lz = a * sa + b * ca;
+        return V(x + lx, y + lz * tilt + lx * tiltX + Math.max(0, curl * (a * a + 0.3 * b * b)) + 0.0006, z + lz); };
       g.add(pieceMesh(q, map)); stats[where]++; stats.by_gen[gen] = (stats.by_gen[gen] || 0) + 1;
     }
   }
   g.userData.stats = stats;
   return tag(g, '草纸: the drift (torn halves ... 1/512, ragged edges)');
+}
+// one stray tiny bit caught in her hair (decision page): a generation-9 piece (~7 x 10 mm) on the bob, above her left
+// temple (toward the frontal cameras), bent to the curve of the head
+function hairBit(fig) {
+  const P = fig.userData.P, R = P.headH / 2, q = tearOne(4242, 9), c = centroid(q);
+  const n = P.headX.clone().multiplyScalar(0.5).addScaledVector(P.headUp, 0.62).addScaledVector(P.headFwd, 0.6).normalize();
+  const at = P.head.clone().addScaledVector(n, R * 1.17);
+  const t1 = P.headFwd.clone().addScaledVector(n, -P.headFwd.dot(n)).normalize(), t2 = new THREE.Vector3().crossVectors(n, t1);
+  const map = (u, v) => { const a = u - c[0], b = v - c[1], ca = Math.cos(0.6), sa = Math.sin(0.6), l1 = a * ca - b * sa, l2 = a * sa + b * ca;
+    return at.clone().addScaledVector(t1, l1).addScaledVector(t2, l2).addScaledVector(n, -(l1 * l1 + l2 * l2) / (2 * R * 1.17) + 0.0015); };
+  const m = pieceMesh(q, map); return { mesh: tag(m, '草纸: a stray bit in her hair'), world: at.toArray().map((v) => +v.toFixed(3)) };
 }
 // porcelain tea mugs with green tea, and the steam rising through the beam
 function teaAndSteam() {
@@ -278,7 +298,7 @@ function teaAndSteam() {
 }
 
 const NAMES = { focus: PLACES.focus, uncleHands: PLACES.uncleHands, table: [TABLE.cx, TABLE.h, TABLE.cz], stack: [PLACES.stack[0], TABLE.h + 0.01, PLACES.stack[1]],
-  mugs: [PLACES.mugs[0][0], TABLE.h + 0.2, PLACES.mugs[0][1]], window: [0, 1.2, 0], door: [0, 1.3, DOOR.z], pool: [-0.6, 0, -2.6],
+  mugs: [PLACES.mugs[0][0], TABLE.h + 0.2, PLACES.mugs[0][1]], window: [0, 1.2, 0], door: [DOOR.cx, 1.3, DOOR.z], pool: [-0.6, 0, -2.6],
   couch: [(COUCH.x0 + COUCH.x1) / 2, COUCH.seat, (COUCH.z0 + COUCH.z1) / 2], dining: [DINING_TABLE.at[0], 1.0, DINING_TABLE.at[1]] };
 const solidTex = (css) => { const c = document.createElement('canvas'); c.width = c.height = 4; const g = c.getContext('2d'); g.fillStyle = css; g.fillRect(0, 0, 4, 4); return new THREE.CanvasTexture(c); };
 const r3 = (v) => (v.toArray ? v.toArray() : v).map((x) => +x.toFixed(3));
@@ -295,7 +315,9 @@ export function build(shot, { makeCam }) {
   for (const [who, f] of Object.entries(figs)) { if (CAST[who].undrawn) undraw(f); root.add(f); }
   const tea = teaAndSteam(); if (shot.state !== 'A') root.add(tea);   // the tea (and its steam) is a week-later detail: state A keeps the table bare
   let dr = null; const hero = [];
-  if (shot.state !== 'A') { root.add(stack()); dr = drift(shot, figs); root.add(dr); root.add(heroPieces(shot.tissue ?? 8, figs, hero)); }
+  let hb = null;
+  if (shot.state !== 'A') { root.add(stack()); dr = drift(shot, figs); root.add(dr); root.add(heroPieces(shot.tissue ?? 8, figs, hero));
+    if (figs.jade3) { hb = hairBit(figs.jade3); root.add(hb.mesh); } }
   const ballAt = (F) => F.uncle.userData.P.handL.clone().add(V(0, 0.024, 0));   // in his cupped left palm, under the right pinch
   if (shot.state === 'A' && figs.uncle) root.add(tag(ball(0.012, PAPER_LOOK, ballAt(figs).toArray()), 'something small (he shapes it)'));
   // the beam: the lit aperture (overhang, parapet, reveals) swept along the sun into the room, clipped by its planes
@@ -342,7 +364,7 @@ export function build(shot, { makeCam }) {
     const foot = solid.caps.floor || [];
     return { beam: { kind: BEAM.kind, travel_dir: SUN_DIR.map((v) => +v.toFixed(4)), elevation_deg: SUN.elev,
       sun: { date: SCENE.date, time: SCENE.time + ' CST (UTC+8)', lat: SCENE.lat, lon: SCENE.lon, elevation_deg: SUN.elev, azimuth_deg: SUN.az, west_of_facade_normal_deg: SUN.rel, profile_angle_deg: SUN.profile_deg,
-        facade_bearing_deg: FACADE_BEARING, flat: FLAT, per_metre_into_room: SUN_SLOPES, status: 'date and time are a staging choice (Jade remembers neither season nor hour), picked with sweep.mjs; east flat and 三楼 are facts' },
+        facade_bearing_deg: FACADE_BEARING, flat: FLAT, per_metre_into_room: SUN_SLOPES, status: 'date and time chosen by Jade from the light study (decision page, late 2026-11-25: 21 Dec, about 09:30); east flat and 三楼 are facts' },
       source_world: BEAM_SOURCE, source_px: BEAM_SOURCE.map((p) => P(V(p))), aperture_glass_world: APERTURE_GLASS, shaded_by: BEAM.shading,
       sources_world: SOURCES, windows: APS.map((a, i) => ({ id: a.id, source_world: a.source, shaded_by: a.half, floor_world: solids[i]?.caps.floor ? solids[i].caps.floor.map(r3) : null, floor_px: solids[i]?.caps.floor ? solids[i].caps.floor.map((p) => P(p)) : null })),
       footprint_floor_world: foot.map(r3), footprint_floor_px: foot.map((p) => P(p)), footprint_east_wall: fp('east wall'), footprint_west_wall: fp('west wall'), footprint_north_wall: fp('north wall'),
@@ -353,7 +375,7 @@ export function build(shot, { makeCam }) {
       floor_reach_m: foot.length ? +Math.max(...foot.map((p) => -p.z)).toFixed(2) : null, north_wall_m: -ROOM.z0, her_spot: HER_SPOT, couch_to_corner_m: COUCH_TO_CORNER, shelf_clearance_m: SHELF_CLEAR,
       door_gap_m: (() => { const pts = SOURCES.length ? solids.flatMap((so) => so.caps.floor || []) : []; let best = 9; for (let x = ROOM.x0 + 0.02; x < ROOM.x1; x += 0.025) for (let z = -0.02; z > ROOM.z0; z -= 0.025) if (inBeam([x, 0.001, z])) best = Math.min(best, Math.hypot(Math.max(DOOR.x0 - x, 0, x - DOOR.x1), z - ROOM.z0)); return +best.toFixed(2); })() },
       tissue: shot.state === 'A' ? null : { generation_pieces: shot.tissue ?? 8, gold_dot_px: hero.map((h) => P(V(h.world))), gold_dot_world: hero.map((h) => h.world.map((v) => +v.toFixed(3))),
-        sheet_cm: [PAPER.w * 100, PAPER.h * 100], stack_sheets: PAPER.stack, drift: dr ? dr.userData.stats : null },
+        sheet_cm: [PAPER.w * 100, PAPER.h * 100], stack_sheets: PAPER.stack, drift: dr ? dr.userData.stats : null, hair_bit_world: hb ? hb.world : null, hair_bit_px: hb ? P(V(hb.world)) : null },
       state: shot.state === 'A' ? 'A: the uncle explains (no drift yet)' : 'B: a week later, the drift', tissue_pieces: shot.tissue || 0, times: shot.t || null,
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'handL', 'handR', 'hip'].map((k) => [k, r3(f.userData.P[k])]))])) };
   };

@@ -2,6 +2,10 @@
 
 ## START HERE (written at the end of the 2026-11-25 session)
 
+> **Update (2026-11-25, late):** Jade's answers are in and applied (see the last section, "Jade's answers from the
+> decision page", and the entries after it). The plan and all sets are now on the -2sm master. New open questions
+> go on the rebuilt `media/decisions.html`; the keyframe round from the new renders is under way (`media/keyframes/`).
+
 **First thing: Jade will paste answers from the decision page.** The page is `media/decisions.html` (open it in a
 browser; 35 cards with renders, grouped by song/plan, Mountain View, Shanghai, Decatur, Morton Grove, cast, plates,
 other). Jade presses "Copy my answers" and pastes a block starting `Decisions (from media/decisions.html):`. Each
@@ -388,3 +392,104 @@ session has been seen or approved by her. Nothing was committed.
 - **Spiral plates done** (`media/footage/spirals/`, renumbered PLATE XVIII to avoid clashing with the spectrogram's
   XXI). Counts changed to the true ones: artichoke 5 and 8 (not 8 and 13), aloe 5 ranks only (divergence ~143°,
   not golden). Code-drawn; sources cited in NOTES.md.
+
+## Session of 2026-11-25 (late): Jade's answers from the decision page
+
+Jade pasted the decision-page answers. Logged verbatim in substance; being applied by subagents.
+
+- **Song/plan:** `inputs/Proof (-2sm).wav` is the master: retime the plan and ALL sets to it. Revise the whole plan
+  here, in this project. "From inside, I can't tell the difference": hold on the shelf (the pan lands on the seam
+  between the halves). Push to GitHub: commit and push everything except the private (gitignored) folders. Keyframe
+  repaint: wait until the sets settle (after this round).
+- **mv10:** 2 Oct 2010 fine. At "he said I absolutely nailed it" she stands by the shelf and he stands close and
+  whispers to her. Digitised house looks right. Lemonade was prepared BEFORE the party: postdoc Jade and the
+  childhood friend picked the lemons; first love, Z and the guests hadn't arrived yet. (Cast: the OLD, superseded
+  childhood-friend artwork is a close match for Z.) The living/kitchen wall really was THICK (built-in, chimney,
+  closet...), as thick as the 2x2 Expedit is deep, so the 2x2 sits almost flush. Living-room windows: one in the
+  front wall AND another along the side wall (Jade: "I think"). Glass-top table: a SEMICIRCLE, flat side against the
+  wall, ~3 ft wide, ~1 ft deep at the centre. Patio: floor level to the house, a SLIDING GLASS DOOR (not French
+  doors); the wood deck has wood stairs and a wood railing down to the yard, at least 3-4 steps below floor level.
+  Shelf pan: shelf only. Room crossing: steep oblique. The Noguchi table's base is wrong (right in spirit): look it up.
+  "Past hour reviewed": push into the TEMPLE. Guests/audience along the side of the house by the wall and on the
+  patio; the poi spinner is in the yard, performing toward the audience. IAS mirroring: hadn't noticed; keep as
+  remembered.
+- **shanghai86:** 21 Dec, about 9:30 am (Jade: the 8:30 and 9:30 eye-level views in the light study are really nice).
+  She sits CROSS-LEGGED; many more paper bits, messier (same spread area); one stray tiny bit in her hair. The two
+  armchairs face each other across the table (confirmed). Rotate the dining table 90 degrees and shift its centre up
+  a little (north, toward the hall wall, on the plan as drawn). Keep the sideboard and invented details. Hall doors
+  open into the hall; the hallway doors are double or triple the current width, centred on that wall. Uncle's hands
+  (V1b) good enough as a guide.
+- **basement90 / plan 2:21-2:26:** replace "she is already a cat under the desk": she holds her RIGHT hand in a fist
+  and pretends to lick her wrist, imitating a cat cleaning itself. She does NOT hide under the desk (reads as fearful).
+- **mortongrove07:** room and light look right; date about right; ceiling VAULTED; his ear showing is fine.
+- **First love:** hair close: less round; a CENTRE PART; a clean line extending from the curtain bangs backwards (the
+  current taper is too gradual). The centre part leads to the crown whorl, which is not obvious and sits at the top of
+  the head, not far down. No bracelet. One slate-blue profile image has the wrong facing hand. The slate-blue shirt is
+  a plain long-sleeve shirt, not a henley. Dad's sheets good. Older open items: leave as the agents guessed.
+- **Plates:** neuron: love it. Spectrogram: short version, drawing left to right. Spirals: the gold count on the real
+  artichoke becomes the plate at 2:07-2:16; the completed count lands on the romanesco plate at 2:36-2:45.
+- **Airbnb listing:** skip; the drawing is enough.
+- **Jade (follow-up):** once all the revisions are done (sets settled and retimed), paint a full round of keyframes
+  from the new mannequin renders and put them all on a LOCAL html decision page for Jade to review. (Keyframes stay
+  out of the public repo: `media/keyframes/` is gitignored.)
+- **shanghai86 answers applied** (NOTES "2026-11-25 (5)"): 09:30 sun (elev 25.7, az 143.8) lights her lap, couch,
+  73% of the table, but NOT her face/hands (25-33 cm out) nor the uncle's hands in state A; cross-legged in the drift
+  scene (eyes ~10 cm above the table), 627 paper pieces, one in her hair; dining table turned 90 deg, +0.4 m north;
+  hall opening 4.0 m (2.5x), four leaves folding into the hall, centred on the WHOLE north wall (moves it east).
+  New questions for the decision page: face in shade at 9:30 OK (else move her ~0.35 m toward windows)? doors centred
+  on whole wall vs opposite the six windows? cross-legged in the uncle scene too (kept kneeling)? Engine: V1g fringe
+  stands off her forehead like a plank (mannequin.js).
+- **basement90 cat beat applied:** she stands in the open in the screen light, right fist raised as a paw, back of the
+  wrist at her lips, head bowed and cocked (tongue left to the painter); Dad's double take now looks at her. B4 is a
+  two-shot, B5_cat a close 40 mm from her front-right (id kept). **mortongrove07 vaulted:** 4-in-12 cathedral ceiling,
+  ridge front-to-back (gable over the picture window; agent's guess, flag to Jade), light unchanged.
+- **First love sheets v3 done:** `cast/first_love/fl_B_backhead_neck_v3.jpg` (hair anchor), `fl_A_turnaround_back_v3`,
+  `fl_E_costume_19_27_v3`, `fl_D_hands_forearms_v4`, `fl_G_ots_hair_v2`; old ones in `_superseded/`. Centre part to a
+  quiet crown point, crisp line back from the fringe, narrower from behind; no bracelet; plain crew-neck long-sleeve
+  at 27; the bracelet poses (incl. the wrong-hand one, read as A v2 fig 5 / E v2 fig 6) replaced. Weak: slight
+  overhang over the sides in 3/4 view; the part reaches far down in top views; seal on G still generic.
+  The decision page's fl_ cards point at the superseded files (fix when the page is rebuilt).
+- **-2sm song map, time map and plan revision done** (plan/map agent; not committed). New `analysis/m2sm/`:
+  `song_map.md` (sections, downbeat hits, every lyric line, contested words), `time_map.json` (v3 -> -2sm, 76
+  piecewise-linear anchors, segments only in v3, content changes, lyric onsets), `remap.py`, plus the measurement
+  scripts/logs and demucs stems. Findings: -2sm = v3 two semitones down (Bb minor, same tempo); the interlude's FULL
+  half (v3 2:36.1-2:44.4) is gone, so everything after 2:34 is ~10.3 s earlier; the vocalise after chorus 2 is BACK
+  (3:48.8-3:52.6); the coda is 4 clean bars (hit 4:14.3, last hit 4:24.1) then a loud bass ring to 4:28.4; three lines
+  sung shorter. **Apply the map to a set:** from the repo root, `.venv/bin/python -I analysis/m2sm/remap.py --file
+  layout/sets/<set>/shots.js` (dry run, a diff + flags) then add `--write`; add `--snap` so lyric-synced cuts land on
+  the -2sm sung onsets (v3 line starts are whisper times, up to ~1 s early). It rewrites `t: [a, b]` and m:ss strings
+  and comments, and leaves alone any shot block that mentions -2sm. mv10 mixes clocks: `V3_rcv_obl` is already -2sm
+  but unmarked, so pass `--skip-ids V3_rcv_obl` (check the dry run for others). Flagged times (market93 M6-M8b,
+  kitchen90 at 2:36, anything in v3 2:34.1-2:43.8 or the coda lead-in 4:24.5-4:25.9) must be re-placed by hand.
+  `remap.py 3:05 2:16-2:21` converts single times. **Plan** (`Proof — Music Video Plan.md`) revised throughout: every
+  Structure row on -2sm times with a "was" column; the interlude rows merged (count resumes on the artichoke plate,
+  completed count on the romanesco plate ~2:30-2:34; bud opening dropped: judgment call, asked); Jade's answers folded
+  in (seam hold + shelf only, "nailed it" whisper by the shelf, lemons before the party, guests/poi, steep oblique,
+  temple push-in, sliding glass door, cat wrist-lick, short spectrogram plate left to right, spiral plates, neuron
+  kept); first love's face never shown (Move 1 and cast step corrected); new open questions (interlude merge, spiral
+  aloe unplaced, pan end) and ear checks on -2sm times. mv10 note for its agent: the plan now starts the shelf pan on
+  "truth by reference" (2:42.0) after the sweatshirt on "Beauty on this side" (2:39.6) and holds on the seam
+  2:46.9-2:49.7; `BRpan_*` currently runs 159.62-166.8 with the seam as its MID key.
+- **Plan revised to -2sm** (`Proof — Music Video Plan.md`, "was" column keeps v3 times); new `analysis/m2sm/`
+  (song_map.md, time_map.json, remap.py; stems gitignored). -2sm = v3 two semitones down, but the FULL half of the
+  interlude (v3 2:36.1-2:44.4) is gone, the post-chorus-2 vocalise is back (3:48.8-3:52.6), coda is four bars.
+  Spiral plates: artichoke count 2:06.3-2:16.1; the romanesco landing moved into the end of the thinned interlude
+  (~2:30-2:34) since 2:36-2:45 no longer exists; the bud-opening growth plate dropped for time; aloe unplaced.
+  Questions for Jade: interlude merge OK / where the bud goes; aloe placement; pan stops at seam vs crosses and
+  returns; ear checks (tail-2 vocalise lead or backing; "made flesh/fresh" 2:15.4; "shelved/shoved" 2:45.4;
+  "artichoke" caption; whisper 2 audible; cliff 3:55.0 placement); may Dad's answer move to the "Good catch!" row?
+- **mv10 answers applied** (NOTES top section): new `V3_nailed` (183.85-185.98, he bends to her right ear at the
+  Expedit, back of head only); `V3d` and `V3_rev_eye_*` retired to `media/layout/mv10/_retired/`; `V3b` restaged as
+  pre-party lemon picking at 14:00 with a set-local adult childhood-friend figure; partition 0.78 m (2x2 flush, read
+  as the 2x2's 79 cm side; if Jade meant 39 cm the 2x2 turns 90 deg); side window = existing SSW window; half-ellipse
+  console 0.91 x 0.30 on the NNE wall; 1.83 m slider, deck level with floor, rail, 4 risers (floor 0.70 m above
+  yard); `BRpan_c` seam end 166.85-169.66; `V3_rcv_obl` the shot, `V3_rcv` reference; Noguchi IN-50 rebuilt from
+  Vitra/Herman Miller drawings (sources in NOTES); guests on the lawn along the ESE wall + deck rail, poi faces them.
+  Questions: wall 0.78 vs 0.39; nod (189.1) still under the lemon tree 3 s after the shelf whisper: move to the shelf?
+  V3b as picking vs a separate shot; pan returns to the seam twice; he faces 49 deg off camera in V3_rcv_obl (tiny,
+  from above); interior_plan.png still draws the console as a circle.
+- **All sets retimed to -2sm** (each NOTES.md "Retimed to the -2sm master"); attic88 untouched (unused). market93
+  M7/M8/M8b have no slot (alternates); V3f (hug) on "Hug durations" only, "pitch contours" to the spectrogram.
+  remap.py bug: times followed by ':' are skipped/mangled (all fixed by hand in the sets; the script is not fixed).
+  BRpan_a moved to start on "truth by reference" 2:42.0 so it no longer overlaps the sweatshirt (2:39.6-2:42.0).
+- **Committed and pushed** (Jade: push everything except the private folders), gitignored folders stayed out.

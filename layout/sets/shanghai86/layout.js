@@ -6,8 +6,9 @@
 //   - ONE long room along the facade: the grandparents joined the living room and the dining room (beside it, both on
 //     the balcony) into one space long before 1986. ~9.5 m along the windows, 6.1 m deep. A shallow soffit marks the
 //     old partition line (JOIN_X).
-//   - The hall French doors are a double-wide pair in the NORTH wall, opposite the six French windows. Bookshelf
-//     cabinets fill the north wall on both sides of them; the TV cabinet is in the north-east corner.
+//   - The hall doors are in the NORTH wall, opening into the hall. Decision page (late 2026-11-25): the opening is 2.5x
+//     its old 1.6 m (4.0 m, four glazed leaves folding in pairs into the hall), centred on the north wall. Bookshelf
+//     cabinets fill the north wall on both sides of them; the TV cabinet is on the east wall.
 //   - The couch is on the WEST wall; the armchair beside it leaves ~0.7 m to the bookshelf fronts.
 //
 // Axes are the BUILDING's, not the compass:
@@ -18,10 +19,10 @@
 // ---------------------------------------------------------------- the switches
 // FLAT: 'east' (FACT, Jade). 'west' = the mirror flat: iron-railed balcony (the doors are centred, so they do not move).
 export const FLAT = 'east';
-// SCENE: date and time of the beam. Jade remembers neither the season nor the hour: this is a STAGING CHOICE, picked by
-// sweeping Nov-Feb x 07:30-15:00 (sweep.mjs) for the honest sun that lights her face and the tea steam, lights part of
-// the table, and runs toward the north doors without reaching Mother. See NOTES "2026-11-25 (2)".
-export const SCENE = { date: '1986-12-21', time: '08:31', tzHours: 8, lat: 31.2138, lon: 121.4390 };
+// SCENE: date and time of the beam. JADE CHOSE IT (decision page, late 2026-11-25): 21 Dec 1986, about 9:30 am, from the
+// light study ("the 8:30 and 9:30 views at her eye level are really nice"). At 09:30 the light falls on the table's
+// south half and the armchairs, not on her face (NOTES "(5)"). The 08:31 sweep result is kept in NOTES "(3)".
+export const SCENE = { date: '1986-12-21', time: '09:30', tzHours: 8, lat: 31.2138, lon: 121.4390 };
 export const FACADE_BEARING = 166.8;   // compass bearing of the outward normal of the south (garden) facade
 export const FLOOR_ABOVE_GARDEN = 6.6; // 三楼 = two storeys up; only matters for what the windows see
 
@@ -65,10 +66,14 @@ export const WINDOWS = [{ id: 'six French windows (old living room)', x0: -1.8, 
 export const WINDOW = WINDOWS[0];
 // balcony, one step down, now along the whole room (both rooms opened onto it); solid parapet in the east flat
 export const BALCONY = { x0: ROOM.x0 - 0.25, x1: ROOM.x1 + 0.25, z0: ROOM.wallS, z1: ROOM.wallS + 1.25, floor: -0.05, parapet: 0.95, pT: 0.1, solid: FLAT === 'east', soffit: ROOM.storey - 0.05 - 0.12 };
-// hall French doors (Jade): a double-wide pair in the NORTH wall opposite the six windows, glazed, transom (气窗) above
-export const DOOR = { wall: 'north', z: ROOM.z0, x0: -0.8, x1: 0.8, h: 2.2, trans0: 2.28, trans1: 2.72, openDeg: 95 };
-export const HALL = { x0: -2.0, x1: 2.0, z0: ROOM.z0 - ROOM.wallP - 2.3, z1: ROOM.z0 - ROOM.wallP };   // beyond the doors
-// bookshelf cabinets along the north wall on both sides of the doors (Jade), glass-fronted above, doors below
+// hall doors (Jade): in the NORTH wall, glazed, transom (气窗) above, opening INTO THE HALL. Decision page: the opening is
+// "double or triple" the old 1.6 m and centred on that wall: built 2.5x = 4.0 m, centred on the north wall (x 2.25),
+// four leaves of 1.0 m folding back in pairs against each jamb (a pair of 2 m leaves would not be a real door).
+const DOOR_W = 4.0, DOOR_CX = (ROOM.x0 + ROOM.x1) / 2;   // the old pair was x -0.8..0.8, opposite the six windows
+export const DOOR = { wall: 'north', z: ROOM.z0, x0: DOOR_CX - DOOR_W / 2, x1: DOOR_CX + DOOR_W / 2, cx: DOOR_CX, h: 2.2, trans0: 2.28, trans1: 2.72, leaves: 4, openDeg: 92 };
+export const HALL = { x0: DOOR.x0 - 0.5, x1: DOOR.x1 + 0.5, z0: ROOM.z0 - ROOM.wallP - 2.3, z1: ROOM.z0 - ROOM.wallP };   // beyond the doors
+// bookshelf cabinets along the north wall on both sides of the doors (Jade), glass-fronted above, doors below; the east
+// run still stops at the sideboard in the north-east corner
 export const SHELVES = { d: 0.38, h: 2.05, runs: [[ROOM.x0, DOOR.x0 - 0.07], [DOOR.x1 + 0.07, 6.02]] };
 export const SHELF_FRONT = ROOM.z0 + SHELVES.d;
 
@@ -164,7 +169,9 @@ export const CHILD_CHAIR = { at: [3.0, -1.3 - 0.225 - 0.19], yaw: 0, seat: 0.27,
 export const LOUNGER = { at: [0.7, -1.2], yaw: -20, w: 0.6, l: 1.45 };   // wicker lounge chair (藤躺椅), moved WEST along the six windows (Jade, round 4): east of the couch group, feet to the light
 // TV cabinet on the EAST wall (Jade, round 3b: where the sideboard stood, toward the clock), facing west down the room
 export const TV = { x0: ROOM.x1 - 0.48, x1: ROOM.x1, z0: -3.95, z1: -3.05, h: 0.72, wall: 'east' };
-export const DINING_TABLE = { at: [4.6, -2.6], l: 1.9, w: 0.88, h: 0.76 };   // Jade, NOT SURE (round 4): a long rectangular table, long axis along the room, 8 chairs
+// Jade, NOT SURE (round 4): a long rectangular table, 8 chairs. Decision page: turned 90 deg (long axis now NORTH-SOUTH, across
+// the room, axis 'z') and its centre moved "up" on the plan = north (toward the hall wall) by 0.4 m (was (4.6, -2.6))
+export const DINING_TABLE = { at: [4.6, -3.0], l: 1.9, w: 0.88, h: 0.76, axis: 'z' };
 export const SIDEBOARD = { x0: 6.07, x1: ROOM.x1, z0: ROOM.z0, z1: ROOM.z0 + 0.45, h: 0.9 };   // moved to the north-east corner, at the end of the bookshelves (my choice: flag)
 export const RADIATOR = { wall: 'east', x: ROOM.x1 - 0.06, z0: -1.05, z1: -0.4, h: 0.62 };   // the original cast-iron radiator (cold in 1986)
 export const CALENDAR = { wall: 'east', z: -4.4, y: 1.45, w: 0.36, h: 0.52 };
@@ -195,8 +202,8 @@ export const HER_SPOT = equidistant();
 // ---------------------------------------------------------------- places
 const [HX, HZ] = HER_SPOT.at; const ARMCHAIRS_ACROSS_X = () => ARMCHAIRS[1].at[0];
 export const PLACES = {
-  // state B: she sits back on her heels at the equidistant spot, facing the table and the light (south), working on
-  // the table's north end
+  // state B: she sits CROSS-LEGGED (Jade, decision page) at the equidistant spot, facing the table and the windows
+  // (south), working on the table's north end
   jadeSit: HER_SPOT.at, jadeYaw: 20,
   focus: [TABLE.cx - TABLE.w / 2 + 0.14, TABLE.h + 0.003, TABLE.cz - TABLE.d / 2 + 0.13],   // the clear patch at the table's north-west corner, in front of her
   stack: [TABLE.cx - 0.12, TABLE.cz + 0.25],                                   // the stack of 草纸 she brought
@@ -206,13 +213,15 @@ export const PLACES = {
   // his hands low in the light; she kneels at her spot (the same place a week later), watching his hands
   uncleSeat: [ARMCHAIRS_ACROSS_X() + 0.08, TABLE.cz], uncleHands: [TABLE.cx + 0.17, 0.6, TABLE.cz - 0.2], jadeStand: HER_SPOT.at,
   // everybody else, out of the light
-  mother: [0, ROOM.z0 - 0.08],                 // in the north doorway
+  mother: [DOOR.x0 + 0.5, ROOM.z0 - 0.08],     // in the north doorway, its west end (nearest her daughter), a hand on the west jamb
   grandma: [ARMCHAIRS_ACROSS_X() + 0.08, TABLE.cz],   // in the 'across' armchair (state B), just outside the light
   aunt: [1.3, -2.45], uncleLaugh: [0.8, -3.35],   // in the dark between the two shafts
 };
 // one sheet of old-style Chinese toilet paper (草纸, coarse straw paper): Jade's size, a little over half-Letter
 export const PAPER = { w: 0.16, h: 0.23, t: 0.00035, stack: 34, col: 0xd9cdb0 };
-export const DRIFT_COUNTS = { 1: 1, 2: 2, 3: 4, 4: 8, 5: 14, 6: 22, 7: 36, 8: 50, 9: 40 };
+// Decision page: "many more bits, messier", same spread area. Was { 1:1, 2:2, 3:4, 4:8, 5:14, 6:22, 7:36, 8:50, 9:40 } (177);
+// now ~4x the pieces (720), weighted to the small generations, plus a gen-10 confetti tier
+export const DRIFT_COUNTS = { 1: 1, 2: 3, 3: 6, 4: 14, 5: 28, 6: 55, 7: 100, 8: 160, 9: 200, 10: 150 };
 
 export const LIGHTS = {
   sun: { kind: BEAM.kind, color: SUN.color, dir: SUN_DIR },

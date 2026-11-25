@@ -8,8 +8,8 @@ import { CAST } from '../_cast.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_beam.js';
-import { wall, r3 } from '../basement90/kit.js';
-import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURE, BEAM, sunMargin, ROOM, PICTURE, COUCH, STAIR_OPENING, STAIR, DINING_OPENING, DINING,
+import { wall, hexa, r3 } from '../basement90/kit.js';
+import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURE, BEAM, sunMargin, ROOM, VAULT, ceilY, PICTURE, COUCH, STAIR_OPENING, STAIR, DINING_OPENING, DINING,
   COFFEE_TABLE, ARMCHAIR, SIDE_TABLE, TV, RUG, PRINT, HER, HIM, SHIRT, GRIP, SEAL, LIGHTS } from './layout.js';
 
 // cast: `jade27` (kind adultJade27; stands in for Jade at about 24) and `firstLove27` (kind adultFirstLove, 1.78 m), both from ../_cast.js
@@ -20,12 +20,29 @@ const FLORAL = { grey: 0.68, col: 0xc9a39a, recvShadowLine: true }, FLORAL_D = {
 const WOOD = { grey: 0.42, col: 0x7a5a3a }, WOOD_D = { grey: 0.32, col: 0x5a3e28 }, DARK = { grey: 0.15, col: 0x1e1e22 };
 const CORK = { grey: 0.55, col: 0xb08a5a }, STRAP = { grey: 0.3, col: 0x5a3a24 };
 
+// a gable-end wall (as kit.js wall(), axis 'z' only): the top follows the vaulted ceiling (plus its thickness) to the ridge
+function gableWall({ at, a0, a1, t, out, holes = [], look, label }) {
+  const top = (x) => ceilY(x) + VAULT.t;
+  const sh = new THREE.Shape(); sh.moveTo(a0, 0); sh.lineTo(a1, 0); sh.lineTo(a1, top(a1)); sh.lineTo(VAULT.x, top(VAULT.x)); sh.lineTo(a0, top(a0)); sh.lineTo(a0, 0);
+  for (const h of holes) { const p = new THREE.Path(), e = h.y0 <= 0 ? 1e-3 : h.y0; p.moveTo(h.a0, e); p.lineTo(h.a0, h.y1); p.lineTo(h.a1, h.y1); p.lineTo(h.a1, e); p.lineTo(h.a0, e); sh.holes.push(p); }
+  const m = mk(new THREE.ExtrudeGeometry(sh, { depth: t, bevelEnabled: false }), look); m.position.z = out > 0 ? at : at - t;
+  return tag(m, label);
+}
+// the vaulted ceiling: two sloping planes (drywall, VAULT.t thick) from the side walls up to the north-south ridge
+function vault(xa, xb, z0, z1, look) {
+  const g = new THREE.Group(); const t = VAULT.t;
+  for (const [p, q] of [[xa, VAULT.x], [VAULT.x, xb]]) { const yp = ceilY(p), yq = ceilY(q);
+    const quadAt = (z) => [[p, yp, z], [q, yq, z], [q, yq + t, z], [p, yp + t, z]];
+    g.add(hexa(quadAt(z1), quadAt(z0), look)); }
+  return tag(g, 'vaulted ceiling (ridge north-south)');
+}
+
 function room() {
   const g = new THREE.Group(); const { x0, x1, z0, z1, h, wallT: T, wallInt: Ti } = ROOM, W = PICTURE, F = 0.05;
   g.add(tag(box(x1 - x0 + 2 * T, 0.06, z1 - z0 + 2 * T, CARPET, [(x0 + x1) / 2, -0.03, (z0 + z1) / 2]), 'floor (wall-to-wall carpet)'));
-  g.add(tag(box(x1 - x0 + 2 * T, 0.06, z1 - z0 + 2 * T, { grey: 0.86, col: 0xe6e0d0 }, [(x0 + x1) / 2, h + 0.03, (z0 + z1) / 2]), 'ceiling'));
-  g.add(wall({ axis: 'z', at: z1, a0: x0 - Ti, a1: x1 + T, y1: h, t: T, out: 1, holes: [{ a0: W.x0, a1: W.x1, y0: W.sill, y1: W.head }], look: PLASTER, label: 'front wall (south)' }));
-  g.add(wall({ axis: 'z', at: z0, a0: x0 - Ti, a1: x1 + T, y1: h, t: Ti, out: -1, holes: [{ a0: DINING_OPENING.x0, a1: DINING_OPENING.x1, y0: 0, y1: DINING_OPENING.h }], look: PLASTER, label: 'north wall (dining room beyond)' }));
+  g.add(vault(x0 - Ti, x1 + T, z0 - Ti, z1 + T, { grey: 0.86, col: 0xe6e0d0 }));
+  g.add(gableWall({ at: z1, a0: x0 - Ti, a1: x1 + T, t: T, out: 1, holes: [{ a0: W.x0, a1: W.x1, y0: W.sill, y1: W.head }], look: PLASTER, label: 'front wall (south, gable end)' }));
+  g.add(gableWall({ at: z0, a0: x0 - Ti, a1: x1 + T, t: Ti, out: -1, holes: [{ a0: DINING_OPENING.x0, a1: DINING_OPENING.x1, y0: 0, y1: DINING_OPENING.h }], look: PLASTER, label: 'north wall (gable end; dining room beyond)' }));
   g.add(wall({ axis: 'x', at: x0, a0: z0, a1: z1, y1: h, t: Ti, out: -1, holes: [{ a0: STAIR_OPENING.z0, a1: STAIR_OPENING.z1, y0: 0, y1: STAIR_OPENING.h }], look: PLASTER, label: 'west wall (entry / stair hall beyond)' }));
   g.add(wall({ axis: 'x', at: x1, a0: z0, a1: z1, y1: h, t: T, out: 1, look: PLASTER, label: 'east wall' }));
   // baseboards
@@ -183,7 +200,7 @@ export function build(shot, { makeCam }) {
     return {
       time: FILM.time, plan_time: FILM.time, section: FILM.section, position: shot.position || null,
       film: { ...FILM, year: YEAR, place: 'Morton Grove, IL: the house she commuted from to Northwestern (Evanston); he had transferred from Harvard to Princeton' },
-      house: { ...HOUSE, axes: 'x = east, z = south, y up; origin = inner SW corner of the living room', living_room_m: [ROOM.x1 - ROOM.x0, ROOM.z1 - ROOM.z0, ROOM.h],
+      house: { ...HOUSE, ceiling: { kind: 'vaulted (cathedral), Jade', ridge: VAULT.ridge + ' at x ' + VAULT.x + ' (GUESS: the main-level wing spans E-W, gable to the street)', plate_m: ROOM.h, peak_m: VAULT.peak, pitch: '4 in 12' }, axes: 'x = east, z = south, y up; origin = inner SW corner of the living room', living_room_m: [ROOM.x1 - ROOM.x0, ROOM.z1 - ROOM.z0, ROOM.h], living_room_peak_m: VAULT.peak,
         couch: 'against the FRONT (south) wall, its west end just short of the picture window (Jade); which end is nearer the window is a GUESS (the west end: the afternoon sun then reaches her)' },
       sweatshirt: { colour: 'white', folded_size_m: [SHIRT.across, SHIRT.along, SHIRT.thick], centre: pt(SHIRT.c), seal,
         grips: Object.fromEntries(['hisL', 'hisR', 'herL', 'herR'].map((k) => [k, pt(GRIP[k])])),
