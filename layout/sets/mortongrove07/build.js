@@ -26,7 +26,7 @@ void CAST;
 const PLASTER = { grey: 0.8, col: 0xd8d0bc, recvShadowLine: true }, CARPET = { grey: 0.55, col: 0x9a8a72, recvShadowLine: true }, TRIM = { grey: 0.88, col: 0xe8e2d2 };
 const FLORAL = { grey: 0.68, col: 0xc9a39a, recvShadowLine: true }, FLORAL_D = { grey: 0.6, col: 0xb08a84, recvShadowLine: true };
 const WOOD = { grey: 0.42, col: 0x7a5a3a }, WOOD_D = { grey: 0.32, col: 0x5a3e28 }, DARK = { grey: 0.15, col: 0x1e1e22 };
-const CORK = { grey: 0.55, col: 0xb08a5a }, STRAP = { grey: 0.3, col: 0x5a3a24 }, EBONY = { grey: 0.12, col: 0x16161a };
+const CORK = { grey: 0.55, col: 0xb08a5a }, STRAP = { grey: 0.3, col: 0x5a3a24 }, EBONY = { grey: 0.05, col: 0x0b0b0d };
 const GLASS = { glass: true, col: 0xfff6e0, opacity: 0.18, noCast: true };
 const OUTSIDE = { grey: 0.97, col: SUN.color, emit: SUN.color, emitI: 1.25, flatEmit: 0.97, noCast: true };
 
@@ -71,7 +71,7 @@ function room() {
   g.add(tag(box(x1 - x0 + T, 0.06, z1 - zJ + T, CARPET, [(x0 + x1 + T) / 2, -0.03, (z1 + zJ + T) / 2]), 'floor (wall-to-wall carpet)'));
   g.add(tag(box(x1 - xW + 2 * T, 0.06, zJ - z0 + 2 * T, CARPET, [(xW + x1) / 2, -0.03, (zJ + z0) / 2]), 'floor (wall-to-wall carpet)'));
   const CEIL = { grey: 0.86, col: 0xe6e0d0 };
-  // round 4 (Jade): ONE tilted ceiling plane, high (3.6 m) at the east / mirror wall, low (2.44 m) at the west / dining wall
+  // round 4 (Jade): ONE tilted ceiling plane, high (5.10 m, r5: measured from the street view) at the east / mirror wall, low (2.44 m) at the west / dining wall
   ceilingPlane(x0 - T, x1 + T, zJ, z1 + T, CEIL, g); ceilingPlane(xW - T, x1 + T, z0 - Ti, zJ, CEIL, g);
   // walls
   const P = PICTURE, Ww = WIN_W, Wd = WIN_D, D = FRONT_DOOR, S = SLIDER, St = STAIR;
@@ -164,8 +164,8 @@ function piano() {
   extrude(rim, P.caseY0, P.caseY1, EBONY, P.label + ' (rim)');
   // the lid (closed), a touch proud of the rim; its front flap folded back on top of it (hinged at v = kd + 0.33)
   const lidOut = out.map(([u, v]) => [u, Math.max(v, kd + 0.33)]);
-  extrude(lidOut, P.caseY1, P.caseY1 + 0.025, { grey: 0.16, col: 0x1c1c22 }, 'piano lid (closed)');
-  extrude([[0.02, kd + 0.33], [W - 0.02, kd + 0.33], [W - 0.02, kd + 0.60], [0.02, kd + 0.60]], P.caseY1 + 0.025, P.caseY1 + 0.045, { grey: 0.18, col: 0x202026 }, 'piano lid: front flap folded back');
+  extrude(lidOut, P.caseY1, P.caseY1 + 0.025, { grey: 0.06, col: 0x0d0d0f }, 'piano lid (closed)');
+  extrude([[0.02, kd + 0.33], [W - 0.02, kd + 0.33], [W - 0.02, kd + 0.60], [0.02, kd + 0.60]], P.caseY1 + 0.025, P.caseY1 + 0.045, { grey: 0.07, col: 0x0f0f11 }, 'piano lid: front flap folded back');
   // music desk, up, leaning back, standing on the front of the case
   { const [x, z] = toW([W / 2, kd + 0.16]); g.add(tag(box(W * 0.62, 0.32, 0.025, EBONY, [x, P.caseY1 + 0.19, z], [-14, 0, 0]), 'piano music desk')); }
   // keybed and keys (v 0..kd) between the two cheek blocks (the bass and treble arms)
@@ -231,15 +231,22 @@ function furniture() {
   g.add(tag(box(PRINT.w - 0.12, PRINT.h - 0.12, 0.01, { grey: 0.55, col: 0x8a8270 }, [PRINT.x, PRINT.y, PRINT.z - 0.02]), 'framed picture (backing)'));
   g.add(framedPictureArt());
   // the far part: mirror, piano + bench, floor lamp, dining table + six chairs
-  { const M = MIRROR; g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0x9aa4a8 }, [M.x - 0.02, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror (not reflecting in these renders)'));
+  // r5 (brightness pass): in the lit guide the mirror read as a blank dark slab (it faces west, away from the sun). A real
+  // mirror shows the bright room: the lit pass gets a pale silvery glass (0xe6ecf0; no reflection is rendered, no glow);
+  // the other passes keep the plain grey panel
+  { const M = MIRROR, at = [M.x - 0.02, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2];
+    g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0x9aa4a8, hide: ['lit'] }, at), 'giant mirror (not reflecting in these renders)'));
+    g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0xe6ecf0, only: ['lit'], noCast: true }, at), 'giant mirror (not reflecting in these renders)'));
     g.add(tag(box(0.045, M.y1 - M.y0 + 0.08, M.z1 - M.z0 + 0.08, { grey: 0.4, col: 0x6a5a40 }, [M.x - 0.01, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror frame')); }
+  // r5 (Jade): "make the piano fully black": polished ebony everywhere (case, lid, legs, lyre, music desk, bench);
+  // only the keys and the brass (pedals, casters) stay non-black.
   // r4: a real downloaded 7'1" grand ("Grand Piano" by thanhthanh, CC BY 4.0; 2.16 x 1.45 m, lid closed). Model frame:
   // keyboard faces +z, spine on -x (player's left); turned 180 deg so the keyboard faces NORTH (bench side) and the spine
   // (player's left = east) runs along the mirror. Fallback: the hand-built piano().
   { const pm = prop('grand_piano', { at: [PIANO.spineX - PIANO.W / 2, 0, PIANO.kbZ], rot: [0, 180, 0], label: '7-ft grand piano',
-      lookMat: { gpiano_main: { grey: 0.12, col: 0x16161a }, gpiano_w_keys: { grey: 0.92, col: 0xf2eee2 }, gpiano_b_keys: { grey: 0.1, col: 0x101010 }, gpiano_brass: { grey: 0.6, col: 0xc0a050 } } });
+      lookMat: { gpiano_main: EBONY, gpiano_w_keys: { grey: 0.92, col: 0xf2eee2 }, gpiano_b_keys: { grey: 0.1, col: 0x101010 }, gpiano_brass: { grey: 0.6, col: 0xc0a050 } } });
     g.add(pm || piano()); }
-  { const B = BENCH; const [cx, cz] = table(g, { ...B, h: B.h }, B.label, EBONY); g.add(tag(box(B.x1 - B.x0, 0.06, B.z1 - B.z0, { grey: 0.2, col: 0x2a2226 }, [cx, B.h + 0.03, cz]), B.label)); }
+  { const B = BENCH; const [cx, cz] = table(g, { ...B, h: B.h }, B.label, EBONY); g.add(tag(box(B.x1 - B.x0, 0.06, B.z1 - B.z0, EBONY, [cx, B.h + 0.03, cz]), B.label)); }
   { const F = FLOOR_LAMP; g.add(tag(cyl(0.14, 0.14, 0.03, WOOD_D, [F.at[0], 0.015, F.at[1]], null, 18), F.label)); g.add(tag(cyl(0.012, 0.012, F.h - 0.3, WOOD_D, [F.at[0], (F.h - 0.3) / 2, F.at[1]], null, 8), F.label));
     const sh = mk(new THREE.CylinderGeometry(0.16, 0.22, 0.3, 24, 1, true), { grey: 0.86, col: 0xeee4cc }); sh.position.set(F.at[0], F.h - 0.15, F.at[1]); sh.userData.double = true; g.add(tag(sh, F.label)); }
   { const t = DINING.table, [cx, cz] = t.c; const top = new THREE.Shape(), r = t.d / 2, hw = t.w / 2 - r;
@@ -413,6 +420,10 @@ export function build(shot, { makeCam }) {
       // pleat (the bare 12 mm seam roll left the palm and the little finger 10-15 mm through it: the grip wrap fits 18 mm)
       const spec = graspArms('power', { centre: gr.at, axis: gr.axis, r: Math.max(gr.r, 0.018) }, { side: k, toward: chest })[k];
       { const a = V(gr.axis).normalize(), p = V(spec.palm); spec.palm = p.addScaledVector(a, -p.dot(a)).normalize().toArray(); }   // the palm square to the seam (else the wrap closes askew through it)
+      // r5: on the shoulder seam the thumb stays on the palm side (engine/hand.js thumb.wrap 'palm'): the seam's cloth hangs out of
+      // the fist's open side instead of threading the thumb; the sim settles the cloth round this same hand (sweatshirt_jolt.js
+      // HAND_CLOTH). The pinch hand keeps the plain grip (its posed version opened the pleat over Truth; see NOTES r5)
+      if (gr.what !== 'pinch') spec.hand = { shape: 'grip', thumb: { wrap: 'palm' } };
       her[k] = { ...(typeof her[k] === 'object' ? her[k] : {}), ...spec }; } }
   const solids = [], sunk = [];
   for (const A of Object.values(APERTURES)) if (A) { solids.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12 })); sunk.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12, sink: 0.01 })); }
@@ -436,8 +447,9 @@ export function build(shot, { makeCam }) {
   const rig = (mode) => {
     if (mode === 'none' || shot.beamMask) return [];
     if (mode === 'mask') return [mkSun(0xffffff, 3)];
-    if (mode === 'lit') { const sky = new THREE.DirectionalLight(0xc8d4e8, 0.7); sky.position.set(-2.0, 2.0, 3); sky.target.position.set(2.5, 0.6, -2);
-      return [mkSun(SUN.color, 3.0), sky, new THREE.AmbientLight(0x9aa2b0, 0.75)]; }
+    if (mode === 'lit') { const sky = new THREE.DirectionalLight(0xc8d4e8, 0.95); sky.position.set(-2.0, 2.0, 3); sky.target.position.set(2.5, 0.6, -2);
+      // r5 brightness pass: ambient 0.75 -> 1.3, sky 0.7 -> 0.95, the mirror a pale glass (MG_wide_lit was nearly black; painters could not read it)
+      return [mkSun(SUN.color, 3.0), sky, new THREE.AmbientLight(0x9aa2b0, 1.3)]; }
     const d = new THREE.DirectionalLight(0xffffff, 0.55); d.position.set(4.0, 3.0, -3.0);
     return [mkSun(0xffffff, 2.2), new THREE.AmbientLight(0xffffff, 1.25), d];
   };
@@ -468,7 +480,7 @@ export function build(shot, { makeCam }) {
     return {
       time: FILM.time, plan_time: FILM.time, section: FILM.section, position: shot.position || null,
       film: { ...FILM, year: YEAR, place: 'Morton Grove, IL: the house she commuted from to Northwestern (Evanston); he had transferred from Harvard to Princeton' },
-      house: { ...HOUSE, ceiling: { kind: 'one tilted plane (shed ceiling), Jade r4: high side the mirror (east) wall, low side the dining (west) wall', high_m: VAULT.high + ' at the east wall x ' + VAULT.xHigh + ' (FLAGGED: kept from her r3 3.6 m)', low_m: VAULT.low + ' at the west (dining) wall x ' + VAULT.xLow + ' (8-ft plate, FLAGGED)', pitch: VAULT.pitch + ' (about 2.2 in 12)', east_wall: 'level top at ' + VAULT.high + ' m (mirror, piano)', front_wall: 'a trapezoid behind the couch, ' + ceilAt(0, 0).toFixed(2) + ' m at x 0 to ' + VAULT.high + ' m at the east corner' },
+      house: { ...HOUSE, ceiling: { kind: 'one tilted plane (shed ceiling), Jade r4: high side the mirror (east) wall, low side the dining (west) wall', high_m: VAULT.high + ' at the east wall x ' + VAULT.xHigh + ' (FLAGGED, r5: from the street view, capped under the wing ridge)', low_m: VAULT.low + ' at the west (dining) wall x ' + VAULT.xLow + ' (8-ft plate, FLAGGED)', pitch: VAULT.pitch + ' (about 5 in 12)', east_wall: 'level top at ' + VAULT.high + ' m (mirror, piano)', front_wall: 'a trapezoid behind the couch, ' + ceilAt(0, 0).toFixed(2) + ' m at x 0 to ' + VAULT.high + ' m at the east corner' },
         axes: 'x = east, z = south, y up; origin = inner SW corner of the living room', great_room_m: { x: [JOG.xW, ROOM.x1], z: [ROOM.z0, ROOM.z1], jog_z: JOG.z },
         orientation: 'Jade\'s drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)',
         couch: 'against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)' },

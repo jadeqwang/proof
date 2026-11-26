@@ -1259,3 +1259,14 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
     workaround when its dress fix lands.
   - Lead's look at PG1_lit: reads well. Sent back two fixes: her sleeve patch maps as a HEART, and Dad's grey hair
     reads as white stripes/cornrows. Plan row updated.
+- **mortongrove agent done:**
+  - Ceiling measured from mg_streetview: the gable pitch is 0.57 (about 30 deg), but carried across 6.3 m it would
+    top the wing's ridge. Built as one plane from 2.44 m to 5.10 m (pitch 0.42). Question mg_ceiling_high.
+  - Piano all black. Horse mirrored to gallop left, the old inscription painted out, one vermilion seal (Codex, $0).
+  - hand.js: an opt-in `thumb: { wrap: 'palm' }` hook grip.
+  - Hoodie hands: the MG2 shoulder hands are now <=0.9 mm. The two pinch hands are still ~15 mm in: every posed hand
+    on the pinched pleat showed Truth.
+  - MG_wide_lit mean 49.6 -> 75.4; the mirror is pale glass.
+  - Clip check still flags her ~40 mm into the couch seat (kept: it shapes the drape) and the soles (engine fix).
+  - Repaint: MG_wide, MG1, MG1_end, MG2, MG2_end.
+  - Round-6 questions are collected in work/decisions/NEW_QUESTIONS_R6.md.

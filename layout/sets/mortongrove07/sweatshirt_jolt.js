@@ -23,7 +23,12 @@ export const JOLT_DEFAULTS = { dt: 1 / 240, iterations: 12, preroll: 1.5, durati
   // simulated sheet) + handPad - vertexRadius; 'fist' = the old solid capsule. pinchK = the pinch's gather [across, up]
   // (offsets from its centre scaled: 0.7 across, the 9 cm of pleat gathered up into the fist), fistLift = the fist's
   // centre above the gathered pinch's (the bundle sits in the fist and hangs out of its open side, below).
-  hand: 'fist', leftFist: false, handPad: 0.002, approach: { from: 0.10, dur: 0.6, back: 35 }, fistZone: 0, pinchK: [0.7, 0.7], fistLift: 0, selfR: 0.0115, selfSkip: 0.022, selfPasses: 1, colliders: [] };
+  hand: 'fist', leftFist: false, handPad: 0.002, approach: { from: 0.10, dur: 0.6, back: 35 }, fistZone: 0, pinchK: [0.7, 0.7], fistLift: 0, selfR: 0.0115, selfSkip: 0.022, selfPasses: 1, colliders: [],
+  // r5 (2026-11-26, the open finger/cloth fix): her SHOULDER-SEAM hands are posed hands in the sim (HAND_CLOTH: the grip
+  // with engine/hand.js thumb.wrap 'palm', r 18 mm), swapped in for the last 0.5 s only and lifted 5 mm, so the cloth
+  // settles round the real fingers while the drape (and the pleat over Truth) stays the published one. The PINCH hand
+  // keeps the solid fist: every posed pinch hand tried (~40 runs) reshaped the fold over the seal and showed Truth.
+  ...{ hand: 'posed', posedFor: ['shoulderL'], posedLate: 0.5, posedLift: { pinch: 0, shoulder: 0.005 }, gripR: { pinch: 0.018, shoulder: 0.018 }, approach: { from: 0.06, dur: 0.4, back: 35 } } };
 
 // HER POSED HAND in the sim (contact pass 2026-11-26, Jade: "make sure hands don't clip through the fabric"). The figure's
 // hand on the cloth is engine/grasp.js 'power' round a cylinder r 18 mm (build.js: Math.max(grip r, 18 mm)), palm square
@@ -41,13 +46,37 @@ export const HAND = [['index1', 28.9, -30, -22.4, 28.9, 6.6, -27.2, 9.8], ['inde
   ['little1', -26.6, -30, -15.3, -27.3, -1.7, -26.3, 8.3], ['little2', -27.3, -1.7, -26.3, -26.9, 16.5, -19.7, 7.5], ['little3', -26.9, 16.5, -19.7, -26, 24.3, -7.2, 6.8],
   ['palm:little', -21.3, -30, 67.3, -26.6, -30, -15.3, 10.1], ['thumb0', 23.3, -24.4, 55.1, 46.1, 7.6, 29.8, 15], ['thumb1', 46.1, 7.6, 29.8, 62.8, 24.7, 15.1, 11.6],
   ['thumb2', 62.8, 24.7, 15.1, 45.9, 36.3, 12.8, 10.1]];
+// r5: the same for the cloth grip with the thumb on the palm side (engine/hand.js thumb.wrap 'palm', hold r 18 mm, jade27
+// Lh 0.186), the hand on the shoulder seams; generated with engine/hand.js buildHand (scratch tmpl.mjs, 0.8 mm from HAND's frame)
+export const HAND_CLOTH = [
+  ['index1',  28.8,  -29.9,  -22.3,  28.8,  6.4,  -27.5,  9.8],
+  ['index2',  28.8,  6.4,  -27.5,  28.8,  24.5,  -12.6,  8.8],
+  ['index3',  28.8,  24.5,  -12.6,  28.8,  27,  5.2,  7.9],
+  ['palm:index',  23.1,  -29.9,  67,  28.8,  -29.9,  -22.3,  10],
+  ['middle1',  9.3,  -29.9,  -25.1,  9.3,  9.8,  -27.1,  10.1],
+  ['middle2',  9.3,  9.8,  -27.1,  9.3,  26.9,  -8.4,  9.1],
+  ['middle3',  9.3,  26.9,  -8.4,  9.3,  26,  11.1,  8.1],
+  ['palm:middle',  7.4,  -29.9,  67,  9.3,  -29.9,  -25.1,  10],
+  ['ring1',  -9.3,  -29.9,  -22.3,  -9.4,  7.4,  -26.8,  9.4],
+  ['ring2',  -9.4,  7.4,  -26.8,  -9.1,  25.1,  -10.7,  8.5],
+  ['ring3',  -9.1,  25.1,  -10.7,  -8.8,  26.2,  7.7,  7.6],
+  ['palm:ring',  -7.4,  -29.9,  67,  -9.3,  -29.9,  -22.3,  10],
+  ['little1',  -26.4,  -29.9,  -15.3,  -27.2,  -1.8,  -26.2,  8.3],
+  ['little2',  -27.2,  -1.8,  -26.2,  -26.7,  16.4,  -19.8,  7.4],
+  ['little3',  -26.7,  16.4,  -19.8,  -25.9,  24.3,  -7.3,  6.8],
+  ['palm:little',  -21.1,  -29.9,  67,  -26.4,  -29.9,  -15.3,  10],
+  ['thumb0',  23.3,  -24.3,  54.9,  49.3,  -32.4,  17.2,  15],
+  ['thumb1',  49.3,  -32.4,  17.2,  54.6,  -31.6,  -10.2,  11.5],
+  ['thumb2',  54.6,  -31.6,  -10.2,  55.9,  -29.7,  -30.5,  10]];
+// which template a hand holding 'what' uses under sim options o (the posed hands use o.handT || HAND_CLOTH, the rest HAND)
+export const handTemplateFor = (what, o) => (o.hand === 'posed' && (!o.posedFor || o.posedFor.includes(String(what).replace(/\+$/, ''))) ? o.handT || HAND_CLOTH : HAND);
 // world capsules of the posed hand `side` ('L' | 'R') closed round a grip at `at`, axis `axis`, for a figure whose chest is `chest`
-export function handCapsules(side, at, axis, chest) {
+export function handCapsules(side, at, axis, chest, T = HAND) {
   const l = Math.hypot(...axis), ax = axis.map((v) => v / l), d = [at[0] - chest[0], at[1] - chest[1], at[2] - chest[2]], k = d[0] * ax[0] + d[1] * ax[1] + d[2] * ax[2];
   let n = [d[0] - ax[0] * k, d[1] - ax[1] * k, d[2] - ax[2] * k]; const ln = Math.hypot(...n); n = n.map((v) => v / ln);
   const w = [ax[1] * n[2] - ax[2] * n[1], ax[2] * n[0] - ax[0] * n[2], ax[0] * n[1] - ax[1] * n[0]], sw = w[1] < 0 ? 1 : -1, st = side === 'R' ? sw : -sw;
   const P = (a, b, c) => [0, 1, 2].map((i) => at[i] + (ax[i] * st * a + n[i] * b + w[i] * sw * c) / 1000);
-  return HAND.map(([part, a0, a1, a2, b0, b1, b2, r]) => ({ part, a: P(a0, a1, a2), b: P(b0, b1, b2), r: r / 1000 }));
+  return T.map(([part, a0, a1, a2, b0, b1, b2, r]) => ({ part, a: P(a0, a1, a2), b: P(b0, b1, b2), r: r / 1000 }));
 }
 
 const add3 = (a, b, k = 1) => [a[0] + b[0] * k, a[1] + b[1] * k, a[2] + b[2] * k];
@@ -108,7 +137,8 @@ export function simulate(Jolt, t, opts) {
   // (contact pass 2026-11-26: before this, fist.L and fist.R were both the right fist; the left had no collider)
   const keepID = (id) => new Jolt.BodyID(id.GetIndexAndSequenceNumber());
   const fist = {}, handB = { L: [], R: [] }, chest = opt.chest || opt.colliders.find((c) => c.type === 'chest')?.at, posed = opt.hand === 'posed' && !!chest;
-  if (posed) for (const h of ['L', 'R']) for (const [, a0, a1, a2, b0, b1, b2, r] of HAND) {
+  const HT = opt.handT || HAND_CLOTH;
+  if (posed) for (const h of ['L', 'R']) for (const [, a0, a1, a2, b0, b1, b2, r] of HT) {
     const half = Math.hypot(b0 - a0, b1 - a1, b2 - a2) / 2000, shape = new Jolt.CapsuleShape(Math.max(half, 1e-4), r / 1000 + THICK / 2 + opt.handPad - opt.vertexRadius);
     const bcs = new Jolt.BodyCreationSettings(shape, R3([0, -5, 0]), Jolt.Quat.prototype.sIdentity(), Jolt.EMotionType_Kinematic, LAYER_MOVING);
     handB[h].push(keepID(bi.CreateAndAddBody(bcs, Jolt.EActivation_Activate))); Jolt.destroy(bcs); }
@@ -179,7 +209,7 @@ export function simulate(Jolt, t, opts) {
   function pins(tau, pre) {
     hold.clear(); fists = {};
     if (pre !== undefined) { const f = ease(pre * 1.5), pc = lerp3(pinchFrom, gripPoint(start, 'pinch'), f), lc = lerp3(c0L, startL(start), f);
-      pinPinch(pc, 0, opt.hand === 'posed' ? f : 1); S0L.forEach((p, j) => hold.set(cluster.shoulderL[j], add3(lc, [p[0] - c0L[0], p[1] - c0L[1], p[2] - c0L[2]])));
+      pinPinch(pc, 0, opt.hand === 'posed' && !opt.posedLate ? f : 1); S0L.forEach((p, j) => hold.set(cluster.shoulderL[j], add3(lc, [p[0] - c0L[0], p[1] - c0L[1], p[2] - c0L[2]])));
       fists = { R: [add3(pc, UP, opt.fistLift), start.right, 'pinch'], L: [lc, start.right, 'shoulderL'] }; return; }
     const h = handsAt(tau, start, end);
     pinPinch(h.pinch, h.yaw); fists.R = [add3(h.pinch, UP, h.holdL === 'pinch' ? 0.035 : opt.fistLift), yawed(start, h.yaw), 'pinch'];
@@ -192,20 +222,25 @@ export function simulate(Jolt, t, opts) {
   // posed hands arrive from above (opt.approach: `from` m higher, settling over `dur` s) each time they take hold, so the
   // fabric starts under the fingers and thumb rather than threaded through them; the left hand under the right on the
   // shared pinch (t 0.50-0.56) has no colliders (two fists cannot both close round one 18 mm bundle).
-  let clock = 0; const since = {}, holding = {};
+  let clock = 0, T_END = Infinity; const since = {}, holding = {};
+  // posedLate (s, r5): the published drape is simulated with the solid fist; only the LAST posedLate seconds swap it for
+  // her posed hand (opt.handT), lifted posedLift { pinch, shoulder } m, so the cloth settles round the real hand while the
+  // drape (and the pleat over Truth) stays the published one
+  const lateOn = () => !opt.posedLate || clock >= T_END - opt.posedLate - 1e-9;
+  const liftOf = (f) => (opt.posedLift && lateOn() ? add3(f[0], [0, 1, 0], /pinch/.test(f[2]) ? opt.posedLift.pinch || 0 : opt.posedLift.shoulder || 0) : f[0]);
   function apply(dt) {
     clock += dt;
     for (const k of kin) if (!hold.has(k)) { verts.at(k).mInvMass = 1; kin.delete(k); }
     for (const [k, p] of hold) { const v = verts.at(k); v.mInvMass = 0; kin.add(k); vtmp.Set(p[0], p[1], p[2]); v.mPosition = vtmp; v.mPreviousPosition = vtmp; v.mVelocity = zero; }
     for (const h of ['L', 'R']) { const f = fists[h];
-      const key = f ? f[2] : null, posedNow = posed && (!opt.posedFor || opt.posedFor.includes(String(key).replace(/\+$/, '')));
+      const key = f ? f[2] : null, posedNow = posed && lateOn() && (!opt.posedFor || opt.posedFor.includes(String(key).replace(/\+$/, '')));
       if (posed && !posedNow) handB[h].forEach((b, i) => bi.MoveKinematic(b, R3([0, -5 - 0.2 * i, 0]), Jolt.Quat.prototype.sIdentity(), dt));
       if (posedNow) { if (key !== holding[h]) { holding[h] = key; since[h] = clock; }
         // each capsule arrives from `back` degrees off straight above, toward her (the thumb from `thumbBack`): the
         // fingers come down over the fistful, the palm and the thumb from her side, so the hanging fabric ends up in
         // front of the thumb that closes under the fist (engine/hand.js wraps it round the far side of the grip)
         const A = opt.approach, off = A && f ? A.from * (1 - ease((clock - since[h]) / A.dur)) : 0, offT = A && f ? A.from * (1 - ease((clock - since[h] - (A.thumbDelay || 0)) / A.dur)) : 0;
-        let caps = f && !/\+$/.test(key) ? handCapsules(h, f[0], f[1], chest) : null;
+        let caps = f && !/\+$/.test(key) ? handCapsules(h, liftOf(f), f[1], chest, HT) : null;
         if (caps && (off > 0 || offT > 0)) { const l = Math.hypot(...f[1]), ax = f[1].map((v) => v / l), d = [f[0][0] - chest[0], 0, f[0][2] - chest[2]], k = d[0] * ax[0] + d[2] * ax[2];
           const n0 = [d[0] - ax[0] * k, 0, d[2] - ax[2] * k], ln = Math.hypot(...n0) || 1, n = n0.map((v) => v / ln);
           const dir = (deg) => { const b = deg * Math.PI / 180; return add3(UP.map((v) => v * Math.cos(b)), n, -Math.sin(b)); };
@@ -252,7 +287,7 @@ export function simulate(Jolt, t, opts) {
     for (let i = 0; i < n; i++) if (moved[i]) { const v = verts.at(i); vtmp.Set(x[3 * i], x[3 * i + 1], x[3 * i + 2]); v.mPosition = vtmp;
       const u = v.mVelocity; vtmp.Set(u.GetX() + (x[3 * i] - x0[3 * i]) / dtc, u.GetY() + (x[3 * i + 1] - x0[3 * i + 1]) / dtc, u.GetZ() + (x[3 * i + 2] - x0[3 * i + 2]) / dtc); v.mVelocity = vtmp; }
   }
-  const dt = opt.dt, steps0 = Math.round(opt.preroll / dt), steps1 = Math.round(Math.max(0, Math.min(1, t)) * opt.duration / dt);
+  const dt = opt.dt, steps0 = Math.round(opt.preroll / dt), steps1 = Math.round(Math.max(0, Math.min(1, t)) * opt.duration / dt); T_END = (steps0 + steps1) * dt;
   // selfFirst: the layer contact projection BEFORE each Jolt step, so Jolt's contacts with her hands have the last word
   // (after it, the projection pushed fabric lying against the fist into the fingers)
   const self = () => { for (let k = 0; k < opt.selfPasses; k++) selfContact(); };
@@ -264,7 +299,7 @@ export function simulate(Jolt, t, opts) {
     // what each hand closes round: the bundle of the pinched pleat (r 1.8 cm) or the rolled shoulder seam (r 1.2 cm),
     // the cylinder's axis (the capsule the cloth collided with)
     grip: Object.fromEntries(['L', 'R'].map((k) => { const held = k === 'L' ? h.holdL : h.holdR, f = fists[k];
-      return [k, f && held ? { at: f[0], axis: f[1], r: held === 'pinch' ? 0.018 : 0.012, what: held } : null]; })) };
+      return [k, f && held ? { at: posed ? liftOf(f) : f[0], axis: f[1], r: held === 'pinch' ? (opt.gripR?.pinch ?? 0.018) : (opt.gripR?.shoulder ?? 0.012), what: held } : null]; })) };
   if (opt.onEnd) opt.onEnd({ Jolt, bi, handB, fist, chest, fists });   // debugging hook (no effect on the result)
   Jolt.destroy(jolt);
   return { pat, x, t, hands, held: [...hold.keys()], cluster, engine: 'jolt-physics 1.1.2 soft body' };

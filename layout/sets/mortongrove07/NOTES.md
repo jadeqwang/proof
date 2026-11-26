@@ -410,3 +410,101 @@ Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`. First
   REF_north, REF_plan, MG_wide (ceiling plane, trapezoid walls, piano, horse picture), MG1 and MG2_end (unchanged staging;
   his face not shown). Open: the finger/cloth contact (above), the rag-like mid-turn cloth, MG2/MG2_end holdcheck
   (meaningless for a soft body; cloth_contact.mjs is the real measure).
+
+## 2026-11-26: round-5 decisions (work/decisions/JADE_R5_DECISIONS.md)
+
+Jade: "the ceiling needs to be steeper. I just added mg_streetview.png which can give you the angle. based on door
+height, window heights, angle, can you compute the rest? can you also make the piano fully black? the horse is pretty
+good but should be galloping left (also give it a vermilion seal)." Plus the open fix (fingers into the hoodie) and the
+dark MG_wide_lit.
+
+### checkpoint (start)
+- Started: street-view measurement (below, in progress); vermilion seal requested from Codex (tmux proof-mg, $0).
+
+### The ceiling: measured on the street view (inputs/refs_mortongrove/mg_streetview.png, private, look-only)
+Pixel coordinates in the 931 x 706 image (camera faces north; west is image-left; the great room is the one-storey part
+with the picture window, the two-storey split-level wing is to its east, image-right).
+- **Scale (front wall plane):** the front (storm) door spans y 514 (head) to 596 (threshold) = 82 px and x 358-395 =
+  37 px. Aspect 0.45 = a 36 x 80 in door, so the image is not stretched. 80 in = 2.03 m -> 0.0248 m/px (+-4%: door
+  edges +-1.5 px; it could be a 32 in door, which would mean a 12% horizontal stretch: see the pitch error).
+  The picture window's head is at y 514, the same as the door head (6 ft 8 in, the usual header line); its sill is
+  y 580 (0.40 m above the floor). 
+- **Wall height (low side):** the front gable's siding triangle sits on the wall top at y 496 = (596 - 496) x 0.0248 =
+  2.48 m above the floor; the fascia bottom is at y 506-507 = 2.22 m (the eave hangs below the plate by overhang x
+  pitch). So the plate is the ordinary 8 ft: **low side 2.44 m (2.40-2.50).**
+- **Roof pitch (front gable over the picture window, nearly fronto-parallel):** inner siding triangle: apex (515.8,
+  455), base corners (440.8, 495) and (584.2, 496.7): rise 40.9 px over half-base 71.7 px = 0.570. Outer roof edge:
+  left half 57.5/107.5 = 0.535, right half 60/95.8 = 0.626 (the halves differ by the camera's slight yaw/roll; the
+  base-to-apex ratio cancels most of that). With a cos(15 deg) yaw allowance: **pitch 0.57 +- 0.04 (29.7 deg, about
+  7 in 12; 6/12 = 0.50 and 8/12 = 0.67 are both outside the band).** Apex outside: y 446.7 = 3.70 m above the floor.
+- **The wing's ridge:** apex of the two-storey wing's gable at y 380 = (596 - 380) x 0.0248 = **5.35 m above the main
+  floor** (outside, +-0.2 m: same facade plane assumed). The one-storey roof's top edge runs up to the wing at about
+  y 388 (5.16 m), i.e. the great room's roof rises toward the wing, as Jade says the ceiling does (high on the mirror =
+  wing side).
+- **Arithmetic:** the room is 6.3 m from the dining wall (x -1.4) to the mirror wall (x 4.9).
+  - Literal (cathedral parallel to the front gable, across the whole room): 2.44 + 0.57 x 6.3 = **6.03 m (+-0.3)**.
+    That is ABOVE the wing's ridge (5.35 m outside), which the photo rules out: the great room's roof would stand
+    taller than the two-storey wing.
+  - Built (one plane, capped under the wing): high = wing ridge 5.35 - about 0.25 m of roof and rafter = **5.10 m
+    (+-0.3)** at the mirror wall; low 2.44 m at the dining wall; pitch 2.66 / 6.3 = **0.42 (5 in 12, 23 deg)**;
+    3.05 m at the living room's west wall (x 0); the trapezoid wall behind the couch runs 3.05 -> 5.10 m.
+  - Reading consistent with both the gable pitch and the cap: 0.57 over the living room alone (x 0 -> 4.9) gives
+    2.44 -> 5.23 m, which fits under the wing; but then the 1.4 m dining jog would need a flat 2.44 m ceiling, which
+    Jade rejected ("one plane"). Not built.
+- **FLAGGED for Jade (decision card proposed):** high side 5.1 m (built; fits the photo) vs 6.0 m (the gable's pitch
+  across the whole room) vs 5.2 m with a flat dining jog. Was 3.6 m.
+
+### checkpoint: piano, mirror/brightness, hands (in progress)
+- Ceiling built: VAULT.high 5.10 (layout.js); trapezoid walls follow ceilAt (no other change needed).
+- Piano fully black: EBONY = { grey 0.05, col 0x0b0b0d } for the downloaded model's gpiano_main (case, lid, legs, lyre,
+  desk), the bench (top too) and the fallback piano; keys and brass unchanged.
+- MG_wide_lit brightness: lit ambient 0.75 -> 1.3, sky 0.7 -> 0.95; the mirror in the lit pass is a pale glass panel
+  (0xe6ecf0, no glow: an emissive version bloomed to pure white and read as a window). Scratch measure (mean luminance
+  0-255): before 49.6 (median 36), after (ambient 1.1) 68.2; final numbers after the re-render below.
+- Horse: mirrored (work/art_mg/mg_picture_mirrored_noseal.png), the old calligraphy column and seal painted out with
+  clean paper from the same sheet. The vermilion seal: Codex hit its image limit at 15:44 ("resets in about 42
+  minutes"); retry after 16:27.
+- Hands (finger/cloth): engine/hand.js wrapPose thumb.wrap 'palm' (opt-in) added. Sim: posed-hand colliders swapped in
+  late. ~45 sim runs (scratch): any posed PINCH hand reshaped the fold at the top of the seal (Truth px up to 10k, or the
+  seal folded away from the camera); posed SHOULDER hands with the published pinch fist keep the drape and Truth 0 at t 0
+  and t 1 in all three test views. Adopted: shoulder hands posed (last 0.5 s, lifted 5 mm, thumb palm-side). Result:
+  MG2 L (shoulder) worst +0.7 mm (was palm +14.2, thumb +20.5); MG2_end R (shoulder) worst +0.9 mm (was +14..+17).
+  The PINCH hands (MG2 R, MG2_end L) are still +15 mm (thumb +12.6 / +20.5): NOT FIXED.
+
+### checkpoint: re-rendered (three passes), measured
+- Sim (sweatshirt_jolt.js JOLT_DEFAULTS, r5): hand 'posed' for the shoulder grips only (posedFor ['shoulderL']),
+  posedLate 0.5 s, posedLift { pinch 0, shoulder 0.005 }, gripR 18 mm, approach { from 0.06, dur 0.4, back 35 },
+  template HAND_CLOTH (engine/hand.js grip + thumb.wrap 'palm', jade27 Lh 0.186). New opts: handT, posedLate,
+  posedLift, gripR; export handTemplateFor. build.js: the shoulder hands get hand { shape 'grip', thumb { wrap 'palm' } }.
+  cloth_contact.mjs picks the template per hand; sweatshirt_test.mjs --out DIR for trial runs (kept outside the repo).
+- cloth_contact.mjs --sidecar on the new media sidecars (mm, + = overlap): MG2 L (shoulder) index -9.9, palm +0.1,
+  middle -8.7, ring -13.6, little -18, thumb +0.7; MG2_end R (shoulder) index -2.3, palm 0, middle -3.4, ring -4.4,
+  little -18.2, thumb +0.9. Pinch hands unchanged: MG2 R index +15.3, palm +15.6, middle +15.7, ring +14.9, little +4.1,
+  thumb +12.6 (was +17.1); MG2_end L +15.3 / +15.6 / +15.7 / +14.9 / +9 / thumb +20.5.
+- Truth (sweatshirt_test.mjs, all 11 t x cam/close/her): t 0 and t 1 = 0 in every view; in-between frames as before
+  (t 0.3 cam 6 / close 19, t 0.5 her 21) plus t 0.8 cam 7 / close 8 (was her 3): those go to work/sweatshirt/ (private).
+  The tracked media SW_t080_cam.png is now the OLD drape's frame (its new version has Truth px, so it went private);
+  the tracked SW_*_front / _zoomcam are older views the page no longer makes.
+- What was tried for the PINCH (~50 runs, scratch): posed hook hands with lift 0-45 mm, r 16-22 mm, swapped in for the
+  last 0.15-1.0 s or the whole run, approach from above or none, selfFirst. Best contact (all fingers <= +3 mm at t 0)
+  came with Truth 0 at t 0 but the seal folded away from the camera (the shot's reveal lost), and at t 1 her view always
+  showed Truth (245-5800 px). The fistful is a 6 cm vertical strip of pinned pleat under the neckline: a hand round it
+  either crosses the strip or moves it, and the fold over Truth is decided right there. Next idea (not tried): fewer
+  pinned rows (a 2-row pinch) with a thumb-and-fingers pinch from above (paperEdge-style), re-tuning the pleat's
+  stiffness so it stays shut without the 9 cm of pins.
+- Hold check (holdcheck.mjs media/layout/mortongrove07): MG1, MG1_end, MG_wide, REF_plan pass (fingers 0, palm 2.3 mm);
+  MG2 / MG2_end are soft bodies (the hull test is meaningless; cloth_contact above is the measure).
+- Clip check (clipcheck.mjs): every shot FAILs on the same pre-existing items as HEAD (checked on a git-archive copy of
+  HEAD): jade27 into the floral couch 82 mm cloth / 40 mm skin (HEAD 85 / 33: she sinks into the seat cushion), mesh
+  soles into the carpet 14.9 mm (HEAD 30; engine), the cork sandals 14 mm, the rug 6 mm; the cloth hoodie is an open
+  sheet, so its "inside" depths (hundreds of mm) are meaningless. Nothing new from this round. Seat height not changed:
+  her lap colliders shape the drape (Truth).
+- Wrist warnings unchanged from HEAD (MG2 L/R, MG2_end L, his R +4 deg in MG1/MG_wide).
+
+### done (16:35)
+- Horse: layout/assets/art/mortongrove07/mg_picture.png is the r4 image mirrored (gallops LEFT in the renders, checked
+  in MG_wide_lit), the old calligraphy and seal painted out, one vermilion seal (Codex, proof-mg, $0) at the upper
+  right. Saved as RGB (a 256-colour palette turned the vermilion brown). Notes in mg_picture.txt.
+- Final three-pass re-render of every shot after the art; MG_wide_lit mean luminance 49.6 -> 75.4 (median 36 -> 63),
+  the mirror's area 45 -> 98; MG2/MG2_end lit 49 -> 64, MG1 68 -> 82, REF_north 70.5 -> 91.8.
+- Question for Jade (proposed card): the ceiling's high side 5.1 m (built) vs 6.0 m vs 5.2 m with a flat dining jog.

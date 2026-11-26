@@ -9,7 +9,8 @@ const { chromium } = require(process.env.PLAYWRIGHT_CORE || '/home/jade/Document
 const REPO = path.resolve(HERE, '..'); const argv = process.argv.slice(2), args = {};
 for (let i = 0; i < argv.length; i++) if (argv[i].startsWith('--')) args[argv[i].slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
 const TS = String(args.t || '0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1').split(',').map(Number), VIEWS = String(args.views || 'cam,close,her').split(',');
-const PUB = path.join(REPO, 'media/layout/mortongrove07'), PRIV = path.join(REPO, 'work/sweatshirt');
+// --out DIR (r5): every render and the log go to DIR instead (trial runs; keep DIR outside the public repo)
+const PUB = args.out ? path.resolve(String(args.out)) : path.join(REPO, 'media/layout/mortongrove07'), PRIV = args.out ? path.resolve(String(args.out)) : path.join(REPO, 'work/sweatshirt');
 fs.mkdirSync(PUB, { recursive: true }); fs.mkdirSync(PRIV, { recursive: true });
 const TEX = path.join(REPO, 'work/ias/ias_print_tex.png');
 const port = 9300 + (process.pid % 200), server = await serve(port);

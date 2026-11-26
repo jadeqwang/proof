@@ -362,7 +362,7 @@
  "warnings": [
   "wrist: firstLove27 R grip cannot be reached naturally (radial deviation +4 deg; flex -17.7, radial 24.4, twist 60.9, after an elbow swivel of 20 deg)"
  ],
- "intent": "The living room as the two shots see it, and the house's angle (Jade r3): the room's ceiling is ONE tilted plane (Jade r4), highest (3.6 m) along the whole EAST wall, whose top is level, falling west toward the dining side; the front wall behind the couch is a trapezoid, tall at the mirror end; the giant mirror hung high on it above the 7-ft grand; the floral couch against the front (south) wall under the large framed picture (1.4 x 1.0 m), the 1.5 m front window beside it throwing the low November-afternoon sun across her and onto the rug; the loveseat left of the rug, the armchair right. He stands back to camera handing her the folded hoodie. Not a shot.",
+ "intent": "The living room as the two shots see it, and the house's angle (Jade r3): the room's ceiling is ONE tilted plane (Jade r4), highest (5.1 m, r5) along the whole EAST wall, whose top is level, falling west toward the dining side; the front wall behind the couch is a trapezoid, tall at the mirror end; the giant mirror hung high on it above the 7-ft grand; the floral couch against the front (south) wall under the large framed picture (1.4 x 1.0 m), the 1.5 m front window beside it throwing the low November-afternoon sun across her and onto the rug; the loveseat left of the rug, the armchair right. He stands back to camera handing her the folded hoodie. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",
  "section": "Bridge",
@@ -407,11 +407,11 @@
   "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
   "ceiling": {
    "kind": "one tilted plane (shed ceiling), Jade r4: high side the mirror (east) wall, low side the dining (west) wall",
-   "high_m": "3.6 at the east wall x 4.9 (FLAGGED: kept from her r3 3.6 m)",
+   "high_m": "5.1 at the east wall x 4.9 (FLAGGED, r5: from the street view, capped under the wing ridge)",
    "low_m": "2.44 at the west (dining) wall x -1.4 (8-ft plate, FLAGGED)",
-   "pitch": "0.1841 (about 2.2 in 12)",
-   "east_wall": "level top at 3.6 m (mirror, piano)",
-   "front_wall": "a trapezoid behind the couch, 2.70 m at x 0 to 3.6 m at the east corner"
+   "pitch": "0.4222 (about 5 in 12)",
+   "east_wall": "level top at 5.1 m (mirror, piano)",
+   "front_wall": "a trapezoid behind the couch, 3.03 m at x 0 to 5.1 m at the east corner"
   },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
   "great_room_m": {
@@ -5996,7 +5996,7 @@
  ],
  "figure_frame_fraction": {
   "firstLove27": 0.0093,
-  "jade27": 0.0045
+  "jade27": 0.0046
  },
  "colour_separation": [],
  "figure_report": {
@@ -6030,7 +6030,10 @@
      "upperarm_stretch": 1.08,
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
-    }
+    },
+    "sole_shift_mm_L": 20.1,
+    "sole_shift_mm_R": 20.1,
+    "sole_lowest_y_m": -0.0149
    }
   },
   "firstLove27": {
@@ -6063,7 +6066,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.98,
      "hand_scale": 0.9
-    }
+    },
+    "sole_shift_mm_L": 4.2,
+    "sole_shift_mm_R": 4.2,
+    "sole_lowest_y_m": 0.0044
    }
   }
  }

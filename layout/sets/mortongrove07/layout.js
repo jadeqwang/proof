@@ -82,11 +82,16 @@ export const JOG = { z: -2.0, xW: -1.4 };   // north of z = -2.0 the room reache
 // on the couch is a trapezoid". So ONE tilted plane (a shed ceiling) over the whole great room: highest along the EAST
 // (mirror) wall, whose top is level, falling westward to the 8-ft plate on the WEST (dining) wall. The front (south) wall
 // behind the couch and the north (kitchen) wall run across the slope: trapezoids, tall at the mirror end.
-// HEIGHTS (flagged; Jade gave none this round): high side 3.6 m (her r3 "about 3.6 m" at the top), low side 2.44 m
-// (8 ft) at the dining wall x -1.4; the living room's west wall (x 0) is then 2.70 m. Pitch 1.16 m in 6.3 m (about 2.2 in 12).
-export const VAULT = { ridge: 'none: one tilted plane (shed), high at the east (mirror) wall, low at the west (dining) wall', high: 3.6, low: ROOM.h, xHigh: ROOM.x1, xLow: JOG.xW, t: 0.06 };
+// HEIGHTS (round 5, Jade: "the ceiling needs to be steeper ... based on door height, window heights, angle, can you
+// compute the rest?"), measured on inputs/refs_mortongrove/mg_streetview.png (private; arithmetic in NOTES.md):
+// the front gable's pitch is 0.57 (about 7 in 12, 30 deg); the 8-ft plate (2.44 m) is confirmed by the front door
+// (80 in) and the window heads; the two-storey wing's ridge is about 5.35 m above the main floor outside. The roof
+// pitch carried across the whole 6.3 m room would put the ceiling at 6.0 m, above the wing's ridge (impossible in the
+// photo), so the high side is capped under it: 5.10 m at the east (mirror) wall, 2.44 m at the dining wall x -1.4,
+// 3.05 m at the living room's west wall (x 0). Pitch 2.66 m in 6.3 m = 0.42 (about 5 in 12, 23 deg). FLAGGED.
+export const VAULT = { ridge: 'none: one tilted plane (shed), high at the east (mirror) wall, low at the west (dining) wall', high: 5.10, low: ROOM.h, xHigh: ROOM.x1, xLow: JOG.xW, t: 0.06 };
 VAULT.peak = VAULT.high;
-VAULT.pitch = +((VAULT.high - VAULT.low) / (VAULT.xHigh - VAULT.xLow)).toFixed(4);   // 0.1841 (about 2.2 in 12)
+VAULT.pitch = +((VAULT.high - VAULT.low) / (VAULT.xHigh - VAULT.xLow)).toFixed(4);   // 0.4222 (about 5 in 12)
 export const ceilAt = (x, _z) => VAULT.low + (x - VAULT.xLow) * VAULT.pitch;            // the ceiling plane over (x, z)
 
 // ---------------------------------------------------------------- windows and doors (drawing; sizes GUESSED)
@@ -121,7 +126,7 @@ export const PLANTS = { x0: 0.10, x1: 0.68, z0: -1.75, z1: -0.30, h: 0.42, carto
 export const PRINT = { x: 2.9, y: 1.64, z: -0.025, w: 1.4, h: 1.0 };
 
 // ---------------------------------------------------------------- the rest of the great room (drawing)
-export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.95, y1: 2.90, label: 'giant mirror' };   // east wall; round 3 (Jade): hangs HIGHER (was 0.25-2.20), its top now 2.90 on the tall east wall (3.6 m, r4)
+export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.95, y1: 2.90, label: 'giant mirror' };   // east wall; round 3 (Jade): hangs HIGHER (was 0.25-2.20), its top now 2.90 on the tall east wall (5.1 m, r5)
 // 7-ft grand (Jade's drawing: "7' concert grand"; a 7-ft grand is strictly a semi-concert "B"-size grand, Steinway B
 // 211 x 148 cm: kept at that size because the drawing says 7'). Round 3 (Jade): "the correct shape of an actual grand":
 // PIANO.outline is a real grand's plan (straight spine on the bass side, a short straight treble side at the keyboard,

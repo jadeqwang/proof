@@ -22,6 +22,8 @@
 //                the thumb pad on the back of that curled phalanx (grip, fist, point, two)
 // Held object (any arm): hold: { r, h, label } puts a cylinder of radius r (metres) across the palm (axis = thumb
 // side) and wraps the fingers and thumb round it (a cup: fingers 'fwd', palm 'in' stands it upright).
+//   With hand: { shape: 'grip', thumb: { wrap: 'palm' } } (cloth, r5) the thumb is NOT wrapped round the far side: it
+//   lies along the index on the palm side, so a fistful of fabric can hang out of the fist's open side (wrapPose).
 // Per-shot override (any arm): hand: { shape: 'grip', curl: { index: [10, 20, 10] }, spread: 5, thumb: { opp: 0.6 } }
 //   curl may also be { all: [m, p, d] }, or a finger may be given one number (= [n, n, 0.7 n]).
 import * as THREE from 'three';
@@ -172,6 +174,11 @@ function wrapPose(pose, G, R, fing, slope = 0) {
   // the thumb round the far side, its pad on the cylinder a little past the front
   const rt = R + slope * 0.24 + G.trad[2] * fing, th = 0.6;
   out.thumb = { ...pose.thumb, touch: null, goal: [0.24, cy - rt * Math.sin(th), cz + rt * Math.cos(th)] };
+  // thumb.wrap 'palm' (cloth, 2026-11-26 r5): a fistful of fabric hangs OUT of the fist's open side (between the
+  // fingertips and the heel of the palm). The default thumb above closes that side, so any hanging cloth threads through
+  // it. For cloth the thumb stays on the palm side instead: laid along the radial side of the index metacarpal, in the
+  // palm plane (a hook grip: the curled fingers carry the load, the thumb rests beside them), so the slot stays open.
+  if (pose.thumb?.wrap === 'palm') out.thumb = { ...pose.thumb, touch: null, opp: 0.1, goal: [0.30, cy + 0.16, 0.0] };
   out.hold = { cy, cz, R, slope };
   return out;
 }

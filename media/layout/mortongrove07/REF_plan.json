@@ -409,11 +409,11 @@
   "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
   "ceiling": {
    "kind": "one tilted plane (shed ceiling), Jade r4: high side the mirror (east) wall, low side the dining (west) wall",
-   "high_m": "3.6 at the east wall x 4.9 (FLAGGED: kept from her r3 3.6 m)",
+   "high_m": "5.1 at the east wall x 4.9 (FLAGGED, r5: from the street view, capped under the wing ridge)",
    "low_m": "2.44 at the west (dining) wall x -1.4 (8-ft plate, FLAGGED)",
-   "pitch": "0.1841 (about 2.2 in 12)",
-   "east_wall": "level top at 3.6 m (mirror, piano)",
-   "front_wall": "a trapezoid behind the couch, 2.70 m at x 0 to 3.6 m at the east corner"
+   "pitch": "0.4222 (about 5 in 12)",
+   "east_wall": "level top at 5.1 m (mirror, piano)",
+   "front_wall": "a trapezoid behind the couch, 3.03 m at x 0 to 5.1 m at the east corner"
   },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
   "great_room_m": {
@@ -6032,7 +6032,10 @@
      "upperarm_stretch": 1.08,
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
-    }
+    },
+    "sole_shift_mm_L": 20.1,
+    "sole_shift_mm_R": 20.1,
+    "sole_lowest_y_m": -0.0149
    }
   },
   "firstLove27": {
@@ -6065,7 +6068,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.98,
      "hand_scale": 0.9
-    }
+    },
+    "sole_shift_mm_L": 4.2,
+    "sole_shift_mm_R": 4.2,
+    "sole_lowest_y_m": 0.0044
    }
   }
  }

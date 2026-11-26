@@ -8,12 +8,13 @@
 // worst segment. The grip point the page computes must equal the sidecar's cloth_grips (else the hand pose is stale).
 import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module';
 import { serve, HERE } from '../../serve.mjs';
-import { handCapsules } from './sweatshirt_jolt.js';
+import { handCapsules, handTemplateFor, JOLT_DEFAULTS } from './sweatshirt_jolt.js';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_CORE || '/home/jade/Documents/1-music-shipped/moongazing/render/node_modules/playwright-core');
 const REPO = path.resolve(HERE, '..'); const argv = process.argv.slice(2), args = {};
 for (let i = 0; i < argv.length; i++) if (argv[i].startsWith('--')) args[argv[i].slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
 const SHOTS = String(args.shots || 'MG2,MG2_end').split(','), T = { MG2: 0, MG2_end: 1 };
+const SIMO = JSON.parse(String(args.sim || '{}'));   // r5: the sim's hand template (handT), if given, is the hand checked
 const DIR = path.resolve(REPO, String(args.dir || 'media/layout/mortongrove07'));
 
 const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]], dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
@@ -77,7 +78,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       // 0.2 mm while the grip is where the sidecar has it); the sidecar's hands are compared either way
       const side = (sc.holds || []).flatMap((o) => o.hands).filter((hd) => hd.who === 'jade27');
       const hands = ['L', 'R'].filter((k) => surf.hands.grip?.[k]).map((k) => { const g = surf.hands.grip[k], sh = side.find((hd) => hd.arm === k);
-        const caps = args.sidecar && sh ? sh.capsules : handCapsules(k, g.at, g.axis, surf.chest);
+        const caps = args.sidecar && sh ? sh.capsules : handCapsules(k, g.at, g.axis, surf.chest, handTemplateFor(g.what, { ...JOLT_DEFAULTS, ...SIMO }));
         const dev = sh ? Math.max(...sh.capsules.map((c, i) => Math.max(len(sub(c.a, caps[i].a)), len(sub(c.b, caps[i].b))))) * 1000 : null;
         return { arm: k, capsules: caps, sidecar_dev_mm: dev == null ? null : +dev.toFixed(1) }; });
       res[shot] = {}; if (args.dump) fs.writeFileSync(path.resolve(String(args.dump)) + '_' + shot + '.json', JSON.stringify({ surf, hands, cloth_grips: sc.cloth_grips }));
