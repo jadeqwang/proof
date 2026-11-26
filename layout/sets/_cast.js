@@ -43,8 +43,8 @@ export const SHARED_CAST = {
   // ---- Dad
   dad: { name: 'Dad', h: 1.72, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0xc8ccd0, legs: 0x3a3e48, hairStyle: 'short', sleeves: 'long' },
   // ---- first love: one height, two costumes (never shot face-on)
-  firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: 0x2a2018, top: 0x5a6a58, legs: 0x3a3c44, hairStyle: 'short', sleeves: 'long' },
-  firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: 0x2a2018, top: 0x4a5a6a, legs: 0x2a2a30, hairStyle: 'short', sleeves: 'long' },
+  firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: 0x352219, top: 0x5a6a58, legs: 0x3a3c44, hairStyle: 'short', sleeves: 'long' },
+  firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: 0x352219, top: 0x4a5a6a, legs: 0x2a2a30, hairStyle: 'short', sleeves: 'long' },
 };
 Object.assign(CAST, SHARED_CAST);          // authoritative: overwrites anything registered under these keys
 

@@ -218,3 +218,8 @@ this reading (the bottom row's 5 and 6 are not a pair: 5 is fine).
   of the head; figures 2-5 are fine. Not fixed (not in brief).
 - Faces zoom-checked on the new studies: ear, jaw line from behind only; no eye, nose or mouth.
 - Spend: 8 Codex images, $0; plan limit not hit (CODEX_LIMIT_HIT flag removed).
+
+## 2026-11-26: hair colour (Jade)
+"make first love's hair color a little bit more like 60-70% dark chocolate." The 3D bodies use 0x352219 (was 0x2a2018,
+near-black). Painter prompts: "60-70% dark chocolate brown: a warm, rich dark brown, clearly brown in light, never
+black, not auburn or red". The v5 sheets are a touch lighter/glossier; prefer this wording over the sheet's tone.
