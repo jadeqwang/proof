@@ -843,3 +843,6 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Body meshes pass 3:** first love's hair solid lower section with a step (still slightly domed), kid fringes soft with brows visible, warm skin tone in form/flat, per-body neckDelta (head offset 0-7 mm), PG reflections dark. Ready to flip after the grasp agent.
 - **Jade:** first love's hair 60-70% dark chocolate: _cast.js hair 0x352219 (both ages); prompt wording in cast/first_love/NOTES.md.
 - **Hold pass done:** cup grips at the right radius, pinches meet, holdcheck measures contact on object geometry, furniture/laps/arms are supports. 405/423 pass on the mesh body (work/hold_audit.md). Remaining: ~20 mesh-vs-mannequin girth cases (stage for the mesh), MG2 soft-body hoodie, poi tether, closet/wall contacts not checked. Staging tweaks to review: K1 left hand on the page edge, M4b forearm forward, mv10 11 cm nearer the juicer, shanghai spine 40, artichoke thumbs splay.
+- **Jade (told the hold agent directly, 2026-11-26 evening):** the childhood friend is 1.85 m (was a 1.73 guess),
+  Ukrainian, Russian-speaking; "his arm hairs are dark blond" (whose: the friend's or first love's? asked on the
+  decision page). mv10 build.js GUEST friend + LH(1.85) updated; his holds re-staged and passing.
