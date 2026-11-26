@@ -1,6 +1,121 @@
 # Proof — handoff for the next session
 
-## START HERE (updated the morning of 2026-11-26, while Jade reviews keyframes r3)
+## START HERE (updated the evening of 2026-11-26)
+
+**State.** Round-3 decisions are applied, and so are Jade's first 45 r3 keyframe answers
+(`media/keyframes/r3/JADE_R3_REVIEW.md`), all as set fixes. The layout engine changed a lot today; the log is in
+"Session of 2026-11-26" at the end of this file.
+- **Bodies:** every figure is now a rigged MakeHuman body by default (`layout/assets/bodies/`,
+  `engine/humanMesh.js`), with garments in the real costume colours, hair from the sheets and blank-faced strangers.
+  First love has no face at all.
+- **Gaze:** eyes are aimed at each figure's look target (`engine/gaze.js`).
+- **Hands and holds:** wrists stay natural, there are grip templates, and a Rapier hold check passes 421/423.
+- **Art and logos:** wall art and clothing logos are fixed textures (`layout/assets/art/`).
+- **Props:** real downloaded prop models are coming (`layout/assets/props/`).
+- **Repaint on hold:** NO r4 repaint has been run. Jade asked to hold it until she has answered the decision page,
+  because many shots would otherwise be repainted twice.
+- **Spend:** $33.72, unchanged today. Everything ran on the free Codex route.
+
+**First thing: Jade pastes her answers.**
+1. `Decisions (from media/decisions.html):` gives 42 round-4 cards (storage key `proof-decisions-v5`). The source
+   list is `work/decisions/NEW_QUESTIONS_R4.md`; each card's context says what is built now.
+   - Save the paste verbatim to `work/decisions/JADE_R4_DECISIONS.md`. Then log it here.
+   - Each line is `- <card title>: <option> — <note>`. An untouched card means keep what's built: every built
+     option is the recommendation, except voy_ring_time, mama_hair and art_sw, which have none.
+   - Apply the answers with set agents, as this session did. Give each agent `work/decisions/AGENT_BRIEF.md` and, for
+     set fixes, `work/decisions/R4_SET_BRIEF.md`.
+   - Then rebuild the page: remove the answered cards, add the new questions and log the answers in its DONE list.
+   - Cards whose answers change the guides:
+     - Shanghai: sh_suite_colour, sh_railing_flat.
+     - Morton Grove: mg_dining_ceiling, mg_piano_size, mg_picture, mg_fold.
+     - Closet: cl_light, cl_futon, cl_cam_height.
+     - Basement and kitchen: b_screen, b_program, b_chair, b_floppy, k_fittings.
+     - Office, attic and wall: off_table, ad_grab_pose, wl_mama_pose, wl_count.
+     - Mountain View: v3b_grip, si1_where.
+     - Background art: all 11 art_* cards (each needs its canonical image in `layout/assets/art/` regenerated and the
+       set re-rendered).
+     - Cast: mama_hair (rebuild Mama's body hair in `layout/assets/bodies/make_bodies.py`), fl_A_fig1 (redraw
+       turnaround figure 1).
+   - Cards that change the plan or comp only: cliff, bud_br1, cl_caption, xsw_caption, voy_ring_time, voy_quote,
+     shimmer, fl_part5.
+2. `Keyframes r3 (from media/keyframes/r3/index.html):` gives the rest of her r3 review (59 of 104 cards not yet
+   reviewed). Save it APPENDED to `media/keyframes/r3/JADE_R3_REVIEW.md` and fold the notes into the set fixes.
+   Many of her r3 notes will be moot on the new bodies; she knows.
+3. **Then repaint r4.** Everything is ready but nothing has run.
+   - Re-render the touched sets with three commands. The default modes SKIP the painter guides, hence step 2:
+     1. `node layout/render.mjs --set S --exclude beam_`
+     2. `... --exclude beam_ --modes form,contour,light --nojson`
+     3. `... --prefix beam_ --modes flat --nojson`
+   - Run `python3 layout/gallery.py`.
+   - Update `work/r4/REPAINT_LIST.md` (the shots per set and the per-shot prompt notes).
+   - Run `media/keyframes/r4/<set>/_prompts/_run.sh` for each set. It uses free Codex only (`KF_SESSION=proof-kf4-<set>`,
+     2 takes per shot) and stops at the plan limit.
+     - The current list is 74 shots, 148 takes. That is more than Codex's ~100-image limit, so paint the most-corrected
+       sets first (basement90, market93, shanghai86, wall88, kitchen90, office91, attic88_day) and continue after the
+       reset.
+   - The prompts are built from each shot's sidecar at paint time (`tools/kf/r4lib.py`), so they pick up the gaze
+     targets and colours. The rules are in `media/keyframes/r4/_brief_r4.md`.
+   - The review page is built by `python3 tools/kf/r4_page.py`, giving `media/keyframes/r4/index.html` (key
+     `proof-kf-r4`).
+   - Look at every take yourself before showing her. Count the paper-keyboard keys and check first love's face.
+
+**In flight when this was written.** Check that they finished (`git status`, the newest HANDOFF lines):
+- **Fix agent:**
+  - The POV head-hide on mesh bodies cut off arms and hair.
+  - Ears showed through hair, and hair-strand specks appeared.
+  - The B4/B5 face was hidden.
+  - The BO1/BO2 sleeve covered the hand; in PC3a a pencil passed through the sweater.
+  - Smaller items: K6 fists, WL_eye convergence, a hole in Dad's sleeve in B2, a patch on her eye in C2a, gaze
+    targets for background guests.
+- **Props agent:** phase 1 downloads real CC0/CC-BY models (ladle, cups, bowls, juicer, appliances, cart...) to
+  `layout/assets/props/`, with `layout/sets/_props.js` and `work/props_audit.md`. Phase 2, swapping them into the sets
+  and re-checking holds, waits for the fix agent. Every model and its licence goes in `docs/credits_tools.md`.
+
+**Known weak spots:**
+- First love's hair still reads a little domed and cap-like in MG and closet.
+- The MG2 cloth looks rag-like mid-turn. The pleat that hides Truth is fragile: after any sim change, re-run
+  `node layout/sets/mortongrove07/sweatshirt_test.mjs` and check that the Truth-pixel counts are 0.
+- MG2 and MG2_end fail the hold check (soft body).
+- The friend's hair colour (0x9a7a52) is a guess.
+
+**Jade's standing rules from today.** They are in `~/.claude/CLAUDE.md` and project memory; follow them for every
+guide:
+- rigged human bodies, never mannequins;
+- realistic torsos and shoulders, in real clothing colours;
+- eyes aimed at the target (a figure looks where it points);
+- natural wrists, and objects supported by the hand;
+- correct physics, checked with Rapier or Jolt, never hand-rolled;
+- wall art and background objects as one canonical texture each;
+- clothing logos: one version in every frame;
+- common props from model libraries, not built from scratch;
+- every model and tool listed in `docs/credits_tools.md` for the closing credits slide ("Animated by Opus 5.5 and a
+  supporting cast of models: ...").
+
+**Facts Jade gave today** (also in the dated log):
+- First love's hair is 60-70% dark chocolate (`0x352219`).
+- The childhood friend is 1.85 m, Ukrainian and Russian-speaking, with dark blond arm hair.
+- Her basement top is a long-sleeved grey sweater.
+- B4/B5: mouth closed, lips and chin on the wrist.
+- PC5 (the dictionary) is dropped.
+- M4c: Mama lifts her at 2:14.2, and M4b becomes the landing.
+- K1: Dad whispers in Mama's ear.
+- The wall cavity is coffin-narrow.
+- The paper keyboard must be accurate.
+
+**Private, never in the repo or pushed (the GitHub repo is PUBLIC):** the same as before, plus
+`inputs/diagram_basement.png` and `inputs/refs_semicircletable/`.
+- First love is a real person: never write his name anywhere. Never show or draw his face.
+- Renders that show the IAS seal's Truth figure stay in gitignored `work/sweatshirt/`.
+
+**Git:** `main`. Today's commits are LOCAL ONLY (not pushed since 71dc2bc). They include 21 MB of body GLBs and a
+3.2 MB vendored Jolt (MIT); check with Jade before pushing.
+
+**How Jade works:** delegate to subagents and relay conclusions. Log every direction she gives, as it happens, in the
+dated section at the end. Look at renders and paintings yourself. Never invent facts about her life without flagging
+them.
+
+## Previous START HERE (morning of 2026-11-26), kept for reference
+
 
 **State:** All three rounds of Jade's answers so far are applied: decision-page rounds 1 and 2, plus her keyframes r2
 review. Logs are in the dated sections at the end of this file, the last being "Session of 2026-11-25 (late night)".
