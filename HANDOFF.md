@@ -1,5 +1,21 @@
 # Proof — handoff for the next session
 
+## IF INTERRUPTED (late evening 2026-11-26): read this first
+
+- Round-4 answers are applied in part. Read "Session of 2026-11-26 (late evening)" at the end of this file for every
+  direction Jade gave tonight.
+- Committed: fbe5f46 (plan, captions, closet, Shanghai, office) and 451c887 (cast v7, Mama's perm).
+- Agents were still working on mortongrove07, basement90+kitchen90, attic88_day+wall88 (owns
+  engine/clipcheck.mjs), mv10, playground23 (Catch Air rebuild) and office91 (social worker's shoulders). Each one
+  writes a "PROGRESS (checkpoint)" section in its set's NOTES.md. Resume from those.
+- Then:
+  1. a wrist/clip/brightness audit;
+  2. fix the mirrored mug grips in props.json;
+  3. the re-render sweep (every set);
+  4. commit;
+  5. Jade wants a round of fixes next session BEFORE the r4 repaint. Open questions are in
+     work/decisions/NEW_QUESTIONS_R5.md.
+
 ## START HERE (updated the evening of 2026-11-26)
 
 **State.** Round-3 decisions are applied, and so are Jade's first 45 r3 keyframe answers
@@ -1093,3 +1109,9 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Jade: "hold off on the repaints until next session, i think".** No r4 painting this session. Finish the set
   fixes, the wrist/clip/brightness audit and the re-render sweep, so the next session can start painting straight
   away.
+- **Cast agent v7 done:**
+  - fl_B/G/A v7 sheets after Jade's reference: tousled, colour 0x3d2819 (FL_HAIR in _cast.js).
+  - The mesh hair is rebuilt; painter refs point at v7.
+  - Lead's look: no face. The hair reads chestnut/medium brown, lighter and redder than a rich dark brown. Shown to
+    Jade.
+  - Stale: the playground23 copy of make_bodies.py; prose refs to v5 in closet02.
