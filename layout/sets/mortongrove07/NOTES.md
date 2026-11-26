@@ -370,3 +370,43 @@ Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`. First
   (r3 snapshot already taken); gallery; look at every changed shot; REPAINT_LIST.
 - Questions for Jade: none new (ceiling decided). Flags: ceiling heights 3.6 / 2.44 m; the inscription and seal on the
   horse picture are invented.
+
+### checkpoint update (cloth / finger contacts, 15:00)
+- Measured BEFORE (helper's `cloth_contact.mjs`; + = finger-into-cloth overlap, mm): MG2 left (shoulder) palm +14.2,
+  thumb +20.5; MG2 right (pinch) index +15.3, middle +15.7, ring +14.9, little +4.6, thumb +17.1, palm +15.6; MG2_end
+  left (pinch) about the same; MG2_end right (shoulder) index +14.4, middle +14.2, ring +7.9, thumb +17.1, palm +15.6.
+  MG1/MG1_end (the stack, carried from below) pass holdcheck: fingers 0 mm, palm 2.3 mm.
+- Root causes: the sim's fist was one solid 22 mm capsule, so the cloth wrapped round it exactly where the fingers are;
+  and a pre-existing bug in sweatshirt_jolt.js: Jolt returns BodyIDs in one reused wrapper, so the left and right
+  fists were the SAME body (the left hand never had a collider). Fixed (keepID copy).
+- In progress (helper, sweatshirt_jolt.js / sweatshirt_sim.js, plus a new cloth_contact.mjs): sim hand = the posed
+  grip template's capsules, pinned fistful of the pleat. So far fingers and palm reach <= ~2 mm in some configurations,
+  but the THUMB still threads the cloth (+17 mm): engine/hand.js wrapPose puts the thumb round the far side of the grip,
+  under the bundle. Proper fix is ENGINE-side (the thumb on the palm side for cloth grips): not ours to edit; flagged.
+- Truth: the helper's latest test run (14:58, work in progress) shows Truth pixels at t 0.3 cam (6) / close (19),
+  t 0.5 her (21), t 0.8 her (3): NOT acceptable yet; those renders were routed to gitignored work/sweatshirt/.
+  Audited every SW_*.png in media/layout/mortongrove07/ against its check mask: all 0 red pixels; nothing to move.
+- Left: helper to finish (Truth back to 0 everywhere), apply any build.js/shots.js diff, full re-render, look, report.
+
+### checkpoint update (cloth helper finished: NOT fixed)
+- Fingers still pass 13-20 mm into the cloth in MG2 / MG2_end (numbers above, unchanged). The helper could not reach
+  <= 2 mm without the pleat opening and Truth showing: gathering the fistful into the fist cut the worst overlap to
+  8.8 mm but put 4,000-11,000 Truth px on screen from t 0.5; posed-hand colliders on the shoulder grips alone got MG2 L
+  to <= 0.7 mm and MG2_end R to <= 6.6 mm with t 0 / t 1 Truth-free, but dragged the t 1 drape badly (not adopted).
+- Changes kept (all opt-in, default OFF, so the published drape is the committed one): sweatshirt_jolt.js posed-hand
+  template + options, and the BodyID bug fix with `leftFist: false` (turning the left fist on shows Truth at t 0.3);
+  sweatshirt.js lapColliders returns her chest point (not a collider); sweatshirt_test.html `window.clothSurface` and
+  hand close-up views; new cloth_contact.mjs (the measurement). Notes: work/sweatshirt/contact_notes.md.
+- Truth: t 0 and t 1 (MG2, MG2_end) are 0. In-between test frames (not shots) were already non-zero before this pass:
+  t 0.3 cam 6 / close 19, t 0.5 her 21, t 0.8 her 3 (in gitignored work/sweatshirt/). Every SW_*.png in media/ checked: 0.
+- What a real fix needs: (1) a different grasp for the pinch (the pinch is a 63 mm-tall strip of pleat; a horizontal power
+  grip round an 18 mm cylinder cannot close round it without passing through): e.g. a vertical-axis pinch or a thick
+  pinch, in build.js's swap-in block plus the matching sim hand; (2) ENGINE (not ours): engine/hand.js wrapPose puts the
+  thumb round the far side of every grip, closing the fist's open lower side where the cloth hangs out; for cloth grips the
+  thumb should go on the palm side. Owner: the attic+wall agent / lead.
+
+### checkpoint update (done)
+- Re-rendered all three passes (default modes, form/contour/light, beam_ masks) and rebuilt the gallery. Looked at
+  REF_north, REF_plan, MG_wide (ceiling plane, trapezoid walls, piano, horse picture), MG1 and MG2_end (unchanged staging;
+  his face not shown). Open: the finger/cloth contact (above), the rag-like mid-turn cloth, MG2/MG2_end holdcheck
+  (meaningless for a soft body; cloth_contact.mjs is the real measure).

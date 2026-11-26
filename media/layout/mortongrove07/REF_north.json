@@ -287,7 +287,7 @@
   }
  ],
  "warnings": [],
- "intent": "The rest of the great room as Jade drew it, for checking: the 7-ft grand along the giant mirror (east wall, frame right), the dining table with six chairs by the dining window, the front door in the jog and the coat closet, the sliding door to the kitchen and the stairs in the far corner, the vault rising toward its east-west ridge. No figures (this camera would face him). Not a shot.",
+ "intent": "The rest of the great room as Jade drew it, for checking: the 7-ft grand along the giant mirror (east wall, frame right), the dining table with six chairs by the dining window, the front door in the jog and the coat closet, the sliding door to the kitchen and the stairs in the far corner, the one tilted ceiling plane rising from the dining (west) wall to the high mirror (east) wall, the north wall a trapezoid. No figures (this camera would face him). Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",
  "section": "Bridge",
@@ -331,13 +331,12 @@
   },
   "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
   "ceiling": {
-   "kind": "vaulted (cathedral), Jade",
-   "ridge": "east-west (parallel to Capri Lane), over the middle of the great room at z -3.6 (Jade r3: highest over the middle of the great room, about 3.6 m)",
-   "plate_m": 2.44,
-   "peak_m": 3.6,
-   "pitch": "0.3222 (about 3.9 in 12)",
-   "east_wall": "the full gable (mirror, piano): its top shows the roof angle",
-   "dining": "flat 8-ft ceiling over the dining part (x < 1.6, north of the jog), READING of Jade's \"the dining room is the short side\" (flagged)"
+   "kind": "one tilted plane (shed ceiling), Jade r4: high side the mirror (east) wall, low side the dining (west) wall",
+   "high_m": "3.6 at the east wall x 4.9 (FLAGGED: kept from her r3 3.6 m)",
+   "low_m": "2.44 at the west (dining) wall x -1.4 (8-ft plate, FLAGGED)",
+   "pitch": "0.1841 (about 2.2 in 12)",
+   "east_wall": "level top at 3.6 m (mirror, piano)",
+   "front_wall": "a trapezoid behind the couch, 2.70 m at x 0 to 3.6 m at the east corner"
   },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
   "great_room_m": {
