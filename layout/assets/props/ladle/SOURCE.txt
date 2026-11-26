@@ -1,0 +1,8 @@
+Model: "Ladle" by Lightningx on Sketchfab
+URL: https://sketchfab.com/3d-models/3c1fe2f2c77b4d258c3d1a08de55eb1a
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-151/3c1fe2f2c77b4d258c3d1a08de55eb1a.glb (uid 3c1fe2f2c77b4d258c3d1a08de55eb1a)
+Changes (for this film's layout guides): joined, scaled to 34 cm, split into two meshes 'body' (bowl) and 'handle' (so engine/main.js holdsFor hulls the handle alone), origin at the bottom centre.
+Real-world size here (x, y up, z): 0.1403 x 0.34 x 0.0614 m
+Used for: mv10 V3b_prep / party punchbowl (stainless ladle, hooked handle end)

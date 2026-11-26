@@ -1,0 +1,597 @@
+{
+ "ladle": {
+  "label": "ladle",
+  "size_m": [
+   0.1403,
+   0.34,
+   0.0614
+  ],
+  "origin": "bottom centre of the bbox (bowl down, handle up, hook toward +x)",
+  "grips": {
+   "handle": {
+    "at": [
+     0.026,
+     0.27,
+     -0.004
+    ],
+    "axis": [
+     0.204,
+     0.979,
+     0
+    ],
+    "up": [
+     0,
+     0,
+     1
+    ],
+    "r": 0.005,
+    "template": "power",
+    "note": "upper handle, below the hook; the handle is a flat steel strip ~10 x 5 mm"
+   }
+  },
+  "defaults": {
+   "look": {
+    "grey": 0.78,
+    "col": 12633288
+   }
+  },
+  "source": "Sketchfab/Lightningx (CC BY 4.0)",
+  "credit": "\"Ladle\" by Lightningx (https://sketchfab.com/3d-models/3c1fe2f2c77b4d258c3d1a08de55eb1a), CC BY 4.0",
+  "use": "mv10 V3b_prep / party punchbowl (stainless ladle, hooked handle end)"
+ },
+ "ladle_b": {
+  "label": "ladle",
+  "size_m": [
+   0.34,
+   0.0309,
+   0.1123
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {
+   "look": {
+    "grey": 0.78,
+    "col": 12633288
+   }
+  },
+  "source": "Sketchfab/libbycox (CC BY 4.0)",
+  "credit": "\"Spoon\" by libbycox (https://sketchfab.com/3d-models/e6823583dbca4d219ac303e96cd797fa), CC BY 4.0",
+  "use": "alternative ladle (wood-handled stainless), not used yet"
+ },
+ "juicer": {
+  "label": "juicer (glass reamer)",
+  "size_m": [
+   0.17,
+   0.0687,
+   0.1702
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "rim": {
+    "at": [
+     0,
+     0.02,
+     0.08
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "template": "restOn"
+   }
+  },
+  "defaults": {
+   "look": {
+    "grey": 0.9,
+    "col": 14543080
+   }
+  },
+  "source": "Sketchfab/Vitor.Gomes1 (CC BY 4.0)",
+  "credit": "\"Citrus_Juicer\" by Vitor.Gomes1 (https://sketchfab.com/3d-models/698a3af63fe1443ba01a235bc69a5f96), CC BY 4.0",
+  "use": "mv10 lemonade prep: the reamer (glass in the film: the set passes its GLASSY look)"
+ },
+ "red_cup": {
+  "label": "a stack of cups",
+  "size_m": [
+   0.0767,
+   0.121,
+   0.0769
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "body": {
+    "at": [
+     0,
+     0.077,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.0325,
+    "template": "power",
+    "note": "tapered: r 0.028 at the foot, 0.038 at the rim"
+   }
+  },
+  "defaults": {},
+  "source": "Sketchfab/idyllKingdom (CC BY 4.0)",
+  "credit": "\"Solo Cup\" by idyllKingdom (https://sketchfab.com/3d-models/22798b1b718749608a0e729d576727a4), CC BY 4.0",
+  "use": "mv10 party: red plastic cups by the punchbowl"
+ },
+ "pitcher": {
+  "label": "pitcher of water (by the sink)",
+  "size_m": [
+   0.3109,
+   0.24,
+   0.225
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "handle": {
+    "at": [
+     0.122,
+     0.16,
+     0
+    ],
+    "axis": [
+     -0.335,
+     0.942,
+     0
+    ],
+    "up": [
+     1,
+     0,
+     0
+    ],
+    "r": 0.018,
+    "template": "power"
+   }
+  },
+  "defaults": {
+   "look": {
+    "grey": 0.9,
+    "col": 14543080
+   }
+  },
+  "source": "Sketchfab/fancyikzero (CC BY 4.0)",
+  "credit": "\"POLYCARBONATE MUG\" by fancyikzero (https://sketchfab.com/3d-models/5ee4647f7994413d80652e10090d380d), CC BY 4.0",
+  "use": "mv10 prep: the water pitcher"
+ },
+ "bowl": {
+  "label": "bowl",
+  "size_m": [
+   0.3,
+   0.1134,
+   0.3
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "sides": {
+    "at": [
+     0,
+     0.06,
+     0
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "size": [
+     0.3,
+     0.3,
+     0.113
+    ],
+    "template": "twoHandsSides"
+   }
+  },
+  "defaults": {
+   "look": {
+    "grey": 0.94,
+    "col": 15921126
+   }
+  },
+  "source": "Sketchfab/rbhbkkn.kmrjd (CC BY 4.0)",
+  "credit": "\"Plate\" by rbhbkkn.kmrjd (https://sketchfab.com/3d-models/0f2f0e489ab445108c939820a00d4888), CC BY 4.0",
+  "use": "mv10: the bowl of picked lemons / squeezed rinds (white ceramic)"
+ },
+ "knife": {
+  "label": "knife",
+  "size_m": [
+   0.0438,
+   0.0153,
+   0.33
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "handle": {
+    "at": [
+     -0.009,
+     0.0077,
+     -0.12
+    ],
+    "axis": [
+     0,
+     0,
+     -1
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.011,
+    "template": "power",
+    "note": "handle at -z, blade toward +z, edge toward -x?"
+   }
+  },
+  "defaults": {},
+  "source": "Sketchfab/Fellm (CC BY 4.0)",
+  "credit": "\"test knife\" by Fellm (https://sketchfab.com/3d-models/f93d05bc2db144f7a50374794ef5cf8d), CC BY 4.0",
+  "use": "mv10 prep: the knife on the cutting board"
+ },
+ "kettle": {
+  "label": "kettle (red enamel)",
+  "size_m": [
+   0.2106,
+   0.24,
+   0.19
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "handle": {
+    "at": [
+     0.007,
+     0.2,
+     0
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.012,
+    "template": "power"
+   }
+  },
+  "defaults": {
+   "lookMat": {
+    "Body": {
+     "grey": 0.42,
+     "col": 12068382
+    }
+   }
+  },
+  "source": "Sketchfab/19brian16 (CC BY 4.0)",
+  "credit": "\"Teapot\" by 19brian16 (https://sketchfab.com/3d-models/46617e30864a45eba268c756cf53c52f), CC BY 4.0",
+  "use": "kitchen90: the enamel kettle on the back burner (recoloured red in the set)"
+ },
+ "rice_cooker": {
+  "label": "rice cooker (white)",
+  "size_m": [
+   0.2434,
+   0.26,
+   0.2475
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {
+   "lookMat": {
+    "White_Body": {
+     "grey": 0.94,
+     "col": 15921386
+    },
+    "Button": {
+     "grey": 0.9,
+     "col": 15263456
+    }
+   }
+  },
+  "source": "Sketchfab/ononesupplies (CC BY 4.0)",
+  "credit": "\"Rice Cooker Lowpoly\" by ononesupplies (https://sketchfab.com/3d-models/6afda632eac6459cb99e73deccb97a98), CC BY 4.0",
+  "use": "kitchen90: the white rice cooker on the counter"
+ },
+ "telephone": {
+  "label": "telephone",
+  "size_m": [
+   0.2,
+   0.1129,
+   0.2172
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/schmoldt.art (CC BY 4.0)",
+  "credit": "\"PTish Phone\" by schmoldt.art (https://sketchfab.com/3d-models/eaa0a0cbce964b2099b955f5ea241eee), CC BY 4.0",
+  "use": "office91: the desk phone (1991 push-button)"
+ },
+ "typewriter": {
+  "label": "electric typewriter",
+  "size_m": [
+   0.54,
+   0.1695,
+   0.4076
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/maxdragon (CC BY 4.0)",
+  "credit": "\"IBM Selectric II Typewriter\" by maxdragon (https://sketchfab.com/3d-models/bef0f699a5374ca1a8fe8e27fb77788a), CC BY 4.0",
+  "use": "office91: the electric typewriter (IBM Selectric II)"
+ },
+ "thermos": {
+  "label": "thermos flasks",
+  "size_m": [
+   0.2175,
+   0.37,
+   0.2242
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/downpink97 (CC BY 4.0)",
+  "credit": "\"a thermos kettle\" by downpink97 (https://sketchfab.com/3d-models/99f750217a8e47df8445cb63bbaa66ec), CC BY 4.0",
+  "use": "shanghai86: the hot-water flasks (\u6696\u6c34\u74f6)"
+ },
+ "mug": {
+  "label": "mug",
+  "size_m": [
+   0.1038,
+   0.095,
+   0.0738
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "handle": {
+    "at": [
+     -0.046,
+     0.047,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "up": [
+     -1,
+     0,
+     0
+    ],
+    "handleR": 0.006,
+    "template": "mugHandle"
+   },
+   "body": {
+    "at": [
+     0.015,
+     0.05,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.037,
+    "template": "power"
+   }
+  },
+  "defaults": {
+   "look": {
+    "grey": 0.94,
+    "col": 15921126
+   }
+  },
+  "source": "Sketchfab/saleviim (CC BY 4.0)",
+  "credit": "\"Cup\" by saleviim (https://sketchfab.com/3d-models/12652c6e0aaf44dda32aab816f433baf), CC BY 4.0",
+  "use": "mortongrove07 coffee-table mug; shanghai86 tea mugs"
+ },
+ "tissue_box": {
+  "label": "box of tissues",
+  "size_m": [
+   0.24,
+   0.1546,
+   0.1015
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/anand9556 (CC BY 4.0)",
+  "credit": "\"Tissue Box Low Poly\" by anand9556 (https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09), CC BY 4.0",
+  "use": "office91: tissues on the filing cabinet"
+ },
+ "pencil_cup": {
+  "label": "pencil cup",
+  "size_m": [
+   0.1054,
+   0.19,
+   0.1436
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/janexx (CC BY 4.0)",
+  "credit": "\"Pens with Pencil holder - desk props\" by janexx (https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae), CC BY 4.0",
+  "use": "office91: the pencil cup on the meeting table"
+ },
+ "keyboard": {
+  "label": "keyboard",
+  "size_m": [
+   0.49,
+   0.0324,
+   0.1755
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/matthew.leiher (CC BY 4.0)",
+  "credit": "\"Keyboard - Classic IBM Design\" by matthew.leiher (https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f), CC BY 4.0",
+  "use": "basement90: the 1990 PC keyboard (IBM-style)"
+ },
+ "tv_small": {
+  "label": "small TV (off) on a crate",
+  "size_m": [
+   0.3997,
+   0.4114,
+   0.3502
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/Benny Weimer (CC0)",
+  "credit": "\"Television 02\" by Benny Weimer, Poly Haven (CC0)",
+  "use": "attic88_day: the small TV on the crate"
+ },
+ "bulb": {
+  "label": "bare bulb (off)",
+  "size_m": [
+   0.06,
+   0.1003,
+   0.06
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {
+   "tex": false,
+   "look": {
+    "grey": 0.95,
+    "col": 16052712
+   }
+  },
+  "source": "Poly Haven/Josh Dean (CC0)",
+  "credit": "\"Lightbulb 01\" by Josh Dean, Poly Haven (CC0)",
+  "use": "attic88_day bare bulb; basement90 ceiling bulb"
+ },
+ "pull_chain_socket": {
+  "label": "ceiling light (porcelain lampholder)",
+  "size_m": [
+   0.1103,
+   0.1654,
+   0.1103
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/Josh Dean (CC0)",
+  "credit": "\"Pull Chain Light Socket\" by Josh Dean, Poly Haven (CC0)",
+  "use": "basement90: the porcelain pull-chain lampholder"
+ },
+ "potted_plant": {
+  "label": "potted plant",
+  "size_m": [
+   0.7008,
+   0.8416,
+   0.6564
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/Rico Cilliers (CC0)",
+  "credit": "\"Potted Plant 02\" by Rico Cilliers, Poly Haven (CC0)",
+  "use": "shanghai86: the potted plant"
+ },
+ "lemon": {
+  "label": "lemon",
+  "size_m": [
+   0.0687,
+   0.0954,
+   0.0683
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "whole": {
+    "at": [
+     0,
+     0.05,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.034,
+    "size": [
+     0.095,
+     0.068,
+     0.068
+    ],
+    "template": "power"
+   }
+  },
+  "defaults": {},
+  "source": "Poly Haven/Kuutti Siitonen (CC0)",
+  "credit": "\"Lemon\" by Kuutti Siitonen, Poly Haven (CC0)",
+  "use": "mv10: lemons (scaled to pomelo size in the set: Jade's canon)"
+ },
+ "cutting_board": {
+  "label": "cutting board",
+  "size_m": [
+   0.4499,
+   0.0413,
+   0.2467
+  ],
+  "origin": "bottom centre",
+  "grips": {
+   "sides": {
+    "at": [
+     0,
+     0.02,
+     0
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "size": [
+     0.45,
+     0.247,
+     0.041
+    ],
+    "template": "twoHandsSides"
+   }
+  },
+  "defaults": {},
+  "source": "Poly Haven/Kuutti Siitonen (CC0)",
+  "credit": "\"Wooden Cutting Board\" by Kuutti Siitonen, Poly Haven (CC0)",
+  "use": "mv10 prep: the cutting board"
+ },
+ "cardboard_box": {
+  "label": "storage boxes",
+  "size_m": [
+   0.387,
+   0.3418,
+   0.5159
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/Rahul Chaudhary (CC0)",
+  "credit": "\"Cardboard Box 01\" by Rahul Chaudhary, Poly Haven (CC0)",
+  "use": "attic88_day: the storage boxes"
+ }
+}

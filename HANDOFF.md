@@ -59,17 +59,16 @@
      `proof-kf-r4`).
    - Look at every take yourself before showing her. Count the paper-keyboard keys and check first love's face.
 
-**In flight when this was written.** Check that they finished (`git status`, the newest HANDOFF lines):
-- **Fix agent:**
-  - The POV head-hide on mesh bodies cut off arms and hair.
-  - Ears showed through hair, and hair-strand specks appeared.
-  - The B4/B5 face was hidden.
-  - The BO1/BO2 sleeve covered the hand; in PC3a a pencil passed through the sweater.
-  - Smaller items: K6 fists, WL_eye convergence, a hole in Dad's sleeve in B2, a patch on her eye in C2a, gaze
-    targets for background guests.
+**Status of today's agents (all finished):**
+- **Fix agent: DONE and committed.** POV head-hide keeps arms; the ponytail tuft and buns no longer poke through
+  as ears; the B4/B5 mouth and chin points are read on the mesh face; BO1/BO2 camera az 150; the PC3a decal is off
+  the sleeve; PC3b and K6 reframed; irises centred on the eyeball. All 11 sets were re-rendered. Still open: the AD_*
+  specks (the top garment folding through itself at the shoulder blade in a deep reach), the ragged pushed-sleeve
+  hem on Dad in B2, and the aunt's and grandmother's bun on a bob shell (needs a Blender hair rebuild). Extra r4
+  repaints: BO1, BO2, PC3b, K6, B4, B5, and every back view of a half-ponytail or a bun.
 - **Props agent:** phase 1 DONE (23 models: 7 Poly Haven CC0, 16 Objaverse CC BY 4.0, licences checked; `work/props_audit.md`, sheets `media/layout/_sheets/propstest_*.jpg`). Phase 1 was: downloads real CC0/CC-BY models (ladle, cups, bowls, juicer, appliances, cart...) to
-  `layout/assets/props/`, with `layout/sets/_props.js` and `work/props_audit.md`. Phase 2, swapping them into the sets
-  and re-checking holds, waits for the fix agent. NOTE: the new ladle handle is a flat 10x5 mm strip, so re-solve `ladleGrip.js` and re-run holdcheck. Kept hand-built: punchbowl (redo as a lathe profile), canisters, basement PC/CRT, books, clipboard, crate, furniture, produce. Every model and its licence goes in `docs/credits_tools.md`.
+  `layout/assets/props/`, with `layout/sets/_props.js` and `work/props_audit.md`. Phase 2 (NEXT SESSION, do it before re-rendering for r4): swap them into the sets
+  and re-check holds; give the agent work/props_audit.md and layout/sets/_props.js. NOTE: the new ladle handle is a flat 10x5 mm strip, so re-solve `ladleGrip.js` and re-run holdcheck. Kept hand-built: punchbowl (redo as a lathe profile), canisters, basement PC/CRT, books, clipboard, crate, furniture, produce. Every model and its licence goes in `docs/credits_tools.md`.
 
 **Known weak spots:**
 - First love's hair still reads a little domed and cap-like in MG and closet.

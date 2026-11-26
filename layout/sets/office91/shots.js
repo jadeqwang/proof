@@ -64,7 +64,8 @@ const ALL = (j = jade(), s = sw(), m = mom()) => ({ jade7: j, sw: s, mama91: m, 
 const INSIDE = { hideParts: { jade7: ['head'] } };
 // the two cameras that recur
 const OUTSIDE_CAM = { lens: 65, orbit: { at: 'jade7:eyes', az: -6, el: 0, dist: 2.1 }, aim: ['jade7:eyes', 0.66, 0.42], focus: ['jade7'] };
-const GAP_CAM = { lens: 40, orbit: { at: 'gap', az: 180, el: 50, dist: 0.5 }, aim: ['gap', 0.5, 0.56], ...INSIDE };
+const GAP_CAM = { lens: 40, orbit: { at: 'gap', az: 150, el: 50, dist: 0.5 },   // re-render pass 2026-11-26: az 180 -> 150, on the mesh body her sleeve hid the hand and fingertip from straight behind
+  aim: ['gap', 0.5, 0.56], ...INSIDE };
 
 export const SHOTS = [
   // ---------------------------------------------------------------- reference (not in the cut)
@@ -97,7 +98,7 @@ export const SHOTS = [
   { id: 'PC3a', t: [83.27, 85.3], lens: 35, pos: [-0.3, 1.0564, -0.3737], aim: ['sw:chest', 0.5, 0.42], ...INSIDE, figs: ALL(jadeRead({ head: { look: 'sw:chest' } })),
     move: { end: 'PC3b', note: 'tilt down (and a little left) from the sweatshirt print to the sheet' },
     header: '1:23.3 INSIDE lyric-free gap: pan start, the social worker\'s sweatshirt', intent: 'Inside: her eye-line on the sweatshirt print, no face (the head above the frame line); the tilt down begins.' },
-  { id: 'PC3b', t: [85.3, 87.37], lens: 35, pos: [-0.3, 1.0564, -0.3737], aim: ['handout', 0.5, 0.5], ...INSIDE, figs: ALL(jadeRead()),
+  { id: 'PC3b', t: [85.3, 87.37], lens: 42, pos: [-0.3, 1.0564, -0.3737], aim: ['handout', 0.5, 0.52] /* re-render pass 2026-11-26: 35 -> 42 mm, a stray hand at the top-left corner */, ...INSIDE, figs: ALL(jadeRead()),
     header: '1:25.3 INSIDE: pan end, the sheet', intent: 'Inside: her true eye-line onto the handout, close and raking; the social worker\'s forearms and clipboard beyond the top of the page, no face. Her eye then runs down the grid toward the short row.' },
   { id: 'PC4', same: 'PC1', t: [87.37, 92.68], header: '1:27.4 OUTSIDE "Her face doesn\'t make much expression": the same frame, held through "(For our culture," (PC5 dropped)',
     intent: 'Identical camera to PC1 (the film\'s rhyme); a second toner label lands in the same place.' },

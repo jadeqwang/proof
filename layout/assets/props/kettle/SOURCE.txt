@@ -1,0 +1,8 @@
+Model: "Teapot" by 19brian16 on Sketchfab
+URL: https://sketchfab.com/3d-models/46617e30864a45eba268c756cf53c52f
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-138/46617e30864a45eba268c756cf53c52f.glb (uid 46617e30864a45eba268c756cf53c52f)
+Changes (for this film's layout guides): joined, scaled to 24 cm, the top handle split into its own mesh 'handle', origin at the bottom centre.
+Real-world size here (x, y up, z): 0.2106 x 0.24 x 0.19 m
+Used for: kitchen90: the enamel kettle on the back burner (recoloured red in the set)

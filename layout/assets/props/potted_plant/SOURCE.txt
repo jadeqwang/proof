@@ -1,0 +1,7 @@
+Model: "Potted Plant 02" (potted_plant_02) by Rico Cilliers on Poly Haven
+URL: https://polyhaven.com/a/potted_plant_02
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-26
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.7008 x 0.8416 x 0.6564 m
+Used for: shanghai86: the potted plant

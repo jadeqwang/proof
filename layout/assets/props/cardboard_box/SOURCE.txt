@@ -1,0 +1,7 @@
+Model: "Cardboard Box 01" (cardboard_box_01) by Rahul Chaudhary on Poly Haven
+URL: https://polyhaven.com/a/cardboard_box_01
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-26
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.387 x 0.3418 x 0.5159 m
+Used for: attic88_day: the storage boxes

@@ -1,0 +1,152 @@
+{
+ "ladle": {
+  "uid": "3c1fe2f2c77b4d258c3d1a08de55eb1a",
+  "name": "Ladle",
+  "lic": "by",
+  "user": "Lightningx",
+  "url": "https://sketchfab.com/3d-models/3c1fe2f2c77b4d258c3d1a08de55eb1a",
+  "faces": 1274,
+  "shard": "000-151",
+  "path": "glbs/000-151/3c1fe2f2c77b4d258c3d1a08de55eb1a.glb"
+ },
+ "ladle_b": {
+  "uid": "e6823583dbca4d219ac303e96cd797fa",
+  "name": "Spoon",
+  "lic": "by",
+  "user": "libbycox",
+  "url": "https://sketchfab.com/3d-models/e6823583dbca4d219ac303e96cd797fa",
+  "path": "glbs/000-006/e6823583dbca4d219ac303e96cd797fa.glb",
+  "faces": 59904
+ },
+ "juicer": {
+  "uid": "698a3af63fe1443ba01a235bc69a5f96",
+  "name": "Citrus_Juicer",
+  "lic": "by",
+  "user": "Vitor.Gomes1",
+  "url": "https://sketchfab.com/3d-models/698a3af63fe1443ba01a235bc69a5f96",
+  "faces": 26721,
+  "shard": "000-144",
+  "path": "glbs/000-144/698a3af63fe1443ba01a235bc69a5f96.glb"
+ },
+ "red_cup": {
+  "uid": "22798b1b718749608a0e729d576727a4",
+  "name": "Solo Cup",
+  "lic": "by",
+  "user": "idyllKingdom",
+  "url": "https://sketchfab.com/3d-models/22798b1b718749608a0e729d576727a4",
+  "path": "glbs/000-111/22798b1b718749608a0e729d576727a4.glb",
+  "faces": 920
+ },
+ "pitcher": {
+  "uid": "5ee4647f7994413d80652e10090d380d",
+  "name": "POLYCARBONATE MUG",
+  "lic": "by",
+  "user": "fancyikzero",
+  "url": "https://sketchfab.com/3d-models/5ee4647f7994413d80652e10090d380d",
+  "path": "glbs/000-098/5ee4647f7994413d80652e10090d380d.glb",
+  "faces": 71200
+ },
+ "bowl": {
+  "uid": "0f2f0e489ab445108c939820a00d4888",
+  "name": "Plate",
+  "lic": "by",
+  "user": "rbhbkkn.kmrjd",
+  "url": "https://sketchfab.com/3d-models/0f2f0e489ab445108c939820a00d4888",
+  "path": "glbs/000-113/0f2f0e489ab445108c939820a00d4888.glb",
+  "faces": 14848
+ },
+ "knife": {
+  "uid": "f93d05bc2db144f7a50374794ef5cf8d",
+  "name": "test knife",
+  "lic": "by",
+  "user": "Fellm",
+  "url": "https://sketchfab.com/3d-models/f93d05bc2db144f7a50374794ef5cf8d",
+  "path": "glbs/000-097/f93d05bc2db144f7a50374794ef5cf8d.glb",
+  "faces": 1084
+ },
+ "kettle": {
+  "uid": "46617e30864a45eba268c756cf53c52f",
+  "name": "Teapot",
+  "lic": "by",
+  "user": "19brian16",
+  "url": "https://sketchfab.com/3d-models/46617e30864a45eba268c756cf53c52f",
+  "path": "glbs/000-138/46617e30864a45eba268c756cf53c52f.glb",
+  "faces": 20629
+ },
+ "rice_cooker": {
+  "uid": "6afda632eac6459cb99e73deccb97a98",
+  "name": "Rice Cooker Lowpoly",
+  "lic": "by",
+  "user": "ononesupplies",
+  "url": "https://sketchfab.com/3d-models/6afda632eac6459cb99e73deccb97a98",
+  "faces": 8252,
+  "shard": "000-143",
+  "path": "glbs/000-143/6afda632eac6459cb99e73deccb97a98.glb"
+ },
+ "telephone": {
+  "uid": "eaa0a0cbce964b2099b955f5ea241eee",
+  "name": "PTish Phone",
+  "lic": "by",
+  "user": "schmoldt.art",
+  "url": "https://sketchfab.com/3d-models/eaa0a0cbce964b2099b955f5ea241eee",
+  "path": "glbs/000-091/eaa0a0cbce964b2099b955f5ea241eee.glb",
+  "faces": 7430
+ },
+ "typewriter": {
+  "uid": "bef0f699a5374ca1a8fe8e27fb77788a",
+  "name": "IBM Selectric II Typewriter",
+  "lic": "by",
+  "user": "maxdragon",
+  "url": "https://sketchfab.com/3d-models/bef0f699a5374ca1a8fe8e27fb77788a",
+  "path": "glbs/000-062/bef0f699a5374ca1a8fe8e27fb77788a.glb",
+  "faces": 5392
+ },
+ "thermos": {
+  "uid": "99f750217a8e47df8445cb63bbaa66ec",
+  "name": "a thermos kettle",
+  "lic": "by",
+  "user": "downpink97",
+  "url": "https://sketchfab.com/3d-models/99f750217a8e47df8445cb63bbaa66ec",
+  "faces": 78876,
+  "shard": "000-120",
+  "path": "glbs/000-120/99f750217a8e47df8445cb63bbaa66ec.glb"
+ },
+ "mug": {
+  "uid": "12652c6e0aaf44dda32aab816f433baf",
+  "name": "Cup",
+  "lic": "by",
+  "user": "saleviim",
+  "url": "https://sketchfab.com/3d-models/12652c6e0aaf44dda32aab816f433baf",
+  "path": "glbs/000-031/12652c6e0aaf44dda32aab816f433baf.glb",
+  "faces": 2736
+ },
+ "tissue_box": {
+  "uid": "2f93ae57a77e464b9e71cc38eefdbf09",
+  "name": "Tissue Box Low Poly",
+  "lic": "by",
+  "user": "anand9556",
+  "url": "https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09",
+  "faces": 264,
+  "shard": "000-055",
+  "path": "glbs/000-055/2f93ae57a77e464b9e71cc38eefdbf09.glb"
+ },
+ "pencil_cup": {
+  "uid": "1f33e40c27fe451e9efda612c69010ae",
+  "name": "Pens with Pencil holder - desk props",
+  "lic": "by",
+  "user": "janexx",
+  "url": "https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae",
+  "faces": 1324,
+  "shard": "000-143",
+  "path": "glbs/000-143/1f33e40c27fe451e9efda612c69010ae.glb"
+ },
+ "keyboard": {
+  "uid": "a2b56b6bebfa4388a349eba131572a6f",
+  "name": "Keyboard - Classic IBM Design",
+  "lic": "by",
+  "user": "matthew.leiher",
+  "url": "https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f",
+  "path": "glbs/000-158/a2b56b6bebfa4388a349eba131572a6f.glb",
+  "faces": 2336
+ }
+}

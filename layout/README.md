@@ -354,3 +354,15 @@ Off = the mannequins exactly as before (checked: mortongrove07 + kitchen90, line
   smooth (no eyes, nose or mouth). Hair per the cast sheets (assets/bodies/README.md): first love's stepped cut, the
   children's cut-to-length hair with a parted fringe and half-ponytail, buns.
 - Test set: `sets/bodytest/` (hands, child arms, cast line-up front and back).
+
+Mesh fixes (2026-11-26, re-render pass 2):
+- `stage.js casterMeshes(who.head)` on a mesh body (POV `hideParts: { who: ['head'] }`) hides exactly the head and neck
+  skin, hair (tufts, buns), brows and eyes; arms and hands stay (the old bounding-box test took a crouched child's bare
+  arms and missed long hair).
+- `humanMesh.js`: hair below the neck that sits inside the top garment is pushed out through its back (`hairOutOfCloth`);
+  hair fitted over a covered ear is put back on the surrounding hair sphere and the ear pulled in under it
+  (`earsUnderHair`); the kids' half-ponytail is a tie + short tail high on the crown and the bun sits higher and further
+  out (both read as ear discs from behind); eyes pivot about and classify the iris from the eyeball's own centre
+  (`eyeBall`; the bone head sat off the ball and turned eyes read cross- or wall-eyed), the ball 5 % smaller so a turned
+  cornea stays behind the lids; `chestPoint` takes the farthest front-facing hit (the chest, not a sleeve in front of it).
+

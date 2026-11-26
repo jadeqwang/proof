@@ -1,0 +1,7 @@
+Model: "Lemon" (lemon) by Kuutti Siitonen on Poly Haven
+URL: https://polyhaven.com/a/lemon
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-26
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.0687 x 0.0954 x 0.0683 m
+Used for: mv10: lemons (scaled to pomelo size in the set: Jade's canon)

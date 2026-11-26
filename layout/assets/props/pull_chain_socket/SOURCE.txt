@@ -1,0 +1,7 @@
+Model: "Pull Chain Light Socket" (pull_chain_light_socket) by Josh Dean on Poly Haven
+URL: https://polyhaven.com/a/pull_chain_light_socket
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-26
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.1103 x 0.1654 x 0.1103 m
+Used for: basement90: the porcelain pull-chain lampholder

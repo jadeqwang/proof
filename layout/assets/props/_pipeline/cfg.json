@@ -1,0 +1,123 @@
+{
+ "ladle": {
+  "size": [
+   "l",
+   0.34
+  ],
+  "split": {
+   "handle": "cy>0.03"
+  }
+ },
+ "ladle_b": {
+  "size": [
+   "l",
+   0.34
+  ]
+ },
+ "juicer": {
+  "size": [
+   "w",
+   0.17
+  ]
+ },
+ "red_cup": {
+  "size": [
+   "h",
+   0.121
+  ]
+ },
+ "pitcher": {
+  "size": [
+   "h",
+   0.24
+  ]
+ },
+ "bowl": {
+  "size": [
+   "w",
+   0.3
+  ]
+ },
+ "knife": {
+  "size": [
+   "l",
+   0.33
+  ],
+  "rot": [
+   0,
+   0,
+   90
+  ]
+ },
+ "kettle": {
+  "size": [
+   "h",
+   0.24
+  ],
+  "split": {
+   "handle": "cy>0.15 and sx>0.1"
+  }
+ },
+ "rice_cooker": {
+  "size": [
+   "h",
+   0.26
+  ]
+ },
+ "telephone": {
+  "size": [
+   "w",
+   0.2
+  ]
+ },
+ "typewriter": {
+  "size": [
+   "w",
+   0.54
+  ]
+ },
+ "thermos": {
+  "size": [
+   "h",
+   0.37
+  ]
+ },
+ "mug": {
+  "size": [
+   "h",
+   0.095
+  ]
+ },
+ "tissue_box": {
+  "size": [
+   "w",
+   0.24
+  ],
+  "rot": [
+   0,
+   90,
+   0
+  ]
+ },
+ "pencil_cup": {
+  "size": [
+   "h",
+   0.19
+  ]
+ },
+ "keyboard": {
+  "size": [
+   "w",
+   0.49
+  ]
+ },
+ "tv_small": {},
+ "bulb": {},
+ "pull_chain_socket": {},
+ "potted_plant": {
+  "jpeg": false
+ },
+ "lemon": {},
+ "cutting_board": {},
+ "cardboard_box": {}
+}

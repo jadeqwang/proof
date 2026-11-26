@@ -1,0 +1,8 @@
+Model: "Pens with Pencil holder - desk props" by janexx on Sketchfab
+URL: https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-143/1f33e40c27fe451e9efda612c69010ae.glb (uid 1f33e40c27fe451e9efda612c69010ae)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.1054 x 0.19 x 0.1436 m
+Used for: office91: the pencil cup on the meeting table

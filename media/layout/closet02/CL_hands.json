@@ -664,15 +664,15 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade19": 0.742,
-  "firstLove19": 0.1339
+  "firstLove19": 0.3257,
+  "jade19": 0.2611
  },
  "colour_separation": [
   {
-   "a": "jade19",
-   "b": "firstLove19",
-   "top_a": "#8a94a8",
-   "top_b": "#5a6a58",
+   "a": "firstLove19",
+   "b": "jade19",
+   "top_a": "#5a6a58",
+   "top_b": "#8a94a8",
    "deltaE_top": 28.9,
    "close": false
   }

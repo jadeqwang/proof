@@ -1,0 +1,8 @@
+Model: "PTish Phone" by schmoldt.art on Sketchfab
+URL: https://sketchfab.com/3d-models/eaa0a0cbce964b2099b955f5ea241eee
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-091/eaa0a0cbce964b2099b955f5ea241eee.glb (uid eaa0a0cbce964b2099b955f5ea241eee)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.2 x 0.1129 x 0.2172 m
+Used for: office91: the desk phone (1991 push-button)

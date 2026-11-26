@@ -1,0 +1,8 @@
+Model: "Solo Cup" by idyllKingdom on Sketchfab
+URL: https://sketchfab.com/3d-models/22798b1b718749608a0e729d576727a4
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-111/22798b1b718749608a0e729d576727a4.glb (uid 22798b1b718749608a0e729d576727a4)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.0767 x 0.121 x 0.0769 m
+Used for: mv10 party: red plastic cups by the punchbowl

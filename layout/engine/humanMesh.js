@@ -89,6 +89,17 @@ function restSkeleton(B, k) {
   return bones;
 }
 
+// 2026-11-26: the eyeball's own centre (bounding-box centre of that eye's rest vertices), not the eye bone's head: the bone
+// head sits off the ball, so irises classified round the bone head sat nasally and turned eyes read cross- / wall-eyed
+// (wall88 WL_eye). Used as the iris axis origin and the rotation pivot.
+function eyeBall(B, s, k) {
+  const ms = B.meshes.eyes; if (!ms) return null;
+  const c = (B._eyeBall ||= {}); if (!c[s]) { const lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9];
+    for (let i = 0; i < ms.pos.length; i += 3) { if ((ms.pos[i] > 0) !== (s === 'l')) continue; for (let j = 0; j < 3; j++) { lo[j] = Math.min(lo[j], ms.pos[i + j]); hi[j] = Math.max(hi[j], ms.pos[i + j]); } }
+    c[s] = new THREE.Vector3((lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, (lo[2] + hi[2]) / 2); }
+  return c[s].clone().multiplyScalar(k);
+}
+
 // ---------------------------------------------------------------- pose: one matrix (and optional twist) per bone
 function solvePose(B, bones, P, spec, c, k) {
   const M = {}, TW = {};   // TW[bone] = { axis, pivot, angle, h0, a0, len0 }: extra twist about the bone axis, ramped along it
@@ -136,11 +147,14 @@ function solvePose(B, bones, P, spec, c, k) {
     M.neck_01 = aimMatrix(h0, a0, r0, h1, a1, nrmz(perp(cx.clone().add(hx), a1)), len / t0.distanceTo(h0)); }
   // eyes: each eye bone turned by the gaze split (engine/gaze.js), about its own centre
   for (const s of ['l', 'r']) { const n = 'eye_' + s; if (!bones[n]) continue;
-    const e0 = hd(n), e1 = e0.clone().applyMatrix4(M.head);
+    const e0 = eyeBall(B, s, k) || hd(n), e1 = e0.clone().applyMatrix4(M.head);
     let R = RH.clone();
     if (P.lookAt) { const d = P.lookAt.clone().sub(e1).normalize(); const e = eyeAim(d, { hx, hy, hdir: hz });
       R = new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(hz, e.dir)).multiply(RH); }
-    M[n] = rigidMatrix(e0, I3, e1, R); (P.eyeCentres ||= {})[s] = e1; }
+    M[n] = rigidMatrix(e0, I3, e1, R); (P.eyeCentres ||= {})[s] = e1;
+    // 2026-11-26: the ball 5 % smaller about its centre, so a turned eye's corneal bulge stays behind the lids (mv10 C2a: a
+    // white patch of sclera through the outer corner of the far eye)
+    M[n].multiply(new THREE.Matrix4().makeTranslation(e0.x, e0.y, e0.z).multiply(new THREE.Matrix4().makeScale(0.95, 0.95, 0.95)).multiply(new THREE.Matrix4().makeTranslation(-e0.x, -e0.y, -e0.z))); }
   // --- arms
   const report = {};
   for (const [s, n, sg] of [['l', 'L', 1], ['r', 'R', -1]]) {
@@ -432,11 +446,22 @@ export function dressFigure(g, spec, c, P, uid) {
     if (lift) { const nn = geo.getAttribute('normal').array; for (let i = 0; i < p.length; i++) p[i] += nn[i] * lift; geo.getAttribute('position').needsUpdate = true; }
     const m = mk(geo, lk); m.userData.idGroup = uid + grp; m.userData.double = true; g.add(m); return m; };
   if (hairKey) { const proxy = hairKey !== 'hair_fl';   // MakeHuman proxies sit on the scalp; the shells built from it are already off it
-    addPart(hairKey, hairL, 'hair', proxy ? 0.004 * c.h / 1.7 : 0);   // lifted 4 mm: a thin shell on the skin z-fights into specks in line mode
-    for (const x of Object.keys(B.meshes)) if (x.startsWith(hairKey + '__')) addPart(x, hairL, 'hair'); }
-  if (hairKey === 'hair_kidbob') { const b = mk(new THREE.SphereGeometry(P.headH * 0.07, 16, 12), hairL);   // the small half-ponytail tied high at the back of the crown (cast sheets): a tuft hanging down the back
-    b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.56).addScaledVector(P.headUp, P.headH * 0.12); b.scale.set(1, 2.2, 0.85); b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
-  if (style === 'bun') { const b = mk(new THREE.SphereGeometry(P.headH * 0.2, 20, 14), hairL); b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.5).addScaledVector(P.headUp, P.headH * 0.02); b.scale.set(1, 0.85, 0.8); b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
+    const hm = [addPart(hairKey, hairL, 'hair', proxy ? 0.004 * c.h / 1.7 : 0)];   // lifted 4 mm: a thin shell on the skin z-fights into specks in line mode
+    for (const x of Object.keys(B.meshes)) if (x.startsWith(hairKey + '__')) hm.push(addPart(x, hairL, 'hair'));
+    // 2026-11-26: hair that hangs down the back pokes through the top when she bends forward (specks in line / form):
+    // every hair vertex below the neck that is inside the top garment is moved back out through its back panel
+    const tops = []; g.traverse((o) => { if (o.isMesh && o.userData.garment && /(torso|band)$/.test(o.userData.idGroup || '')) tops.push(o); });
+    for (const m of hm) if (m) hairOutOfCloth(m, tops, P);
+    earsUnderHair(hm.filter(Boolean), g, P, c.h); }
+  if (hairKey === 'hair_kidbob') {   // the small half-ponytail tied high at the back of the crown (cast sheets): a tie and a short tail hanging down the back
+    // 2026-11-26: was one flat ellipsoid at mid-height sunk in the hair shell; from behind it read as an ear disc. Now high on
+    // the crown and standing off the hair, so it reads as a tied tuft.
+    const Q = new THREE.Quaternion().setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd));
+    const tie = mk(new THREE.SphereGeometry(P.headH * 0.055, 16, 12), hairL); tie.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.5).addScaledVector(P.headUp, P.headH * 0.34); tie.quaternion.copy(Q); tie.userData.idGroup = uid + 'hair'; g.add(tie);
+    const tail = mk(new THREE.SphereGeometry(P.headH * 0.06, 16, 12), hairL); tail.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.6).addScaledVector(P.headUp, P.headH * 0.2); tail.scale.set(0.9, 2.0, 0.8);
+    tail.quaternion.copy(Q).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), 0.45)); tail.userData.idGroup = uid + 'hair'; g.add(tail); }
+  if (style === 'bun') { const b = mk(new THREE.SphereGeometry(P.headH * 0.21, 20, 14), hairL); b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.7).addScaledVector(P.headUp, P.headH * 0.18); b.scale.set(1, 0.85, 1.0);   // 2026-11-26: higher and further out (was 0.5 back, 0.02 up, z 0.8): it read as a flat disc (ear) from behind
+    b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
   const face = faceKind(spec.who), drawn = face === 'drawn' && !c.undrawn;
   if (drawn && B.meshes.brows) addPart('brows', hairL, 'brows');
   if (drawn && B.meshes.eyes) eyes(g, B, k, M, TW, uid);
@@ -444,10 +469,58 @@ export function dressFigure(g, spec, c, P, uid) {
   P.bodyMesh = id;
 }
 
+// Move hair vertices below the neck that sit inside the top garment out through its back (ray along -chest forward; an
+// odd number of crossings = inside). Garments are open at the neck / hem / sleeves, but a ray straight back from inside the
+// torso still crosses the back panel once, and hair in front of the chest crosses front and back (even: left alone).
+function hairOutOfCloth(m, cloth, P) {
+  if (!cloth.length || !P.cz || !P.neck) return;
+  const T = []; for (const c of cloth) { const pa = c.geometry.getAttribute('position').array, ix = c.geometry.index ? c.geometry.index.array : null, n = ix ? ix.length : pa.length / 3;
+    for (let f = 0; f < n; f += 3) { const a = ix ? ix[f] : f, b = ix ? ix[f + 1] : f + 1, d = ix ? ix[f + 2] : f + 2; T.push([pa[a * 3], pa[a * 3 + 1], pa[a * 3 + 2], pa[b * 3], pa[b * 3 + 1], pa[b * 3 + 2], pa[d * 3], pa[d * 3 + 1], pa[d * 3 + 2]]); } }
+  const D = P.cz.clone().negate().normalize(), up = P.cy.clone().normalize(), pos = m.geometry.getAttribute('position'), a = pos.array; let moved = 0;
+  const hits = (ox, oy, oz) => { let k = 0, tmin = Infinity;
+    for (const t of T) { const e1x = t[3] - t[0], e1y = t[4] - t[1], e1z = t[5] - t[2], e2x = t[6] - t[0], e2y = t[7] - t[1], e2z = t[8] - t[2];
+      const px = D.y * e2z - D.z * e2y, py = D.z * e2x - D.x * e2z, pz = D.x * e2y - D.y * e2x, det = e1x * px + e1y * py + e1z * pz; if (Math.abs(det) < 1e-12) continue;
+      const iv = 1 / det, sx = ox - t[0], sy = oy - t[1], sz = oz - t[2], u = (sx * px + sy * py + sz * pz) * iv; if (u < 0 || u > 1) continue;
+      const qx = sy * e1z - sz * e1y, qy = sz * e1x - sx * e1z, qz = sx * e1y - sy * e1x, v = (D.x * qx + D.y * qy + D.z * qz) * iv; if (v < 0 || u + v > 1) continue;
+      const tt = (e2x * qx + e2y * qy + e2z * qz) * iv; if (tt > 0) { k++; if (tt < tmin) tmin = tt; } }
+    return { k, tmin }; };
+  for (let i = 0; i < a.length; i += 3) {
+    if ((a[i] - P.neck.x) * up.x + (a[i + 1] - P.neck.y) * up.y + (a[i + 2] - P.neck.z) * up.z > 0) continue;
+    const h = hits(a[i], a[i + 1], a[i + 2]); if (h.k % 2 === 0) continue;
+    const s = h.tmin + 0.003; a[i] += D.x * s; a[i + 1] += D.y * s; a[i + 2] += D.z * s; moved++; }
+  if (moved) { pos.needsUpdate = true; m.geometry.computeVertexNormals(); m.geometry.computeBoundingSphere(); m.geometry.computeBoundingBox(); }
+}
+
+// 2026-11-26: hair that covers the ears was fitted over them, so a bump with an ear-shaped outline showed through it (read
+// as an ear disc from behind). Per ear that the hair covers: the hair over it is put back on the sphere of the hair around
+// it (distance from the head centre = the mean of the ring just outside), and the ear skin is pulled in 4 mm under it.
+function earsUnderHair(hms, g, P, h) {
+  if (!P.earL || !P.earR || !P.head) return;
+  const R = 0.05 * h / 1.7, Hc = P.head, skin = []; g.traverse((o) => { if (o.isMesh && o.userData.bodyRegion === 'skinHead') skin.push(o); });
+  for (const E of [P.earL, P.earR]) {
+    const zone = [], ring = [];
+    for (const m of hms) { const a = m.geometry.getAttribute('position').array;
+      for (let i = 0; i < a.length; i += 3) { const d = Math.hypot(a[i] - E.x, a[i + 1] - E.y, a[i + 2] - E.z);
+        if (d < R) zone.push([m, i]); else if (d < 1.5 * R) ring.push(Math.hypot(a[i] - Hc.x, a[i + 1] - Hc.y, a[i + 2] - Hc.z)); } }
+    if (zone.length < 12 || ring.length < 12) continue;   // the hair does not cover this ear (short hair, a bun): leave the ear
+    ring.sort((x, y) => x - y); const r0 = ring[Math.floor(ring.length / 2)];
+    const touched = new Set();
+    for (const [m, i] of zone) { const a = m.geometry.getAttribute('position').array, dx = a[i] - Hc.x, dy = a[i + 1] - Hc.y, dz = a[i + 2] - Hc.z, d = Math.hypot(dx, dy, dz);
+      const t = Math.hypot(a[i] - E.x, a[i + 1] - E.y, a[i + 2] - E.z) / R, w = t < 0.7 ? 1 : 1 - (t - 0.7) / 0.3, k = 1 + w * (r0 / d - 1);   // feathered to the ring
+      a[i] = Hc.x + dx * k; a[i + 1] = Hc.y + dy * k; a[i + 2] = Hc.z + dz * k; touched.add(m); }
+    for (const m of touched) { m.geometry.getAttribute('position').needsUpdate = true; m.geometry.computeVertexNormals(); m.geometry.computeBoundingSphere(); m.geometry.computeBoundingBox(); }
+    for (const m of skin) { const pa = m.geometry.getAttribute('position'), a = pa.array; let n = 0;
+      for (let i = 0; i < a.length; i += 3) { if (Math.hypot(a[i] - E.x, a[i + 1] - E.y, a[i + 2] - E.z) > 1.2 * R) continue;
+        const dx = a[i] - Hc.x, dy = a[i + 1] - Hc.y, dz = a[i + 2] - Hc.z, d = Math.hypot(dx, dy, dz), lim = r0 - 0.004 * h / 1.7; if (d <= lim) continue;
+        const k = lim / d; a[i] = Hc.x + dx * k; a[i + 1] = Hc.y + dy * k; a[i + 2] = Hc.z + dz * k; n++; }
+      if (n) { pa.needsUpdate = true; m.geometry.computeVertexNormals(); m.geometry.computeBoundingSphere(); m.geometry.computeBoundingBox(); } }
+  }
+}
+
 // eyeballs: sclera / iris / pupil by angle from each eye bone's forward axis (rest +z)
 function eyes(g, B, k, M, TW, uid) {
   const ms = B.meshes.eyes, n = ms.pos.length / 3, pos = bake(ms, B.jointNames, k, M, TW);
-  const ctr = {}; for (const s of ['l', 'r']) ctr[s] = zup(B.meta.bones_blender_zup['eye_' + s].head).multiplyScalar(k);
+  const ctr = {}; for (const s of ['l', 'r']) ctr[s] = eyeBall(B, s, k);
   const cls = new Array(n);
   for (let i = 0; i < n; i++) { const x = ms.pos[i * 3] * k, y = ms.pos[i * 3 + 1] * k, z = ms.pos[i * 3 + 2] * k; const c = x > 0 ? ctr.l : ctr.r;
     const d = new THREE.Vector3(x - c.x, y - c.y, z - c.z).normalize(); const a = Math.acos(THREE.MathUtils.clamp(d.z, -1, 1));
@@ -480,7 +553,10 @@ export function chestPoint(fig, u, v, lift = 0.003) {
   const hit = []; fig.traverse((m) => { if (m.isMesh && m.userData.garment && /:torso$/.test(m.userData.idGroup || '')) hit.push(m); });
   const o = P.shoulderC.clone().addScaledVector(P.cy, v).addScaledVector(P.cx, u).addScaledVector(P.cz, 0.4);
   const rc = new THREE.Raycaster(o, P.cz.clone().negate(), 0, 0.6); fig.updateMatrixWorld(true);
-  const h = rc.intersectObjects(hit, false)[0]; if (!h) return null;
+  // 2026-11-26: the farthest FRONT-facing hit, i.e. the chest itself, not a sleeve lying in front of it (office91 PC3a / X_sw:
+  // the nearest hit put one corner of the print on her forearm, a long sliver through the sweater)
+  const hs = rc.intersectObjects(hit, false).filter((x) => x.face.normal.clone().transformDirection(x.object.matrixWorld).dot(P.cz) > 0);
+  const h = hs[hs.length - 1]; if (!h) return null;
   const n = h.face.normal.clone().transformDirection(h.object.matrixWorld); if (n.dot(P.cz) < 0) n.negate();
   return h.point.clone().addScaledVector(n, lift);
 }

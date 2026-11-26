@@ -1,0 +1,8 @@
+Model: "Keyboard - Classic IBM Design" by matthew.leiher on Sketchfab
+URL: https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-158/a2b56b6bebfa4388a349eba131572a6f.glb (uid a2b56b6bebfa4388a349eba131572a6f)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.49 x 0.0324 x 0.1755 m
+Used for: basement90: the 1990 PC keyboard (IBM-style)

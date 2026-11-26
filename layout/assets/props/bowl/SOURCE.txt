@@ -1,0 +1,8 @@
+Model: "Plate" by rbhbkkn.kmrjd on Sketchfab
+URL: https://sketchfab.com/3d-models/0f2f0e489ab445108c939820a00d4888
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-113/0f2f0e489ab445108c939820a00d4888.glb (uid 0f2f0e489ab445108c939820a00d4888)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.3 x 0.1134 x 0.3 m
+Used for: mv10: the bowl of picked lemons / squeezed rinds (white ceramic)

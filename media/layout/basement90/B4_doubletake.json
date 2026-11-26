@@ -200,8 +200,8 @@
   },
   "jade7.R": {
    "px": [
-    694.4,
-    590.1
+    661.8,
+    638.4
    ],
    "shape": "fist",
    "in_frame": true,
@@ -259,7 +259,7 @@
  ],
  "warnings": [
   "wrist: dad R hand turned 22 deg toward the forearm to keep the wrist in range (was flex 17.9, radial -54.2)",
-  "wrist: jade7 R beyond the wrist range (flexion +94 deg, ulnar deviation +114 deg, pronation +43 deg; flex 154, radial -144, twist -123, after an elbow swivel of 0 deg)"
+  "wrist: jade7 R beyond the wrist range (flexion +91 deg, ulnar deviation +115 deg, pronation +57 deg; flex 150.6, radial -145.4, twist -137.3, after an elbow swivel of 0 deg)"
  ],
  "intent": "From the open floor front-left, just in front of the stair (2026-11-26: 22 mm, 0.3 m closer than before, the stair’s room-side stringer is at z 1.28): Dad has rolled back and swivelled to his left, hands still over the keys, and stares at her (three-quarter on his face). She has hopped off the spokes and stands in the open, in the screen light, in profile, hunched over her paw: right hand curled into a loose fist like a paw, her closed lips and her chin resting ON the back of her wrist (r4, Jade: mouth closed, tongue in, lips and chin touching the wrist), head cocked. Not hiding. She is 7-8, about 1.25 m.",
  "time": "2:19.8-2:21.4 \"Good catch!\" (drums stop)",
@@ -694,20 +694,20 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 154,
-    "radial_deg": -144,
-    "twist_deg": -123,
-    "elbow_flex_deg": 126.4,
+    "flex_deg": 150.6,
+    "radial_deg": -145.4,
+    "twist_deg": -137.3,
+    "elbow_flex_deg": 130.5,
     "before": {
-     "flex_deg": 154,
-     "radial_deg": -144,
-     "twist_deg": -123
+     "flex_deg": 150.6,
+     "radial_deg": -145.4,
+     "twist_deg": -137.3
     },
     "hand_turned_deg": null,
     "out_of_range": [
-     "flexion +94 deg",
-     "ulnar deviation +114 deg",
-     "pronation +43 deg"
+     "flexion +91 deg",
+     "ulnar deviation +115 deg",
+     "pronation +57 deg"
     ],
     "grip_reversed": false
    }
@@ -716,7 +716,7 @@
  "holds": [],
  "figure_frame_fraction": {
   "dad": 0.1046,
-  "jade7": 0.1263
+  "jade7": 0.1261
  },
  "colour_separation": [
   {
@@ -773,7 +773,7 @@
    },
    "arms": {
     "L": 0.98,
-    "R": 0.46
+    "R": 0.43
    },
    "headTurn": 1,
    "body": {
@@ -788,8 +788,8 @@
      "hand_scale": 0.95
     },
     "R": {
-     "elbow_bend_deg": 125,
-     "upperarm_stretch": 1.19,
+     "elbow_bend_deg": 130,
+     "upperarm_stretch": 1.14,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
     }

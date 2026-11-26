@@ -1,0 +1,396 @@
+{
+ "ladle": {
+  "label": "ladle",
+  "use": "mv10 V3b_prep / party punchbowl (stainless ladle, hooked handle end)",
+  "defaults": {
+   "look": {
+    "grey": 0.78,
+    "col": 12633288
+   }
+  },
+  "origin": "bottom centre of the bbox (bowl down, handle up, hook toward +x)",
+  "grips": {
+   "handle": {
+    "at": [
+     0.026,
+     0.27,
+     -0.004
+    ],
+    "axis": [
+     0.204,
+     0.979,
+     0
+    ],
+    "up": [
+     0,
+     0,
+     1
+    ],
+    "r": 0.005,
+    "template": "power",
+    "note": "upper handle, below the hook; the handle is a flat steel strip ~10 x 5 mm"
+   }
+  },
+  "changes": "joined, scaled to 34 cm, split into two meshes 'body' (bowl) and 'handle' (so engine/main.js holdsFor hulls the handle alone), origin at the bottom centre"
+ },
+ "ladle_b": {
+  "label": "ladle",
+  "use": "alternative ladle (wood-handled stainless), not used yet",
+  "defaults": {
+   "look": {
+    "grey": 0.78,
+    "col": 12633288
+   }
+  }
+ },
+ "juicer": {
+  "label": "juicer (glass reamer)",
+  "use": "mv10 lemonade prep: the reamer (glass in the film: the set passes its GLASSY look)",
+  "defaults": {
+   "look": {
+    "grey": 0.9,
+    "col": 14543080
+   }
+  },
+  "grips": {
+   "rim": {
+    "at": [
+     0,
+     0.02,
+     0.08
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "template": "restOn"
+   }
+  }
+ },
+ "red_cup": {
+  "label": "a stack of cups",
+  "use": "mv10 party: red plastic cups by the punchbowl",
+  "grips": {
+   "body": {
+    "at": [
+     0,
+     0.077,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.0325,
+    "template": "power",
+    "note": "tapered: r 0.028 at the foot, 0.038 at the rim"
+   }
+  }
+ },
+ "pitcher": {
+  "label": "pitcher of water (by the sink)",
+  "use": "mv10 prep: the water pitcher",
+  "defaults": {
+   "look": {
+    "grey": 0.9,
+    "col": 14543080
+   }
+  },
+  "grips": {
+   "handle": {
+    "at": [
+     0.122,
+     0.16,
+     0
+    ],
+    "axis": [
+     -0.335,
+     0.942,
+     0
+    ],
+    "up": [
+     1,
+     0,
+     0
+    ],
+    "r": 0.018,
+    "template": "power"
+   }
+  }
+ },
+ "bowl": {
+  "label": "bowl",
+  "use": "mv10: the bowl of picked lemons / squeezed rinds (white ceramic)",
+  "defaults": {
+   "look": {
+    "grey": 0.94,
+    "col": 15921126
+   }
+  },
+  "grips": {
+   "sides": {
+    "at": [
+     0,
+     0.06,
+     0
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "size": [
+     0.3,
+     0.3,
+     0.113
+    ],
+    "template": "twoHandsSides"
+   }
+  }
+ },
+ "knife": {
+  "label": "knife",
+  "use": "mv10 prep: the knife on the cutting board",
+  "grips": {
+   "handle": {
+    "at": [
+     -0.009,
+     0.0077,
+     -0.12
+    ],
+    "axis": [
+     0,
+     0,
+     -1
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.011,
+    "template": "power",
+    "note": "handle at -z, blade toward +z, edge toward -x?"
+   }
+  }
+ },
+ "kettle": {
+  "label": "kettle (red enamel)",
+  "use": "kitchen90: the enamel kettle on the back burner (recoloured red in the set)",
+  "defaults": {
+   "lookMat": {
+    "Body": {
+     "grey": 0.42,
+     "col": 12068382
+    }
+   }
+  },
+  "grips": {
+   "handle": {
+    "at": [
+     0.007,
+     0.2,
+     0
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.012,
+    "template": "power"
+   }
+  },
+  "changes": "joined, scaled to 24 cm, the top handle split into its own mesh 'handle', origin at the bottom centre"
+ },
+ "rice_cooker": {
+  "label": "rice cooker (white)",
+  "use": "kitchen90: the white rice cooker on the counter",
+  "defaults": {
+   "lookMat": {
+    "White_Body": {
+     "grey": 0.94,
+     "col": 15921386
+    },
+    "Button": {
+     "grey": 0.9,
+     "col": 15263456
+    }
+   }
+  }
+ },
+ "telephone": {
+  "label": "telephone",
+  "use": "office91: the desk phone (1991 push-button)"
+ },
+ "typewriter": {
+  "label": "electric typewriter",
+  "use": "office91: the electric typewriter (IBM Selectric II)"
+ },
+ "thermos": {
+  "label": "thermos flasks",
+  "use": "shanghai86: the hot-water flasks (暖水瓶)"
+ },
+ "mug": {
+  "label": "mug",
+  "use": "mortongrove07 coffee-table mug; shanghai86 tea mugs",
+  "defaults": {
+   "look": {
+    "grey": 0.94,
+    "col": 15921126
+   }
+  },
+  "grips": {
+   "handle": {
+    "at": [
+     -0.046,
+     0.047,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "up": [
+     -1,
+     0,
+     0
+    ],
+    "handleR": 0.006,
+    "template": "mugHandle"
+   },
+   "body": {
+    "at": [
+     0.015,
+     0.05,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.037,
+    "template": "power"
+   }
+  }
+ },
+ "tissue_box": {
+  "label": "box of tissues",
+  "use": "office91: tissues on the filing cabinet"
+ },
+ "pencil_cup": {
+  "label": "pencil cup",
+  "use": "office91: the pencil cup on the meeting table"
+ },
+ "keyboard": {
+  "label": "keyboard",
+  "use": "basement90: the 1990 PC keyboard (IBM-style)"
+ },
+ "tv_small": {
+  "ph": "television_02",
+  "label": "small TV (off) on a crate",
+  "use": "attic88_day: the small TV on the crate"
+ },
+ "bulb": {
+  "ph": "lightbulb_01",
+  "label": "bare bulb (off)",
+  "use": "attic88_day bare bulb; basement90 ceiling bulb",
+  "defaults": {
+   "tex": false,
+   "look": {
+    "grey": 0.95,
+    "col": 16052712
+   }
+  }
+ },
+ "pull_chain_socket": {
+  "ph": "pull_chain_light_socket",
+  "label": "ceiling light (porcelain lampholder)",
+  "use": "basement90: the porcelain pull-chain lampholder"
+ },
+ "potted_plant": {
+  "ph": "potted_plant_02",
+  "label": "potted plant",
+  "use": "shanghai86: the potted plant"
+ },
+ "lemon": {
+  "ph": "lemon",
+  "label": "lemon",
+  "use": "mv10: lemons (scaled to pomelo size in the set: Jade's canon)",
+  "grips": {
+   "whole": {
+    "at": [
+     0,
+     0.05,
+     0
+    ],
+    "axis": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.034,
+    "size": [
+     0.095,
+     0.068,
+     0.068
+    ],
+    "template": "power"
+   }
+  }
+ },
+ "cutting_board": {
+  "ph": "wooden_cutting_board",
+  "label": "cutting board",
+  "use": "mv10 prep: the cutting board",
+  "grips": {
+   "sides": {
+    "at": [
+     0,
+     0.02,
+     0
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "size": [
+     0.45,
+     0.247,
+     0.041
+    ],
+    "template": "twoHandsSides"
+   }
+  }
+ },
+ "cardboard_box": {
+  "ph": "cardboard_box_01",
+  "label": "storage boxes",
+  "use": "attic88_day: the storage boxes"
+ }
+}

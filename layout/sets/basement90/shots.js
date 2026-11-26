@@ -70,7 +70,8 @@ const GROOM = { at: gp([-0.25, -0.85]), yaw: 70, wrist: null };
   const loc = ([fw, up, rt]) => f.map((v, i) => v * fw + r[i] * rt + (i === 1 ? up : 0));   // her frame: [forward, up, right]
   GROOM.fwd = f; GROOM.right = r;
   GROOM.look = [GROOM.at[0] + f[0] * 0.5, 0.62, GROOM.at[1] + f[2] * 0.5];   // head bowed toward the paw (a fixed point, so the mouth does not move with the hand); r4: 0.66 -> 0.62 with spine bend 12 -> 28, she hunches over the paw and puts her face on it
-  GROOM.mouth = [-1.665, 0.9521, 0.3183];   // where her mouth ends up with this head (read back from the render: B5_cat sidecar contacts, mouth)
+  GROOM.mouth = [-1.6878, 0.9162, 0.3006];   // re-render pass 2026-11-26: re-read on the MESH body (was [-1.665, 0.9521, 0.3183] on the mannequin: the wrist ended 3.6 cm above her mouth, across her eyes)
+    // where her mouth ends up with this head (read back from the render: B5_cat sidecar contacts, mouth)
   // r4 (Jade, 2026-11-26, on B4 / B5: "she is pretending to lick her arm, not actually doing it ... mouth closed, tongue in.
   // lips and chin contacting wrist"; REPLACES the r3 gap): her closed lips and her chin rest on the back of her wrist.
   // The forearm rises diagonally inward across under her bowed face (direction GROOM.fore, read back from the render),
@@ -78,11 +79,12 @@ const GROOM = { at: gp([-0.25, -0.85]), yaw: 70, wrist: null };
   // from the face (the mannequin's skull has no jaw: the long-sleeve cuff, r 2.2 cm, sinks about 1 cm into its smooth
   // jaw, which stands in for the soft hollow between lower lip and chin), and the wrist joint 1.5 cm on along the
   // forearm, so the contact is on the back of the wrist / sweater cuff, not on the hand. No tongue (none is modelled).
-  GROOM.chin = [-1.7101, 0.9577, 0.2848];   // read back (B5_cat sidecar contacts, chin)
+  GROOM.chin = [-1.733, 0.9168, 0.2667];   // (mesh; was [-1.7101, 0.9577, 0.2848])
+    // read back (B5_cat sidecar contacts, chin)
   GROOM.fore = nrm([-0.281, 0.776, -0.565]);   // elbow -> wrist, read back (B5_cat sidecar: wristR - elbowR; iterated to convergence)
   { const mid = GROOM.mouth.map((v, i) => (v + GROOM.chin[i]) / 2), mc = nrm(GROOM.mouth.map((v, i) => v - GROOM.chin[i])), d = GROOM.fore;
     let n = nrm([d[1] * mc[2] - d[2] * mc[1], d[2] * mc[0] - d[0] * mc[2], d[0] * mc[1] - d[1] * mc[0]]);
-    const head = [-1.6814, 1.043, 0.3359];   // read back (head centre)
+    const head = [-1.7037, 1.0071, 0.3182];   // (mesh: the mannequin read-back moved with the mouth)   // read back (head centre)
     if (n.reduce((a, v, i) => a + v * (head[i] - mid[i]), 0) > 0) n = n.map((v) => -v);   // away from the face
     GROOM.contactP = mid.map((v, i) => v + n[i] * 0.01);
     GROOM.wrist0 = GROOM.contactP.map((v, i) => v + d[i] * 0.015); }

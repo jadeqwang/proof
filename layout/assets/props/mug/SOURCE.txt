@@ -1,0 +1,8 @@
+Model: "Cup" by saleviim on Sketchfab
+URL: https://sketchfab.com/3d-models/12652c6e0aaf44dda32aab816f433baf
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-031/12652c6e0aaf44dda32aab816f433baf.glb (uid 12652c6e0aaf44dda32aab816f433baf)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.1038 x 0.095 x 0.0738 m
+Used for: mortongrove07 coffee-table mug; shanghai86 tea mugs

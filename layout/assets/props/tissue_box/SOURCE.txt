@@ -1,0 +1,8 @@
+Model: "Tissue Box Low Poly" by anand9556 on Sketchfab
+URL: https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-055/2f93ae57a77e464b9e71cc38eefdbf09.glb (uid 2f93ae57a77e464b9e71cc38eefdbf09)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.24 x 0.1546 x 0.1015 m
+Used for: office91: tissues on the filing cabinet

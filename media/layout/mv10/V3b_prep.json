@@ -680,8 +680,7 @@
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 118,
-   "blocked_by": "jade27 Jade (27)"
+   "facing_camera_deg": 118
   },
   "friend": {
    "px": [
@@ -7162,7 +7161,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "jade27": 0.0943,
+  "jade27": 0.0876,
   "friend": 0.0366
  },
  "colour_separation": [],

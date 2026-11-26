@@ -200,8 +200,8 @@
   },
   "jade7.R": {
    "px": [
-    928.8,
-    303.5
+    889.1,
+    390.9
    ],
    "shape": "fist",
    "in_frame": true,
@@ -259,7 +259,7 @@
  ],
  "warnings": [
   "wrist: dad R hand turned 22 deg toward the forearm to keep the wrist in range (was flex 17.9, radial -54.2)",
-  "wrist: jade7 R beyond the wrist range (flexion +94 deg, ulnar deviation +114 deg, pronation +43 deg; flex 154, radial -144, twist -123, after an elbow swivel of 0 deg)"
+  "wrist: jade7 R beyond the wrist range (flexion +91 deg, ulnar deviation +115 deg, pronation +57 deg; flex 150.6, radial -145.4, twist -137.3, after an elbow swivel of 0 deg)"
  ],
  "intent": "Close, level, from her front-right: her right forearm raised diagonally across in front of her, the loose fist drooping like a paw, her head bowed onto it: her CLOSED lips and her chin rest on the back of her wrist (r4, Jade 2026-11-26: mouth closed, tongue in, not visible; lips and chin contacting the wrist; replaces the r3 gap), head cocked, eyes half closed, entirely absorbed. She stands in the open in the screen light, not hiding.",
  "time": "2:21.4-2:22.2 \"Good catch!\"",
@@ -572,11 +572,11 @@
     0.3006
    ],
    "b": [
-    -1.6823073486906763,
-    0.9512104887334351,
-    0.2938752287419924
+    -1.7047986372875832,
+    0.9130460700768083,
+    0.2761203848803788
    ],
-   "distance_cm": 3.6
+   "distance_cm": 3
   },
   {
    "a": "jade7:chin",
@@ -586,51 +586,51 @@
     0.2667
    ],
    "b": [
-    -1.6823073486906763,
-    0.9512104887334351,
-    0.2938752287419924
+    -1.7047986372875832,
+    0.9130460700768083,
+    0.2761203848803788
    ],
-   "distance_cm": 6.7
+   "distance_cm": 3
   },
   {
    "a": "jade7:wristR",
    "a_world": [
-    -1.6865,
-    0.9628,
-    0.2854
+    -1.709,
+    0.9247,
+    0.2676
    ],
    "b": [
-    -1.6865215859827454,
-    0.9628483824652696,
-    0.2854017623006438
+    -1.7090128745796522,
+    0.9246839638086428,
+    0.2676469184390302
    ],
    "distance_cm": 0
   },
   {
    "a": "jade7:handR",
    "a_world": [
-    -1.6613,
-    0.9402,
-    0.2872
+    -1.6838,
+    0.9021,
+    0.2694
    ],
    "b": [
-    -1.661267360807078,
-    0.9402437307063543,
-    0.28719189687515173
+    -1.683758649403985,
+    0.9020793120497275,
+    0.26943705301353815
    ],
    "distance_cm": 0
   },
   {
    "a": "jade7:elbowR",
    "a_world": [
-    -1.6385,
-    0.8285,
-    0.3837
+    -1.6674,
+    0.7843,
+    0.3602
    ],
    "b": [
-    -1.6865215859827454,
-    0.9628483824652696,
-    0.2854017623006438
+    -1.7090128745796522,
+    0.9246839638086428,
+    0.2676469184390302
    ],
    "distance_cm": 17.3
   }
@@ -766,20 +766,20 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 154,
-    "radial_deg": -144,
-    "twist_deg": -123,
-    "elbow_flex_deg": 126.4,
+    "flex_deg": 150.6,
+    "radial_deg": -145.4,
+    "twist_deg": -137.3,
+    "elbow_flex_deg": 130.5,
     "before": {
-     "flex_deg": 154,
-     "radial_deg": -144,
-     "twist_deg": -123
+     "flex_deg": 150.6,
+     "radial_deg": -145.4,
+     "twist_deg": -137.3
     },
     "hand_turned_deg": null,
     "out_of_range": [
-     "flexion +94 deg",
-     "ulnar deviation +114 deg",
-     "pronation +43 deg"
+     "flexion +91 deg",
+     "ulnar deviation +115 deg",
+     "pronation +57 deg"
     ],
     "grip_reversed": false
    }
@@ -787,7 +787,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade7": 0.2883,
+  "jade7": 0.2829,
   "dad": 0.0499
  },
  "colour_separation": [
@@ -845,7 +845,7 @@
    },
    "arms": {
     "L": 0.98,
-    "R": 0.46
+    "R": 0.43
    },
    "headTurn": 1,
    "body": {
@@ -860,8 +860,8 @@
      "hand_scale": 0.95
     },
     "R": {
-     "elbow_bend_deg": 125,
-     "upperarm_stretch": 1.19,
+     "elbow_bend_deg": 130,
+     "upperarm_stretch": 1.14,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
     }

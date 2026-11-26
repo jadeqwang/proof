@@ -66,6 +66,9 @@ function crowd(o = {}) {
   };
   if (o.noPoi) delete f.poi;
   for (const k of o.drop || []) delete f[k];
+  // re-render pass 2026-11-26: when everyone turns to her (BR3), A3 (back to her) turns his body too: his head alone fell
+  // 30 deg short of her eyes (gaze warning); the cup arm is re-aimed for the new yaw
+  if (lookAt === 'jade27:eyes' && f.A3) { const yaw = yawTo(A.A3, SHELF_MARK); f.A3 = { ...f.A3, yaw }; for (const n of ['L', 'R']) if (f.A3[n]?.hold) f.A3[n] = cupArm(n, yaw); }
   return { ...f, ...(o.set || {}) };
 }
 
@@ -154,7 +157,7 @@ function rcFigs(phase) {
   f.jade27 = phase === 0 ? { at: RC.kitchen, yaw: jy0, legs: 'stand', head: { look: 'K1:eyes' }, L: 'side', R: cupArm('R', jy0) }
     : phase === 2 ? { at: RC.stop, yaw: 2, legs: 'stand', head: { look: 'R1:eyes' }, L: 'side', R: cupArm('R', 2) }
     : { at: RC.door2, yaw: 180, legs: 'stand', head: { look: 'N3:eyes' }, L: 'side', R: { to: [3.86, 1.32, 0.42], hand: 'flat', fingers: 'up', palm: [0, 0, -1], elbow: [-1, -0.6, 0] } };
-  f.K1 = stand(RC.K1, yawTo(RC.K1, RC.kitchen), { head: { look: phase === 0 ? 'jade27:eyes' : [3.55, 1.6, 6.45] }, cup: 'R' });
+  f.K1 = stand(RC.K1, phase === 0 ? yawTo(RC.K1, RC.kitchen) : yawTo(RC.K1, [3.55, 6.45]), { head: { look: phase === 0 ? 'jade27:eyes' : [3.55, 1.6, 6.45] }, cup: 'R' });   // re-render pass 2026-11-26: later keys turn his body to what he looks at (was 33 deg past eye travel)
   f.R1 = phase === 2 ? stand(RC.R1, -105, { head: { look: 'jade27:eyes' }, R: { to: 'self:chest', off: rel(-105, -0.2, 0.0, 0.26), hand: 'palmUp', palm: 'up' } })
     : stand(RC.R1, 20, { head: { look: [SHELF_W.cube(3, 3)[0], 1.3, SHELF_W.front] } });
   // hold pass (2026-11-26): his hands REST on the snacks they hover over (both stand on the counter): right palm on the
@@ -170,7 +173,7 @@ function rcFigs(phase) {
   else { f.firstLove27 = stand(FL_AWAY, 90, { head: { look: 'B1:eyes' }, L: 'side', R: cupArm('R', 90) });
     f.B1 = stand(B1_AWAY, -90, { head: { look: 'firstLove27:eyes' }, L: 'side', R: { to: 'self:chest', off: rel(-90, -0.2, 0.0, 0.26), hand: 'palmUp', palm: 'up' } }); }
   if (phase === 0) { f.N1 = onGrade([4.15, -1.5], 0, { head: { look: [4.3, 1.6, 0] } }); f.N2 = onGrade([4.62, -1.78], 0, { head: { look: [4.3, 1.6, 0] } }); }
-  if (phase === 2) { f.N1 = stand([3.75, 1.35], 20, { head: { look: [1.6, 1.2, 1.0] } }); f.N2 = stand([4.35, 1.55], -10, { head: { look: [2.2, 1.4, 3.5] } });
+  if (phase === 2) { f.N1 = stand([3.75, 1.35], yawTo([3.75, 1.35], [1.6, 1.0]), { head: { look: [1.6, 1.2, 1.0] } });   // re-render pass 2026-11-26: turned toward what he looks at (was 6 deg past eye travel) f.N2 = stand([4.35, 1.55], -10, { head: { look: [2.2, 1.4, 3.5] } });
     f.N3 = onGrade([4.1, -2.4], 0, { head: { look: [4.3, 1.6, 0] } }); f.N4 = onGrade([4.7, -2.7], 0, { head: { look: [4.3, 1.6, 0] } }); }
   if (phase === 3) { f.N1 = stand([3.55, 2.55], 60, { head: { look: [4.05, 1.55, 3.05] }, cup: 'R' }); f.N2 = stand([4.05, 2.35], 30, { head: { look: [4.05, 1.55, 3.05] } });
     f.N3 = stand([4.22, 0.3], -10, { head: { look: 'jade27:eyes' }, R: { to: [4.1, 1.3, 0.62], hand: 'flat', fingers: 'up', palm: [0, 0, 1] } }); f.N4 = stand([4.35, -0.15], -5, { head: { look: 'jade27:eyes' } }); }
@@ -282,7 +285,7 @@ export const SHOTS = [
     header: 'Verse 3 2:59.2: "Perky American girl / I play the part": the greeting in the sliding door (one pitch contour)',
     intent: 'Outside, frontal on her from the deck, past the greeting guest’s back. She stands in the open sliding glass door, the kitchen and the dining table behind her: wave a little too big and a few frames early. The house shades the deck; she is lit by the sky and the kitchen behind. The gold pitch contour is drawn over the greeting.',
     figs: partyFigs({ at: MARKS.greeting, yaw: 0, legs: 'stand', head: { look: 'G1:head' }, L: 'side', R: { to: [0.92, 1.86, 9.86], hand: 'flat', fingers: 'up', palm: [0, 0, 1], elbow: [-1, -0.6, 0] } },
-      stand([2.6, 7.0], -150, { head: { look: [1.2, 1.5, 9.4] } }),
+      stand([2.6, 7.0], -150, { head: { look: [1.2, 1.5, 9.4] } }),   // (re-render pass 2026-11-26: kept at -150 although his look is 6 deg past eye travel: at -125 his face turns toward the V3c camera)
       { set: { G1: onDeck([1.9, 10.7], yawTo([1.9, 10.7], MARKS.greeting), { head: { look: 'jade27:eyes' }, L: { to: [1.95, DECK + 1.9, 10.35], hand: 'flat', fingers: 'up', palm: [0, 0, -1] } }) } }) },
   // V3d (under the lemons, over his shoulder) RETIRED 2026-11-25 (late) -> V3_nailed: Jade: at "He said I absolutely
   // nailed it" she stands by the Expedit and first love stands close and whispers to her. Verse-3 light (18:25: no sun

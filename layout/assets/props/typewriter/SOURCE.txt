@@ -1,0 +1,8 @@
+Model: "IBM Selectric II Typewriter" by maxdragon on Sketchfab
+URL: https://sketchfab.com/3d-models/bef0f699a5374ca1a8fe8e27fb77788a
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-062/bef0f699a5374ca1a8fe8e27fb77788a.glb (uid bef0f699a5374ca1a8fe8e27fb77788a)
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.54 x 0.1695 x 0.4076 m
+Used for: office91: the electric typewriter (IBM Selectric II)
