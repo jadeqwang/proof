@@ -28,3 +28,8 @@ fl_G_ots_hair_v4 (same hair and layout, the gift now a folded white hoodie with 
 A v4 (2026-11-26, round 4): figure 1 showed the part as a line down the back; then B v5 / G v5 ("a little too perfect"),
 B v6 / G v6 / A v5 (finger-combed, lived-in) the same evening, all replaced by v7 (Jade: her reference's hair colour and
 degree of messiness: tousled, rich warm dark brown): fl_B_backhead_neck_v7, fl_G_ots_hair_v7, fl_A_turnaround_back_v7.
+
+2026-11-26 night (round 5): v7 (B, G, A) read chestnut/medium brown. Replaced by fl_B_backhead_neck_v8, fl_G_ots_hair_v8,
+fl_A_turnaround_back_v8 (same cut and tousle; the hair colour of the character Gaius Baltar, per Jade: deep cool-to-neutral
+dark brown). The v7 files stay in cast/first_love/ for now only because media/decisions.html shows B v7; move them here
+once that page no longer links them. Do not pass v7 as a hair-colour reference.

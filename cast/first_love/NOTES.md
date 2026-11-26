@@ -259,3 +259,34 @@ image prompt; the colour and the mess are described in words.
 - Faces zoom-checked on every accepted take: backs and lost profiles only; no eye, nose or mouth.
 - Mesh: more irregular piece widths and depths, a slight wave down each piece, a few pieces lifting toward their ends.
 - Spend: 6 Codex images, $0.
+
+## 2026-11-26: round-5 decisions (v8: darker, the hair colour of the character Gaius Baltar)
+Jade, verbatim (fl_hair v7 card): "the colour: Darker, like the reference — can you tell the model to match the color of
+gaius baltar's hair?" v7 sheets read chestnut/medium brown; mv10 SI1_lit showed orange-brown (rendered #1c1008, hue 24,
+sat 0.71; closet02 CL_ots_lit #98572a: plainly orange). Jade asked for the character to be named in the prompt, so the
+v8 prompts name the CHARACTER only (never the actor): "match the hair colour of the character Gaius Baltar from
+Battlestar Galactica (2004)": a deep cool-to-neutral dark brown, about #2a211c, nearly black in shadow, no red/chestnut.
+- Prompts `_prompts/v8/` (hair.txt, style.txt colour wording; B/G/A change ONLY the colour, keep v7 cut and texture).
+- Codex plan limit hit on the first take (21:43Z); waited for the reset (22:27Z), then B -> G -> A, one take each.
+- `fl_B_backhead_neck_v8.png` (B_t1, ref B v7): cut, texture, layout kept; hair median #2e2420 (hue 17, sat 0.30, val
+  0.18; v7 was #493223, sat 0.52). Dark cool brown, near-black in the buzz and shadows, no chestnut.
+- `fl_G_ots_hair_v8.png` (G_t1, refs G v7 + B v8): layout, settings, hoodie print kept; hair #302721-#322923 in every
+  study, the dim closet study included.
+- `fl_A_turnaround_back_v8.jpg` (A_t1, refs B v8 + A v7): five figures, poses, clothes kept; hair dark cool brown.
+- Faces zoom-checked on B, G and A: ear, jaw line, stubble from behind only; no eye, nose or mouth.
+- Mesh FL_HAIR 0x3d2819 -> **0x1f1915**, tuned on renders (lit pass, hair median; scratch, not committed):
+  | base | mv10 SI1 | closet02 CL_ots (warm key) | bodytest cast_back (neutral) |
+  | 3d2819 (v7) | #1c1008 sat .71 | #98572a sat .72 (orange) | #271a10 sat .59 |
+  | 2e2420 (= sheet) | #150e0b .48 | #734f36 .53 (medium brown) | #1e1715 .30 |
+  | 26211e | #120d0a .44 | #5f4833 .46 (ashy) | #181513 .21 |
+  | 1f1915 (chosen) | #0f0a07 .53 | #4d3724 .53 (dark brown) | #14100e .30, hue 20 |
+  | 1c1815 | #0d0a07 .46 | #463424 .49 | #120f0e .22 |
+  Chosen because under neutral light it renders at the sheet's hue/saturation (20 / 0.30) and under the closet's warm
+  key it reads dark brown, not orange. Warm lamps still add warmth (sat ~0.5): painters follow the sheet, not the guide.
+- Painter refs: `tools/kf/r4lib.py` FIRST_LOVE_HAIR + FIRST_LOVE_REFS -> v8 (and NAMED "very dark cool brown"),
+  `media/keyframes/r4/_brief_r4.md`, `layout/CAST.md`, REPAINT_LIST cast section.
+- v7 sheets stay in this folder (not `_superseded/`) only because media/decisions.html (lead's) links B v7; lead to move
+  them after the page changes. `_superseded/README.txt` says not to pass them.
+- Not touched (other owners): layout/assets/bodies/README.md line 74 still says colour 0x3d2819 (engine-body);
+  bodytest/shots.js header names B v7; existing set guides keep the old orange until each set's owner re-renders.
+- Spend: 3 Codex images (+1 refused at the plan limit), $0; no paid generation.

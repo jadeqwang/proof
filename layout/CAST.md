@@ -25,6 +25,11 @@ Mama's hair (Jade 2026-11-26: "The jaw-length perm throughout"): the jaw-length,
 `cast/mama/mama_R_rest_heads_v1` at every age and in every set (`hairStyle: 'perm'`, mesh `hair_perm`); never a bun or a
 straight bob.
 
+First love's hair colour (Jade 2026-11-26 round 5: "Darker ... match the color of gaius baltar's hair"): `FL_HAIR`
+0x1f1915 in `_cast.js`, both ages: a deep, cool-to-neutral dark brown, nearly black in shadow, no red or chestnut
+(`cast/first_love/fl_B_backhead_neck_v8`). The base is tuned on the render (lit pass under neutral light hue ~20, sat
+0.30, like the sheet); warm lamps still warm it, so painters follow the sheet, not the guide.
+
 Rules
 - One person, one height. Mama's three variants are built from the engine's `mama` (`mamaAs()` in `_cast.js`), so her
   height exists once; the two first-love keys share `FIRST_LOVE_H`.

@@ -27,9 +27,11 @@ const adultWith = (h) => ({ ...PROP.adult, hand: +(JADE_HAND / h).toFixed(4), fo
 // Mama's hair (Jade 2026-11-26: "The jaw-length perm throughout"): a jaw-length, side-parted perm at every age
 // (cast/mama/mama_R_rest_heads_v1; mama.glb hair_perm), never a bun or a straight bob.
 CAST.mama.hairStyle = 'perm';
-// first love's hair colour (Jade 2026-11-26, v7: "that color hair" of her reference): a rich dark brown with warm
-// undertones, not black, not medium brown (was 0x352219). The body GLBs carry no materials: this is the only place.
-const FL_HAIR = 0x3d2819;
+// first love's hair colour (Jade 2026-11-26 round 5, v8: "Darker ... match the color of gaius baltar's hair"): a deep,
+// cool-to-neutral dark brown, nearly black in shadow, no red/chestnut (cast/first_love/fl_B_backhead_neck_v8, hair median
+// #2e2420). Base tuned on the RENDER: lit pass hue ~20, sat 0.30 under neutral light (was 0x3d2819: sat 0.6-0.7, orange in
+// mv10 SI1 / closet02). The body GLBs carry no materials: this is the only place.
+const FL_HAIR = 0x1f1915;
 const MAMA_H = CAST.mama.h, FIRST_LOVE_H = 1.78;   // first love: about 5'10", lean (Jade)
 PROP.adultJade19 = adultWith(1.63); PROP.adultJade27 = adultWith(1.65); PROP.adultFirstLove = adultWith(FIRST_LOVE_H);
 const JADE_KID = { skin: 0xe6b996, hair: 0x14110f, legs: 0x4b5a7a, hairStyle: 'bob' };

@@ -1270,3 +1270,11 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Clip check still flags her ~40 mm into the couch seat (kept: it shapes the drape) and the soles (engine fix).
   - Repaint: MG_wide, MG1, MG1_end, MG2, MG2_end.
   - Round-6 questions are collected in work/decisions/NEW_QUESTIONS_R6.md.
+- **cast agent done:**
+  - First love v8 sheets (B/G/A): the hair colour is matched to Gaius Baltar's in the prompt (the character is named,
+    never the actor), measured #2e2420-#3c302a. No face on any study (lead checked G v8).
+  - FL_HAIR 0x3d2819 -> 0x1f1915, tuned on renders.
+  - r4lib.py and _brief_r4.md point at v8.
+  - The v7 sheets stay until decisions.html stops linking them.
+  - Sweep: mv10 (his shots), closet02, mortongrove07. _cast.js changed during the cast agent's tests, so the
+    committed MG r5 renders may carry a test colour.
