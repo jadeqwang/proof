@@ -27,18 +27,20 @@ export function artFrame(at, yaw, tiltBack = 30) {
 // curled up the far flank; the thumb lies along the near-outer flank toward the equator, NOT over the crown; the
 // wrists are supinated (palm up), neutral to slightly extended. From her eyes only the thumbs and the outer edges of the
 // hands show at the sides of the globe, with the forearms entering from the bottom of frame.
-const CRADLE_HAND = { shape: 'cup', curl: { index: [34, 40, 22], middle: [36, 42, 24], ring: [38, 44, 24], little: [40, 46, 26] }, spread: 10, thumb: { opp: 0.25, mcp: 12, ip: 8 } };
+const CRADLE_HAND = { shape: 'cup', curl: { index: [34, 40, 22], middle: [36, 42, 24], ring: [38, 44, 24], little: [40, 46, 26] }, spread: 10, thumb: { opp: 0, sweep: 55, abd: -10, mcp: -5, ip: -5 } };   // hold pass (hold agent): thumb opened out along the flank; at opp 0.1 the thenar sat 18 mm inside the globe's hull
 export function cradle(A, side, o = {}) {
   const U = nrm(A.axis), Lf = nrm(A.left), FW = nrm(crs(Lf, U)), s = side === 'L' ? 1 : -1;
-  const a = (o.a ?? 50) * Math.PI / 180, r = o.r ?? 0.054;              // r: centre to palm centre (body ~0.0475 + palm 0.007)
-  const d = nrm(mix([U, -Math.cos(a)], [Lf, s * Math.sin(a)]));
+  const a = (o.a ?? 50) * Math.PI / 180, r = o.r ?? 0.058;              // r: centre to palm centre (body ~0.0475 + palm 0.007)
+  const d = o.under ? nrm(mix([[0, -1, 0], 1], [FW, o.under[0]], [Lf, s * o.under[1]])) : nrm(mix([U, -Math.cos(a)], [Lf, s * Math.sin(a)]));
   const palm = d.map((x) => -x);
   let fg = nrm(mix([FW, 0.9], [Lf, -s * (o.across ?? 0.15)]));
   fg = nrm(mix([fg, 1], [palm, -dt(fg, palm)]));
-  return { to: r4(mix([A.at, 1], [d, r])), hand: o.hand || CRADLE_HAND, palm: r4(palm), fingers: r4(fg) };
+  return { to: r4(mix([A.at, 1], [d, r])), hand: o.hand || CRADLE_HAND, palm: r4(palm), fingers: r4(fg), grasp: 'cradle', object: 'THE ARTICHOKE' };
 }
 
 // ---------------------------------------------------------------- recurring poses
+const FOREARM = 'figure:jade10:armR';   // the hold check takes her right forearm (a fixed body part) as the object
+const GRAB_R = { m4: 0.033, pull: 0.041, land: 0.038, lead: 0.037 }, GRAB_K = 0.65;
 // she stands at the island with the artichoke lifted in both hands, eyes on its tip: counting spirals
 // (r4) the two hands make the cradle under it (was: palms 'in' on its sides, fingers forward: from her eyes the fingers
 // reached over the crown and the painter drew palms facing her)
@@ -46,18 +48,22 @@ const jadeStudy = (o = {}) => ({ at: JADE_STAND.at, yaw: JADE_STAND.yaw, legs: '
   L: cradle(ART_HELD, 'L'), R: cradle(ART_HELD, 'R'), ...o });
 // the grandmother behind her cart, both hands on the bar, a little stooped; she waits the whole time
 const grandma = (G, o = {}) => ({ at: G.at, yaw: G.cart.yaw, legs: 'stand', spine: { bend: 15 }, head: { look: 'jade10:head' },
-  L: { to: 'cart:handleL', hand: 'grip', palm: 'down', fingers: 'fwd' }, R: { to: 'cart:handleR', hand: 'grip', palm: 'down', fingers: 'fwd' }, ...o });
+  L: cartGrip('L'), R: cartGrip('R'), ...o });
+// (hold pass 2026-11-26) a power grip round the cart's handle bar (r 14 mm): the bar across the palm, thumb toward the other
+// hand, fingers over the top and round under it (was: a palm target 12 mm above the bar, fingers through it)
+const cartGrip = (n) => ({ to: 'cart:bar' + n, hand: 'grip', palm: 'down', hold: { r: 0.014, prop: false, centre: true, axis: 'to:cart:bar' + (n === 'L' ? 'R' : 'L') },
+  grasp: 'power', object: 'handle bar' });
 // Mama further up the aisle at the gondola, reading a shelf (out of the beam)
 const mamaAhead = { at: MAMA_AHEAD.at, yaw: MAMA_AHEAD.yaw, legs: 'stand', noApron: true, spine: { bend: 4 }, head: { look: [-0.95, 1.3, 2.9] },
   L: 'side', R: { to: [-0.92, 1.28, 2.82], hand: 'relax', palm: 'down' } };
 // Mama back at her right side: her right hand comes down onto Jade's right forearm
 const mamaGrab = (o = {}) => ({ at: MAMA_GRAB.at, yaw: MAMA_GRAB.yaw, legs: 'stand', noApron: true, spine: { bend: 12 }, head: { look: 'jade10:head' },
-  R: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: 0.027, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' } }, L: 'side', ...o });   // (2026-11-25) the fingers wrap her forearm (engine hold, no prop); was a palm target 2.2 cm above it
+  R: { to: 'forearm:jade10:R:' + GRAB_K, hand: 'grip', palm: 'down', hold: { r: GRAB_R.pull, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' }, grasp: 'power', object: FOREARM }, L: 'side', ...o });   // (2026-11-25) the fingers wrap her forearm (engine hold, no prop); was a palm target 2.2 cm above it
 // walked away up the aisle (+z): Mama leads by the forearm, Jade is turned side-on and looks back at the artichoke
 const jadeLed = { at: WALK.jade.at, yaw: WALK.jade.yaw, legs: 'stand', legOpts: { ankleL: [0.075, -0.63, 0.12], ankleR: [0.075, -0.63, -0.12] }, spine: { twist: 30, bend: 2 },
   head: { look: 'art', pitchK: 0.9 }, R: { to: WALK.hold, hand: 'relax', palm: 'down' }, L: 'side' };
 const mamaLead = { at: WALK.mama.at, yaw: WALK.mama.yaw, legs: 'stand', noApron: true, legOpts: { ankleL: [0.09, -0.75, 0.18], ankleR: [0.09, -0.75, -0.18] }, spine: { bend: 4, twist: 8 },
-  head: { turn: 0 }, L: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: 0.027, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.1' } }, R: 'side' };
+  head: { turn: 0 }, L: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: GRAB_R.lead, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.1' }, grasp: 'power', object: FOREARM }, R: 'side' };
 const grandmaPass = grandma(GRANDMA_PASS, { head: { nod: 6 }, legOpts: { ankleL: [0.09, -0.715, 0.13], ankleR: [0.09, -0.715, -0.13] } });
 
 const WAIT = { figs: { jade10: jadeStudy(), grandma: grandma(GRANDMA_WAIT), mama: mamaAhead }, cart: GRANDMA_WAIT.cart, art: 'held' };
@@ -67,7 +73,7 @@ const WAIT = { figs: { jade10: jadeStudy(), grandma: grandma(GRANDMA_WAIT), mama
 // the four fingers over the top and down the far side, the grip at mid-forearm, clear of the wrist and the artichoke.
 const mamaGrabM4 = mamaGrab({ spine: { bend: 24, twist: -6 }, head: { look: 'jade10:head' },
   R: { to: 'forearm:jade10:R:0.5', hand: 'grip', palm: [0.35, -0.9, -0.25], elbowAt: [0.20, 0.98, 0.50],
-    hold: { r: 0.026, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' } } });
+    hold: { r: GRAB_R.m4, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' }, grasp: 'power', object: FOREARM } });
 const GRAB = { figs: { jade10: jadeStudy({ head: { look: 'art:tip' } }), grandma: grandma(GRANDMA_WAIT), mama: mamaGrabM4 }, cart: GRANDMA_WAIT.cart, art: 'held' };
 // M4b (r3, Jade on r2: "she should be mid-action shot of pulling her out of the way from blocking the aisle"): the pull
 // itself. Mama has stepped back toward the front of the store past the pallet's end, weight on her back foot, and draws
@@ -80,11 +86,12 @@ const GRAB = { figs: { jade10: jadeStudy({ head: { look: 'art:tip' } }), grandma
 // (unchanged hand, Jade: "mom's hand is correct") is at mid-forearm; the girl's own hand hangs relaxed past it, palm
 // down. The artichoke is clutched one-handed against her stomach in her LEFT hand (palm under the base, fingers up the
 // far flank, thumb up the near flank), not floating where her two hands held it.
-const PULL_ART = artFrame([0.49 + 0.342 * 0.16, 0.90, 0.43 + 0.94 * 0.16], 20, 20);
+const CRADLE_ONE = { under: [0.3, 0], r: 0.068, across: 0.2, hand: { shape: 'cup', curl: { all: [44, 44, 28] }, spread: 12, thumb: { opp: 0.3, mcp: 5, ip: 5 } } };
+const PULL_D = 0.1545, PULL_ART = artFrame([0.49 + 0.342 * PULL_D, 0.90, 0.43 + 0.94 * PULL_D], 20, 20);
 const jadePulled = { at: [0.49, 0.43], yaw: 20, legs: 'stand', legOpts: { ankleR: [0.19, -0.6, 0.03], ankleL: [0.03, -0.62, -0.03] },
   spine: { bend: 9, side: 10, twist: -14 }, head: { look: 'art:tip', tilt: -6 },
   R: { to: [0.02, 0.90, 0.66], hand: 'relax', palm: 'down', fingers: [-0.8, -0.45, 0.4], elbowAt: [0.20, 1.00, 0.62] },
-  L: cradle(PULL_ART, 'L', { a: 30, across: 0.3 }) };
+  L: cradle(PULL_ART, 'L', { ...CRADLE_ONE, under: [0.2, 0.15] }) };
 const mamaPull = mamaGrab({ at: [-0.22, 0.72], yaw: 100, legOpts: { ankleL: [0.09, -0.73, 0.16], ankleR: [0.10, -0.74, -0.24] },
   spine: { bend: -4, twist: -10 }, head: { look: 'jade10:head' } });
 const PULL = { figs: { jade10: jadePulled, grandma: grandma(GRANDMA_WAIT), mama: mamaPull }, cart: GRANDMA_WAIT.cart, art: PULL_ART };
@@ -97,12 +104,13 @@ const PULL = { figs: { jade10: jadePulled, grandma: grandma(GRANDMA_WAIT), mama:
 // low and forward toward the grandmother, palm up, open, fingers extended along the free lane: "go ahead"; Mama looks
 // at her. (Mama facing the camera was tried: the grandmother is straight behind her and out of reach of her eyes.)
 const LIFT_JADE_AT = [0.60, 0.58], LIFT_YAW = 25;
-const LIFT_ART = artFrame([LIFT_JADE_AT[0] + Math.sin(LIFT_YAW * Math.PI / 180) * 0.14, 0.90, LIFT_JADE_AT[1] + Math.cos(LIFT_YAW * Math.PI / 180) * 0.14], LIFT_YAW, 25);
+const LIFT_D = 0.16, LIFT_ART = artFrame([LIFT_JADE_AT[0] + Math.sin(LIFT_YAW * Math.PI / 180) * LIFT_D, 0.90, LIFT_JADE_AT[1] + Math.cos(LIFT_YAW * Math.PI / 180) * LIFT_D], LIFT_YAW, 25);
 const jadeLifted = { at: LIFT_JADE_AT, floor: 0.10, yaw: LIFT_YAW, legs: 'stand', legOpts: { ankleL: [0.07, -0.57, -0.10], ankleR: [-0.07, -0.55, -0.05] },
   spine: { bend: 4, side: -6 }, head: { look: 'art:tip' }, L: cradle(LIFT_ART, 'L'), R: cradle(LIFT_ART, 'R') };
 const mamaLift = { at: [0.28, 0.62], yaw: 175, legs: 'stand', noApron: true, legOpts: { ankleL: [0.14, -0.74, 0.04], ankleR: [-0.15, -0.74, -0.02] },
   spine: { bend: 4, side: -8 }, head: { look: 'grandma:head' },
-  R: { to: [0.69, 1.07, 0.57], hand: { shape: 'flat', curl: { all: [22, 18, 8] }, spread: 10, thumb: { opp: 0.2 } }, palm: [-0.85, 0, 0.5], fingers: [0.45, 0.05, 0.89], elbowAt: [0.50, 1.04, 0.44] },
+  R: { to: [0.739, 1.09, 0.63], hand: { shape: 'flat', curl: { all: [10, 30, 20] }, spread: 10, thumb: { opp: 0, abd: -10, mcp: 0, ip: 0 } }, palm: [-0.94, 0, -0.34], fingers: [-0.34, 0.05, 0.94], elbowAt: [0.617, 1.04, 0.381],
+    grasp: 'liftUnderArm', object: 'figure:jade10:torso' },
   L: { to: [-0.34, 1.14, 0.34], hand: { shape: 'palmUp', spread: 12 }, palm: [-0.15, 0.95, -0.25], fingers: [-0.45, -0.1, -0.88], elbowAt: [-0.12, 1.08, 0.54] } };
 const LIFT = { figs: { jade10: jadeLifted, grandma: grandma(GRANDMA_WAIT), mama: mamaLift }, cart: GRANDMA_WAIT.cart, art: LIFT_ART };
 // M4b (r4, lead's decision 2026-11-26): THE LANDING, after the lift. She has been set down at the island's edge, facing the
@@ -113,12 +121,12 @@ const LIFT = { figs: { jade10: jadeLifted, grandma: grandma(GRANDMA_WAIT), mama:
 // island; her left is the girl's side). Her arm hangs, so the grip is from the side: Mama's hand level, thumb up toward
 // the girl's elbow, palm against the forearm, fingers round the far side, mid-forearm, wrist straight in line with Mama's
 // level forearm.
-const LAND_JADE = { at: [0.70, 0.40], yaw: 90 };
-const LAND_ART = artFrame([LAND_JADE.at[0] + 0.15, 0.90, LAND_JADE.at[1]], 90, 20);
+const LAND_JADE = { at: [0.70, 0.40], yaw: 90 }, LAND_RH = [0.93, 0.82, 0.60], LAND_PALM = [0, -0.85, -0.5];
+const LAND_D = 0.151, LAND_ART = artFrame([LAND_JADE.at[0] + LAND_D, 0.90, LAND_JADE.at[1]], 90, 20);
 const jadeLanded = { at: LAND_JADE.at, yaw: LAND_JADE.yaw, legs: 'stand', spine: { bend: 8, twist: 6 }, head: { look: 'art:tip' },
-  R: { to: [0.80, 0.80, 0.58], hand: 'relax', palm: [0, 0, -1], fingers: [0.35, -0.93, 0.1] }, L: cradle(LAND_ART, 'L', { a: 30, across: 0.3 }) };
+  R: { to: LAND_RH, hand: 'relax', palm: [0, -0.3, -0.95], fingers: [0.9, -0.4, 0.05] }, L: cradle(LAND_ART, 'L', { ...CRADLE_ONE, r: 0.069 }) };
 const mamaLand = { at: [0.64, 0.84], yaw: 150, legs: 'stand', noApron: true, spine: { bend: 18, twist: 8 }, head: { look: 'jade10:head' },
-  L: { to: 'forearm:jade10:R:0.5', hand: 'grip', palm: [0.45, -0.15, -0.88], elbowAt: [0.65, 0.93, 0.81], hold: { r: 0.026, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.1' } }, R: 'side' };
+  L: { to: 'forearm:jade10:R:0.5', hand: 'grip', palm: LAND_PALM, hold: { r: GRAB_R.land, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' }, grasp: 'power', object: FOREARM }, R: 'side' };
 const GRANDMA_START = { cart: { at: [0.15, -0.05], yaw: 0 }, at: [0.15, -0.82] };   // cart nose at z = +0.40, level with the pallet's end
 const LAND = { figs: { jade10: jadeLanded, grandma: grandma(GRANDMA_START, { head: { look: [0.15, 1.3, 3] } }), mama: mamaLand }, cart: GRANDMA_START.cart, art: LAND_ART };
 const LED = { figs: { jade10: jadeLed, mama: mamaLead, grandma: grandmaPass }, cart: GRANDMA_PASS.cart, art: 'island' };

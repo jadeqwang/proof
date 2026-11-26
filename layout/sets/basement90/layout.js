@@ -38,9 +38,15 @@ export const PC = { x: gx(0.6),
   case: { w: 0.42, h: 0.15, d: 0.40, zBack: gz(-2.03) },
   monitor: { w: 0.36, h: 0.33, d: 0.40, foot: 0.03 },
   screen: { w: 0.27, h: 0.20 },
-  keyboard: { w: 0.46, h: 0.03, d: 0.17, z: gz(-1.49) },
+  keyboard: { w: 0.46, h: 0.03, d: 0.17, z: gz(-1.49), tilt: 6 },   // tilt: deg about x, the front (Dad's side) edge down
   printer: { x: gx(1.18), z: gz(-1.78), w: 0.38, h: 0.12, d: 0.3 },   // dot-matrix, fanfold paper feeding up from behind
 };
+// (hold pass 2026-11-26) the tipped keyboard rests on its lowest edge: centre height KB_Y; KB_TOP(dx, dz) = a point on
+// its top face (dx along x from its centre, dz toward Dad), KB_UP = the top face's normal (for fingertip taps, grasp tipOn)
+const KBT = PC.keyboard.tilt * Math.PI / 180;
+export const KB_Y = DESK.top + PC.keyboard.h / 2 * Math.cos(KBT) + PC.keyboard.d / 2 * Math.sin(KBT);
+export const KB_UP = [0, Math.cos(KBT), Math.sin(KBT)];
+export const KB_TOP = (dx, dz) => [PC.x + dx, KB_Y + PC.keyboard.h / 2 * Math.cos(KBT) - dz * Math.sin(KBT), PC.keyboard.z + PC.keyboard.h / 2 * Math.sin(KBT) + dz * Math.cos(KBT)];
 // 5.25 in floppy disks (r4): a flat stack of n in paper sleeves on the desk's left, the top disk out of its sleeve
 export const FLOPPY = { x: gx(0.17), z: gz(-1.83), yaw: -12, n: 11, sleeve: 0.14, sleeveT: 0.0018, jacket: 0.133, jacketT: 0.0013 };
 const scrY = DESK.top + PC.case.h + PC.monitor.foot + PC.monitor.h / 2;

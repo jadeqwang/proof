@@ -309,3 +309,26 @@ it and turning it." He hands it over (MG1), she turns it so the print faces her 
   `import { framedPictureArt } from './art.js';` and, after the two 'framed picture' lines, `g.add(framedPictureArt());`
   (checked in a scratch copy: MG_wide, MG1 lit/line/form). Then re-render and repaint MG1, MG1_end, MG2.
 - The IAS seal decal is the cloth agent's (sweatshirt.js). The mirror stays a blank box (only reference views see it).
+
+## 2026-11-26: hold pass (Jade: objects held so they are supported; correct physics; natural wrists)
+Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`. First love: no change to cameras, face or name.
+- FOLDED stack (MG1, MG1_end, MG_wide, REF_plan). build.js hoodieFolded: the core is ONE box W x T x A (it was a bottom
+  layer plus a front layer inset 6 mm) and the first part of the group, so the check holds the whole stack. The fold at
+  his end now sits against the core's end (it was 4 mm into it). The neckline rim's centre is 16.5 mm higher (it went up
+  to 12 mm into the stack). The flap, waistband and drawstrings lie on top.
+- Hands (shots.js `sideBelow`): both carry it FROM BELOW (tagged twoHandsBelow). Her palms are under the long side edges
+  near her end, turned 50 deg up and in onto the bottom corners, fingers along the edges. His hands take the end corners
+  on his side with the heels of his hands, palms 45 deg up and in, fingers running down along his forearms. Hand =
+  'cup' with curl and thumb opened flat, so the engine swivels the elbow rather than turning the hand off the stack.
+  The power grips round a cylinder at each edge (`edge`, kept) curled the fingers back up through the stack. His spine
+  bend is now 24 (was 18) so he reaches the stack; hers is unchanged at 14. Wrists in range except his right hand,
+  radial +4 deg.
+- MG2 / MG2_end (Jolt cloth): her power grips now close round an 18 mm bundle (Math.max(grip r, 18 mm): the fleece
+  gathered with the 12 mm seam), with the palm square to the seam. Every finger is now 0-2 mm into the bundle; it was
+  10-15 mm through the bare seam. The sidecar gains `cloth_grips` (grip cylinder + cloth vertices within 7 cm of it).
+  holdcheck cannot judge this: it hulls a hanging, pinned soft body as one rigid convex object. The hands and her lap
+  necessarily lie inside that hull, so its "penetrates / falls" says nothing. Still open: the cloth passes up to 13 mm
+  into the fingers, because the sim's fist collider (sweatshirt_jolt.js fist r 22 mm) is thinner than the posed hand
+  (about 38 mm to the backs of the fingers). Fixing it changes the drape: that is a job for the cloth agent, with a look
+  review afterwards.
+- Repaint: MG1, MG1_end (hands under the stack, his end corners), MG2/MG2_end (hands).

@@ -108,15 +108,42 @@ node layout/engine/holdcheck.mjs /tmp/x/basement90                              
   - `GRASPS` is the template table: power, mugHandle, pinch, paperEdge, palmUnder, twoHandsBelow, twoHandsSides and
     shoulderSeams.
   - `graspArms(name, objFrame)` gives arm specs that hold the object (fingers round it, or the palm under its weight).
-    `objectFromHand(name, solvedHand)` places a prop from the solved hand. Neither is wired into any shot yet.
+    `objectFromHand(name, solvedHand)` places a prop from the solved hand. Wired into the shots in the hold pass (below).
   - The sidecar key `holds` has one entry per gripping hand: the object (the engine's held cylinder, or the nearest
     small set object within 3 cm) as world hull points, plus the capsules of every hand on it. The capsules are new
     data from `engine/hand.js` (`capsules`, `joints` on `P.hands[n]`); the render is unchanged.
   - `holdcheck.mjs` runs Rapier (`@dimforge/rapier3d-compat`, installed OUTSIDE the repo in
     `/home/jade/Documents/layout-deps`, override `RAPIER_DIR`). Hands are fixed capsules and the object is a dynamic
     convex hull, with 1 s of gravity.
-  - Its flags are `adjacent` (no contact within 2 mm at t = 0), `penetrates` (more than 3 mm) and `falls` (more than
-    1 cm). It checks the hands only: an object also resting on a table is reported as falling.
+  - Its flags are `adjacent` (no contact within 2 mm at t = 0), `penetrates` (a finger more than 3 mm; palm / thenar
+    10 mm), `sinks into <support>` (more than 3 mm) and `falls / slides` (more than 1 cm).
+- **Hold pass (2026-11-26)**: the grasp templates are wired into the shots, and every hold is checked against its supports.
+  - `engine/hand.js`: held cylinders are wrapped with the pads pressed `SQUEEZE` = 1.2 mm into the surface (grip force:
+    the overlap is what lets friction hold an object in Rapier); each finger wraps a tapered cup at its own radius (the
+    mannequin passes the radius where the fingers are, not the rim); the thumb's phalanges are kept outside the cylinder
+    (they cut ~9 mm into every held cup). `hand: { shape: 'pinch', thumb: { gap } }` leaves `gap` metres between the
+    thumb and index pads (paper, a clipboard), so a pinch closes on the sheet, not through it.
+  - `engine/grasp.js`: `graspArms` tags each arm with `grasp: <template>` and `object: <label>`; `paperEdge` takes
+    `thick`; new templates `restOn` (hand on an object that rests on furniture) and `tipOn` (a fingertip on a point:
+    key taps). Any arm with `grasp` (and optionally `object`, a label substring) is checked.
+  - `engine/main.js` `holdsFor`: object = the arm's `object`, else the engine's held cylinder, else the nearest small set
+    object within 3 cm, else the nearest part of another figure (forearm grabs: checked as FIXED, contact and
+    penetration only). Supports: every visible mesh within 1 cm of the object (tables, counters, laps, arms; not hands)
+    goes to the sidecar as static triangles near the object. Give a multi-mesh object's parts one label, or they count
+    as supports.
+  - `engine/main.js` also: a group with `userData.holdWhole` (market93's artichoke) is hulled as one object; an arm's
+    `object: 'figure:<who>[:<part>]'` targets a part of another figure (fixed), whose own hands are then not counted as
+    support; triangles of a body within 25 mm of any hand are not supports (the mesh body's skin includes the hands);
+    an object gripped by another hand (a pencil) is not a support, one a hand only rests on (a desk) is.
+  - `engine/hand.js` pinch: when the thumb cannot reach the index pad (it could not on the stock pinch: 5 mm apart on an
+    adult, 1.5-2 mm on a child) the index curls until it can; the shadow-play `ring` is left as staged.
+  - `engine/holdcheck.mjs`: hands are chains of balls (Rapier's capsule-vs-convex distance is off by up to 12 mm next to
+    thin objects); contact and penetration are measured on the object's own convex hull planes (three's ConvexHull):
+    Rapier's polyhedron distances were off by up to 2.5 mm on a capped cylinder; sheets (half-thickness < 0.5 mm) are
+    measured against their plane and outline; supports are per-triangle 6 mm prisms extruded away from the object's
+    nearest point (thin objects tunnel through a bare trimesh). `clamped`: an object pressed >= 0.2 mm from opposite
+    faces (a pinched sheet or pencil) is held by friction and skips the drop test, since Rapier cannot hold a mm-scale
+    squeeze (an ideal 8 x 8 x 1 mm slab squeezed 1.4 mm falls 3 m). Audit: `work/hold_audit.md`.
 - Also built and STOPPED (rigged human meshes will replace the mannequins), behind its own switch `--body2` /
   `PROOF_BODY2=1`: a real torso for every figure (`torso.js` rows 'f', 'm' and a new 'c' for children), a shoulder
   girdle (trapezius into an ellipsoid deltoid cap, the arm in the torso's line group, slimmer child arms), costume

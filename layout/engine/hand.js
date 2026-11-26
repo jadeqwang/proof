@@ -15,6 +15,8 @@
 //                the thumb flexes in; `sweep` (deg, in the palm plane, from the finger axis toward the thumb side) and
 //                `abd` (deg, palmar abduction, out of the palm plane) override the metacarpal direction it gives.
 //          mcp, ip  flexion of the thumb's two hinge joints (deg; + curls the thumb across / in front of the palm)
+//          gap   metres between the thumb and index pads for touch: '<finger>' (the thickness of a pinched sheet /
+//                board, so the pads close ON it, not through it; grasp.js paperEdge sets it)
 //          touch 'index' | 'middle' | 'ring' | 'little': solve the thumb (sweep, abd, mcp, ip, starting from the
 //                shape's values) so its pad meets that fingertip's pad (pinch, ring); '<finger>.mid' | '.prox': lay
 //                the thumb pad on the back of that curled phalanx (grip, fist, point, two)
@@ -27,6 +29,7 @@ import { basisQ, rad } from './core.js';
 import { taperGeo, palmGeo, partMesh } from './anatomy.js';
 
 export const FINGERS = ['index', 'middle', 'ring', 'little'];
+export const SQUEEZE = 0.0012;   // m: how far gripping pads press into a held object (soft tissue under grip force)
 
 export const HANDS = {
   flat: { curl: { index: [0, 0, 0], middle: [0, 0, 0], ring: [0, 0, 0], little: [0, 0, 0] }, spread: 1, thumb: { opp: 0, sweep: 24, abd: 4, mcp: 2, ip: 0 } },
@@ -124,11 +127,11 @@ export function thumbChain(th, G = HAND_GEOM) {
 // thumb pad onto a fingertip pad: small pattern search over (sweep, abd, mcp, ip) from the shape's own values
 // touch: '<finger>' = pad to that fingertip's pad; '<finger>.mid' | '<finger>.prox' = the thumb pad laid on the back
 // of that phalanx (a fist's thumb over the curled fingers)
-function solveTouch(pose, G, fing) {
+function solveTouch(pose, G, fing, gapH = 0) {
   const th = pose.thumb, [f, seg = 'tip'] = String(th.touch).split('.'); const fc = fingerChain(f, pose, G);
   const k = { prox: 0, mid: 1, tip: 2 }[seg] ?? 2;
-  let goal;
-  if (k === 2) goal = fc.pts[3].clone().addScaledVector(fc.pad, 0.92 * (G.rad[f][3] + G.trad[3]) * fing);
+  let goal;   // gapH (hand units): the thickness of what is pinched between the pads (hold-fix 2026-11-26: paper / clipboard)
+  if (k === 2) goal = fc.pts[3].clone().addScaledVector(fc.pad, (gapH > 0 ? 1 : 0.92) * (G.rad[f][3] + G.trad[3]) * fing + gapH);
   else goal = fc.pts[k].clone().lerp(fc.pts[k + 1], 0.55).addScaledVector(fc.pads[k], -0.95 * (G.rad[f][k + 1] + G.trad[3]) * fing);
   const [s0, b0] = oppAngles(th.opp);
   let x = [th.sweep ?? s0, th.abd ?? b0, th.mcp ?? 10, th.ip ?? 10]; const x0 = x.slice();
@@ -148,10 +151,13 @@ function solveTouch(pose, G, fing) {
 
 // wrap the fingers round a cylinder held across the palm (axis along x = the thumb axis), centre (cy, cz) in the
 // finger plane, radius R (hand units): each phalanx becomes a chord of the circle the finger's axis runs on
-function wrapPose(pose, G, R, fing) {
+// slope: dR/dx of a tapered object (a cup wider toward the thumb side), so each finger wraps the radius at its own height.
+// The chord circle is widened so each phalanx's MIDDLE (not only its joints) sits on the surface (hold-fix 2026-11-26)
+function wrapPose(pose, G, R, fing, slope = 0) {
   const cy = 0.38, cz = (G.palm.t1 + 0.004) + R; const out = { ...pose, curl: { ...pose.curl } };
   for (const f of FINGERS) {
-    const rho = R + G.rad[f][1] * fing, B = { y: G.mcp[f][1], z: 0 }, L = G.seg.map((k) => G.len[f] * k);
+    const Rf = R + slope * G.mcp[f][0], L = G.seg.map((k) => G.len[f] * k), rt = Rf + Math.max(G.rad[f][1], (G.rad[f][1] + G.rad[f][2]) / 2) * fing;
+    const rho = Math.sqrt(rt * rt + (L[1] / 2) ** 2), B = { y: G.mcp[f][1], z: 0 };
     const dist = (a) => Math.hypot(B.y + L[0] * Math.cos(a) - cy, B.z + L[0] * Math.sin(a) - cz);
     let a1 = 0; for (let a = 0; a <= Math.PI * 0.75; a += 0.01) { a1 = a; if (dist(a) <= rho) break; }
     let p = { y: B.y + L[0] * Math.cos(a1), z: B.z + L[0] * Math.sin(a1) }, phi = Math.atan2(p.z - cz, p.y - cy);
@@ -164,24 +170,45 @@ function wrapPose(pose, G, R, fing) {
     out.curl[f] = [THREE.MathUtils.clamp(c1, 0, 100), THREE.MathUtils.clamp(c2, 0, 110), THREE.MathUtils.clamp(c3, 0, 90)];
   }
   // the thumb round the far side, its pad on the cylinder a little past the front
-  const rt = R + G.trad[2] * fing, th = 0.6;
+  const rt = R + slope * 0.24 + G.trad[2] * fing, th = 0.6;
   out.thumb = { ...pose.thumb, touch: null, goal: [0.24, cy - rt * Math.sin(th), cz + rt * Math.cos(th)] };
-  out.hold = { cy, cz, R };
+  out.hold = { cy, cz, R, slope };
   return out;
 }
-function solveGoal(pose, G, goal) {
+// hold (optional { cy, cz, R }, hand units; the cylinder's axis is x): the thumb's phalanges must stay outside it (hold-fix
+// 2026-11-26: the tip alone was aimed at the surface, so the proximal phalanx cut ~9 mm into a held cup)
+function solveGoal(pose, G, goal, hold = null, fing = 1) {
   const th = pose.thumb, [s0, b0] = oppAngles(th.opp); let x = [th.sweep ?? s0, th.abd ?? b0, th.mcp ?? 10, th.ip ?? 10]; const x0 = x.slice();
   const lo = [-25, -10, -15, -20], hi = [80, 95, 75, 95], g = v3(goal);
-  const cost = (v) => { const p = thumbChain({ ...th, sweep: v[0], abd: v[1], mcp: v[2], ip: v[3] }, G).pts[3]; let c = p.distanceToSquared(g) * 400; for (let k = 0; k < 4; k++) c += ((v[k] - x0[k]) / 60) ** 2 * 0.05; return c; };
+  const inside = (pts) => { if (!hold) return 0; let pen = 0;
+    for (let k = 1; k < 3; k++) for (let s = 0; s <= 1.001; s += 0.25) { const p = pts[k].clone().lerp(pts[k + 1], s), rr = (G.trad[k] + (G.trad[k + 1] - G.trad[k]) * s) * fing;
+      const d = Math.hypot(p.y - hold.cy, p.z - hold.cz) - (hold.R + (hold.slope || 0) * p.x) - rr; if (d < 0) pen = Math.max(pen, -d); }
+    return pen; };
+  const cost = (v) => { const pts = thumbChain({ ...th, sweep: v[0], abd: v[1], mcp: v[2], ip: v[3] }, G).pts, p = pts[3]; let c = p.distanceToSquared(g) * 400; for (let k = 0; k < 4; k++) c += ((v[k] - x0[k]) / 60) ** 2 * 0.05;
+    const pen = inside(pts); return c + pen * pen * 40000; };
   let best = cost(x);
   for (let step = 16; step >= 0.25; step /= 2) { let imp = true; while (imp) { imp = false; for (let k = 0; k < 4; k++) for (const sgn of [-1, 1]) { const y = x.slice(); y[k] = THREE.MathUtils.clamp(y[k] + sgn * step, lo[k], hi[k]); const c = cost(y); if (c < best - 1e-9) { best = c; x = y; imp = true; } } } }
   return { ...th, sweep: x[0], abd: x[1], mcp: x[2], ip: x[3] };
 }
 
+// solveTouch, and for a pad-to-pad touch that the thumb cannot reach (the pinch's index was too straight: the pads stayed
+// 5 mm apart on an adult, 1.5-2 mm on a child), curl the touched finger's MCP / PIP until it can (hold pass 2026-11-26)
+function touchPose(pose, G, fing, gapH = 0) {
+  let th = solveTouch(pose, G, fing, gapH); const [f, seg = 'tip'] = String(pose.thumb.touch).split('.');
+  // only for pinches (and any hand given a thumb.gap): the shadow-play 'ring' is staged as it is (its pads do not meet either)
+  if (seg !== 'tip' || th.touchErr <= 0.002 || !pose.curl[f] || !(pose.name === 'pinch' || pose.thumb.gap != null)) return { ...pose, thumb: th };
+  let best = { pose: { ...pose, thumb: th }, e: th.touchErr }; const c0 = pose.curl[f];
+  for (let dm = -10; dm <= 40; dm += 5) for (let dp = -20; dp <= 30; dp += 10) { if (!dm && !dp) continue;
+    const p2 = { ...pose, curl: { ...pose.curl, [f]: [THREE.MathUtils.clamp(c0[0] + dm, 0, 95), THREE.MathUtils.clamp(c0[1] + dp, 0, 105), c0[2]] } };
+    const t2 = solveTouch(p2, G, fing, gapH); const e = t2.touchErr + 0.0004 * (Math.abs(dm) + Math.abs(dp)) / 10;   // prefer small changes
+    if (e < best.e) best = { pose: { ...p2, thumb: t2 }, e }; if (t2.touchErr < 0.001 && e < best.e + 1e-9) break; }
+  return best.pose;
+}
+
 // a fingertip in hand units for a hand spec (thumb contact solved): arm `tip` placement uses it
-export function tipLocal(spec, kind, finger) {
+export function tipLocal(spec, kind, finger, Lh = 0.19) {
   let pose = resolveHand(spec); const pf = handProfile(kind);
-  if (pose.thumb.touch) pose = { ...pose, thumb: solveTouch(pose, HAND_GEOM, pf.fing) };
+  if (pose.thumb.touch) pose = touchPose(pose, HAND_GEOM, pf.fing, (pose.thumb.gap || 0) / Lh);
   return finger === 'thumb' ? thumbChain(pose.thumb, HAND_GEOM).pts[3] : fingerChain(finger, pose, HAND_GEOM).pts[3];
 }
 
@@ -205,8 +232,10 @@ export function buildHand(side, Lh, spec, wrist, f, n, look, g, opts = {}) {
   const t = side === 'R' ? new THREE.Vector3().crossVectors(f, n) : new THREE.Vector3().crossVectors(n, f); t.normalize();
   const { q, L } = handFrame(t, f, n, Lh, wrist);
   const pf = handProfile(opts.kind), G = HAND_GEOM, id = opts.id || ('hand' + side), rs = opts.radial || 12;
-  if (opts.hold) { pose = wrapPose(pose, G, opts.hold / Lh, pf.fing); pose.thumb = solveGoal(pose, G, pose.thumb.goal); }
-  else if (pose.thumb.touch) pose = { ...pose, thumb: solveTouch(pose, G, pf.fing) };
+  // hold: the pads close SQUEEZE metres into the held surface (soft finger pads under grip force; holdcheck reads the
+  // overlap as the squeeze that lets friction hold the object, hold-fix 2026-11-26)
+  if (opts.hold) { const sq = (opts.squeeze ?? SQUEEZE) / Lh; pose = wrapPose(pose, G, opts.hold / Lh - sq, pf.fing, opts.holdSlope || 0); pose.thumb = solveGoal(pose, G, pose.thumb.goal, pose.hold, pf.fing); pose.hold = { ...pose.hold, R: opts.hold / Lh }; }
+  else if (pose.thumb.touch) pose = touchPose(pose, G, pf.fing, (pose.thumb.gap || 0) / Lh);
   const W = (p) => L(p.x, p.y, p.z);
   const out = { meshes: [], tips: {}, knuckles: {}, pose, capsules: [], joints: {} };   // capsules / joints: world data for engine/holdcheck.mjs and mesh adapters (no effect on the render)
   const add = (m) => { g.add(m); out.meshes.push(m); return m; };

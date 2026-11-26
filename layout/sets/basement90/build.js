@@ -5,7 +5,7 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, applyBeamMask } from '../_beam.js';
 import { artFromCanvas } from '../_art.js';
-import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, DOS, FLOPPY, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
+import { HOUSE, ROOM, DESK, PC, KB_Y, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, DOS, FLOPPY, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
 import { wall, hexa, polyline, swivelChair, r3, hideLabels, footwear } from './kit.js';
 import { FOOTWEAR } from './house.js';
 
@@ -117,6 +117,13 @@ function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, g
   return _dos;
 }
 
+// several meshes (positioned, one look) -> one mesh with their geometry baked in world space
+function mergeMeshes(ms, look) {
+  const pos = [], nrm = [];
+  for (const m of ms) { m.updateMatrix(); const gg = m.geometry.clone().applyMatrix4(m.matrix).toNonIndexed(); pos.push(...gg.attributes.position.array); nrm.push(...gg.attributes.normal.array); }
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('normal', new THREE.Float32BufferAttribute(nrm, 3));
+  return mk(geo, look);
+}
 function furniture(shot) {
   const g = new THREE.Group(); const D = DESK;
   // desk: top, drawer pedestal (right), two legs (left), modesty panel at the back
@@ -129,10 +136,11 @@ function furniture(shot) {
   const C = PC.case, M = PC.monitor, x = PC.x, zc = C.zBack + C.d / 2;
   g.add(tag(box(C.w, C.h, C.d, BEIGE, [x, D.top + C.h / 2, zc]), 'computer (desktop case)'));
   g.add(tag(box(0.15, 0.012, 0.004, DARK, [x + 0.1, D.top + C.h * 0.62, C.zBack + C.d + 0.002]), 'floppy drive')); g.add(tag(box(0.15, 0.012, 0.004, DARK, [x + 0.1, D.top + C.h * 0.3, C.zBack + C.d + 0.002]), 'floppy drive'));
-  g.add(tag(cyl(0.09, 0.11, M.foot, BEIGE, [x, D.top + C.h + M.foot / 2, zc], null, 16), 'CRT monitor'));
+  // (hold pass 2026-11-26) foot, bezel and tube housing as ONE mesh: the monitor is one rigid object for the hold check
+  // (her fingertip on the glass; engine/main.js holdsFor hulls one mesh), resting on the case by its foot
   const my = D.top + C.h + M.foot + M.h / 2;
-  g.add(tag(box(M.w, M.h, M.d * 0.45, BEIGE, [x, my, C.zBack + M.d - M.d * 0.225]), 'CRT monitor'));
-  g.add(tag(box(M.w * 0.72, M.h * 0.78, M.d * 0.55, BEIGE, [x, my, C.zBack + M.d * 0.275 + 0.0]), 'CRT monitor'));
+  g.add(tag(mergeMeshes([cyl(0.09, 0.11, M.foot, BEIGE, [x, D.top + C.h + M.foot / 2, zc], null, 16), box(M.w, M.h, M.d * 0.45, BEIGE, [x, my, C.zBack + M.d - M.d * 0.225]),
+    box(M.w * 0.72, M.h * 0.78, M.d * 0.55, BEIGE, [x, my, C.zBack + M.d * 0.275 + 0.0])], BEIGE), 'CRT monitor'));
   const on = shot.light?.screen !== false, sc = screenCorners().map((p) => V(p));
   // the glass: the canonical DOS screen. Lit: it glows (emissive, the texture in colour); every other mode: the same
   // texture as fixed art (greys in flat / label / form, its edges in line / contour). Screen off: dark glass.
@@ -140,12 +148,18 @@ function furniture(shot) {
   if (on) { g.add(tag(quad(sc, { grey: 0.95, col: 0x101830, emit: 0xffffff, emitI: 0.5, litMap: D0.art, only: ['lit'], noCast: true }), 'screen (the beam source)'));
     g.add(tag(quad(sc, { grey: 0.9, art: D0.art, artGrey: D0.artGrey, artEdge: D0.artEdge, hide: ['lit'], noCast: true }), 'screen (the beam source)')); }
   else g.add(tag(quad(sc, { grey: 0.2, col: 0x101830, noCast: true }), 'screen (the beam source)'));
-  g.add(tag(polyline([...screenCorners()].map((p) => [p[0], p[1], p[2] + 0.0005]), 0.0015, { grey: 0.3, col: 0x30343c, noCast: true }, true), 'screen glass edge'));
+  // hold pass 2 (2026-11-26): the glass edge's tubes are parts of the monitor (same parent, same label), so the hold check
+  // does not take them as a support the monitor sinks into
+  for (const m of [...polyline([...screenCorners()].map((p) => [p[0], p[1], p[2] + 0.0005]), 0.0015, { grey: 0.3, col: 0x30343c, noCast: true }, true).children]) g.add(tag(m, 'CRT monitor'));
   // THE WORD (label mode only): a white sliver over it, the gold underline is drawn under it by the renderer; elsewhere
   // the word is the texture's own characters
   { const a = screenPoint(WORD.u0, WORD.v - TEXT.pitch * 0.95, 0.0012), b = screenPoint(WORD.u1, WORD.v - TEXT.pitch * 0.05, 0.0012);
     g.add(tag(box(b[0] - a[0], a[1] - b[1], 0.0008, { grey: 1, col: 0xffffff, only: ['label'], noCast: true }, [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, a[2]]), 'THE WORD (the one he missed)')); }
-  const KB = PC.keyboard; g.add(tag(box(KB.w, KB.h, KB.d, BEIGE, [x, D.top + KB.h / 2, KB.z], [6, 0, 0]), 'keyboard'));
+  // (hold pass 2026-11-26) the keyboard is tipped 6 deg toward Dad; its centre is raised so its lowest edge rests ON the
+  // desk (was centred at half its height: the tipped edges sank 9 mm into the top), and stands on its two fold-out feet
+  // at the back (one mesh with the body: a tipped box on one edge would rock flat). KB_Y in layout.js, shared with the taps.
+  { const KB = PC.keyboard, fh = KB.d * Math.sin(rad(KB.tilt)), fz = KB.z - KB.d / 2 * Math.cos(rad(KB.tilt)) + 0.012;
+    g.add(tag(mergeMeshes([box(KB.w, KB.h, KB.d, BEIGE, [x, KB_Y, KB.z], [KB.tilt, 0, 0]), ...[-1, 1].map((s) => box(0.03, fh, 0.016, BEIGE, [x + s * KB.w * 0.4, D.top + fh / 2, fz]))], BEIGE), 'keyboard')); }
   const PR = PC.printer; g.add(tag(box(PR.w, PR.h, PR.d, BEIGE, [PR.x, D.top + PR.h / 2, PR.z]), 'dot-matrix printer'));
   g.add(tag(box(PR.w * 0.62, 0.3, 0.004, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, D.top + PR.h + 0.1, PR.z - 0.07], [-22, 0, 0]), 'fanfold paper'));
   g.add(tag(box(0.24, 0.05, 0.28, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, 0.025, D.z1 + 0.25]), 'fanfold paper'));

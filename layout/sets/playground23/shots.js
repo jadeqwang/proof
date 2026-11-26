@@ -10,7 +10,7 @@ import { FAMILY } from './layout.js';
 const family = (o = {}) => ({
   jade: { at: FAMILY.jade, yaw: 188, legs: 'stand', head: { look: 'mote' }, L: 'side', R: 'side', ...(o.jade || {}) },
   partner: { at: FAMILY.partner, yaw: 176, legs: 'stand', head: { look: [-0.1, 1.6, -1.0] }, L: 'side',
-    R: { to: 'toddler:hip', off: [0.02, -0.06, -0.1], hand: 'cup', palm: 'up', fingers: [0.6, 0, -0.8], elbow: 'down' }, ...(o.partner || {}) },
+    R: { to: 'toddler:hip', off: [0.02, -0.09, -0.1], hand: { shape: 'flat', curl: { all: [10, 10, 5] } }, palm: 'up', fingers: [0.6, 0, -0.8], elbow: 'down', grasp: 'palmUnder', object: 'figure:toddler:leg' }, ...(o.partner || {}) },
   toddler: { at: FAMILY.toddler, yaw: 172, legs: 'seat', legOpts: { seatH: 0.16, footFwd: 0.1 }, spine: { bend: 4 }, head: { look: [0.16, 1.3, -1.0] },
     L: { to: 'partner:shoulderR', off: [0.0, 0.02, -0.06], hand: 'relax' }, R: 'lap', ...(o.toddler || {}) },
 });

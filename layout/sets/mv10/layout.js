@@ -403,6 +403,11 @@ export const OTR_MICROWAVE = { x0: 4.89 - 0.40, x1: 4.89, z0: STOVE.z0, z1: STOV
 // Jade: a GIANT punchbowl of lemonade to the right of the stove (on the counter over the dishwasher), with a ladle and a
 // stack of cups. Size OURS: 0.50 m across, 0.20 deep, on a short foot (a big glass punchbowl).
 export const PUNCHBOWL = { at: [4.57, 8.08], r: 0.25, h: 0.20, foot: 0.06, cupsAt: [[4.62, 8.55], [4.48, 8.62]], cupsN: 22, kind: 'giant glass punchbowl of lemonade (Jade); size OURS' };
+// the party ladle leaning in the punchbowl (build.js punchbowl; T1's hand on it, shots.js): foot = the bowl's centre (in the
+// lemonade), lean = up the handle, L = handle length from the foot, t0 = where the handle starts (just above the lemonade,
+// hold pass 2026-11-26: it ran down into the liquid, which the hold check counts as a solid)
+export const punchLadle = (y = 0.91, fill = 0.8) => { const yl = y + PUNCHBOWL.foot + PUNCHBOWL.h * fill, k = Math.hypot(-0.35, 1, 0.25);
+  return { foot: [PUNCHBOWL.at[0] + 0.05, yl - 0.03, PUNCHBOWL.at[1] - 0.04], lean: [-0.35 / k, 1 / k, 0.25 / k], L: 0.40, t0: 0.042, yl }; };
 // the party food (Jade: appetizers spread across the dining table, snacks around the counters). WHICH foods: OURS, generic.
 // [kind, shape ('round' r | 'rect' w d), x, z, label]
 export const PARTY_FOOD = {
@@ -424,7 +429,7 @@ export const PREP = { surface: 'counter by the sink', y: COUNTER_H, board: { at:
   lemonsBowl: { at: [4.73, 9.56], r: 0.15 }, rindsBowl: { at: [4.775, 9.06], r: 0.11 }, punch: { at: [4.57, 8.45] }, punchFill: 0.55, sugar: { at: [4.80, 8.80] }, pitcher: { at: [4.225, 9.63], r: 0.065 },
   halves: [[4.43, 9.02, 'up'], [4.58, 9.07, 'up']], rinds: 5,
   ladle: { bowlAt: [4.45, 8.50], bowlR: 0.045, len: 0.24, rise: 60, yawDeg: -30, handleR: 0.0085, hook: 0.07, y0: 0.40, lift: 0.03 },
-  friendAt: [3.84, 8.44], jadeAt: [3.98, 9.02] };
+  friendAt: [3.84, 8.44], jadeAt: [4.06, 9.10] };   // jadeAt: 11 cm nearer the corner (hold pass 2026-11-26: her arms could not reach the reamer)
 // "pale IKEA dinner table" with "pale benches, tucked in": end-on to the SSW wall (Jade). 1.8 x 0.9 m: OURS.
 export const DINING = { x0: T, x1: T + 1.8, z0: 7.2, z1: 8.1, h: 0.74, col: 0xe2cfa6,
   benches: [{ x0: 0.3, x1: 1.8, z0: 6.98, z1: 7.30 }, { x0: 0.3, x1: 1.8, z0: 8.0, z1: 8.32 }], benchH: 0.45 };

@@ -288,17 +288,18 @@ function hoodieFolded() {
   const pc = V(S.c); const L = (x, y, z) => pc.clone().add(V(x * hand, y, z).applyQuaternion(q));   // x along u (his left), y up (n), z toward her (w)
   const put = (m, p, label) => { m.position.copy(p); m.quaternion.copy(q); g.add(tag(m, label)); return m; };
   const T = S.thick, A = S.along, W = S.across, BODY = 'IAS hoodie (white, folded)';
-  put(box(W, T * 0.55, A, WHITE), L(0, -T * 0.2, 0), BODY);                                  // the folded layers underneath
-  put(box(W - 0.012, T * 0.4, A - 0.01, WHITE), L(0, T * 0.25, 0), BODY);                    // the front (top layer)
+  // hold pass 2026-11-26: the stack's core is ONE box (was the folded layers + a front layer 6 mm inset), the first part
+  // of the group, so the hold check takes the whole stack as the held object; everything below lies ON it, none inside it
+  put(box(W, T, A, WHITE), L(0, 0, 0), BODY);                                                 // the folded layers and the front (top layer)
   // the flap: the waistband end folded up over the front from HIS end (z = -A/2), 0.15 m long, a little proud of the front
   const fl = S.flap, fz = -A / 2 + fl / 2;
   put(box(W - 0.004, 0.014, fl - 0.03, WHITE), L(0, T / 2 + 0.007, fz - 0.015), 'hoodie: lower body folded up over the front (plain back panel)');
   put(box(W - 0.004, 0.016, 0.035, RIB), L(0, T / 2 + 0.008, -A / 2 + fl - 0.0175), 'hoodie waistband (ribbed), its edge across the seal');
-  put(box(W, T + 0.016, 0.02, WHITE), L(0, 0.004, -A / 2 - 0.006), 'hoodie: the fold (his end)');
+  put(box(W, T + 0.016, 0.02, WHITE), L(0, 0.004, -A / 2 - 0.01), 'hoodie: the fold (his end)');   // against the core's end (hold pass: was 4 mm into it)
   // the neckline at her end: the hood folded under, its rim a half ring on the top edge
   { const tor = mk(new THREE.TorusGeometry(0.07, 0.013, 8, 24, Math.PI), WHITE);
     tor.quaternion.copy(q).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0)));
-    tor.position.copy(L(0, T / 2 + 0.004, A / 2 - 0.005)); g.add(tag(tor, 'hoodie neckline (hood folded under)')); }
+    tor.position.copy(L(0, T / 2 + 0.0205, A / 2 - 0.005)); g.add(tag(tor, 'hoodie neckline (hood folded under)')); }   // its rim ON the top (hold pass: centre 16.5 mm up, it went up to 12 mm into the stack)
   // two flat drawstrings from the neckline lying across the top toward him (over the upper rim of the seal)
   for (const s of [-1, 1]) put(box(0.01, 0.003, 0.13, STR), L(s * 0.045, T / 2 + 0.004, A / 2 - 0.09), 'hoodie drawstring');
   // the seal on the front, upright for the camera (its top toward her), clipped by the flap's edge
@@ -377,7 +378,7 @@ const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && 
 
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
-  const state = shot.hoodie || 'unfolding';
+  const state = shot.hoodie || 'unfolding'; let clothGrips = null;
   root.add(room()); root.add(couch()); root.add(furniture());
   // ---- GARMENT HOOK (round 3). The cloth-simulated hoodie is a separate module, layout/sets/mortongrove07/sweatshirt.js
   // (the cloth agent's; not written here). Its anchor per state is GARMENT[state] in layout.js: `origin` = collar centre,
@@ -399,8 +400,17 @@ export function build(shot, { makeCam }) {
     // her hands close round what the cloth is held by (Jade: support the object, natural wrists): a power grip round the
     // pinched bundle / the rolled shoulder seam, palm toward it from her side (engine/grasp.js), at the cloth's own grip
     const her = shot.figs?.jade27, chest = [HER.at[0], 1.0, HER.at[1]];
+    // hold pass 2026-11-26: for the sidecar (key cloth_grips): what each hand closes round and the cloth vertices round it,
+    // so a check can test the fingers against the gathered cloth (the hold check's convex hull of a hanging garment is not a rigid object)
+    clothGrips = {}; for (const k of ['L', 'R']) { const gr = H.grip?.[k]; if (!gr) continue; const pts = [], c = V(gr.at), v = new THREE.Vector3();
+      cloth.traverse((o) => { if (!o.isMesh) return; const pos = o.geometry.attributes.position; o.updateMatrixWorld();
+        for (let i = 0; i < pos.count && pts.length < 3000; i++) { v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); if (v.distanceTo(c) < 0.07) pts.push(r3(v)); } });
+      clothGrips[k] = { at: r3(c), axis: gr.axis.map((x) => +x.toFixed(4)), r: gr.r, what: gr.what, cloth_pts_within_7cm: pts }; }
     if (her) for (const k of ['L', 'R']) { const gr = H.grip?.[k]; if (!gr) continue;
-      const spec = graspArms('power', { centre: gr.at, axis: gr.axis, r: gr.r }, { side: k, toward: chest })[k];
+      // hold pass 2026-11-26: the hand closes round the fistful of fleece gathered with the seam, 18 mm like the pinched
+      // pleat (the bare 12 mm seam roll left the palm and the little finger 10-15 mm through it: the grip wrap fits 18 mm)
+      const spec = graspArms('power', { centre: gr.at, axis: gr.axis, r: Math.max(gr.r, 0.018) }, { side: k, toward: chest })[k];
+      { const a = V(gr.axis).normalize(), p = V(spec.palm); spec.palm = p.addScaledVector(a, -p.dot(a)).normalize().toArray(); }   // the palm square to the seam (else the wrap closes askew through it)
       her[k] = { ...(typeof her[k] === 'object' ? her[k] : {}), ...spec }; } }
   const solids = [], sunk = [];
   for (const A of Object.values(APERTURES)) if (A) { solids.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12 })); sunk.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12, sink: 0.01 })); }
@@ -464,7 +474,8 @@ export function build(shot, { makeCam }) {
         chest_m: SHIRT.chest, length_m: 0.69,
         collar: pt(G.origin), seal, grips: Object.fromEntries(Object.entries(G.grips).map(([k, v]) => [k, pt(v)])),
         anchor: { state, origin: r3(V(G.origin)), right: G.right.map((v) => +v.toFixed(4)), up: G.up.map((v) => +v.toFixed(4)), out: G.out.map((v) => +v.toFixed(4)), note: 'GARMENT[state] in layout.js: the hook for the cloth module sweatshirt.js' },
-        note: TS ? 'her two hands close on the shoulder seams, 0.50 m apart, the front toward her' : FS ? 'each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers' : 'her two hands close on the shoulder seams (thumbs behind, fingers over the top); sleeves hang beside the front; the pocket is on the swinging part\'s underside' },
+        note: TS ? 'her two hands close on the shoulder seams, 0.50 m apart, the front toward her' : FS ? 'both carry it from below: each palm under a long side edge, turned up and in onto its bottom corner, fingers along the edge; his two at his end (the heels of his hands on its end corners), hers near hers' : 'her two hands close on the shoulder seams (thumbs behind, fingers over the top); sleeves hang beside the front; the pocket is on the swinging part\'s underside' },
+      cloth_grips: clothGrips || undefined,
       first_love: { who: 'first love (a real person: never named, never face-on)', face_shown: false,
         facing_camera_deg: he ? +(Math.acos(Math.max(-1, Math.min(1, he.headFwd.dot(c.position.clone().sub(he.head).normalize())))) * 180 / Math.PI).toFixed(0) : null,
         hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', feet: 'Birkenstock-type cork sandals (Naot), bare feet', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',

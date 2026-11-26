@@ -134,3 +134,16 @@ three phalanges and real knuckles, an opposable thumb (CMC, MCP, IP), a shoulder
 - Mishap: between 10:45 and 10:58 a duplicate declaration in engine/gaze.js broke every render that started in that
   window. A stray command at about 11:04 also wrote `--gaze` attic88 renders into media/layout/attic88/. Those were
   restored: the two tracked files were checked out, and the 494 new files deleted.
+
+## 2026-11-26: hold pass (grasp templates wired, every hold physics-checked)
+- Engine fixes (NOT gated: renders change at held cups and pinches): hand.js thumb kept outside a held cylinder (was ~9 mm
+  into every mv10 cup), pad squeeze 1.2 mm, per-finger taper radius, chord circle widened so phalanx middles sit on the
+  surface; `thumb.gap` for pinches on sheets; mannequin.js wraps a tapered cup at the radius under the fingers (was the
+  rim: a 3 mm gap, so every cup slid down 3-5 cm until it wedged). grasp.js tags arms (`grasp`, `object`), paperEdge
+  thickness, new restOn / tipOn. main.js holdsFor (gaze only) adds supports (static triangles) and fixed body parts;
+  holdcheck.mjs simulates with them. Shots: see each set's NOTES.md "2026-11-26: hold pass". Audit: work/hold_audit.md.
+- Later the same day (hold pass, round 2): holdcheck measures contact on its own hull planes (three ConvexHull; Rapier's
+  polyhedron distances were wrong by up to 2.5 mm on a pencil), hands as ball chains, sheets analytically, `clamped`
+  for squeezes from opposite faces; pinch thumbs now reach the index pad (index curls; ring shape untouched); holdsFor:
+  holdWhole groups, `figure:<who>:<part>` objects, body triangles within 25 mm of a hand dropped from supports, gripped
+  objects are not supports. Sub-agent sets: see each set's NOTES.md.

@@ -840,3 +840,49 @@ and measured hits. Times written elsewhere in this file before this section are 
   face in code at 9:30. North-wall bookshelf spines: fixed greeked spine textures (no readable titles).
 - Only REF_wide sees the west-wall art; the spines show in V1a, V1c, V1e, V1f, V1g, V1d_8_end.
 - Not textured (questions): upholstery (paintings alternate floral / plain), lace antimacassars.
+
+## 2026-11-26: hold pass
+
+Every hand on an object is checked now (`--gaze` sidecar `holds`, engine/holdcheck.mjs). Set files only (shots.js, build.js).
+- **Uncle (V1a, V1b).** The small thing is a faceted wad of 草纸 (icosahedron), not a sphere: a sphere rolls off any palm
+  that is not dead level (Rapier has no rolling resistance). build.js `ballAt` places it from the SOLVED right palm, sunk
+  0.3 mm into the palm strips (was 24 mm over the palm centre: it floated). His left (watch) hand is `uncleHold`: the
+  index pad on the wad's top (`grasp: 'tipOn'`, `object: 'something small'`; was matched to his own wristwatch).
+  `BALL` = H + 19.7 mm. PASS, mannequin and mesh.
+- **Tearing pinches (V1c, V1d_1, V1d_4, V1d_8).** The pinches are tagged `grasp: 'pinch'`, `object: '草纸: the tiny
+  pieces'`. paperProps now lays each half in the plane that runs between ITS hand's thumb and index pads (`padGrip`: the
+  internal tangent of the two distal pads), so the thumb is on one face and the index on the other. Before, the fixed
+  `tilt` ran the paper through the pads. Visible change: the piece stands up between the fingertips, facing her (about 20 deg
+  off vertical) instead of lying at 25-35 deg; `rip.tilt` / `held.tilt` are no longer used while she holds it.
+  Both pads now touch the piece (brute-force distance -0.6 to +0.1 mm). The Rapier check still fails (see "check" below).
+- **V1d_2.** Her left half is laid the same way (on her own left-right axis; the right hand is away). Her right hand now
+  holds its half flat on the table under the index pad (`lay.R`). build.js lays a `held.flat` piece from the index tip.
+- **PD** (where the half is put down) is now F + (-0.05, -0.118), 12 mm inside the table's north edge. The old PD,
+  F + (-0.07, +0.02), was 14 cm beyond her reach: her pinch ended 19 mm inside the table top.
+- **State B hand (`lay`: REF_*, V1e-V1h, PB1).** Her right index pad rests on a piece lying on the table (`tipOn`,
+  `object: '草纸'`): the half at PD in the after shots, the near generation-8 piece otherwise. Her spine bend goes from 30
+  to 40 (FLAG: she leans 10 deg further over the table corner). At 30 the fingertip only reached the table's edge; the
+  old palm target was out of reach and the fingers sank 6 mm into the table. LAY_TIP = F + (-0.05, -0.11), y = top + 3.1 mm
+  (the tip lands 1.2 cm short of LAY_TIP).
+- **Generation-8 pieces (heroPieces)** now lie ON the table (TABLE.h + 0.6 mm; they were 3.4 mm above it). Every centroid
+  is at least 12 mm inside the north edge: two pieces overhung it by half, and fell off in the check.
+- **V1d_8_end.** Her hands are out of frame. Twisted 35 deg, the tearing pinches could not close (nothing between them,
+  wrists past range), so the hands go to her lap. The table shows V1d_8's pieces (it was the generation-8 layout,
+  out of continuity).
+- **Check.** holdcheck.mjs results for paper are not reliable yet (engine, reported to the hold agent):
+  - Rapier's `contactCollider` between a capsule lying along a face and a convex hull or cuboid returns wrong distances
+    (up to 12 mm off; repro scratch `skbc_d7.mjs`). Chains of balls give the right numbers.
+  - A thin, ragged paper hull falls through the trimesh table top even with no hands (repro `skbc_t8.mjs`). A square
+    plate, or a cuboid table, holds it.
+  - The child-3 pinch leaves its pads about 0.8 mm apart (solveTouch does not close them), so a piece is squeezed only
+    0.1-0.6 mm and slides 1-3 cm in 1 s.
+  With a corrected checker (balls; convex slabs for supports; scratch `skbc_chk2.mjs`): V1e-V1h, V1d_2 R and V1d_1 R
+  pass; the generation-8 piece on the table passes or slides 1-15 cm between shots with identical geometry (chaotic).
+- **Round 2 (after the engine's ball-chain / prism / pinch changes).** padGrip's pads-overlap branch (the hold agent's) is
+  kept, with one fix: the tear line and the slide (`start`, `shift`) move along `ac` (in the pad plane), not along `across`,
+  which carried the halves off the plane (both pads ended on one side of the paper). By brute-force distance both pads
+  now press 0.5-0.9 mm into each half. V1d_2: the right half lies at PD under her index pad (`laid`, as from V1d_4 on).
+  State B / after shots, PB1, REF_*, V1a/V1b: PASS in mannequin and mesh. Tearing pinches: still FAIL in holdcheck. A
+  1 mm slab 8 x 8 mm, set exactly between the overlapping pads and square to the pad axis, also falls 3 m (scratch
+  `skbc_t13.mjs`). Rapier reports a point 5 mm off the plane of the thickened half as inside its hull (`skbc_t11.mjs`).
+  Larger squares hit index2 / thumb1, because the child pinch converges behind the pads.

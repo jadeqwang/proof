@@ -13,7 +13,7 @@ import { artPlane, decalMesh } from '../_art.js';
 import { LOGOS, MEATBALL as MB, SR71 } from './art.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
   COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
-  TREE, GRAPEFRUIT, POI, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
+  TREE, GRAPEFRUIT, POI, punchLadle, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
 
 // ---------------------------------------------------------------- cast (set-local, additive: engine/mannequin.js is not edited)
 // Guests are costume and posture only: their eyes, nose and mouth are removed after the figure is built.
@@ -208,7 +208,9 @@ function placeBooks(g, list, cu, start, dir, limit, half) {
 function spinePlane(b, flat, [cx, cy], half) {
   const L = bookLook(b), a0 = spineArt(b, L.col), a = flat ? a0.flat : a0;
   const m = flat ? artPlane(a, b.h - 0.002, b.w - 0.0012, { grey: L.grey, col: L.col }) : artPlane(a, b.w - 0.0012, b.h, { grey: L.grey, col: L.col });
-  m.position.set(cx, cy, SHELF.spineZ + 0.0006); m.userData.book = b.t; return tag(m, bookLabel(b, half));
+  m.position.set(cx, cy, SHELF.spineZ + 0.0006); m.userData.book = b.t;
+  // its own label (hold pass 2026-11-26): with the book's label the hold check took this paper-thin plane for the book
+  return tag(m, 'spine lettering: ' + bookLabel(b, half).replace(' (', ', ').replace(')', ''));
 }
 function shelfObject(o) {
   const g = new THREE.Group(), A = (m) => g.add(m);
@@ -322,14 +324,17 @@ function food(g, [shape, size, x, z, lab], y, R) {
     const n = Math.round(r * 60); for (let k = 0; k < n; k++) { const a = R() * Math.PI * 2, rr = Math.sqrt(R()) * r * 0.78;
       g.add(tag(ball(0.018 + R() * 0.01, { grey: 0.5 + R() * 0.4, col: [0xc85a3a, 0x6a9a4a, 0xe8d8a0, 0xa04a6a][k % 4] }, [x + Math.cos(a) * rr, y + 0.03, z + Math.sin(a) * rr], [1, 0.7, 1]), lab)); }
     return; }
-  const [w, d] = size; g.add(tag(box(w, 0.02, d, /napkins/.test(lab) ? { grey: 0.95, col: 0xf0ece0 } : { grey: 0.6, col: 0xa07a50 }, [x, y + 0.01, z]), lab));
+  const [w, d] = size;
+  // hold pass (2026-11-26): a bag stands on the counter itself (it sat 1 cm down inside its tray, which had the same label)
+  if (/bag/.test(lab)) { g.add(tag(box(w * 0.9, 0.08, d * 0.9, { grey: 0.55, col: 0xc8402a }, [x, y + 0.04, z]), lab)); return; }
+  g.add(tag(box(w, 0.02, d, /napkins/.test(lab) ? { grey: 0.95, col: 0xf0ece0 } : { grey: 0.6, col: 0xa07a50 }, [x, y + 0.01, z]), lab));
   if (/napkins/.test(lab)) { g.add(tag(box(w, 0.04, d, { grey: 0.95, col: 0xf0ece0 }, [x, y + 0.03, z]), lab)); return; }
-  if (/bag/.test(lab)) { g.add(tag(box(w * 0.9, 0.08, d * 0.9, { grey: 0.55, col: 0xc8402a }, [x, y + 0.05, z]), lab)); return; }
   for (let i = 0; i < Math.floor(w / 0.06); i++) for (let j = 0; j < Math.floor(d / 0.06); j++)
     g.add(tag(box(0.04, 0.02, 0.04, { grey: 0.6 + 0.3 * R(), col: [0xe8c86a, 0xd8b070, 0xb07a4a][(i + j) % 3] }, [x - w / 2 + 0.03 + i * 0.06, y + 0.03, z - d / 2 + 0.03 + j * 0.06]), lab));
 }
 // the giant punchbowl (party: on the counter right of the stove, full, a ladle in it; prep: on the dining table, being
 // mixed, a long wooden spoon). Returns the top of the spoon / ladle handle (for a hand).
+const PREP_HALF_Y = 0.105 - 0.002;   // the lemon half's cut face above the counter: the reamer cone's tip (y + 0.075 + 0.03), 2 mm in
 function punchbowl(g, [x, z], y, { fill = 0.8, tool = 'ladle', lab = 'giant punchbowl of lemonade' } = {}) {
   const P = PUNCHBOWL, k = P.h / P.r, yb = y + P.foot;
   g.add(tag(cyl(0.09, 0.12, P.foot, GLASSY, [x, y + P.foot / 2, z], null, 28), lab + ' (foot)'));
@@ -340,7 +345,8 @@ function punchbowl(g, [x, z], y, { fill = 0.8, tool = 'ladle', lab = 'giant punc
     g.add(tag(cyl(0.035, 0.035, 0.006, { ...FLESH, grey: 0.93 }, [x + Math.cos(a) * rr, yl + 0.005, z + Math.sin(a) * rr], null, 16), 'lemon slices (floating)')); }
   if (tool === 'none') return null;   // V3b_prep: the ladle is built with the hand that holds it (ladleGrip.js)
   const lean = V(-0.35, 1, 0.25).normalize(), foot = V(x + 0.05, yl - 0.03, z - 0.04), L = tool === 'ladle' ? 0.40 : 0.42, top = foot.clone().addScaledVector(lean, L);
-  const h = cyl(tool === 'ladle' ? 0.008 : 0.011, tool === 'ladle' ? 0.008 : 0.011, L, tool === 'ladle' ? STEEL : WOOD, foot.clone().addScaledVector(lean, L / 2).toArray(), null, 8);
+  const t0 = tool === 'ladle' ? punchLadle(y, fill).t0 : 0;   // the ladle's handle starts just above the lemonade (layout.js punchLadle)
+  const h = cyl(tool === 'ladle' ? 0.008 : 0.011, tool === 'ladle' ? 0.008 : 0.011, L - t0, tool === 'ladle' ? STEEL : WOOD, foot.clone().addScaledVector(lean, (L + t0) / 2).toArray(), null, 8);
   h.quaternion.setFromUnitVectors(V(0, 1, 0), lean); g.add(tag(h, tool === 'ladle' ? 'ladle' : 'long wooden spoon (stirring)'));
   if (tool === 'ladle') { const c = bowlMesh(0.045, 0.8, STEEL); c.position.copy(foot).add(V(0, 0.02, 0)); g.add(tag(c, 'ladle')); }
   return top;
@@ -423,10 +429,14 @@ function kitchen(g, dressing) {
     // the glass reamer (juicer): a dish with a ribbed cone, juice in the dish, a half pressed on it (cut face down)
     { const [x, z] = P.reamer.at, r = P.reamer.r;
       g.add(tag(cyl(r, r * 0.85, 0.045, GLASSY, [x, y + 0.0225, z], null, 32), 'juicer (glass reamer)'));
-      g.add(tag(cyl(r * 0.85, r * 0.85, 0.004, LEMONADE, [x, y + 0.035, z], null, 32), 'juice (in the reamer)'));
-      g.add(tag(cyl(0.008, 0.045, 0.06, GLASSY, [x, y + 0.075, z], null, 10), 'juicer (ribbed cone)'));
-      const d = mk(new THREE.SphereGeometry(TREE.lemonR, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), LEMON); d.scale.set(1, 1.22, 1); d.position.set(x, y + 0.085, z); g.add(tag(d, 'lemon half (pressed on the juicer)'));
-      g.add(tag(box(0.03, 0.01, 0.08, GLASSY, [x, y + 0.03, z - r - 0.03]), 'juicer (handle)')); }
+      // hold pass (2026-11-26): the juice, the cone and the handle carry the dish's label: ONE object for the hold check (the
+      // juice lay inside the dish's hull, the handle overlapped its wall; parts with other labels count as its supports)
+      g.add(tag(cyl(r * 0.85, r * 0.85, 0.004, LEMONADE, [x, y + 0.035, z], null, 32), 'juicer (glass reamer)'));
+      g.add(tag(cyl(0.008, 0.045, 0.06, GLASSY, [x, y + 0.075, z], null, 10), 'juicer (glass reamer)'));
+      const d = mk(new THREE.SphereGeometry(TREE.lemonR, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), LEMON); d.scale.set(1, 1.22, 1); d.position.set(x, y + PREP_HALF_Y, z); g.add(tag(d, 'lemon half (pressed on the juicer)'));
+      // hold pass (2026-11-26): the half's cut face now sits ON the cone's tip (it was 2 cm down over it); her left hand
+      // rests on the dish's rim (shots.js prepFigs)
+      g.add(tag(box(0.03, 0.01, 0.08, GLASSY, [x, y + 0.03, z - r - 0.03]), 'juicer (glass reamer)')); }
     // the bowl of picked lemons (from V3b), two with leaves still on
     { const [x, z] = P.lemonsBowl.at, r = P.lemonsBowl.r, b = bowlMesh(r, 0.6, CERAMIC); b.position.set(x, y + 0.6 * r, z); g.add(tag(b, 'bowl of picked lemons'));
       [[-0.05, -0.04], [0.05, -0.03], [0.0, 0.06], [-0.06, 0.05]].forEach(([dx, dz], k) => { g.add(tag(ball(TREE.lemonR, LEMON, [x + dx, y + 0.08 + (k % 2) * 0.03, z + dz], [1, 0.85, 1.22]), 'lemons (picked, pomelo-sized)'));
@@ -585,13 +595,21 @@ function yard(shot, lt) {
       // shot.poiTrail === false: the flames only, no swept circles (SI1: the circles painted as a gold ring round her head)
       if (shot.poiTrail !== false) { const t = mk(new THREE.TorusGeometry(POI.r, 0.012, 6, 48), { ...FIRE, emitI: 0.8 });
         t.position.set(...c); t.rotation.y = rad(POI.yaw + 90); g.add(tag(t, 'fire poi (circle swept by the flame)')); }
-      const a = rad(shot.poiPhase ?? 40) + i * Math.PI * 0.8, f = rad(POI.yaw), fx = Math.sin(f), fz = Math.cos(f);
-      const hp = [c[0] + Math.cos(a) * POI.r * fx, c[1] + Math.sin(a) * POI.r, c[2] + Math.cos(a) * POI.r * fz];
+      const { hp, d, Lt } = poiHead(shot, i);
       g.add(tag(ball(POI.headR * 2.2, FIRE, hp, [1, 1.5, 1]), 'fire poi flame'));
-      const teth = cyl(0.004, 0.004, POI.r, { grey: 0.2, col: 0x222222, noCast: true }, [(c[0] + hp[0]) / 2, (c[1] + hp[1]) / 2, (c[2] + hp[2]) / 2], null, 5);
-      teth.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), V(hp).sub(V(c)).normalize()); g.add(tag(teth, 'poi tether')); }); }
+      // the tether: from the knob in his fist (centred on the circle's centre; the knob is the hand's held prop, shots.js
+      // poiFist) to the flame's surface (hold pass 2026-11-26: it ran from the empty fist on INTO the flame)
+      const t0 = 0.055, teth = cyl(0.004, 0.004, Lt - t0, { grey: 0.2, col: 0x222222, noCast: true }, V(c).addScaledVector(d, (Lt + t0) / 2).toArray(), null, 5);   // t0: clear of the knob (5 cm half length)
+      teth.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d); g.add(tag(teth, 'poi tether')); }); }
   return g;
 }
+
+// a poi's flame (i = 0: the spinner's left, poiCentre(1); 1: right): its centre hp, the tether's direction d from the hand
+// (the circle's centre) and the tether length Lt up to the flame's surface (an ellipsoid 2.2 headR, 1.5x tall)
+function poiHead(shot, i) { const c = poiCentre(i ? -1 : 1), a = rad(shot.poiPhase ?? 40) + i * Math.PI * 0.8, f = rad(POI.yaw), fx = Math.sin(f), fz = Math.cos(f);
+  const hp = [c[0] + Math.cos(a) * POI.r * fx, c[1] + Math.sin(a) * POI.r, c[2] + Math.cos(a) * POI.r * fz], d = V(hp).sub(V(c)).normalize();
+  const rf = POI.headR * 2.2, tS = 1 / Math.hypot(d.x / rf, d.y / (rf * 1.5), d.z / rf);
+  return { c, hp, d, Lt: POI.r - tS - 0.003 }; }
 
 // her path, drawn on the floor / deck / lawn (label, flat, lit; the gold line itself is the compositor's)
 function pathRibbon() {
@@ -616,7 +634,7 @@ export function build(shot, { makeCam }) {
   // V3b (before the party): the bowl the childhood friend holds, with the first picked lemons in it
   if (shot.bowl) { const [bx, by, bz] = shot.bowl, BW = { grey: 0.85, col: 0xd8d0c0 };
     root.add(tag(mk(new THREE.SphereGeometry(0.16, 24, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), BW).translateX(bx).translateY(by + 0.1).translateZ(bz), 'bowl of picked lemons'));
-    for (const [dx, dz] of [[0.05, 0.02], [-0.06, -0.03], [0.0, -0.07]]) root.add(tag(ball(TREE.lemonR, { grey: 0.95, col: 0xf2d21c }, [bx + dx, by + 0.03, bz + dz], [1, 1.2, 1]), 'lemons (picked)')); }
+    for (const [dx, dz] of [[0.05, 0.02], [-0.06, -0.03], [0.0, -0.07]]) root.add(tag(ball(TREE.lemonR, { grey: 0.95, col: 0xf2d21c }, [bx + dx, by + 0.03, bz + dz], [1, 1.2, 1]), 'bowl of picked lemons')); }   // one label for the bowl and its lemons (hold pass 2026-11-26: one object)
   const extra = (t) => { if (t === 'poiL') return V(poiCentre(1)); if (t === 'poiR') return V(poiCentre(-1)); if (t.startsWith('mark:')) { const m = MARKS[t.slice(5)]; return V(m[0], 1.5, m[1]); } return null; };
   // V3b_prep (Jade r3): the friend's right hand holds the ladle in a real grip; the arm, the hand pose and the ladle are
   // solved together (ladleGrip.js) from where the ladle's bowl sits in the lemonade

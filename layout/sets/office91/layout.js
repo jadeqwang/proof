@@ -72,9 +72,9 @@ export const SEATS = {
   dad: [0.76, -1.04],            // r3 (Jade): STANDING behind Mom's chair (to her left), facing +z, his right hand on her left shoulder
 };
 export const CHAIR = { seat: 0.44, hipAdult: 0.52, hipChild: 0.53 };
-export const DICT = { at: [0.5, 0.82, -0.36], w: 0.075, h: 0.105, t: 0.024, color: 0xb0201a };   // the little red dictionary, in Mom's hands
+export const DICT = { at: [0.5, 0.82, -0.36], w: 0.075, h: 0.105, t: 0.024, tilt: 40, color: 0xb0201a };   // tilt: deg from flat, toward her (hold pass 2026-11-26: 40, was 50: steeper than atan 0.9 it slid off her palms)   // the little red dictionary, in Mom's hands
 export const DAD_PALM = [0.5, TOP + 0.014, 0.03];                                               // Dad's open palm on the table
-export const CLIPBOARD = { at: [0.2, 0.2], yaw: 172 };
+export const CLIPBOARD = { at: [0.2, 0.16], yaw: 172 };   // hold pass 2026-11-26: 4 cm further onto the table (it overhung the near edge by 4 cm, over her forearm)
 
 // ---------------------------------------------------------------- furniture
 export const DOOR = { x: -1.8, z: 1.35, w: 0.9, h: 2.03 };                                     // left wall, front corner, closed

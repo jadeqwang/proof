@@ -15,6 +15,7 @@
 // (Until the integration pass the engine mis-built left hands, so directed hands here were RIGHT hands; that limit is gone.)
 import { TABLE, SEAT, CHAIRS, OUTRO, PAPER, MOTE, GLASS, reflect, WINDOW } from './layout.js';
 import { seatHip } from '../basement90/house.js';
+import { graspArms } from '../../engine/grasp.js';
 
 const TY = TABLE.h + 0.025;
 // ---------------------------------------------------------------- night: the question
@@ -34,8 +35,27 @@ const NIGHT = { jade7: jadeAtTable(), dad: dadWhisper(), mama90: mamaListen() };
 // she writes: right hand holds the pencil on the paper, left hand steadies the sheet, head down
 // (r4) K1: she is doing her homework (Jade): an open workbook, pencil in her right hand on the right-hand page, left hand
 // flat on the other page, head down; the parents whisper over her head (NIGHT)
-const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 14 }, head: { look: 'paper', pitchK: 0.8 }, R: { to: 'paper', off: [-0.035, 0.035, -0.02], hand: 'pinch', palm: 'down', fingers: [0.3, -0.3, 1] }, L: { to: 'paper', off: [0.2, 0.0, 0.0], hand: 'flat', palm: 'down' } }) };
-const WRITE = { jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: { to: 'paper', off: [-0.035, 0.035, -0.02], hand: 'pinch', palm: 'down', fingers: [0.3, -0.3, 1] }, L: { to: 'paper', off: [0.13, 0.02, 0.0], hand: 'flat', palm: 'down' } }),
+// (hold pass 2026-11-26) the pencil is what her right hand holds: the index tip a little above the page, thumb and index
+// pads on either side of the pencil (thumb gap = pencil diameter 7 mm less the 1.2 mm squeeze), middle finger curled
+// under it (a child's tripod); build.js lays the pencil through the pinch with its tip resting on the page. The left
+// hand rests flat on the page / sheet (grasp 'restOn'), so the paper stays on the table under it. Both hands are checked
+// by engine/holdcheck.mjs (arm `grasp` / `object`). PENCIL_FIT (build.js): the pencil's lean (elevation / azimuth, deg)
+// and where it crosses the pinch (s along index-thumb, s2 across it, m), fitted with the Rapier check so the fingertips
+// and the page carry it without slipping (a pencil only squeezed between two pads slides out in the check).
+const PENCIL_FIT = { el: 45, az: 310, s: 0, s2: 0, pads: true };   // hold pass 2 (hold agent): through the pads' middle
+const LH7 = 0.107 * 1.22;   // little Jade (7)'s hand length (PROP child7 hand x height)
+const PENCIL_GAP = 0.007 - 0.002;   // hold pass 2: the pinch now opens to exactly this gap: 1 mm squeeze a side
+const pencilArm = (top) => ({ tip: { finger: 'index', at: [PAPER.c[0] - 0.006, top + 0.024, PAPER.c[2] - 0.012] }, hand: { shape: 'pinch', thumb: { gap: PENCIL_GAP }, curl: { middle: [40, 60, 30], ring: [55, 75, 40], little: [65, 80, 45] } },
+  palm: [0.55, -0.8, 0.1], fingers: [1.2, -0.6, 1], grasp: 'pinch', object: 'pencil' });   // the hand on its little-finger side, fingers toward her middle, as a child writes (the wrist in range)
+const restL = (at, label, axis, elbowAt) => ({ ...graspArms('restOn', { centre: at, at, up: [0, 1, 0], axis, hand: { shape: 'flat', thumb: { opp: 0, sweep: 20, abd: -10, mcp: 0, ip: 0 } }, label }, { Lh: LH7, side: 'L' }).L,
+  palm: [-0.14, -1, 0], ...(elbowAt ? { elbowAt } : {}) });   // rolled a little onto the little-finger side, so the thumb's ball does not press through the sheet
+const L_FING = [-0.9, 0, 1], L_ELBOW = [-0.35, 0.9, -0.12];   // her left elbow lifted a little out to the side, so the forearm comes down onto the page, not through the table edge
+export const PAGE_TOP = TABLE.h + 0.003, SHEET_TOP = PAPER.c[1] + 0.0006;   // workbook right page / the loose sheet (build.js)
+// K1 (hold pass): her left hand holds the near edge of the left page, the heel of the hand and the wrist on the table in
+// front of the book (the mannequin's and the rigged mesh's wrist sit lower than the palm, so a palm flat in the middle of
+// the page put the wrist 5-9 mm into the book); bend 16 as in K4 (was 14)
+const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: pencilArm(PAGE_TOP), L: restL([PAPER.c[0] + 0.2, PAGE_TOP, PAPER.c[2] - 0.105], 'homework (open workbook)', [-1.4, 0, 1], L_ELBOW) }) };
+const WRITE = { jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: pencilArm(SHEET_TOP), L: restL([PAPER.c[0] + 0.075, SHEET_TOP + 0.003, PAPER.c[2] + 0.04], 'paper: “it was correct”', L_FING, L_ELBOW) }),
   dad: dadTalk({ head: { look: 'paper' }, R: 'side' }), mama90: mamaTalk({ head: { look: 'dad:eyes' }, R: 'side' }) };
 // ---------------------------------------------------------------- day: outro
 const CH = OUTRO.child, MC = OUTRO.motherChair;
@@ -67,9 +87,9 @@ export const SHOTS = [
   // rises until the frame is mostly the parents, ending on Mama's face (K1_question_end). The end frame is painted as a
   // science-textbook figure; its caption "Did she understand or just pattern match?" is laid on in code, not painted.
   // The old locked-off frontal wide (lens 28, her eyes at v 0.66) is kept as K1_question_wide for reference.
-  { id: 'K1_question', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.42], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', focus: ['jade7'], time: '2:22.2-2:23.7 the question (tilt START)', position: 'outside',
+  { id: 'K1_question', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.42], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', pencilFit: PENCIL_FIT, focus: ['jade7'], time: '2:22.2-2:23.7 the question (tilt START)', position: 'outside',
     header: 'the question 2:22.2 OUTSIDE, tilt START: on her face at the table; the parents’ torsos at the edges', intent: 'Start of a slow tilt up from one fixed camera across the table: Jade small in the lamp’s cone, fingers tapping; Dad and Mama standing behind her either side, only their bodies and talking hands in frame, their heads above the top edge.' },
-  { id: 'K1_question_end', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['mama90:eyes', 0.62, 0.36], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', focus: ['mama90'], time: '2:22.2-2:23.7 the question (tilt END)', position: 'outside',
+  { id: 'K1_question_end', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['mama90:eyes', 0.62, 0.36], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', pencilFit: PENCIL_FIT, focus: ['mama90'], time: '2:22.2-2:23.7 the question (tilt END)', position: 'outside',
     header: 'the question 2:23.7 OUTSIDE, tilt END: mostly the parents, ending on Mama; science-textbook figure', intent: 'End of the tilt up (same camera as K1_question): the frame is mostly the two parents talking over her head, settling on Mama’s face; only the top of the child’s head at the bottom edge. Painted as a science-textbook illustration with a caption band (caption laid on in code).' },
   { id: 'K1_question_wide', lens: 28, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.66], light: 'night', figs: NIGHT, focus: ['jade7'], time: 'reference (r2 K1 frame)', position: 'reference',
     header: 'r2 K1 frame (superseded by the tilt): frontal on her at the table; parents talk over her head', intent: 'Frontal, level, locked off, across the table: Jade small in the lamp’s cone; Dad and Mama standing behind her either side, talking across the top of her head. Kept for reference only.' },
@@ -78,7 +98,7 @@ export const SHOTS = [
   { id: 'K3_understood', lens: 50, pos: [-0.7, 1.0, 1.35], aim: ['jade7:eyes', 0.5, 0.42], light: 'night', figs: NIGHT, focus: ['jade7'], time: '2:24.7-2:25.2 the question', position: 'outside',
     header: 'the question 2:24.7 OUTSIDE: close, frontal: she understood the question', intent: 'Same axis as K1, closer: her face, level, locked off; the parents are torsos and hands at the frame edges. Nothing moves except that the hands have stopped.' },
   // ---------------------------------------------------------------- 2:25.2-2:27.6 interlude (thinned), first bar (-2sm)
-  { id: 'K4_writes', lens: 45, orbit: { at: PAPER.c, rel: 'jade7', az: 180, el: 66, dist: 0.5 }, aim: [PAPER.c, 0.5, 0.5], hideParts: { jade7: ['head'] }, light: 'night', figs: WRITE, paper: true, pencil: 'jade7', time: '2:25.2-2:27.6 Interlude, thinned (bar 1)', position: 'inside', near: 0.05, far: 4,
+  { id: 'K4_writes', lens: 45, orbit: { at: PAPER.c, rel: 'jade7', az: 180, el: 66, dist: 0.5 }, aim: [PAPER.c, 0.5, 0.5], hideParts: { jade7: ['head'] }, light: 'night', figs: WRITE, paper: true, pencil: 'jade7', pencilFit: PENCIL_FIT, time: '2:25.2-2:27.6 Interlude, thinned (bar 1)', position: 'inside', near: 0.05, far: 4,
     header: 'Interlude 2:25.2 INSIDE: she writes Dad’s answer on paper: it was correct', intent: 'Her eye-line onto the sheet (her head hidden for the POV): right hand with the pencil, left hand steadying the paper. The only words she ever writes. Paper quad in the sidecar (panes.paper) for the lettering.' },
   // ---------------------------------------------------------------- 3:55.0-4:03.6 outro 1 and 2 (-2sm)
   { id: 'K5_thumbs', lens: 35, orbit: { at: 'jade7:eyes', rel: 'jade7', az: 0, el: 0, dist: 0.5 }, aim: ['jade7:eyes', 0.5, 0.4], hideParts: { mama90: ['head'] }, light: 'day', figs: THUMBS, focus: ['jade7'], time: '3:55.0-3:59.1 Outro 1 (-2sm)', position: 'outside', near: 0.05, far: 5,

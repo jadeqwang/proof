@@ -744,3 +744,27 @@ Questions for Jade (proposed for the decision page):
   One version is Jade's rule; which one is a question for her.
 - Repaint in r4: every shot that sees the shelf (BRpan_a/m1/b/c, BR6, V3_nailed, V3_rev_temple_a/b, C2a, V3_rcv_obl)
   and every shot of Jade's jacket.
+
+## 2026-11-26: hold pass (engine/holdcheck.mjs, --gaze; mannequin and PROOF_BODY=mesh)
+- V3_rcv*: group A's cup arms were built for their old yaw (rcFigs re-places A1-A3); now re-aimed with cupArm(n, newYaw): no cup in a body.
+- Party ladle (crowd T1, 18 shots): layout.js `punchLadle()`; the handle now starts just above the lemonade (it ran into the liquid);
+  T1's right hand = graspArms('power') a third of the way up the handle (hold r 11 mm on the 8 mm handle: the thumb sank in at 8).
+- HS1: only her figure is built (solo hid the rest; T1's hand on the hidden ladle was checked against nothing). Same pose as BR6.
+- Snacks (V3_rcv*): the friend's right palm rests on the popcorn bowl's rim, his left flat on the bag of chips (placed by the middle
+  fingertip, thumb lifted: a free hand is turned by the natural-wrist rule); he stands 5 cm nearer, bend 24 (his arms were straight).
+  The bag now stands on the counter itself (it sat inside its same-label tray).
+- Bowl of picked lemons (V3a / V3b): one label for bowl and lemons; the friend's two palms under the round bowl, 30 deg either side of
+  its bottom, square to it, fingers forward, thumbs lifted; the bowl 5 cm further from him (a mesh body met it). Her reaching hand is
+  open ('relax'): it holds nothing yet.
+- Prep (V3b_prep, T0_ladlegrip_*): PREP.jadeAt 11 cm nearer the corner, bend 10 (her arms could not reach). The lemon half sits ON
+  the cone's tip (was 2 cm down over it); her right palm presses it on its far shoulder (30 deg past the top, wrist raised). Juice,
+  cone and handle carry the juicer's label (one object); her left palm steadies it on the rim in front of her, tipped 14 deg down
+  and rolled 20 deg. Ladle: all parts labelled 'ladle (steel)'; ladleGrip.js wrap tuned against the check (CLEAR, WRAP_PAD,
+  PIP_OPEN, MCP_ADD; the same fist and thumb-on-top grip, the handle 1.2 cm further from the palm).
+- Poi: each fist holds a knob handle (engine held prop 'poi knob handle (held)', r 1.2 cm, 10 cm); the tether runs from 5.5 cm out to
+  the flame's surface (it ran from the empty fist into the flame). The check passes on the knob only: a spun poi is held by
+  tension, not statically; the tether and flame are not checked.
+- V3_nailed: his whisper hand is a gesture, not a grip ('relax' with the cup's curls), a few mm off her hair.
+- Her hand on his elbow (bridge) / forearm (C2): tagged grasp 'restOn' so the contact is checked.
+- Book spines: the spine-lettering planes have their own label ('spine lettering: <kind>, <half>'): the check took the paper-thin plane
+  for the book. His textbook pinch targets 'textbooks (truth)', 3 mm deeper.

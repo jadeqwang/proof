@@ -249,9 +249,10 @@ function heroPieces(n, figs, out) {
     const spread = 0.012 + 0.004 * depth;
     P.forEach((q, i) => { const c = centroid(q), dx = c[0] - sc[0], dy = c[1] - sc[1], k = Math.hypot(dx, dy) || 1;
       const ox = (dx / k) * spread * 1.4, oy = (dy / k) * spread * 1.4, yaw = rad(((i * 37) % 11) - 5);
+      const inT = Math.max(0, TABLE.cz - TABLE.d / 2 + 0.012 - (F[2] + c[1] - sc[1] + oy));   // hold pass: centroid >= 12 mm inside the table's north edge (two pieces overhung it by half and fell off)
       // sheet u -> world -z (across the table), v -> world -x... laid with the long side along the table (world z)
       const map = (u, v) => { const a = (u - c[0]), b = (v - c[1]); const ca = Math.cos(yaw), sa = Math.sin(yaw);
-        const lx = (c[0] - sc[0]) + ox + a * ca - b * sa, lz = (c[1] - sc[1]) + oy + a * sa + b * ca; return V(F[0] - lx, F[1] + 0.0004, F[2] + lz); };
+        const lx = (c[0] - sc[0]) + ox + a * ca - b * sa, lz = (c[1] - sc[1]) + oy + a * sa + b * ca; return V(F[0] - lx, TABLE.h + 0.0006, F[2] + lz + inT); };   // hold pass: ON the table top (was F[1] + 0.0004, 3.4 mm over it)
       g.add(pieceMesh(q, map)); out.push({ gen: depth, world: map(c[0], c[1]).toArray() }); });
   }
   return tag(g, `草纸: generation ${n} (${n} piece${n > 1 ? 's' : ''}, the gold dots)`);
@@ -268,6 +269,25 @@ const pinch = (P, n) => P['thumb' + n].clone().add(P['index' + n]).multiplyScala
 function paperProps(spec, figs, out) {
   const g = new THREE.Group(); if (!spec) return g; const F = figs.jade3, P = F && F.userData.P;
   const yaw = rad(F ? F.userData.spec.yaw ?? PLACES.jadeYaw : PLACES.jadeYaw), fwdH = V(Math.sin(yaw), 0, Math.cos(yaw)), UPV = V(0, 1, 0);
+  // hold pass (2026-11-26): each piece lies in the plane that runs between its hand's thumb and index pads (the internal
+  // tangent of the two distal pads, or square to the pad axis when they overlap), so the thumb presses its top face and the
+  // index its under face (holdcheck: held). Was a fixed tilt, which ran the paper through the pads. Returns the plane's point
+  // X between the pads, ft (in the plane, square to `across`, away from her / up) and nrm = across x ft.
+  const padGrip = (n, across) => { const cap = (nm) => P.hands[n].capsules.find((c) => c.part === nm), ci = cap('index3'), ct = cap('thumb2');
+    const Ci = ci.b.clone(), Ct = ct.b.clone(), d = Ci.distanceTo(Ct), u = Ct.clone().sub(Ci).divideScalar(d);
+    const w = new THREE.Vector3().crossVectors(across, u).normalize(), X = Ci.clone().addScaledVector(u, d * ci.r / (ci.r + ct.r));
+    const phi = Math.asin(Math.min(1, (ci.r + ct.r) / d));
+    let best = null; for (const sw of [1, -1]) { const t = u.clone().multiplyScalar(Math.cos(phi)).addScaledVector(w, sw * Math.sin(phi)).normalize();
+      const thumbN = Ct.clone().sub(X).addScaledVector(t, -Ct.clone().sub(X).dot(t)).addScaledVector(across, -Ct.clone().sub(X).dot(across)).normalize();
+      if (!best || thumbN.y > best.k) best = { t, k: thumbN.y }; }   // the tangent with the thumb on the upper face
+    let ft = best.t.clone(); if (ft.dot(fwdH) + ft.y < 0) ft.negate();
+    if (d < ci.r + ct.r) { // pads pressed together (the engine's pinch squeezes them ~1 mm into each other): the sheet's plane is square to
+      // the pad axis
+      // the piece runs out past the fingertips (the way the two distal phalanges point), clear of the fingers behind the pads
+      const ac = across.clone().addScaledVector(u, -across.dot(u)).normalize(), away = ci.b.clone().sub(ci.a).normalize().add(ct.b.clone().sub(ct.a).normalize());
+      away.addScaledVector(u, -away.dot(u)).addScaledVector(ac, -away.dot(ac)); if (away.lengthSq() > 1e-10) ft = away.normalize();
+      return { X, ft, ac, nrm: new THREE.Vector3().crossVectors(ac, ft).normalize() }; }
+    return { X, ft, ac: across.clone(), nrm: new THREE.Vector3().crossVectors(across, ft).normalize() }; };
   const planeFrame = (across, tilt) => { const f = fwdH.clone().addScaledVector(across, -fwdH.dot(across)).normalize(); const ft = f.clone().multiplyScalar(Math.cos(rad(tilt))).addScaledVector(UPV, Math.sin(rad(tilt))).normalize(); return { ft, nrm: new THREE.Vector3().crossVectors(across, ft).normalize() }; };
   // place a piece: sheet point (u, v) -> world, with the piece's local axes a (sheet dir) -> X (world), b -> Y (world), origin o (sheet) -> O (world)
   const placer = (o, a, O, X, Y) => (u, v) => { const du = u - o[0], dv = v - o[1], b = [-a[1], a[0]]; const s = du * a[0] + dv * a[1], t = du * b[0] + dv * b[1]; return O.clone().addScaledVector(X, s).addScaledVector(Y, t); };
@@ -275,26 +295,32 @@ function paperProps(spec, figs, out) {
   if (spec.rip && P) {
     const R = spec.rip, q = R.from ? halfOf(R.from) : tearOne(R.seed ?? 606, R.gen), [ha, hb, T] = splitPiece(q, R.from ? R.from[1] + 2 : (R.seed ?? 606) + 1);
     const A = pinch(P, 'L'), B = pinch(P, 'R'), across = B.clone().sub(A).normalize(), M = A.clone().add(B).multiplyScalar(0.5);
-    const { ft, nrm } = planeFrame(across, R.tilt ?? 25);
     const L = Math.hypot(T.B[0] - T.A[0], T.B[1] - T.A[1]), d = [(T.B[0] - T.A[0]) / L, (T.B[1] - T.A[1]) / L];
-    const start = M.clone().addScaledVector(ft, -(R.edge ?? 0.004)), pivot = start.clone().addScaledVector(ft, L);
     for (const [h, sgn] of [[ha, 1], [hb, -1]]) {
+      const { X, ft, nrm, ac } = padGrip(h === ha ? 'L' : 'R', across);   // each half in its own hand's pad plane, the tear on the line between the hands (moved along ac, in that plane)
+      const start = X.clone().addScaledVector(ac, M.clone().sub(X).dot(ac)).addScaledVector(ft, -(R.edge ?? 0.004)), pivot = start.clone().addScaledVector(ft, L);
       const c = centroid(h); const side = Math.sign((c[0] - T.A[0]) * -d[1] + (c[1] - T.A[1]) * d[0]) || 1;   // which side of the tear (sheet)
       // sheet tear dir d -> ft; sheet normal (-d1, d0) -> across * s, with s chosen so this half lands on its hand's side
       const wantSide = h === ha ? -1 : 1;   // ha toward A (her left hand), hb toward B
-      const Y = across.clone().multiplyScalar(side * wantSide);
+      const Y = ac.clone().multiplyScalar(side * wantSide);
       const th = rad((R.open ?? 10) / 2) * wantSide * -1, Q = new THREE.Quaternion().setFromAxisAngle(nrm, th);
       const base = placer(T.A, d, start, ft, Y);
-      const map = (u, v) => base(u, v).sub(pivot).applyQuaternion(Q).add(pivot);
+      const map0 = (u, v) => base(u, v).sub(pivot).applyQuaternion(Q).add(pivot);
+      // hold pass: a half too small to reach from the tear line to its pads (the tiny pieces, pinches 15-22 mm apart) is
+      // slid across until the pads are 2 mm inside its outer edge: the halves are then just torn apart, not mid-rip
+      const sx = wantSide, ext = Math.max(...outline(h).map((p) => map0(p[0], p[1]).sub(M).dot(ac) * sx)), need = X.clone().sub(M).dot(ac) * sx + 0.002;
+      const shift = ac.clone().multiplyScalar(ext < need ? (need - ext) * sx : 0);
+      const map = (u, v) => map0(u, v).add(shift);
       g.add(pieceMesh(h, map)); out.push({ what: 'rip half', gen: h.g, size_cm: sizeCm(h), world: map(c[0], c[1]).toArray() });
     }
     out.push({ what: 'piece being ripped', gen: q.g, size_cm: sizeCm(q) });
   }
   for (const n of ['L', 'R']) { const H = spec.held && spec.held[n]; if (!H || !P) continue;
-    const q = pieceOf(H, 707), c = centroid(q), o = outline(q), Pp = pinch(P, n);
+    const q = pieceOf(H, 707), c = centroid(q), o = outline(q); let Pp = pinch(P, n);
     const other = pinch(P, n === 'L' ? 'R' : 'L'), across = (n === 'L' ? other.clone().sub(Pp) : Pp.clone().sub(other)).setY(0).normalize();
-    let ft, Y; if (H.flat) { ft = fwdH.clone(); Y = across.clone(); } else { const fr = planeFrame(across, H.tilt ?? 25); ft = fr.ft; Y = across.clone(); }
+    let ft, Y; if (H.flat) { ft = fwdH.clone(); Y = across.clone(); } else { const ac = new THREE.Vector3().crossVectors(fwdH, UPV).normalize(), fr = padGrip(n, ac); ft = fr.ft; Y = fr.ac; Pp = fr.X; }   // her left-right axis (the other hand may be away, putting its half down)
     const vmin = Math.min(...o.map((p) => p[1] - c[1]));   // the near edge (sheet v toward her)
+    if (H.flat) Pp = P['index' + n].clone();   // hold pass: being put down = held flat on the table under the index fingertip
     const O = H.flat ? V(Pp.x, TABLE.h + 0.0006, Pp.z) : Pp.clone(); O.addScaledVector(ft, -vmin - (H.edge ?? 0.004));
     const map = (u, v) => O.clone().addScaledVector(Y, u - c[0]).addScaledVector(ft, v - c[1]);
     g.add(pieceMesh(q, map)); out.push({ what: `held, ${n} hand${H.flat ? ' (being put down)' : ''}`, gen: q.g, size_cm: sizeCm(q), world: map(c[0], c[1]).toArray() }); }
@@ -423,9 +449,18 @@ export function build(shot, { makeCam }) {
   let hb = null;
   if (shot.state !== 'A') { root.add(stack()); dr = drift(shot, figs); root.add(dr); root.add(shot.paper ? paperProps(shot.paper, figs, hero) : heroPieces(shot.tissue ?? 8, figs, hero));
     if (figs.jade3) { hb = hairBit(figs.jade3); root.add(hb.mesh); } }
-  const ballAt = (F) => F.uncle.userData.P.handR.clone().add(V(0, 0.024, 0));   // r3: in his cupped RIGHT palm, under the left (watch) hand's pinch
+  // r3: in his cupped RIGHT palm, under the left (watch) hand's pinch. Hold pass (2026-11-26): placed from the SOLVED palm, on
+  // its skin along the palm normal (the palm strips' capsules, engine/hand.js; pressed in 1.2 mm), so it lies in the palm
+  // instead of floating over it; his left index pad presses on its top (shots.js uncleHold), so it is held between them
+  const ballAt = (F) => { const P = F.uncle.userData.P, h = P.hands.R, n = h.n.clone().normalize();
+    const segD = (p, c) => { const ab = c.b.clone().sub(c.a), t = Math.min(1, Math.max(0, p.clone().sub(c.a).dot(ab) / ab.lengthSq())); return p.distanceTo(c.a.clone().addScaledVector(ab, t)) - c.r; };
+    const palm = h.capsules.filter((c) => /^palm/.test(c.part)), gap = (d) => Math.min(...palm.map((c) => segD(P.handR.clone().addScaledVector(n, d), c))) - 0.012;
+    let lo = 0, hi = 0.06; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2; if (gap(m) < -0.0003) lo = m; else hi = m; }   // the ball settles 0.3 mm into the palm strips (its weight; a harder squeeze pops it out sideways)
+    return P.handR.clone().addScaledVector(n, hi); };
   if (shot.state === 'A' && figs.uncle) root.add(wristWatch(figs.uncle, 'L'));
-  if (shot.state === 'A' && figs.uncle) root.add(tag(ball(0.012, PAPER_LOOK, ballAt(figs).toArray()), 'something small (he shapes it)'));
+  // hold pass (2026-11-26): a pinched-up wad of 草纸, faceted (icosahedron), not a perfect sphere: a sphere rolls off any palm
+  // that is not exactly level (Rapier has no rolling resistance), a crumpled wad does not
+  if (shot.state === 'A' && figs.uncle) { const w = mk(new THREE.IcosahedronGeometry(0.012, 1), PAPER_LOOK); w.position.copy(ballAt(figs)); root.add(tag(w, 'something small (he shapes it)')); }
   // the beam: the lit aperture (overhang, parapet, reveals) swept along the sun into the room, clipped by its planes
   const clip = [{ name: 'floor', n: [0, -1, 0], d: 0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'west wall', n: [-1, 0, 0], d: -ROOM.x0 },
     { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 }, { name: 'ceiling', n: [0, 1, 0], d: ROOM.h }];

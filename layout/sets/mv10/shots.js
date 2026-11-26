@@ -13,8 +13,11 @@
 // (the lemonade prep), V3_rcv_obl_k0 / _k3 (start / end keys of the new crossing), V3_rcv_obl_legs (diagnostic arrows).
 // RETIRED 2026-11-25 (late): V3d ("nailed it" under the lemons) -> V3_nailed at the Expedit; V3_rev_eye_a/b (Jade chose
 // the temple). V3_rcv is kept as REFERENCE ONLY (Jade chose the oblique V3_rcv_obl). New: BRpan_c (the pan's end, the seam).
-import { MARKS, MARK_FLOOR, POI, AUDIENCE_AT, SHELF, SHELF_W, TREE, GRADE, PATIO, STAIRS, HOUSE, SECTION_KEY, SECTION_LIGHT, SUN, RC_MARKS, ROOM_CROSSING, PUNCHBOWL, COUNTER_H, PREP, DINING } from './layout.js';
+import { MARKS, MARK_FLOOR, POI, AUDIENCE_AT, SHELF, SHELF_W, TREE, GRADE, PATIO, STAIRS, HOUSE, SECTION_KEY, SECTION_LIGHT, SUN, RC_MARKS, ROOM_CROSSING, PUNCHBOWL, punchLadle, COUNTER_H, PREP, DINING } from './layout.js';
 
+import { graspArms } from '../../engine/grasp.js';
+
+const LH = (h) => 0.108 * h;                          // hand length of an adult of height h (_cast.js PROP.adult.hand)
 const yawTo = (a, b) => +(Math.atan2(b[0] - a[0], b[1] - a[1]) * 180 / Math.PI).toFixed(1);
 const SHELF_MARK = MARKS.shelf;                       // [2.72, 3.30]: in front of the truth half, facing the room
 const LENS_ROOM = [2.72, 1.53, SHELF_MARK[1] - 2.47];  // where the outside camera stands for the shelf shots (by the couch's end)
@@ -31,6 +34,14 @@ const rel = (yaw, l, u, f) => { const a = yaw * Math.PI / 180; return [+(l * Mat
 const cupArm = (side, yaw) => ({ to: 'self:chest', off: rel(yaw, side === 'L' ? 0.1 : -0.1, -0.08, 0.2), hand: 'grip', fingers: 'fwd', palm: 'in', elbow: 'down', hold: { r: 0.034, h: 0.1, label: 'cup of lemonade' } });
 const stand = (at, yaw, o = {}) => { const { cup, ...r } = o; const f = { at, yaw, legs: 'stand', L: 'side', R: 'side', ...r }; if (cup) f[cup] = cupArm(cup, yaw); return f; };
 const onGrade = (at, yaw, o = {}) => stand(at, yaw, { floor: GRADE, ...o }), onDeck = (at, yaw, o = {}) => stand(at, yaw, { floor: DECK, ...o });
+// T1's right fist round the party ladle's handle, a third of the way up from the lemonade (hold pass 2026-11-26: the hand
+// sat 3 cm off the handle, palm into it; now a power grip from the template, thumb side up the handle)
+const t1Ladle = () => { const P = punchLadle(), at = P.foot.map((v, i) => +(v + P.lean[i] * 0.34).toFixed(4));
+  return graspArms('power', { centre: at, at, axis: P.lean, r: 0.011, label: 'ladle' }, { Lh: LH(1.72), side: 'R', toward: [3.93, 1.25, 8.12] }).R; };   // r: the 8 mm handle + 3 mm (the thumb sank in at 8)
+// the poi spinner's fists: each closes round the poi's knob handle (2.4 cm thick, 10 cm long: the hand's held prop, centred
+// on the circle's centre), the tether runs from it to the flame (build.js). Hold pass 2026-11-26: the empty fists closed on
+// the 4 mm tether and the check found it inside the fingers.
+const poiFist = (at) => ({ to: at, hand: 'grip', elbow: 'down', hold: { r: 0.012, h: 0.10, centre: true, label: 'poi knob handle (held)' } });   // 'held': engine/main.js finds the hand's own prop by it
 function crowd(o = {}) {
   const lookAt = o.lookAt, hd = (dflt) => ({ head: { look: lookAt || dflt } });
   const f = {
@@ -44,14 +55,14 @@ function crowd(o = {}) {
     C1: stand(C.C1, yawTo(C.C1, CC), { head: { look: [3.25, 1.6, 7.35] }, cup: 'R' }),
     C2: stand(C.C2, yawTo(C.C2, CC), { head: { look: [3.55, 1.6, 6.45] }, R: { to: 'self:chest', off: rel(yawTo(C.C2, CC), -0.2, 0.02, 0.28), hand: 'palmUp', palm: 'up' } }),
     C3: stand(C.C3, yawTo(C.C3, CC), { head: { look: [3.55, 1.6, 6.45] }, cup: 'L' }),
-    T1: stand([3.93, 8.12], 90, { spine: { bend: 8 }, head: { look: [PUNCHBOWL.at[0], COUNTER_H + 0.2, PUNCHBOWL.at[1]] }, R: { to: [4.47, 1.43, 8.13], hand: 'grip', palm: 'in' }, L: cupArm('L', 90) }),
+    T1: stand([3.93, 8.12], 90, { spine: { bend: 8 }, head: { look: [PUNCHBOWL.at[0], COUNTER_H + 0.2, PUNCHBOWL.at[1]] }, R: t1Ladle(), L: cupArm('L', 90) }),
     G1: onDeck([1.75, 11.0], yawTo([1.75, 11.0], [1.21, 9.62]), { head: { look: [1.21, 1.55, 9.62] }, cup: 'R' }),
     H1: onDeck([3.3, 11.2], yawTo([3.3, 11.2], [1.75, 11.0]), { head: { look: [1.75, DECK + 1.6, 11.0] } }),
     ...Object.fromEntries([['W1', [6.4, 10.45]], ['W2', [7.05, 10.6], 'R'], ['W3', [7.75, 10.4]], ['W4', [9.0, 10.5], 'L']].map(([k, at, cup]) =>
       [k, onGrade(at, yawTo(at, POI.at), { head: { look: [POI.at[0], GRADE + 1.3, POI.at[1]] }, ...(cup ? { cup } : {}) })])),
     D1: onDeck([2.2, 12.62], yawTo([2.2, 12.62], POI.at), { head: { look: [POI.at[0], GRADE + 1.3, POI.at[1]] }, cup: 'R' }),
     D2: onDeck([2.9, 12.66], yawTo([2.9, 12.66], POI.at), { head: { look: [POI.at[0], GRADE + 1.3, POI.at[1]] } }),
-    poi: onGrade(POI.at, POI.yaw, { head: { look: [AUDIENCE_AT[0], GRADE + 1.5, AUDIENCE_AT[1]] }, L: { to: 'poiL', hand: 'grip', elbow: 'down' }, R: { to: 'poiR', hand: 'grip', elbow: 'down' } }),
+    poi: onGrade(POI.at, POI.yaw, { head: { look: [AUDIENCE_AT[0], GRADE + 1.5, AUDIENCE_AT[1]] }, L: poiFist('poiL'), R: poiFist('poiR') }),
   };
   if (o.noPoi) delete f.poi;
   for (const k of o.drop || []) delete f[k];
@@ -67,14 +78,14 @@ const HE_SHELF = [3.32, SHELF_W.front - 0.535];
 const HE_NAIL = [SHELF_MARK[0] + 0.33, SHELF_MARK[1] - 0.15];
 const CUBE33 = SHELF_W.cube(3, 3);
 const jadeShelf = (o = {}) => ({ at: SHELF_MARK, yaw: 180, legs: 'stand', head: { look: LENS_ROOM }, L: 'side',
-  R: { to: 'firstLove27:elbowR', off: [-0.055, 0.1, -0.02], hand: 'flat', fingers: [0.85, 0.45, 0.2], palm: [0.5, -0.8, -0.2] }, ...o });
-const heShelf = (o = {}) => ({ at: HE_SHELF, yaw: 0, legs: 'stand', head: { look: [CUBE33[0], 1.3, SHELF_W.spines] }, R: 'side', L: { to: [CUBE33[0] + 0.05, 1.36, SHELF_W.front - 0.07], hand: 'pinch', fingers: 'fwd' }, ...o });
+  R: { to: 'firstLove27:elbowR', off: [-0.055, 0.1, -0.02], hand: 'flat', fingers: [0.85, 0.45, 0.2], palm: [0.5, -0.8, -0.2], grasp: 'restOn' }, ...o });   // grasp: checked as contact on his arm (hold pass)
+const heShelf = (o = {}) => ({ at: HE_SHELF, yaw: 0, legs: 'stand', head: { look: [CUBE33[0], 1.3, SHELF_W.spines] }, R: 'side', L: { to: [CUBE33[0] + 0.05, 1.36, SHELF_W.front - 0.067], hand: 'pinch', fingers: 'fwd', grasp: 'pinch', object: 'textbooks (truth)' }, ...o });
 // chorus 2b: they face each other at the shelf; her hand taps on his LEFT forearm, he looks down at it. r3 fault (C2b: the
 // painter put the cup in HER hand, because her hand sat on his wrist next to the cup): 2026-11-26 NO cup in C2a / C2b
 // (tried in his right hand: it still sat mid-frame in C2b), his left forearm held out bare, her empty hand tapping mid-forearm.
 const HE_C2 = [SHELF_MARK[0] + 0.23, SHELF_MARK[1] - 0.5];
 const jadeC2 = (o = {}) => ({ at: SHELF_MARK, yaw: yawTo(SHELF_MARK, HE_C2), legs: 'stand', head: { look: 'firstLove27:eyes' }, L: 'side',
-  R: { to: 'firstLove27:forearmL', off: [0.0, 0.045, 0.0], hand: 'flat', fingers: 'to:firstLove27:elbowL', palm: 'down' }, ...o });
+  R: { to: 'firstLove27:forearmL', off: [0.0, 0.056, 0.0], hand: 'flat', fingers: 'to:firstLove27:elbowL', palm: 'down', grasp: 'restOn' }, ...o });   // grasp: checked as contact on his forearm (hold pass)
 const heC2 = (o = {}) => ({ at: HE_C2, yaw: yawTo(HE_C2, SHELF_MARK), legs: 'stand', spine: { bend: 4 }, head: { look: 'jade27:handR', pitchK: 0.9 }, R: 'side',
   L: { to: 'self:chest', off: rel(yawTo(HE_C2, SHELF_MARK), 0.13, -0.13, 0.27), hand: 'relax', palm: 'down', fingers: 'fwd', elbow: 'down' }, ...o });
 // under the lemon tree: he came out with her and stands on the house side of her
@@ -82,6 +93,15 @@ const TREE_MARK = MARKS.tree, HE_TREE = [9.25, 17.3];
 const jadeTree = (o = {}) => ({ at: TREE_MARK, floor: GRADE, yaw: yawTo(TREE_MARK, HE_TREE), legs: 'stand', head: { look: 'firstLove27:eyes' }, L: 'side', R: cupArm('R', yawTo(TREE_MARK, HE_TREE)), ...o });
 const heTree = (o = {}) => ({ at: HE_TREE, floor: GRADE, yaw: yawTo(HE_TREE, TREE_MARK), legs: 'stand', head: { look: 'jade27:eyes' }, L: 'side', R: { to: 'self:chest', off: rel(yawTo(HE_TREE, TREE_MARK), -0.2, 0.0, 0.26), hand: 'palmUp', palm: 'up' }, ...o });
 
+// V3a / V3b: the friend's two palms under the round bowl of picked lemons (build.js shot.bowl: a half sphere r 0.16, its rim
+// 0.1 above `bowl`), 30 deg either side of its bottom, each palm square to the bowl's surface there, fingers forward.
+// Hold pass 2026-11-26: the cupped hands were inside the bowl's wall. Her reaching hand (up toward a lemon, not yet
+// touching it) is open ('relax'), not a cup: it holds nothing yet.
+// (the bowl 5 cm further from him than before: a mesh body's belly met it)
+const bowlHands = (bowl, yaw) => { const a = yaw * Math.PI / 180, l = [Math.cos(a), 0, -Math.sin(a)], S = [bowl[0], bowl[1] + 0.1, bowl[2]], k = 0.16 + 0.064 * LH(1.73) - 0.0015;
+  const arm = (sg) => { const d = [0.5 * sg * l[0], -0.866, 0.5 * sg * l[2]];
+    return { to: S.map((v, i) => +(v + d[i] * k).toFixed(4)), hand: { shape: 'flat', curl: { all: [10, 12, 8] }, thumb: { opp: 0, sweep: 30, abd: 0, mcp: -10, ip: -10 } }, palm: d.map((x) => -x), fingers: [Math.sin(a), 0, Math.cos(a)], grasp: 'twoHandsBelow', object: 'bowl of picked lemons' }; };
+  return { L: arm(1), R: arm(-1) }; };
 const bridgeFigs = (j = {}, h = {}, c = {}) => ({ ...crowd({ noPoi: true, ...c }), jade27: jadeShelf(j), firstLove27: heShelf(h) });
 const partyFigs = (j, h, c = {}) => ({ ...crowd(c), jade27: j, firstLove27: h });
 // the room crossing (2026-11-25 round 2; layout.js ROOM_CROSSING): early in the party, guests still arriving. phase 0 =
@@ -93,16 +113,31 @@ const partyFigs = (j, h, c = {}) => ({ ...crowd(c), jade27: j, firstLove27: h })
 // the SSW living-room window talking with guest B1, his back to the camera. Where and with whom: OURS.
 const RC = RC_MARKS;
 // V3b_prep (Jade r3): she presses a half on the reamer in the corner; the friend stirs with the ladle (R arm solved in build.js)
-const prepFigs = () => ({ jade27: { at: PREP.jadeAt, yaw: yawTo(PREP.jadeAt, PREP.reamer.at), legs: 'stand', spine: { bend: 9 }, head: { look: [PREP.reamer.at[0], COUNTER_H, PREP.reamer.at[1]] },
-        R: { to: [PREP.reamer.at[0], COUNTER_H + 0.205, PREP.reamer.at[1]], hand: 'cup', palm: 'down', fingers: 'fwd' },
-        L: { to: [PREP.reamer.at[0] - 0.02, COUNTER_H + 0.04, PREP.reamer.at[1] - 0.13], hand: 'pinch', palm: 'down', fingers: 'fwd' } },
+const prepPress = () => { const r = TREE.lemonR, f = [0.707, 0, 0.707], th = 30 * Math.PI / 180, C = [PREP.reamer.at[0], COUNTER_H + 0.103, PREP.reamer.at[1]];
+  const at = [C[0] + f[0] * r * Math.sin(th), C[1] + 1.22 * r * Math.cos(th), C[2] + f[2] * r * Math.sin(th)];
+  const nh = Math.sin(th) / r, nv = Math.cos(th) / (1.22 * r), nl = Math.hypot(nh, nv), up = [f[0] * nh / nl, nv / nl, f[2] * nh / nl];
+  const fing = [f[0] * up[1], -Math.hypot(up[0], up[2]), f[2] * up[1]];
+  return graspArms('restOn', { centre: C, at, axis: fing, up, label: 'lemon half (pressed on the juicer)', hand: 'flat' }, { Lh: LH(1.65), side: 'R' }).R; };
+const prepFigs = () => ({ jade27: { at: PREP.jadeAt, yaw: yawTo(PREP.jadeAt, PREP.reamer.at), legs: 'stand', spine: { bend: 10 },   // hold pass: she stands 11 cm nearer (layout.js PREP.jadeAt): her arms were straight and short of the reamer
+        head: { look: [PREP.reamer.at[0], COUNTER_H, PREP.reamer.at[1]] },
+        // hold pass (2026-11-26): her right palm presses the half's dome on its far shoulder (30 deg past the top, the palm
+        // square to the rind there, fingers over it and down, the heel and wrist raised toward her so the wrist clears the
+        // rind); the half sits on the cone's tip (build.js PREP_HALF_Y). Her left palm steadies the juicer on its rim in front
+        // of her (her forearm clear of the handle), fingers along the rim away from the handle and
+        // tipped 14 deg down so her wrist clears the rim, rolled 20 deg (little
+        // finger side up: the solved hand rolled that side into the dish) (the rim: 4.5 cm above the counter;
+        // the palm 6 mm over it, the rolled hand's ring side lower)
+        R: prepPress(), L: graspArms('restOn', { centre: PREP.reamer.at, at: [PREP.reamer.at[0] - 0.866 * (PREP.reamer.r - 0.006), COUNTER_H + 0.0535, PREP.reamer.at[1] - 0.5 * (PREP.reamer.r - 0.006)], axis: [-0.471, -0.243, 0.848], up: [-0.410, 0.912, 0.033], label: 'juicer (glass reamer)', hand: 'flat' }, { Lh: LH(1.65), side: 'L' }).L },
       friend: { at: PREP.friendAt, yaw: 90, legs: 'stand', spine: { bend: 6 }, head: { look: [PREP.punch.at[0], 1.0, PREP.punch.at[1]] },
         R: 'side',   // replaced in build.js by the ladle grip (shot.ladle)
         L: { to: [4.27, COUNTER_H + 0.30, 8.27], hand: 'relax', palm: 'down', fingers: [1, -0.4, 0.2] } } });   // his left hand steadies the punchbowl at its rim
 function rcFigs(phase) {
   const f = crowd({ noPoi: true, drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'G1', 'H1', 'E1'] });
   // group A moves off the door's path to the glass console (they were between it and the front door)
-  const AC2 = [4.05, 3.05]; for (const [k, at] of [['A1', [3.8, 3.25]], ['A2', [4.32, 3.42]], ['A3', [4.3, 2.78]]]) f[k] = { ...f[k], at, yaw: yawTo(at, AC2), head: { look: [AC2[0], 1.55, AC2[1]] } };
+  const AC2 = [4.05, 3.05]; for (const [k, at] of [['A1', [3.8, 3.25]], ['A2', [4.32, 3.42]], ['A3', [4.3, 2.78]]]) { const yaw = yawTo(at, AC2);
+    f[k] = { ...f[k], at, yaw, head: { look: [AC2[0], 1.55, AC2[1]] } };
+    // hold pass (2026-11-26): the cup arm is re-aimed for the new yaw (it kept the old yaw's offset: the cup sank into the body)
+    for (const n of ['L', 'R']) if (f[k][n]?.hold) f[k][n] = cupArm(n, yaw); }
   const jy0 = yawTo(RC.kitchen, RC.K1);
   f.jade27 = phase === 0 ? { at: RC.kitchen, yaw: jy0, legs: 'stand', head: { look: 'K1:eyes' }, L: 'side', R: cupArm('R', jy0) }
     : phase === 2 ? { at: RC.stop, yaw: 2, legs: 'stand', head: { look: 'R1:eyes' }, L: 'side', R: cupArm('R', 2) }
@@ -110,8 +145,14 @@ function rcFigs(phase) {
   f.K1 = stand(RC.K1, yawTo(RC.K1, RC.kitchen), { head: { look: phase === 0 ? 'jade27:eyes' : [3.55, 1.6, 6.45] }, cup: 'R' });
   f.R1 = phase === 2 ? stand(RC.R1, -105, { head: { look: 'jade27:eyes' }, R: { to: 'self:chest', off: rel(-105, -0.2, 0.0, 0.26), hand: 'palmUp', palm: 'up' } })
     : stand(RC.R1, 20, { head: { look: [SHELF_W.cube(3, 3)[0], 1.3, SHELF_W.front] } });
-  f.friend = stand([4.0, 6.70], 90, { spine: { bend: 12 }, head: { look: [4.57, 0.95, 6.55] }, R: { to: [4.53, COUNTER_H + 0.08, 6.44], hand: 'cup', palm: 'down', fingers: 'fwd' },
-    L: { to: [4.49, COUNTER_H + 0.16, 6.74], hand: 'grip', palm: [0, 0, -1], fingers: 'fwd' } });
+  // hold pass (2026-11-26): his hands REST on the snacks they hover over (both stand on the counter): right palm on the
+  // popcorn bowl's rim (layout.js PARTY_FOOD, rim 0.55 r above the counter), left hand flat on the top of the bag of chips
+  const rimY = COUNTER_H + 0.55 * 0.12, bagTop = COUNTER_H + 0.08;
+  f.friend = stand([4.05, 6.70], 90, { spine: { bend: 24 },   // 5 cm nearer, bend 12 -> 24 (hold pass): his straight arms stopped short of the snacks
+    head: { look: [4.57, 0.95, 6.55] },
+    R: graspArms('restOn', { centre: [4.57, rimY, 6.40], at: [4.475, rimY, 6.42], axis: [1, 0, 0], up: [0, 1, 0], label: 'snacks (bowl of popcorn)', hand: 'flat' }, { Lh: LH(1.73), side: 'R' }).R,
+    L: { ...graspArms('restOn', { centre: [4.57, bagTop, 6.78], at: [4.50, bagTop, 6.76], axis: [1, 0, 0], up: [0, 1, 0], label: 'snacks (bag of tortilla chips)', hand: 'flat' }, { Lh: LH(1.73), side: 'L' }).L,
+      hand: { shape: 'flat', thumb: { opp: 0, sweep: 30, abd: -10, mcp: -10, ip: -5 } }, tip: { finger: 'middle', at: [4.60, bagTop + 0.009, 6.76] } } });   // placed by the middle fingertip: a free hand is turned by the natural-wrist rule, a tip hand is not
   const FL_AWAY = [0.85, 3.30], B1_AWAY = [1.50, 3.30];
   if (phase === 0) f.firstLove27 = stand([3.95, 3.86], 25, { head: { look: [SHELF_W.cube(1, 3)[0], 1.45, SHELF_W.front] }, L: 'side', R: 'side' });
   else { f.firstLove27 = stand(FL_AWAY, 90, { head: { look: 'B1:eyes' }, L: 'side', R: cupArm('R', 90) });
@@ -177,7 +218,10 @@ export const SHOTS = [
   // ================================================================ HARD STOP 2:52.5-2:54.7
   { id: 'HS1', same: 'BR6', solo: ['jade27'], time: '2:52.5-2:54.7', section: 'Hard stop', sync: null,
     header: 'Hard stop 2:52.5: her face alone on bare paper (BR6’s camera, the room gone)',
-    intent: 'Identical camera and pose to BR6; everything except her is removed. Bare paper with one thing left on it.' },
+    intent: 'Identical camera and pose to BR6; everything except her is removed. Bare paper with one thing left on it.',
+    // hold pass (2026-11-26): only her figure is built (the others were hidden by solo anyway; T1's hand on the hidden ladle
+    // was checked against nothing). Her pose is BR6's.
+    figs: { jade27: jadeShelf({ yaw: 180, R: 'side' }) } },
 
   // ================================================================ VERSE 3 2:54.7-3:19.1 (the party at 115%; the sun going down)
   // V3a RESTAGED 2026-11-25 (r2 review, Jade): "this should be a time before the party where she and the childhood
@@ -185,12 +229,11 @@ export const SHOTS = [
   // in the day, the lemons should be pomelo shaped". Same camera (the deck's far corner, down the yard); the morning yard,
   // empty: she reaches up into the tree, the friend holds the bowl (V3b's staging, seen wide). No guests, no poi, no first love.
   { id: 'V3a', lens: 24, space: 'yard', time: '2:54.7-2:57.0', section: 'Before the party', pos2: 'outside', amp: 115,
-    pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.46], far: 60, bowl: [10.51, Y(1.0, GRADE), 18.8],
+    pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.46], far: 60, bowl: [10.537, Y(1.0, GRADE), 18.842],
     header: 'Verse 3 2:54.7: "Housewarming, lemonade from the yard": before the party (10:30), she and the childhood friend picking the pomelo-sized lemons, wide from the deck',
     intent: 'Wide from the deck’s far corner, down the empty morning yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, and the giant lemon tree by the NNE fence with pomelo-sized lemons. She reaches up into the tree for one; the childhood friend (face never drawn) beside her holds the bowl with the first lemons in it. No guests yet, no poi, no first love.',
-    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'cup', palm: 'up', fingers: 'fwd' }, L: 'side' }),
-      friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] },
-        L: { to: [10.64, Y(1.06, GRADE), 18.72], hand: 'cup', palm: 'up', fingers: 'fwd' }, R: { to: [10.38, Y(1.06, GRADE), 18.88], hand: 'cup', palm: 'up', fingers: 'fwd' } }) } },
+    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'relax', palm: 'up', fingers: 'fwd' }, L: 'side' }),
+      friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] }, ...bowlHands([10.537, Y(1.0, GRADE), 18.842], 33) }) } },
   // V3b RESTAGED 2026-11-25 (late): Jade: the lemonade was made BEFORE the party: she and the childhood friend picked the
   // lemons; first love, Z and the guests had not arrived. So this is the picking, in the early-afternoon sun (section
   // 'Before the party', 10:30 since Jade's r2 review (was 14:00), OUR clock): her hand up to a lemon, the friend beside her holding the bowl. No first love
@@ -200,12 +243,11 @@ export const SHOTS = [
   // V3b = the picking on "from the" (177.0-178.04), V3b_prep = the prep on "yard" (178.04-179.19), chronological.
   { id: 'V3b', lens: 24, space: 'yard', time: '2:57.0-2:58.0', section: 'Before the party',
     timing: { timeline: TL, line: 'Housewarming, lemonade from the yard', start_s: 177.0, end_s: 178.043, words: '"(lemon)ade from the"', was: '177.0-179.2 (V3b alone)' }, pos2: 'inside', amp: 115, hideParts: { jade27: ['head'] },
-    pos: [9.85, Y(1.52, GRADE), 17.85], target: [10.3, Y(1.98, GRADE), 18.7], bowl: [10.51, Y(1.0, GRADE), 18.8],
+    pos: [9.85, Y(1.52, GRADE), 17.85], target: [10.3, Y(1.98, GRADE), 18.7], bowl: [10.537, Y(1.0, GRADE), 18.842],
     header: 'Verse 3 2:57.0 (memory, before the party, 10:30): picking the lemons with the childhood friend; her hand comes up to one (then V3b_prep)',
     intent: 'Inside: her view up into the tree, early afternoon, before anyone else has come. Pomelo-sized lemons in the sun; her hand rises into frame toward the nearest; just ahead of her the childhood friend (back to us, face never drawn) looks up into the tree, holding the bowl of the first lemons (below frame here; sidecar shows it). They will make the lemonade from these.',
-    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'cup', palm: 'up', fingers: 'fwd' }, L: 'side' }),
-      friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] },
-        L: { to: [10.64, Y(1.06, GRADE), 18.72], hand: 'cup', palm: 'up', fingers: 'fwd' }, R: { to: [10.38, Y(1.06, GRADE), 18.88], hand: 'cup', palm: 'up', fingers: 'fwd' } }) } },
+    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'relax', palm: 'up', fingers: 'fwd' }, L: 'side' }),
+      friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] }, ...bowlHands([10.537, Y(1.0, GRADE), 18.842], 33) }) } },
   // the lemonade prep (2026-11-25 round 2), MOVED (Jade r3 decisions 2026-11-26: "the counter by the sink"; "the making
   // from straight above at 2:58.0"; "the hand should be holding the ladle in a realistic way in the three.js model or image
   // models will be confused"). Straight down, ORTHOGRAPHIC, like the plates (artichoke, romanesco), on the counter by the
@@ -241,7 +283,9 @@ export const SHOTS = [
     figs: { ...crowd({ drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'T1'] }), jade27: { at: SHELF_MARK, yaw: 195, legs: 'stand', head: { look: [3.6, 1.5, 0.9], tilt: 6 }, L: 'side', R: cupArm('R', 195) },
       firstLove27: { at: HE_NAIL, yaw: yawTo(HE_NAIL, SHELF_MARK), legs: 'stand', spine: { bend: 15, side: -8 }, head: { look: 'jade27:earR', tilt: -10 }, L: 'side',
         // Jade (r2 review): "maybe his hand and arm could be up to imply whispering": his right hand raised, cupped between his mouth and her right ear
-        R: { to: 'jade27:earR', off: [0.07, -0.03, -0.035], hand: 'cup', palm: [-0.91, 0, 0.41], fingers: 'up', elbow: 'down' } } } },
+        // hold pass (2026-11-26): a gesture, not a grip: the hand is cupped ('relax' with the cup's curls) a few mm off her
+        // hair, touching nothing, so the hold check does not take it for a hand holding her
+        R: { to: 'jade27:earR', off: [0.07, -0.03, -0.035], hand: { shape: 'relax', curl: { index: [30, 28, 12], middle: [32, 30, 12], ring: [34, 32, 14], little: [36, 34, 16] } }, palm: [-0.91, 0, 0.41], fingers: 'up', elbow: 'down' } } } },
   // Jade (2026-11-25): on "I nod, past hour reviewed" the camera PUSHES IN to her temple; spectrograms of her voice follow.
   // Timeline -2sm full mix: line 189.11-191.52, "nod," 189.23-189.79. MOVED 2026-11-25 (round 2): Jade: the nod is at the
   // SHELF, straight after the "nailed it" whisper (it was never under the lemon tree). She stands on her shelf mark as in

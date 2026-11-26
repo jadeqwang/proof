@@ -14,8 +14,33 @@ const tseam = (at) => ({ to: at, hand: 'grip', palm: neg(TURN.a), hold: { r: 0.0
 // a hand closing on a side edge of the FOLDED stack: thumb on top, fingers under (cylinder r = half the thickness)
 const edge = (at, palm, axis) => ({ to: at, hand: 'grip', palm, hold: { r: FOLD.grip.r, prop: false, centre: true, axis } });
 // MG1 (folded hand-over): both hold the stack, his hands on the side edges at his end, hers at hers
-const handover = { her: { spine: { bend: 14 }, L: edge('fHerL', FOLD.u, neg(FOLD.w)), R: edge('fHerR', neg(FOLD.u), neg(FOLD.w)) },
-  him: { spine: { bend: 18 }, L: edge('fHisL', FOLD.w, FOLD.u), R: edge('fHisR', FOLD.w, neg(FOLD.u)) } };
+// hold pass 2026-11-26: both now carry it FROM BELOW (checked as twoHandsBelow): each palm under one of the stack's long
+// side edges, turned up and in (30 deg toward the middle) so it takes the bottom corner, fingers along the edge (forward,
+// from the forearm), open and flat. His hands at his end (14 cm from the middle toward him), hers at her end (10 cm). The
+// power grips round a cylinder at each edge (`edge`, kept for reference) wrapped the fingers back up through the 6 cm
+// stack, and palms flat up (grasp.js twoHandsBelow) turned the forearms 35-60 deg past full supination. The stack is ONE
+// object for the check: its core is one box (build.js hoodieFolded); the flap, waistband, fold, neckline and drawstrings
+// lie on it.
+const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+// an open hand flat under the stack: shape 'cup' (a supporting hand: the engine keeps it on the object and swivels the
+// elbow for a natural wrist instead of turning the hand off it) with its curl and thumb opened flat (the cup's curl went up through the stack)
+const UNDER = { shape: 'cup', curl: { all: [0, 0, 0] }, spread: 2, thumb: { opp: 0, sweep: 24, abd: 4, mcp: 2, ip: 0 } };
+const norm = (a) => { const l = Math.hypot(...a); return a.map((v) => v / l); };
+// slope > 0 (him): the fingers run down along the forearm instead of level along the edge; the palm then meets the edge at
+// its heel only (`along` = where the heel takes it), the fingers falling away under the stack
+const sideBelow = (along, ax, Lh, tilt = 45, slope = 0) => { const n = FOLD.n, t = tilt * Math.PI / 180, left = cross(n, ax), o = {};
+  for (const [k, s] of [['L', 1], ['R', -1]]) {
+    const K = FOLD.c.map((v, i) => v + FOLD.w[i] * along + left[i] * s * FOLD.across / 2 - n[i] * FOLD.thick / 2);   // the bottom side edge under this hand
+    const fingers = norm(ax.map((v, i) => v - n[i] * slope));
+    let palm = n.map((v, i) => v * Math.cos(t) - left[i] * s * Math.sin(t));                                         // up and in, onto that edge
+    const pf = palm.reduce((q, v, i) => q + v * fingers[i], 0); palm = norm(palm.map((v, i) => v - fingers[i] * pf));
+    const heel = slope ? 0.1 * Lh : 0;                                                                                // palm centre ahead of the heel
+    o[k] = { to: K.map((v, i) => v + fingers[i] * heel - palm[i] * (0.064 * Lh - 0.0012 - (slope ? 0.0045 : 0.0025))), hand: UNDER, palm, fingers, grasp: 'twoHandsBelow', object: 'IAS hoodie (white, folded)' }; }
+  return o; };
+const HER_LH = 0.187, HIS_LH = 0.19;   // hand lengths (_cast.js JADE_HAND; his about 0.108 x 1.78 m)
+const handover = { her: { spine: { bend: 14 }, ...sideBelow(0.16, neg(FOLD.w), HER_LH, 50) },
+  him: { spine: { bend: 24 }, ...sideBelow(-0.178, FOLD.w, HIS_LH, 45, 0.5) } };
+void edge;
 
 // her: on the couch's west cushion (next to the front window), turned toward him; default = MG2: she has lifted the
 // hoodie by the shoulder seams and it is unfolding, its front (the seal) toward him; she looks up at him

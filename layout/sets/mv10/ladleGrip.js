@@ -17,6 +17,11 @@ import { HAND_GEOM, FINGERS, thumbChain, handProfile } from '../../engine/hand.j
 import { mk, cyl, tag, V } from '../../engine/core.js';
 
 const D2R = Math.PI / 180;
+// hold pass 2026-11-26 (Rapier check, engine/holdcheck.mjs): the ported wrap put the index / middle proximal phalanges
+// ~1 cm inside the steel. Tuned against the check: CLEAR = the handle's clearance off the palm surface (hand units; was
+// 0.004), WRAP_PAD = extra wrap radius (hand units), and per finger the MCP closed MCP_ADD deg less and the PIP opened
+// PIP_OPEN deg into the DIP, so the fist closes ROUND the handle (pads within 2 mm, nothing over 3 mm in)
+const CLEAR = 0.07, WRAP_PAD = 0.0, PIP_OPEN = 6, MCP_ADD = -4;
 
 // finger curls that wrap each finger round a cylinder of radius R (hand units) at (cy, cz): a port of the engine's
 // (unexported) wrapPose, kept identical so the fist looks like every other engine grip
@@ -66,8 +71,8 @@ function handOn(D, th, phi, psi, y0, R, fing) {
   const n = u0.clone().multiplyScalar(Math.cos(phi)).addScaledVector(u1, Math.sin(phi)).normalize();
   const E = new THREE.Vector3().crossVectors(n, D);
   const t = D.clone().multiplyScalar(Math.cos(th)).addScaledVector(E, -Math.sin(th)).normalize(), f = D.clone().multiplyScalar(Math.sin(th)).addScaledVector(E, Math.cos(th)).normalize();
-  const cz = HAND_GEOM.palm.t1 + 0.004 + R, tn = Math.tan(th), Re = R * (1 + 1 / Math.cos(th)) / 2;
-  const curl = {}; for (const fn of FINGERS) { const x = HAND_GEOM.mcp[fn][0]; curl[fn] = wrapCurls(Re, y0 + x * tn, cz, fing)[fn]; }
+  const cz = HAND_GEOM.palm.t1 + CLEAR + R, tn = Math.tan(th), Re = R / Math.cos(th) + WRAP_PAD;   // the oblique handle's long semi-axis in the finger's plane (hold pass; was the mean of R and R / cos)
+  const curl = {}; for (const fn of FINGERS) { const x = HAND_GEOM.mcp[fn][0]; const c = wrapCurls(Re, y0 + x * tn, cz, fing)[fn]; curl[fn] = [Math.min(100, c[0] + MCP_ADD), +(c[1] - PIP_OPEN).toFixed(1), Math.min(90, +(c[2] + PIP_OPEN).toFixed(1))]; }
   // the thumb face: o = cos(psi) z + sin(psi) (thumb-web side, square to the handle in the palm plane)
   const d = [Math.cos(th), Math.sin(th), 0], web = [Math.sin(th), -Math.cos(th), 0], o = [web[0] * Math.sin(psi), web[1] * Math.sin(psi), Math.cos(psi)];
   const rt = R + HAND_GEOM.trad[3] * fing, Q = (s) => [d[0] * s + rt * o[0], y0 + d[1] * s + rt * o[1], cz + rt * o[2]];
@@ -118,6 +123,7 @@ export function ladleGrip({ bowlC, L, Lh, medial, elbow, kind = 'adult' }) {
 
 // The ladle itself (steel): a 9 cm hemispherical bowl holding lemonade; a round handle that leaves the bowl's rim with a
 // short swan-neck bend, runs straight up through the fist, and ends past the heel of the hand in a flat tab with a hole.
+// All its parts carry ONE label, 'ladle (steel)' (hold pass 2026-11-26: the hold check took the end tab as a separate support).
 export function buildLadle(g, grip, L, look, liquid) {
   const add = (m, lab) => { g.add(tag(m, lab)); return m; };
   const rod = (a, b, r, lab, seg = 12) => { const dd = b.clone().sub(a), m = cyl(r, r, dd.length(), look, a.clone().add(b).multiplyScalar(0.5).toArray(), null, seg);
@@ -125,14 +131,14 @@ export function buildLadle(g, grip, L, look, liquid) {
   const { rim, up, G } = grip, horiz = new THREE.Vector3(up.x, 0, up.z).normalize();
   const bowlC = rim.clone().addScaledVector(horiz, -L.bowlR * 0.85).add(V(0, -L.bowlR * 0.55, 0));
   const b = mk(new THREE.SphereGeometry(L.bowlR, 28, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), look); b.scale.set(1, 0.8, 1); b.position.copy(bowlC).add(V(0, L.bowlR * 0.55, 0));
-  b.userData.double = true; add(b, 'ladle (bowl, steel)');
+  b.userData.double = true; add(b, 'ladle (steel)');
   if (liquid) add(cyl(L.bowlR * 0.9, L.bowlR * 0.9, 0.003, liquid, bowlC.clone().add(V(0, L.bowlR * 0.42, 0)).toArray(), null, 24), 'lemonade (in the ladle)');
   const neck1 = rim.clone().add(V(0, 0.03, 0)).addScaledVector(horiz, 0.006), hStart = neck1.clone().addScaledVector(up, 0.012);
-  rod(rim, neck1, L.handleR * 0.8, 'ladle (neck, steel)'); rod(neck1, hStart, L.handleR * 0.85, 'ladle (neck, steel)');
+  rod(rim, neck1, L.handleR * 0.8, 'ladle (steel)'); rod(neck1, hStart, L.handleR * 0.85, 'ladle (steel)');
   const hEnd = G.clone().addScaledVector(up, L.hook);
-  const h = rod(hStart, hEnd, L.handleR, 'ladle (handle, steel)'); h.scale.set(1, 1, 0.8);
+  const h = rod(hStart, hEnd, L.handleR, 'ladle (steel)'); h.scale.set(1, 1, 0.8);
   // the end: a flat rounded tab with a hanging hole
   const tab = mk(new THREE.CylinderGeometry(0.014, 0.014, 0.004, 20), look); tab.position.copy(hEnd).addScaledVector(up, 0.008);
-  tab.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), grip.n.clone()); add(tab, 'ladle (end tab, steel)');
+  tab.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), grip.n.clone()); add(tab, 'ladle (steel)');
   return { bowlC, hStart, hEnd };
 }

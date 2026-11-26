@@ -222,3 +222,22 @@ and measured hits. Times written elsewhere in this file before this section are 
   which -2sm does not have; the plan gives their content to the plates, so they are kept as alternates, not in the cut
   (renders kept; M9 reuses M7's camera). M7's intent no longer says "bass returns" (there is no bass there in -2sm).
 - M9 coda bar 2: 4:16.8-4:19.2.
+
+## 2026-11-26: hold pass
+- The artichoke: the two-hand cradle (`cradle`) now sits 4 mm further out (r 0.058) with the thumbs flatter (opp 0.1), so
+  the thumbs no longer dig into the globe. The arms carry `grasp: 'cradle', object: 'THE ARTICHOKE'`. One hand (M4b,
+  M4b_pull) is now `CRADLE_ONE`: the palm level under the base (`under`: a world-down palm, shifted 0.3 toward the fingers),
+  fingers curled up the far flank, thumb on the near flank. The globe leans on her stomach: one hand alone does not
+  hold it in Rapier. PULL_D 0.1545 / LAND_D 0.151 put it 1 cm nearer her than before. The window is narrow: the mesh
+  body's belly is 7-11 mm in front of the mannequin's.
+- M4c: LIFT_D 0.16 (was 0.14), so the globe clears the mesh body's shirt. Mama's lifting hand now lies on the girl's
+  front-left ribs (45 deg round, y 1.09). It used to be under the armpit, wedged between her ribs and her own upper arm.
+  It is checked as `object: 'figure:jade10:torso'`.
+- The cart: the handle bar has its own label (`the grandmother's cart: handle bar`). The uprights are 9 mm shorter (they
+  ran 10 mm into the bar). The grandmother's hands are `cartGrip`, a power hold round the bar (r 0.014), thumb toward the
+  other hand. The cart stands on its wheels (bottoms at y = 0).
+- Forearm grabs: per-pose radii `GRAB_R` (M4 0.033, pull 0.041 at k 0.65, landing 0.038, lead 0.037), checked as
+  `object: FOREARM` ('figure:jade10:armR').
+- M4b: Jade's right forearm now reaches forward to LAND_RH (it used to hang), and Mama's palm (LAND_PALM) is on top
+  of it. With the forearm hanging, a level grip was out of the wrist's range: the wrist rule turned the hand 54 deg
+  off the forearm.

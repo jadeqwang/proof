@@ -124,3 +124,7 @@ and measured hits. Times written elsewhere in this file before this section are 
 
 - WL_out 1:37.4-1:45.5 and 1:45.5-1:51.0, WL_eye 1:40.7-1:45.5 ("I honestly don't know"), WL_in 1:51.0-1:54.5 ("Nowhere to
   go" into the tail).
+
+## 2026-11-26: hold pass
+- w3 ('clasp'): the hands hold each other, not an object. Both hands are now 'relax' (were 'grip', which the hold check
+  read as gripping something, and found nothing within 3 cm). No hold to check.

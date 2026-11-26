@@ -142,3 +142,10 @@ and measured hits. Times written elsewhere in this file before this section are 
   bands, thin white and red overchecks, 0.15 m repeat (SETT INVENTED; Jade: "a navy plaid blanket"). Lit/flat/form show
   it; line/contour only faintly so the stripes do not read as folds. Prompts: "the navy plaid exactly as in the guide".
 - No wall art in this set. Hanging clothes, duvet and shelf contents stay plain (proposals in work/background_art_audit.md).
+
+## 2026-11-26: hold pass
+No hand holds or rests on an object in this set: the contacts are hand on hand (the four hands; CL_chin his hand over
+hers), fingertips on her own temples, and the back of her hand on his chin. The hold check cannot test these yet: hand
+meshes are never candidate objects, the fallback picks whatever part of the other figure lies within 1 cm by bounding box
+(for CL_chin his own forearm, not his chin), and every hand inside that figure's box, its owner's included, is counted as
+touching. Tried and reverted (shots.js unchanged); asked the hold agent for an engine option (body-part targets).

@@ -69,10 +69,14 @@ function furniture(shot) {
   if (shot.paper) { const m = box(PAPER.w, 0.0012, PAPER.h, { grey: 0.97, col: 0xf2efe4 }, PAPER.c); m.rotation.y = rad(PAPER.yaw); g.add(tag(m, 'paper: “it was correct”')); }
   // (r4) K1: her homework (Jade), an open workbook (INVENTED: a softcover math workbook, blue cover, printed rows);
   // the right-hand page as she sits is centred on PAPER.c, where her pencil hand goes
-  if (shot.homework) { const pw = 0.2, ph = 0.27, cx = PAPER.c[0] + pw / 2, cz = PAPER.c[2], y = TABLE.h;
-    g.add(tag(box(2 * pw + 0.012, 0.004, ph + 0.01, { grey: 0.42, col: 0x3d5f8f }, [cx, y + 0.002, cz]), 'homework (open workbook)'));
-    for (const s of [-1, 1]) { const m = box(pw, 0.004, ph, { grey: 0.96, col: 0xf4f1e6 }, [cx + s * pw / 2, y + 0.006, cz]); m.rotation.z = s * 0.03; g.add(tag(m, 'homework (open workbook)'));
-      for (let k = 0; k < 7; k++) g.add(tag(box(pw * 0.72, 0.0006, 0.004, { grey: 0.55, col: 0x8a8a8a }, [cx + s * pw / 2, y + 0.0085 + (s < 0 ? 0 : 0) + Math.abs(s * pw / 2) * 0.03 * 0, cz + ph / 2 - 0.035 - k * 0.032]), 'homework (printed rows)')); }
+  // (hold pass 2026-11-26) pushed 4 cm away from her (cz), so its near edge clears her forearms (the hold check found her
+  // right forearm 8 mm into the page)
+  // (hold pass 2026-11-26) a thin softcover workbook opened flat: 1 mm cover, 2 mm of pages a side (was 4 + 4 mm with
+  // the pages tipped 1.7 deg, so the printed rows floated or sank and her wrist went into the book); page top TABLE.h + 3 mm
+  if (shot.homework) { const pw = 0.2, ph = 0.27, cx = PAPER.c[0] + pw / 2, cz = PAPER.c[2] + 0.04, y = TABLE.h;
+    g.add(tag(box(2 * pw + 0.012, 0.001, ph + 0.01, { grey: 0.42, col: 0x3d5f8f }, [cx, y + 0.0005, cz]), 'homework (open workbook)'));
+    for (const s of [-1, 1]) { const m = box(pw, 0.002, ph, { grey: 0.96, col: 0xf4f1e6 }, [cx + s * pw / 2, y + 0.002, cz]); g.add(tag(m, 'homework (open workbook)'));
+      for (let k = 0; k < 7; k++) g.add(tag(box(pw * 0.72, 0.0002, 0.004, { grey: 0.55, col: 0x8a8a8a }, [cx + s * pw / 2, y + 0.0031, cz + ph / 2 - 0.035 - k * 0.032]), 'homework (printed rows)')); }
     g.add(tag(box(0.05, 0.012, 0.022, { grey: 0.85, col: 0xe8a8a8 }, [cx + pw + 0.06, y + 0.006, cz - 0.08]), 'eraser (pink)')); }
   return g;
 }
@@ -89,7 +93,18 @@ export function build(shot, { makeCam }) {
   if (shot.pencil && figs[shot.pencil]) { // (2026-11-25) held in the pinch, resting in the web of the thumb, slanting back over the hand; tip on the paper
     const P = figs[shot.pencil].userData.P, h = P.hands.R; const pinch = P.indexR.clone().add(P.thumbR).multiplyScalar(0.5);
     const d = h.f.clone().multiplyScalar(-0.75).addScaledVector(h.t, 0.45).addScaledVector(h.n, -0.2).add(V(0, 0.55, 0)).normalize();
-    const tipY = V(shot.pencilTip || PAPER.c).y; const tip = pinch.clone().addScaledVector(d, -(pinch.y - tipY) / Math.max(d.y, 0.2));
+    // (hold pass 2026-11-26) shot.pencilFit { el, az, s, s2 } (shots.js PENCIL_FIT): the pencil leans el deg up toward
+    // azimuth az (0 = +z, 270 = -x) and crosses the pinch s m along index-thumb and s2 m across, so the fingertips carry it
+    // (fitted with engine/holdcheck.mjs); its tip (a 3.5 mm capsule end) touches the top of the page / sheet
+    const F = shot.pencilFit; if (F) { const e = rad(F.el), a = rad(F.az); d.set(Math.cos(e) * Math.sin(a), Math.sin(e), Math.cos(e) * Math.cos(a));
+      const it = P.indexR.clone().sub(P.thumbR).normalize(), w2 = it.clone().cross(d).normalize();
+      if (F.pads) { // hold pass 2: the axis runs through the middle between the two pad SURFACES (the pinch opens to the pencil's
+        // gap less the squeeze), square to the thumb-index line, so both pads press it
+        const ri = h.capsules.find((c) => c.part === 'index3').r, rt = h.capsules.find((c) => c.part === 'thumb2').r, D = P.indexR.distanceTo(P.thumbR);
+        pinch.copy(P.thumbR).addScaledVector(it, rt + (D - ri - rt) / 2); d.addScaledVector(it, -d.dot(it)).normalize(); }
+      pinch.addScaledVector(it, F.s).addScaledVector(w2, F.s2); }
+    const tipY = (shot.homework ? TABLE.h + 0.003 : PAPER.c[1] + 0.0006) + 0.0035;   // shots.js PAGE_TOP / SHEET_TOP
+    const tip = pinch.clone().addScaledVector(d, -(pinch.y - tipY) / Math.max(d.y, 0.2));
     root.add(tag(limb(tip, tip.clone().addScaledVector(d, 0.17), 0.0035, { grey: 0.75, col: 0xd9b23a }), 'pencil')); }
   // beam guides: label mode = outline of the lit volume / footprint; lit preview = the volume itself
   const GL = { grey: 0.1, col: 0x2040ff, only: ['label'], noCast: true };

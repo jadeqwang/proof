@@ -129,3 +129,9 @@ and measured hits. Times written elsewhere in this file before this section are 
   1:13.2-1:17.2 (break bars 5 and 7 to the pre-chorus); AD_trace 1:36.0-1:37.4, AD_grab 1:37.4 (the band hit); AD_fern tail 2
   3:43.0-3:55.0; coda: AD_mote hit + bar 1 4:14.3-4:16.8, AD_keys bar 3 4:19.2-4:21.7 (-2sm's coda has no sparse lead-in:
   the groove starts on the hit).
+
+## 2026-11-26: hold pass
+- AD_grab: the grip is at k 0.5 (GRAB_K, the value the r4 comment gave; the code had 0.3, where the forearm is thicker),
+  hold r 0.031. It is checked as `object: 'figure:littleJade:armR'`. It passes on the mannequin. On the mesh body the
+  fingers sink ~9 mm into her loose sleeve: the sleeve stands ~1 cm off the mannequin's forearm, which is plausible for
+  a hand closing on cloth.

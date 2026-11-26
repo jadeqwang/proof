@@ -65,6 +65,7 @@ export function artichoke() {
   // the lattice the sidecar lists: one point per bract, the count's anchor on its exposed part
   g.userData.lattice = B.map((b) => { const ap = anchor(b), p = new THREE.Vector3(...toMesh(ap, R));
     const nrm = new THREE.Vector3(...toMesh(b.Nv, 1)).normalize(); return { n: b.n, theta: b.theta, phi: b.phi, p, nrm, rho: R * Math.sin(b.theta) }; });
+  g.userData.holdWhole = true;   // hold pass: engine/main.js holdsFor hulls all the bracts as one held object
   return tag(g, 'THE ARTICHOKE (full depth; 8 / 5 spiral arms)');
 }
 

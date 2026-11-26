@@ -86,29 +86,79 @@ function labelOverlay(b, canvas, shot) {
 // v2: every hand that grips / holds something, the object it holds (the engine's held cylinder, or the nearest small set
 // object within 3 cm of the hand) as world points for a convex hull, and the capsules of every hand touching that object.
 const GRIPS = new Set(['grip', 'pinch', 'cup']);
+// Held objects for engine/holdcheck.mjs (Rapier). A hand is checked when its arm has a `hold`, a grip shape (grip / pinch /
+// cup) or a grasp template (`grasp`, set by engine/grasp.js graspArms or by hand in a shot). The object: the arm's
+// `object` (a label substring) if given, else the engine's held cylinder, else the nearest small set object within 3 cm,
+// else (a hand closed on someone: forearm grabs) the nearest part of another figure, which is checked as FIXED (contact
+// and penetration only: a body part is held up by its owner). Supports (hold-fix 2026-11-26): every other visible mesh
+// that comes within 1 cm of the object (tables, counters, laps, the other figure's arms; not the hands, which are
+// capsules) goes in as static triangles near the object, so an object resting on furniture rests on it.
 function holdsFor(b) {
   const r4 = (v) => v.toArray().map((x) => +x.toFixed(4));
-  const hands = []; for (const [who, f] of Object.entries(b.figs || {})) { const Pf = f.userData.P, spec = f.userData.spec;
-    for (const n of ['L', 'R']) { const a = spec[n], h = Pf.hands?.[n]; if (!h?.capsules || !a || typeof a !== 'object') continue;
-      const shape = typeof a.hand === 'string' ? a.hand : a.hand?.shape; if (!a.hold && !GRIPS.has(shape)) continue;
+  const shown = (o) => { for (let q = o; q; q = q.parent) if (q.visible === false || q.userData.baseVisible === false) return false; return true; };
+  const looksSolid = (o) => { const L = o.userData.look; return !!L && !(L.only && !L.only.includes('flat')); };
+  const hands = [], handMeshes = new Set();
+  for (const [who, f] of Object.entries(b.figs || {})) { const Pf = f.userData.P, spec = f.userData.spec;
+    for (const n of ['L', 'R']) { const h = Pf.hands?.[n]; h?.group?.traverse((o) => { if (o.isMesh && !/held|cup/.test(o.userData.label || '')) handMeshes.add(o.uuid); });
+      const a = spec[n]; if (!h?.capsules || !a || typeof a !== 'object') continue;
+      const shape = typeof a.hand === 'string' ? a.hand : a.hand?.shape; if (!a.hold && !GRIPS.has(shape) && !a.grasp) continue;
       hands.push({ who, n, h, a, shape, held: Pf['held' + n] }); } }
-  const objs = new Map(); const cands = []; b.scene.traverse((o) => { if (!o.isMesh || o.userData.baseVisible === false) return; const L = o.userData.look; if (!L || L.glass || (L.only && !L.only.includes('flat'))) return;
-    if (o.userData.who && !/held/.test(o.userData.label || '')) return; const bb = new THREE.Box3().setFromObject(o); if (bb.isEmpty() || bb.getSize(new THREE.Vector3()).length() > 1.2) return; cands.push({ o, bb }); });
+  const all = [], cands = [];
+  b.scene.traverse((o) => { if (!o.isMesh || !shown(o) || !looksSolid(o) || handMeshes.has(o.uuid)) return; const bb = new THREE.Box3().setFromObject(o); if (bb.isEmpty()) return;
+    all.push({ o, bb }); const L = o.userData.look; if (L.glass) return;
+    if (o.userData.who && !/held/.test(o.userData.label || '')) return; if (bb.getSize(new THREE.Vector3()).length() > 1.2) return; cands.push({ o, bb }); });
   const capsD = (h, bb) => Math.min(...h.capsules.map((c) => Math.min(bb.distanceToPoint(c.a), bb.distanceToPoint(c.b)) - c.r));
-  for (const H of hands) { let best = null;
-    if (H.held) { H.h.group.traverse((o) => { if (o.isMesh && /held|cup/.test(o.userData.label || '') && o.geometry.type === 'CylinderGeometry') best = { o, bb: new THREE.Box3().setFromObject(o), d: 0 }; }); }
+  const objs = new Map();
+  for (const H of hands) { let best = null; const want = H.a.object;
+    if (want && String(want).startsWith('figure:')) { // a part of another figure: 'figure:<who>[:<part>]' (part: a substring of the mesh's line group / label / its group's name, e.g. 'hand', 'forearm', 'arm')
+      const [, fw, part] = String(want).split(':'); const pool = [];
+      b.scene.traverse((o) => { if (!o.isMesh || o.userData.who !== fw || !shown(o) || !looksSolid(o)) return; const tag = [o.userData.idGroup, o.userData.label, o.name, o.parent?.name].join(' ');
+        if (!part || tag.includes(part)) pool.push({ o, bb: new THREE.Box3().setFromObject(o) }); });
+      for (const c of pool) { const d = capsD(H.h, c.bb); if (d < 0.1 && (!best || d < best.d)) best = { ...c, d, fixed: true }; } }
+    else if (want) for (const c of all) { if (!String(c.o.userData.label || '').includes(want)) continue; const d = capsD(H.h, c.bb); if (d < 0.1 && (!best || d < best.d)) best = { ...c, d }; }
+    if (!best && H.held) { H.h.group.traverse((o) => { if (o.isMesh && /held|cup/.test(o.userData.label || '') && o.geometry.type === 'CylinderGeometry') best = { o, bb: new THREE.Box3().setFromObject(o), d: 0 }; }); }
     if (!best) for (const c of cands) { if (c.o.userData.who) continue; const d = capsD(H.h, c.bb); if (d < 0.03 && (!best || d < best.d)) best = { ...c, d }; }
+    if (!best) for (const c of all) { const w = c.o.userData.who; if (!w || w === H.who) continue; const d = capsD(H.h, c.bb); if (d < 0.01 && (!best || d < best.d)) best = { ...c, d, fixed: true }; }
     if (!best) { objs.set('none:' + H.who + H.n, { label: null, hands: [H], note: 'no object within 3 cm of the hand' }); continue; }
-    const k = best.o.uuid; if (!objs.has(k)) objs.set(k, { o: best.o, bb: best.bb, label: best.o.userData.label || best.o.geometry.type, hands: [] }); objs.get(k).hands.push(H); }
+    // a group marked userData.holdWhole (an artichoke of bracts) is ONE held object: its same-label meshes are hulled together
+    let whole = null; if (!best.fixed) for (let q = best.o.parent; q; q = q.parent) if (q.userData.holdWhole) { whole = q; break; }
+    const k = (whole || best.o).uuid; if (!objs.has(k)) objs.set(k, { o: best.o, whole, bb: best.bb, fixed: !!best.fixed, label: best.o.userData.label || (best.fixed ? best.o.userData.who + ' (body)' : best.o.geometry.type), hands: [] }); objs.get(k).hands.push(H); }
+  // triangles of a mesh that touch a box (world), capped
+  const trisNear = (o, box, cap = 6000) => { const g = o.geometry, pos = g.attributes.position, idx = g.index; o.updateMatrixWorld();
+    const W = (i) => new THREE.Vector3().fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); const nT = idx ? idx.count / 3 : pos.count / 3;
+    const P = [], I = [], map = new Map(); const tb = new THREE.Box3();
+    for (let t = 0; t < nT && I.length / 3 < cap; t++) { const ii = [0, 1, 2].map((k) => (idx ? idx.getX(3 * t + k) : 3 * t + k)); const vs = ii.map(W); tb.setFromPoints(vs); if (!tb.intersectsBox(box)) continue;
+      for (let k = 0; k < 3; k++) { if (!map.has(ii[k])) { map.set(ii[k], P.length / 3); P.push(...r4(vs[k])); } I.push(map.get(ii[k])); } }
+    return I.length ? { pos: P, idx: I } : null; };
   const out = [];
   for (const e of objs.values()) {
-    const rec = { object: e.label, note: e.note, hands: e.hands.map((H) => ({ who: H.who, arm: H.n, shape: H.shape, engine_held: !!H.held, capsules: H.h.capsules.map((c) => ({ part: c.part, a: r4(c.a), b: r4(c.b), r: +c.r.toFixed(4) })) })) };
+    const rec = { object: e.label, note: e.note, fixed: e.fixed || undefined, hands: e.hands.map((H) => ({ who: H.who, arm: H.n, shape: H.shape, grasp: H.a.grasp || undefined, engine_held: !!H.held, capsules: H.h.capsules.map((c) => ({ part: c.part, a: r4(c.a), b: r4(c.b), r: +c.r.toFixed(4) })) })) };
     if (e.o) { // other hands touching the same object count as support too
       for (const [who, f] of Object.entries(b.figs || {})) for (const n of ['L', 'R']) { const h = f.userData.P.hands?.[n]; if (!h?.capsules || rec.hands.some((x) => x.who === who && x.arm === n)) continue;
+        if (e.fixed && who === e.o.userData.who) continue;   // the held figure's own hands do not hold it up
         if (capsD(h, e.bb) < 0.01) rec.hands.push({ who, arm: n, shape: h.shape, touching_only: true, capsules: h.capsules.map((c) => ({ part: c.part, a: r4(c.a), b: r4(c.b), r: +c.r.toFixed(4) })) }); }
-      const pos = e.o.geometry.attributes.position, step = Math.max(1, Math.floor(pos.count / 400)), pts = []; const v = new THREE.Vector3();
-      e.o.updateMatrixWorld(); for (let i = 0; i < pos.count; i += step) { v.fromBufferAttribute(pos, i).applyMatrix4(e.o.matrixWorld); pts.push(r4(v)); }
-      rec.hull = pts; rec.size_m = r4(e.bb.getSize(new THREE.Vector3())); }
+      if (e.fixed) { // a body part: its triangles round the hands
+        const hb = new THREE.Box3(); for (const x of rec.hands) for (const c of x.capsules) { hb.expandByPoint(new THREE.Vector3(...c.a)); hb.expandByPoint(new THREE.Vector3(...c.b)); } hb.expandByScalar(0.02);
+        rec.tris = trisNear(e.o, hb, 20000); rec.size_m = r4(e.bb.getSize(new THREE.Vector3())); }
+      else {
+        const parts = new Set([e.o]); if (e.whole) e.whole.traverse((o) => { if (o.isMesh && shown(o) && looksSolid(o) && !handMeshes.has(o.uuid)) parts.add(o); });
+        const ubb = new THREE.Box3(); let nV = 0; for (const o of parts) { ubb.expandByObject(o); nV += o.geometry.attributes.position.count; }
+        // every vertex up to 6000 (a fixed stride aliased with a cylinder's radial segments and dropped whole sides of a pencil)
+        const step = nV <= 6000 ? 1 : Math.ceil(nV / 6000) | 1, pts = []; const v = new THREE.Vector3(); let kk = 0;
+        for (const o of parts) { const pos = o.geometry.attributes.position; o.updateMatrixWorld(); for (let i = 0; i < pos.count; i++, kk++) if (kk % step === 0) { v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); pts.push(r4(v)); } }
+        rec.hull = pts; rec.size_m = r4(ubb.getSize(new THREE.Vector3())); if (e.whole) rec.parts = parts.size;
+        const near = ubb.clone().expandByScalar(0.01), zone = ubb.clone().expandByScalar(0.02); rec.supports = [];
+        // an object gripped by another hand (a pencil) does not carry this one; one a hand only rests on (a desk, a sheet) still does
+        const heldElse = new Set([...objs.values()].filter((x) => x !== e && x.o && !x.fixed && x.hands.some((H) => !['restOn', 'tipOn'].includes(H.a.grasp))).map((x) => x.o));
+        for (const c of all) { if (parts.has(c.o) || heldElse.has(c.o) || !c.bb.intersectsBox(near)) continue; if (e.o.parent && c.o.parent === e.o.parent && c.o.userData.label && c.o.userData.label === e.o.userData.label) continue;   // parts of the same object
+          let tr = trisNear(c.o, zone);
+          if (tr && c.o.userData.who) { // a body: drop its triangles within 25 mm of any hand (the mesh body's skin includes the hands, which are capsules here)
+            const caps = Object.values(b.figs || {}).flatMap((f) => ['L', 'R'].flatMap((n) => (f.userData.P.hands?.[n]?.capsules || []).map((c) => ({ a: c.a.toArray(), b: c.b.toArray(), r: c.r })))), segD = (p, c) => { const a = new THREE.Vector3(...c.a), ab = new THREE.Vector3(...c.b).sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / Math.max(ab.lengthSq(), 1e-12), 0, 1); return p.distanceTo(a.addScaledVector(ab, t)) - c.r; };
+            const I = []; for (let t = 0; t < tr.idx.length; t += 3) { const C = new THREE.Vector3(); for (let k = 0; k < 3; k++) { const i = tr.idx[t + k] * 3; C.x += tr.pos[i] / 3; C.y += tr.pos[i + 1] / 3; C.z += tr.pos[i + 2] / 3; }
+              if (!caps.some((c) => segD(C, c) < 0.025)) I.push(tr.idx[t], tr.idx[t + 1], tr.idx[t + 2]); }
+            tr = I.length ? { pos: tr.pos, idx: I } : null; }
+          if (tr) rec.supports.push({ label: c.o.userData.label || (c.o.userData.who ? c.o.userData.who + ' (body)' : c.o.geometry.type), ...tr }); }
+      } }
     out.push(rec);
   }
   return out;

@@ -163,13 +163,16 @@ function cart(spec) {
   const C = CART, g = new THREE.Group(), hl = C.len / 2, wr = C.wRear / 2, wn = C.wNose / 2, yb = C.bottom, yt = C.top, W = { grey: 0.58, col: 0x9aa0a8 };
   const c = { rl: V(wr, yt, -hl), rr: V(-wr, yt, -hl), nl: V(wn, yt, hl), nr: V(-wn, yt, hl), rlb: V(wr * 0.9, yb, -hl + 0.04), rrb: V(-wr * 0.9, yb, -hl + 0.04), nlb: V(wn * 0.9, yb + 0.05, hl - 0.05), nrb: V(-wn * 0.9, yb + 0.05, hl - 0.05) };
   g.add(quad([c.rl, c.nl, c.nlb, c.rlb], W), quad([c.nr, c.rr, c.rrb, c.nrb], W), quad([c.nl, c.nr, c.nrb, c.nlb], W), quad([c.rr, c.rl, c.rlb, c.rrb], W), quad([c.rlb, c.nlb, c.nrb, c.rrb], { grey: 0.5, col: 0x8a9098 }));
-  for (const s of [-1, 1]) { g.add(box(0.02, 0.02, C.len + 0.1, STEEL_D, [s * wr * 0.85, 0.16, -0.02])); g.add(box(0.025, C.handleY - 0.14, 0.025, STEEL_D, [s * wr * 0.95, (C.handleY + 0.14) / 2, -hl - 0.03], [-8, 0, 0]));
+  for (const s of [-1, 1]) { g.add(box(0.02, 0.02, C.len + 0.1, STEEL_D, [s * wr * 0.85, 0.16, -0.02])); g.add(box(0.025, C.handleY - 0.149, 0.025, STEEL_D, [s * wr * 0.95, (C.handleY + 0.131) / 2, -hl - 0.029], [-8, 0, 0]));
     for (const zz of [-hl + 0.02, hl - 0.03]) g.add(cyl(0.055, 0.055, 0.025, { grey: 0.2, col: 0x222222 }, [s * wr * 0.85, 0.055, zz], [0, 0, 90], 12)); }
   g.add(box(C.wRear * 0.8, 0.015, C.len * 0.8, STEEL, [0, 0.2, 0]));
-  g.add(cyl(0.014, 0.014, C.wRear, { grey: 0.3, col: 0xb23a2e }, [0, C.handleY, -hl - 0.09], [0, 0, 90], 10));
+  // (hold pass 2026-11-26) the handle bar is its own labelled part, so the hold check takes the bar as the held object and
+  // the frame under it as its support; the uprights end 13 mm under the bar's axis (they ran 10 mm into it), the bar
+  // rests on their tops. The cart stands on its four wheels (bottoms at y = 0).
+  g.add(tag(cyl(0.014, 0.014, C.wRear, { grey: 0.3, col: 0xb23a2e }, [0, C.handleY, -hl - 0.09], [0, 0, 90], 10), "the grandmother's cart: handle bar"));
   g.add(box(0.3, 0.16, 0.22, { grey: 0.7, col: 0xd9c9a0 }, [0.02, yb + 0.1, -0.1], [0, 12, 0])); g.add(ball(0.09, { grey: 0.6, col: 0x9ab56a }, [-0.05, yb + 0.12, 0.2]));
   g.position.set(spec.at[0], 0, spec.at[1]); g.rotation.y = rad(spec.yaw || 0); g.updateMatrixWorld(true);
-  g.userData.pt = (n) => ({ handleL: V(0.17, C.handleY + 0.012, -hl - 0.09), handleR: V(-0.17, C.handleY + 0.012, -hl - 0.09), nose: V(0, yt, hl), centre: V(0, 0.7, 0) })[n]?.applyMatrix4(g.matrixWorld);
+  g.userData.pt = (n) => ({ handleL: V(0.17, C.handleY + 0.012, -hl - 0.09), handleR: V(-0.17, C.handleY + 0.012, -hl - 0.09), barL: V(0.17, C.handleY, -hl - 0.09), barR: V(-0.17, C.handleY, -hl - 0.09), nose: V(0, yt, hl), centre: V(0, 0.7, 0) })[n]?.applyMatrix4(g.matrixWorld);
   return tag(g, "the grandmother's cart");
 }
 
@@ -186,7 +189,7 @@ export function build(shot, { makeCam, W = 1920, H = 1080 }) {
   const art = place(artichoke(), AP.at, AP.axis), rom = place(romanesco(), ROM_ISLAND.at, ROM_ISLAND.axis); root.add(art, rom);
   const artC = V(AP.at), artAxis = V(AP.axis).normalize(), romC = V(ROM_ISLAND.at), romAxis = V(ROM_ISLAND.axis).normalize();
   const cartG = shot.cart ? cart(shot.cart) : null; if (cartG) root.add(cartG);
-  // set targets: 'art' | 'art:L' | 'art:R' | 'art:tip' | 'rom' | 'rom:tip' | 'cart:handleL|handleR|nose|centre' |
+  // set targets: 'art' | 'art:L' | 'art:R' | 'art:tip' | 'rom' | 'rom:tip' | 'cart:handleL|handleR|barL|barR|nose|centre' |
   // 'forearm:<who>:<L|R>[:k]' (k along elbow -> wrist, default 0.6)
   const extra = (t, figs) => {
     if (typeof t !== 'string') return null;

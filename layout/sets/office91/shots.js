@@ -4,7 +4,7 @@
 // The plan's two camera positions:  OUTSIDE = frontal, level, locked off on her face, with bare wall frame-left of it for
 // the toner label.  INSIDE = along her eye-line, close (her head is hidden in those guides: the camera is her eyes).
 import { SEATS, CHAIR, JADE_TIP, SW_TIP, DICT, DAD_PALM, HANDOUT, TABLE, HALL_KID, HALL_MOM } from './layout.js';
-import { pointAt } from './common.js';
+import { graspArms } from '../../engine/grasp.js';
 
 const TOP = TABLE.h, HX = HANDOUT.cx;
 // ---------------------------------------------------------------- poses
@@ -16,18 +16,31 @@ const jadeRead = (o = {}) => jade({ spine: { bend: 20 }, head: { look: 'handout'
 // distal pad radius (0.040 hand units x 1.097 child finger scale x 0.122 m hand = 5.4 mm), so the pad meets the page on
 // the gap. The finger comes down at 30 deg, so the lowest point of the finger is that pad. She looks at the gap.
 const JADE_PAD_R = 0.0054;
-const jadePoint = (o = {}) => jadeRead({ R: { tip: { finger: 'index', at: JADE_TIP, off: [0, JADE_PAD_R, 0] }, hand: 'point', fingers: [0.1, -0.5, 0.86], palm: [0, -1, 0] }, head: { look: 'gap' }, ...o });
+const jadePoint = (o = {}) => jadeRead({ R: { tip: { finger: 'index', at: JADE_TIP, off: [0, JADE_PAD_R, 0] }, hand: 'point', fingers: [0.1, -0.64, 0.76], palm: [0, -1, 0], grasp: 'tipOn', object: 'yellow handout' }, head: { look: 'gap' }, ...o });   // hold pass: checked as a tap on the page (tipOn); the finger comes down at 40 deg (was 30: her thumb went 6 mm into the page)
+// hold pass 2026-11-26: her right hand RESTS on her clipboard (restOn), its fingertips on the notes and the heel of the hand
+// just off them, as a hand lies at rest on a page; the board lies on the table and the table carries it. Was a 'pinch' in
+// the air that closed through the 6 mm board. (The mannequin's wrist sphere is fatter than its palm: with the palm flat on
+// the page the wrist went 18 mm through it, so the hand pitches a little fingers-down and the wrist clears.)
+const SW_LH = 0.178, CLIP_TOP = TOP + 0.008;   // her hand length (as swPoint); the clipboard's paper top (build.js: 6 mm board + 2 mm notes)
+const REST_HAND = { shape: 'flat', curl: { index: [4, 8, 4], middle: [5, 8, 4], ring: [6, 8, 4], little: [6, 8, 4] }, spread: 3 };   // a hand lying open on a page
+const swRest = (x, z, f = [-0.45, -0.08, -0.9], lift = 0.0215) => { const a = graspArms('restOn', { centre: [x, CLIP_TOP, z], at: [x, CLIP_TOP, z], up: [0, 1, 0], axis: f, label: 'clipboard (her notes)' }, { Lh: SW_LH, side: 'R' }).R;
+  a.to[1] += lift; return Object.assign(a, { hand: REST_HAND, fingers: f, palm: [f[2] * 0.12, -1, -f[0] * 0.12] }); };   // palm rolled a little onto the little-finger side
 const sw = (o = {}) => ({ at: SEATS.socialWorker, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 180, spine: { bend: 8 }, head: { look: 'jade7:eyes' },
-  L: { to: [0.08, TOP + 0.035, 0.24], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [0.33, TOP + 0.04, 0.25], hand: 'pinch', palm: 'down', fingers: 'fwd' }, ...o });
-const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: pointAt(SW_TIP, [-0.45, -0.5, -0.6], 0.178, 'L') });
+  L: { to: [-0.03, TOP + 0.035, 0.24], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: swRest(0.27, 0.17), ...o });   // L on the table just left of the clipboard (hold pass: was on its edge, the fingers through the notes)
+const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: graspArms('tipOn', { centre: SW_TIP, at: [SW_TIP[0], SW_TIP[1] + 0.0005, SW_TIP[2]], axis: [-0.45, -0.5, -0.6], up: [0, 1, 0], palm: [0, -1, 0], label: 'yellow handout' }, { Lh: SW_LH, side: 'L' }).L, R: { ...swRest(0.25, 0.09, [-0.8, -0.08, -0.55], 0.027), elbowAt: [0.65, 0.9, 0.2] } });   // leaning in, her resting hand lies further up the notes; hold pass: her index pad lands ON the face (tipOn; pointAt put it about 1 cm off)
 // Mom holds the open dictionary in both hands, as you hold a paperback to read: each palm under one cover (palm toward
 // the back of the book), four fingers spread along the back of that cover toward its top edge, each thumb over the page
 // block on the face. Her RIGHT thumb is the riffle: its pad on the fore-edge corner of the right-hand pages, bending them
-// up so they flip toward the spine. Book height axis = [0, 0.77, 0.64]; page normal = [0, 0.64, -0.77] (toward her face).
-const BK_UP = [0, 0.77, 0.64], BK_N = [0, 0.64, -0.77];
+// up so they flip toward the spine. Book height axis BK_UP; page normal BK_N (toward her face).
+// hold pass 2026-11-26: checked as twoHandsBelow on the dictionary. The palms now lie ON the back of the cover (they were
+// 2 cm behind it) under its lower half, and the book leans back to DICT.tilt = 40 deg (was 50) so the palms' friction holds
+// it (steeper than atan 0.9 = 42 deg it slid down through her hands).
+const BT = DICT.tilt * Math.PI / 180, BK_UP = [0, Math.sin(BT), Math.cos(BT)], BK_N = [0, Math.cos(BT), -Math.sin(BT)];
+const BK_BACK = 0.010 + 0.064 * 0.18 - 0.0012 + 0.005, BK_LOW = 0.041;   // palm centre behind the page plane (cover back 10 mm + palm 11.5 mm - squeeze, + 5 mm: the hands roll onto the index side, which meets the cover first); below the book centre
+const bkOff = (x) => [x, -BK_N[1] * BK_BACK - BK_UP[1] * BK_LOW, -BK_N[2] * BK_BACK - BK_UP[2] * BK_LOW];
 const mom = (o = {}) => ({ at: SEATS.mom, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 0, spine: { bend: 12 }, head: { look: 'dict' },
-  L: { to: DICT.at, off: [0.05, -0.062, 0.01], hand: { shape: 'relax', thumb: { opp: 0.1, sweep: 40, abd: 26, mcp: 6, ip: 8 } }, palm: BK_N, fingers: BK_UP, thumb: [-1, 0.2, -0.2] },
-  R: { to: DICT.at, off: [-0.055, -0.062, 0.01], hand: { shape: 'relax', thumb: { opp: 0.1, sweep: 40, abd: 26, mcp: 6, ip: 22 } }, palm: BK_N, fingers: BK_UP, thumb: [1, 0.25, -0.25] }, ...o });
+  L: { to: DICT.at, off: bkOff(0.05), hand: { shape: 'relax', thumb: { opp: 0.1, sweep: 40, abd: 26, mcp: 6, ip: 8 } }, palm: BK_N, fingers: BK_UP, thumb: [-1, 0.2, -0.2], grasp: 'twoHandsBelow', object: 'little red dictionary' },
+  R: { to: DICT.at, off: bkOff(-0.055), hand: { shape: 'relax', thumb: { opp: 0.1, sweep: 40, abd: 26, mcp: 6, ip: 22 } }, palm: BK_N, fingers: BK_UP, thumb: [1, 0.25, -0.25], grasp: 'twoHandsBelow', object: 'little red dictionary' }, ...o });
 const momListen = (o = {}) => mom({ head: { look: 'sw:head' }, L: { to: [0.5, TOP + 0.02, -0.38], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [0.32, TOP + 0.02, -0.4], hand: 'relax', palm: 'down', fingers: 'fwd' }, ...o });
 // r3 (Jade): Dad STANDS behind Mom's chair (a little to her left), his RIGHT hand on her left shoulder, his LEFT hand
 // open, palm up, out toward the social worker, mid-explanation ("Her English comes from books"). His watch is on that

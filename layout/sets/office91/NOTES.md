@@ -141,3 +141,26 @@ and measured hits. Times written elsewhere in this file before this section are 
   geese); the sweatshirt stays the set's sage green while r3 painted dusty rose. Questions in work/background_art_audit.md.
 - Painter prompts: pass the r4 guides as usual; for close shots of the wall add the images it shows as references.
 - Repaint in r4: PC1, PC2, PC4 (board now 5 pictures; PC2 had drifted), FE_out, FE_thumbs, PC3a, X_sw.
+
+## 2026-11-26: hold pass (Jade: objects held so they are supported, not adjacent, no floating; correct physics; natural wrists)
+Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`.
+- Social worker's right hand (every shot with `sw`): it was a 'pinch' in the air that closed through the 6 mm clipboard.
+  Now it RESTS on the clipboard (grasp.js restOn via `swRest` in shots.js): open hand, fingertips on her notes, the heel
+  of the hand just off them. The mannequin's wrist sphere is fatter than its palm, so with the palm flat on the page the
+  wrist went 18 mm through it; the hand pitches a little fingers-down so the wrist clears. BO2 (she leans in to point):
+  her resting hand lies further up the notes (`swRest(0.25, 0.09, ...)`), with `elbowAt` out to her right. Without it her
+  forearm came up through the table.
+- Clipboard (build.js): the board and the clip now carry their own labels ('clipboard: the board' / 'clipboard: the
+  clip'), so the check sees her hand on the notes, the notes on the board, the board on the table. layout.js CLIPBOARD
+  moved 4 cm onto the table (z 0.20 -> 0.16): it hung 4 cm over the near edge, over her forearm.
+- Social worker's left hand: moved to the table just left of the clipboard (x 0.08 -> -0.03). Its fingers went through
+  the notes. It rests on the table, which the check does not cover (see below).
+- Mom's open dictionary: now checked (arms tagged `grasp: 'twoHandsBelow'`, `object: 'little red dictionary'`). The palms
+  lie ON the back of the cover (they were 2 cm behind it), under its lower half. The book leans back to DICT.tilt = 40 deg
+  (layout.js, was 50; build.js reads it): at 50 deg, steeper than atan 0.9 = 42 deg, it slid down out of her palms.
+- Little Jade's pointing finger (BO1/BO2): checked as tipOn on the handout. The finger now comes down at 40 deg (was 30
+  deg): her thumb went 6 mm into the page. The adult finger in BO2 now uses the tipOn template (`tip` on SW_TIP), so the
+  pad lands ON the ANXIOUS face. pointAt left it about 1 cm off.
+- Not checked: hands resting on the table itself (Jade's hands, the social worker's left hand, Dad's hand on Mom's
+  shoulder). The table is not a held object, and its laminate skin and core share one label, so they cannot be hulled.
+- Repaint where visible: PC1, PC4, X_sw, PC3a/b (her right hand and the clipboard moved), BO1/BO2 (finger angles).

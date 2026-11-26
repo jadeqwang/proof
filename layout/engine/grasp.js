@@ -3,7 +3,7 @@
 // frame into arm specs for the pose solver (buildFigure's arm API: to / palm / fingers / hand / hold / tip), and back
 // (objectFromHand: where the object sits in a SOLVED hand, so props are placed from the hand, never floating). The arm
 // IK then reaches the hand pose with the natural-wrist rule (engine/wrist.js). Check the result with
-// engine/holdcheck.mjs (Rapier). Not wired into any shot yet.
+// engine/holdcheck.mjs (Rapier). Wired into the shots by the hold pass (2026-11-26): graspArms tags each arm with `grasp` and `object`.
 //
 // Object frame: { centre: [x,y,z], axis: [x,y,z] (long axis: handle, spine, sheet edge), up: [x,y,z] (away from gravity or
 //   the object's top), size: [along axis, across, thickness] (m), at?: contact point }. Hand frame (engine/hand.js):
@@ -22,6 +22,7 @@ const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
 const norm = (a) => { const l = Math.hypot(...a) || 1; return a.map((x) => x / l); };
 const PALM_T = 0.064;   // palm surface to the palm centre, in hand lengths (engine/mannequin.js hold.centre)
+const SQ = 0.0012;      // m the pads / palm press into what they hold (engine/hand.js SQUEEZE)
 
 export const GRASPS = {
   power: { use: 'cylindrical power grip round a handle / bottle / rail', hands: 1, shape: 'grip', note: 'handle across the palm along the thumb side; fingers wrap it' },
@@ -31,11 +32,19 @@ export const GRASPS = {
   palmUnder: { use: 'flat object carried on the palm (plate, book)', hands: 1, shape: 'flat', note: 'palm up under the centre of mass' },
   twoHandsBelow: { use: 'book / box / folded cloth carried in both hands from below', hands: 2, shape: 'cup', note: 'palms up under the two side edges, thumbs over the top' },
   twoHandsSides: { use: 'box / stack held at its sides', hands: 2, shape: 'flat', note: 'palms pressing in on the two side faces, fingers forward / down' },
+  restOn: { use: 'a hand resting on an object that rests on furniture (a hand on a book on the table, steadying a sheet)', hands: 1, shape: 'relax', note: 'palm down on the top face; the furniture carries the object, the hand only touches it' },
+  tipOn: { use: 'a fingertip on a point of an object (tapping a key, pointing at a line, pressing a button)', hands: 1, shape: 'point', note: 'the index pad on the point, the object rests on its own support' },
   shoulderSeams: { use: 'a garment held up by its shoulder seams', hands: 2, shape: 'pinch', note: 'each hand pinches one shoulder seam, the garment hangs below between them' },
 };
 
 // arm specs for a template. obj in world; opts.Lh hand length (m), opts.side 'L' | 'R' for one-hand grips
 export function graspArms(name, obj, opts = {}) {
+  const out = graspArms0(name, obj, opts);
+  // tag every arm with the template and the object (engine/main.js holdsFor checks these hands against that object)
+  for (const k of Object.keys(out)) { out[k].grasp = name; if (obj.label) out[k].object = obj.label; }
+  return out;
+}
+function graspArms0(name, obj, opts) {
   const T = GRASPS[name]; if (!T) throw new Error('no grasp ' + name);
   const Lh = opts.Lh ?? 0.18, C = v(obj.centre), ax = norm(obj.axis || [1, 0, 0]), up = norm(obj.up || [0, 1, 0]);
   const across = norm(cross(up, ax)), [sx = 0.1, sy = 0.1, sz = 0.03] = obj.size || [];
@@ -46,15 +55,23 @@ export function graspArms(name, obj, opts = {}) {
       return { [side]: { to: at, hand: 'grip', palm: toward.map((x) => -x), hold: { r, prop: false, centre: true, axis: ax } } }; }
     case 'mugHandle': { const r = obj.handleR ?? 0.006;
       return { [side]: { to: at, hand: { shape: 'grip', curl: { ring: [80, 95, 60], little: [85, 95, 60] } }, palm: across.map((x) => -x), hold: { r, prop: false, centre: true, axis: up } } }; }
-    case 'pinch': return { [side]: { tip: { finger: 'index', at }, hand: 'pinch', fingers: obj.fingers || up.map((x) => -x), palm: across } };
-    case 'paperEdge': { const nrm = norm(obj.normal || cross(ax, up));   // the sheet's face normal
-      return { [side]: { tip: { finger: 'index', at, off: nrm.map((x) => x * 0.004) }, hand: 'pinch', palm: nrm.map((x) => -x), fingers: up.map((x) => -x) } }; }
-    case 'palmUnder': return { [side]: { to: add(C, up, -(sz / 2 + PALM_T * Lh * 0.4)), hand: 'flat', palm: 'up', fingers: obj.fingers || ax } };
+    case 'pinch': { const gap = Math.max(0, (obj.thick ?? 0) - SQ);
+      return { [side]: { tip: { finger: 'index', at }, hand: { shape: 'pinch', thumb: { gap } }, fingers: obj.fingers || up.map((x) => -x), palm: across } }; }
+    case 'paperEdge': { // the sheet's face normal points at the index pad; the thumb pad on the other face, gap = the sheet's thickness
+      // (hold-fix 2026-11-26: the pinch closed pad-to-pad THROUGH the paper / clipboard). obj.thick (m), default 0.3 mm
+      const nrm = norm(obj.normal || cross(ax, up)), th = obj.thick ?? 0.0003, Lr = 0.045 * Lh;   // Lr: index distal pad radius
+      return { [side]: { tip: { finger: 'index', at, off: nrm.map((x) => x * (th / 2 + Lr - SQ / 2)) }, hand: { shape: 'pinch', thumb: { gap: Math.max(0, th - SQ) } }, palm: obj.palm || nrm.map((x) => -x), fingers: obj.fingers || up.map((x) => -x) } }; }
+    case 'palmUnder': return { [side]: { to: add(C, up, -(sz / 2 + PALM_T * Lh - SQ)), hand: 'flat', palm: up, fingers: obj.fingers || ax } };
     case 'twoHandsBelow': { const e = sy / 2 - 0.02;
-      return { L: { to: add(add(C, across, e), up, -(sz / 2 + 0.012)), hand: 'cup', palm: up, fingers: across.map((x) => -x) },
-        R: { to: add(add(C, across, -e), up, -(sz / 2 + 0.012)), hand: 'cup', palm: up, fingers: across } }; }
-    case 'twoHandsSides': { const e = sy / 2 + PALM_T * Lh * 0.35;
+      const dn = -(sz / 2 + PALM_T * Lh - SQ);
+      return { L: { to: add(add(C, across, e), up, dn), hand: 'cup', palm: up, fingers: across.map((x) => -x) },
+        R: { to: add(add(C, across, -e), up, dn), hand: 'cup', palm: up, fingers: across } }; }
+    case 'twoHandsSides': { const e = sy / 2 + PALM_T * Lh - SQ;
       return { L: { to: add(C, across, e), hand: 'flat', palm: across.map((x) => -x), fingers: ax }, R: { to: add(C, across, -e), hand: 'flat', palm: across, fingers: ax } }; }
+    case 'restOn': { const top = add(at, up, obj.at ? 0 : sz / 2);
+      return { [side]: { to: add(top, up, PALM_T * Lh - SQ), hand: obj.hand || 'relax', palm: up.map((x) => -x), fingers: obj.fingers || ax } }; }
+    case 'tipOn': { const Lr = 0.045 * Lh;
+      return { [side]: { tip: { finger: obj.finger || 'index', at: add(at, up, Lr - SQ) }, hand: obj.hand || 'point', palm: obj.palm || up.map((x) => -x), fingers: obj.fingers || ax } }; }
     case 'shoulderSeams': { const a = obj.seamL, b = obj.seamR; if (!a || !b) throw new Error('shoulderSeams needs obj.seamL / seamR');
       return { L: { tip: { finger: 'index', at: a }, hand: 'pinch', fingers: up.map((x) => -x), palm: across }, R: { tip: { finger: 'index', at: b }, hand: 'pinch', fingers: up.map((x) => -x), palm: across.map((x) => -x) } }; }
   }

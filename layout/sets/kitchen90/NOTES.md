@@ -114,3 +114,34 @@ clips"; K1_question_end "have dad whispering into her ear, also stage all the ki
   Not here: anything on the walls or fridge door (clock, calendar, phone, magnets): the background-art agent's.
 - Sources: general knowledge of 1985-92 US builder kitchens (no web images used).
 - `house.js` not touched.
+
+## 2026-11-26: hold pass
+
+Hands that hold or rest on something are now checked by `engine/holdcheck.mjs` (arm `grasp` / `object`) and pass in
+both `--body mannequin` and `PROOF_BODY=mesh` (K1_question, K1_question_end, K4_writes; no other kitchen90 hand holds an
+object: K2 taps on the bare table, K5/K6 thumbs on her cheeks, Mama's hand on the chair back are not holds).
+- **The pencil is the held object** (shots.js `pencilArm`, `grasp: 'pinch'`, `object: 'pencil'`). Her right hand sits
+  on its little-finger side, fingers toward her middle (`palm [0.55, -0.8, 0.1]`, `fingers [1.2, -0.6, 1]`), which keeps
+  the wrist in range (was ulnar deviation 46 deg); the index tip is 2.4 cm over the page; middle / ring / little curled.
+- **Pencil placement (build.js):** `shot.pencilFit` (shots.js `PENCIL_FIT = { el: 45, az: 310, s: -0.0015, s2: -0.007 }`)
+  gives the pencil's lean (45 deg up, toward her right and a little away) and where it crosses the pinch. It was fitted
+  with the Rapier check: a pencil only squeezed between two pads slides out (the engine's thumb gap saturates at ~3.6 mm
+  between the pad surfaces, so a 7 mm pencil between them is 3+ mm "inside" them); in the fitted pose the index pad, the
+  thumb pad and the web carry it. Its tip (capsule end) now touches the page / sheet top (was at the sheet's mid-plane).
+- **Left hands (grasp `restOn`, flat, rolled 8 deg onto the little-finger side so the thumb's ball does not press through
+  the sheet; `elbowAt [-0.35, 0.9, -0.12]` lifts the elbow a little out to the side so the forearm comes down onto the
+  paper instead of through the table edge).** K4: on the sheet's left edge (sheet checked: rests on the table). K1: on
+  the NEAR EDGE of the left page, heel of the hand and wrist on the table in front of the book (flag: was "flat on the
+  other page"; the mannequin's and the rigged mesh's wrists sit 5-9 mm below the palm, so a palm in mid-page put the
+  wrist into the book).
+- **Workbook (build.js, INVENTED as before):** now a thin softcover opened flat: 1 mm cover, 2 mm of pages a side, no
+  page tilt (was 4 + 4 mm with the pages tipped 1.7 deg, so the printed rows floated / sank), and 4 cm further from her
+  (its near edge cleared her right forearm). Page top = TABLE.h + 3 mm.
+- K1 spine bend 14 -> 16 (as K4). Note (not fixed, staging): at this 0.74 m table her forearms cross the table's front
+  edge below the top in the NIGHT shots (a 7-year-old on a plain chair); a booster cushion or a lower chair hip would fix
+  it everywhere (question for Jade?).
+- **Round 2 (engine: exact thumb.gap, ball chains, support prisms).** PENCIL_GAP = 7 mm - 2 mm (the pinch now opens to
+  exactly the gap: 1 mm squeeze a side). K4 left hand target raised 3 mm (palm was 5.2 mm into the sheet). K1 / K1_end:
+  pencil and workbook PASS in mannequin and mesh. K4 pencil passes in mannequin, but in mesh it slides 40 cm. K4 sheet FAILs, sliding 1.2-1.4 cm, only
+  because the pencil, a static support in the check, shoves it. Without the pencil as a support it holds at 0.1 cm.
+  Support prisms are extruded "away from the object centroid", which for the pencil tip points into the sheet.

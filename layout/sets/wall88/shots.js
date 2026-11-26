@@ -31,8 +31,10 @@ function worker(w) {
   switch (w.pose) {
     case 'mouth': return { ...base, head: { nod: 8, turn: 12 }, R: { to: 'self:mouth', off: [-0.035, -0.01, 0], hand: 'flat', palm: 'back', fingers: 'left', elbow: 'down' },
       L: { to: 'side', hand: 'fist' } };
-    case 'clasp': return { ...base, head: { nod: 22 }, L: { to: 'self:waist', off: [-0.13, 0.02, 0.0], hand: 'grip', palm: 'in', fingers: 'down' },
-      R: { to: 'self:waist', off: [-0.15, 0.04, 0.0], hand: 'grip', palm: 'in', fingers: 'down' } };
+    // (hold pass 2026-11-26) the clasp holds no object: each hand curls loosely round the other ('relax', was 'grip', which
+    // the hold check reads as gripping something and found nothing within 3 cm)
+    case 'clasp': return { ...base, head: { nod: 22 }, L: { to: 'self:waist', off: [-0.13, 0.02, 0.0], hand: 'relax', palm: 'in', fingers: 'down' },
+      R: { to: 'self:waist', off: [-0.15, 0.04, 0.0], hand: 'relax', palm: 'in', fingers: 'down' } };
     case 'pray': return { ...base, head: { nod: 26 }, L: { to: 'self:chin', off: [-0.09, -0.07, 0.012], hand: 'flat', palm: 'in', fingers: 'up' },
       R: { to: 'self:chin', off: [-0.09, -0.07, -0.012], hand: 'flat', palm: 'in', fingers: 'up' } };
     case 'flat': return { ...base, head: { nod: -8 }, ...palmsToBrick(w.z, 0.80, 0.2) };

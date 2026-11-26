@@ -62,3 +62,9 @@ and measured hits. Times written elsewhere in this file before this section are 
 
 - PG1 4:21.7-4:24.1 (coda's last bar), PG2 4:21.7-4:28.4, PG2_plate 4:24.1 (last hit)-4:28.4 (the bass note rings and
   fades, gone by ~4:28.0).
+
+## 2026-11-26: hold pass
+- The partner's right hand is flat and palm up under the carried toddler's thigh (off y -0.09; was a cup at -0.06 with
+  the fingers curling into the thigh): `grasp: 'palmUnder', object: 'figure:toddler:leg'`. It passes on the mesh body.
+  It fails on the mannequin: the mannequin child's leg is 2-3 cm fuller there, and no single hand position touches both
+  bodies. The hand is out of frame in PG1 / PG2 / PG2_plate.

@@ -318,3 +318,25 @@ Note for whoever renders next: the default `render.mjs` modes do NOT include the
   floppies), B4_doubletake and B5_cat (lick contact, hunch, screen). B0 are references.
 - **Waiting on the engine:** aimed pupils (gaze switch), slimmer child arms / natural wrist (body mesh), a real jaw and
   lips for the lick contact.
+
+## 2026-11-26: hold pass
+Every hand that touches something is now checked (`--gaze` sidecar `holds`, engine/holdcheck.mjs); all pass in mannequin and `--body mesh`.
+- Dad typing (POINT: B0_plan, B0_wide, B1_feet, B2_face, B3_finger): each hand's MIDDLE fingertip pad on a home-row key
+  (grasp `tipOn` on the keyboard's tipped top face, layout.js `KB_TOP` / `KB_UP`), other fingers loosely curled (shots.js
+  `tap`, `TYPE_HAND`). Was a relaxed palm 5 cm over the desk with the fingers in the air.
+- The keyboard (build.js): raised so its lowest edge rests on the desk (centred at half its height, the 6 deg tip sank 9 mm
+  into the top), with two fold-out feet at the back merged into the same mesh (a tipped box on one edge rocked flat 9 mm in
+  the check). layout.js `PC.keyboard.tilt`, `KB_Y`.
+- The CRT monitor (build.js): foot, bezel and tube housing merged into ONE mesh (`mergeMeshes`), so the monitor is one rigid
+  object resting on the case by its foot; looks unchanged. Her right fingertip on the glass is checked against it
+  (grasp `tipOn`, object 'CRT monitor'; contact 1.9 mm = the glass stands 2 mm proud of the bezel).
+- Her left hand on the desk (grasp `restOn`, object 'desk'): fingers a little curled with their pads on the wood, the palm
+  2 cm up so the heel of the hand / wrist clears the top (the flat palm put the mannequin wrist 9 mm and the mesh wrist 11 mm
+  into the desk), thumb level (the flat shape's thumb hung 14-28 mm into the top) (shots.js `DESK_L`, `LIFT_L`, `CURL_L`).
+- B2_face hides the monitor for its camera, so her fingertip has nothing to be checked against there (`POINT_B2` drops
+  the tag); the same pose passes in B0 / B1 / B3.
+- B4 / B5: no hand holds or rests on anything (Dad's hands hover over the keys, the paw is at her mouth): not checked.
+- **Round 2.** The screen glass edge's tubes are re-parented into the monitor's group and labelled 'CRT monitor' (parts of
+  the monitor, not a support it "sinks into"). All PASS in mannequin. In mesh, the desk FAILs on "sinks into little Jade (7)":
+  none of her vertices is below the desk top. The engine's support prisms are extruded away from the desk's far centroid,
+  so tilted underside triangles of her forearm get prisms pointing down into the desk.

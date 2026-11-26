@@ -115,7 +115,9 @@ function furniture() {
   g.add(wallArt());
   // on the table: the social worker's clipboard and pen, a pencil cup
   { const c = new THREE.Group(); c.position.set(CLIPBOARD.at[0], TOP, CLIPBOARD.at[1]); c.rotation.y = rad(CLIPBOARD.yaw);
-    c.add(box(0.23, 0.006, 0.32, { grey: 0.4, col: 0x6a4a30 }, [0, 0.003, 0])); c.add(box(0.21, 0.002, 0.28, { grey: 0.95, col: 0xf0f0ea }, [0, 0.007, -0.01])); c.add(box(0.1, 0.012, 0.03, STEEL, [0, 0.012, 0.14]));
+    // hold pass 2026-11-26: the notes, the board and the clip carry their own labels, so the check sees her hand resting on
+    // the notes, the notes on the board and the board on the table (one label made the board a part of the notes, not a support)
+    c.add(tag(box(0.23, 0.006, 0.32, { grey: 0.4, col: 0x6a4a30 }, [0, 0.003, 0]), 'clipboard: the board')); c.add(box(0.21, 0.002, 0.28, { grey: 0.95, col: 0xf0f0ea }, [0, 0.007, -0.01])); c.add(tag(box(0.1, 0.012, 0.03, STEEL, [0, 0.012, 0.14]), 'clipboard: the clip'));
     g.add(tag(c, 'clipboard (her notes)')); }
   g.add(tag(cyl(0.035, 0.035, 0.1, { grey: 0.45, col: 0x3a5a8a }, [0.58, TOP + 0.05, 0.24]), 'pencil cup'));
   return g;
@@ -218,7 +220,7 @@ export function build(shot, { makeCam }) {
   else if (figs.sw) { const P = figs.sw.userData.P, pr = PROP.adult, H = P.H; const m = box(0.2, 0.13, 0.004, { grey: 0.88, col: 0xe8e0c8 });
     m.position.copy(P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.022).addScaledVector(P.cy, 0.02)); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(P.cx, P.cy, P.cz)); root.add(tag(m, 'sweatshirt print')); }
   // the little red dictionary in Mom's hands, open, pages fanning under her thumb
-  if (figs.mama91) { const d = new THREE.Group(); d.position.set(...DICT.at); d.rotation.set(rad(-50), 0, 0);
+  if (figs.mama91) { const d = new THREE.Group(); d.position.set(...DICT.at); d.rotation.set(rad(-DICT.tilt), 0, 0);
     d.add(box(DICT.w * 2, 0.004, DICT.h, { grey: 0.35, col: DICT.color }, [0, -0.008, 0]));
     for (const s of [-1, 1]) d.add(box(DICT.w - 0.004, DICT.t / 2, DICT.h - 0.006, { grey: 0.92, col: 0xf0ead8 }, [s * DICT.w / 2, 0, 0]));
     for (let k = 0; k < 4; k++) { const pg = box(DICT.w - 0.006, 0.0006, DICT.h - 0.008, { grey: 0.96, col: 0xf6f0e0 }, [-(DICT.w - 0.006) / 2, 0, 0]); const hd = new THREE.Group(); hd.position.set(0, DICT.t / 4, 0); hd.rotation.z = rad(-25 - k * 28); hd.add(pg); d.add(hd); }
