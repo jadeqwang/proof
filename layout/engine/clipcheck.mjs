@@ -25,7 +25,7 @@ const require = createRequire(import.meta.url);
 const RAPIER = require(process.env.RAPIER_DIR || '/home/jade/Documents/layout-deps/node_modules/@dimforge/rapier3d-compat');
 await RAPIER.init();
 
-export const HARD_MM = 3, SOFT_MM = 12;
+export const HARD_MM = 3, SOFT_MM = 12, SHEET_BAND = 0.08;   // a sheet crossing is read within 8 cm of its plane
 // soft or load-bearing: a cushion or quilt gives, and a seated / kneeling body's own soft tissue flattens ~1 cm on a floor
 const SOFT_WORLD = /cushion|quilt|mat|pillow|futon|bed|blanket|sack|duvet|sofa seat|couch seat|floor/i;
 const FLAGS = RAPIER.TriMeshFlags.ORIENTED | RAPIER.TriMeshFlags.MERGE_DUPLICATE_VERTICES;
@@ -44,7 +44,7 @@ function depthIn(col, pts, box) {
   return { n, max_mm: +(max * 1000).toFixed(1), at: at && at.map((x) => +x.toFixed(3)) };
 }
 // a sheet (no inside): the points past it within its outline, on the minority side
-function sheetCross(sheet, pts) {
+function sheetCross(sheet, pts, parts = null) {
   // plane from the sheet's area-weighted normal
   const P = sheet.pos, I = sheet.idx; let nx = 0, ny = 0, nz = 0, cx = 0, cy = 0, cz = 0, A = 0;
   for (let t = 0; t + 2 < I.length; t += 3) { const a = I[t] * 3, b = I[t + 1] * 3, c = I[t + 2] * 3; const e1 = [P[b] - P[a], P[b + 1] - P[a + 1], P[b + 2] - P[a + 2]], e2 = [P[c] - P[a], P[c + 1] - P[a + 1], P[c + 2] - P[a + 2]];
@@ -57,9 +57,21 @@ function sheetCross(sheet, pts) {
   const inTri = (p) => { for (let t = 0; t + 2 < I.length; t += 3) { const a = I[t] * 3, b = I[t + 1] * 3, c = I[t + 2] * 3; const v0 = [P[c] - P[a], P[c + 1] - P[a + 1], P[c + 2] - P[a + 2]], v1 = [P[b] - P[a], P[b + 1] - P[a + 1], P[b + 2] - P[a + 2]], v2 = [p[0] - P[a], p[1] - P[a + 1], p[2] - P[a + 2]];
     const d00 = v0[0] * v0[0] + v0[1] * v0[1] + v0[2] * v0[2], d01 = v0[0] * v1[0] + v0[1] * v1[1] + v0[2] * v1[2], d02 = v0[0] * v2[0] + v0[1] * v2[1] + v0[2] * v2[2], d11 = v1[0] * v1[0] + v1[1] * v1[1] + v1[2] * v1[2], d12 = v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2];
     const den = d00 * d11 - d01 * d01; if (!den) continue; const u = (d11 * d02 - d01 * d12) / den, v = (d00 * d12 - d01 * d02) / den; if (u >= 0 && v >= 0 && u + v <= 1) return true; } return false; };
+  // r5 (engine-body): a body only goes THROUGH a sheet where one of its own edges crosses the sheet inside the outline.
+  // A body merely beside a sheet's plane (thighs under a table top, a child sitting on pieces of paper lying on the floor)
+  // has no such edge and is not a crossing (it was reported as up to 755 mm "into the meeting table").
+  if (parts) { const sb = bbox(P); let crosses = false;
+    for (const part of parts) { const Q = part.pos, J = part.idx;
+      for (let t = 0; t + 2 < J.length && !crosses; t += 3) for (let e = 0; e < 3 && !crosses; e++) { const a = J[t + e] * 3, b = J[t + (e + 1) % 3] * 3;
+        const pa = [Q[a], Q[a + 1], Q[a + 2]], pb = [Q[b], Q[b + 1], Q[b + 2]]; if (!inBox(sb, pa, 0.02) && !inBox(sb, pb, 0.02)) continue;
+        const da = (pa[0] - cx) * nx + (pa[1] - cy) * ny + (pa[2] - cz) * nz, db = (pb[0] - cx) * nx + (pb[1] - cy) * ny + (pb[2] - cz) * nz; if (da * db >= 0) continue;
+        const k = da / (da - db), x = [pa[0] + (pb[0] - pa[0]) * k, pa[1] + (pb[1] - pa[1]) * k, pa[2] + (pb[2] - pa[2]) * k]; if (inTri(x)) crosses = true; } }
+    if (!crosses) return { n: 0, max_mm: 0, note: 'no edge crosses the sheet' }; }
   let pos = [], neg = [];
-  for (const p of pts) { const d = (p[0] - cx) * nx + (p[1] - cy) * ny + (p[2] - cz) * nz; const q = [p[0] - d * nx, p[1] - d * ny, p[2] - d * nz]; if (!inTri(q)) continue; (d >= 0 ? pos : neg).push([d, p]); }
-  const all = pts.map((p) => (p[0] - cx) * nx + (p[1] - cy) * ny + (p[2] - cz) * nz), side = all.filter((d) => d >= 0).length >= all.length / 2 ? 1 : -1;   // the side the figure is on
+  // r5 (engine-body): only points within SHEET_BAND of the plane count: a sheet lying on a table (a page) flagged a child's
+  // feet under the table, 46 cm below it inside its outline, as "472 mm through the paper" (kitchen90 K4_writes)
+  for (const p of pts) { const d = (p[0] - cx) * nx + (p[1] - cy) * ny + (p[2] - cz) * nz; if (Math.abs(d) > SHEET_BAND) continue; const q = [p[0] - d * nx, p[1] - d * ny, p[2] - d * nz]; if (!inTri(q)) continue; (d >= 0 ? pos : neg).push([d, p]); }
+  const all = pts.map((p) => (p[0] - cx) * nx + (p[1] - cy) * ny + (p[2] - cz) * nz), side = all.filter((d) => d >= 0).length >= all.length / 2 ? 1 : -1;   // the side the figure is on (all its points)
   const past = side > 0 ? neg : pos; let max = 0, at = null; for (const [d, p] of past) if (Math.abs(d) > max) { max = Math.abs(d); at = p; }
   return { n: past.length, max_mm: +(max * 1000).toFixed(1), at: at && at.map((x) => +x.toFixed(3)) };
 }
@@ -90,7 +102,7 @@ export function checkDump(D) {
   // ---- body vs world
   for (const [who, f] of Object.entries(F)) for (const w of W) {
     const pts = f.hardPts.filter((p) => inBox(w.box, p, 0.002)), spts = f.softPts.filter((p) => inBox(w.box, p, 0.002)); if (!pts.length && !spts.length) continue;
-    const h = w.sheet ? sheetCross(w, f.hardPts) : depthIn(w.col, pts), s = w.sheet ? sheetCross(w, f.softPts) : depthIn(w.col, spts);
+    const h = w.sheet ? sheetCross(w, f.hardPts, f.parts.filter((p) => !p.soft)) : depthIn(w.col, pts), s = w.sheet ? sheetCross(w, f.softPts, f.parts.filter((p) => p.soft)) : depthIn(w.col, spts);
     if (!h.n && !s.n) continue; const tol = soft(w.label) ? SOFT_MM : HARD_MM, ok = h.max_mm <= tol && s.max_mm <= SOFT_MM;
     res.world.push({ who, object: w.label, sheet: w.sheet || undefined, skin_vertices: h.n, skin_mm: h.max_mm, skin_at: h.at, cloth_vertices: s.n, cloth_mm: s.max_mm, cloth_at: s.at, tolerance_mm: tol, pass: ok });
     if (!ok) res.fails.push(`${who} into ${w.label}: ${Math.max(h.max_mm, s.max_mm)} mm`); }

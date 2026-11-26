@@ -183,8 +183,8 @@
   },
   "jade3.R": {
    "px": [
-    573.2,
-    613
+    560.2,
+    615.1
    ],
    "shape": "point",
    "in_frame": true,
@@ -201,12 +201,12 @@
   },
   "mama86.R": {
    "px": [
-    1381.8,
-    348.6
+    1382.8,
+    279.7
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   }
  },
  "lights": [
@@ -326,10 +326,7 @@
    "toward_camera": -0.169
   }
  ],
- "warnings": [
-  "wrist: jade3 R beyond the wrist range (flexion +4 deg, ulnar deviation +14 deg; flex 64.4, radial -44.1, twist null, after an elbow swivel of 0 deg)",
-  "wrist: mama86 R beyond the wrist range (extension +26 deg, ulnar deviation +57 deg; flex -86.4, radial -86.7, twist -60.1, after an elbow swivel of 0 deg)"
- ],
+ "warnings": [],
  "intent": "Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, out of the light. Mother's face is drawn.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
@@ -917,7 +914,7 @@
     },
     "handR": {
      "in": true,
-     "margin_m": 0.036
+     "margin_m": 0.008
     },
     "hip": {
      "in": true,
@@ -939,7 +936,7 @@
     },
     "handR": {
      "in": false,
-     "margin_m": -1.498
+     "margin_m": -1.728
     },
     "hip": {
      "in": false,
@@ -1094,9 +1091,9 @@
     -3.553
    ],
    "handR": [
-    -1.647,
-    0.462,
-    -3.546
+    -1.667,
+    0.46,
+    -3.525
    ],
    "hip": [
     -1.77,
@@ -1122,7 +1119,7 @@
    ],
    "handR": [
     0.27,
-    1.12,
+    1.35,
     -6.14
    ],
    "hip": [
@@ -1162,9 +1159,9 @@
      "arm": "R",
      "target": null,
      "world": [
-      -1.611,
+      -1.61,
       0.426,
-      -3.495
+      -3.494
      ],
      "self": false,
      "look_off_deg": 0.8
@@ -1257,20 +1254,17 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 64.4,
-    "radial_deg": -44.1,
+    "flex_deg": 58.2,
+    "radial_deg": 14.4,
     "twist_deg": null,
     "elbow_flex_deg": 5.2,
     "before": {
-     "flex_deg": 64.4,
-     "radial_deg": -44.1,
+     "flex_deg": 58.2,
+     "radial_deg": 14.4,
      "twist_deg": null
     },
     "hand_turned_deg": null,
-    "out_of_range": [
-     "flexion +4 deg",
-     "ulnar deviation +14 deg"
-    ],
+    "out_of_range": [],
     "grip_reversed": false
    }
   },
@@ -1278,20 +1272,17 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -86.4,
-    "radial_deg": -86.7,
-    "twist_deg": -60.1,
-    "elbow_flex_deg": 67.9,
+    "flex_deg": -29.2,
+    "radial_deg": -7.4,
+    "twist_deg": -79.1,
+    "elbow_flex_deg": 89.8,
     "before": {
-     "flex_deg": -86.4,
-     "radial_deg": -86.7,
-     "twist_deg": -60.1
+     "flex_deg": -29.2,
+     "radial_deg": -7.4,
+     "twist_deg": -79.1
     },
     "hand_turned_deg": null,
-    "out_of_range": [
-     "extension +26 deg",
-     "ulnar deviation +57 deg"
-    ],
+    "out_of_range": [],
     "grip_reversed": false
    }
   }
@@ -1310,266 +1301,266 @@
       {
        "part": "index1",
        "a": [
-        -1.6241,
-        0.4489,
-        -3.5309
+        -1.6388,
+        0.4476,
+        -3.5212
        ],
        "b": [
-        -1.618,
-        0.4381,
-        -3.5139
+        -1.6254,
+        0.4377,
+        -3.5085
        ],
        "r": 0.0064
       },
       {
        "part": "index2",
        "a": [
-        -1.618,
-        0.4381,
-        -3.5139
+        -1.6254,
+        0.4377,
+        -3.5085
        ],
        "b": [
-        -1.614,
-        0.4312,
-        -3.5031
+        -1.6168,
+        0.4313,
+        -3.5004
        ],
        "r": 0.0058
       },
       {
        "part": "index3",
        "a": [
-        -1.614,
-        0.4312,
-        -3.5031
+        -1.6168,
+        0.4313,
+        -3.5004
        ],
        "b": [
-        -1.611,
-        0.4259,
-        -3.4949
+        -1.6102,
+        0.4265,
+        -3.4942
        ],
        "r": 0.0052
       },
       {
        "part": "palm:index",
        "a": [
-        -1.6422,
-        0.4752,
-        -3.5709
+        -1.6738,
+        0.4717,
+        -3.5498
        ],
        "b": [
-        -1.6241,
-        0.4489,
-        -3.5309
+        -1.6388,
+        0.4476,
+        -3.5212
        ],
        "r": 0.0062
       },
       {
        "part": "middle1",
        "a": [
-        -1.6341,
-        0.4481,
-        -3.5258
+        -1.6455,
+        0.4468,
+        -3.5122
        ],
        "b": [
-        -1.6377,
-        0.4278,
-        -3.5355
+        -1.6523,
+        0.4261,
+        -3.5186
        ],
        "r": 0.0066
       },
       {
        "part": "middle2",
        "a": [
-        -1.6377,
-        0.4278,
-        -3.5355
+        -1.6523,
+        0.4261,
+        -3.5186
        ],
        "b": [
-        -1.6416,
-        0.4365,
-        -3.5464
+        -1.661,
+        0.4343,
+        -3.5268
        ],
        "r": 0.0059
       },
       {
        "part": "middle3",
        "a": [
-        -1.6416,
-        0.4365,
-        -3.5464
+        -1.661,
+        0.4343,
+        -3.5268
        ],
        "b": [
-        -1.6412,
-        0.4476,
-        -3.5451
+        -1.6604,
+        0.4454,
+        -3.5263
        ],
        "r": 0.0053
       },
       {
        "part": "palm:middle",
        "a": [
-        -1.6506,
-        0.4752,
-        -3.5678
+        -1.6799,
+        0.4717,
+        -3.5433
        ],
        "b": [
-        -1.6341,
-        0.4481,
-        -3.5258
+        -1.6455,
+        0.4468,
+        -3.5122
        ],
        "r": 0.0062
       },
       {
        "part": "ring1",
        "a": [
-        -1.6446,
-        0.4489,
-        -3.5234
+        -1.6538,
+        0.4476,
+        -3.5054
        ],
        "b": [
-        -1.6484,
-        0.4305,
-        -3.5338
+        -1.6612,
+        0.4286,
+        -3.5124
        ],
        "r": 0.0061
       },
       {
        "part": "ring2",
        "a": [
-        -1.6484,
-        0.4305,
-        -3.5338
+        -1.6612,
+        0.4286,
+        -3.5124
        ],
        "b": [
-        -1.6517,
-        0.4395,
-        -3.5436
+        -1.6689,
+        0.4371,
+        -3.52
        ],
        "r": 0.0055
       },
       {
        "part": "ring3",
        "a": [
-        -1.6517,
-        0.4395,
-        -3.5436
+        -1.6689,
+        0.4371,
+        -3.52
        ],
        "b": [
-        -1.651,
-        0.4498,
-        -3.5418
+        -1.6678,
+        0.4476,
+        -3.519
        ],
        "r": 0.005
       },
       {
        "part": "palm:ring",
        "a": [
-        -1.6586,
-        0.4752,
-        -3.5649
+        -1.6858,
+        0.4717,
+        -3.5371
        ],
        "b": [
-        -1.6446,
-        0.4489,
-        -3.5234
+        -1.6538,
+        0.4476,
+        -3.5054
        ],
        "r": 0.0062
       },
       {
        "part": "little1",
        "a": [
-        -1.655,
-        0.451,
-        -3.5233
+        -1.6632,
+        0.4495,
+        -3.5007
        ],
        "b": [
-        -1.6582,
-        0.4365,
-        -3.5321
+        -1.6694,
+        0.4346,
+        -3.5067
        ],
        "r": 0.0054
       },
       {
        "part": "little2",
        "a": [
-        -1.6582,
-        0.4365,
-        -3.5321
+        -1.6694,
+        0.4346,
+        -3.5067
        ],
        "b": [
-        -1.6602,
-        0.444,
-        -3.54
+        -1.675,
+        0.4417,
+        -3.5131
        ],
        "r": 0.0049
       },
       {
        "part": "little3",
        "a": [
-        -1.6602,
-        0.444,
-        -3.54
+        -1.675,
+        0.4417,
+        -3.5131
        ],
        "b": [
-        -1.6594,
-        0.4522,
-        -3.5382
+        -1.6738,
+        0.45,
+        -3.5122
        ],
        "r": 0.0044
       },
       {
        "part": "palm:little",
        "a": [
-        -1.6659,
-        0.4752,
-        -3.5622
+        -1.6912,
+        0.4717,
+        -3.5314
        ],
        "b": [
-        -1.655,
-        0.451,
-        -3.5233
+        -1.6632,
+        0.4495,
+        -3.5007
        ],
        "r": 0.0062
       },
       {
        "part": "thumb0",
        "a": [
-        -1.6406,
-        0.4689,
-        -3.5669
+        -1.6704,
+        0.4657,
+        -3.5467
        ],
        "b": [
-        -1.6306,
-        0.4476,
-        -3.5544
+        -1.6551,
+        0.4452,
+        -3.5394
        ],
        "r": 0.0095
       },
       {
        "part": "thumb1",
        "a": [
-        -1.6306,
-        0.4476,
-        -3.5544
+        -1.6551,
+        0.4452,
+        -3.5394
        ],
        "b": [
-        -1.6355,
-        0.4332,
-        -3.5497
+        -1.6569,
+        0.4309,
+        -3.5325
        ],
        "r": 0.0075
       },
       {
        "part": "thumb2",
        "a": [
-        -1.6355,
-        0.4332,
-        -3.5497
+        -1.6569,
+        0.4309,
+        -3.5325
        ],
        "b": [
-        -1.6421,
-        0.4238,
-        -3.5477
+        -1.6616,
+        0.4214,
+        -3.5274
        ],
        "r": 0.0065
       }
@@ -1756,7 +1747,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "mama86": 0.0155,
+  "mama86": 0.0161,
   "jade3": 0.0033
  },
  "colour_separation": [],
@@ -1791,7 +1782,10 @@
      "upperarm_stretch": 1.22,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
-    }
+    },
+    "sole_shift_mm_L": 14.8,
+    "sole_shift_mm_R": 14.8,
+    "sole_lowest_y_m": -0.0097
    }
   },
   "mama86": {
@@ -1805,7 +1799,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.83
+    "R": 0.71
    },
    "headTurn": 2,
    "body": {
@@ -1820,11 +1814,14 @@
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 69,
-     "upperarm_stretch": 1.14,
+     "elbow_bend_deg": 91,
+     "upperarm_stretch": 1.31,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0039
    }
   }
  }

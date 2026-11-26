@@ -8,7 +8,7 @@
 //   pitch   deg; whole-body pitch forward (90 = lying face down, -90 = on the back)
 //   roll    deg; whole-body roll (90 = lying on the left side)
 //   legs    'stand' | 'kneel' | 'cross' | 'long' | 'knees' | 'seat' | 'oneLegUp' | 'side' | 'kick'
-//           legOpts: { ankleL / ankleR: [x,y,z] body-local override, spread, upLeg: 'L'|'R' }
+//           legOpts: { ankleL / ankleR: [x,y,z] body-local override, footL / footR: [x,y,z] body-local foot direction (r5), poleL / poleR (world), spread, upLeg: 'L'|'R' }
 //   spine   { bend: deg forward, side: deg toward own right, twist: deg toward own left }
 //   head    { look: target, turn: deg toward own left, nod: deg down, tilt: deg toward own right }
 //   torso   'real' (opt-in, with sex 'f' | 'm'): a clothed torso with waist, hips, bust / pectorals, shoulder blades
@@ -65,7 +65,7 @@ function legPreset(name, s, D, o = {}) {
     case 'lapV': { const py = 0.08 * H; // legs out in a V, knees a little raised and splayed: room for a child between them
       return { py, ankle: [sx(0.55 * L), -py + ankleH + 0.01 * H, 0.79 * L], pole: [s * 0.7, 1, 0], foot: [s * 0.35, 1, 0.3] }; }
     case 'knees': { const py = 0.08 * H; return { py, ankle: [sx(hipW + 0.025 * H), -py + ankleH, 0.6 * (thigh + shin)], pole: [0, 1, 0.15], foot: [0, -0.05, 1] }; }
-    case 'seat': { const py = o.seatH ?? 0.45; const fz = o.footFwd ?? thigh * 0.95; return { py, ankle: [sx(hipW + 0.012 * H), -py + ankleH, fz], pole: [0, 0.6, 1], foot: [0, -0.1, 1] }; }
+    case 'seat': { const py = o.seatH ?? 0.45; const fz = o.footFwd ?? thigh * 0.95; return { py, ankle: [sx(hipW + 0.012 * H), -py + ankleH, fz], pole: [0, 0.6, 1], foot: [0, 0, 1] }; }   // r5: the foot flat on the floor (was [0, -0.1, 1]: toes 6 deg down, the mesh toes ~15 mm into the floor)
     case 'oneLegUp': { const up = (o.upLeg || 'L') === (s > 0 ? 'L' : 'R'); const py = thigh + shin + ankleH;
       return up ? { py, ankle: [sx(hipW), -thigh * 0.62, thigh * 0.55], pole: [0, 0.3, 1], foot: [0, -0.6, 0.4] } : { py, ankle: [sx(hipW + 0.01 * H), -(thigh + shin) * 0.995, 0], pole: [0, 0, 1], foot: [0, 0, 1] }; }
     case 'kick': { return { py: 0, ankle: [sx(hipW), -thigh * 0.95, -shin * (s > 0 ? 0.85 : 0.6)], pole: [0, 0, 1], foot: [0, -1, -0.3] }; }
@@ -169,7 +169,8 @@ export function buildFigure(spec, ctx) {
     const rK = 0.034 * H * kg, rA = 0.019 * H * kg;
     part([taperGeo(hj, K, 0.058 * H * kg, rK, { radial: 18 }), taperGeo(K, calf, rK, 0.036 * H * kg, { radial: 16 }), taperGeo(calf, A, 0.036 * H * kg, rA, { radial: 16 })], legLook, 'leg' + n);
     // foot: heel, sole to the ball, toe box, instep (P.foot as before: 0.6 of the foot length along the foot)
-    const fd = B(pre.foot).normalize(), FL = pr.foot * H, ah = D.ankleH;
+    const fo = spec.legOpts?.['foot' + n];   // r5: optional per-leg foot direction, body-local like ankleL / ankleR (x mirrored for R)
+    const fd = B(fo ? [s * fo[0], fo[1], fo[2]] : pre.foot).normalize(), FL = pr.foot * H, ah = D.ankleH;
     let w = bx.clone().addScaledVector(fd, -bx.dot(fd)), up;
     if (w.lengthSq() > 0.09) { w.normalize(); up = new THREE.Vector3().crossVectors(fd, w); }
     else { up = K.clone().sub(A); up.addScaledVector(fd, -up.dot(fd)).normalize(); w = new THREE.Vector3().crossVectors(up, fd); }

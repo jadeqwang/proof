@@ -45,7 +45,12 @@ export const cell = (r, c) => [HG.cx + ((rowCount(r) - 1) / 2 - c + (r === HG.sh
 export const hasFace = (r, c) => c >= 0 && c < rowCount(r);
 // the gap: where a seventh face would follow the short row's last one, at the same spacing (the row sits a quarter cell
 // left of centre, so most of the missing width is at this end, the end she reads to)
-export const GAP = cell(HG.shortRow, HG.shortCount);
+// r5 (Jade: "the finger should point to the middle of the missing space; right now it's slightly off center"): GAP was
+// cell(shortRow, 6), a seventh face at the short row's own spacing, which lies a quarter cell (6.4 mm) past the column of
+// last faces above and below it (THANKFUL, MAD). The missing space the eye reads is the hole between ANXIOUS and that
+// column's outer edge, and its middle is the column itself: GAP is now the last column's x on the short row's line.
+export const GAP_SEQ = cell(HG.shortRow, HG.shortCount);   // the old point (a seventh face at the short row's spacing)
+export const GAP = [cell(HG.shortRow - 1, HG.cols - 1)[0], GAP_SEQ[1], GAP_SEQ[2]];
 export const ANXIOUS = cell(HG.shortRow, HG.shortCount - 1);  // the short row's last face: the face closest to the gap
 // r3 (Jade 2026-11-25, reverses the r2 choice): HER finger points at the EMPTY SPACE where a seventh face would be (the
 // tip on the gap's centre, a touch toward her side); the adult's finger then lands on the CLOSEST face to that space

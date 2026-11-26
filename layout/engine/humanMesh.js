@@ -26,9 +26,11 @@ export const HUMAN = { on: false, base: '/assets/bodies/', bodies: null };
 // who -> body id (bodies.json); anything else: adult_f / adult_m by sex (children: the nearest Jade body by height)
 const BODY_OF = { jade3: 'jade03', jade4h: 'jade04h', littleJade: 'jade05', jade7: 'jade07', jade10: 'jade10', jade19: 'jade19', jade27: 'jade27', jade: 'jade40',
   mama: 'mama', mama86: 'mama', mama90: 'mama', mama91: 'mama', dad: 'dad', firstLove19: 'firstlove19', firstLove27: 'firstlove27', friend: 'friend',
-  uncle: 'uncle', aunt: 'aunt', grandma: 'grandma', sw: 'sw', daughter: 'daughter', toddler: 'toddler', partner: 'partner' };
+  uncle: 'uncle', aunt: 'aunt', grandma: 'grandma', sw: 'sw', daughter: 'daughter', toddler: 'toddler', partner: 'partner',
+  girl: 'girl4', boy: 'boy7' };   // r5: playground23's kids (make_bodies_pg23.py); Dad in 2023 = costume body 'dad23' (playground23 DAD23)
 const MALE = /^(dad|firstLove|uncle|partner|friend|grandpa|man|boy)/i;
 function bodyFor(who, c) {
+  if (c.body) return c.body;   // a cast entry may name its body explicitly (bodytest copies)
   if (BODY_OF[who]) return BODY_OF[who];
   if (c.sex === 'm' || c.sex === 'f') return c.sex === 'm' ? 'adult_m' : 'adult_f';
   if (MALE.test(who)) return 'adult_m';
@@ -184,7 +186,11 @@ function solvePose(B, bones, P, spec, c, k) {
     let nb1 = nrmz(new THREE.Vector3().crossVectors(ua1, fa1));
     { const kb = smooth(bend, 0.12, 0.4), alt = fromHand(ua1); nb1 = nrmz(nb1.multiplyScalar(kb).addScaledVector(alt, 1 - kb), alt); }
     { const h0 = hd('upperarm_' + s), t0_ = hd('lowerarm_' + s), a1 = ua1;
-      const rStart = nrmz(perp(swing(nb0, ua0, a1), a1)), rEnd = nrmz(perp(nb1, a1));
+      // 2026-11-26 round 5 (engine-body): the shoulder end of the upper arm keeps the CHEST's frame: the rest bending
+      // normal is carried by the chest rotation first, then swung onto the solved arm. It was swung from the rest
+      // (unrotated) arm, so a figure yawed ~180 deg (office91 social worker, anyone facing -z) had the top of the upper arm
+      // turned half a turn against the chest: the shoulder seam notch, the fin behind the armpit, "demented" shoulders.
+      const rStart = nrmz(perp(swing(nb0.clone().applyQuaternion(qC), ua0.clone().applyQuaternion(qC), a1), a1)), rEnd = nrmz(perp(nb1, a1));
       M['upperarm_' + s] = aimMatrix(h0, ua0, nb0, U1, a1, rStart, E1.distanceTo(U1) / t0_.distanceTo(h0));
       TW['upperarm_' + s] = { axis: a1, pivot: U1, angle: signedAngle(rStart, rEnd, a1), h0, a0: ua0, len0: t0_.distanceTo(h0) }; }
     { const h0 = hd('lowerarm_' + s), t0_ = hd('hand_' + s), a1 = fa1;
@@ -210,8 +216,16 @@ function solvePose(B, bones, P, spec, c, k) {
   }
   // --- legs
   for (const [s, n] of [['l', 'L'], ['r', 'R']]) {
-    const Hj = P['hip' + n], K = P['knee' + n], A = P['ankle' + n];
-    const fd = nrmz(P['foot' + n].clone().sub(A)), upF = nrmz(perp(A.clone().sub(P['heel' + n]), fd), by);
+    const Hj = P['hip' + n], K = P['knee' + n], A0 = P['ankle' + n];
+    const fd = nrmz(P['foot' + n].clone().sub(A0)), upF = nrmz(perp(A0.clone().sub(P['heel' + n]), fd), by);
+    // 2026-11-26 round 5 (engine-body): the SOLE lands on the solver's sole plane (A - upF x solver ankle height), not the
+    // mesh ankle on the solver's ankle. The MakeHuman ankle joint sits higher above the sole than the solver's ankleH
+    // (0.06 leg length), so every mesh sole was ~13 mm under the floor. The mesh ankle goes to the sole plane + the mesh's
+    // own (foot-scaled) ankle height; the calf takes up the few mm.
+    const FL1 = P['toe' + n].clone().sub(P['heel' + n]).dot(fd), FL0 = B.footLen * k, fS = THREE.MathUtils.clamp(FL1 / FL0, 0.8, 1.25);
+    const ahSolver = A0.clone().sub(P['heel' + n]).dot(upF), ahMesh = hd('foot_' + s).y * fS;   // rest soles at y = 0
+    const A = A0.clone().addScaledVector(upF, ahMesh - ahSolver);
+    report['sole_shift_mm_' + n] = +((ahMesh - ahSolver) * 1000).toFixed(1);
     const th1 = K.clone().sub(Hj).normalize(), sh1 = A.clone().sub(K).normalize();
     const bend = Math.acos(THREE.MathUtils.clamp(th1.dot(sh1), -1, 1)), kb = smooth(bend, 0.14, 0.45);
     const kneeFwd = nrmz(K.clone().sub(Hj.clone().lerp(A, 0.5)));
@@ -226,8 +240,7 @@ function solvePose(B, bones, P, spec, c, k) {
     // foot + ball: rigid on the foot frame, scaled to the solver's foot length
     const a0 = hd('foot_' + s), fwd0 = nrmz(perp(tl('ball_' + s).clone().sub(a0), new THREE.Vector3(0, 1, 0)));
     const R0 = basis(new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), fwd0), new THREE.Vector3(0, 1, 0), fwd0), R1 = basis(new THREE.Vector3().crossVectors(upF, fd), upF, fd);
-    const FL1 = P['toe' + n].clone().sub(P['heel' + n]).dot(fd), FL0 = B.footLen * k;
-    M['foot_' + s] = M['ball_' + s] = rigidMatrix(a0, R0, A, R1, THREE.MathUtils.clamp(FL1 / FL0, 0.8, 1.25));
+    M['foot_' + s] = M['ball_' + s] = rigidMatrix(a0, R0, A, R1, fS);
   }
   return { M, TW, report };
 }
@@ -308,8 +321,12 @@ function labeller(B, c, spec, opt = {}) {
     if (d === 'torso' || d === 'neck') r = y < waistY ? (dress ? 'top' : 'legs') : (y > collar && !opt.garment) ? (d === 'neck' ? 'skinNeck' : 'skin') : 'top';
     else if (d.startsWith('ua')) r = sleeves === 'none' ? 'skin' : sleeves === 'short' ? (t < 0.42 ? 'top' : 'skin') : 'top';
     else if (d.startsWith('fa')) r = sleeves === 'long' ? 'top' : sleeves === 'pushed' ? (t < 0.35 ? 'top' : 'skin') : 'skin';
-    else if (d.startsWith('th')) r = dress && t < 0.5 ? 'top' : 'legs';
-    else if (d.startsWith('calf')) r = t > 0.9 ? 'sock' : 'legs';
+    // 2026-11-26 round 5 (engine-body): a dress shows BARE legs below its hem (skin), unless the costume says tights
+    // (c.tights: the legs colour). They were 'legs' (trouser colour, and hidden under the trouser garment the dress skips).
+    // with a skirt garment the skirt alone covers the thighs (a raised thigh shows bare skin under the hem, not the dress
+    // colour wrapped round it like shorts); without one the upper thigh keeps the dress colour
+    else if (d.startsWith('th')) r = dress && t < 0.5 && !(B.meshes.garment_skirt && !c.tights) ? 'top' : dress && !c.tights ? 'skin' : 'legs';
+    else if (d.startsWith('calf')) r = t > 0.9 ? 'sock' : dress && !c.tights ? 'skin' : 'legs';
     else if (d.startsWith('foot')) r = 'sock';
     if (d.startsWith('hand')) return 'hand' + side;
     if (bandY != null && r === 'top' && d === 'torso' && Math.abs(y - bandY) < bandH) r = 'band';
@@ -321,7 +338,7 @@ function labeller(B, c, spec, opt = {}) {
 }
 // cut the rest body along the costume's region borders: returns { pos, jnt, wgt, idx, tri (label per triangle) }
 function refine(B, c, spec, part = 'body', opt = {}) {
-  const key = [part, c.sleeves, !!c.dress, c.band ? 1 : 0, c.apron && !spec.noApron ? 1 : 0, spec.who === 'daughter', JSON.stringify(opt)].join('|');
+  const key = [part, c.sleeves, !!c.dress, !!c.tights, c.band ? 1 : 0, c.apron && !spec.noApron ? 1 : 0, spec.who === 'daughter', JSON.stringify(opt)].join('|');
   (B.refined ||= {}); if (B.refined[key]) return B.refined[key];
   const L = labeller(B, c, spec, opt), body = B.meshes[part], n0 = body.pos.length / 3;
   const pos = [], W = [];
@@ -367,6 +384,17 @@ function refine(B, c, spec, part = 'body', opt = {}) {
   for (let i = 0; i < n; i++) { P[i * 3] = pos[i].x; P[i * 3 + 1] = pos[i].y; P[i * 3 + 2] = pos[i].z;
     const e = [...W[i]].sort((x, y) => y[1] - x[1]).slice(0, 4), sw = e.reduce((s, x) => s + x[1], 0) || 1; e.forEach(([j, w], k) => { J[i * 4 + k] = j; Wt[i * 4 + k] = w / sw; }); }
   return (B.refined[key] = { pos: P, jnt: J, wgt: Wt, idx: new Uint32Array(idx), tri });
+}
+
+// the upper (shirt) piece of a two-piece garment: its connected pieces whose mean height is above the waist (as refine)
+function upperPiece(B, G) {
+  if (G._upper) return G._upper;
+  const n0 = G.pos.length / 3, par = new Int32Array(n0).map((_, i) => i), fd = (a) => { while (par[a] !== a) { par[a] = par[par[a]]; a = par[a]; } return a; };
+  for (let f = 0; f < G.idx.length; f += 3) { const a = fd(G.idx[f]); for (const b of [G.idx[f + 1], G.idx[f + 2]]) par[fd(b)] = a; }
+  const sum = new Map(); for (let i = 0; i < n0; i++) { const r = fd(i), e = sum.get(r) || [0, 0]; e[0] += G.pos[i * 3 + 1]; e[1]++; sum.set(r, e); }
+  const { H0, C0 } = prep(B), waistY = H0.y + 0.3 * (C0.y - H0.y), keep = [];
+  for (let i = 0; i < n0; i++) { const e = sum.get(fd(i)); if (e[0] / e[1] > waistY) keep.push(G.pos[i * 3], G.pos[i * 3 + 1], G.pos[i * 3 + 2]); }
+  return (G._upper = { pos: new Float32Array(keep) });
 }
 
 // body vertices under a garment (rest pose: a garment vertex within 2.5 cm of a body vertex of the same clothed region);
@@ -416,8 +444,10 @@ export function dressFigure(g, spec, c, P, uid) {
   const gkey = c.sleeves === 'short' && B.meshes.garment_short ? 'garment_short' : 'garment_long';
   const garments = [[gkey, {}]]; if (c.dress && B.meshes.garment_skirt) garments.push(['garment_skirt', { skirt: true }]);
   const CLOTHED = new Set(['top', 'band', 'apron', 'legsL', 'legsR']);
-  const cov = (body.cov ||= {})[garments.map((x) => x[0]).join('+') + (c.dress ? 'D' : '')] ||= covered(B, body, garments.filter(([gk]) => B.meshes[gk]).map(([gk]) => B.meshes[gk]));
-  const hidden = (f) => CLOTHED.has(tr[f]) && cov[idx[f * 3]] && cov[idx[f * 3 + 1]] && cov[idx[f * 3 + 2]];
+  // a dress skips the trouser piece of the top garment, so only its upper piece (and the skirt) hides the body
+  const cov = (body.cov ||= {})[garments.map((x) => x[0]).join('+') + (c.dress ? 'D' : '')] ||= covered(B, body, garments.filter(([gk]) => B.meshes[gk]).map(([gk, o]) => c.dress && !o.skirt ? upperPiece(B, B.meshes[gk]) : B.meshes[gk]));
+  const dbg = spec.debugBody;   // bodytest only: 'nude' = the body alone, nothing hidden; 'garment' = the garments alone
+  const hidden = (f) => dbg === 'nude' ? false : dbg === 'garment' ? true : CLOTHED.has(tr[f]) && cov[idx[f * 3]] && cov[idx[f * 3 + 1]] && cov[idx[f * 3 + 2]];
   for (const r of new Set(tr)) {
     const geo = subGeo(pos, nrm, idx, (f) => tr[f] === r && !hidden(f)); if (!geo) continue;
     const m = mk(geo, LK[r] || skin); m.userData.idGroup = uid + GROUP[r]; m.userData.bodyRegion = r;
@@ -428,9 +458,9 @@ export function dressFigure(g, spec, c, P, uid) {
   // a dress = the top + the skirt. The body's clothed regions share the garment's line id (no seam where skin pokes).
   const GTRIM = new Set(['skin', 'skinHead', 'skinNeck', 'handL', 'handR', 'sockL', 'sockR']);
   for (const [gk, o] of garments) {
-    if (!B.meshes[gk]) continue;
+    if (!B.meshes[gk] || dbg === 'nude') continue;
     const G = refine(B, c, spec, gk, { garment: true, noApron: true }), gp = bake(G, B.jointNames, k, M, TW), gn = normalsOf(gp, G.idx);
-    for (const r of new Set(G.tri)) { if (GTRIM.has(r) || (c.dress && !o.skirt && r.startsWith('legs'))) continue;
+    for (const r of new Set(G.tri)) { if (!o.skirt && (GTRIM.has(r) || (c.dress && r.startsWith('legs')))) continue;   // a skirt is kept whole (its lower edge is the hem)
       const geo = subGeo(gp, gn, G.idx, (f) => G.tri[f] === r); if (!geo) continue;
       const m = mk(geo, o.skirt ? LK.top : LK[r] || LK.top); m.userData.idGroup = uid + (o.skirt ? 'skirt' : GROUP[r]); m.userData.garment = gk; m.userData.double = true; g.add(m); }
     // the apron: the garment's front panel lifted 6 mm, its own mesh (an edge in line mode)
@@ -460,11 +490,13 @@ export function dressFigure(g, spec, c, P, uid) {
     const tie = mk(new THREE.SphereGeometry(P.headH * 0.055, 16, 12), hairL); tie.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.5).addScaledVector(P.headUp, P.headH * 0.34); tie.quaternion.copy(Q); tie.userData.idGroup = uid + 'hair'; g.add(tie);
     const tail = mk(new THREE.SphereGeometry(P.headH * 0.06, 16, 12), hairL); tail.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.6).addScaledVector(P.headUp, P.headH * 0.2); tail.scale.set(0.9, 2.0, 0.8);
     tail.quaternion.copy(Q).multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), 0.45)); tail.userData.idGroup = uid + 'hair'; g.add(tail); }
-  if (style === 'bun') { const b = mk(new THREE.SphereGeometry(P.headH * 0.21, 20, 14), hairL); b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.7).addScaledVector(P.headUp, P.headH * 0.18); b.scale.set(1, 0.85, 1.0);   // 2026-11-26: higher and further out (was 0.5 back, 0.02 up, z 0.8): it read as a flat disc (ear) from behind
+  // 2026-11-26 (cast/hair agent): bodies whose GLB carries their own bun (hair_bun__knot, make_bodies.py bun_knot) skip this ball
+  if (style === 'bun' && !B.meshes.hair_bun__knot) { const b = mk(new THREE.SphereGeometry(P.headH * 0.21, 20, 14), hairL); b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.7).addScaledVector(P.headUp, P.headH * 0.18); b.scale.set(1, 0.85, 1.0);   // 2026-11-26: higher and further out (was 0.5 back, 0.02 up, z 0.8): it read as a flat disc (ear) from behind
     b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
   const face = faceKind(spec.who), drawn = face === 'drawn' && !c.undrawn;
   if (drawn && B.meshes.brows) addPart('brows', hairL, 'brows');
   if (drawn && B.meshes.eyes) eyes(g, B, k, M, TW, uid);
+  { let lo = Infinity; for (let f = 0; f < tr.length; f++) if (/^sock/.test(tr[f])) for (let c3 = 0; c3 < 3; c3++) lo = Math.min(lo, pos[idx[f * 3 + c3] * 3 + 1]); report.sole_lowest_y_m = +lo.toFixed(4); }   // world y of the lowest sole vertex (floor at the set's floor height)
   P.bodyReport = { mesh: id, scale: +k.toFixed(3), face: drawn ? 'drawn' : face, head_short_of_eyes_m: P.headMeshOffset, ...report };
   P.bodyMesh = id;
 }

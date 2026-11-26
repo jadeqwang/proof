@@ -23,14 +23,14 @@ const H = PLACES.uncleHands, F = PLACES.focus;
 // ---------------------------------------------------------------- poses
 // state A: the uncle on the front edge of the couch's north seat, west of her; his left hand cupped palm-up in the light with
 // the small thing in it, his right thumb and index pinching it from above (two hands that read apart from above)
-const UYAW = yawTo(PLACES.uncleSeat, [H[0], H[2]]), UF = [Math.sin(UYAW * Math.PI / 180), Math.cos(UYAW * Math.PI / 180)];
+const UYAW = yawTo(PLACES.uncleSeat, [H[0], H[2]]), UF = [Math.sin(UYAW * Math.PI / 180), Math.cos(UYAW * Math.PI / 180)], ULF = [Math.cos(UYAW * Math.PI / 180), -Math.sin(UYAW * Math.PI / 180)];   // ULF: his left (r5 wrists)
 const BALL = [H[0], H[1] + 0.0197, H[2]];   // hold pass: the ball's centre on the palm skin (build.js ballAt; was 0.024, 3 mm over the palm)
 // r3 (Jade: "watch face should be visible"; the face sits on the back of the wrist, opposite the palm): the hands are
 // swapped so the WATCH hand is the one palm-DOWN: his RIGHT hand cups palm-up, his LEFT (wristwatch) pinches from above,
 // so its back of the wrist and the watch face turn up toward her
 const uncleShape = (o = {}) => ({ costume: { sock: 0xb8bcc0 }, at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.42 }, yaw: UYAW, spine: { bend: 40 }, head: { look: BALL },
-  R: { to: H, hand: { shape: 'cup', spread: 10, curl: { index: [20, 22, 10], middle: [24, 26, 12], ring: [28, 30, 14], little: [32, 34, 16] } }, palm: 'up', fingers: [UF[0], 0.05, UF[1]] },
-  L: { tip: { finger: 'index', at: [BALL[0], BALL[1] + 0.013, BALL[2]] }, hand: { shape: 'pinch', spread: 14, curl: { middle: [40, 50, 25], ring: [55, 65, 32], little: [70, 80, 40] } }, palm: 'down', fingers: [UF[0], -0.35, UF[1]] }, ...o });
+  R: { to: H, hand: { shape: 'cup', spread: 10, curl: { index: [20, 22, 10], middle: [24, 26, 12], ring: [28, 30, 14], little: [32, 34, 16] } }, palm: 'up', fingers: [UF[0] + 0.25 * ULF[0], 0.05, UF[1] + 0.25 * ULF[1]] },   // r5 wrists (engine-body): fingers 0.25 to his left (was radial +8 deg past the range; now flex 37, radial 14)
+  L: { tip: { finger: 'index', at: [BALL[0], BALL[1] + 0.013, BALL[2]] }, hand: { shape: 'pinch', spread: 14, curl: { middle: [40, 50, 25], ring: [55, 65, 32], little: [70, 80, 40] } }, palm: 'down', fingers: [UF[0] - 0.25 * ULF[0], -0.35, UF[1] - 0.25 * ULF[1]] }, ...o });   // r5 wrists: fingers 0.25 to his right (was ulnar +13 deg past; now flex 24, ulnar 26, pronation 66)
 // hold pass (2026-11-26): the small thing lies IN his cupped right palm (build.js places it from the solved palm) and his
 // left index pad rests on its top; both hands are checked against it (engine/main.js holdsFor: `grasp` / `object`)
 const UNCLE_LH = 0.108 * 1.70, BALL_R = 0.012;
@@ -52,7 +52,9 @@ const hold = (dz) => ({ L: { to: [C[0] + LEFT[0] * dz, HOLD_Y, C[1] + LEFT[1] * 
 // LAY_TIP, the pad behind the tip)
 const LAY_TIP = [F[0] - 0.05, TABLE.h + 0.0031, F[2] - 0.11];   // y: the paper's top + 2.5 mm (the slanted pad sits under the tip centre)
 const lay = { L: { to: [F[0] + 0.1, 0.445, F[2] - 0.06], hand: 'relax', palm: 'down', fingers: 'fwd' },
-  R: { ...graspArms('tipOn', { centre: LAY_TIP, at: LAY_TIP, up: [0, 1, 0], axis: [FWD[0], 0, FWD[1]], fingers: [FWD[0], -0.6, FWD[1]], palm: [-0.6 * FWD[0], -1, -0.6 * FWD[1]], label: '草纸' }, { Lh: 0.112 * 0.95, side: 'R' }).R } };
+  // r5 wrists (engine-body): the fingers point forward AND in toward her left (0.6 LEFT) and less steeply down (-0.3): was
+  // straight forward at -0.6, flexion +4 / ulnar +14 deg past the range; now flex 52, radial 0, pronation 36 deg
+  R: { ...graspArms('tipOn', { centre: LAY_TIP, at: LAY_TIP, up: [0, 1, 0], axis: [FWD[0] + 0.5 * LEFT[0], 0, FWD[1] + 0.5 * LEFT[1]], fingers: [FWD[0] + 0.5 * LEFT[0], -0.6, FWD[1] + 0.5 * LEFT[1]], palm: [-0.6 * (FWD[0] + 0.5 * LEFT[0]), -1, -0.6 * (FWD[1] + 0.5 * LEFT[1])], label: '草纸' }, { Lh: 0.112 * 0.95, side: 'R' }).R } };
 const jadeSit = (n = 8, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', yaw: PLACES.jadeYaw, spine: { bend: n <= 2 ? 14 : 40 }, head: { look: n <= 2 ? [C[0], 0.5, C[1] + 0.06] : 'focus' }, ...(n === 1 ? hold(0.1) : n === 2 ? hold(0.15) : lay), ...o });
 // ---------------------------------------------------------------- r3: tiny pieces (Jade's r2 review)
 // She tears ONE TINY piece in half again and again (tiny ~1-3 cm, the tiniest ~5 mm), thumbs on top, index fingers under,
@@ -68,7 +70,11 @@ const pinchArm = (at, side, o = {}) => ({ tip: { finger: 'index', at }, hand: { 
 // build.js paperProps lays the piece in the plane between the thumb and index pads (was: a fixed tilt, which ran the paper
 // through the pads, so nothing held it)
 const pinchPair = (d, y, gap) => { const c = [JX + FWD[0] * d, JZ + FWD[1] * d], T = { grasp: 'pinch', object: '草纸: the tiny pieces' };
-  return { L: pinchArm([c[0] + LEFT[0] * gap / 2, y, c[1] + LEFT[1] * gap / 2], 'L', T), R: pinchArm([c[0] - LEFT[0] * gap / 2, y, c[1] - LEFT[1] * gap / 2], 'R', T) }; };
+  // r5 wrists (engine-body): each hand's fingers turn 0.3 in toward the other hand and rise (y 0.5): straight forward and
+  // down (-0.25) put both wrists 23 deg (V1c: 49 deg) past ulnar deviation; now V1d: flex 2, radial 9; V1c: ext 16, ulnar 18
+  const PI = 0.3, PY = 0.5;
+  return { L: pinchArm([c[0] + LEFT[0] * gap / 2, y, c[1] + LEFT[1] * gap / 2], 'L', { ...T, fingers: [FWD[0] - LEFT[0] * PI, PY, FWD[1] - LEFT[1] * PI] }),
+    R: pinchArm([c[0] - LEFT[0] * gap / 2, y, c[1] - LEFT[1] * gap / 2], 'R', { ...T, fingers: [FWD[0] + LEFT[0] * PI, PY, FWD[1] + LEFT[1] * PI] }) }; };
 const RIP_C = [JX + FWD[0] * 0.36, 0.47, JZ + FWD[1] * 0.36];   // the hands' meeting point for the POV rips (just off the table's north edge)
 const ripSit = (gap, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', yaw: PLACES.jadeYaw, spine: { bend: 18 }, head: { look: RIP_C }, ...pinchPair(0.36, 0.47, gap), ...o });
 const HEAP = [F[0] + 0.03, F[2] + 0.05];
@@ -79,7 +85,7 @@ const V1H_MID = [HEAP[0], 0.43, HEAP[1] + 0.15];
 const DOORWAY_HEADS = [1.55, 1.3, -6.15];
 const M = PLACES.mother;
 const mother = (o = {}) => ({ at: M, legs: 'stand', yaw: yawTo(M, PLACES.jadeSit), spine: { bend: 3 }, head: { look: 'jade3:head' },
-  R: { to: [DOOR.x0 + 0.02, 1.12, DOOR.z - 0.04], hand: 'relax', palm: [-1, 0, 0], fingers: 'up' }, L: 'side', costume: { sock: 0x8a8478 }, ...o });   // a hand on the west jamb
+  R: { to: [DOOR.x0 + 0.02, 1.35, DOOR.z - 0.04], hand: 'relax', palm: [-0.985, 0, 0.174], fingers: [0.168, 0.259, 0.951], elbow: 'out' }, L: 'side', costume: { sock: 0x8a8478 }, ...o });   // a hand on the west jamb; r5 wrists (engine-body, scanned 200+ variants): the palm on the jamb's reveal at shoulder height, fingers into the room and a little up, elbow out (back put it into the north wall), leaning on the frame (was 1.12 m, fingers straight up: extension +26 / ulnar +57 deg past the range)
 // r4 (Jade, r3 review of V1f): "the adults should be peeking to look at where she currently sits, not just vaguely in the
 // room ... wearing socks inside slippers ... maybe the camera position should be over the shoulder shot of mom looking at
 // toddler into the room and we see the backs of their heads". They stay in the hall / on the threshold (r3: not in the
@@ -156,7 +162,7 @@ export const SHOTS = [
     figs: { jade3: ripSit(0.016), mama86: mother() }, paper: { rip: { ...P0, open: 5, tilt: 25 } },
     header: '0:37.9 INSIDE "sat in a snow drift of paper": a tiny piece, ripping it (gold dot x1)', intent: 'Inside (POV): her eye-line onto her own hands just off the table\'s north-west corner: a tiny piece (~2 x 3 cm) pinched between both thumbs and index fingers, the tear just starting between them. The table corner, its edges and the big stack beyond.' },
   { id: 'V1d_2', t: [41.43, 43.34], lens: 35, orbit: { at: RIP_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [RIP_C, 0.5, 0.62], ...INSIDE,
-    figs: { jade3: ripSit(0.016, { R: { ...lay.R, object: '草纸: the tiny pieces' } }), mama86: mother() },   // hold pass: her right index pad holds its half down on the table at PD (lay.R; build.js lays the half from the fingertip)
+    figs: { jade3: ripSit(0.016, { R: { ...lay.R, object: '草纸: the tiny pieces' }, spine: { bend: 26 } }), mama86: mother() },   // r5 wrists: leans 26 deg (ripSit 18) so the turned-in right hand still reaches PD; hold pass: her right index pad holds its half down on the table at PD (lay.R; build.js lays the half from the fingertip)
     paper: { held: { L: { half: [P0.gen, P0.seed, 0], tilt: 25 } }, laid: [{ half: [P0.gen, P0.seed, 1], at: PD, yaw: 20 }] },   // hold pass: the right half lies at PD under her right index pad (as in V1d_4 on), not laid from the fingertip
     header: '0:41.4 INSIDE "ripped to shreds": the two halves; she puts one down (gold dots x2)', intent: 'Same camera. The tiny piece torn in two (~1.5 x 2 cm each): her left hand still holds its half up, her right hand is setting its half down flat on the table corner.' },
   { id: 'V1d_4', t: [43.34, 45.43], lens: 35, orbit: { at: RIP_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [RIP_C, 0.5, 0.62], ...INSIDE,
@@ -172,7 +178,7 @@ export const SHOTS = [
     // hold pass (2026-11-26): her hands are out of this frame; twisted 35 deg toward Mother, the tearing pinches could not close
     // (nothing between them, wrists past range), so they come down into her lap. The table keeps V1d_8's pieces (was the
     // generation-8 layout)
-    figs: { jade3: { ...ripSit(0.009), L: 'lap', R: 'lap', head: { look: [PLACES.mother[0], 1.4, PLACES.mother[1]] }, spine: { bend: 6, twist: 35 } }, mama86: mother() },
+    figs: { jade3: { ...ripSit(0.009), L: { to: 'lap', hand: 'relax', palm: [0, -1, 0], fingers: [0.259, 0, 0.966] }, R: 'lap', head: { look: [PLACES.mother[0], 1.4, PLACES.mother[1]] }, spine: { bend: 6, twist: 35 } }, mama86: mother() },   // r5 wrists: L palm down on her lap, fingers 15 deg off world +z (was 'lap': pronation +6 deg)
     paper: { laid: [{ half: [P0.gen, P0.seed, 1], at: PD, yaw: 20 }], bits: { at: [PD[0] + 0.05, PD[1] + 0.02], r: 0.02, gens: { 8: 2, 9: 3, 10: 3 } } },
     header: '0:47.5 INSIDE the end of the V1d_8 pan: across the room to Mother in the hall doorway', intent: 'Inside (POV, the end of the pan): from her eyes, low (cross-legged on the floor), across the room to Mother standing in the wide hall doorway, a hand on the jamb, out of the sun.' },
   { id: 'V1e', t: [48.14, 50.52], lens: 32, pos: [-0.5, 0.8, -0.25], aim: ['jade3:eyes', 0.3, 0.58], figs: ALONE(8), paper: AFTER,

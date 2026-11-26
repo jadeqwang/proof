@@ -62,7 +62,10 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
     - `grand_piano`: "Grand Piano" by thanhthanh (https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b), CC BY 4.0. In mortongrove07 (the 7'1" grand; bench removed, scaled to 2.16 m)
     - `tissue_box`: "Tissue Box Low Poly" by anand9556 (https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09), CC BY 4.0. In office91
     - `pencil_cup`: "Pens with Pencil holder - desk props" by janexx (https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae), CC BY 4.0. In office91
+    - `shopping_cart`: "Carro De La Compra" by alexvladimircm (https://sketchfab.com/3d-models/c22286ade5ea493b890b3269e57b191f), CC BY 4.0. In market93 (the grandmother's supermarket cart; scaled to 0.98 m, handle grip split)
     - `keyboard`: "Keyboard - Classic IBM Design" by matthew.leiher (https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f), CC BY 4.0. In basement90 (the PC keyboard)
+    - `backpack`: "Diaper Bags" by fabbear (https://sketchfab.com/3d-models/040089295e3a4ee684d4562a8fabce9f), CC BY 4.0. In playground23 (Dad's plain black laptop backpack; recoloured black, the patch logo texture removed)
+    - `kids_bottle`: "Sport Waterbottle" by psychofisch (https://sketchfab.com/3d-models/04b5fcbb2d644e608d7f836bdb136a85), CC BY 4.0. In playground23 (the two kids' water bottles, each with its own decal)
   - CC0 (Poly Haven; credit as courtesy):
     - `tv_small`: "Television 02" by Benny Weimer, Poly Haven (CC0). In attic88_day (the small TV on the crate)
     - `bulb`: "Lightbulb 01" by Josh Dean, Poly Haven (CC0). In basement90 (the ceiling bulb) and attic88_day (the bare bulb, off)

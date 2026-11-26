@@ -8,9 +8,12 @@ import { graspArms } from '../../engine/grasp.js';
 
 const TOP = TABLE.h, HX = HANDOUT.cx;
 // ---------------------------------------------------------------- poses
+// r5 (clipcheck): her resting hands ('relax', fingers curled down) sank 10-14 mm into the table top at TOP + 0.03. Now they lie
+// open on the table (a hand at rest, light curl) 1 cm higher: clipcheck clean in H1 / PC1.
+const JADE_REST_Y = 0.04, JADE_HAND = { shape: 'flat', curl: { index: [4, 8, 4], middle: [5, 8, 4], ring: [6, 8, 4], little: [6, 8, 4] }, spread: 3 };
 const dangle = { seatH: CHAIR.hipChild, ankleL: [0.07, -0.3, 0.25], ankleR: [0.07, -0.3, 0.25] };   // her feet do not reach the carpet
 const jade = (o = {}) => ({ at: SEATS.jade, legs: 'seat', legOpts: dangle, yaw: 0, spine: { bend: 8 }, head: { look: [0.0, 0.86, 0.3] },   // eyes on the sweatshirt and the table, never the face
-  L: { to: [HX + 0.17, TOP + 0.03, -0.28], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [HX - 0.17, TOP + 0.03, -0.28], hand: 'relax', palm: 'down', fingers: 'fwd' }, ...o });
+  L: { to: [HX + 0.17, TOP + JADE_REST_Y, -0.28], hand: JADE_HAND, palm: 'down', fingers: 'fwd' }, R: { to: [HX - 0.17, TOP + JADE_REST_Y, -0.28], hand: JADE_HAND, palm: 'down', fingers: 'fwd' }, ...o });
 const jadeRead = (o = {}) => jade({ spine: { bend: 20 }, head: { look: 'handout' }, ...o });
 // r4: her index fingertip's pad ON the gap (JADE_TIP): `tip` puts the fingertip centre there, raised by the child's
 // distal pad radius (0.040 hand units x 1.097 child finger scale x 0.122 m hand = 5.4 mm), so the pad meets the page on
@@ -46,7 +49,7 @@ const bkOff = (x) => [x, -BK_N[1] * BK_BACK - BK_UP[1] * BK_LOW, -BK_N[2] * BK_B
 const mom = (o = {}) => ({ at: SEATS.mom, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 0, spine: { bend: 12 }, head: { look: 'dict' },
   L: { to: DICT.at, off: bkOff(0.05), hand: { shape: 'relax', thumb: { opp: 0.1, sweep: 40, abd: 26, mcp: 6, ip: 8 } }, palm: BK_N, fingers: BK_UP, thumb: [-1, 0.2, -0.2], grasp: 'twoHandsBelow', object: 'little red dictionary' },
   R: { to: DICT.at, off: bkOff(-0.055), hand: { shape: 'relax', thumb: { opp: 0.1, sweep: 40, abd: 26, mcp: 6, ip: 22 } }, palm: BK_N, fingers: BK_UP, thumb: [1, 0.25, -0.25], grasp: 'twoHandsBelow', object: 'little red dictionary' }, ...o });
-const momListen = (o = {}) => mom({ head: { look: 'sw:head' }, L: { to: [0.5, TOP + 0.02, -0.38], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [0.32, TOP + 0.02, -0.4], hand: 'relax', palm: 'down', fingers: 'fwd' }, ...o });
+const momListen = (o = {}) => mom({ head: { look: 'sw:head' }, L: { to: [0.5, TOP + JADE_REST_Y, -0.38], hand: JADE_HAND, palm: 'down', fingers: 'fwd' }, R: { to: [0.32, TOP + JADE_REST_Y, -0.4], hand: JADE_HAND, palm: 'down', fingers: 'fwd' }, ...o });
 // r3 (Jade): Dad STANDS behind Mom's chair (a little to her left), his RIGHT hand on her left shoulder, his LEFT hand
 // open, palm up, out toward the social worker, mid-explanation ("Her English comes from books"). His watch is on that
 // left wrist with its face on the BACK of the wrist (opposite the palm): turned down, out of sight; the strap's buckle
@@ -69,7 +72,11 @@ const ALL = (j = jade(), s = sw(), m = mom()) => ({ jade7: j, sw: s, mama91: m, 
 const INSIDE = { hideParts: { jade7: ['head'] } };
 // the two cameras that recur
 const OUTSIDE_CAM = { lens: 65, orbit: { at: 'jade7:eyes', az: -6, el: 0, dist: 2.1 }, aim: ['jade7:eyes', 0.66, 0.42], focus: ['jade7'] };
-const GAP_CAM = { lens: 40, orbit: { at: 'gap', az: 150, el: 50, dist: 0.5 },   // re-render pass 2026-11-26: az 180 -> 150, on the mesh body her sleeve hid the hand and fingertip from straight behind
+// r5 (lead: BO2_lit was blown out white): the close shots inside the tube's pool (the handout under the tube) clipped to
+// white in the lit pass (80-97 % of pixels at 255). POOL lowers the lit pass's exposure (build.js scales the tube spots,
+// the bounce and the ambient) so the paper, the faces and the hands read. Other passes are unchanged.
+const POOL = { light: { exposure: 0.27 } };
+const GAP_CAM = { ...POOL, lens: 40, orbit: { at: 'gap', az: 150, el: 50, dist: 0.5 },   // re-render pass 2026-11-26: az 180 -> 150, on the mesh body her sleeve hid the hand and fingertip from straight behind
   aim: ['gap', 0.5, 0.56], ...INSIDE };
 
 export const SHOTS = [
@@ -83,11 +90,11 @@ export const SHOTS = [
     header: 'MASTER (reference): the office from the door corner', intent: 'The whole set: the tube over the table, the four seats, bare wall behind her. Not a shot.' },
 
   // ---------------------------------------------------------------- groove in, 0:19.0-0:29.7
-  { id: 'H1', t: [19.00, 25.63], lens: 40, orbit: { at: 'handout', az: 180, el: 62, dist: 0.52 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
+  { id: 'H1', t: [19.00, 25.63], ...POOL, lens: 40, orbit: { at: 'handout', az: 180, el: 62, dist: 0.52 }, aim: ['handout', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
     move: { end: 'H1b', note: 'the camera drifts from the whole sheet and settles on the gap in the short row' },
     header: '0:19.0 INSIDE groove in: the yellow handout under the tube, the whole grid (start)',
     intent: 'Inside: the yellow handout as she sees it, a grid of labelled cartoon faces, seven to a row, one centred row of six. The first colour in the film. Steeper than her true eye-line so the grid reads square; her hands rest either side.' },
-  { id: 'H1b', t: [25.63, 29.74], lens: 60, orbit: { at: 'gap', az: 180, el: 62, dist: 0.36 }, aim: ['gap', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
+  { id: 'H1b', t: [25.63, 29.74], ...POOL, lens: 60, orbit: { at: 'gap', az: 180, el: 62, dist: 0.36 }, aim: ['gap', 0.5, 0.5], ...INSIDE, figs: { jade7: jadeRead() },
     header: '0:25.6 INSIDE groove in: settled on the gap in the short row. Title: PROOF', intent: 'End of the H1 move: the end of the fourth row, which is one face short, and its last face (ANXIOUS). The title sits over this frame.' },
 
   // ---------------------------------------------------------------- pre-chorus, 1:17.2-1:32.7
@@ -103,7 +110,7 @@ export const SHOTS = [
   { id: 'PC3a', t: [83.27, 85.3], lens: 35, pos: [-0.3, 1.0564, -0.3737], aim: ['sw:chest', 0.5, 0.42], ...INSIDE, figs: ALL(jadeRead({ head: { look: 'sw:chest' } })),
     move: { end: 'PC3b', note: 'tilt down (and a little left) from the sweatshirt print to the sheet' },
     header: '1:23.3 INSIDE lyric-free gap: pan start, the social worker\'s sweatshirt', intent: 'Inside: her eye-line on the sweatshirt print, no face (the head above the frame line); the tilt down begins.' },
-  { id: 'PC3b', t: [85.3, 87.37], lens: 42, pos: [-0.3, 1.0564, -0.3737], aim: ['handout', 0.5, 0.52] /* re-render pass 2026-11-26: 35 -> 42 mm, a stray hand at the top-left corner */, ...INSIDE, figs: ALL(jadeRead()),
+  { id: 'PC3b', t: [85.3, 87.37], ...POOL, lens: 42, pos: [-0.3, 1.0564, -0.3737], aim: ['handout', 0.5, 0.52] /* re-render pass 2026-11-26: 35 -> 42 mm, a stray hand at the top-left corner */, ...INSIDE, figs: ALL(jadeRead()),
     header: '1:25.3 INSIDE: pan end, the sheet', intent: 'Inside: her true eye-line onto the handout, close and raking; the social worker\'s forearms and clipboard beyond the top of the page, no face. Her eye then runs down the grid toward the short row.' },
   { id: 'PC4', same: 'PC1', t: [87.37, 92.68], header: '1:27.4 OUTSIDE "Her face doesn\'t make much expression": the same frame, held through "(For our culture," (PC5 dropped)',
     intent: 'Identical camera to PC1 (the film\'s rhyme); a second toner label lands in the same place.' },
@@ -112,10 +119,10 @@ export const SHOTS = [
   // ---------------------------------------------------------------- band out, 1:32.7-1:36.0
   { id: 'BO1', t: [92.68, 94.68], ...GAP_CAM, figs: ALL(jadePoint()),
     header: '1:32.7 INSIDE band out "that\'s just how it looks": she points at the EMPTY SPACE after the row of six (gold circle round it)',
-    intent: 'r3 (Jade): inside, the gap camera: her small index finger comes down on the empty space where a seventh face would be, not on a face.' },
+    intent: 'r3 (Jade): inside, the gap camera: her small index finger comes down on the empty space where a seventh face would be, not on a face. r5 (Jade): the pad on the MIDDLE of the missing slot (in line with THANKFUL above and MAD below), her eyes on it.' },
   { id: 'BO2', t: [94.68, 95.6], ...GAP_CAM, figs: ALL(jadePoint(), swPoint()),   // r4 (Jade, 2026-11-26): shortened (was -96.00) for X_sw
     header: '1:34.7-1:35.6 INSIDE the adult\'s finger lands on the closest face to her empty space and reads its label: ANXIOUS',
-    intent: 'r3 (Jade): same camera. Her finger stays on the empty space; an adult index finger arrives from across the table and lands on the CLOSEST face to it (the row\'s last face). Match cut on the pointing finger follows.' },
+    intent: 'r3 (Jade): same camera. Her finger stays on the empty space; an adult index finger arrives from across the table and lands on the CLOSEST face to it (the row\'s last face). r5 (Jade): a plain cut follows (X_sw, then AD_trace); no finger match, so nothing here is framed to match AD_trace. Her fingertip pad sits on the middle of the missing slot (GAP: under THANKFUL, above MAD), and she looks at it.' },
 
   // ---------------------------------------------------------------- r3: THE CORRIDOR, a SEPARATE TIME (about 1993-94, her at TEN)
   // Jade: "you need facial expressions" is said to her at about ten, "right outside the school counselor's door" (moved

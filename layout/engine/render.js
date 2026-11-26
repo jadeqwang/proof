@@ -158,6 +158,11 @@ export class ModeRenderer {
     this.guideScene = new THREE.Scene(); this.guideScene.add(gq);
   }
 
+  // --- 2026-11-26 round 5 (engine-body): a beam's HAZE volume (an emissive see-through prism, sets' beamMeshes: lit and
+  // glow only) is drawn by its FAR faces only, at twice the opacity. Drawn double-sided, its near faces veiled whatever
+  // stood behind them but not the part of a figure that reached into the prism: a dark blob with a hard edge where the
+  // figure crossed the near face (office91 REF_sw_back: the social worker's upper back). Now anything in front of the far
+  // wall is unveiled evenly; the room behind keeps the same veil.
   // --- material switching -------------------------------------------------------------------------
   _mat(m, pass, ids) {
     const L = m.userData.look || {}; const ud = m.userData; ud.mats = ud.mats || {};
@@ -177,11 +182,13 @@ export class ModeRenderer {
       else mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(gv, gv, gv), side: THREE.DoubleSide });
     } else if (pass === 'lit') {
       if (L.glass) mat = new THREE.MeshBasicMaterial({ color: L.col ?? 0x8899aa, transparent: true, opacity: L.opacity ?? 0.12, side: THREE.DoubleSide, depthWrite: false });
+      else if (L.emit && hazeSide(m) != null) mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: hazeSide(m), map: L.litMap, transparent: true, opacity: 2, depthWrite: false });
       else if (L.emit) { const c = new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1); mat = new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap }); }
       else if (L.art) mat = new THREE.MeshLambertMaterial({ map: L.art, side: THREE.DoubleSide });   // fixed background art in colour
       else mat = new THREE.MeshLambertMaterial({ color: L.col ?? 0x808080, side: THREE.DoubleSide });
     } else if (pass === 'glow') {
-      mat = L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap })
+      mat = L.emit && hazeSide(m) != null ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: hazeSide(m), map: L.litMap, transparent: true, opacity: 2, depthWrite: false })
+        : L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap })
         : new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide, transparent: !!L.glass, opacity: L.glass ? 0 : 1, depthWrite: !L.glass });
     } else if (pass === 'form') {
       mat = L.glass ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.62, 0.74, 0.80), transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide })
@@ -464,4 +471,15 @@ export class ModeRenderer {
     }
     return main;
   }
+}
+
+// the side of a closed emissive see-through prism that faces AWAY from its inside (null: not a haze volume)
+function hazeSide(m) {
+  const L = m.userData.look || {}; if (!L.litMap || m.userData._hazeSide === null) return null; if (m.userData._hazeSide !== undefined) return m.userData._hazeSide;
+  const g = m.geometry, p = g.getAttribute('position'), ix = g.index;
+  if (!p || !ix || p.count !== 8 || ix.count !== 24) { m.userData._hazeSide = null; return null; }
+  const c = new THREE.Vector3(); for (let i = 0; i < 8; i++) c.add(new THREE.Vector3().fromBufferAttribute(p, i)); c.multiplyScalar(1 / 8);
+  const a = new THREE.Vector3().fromBufferAttribute(p, ix.getX(0)), b = new THREE.Vector3().fromBufferAttribute(p, ix.getX(1)), d = new THREE.Vector3().fromBufferAttribute(p, ix.getX(2));
+  const n = b.clone().sub(a).cross(d.clone().sub(a)), out = n.dot(a.clone().add(b).add(d).multiplyScalar(1 / 3).sub(c)) > 0;
+  return (m.userData._hazeSide = out ? THREE.BackSide : THREE.FrontSide);   // outward-wound: the far faces are the back faces
 }

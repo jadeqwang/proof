@@ -173,8 +173,8 @@
  "hands": {
   "jade3.L": {
    "px": [
-    1632.6,
-    36443.8
+    1607.8,
+    36140.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -200,8 +200,8 @@
   },
   "mama86.R": {
    "px": [
-    779.6,
-    413
+    781,
+    278.5
    ],
    "shape": "relax",
    "in_frame": true,
@@ -325,10 +325,7 @@
    "toward_camera": 0.154
   }
  ],
- "warnings": [
-  "wrist: jade3 L beyond the wrist range (pronation +6 deg; flex 0, radial 0, twist -86.1, after an elbow swivel of 0 deg)",
-  "wrist: mama86 R beyond the wrist range (extension +26 deg, ulnar deviation +57 deg; flex -86.4, radial -86.7, twist -60.1, after an elbow swivel of 0 deg)"
- ],
+ "warnings": [],
  "intent": "Inside (POV, the end of the pan): from her eyes, low (cross-legged on the floor), across the room to Mother standing in the wide hall doorway, a hand on the jamb, out of the sun.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
@@ -938,7 +935,7 @@
     },
     "handR": {
      "in": false,
-     "margin_m": -1.498
+     "margin_m": -1.728
     },
     "hip": {
      "in": false,
@@ -1089,8 +1086,8 @@
    ],
    "handL": [
     -1.701,
-    0.167,
-    -3.839
+    0.166,
+    -3.84
    ],
    "handR": [
     -1.766,
@@ -1121,7 +1118,7 @@
    ],
    "handR": [
     0.27,
-    1.12,
+    1.35,
     -6.14
    ],
    "hip": [
@@ -1228,19 +1225,17 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 0,
-    "radial_deg": 0,
-    "twist_deg": -86.1,
-    "elbow_flex_deg": 71.8,
+    "flex_deg": -32.5,
+    "radial_deg": -21.6,
+    "twist_deg": -76.3,
+    "elbow_flex_deg": 64.2,
     "before": {
-     "flex_deg": 0,
-     "radial_deg": 0,
-     "twist_deg": -86.1
+     "flex_deg": -32.5,
+     "radial_deg": -21.6,
+     "twist_deg": -76.3
     },
     "hand_turned_deg": null,
-    "out_of_range": [
-     "pronation +6 deg"
-    ],
+    "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
@@ -1264,27 +1259,24 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -86.4,
-    "radial_deg": -86.7,
-    "twist_deg": -60.1,
-    "elbow_flex_deg": 67.9,
+    "flex_deg": -29.2,
+    "radial_deg": -7.4,
+    "twist_deg": -79.1,
+    "elbow_flex_deg": 89.8,
     "before": {
-     "flex_deg": -86.4,
-     "radial_deg": -86.7,
-     "twist_deg": -60.1
+     "flex_deg": -29.2,
+     "radial_deg": -7.4,
+     "twist_deg": -79.1
     },
     "hand_turned_deg": null,
-    "out_of_range": [
-     "extension +26 deg",
-     "ulnar deviation +57 deg"
-    ],
+    "out_of_range": [],
     "grip_reversed": false
    }
   }
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama86": 0.0413
+  "mama86": 0.0427
  },
  "colour_separation": [],
  "figure_report": {
@@ -1298,7 +1290,7 @@
     }
    },
    "arms": {
-    "L": 0.81,
+    "L": 0.85,
     "R": 0.73
    },
    "headTurn": 79,
@@ -1308,7 +1300,7 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0.007,
     "L": {
-     "elbow_bend_deg": 80,
+     "elbow_bend_deg": 72,
      "upperarm_stretch": 0.85,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
@@ -1318,7 +1310,10 @@
      "upperarm_stretch": 1,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
-    }
+    },
+    "sole_shift_mm_L": 14.8,
+    "sole_shift_mm_R": 14.8,
+    "sole_lowest_y_m": -0.0097
    }
   },
   "mama86": {
@@ -1332,7 +1327,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.83
+    "R": 0.71
    },
    "headTurn": 0,
    "body": {
@@ -1347,11 +1342,14 @@
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 69,
-     "upperarm_stretch": 1.14,
+     "elbow_bend_deg": 91,
+     "upperarm_stretch": 1.31,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0039
    }
   }
  }

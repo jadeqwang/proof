@@ -1289,3 +1289,18 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
     pre-existing) and the basement soles (engine fix).
   - Engine ask: a per-leg foot direction (footL/footR) in legOpts.
   - Repaint: B3, B4, B5, B0_wide, B2, K1_question, K1_question_end, K3, K0_wide_night.
+- **engine-body agent done:**
+  - **Social worker's shoulder:** the root cause was in solvePose. The upper-arm twist reference was taken before the
+    body's yaw, so every figure turned away from +z had its upper arm twisted 173-176 deg against the chest. The
+    parents (yaw ~0) were fine. Now 0-1 deg for everyone, so shoulders change in every set.
+  - **SW back blob:** the haze volume in the lit pass; render.js now draws haze by its far faces only.
+  - **Soles:** now 2-4 mm above the floor, and seated feet are flat.
+  - **Dresses:** bare legs below the hem; girlLegs() removed.
+  - **Mug grips:** the handle is on +x; grips fixed.
+  - **Shanghai wrists:** all in range. Mama's jamb hand in V1e is a little stiff.
+  - **Clipcheck:** the sheet false positive is fixed.
+  - **Bodies and legs:** the playground bodies are registered (costume `body: '<id>'`); legOpts takes footL/footR.
+  - **Not done:**
+    - holdcheck's hand is thinner than the mesh hand (proximal 6-15 mm, palm 10-17 mm): widen the hand.js capsules
+      or check with the mesh hand.
+    - Seated thighs are ~14 mm into chairs engine-wide: raise seated hip heights ~5 mm.

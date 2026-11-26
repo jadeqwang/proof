@@ -237,8 +237,8 @@
   },
   "jade3.R": {
    "px": [
-    905.6,
-    637.4
+    904.3,
+    636.4
    ],
    "shape": "point",
    "in_frame": true,
@@ -434,9 +434,7 @@
    "toward_camera": -0.688
   }
  ],
- "warnings": [
-  "wrist: jade3 R beyond the wrist range (flexion +4 deg, ulnar deviation +14 deg; flex 64.4, radial -44.1, twist null, after an elbow swivel of 0 deg)"
- ],
+ "warnings": [],
  "intent": "r4 (Jade): over-the-shoulder from the hall, just behind Mother (frame right, the back of her head and her left shoulder): the grown-ups crowd the wide doorway, NOT in the room, all turned to where the child sits and peeking past the end of the bookcase at her: the grandmother stooping on the threshold, a hand at her mouth, the aunt at the left leaning in, a hand at her mouth, the uncle beyond Mother's right shoulder peering over. We see the backs of their heads. Beyond them, down across the long room, the child small in the sun at the couch group, absorbed in her paper. Everyone in socks inside cotton-padded slippers. The folded-back hall doors on their brass hinges at the right edge.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
@@ -1024,7 +1022,7 @@
     },
     "handR": {
      "in": true,
-     "margin_m": 0.036
+     "margin_m": 0.008
     },
     "hip": {
      "in": true,
@@ -1267,9 +1265,9 @@
     -3.553
    ],
    "handR": [
-    -1.647,
-    0.462,
-    -3.546
+    -1.667,
+    0.46,
+    -3.525
    ],
    "hip": [
     -1.77,
@@ -1416,9 +1414,9 @@
      "arm": "R",
      "target": null,
      "world": [
-      -1.611,
+      -1.61,
       0.426,
-      -3.495
+      -3.494
      ],
      "self": false,
      "look_off_deg": 0.8
@@ -1643,20 +1641,17 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 64.4,
-    "radial_deg": -44.1,
+    "flex_deg": 58.2,
+    "radial_deg": 14.4,
     "twist_deg": null,
     "elbow_flex_deg": 5.2,
     "before": {
-     "flex_deg": 64.4,
-     "radial_deg": -44.1,
+     "flex_deg": 58.2,
+     "radial_deg": 14.4,
      "twist_deg": null
     },
     "hand_turned_deg": null,
-    "out_of_range": [
-     "flexion +4 deg",
-     "ulnar deviation +14 deg"
-    ],
+    "out_of_range": [],
     "grip_reversed": false
    }
   },
@@ -1711,266 +1706,266 @@
       {
        "part": "index1",
        "a": [
-        -1.6241,
-        0.4489,
-        -3.5309
+        -1.6388,
+        0.4476,
+        -3.5212
        ],
        "b": [
-        -1.618,
-        0.4381,
-        -3.5139
+        -1.6254,
+        0.4377,
+        -3.5085
        ],
        "r": 0.0064
       },
       {
        "part": "index2",
        "a": [
-        -1.618,
-        0.4381,
-        -3.5139
+        -1.6254,
+        0.4377,
+        -3.5085
        ],
        "b": [
-        -1.614,
-        0.4312,
-        -3.5031
+        -1.6168,
+        0.4313,
+        -3.5004
        ],
        "r": 0.0058
       },
       {
        "part": "index3",
        "a": [
-        -1.614,
-        0.4312,
-        -3.5031
+        -1.6168,
+        0.4313,
+        -3.5004
        ],
        "b": [
-        -1.611,
-        0.4259,
-        -3.4949
+        -1.6102,
+        0.4265,
+        -3.4942
        ],
        "r": 0.0052
       },
       {
        "part": "palm:index",
        "a": [
-        -1.6422,
-        0.4752,
-        -3.5709
+        -1.6738,
+        0.4717,
+        -3.5498
        ],
        "b": [
-        -1.6241,
-        0.4489,
-        -3.5309
+        -1.6388,
+        0.4476,
+        -3.5212
        ],
        "r": 0.0062
       },
       {
        "part": "middle1",
        "a": [
-        -1.6341,
-        0.4481,
-        -3.5258
+        -1.6455,
+        0.4468,
+        -3.5122
        ],
        "b": [
-        -1.6377,
-        0.4278,
-        -3.5355
+        -1.6523,
+        0.4261,
+        -3.5186
        ],
        "r": 0.0066
       },
       {
        "part": "middle2",
        "a": [
-        -1.6377,
-        0.4278,
-        -3.5355
+        -1.6523,
+        0.4261,
+        -3.5186
        ],
        "b": [
-        -1.6416,
-        0.4365,
-        -3.5464
+        -1.661,
+        0.4343,
+        -3.5268
        ],
        "r": 0.0059
       },
       {
        "part": "middle3",
        "a": [
-        -1.6416,
-        0.4365,
-        -3.5464
+        -1.661,
+        0.4343,
+        -3.5268
        ],
        "b": [
-        -1.6412,
-        0.4476,
-        -3.5451
+        -1.6604,
+        0.4454,
+        -3.5263
        ],
        "r": 0.0053
       },
       {
        "part": "palm:middle",
        "a": [
-        -1.6506,
-        0.4752,
-        -3.5678
+        -1.6799,
+        0.4717,
+        -3.5433
        ],
        "b": [
-        -1.6341,
-        0.4481,
-        -3.5258
+        -1.6455,
+        0.4468,
+        -3.5122
        ],
        "r": 0.0062
       },
       {
        "part": "ring1",
        "a": [
-        -1.6446,
-        0.4489,
-        -3.5234
+        -1.6538,
+        0.4476,
+        -3.5054
        ],
        "b": [
-        -1.6484,
-        0.4305,
-        -3.5338
+        -1.6612,
+        0.4286,
+        -3.5124
        ],
        "r": 0.0061
       },
       {
        "part": "ring2",
        "a": [
-        -1.6484,
-        0.4305,
-        -3.5338
+        -1.6612,
+        0.4286,
+        -3.5124
        ],
        "b": [
-        -1.6517,
-        0.4395,
-        -3.5436
+        -1.6689,
+        0.4371,
+        -3.52
        ],
        "r": 0.0055
       },
       {
        "part": "ring3",
        "a": [
-        -1.6517,
-        0.4395,
-        -3.5436
+        -1.6689,
+        0.4371,
+        -3.52
        ],
        "b": [
-        -1.651,
-        0.4498,
-        -3.5418
+        -1.6678,
+        0.4476,
+        -3.519
        ],
        "r": 0.005
       },
       {
        "part": "palm:ring",
        "a": [
-        -1.6586,
-        0.4752,
-        -3.5649
+        -1.6858,
+        0.4717,
+        -3.5371
        ],
        "b": [
-        -1.6446,
-        0.4489,
-        -3.5234
+        -1.6538,
+        0.4476,
+        -3.5054
        ],
        "r": 0.0062
       },
       {
        "part": "little1",
        "a": [
-        -1.655,
-        0.451,
-        -3.5233
+        -1.6632,
+        0.4495,
+        -3.5007
        ],
        "b": [
-        -1.6582,
-        0.4365,
-        -3.5321
+        -1.6694,
+        0.4346,
+        -3.5067
        ],
        "r": 0.0054
       },
       {
        "part": "little2",
        "a": [
-        -1.6582,
-        0.4365,
-        -3.5321
+        -1.6694,
+        0.4346,
+        -3.5067
        ],
        "b": [
-        -1.6602,
-        0.444,
-        -3.54
+        -1.675,
+        0.4417,
+        -3.5131
        ],
        "r": 0.0049
       },
       {
        "part": "little3",
        "a": [
-        -1.6602,
-        0.444,
-        -3.54
+        -1.675,
+        0.4417,
+        -3.5131
        ],
        "b": [
-        -1.6594,
-        0.4522,
-        -3.5382
+        -1.6738,
+        0.45,
+        -3.5122
        ],
        "r": 0.0044
       },
       {
        "part": "palm:little",
        "a": [
-        -1.6659,
-        0.4752,
-        -3.5622
+        -1.6912,
+        0.4717,
+        -3.5314
        ],
        "b": [
-        -1.655,
-        0.451,
-        -3.5233
+        -1.6632,
+        0.4495,
+        -3.5007
        ],
        "r": 0.0062
       },
       {
        "part": "thumb0",
        "a": [
-        -1.6406,
-        0.4689,
-        -3.5669
+        -1.6704,
+        0.4657,
+        -3.5467
        ],
        "b": [
-        -1.6306,
-        0.4476,
-        -3.5544
+        -1.6551,
+        0.4452,
+        -3.5394
        ],
        "r": 0.0095
       },
       {
        "part": "thumb1",
        "a": [
-        -1.6306,
-        0.4476,
-        -3.5544
+        -1.6551,
+        0.4452,
+        -3.5394
        ],
        "b": [
-        -1.6355,
-        0.4332,
-        -3.5497
+        -1.6569,
+        0.4309,
+        -3.5325
        ],
        "r": 0.0075
       },
       {
        "part": "thumb2",
        "a": [
-        -1.6355,
-        0.4332,
-        -3.5497
+        -1.6569,
+        0.4309,
+        -3.5325
        ],
        "b": [
-        -1.6421,
-        0.4238,
-        -3.5477
+        -1.6616,
+        0.4214,
+        -3.5274
        ],
        "r": 0.0065
       }
@@ -2157,13 +2152,21 @@
   }
  ],
  "figure_frame_fraction": {
-  "uncle": 0.1036,
-  "aunt": 0.0821,
-  "grandma": 0.0524,
-  "jade3": 0.0047,
-  "mama86": 0.0563
+  "uncle": 0.0901,
+  "mama86": 0.0859,
+  "aunt": 0.0838,
+  "grandma": 0.0487,
+  "jade3": 0.0047
  },
  "colour_separation": [
+  {
+   "a": "uncle",
+   "b": "mama86",
+   "top_a": "#e8e4d8",
+   "top_b": "#6f7f9a",
+   "deltaE_top": 44.1,
+   "close": false
+  },
   {
    "a": "uncle",
    "b": "aunt",
@@ -2181,11 +2184,19 @@
    "close": false
   },
   {
-   "a": "uncle",
-   "b": "mama86",
-   "top_a": "#e8e4d8",
-   "top_b": "#6f7f9a",
-   "deltaE_top": 44.1,
+   "a": "mama86",
+   "b": "aunt",
+   "top_a": "#6f7f9a",
+   "top_b": "#9a6a5a",
+   "deltaE_top": 37.2,
+   "close": false
+  },
+  {
+   "a": "mama86",
+   "b": "grandma",
+   "top_a": "#6f7f9a",
+   "top_b": "#4a4f5a",
+   "deltaE_top": 21.4,
    "close": false
   },
   {
@@ -2194,22 +2205,6 @@
    "top_a": "#9a6a5a",
    "top_b": "#4a4f5a",
    "deltaE_top": 33,
-   "close": false
-  },
-  {
-   "a": "aunt",
-   "b": "mama86",
-   "top_a": "#9a6a5a",
-   "top_b": "#6f7f9a",
-   "deltaE_top": 37.2,
-   "close": false
-  },
-  {
-   "a": "grandma",
-   "b": "mama86",
-   "top_a": "#4a4f5a",
-   "top_b": "#6f7f9a",
-   "deltaE_top": 21.4,
    "close": false
   }
  ],
@@ -2244,7 +2239,10 @@
      "upperarm_stretch": 1.22,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
-    }
+    },
+    "sole_shift_mm_L": 14.8,
+    "sole_shift_mm_R": 14.8,
+    "sole_lowest_y_m": -0.0097
    }
   },
   "mama86": {
@@ -2277,7 +2275,10 @@
      "upperarm_stretch": 1.1,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0039
    }
   },
   "aunt": {
@@ -2310,7 +2311,10 @@
      "upperarm_stretch": 1.15,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.8,
+    "sole_shift_mm_R": 19.8,
+    "sole_lowest_y_m": 0.0039
    }
   },
   "uncle": {
@@ -2343,7 +2347,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 1,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 7.8,
+    "sole_shift_mm_R": 7.8,
+    "sole_lowest_y_m": 0.0042
    }
   },
   "grandma": {
@@ -2376,7 +2383,10 @@
      "upperarm_stretch": 1.16,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 22.7,
+    "sole_shift_mm_R": 22.7,
+    "sole_lowest_y_m": 0.0037
    }
   }
  }

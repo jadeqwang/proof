@@ -869,13 +869,13 @@
   ],
   "rows_centred": true,
   "gap_world": [
-   -0.3836,
+   -0.3771,
    0.7206,
    -0.1073
   ],
   "gap_px": [
-   1471.4,
-   809.3
+   1473.4,
+   808.8
   ],
   "anxious_px": [
    1479.5,
@@ -1018,8 +1018,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama91": 0.1849,
-  "jade10": 0.1624
+  "mama91": 0.1855,
+  "jade10": 0.1656
  },
  "colour_separation": [
   {
@@ -1062,7 +1062,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.01,
      "hand_scale": 0.97
-    }
+    },
+    "sole_shift_mm_L": 14.1,
+    "sole_shift_mm_R": 14.1,
+    "sole_lowest_y_m": 0.0032
    }
   },
   "mama91": {
@@ -1095,7 +1098,10 @@
      "upperarm_stretch": 1.16,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0039
    }
   }
  }

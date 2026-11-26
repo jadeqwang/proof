@@ -916,3 +916,21 @@ Every hand on an object is checked now (`--gaze` sidecar `holds`, engine/holdche
   (from the hall) they hang just above the frame edge behind the bookcase end; only the roller ends peek in, so the V1f
   prompt now says no scrolls on the visible wall. Flat: the armchairs in V1c / V1e are close in grey to the bookcase
   cupboards behind them (both dark); lit (hue) and form (class tint) separate them. Prompt note in work/r4/REPAINT_LIST.md.
+
+## 2026-11-26: round-5 decisions — engine-body agent (wrists only)
+Every wrist in range now (render sidecars: 0 wrist warnings, was jade3 R / mama86 R in every shot plus the pinches and the
+uncle). Each change was chosen by scanning variants of that hand's fingers / palm / elbow and reading the sidecar
+`wrists[...].before` (the angles BEFORE the engine's own hand-turn clamp, so nothing is hidden by the clamp):
+- mama86 R (mother(): a hand on the west jamb): palm on the jamb's reveal (turned 10 deg off it), now at shoulder height
+  (1.35 m, was 1.12), fingers pointing into the room and a little up, elbow out: leaning on the door frame. Was fingers
+  straight up: extension +26 / ulnar +57 deg past the range. (Elbow 'back' put the elbow 33 mm into the north wall.)
+- jade3 R (`lay`, the tipOn on the piece on the table): fingers forward + 0.5 toward her left (slope -0.6 kept): was
+  flexion +4 / ulnar +14 past. FLAG: her hand now angles in across the table corner. V1d_2 leans 26 deg (was ripSit's
+  18) so that hand still reaches PD (hold check: adjacent 17.7 mm otherwise; now 0.5 mm, pass). Flatter fingers (-0.3)
+  were tried: the middle knuckle went 6 mm into the gen-8 piece.
+- jade3 L+R pinches (pinchPair, V1c / V1d_*): each hand's fingers turn 0.3 toward the other hand and rise (y 0.5); was
+  ulnar +23 (V1c +49) past. The thumbs-on-top rip reads the same.
+- jade3 L in V1d_8_end: an explicit lap hand (palm down, fingers 15 deg off world +z; scanned) instead of 'lap' (pronation +6).
+- uncle (V1a/V1b): cupped R fingers 0.25 to his left, pinching L fingers 0.25 to his right (were radial +8 / ulnar +13).
+- Mugs: props.json's mug grips are now the right way round (handle +x, body centre x -0.015). build.js's own +15 mm shift
+  uses the bbox origin, not the grips, so it is unchanged and still correct. Nobody holds a mug here.

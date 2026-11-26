@@ -53,7 +53,7 @@ Hair (`hairBuild` in bodies.json; `build_hair` in the script) is grown from the 
 fits the cast sheets, with edges cut along smooth lines (`isocut`):
 - first love (`hair_fl`): a long top layer with a centre part over an even short buzz (`hair_fl__buzz`), a visible step
   (solidified rim) from the fringe tip on the forehead back above the ear and round the back at mid-ear height, the
-  layer hanging straight at the back (cast/first_love/fl_B_backhead_neck_v7).
+  layer hanging straight at the back (cast/first_love/fl_B_backhead_neck_v8).
 - the children (`hair_kidbob` + `__fringe`): MakeHuman long01 cut to the sheet's length (3: chin; 4.5 and 5: shoulders;
   7: shoulder blades; 10: mid-back) and a light fringe parted in the middle, its edge well above the brows; the engine
   adds the small half-ponytail high at the back.
@@ -71,10 +71,16 @@ fits the cast sheets, with edges cut along smooth lines (`isocut`):
   the part, so constant along each strand; deeper toward the ends, eased off at the step so the solidified rim does not
   fold), a slightly irregular part, uneven point-cut ends, and a squarer outline (thinner on the flat top, fuller at the
   upper corners of the head) against the domed cap look. v7 (Jade's tousled reference): uneven piece widths and depths,
-  a slight wave down each piece, a few pieces lifting toward their ends; colour 0x3d2819 (`_cast.js` FL_HAIR).
+  a slight wave down each piece, a few pieces lifting toward their ends; colour 0x1f1915 (`_cast.js` FL_HAIR; v8).
 Strangers' faces are now as featureless as first love's (cast/strangers sheets: no mark inside the face).
 
 Rig: MPFB `game_engine` skeleton (pelvis, spine_01-03, neck_01, head, clavicles, arms, hands with three bones per
 finger and thumb, legs, feet, balls) plus `eye_l` / `eye_r` added by the script. Glb: positions, normals, 4 joint
 influences, no materials, no UVs. Mesh nodes: `body`, `eyes`, `brows`, `garment_*`, `hair_<style>` and its `hair_<style>__<piece>` pieces (style names
 as the engine's `hairStyle`; `kidbob` = the children's `bob`; `fl` = first love's cut).
+
+## r5 additions (2026-11-26, engine-body)
+- girl4, boy7, dad23 (playground23; built by make_bodies_pg23.py from bodies_pg23.json) are in the shared meta.json.
+  BODY_OF maps `girl` / `boy`; Dad in 2023 uses the costume field `body: 'dad23'`. Any cast entry or costume may name its
+  body with `body: '<id>'` (engine/humanMesh.js bodyFor).
+- bodytest only: a figure spec's `debugBody: 'nude' | 'garment'` renders the body alone / the garments alone.

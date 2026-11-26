@@ -250,10 +250,11 @@ export function build(shot, { makeCam }) {
       if (mode !== 'lit') { const d = new THREE.DirectionalLight(0xffffff, 0.9); d.position.set(-3, 3, 2); L.push(d); }
       return L; }
     // three spots along the tube, straight down, each cut at CUT.across: together a stadium close to the wedge's footprint
-    for (const dx of [-0.27, 0, 0.27]) { const s = new THREE.SpotLight(white ? 0xffffff : TUBE.color, mode === 'lit' ? 2.6 : mode === 'mask' ? 6 : 1.0, 0, rad(CUT.across), 0.12, 0);
+    const EX = mode === 'lit' ? (shot.light?.exposure ?? 1) : 1;   // r5: per-shot exposure for the lit pass (close shots inside the tube's pool clipped to white)
+    for (const dx of [-0.27, 0, 0.27]) { const s = new THREE.SpotLight(white ? 0xffffff : TUBE.color, mode === 'lit' ? 2.6 * EX : mode === 'mask' ? 6 : 1.0, 0, rad(CUT.across), 0.12, 0);
       s.position.set(TUBE.cx + dx, TUBE.y - 0.02, TUBE.cz); s.target.position.set(TUBE.cx + dx, 0, TUBE.cz); s.castShadow = true; s.shadow.camera.near = 0.3; s.shadow.camera.far = 4; s.shadow.radius = mode === 'lit' ? 5 : 1; L.push(s); }
     if (mode === 'mask') return L;
-    if (mode === 'lit') { const b = new THREE.PointLight(0xfff0b0, 0.35, 2.2, 1.4); b.position.set(HANDOUT.cx, TOP + 0.15, HANDOUT.cz); L.push(b); L.push(new THREE.AmbientLight(0x7a8088, shot.light?.amb ?? 0.55)); }
+    if (mode === 'lit') { const b = new THREE.PointLight(0xfff0b0, 0.35 * EX, 2.2, 1.4); b.position.set(HANDOUT.cx, TOP + 0.15, HANDOUT.cz); L.push(b); L.push(new THREE.AmbientLight(0x7a8088, (shot.light?.amb ?? 0.55) * EX)); }
     else { L.push(new THREE.AmbientLight(0xffffff, 1.5)); const d = new THREE.DirectionalLight(0xffffff, 0.9); d.position.set(1, 3, 2); L.push(d); }
     return L;
   };

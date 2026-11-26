@@ -828,13 +828,13 @@
   ],
   "rows_centred": true,
   "gap_world": [
-   -0.3836,
+   -0.3771,
    0.7206,
    -0.1073
   ],
   "gap_px": [
-   699.9,
-   458.8
+   704.9,
+   459.6
   ],
   "anxious_px": [
    720,
@@ -2585,7 +2585,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "sw": 0.2017
+  "sw": 0.2098
  },
  "colour_separation": [],
  "figure_report": {
@@ -2619,7 +2619,10 @@
      "upperarm_stretch": 1.03,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20.5,
+    "sole_shift_mm_R": 20.5,
+    "sole_lowest_y_m": 0
    }
   }
  }

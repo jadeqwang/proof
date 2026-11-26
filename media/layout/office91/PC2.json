@@ -158,19 +158,19 @@
  "hands": {
   "jade7.L": {
    "px": [
-    283.7,
-    798.9
+    282.7,
+    791.8
    ],
-   "shape": "relax",
+   "shape": "flat",
    "in_frame": true,
    "visible": true
   },
   "jade7.R": {
    "px": [
-    103.1,
-    748.7
+    101.9,
+    742
    ],
-   "shape": "relax",
+   "shape": "flat",
    "in_frame": true,
    "visible": true
   },
@@ -194,19 +194,19 @@
   },
   "mama91.L": {
    "px": [
-    745.2,
-    880.1
+    744.5,
+    864.8
    ],
-   "shape": "relax",
+   "shape": "flat",
    "in_frame": true,
    "visible": true
   },
   "mama91.R": {
    "px": [
-    630,
-    839.9
+    628.9,
+    825.2
    ],
-   "shape": "relax",
+   "shape": "flat",
    "in_frame": true,
    "visible": true
   },
@@ -259,8 +259,8 @@
  ],
  "warnings": [
   "wrist: sw R beyond the wrist range (pronation +0 deg; flex 21.5, radial 5.7, twist -80.3, after an elbow swivel of 0 deg)",
-  "wrist: mama91 L hand turned 22.5 deg toward the forearm to keep the wrist in range (was flex 34.8, radial -53)",
-  "wrist: mama91 R hand turned 22.3 deg toward the forearm to keep the wrist in range (was flex 33.2, radial -52.6)",
+  "wrist: mama91 L hand turned 29.7 deg toward the forearm to keep the wrist in range (was flex 42.3, radial -54.9)",
+  "wrist: mama91 R hand turned 23.5 deg toward the forearm to keep the wrist in range (was flex 40.9, radial -54.4)",
   "wrist: dad L beyond the wrist range (supination +4 deg; flex 10.8, radial -21.8, twist 89.1, after an elbow swivel of 0 deg)"
  ],
  "intent": "r3 (Jade): Mom seated, Dad standing behind her with his left hand on her shoulder, mid-explanation, his right hand open toward the social worker. From the social worker's side of the table, past the table's end. The back wall's children's art (the same wall as PC1/PC4) behind them. r4 (Jade: \"the table is a very wrong shape b/c it's not on screen\"): the camera is up at a standing adult's eye height (1.75 m) and wider, so the table top, its banded edge and its near corner run across the lower third: the table's shape is in frame.",
@@ -956,13 +956,13 @@
   ],
   "rows_centred": true,
   "gap_world": [
-   -0.3836,
+   -0.3771,
    0.7206,
    -0.1073
   ],
   "gap_px": [
-   29.7,
-   836.3
+   33.1,
+   837.4
   ],
   "anxious_px": [
    43.3,
@@ -1175,14 +1175,14 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 18.7,
-    "radial_deg": -19.2,
-    "twist_deg": -62.1,
-    "elbow_flex_deg": 82,
+    "flex_deg": 21.7,
+    "radial_deg": -20.1,
+    "twist_deg": -62.4,
+    "elbow_flex_deg": 84.1,
     "before": {
-     "flex_deg": 18.7,
-     "radial_deg": -19.2,
-     "twist_deg": -62.1
+     "flex_deg": 21.7,
+     "radial_deg": -20.1,
+     "twist_deg": -62.4
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -1191,14 +1191,14 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 18.7,
-    "radial_deg": -19.2,
-    "twist_deg": -62.1,
-    "elbow_flex_deg": 82,
+    "flex_deg": 21.7,
+    "radial_deg": -20.1,
+    "twist_deg": -62.4,
+    "elbow_flex_deg": 84.1,
     "before": {
-     "flex_deg": 18.7,
-     "radial_deg": -19.2,
-     "twist_deg": -62.1
+     "flex_deg": 21.7,
+     "radial_deg": -20.1,
+     "twist_deg": -62.4
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -1245,32 +1245,32 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 13.9,
-    "radial_deg": -28.4,
-    "twist_deg": -78,
-    "elbow_flex_deg": 110.6,
+    "flex_deg": 12.2,
+    "radial_deg": -22.9,
+    "twist_deg": -77.9,
+    "elbow_flex_deg": 113.8,
     "before": {
-     "flex_deg": 34.8,
-     "radial_deg": -53,
-     "twist_deg": -92.2
+     "flex_deg": 42.3,
+     "radial_deg": -54.9,
+     "twist_deg": -96.8
     },
-    "hand_turned_deg": 22.5,
+    "hand_turned_deg": 29.7,
     "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 12.9,
-    "radial_deg": -28.1,
-    "twist_deg": -77.2,
-    "elbow_flex_deg": 115.1,
+    "flex_deg": 16,
+    "radial_deg": -28.5,
+    "twist_deg": -79.3,
+    "elbow_flex_deg": 118.9,
     "before": {
-     "flex_deg": 33.2,
-     "radial_deg": -52.6,
-     "twist_deg": -91
+     "flex_deg": 40.9,
+     "radial_deg": -54.4,
+     "twist_deg": -95.8
     },
-    "hand_turned_deg": 22.3,
+    "hand_turned_deg": 23.5,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -2964,9 +2964,9 @@
   }
  ],
  "figure_frame_fraction": {
-  "dad": 0.1203,
-  "mama91": 0.0684,
-  "jade7": 0.0375,
+  "dad": 0.1204,
+  "mama91": 0.0683,
+  "jade7": 0.0377,
   "sw": 0.0041
  },
  "colour_separation": [
@@ -2990,8 +2990,8 @@
     }
    },
    "arms": {
-    "L": 0.76,
-    "R": 0.76
+    "L": 0.75,
+    "R": 0.75
    },
    "headTurn": 19,
    "body": {
@@ -3000,17 +3000,20 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 81,
+     "elbow_bend_deg": 83,
      "upperarm_stretch": 1.08,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
     },
     "R": {
-     "elbow_bend_deg": 81,
+     "elbow_bend_deg": 83,
      "upperarm_stretch": 1.08,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
-    }
+    },
+    "sole_shift_mm_L": 15.1,
+    "sole_shift_mm_R": 15.1,
+    "sole_lowest_y_m": 0.1949
    }
   },
   "sw": {
@@ -3043,7 +3046,10 @@
      "upperarm_stretch": 1.03,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20.5,
+    "sole_shift_mm_R": 20.5,
+    "sole_lowest_y_m": 0
    }
   },
   "mama91": {
@@ -3056,8 +3062,8 @@
     }
    },
    "arms": {
-    "L": 0.58,
-    "R": 0.55
+    "L": 0.56,
+    "R": 0.52
    },
    "headTurn": -12,
    "body": {
@@ -3066,17 +3072,20 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 118,
+     "elbow_bend_deg": 120,
      "upperarm_stretch": 1.08,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 123,
+     "elbow_bend_deg": 126,
      "upperarm_stretch": 1.1,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0
    }
   },
   "dad": {
@@ -3109,7 +3118,10 @@
      "upperarm_stretch": 1.05,
      "forearm_stretch": 0.99,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8,
+    "sole_shift_mm_R": 8,
+    "sole_lowest_y_m": 0.0042
    }
   }
  }

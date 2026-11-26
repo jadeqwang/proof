@@ -362,7 +362,7 @@
   "grips": {
    "handle": {
     "at": [
-     -0.046,
+     0.046,
      0.047,
      0
     ],
@@ -372,16 +372,17 @@
      0
     ],
     "up": [
-     -1,
+     1,
      0,
      0
     ],
     "handleR": 0.006,
-    "template": "mugHandle"
+    "template": "mugHandle",
+    "note": "2026-11-26 r5: x sign fixed (GLB: handle on +x, body rim centred at x -0.015; was mirrored)"
    },
    "body": {
     "at": [
-     0.015,
+     -0.015,
      0.05,
      0
     ],
@@ -607,5 +608,68 @@
   "source": "Sketchfab/thanhthanh (CC BY 4.0)",
   "credit": "\"Grand Piano\" by thanhthanh (https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b), CC BY 4.0",
   "use": "mortongrove07 living-room grand piano"
+ },
+ "shopping_cart": {
+  "label": "the grandmother's cart",
+  "size_m": [
+   0.5926,
+   0.98,
+   0.8412
+  ],
+  "origin": "floor under the bbox centre; nose toward +z, handle at -z, y up",
+  "grips": {
+   "handle": {
+    "at": [
+     0,
+     0.9617,
+     -0.4023
+    ],
+    "axis": [
+     1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "r": 0.0183,
+    "template": "power",
+    "note": "the red plastic handle grip, 0.36 m long; two hands about 0.21 m apart"
+   }
+  },
+  "defaults": {},
+  "source": "Sketchfab/alexvladimircm (CC BY 4.0)",
+  "credit": "\"Carro De La Compra\" by alexvladimircm (https://sketchfab.com/3d-models/c22286ade5ea493b890b3269e57b191f), CC BY 4.0",
+  "use": "market93 the grandmother's supermarket cart"
+ },
+ "backpack": {
+  "label": "backpack",
+  "size_m": [
+   0.3699,
+   0.4816,
+   0.3961
+  ],
+  "origin": "bottom centre of the bag body (strap tails hang 0.032 m below it)",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/fabbear (CC BY 4.0), via the Objaverse 1.0 mirror",
+  "credit": "\"Diaper Bags\" by fabbear (https://sketchfab.com/3d-models/040089295e3a4ee684d4562a8fabce9f), CC BY 4.0",
+  "use": "playground23: Dad's black daypack (back panel and straps face -z, front pocket +z, side bottle pockets at +x and -x); the original trims (brand text, logo) replaced by flat near-black"
+ },
+ "kids_bottle": {
+  "label": "kids water bottle",
+  "size_m": [
+   0.0752,
+   0.22,
+   0.0915
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/psychofisch (CC BY 4.0), via the Objaverse 1.0 mirror",
+  "credit": "\"Sport Waterbottle\" by psychofisch (https://sketchfab.com/3d-models/04b5fcbb2d644e608d7f836bdb136a85), CC BY 4.0",
+  "use": "playground23: the two children's water bottles in the side pockets of Dad's backpack (upright along +y; flip-up straw cap)"
  }
 }

@@ -219,3 +219,52 @@ Jade on X_sw: "the social worker's shoulders are weirdly misshapen".
   REF_wide and REF_sw_*: the shoulders and upper arms are smooth, with no armpit crumple and no deltoid bulge.
   Holdcheck 25/25 pass. The sw R wrist sits exactly at its pronation limit (warning "+0 deg") in 13 shots: negligible.
   The shoulder-seam tick (engine/body) remains: report sent to the lead.
+
+## 2026-11-26: round-5 decisions (work/decisions/JADE_R5_DECISIONS.md; R5 brief) — office-market agent
+- **Skirt:** washed-blue denim 0x7088a8 confirmed by Jade; already built (sw `legs`). Unchanged.
+- **BO2 -> AD_trace is now a plain cut** (Jade: "don't match the fingers"). BO2's intent no longer asks for a finger
+  match; nothing in office91 was framed to match AD_trace (the camera never depended on it), so only the text changed.
+- **Her fingertip on the MIDDLE of the missing space** (Jade: "slightly off center"; lead: little Jade's finger, BO1 and
+  BO2). `GAP` was cell(shortRow, 6): a seventh face at the short row's own spacing, a quarter cell (6.4 mm) past the
+  column of last faces (THANKFUL above, MAD below). The hole the eye reads runs from ANXIOUS's edge to that column's outer
+  edge; its middle is the column. layout.js: `GAP` = [x of the last column, the short row's line]; the old point kept as
+  `GAP_SEQ`. JADE_TIP, the gaze target 'gap', the gap cameras and `handout.gap_px` all follow. The adult's finger stays
+  on ANXIOUS (SW_TIP unchanged).
+- **Lit pass exposure** (lead: BO2_lit blown out): the close shots inside the tube's pool (H1, H1b, PC3b, BO1, BO2)
+  were 80-97 % pure white in the lit pass. `POOL = { light: { exposure: 0.27 } }` (shots.js); build.js scales the three
+  tube spots, the bounce and the ambient by `shot.light.exposure` in the lit pass only.
+
+## 2026-11-26: round-5 decisions — engine-body agent (the social worker's shoulder and back only)
+- **Shoulder root cause (engine/humanMesh.js solvePose):** the upper arm's twist reference was swung from the REST
+  (unrotated) arm, not the chest. Any figure yawed far from 0 got the top of the upper arm turned against the chest
+  (measured with bodytest `shoulder_*` / `shdbg_*`: 173-176 deg for the social worker and for Mama turned to yaw 180;
+  ~0 for figures at yaw 0, hence the parents looked fine). Linear blend skinning collapsed that half-turn into the
+  shoulder-seam notch and a fin behind each armpit. Fixed: the rest bending normal is carried by the chest rotation first.
+  Now 0-1 deg for every figure. Fixed for all sets (every figure not facing +z was affected, more or less).
+  Before/after crops: work/r5/engine_body/ (sw_shoulder_*.png).
+- **Dark blob on her back (REF_sw_back lit):** not a shadow and not the body. It was the beam's haze prism
+  (common.js beamMeshes, lit only): drawn double-sided, its near face veiled her back except where her upper back reached
+  into the prism. engine/render.js now draws a haze volume by its far faces only (x2 opacity). Same in shanghai86.
+- The social worker's pose (SW_ELBOW etc.) is unchanged: no pose change was needed.
+- **Measured (BO2.json, BO1 identical):** the slot centre projects to px (960.1, 604.8); her pad contact to (960.1, 606.7):
+  1.9 px off (0.5 mm on the page; 4.05 px/mm there). The tip centre is straight over the slot (0 mm in plan); the visible
+  nail end runs 4.6 mm on along the finger (20 px). Gaze target = the slot, error 0 deg. Before: the pad sat on
+  cell(3, 6), 6.4 mm (about 26 px) past the column, i.e. off the middle of the hole.
+- **Lit exposure result:** BO1 / BO2 / H1 / H1b / PC3b now mean luminance 0.60 / 0.56 / 0.68 / 0.74 / 0.69, 0 % pure white
+  (were 0.94 / 0.91 / 0.98 / 0.98 / 0.98 with 80-97 % pure white). The remaining 3-11 % "clipped" is the canary paper's red
+  channel only.
+- **Clipcheck fixes (mine):** little Jade's resting hands (`jade()`) and Mom's listening hands (`momListen`, PC2) sank
+  10-14 mm into the table top. They now lie open on it (`JADE_HAND`, a flat hand with a light curl) at TOP + 0.04:
+  clipcheck clean for jade7 in every shot and for Mom's hands in PC2.
+- **Left for others / known:** the social worker's left hand 13.8 mm into the table, her feet 14.8 mm into the carpet,
+  her clip contact 4.1 mm in BO2 (engine-body owns her body this round); Mom's feet 14.2 mm into the carpet and 14 mm of
+  cloth into her chair (pre-existing, soft). The 500-760 mm "into meeting table / clipboard" rows are false positives:
+  those meshes are open (no inside), so the point-inside test misfires under the table.
+- Hold check 25/25 pass. Re-rendered all three passes.
+- Before/after crops: work/r5/engine_body/sw_shoulder_REF_before_after.png (left before, right after; front and back),
+  sw_shoulder_close_back_before_lbs_dqs.png (before / fixed / a dual-quaternion test that was NOT kept),
+  sw_back_blob_before_after_lit.png. The parents never had it because they face +z (yaw 0 / -6).
+- Also engine-wide (affects her too): soles on the floor, seated feet flat (her toes were 15-20 mm into the carpet).
+- clipcheck office91 after: the 755 mm "into the meeting table" sheet false positives are gone (clipcheck sheet band).
+  Still failing, pre-existing staging (office-market's): sw L forearm 13.8 mm into the table top, sw cloth into the
+  table / clipboard (34-80 mm), sw / mama91 14 mm into their chairs, FE_thumbs mama91 vs jade10.
