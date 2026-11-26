@@ -339,10 +339,23 @@ export const NOGUCHI = { at: [1.72, 1.98], W: 1.27, D: 0.914, h: 0.40, glass: 0.
   // plan (cm, table frame: x across, y + toward the apex): the pivot, and the far end of each leg
   pivot: [0, 26], ends: { upper: [47, -25.5], lower: [-47, -25.5] } };
 // "glass top table" at the NNE wall (Jade, 2026-11-25 late): a SEMICIRCLE, flat side against the wall, ~3 ft (0.91 m) wide,
-// ~1 ft (0.30 m) deep at the centre. Read as a half-ellipse (semi-axes 0.455 x 0.30), the flat side on the core wall's
-// face (X 4.89), centred where she drew the D (Z 2.35). Height 0.76 m (console height), 12 mm glass, three slim
-// chrome legs on a thin metal apron: OURS (ASSUMED).
-export const GLASS_TABLE = { wallX: 4.89, zc: 2.35, W: 0.91, D: 0.30, h: 0.76, glass: 0.012, shape: 'half-ellipse (demilune)' };
+// ~1 ft deep at the centre, on the core wall's face (X 4.89), centred where she drew the D (Z 2.35).
+// Rebuilt 2026-11-26 from her three photos of the real table (inputs/refs_semicircletable/; glassTable.js builds it):
+// clear glass with a pale green edge on a frame of dark oil-rubbed bronze ROUND ROD (not chrome). Top: a circular
+// segment, chord W on the wall, sagitta D (the top-down photo shows the arc meeting the flat edge at a slant, so not a
+// half-ellipse). Frame: a D-shaped rim (the arc under the glass edge + a straight back rail); two front legs, each a pair
+// of bowed rods from the rim meeting at one foot; a cross-brace of four lower rods from the two front feet and two back
+// feet by the wall up to a knotted collar (about a third of the height, near the middle of the plan) and four upper rods
+// from the collar up and out toward the two ends, to the rim arc and the back rail. Width is Jade's 3 ft. ASSUMED (from photo proportions, no tape measure):
+// sagitta 0.33 m, height 0.76, glass 10 mm, rim rod 16 mm, leg rods 13 mm, the collar height, the exact leg count and
+// rod topology where the photos are ambiguous (NOTES.md "Glass-top table from Jade's photos, 2026-11-26").
+// Angles (deg) are measured round the arc from the apex (0) toward the wall ends (+-asin(W/2 / R), ~72 deg here).
+export const GLASS_TABLE = { wallX: 4.89, zc: 2.35, W: 0.91, D: 0.33, h: 0.76, glass: 0.010, shape: 'circular segment (demilune), bronze rod frame',
+  metal: 0x3b2c20, rimR: 0.008, rodR: 0.0065, footR: 0.009, overhang: 0.008, backInset: 0.02,
+  frontLeg: { alA: 62, alB: 34, foot: 46, footIn: 0.03, bowA: 0.3, bowB: 0.55 },
+  backFoot: { u: 0.25, v: 0.06 },
+  knot: { u: 0, v: 0.15, y: 0.27, r: 0.014 },
+  upper: { alFront: 47, uBack: 0.33, swingFront: 0, swingBack: 0, k1: 0.06, k2: 0.3 } };
 
 // ---------------------------------------------------------------- kitchen and dining (Jade, page 2; dressed 2026-11-25 (round 2 answers))
 // "kitchen counters": a U along the partition, the core wall and the ESE wall (OUR depth 0.635, height 0.91).
@@ -368,7 +381,8 @@ export const FRIDGE = { x0: 2.30, x1: 3.06, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.7
 // Jade: a stainless step-lid trash can in the space to the right of the sink (on the floor past the ESE run's SSW end)
 export const TRASH = { at: [3.10, 9.55], r: 0.15, h: 0.66, kind: 'stainless-steel step-lid trash can (~30 L; size OURS)' };
 // Jade: upper cabinets; every cabinet door dark walnut. Uppers 0.33 deep, 1.40..2.16 m (OUR sizes); none over the
-// ESE window (it fills that run); a range hood over the stove (OURS); a short cabinet over the fridge.
+// ESE window (it fills that run); over the stove an over-the-range microwave under a short walnut cabinet
+// (OTR_MICROWAVE, Jade 2026-11-26); a short cabinet over the fridge.
 export const WALNUT = { col: 0x3b2618, grey: 0.2, kind: 'dark walnut (all cabinet doors: Jade)' };
 export const UPPERS = [
   { name: 'upper cabinets (partition)', x0: 3.10, x1: 4.56, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.33, y0: 1.40, y1: 2.16, front: '+Z' },
@@ -376,7 +390,14 @@ export const UPPERS = [
   { name: 'upper cabinets (core wall)', x0: 4.56, x1: 4.89, z0: STOVE.z1, z1: KITCHEN.z1, y0: 1.40, y1: 2.16, front: '-X' },
   { name: 'upper cabinet (over the fridge)', x0: 2.30, x1: 3.06, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.33, y0: 1.80, y1: 2.16, front: '+Z' },
 ];
-export const HOOD = { x0: 4.40, x1: 4.89, z0: STOVE.z0, z1: STOVE.z1, y0: 1.60, y1: 1.76, kind: 'range hood (OURS)' };
+// over the stove (Jade, 2026-11-26: "the stovetop fan was inside dark wood cabinetry, and there was a mounted microwave
+// above the stove"): read as an OVER-THE-RANGE MICROWAVE (its fan, vent grille and cooktop lights on its underside)
+// filling the gap between the core-wall uppers, with a short walnut cabinet above it up to the uppers' top line (2.16);
+// the uppers either side are its walnut sides. Stainless/black, 0.76 W (the gap) x 0.42 H x 0.40 D, bottom at 1.40 (the
+// uppers' bottom line, 0.48 m over the cooktop); door with a window, control panel on its right (ESE, +Z). Sizes OURS.
+// ALTERNATIVE reading (flagged in NOTES): a separate walnut-clad hood enclosure over the stove, the microwave elsewhere.
+export const OTR_MICROWAVE = { x0: 4.89 - 0.40, x1: 4.89, z0: STOVE.z0, z1: STOVE.z1, y0: 1.40, y1: 1.82, panelW: 0.17,
+  cabinet: { x0: 4.56, x1: 4.89, y0: 1.82, y1: 2.16 }, kind: 'over-the-range microwave, stainless with a black door glass (sizes OURS)' };
 // Jade: a GIANT punchbowl of lemonade to the right of the stove (on the counter over the dishwasher), with a ladle and a
 // stack of cups. Size OURS: 0.50 m across, 0.20 deep, on a short foot (a big glass punchbowl).
 export const PUNCHBOWL = { at: [4.57, 8.08], r: 0.25, h: 0.20, foot: 0.06, cupsAt: [[4.62, 8.55], [4.48, 8.62]], cupsN: 22, kind: 'giant glass punchbowl of lemonade (Jade); size OURS' };

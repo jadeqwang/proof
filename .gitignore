@@ -35,3 +35,5 @@ inputs/refs_ias/
 # first-love rejected takes (not face-checked) and the superseded nude-seal sheet: never public
 cast/first_love/_prompts/*/takes/*.jpg
 cast/first_love/_superseded/fl_H_*
+inputs/diagram_basement.png
+inputs/refs_semicircletable/

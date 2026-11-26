@@ -6,8 +6,9 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
 import { CAST } from '../_cast.js';
+import { glassTable } from './glassTable.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
-  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, HOOD, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
+  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
   TREE, GRAPEFRUIT, POI, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
 
 // ---------------------------------------------------------------- cast (set-local, additive: engine/mannequin.js is not edited)
@@ -360,13 +361,29 @@ function kitchen(g, dressing) {
     g.add(tag(cyl(T.r, T.r * 0.95, T.h - 0.04, STEEL, [x, (T.h - 0.04) / 2, z], null, 28), 'stainless step-lid trash can (Jade)'));
     g.add(tag(ball(T.r * 1.01, STEEL, [x, T.h - 0.04, z], [1, 0.28, 1]), 'stainless step-lid trash can (lid)'));
     g.add(tag(box(0.1, 0.02, 0.07, { grey: 0.3, col: 0x333333 }, [x - T.r - 0.02, 0.03, z]), 'stainless step-lid trash can (pedal)')); }
-  // the upper cabinets and the range hood
+  // the upper cabinets
   for (const U of UPPERS) { g.add(tag(box(U.x1 - U.x0, U.y1 - U.y0, U.z1 - U.z0, WALNUT, [(U.x0 + U.x1) / 2, (U.y0 + U.y1) / 2, (U.z0 + U.z1) / 2]), 'upper cabinets (dark walnut)'));
     const lab = 'upper cabinet doors (dark walnut)';
     if (U.front === '+Z') doorRow(g, { axis: 'X', s0: U.x0, s1: U.x1, at: U.z1, out: 1, y0: U.y0 + 0.01, y1: U.y1 - 0.01, lab, w: 0.4, pullLow: true });
     else doorRow(g, { axis: 'Z', s0: U.z0 + (U.z0 < 5.5 ? 0.33 : 0), s1: U.z1, at: U.x0, out: -1, y0: U.y0 + 0.01, y1: U.y1 - 0.01, lab, w: 0.4, pullLow: true }); }
-  g.add(tag(box(HOOD.x1 - HOOD.x0, HOOD.y1 - HOOD.y0, HOOD.z1 - HOOD.z0, STEEL, [(HOOD.x0 + HOOD.x1) / 2, (HOOD.y0 + HOOD.y1) / 2, (HOOD.z0 + HOOD.z1) / 2]), 'range hood'));
-  g.add(tag(box(0.25, 2.16 - HOOD.y1, 0.3, STEEL, [4.76, (2.16 + HOOD.y1) / 2, (HOOD.z0 + HOOD.z1) / 2]), 'range hood'));
+  // over the stove (Jade 2026-11-26): the over-the-range microwave in the gap between the core-wall uppers, a short walnut
+  // cabinet above it to the uppers' top line; its fan, vent and cooktop lights are on its underside (layout.js OTR_MICROWAVE)
+  { const M = OTR_MICROWAVE, zc = (M.z0 + M.z1) / 2, w = M.z1 - M.z0, h = M.y1 - M.y0, fx = M.x0, BLK = { grey: 0.14, col: 0x1c1c1e }, L = 'over-the-range microwave';
+    g.add(tag(box(M.x1 - M.x0, h, w - 0.004, STEEL, [(M.x0 + M.x1) / 2, (M.y0 + M.y1) / 2, zc]), `${L} (stainless)`));
+    // the door (left of the panel, as you face it: SSW, -Z) with its dark window, the control panel on the right (+Z)
+    const dz0 = M.z0 + 0.01, dz1 = M.z1 - M.panelW, dw = dz1 - dz0;
+    g.add(tag(box(0.012, h - 0.05, dw, STEEL, [fx - 0.006, M.y0 + 0.02 + (h - 0.05) / 2, (dz0 + dz1) / 2]), `${L} (door)`));
+    g.add(tag(box(0.004, h - 0.15, dw - 0.14, BLK, [fx - 0.014, M.y0 + 0.07 + (h - 0.15) / 2, (dz0 + dz1) / 2 - 0.03]), `${L} (door window)`));
+    g.add(tag(box(0.02, h - 0.12, 0.02, STEEL, [fx - 0.022, M.y0 + 0.02 + (h - 0.05) / 2, dz1 - 0.04]), `${L} (door handle)`));
+    g.add(tag(box(0.006, h - 0.05, M.panelW - 0.02, BLK, [fx - 0.003, M.y0 + 0.02 + (h - 0.05) / 2, M.z1 - M.panelW / 2 - 0.005]), `${L} (control panel)`));
+    g.add(tag(box(0.008, 0.025, w - 0.03, BLK, [fx - 0.004, M.y1 - 0.0125, zc]), `${L} (top vent grille)`));
+    // underside: the fan / grease-filter grille and two cooktop lights
+    g.add(tag(box(0.2, 0.004, w - 0.16, { grey: 0.35, col: 0x55575a }, [M.x1 - 0.17, M.y0 - 0.002, zc]), `${L} (underside fan grille)`));
+    for (const dz of [-0.28, 0.28]) g.add(tag(cyl(0.025, 0.025, 0.006, { grey: 0.85, col: 0xe8e4d8 }, [fx + 0.06, M.y0 - 0.003, zc + dz], null, 16), `${L} (cooktop light)`));
+    // the walnut cabinet above it, flush with the uppers either side (their side panels are its sides)
+    const C = M.cabinet;
+    g.add(tag(box(C.x1 - C.x0, C.y1 - C.y0, w, WALNUT, [(C.x0 + C.x1) / 2, (C.y0 + C.y1) / 2, zc]), 'upper cabinets (dark walnut)'));
+    doorRow(g, { axis: 'Z', s0: M.z0, s1: M.z1, at: C.x0, out: -1, y0: C.y0 + 0.01, y1: C.y1 - 0.01, lab: 'upper cabinet doors (dark walnut)', w: 0.38, pullLow: true }); }
   // dressing
   const yT = DINING.h;
   if (dressing === 'party') {
@@ -449,18 +466,8 @@ function furniture(lt, dressing) {
       const m = mk(geo, LEG); m.position.set(piv[0], 0, piv[1]); m.rotation.y = Math.atan2(-dz / L, dx / L);
       g.add(tag(m, `Noguchi coffee table (${which} leg, solid wood, black)`)); }
     g.add(tag(cyl(0.008, 0.008, 0.06, DARK, [piv[0], N.legH * 0.5, piv[1]], null, 8), 'Noguchi coffee table (pivot dowel)')); }
-  // the semicircular glass-top console against the NNE (core) wall (Jade, 2026-11-25 late; layout.js GLASS_TABLE)
-  { const G = GLASS_TABLE, a = G.W / 2, b = G.D, CH = { grey: 0.7, col: 0xb8b8bc }, sh = new THREE.Shape(), n = 32;
-    for (let k = 0; k <= n; k++) { const t = Math.PI * k / n, x = a * Math.cos(t), y = b * Math.sin(t); k ? sh.lineTo(x, y) : sh.moveTo(x, y); }
-    sh.lineTo(a, 0);
-    // shape x = along the wall (world Z), shape y = out from the wall (world -X); extruded up
-    const top = mk(new THREE.ExtrudeGeometry(sh, { depth: G.glass, bevelEnabled: false }), { glass: true, col: 0x9ac0b8, opacity: 0.35, grey: 0.8 });
-    top.matrixAutoUpdate = false; top.matrix.set(0, -1, 0, G.wallX - 0.005, 0, 0, 1, G.h - G.glass, 1, 0, 0, G.zc, 0, 0, 0, 1); g.add(tag(top, 'semicircular glass-top console table'));
-    const apron = mk(new THREE.ExtrudeGeometry((() => { const q = new THREE.Shape(); for (let k = 0; k <= n; k++) { const t = Math.PI * k / n; const x = (a - 0.03) * Math.cos(t), y = (b - 0.03) * Math.sin(t); k ? q.lineTo(x, y) : q.moveTo(x, y); }
-      for (let k = n; k >= 0; k--) { const t = Math.PI * k / n; q.lineTo((a - 0.045) * Math.cos(t), (b - 0.045) * Math.sin(t)); } return q; })(), { depth: 0.05, bevelEnabled: false }), CH);
-    apron.matrixAutoUpdate = false; apron.matrix.set(0, -1, 0, G.wallX - 0.005, 0, 0, 1, G.h - G.glass - 0.05, 1, 0, 0, G.zc, 0, 0, 0, 1); g.add(tag(apron, 'semicircular glass-top console table (apron)'));
-    for (const t of [0.12, Math.PI / 2, Math.PI - 0.12]) { const lx = G.wallX - 0.005 - (b - 0.04) * Math.sin(t), lz = G.zc + (a - 0.04) * Math.cos(t);
-      g.add(tag(cyl(0.012, 0.012, G.h - G.glass - 0.05, CH, [lx, (G.h - G.glass - 0.05) / 2, lz], null, 10), 'semicircular glass-top console table (leg)')); } }
+  // the semicircular glass-top console against the NNE (core) wall, from Jade's photos (layout.js GLASS_TABLE; glassTable.js)
+  g.add(glassTable(GLASS_TABLE));
   kitchen(g, dressing);
   // the pale IKEA dining table, the pale benches tucked in
   { const D = DINING, P = { grey: 0.88, col: D.col }, cx = (D.x0 + D.x1) / 2, cz = (D.z0 + D.z1) / 2;

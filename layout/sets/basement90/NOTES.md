@@ -73,10 +73,10 @@ this set's top landing). `kit.js` = set-local helpers used by both sets.
 
 Render: `node layout/render.mjs --set basement90` -> `media/layout/basement90/` (sheets: `_sheet_<mode>.jpg`).
 
-## Assumptions (the plan leaves these open)
-- Unfinished basement 4.7 x 4.2 m, 2.3 m clear, exposed joists, block walls, open-riser stair along the left wall,
-  night (hopper window dark, bare bulb off).
-- Desk against the back wall, screen facing the room. Horizontal desktop PC with a 14 in CRT on top, dot-matrix printer.
+## Assumptions (the plan leaves these open) — room layout SUPERSEDED by "Layout from Jade's diagram, 2026-11-26" at the end
+- Unfinished basement 4.7 x 4.2 m, 2.3 m clear, exposed joists, block walls, night (hopper window dark). [SUPERSEDED
+  2026-11-26: the stair runs along the FRONT wall; the bulb is on.]
+- [SUPERSEDED 2026-11-26: the desk stands free mid-room, Dad on its front side, screen facing +z.] Horizontal desktop PC with a 14 in CRT on top, dot-matrix printer.
   Screen glass 27 x 20 cm, centre 1.085 m high.
 - Desk is open on its LEFT side (two legs), drawers on the right: the cat under the desk is shot from the left.
 - Jade (7, 1.22 m) stands on Dad's LEFT, on the two left spokes (one foot forward, one back), leaning over the desk
@@ -147,3 +147,62 @@ and measured hits. Times written elsewhere in this file before this section are 
 
 - B1_feet 2:16.1-2:17.2 ("Basement" sung 2:16.1, after the market's last beat), B2_face 2:17.2-2:18.3, B3_finger 2:18.3-2:19.8
   ("I point to one he missed"), B4_doubletake 2:19.8-2:21.4 (band stop 2:19.8), B5_cat 2:21.4-2:22.2; then kitchen90.
+
+## Layout from Jade's diagram, 2026-11-26 (supersedes the room layout above: desk against the back wall, stair at left, shelf / heater)
+
+Source: `inputs/diagram_basement.png` (plan, top = back wall). Room unchanged, 4.7 x 4.2 m (x -2.9..1.8, z -2.1..2.1).
+
+- **Desk group moved as one** (`layout.js` `GROUP = { dx: -1.624, dz: 1.05 }`, helper `gp()`): desk, PC, printer,
+  chair, both figures' poses (`KEYS`, `CHAIR`, `CHAIR_GC`, Dad's left hand, `GROOM`, her left hand), the ceiling bulb and
+  the B1 camera are old position + GROUP; B2, B3, B5 are figure/screen-relative and followed by themselves. So the
+  blocking, the beam (`BEAM`, `beamFar`, `deskTerminator`) and the bulb's light on the figures are unchanged relative to
+  the figures. New desk x -1.624..-0.224, z -1.03..-0.33 (29-57 % of the width, 25-42 % of the depth), Dad's chair
+  [-1.024, -0.07], screen centre [-1.024, 1.085, -0.578], bulb [-1.294, 1.97, 0.60] (under a joist, between Dad and
+  the stair), floor desk-shadow lines z 0.08 / 0.42. Empty floor behind the desk (1.07 m to the back wall) and left of it
+  (1.28 m to the left wall), as drawn ("empty space").
+- **Desk depth: ASSUMED compromise, flag.** The sketch has the desk at 44-60 % of the depth and Dad at 65 %; here the
+  desk is at 25-42 % and Dad at ~48 %, 0.55 m further back. Reason: B4 (and B5) are shot from the open floor in front
+  and to Dad's left, which in Jade's room is where the stair is. At the sketch depth (dz 1.6, tried and rendered) the B4
+  camera lands under the flight (the room-side stringer crossed Dad's face) and B5 under the treads; cameras ON the
+  stair gave a wall of treads. At dz 1.05 B5 keeps its exact framing in front of the stair and B4 needs only a small move.
+- **B4 camera:** was 24 mm at old [-0.35, 0.92, 0.45]; now 22 mm at [-1.80, 0.95, 1.22] (pulled ~0.3 m in along its own
+  line, 6 cm short of the stair's room-side stringer at z 1.28). Same two-shot: Dad three-quarter at frame right, her
+  in profile with the paw at frame left, joists above; the wringer washer now shows behind Dad at frame right.
+- **Stair** (`house.js` `HOUSE.stair`, `landing`): one straight open-riser flight along the FRONT wall, z 1.3..2.1
+  (0.8 m), 12 risers of 0.217, treads 0.23, top at the left wall (x -2.9), descending toward +x, foot riser at x -0.37
+  (53 % across, as drawn). Two stringers, a wall rail on the front wall (ASSUMED; the room side is open so the cameras
+  see under it). Top: landing at kitchen-floor level x -2.9..-1.8, z 0.45..1.3 (beside the kitchen, behind the flight),
+  with a guard rail along its front edge; the top tread is entered sideways from the landing (a quarter turn, ASSUMED).
+  Ceiling: subfloor + joists over the whole basement now (the old open strip at left is gone), except the stairwell
+  opening over the flight up to x -0.6 (header at z 1.3, trimmer at x -0.6) for headroom.
+- **Kitchen door moved** (`HOUSE.stairDoor` z 1.05..1.85 -> 0.5..1.25, 0.75 m wide) so it opens onto that landing (the
+  old spot is now over the flight). kitchen90 re-rendered; visible changes only in K0_plan, K0_wide_night and
+  K8_glass (the reflected door edge behind Mama shifts ~45 px, the knob is now hidden behind her); every other K shot is
+  pixel-identical (K1_question_wide: a label nudged only).
+- **Known inconsistency, flag:** for headroom the stairwell opening reaches under the kitchen's front-left corner
+  (x -1.8..-0.6, z 1.3..2.1). kitchen90 does not model it (it is open kitchen floor there; K1's camera at z 2.0 and K7's
+  at [-1.0, 1.25] stand near it). Not changed, to keep Jade's kitchen keyframes. In the basement set the opening is
+  closed off above by `stairwell wall (kitchen corner above)`.
+- **Post:** `ROOM.column` -> [-0.09, -1.13], just beyond the desk's back-right corner; the main beam now runs along x
+  over it (perpendicular to the joists).
+- **Washer, ASSUMED type, flag:** a 1950s round-tub wringer washer on four legs with casters (white enamel tub 0.6 m,
+  rim at 0.92 m, agitator, motor box under, power wringer: two rubber rollers in a frame on a post at the tub's back,
+  top ~1.27 m), centre [0.52, -0.62], a gap past the post. No dryer. Alternative: a 1950s enamel top-loader box.
+- **Watermelons:** two whole oblong melons on the floor front-right, [0.66, 0.86] and [0.74, 1.33], 43 / 41 cm long,
+  25 / 24 cm wide (about 20-25 lb each), long axis along z, dark green; stripes are left to the paint (no texture).
+- **Removed (flag):** the steel shelf, its boxes, the water heater and the modern washer at front-left: the diagram draws
+  nothing else. Kept: hopper window (back wall), joists, block walls, ceiling bulb.
+- **B0_plan** ortho width 6.4 -> 8.4 (the whole 4.2 m depth now fits); hides the stairwell walls, landing and guard rail.
+  **B0_wide** new: 16 mm from the front-right corner [1.6, 1.4, 1.95] over the melons: stair along the front wall at
+  frame left, desk with Dad and Jade, the floor behind it, post, washer, hopper window.
+- Headers / intents updated (B0_plan, B0_wide, B4). Sidecar warnings: none.
+- **Looked at:** B0_plan beside the diagram (desk, post, washer, melons, stair all in place; desk higher on the page as
+  above); B0_wide / B1-B5 in line, lit and form; the beam-mask sheet. B1: same framing, the desk leg at left. B2: the
+  stair now shows behind her as a diagonal. B3: unchanged framing (fingertip 2.1 cm from the word, was 1.9). B5:
+  identical framing. Known: the beam masks' volume is not occluded by the stair (B0_wide's mask runs over it).
+- Renders: `media/layout/basement90/` (all modes, painter guides, beam masks), `media/layout/kitchen90/` (same),
+  sheets in `media/layout/_sheets/`. The r3 review page keeps showing the pre-change guides: they were copied to
+  `media/keyframes/r3/_layout_snapshot/{basement90,kitchen90}/` first and `tools/kf/r3_page.py` `LAYOUT_SNAPSHOT` points
+  there (page rebuilt, 0 missing images, localStorage key unchanged).
+- **Repaint:** every basement keyframe B1-B5 (the room behind them changed: stair, post, washer, no shelf / heater;
+  B4's camera moved). Kitchen: K8_glass only if the reflected door edge matters.

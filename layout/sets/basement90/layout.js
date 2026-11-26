@@ -1,7 +1,11 @@
 // BASEMENT, DECATUR, 1990 — single source of truth for numbers (metres, y up, slab at y = 0).
-// Unfinished basement under the kitchen. THE BEAM: the blue glow of the CRT screen, the only light.
-//   x: -2.9 = outer wall beside the stair ... +1.8 = right wall
-//   z: -2.1 = back wall (the desk stands against it; the screen faces +z) ... +2.1 = front wall
+// Unfinished basement under the kitchen. THE BEAM: the blue glow of the CRT screen.
+// Plan from Jade's diagram (inputs/diagram_basement.png, 2026-11-26): the desk stands FREE in the middle of the room,
+// Dad on its front side facing the back wall; "empty space" behind and left of it; a post just beyond the desk's
+// back-right corner; an old wringer washer to the right; two watermelons on the floor front-right; the stair along the
+// front wall from the left wall to about half the width.
+//   x: -2.9 = left (outer) wall, the stair's top ... +1.8 = right wall
+//   z: -2.1 = back wall (hopper window) ... +2.1 = front wall (the stair runs along it, z 1.3 .. 2.1, x -2.9 .. -0.37)
 // The "front" camera direction looks toward -z: Dad's back, the screen beyond him.
 import { HOUSE, legOf } from './house.js';
 export { HOUSE };
@@ -9,25 +13,33 @@ export { HOUSE };
 export const ROOM = { ...HOUSE.basement, wallT: 0.2,
   joist: { d: 0.19, w: 0.04, spacing: 0.406 },          // 2x8 joists at 16 in, running along z, under the kitchen floor
   hopper: { x: -0.95, y0: 1.72, y1: 2.06, w: 0.8 },     // small hopper window high in the back wall; night outside
-  column: { x: -0.7, z: 0.35, r: 0.045 },               // steel lally column
+  column: { x: -0.09, z: -1.13, r: 0.045 },             // steel lally column ("post"): just beyond the desk's back-right corner; the main beam runs along x over it
   // CEILING LIGHT (Jade 2026-11-25 round 2: the basement had more ambient light from a ceiling light). ASSUMED type: a
   // bare 60-75 W incandescent bulb in a white porcelain pull-chain lampholder on a junction box nailed under a joist
   // (the stock unfinished-basement fixture of the period; alternative: a two-tube 4 ft fluorescent shop light). ON.
-  // Sits under the joist at x 0.33, a little in front of the desk, so it lights both figures from front-above.
-  bulb: { x: 0.33, z: -0.45, box: 0.05, holder: 0.06, r: 0.03 },
+  // Sits under a joist in front of Dad (moved with the desk group, 2026-11-26), so it lights both figures from
+  // front-above; it is now also the stair light (15 cm short of the stairwell opening).
+  bulb: { x: 0.33 + -1.624, z: -0.45 + 1.05, box: 0.05, holder: 0.06, r: 0.03 },
 };
 
-// the desk: a plain table-desk against the back wall. Drawer pedestal on the right, two legs on the left, so the
-// kneehole is open toward -x (the cat is seen from there).
-export const DESK = { x0: 0.0, x1: 1.4, z0: -2.08, z1: -1.38, top: 0.74, t: 0.03, pedestalX0: 0.98, leg: 0.05, modesty: { y0: 0.3 } };
+// THE DESK GROUP (2026-11-26, Jade's diagram): desk, computer, chair, both figures, the ceiling bulb and the B cameras
+// moved together by this offset from where they stood when the desk was against the back wall (old desk x 0..1.4,
+// z -2.08..-1.38). Every number below and in shots.js is old-position + GROUP, so the blocking and framings carry over.
+export const GROUP = { dx: -1.624, dz: 1.05 };
+const gx = (x) => +(x + GROUP.dx).toFixed(4), gz = (z) => +(z + GROUP.dz).toFixed(4);
+export const gp = (p) => (p.length === 2 ? [gx(p[0]), gz(p[1])] : [gx(p[0]), p[1], gz(p[2])]);   // old [x, z] / [x, y, z] -> new
+// the desk: a plain table-desk standing free mid-room (x -1.624 .. -0.224, z -0.48 .. 0.22), the screen facing +z, Dad
+// on its front side. Drawer pedestal on the right, two legs on the left (kneehole open toward -x). A modesty panel
+// closes the back (the side toward the empty space).
+export const DESK = { x0: gx(0.0), x1: gx(1.4), z0: gz(-2.08), z1: gz(-1.38), top: 0.74, t: 0.03, pedestalX0: gx(0.98), leg: 0.05, modesty: { y0: 0.3 } };
 
 // the computer: horizontal desktop case, 14 in CRT on top, keyboard in front. Centred on Dad.
-export const PC = { x: 0.6,
-  case: { w: 0.42, h: 0.15, d: 0.40, zBack: -2.03 },
+export const PC = { x: gx(0.6),
+  case: { w: 0.42, h: 0.15, d: 0.40, zBack: gz(-2.03) },
   monitor: { w: 0.36, h: 0.33, d: 0.40, foot: 0.03 },
   screen: { w: 0.27, h: 0.20 },
-  keyboard: { w: 0.46, h: 0.03, d: 0.17, z: -1.49 },
-  printer: { x: 1.18, z: -1.78, w: 0.38, h: 0.12, d: 0.3 },   // dot-matrix, fanfold paper feeding up from behind
+  keyboard: { w: 0.46, h: 0.03, d: 0.17, z: gz(-1.49) },
+  printer: { x: gx(1.18), z: gz(-1.78), w: 0.38, h: 0.12, d: 0.3 },   // dot-matrix, fanfold paper feeding up from behind
 };
 const scrY = DESK.top + PC.case.h + PC.monitor.foot + PC.monitor.h / 2;
 const scrZ = PC.case.zBack + PC.monitor.d + 0.002;
@@ -42,18 +54,20 @@ export const WORD_P = screenPoint((WORD.u0 + WORD.u1) / 2, WORD.v - TEXT.pitch *
 
 // the swivel chair: five-spoke base. Spoke angles are WORLD angles in the floor plane, from +x toward +z; the base does
 // not turn with the seat. Spokes 0 and 1 (144 and 216 deg) are the two on Dad's left (back-left, front-left): her feet.
-export const CHAIR = { at: [0.6, -1.12], seatYaw: 180, spoke0: 144, spokeR: 0.33, spokeTop: 0.10, spokeW: 0.05, caster: 0.028,
+export const CHAIR = { at: gp([0.6, -1.12]), seatYaw: 180, spoke0: 144, spokeR: 0.33, spokeTop: 0.10, spokeW: 0.05, caster: 0.028,
   seatTop: 0.45, seat: { w: 0.42, d: 0.42, t: 0.07 }, back: { w: 0.38, y0: 0.62, y1: 0.86, t: 0.05, z: -0.235 } };
 export const spokeAngle = (k, spoke0 = CHAIR.spoke0) => spoke0 + 72 * k;
 export const spokePoint = (k, r = CHAIR.spokeR, at = CHAIR.at, spoke0 = CHAIR.spoke0) => { const a = spokeAngle(k, spoke0) * Math.PI / 180; return [at[0] + r * Math.cos(a), CHAIR.spokeTop, at[1] + r * Math.sin(a)]; };
 // where her bare feet stand: spoke 1 (front-left) and spoke 0 (back-left), 0.29 m out from the hub
 export const FEET = { r: 0.29, front: spokePoint(1, 0.29), back: spokePoint(0, 0.29) };
 
+// Jade's diagram draws nothing else: the steel shelf, the boxes, the water heater and the modern washer are gone
+// (2026-11-26; flagged). "oldfashioned washer (50's tech), no dryer": ASSUMED a 1950s round-tub wringer washer on legs
+// (white enamel tub, agitator, a power wringer with two rollers on a post at the tub's back; alternative: a 1950s
+// enamel top-loader box). "2 watermelons, 20+ lbs": two whole oblong melons on the floor, front-right, long axis along z.
 export const PROPS = {
-  shelf: { x: 1.58, z0: 0.3, z1: 1.5, d: 0.4, h: 1.8, shelves: [0.1, 0.55, 1.0, 1.45] },   // steel shelving on the right wall
-  boxes: [[0.55, 1.78, 0.5, 0.4, 0.45, 6], [0.53, 1.8, 0.42, 0.3, 0.38, -8, 0.4]],   // x, z, w, h, d, yaw, y
-  heater: { x: -1.55, z: -1.7, r: 0.26, h: 1.45 },       // water heater in the back-left corner, beyond the stair foot
-  washer: { x: -1.2, z: 1.72, w: 0.68, h: 0.92, d: 0.66 },
+  washer: { x: 0.52, z: -0.62, r: 0.3, tubY0: 0.36, tubY1: 0.92, leg: 0.03, wringer: { y: 1.17, len: 0.42, r: 0.035 } },
+  melons: [{ x: 0.66, z: 0.86, len: 0.43, d: 0.25, yaw: 8 }, { x: 0.74, z: 1.33, len: 0.41, d: 0.24, yaw: -14 }],
 };
 
 // ---------------------------------------------------------------- THE BEAM

@@ -4,7 +4,7 @@ import { mk, box, cyl, ball, quad, slab, tag, V, rad } from '../../engine/core.j
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, applyBeamMask } from '../_beam.js';
-import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, CHAIR, spokePoint, FEET, PROPS, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
+import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
 import { wall, hexa, polyline, swivelChair, r3, hideLabels, footwear } from './kit.js';
 import { FOOTWEAR } from './house.js';
 
@@ -17,28 +17,43 @@ function room(shot = {}) {
   const W = ROOM.hopper;
   g.add(wall({ axis: 'z', at: z0, a0: x0 - T, a1: x1 + T, y1: TALL, t: T, out: -1, holes: [{ a0: W.x - W.w / 2, a1: W.x + W.w / 2, y0: W.y0, y1: W.y1 }], look: BLOCK, label: 'back wall (block)' }));
   g.add(wall({ axis: 'z', at: z1, a0: x0 - T, a1: x1 + T, y1: TALL, t: T, out: 1, look: BLOCK, label: 'front wall (block)' }));
-  g.add(wall({ axis: 'x', at: x0, a0: z0, a1: z1, y1: TALL, t: T, out: -1, look: BLOCK, label: 'outer wall (beside the stair)' }));
+  g.add(wall({ axis: 'x', at: x0, a0: z0, a1: z1, y1: TALL, t: T, out: -1, look: BLOCK, label: 'left wall (block; the stair top)' }));
   g.add(wall({ axis: 'x', at: x1, a0: z0, a1: z1, y1: TALL, t: T, out: 1, look: BLOCK, label: 'right wall (block)' }));
   // hopper window: frame, dark glass, night beyond
   g.add(tag(box(W.w + 0.08, 0.04, 0.1, WOOD_D, [W.x, W.y0 - 0.02, z0 - 0.05]), 'hopper window (night)')); g.add(tag(box(W.w + 0.08, 0.04, 0.1, WOOD_D, [W.x, W.y1 + 0.02, z0 - 0.05]), 'hopper window (night)'));
   g.add(tag(box(W.w, W.y1 - W.y0, 0.01, { grey: 0.15, col: 0x05070c, noCast: true }, [W.x, (W.y0 + W.y1) / 2, z0 - 0.12]), 'hopper window (night)'));
-  // the kitchen floor above: subfloor over x K.x0..K.x1, joists along z hanging below it
-  g.add(tag(box(K.x1 - K.x0, 0.04, z1 - z0, WOOD_D, [(K.x0 + K.x1) / 2, h + 0.02, (z0 + z1) / 2]), 'subfloor (kitchen floor above)'));
-  const J = ROOM.joist; for (let x = K.x0 + 0.1; x < K.x1; x += J.spacing) g.add(tag(box(J.w, J.d, z1 - z0, WOOD, [x, h - J.d / 2, (z0 + z1) / 2]), 'floor joists'));
-  g.add(tag(box(0.14, 0.24, z1 - z0, WOOD_D, [K.x0 + 0.07, h - 0.12, (z0 + z1) / 2]), 'beam at the stair opening'));
-  // the stair strip: the kitchen wall above the opening (with the stair door), landing, open-riser flight, handrail
-  const D = HOUSE.stairDoor, S = HOUSE.stair, L = HOUSE.landing;
-  g.add(wall({ axis: 'x', at: K.x0, a0: z0, a1: z1, y0: h, y1: TALL, t: 0.12, out: 1, holes: [{ a0: D.z0, a1: D.z1, y0: FTF, y1: FTF + D.h }], look: { grey: 0.74, col: 0x8f8778 }, label: 'kitchen wall above (stair door)' }));
+  // the floor above (kitchen over x -1.8..1.8, the landing / back hall over the strip beyond it): subfloor and 2x8 joists
+  // along z over the whole basement, except the stairwell opening over the flight (x S.x0..S.openX1, z S.z0..z1), where
+  // the joists stop at a doubled header (z S.z0) and a trimmer (x S.openX1). Joists keep the kitchen's 16 in grid.
+  const D = HOUSE.stairDoor, S = HOUSE.stair, L = HOUSE.landing, J = ROOM.joist, OX = S.openX1;
+  g.add(tag(box(OX - x0, 0.04, S.z0 - z0, WOOD_D, [(x0 + OX) / 2, h + 0.02, (z0 + S.z0) / 2]), 'subfloor (floor above)'));
+  g.add(tag(box(x1 - OX, 0.04, z1 - z0, WOOD_D, [(OX + x1) / 2, h + 0.02, (z0 + z1) / 2]), 'subfloor (floor above)'));
+  for (let x = K.x0 + 0.1 - J.spacing * Math.floor((K.x0 + 0.1 - x0) / J.spacing); x < x1; x += J.spacing) { const ze = x < OX ? S.z0 : z1;
+    g.add(tag(box(J.w, J.d, ze - z0, WOOD, [x, h - J.d / 2, (z0 + ze) / 2]), 'floor joists')); }
+  g.add(tag(box(OX - x0, J.d, 0.09, WOOD_D, [(x0 + OX) / 2, h - J.d / 2, S.z0 - 0.045]), 'stairwell header'));
+  g.add(tag(box(0.09, J.d, z1 - S.z0, WOOD_D, [OX + 0.045, h - J.d / 2, (S.z0 + z1) / 2]), 'stairwell header'));
+  // the stairwell above the opening: the walls that close it off from the kitchen (its front-left corner) and the landing
+  // level (kitchen-floor height); the kitchen's left wall with the stair door, above the landing
+  const SW = { grey: 0.74, col: 0x8f8778 };
+  g.add(wall({ axis: 'z', at: S.z0, a0: K.x0, a1: OX, y0: h, y1: TALL, t: 0.1, out: -1, look: SW, label: 'stairwell wall (kitchen corner above)' }));
+  g.add(wall({ axis: 'x', at: OX, a0: S.z0, a1: z1, y0: h, y1: TALL, t: 0.1, out: 1, look: SW, label: 'stairwell wall (kitchen corner above)' }));
+  g.add(wall({ axis: 'x', at: K.x0, a0: z0, a1: S.z0, y0: h, y1: TALL, t: 0.12, out: 1, holes: [{ a0: D.z0, a1: D.z1, y0: FTF, y1: FTF + D.h }], look: SW, label: 'kitchen wall above (stair door)' }));
+  g.add(tag(box(D.z1 - D.z0, D.h, 0.04, { grey: 0.86, col: 0xd8d2c0 }, [K.x0 - 0.02, FTF + D.h / 2, (D.z0 + D.z1) / 2], [0, 90, 0]), 'kitchen wall above (stair door)'));
   g.add(tag(box(L.x1 - L.x0, 0.05, L.z1 - L.z0, WOOD, [(L.x0 + L.x1) / 2, FTF - 0.025, (L.z0 + L.z1) / 2]), 'stair landing (kitchen level)'));
   g.add(tag(box(x1 - x0 + 2 * T, 0.05, z1 - z0 + 2 * T, { grey: 0.3, col: 0x2a2620, noCast: true }, [(x0 + x1) / 2, TALL, (z0 + z1) / 2]), 'stairwell ceiling'));
-  const sw = S.x1 - S.x0, sx = (S.x0 + S.x1) / 2, zEnd = S.zTop - (S.risers - 1) * S.tread;
-  for (let k = 1; k < S.risers; k++) g.add(tag(box(sw - 0.08, 0.04, S.tread + 0.02, WOOD, [sx, FTF - k * S.rise - 0.02, S.zTop - (k - 0.5) * S.tread]), 'basement stair (open risers)'));
-  for (const xs of [S.x0 + 0.02, S.x1 - 0.02]) g.add(tag(slab(V(xs, FTF - 0.13, S.zTop + 0.05), V(xs, -0.02, zEnd - 0.1), 0.24, 0.04, V(0, 0, 1).applyAxisAngle(V(1, 0, 0), 0), WOOD_D), 'stair stringers'));
-  g.add(tag(slab(V(S.x1 - 0.02, FTF + 0.9, S.zTop), V(S.x1 - 0.02, 0.9 + S.rise, zEnd), 0.045, 0.045, V(1, 0, 0), WOOD), 'handrail'));
-  for (const k of [0, 5, S.risers - 1]) g.add(tag(box(0.04, 0.9 + S.rise, 0.04, WOOD, [S.x1 - 0.02, FTF - k * S.rise + (0.9 - S.rise) / 2 + S.rise / 2, S.zTop - k * S.tread]), 'handrail'));
-  // lally column
-  g.add(tag(cyl(ROOM.column.r, ROOM.column.r, h - 0.24, { grey: 0.4, col: 0x5a2f28 }, [ROOM.column.x, (h - 0.24) / 2, ROOM.column.z], null, 14), 'steel column'));
-  g.add(tag(box(0.2, 0.24, z1 - z0, WOOD_D, [ROOM.column.x, h - 0.12, (z0 + z1) / 2]), 'main beam'));
+  // the flight: open risers, two stringers, a wall rail on the front wall; a guard rail along the landing's front edge
+  // (the landing stands over treads 2-4), the top tread entered sideways from the landing
+  const zc = (S.z0 + S.z1) / 2, sw = S.z1 - S.z0, nose = (k) => [S.x0 + (k - 1) * S.tread, FTF - (k - 1) * S.rise];   // riser k's top nosing
+  for (let k = 1; k < S.risers; k++) g.add(tag(box(S.tread + 0.02, 0.04, sw - 0.08, WOOD, [S.x0 + (k - 0.5) * S.tread, FTF - k * S.rise - 0.02, zc]), 'basement stair (open risers)'));
+  for (const zs of [S.z0 + 0.02, S.z1 - 0.02]) g.add(tag(slab(V(S.x0 - 0.05, FTF - 0.13, zs), V(S.footX + 0.1, -0.02, zs), 0.24, 0.04, V(1, 0, 0), WOOD_D), 'stair stringers'));
+  { const a = nose(1), b = nose(S.risers); g.add(tag(slab(V(a[0], a[1] + 0.86, S.z1 - 0.06), V(b[0], b[1] + 0.86, S.z1 - 0.06), 0.045, 0.045, V(0, 0, 1), WOOD), 'handrail (on the front wall)'));
+    for (const k of [2, 6, 10]) { const n = nose(k); g.add(tag(box(0.03, 0.05, 0.06, DARK, [n[0], n[1] + 0.82, S.z1 - 0.03]), 'handrail (on the front wall)')); } }
+  { const xa = S.x0 + S.tread, yr = FTF + 0.9; g.add(tag(box(L.x1 - xa, 0.045, 0.045, WOOD, [(xa + L.x1) / 2, yr, S.z0 - 0.03]), 'landing guard rail'));
+    for (const x of [xa + 0.02, (xa + L.x1) / 2, L.x1 - 0.02]) g.add(tag(box(0.04, 0.9, 0.04, WOOD, [x, FTF + 0.45, S.z0 - 0.03]), 'landing guard rail')); }
+  // lally column ("post") and the main beam over it, along x (the joists rest on it)
+  g.add(tag(cyl(ROOM.column.r, ROOM.column.r, h - 0.24, { grey: 0.4, col: 0x5a2f28 }, [ROOM.column.x, (h - 0.24) / 2, ROOM.column.z], null, 14), 'steel column (post)'));
+  g.add(tag(box(0.2, 0.012, 0.2, { grey: 0.4, col: 0x5a2f28 }, [ROOM.column.x, 0.006, ROOM.column.z]), 'steel column (post)'));
+  g.add(tag(box(x1 - x0, 0.24, 0.2, WOOD_D, [(x0 + x1) / 2, h - 0.12, ROOM.column.z]), 'main beam'));
   // the ceiling light (ASSUMED type): junction box under the joist, white porcelain pull-chain lampholder, bare bulb, chain
   const B = ROOM.bulb, jb = h - J.d, lampOn = shot.light?.ceiling !== false;
   g.add(tag(cyl(0.05, 0.05, B.box, { grey: 0.55, col: 0x7a7a78 }, [B.x, jb - B.box / 2, B.z], null, 8), 'ceiling light (porcelain lampholder)'));
@@ -86,13 +101,24 @@ function furniture(shot) {
   g.add(tag(box(PR.w * 0.62, 0.3, 0.004, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, D.top + PR.h + 0.1, PR.z - 0.07], [-22, 0, 0]), 'fanfold paper'));
   g.add(tag(box(0.24, 0.05, 0.28, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, 0.025, D.z1 + 0.25]), 'fanfold paper'));
   g.add(tag(box(0.1, 0.1, 0.14, DARK, [D.x0 + 0.18, D.top + 0.05, D.z0 + 0.22], [0, -20, 0]), 'box of floppy disks'));
-  // storage
-  const S = PROPS.shelf; for (const y of S.shelves) g.add(tag(box(S.d, 0.03, S.z1 - S.z0, { grey: 0.45, col: 0x55585c }, [S.x, y, (S.z0 + S.z1) / 2]), 'steel shelving'));
-  for (const z of [S.z0, S.z1]) for (const dx of [-S.d / 2, S.d / 2]) g.add(tag(box(0.03, S.h, 0.03, { grey: 0.45, col: 0x55585c }, [S.x + dx, S.h / 2, z]), 'steel shelving'));
-  for (const [k, y] of S.shelves.entries()) for (let j = 0; j < 3; j++) if ((k + j) % 3 !== 2) g.add(tag(box(0.3, 0.26 + ((k + j) % 2) * 0.08, 0.3, CARD, [S.x, y + 0.015 + (0.26 + ((k + j) % 2) * 0.08) / 2, S.z0 + 0.22 + j * 0.38]), 'boxes'));
-  for (const [bx, bz, w, hh, d, yaw, y = 0] of PROPS.boxes) { const b = box(w, hh, d, CARD, [bx, y + hh / 2, bz]); b.rotation.y = rad(yaw); g.add(tag(b, 'boxes')); }
-  const H = PROPS.heater; g.add(tag(cyl(H.r, H.r, H.h, { grey: 0.85, col: 0xb8b8b0 }, [H.x, H.h / 2 + 0.05, H.z]), 'water heater')); g.add(tag(cyl(0.04, 0.04, ROOM.h - H.h, { grey: 0.5, col: 0x70706c }, [H.x, H.h + (ROOM.h - H.h) / 2, H.z], null, 10), 'water heater'));
-  const WS = PROPS.washer; g.add(tag(box(WS.w, WS.h, WS.d, { grey: 0.9, col: 0xd0d0cc }, [WS.x, WS.h / 2, WS.z]), 'washing machine')); g.add(tag(box(WS.w, 0.14, 0.08, { grey: 0.9, col: 0xd0d0cc }, [WS.x, WS.h + 0.07, WS.z + WS.d / 2 - 0.04]), 'washing machine'));
+  // the 1950s wringer washer (ASSUMED type): round enamel tub on four legs with casters, motor box under it, agitator,
+  // a power wringer (two rollers in a frame) on a post at the back of the tub
+  { const W = PROPS.washer, EN = { grey: 0.9, col: 0xdedbd2 }, ST = { grey: 0.45, col: 0x6a6c70 }, RB = { grey: 0.3, col: 0x3c3a36 };
+    g.add(tag(cyl(W.r, W.r * 0.93, W.tubY1 - W.tubY0, EN, [W.x, (W.tubY0 + W.tubY1) / 2, W.z], null, 28), 'wringer washer (1950s)'));
+    g.add(tag(cyl(W.r + 0.015, W.r + 0.015, 0.03, EN, [W.x, W.tubY1 - 0.015, W.z], null, 28), 'wringer washer (1950s)'));
+    g.add(tag(cyl(W.r - 0.03, W.r - 0.03, 0.006, { grey: 0.55, col: 0x8a8a86 }, [W.x, W.tubY1 - 0.1, W.z], null, 24), 'wringer washer (1950s)'));
+    g.add(tag(cyl(0.05, 0.07, 0.3, EN, [W.x, W.tubY1 - 0.2, W.z], null, 12), 'wringer washer (1950s)'));
+    for (let k = 0; k < 4; k++) { const a = rad(45 + 90 * k), lx = W.x + Math.cos(a) * W.r * 0.8, lz = W.z + Math.sin(a) * W.r * 0.8;
+      g.add(tag(slab(V(lx, W.tubY0 + 0.02, lz), V(W.x + Math.cos(a) * W.r * 0.95, 0.04, W.z + Math.sin(a) * W.r * 0.95), W.leg, W.leg, V(0, 1, 0).cross(V(Math.cos(a), 0, Math.sin(a))), ST), 'wringer washer (1950s)'));
+      g.add(tag(ball(0.025, ST, [W.x + Math.cos(a) * W.r * 0.95, 0.025, W.z + Math.sin(a) * W.r * 0.95]), 'wringer washer (1950s)')); }
+    g.add(tag(box(0.26, 0.18, 0.22, ST, [W.x, W.tubY0 - 0.1, W.z]), 'wringer washer (1950s)'));
+    const R = W.wringer, pz = W.z - W.r - 0.02;
+    g.add(tag(cyl(0.022, 0.022, R.y - W.tubY1 + 0.08, ST, [W.x, (R.y + W.tubY1) / 2 - 0.02, pz], null, 10), 'wringer'));
+    g.add(tag(box(R.len + 0.1, 0.2, 0.08, EN, [W.x, R.y, pz]), 'wringer'));
+    for (const dy of [-0.04, 0.04]) g.add(tag(cyl(R.r, R.r, R.len, RB, [W.x, R.y + dy, pz + 0.045], [0, 0, 90], 14), 'wringer rollers'));
+    g.add(tag(slab(V(W.x + R.len / 2 + 0.05, R.y + 0.06, pz), V(W.x + R.len / 2 + 0.2, R.y + 0.16, pz), 0.02, 0.02, V(0, 0, 1), ST), 'wringer')); }
+  // two watermelons, 20+ lb each: oblong, dark green (paint the stripes), lying on the slab
+  for (const M of PROPS.melons) { const m = ball(0.5, { grey: 0.35, col: 0x2f5a2a }, [M.x, M.d * 0.46, M.z], [M.d, M.d * 0.92, M.len]); m.rotation.y = rad(M.yaw); g.add(tag(m, 'watermelons (2)')); }
   return g;
 }
 
@@ -154,5 +180,5 @@ export function build(shot, { makeCam }) {
     applyBeamMask(root, [fr([{ n: [-1, 0, 0], d: -DESK.x0 }, { n: [1, 0, 0], d: DESK.x1 }, { n: [0, -a, -b], d: -a * DESK.top - b * DESK.z1 }]), fr([{ n: [1, 0, 0], d: DESK.x0 }]), fr([{ n: [-1, 0, 0], d: -DESK.x1 }])].filter((s) => s.faces.length >= 4), { label: 'screen glow (mask)', cam, surfaceOnly: !!shot.beamSurf }); }
   else if (shot.beamMask) applyBeamMask(root, [], { cam });
   return { set: 'basement90', scene, root, cam, rig, near: shot.near ?? 0.2, far: shot.far ?? 7, figs, book: null, panes, lights, header: shot.header || '', shadowLine: false, shadowPolys: null,
-    subject: V(shot.subject || [0.45, 1.1, -1.15]), litBg: 0x010103, flatBg: shot.beamMask ? 0x000000 : undefined, extra: extraOut };
+    subject: V(shot.subject || [0.45 + GROUP.dx, 1.1, -1.15 + GROUP.dz]), litBg: 0x010103, flatBg: shot.beamMask ? 0x000000 : undefined, extra: extraOut };
 }

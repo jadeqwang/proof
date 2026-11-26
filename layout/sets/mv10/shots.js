@@ -310,6 +310,12 @@ export const SHOTS = [
     header: 'Chorus 2b 3:39.6: her hand taps on his forearm; he looks down at it (from behind his shoulder)',
     intent: 'Inside, close, from above and behind his left shoulder: the back of his head tipped down, his forearm (its hair clearly visible), her hand tapping on it. The percussion is her. Third of the film’s hands-on-a-forearm, the only one that is hers.',
     figs: { ...crowd({ drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'T1'] }), jade27: jadeC2(), firstLove27: heC2() } },
+
+  // ================================================================ SET REFERENCE (not a film shot)
+  // the glass console from about the angle of Jade's photo 2 (inputs/refs_semicircletable/); no figures. The photo-1 and
+  // photo-3 test angles are retired; the side-by-side is media/layout/mv10/T0_glasstable_compare.png.
+  { id: 'T0_glasstable', lens: 28, pos: [4.34, 1.15, 3.1], target: [4.74, 0.35, 2.25], near: 0.05, far: 20, space: 'room', section: 'Bridge', time: 'reference', position: 'reference', figs: {},
+    header: 'reference: the glass console from its SSW end (photo 2)', intent: 'Set reference for the glass-top console (layout.js GLASS_TABLE), from about the angle of Jade\u2019s photo 2.' },
 ];
 
 // resolve copies
@@ -325,7 +331,7 @@ for (const s of SHOTS) if (s.figs?.jade27) s.figs.jade27 = { ...s.figs.jade27, c
 // light with a shaft or a footprint: beam_<id>__sun (shafts through the openings, while the sun is up) and
 // beam_<id>__poi (verse 3 on). Ceiling fixtures are omni and have no mask. The old __lamps / __dusk twins are gone.
 import { maskTwins } from '../_beam.js';
-{ const base = SHOTS.filter((s) => !/_legs$/.test(s.id)), twins = maskTwins(base, { surf: true });
+{ const base = SHOTS.filter((s) => !/_legs$/.test(s.id) && !/^T0_/.test(s.id)), twins = maskTwins(base, { surf: true });
   const on = (s, k) => { const sec = SECTION_KEY[s.section] || 'bridge', L = SECTION_LIGHT[sec]; return k === 'sun' ? L.sun && SUN[sec].up : L[k]; };
   const per = base.flatMap((s) => ['sun', 'poi'].filter((k) => on(s, k)).map((k) => ({ ...s, id: `beam_${s.id}__${k}`, beamMask: true, beamOnly: k, header: `beam mask for ${s.id}: ${k} only` })));
   SHOTS.push(...twins, ...per); }

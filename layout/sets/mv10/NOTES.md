@@ -40,8 +40,9 @@ Supersedes the sections below where they differ. **Jade** = her answer; **ASSUME
   - Facing the sink (on the ESE run, you face ESE), right is SSW. The stainless step-lid trash can (~30 L) stands on the
     floor just past the end of that run, at (3.10, 9.55).
 - Upper cabinets: 0.33 m deep, from 1.40 to 2.16 m. They run along the partition and the core wall, with one over the
-  fridge, and none over the ESE window, which fills that run. **ASSUMED:** a stainless range hood over the stove, and the
-  range drawn as freestanding with an oven door.
+  fridge, and none over the ESE window, which fills that run. Over the stove: an over-the-range microwave under a short
+  walnut cabinet (**Jade**, 2026-11-26; see "Over the stove" below; the earlier ASSUMED stainless range hood is gone).
+  **ASSUMED:** the range drawn as freestanding with an oven door.
 - Every cabinet door is dark walnut (**Jade**). The base and upper carcasses are walnut too (**ASSUMED**); the worktop stays
   grey.
 - GIANT punchbowl (**Jade**): 0.50 m glass bowl on a foot, 80 % full, lemon slices floating, a steel ladle, and two stacks of
@@ -162,10 +163,9 @@ Each change is marked **Jade** (her answer), **ASSUMED** (our choice to make it 
     below 0.5 m). This happens because the shelf moved 0.32 m toward that window.
   - Her face and head at the shelf mark stay out of the sun. The shelf's upper rows and the pan's spines are not sunlit.
   - Verse 3 (18:25): no sun through any opening, as before.
-- **Glass-top table (Jade):** a SEMICIRCLE, flat side against the NNE wall, 0.91 m wide, 0.30 m deep at the centre.
-  - Built as a half-ellipse (semi-axes 0.455 x 0.30) at Z 2.35, where she drew the D. **ASSUMED:** a half-ellipse rather
-    than a shallow circular segment.
-  - **ASSUMED:** 0.76 m high, 12 mm glass, a thin chrome apron, three slim chrome legs.
+- **Glass-top table (Jade):** a SEMICIRCLE, flat side against the NNE wall, 0.91 m wide, ~0.30 m deep at the centre.
+  - (Superseded 2026-11-26: rebuilt from her photos as a bronze-rod console; see "Glass-top table from Jade's photos,
+    2026-11-26" below. The half-ellipse, chrome apron and three chrome legs are gone.)
 - **Sliding glass door (Jade; replaces the French doors):** ESE wall. **ASSUMED:** a 6 ft (1.83 m) two-panel slider at
   X 0.70..2.53; the SSW panel slides open behind the fixed NNE panel, leaving X 0.70..1.62 open. Her path and the greeting
   mark use that open half.
@@ -586,3 +586,55 @@ and measured hits. Times written elsewhere in this file before this section are 
   alternate to V3_rcv_obl; V3h is the plan / overlay reference for the crossing. SI1 3:19.1-3:23.4; C2a 3:34.2-3:39.6,
   C2b 3:39.6-3:43.0. Section names (so the sun and dusk per section) unchanged.
 - 2026-11-25 (late): BRpan_a moved to start at 161.96 ("truth by reference"), m1 at 163.19, so the sweatshirt (mortongrove07, 2:39.6-2:42.0) is not double-booked; per the plan and Jade's earlier direction (sweatshirt right before the cut to the pan).
+
+## Glass-top table from Jade's photos, 2026-11-26
+
+Jade photographed the real table from three angles (`inputs/refs_semicircletable/`: "Pasted image.png" low near one
+end, "(2)" from one end looking down along the curve, "(3)" from above). The placeholder (half-ellipse, chrome apron,
+three chrome legs) is replaced by `glassTable.js`, driven by `layout.js` `GLASS_TABLE`. Placement unchanged: flat side
+on the core wall face X 4.89, centred at Z 2.35 (X 4.56..4.89, Z 1.895..2.805); nothing collides (nearest figures,
+N2 at X 4.05 and A3 at X 4.30 in the crossing phases, stay clear of the front edge at X 4.56).
+
+- **Top:** clear glass, pale green edge, 10 mm (ASSUMED). A circular segment, not a half-ellipse: in photo 3 the arc meets
+  the flat edge at a slant. Chord 0.91 m (Jade's 3 ft, the anchor), sagitta 0.33 m (ASSUMED from the photo proportions;
+  Jade said ~1 ft; the photos rule out a full 0.455 m semicircle only loosely), radius 0.479 m. 0.76 m high (ASSUMED,
+  console height; the photos have nothing to scale by).
+- **Frame material:** dark oil-rubbed bronze / brown wrought iron ROUND ROD with a faint metallic speckle (the speckle is
+  not modelled; the look is `{ grey: 0.16, col: 0x3b2c20 }`). Rim rod 16 mm, leg rods 13 mm (ASSUMED from the photos).
+- **Topology (my reading; the photos are cluttered, so this is a reconstruction):**
+  - Rim: a closed D, the arc rod under the glass edge plus a straight back rail along the wall (photo 1 shows the
+    straight rod meeting the arc at a corner).
+  - Two front legs, one toward each end of the arc: each a "lens" of two bowed rods from the rim (at 62 and 34 deg from
+    the apex) that bow in toward the middle and meet at one foot under the rim (photo 2: the near pair; the far pair is
+    seen edge-on as one rod).
+  - A knotted collar (two rolled rings around the bundle) at 0.27 m (about a third of the height; photos 1 and 2),
+    near the middle of the plan (0.15 m out from the wall).
+  - Four lower rods from the collar splay out in concave curves to four feet: the two front-leg feet and two feet by
+    the wall (u +-0.25). No separate back legs are visible, so none are modelled.
+  - Four upper rods from the collar rise steeply and sweep out toward the two ends, two per end (to the rim arc at
+    47 deg and to the back rail at u +-0.33), so from above they read as the X of arcs seen through the glass in photo 3.
+  - ASSUMED: exact leg count (4 feet), attachment angles and how the rods run through the collar.
+- **Compared:** test cameras at about each photo's angle, form renders side by side with the photos:
+  `media/layout/mv10/T0_glasstable_compare.png` (rows: photo 2, photo 1, photo 3). Photo 2's view matches best (lens
+  pair, collar, splayed feet); photos 1 and 3 are approximate angles (the real table was in a cluttered storage unit, and
+  ours is against a wall). The photo-1 / photo-3 test cameras are retired; `T0_glasstable` (photo 2's angle, no figures,
+  no beam twins) stays as the set reference, like basement90 B0_ / kitchen90 K0_.
+- **Shots changed (need repainting next round):** V3_rcv, V3_rcv_obl (and its k0 / k3 / legs keys), V3h (plan; the
+  table is tiny there). No close shot frames the table. V3c was re-rendered too and is pixel-identical (the table is
+  out of view). Their beam masks were re-rendered as well.
+
+## Over the stove: microwave in walnut cabinetry, 2026-11-26
+
+Jade: "the stovetop fan was inside dark wood cabinetry, and there was a mounted microwave above the stove." The ASSUMED
+stainless range hood is replaced (`layout.js` `OTR_MICROWAVE`, built in `build.js` kitchen()):
+- An over-the-range microwave filling the gap between the core-wall uppers (Z 7.00..7.76, 0.76 m wide), 0.42 m high,
+  0.40 m deep (proud of the 0.33 m uppers, as real ones are), bottom at 1.40 m (the uppers' bottom line, 0.48 m over the
+  cooktop), stainless with a dark door window, the control panel on its right (ESE, +Z), a vent grille strip along its
+  top, and the fan grille and two cooktop lights on its underside. Sizes ASSUMED.
+- A short dark-walnut cabinet above it (1.82..2.16, 0.33 deep) with two walnut doors, flush with the uppers either side,
+  whose side panels are its walnut sides: the fan reads as housed in the walnut cabinet run.
+- **Alternative reading (flagged, not built):** a separate walnut-clad hood enclosure over the stove with the
+  microwave mounted elsewhere.
+- No mv10 film shot frames the stove; it shows only in the overviews (V3_rcv, V3_rcv_obl and keys, V3h), re-rendered
+  with the table above.
+

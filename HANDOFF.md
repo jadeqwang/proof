@@ -692,3 +692,30 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 
 - Jade is going through `media/keyframes/r3/index.html`. START HERE was rewritten for the next session. Nothing else
   has changed since commit 62ae8c5.
+- **Jade added `inputs/diagram_basement.png`** (basement90 floor plan). It shows the desk FREESTANDING mid-room with
+  Dad on its front side facing the back, "empty space" behind and to the left, a post at the desk's back-right corner,
+  an old-fashioned washer ("50's tech", no dryer) right of the desk, two 20+ lb watermelons front-right, and the stairs
+  along the FRONT wall (left half). Today's set has the desk against the back wall, the stair on the left wall, plus a
+  shelf, boxes and a water heater. An agent is rebuilding basement90 to match (keeping the r3 page's guides in a
+  snapshot under `media/keyframes/r3/_layout_snapshot/`). B1-B5 will need a repaint in r4.
+- **Jade added `inputs/refs_semicircletable/`** (3 photos of the real mv10 glass-top console). The real table is a dark
+  bronze round-rod frame with curved legs gathered at a knotted collar, not the assumed chrome three-leg one. An agent
+  is modelling it into `layout/sets/mv10/` (snapshotting the r3 page's mv10 guides first). The mv10 shots showing it
+  will need a repaint in r4.
+- **Jade, mv10 kitchen:** "the stovetop fan was inside dark wood cabinetry, and there was a mounted microwave above
+  the stove." This replaces the assumed stainless hood. Read as an over-the-range microwave set into the walnut uppers,
+  with a walnut cabinet above it (alternative reading flagged). Given to the mv10 table agent for the same pass.
+- **Done: mv10 glass table + over-range microwave** (agent; not committed). Table in `layout/sets/mv10/glassTable.js`
+  (`GLASS_TABLE`): circular-segment glass top 0.91 x 0.33, 0.76 high, bronze rod D rim, bowed leg pairs through a
+  collar at 0.27 m, four splayed feet. Ref camera `T0_glasstable`; compare `media/layout/mv10/T0_glasstable_compare.png`.
+  Lead's look: the side view (photo 2) matches well. Weaker: from above, the real table's loop pattern doesn't come
+  through (the render's rods run nearly straight), and the collar is two beads, not a knot. `OTR_MICROWAVE` + a short
+  walnut cabinet above, between the uppers. Repaint in r4: V3_rcv, V3_rcv_obl (+k0, k3, legs), V3h. The r3 page now
+  reads mv10, basement90 and kitchen90 guides from `media/keyframes/r3/_layout_snapshot/`.
+- **Done: basement90 re-laid out from Jade's diagram** (agent; not committed; NOTES.md dated section). The desk group
+  is moved mid-room (GROUP dx -1.624, dz +1.05). Also: a 12-riser open stair along the front wall (foot x -0.37), the
+  post at the desk's back-right corner, a wringer washer to the right, two melons front-right. Shelf, boxes, heater and
+  old washer removed. `HOUSE.stairDoor` z 1.05..1.85 -> 0.5..1.25. Flags: the desk sits 0.55 m further back than drawn
+  (at the drawn depth, the B4/B5 cameras end up under the stair); B4 lens 24 -> 22 mm. kitchen90 changed visibly only
+  in K0_plan, K0_wide_night and K8_glass (door edge in the reflection). Repaint B1-B5 in r4. Lead checked
+  B0_plan_line against the diagram: matches.

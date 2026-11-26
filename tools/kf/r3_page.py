@@ -28,6 +28,17 @@ import r2_page  # noqa: E402  (SECTIONS, fallback times for shots with no time i
 ROOT = r2_page.ROOT
 R3 = os.path.join(ROOT, "media", "keyframes", "r3")
 TH = os.path.join(R3, "_thumbs")
+# sets whose media/layout/<set>/ guides were re-rendered after this page went to Jade: the page shows the frozen copy in
+# media/keyframes/r3/_layout_snapshot/<set>/ instead (add a set here after copying its folder there).
+LAYOUT_SNAPSHOT = {"mv10", "basement90", "kitchen90"}
+
+
+def layout_src(path):
+    """media/layout/<set>/... -> the r3 snapshot copy when <set> is in LAYOUT_SNAPSHOT."""
+    m = re.match(r"media/layout/([^/]+)/(.*)", path or "")
+    if m and m.group(1) in LAYOUT_SNAPSHOT:
+        return f"media/keyframes/r3/_layout_snapshot/{m.group(1)}/{m.group(2)}"
+    return path
 SETS = ["attic88_day", "office91", "playground23", "shanghai86", "wall88", "market93", "basement90", "kitchen90",
         "closet02", "mortongrove07", "mv10"]
 NEW_IDS = {"FE_out", "FE_thumbs", "PC3a", "PC3b", "V1d_8_end", "K1_question_end", "MG1_end", "WL_in_empty", "V3b_prep"}
@@ -243,10 +254,10 @@ def main():
             c["kf"] = big
             seen = set()
             for kind in ("contour", "form", "light"):
-                g = f"media/layout/{s}/{sid}_{kind}.png"
+                g = layout_src(f"media/layout/{s}/{sid}_{kind}.png")
                 if os.path.exists(os.path.join(ROOT, g)):
                     c["guides"].append(fig(g, 480, kind, missing)); seen.add(g)
-            g = pk.get("guide")
+            g = layout_src(pk.get("guide"))
             if g and g not in seen:
                 c["guides"].append(fig(g, 480, "guide: " + os.path.basename(g), missing))
             c["lyric"] = r2_page.lyric_for(*span_of(label, t), lines) if t < 9000 else ""

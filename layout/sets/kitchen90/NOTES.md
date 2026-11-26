@@ -75,3 +75,9 @@ understand or just pattern match?'"
 - Both K1 frames share 2:22.2-2:23.7. Re-rendered: all default modes, form/contour/light, beam masks, sidecars.
 - K2_taps, K3_understood, K4_writes: Jade replaced them with the artichoke growth footage (1:22-2:08 of
   `media/footage/artichoke/out/artichoke_growth_preview.mp4`); the cameras stay for reference, not painted in r3.
+
+## Stair door moved, 2026-11-26 (basement re-laid out from Jade's diagram; see ../basement90/NOTES.md)
+
+`HOUSE.stairDoor` z 1.05..1.85 -> 0.5..1.25 (0.75 m): the basement stair now runs along the front wall, so the door
+opens onto a landing behind the flight. Re-rendered; visibly changed: K0_plan, K0_wide_night, K8_glass (reflected door
+edge behind Mama). Not modelled: the stairwell opening under this room's front-left corner (x -1.8..-0.6, z 1.3..2.1).
