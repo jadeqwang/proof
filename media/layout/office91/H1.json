@@ -89,15 +89,15 @@
   "jade7": {
    "px": [
     960,
-    7099.4
+    6002.7
    ],
    "eyes": [
     960,
-    2765.4
+    2975.6
    ],
    "mouth": [
     960,
-    3031.4
+    3104.5
    ],
    "in_frame": false,
    "visible": false,
@@ -152,7 +152,10 @@
    ]
   }
  ],
- "warnings": [],
+ "warnings": [
+  "wrist: jade7 L hand turned 4.6 deg toward the forearm to keep the wrist in range (was flex 40, radial -30.1)",
+  "wrist: jade7 R hand turned 4.6 deg toward the forearm to keep the wrist in range (was flex 40, radial -30.1)"
+ ],
  "camera_move": {
   "end": "H1b",
   "note": "the shot moves from camera.position/target to these over its length; the guide shows the start"
@@ -851,6 +854,93 @@
   19,
   25.63
  ],
+ "gaze": {
+  "jade7": {
+   "face": "drawn",
+   "look_target": {
+    "name": "handout",
+    "world": [
+     -0.3,
+     0.72,
+     -0.06
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": -8.5,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -8.3,
+    "wanted_yaw": 0,
+    "wanted_pitch": -8.3,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    960,
+    2975.6
+   ],
+   "target_px": [
+    960,
+    540
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "jade7": {
+   "top": "#b8c4d8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "jade7": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 34.8,
+    "radial_deg": -25.7,
+    "twist_deg": -62.2,
+    "elbow_flex_deg": 101.2,
+    "before": {
+     "flex_deg": 40,
+     "radial_deg": -30.1,
+     "twist_deg": -64.1
+    },
+    "hand_turned_deg": 4.6,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 34.8,
+    "radial_deg": -25.7,
+    "twist_deg": -62.2,
+    "elbow_flex_deg": 101.2,
+    "before": {
+     "flex_deg": 40,
+     "radial_deg": -30.1,
+     "twist_deg": -64.1
+    },
+    "hand_turned_deg": 4.6,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {},
+ "colour_separation": [],
  "figure_report": {
   "jade7": {
    "legs": {
@@ -865,7 +955,25 @@
     "L": 0.64,
     "R": 0.64
    },
-   "headTurn": 0
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade07",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 99,
+     "upperarm_stretch": 1.11,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.95
+    },
+    "R": {
+     "elbow_bend_deg": 99,
+     "upperarm_stretch": 1.11,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.95
+    }
+   }
   }
  }
 }

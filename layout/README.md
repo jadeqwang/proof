@@ -13,6 +13,23 @@ playwright-core, PNG data URLs out of the page). No generation, no cost.
 Output: `media/layout/<set>/<SHOT>_{line,flat,depth,label,lit}.png` (1920x1080) + `media/layout/<set>/<SHOT>.json`
 (sidecar), contact sheets `media/layout/_sheets/<set>.jpg`.
 
+## Defaults (2026-11-26): mesh bodies + gaze ON
+
+Every render now uses the rigged human meshes (`engine/humanMesh.js`, section "Rigged human meshes" below) and the
+gaze / natural-wrist / hold pass (section "Gaze, natural wrists, held objects"); sidecars always carry `gaze`, `holds`,
+`wrists`. The old paths stay reachable:
+
+```sh
+node layout/render.mjs --set office91                          # mesh bodies + gaze (default)
+node layout/render.mjs --set office91 --body mannequin         # or PROOF_BODY=mannequin: the old mannequins
+node layout/render.mjs --set office91 --nogaze                 # or --gaze 0 / PROOF_GAZE=0: fixed dot eyes, no gaze/holds keys
+PROOF_BODY=mannequin PROOF_GAZE=0 node layout/render.mjs ...   # exactly the pre-2026-11-26 renders
+```
+
+The page itself (`index.html?set=...`) follows the same defaults: `&body=mannequin`, `&gaze=0` turn them off.
+`--gaze` / `--body mesh` / `PROOF_GAZE=1` / `PROOF_BODY=mesh` are still accepted (now no-ops). attic88 (the original night
+attic) renders on the mesh too, but it is not re-rendered or restaged; its media/layout guides are the mannequin ones.
+
 ## Render
 
 ```sh

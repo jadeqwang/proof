@@ -7,9 +7,9 @@ import { drawGazeOverlay } from './gaze.js';
 
 const q = new URLSearchParams(location.search);
 const W = Number(q.get('w') || 1920), H = Number(q.get('h') || 1080), SET = q.get('set') || 'attic88';
-FIG2.on = q.get('gaze') === '1'; FIG2.body = q.get('body2') === '1';   // gaze + wrists (--gaze) / mannequin body v2 (--body2); off = unchanged
+FIG2.on = q.get('gaze') !== '0'; FIG2.body = q.get('body2') === '1';   // gaze + wrists: ON by default since 2026-11-26 (gaze=0 / PROOF_GAZE=0 = off) / mannequin body v2 (--body2)
 import { HUMAN, loadBodies } from './humanMesh.js';
-if (q.get('body') === 'mesh') { HUMAN.on = true; await loadBodies(); }   // rigged human meshes (--body mesh, PROOF_BODY=mesh); off = unchanged
+if ((q.get('body') || 'mesh') === 'mesh') { HUMAN.on = true; await loadBodies(); }   // rigged human meshes: DEFAULT since 2026-11-26; body=mannequin (PROOF_BODY=mannequin) = the old mannequins
 const R = new ModeRenderer(W, H);
 const { build, buildV3 } = await import(`../sets/${SET}/build.js`);
 const { SHOTS: SHOTS_V1 } = await import(`../sets/${SET}/shots.js`);

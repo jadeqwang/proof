@@ -27,7 +27,7 @@ const jadeSill = (o = {}) => ({ at: READING.kneel, floor: READING.cushion.t, yaw
 // r4: the grip target for the grab (resolved in build.js extra): the child's right forearm at 0.5 elbow -> wrist
 const GRAB_K = 0.5;
 const GRAB_R = { to: `forearm:littleJade:R:${GRAB_K}`, hand: 'grip', palm: `to:forearmDown:littleJade:R:${GRAB_K}`,
-  hold: { r: 0.031, prop: false, centre: true, axis: 'to:forearm:littleJade:R:0.95' }, object: 'figure:littleJade:armR',
+  hold: { r: 0.040, prop: false, centre: true, axis: 'to:forearm:littleJade:R:0.95' }, object: 'figure:littleJade:armR',
   grasp: { kind: 'forearm', of: 'littleJade:R', k: GRAB_K, from: 'above', note: 'palm on top, fingers round the far side and under, thumb round the near side' } };   // (grasp: a note for the grasp module; the engine ignores it)
 
 const BASE = [

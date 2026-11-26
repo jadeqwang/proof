@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   -3.7342,
-   1.2988,
-   1.4701
+   -3.7324,
+   1.2369,
+   1.469
   ],
   "target": [
-   -2.1199,
-   1.2179,
-   0.2923
+   -2.1181,
+   1.156,
+   0.2912
   ],
   "lens_mm": 50,
   "frame_width_mm": 36,
@@ -36,9 +36,9 @@
    0.0405,
    0.5889,
    0,
-   -3.7342,
-   1.2988,
-   1.4701,
+   -3.7324,
+   1.2369,
+   1.469,
    1
   ],
   "viewMatrix": [
@@ -54,9 +54,9 @@
    -0.0238,
    0.5889,
    0,
-   1.0133,
-   -1.1407,
-   -3.9325,
+   1.0132,
+   -1.0789,
+   -3.9279,
    1
   ],
   "projectionMatrix": [
@@ -88,16 +88,16 @@
  "heads": {
   "jade10": {
    "px": [
-    1195.8,
-    441.7
+    1195.6,
+    446.7
    ],
    "eyes": [
     1152,
-    432
+    432.1
    ],
    "mouth": [
-    1151.4,
-    521.7
+    1150.2,
+    521.8
    ],
    "in_frame": true,
    "visible": true,
@@ -105,27 +105,27 @@
   },
   "mama91": {
    "px": [
-    549.5,
-    190.8
+    510.7,
+    194.5
    ],
    "eyes": [
-    653.8,
-    217.9
+    616.5,
+    220.5
    ],
    "mouth": [
-    622,
-    296
+    585.7,
+    299
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 55
+   "facing_camera_deg": 56
   }
  },
  "hands": {
   "jade10.L": {
    "px": [
-    1381.6,
-    1485.3
+    1382.4,
+    1391.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -133,8 +133,8 @@
   },
   "jade10.R": {
    "px": [
-    944.4,
-    1372.4
+    944.1,
+    1288.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -142,17 +142,17 @@
   },
   "mama91.L": {
    "px": [
-    239.2,
-    1115
+    237.5,
+    1040
    ],
    "shape": "relax",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   },
   "mama91.R": {
    "px": [
-    987,
-    686.4
+    986.8,
+    600.1
    ],
    "shape": "relax",
    "in_frame": true,
@@ -171,15 +171,15 @@
     -0.08
    ],
    "px": [
-    1526.4,
-    -494.2
+    1527,
+    -540.9
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.003,
+    0,
     1
    ],
-   "toward_camera": -0.148,
+   "toward_camera": -0.132,
    "aim_world": [
     -0.3,
     0.72,
@@ -187,7 +187,9 @@
    ]
   }
  ],
- "warnings": [],
+ "warnings": [
+  "wrist: mama91 R hand turned 16.9 deg toward the forearm to keep the wrist in range (was flex 47.4, radial -45.7)"
+ ],
  "intent": "Frontal, level, locked off on her face: ten years old, her back against the corridor wall beside the closed counselor's door (frame right). Mom stoops in from frame left, her right hand on her daughter's shoulder, saying it. Corridor light from a ceiling panel.",
  "beam": {
   "kind": "one fluorescent tube behind a louvre, straight down",
@@ -224,20 +226,20 @@
   ],
   "source_px": [
    [
-    1299.9,
-    -632.9
+    1300.3,
+    -686.8
    ],
    [
-    1676.9,
-    -383.1
+    1677.6,
+    -424
    ],
    [
-    1700.8,
-    -387.5
+    1701.5,
+    -428.7
    ],
    [
-    1328.4,
-    -640.5
+    1328.8,
+    -694.8
    ]
   ],
   "footprint_table_world": [
@@ -264,20 +266,20 @@
   ],
   "footprint_table_px": [
    [
-    619.9,
-    892.2
+    619.3,
+    843.5
    ],
    [
-    1358.1,
-    743.6
+    1358.4,
+    710.6
    ],
    [
-    2255.4,
-    812.6
+    2256.8,
+    772.3
    ],
    [
-    1831.4,
-    1060.2
+    1832.8,
+    994
    ]
   ],
   "footprint_floor_world": [
@@ -304,20 +306,20 @@
   ],
   "footprint_floor_px": [
    [
-    375,
-    1441.4
+    374.1,
+    1394.6
    ],
    [
-    1260.6,
-    1088.4
+    1260.8,
+    1057.6
    ],
    [
-    2476,
-    1289.9
+    2477.6,
+    1249.9
    ],
    [
-    2113,
-    2012.2
+    2115.2,
+    1940.1
    ]
   ],
   "note": "the lit volume is the wedge between the tube (source) and footprint_floor, minus what stands in it; footprint_table is its section at the table top",
@@ -363,20 +365,20 @@
   ],
   "corners_px": [
    [
-    1654.8,
-    848.9
+    1655.5,
+    804.8
    ],
    [
-    1592.9,
-    869.5
+    1593.6,
+    823.2
    ],
    [
-    1401.9,
-    850.1
+    1402.3,
+    805.8
    ],
    [
-    1469.8,
-    831.2
+    1470.3,
+    788.9
    ]
   ],
   "corner_order": "TL, TR, BR, BL as little Jade reads the page (a flat page image maps straight on)",
@@ -391,8 +393,8 @@
      0.0271
     ],
     "px": [
-     1610.1,
-     848.3
+     1610.8,
+     804.2
     ]
    },
    {
@@ -405,8 +407,8 @@
      0.0271
     ],
     "px": [
-     1602.8,
-     850.6
+     1603.5,
+     806.3
     ]
    },
    {
@@ -419,8 +421,8 @@
      0.0271
     ],
     "px": [
-     1595.4,
-     853
+     1596.1,
+     808.4
     ]
    },
    {
@@ -433,8 +435,8 @@
      0.0271
     ],
     "px": [
-     1588,
-     855.4
+     1588.6,
+     810.5
     ]
    },
    {
@@ -447,8 +449,8 @@
      0.0271
     ],
     "px": [
-     1580.4,
-     857.8
+     1581.1,
+     812.7
     ]
    },
    {
@@ -461,8 +463,8 @@
      0.0271
     ],
     "px": [
-     1572.8,
-     860.2
+     1573.4,
+     814.9
     ]
    },
    {
@@ -475,8 +477,8 @@
      0.0271
     ],
     "px": [
-     1565,
-     862.7
+     1565.7,
+     817.1
     ]
    },
    {
@@ -489,8 +491,8 @@
      -0.0177
     ],
     "px": [
-     1579.7,
-     845.3
+     1580.3,
+     801.5
     ]
    },
    {
@@ -503,8 +505,8 @@
      -0.0177
     ],
     "px": [
-     1572.3,
-     847.6
+     1572.9,
+     803.6
     ]
    },
    {
@@ -517,8 +519,8 @@
      -0.0177
     ],
     "px": [
-     1564.8,
-     850
+     1565.4,
+     805.7
     ]
    },
    {
@@ -531,8 +533,8 @@
      -0.0177
     ],
     "px": [
-     1557.2,
-     852.3
+     1557.8,
+     807.8
     ]
    },
    {
@@ -545,8 +547,8 @@
      -0.0177
     ],
     "px": [
-     1549.5,
-     854.7
+     1550.1,
+     809.9
     ]
    },
    {
@@ -559,8 +561,8 @@
      -0.0177
     ],
     "px": [
-     1541.7,
-     857.1
+     1542.4,
+     812.1
     ]
    },
    {
@@ -573,8 +575,8 @@
      -0.0177
     ],
     "px": [
-     1533.9,
-     859.6
+     1534.5,
+     814.3
     ]
    },
    {
@@ -587,8 +589,8 @@
      -0.0625
     ],
     "px": [
-     1549.7,
-     842.4
+     1550.3,
+     798.9
     ]
    },
    {
@@ -601,8 +603,8 @@
      -0.0625
     ],
     "px": [
-     1542.1,
-     844.7
+     1542.7,
+     801
     ]
    },
    {
@@ -615,8 +617,8 @@
      -0.0625
     ],
     "px": [
-     1534.5,
-     847
+     1535.1,
+     803
     ]
    },
    {
@@ -629,8 +631,8 @@
      -0.0625
     ],
     "px": [
-     1526.8,
-     849.3
+     1527.4,
+     805.1
     ]
    },
    {
@@ -643,8 +645,8 @@
      -0.0625
     ],
     "px": [
-     1519,
-     851.7
+     1519.6,
+     807.2
     ]
    },
    {
@@ -657,8 +659,8 @@
      -0.0625
     ],
     "px": [
-     1511.1,
-     854.1
+     1511.7,
+     809.4
     ]
    },
    {
@@ -671,8 +673,8 @@
      -0.0625
     ],
     "px": [
-     1503.2,
-     856.5
+     1503.7,
+     811.5
     ]
    },
    {
@@ -685,8 +687,8 @@
      -0.1073
     ],
     "px": [
-     1518.2,
-     840.1
+     1518.7,
+     796.9
     ]
    },
    {
@@ -699,8 +701,8 @@
      -0.1073
     ],
     "px": [
-     1510.5,
-     842.4
+     1511.1,
+     798.9
     ]
    },
    {
@@ -713,8 +715,8 @@
      -0.1073
     ],
     "px": [
-     1502.8,
-     844.7
+     1503.3,
+     800.9
     ]
    },
    {
@@ -727,8 +729,8 @@
      -0.1073
     ],
     "px": [
-     1494.9,
-     847
+     1495.5,
+     803
     ]
    },
    {
@@ -741,8 +743,8 @@
      -0.1073
     ],
     "px": [
-     1487,
-     849.3
+     1487.5,
+     805.1
     ]
    },
    {
@@ -755,8 +757,8 @@
      -0.1073
     ],
     "px": [
-     1479,
-     851.6
+     1479.5,
+     807.2
     ]
    },
    {
@@ -769,8 +771,8 @@
      -0.1521
     ],
     "px": [
-     1490.9,
-     836.7
+     1491.4,
+     793.9
     ]
    },
    {
@@ -783,8 +785,8 @@
      -0.1521
     ],
     "px": [
-     1483.1,
-     839
+     1483.7,
+     795.8
     ]
    },
    {
@@ -797,8 +799,8 @@
      -0.1521
     ],
     "px": [
-     1475.3,
-     841.2
+     1475.8,
+     797.8
     ]
    },
    {
@@ -811,8 +813,8 @@
      -0.1521
     ],
     "px": [
-     1467.4,
-     843.5
+     1467.9,
+     799.9
     ]
    },
    {
@@ -825,8 +827,8 @@
      -0.1521
     ],
     "px": [
-     1459.4,
-     845.7
+     1459.9,
+     801.9
     ]
    },
    {
@@ -839,8 +841,8 @@
      -0.1521
     ],
     "px": [
-     1451.3,
-     848.1
+     1451.8,
+     804
     ]
    },
    {
@@ -853,8 +855,8 @@
      -0.1521
     ],
     "px": [
-     1443.1,
-     850.4
+     1443.6,
+     806.1
     ]
    }
   ],
@@ -872,12 +874,12 @@
    -0.1073
   ],
   "gap_px": [
-   1470.9,
-   854
+   1471.4,
+   809.3
   ],
   "anxious_px": [
-   1479,
-   851.6
+   1479.5,
+   807.2
   ],
   "cell_pitch_m": {
    "x": 0.025714285714285714,
@@ -888,6 +890,146 @@
  "times": [
   8.76,
   10.51
+ ],
+ "gaze": {
+  "jade10": {
+   "face": "drawn",
+   "look_target": {
+    "name": null,
+    "world": [
+     -3.2,
+     1.22,
+     0.75
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 12.4,
+    "pitch_up": -1.9,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -2,
+    "wanted_yaw": 0,
+    "wanted_pitch": -2,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1152,
+    432.1
+   ],
+   "target_px": [
+    126,
+    484.9
+   ],
+   "target_in_front": true
+  },
+  "mama91": {
+   "face": "drawn",
+   "look_target": {
+    "name": "jade10:eyes",
+    "world": [
+     -2.248,
+     1.237,
+     0.542
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -27.1,
+    "pitch_up": 0.5,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -1.3,
+    "wanted_yaw": 0,
+    "wanted_pitch": -1.3,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "R",
+     "target": "jade10:shoulderR",
+     "shape": "relax",
+     "world": [
+      -2.187,
+      1.117,
+      0.365
+     ],
+     "look_off_deg": 30.4
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    616.5,
+    220.5
+   ],
+   "target_px": [
+    1152,
+    432.1
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "jade10": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  },
+  "mama91": {
+   "top": "#8a5a6a",
+   "legs": "#3a3632",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "mama91": {
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 29,
+    "radial_deg": -27.9,
+    "twist_deg": -66.5,
+    "elbow_flex_deg": 82.8,
+    "before": {
+     "flex_deg": 47.4,
+     "radial_deg": -45.7,
+     "twist_deg": -75.9
+    },
+    "hand_turned_deg": 16.9,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "mama91": 0.1836,
+  "jade10": 0.1623
+ },
+ "colour_separation": [
+  {
+   "a": "mama91",
+   "b": "jade10",
+   "top_a": "#8a5a6a",
+   "top_b": "#f1efe8",
+   "deltaE_top": 55.6,
+   "close": false
+  }
  ],
  "figure_report": {
   "jade10": {
@@ -903,7 +1045,25 @@
     "L": 0.97,
     "R": 0.97
    },
-   "headTurn": 12
+   "headTurn": 12,
+   "body": {
+    "mesh": "jade10",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 39,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 1.01,
+     "hand_scale": 0.97
+    },
+    "R": {
+     "elbow_bend_deg": 39,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 1.01,
+     "hand_scale": 0.97
+    }
+   }
   },
   "mama91": {
    "legs": {
@@ -918,7 +1078,25 @@
     "L": 0.97,
     "R": 0.75
    },
-   "headTurn": -29
+   "headTurn": -27,
+   "body": {
+    "mesh": "mama",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.09,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 81,
+     "upperarm_stretch": 1.16,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    }
+   }
   }
  }
 }

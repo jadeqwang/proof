@@ -281,21 +281,20 @@
  "heads": {
   "littleJade": {
    "px": [
-    410.6,
-    1007.4
+    408.7,
+    1222.9
    ],
    "eyes": [
-    546.5,
-    946.2
+    547,
+    1133
    ],
    "mouth": [
-    562.2,
-    1152.1
+    563.7,
+    1343.7
    ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 153,
-   "blocked_by": "littleJade little Jade"
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 152
   }
  },
  "hands": {
@@ -938,19 +937,52 @@
   }
  },
  "wrists": {
-  "littleJade": null
+  "littleJade": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -35.1,
+    "radial_deg": -8,
+    "twist_deg": null,
+    "elbow_flex_deg": 5.2,
+    "before": {
+     "flex_deg": -35.1,
+     "radial_deg": -8,
+     "twist_deg": null
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -35.1,
+    "radial_deg": -8,
+    "twist_deg": null,
+    "elbow_flex_deg": 5.2,
+    "before": {
+     "flex_deg": -35.1,
+     "radial_deg": -8,
+     "twist_deg": null
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
  },
  "points_world": {
   "littleJade": {
    "eyes": [
-    0.6164,
-    0.576,
-    0.4453
+    0.6063,
+    0.5314,
+    0.4549
    ],
    "head": [
-    0.5424,
-    0.5761,
-    0.4738
+    0.5324,
+    0.5308,
+    0.4835
    ],
    "handL": [
     0.6138,
@@ -989,6 +1021,83 @@
    ]
   }
  },
+ "gaze": {
+  "littleJade": {
+   "face": "drawn",
+   "look_target": {
+    "name": "fern",
+    "world": [
+     3.488,
+     0.72,
+     -0.68
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -20,
+    "pitch_up": 13.9,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 8.5,
+    "wanted_yaw": 0,
+    "wanted_pitch": 8.5,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "keysL",
+     "shape": "flat",
+     "world": [
+      0.614,
+      0.127,
+      0.298
+     ],
+     "look_off_deg": 84.8
+    },
+    {
+     "arm": "R",
+     "target": "keysR",
+     "shape": "flat",
+     "world": [
+      0.735,
+      0.127,
+      0.442
+     ],
+     "look_off_deg": 76.5
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    547,
+    1133
+   ],
+   "target_px": [
+    1404,
+    446.6
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "littleJade": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "littleJade": 0.1218
+ },
+ "colour_separation": [],
  "figure_report": {
   "littleJade": {
    "legs": {
@@ -1003,7 +1112,25 @@
     "L": 1.41,
     "R": 1.41
    },
-   "headTurn": -20
+   "headTurn": -20,
+   "body": {
+    "mesh": "jade05",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 10,
+     "upperarm_stretch": 1.01,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 10,
+     "upperarm_stretch": 1.01,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    }
+   }
   }
  }
 }

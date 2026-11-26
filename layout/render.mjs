@@ -1,9 +1,10 @@
 // Render the layout guides for one set.
 //   node layout/render.mjs --set attic88 [--shots A1,B2 | --prefix v3_] [--exclude beam_] [--modes line,flat,depth,label,lit] [--w 1920 --h 1080] [--nojson]
-//                          [--out <dir>] [--gaze] [--body2]
+//                          [--out <dir>] [--body mesh|mannequin] [--gaze | --nogaze] [--body2]
 // Output: media/layout/<set>/<SHOT>_<mode>.png and media/layout/<set>/<SHOT>.json (sidecar); --out <dir> writes to <dir>/<set>/ instead.
-// Opt-in (README "Gaze and natural wrists"): --gaze or PROOF_GAZE=1 (eyes that aim, gaze line, sidecar gaze, natural
-// wrists); --body2 or PROOF_BODY2=1 (mannequin body v2: real torsos, shoulder girdle, costume colours; stopped work).
+// DEFAULT since 2026-11-26 (README "Defaults"): rigged human meshes (--body mannequin or PROOF_BODY=mannequin = the old
+// mannequins) and gaze (eyes that aim, gaze line, sidecar gaze + holds, natural wrists; --nogaze, --gaze 0 or PROOF_GAZE=0
+// = off). Opt-in: --body2 or PROOF_BODY2=1 (mannequin body v2: real torsos, shoulder girdle, costume colours; stopped work).
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
@@ -18,8 +19,8 @@ for (let i = 0; i < argv.length; i++) if (argv[i].startsWith('--')) args[argv[i]
 const SET = args.set || 'attic88';
 const W = Number(args.w || 1920), H = Number(args.h || 1080);
 const modes = String(args.modes || 'line,flat,depth,label,lit').split(',');
-const BODY = String(args.body || process.env.PROOF_BODY || '');   // 'mesh': rigged human meshes (engine/humanMesh.js)
-const GAZE = !!args.gaze || process.env.PROOF_GAZE === '1', BODY2 = !!args.body2 || process.env.PROOF_BODY2 === '1';
+const BODY = String(args.body || process.env.PROOF_BODY || 'mesh');   // 'mesh' (default): rigged human meshes (engine/humanMesh.js); anything else (mannequin) = the old mannequins
+const GAZE = args.nogaze ? false : args.gaze !== undefined ? String(args.gaze) !== '0' : process.env.PROOF_GAZE !== '0', BODY2 = !!args.body2 || process.env.PROOF_BODY2 === '1';
 const OUT = args.out ? path.resolve(String(args.out), SET) : path.join(REPO, 'media/layout', SET); fs.mkdirSync(OUT, { recursive: true });
 
 const port = 9100 + (process.pid % 200);
@@ -31,7 +32,7 @@ try {
   const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   page.on('console', (m) => { if (['error', 'warning'].includes(m.type()) && !/GPU stall|swiftshader|WebGL/i.test(m.text())) console.error('[page]', m.text()); });
   page.on('pageerror', (e) => console.error('[pageerror]', e.message));
-  await page.goto(`http://127.0.0.1:${port}/index.html?set=${SET}&w=${W}&h=${H}${GAZE ? '&gaze=1' : ''}${BODY2 ? '&body2=1' : ''}${BODY === 'mesh' ? '&body=mesh' : ''}`);
+  await page.goto(`http://127.0.0.1:${port}/index.html?set=${SET}&w=${W}&h=${H}&gaze=${GAZE ? 1 : 0}${BODY2 ? '&body2=1' : ''}&body=${BODY === 'mesh' ? 'mesh' : 'mannequin'}`);
   await page.waitForFunction(() => window.__ready !== undefined || window.__error, null, { timeout: 120000 });
   const err = await page.evaluate(async () => { try { await window.__ready; return window.__error || null; } catch (e) { return window.__error || String(e); } });
   if (err) throw new Error(err);

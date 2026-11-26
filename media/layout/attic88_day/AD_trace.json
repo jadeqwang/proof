@@ -282,19 +282,19 @@
   "littleJade": {
    "px": [
     36.5,
-    1498.7
+    1769.3
    ],
    "eyes": [
-    363.1,
-    1142.2
+    346.5,
+    1360.4
    ],
    "mouth": [
-    384.5,
-    1376.5
+    383.8,
+    1559.9
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 118
+   "facing_camera_deg": 111
   }
  },
  "hands": {
@@ -345,7 +345,10 @@
    ]
   }
  ],
- "warnings": [],
+ "warnings": [
+  "wrist: littleJade L hand turned 8.5 deg toward the forearm to keep the wrist in range (was flex 7.5, radial 27.6)",
+  "wrist: littleJade R hand turned 18.9 deg toward the forearm to keep the wrist in range (was flex 58.2, radial -48.2)"
+ ],
  "intent": "Close on her right index finger on the lower pane, following the fern from its root. Framed so the fingertip sits where the pointing finger sat in the school office. She kneels on the cushion at the sill, in the full light.",
  "film": {
   "time": "1:36.0-1:37.4",
@@ -937,19 +940,52 @@
   }
  },
  "wrists": {
-  "littleJade": null
+  "littleJade": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 5.6,
+    "radial_deg": 17.9,
+    "twist_deg": -53.7,
+    "elbow_flex_deg": 46.1,
+    "before": {
+     "flex_deg": 7.5,
+     "radial_deg": 27.6,
+     "twist_deg": -52.9
+    },
+    "hand_turned_deg": 8.5,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 36.9,
+    "radial_deg": -27.5,
+    "twist_deg": -63,
+    "elbow_flex_deg": 78,
+    "before": {
+     "flex_deg": 58.2,
+     "radial_deg": -48.2,
+     "twist_deg": -72.7
+    },
+    "hand_turned_deg": 18.9,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
  },
  "points_world": {
   "littleJade": {
    "eyes": [
-    3.2526,
-    0.7449,
-    -0.6948
+    3.24,
+    0.7056,
+    -0.6953
    ],
    "head": [
-    3.1735,
-    0.7437,
-    -0.6997
+    3.1613,
+    0.6972,
+    -0.7001
    ],
    "handL": [
     3.4,
@@ -962,14 +998,14 @@
     -0.66
    ],
    "elbowR": [
-    3.3371,
-    0.5789,
-    -0.5758
+    3.3368,
+    0.572,
+    -0.5711
    ],
    "wristR": [
-    3.3729,
-    0.699,
-    -0.6564
+    3.3768,
+    0.6913,
+    -0.6511
    ],
    "shoulderR": [
     3.1514,
@@ -988,6 +1024,84 @@
    ]
   }
  },
+ "gaze": {
+  "littleJade": {
+   "face": "drawn",
+   "look_target": {
+    "name": "fern",
+    "world": [
+     3.488,
+     0.72,
+     -0.68
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -3.6,
+    "pitch_up": 6.7,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 2.7,
+    "wanted_yaw": 0,
+    "wanted_pitch": 2.7,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [
+    {
+     "arm": "R",
+     "target": "fern",
+     "world": [
+      3.464,
+      0.739,
+      -0.7
+     ],
+     "self": false,
+     "look_off_deg": 7
+    }
+   ],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "sill",
+     "shape": "flat",
+     "world": [
+      3.4,
+      0.48,
+      -1.02
+     ],
+     "look_off_deg": 72.8
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    346.5,
+    1360.4
+   ],
+   "target_px": [
+    959.9,
+    594
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "littleJade": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "littleJade": 0.0767
+ },
+ "colour_separation": [],
  "figure_report": {
   "littleJade": {
    "legs": {
@@ -999,10 +1113,28 @@
     }
    },
    "arms": {
-    "L": 0.93,
-    "R": 0.79
+    "L": 0.92,
+    "R": 0.78
    },
-   "headTurn": -4
+   "headTurn": -4,
+   "body": {
+    "mesh": "jade05",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 41,
+     "upperarm_stretch": 1.14,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 75,
+     "upperarm_stretch": 1.19,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    }
+   }
   }
  }
 }

@@ -35,7 +35,7 @@ weights, face, hair styles. Ages and builds come from the cast sheets' sidecars 
 | mama | mama, mama86, mama90, mama91 | f | 36 (sheet: mid to late thirties) | 1.60 | drawn | bun = long01 cut at the nape + a bun ball; bob = bob02 |
 | dad | dad | m | 37 | 1.72 | drawn | slim, narrow shoulders (sheet) |
 | firstlove19, firstlove27 | firstLove19, firstLove27 | m | 19, 27 | 1.78 | **none** | no eyes, nose or mouth: the front of the head is faired smooth (safeguard; his face is never shown) |
-| friend | friend (mv10) | m | 27 | 1.73 | blank | slight build (sheet) |
+| friend | friend (mv10) | m | 27 | 1.85 | blank | slight build (sheet); Ukrainian, caucasian weights (Jade 2026-11-26); hair colour unknown, sheet colour kept |
 | uncle, aunt, grandma, sw | shanghai86 uncle / aunt / grandma, market93 grandma, office91 social worker | m / f | 40, 38, 68, 40 (guesses) | 1.70, 1.58, 1.51, 1.65 | blank | |
 | daughter, toddler, partner | bed26 / car26 daughter, playground23 toddler / partner | f, f (guess), m | 4, 1.7, 40 | 1.02, 0.82, 1.78 | blank | |
 | adult_f, adult_m | every other adult (mv10 guests, wall88 workers), scaled to the cast height | f / m | 32, 35 | 1.64, 1.76 | blank | sex from the cast entry / key, else hairStyle (as figure2.js) |

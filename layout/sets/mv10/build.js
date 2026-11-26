@@ -33,9 +33,10 @@ const NEW_CAST = {
   W3: GUEST('guest W3, poi audience (face undrawn)', 1.69, 0x4a6a5a, 0x3a3a44, 'long'), W4: GUEST('guest W4, poi audience (face undrawn)', 1.81, 0x8a7a5a, 0x2c2c34, 'short', 'short'),
   D1: GUEST('guest D1, poi audience on the deck (face undrawn)', 1.63, 0xa86a5a, 0x2c3140, 'bob', 'short'), D2: GUEST('guest D2, poi audience on the deck (face undrawn)', 1.77, 0x5a5a7a, 0x44403a, 'short'),
   // the childhood friend (童友): he and Jade picked the lemons and made the lemonade before the party (Jade, 2026-11-25
-  // late). Not in _cast.js (no adult figure there), so set-local. Height 1.73 and costume are OURS (ASSUMED); face
+  // late). Not in _cast.js (no adult figure there), so set-local. Height 1.85 (Jade, 2026-11-26: "about 6'0 or 6'1\"";
+  // Ukrainian, Russian-speaking); costume is OURS (ASSUMED); face
   // undrawn like first love (back, hands). Not the charcoal hoodie: Jade says that old artwork matches Z, not him.
-  friend: GUEST('childhood friend (27; face undrawn, back and hands only)', 1.73, 0x9a7a52, 0x3a3e48, 'short', 'pushed'),
+  friend: GUEST('childhood friend (27; face undrawn, back and hands only)', 1.85, 0x9a7a52, 0x3a3e48, 'short', 'pushed'),
   // the room crossing (Jade, 2026-11-25 round 2): the person she talks to in the kitchen (K1), the person at the shelf who
   // says something (R1), the two guests she welcomes (N1, N2) and the next two at the second doorbell (N3, N4). Jade said
   // "someone"; who they are, their looks and heights are OURS.

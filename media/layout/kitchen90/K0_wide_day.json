@@ -233,16 +233,16 @@
  "heads": {
   "jade7": {
    "px": [
-    1157.7,
-    536.9
+    1155.9,
+    561.7
    ],
    "eyes": [
-    1129.9,
-    526.6
+    1128.1,
+    551.7
    ],
    "mouth": [
-    1127.7,
-    549.4
+    1126.3,
+    574.4
    ],
    "in_frame": true,
    "visible": true,
@@ -251,20 +251,20 @@
   },
   "mama90": {
    "px": [
-    1027.5,
-    498.6
+    1020.8,
+    524.2
    ],
    "eyes": [
-    1054.2,
-    505.3
+    1047.3,
+    530.7
    ],
    "mouth": [
-    1050.5,
-    528.8
+    1043.9,
+    554
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 49
+   "facing_camera_deg": 48
   }
  },
  "hands": {
@@ -288,8 +288,8 @@
   },
   "mama90.L": {
    "px": [
-    1166.1,
-    561.7
+    1164.6,
+    586.2
    ],
    "shape": "relax",
    "in_frame": true,
@@ -297,8 +297,8 @@
   },
   "mama90.R": {
    "px": [
-    1114.2,
-    570.6
+    1112.8,
+    596.2
    ],
    "shape": "relax",
    "in_frame": true,
@@ -359,7 +359,10 @@
    ]
   }
  ],
- "warnings": [],
+ "warnings": [
+  "wrist: mama90 L beyond the wrist range (radial deviation +14 deg; flex -49.9, radial 34.1, twist -16.7, after an elbow swivel of 0 deg)",
+  "wrist: mama90 R beyond the wrist range (radial deviation +14 deg; flex -49.9, radial 34.1, twist -16.7, after an elbow swivel of 0 deg)"
+ ],
  "intent": "Set reference, outro, from the front-left corner: the window shaft crosses the chair and the child and lands on the floor.",
  "time": "reference",
  "position": "reference",
@@ -527,10 +530,171 @@
    "in_shaft": true
   },
   "heads_in_shaft": {
-   "jade7": false,
+   "jade7": true,
    "mama90": true
   }
  },
+ "gaze": {
+  "jade7": {
+   "face": "drawn",
+   "look_target": {
+    "name": "mama90:eyes",
+    "world": [
+     0.55,
+     1.12,
+     -0.079
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 4.4,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0.9,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0.9,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1128.1,
+    551.7
+   ],
+   "target_px": [
+    1047.3,
+    530.7
+   ],
+   "target_in_front": true
+  },
+  "mama90": {
+   "face": "drawn",
+   "look_target": {
+    "name": "jade7:eyes",
+    "world": [
+     0.55,
+     1.096,
+     0.178
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 9.9,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 4.8,
+    "wanted_yaw": 0,
+    "wanted_pitch": 4.8,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "jade7:mouth",
+     "shape": "relax",
+     "world": [
+      0.644,
+      1.008,
+      0.213
+     ],
+     "look_off_deg": 22.7
+    },
+    {
+     "arm": "R",
+     "target": "jade7:mouth",
+     "shape": "relax",
+     "world": [
+      0.456,
+      1.008,
+      0.213
+     ],
+     "look_off_deg": 22.7
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    1047.3,
+    530.7
+   ],
+   "target_px": [
+    1128.1,
+    551.7
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "jade7": {
+   "top": "#b8c4d8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "mama90": {
+   "top": "#8a5a52",
+   "legs": "#3a3632",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "mama90": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -49.9,
+    "radial_deg": 34.1,
+    "twist_deg": -16.7,
+    "elbow_flex_deg": 72.9,
+    "before": {
+     "flex_deg": -49.9,
+     "radial_deg": 34.1,
+     "twist_deg": -16.7
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "radial deviation +14 deg"
+    ],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -49.9,
+    "radial_deg": 34.1,
+    "twist_deg": -16.7,
+    "elbow_flex_deg": 72.9,
+    "before": {
+     "flex_deg": -49.9,
+     "radial_deg": 34.1,
+     "twist_deg": -16.7
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "radial deviation +14 deg"
+    ],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "mama90": 0.0215,
+  "jade7": 0.0231
+ },
+ "colour_separation": [],
  "figure_report": {
   "jade7": {
    "legs": {
@@ -545,7 +709,25 @@
     "L": 0.97,
     "R": 0.97
    },
-   "headTurn": 0
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade07",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.95
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.95
+    }
+   }
   },
   "mama90": {
    "legs": {
@@ -557,10 +739,28 @@
     }
    },
    "arms": {
-    "L": 0.82,
-    "R": 0.82
+    "L": 0.81,
+    "R": 0.81
    },
-   "headTurn": 0
+   "headTurn": 0,
+   "body": {
+    "mesh": "mama",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 70,
+     "upperarm_stretch": 1.24,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 70,
+     "upperarm_stretch": 1.24,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    }
+   }
   }
  }
 }

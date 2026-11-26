@@ -3406,5 +3406,10 @@
  },
  "plan_time": null,
  "position": null,
+ "gaze": {},
+ "costume": {},
+ "holds": [],
+ "figure_frame_fraction": {},
+ "colour_separation": [],
  "figure_report": {}
 }

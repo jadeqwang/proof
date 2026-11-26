@@ -227,15 +227,15 @@
    "id": "friend",
    "sex": "m",
    "age": 27,
-   "h": 1.73,
+   "h": 1.85,
    "weight": 0.4,
    "muscle": 0.5,
-   "race": "asian",
+   "race": "caucasian",
    "face": "blank",
    "hair": [
     "short"
    ],
-   "_build": "cast sheet: medium height, a slight easy build"
+   "_build": "Jade 2026-11-26: 1.85 m, Ukrainian (Russian-speaking), eastern European = MakeHuman caucasian; slight easy build kept; hair colour not known (cast sheet colour kept, flagged)"
   },
   {
    "id": "uncle",

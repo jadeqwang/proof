@@ -89,36 +89,36 @@
   "jade19": {
    "px": [
     960,
-    987.6
+    1445.4
    ],
    "eyes": [
     960,
-    330.5
+    710.5
    ],
    "mouth": [
     960,
-    837.4
+    1084.4
    ],
-   "in_frame": true,
+   "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 141
+   "facing_camera_deg": 126
   },
   "firstLove19": {
    "px": [
     960,
-    -1784.6
+    -1334.1
    ],
    "eyes": [
     960,
-    -980.2
+    -735
    ],
    "mouth": [
     960,
-    -845.3
+    -633.2
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 60
+   "facing_camera_deg": 62
   }
  },
  "hands": {
@@ -178,7 +178,12 @@
    ]
   }
  ],
- "warnings": [],
+ "warnings": [
+  "wrist: jade19 L beyond the wrist range (radial deviation +22 deg, supination +23 deg; flex -14.9, radial 41.6, twist 107.7, after an elbow swivel of 0 deg)",
+  "wrist: jade19 R beyond the wrist range (radial deviation +22 deg, supination +23 deg; flex -14.9, radial 41.6, twist 107.7, after an elbow swivel of 0 deg)",
+  "wrist: firstLove19 L hand turned 23.4 deg toward the forearm to keep the wrist in range (was flex 44.3, radial -52.7)",
+  "wrist: firstLove19 R hand turned 23.4 deg toward the forearm to keep the wrist in range (was flex 44.3, radial -52.7)"
+ ],
  "intent": "Her own view down (her head hidden for the POV): her two hands palm-up, his two on them, at the door line, the sun on them from the bedroom; his knees and the carpet beyond. Four hands. No field note.",
  "film": {
   "time": "3:28.0-3:29.4",
@@ -371,18 +376,18 @@
   "jade19": {
    "eyes": [
     0.55,
-    0.8165,
-    -0.1612
+    0.7652,
+    -0.186
    ],
    "head": [
     0.55,
-    0.8738,
-    -0.2357
+    0.8183,
+    -0.2636
    ],
    "chin": [
     0.55,
-    0.7598,
-    -0.2666
+    0.7027,
+    -0.2881
    ],
    "handL": [
     0.635,
@@ -408,18 +413,18 @@
   "firstLove19": {
    "eyes": [
     0.55,
-    0.7924,
-    0.0973
+    0.731,
+    0.1289
    ],
    "head": [
     0.55,
-    0.8551,
-    0.1785
+    0.788,
+    0.2142
    ],
    "chin": [
     0.55,
-    0.7308,
-    0.2126
+    0.6615,
+    0.2396
    ],
    "handL": [
     0.465,
@@ -443,6 +448,235 @@
    ]
   }
  },
+ "gaze": {
+  "jade19": {
+   "face": "drawn",
+   "look_target": {
+    "name": "hands",
+    "world": [
+     0.55,
+     0.41,
+     -0.02
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": -25.7,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -24.9,
+    "wanted_yaw": 0,
+    "wanted_pitch": -24.9,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "hands",
+     "shape": "palmUp",
+     "world": [
+      0.635,
+      0.394,
+      -0.045
+     ],
+     "look_off_deg": 12.8
+    },
+    {
+     "arm": "R",
+     "target": "hands",
+     "shape": "palmUp",
+     "world": [
+      0.465,
+      0.394,
+      -0.045
+     ],
+     "look_off_deg": 12.8
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    960,
+    728.2
+   ],
+   "target_px": [
+    960,
+    540
+   ],
+   "target_in_front": true
+  },
+  "firstLove19": {
+   "face": "none",
+   "look_target": {
+    "name": "hands",
+    "world": [
+     0.55,
+     0.41,
+     -0.02
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": -25.1,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -26,
+    "wanted_yaw": 0,
+    "wanted_pitch": -26,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "hands",
+     "shape": "relax",
+     "world": [
+      0.465,
+      0.426,
+      0.005
+     ],
+     "look_off_deg": 14.7
+    },
+    {
+     "arm": "R",
+     "target": "hands",
+     "shape": "relax",
+     "world": [
+      0.635,
+      0.426,
+      0.005
+     ],
+     "look_off_deg": 14.7
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    960,
+    -735
+   ],
+   "target_px": [
+    960,
+    540
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "jade19": {
+   "top": "#8a94a8",
+   "legs": "#2c3140",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "real f"
+  },
+  "firstLove19": {
+   "top": "#5a6a58",
+   "legs": "#3a3c44",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "real m"
+  }
+ },
+ "wrists": {
+  "jade19": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -14.9,
+    "radial_deg": 41.6,
+    "twist_deg": 107.7,
+    "elbow_flex_deg": 86.4,
+    "before": {
+     "flex_deg": -14.9,
+     "radial_deg": 41.6,
+     "twist_deg": 107.7
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "radial deviation +22 deg",
+     "supination +23 deg"
+    ],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -14.9,
+    "radial_deg": 41.6,
+    "twist_deg": 107.7,
+    "elbow_flex_deg": 86.4,
+    "before": {
+     "flex_deg": -14.9,
+     "radial_deg": 41.6,
+     "twist_deg": 107.7
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "radial deviation +22 deg",
+     "supination +23 deg"
+    ],
+    "grip_reversed": false
+   }
+  },
+  "firstLove19": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 19.1,
+    "radial_deg": -27.3,
+    "twist_deg": -76.2,
+    "elbow_flex_deg": 107,
+    "before": {
+     "flex_deg": 44.3,
+     "radial_deg": -52.7,
+     "twist_deg": -91.6
+    },
+    "hand_turned_deg": 23.4,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 19.1,
+    "radial_deg": -27.3,
+    "twist_deg": -76.2,
+    "elbow_flex_deg": 107,
+    "before": {
+     "flex_deg": 44.3,
+     "radial_deg": -52.7,
+     "twist_deg": -91.6
+    },
+    "hand_turned_deg": 23.4,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "jade19": 0.742,
+  "firstLove19": 0.1339
+ },
+ "colour_separation": [
+  {
+   "a": "jade19",
+   "b": "firstLove19",
+   "top_a": "#8a94a8",
+   "top_b": "#5a6a58",
+   "deltaE_top": 28.9,
+   "close": false
+  }
+ ],
  "figure_report": {
   "jade19": {
    "legs": {
@@ -457,7 +691,25 @@
     "L": 0.73,
     "R": 0.73
    },
-   "headTurn": 0
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade19",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0.003,
+    "L": {
+     "elbow_bend_deg": 90,
+     "upperarm_stretch": 1.06,
+     "forearm_stretch": 1.08,
+     "hand_scale": 1.07
+    },
+    "R": {
+     "elbow_bend_deg": 90,
+     "upperarm_stretch": 1.06,
+     "forearm_stretch": 1.08,
+     "hand_scale": 1.07
+    }
+   }
   },
   "firstLove19": {
    "legs": {
@@ -472,7 +724,25 @@
     "L": 0.6,
     "R": 0.6
    },
-   "headTurn": 0
+   "headTurn": 0,
+   "body": {
+    "mesh": "firstlove19",
+    "scale": 1,
+    "face": "none",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 105,
+     "upperarm_stretch": 1.05,
+     "forearm_stretch": 1,
+     "hand_scale": 0.93
+    },
+    "R": {
+     "elbow_bend_deg": 105,
+     "upperarm_stretch": 1.05,
+     "forearm_stretch": 1,
+     "hand_scale": 0.93
+    }
+   }
   }
  }
 }

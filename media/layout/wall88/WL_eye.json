@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   -0.0823,
-   1.0024,
-   0.3433
+   -0.081,
+   0.9583,
+   0.3393
   ],
   "target": [
-   0.3335,
-   0.9786,
-   -1.6129
+   0.3348,
+   0.9345,
+   -1.6169
   ],
   "lens_mm": 85,
   "frame_width_mm": 36,
@@ -36,9 +36,9 @@
    0.0119,
    0.9781,
    0,
-   -0.0823,
-   1.0024,
-   0.3433,
+   -0.081,
+   0.9583,
+   0.3393,
    1
   ],
   "viewMatrix": [
@@ -54,9 +54,9 @@
    -0.0116,
    0.9781,
    0,
-   0.0091,
-   -0.9981,
-   -0.3648,
+   0.0087,
+   -0.9541,
+   -0.3601,
    1
   ],
   "projectionMatrix": [
@@ -88,27 +88,27 @@
  "heads": {
   "littleJade": {
    "px": [
-    1014.7,
-    509.5
+    1014.6,
+    529.8
    ],
    "eyes": [
     960.2,
-    485.7
+    485.8
    ],
    "mouth": [
-    962.1,
-    863.7
+    960.6,
+    865.5
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 6
+   "facing_camera_deg": 5
   }
  },
  "hands": {
   "littleJade.L": {
    "px": [
-    1799.2,
-    4098.6
+    1802.4,
+    3794.1
    ],
    "shape": "flat",
    "in_frame": false,
@@ -116,8 +116,8 @@
   },
   "littleJade.R": {
    "px": [
-    1265.9,
-    3030
+    1265.2,
+    2810.2
    ],
    "shape": "flat",
    "in_frame": false,
@@ -136,15 +136,15 @@
     0.2
    ],
    "px": [
-    41793,
-    39063.9
+    40515.8,
+    39187
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.726,
-    0.688
+    0.711,
+    0.703
    ],
-   "toward_camera": -0.35,
+   "toward_camera": -0.305,
    "aim_world": [
     -0.16,
     1.206,
@@ -200,20 +200,20 @@
   ],
   "aperture_px": [
    [
-    -404.5,
-    -526
+    -413.9,
+    -753.6
    ],
    [
-    -1655.4,
-    -3684.1
+    -1722.1,
+    -4706.7
    ],
    [
-    -1653.6,
-    -3408.2
+    -1720.1,
+    -4424
    ],
    [
-    -404.3,
-    -459.6
+    -413.7,
+    -686.8
    ]
   ],
   "footprints": {
@@ -242,20 +242,20 @@
     ],
     "px": [
      [
-      949.5,
-      744.3
+      947.7,
+      575.1
      ],
      [
-      3566.1,
-      1453.3
+      3599.2,
+      823.2
      ],
      [
-      3564.5,
-      1692.8
+      3597.5,
+      1066.8
      ],
      [
-      949.5,
-      808.4
+      947.7,
+      639.5
      ]
     ]
    },
@@ -284,20 +284,20 @@
     ],
     "px": [
      [
-      632.4,
-      511.4
+      629.1,
+      329.1
      ],
      [
-      632.3,
-      446.8
+      629.1,
+      264.1
      ],
      [
-      999.2,
-      757.8
+      997.6,
+      579.8
      ],
      [
-      999.2,
-      825.2
+      997.6,
+      647.5
      ]
     ]
    }
@@ -308,19 +308,19 @@
    -0.3
   ],
   "anchor_px": [
-   793.8,
-   237.3
+   789.5,
+   -73.3
   ],
   "on_screen": {
    "from_px": [
-    287.4,
-    -242.3
+    278.8,
+    -578
    ],
    "to_px": [
-    1239.5,
-    659.4
+    1238.5,
+    370.4
    ],
-   "angle_deg": 43.4,
+   "angle_deg": 44.7,
    "travel": "left-to-right"
   },
   "rhyme": {
@@ -333,7 +333,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": 3.4,
+   "angle_error_deg": 4.7,
    "travel_ok": false
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
@@ -341,20 +341,20 @@
   "thickness_m": 0.0132,
   "crack_px": [
    [
-    -404.5,
-    -526
+    -413.9,
+    -753.6
    ],
    [
-    -1655.4,
-    -3684.1
+    -1722.1,
+    -4706.7
    ],
    [
-    -1653.6,
-    -3408.2
+    -1720.1,
+    -4424
    ],
    [
-    -404.3,
-    -459.6
+    -413.7,
+    -686.8
    ]
   ],
   "note": "a thin planar sheet, level along the cavity: seen along the cavity it is a line at the physical slope"
@@ -368,21 +368,21 @@
    0.15
   ],
   "hero_px": [
-   527,
-   -2136.9
+   505.5,
+   -3268.1
   ],
   "path_px": [
    [
-    527,
-    -2136.9
+    505.5,
+    -3268.1
    ],
    [
-    1173.6,
-    -2128.1
+    1165.5,
+    -3871.5
    ],
    [
-    3812.6,
-    2731.6
+    4057.2,
+    -1319.7
    ]
   ],
   "note": "hero -> exit (drops out of the sheet) -> gone"
@@ -390,19 +390,19 @@
  "points_world": {
   "littleJade": {
    "eyes": [
-    0.0466,
-    1.0024,
-    -0.2632
+    0.0479,
+    0.9583,
+    -0.2672
    ],
    "head": [
-    0.0712,
-    0.9988,
-    -0.3385
+    0.0725,
+    0.9516,
+    -0.3423
    ],
    "mouth": [
-    0.0474,
-    0.9505,
-    -0.2655
+    0.0481,
+    0.9063,
+    -0.2676
    ],
    "handL": [
     0.152,
@@ -423,27 +423,27 @@
  },
  "blade_on_face": {
   "right_eye_world": [
-   0.0202,
-   1.0024,
-   -0.2718
+   0.0215,
+   0.9583,
+   -0.2758
   ],
   "right_eye_px": [
    758.6,
-   485.7
+   485.8
   ],
-  "right_eye_above_sheet_cm": -4.4,
+  "right_eye_above_sheet_cm": -8.7,
   "left_eye_world": [
-   0.0731,
-   1.0024,
-   -0.2545
+   0.0744,
+   0.9583,
+   -0.2585
   ],
   "left_eye_px": [
    1163.8,
-   485.7
+   485.8
   ],
-  "left_eye_above_sheet_cm": 0,
-  "nose_above_sheet_cm": -4.7,
-  "mouth_above_sheet_cm": -7.3,
+  "left_eye_above_sheet_cm": -4.3,
+  "nose_above_sheet_cm": -9,
+  "mouth_above_sheet_cm": -11.7,
   "sheet_half_thickness_cm": 0.66,
   "in_lit_length": true
  },
@@ -460,15 +460,15 @@
    },
    "head_deg": {
     "yaw_left": 71.9,
-    "pitch_up": -2.7,
+    "pitch_up": -0.5,
     "note": "head relative to the chest"
    },
    "eye_deg": {
-    "yaw_left": 22.7,
-    "pitch_up": 0.6,
-    "wanted_yaw": 22.7,
-    "wanted_pitch": 0.6,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, +-30 pitch"
+    "yaw_left": 22.6,
+    "pitch_up": 2.3,
+    "wanted_yaw": 22.6,
+    "wanted_pitch": 2.3,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -477,11 +477,11 @@
    "warnings": [],
    "eyes_px": [
     960.2,
-    485.7
+    485.8
    ],
    "target_px": [
-    -48881,
-    -5387.1
+    -38125.1,
+    4958.2
    ],
    "target_in_front": false
   }
@@ -534,7 +534,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "littleJade": 0.4917
+  "littleJade": 0.5871
  },
  "colour_separation": [],
  "figure_report": {
@@ -551,7 +551,25 @@
     "L": 0.88,
     "R": 0.88
    },
-   "headTurn": 72
+   "headTurn": 72,
+   "body": {
+    "mesh": "jade05",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 70,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 70,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    }
+   }
   }
  }
 }

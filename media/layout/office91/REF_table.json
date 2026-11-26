@@ -799,5 +799,10 @@
   "face_radius_m": 0.0098
  },
  "times": null,
+ "gaze": {},
+ "costume": {},
+ "holds": [],
+ "figure_frame_fraction": {},
+ "colour_separation": [],
  "figure_report": {}
 }

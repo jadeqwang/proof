@@ -281,20 +281,20 @@
  "heads": {
   "jade4h": {
    "px": [
-    869,
-    116.8
+    826.3,
+    158.2
    ],
    "eyes": [
-    937,
-    220.5
+    896.8,
+    256.8
    ],
    "mouth": [
-    877.2,
-    257.8
+    840.8,
+    295.8
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 81
+   "facing_camera_deg": 80
   }
  },
  "hands": {
@@ -937,19 +937,52 @@
   }
  },
  "wrists": {
-  "jade4h": null
+  "jade4h": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -19.1,
+    "radial_deg": -7.3,
+    "twist_deg": null,
+    "elbow_flex_deg": 5.2,
+    "before": {
+     "flex_deg": -19.1,
+     "radial_deg": -7.3,
+     "twist_deg": null
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -19.1,
+    "radial_deg": -7.3,
+    "twist_deg": null,
+    "elbow_flex_deg": 5.2,
+    "before": {
+     "flex_deg": -19.1,
+     "radial_deg": -7.3,
+     "twist_deg": null
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
  },
  "points_world": {
   "jade4h": {
    "eyes": [
-    0.686,
-    0.4079,
-    0.3604
+    0.6635,
+    0.3821,
+    0.3792
    ],
    "head": [
-    0.649,
-    0.4704,
-    0.3914
+    0.6244,
+    0.4423,
+    0.412
    ],
    "handL": [
     0.6406,
@@ -988,6 +1021,83 @@
    ]
   }
  },
+ "gaze": {
+  "jade4h": {
+   "face": "drawn",
+   "look_target": {
+    "name": "keys",
+    "world": [
+     0.766,
+     0.004,
+     0.293
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": -17.1,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -15.4,
+    "wanted_yaw": 0,
+    "wanted_pitch": -15.4,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "keysL",
+     "shape": "flat",
+     "world": [
+      0.641,
+      0.083,
+      0.281
+     ],
+     "look_off_deg": 19.8
+    },
+    {
+     "arm": "R",
+     "target": "keysR",
+     "shape": "flat",
+     "world": [
+      0.756,
+      0.083,
+      0.419
+     ],
+     "look_off_deg": 19.8
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    896.8,
+    256.8
+   ],
+   "target_px": [
+    1076,
+    819.5
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "jade4h": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "jade4h": 0.1611
+ },
+ "colour_separation": [],
  "figure_report": {
   "jade4h": {
    "legs": {
@@ -1002,7 +1112,25 @@
     "L": 1.26,
     "R": 1.26
    },
-   "headTurn": 0
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade04h",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 9,
+     "upperarm_stretch": 1.09,
+     "forearm_stretch": 0.93,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 9,
+     "upperarm_stretch": 1.09,
+     "forearm_stretch": 0.93,
+     "hand_scale": 0.96
+    }
+   }
   }
  }
 }
