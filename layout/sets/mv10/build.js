@@ -8,6 +8,9 @@ import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
 import { CAST, PROP } from '../_cast.js';
 import { ladleGrip, buildLadle } from './ladleGrip.js';
 import { glassTable } from './glassTable.js';
+import { spineArt } from './spines.js';
+import { artPlane, decalMesh } from '../_art.js';
+import { LOGOS, MEATBALL as MB, SR71 } from './art.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
   COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
   TREE, GRAPEFRUIT, POI, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
@@ -63,7 +66,7 @@ function sandals(fig) {
 // a meatball marker disc, and the boot-cut flare (a cone from the knee to a hem just off the floor, over the foot).
 // ASSUMED (flagged): zip-front jacket worn unzipped, fronts nearly closed (tee sliver ~4 cm); hip-length; meatball ~8 cm;
 // socks plain mid-grey; hem 1.2 cm off the floor, ~44 cm round at the hem.
-export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)',
+export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (disc about 8 cm) on its LEFT chest, EXACTLY the decal layout/assets/art/logos/nasa_meatball.png (pass it as a reference): the real 1959 meatball, blue disc, white stars, white orbit ring, red chevron and its small white NASA lettering, the same in every shot (2026-11-26, Jade: one version of the logo; the earlier no-lettering note is superseded, flagged)',
   tee: 'fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts', pants: 'boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)',
   feet: 'socks, no shoes (Jade); colour plain mid-grey ASSUMED', before_party: 'same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)', sheet: 'cast/jade_27/j27_costume_housewarming_v1.jpg' };
 function housewarming(fig) {
@@ -80,9 +83,18 @@ function housewarming(fig) {
     for (let i = 0; i <= N; i++) { const v = v0 + (v1 - v0) * i / N; for (const u of [-w, w]) { const p = surf(u, v, 0.003) || P.shoulderC.clone().addScaledVector(P.cy, v).addScaledVector(P.cx, u); verts.push(p.x, p.y, p.z); } }
     for (let i = 0; i < N; i++) { const a = 2 * i; idx.push(a, a + 1, a + 3, a, a + 3, a + 2); }
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3)); g.setIndex(idx); g.computeVertexNormals();
-    const m = mk(g, BLACK_TEE); m.userData.double = true; m.userData.idGroup = 'jade27:tee'; out.add(who(m, 'Jade (27): tee between the jacket fronts (SR-71 print, barely visible)')); }
+    // 2026-11-26: the strip shows its slice of the SR-71 print (logos/sr71_print.png; centred on the chest, SR71.w wide)
+    const uvs = []; for (let i = 0; i <= N; i++) { const v = v0 + (v1 - v0) * i / N; for (const u of [-w, w]) uvs.push(0.5 + u / SR71.w, 0.5 + (v - SR71.v) / SR71.w); }
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+    const m = mk(g, LOGOS.sr71 ? { ...BLACK_TEE, art: LOGOS.sr71.art, artGrey: LOGOS.sr71.artGrey, artEdge: LOGOS.sr71.artEdge } : BLACK_TEE); m.userData.double = true; m.userData.idGroup = 'jade27:tee'; out.add(who(m, 'Jade (27): tee between the jacket fronts (SR-71 print, barely visible)')); }
   // the meatball on the jacket's left chest (her own left = +cx)
-  { const c = surf(0.085, -0.1, 0.004); if (c) { const n = c.clone().sub(surf(0.085, -0.1, 0)).normalize();
+  // 2026-11-26: the canonical decal (layout/assets/art/logos/nasa_meatball.png, art.js), conformed to the torso by the
+  // same raycast; without the image, the old plain disc
+  { const c = surf(0.085, -0.1, 0.004); if (c && LOGOS.meatball) { const M = MB, k = M.disc_m / (2 * M.r), w = M.imgW * k, h = M.imgH * k;
+      const u0 = 0.085 - M.cx * k, v0 = -0.1 + (M.cy - M.imgH) * k;   // the image's bottom-left corner, so the disc centre lands at (0.085, -0.1)
+      const m = decalMesh(LOGOS.meatball, (s, t) => surf(u0 + s * w, v0 + t * h, 0.004) || c, MEATBALL); m.userData.idGroup = 'jade27:meatball';
+      out.add(who(m, 'Jade (27): NASA meatball (jacket, left chest)')); }
+    else if (c) { const n = c.clone().sub(surf(0.085, -0.1, 0)).normalize();
     const m = mk(new THREE.CircleGeometry(0.04, 32), MEATBALL); m.position.copy(c); m.lookAt(c.clone().add(n)); m.userData.double = true; m.userData.idGroup = 'jade27:meatball';
     out.add(who(m, 'Jade (27): NASA meatball (jacket, left chest)')); } }
   // boot-cut flare: from the knee (fitted) to the hem
@@ -184,13 +196,19 @@ function placeBooks(g, list, cu, start, dir, limit, half) {
   for (const b of list.filter((b) => (b.lay || 'stand') === 'stand')) {
     if ((limit - (x + dir * b.w)) * dir < -1e-4 || b.h > SHELF.cube - 0.003) { SHELF_WARN.push(`${cu.key}: no room for "${b.t}"`); continue; }
     const m = box(b.w - 0.0012, b.h, b.d, bookLook(b), [x + dir * b.w / 2, cu.y0 + b.h / 2, zs - b.d / 2]); m.userData.book = b.t;
-    g.add(tag(m, bookLabel(b, half))); x += dir * b.w; runH = Math.max(runH, b.h); }
+    g.add(tag(m, bookLabel(b, half))); g.add(spinePlane(b, false, [x + dir * b.w / 2, cu.y0 + b.h / 2], half)); x += dir * b.w; runH = Math.max(runH, b.h); }
   const flat = list.filter((b) => b.lay === 'flat').sort((p, q) => q.h - p.h); if (!flat.length) return;
   const pw = flat[0].h; let px, yy;
   if ((limit - x) * dir >= pw + 0.006) { px = x + dir * (pw / 2 + 0.006); yy = cu.y0; } else { px = run0 + dir * pw / 2; yy = cu.y0 + runH; }
   for (const b of flat) { if (yy + b.w > cu.y1 - 0.002) { SHELF_WARN.push(`${cu.key}: no headroom for "${b.t}" lying flat`); break; }
     const m = box(b.h - 0.002, b.w - 0.0012, b.d, bookLook(b), [px + dir * (hash(b.t) - 0.5) * 0.006, yy + b.w / 2, zs - b.d / 2]); m.userData.book = b.t;
-    g.add(tag(m, bookLabel(b, half))); yy += b.w; }
+    g.add(tag(m, bookLabel(b, half))); g.add(spinePlane(b, true, [px + dir * (hash(b.t) - 0.5) * 0.006, yy + b.w / 2], half)); yy += b.w; }
+}
+// 2026-11-26: the spine lettering (spines.js: the real titles, drawn in code), a plane on the book's front face
+function spinePlane(b, flat, [cx, cy], half) {
+  const L = bookLook(b), a0 = spineArt(b, L.col), a = flat ? a0.flat : a0;
+  const m = flat ? artPlane(a, b.h - 0.002, b.w - 0.0012, { grey: L.grey, col: L.col }) : artPlane(a, b.w - 0.0012, b.h, { grey: L.grey, col: L.col });
+  m.position.set(cx, cy, SHELF.spineZ + 0.0006); m.userData.book = b.t; return tag(m, bookLabel(b, half));
 }
 function shelfObject(o) {
   const g = new THREE.Group(), A = (m) => g.add(m);

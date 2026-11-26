@@ -730,3 +730,17 @@ Questions for Jade (proposed for the decision page):
   `media/layout/mv10/T0_ladlegrip_b_form.png`.
 - **si1_where:** SI1 inside the open sliding door with the poi beside her (as built) / at the Expedit (no poi in frame).
   Recommendation: as built. Image: `media/layout/mv10/SI1_lit.png`.
+
+## 2026-11-26: fixed background art and clothing decals (Jade: art and logos the same in every shot)
+- Expedit spines are fixed textures drawn in code (mv10/spines.js): the six titles Jade named carry their real
+  lettering (Fundamental Neuroscience, Principles of Neural Science, Nonlinear Dynamics and Chaos, the Feynman
+  Lectures I-III, The Dragons of Eden, A Short History of Nearly Everything); every other book in layout.js BOOKS is our
+  placeholder, so its spine shows fixed unreadable bars, no words, until Jade's list arrives. Colours are ours (bookLook).
+- Clothing decals (mv10/art.js): the NASA meatball = layout/assets/art/logos/nasa_meatball.png (the public-domain 1959
+  insignia, with its white NASA lettering), disc 8 cm on her left chest, conformed to the torso (sets/_art.js
+  decalMesh). The SR-71 tee print = layout/assets/art/logos/sr71_print.png (only the sliver between the jacket fronts).
+  Prompts: pass nasa_meatball.png as a reference in every shot of Jade in the jacket ("exactly this logo, this size").
+- FLAG: HOUSEWARMING_COSTUME used to say "no lettering"; it now points at the decal (the real insignia has lettering).
+  One version is Jade's rule; which one is a question for her.
+- Repaint in r4: every shot that sees the shelf (BRpan_a/m1/b/c, BR6, V3_nailed, V3_rev_temple_a/b, C2a, V3_rcv_obl)
+  and every shot of Jade's jacket.

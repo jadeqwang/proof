@@ -1,0 +1,17 @@
+canonical background art for layout/assets/art/logos/sw_tree_print.png
+date: 2026-11-26 11:14
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1254x1254, centre-cropped to aspect 0.850 (w/h), saved 870x1024
+refs: none
+assumed / invented: INVENTED from Jade's words "Christmas sweatshirt with cracked print" (brainstorm.md): the tree design is our proposal (the r3 paintings PC3a / X_sw painted a tree; the cast sheet had geese)
+
+prompt:
+IMPORTANT: make this image SQUARE (not 16:9), roughly 0.85:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A screen-printed graphic from a 1991 American "Christmas sweatshirt", as the print itself, on a plain flat pure white
+background (#FFFFFF everywhere outside the print, nothing else): a stylised Christmas tree in green, built from simple
+stacked triangle tiers, with round red and gold ornaments, a gold star on top, a brown trunk, a few white snow dots;
+the print is worn and CRACKED all over like old plastisol ink after many washes (fine white crack lines through the
+colours). Flat, straight-on, no fabric, no shadow, centred with a white margin.
+post: white background keyed out to transparency (holes filled so the outline is solid), cropped to the print (840, 1013)
+post: resized to (531, 640) and saved as a 256-colour PNG (alpha kept)

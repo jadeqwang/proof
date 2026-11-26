@@ -1,0 +1,18 @@
+canonical background art for layout/assets/art/mortongrove07/mg_picture.png
+date: 2026-11-26 11:07
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1672x941, centre-cropped to aspect 1.454 (w/h), saved 1024x704
+refs: none
+assumed / invented: INVENTED: the subject (a muted impressionist field landscape), the cream mat and the colours are our proposal; Jade has only given its size (1.4 x 1.0 m, 4x larger)
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.45:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A large framed art print as it hung over the couch in an ordinary suburban living room near Chicago in 2007: the
+print fills the image edge to edge, including its wide cream-white mat border (about 9% of the width on each side) and
+the print inside the mat. The print is a muted, decorator-style impressionist landscape reproduction: a quiet field of
+wheat and tall grass in soft ochre, sage green and warm grey, a line of round trees in the middle distance, a pale
+hazy cream-and-grey sky (almost no blue), soft visible brush strokes. Calm, faded, slightly yellowed colours. Straight
+on, no glass glare, no frame (the frame is built separately), just the mat and the print.
+post: cropped to the print only (the cream mat strips removed: the mat is built in code, mortongrove07/art.js)
+post (2026-11-26): resized to 1024x587 max and saved as a 256-colour PNG to keep the public repo small

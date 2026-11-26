@@ -35,13 +35,19 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
 - **three.js** (r170): every set, camera and guide render (`layout/`).
 - **Jolt Physics** (jolt-physics 1.1.2, WASM; Jorrit Rouwe, MIT): soft-body cloth for the IAS hoodie in Morton Grove
   (`layout/sets/mortongrove07/sweatshirt_jolt.js`, vendored at `layout/vendor/jolt-physics/`).
+- **Blender** 4.5 LTS (headless) + **MPFB2** 2.0.18 (MakeHuman for Blender; the MakeHuman system assets, CC0): the rigged
+  human body meshes for every figure (`layout/assets/bodies/`, `layout/engine/humanMesh.js`, 2026-11-26).
 - **Playwright** + **Chrome** (SwiftShader): headless rendering of the sets.
 - **Pillow**, **OpenCV**, **NumPy**: compositing, toner labels, gold pencil, contact sheets (`tools/kf/`, `tools/ink/`).
 - **ImageMagick**: crops and montages for review.
+- **SciPy** (ndimage): cutting the alphabet-card pictures and the clothing prints out of their sheets (`tools/kf/alphabet_cards.py`).
+- **NASA insignia** ("meatball", 1959, James Modarelli; public domain, US government work), from Wikimedia Commons
+  `File:NASA_logo.svg`: the canonical decal on Jade's jacket (`layout/assets/art/logos/nasa_meatball.png`, 2026-11-26).
+- **Fonts**: DejaVu Sans, Liberation Sans/Serif (book spines, alphabet letters, clock faces), Droid Sans Fallback
+  (Shanghai calligraphy scrolls and calendar), drawn in code on canvases.
 - **FFmpeg**: frame grabs from Jade's earlier film *Moongazing* for reference (the Sagan ring, 2026-11-26).
 
 ## Planned / in progress (move up once used)
-- **Blender** + **MPFB2 (MakeHuman for Blender)**, CC0 assets: rigged human body meshes for every figure (2026-11-26).
 - **Rapier** (`@dimforge/rapier3d-compat`): physics check that every held or resting object is supported.
 - **BiRefNet** / **SAM 2**: matting options already written into `tools/ink/video.py`; not run yet.
 - Video models for the motion step (plan steps 6-8): none chosen yet.

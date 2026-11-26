@@ -1,0 +1,16 @@
+canonical background art for layout/assets/art/office91/turkey_1.png
+date: 2026-11-26 11:01
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1436x1095, centre-cropped to aspect 1.312 (w/h), saved 1024x780
+refs: none
+assumed / invented: the turkey's colours, paper colour and the child's name are invented
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.31:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A real child's handprint turkey, Thanksgiving 1991, made by a second-grader in an American elementary school: on a
+sheet of orange construction paper, the child's left hand traced in black crayon with fingers spread, the four fingers
+coloured as feathers (red, yellow, green, brown crayon stripes), the thumb as the turkey's head with a dot eye, a
+small orange beak and a red wattle, two stick legs in crayon underneath. Wobbly child's lettering at the bottom:
+"HAPPY THANKSGIVING" and the name "Kevin". Plain, naive, uneven crayon strokes, paper texture visible. Flat scan.
+post (2026-11-26): resized to 640x488 max and saved as a 256-colour PNG to keep the public repo small

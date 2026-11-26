@@ -1,0 +1,3 @@
+office91 alphabet line: 26 cards Aa..Zz in one strip (256 x 300 px each = 0.128 x 0.15 m).
+Made by tools/kf/alphabet_cards.py: letters drawn in code (DejaVu Sans Bold, red/blue/green in turn, blue top and base lines, red dashed midline); pictures cropped from alphabet_icons.png (Codex).
+INVENTED: which picture stands for each letter (apple, beach ball, cat, dog, elephant, fish, grapes, house, ice cream, jam, kite, lemon, moon, nest, octopus, pig, queen's crown, rabbit, sun, tree, umbrella, violin, watermelon, xylophone, yo-yo, zebra); A-M follow what the r3 painting PC1_v1 showed.

@@ -1,0 +1,12 @@
+canonical background art for layout/assets/art/office91/corridor_drawing_2.png
+date: 2026-11-26 11:08
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1672x941, centre-cropped to aspect 1.200 (w/h), saved 1024x853
+refs: none
+assumed / invented: INVENTED: content of this child's picture (colours, words, subject) is our proposal; Jade only said handprint turkeys and other elementary-school children's art (corridor board, staged as a later visit about 1993-94)
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.20:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A real child's crayon drawing from an American elementary school, 1993-94 school year, made by a nine-year-old: a castle with towers and flags on a hill, a moat, a dragon in the sky. Done in wax crayon (and a little marker) on white drawing paper, naive proportions, uneven strokes, white paper showing between strokes, a child's wobbly handwriting where words appear. Flat scan of the paper sheet, edge to edge.
+post (2026-11-26): resized to 640x533 max and saved as a 256-colour PNG to keep the public repo small

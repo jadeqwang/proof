@@ -1,0 +1,8 @@
+canonical decal: the NASA insignia ("meatball", 1959 design by James Modarelli), NOT the 1975 "worm" logotype.
+source: Wikimedia Commons File:NASA_logo.svg (public domain, a work of the US government), rasterised with ImageMagick
+at 1100 x 920 px, transparent background. Disc = 80.3 of the 110-unit width; the red chevron runs past the disc.
+date: 2026-11-26. route: download of the public-domain vector (no image model).
+use: Jade's thin black jacket, left chest, mv10 (Jade, HANDOFF 2026-11-25: "a NASA meatball logo on the chest").
+size on the garment: disc 8 cm across (ASSUMED, as in mv10 build.js), so the decal is 10.96 x 9.17 cm.
+NOTE: includes the white NASA lettering, as the real insignia does. mv10's costume text had said "no lettering" (an
+agent's fix for r3); one version only is the point, so this decal is the canonical one. Question for Jade in NOTES.

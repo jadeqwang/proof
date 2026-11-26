@@ -1,0 +1,12 @@
+canonical background art for layout/assets/art/office91/turkey_2.png
+date: 2026-11-26 11:06
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1435x1096, centre-cropped to aspect 1.312 (w/h), saved 1024x780
+refs: none
+assumed / invented: INVENTED: content of this child's picture (colours, words, subject) is our proposal; Jade only said handprint turkeys and other elementary-school children's art
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.31:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A real child's handprint turkey, Thanksgiving 1991, made by a seven-year-old in an American elementary school (second grade): on a sheet of yellow construction paper, the child's hand traced in brown crayon with fingers spread, the four fingers coloured as feathers (orange, red, purple and green stripes), the thumb as the turkey's head with a dot eye, a small beak and a red wattle, stick legs in crayon underneath. Wobbly letters along the top: "I AM THANKFUL FOR MY MOM". Plain, naive, uneven crayon strokes, paper texture visible. Flat scan.
+post (2026-11-26): resized to 640x488 max and saved as a 256-colour PNG to keep the public repo small

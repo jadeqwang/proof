@@ -1,0 +1,17 @@
+canonical background art for layout/assets/art/logos/sr71_print.png
+date: 2026-11-26 11:15
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1254x1254, centre-cropped to aspect 1.000 (w/h), saved 1024x1024
+refs: none
+assumed / invented: From Jade (HANDOFF 2026-11-25): an SR-71 planform, angled down-left, dark grey on black; the exact drawing is the image model's
+
+prompt:
+IMPORTANT: make this image SQUARE (not 16:9), roughly 1.00:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A t-shirt graphic, as the print itself, on a plain flat pure white background (#FFFFFF everywhere else): the planform
+(top view, straight down) of a Lockheed SR-71 Blackbird, drawn as an accurate, crisp silhouette in a single flat dark
+charcoal grey with slightly lighter grey panel lines: long chined fuselage, delta wing, two engine nacelles with inlet
+spikes, two inward-canted fins; the aircraft rotated so its nose points to the LOWER LEFT, about 35 degrees below
+horizontal. No text, no shading, no background.
+post: white background keyed out to transparency (holes filled so the outline is solid), cropped to the print (976, 978)
+post: resized to (639, 640) and saved as a 256-colour PNG (alpha kept)

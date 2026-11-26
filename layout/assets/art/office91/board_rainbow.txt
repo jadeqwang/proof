@@ -1,0 +1,12 @@
+canonical background art for layout/assets/art/office91/board_rainbow.png
+date: 2026-11-26 11:09
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1141x1378, centre-cropped to aspect 0.833 (w/h), saved 853x1024
+refs: ../../../../tmp/claude-1000/-home-jade-Documents-proof/e9bc714e-9ed3-4b48-a75b-73b69da086c0/scratchpad/refs/rainbow.png
+assumed / invented: INVENTED (matched to the r3 painting PC1_v1's board): a child's rainbow drawing
+
+prompt:
+IMPORTANT: make this image PORTRAIT (not 16:9), roughly 0.83:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A real child's crayon drawing from an American elementary school, November 1991, made by a seven-year-old: a big arching rainbow (red, orange, yellow, green, blue, purple bands) over a strip of green grass, white sky. Wax crayon on white drawing paper, naive proportions, uneven strokes, white paper showing between strokes. Flat scan of the whole sheet, edge to edge. The attached image is a small painted glimpse of this same drawing on a classroom wall: keep its subject, layout and colours, but make it a real crayon drawing.
+post (2026-11-26): resized to 533x640 max and saved as a 256-colour PNG to keep the public repo small

@@ -125,3 +125,19 @@ and measured hits. Times written elsewhere in this file before this section are 
 - (This set was on v2 times, which match v3 to ~0.1 s here.) H1 19.00-25.63 (groove 19.0), H1b -29.74 (verse 1); PC1 77.24
   (pre-chorus start; sung 78.28)-81.50, PC2 -83.27, PC3 (gap) -87.37, PC4 -90.78, PC5 -92.68 (band out), BO1 92.68-94.68
   ("looks"), BO2 94.68-96.00 ("How do you feel?").
+
+## 2026-11-26: fixed background art and clothing decals (Jade: art and logos the same in every shot)
+- Every wall picture is now a fixed image on its plane (layout/sets/office91/art.js, images in
+  layout/assets/art/office91/, each with a .txt sidecar). Shows in every guide mode (sets/_art.js; render.js look.art).
+- Back wall: alphabet line = alphabet_cards.png (26 cards; letters drawn in code, pictures apple..zebra from
+  alphabet_icons.png); turkeys turkey_1..3 upper left; the cork board re-laid to the FIVE pictures the r3 painting
+  PC1_v1 showed (board_house, turkey_4, board_rainbow / board_family, board_snowman; was 7 blank); drawing_2 and
+  turkey_6 beyond the board (x 1.05); the wall clock has a code-drawn face (10:10).
+- Corridor board (FE_out, FE_thumbs): corridor_turkey_1..3, corridor_drawing_1..5 (layout.js HALL_ART).
+- The social worker's sweatshirt print is a decal: layout/assets/art/logos/sw_tree_print.png (Christmas tree, cracked
+  print, 17 x 20 cm, chest centre). Prompts: pass it as a reference and say "exactly this print".
+- INVENTED (flag): every picture's content (Jade: "an alphabet, turkeys drawn as handprints, other elementary school
+  children's art"); the tree design (Jade's words were "Christmas sweatshirt with cracked print"; the cast sheet had
+  geese); the sweatshirt stays the set's sage green while r3 painted dusty rose. Questions in work/background_art_audit.md.
+- Painter prompts: pass the r4 guides as usual; for close shots of the wall add the images it shows as references.
+- Repaint in r4: PC1, PC2, PC4 (board now 5 pictures; PC2 had drifted), FE_out, FE_thumbs, PC3a, X_sw.

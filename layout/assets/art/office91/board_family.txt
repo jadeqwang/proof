@@ -1,0 +1,12 @@
+canonical background art for layout/assets/art/office91/board_family.png
+date: 2026-11-26 11:09
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1519x1035, centre-cropped to aspect 1.470 (w/h), saved 1024x696
+refs: ../../../../tmp/claude-1000/-home-jade-Documents-proof/e9bc714e-9ed3-4b48-a75b-73b69da086c0/scratchpad/refs/family.png
+assumed / invented: INVENTED (matched to the r3 painting PC1_v1's board): a child's stick-figure family; NOT Jade's family
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.47:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A real child's crayon drawing from an American elementary school, November 1991, made by a seven-year-old: a stick-figure family holding hands: a dad in a blue shirt, a small girl in a red dress in the middle, a mom in a purple dress with long hair, smiling round faces, green grass at their feet. Wax crayon on white drawing paper, naive proportions, uneven strokes, white paper showing between strokes. Flat scan of the whole sheet, edge to edge. The attached image is a small painted glimpse of this same drawing on a classroom wall: keep its subject, layout and colours, but make it a real crayon drawing.
+post (2026-11-26): resized to 640x435 max and saved as a 256-colour PNG to keep the public repo small

@@ -136,3 +136,9 @@ and measured hits. Times written elsewhere in this file before this section are 
 
 - Chorus 2a 3:23.4-3:34.2: CL_wide 3:23.4-3:28.0 (drums alone to 3:26.1), CL_hands 3:28.0-3:29.4, CL_ots 3:29.4-3:32.5
   ("I honestly don't know" sung 3:29.45), CL_chin 3:32.5-3:34.2 (stretched to meet chorus 2b at 3:34.2).
+
+## 2026-11-26: fixed background art and clothing decals (Jade: art and logos the same in every shot)
+- The navy plaid blanket on the futon is a fixed tartan drawn in code (closet02/art.js): navy ground, forest-green
+  bands, thin white and red overchecks, 0.15 m repeat (SETT INVENTED; Jade: "a navy plaid blanket"). Lit/flat/form show
+  it; line/contour only faintly so the stripes do not read as folds. Prompts: "the navy plaid exactly as in the guide".
+- No wall art in this set. Hanging clothes, duvet and shelf contents stay plain (proposals in work/background_art_audit.md).

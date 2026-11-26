@@ -1,0 +1,12 @@
+canonical background art for layout/assets/art/office91/drawing_2.png
+date: 2026-11-26 11:08
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1115x1410, centre-cropped to aspect 0.786 (w/h), saved 805x1024
+refs: none
+assumed / invented: INVENTED: content of this child's picture is our proposal
+
+prompt:
+IMPORTANT: make this image PORTRAIT (not 16:9), roughly 0.79:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A real child's crayon drawing from an American elementary school, November 1991, made by a seven-year-old: a pilgrim hat (black with a yellow buckle) above the words "I AM THANKFUL FOR" and below it a drawing of a dog, a cat and a pie. Done in wax crayon (and a little marker) on white drawing paper, naive proportions, uneven strokes, white paper showing between strokes, a child's wobbly handwriting where words appear. Flat scan of the paper sheet, edge to edge.
+post (2026-11-26): resized to 503x640 max and saved as a 256-colour PNG to keep the public repo small

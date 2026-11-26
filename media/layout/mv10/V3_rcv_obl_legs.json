@@ -677,7 +677,7 @@
     267.2
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 136,
    "blocked_by": "A1 guest A1 (face undrawn)"
   },
@@ -695,7 +695,7 @@
     236.6
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 66
   },
   "A3": {
@@ -712,7 +712,7 @@
     226.4
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 73
   },
   "S1": {
@@ -729,7 +729,7 @@
     640.6
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 112
   },
   "B2": {
@@ -746,7 +746,7 @@
     582.3
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 54
   },
   "B1": {
@@ -763,7 +763,7 @@
     610.4
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 57
   },
   "C1": {
@@ -780,7 +780,7 @@
     297.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 95
   },
   "C2": {
@@ -797,7 +797,7 @@
     308.9
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 84
   },
   "C3": {
@@ -814,7 +814,7 @@
     258.3
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 50
   },
   "T1": {
@@ -831,7 +831,7 @@
     223.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 147,
    "blocked_by": "T1 guest T1, at the punchbowl (face undrawn)"
   },
@@ -849,7 +849,7 @@
     440.3
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 107
   },
   "K1": {
@@ -866,7 +866,7 @@
     425.9
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 83
   },
   "R1": {
@@ -883,7 +883,7 @@
     360.7
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 66
   },
   "friend": {
@@ -900,7 +900,7 @@
     222.7
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 149,
    "blocked_by": "friend childhood friend (27; face undrawn, back and hands only)"
   },
@@ -918,7 +918,7 @@
     679
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 116,
    "blocked_by": "firstLove27 first love (27, never face-on)"
   },
@@ -936,7 +936,7 @@
     306.3
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 55
   },
   "N2": {
@@ -953,7 +953,7 @@
     246.4
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 51
   },
   "N3": {
@@ -970,7 +970,7 @@
     345.2
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 55
   },
   "N4": {
@@ -999,7 +999,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A1.R": {
    "px": [
@@ -1008,7 +1008,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A2.L": {
    "px": [
@@ -1017,7 +1017,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A2.R": {
    "px": [
@@ -1035,7 +1035,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A3.R": {
    "px": [
@@ -1044,7 +1044,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "S1.L": {
    "px": [
@@ -1053,7 +1053,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "S1.R": {
    "px": [
@@ -1062,7 +1062,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B2.L": {
    "px": [
@@ -1071,7 +1071,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B2.R": {
    "px": [
@@ -1080,7 +1080,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B1.L": {
    "px": [
@@ -1089,7 +1089,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B1.R": {
    "px": [
@@ -1098,7 +1098,7 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C1.L": {
    "px": [
@@ -1107,7 +1107,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C1.R": {
    "px": [
@@ -1116,7 +1116,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C2.L": {
    "px": [
@@ -1125,7 +1125,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C2.R": {
    "px": [
@@ -1134,7 +1134,7 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C3.L": {
    "px": [
@@ -1143,7 +1143,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C3.R": {
    "px": [
@@ -1152,7 +1152,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "T1.L": {
    "px": [
@@ -1161,7 +1161,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "T1.R": {
    "px": [
@@ -1170,7 +1170,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "jade27.L": {
    "px": [
@@ -1179,7 +1179,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "jade27.R": {
    "px": [
@@ -1188,7 +1188,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "K1.L": {
    "px": [
@@ -1197,7 +1197,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "K1.R": {
    "px": [
@@ -1206,7 +1206,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "R1.L": {
    "px": [
@@ -1215,7 +1215,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "R1.R": {
    "px": [
@@ -1224,7 +1224,7 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "friend.L": {
    "px": [
@@ -1233,7 +1233,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "friend.R": {
    "px": [
@@ -1242,7 +1242,7 @@
    ],
    "shape": "cup",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "firstLove27.L": {
    "px": [
@@ -1251,7 +1251,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "firstLove27.R": {
    "px": [
@@ -1260,7 +1260,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N1.L": {
    "px": [
@@ -1269,7 +1269,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N1.R": {
    "px": [
@@ -1278,7 +1278,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N2.L": {
    "px": [
@@ -1287,7 +1287,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N2.R": {
    "px": [
@@ -1296,7 +1296,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N3.L": {
    "px": [
@@ -1305,7 +1305,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N3.R": {
    "px": [
@@ -1314,7 +1314,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N4.L": {
    "px": [
@@ -1323,7 +1323,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N4.R": {
    "px": [
@@ -2615,7 +2615,7 @@
   "height_m": 1.78
  },
  "jade_costume": {
-  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)",
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (disc about 8 cm) on its LEFT chest, EXACTLY the decal layout/assets/art/logos/nasa_meatball.png (pass it as a reference): the real 1959 meatball, blue disc, white stars, white orbit ring, red chevron and its small white NASA lettering, the same in every shot (2026-11-26, Jade: one version of the logo; the earlier no-lettering note is superseded, flagged)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
   "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",

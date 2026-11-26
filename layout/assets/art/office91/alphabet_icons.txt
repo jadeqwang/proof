@@ -1,0 +1,19 @@
+canonical background art for layout/assets/art/office91/alphabet_icons.png
+date: 2026-11-26 11:10
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1659x948, centre-cropped to aspect 1.750 (w/h), saved 1024x585
+refs: ../../../../tmp/claude-1000/-home-jade-Documents-proof/e9bc714e-9ed3-4b48-a75b-73b69da086c0/scratchpad/refs/alpha.png
+assumed / invented: INVENTED: the alphabet line's pictures (apple ... zebra), matched to PC1_v1 where it shows them (A-M); the letters are drawn in code
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.75:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A sheet of 26 simple, friendly clip-art pictures for a 1991 American classroom alphabet line, printed in flat
+cheerful colours with a thin dark outline, on plain white, arranged in a strict grid of 7 columns and 4 rows (28 equal
+square cells, each picture centred in its cell with white space around it; the last two cells of the bottom row are
+empty white). NO letters, NO words, NO numbers anywhere. In reading order (left to right, top row first):
+apple, beach ball, cat face, dog face, elephant, fish, bunch of purple grapes, house,
+ice cream cone, jar of jam, kite, lemon, crescent moon, bird in a nest,
+octopus, pig, queen's crown, rabbit, sun, tree, umbrella,
+violin, watermelon slice, xylophone, yo-yo, zebra.
+Style like the attached glimpse of the real alphabet cards (soft printed colours, simple shapes).

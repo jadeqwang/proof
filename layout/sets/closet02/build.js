@@ -9,6 +9,8 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { WALL, OPEN, ROOM, DOORS, BEDROOM, SHELF, RAIL, CLOTHES, COATS, DUVET, FUTON, HANDS, FACE, SUN, SUN_DIR, BEAM, beamAt, WINDOW, SUN_H, MOTE, LIGHTS, TOP_Y } from './layout.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from './beam.js';
+import { plaidArt, SETT } from './art.js';
+import { worldUV } from '../_art.js';
 
 // cast: `jade19` and `firstLove19` come from ../_cast.js (one table for every set)
 
@@ -88,6 +90,7 @@ function closet() {
     B.add(box(F.w + 2 * bt, bt, F.len + 2 * bt, NAVY, [xm, F.top + bt / 2, zm]));                                         // over the top
     B.add(box(bt, F.mat + F.drape - 0.03, F.len + 2 * bt, NAVY, [F.x0 - bt / 2, F.top - (F.mat + F.drape - 0.03) / 2, zm])); // down the closet side
     B.add(box(F.w + 2 * bt, F.mat + 0.04, bt, NAVY, [xm, F.top - (F.mat + 0.04) / 2, F.z1 + bt / 2]));                     // the far end
+    { const P = plaidArt(); B.children.forEach((m) => { m.userData.look = { ...m.userData.look, art: P.art, artGrey: P.artGrey, artEdge: P.artEdge }; worldUV(m, SETT); }); }   // 2026-11-26: the fixed tartan (art.js)
     g.add(tag(B, 'navy plaid blanket (on the futon)')); }
   // the window behind him (stand-in, never in frame): a wall square to the light with a hole; it gives the light its
   // top edge (above her head) and keeps the rest of the bedroom out of the sun

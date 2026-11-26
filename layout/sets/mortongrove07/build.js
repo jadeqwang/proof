@@ -12,7 +12,8 @@ import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_beam.js';
 import { wall, hexa, kitchenChair, r3, hideLabels } from '../basement90/kit.js';
 import { sweatshirt, lapColliders, foldedSeal } from './sweatshirt.js';
-import { graspArms } from '../../engine/grasp.js';   // the cloth hoodie (round 3)
+import { graspArms } from '../../engine/grasp.js';
+import { framedPictureArt } from './art.js';   // fixed picture texture (background-art agent)   // the cloth hoodie (round 3)
 import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilY, DROP, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
   KITCHEN, STAIR, COUCH, END_TABLE_E, END_TABLE_W, RUG, COFFEE_TABLE, LOVESEAT, ARMCHAIR, PLANTS, PRINT, MIRROR, PIANO, BENCH, FLOOR_LAMP, CLOSET, DINING,
   HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, TURN, GARMENT, LIGHTS } from './layout.js';
@@ -231,6 +232,7 @@ function furniture() {
   // the framed picture over the couch (round 3: 4x larger, 1.4 x 1.0 m; its subject is not known: a plain panel in a frame)
   g.add(tag(box(PRINT.w, PRINT.h, 0.035, { grey: 0.3, col: 0x4a3e30 }, [PRINT.x, PRINT.y, PRINT.z]), 'framed picture (frame)'));
   g.add(tag(box(PRINT.w - 0.12, PRINT.h - 0.12, 0.01, { grey: 0.55, col: 0x8a8270 }, [PRINT.x, PRINT.y, PRINT.z - 0.02]), 'framed picture (subject unknown)'));
+  g.add(framedPictureArt());
   // the far part: mirror, piano + bench, floor lamp, dining table + six chairs
   { const M = MIRROR; g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0x9aa4a8 }, [M.x - 0.02, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror (not reflecting in these renders)'));
     g.add(tag(box(0.045, M.y1 - M.y0 + 0.08, M.z1 - M.z0 + 0.08, { grey: 0.4, col: 0x6a5a40 }, [M.x - 0.01, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror frame')); }
