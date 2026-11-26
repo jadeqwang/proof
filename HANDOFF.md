@@ -1199,3 +1199,21 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Lead's look at MG_wide_lit: very dark; the mirror reads as a blank dark slab. Brightness pass needed.
 - **Decision page rebuilt for round 5** (16 cards, proof-decisions-v6). Seen while building it: AD_trace reads as a
   thumbs-up; a dark blob on the social worker's back in REF_sw_back.
+
+## Session of 2026-11-26 (night): Jade's round-5 answers
+
+- Pasted and saved verbatim: `work/decisions/JADE_R5_DECISIONS.md` (14 cards answered). Brief: `work/decisions/R5_BRIEF.md`.
+- `inputs/catchair_shuttle.png` (Jade's photo of the play centre, a real business) added to .gitignore: look-only.
+- Lead read of BO2: "the finger should point to the middle of the missing space" = little Jade's finger (BO1/BO2),
+  not the social worker's (she stays on ANXIOUS). BO2_lit is blown out white: the office agent fixes exposure.
+- Plan edited by the lead: BO2 -> X_sw -> AD_trace are plain cuts (no finger match); WL_top added at 1:51.0-1:52.2
+  before WL_in.
+- Seven agents running, ownership in R5_BRIEF: engine-body (SW shoulder vs the parents', SW back blob, soles,
+  dress bare legs, mug grips, shanghai wrists, check_bodies hang), office-market (BO2 finger centred, cart model),
+  attic-wall (AD_trace finger, WL_top shot, WL_in stray hand, WL_in_lit brightness), kitchen-basement (QBasic grey on
+  blue, Jade sitting on one foot with the other dangling, K1 whisper, wrists), mortongrove (steeper ceiling from
+  mg_streetview.png, all-black piano, horse galloping left + vermilion seal, cloth pinch in hand.js, MG_wide_lit
+  brightness), playground (restage on the photo's low soft-play shuttle, Dad 66-67 salt-and-pepper with white
+  temples, semi-rimless glasses, white polo, black pants, black backpack with a black/green pixel bottle and a pink
+  cat bottle, boy in socks, Catch Air), cast (first love v8: hair colour matched to Gaius Baltar's in the prompt).
+- Jade's own 2023 outfit was not described: keep the guess, ask again.
