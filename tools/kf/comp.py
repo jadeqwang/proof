@@ -564,10 +564,28 @@ def draw_gold(frame, marks, sh, default_seed=0):
             a = a0 + np.linspace(0, 2 * math.pi - gap, n) * (1 if m.get('cw', True) else -1)
             u = np.linspace(0, 1, n)
             ph = r.uniform(0, 6.28, 3)
-            rr = R * (1 + 0.035 * np.sin(a + ph[0]) + 0.022 * np.sin(2 * a + ph[1]) + 0.012 * np.sin(3 * a + ph[2])
-                      + r.uniform(-0.05, 0.07) * (u - 0.5))                    # drifts in or out as it comes round
-            sq = 1 + r.uniform(-0.05, 0.05)
-            pen.stroke(np.stack([cx + rr * np.cos(a) * sq, cy + rr * np.sin(a) / sq], 1), w, pres)
+            # optional: `wobble` (1 = the hand; 0 = a compass circle, the moongazing ring) and `progress` (0..1 of the
+            # sweep drawn so far, for draw-on stills). Absent, the ring is exactly as before.
+            wb = float(m.get('wobble', 1.0))
+            drift = r.uniform(-0.05, 0.07) * (u - 0.5)                         # drifts in or out as it comes round
+            if 'wobble' in m:
+                harm = 0.035 * np.sin(a + ph[0]) + 0.022 * np.sin(2 * a + ph[1]) + 0.012 * np.sin(3 * a + ph[2])
+                rr = R * (1 + wb * (harm + drift))
+                sq = 1 + wb * r.uniform(-0.05, 0.05)
+            else:                                                              # the original arithmetic, bit for bit
+                rr = R * (1 + 0.035 * np.sin(a + ph[0]) + 0.022 * np.sin(2 * a + ph[1]) + 0.012 * np.sin(3 * a + ph[2])
+                          + drift)
+                sq = 1 + r.uniform(-0.05, 0.05)
+            pts = np.stack([cx + rr * np.cos(a) * sq, cy + rr * np.sin(a) / sq], 1)
+            if 'progress' in m:
+                k = int(round(float(np.clip(m['progress'], 0, 1)) * (n - 1))) + 1
+                if k < 2:
+                    continue
+                pts = pts[:k]
+            if 'wobble' in m:
+                pen.stroke(pts, w, pres, wobble=wb)
+            else:
+                pen.stroke(pts, w, pres)
         elif ty == 'dots':
             p = _resample(np.asarray(m['path'], np.float64), 1.0)
             gap = float(m.get('gap', 14))

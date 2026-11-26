@@ -27,6 +27,13 @@ GOLD_BRIGHT = np.array([1.00, 0.80, 0.18], F32)    # the line being drawn now (J
 PAPER = np.array([0.925, 0.885, 0.795], F32)       # frost's paper (the clearance)
 KEY_PAD = 1.4                                       # keyline: canvas px beyond the gold on each side
 UMBER = np.array([0.30, 0.20, 0.08], F32)          # the keyline under the gold (as gold leaf is laid over a drawn line)
+# 2026-11-26 (Jade, r3: "it would be nice if the gold was brighter/shimmery"): metallic gold for the bright lines when
+# Gold(shimmer=...) is on: deeper at the edges of the line, saturated in the body, a specular streak down the middle,
+# plus (animated) a glint that runs along each line and flecks that twinkle where the paper's tooth stands up.
+GOLD_EDGE = np.array([0.62, 0.40, 0.06], F32)
+GOLD_SPEC = np.array([1.00, 0.95, 0.74], F32)
+WHITE = np.array([1.00, 0.99, 0.93], F32)
+GLOW = np.array([1.00, 0.90, 0.52], F32)            # the light a glint spills past the edge of the line
 
 
 def catmull(p, step):
@@ -98,7 +105,8 @@ class Stroke:
         x1, y1 = int(min(W, math.ceil(p[:, 0].max() + pad) + 1)), int(min(H, math.ceil(p[:, 1].max() + pad) + 1))
         if x1 <= x0 or y1 <= y0:
             self.idx = np.zeros(0, np.int64)
-            self.cov = self.arr = self.ang = self.pr = self.key = self.halo = np.zeros(0, F32)
+            self.cov = self.arr = self.ang = self.pr = self.key = self.halo = self.dn = self.dout = np.zeros(0, F32)
+            self.gphase, self.path, self.Lc = 0.0, p, np.zeros(1)
             return
         tree = cKDTree(p)
         yy, xx = np.mgrid[y0:y1, x0:x1]
@@ -110,6 +118,10 @@ class Stroke:
         keep = np.clip(wd[j] / 2 + max(KEY_PAD, halo) - d + 0.5, 0, 1) > 0.004
         self.idx = ((q[keep, 1] - 0.5).astype(np.int64) * W + (q[keep, 0] - 0.5).astype(np.int64))
         self.cov = cov[keep].astype(F32)
+        self.dn = (d / np.maximum(wd[j] / 2, 1e-3))[keep].astype(F32)       # 0 on the centre line, 1 at the edge
+        self.dout = np.maximum(d - wd[j] / 2, 0)[keep].astype(F32)          # canvas px outside the line's edge
+        self.gphase = float(r.uniform())                                     # where this line's glint is at t = 0
+        self.path, self.Lc = p, L                                            # for the twinkles (Gold.shimmer)
         self.arr = u[j[keep]].astype(F32)
         self.ang = ang[j[keep]].astype(F32)
         self.pr = np.clip(pr[j[keep]], 0.05, 1.3).astype(F32)
@@ -151,8 +163,12 @@ class Gold:
     """All the gold of one clip. Items are (strokes, t0, t1, alpha_fn): strokes drawn one after another between t0
     and t1 (time shared by length), then shown with alpha_fn(t) (1 while drawing)."""
 
-    def __init__(self, W, H, ss, seed=11):
+    def __init__(self, W, H, ss, seed=11, shimmer=None):
+        """shimmer: None (the plain gold pencil and flat bright gold, as before), or a dict: glint (strength of the glint
+        that runs along each bright line, 0..1), period (s between glints on one line), width (glint half-length, output
+        px), fleck (strength of the twinkling flecks, 0..1), rate (twinkles per second per fleck)."""
         self.W, self.H, self.ss = W, H, ss
+        self.shimmer = shimmer
         self.CW, self.CH = W * ss, H * ss
         r = np.random.default_rng(seed)
         # the paper's tooth, fixed: what the gold catches
@@ -162,6 +178,11 @@ class Gold:
         tooth = g1 / g1.std() * 0.5 + g2 / g2.std() * 0.6
         self.tooth = tooth.ravel()
         self.items = []
+        if shimmer:                                     # each fleck (a tooth peak) gets its own twinkle phase, per 3-px cell
+            cell = max(1, int(round(1.5 * ss)))
+            ph = r.uniform(0, 1, (self.CH // cell + 1, self.CW // cell + 1)).astype(F32)
+            self.fphase = np.repeat(np.repeat(ph, cell, 0), cell, 1)[:self.CH, :self.CW].ravel()
+            self.fleck = np.clip((self.tooth - 1.25) / 0.5, 0, 1).astype(F32)
 
     def add(self, strokes, t0, t1, alpha_fn=None, ease=True, clear=False, bright_fn=None):
         """bright_fn(t) in 0..1: how far the stroke is lifted to bright gold (solid, untoothed, GOLD_BRIGHT)."""
@@ -169,6 +190,48 @@ class Gold:
         c = np.concatenate([[0], np.cumsum(Ls)]) / Ls.sum()
         self.items.append(dict(strokes=strokes, t0=t0, t1=t1, c=c, alpha=alpha_fn, ease=ease, clear=clear,
                                bright=bright_fn))
+
+    def _metal(self, s, sheen, t):
+        """Metallic gold for one bright stroke at time t (see Gold.shimmer) -> (colour on the line, glow alpha round it).
+        The glow (light spilling past the line's edge, in GLOW colour) is only there while a glint or a twinkle is."""
+        sh, ss = self.shimmer, self.ss
+        e = np.clip(s.dn, 0, 1) ** 2
+        col = GOLD_BRIGHT[None] * (1 - e)[:, None] + GOLD_EDGE[None] * e[:, None]
+        core = np.exp(-(s.dn / 0.42) ** 2)
+        col = col + (GOLD_SPEC - col) * (0.50 * core * (0.55 + 0.45 * sheen))[:, None]
+        lift = np.zeros(len(s.idx), F32)
+        glow = np.zeros(len(s.idx), F32)
+        if sh.get('glint', 0) > 0 and s.length > 0:       # a glint runs along the line, once every `period` seconds
+            w = sh.get('width', 14.0) * ss
+            span = s.length + 4 * w
+            p = ((t / sh.get('period', 2.8) + s.gphase) % 1.0) * span - 2 * w
+            g = sh['glint'] * np.exp(-((s.arr * s.length - p) / w) ** 2)
+            lift += g * (0.35 + 0.65 * core)
+            glow += g * np.exp(-(s.dout / (sh.get('glow_r', 2.2) * ss)) ** 2)
+        if sh.get('fleck', 0) > 0 and s.length > 0:       # twinkles: small four-point stars at points along the line
+            gap = sh.get('fleck_gap', 70.0) * ss
+            n = max(1, int(s.length / gap))
+            r = np.random.default_rng(int(s.gphase * 1e9) % (1 << 31))
+            at = (np.arange(n) + r.uniform(0.2, 0.8, n)) * s.length / n
+            ph = r.uniform(0, 1, n)
+            tw = np.clip(np.sin(2 * math.pi * (t * sh.get('rate', 0.45) + ph)), 0, 1) ** 10
+            on = tw > 0.02
+            if on.any():
+                xs = np.interp(at[on], s.Lc, s.path[:, 0])
+                ys = np.interp(at[on], s.Lc, s.path[:, 1])
+                px = (s.idx % self.CW).astype(F32) + 0.5
+                py = (s.idx // self.CW).astype(F32) + 0.5
+                arm, wid, rad = sh.get('star', 5.0) * ss, 0.45 * ss, 1.3 * ss
+                for x_, y_, k_ in zip(xs, ys, tw[on]):
+                    dx, dy = np.abs(px - x_), np.abs(py - y_)
+                    st = np.exp(-(dx * dx + dy * dy) / (rad * rad)) \
+                        + np.exp(-dx / arm - (dy / wid) ** 2) + np.exp(-dy / arm - (dx / wid) ** 2)
+                    st = np.clip(st, 0, 1) * sh['fleck'] * k_
+                    lift += st
+                    glow += st
+        lift = np.clip(lift, 0, 1)
+        col = col + (WHITE - col) * lift[:, None]
+        return col, np.clip(glow, 0, 1)
 
     def render(self, t):
         """-> (rgb premultiplied? no: straight colour (H, W, 3), alpha (H, W)) at output resolution."""
@@ -215,7 +278,17 @@ class Gold:
                 col = col + (GOLD_LEAF - col) * (0.55 * sheen * take)[:, None]
                 if br > 0:                                              # the live line: solid bright gold
                     a = a + (s.cov * front * fa - a) * br
-                    col = col + (GOLD_BRIGHT[None] + (GOLD_LEAF - GOLD_BRIGHT)[None] * (0.35 * sheen)[:, None] - col) * br
+                    glow = None
+                    if self.shimmer:
+                        cb, glow = self._metal(s, sheen, t)
+                    else:
+                        cb = GOLD_BRIGHT[None] + (GOLD_LEAF - GOLD_BRIGHT)[None] * (0.35 * sheen)[:, None]
+                    col = col + (cb - col) * br
+                    if glow is not None:                                # light spilling past the edge: over the line
+                        ga = glow * np.clip((v - s.arr) * s.length / (0.6 * self.ss) + 0.5, 0, 1) * fa * br
+                        new_a = a + ga * (1 - a)
+                        col = (col * a[:, None] + GLOW[None] * (ga * (1 - a))[:, None]) / np.maximum(new_a, 1e-6)[:, None]
+                        a = new_a
                 # the keyline first (faint umber, a little wider), then the gold over it
                 ka = s.key * front * 0.42 * fa
                 a_tot = a + ka * (1 - a)

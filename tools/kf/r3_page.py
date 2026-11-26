@@ -30,7 +30,7 @@ R3 = os.path.join(ROOT, "media", "keyframes", "r3")
 TH = os.path.join(R3, "_thumbs")
 # sets whose media/layout/<set>/ guides were re-rendered after this page went to Jade: the page shows the frozen copy in
 # media/keyframes/r3/_layout_snapshot/<set>/ instead (add a set here after copying its folder there).
-LAYOUT_SNAPSHOT = {"mv10", "basement90", "kitchen90", "closet02", "mortongrove07", "shanghai86"}
+LAYOUT_SNAPSHOT = {"mv10", "basement90", "kitchen90", "closet02", "mortongrove07", "shanghai86", "office91", "wall88", "attic88_day", "market93"}
 
 
 def layout_src(path):

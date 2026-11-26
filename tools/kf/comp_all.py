@@ -26,7 +26,7 @@ KF = os.path.join(ROOT, "media", "keyframes")
 GROUND = [0.965, 0.90, 0.81]          # Codex / gpt-image "cream xuan paper", measured on the look-test stills
 GOLD_KEYS = {"ring": ("at", "r"), "dots": ("path",), "line": ("path",), "underline": ("from", "to"),
              "text": ("at", "text"), "ticks": ("at", "n")}
-GOLD_OPT = ("gap", "start", "cw", "size", "width", "pressure", "seed", "align", "tally")
+GOLD_OPT = ("gap", "start", "cw", "size", "width", "pressure", "seed", "align", "tally", "wobble", "progress")
 TEXT_OK = set("0123456789?.:-=+/ ")
 
 # Shots where the shaft of light through the air is lifted to bare paper. Values tuned by eye on the pick.
@@ -59,6 +59,22 @@ TONER_FORCE = {
     ("faces", "AD_out_b"): [{"text": "BUT NOT LIKE THAT", "at": [1500, 330], "size": 25, "rot": 1.5, "gen": 4}],
     ("office91", "PC1"): [{"text": "SHE DOESN'T TALK LIKE OTHER CHILDREN", "at": [470, 300], "size": 24, "rot": -1.5, "gen": 2}],
     ("kitchen90", "K1_question"): [{"text": "DID SHE UNDERSTAND OR JUST PATTERN MATCH?", "at": [440, 105], "size": 21, "rot": -1, "gen": 4}],
+}
+
+
+# In-picture captions (Jade's words, set in the plates' caption type, IM FELL). A record for the edit: comp.py does not
+# draw captions yet, so nothing below is composited by this pass. Song times are the plan's.
+CAPTIONS = {
+    ("office91", "X_sw"): {"text": "Were you afraid during the raid?", "carries_into": ("attic88_day", "AD_trace"),
+                           "source": "Jade, 2026-11-26 (r3 review)",
+                           "note": "On X_sw (the counselor's sweatshirt) and held across the cut into AD_trace (1:36.0-1:37.4); "
+                                   "X_sw's slot is not timed yet (spare). Type, place and timing are proposals."},
+    ("attic88_day", "AD_trace"): {"text": "Were you afraid during the raid?", "carried_from": ("office91", "X_sw"),
+                                  "source": "Jade, 2026-11-26 (r3 review)", "time": "1:36.0-1:37.4 (off at the band hit, AD_grab)"},
+    ("market93", "M2"): {"text": "artichoke", "time": "2:11.9-2:13.6", "source": "Jade, 2026-11-26",
+                         "note": "small lowercase specimen label beside the real artichoke"},
+    ("kitchen90", "K1_question"): {"text": "Did she understand or just pattern match?", "time": "2:22.2-2:23.7", "source": "Jade"},
+    ("closet02", "(opening shot, id not settled)"): {"text": "I don't want to apply to medical school.", "time": "3:23.4-3:26.1 (proposal; the opening closet shot)", "source": "Jade, 2026-11-26"},
 }
 
 

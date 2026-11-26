@@ -525,9 +525,17 @@ CLIPS = dict(
     # as the next one starts. The 8 family first (the market artichoke's 8 arms), 1-7 over verse 2a, cut by the grab at
     # 5.0 s; then (the interlude, from 5.0 s = song 2:30.0) arm 8 and the other family, 5. 'start' keeps the numerals
     # on the same arms as before (8 from 6 o'clock, 5 from 12), so the market's per-bract numerals are unchanged.
-    artichoke=dict(dur=9.5, one_at_a_time=True, line=4.2,
-                   passes=[dict(F=8, t=(0.6, 4.55), last=(5.15, 5.85), n_min=5, smooth=6.0, start=math.pi / 2, first=1.7),
-                           dict(F=5, t=(6.25, 8.55), n_min=5, smooth=6.0, start=-math.pi / 2, first=1.5)]),
+    # 2026-11-26 (Jade, r3: "finish at 8, and if there isn't enough time, you can start at 2. it would be nice if the
+    # gold was brighter/shimmery"): cut A now counts the whole 8 family, 1 to 8, in its 5.0 s (arms 0.35-4.45 s, "8"
+    # written by about 4.75 s, held to the cut), so it no longer stops one short. Cut B (5.0-9.5 s) opens on the eight
+    # settled lines and counts the 5 family, 5.55-8.25 s, then holds both totals. Settled lines and numerals now stay
+    # bright metallic gold (settle 0.6, not 0) and everything bright shimmers (Gold shimmer: a glint along each line,
+    # twinkling flecks). Previous timing: 8 family t=(0.6, 4.55) with last=(5.15, 5.85); 5 family t=(6.25, 8.55).
+    artichoke=dict(dur=9.5, one_at_a_time=True, line=4.2, settle=0.6, settle_alpha=0.92, numeral_dim=0.05,
+                   shimmer=dict(glint=1.0, period=2.2, width=22.0, glow_r=3.2, fleck=1.0, fleck_gap=55.0, rate=0.55, star=7.0),
+                   passes=[dict(F=8, t=(0.35, 4.45), n_min=5, smooth=6.0, start=math.pi / 2, first=1.7),
+                           dict(F=5, t=(5.55, 8.25), n_min=5, smooth=6.0, start=-math.pi / 2, first=1.5)]),
+    # r2 timing (cut A stopped at 7): passes=[dict(F=8, t=(0.6, 4.55), last=(5.15, 5.85), ...), dict(F=5, t=(6.25, 8.55), ...)]
     # the earlier artichoke timing (5 then 8, gold pencil only, 17.0 s), for reference:
     # dict(dur=17.0, passes=[dict(F=5, t=(1.5, 7.6), n_min=5, smooth=6.0), dict(F=8, t=(8.6, 14.6), n_min=5, smooth=6.0)])
     aloe=dict(dur=13.0, passes=[dict(F=5, t=(1.5, 9.5), first=1.8, r_max=0.92, smooth=20.0)]),
@@ -554,7 +562,9 @@ class Clip:
 
     def _build_gold(self):
         P, ss, k = self.plate, self.ss, self.W / 1920.0
-        self.gold = thread.Gold(self.W, self.H, ss)
+        self.gold = thread.Gold(self.W, self.H, ss, shimmer=self.spec.get('shimmer'))
+        sb, sa = self.spec.get('settle', 0.0), self.spec.get('settle_alpha', 0.62)   # where a bright line settles
+        nd = self.spec.get('numeral_dim', 0.30)                                      # how far a settled numeral fades
         # where the plant is (output px), dilated a little: numerals go on bare ground
         x0_, y0_ = P.pane[:2]
         pm = np.zeros((self.H, self.W), bool)
@@ -608,16 +618,17 @@ class Clip:
                     t0, t1 = self.override['arms'][key]
                 path = arm_path(arm['anchors'], smooth_px=ps.get('smooth', 0.0) * k)
                 dev = deviation(path, arm['anchors'])
-                st = thread.Stroke(path * ss, lw * ss, self.W * ss, self.H * ss, seed=1000 * F + arm['k'] + 97 * pi)
+                st = thread.Stroke(path * ss, lw * ss, self.W * ss, self.H * ss, seed=1000 * F + arm['k'] + 97 * pi,
+                                   halo=(9.0 * k * ss if self.spec.get('shimmer') else 0.0))   # room for the glints' glow
 
                 def line_alpha(t, pe=pass_end, solo=(n_pass == 1)):
                     return 1.0 if (solo or t < pe + 0.3) else 1 - 0.30 * min(1.0, (t - pe - 0.3) / 0.8)
 
                 def bright_line(t, a_=t0, b_=t1):                  # bright while drawn, settles over 0.45 s after
-                    return 1.0 if t <= b_ + 0.08 else max(0.0, 1 - (t - b_ - 0.08) / 0.45)
+                    return 1.0 if t <= b_ + 0.08 else max(sb, 1 - (1 - sb) * (t - b_ - 0.08) / 0.45)
 
-                def settled_alpha(t, b_=t1):                       # then a quieter gold pencil, so only the live line shines
-                    return 1.0 if t <= b_ + 0.08 else 1 - 0.38 * min(1.0, (t - b_ - 0.08) / 0.6)
+                def settled_alpha(t, b_=t1):                       # then a quieter gold, so the live line shines most
+                    return 1.0 if t <= b_ + 0.08 else 1 - (1 - sa) * min(1.0, (t - b_ - 0.08) / 0.6)
                 if one:
                     self.gold.add([st], t0, t1, settled_alpha, bright_fn=bright_line)
                 else:
@@ -636,12 +647,12 @@ class Clip:
                 tn0 = t1 - 0.04
                 if one:
                     def num_alpha1(t, b_=t1, tot=is_total):
-                        return 1.0 if (tot or t <= b_ + 0.08) else 1 - 0.30 * min(1.0, (t - b_ - 0.08) / 0.6)
+                        return 1.0 if (tot or t <= b_ + 0.08) else 1 - nd * min(1.0, (t - b_ - 0.08) / 0.6)
 
                     def num_bright(t, b_=t1, tot=is_total):
                         if t <= b_ + 0.3:
                             return 1.0
-                        return 0.85 if tot else max(0.0, 1 - (t - b_ - 0.3) / 0.45)
+                        return max(0.85, sb) if tot else max(sb, 1 - (1 - sb) * (t - b_ - 0.3) / 0.45)
                     self.gold.add(strokes, tn0, tn0 + 0.20 + 0.12 * len(num), num_alpha1, ease=False, clear=True,
                                   bright_fn=num_bright)
                 else:

@@ -17,6 +17,30 @@ are measured from what is drawn. No image model is in the picture (one Codex tri
 | 2 | Romanesco, *Brassica oleracea* Botrytis group, head + one floret enlarged | head: 8, then 13; floret: 8, then 13 | 20.0 s |
 | 3 | spiral aloe, *Aloe polyphylla*, rosette | the five leaf ranks (no second family, see below) | 13.0 s |
 
+## 2026-11-26: round-3 decisions (Jade: "finish at 8, and if there isn't enough time, you can start at 2. it would be nice if the gold was brighter/shimmery")
+
+- **Cut A now finishes at 8.** The 8 family is counted 1-8 inside cut A's 5.0 s (song 2:09.2-2:14.2): arms 0.35-4.45 s
+  (pass_times, first arm 1.7x the last; arm 8 takes 0.31 s, the fastest), "8" written by about 4.75 s and held to the cut.
+  There was time, so it starts at 1. If the edit needs a shorter slot, start cut A at about 0.95 s: "1" is already
+  written and the count runs 2-8 (Jade's fallback; no re-render needed).
+- **Cut B** (5.0-9.5 s, 2:30.0-2:34.5) opens on the eight settled lines; the 5 family is counted 5.55-8.25 s (arm ends
+  6.09, 6.70, 7.25, 7.77, 8.25), then holds on both totals.
+- **Brighter, shimmering gold** (`thread.Gold(shimmer=...)`, set by `CLIPS['artichoke']['shimmer']`; romanesco and aloe
+  take the old code path: not re-rendered): bright strokes are metallic (deeper gold at the line's edges, saturated body, a specular
+  streak down the centre); a glint runs along each line every 2.2 s with a little warm glow past its edge; small
+  four-point twinkles flash at points along the lines (about one per 55 px, 0.55 Hz each). Settled lines and numerals
+  stay bright (settle 0.6 of the bright gold, alpha 0.92; numerals dim 5 %, was 30 %): the live line still leads.
+- **`layout/sets/market93/artichoke_plate_count.json` refreshed** (the HANDOFF TODO): same bracts and numerals, new
+  t_start/t_end. Only that file in market93 was written. **Flag for market93:** M2/M3 numerals were timed to the old
+  clip; numeral 8 now lands in cut A at 4.45 s, and arm 1-7 times all moved earlier (see the json).
+- Re-render: `$PY spirals.py artichoke --plate stills/artichoke_plate16.png --data data/artichoke_arms.json --at 2.4
+  4.9 7.0 9.45 --out stills/artichoke.png --movies out --jobs 12` (no NO_MARKET_COUNT: writes the market json), then
+  the two ffmpeg cuts (`-t 5.0`, `-ss 5.0`). New stills `stills/artichoke_t02.40|04.90|07.00|09.45.png`, copied to
+  `media/keyframes/r4/plates/PLATE_artichoke_t*.png`. The r2-timing stills (t02.80, t05.00, t07.20, t09.40) are kept
+  because the r3 review page shows them; they no longer match the master. Previous data in `work/before_r4/`.
+- Assumption: "shimmery" read as a subtle moving glint and twinkle, not a constant sparkle; strengths are in the
+  shimmer dict if Jade wants more or less.
+
 ## 2026-11-26 (Jade's keyframe r2 review: one bright-gold line at a time; the count takes the romanesco's slot)
 
 Jade on PLATE_artichoke: "Good. Animate each line of the spiral in bright gold, one at a time." On PLATE_romanesco:

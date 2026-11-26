@@ -9,7 +9,7 @@ scripts in `analysis/`, `tools/`, `work/karaoke_v2/`, `layout/`.
 ## Draft credit line
 
 Animated by Opus 5.5 and a supporting cast of models: GPT Image 2 (via Codex and the OpenAI API), Nano Banana Pro,
-Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, and three.js.
+Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and Jolt Physics.
 
 ## Used
 
@@ -33,14 +33,16 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, and three.js.
 
 ### 3D layout, rendering, compositing
 - **three.js** (r170): every set, camera and guide render (`layout/`).
+- **Jolt Physics** (jolt-physics 1.1.2, WASM; Jorrit Rouwe, MIT): soft-body cloth for the IAS hoodie in Morton Grove
+  (`layout/sets/mortongrove07/sweatshirt_jolt.js`, vendored at `layout/vendor/jolt-physics/`).
 - **Playwright** + **Chrome** (SwiftShader): headless rendering of the sets.
 - **Pillow**, **OpenCV**, **NumPy**: compositing, toner labels, gold pencil, contact sheets (`tools/kf/`, `tools/ink/`).
 - **ImageMagick**: crops and montages for review.
+- **FFmpeg**: frame grabs from Jade's earlier film *Moongazing* for reference (the Sagan ring, 2026-11-26).
 
 ## Planned / in progress (move up once used)
 - **Blender** + **MPFB2 (MakeHuman for Blender)**, CC0 assets: rigged human body meshes for every figure (2026-11-26).
 - **Rapier** (`@dimforge/rapier3d-compat`): physics check that every held or resting object is supported.
-- **Jolt Physics** (`jolt-physics`): soft-body cloth for the IAS sweatshirt, if the cloth agent adopts it.
 - **BiRefNet** / **SAM 2**: matting options already written into `tools/ink/video.py`; not run yet.
 - Video models for the motion step (plan steps 6-8): none chosen yet.
 

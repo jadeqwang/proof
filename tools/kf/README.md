@@ -111,7 +111,7 @@ long-tailed; one in five is elongated; those over 3 px get a darker heart. The h
 
 | Mark | Keys |
 |---|---|
-| `ring` | `at`, `r`; optional `gap` (deg left open, default 12-26), `start` (deg), `cw`. Not quite round, not quite closed. |
+| `ring` | `at`, `r`; optional `gap` (deg left open, default 12-26), `start` (deg), `cw`. Not quite round, not quite closed. `wobble` (default 1; 0 = a compass circle, as in the VOY ring) and `progress` (0..1 of the sweep drawn, for draw-on stills). |
 | `dots` | `path` (polyline), `gap` (default 14); optional `size`. Stops where the path stops. |
 | `line` | `path` (2+ points; 3+ are joined as a smooth curve). |
 | `underline` | `from`, `to`. |
