@@ -10,9 +10,10 @@ import { aim } from '../../engine/aim.js';
 import { CAST, PROP, addCast } from '../_cast.js';
 import { artPlane, artLook, decalMesh } from '../_art.js';
 import { coneSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_beam.js';
-import { HALL, SHUTTLE, HATCHES, STEP, PEOPLE, HANDS_MEET, SPOT, SPOT_DIR, MOTE, FIXTURES, LIGHTS, STRUCT, PLANETS, rad } from './layout.js';
-import { floorArt, FLOOR_M, muralArt, planetArt, sweaterArt, SWEATER_M, chestArt, dressArt, DRESS_M, shuttleArt } from './art.js';
-import { injectBodies, BODIES_NOTE } from './bodies.js';
+import { HALL, SHUTTLE, RAMP, STEP, ROCKET, ASTRONAUT, PEOPLE, HANDS_MEET, SPOT, SPOT_DIR, MOTE, FIXTURES, LIGHTS, STRUCT, PLANETS, rad } from './layout.js';
+import { floorArt, FLOOR_M, muralArt, planetArt, sweaterArt, SWEATER_M, chestArt, dressArt, DRESS_M, bodyArt, bodyU, dadHairArt, pixelBottleArt, catBottleArt, jadeOutfitArt, JADE_CHART, sleevePatchArt } from './art.js';
+import { loadProps, prop } from '../_props.js';
+await loadProps(['backpack', 'kids_bottle']);
 
 // ---------------------------------------------------------------- cast (set-local; the shared table is not edited)
 // The girl (4) and the boy (7): Jade's own heights (moongazing character bible): 1.09 m and 1.32 m. Their designs are
@@ -20,10 +21,13 @@ import { injectBodies, BODIES_NOTE } from './bodies.js';
 // The boy: a young-looking 7-year-old who happens to be very tall (99th percentile), head ~20% larger than typical.
 addCast({
   girl: { name: 'the girl (4)', h: 1.09, kind: 'child4', skin: 0xf0c8a8, hair: 0x6a4228, top: 0xf4b8c0, legs: 0xf0c8a8, sock: 0xf4f2ee, hairStyle: 'pigtails', sleeves: 'short', dress: true },
-  boy: { name: 'the boy (7)', h: 1.32, kind: 'boy7', skin: 0xecc4a2, hair: 0x18120e, top: 0x1f4a9a, legs: 0x1c2444, sock: 0x7a4a28, hairStyle: 'short', sleeves: 'long' },
+  boy: { name: 'the boy (7)', h: 1.32, kind: 'boy7', skin: 0xecc4a2, hair: 0x18120e, top: 0x1f4a9a, legs: 0x1c2444, sock: 0xdcdcd6, hairStyle: 'short', sleeves: 'long' },   // r5 (Jade): in socks (colour not given: light grey, FLAGGED)
 }, { boy7: { ...PROP.child7, head: 0.192, hand: 0.104 } });   // a 7-year-old's proportions scaled to 1.32 m, the head ~20% bigger (5.2 heads tall)
 // Dad in 2023 (about 67): the shared `dad` key with a per-shot costume (hair near-black, as his reference photo; Jade)
-export const DAD23 = { hair: 0x17130f, top: 0x7a8ea6, legs: 0x9a8a6a, sock: 0x3a2e26 };   // shirt and trousers colours: GUESSES (flagged)
+// r5 (Jade): "he's typically wearing a white polo shirt and black pants"; hair salt-and-pepper, white at the temples
+// (the base colour below is the flecked mid tone; dadHair() paints the canonical salt-and-pepper skin over it). Shoes: dark
+// (not described: FLAGGED). The polo collar and placket are added by poloCollar().
+export const DAD23 = { body: 'dad23', hair: 0x4a4642, top: 0xf4f4f0, legs: 0x18181a, sock: 0x1c1c1e, sleeves: 'short' };
 
 const PAD = (col) => ({ grey: 0.6, col }), BLACK = { grey: 0.1, col: 0x16161a }, NAVY = { grey: 0.18, col: 0x1a1f3a };
 const NET = { glass: true, col: 0x101014, opacity: 0.55, noCast: true, grey: 0.15 }, ACRYL = { glass: true, col: 0xcfe6f4, opacity: 0.14, noCast: true };
@@ -81,53 +85,91 @@ function structure(g) {
     const tube = mk(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 80, 0.38, 18, false), { grey: 0.55, col: 0x2a8ad8 }); tube.userData.double = true; g.add(tag(tube, 'tube slide (blue)')); }
 }
 
-// ---------------------------------------------------------------- the play shuttle
+// ---------------------------------------------------------------- the play shuttle (r5: rebuilt to Jade's photo, see layout.js)
 const H = SHUTTLE;
-const hatchAng = (h) => [Math.asin((h.y0 - H.y) / H.r), Math.asin((h.y1 - H.y) / H.r)];
-function hullGeo(r, withUV) {   // the fuselage tube (radius r), with the two hatch holes cut on the +z side
-  const xs = new Set(), ts = new Set(); for (let i = 0; i <= 48; i++) xs.add(+(H.x0 + (H.x1 - H.x0) * i / 48).toFixed(5));
-  for (let i = 0; i <= 72; i++) ts.add(+(-Math.PI + 2 * Math.PI * i / 72).toFixed(5));
-  for (const h of Object.values(HATCHES)) { xs.add(h.x0); xs.add(h.x1); const [a, b] = hatchAng(h); ts.add(+a.toFixed(5)); ts.add(+b.toFixed(5)); }
-  const X = [...xs].sort((a, b) => a - b), T = [...ts].sort((a, b) => a - b);
-  const pos = [], uv = [], idx = [], P = (x, t) => [x, H.y + r * Math.sin(t), H.z + r * Math.cos(t)];
-  for (const x of X) for (const t of T) { pos.push(...P(x, t)); uv.push((x - H.x0) / (H.x1 - H.x0), (t + Math.PI) / (2 * Math.PI)); }
-  const n = T.length, inHole = (x, t) => Object.values(HATCHES).some((h) => { const [a, b] = hatchAng(h); return x > h.x0 && x < h.x1 && t > a && t < b; });
-  for (let i = 0; i < X.length - 1; i++) for (let j = 0; j < n - 1; j++) { if (inHole((X[i] + X[i + 1]) / 2, (T[j] + T[j + 1]) / 2)) continue; const a = i * n + j, b = a + n; idx.push(a, b, a + 1, a + 1, b, b + 1); }
-  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); if (withUV) g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g;
+// the body's cross-section: a rounded box (flat bottom on the floor, big rounded top corners), as [dz, y] points
+// sampled evenly by arc length, starting at the bottom centre and going round the +z side first
+function section(half, y0, y1, n = 72) {
+  const h = y1 - y0, rt = Math.min(0.24, 0.45 * h, 0.9 * half), rb = Math.min(0.05, 0.3 * h, 0.5 * half), pts = [];
+  const arc = (cx, cy, r, a0, a1, k = 10) => { for (let i = 0; i <= k; i++) { const a = a0 + (a1 - a0) * i / k; pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } };
+  pts.push([0, y0]); arc(half - rb, y0 + rb, rb, -Math.PI / 2, 0); arc(half - rt, y1 - rt, rt, 0, Math.PI / 2, 16);
+  arc(-(half - rt), y1 - rt, rt, Math.PI / 2, Math.PI, 16); arc(-(half - rb), y0 + rb, rb, Math.PI, 1.5 * Math.PI); pts.push([0, y0]);
+  const L = [0]; for (let i = 1; i < pts.length; i++) L.push(L[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+  const out = []; for (let i = 0; i <= n; i++) { const s = L[L.length - 1] * i / n; let j = 1; while (j < L.length - 1 && L[j] < s) j++;
+    const t = (s - L[j - 1]) / ((L[j] - L[j - 1]) || 1); out.push([pts[j - 1][0] + (pts[j][0] - pts[j - 1][0]) * t, pts[j - 1][1] + (pts[j][1] - pts[j - 1][1]) * t]); }
+  return out;
+}
+// the body + nose as one loft along x: constant section from x0 to x1, then the nose narrows, its chin lifts and its
+// top drops to a rounded point. UV: u along x (BODY_U), v = angle round the section centre (0 bottom, 0.25 the +z
+// side, 0.5 top), so the skin (art.js bodyArt) can paint the windscreen band and the black belly.
+function bodyGeo() {
+  const st = []; const nB = 20, nN = 28;
+  for (let i = 0; i <= nB; i++) st.push({ x: H.x0 + (H.x1 - H.x0) * i / nB, half: H.half, y0: 0, y1: H.top });
+  for (let i = 1; i <= nN; i++) { const t = i / nN, yb = 0.16 * t * t, yt = H.top - (H.top - 0.46) * Math.pow(t, 1.4), m = (yb + yt) / 2, hh = (yt - yb) / 2 * Math.sqrt(Math.max(0, 1 - Math.pow(t, 6)));
+    st.push({ x: H.x1 + H.nose * t, half: Math.max(0.0005, H.half * Math.sqrt(Math.max(0, 1 - Math.pow(t, 2.5)))), y0: m - Math.max(hh, 0.0005), y1: m + Math.max(hh, 0.0005) }); }
+  const N = 72, pos = [], uv = [], idx = [];
+  for (const S of st) { const sec = section(S.half, S.y0, S.y1, N), cy = (S.y0 + S.y1) / 2;
+    sec.forEach(([dz, y], j) => { pos.push(S.x, y, H.z + dz); let a = Math.atan2(dz, -(y - cy)) / (2 * Math.PI); if (a < 0) a += 1; if (j === N) a = 1; if (j === 0) a = 0; uv.push(bodyU(S.x), a); }); }
+  for (let i = 0; i < st.length - 1; i++) for (let j = 0; j < N; j++) { const a = i * (N + 1) + j, b = a + N + 1; idx.push(a, a + 1, b, a + 1, b + 1, b); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+// a panelled wing: a padded black wedge (top face from the body edge down to the outer edge), three white panels inset
+// in black frames on its top face, running down the slope (the photo's black-and-white panelled ramp)
+function wing(sg, W, name) {
+  const T = [V(W.x0, W.yTop, W.zTop), V(W.x1, W.yTop, W.zTop), V(W.xOut1, W.yOut, W.zOut), V(W.xOut0, W.yOut, W.zOut)];
+  const Bt = T.map((p) => V(p.x, 0, p.z)), Q = [...T, ...Bt];
+  const F = [[0, 1, 2], [0, 2, 3], [4, 6, 5], [4, 7, 6], [0, 4, 5], [0, 5, 1], [1, 5, 6], [1, 6, 2], [2, 6, 7], [2, 7, 3], [3, 7, 4], [3, 4, 0]];
+  const pos = []; for (const f of F) for (const k of f) pos.push(Q[k].x, Q[k].y, Q[k].z);
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.computeVertexNormals();
+  const m = mk(geo, PAD(0x18181c)); m.userData.double = true; sg.add(tag(m, `${name} (black padded frame)`));
+  const nrm = new THREE.Vector3().crossVectors(T[1].clone().sub(T[0]), T[3].clone().sub(T[0])).normalize(); if (nrm.y < 0) nrm.negate();
+  const fr = 0.05, n = W.panels || 3;
+  for (let k = 0; k < n; k++) { const s0 = k / n, s1 = (k + 1) / n, L = (a, b, t) => a.clone().lerp(b, t);
+    const p = [L(T[0], T[1], s0), L(T[0], T[1], s1), L(T[3], T[2], s1), L(T[3], T[2], s0)];
+    // inset by the frame: toward the panel's centre
+    const c = p.reduce((acc, q) => acc.add(q), V(0, 0, 0)).multiplyScalar(0.25);
+    const ins = p.map((q) => { const d = c.clone().sub(q); const l = d.length(); return q.clone().addScaledVector(d, Math.min(fr * 1.4, l * 0.4) / l).addScaledVector(nrm, 0.012); });
+    const g2 = new THREE.BufferGeometry().setFromPoints([ins[0], ins[1], ins[2], ins[0], ins[2], ins[3]]); g2.computeVertexNormals();
+    const pm = mk(g2, { grey: 0.88, col: 0xf2f2ee }); pm.userData.double = true; sg.add(tag(pm, `${name} (white padded panel ${k + 1})`)); }
 }
 function shuttle(g) {
   const sg = new THREE.Group(); g.add(sg);
-  const WHITE = { grey: 0.85, col: 0xf2f2ee }, TRIM = PAD(0xe8642a), INNER = { grey: 0.7, col: 0xdad8d0 };
-  { const m = mk(hullGeo(H.r, true), artLook(shuttleArt(), { grey: 0.85, col: 0xf2f2ee })); m.userData.double = true; sg.add(tag(m, 'play shuttle hull (padded vinyl, white, black belly)')); }
-  { const m = mk(hullGeo(H.r - H.wall, false), INNER); m.userData.double = true; sg.add(tag(m, 'play shuttle hull (inside)')); }
-  // hatch jambs: the wall thickness round each opening, and an orange padded trim ring
-  for (const [name, h] of Object.entries(HATCHES)) { const [a, b] = hatchAng(h), ring = [];
-    for (let k = 0; k <= 10; k++) ring.push([h.x0, a + (b - a) * k / 10]); for (let k = 0; k <= 6; k++) ring.push([h.x0 + (h.x1 - h.x0) * k / 6, b]);
-    for (let k = 10; k >= 0; k--) ring.push([h.x1, a + (b - a) * k / 10]); for (let k = 6; k >= 0; k--) ring.push([h.x0 + (h.x1 - h.x0) * k / 6, a]);
-    const at = ([x, t], r) => V(x, H.y + r * Math.sin(t), H.z + r * Math.cos(t));
-    for (let k = 0; k < ring.length - 1; k++) { if (ring[k][0] === ring[k + 1][0] && ring[k][1] === ring[k + 1][1]) continue;
-      sg.add(tag(limb(at(ring[k], H.r + 0.02), at(ring[k + 1], H.r + 0.02), 0.035, TRIM), `${name} hatch (padded trim)`));
-      const q = [at(ring[k], H.r), at(ring[k + 1], H.r), at(ring[k + 1], H.r - H.wall), at(ring[k], H.r - H.wall)];
-      const geo = new THREE.BufferGeometry().setFromPoints([q[0], q[1], q[2], q[0], q[2], q[3]]); geo.computeVertexNormals(); const m = mk(geo, INNER); m.userData.double = true; sg.add(tag(m, `${name} hatch (jamb)`)); } }
-  // cabin deck (the sill level), tail bulkhead, nose cone (an ogive: white, black tip), cockpit windows
-  { const hw = Math.sqrt(H.r ** 2 - (H.deck - H.y) ** 2) - 0.07; sg.add(tag(box(H.x1 - H.x0 - 0.1, 0.06, 2 * hw, PAD(0x2a6ad8), [(H.x0 + H.x1) / 2, H.deck - 0.03, H.z]), 'cabin deck (padded)')); }
-  { const m = mk(new THREE.CircleGeometry(H.r, 48), WHITE); m.rotation.y = -Math.PI / 2; m.position.set(H.x0, H.y, H.z); m.userData.double = true; sg.add(tag(m, 'play shuttle tail bulkhead')); }
-  { const prof = []; for (let i = 0; i <= 16; i++) { const t = i / 16; prof.push(new THREE.Vector2(H.r * Math.sqrt(Math.max(0, 1 - t * t)) + 0.0001, t * H.nose)); }
-    const m = mk(new THREE.LatheGeometry(prof, 48), WHITE); m.rotation.z = -Math.PI / 2; m.position.set(H.x1, H.y, H.z); sg.add(tag(m, 'play shuttle nose (padded)'));
-    const tip = ball(0.2, BLACK, [H.x1 + H.nose - 0.12, H.y, H.z], [0.9, 1, 1]); sg.add(tag(tip, 'play shuttle nose tip (black)'));
-    for (const s of [-1, 1]) { const w = box(0.2, 0.12, 0.02, { grey: 0.15, col: 0x1a2a4a }, [H.x1 + 0.18, H.y + 0.38, H.z + s * 0.26]); w.rotation.set(0, s * 0.5, s * 0.35); sg.add(tag(w, 'cockpit window (dark)')); } }
-  // portholes above the hatches
-  for (const x of [-1.35, 1.15]) { const t = Math.asin(0.3 / H.r); const m = mk(new THREE.CircleGeometry(0.11, 32), { grey: 0.2, col: 0x1a2a4a }); m.position.set(x, H.y + H.r * Math.sin(t) + 0.004, H.z + H.r * Math.cos(t) + 0.004); m.lookAt(m.position.clone().add(V(0, Math.sin(t), Math.cos(t)))); sg.add(tag(m, 'porthole (dark)')); }
-  // tail fin and delta wings (padded slabs), black cradle
-  { const f = H.fin, s = new THREE.Shape(); s.moveTo(f.x0, H.y + H.r - 0.05); s.lineTo(f.x1, H.y + H.r - 0.05); s.lineTo(f.x0 + 0.25, f.top); s.lineTo(f.x0, f.top); s.closePath();
-    const m = mk(new THREE.ExtrudeGeometry(s, { depth: f.t, bevelEnabled: true, bevelSize: 0.03, bevelThickness: 0.03, bevelSegments: 2 }), WHITE); m.position.z = H.z - f.t / 2; sg.add(tag(m, 'play shuttle tail fin (padded)'));
-    const st = box(0.06, 0.4, f.t + 0.08, PAD(0xe8642a), [f.x0 + 0.2, f.top - 0.35, H.z]); st.rotation.z = -0.25; sg.add(tag(st, 'tail fin stripe (orange)')); }
-  for (const sgn of [-1, 1]) { const w = H.wing, s = new THREE.Shape(); s.moveTo(w.x0, 0); s.lineTo(w.x1, 0); s.lineTo(w.x0 + 0.1, sgn * w.span); s.lineTo(w.x0, sgn * w.span); s.closePath();
-    const m = mk(new THREE.ExtrudeGeometry(s, { depth: w.t, bevelEnabled: true, bevelSize: 0.03, bevelThickness: 0.03, bevelSegments: 2 }), WHITE); m.rotation.x = Math.PI / 2; m.position.set(0, w.y + w.t / 2, H.z); sg.add(tag(m, 'play shuttle wing (padded)')); }
-  sg.add(tag(box(H.x1 - H.x0 - 0.4, H.y - H.r, 0.7, BLACK, [(H.x0 + H.x1) / 2, (H.y - H.r) / 2, H.z]), 'shuttle cradle (black)'));
-  // the padded steps
-  for (const h of Object.values(HATCHES)) sg.add(tag(box(h.x1 - h.x0, STEP.h, STEP.z1 - STEP.z0, PAD(0x2a6ad8), [(h.x0 + h.x1) / 2, STEP.h / 2, (STEP.z0 + STEP.z1) / 2]), 'padded step (blue)'));
+  const WHITE = { grey: 0.88, col: 0xf2f2ee };
+  { const m = mk(bodyGeo(), artLook(bodyArt(), WHITE)); m.userData.double = true; sg.add(tag(m, 'play shuttle body')); }
+  // the rear section: taller, a crawl-through arch across it (z), black slanted stripes on its rounded top
+  { const R = H.rear, A = R.arch, s = new THREE.Shape(), rc = 0.3;
+    s.moveTo(R.x0, 0); s.lineTo(R.x1, 0); s.lineTo(R.x1, R.top - rc); s.absarc(R.x1 - rc, R.top - rc, rc, 0, Math.PI / 2, false); s.lineTo(R.x0 + rc, R.top); s.absarc(R.x0 + rc, R.top - rc, rc, Math.PI / 2, Math.PI, false); s.lineTo(R.x0, 0);
+    const h = new THREE.Path(), aw = A.w / 2; h.moveTo(A.cx - aw, 0.0); h.lineTo(A.cx + aw, 0.0); h.lineTo(A.cx + aw, A.h - aw); h.absarc(A.cx, A.h - aw, aw, 0, Math.PI, false); h.lineTo(A.cx - aw, 0.0); s.holes.push(h);
+    const geo = new THREE.ExtrudeGeometry(s, { depth: 2 * H.half - 0.06, bevelEnabled: true, bevelSize: 0.03, bevelThickness: 0.03, bevelSegments: 3, curveSegments: 24 });
+    const m = mk(geo, WHITE); m.position.z = H.z - H.half + 0.03; m.userData.double = true; sg.add(tag(m, 'play shuttle rear section (crawl-through arch)'));
+    for (let k = 0; k < 4; k++) { const x = R.x0 + 0.33 + k * 0.17, st = box(0.07, 0.016, 0.62, BLACK, [x, R.top + 0.035, H.z]); st.rotation.y = 0.45; sg.add(tag(st, 'rear section stripes (black)')); }
+    sg.add(tag(box(R.x1 - R.x0 + 0.06, 0.07, 2 * H.half + 0.04, BLACK, [(R.x0 + R.x1) / 2, 0.035, H.z]), 'rear section base band (black)')); }
+  // the camera-side wing = the ramp; the far wing lies flat on the floor
+  wing(sg, RAMP, 'panelled wing ramp');
+  wing(sg, { x0: RAMP.x0, x1: RAMP.x1, xOut0: RAMP.xOut0, xOut1: RAMP.xOut1, zTop: H.z - H.half, yTop: 0.1, zOut: H.z - H.half - 0.85, yOut: 0.08, panels: 3 }, 'panelled wing (far side, flat)');
+  // the black padded block: the boy's step
+  sg.add(tag(box(STEP.x1 - STEP.x0, STEP.h, STEP.z1 - STEP.z0, PAD(0x18181c), [(STEP.x0 + STEP.x1) / 2, STEP.h / 2, (STEP.z0 + STEP.z1) / 2]), 'black padded block (step)'));
   return sg;
+}
+// set dressing from the photo: a soft-play rocket (red and white bands, white nose cone, red fins) and a hanging astronaut
+function rocket(g) {
+  const R = ROCKET, [x, z] = R.at, n = 6;
+  for (let k = 0; k < n; k++) g.add(tag(cyl(R.r, R.r, R.body / n, PAD(k % 2 ? 0xf2f2ee : 0xd8302a), [x, R.body * (k + 0.5) / n, z], null, 32), 'soft-play rocket (padded bands)'));
+  g.add(tag(cyl(0.02, R.r, R.cone, PAD(0xf2f2ee), [x, R.body + R.cone / 2, z], null, 32), 'soft-play rocket nose cone'));
+  g.add(tag(ball(0.07, PAD(0xd8302a), [x, R.body + R.cone, z]), 'soft-play rocket nose tip'));
+  for (let k = 0; k < 3; k++) { const a = k * 2 * Math.PI / 3 + 0.5, s = new THREE.Shape(); s.moveTo(0, 0); s.lineTo(0.38, -0.05); s.lineTo(0.38, 0.25); s.lineTo(0, 0.7); s.closePath();
+    const m = mk(new THREE.ExtrudeGeometry(s, { depth: 0.08, bevelEnabled: false }), PAD(0xd8302a)); m.position.set(x + Math.cos(a) * R.r * 0.9, 0.05, z + Math.sin(a) * R.r * 0.9); m.rotation.y = -a; g.add(tag(m, 'soft-play rocket fin')); }
+  { const m = mk(new THREE.CircleGeometry(0.15, 32), { grey: 0.25, col: 0x2a3a6a }); m.position.set(x, 1.3, z + R.r + 0.005); g.add(tag(m, 'soft-play rocket porthole')); }
+}
+function astronaut(g) {   // a generic hanging astronaut (white suit, dark visor, no character, no patch), drifting pose
+  const A = ASTRONAUT, [x, y, z] = A.at, k = A.h / 0.9, W = { grey: 0.88, col: 0xeeeef0 }, a = new THREE.Group(); a.position.set(x, y, z); a.rotation.set(0.3, -0.6, 0.35); g.add(a);
+  a.add(tag(ball(0.17 * k, W, [0, 0.12 * k, 0], [1, 1.25, 0.85]), 'hanging astronaut (suit)'));
+  a.add(tag(ball(0.13 * k, W, [0, 0.42 * k, 0]), 'hanging astronaut (helmet)'));
+  a.add(tag(ball(0.095 * k, { grey: 0.12, col: 0x1a2a3a }, [0, 0.42 * k, 0.06 * k], [1, 0.8, 0.7]), 'hanging astronaut (visor)'));
+  a.add(tag(box(0.22 * k, 0.26 * k, 0.1 * k, W, [0, 0.16 * k, -0.15 * k]), 'hanging astronaut (life-support pack)'));
+  for (const s of [-1, 1]) { a.add(tag(limb(V(s * 0.15 * k, 0.24 * k, 0), V(s * 0.34 * k, 0.36 * k, 0.05 * k), 0.05 * k, W), 'hanging astronaut (arm)'));
+    a.add(tag(limb(V(s * 0.08 * k, -0.08 * k, 0), V(s * 0.16 * k, -0.42 * k, 0.12 * k), 0.06 * k, W), 'hanging astronaut (leg)')); }
+  g.add(tag(cyl(0.004, 0.004, HALL.joistY - y - 0.5 * k, { grey: 0.2, col: 0x333333, noCast: true }, [x, (HALL.joistY + y + 0.5 * k) / 2, z], null, 5), 'astronaut hanging cable'));
 }
 
 // ---------------------------------------------------------------- hanging planets, the spot
@@ -163,20 +205,6 @@ function dressPrints(figs) {
   const w = 0.2, h = 0.1, u0 = -w / 2, v0 = -0.13, c = surf(0, -0.08, 0.004);
   if (c) { const m = decalMesh(chestArt(), (s, t) => surf(u0 + s * w, v0 + t * h, 0.004) || c, { grey: 0.8, col: 0xf4f2ee }); m.userData.who = 'boy'; m.userData.idGroup = 'boy:motif'; f.add(tag(m, 'the boy: sweater motif (one ringed planet, one rocket)')); }
 }
-// ENGINE WORKAROUND (reported, not fixed here: engine/humanMesh.js is not this set's): a figure in a dress loses her bare
-// legs (the body's leg faces are hidden under the trouser garment, which a dress then skips). The girl is built a second
-// time in the same pose without the dress, and that build's trouser legs, coloured as her skin, are moved onto her.
-function girlLegs(fig, spec, extra) {
-  addCast({ girlLegs: { ...CAST.girl, name: 'the girl (legs helper)', dress: false, legs: CAST.girl.skin } });
-  const { figs: t } = stage({ girlLegs: { ...spec } }, null, extra); const h = t.girlLegs; if (!h) return;
-  const take = []; h.traverse((o) => { if (o.isMesh && o.userData.garment && /leg[LR]$/.test(o.userData.idGroup || '')) take.push(o); });
-  fig.updateMatrixWorld(true);
-  for (const o of take) { o.updateMatrixWorld(true); const m = o.clone(); new THREE.Matrix4().copy(fig.matrixWorld).invert().multiply(o.matrixWorld).decompose(m.position, m.quaternion, m.scale);
-    { const cut = (spec.floor || 0) + 0.42 * CAST.girl.h, g = m.geometry.clone(), P = g.attributes.position, I = g.index, keep = [], v = new THREE.Vector3();   // only below the skirt (the waistband poked through it)
-      const wy = (i) => v.fromBufferAttribute(P, i).applyMatrix4(o.matrixWorld).y;
-      if (I) { for (let t = 0; t < I.count; t += 3) { const a = I.getX(t), b = I.getX(t + 1), c = I.getX(t + 2); if (Math.max(wy(a), wy(b), wy(c)) < cut) keep.push(a, b, c); } g.setIndex(keep); m.geometry = g; } }
-    m.userData = { ...o.userData, who: 'girl', idGroup: String(o.userData.idGroup).replace('girlLegs', 'girl'), label: 'the girl (bare legs)' }; fig.add(m); }
-}
 // Dad's 2023 glasses: thin rectangular semi-rimless (a top bar over each lens, clear lenses, thin temples to the ears)
 function glasses(fig) {
   const P = fig.userData.P; if (!P?.eyes || !P.headX) return; const g = new THREE.Group(), K = { grey: 0.35, col: 0x4a4a50, noCast: true }, L = { glass: true, col: 0xdfe8f0, opacity: 0.12, noCast: true };
@@ -189,15 +217,108 @@ function glasses(fig) {
   g.traverse((o) => { if (o.isMesh) { o.userData.who = 'dad'; o.userData.idGroup = 'dad:glasses'; } }); fig.add(tag(g, 'Dad: thin rectangular semi-rimless glasses'));
 }
 
+// ---------------------------------------------------------------- Dad in 2023 (r5): hair, polo collar, backpack, bottles
+// the salt-and-pepper hair: one canonical skin (art.js dadHairArt) mapped round his head
+function dadHair(fig) {
+  const P = fig.userData.P; if (!P?.head || !P.headFwd) return; const a = dadHairArt();
+  const F = P.headFwd.clone().normalize(), U = P.headUp.clone().normalize(), X = new THREE.Vector3().crossVectors(U, F).normalize();
+  fig.updateMatrixWorld(true);
+  fig.traverse((o) => { if (!o.isMesh || !/hair$/.test(o.userData.idGroup || '') || o.userData.who === 'dad:glasses') return;
+    const pos = o.geometry.attributes.position, uv = new Float32Array(pos.count * 2), v = new THREE.Vector3();
+    for (let i = 0; i < pos.count; i++) { v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); const d = v.clone().sub(P.head);
+      const dn = d.clone().normalize(), th = Math.acos(THREE.MathUtils.clamp(dn.dot(U), -1, 1));   // angle from the crown
+      uv[2 * i] = 0.5 + Math.atan2(d.dot(X), d.dot(F)) / (2 * Math.PI); uv[2 * i + 1] = THREE.MathUtils.clamp(1 - th / (0.75 * Math.PI), 0, 1); }
+    o.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); o.userData.look = { ...o.userData.look, art: a.art, artGrey: a.artGrey, artEdge: a.artEdge }; });
+}
+// Jade in 2023 (r5): her chaosmonkey "rare earth" outfit as ONE canonical chart (art.js jadeOutfitArt) over her top and
+// trouser garments and the clothed body regions under them: u = angle round her torso axis, v = height along it
+function jadeOutfit(fig) {
+  const P = fig.userData.P; if (!P?.hip || !P.shoulderC) return;
+  const Ax = P.shoulderC.clone().sub(P.hip), hs = Ax.length(); Ax.normalize();
+  const F = P.fwd.clone().addScaledVector(Ax, -P.fwd.dot(Ax)).normalize(), L = new THREE.Vector3().crossVectors(Ax, F).normalize();   // L: her left
+  const art = jadeOutfitArt(Math.round(hs * 200) / 200); fig.updateMatrixWorld(true);
+  fig.traverse((o) => { if (!o.isMesh) return; const r = o.userData.bodyRegion, gid = o.userData.idGroup || '';
+    const wear = o.userData.garment ? /(torso|band|legL|legR)$/.test(gid) : ['top', 'band', 'legsL', 'legsR'].includes(r); if (!wear) return;
+    const pos = o.geometry.attributes.position, uv = new Float32Array(pos.count * 2), v = new THREE.Vector3();
+    const w = new THREE.Vector3(), segD = (p, a, b) => { const ab = b.clone().sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / ab.lengthSq(), 0, 1); return [p.distanceTo(a.clone().addScaledVector(ab, t)), t * ab.length()]; };
+    for (let i = 0; i < pos.count; i++) { w.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld); v.copy(w).sub(P.hip);
+      let h = v.dot(Ax);
+      // a sleeve: its height in the chart is the shoulder height minus the distance down the arm, so the arm band sits at
+      // the chest band's distance below the shoulder whatever the arm does (and a sleeve is never painted as midriff)
+      if (/torso|band/.test(gid) || r === 'top' || r === 'band') for (const n of ['L', 'R']) { const S = P['shoulder' + n], E = P['elbow' + n], Hd = P['hand' + n]; if (!S || !E || !Hd) continue;
+        if (Math.abs(v.dot(L)) < 0.11) continue; const [d1, t1] = segD(w, S, E), [d2, t2] = segD(w, E, Hd);
+        if (Math.min(d1, d2) < 0.075) { h = Math.max(0.22, hs - (d1 <= d2 ? t1 : S.distanceTo(E) + t2)); break; } }
+      uv[2 * i] = 0.5 + Math.atan2(v.dot(L), v.dot(F)) / (2 * Math.PI); uv[2 * i + 1] = (h - JADE_CHART.h0) / (JADE_CHART.h1 - JADE_CHART.h0); }
+    o.geometry = o.geometry.clone(); o.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    o.userData.look = { ...o.userData.look, art: art.art, artGrey: art.artGrey, artEdge: art.artEdge }; });
+}
+// her left sleeve patch: one decal (art.js sleevePatchArt), 8 cm across, on the outer side of her left upper arm at the
+// arm band, laid onto the sleeve by raycasts along the arm's outward normal (so it reads round seen side-on)
+function sleevePatch(fig) {
+  const P = fig.userData.P, S = P?.shoulderL, E = P?.elbowL; if (!S || !E) return null;
+  const A = E.clone().sub(S).normalize(), O = P.cx.clone().addScaledVector(A, -P.cx.dot(A)).normalize(), T = new THREE.Vector3().crossVectors(A, O).normalize();
+  const C = S.clone().addScaledVector(A, 0.13), D = 0.08, hitM = [];
+  fig.updateMatrixWorld(true); fig.traverse((m) => { if (m.isMesh && (m.userData.garment ? /torso$/.test(m.userData.idGroup || '') : m.userData.bodyRegion === 'top')) hitM.push(m); });
+  const rc = new THREE.Raycaster();
+  const surf = (s, t) => { const o = C.clone().addScaledVector(T, (s - 0.5) * D).addScaledVector(A, -(t - 0.5) * D).addScaledVector(O, 0.2); rc.set(o, O.clone().negate()); rc.far = 0.3;
+    const h = rc.intersectObjects(hitM, false)[0]; if (!h) return null; return h.point.clone().addScaledVector(O, 0.003); };
+  const c0 = surf(0.5, 0.5); if (!c0) return null;
+  const m = decalMesh(sleevePatchArt(), (s, t) => surf(s, t) || c0, { grey: 0.85, col: 0xf2f0ea }, 64); m.userData.who = 'jade'; m.userData.idGroup = 'jade:patch';
+  fig.add(tag(m, 'Jade: sleeve patch (round, blank, black ring)'));
+  return { centre: c0, outward: O };
+}
+// r5 (Jade): the rare earth outfit's colours (the chart paints the details); white sneakers (adults keep shoes beside the
+// shuttle: FLAGGED), long black hair as built
+export const JADE23 = { top: 0xf2f0ea, band: 0xf2f0ea, legs: 0x232a52, sock: 0xf0f0ec };
+// the polo: a soft folded collar round the neck base, open at the front over a short placket (white, as the shirt)
+function poloCollar(fig) {
+  const P = fig.userData.P; if (!P?.shoulderC || !P.cx) return; const W = { grey: 0.9, col: 0xf4f4f0 };
+  const X = P.cx.clone(), Y = P.cy.clone(), Z = P.cz.clone(), c0 = P.shoulderC.clone().addScaledVector(Y, 0.035).addScaledVector(Z, -0.012);
+  const rx = 0.074, rz = 0.066, pts = [], n = 28, a0 = 0.35, a1 = 2 * Math.PI - 0.35;   // angle 0 = the front (open there)
+  const ring = (r, y, out) => { const row = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n, d = X.clone().multiplyScalar(Math.sin(a) * (rx + out)).addScaledVector(Z, Math.cos(a) * (rz + out));
+    row.push(c0.clone().add(d).addScaledVector(Y, y)); } return row; };
+  const rows = [ring(0, 0.03, 0.004), ring(0, 0.0, 0.016), ring(0, -0.022, 0.034)];   // the fold: up the neck, then down onto the shoulders
+  const pos = []; for (let k = 0; k < rows.length - 1; k++) for (let i = 0; i < n; i++) { const A = rows[k][i], B = rows[k][i + 1], C = rows[k + 1][i + 1], D = rows[k + 1][i]; for (const q of [A, B, C, A, C, D]) pos.push(q.x, q.y, q.z); }
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.computeVertexNormals();
+  const m = mk(geo, W); m.userData.double = true; m.userData.who = 'dad'; m.userData.idGroup = 'dad:collar'; fig.add(tag(m, 'Dad: white polo shirt (collar)'));
+}
+// the backpack (a real downloaded model, recoloured plain black; no logo) worn on both shoulders, and the two kids'
+// bottles standing in its side pockets, each with its one canonical decal
+function cylUVLocal(mesh) {   // u round the bottle's own y axis, v up its height
+  const p = mesh.geometry.attributes.position; mesh.geometry.computeBoundingBox(); const bb = mesh.geometry.boundingBox, cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2, h = bb.max.y - bb.min.y || 1;
+  const uv = new Float32Array(p.count * 2); for (let i = 0; i < p.count; i++) { uv[2 * i] = 0.5 + Math.atan2(p.getX(i) - cx, p.getZ(i) - cz) / (2 * Math.PI); uv[2 * i + 1] = (p.getY(i) - bb.min.y) / h; }
+  mesh.geometry = mesh.geometry.clone(); mesh.geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+}
+export const PACK = { scale: 0.9, down: 0.47, back: 0.255 };   // fitted by eye + clipcheck (see NOTES)
+function backpack(fig) {
+  const P = fig.userData.P; if (!P?.shoulderC || !P.cx) return null;
+  const bag = prop('backpack', { look: { grey: 0.1, col: 0x1c1c20 }, lookPart: { buckles: { grey: 0.2, col: 0x2e2e32 }, trims: { grey: 0.15, col: 0x26262a } }, label: 'Dad: black laptop backpack (no logo)', scale: PACK.scale });
+  if (!bag) return null;
+  const X = P.cx.clone().negate(), Y = P.cy.clone(), Z = P.cz.clone().negate(); bag.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(X, Y, Z));
+  bag.position.copy(P.shoulderC).addScaledVector(P.cy, -PACK.down).addScaledVector(P.cz, -PACK.back);
+  bag.traverse((o) => { if (o.isMesh) o.userData.who = 'dad:pack'; });
+  fig.add(bag);
+  const bottles = [['pixel', pixelBottleArt(), 1, 'kids water bottle (black and green pixel blocks)', 0x1e1e1e], ['cat', catBottleArt(), -1, 'kids water bottle (pink, cat face)', 0xf06aa8]];
+  for (const [k, art, side, label, lidCol] of bottles) {
+    const b = prop('kids_bottle', { label: 'Dad: ' + label, lookPart: { lid: { grey: 0.3, col: lidCol }, lid_clip: { grey: 0.3, col: lidCol } } }); if (!b) continue;
+    b.traverse((o) => { if (o.isMesh && o.name === 'body') { cylUVLocal(o); o.userData.look = { grey: 0.5, col: 0xffffff, art: art.art, artGrey: art.artGrey, artEdge: art.artEdge }; } if (o.isMesh) o.userData.who = 'dad:pack'; });
+    b.position.set(side * 0.155, 0.05, 0.02); b.rotation.set(0, side * 0.3, side * -0.08); bag.add(b);
+    b.scale.setScalar(1 / PACK.scale);   // the bag is scaled; the bottles keep their real size
+  }
+  return bag;
+}
+
 export const NAMED = { mote: MOTE.hero, moteExit: MOTE.exit, moteAfter: MOTE.after, spot: SPOT.at,
   meetJade: HANDS_MEET.jade_girl, meetDad: HANDS_MEET.dad_boy,
-  frontJambL: [HATCHES.front.x0 + 0.01, 0.9, -0.765], rearJambR: [HATCHES.rear.x1 - 0.01, 0.95, -0.78], frontHatch: [(HATCHES.front.x0 + HATCHES.front.x1) / 2, 0.75, -0.95], rearHatch: [(HATCHES.rear.x0 + HATCHES.rear.x1) / 2, 0.75, -0.95] };
+  // r5 climb targets: the children's look points (up the ramp / along the top), the free hands on the body's top corner
+  girlLook: [0.05, 0.7, -1.35], boyLook: [-0.7, 0.68, -1.5],
+  girlHandOn: [0.0, 0.52, -0.95], boyHandOn: [-0.6, 0.575, -1.08] };   // palm centres ~1.5 cm over the ramp / the body's top
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p);
 
+let PATCH = null;
 export function build(shot, { makeCam }) {
-  injectBodies();
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
-  const world = new THREE.Group(); root.add(world); hall(world); structure(world); planets(world); spotFixture(world); const sg = shuttle(world);
+  const world = new THREE.Group(); root.add(world); hall(world); structure(world); planets(world); spotFixture(world); rocket(world); astronaut(world); const sg = shuttle(world);
   // the spot's cone, ended where its axis first meets the shuttle (raycast), clipped by the floor
   world.updateMatrixWorld(true);
   const hit = new THREE.Raycaster(V(SPOT.at), V(SPOT_DIR), 0.5, 20).intersectObject(sg, true)[0], len = hit ? hit.distance : 7;
@@ -210,11 +331,18 @@ export function build(shot, { makeCam }) {
 
   const extra = (t) => (NAMED[t] ? V(NAMED[t]) : null);
   const figSpecs = shot.figs || {};
-  const costumed = Object.fromEntries(Object.entries(figSpecs).map(([k, v]) => [k, k === 'dad' ? { ...v, costume: { ...DAD23, ...(v.costume || {}) } } : v]));
+  const costumed = Object.fromEntries(Object.entries(figSpecs).map(([k, v]) => [k, k === 'dad' ? { ...v, costume: { ...DAD23, ...(v.costume || {}) } } : k === 'jade' ? { ...v, costume: { ...JADE23, ...(v.costume || {}) } } : { ...v }]));
+  // r5 the clasp: stage the children first and read their SOLVED held hands (palm normal n, thumb side t: after the
+  // natural-wrist pass), then aim each adult's hand at that frame: palm against the child's palm, the hold cylinder's
+  // axis upright in the child's palm plane (the adult's fingers wrap forward round the child's hand, as in hand-holding)
+  { const kids = stage(Object.fromEntries(['girl', 'boy'].filter((k) => figSpecs[k]).map((k) => [k, figSpecs[k]])), null, extra).figs;
+    const clasp = (adult, side, kid, kidSide) => { const sp = costumed[adult], P = kids[kid]?.userData.P, a = sp?.[side]; if (!P || !a || typeof a !== 'object' || !a.hold) return;
+      const h = P.hands[kidSide], up = new THREE.Vector3(0, 1, -1).normalize(), ax = up.clone().addScaledVector(h.n, -up.dot(h.n)).normalize();   // the wrap axis: in the child's palm plane, tilted so the adult's fingers point down-forward along the forearm (natural wrist)
+      sp[side] = { ...a, palm: h.n.clone().negate().toArray(), hold: { ...a.hold, axis: ax.toArray() } }; };
+    clasp('jade', 'L', 'girl', 'R'); clasp('dad', 'R', 'boy', 'L'); }
   const { figs } = stage(costumed, null, extra);
   for (const f of Object.values(figs)) root.add(f);
-  if (figs.girl) girlLegs(figs.girl, figSpecs.girl, extra);
-  dressPrints(figs); if (figs.dad) glasses(figs.dad);
+  dressPrints(figs); if (figs.jade) { jadeOutfit(figs.jade); PATCH = sleevePatch(figs.jade); } if (figs.dad) { glasses(figs.dad); dadHair(figs.dad); poloCollar(figs.dad); backpack(figs.dad); }
   const cs = { ...shot, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   if (shot.eyeline) { const e = (shot.eyelineFrom ? V(shot.eyelineFrom) : figs[shot.eyeline.who].userData.P.eyes.clone()), to = V(fix(shot.eyeline.to)); cs.pos = e.addScaledVector(to.sub(e).normalize(), shot.eyeline.back ?? 0.12).toArray(); delete cs.orbit; }
   Object.assign(shot, solveCamera(cs, figs, null, aim));
@@ -242,7 +370,8 @@ export function build(shot, { makeCam }) {
     beam: beamSidecar({ name: 'spot', kind: SPOT.kind, solid: whole, anchor, P, cam: c, extra: { half_angle_deg: SPOT.halfAngle, lands_on: hit ? hit.object.userData.label : 'nothing (floor)', lands_at: hit ? hit.point.toArray().map((v) => +v.toFixed(3)) : null } }),
     mote: { seed: MOTE.seed, count: MOTE.count, hero_world: MOTE.hero, hero_px: P(V(MOTE.hero)), path_px: [MOTE.hero, MOTE.exit, MOTE.after].map((p) => P(V(p))), note: 'hero -> exit (drifts up out of the shaft at the last hit) -> after (where the gold dotted line stops)' },
     hands_meet: Object.fromEntries(Object.entries(HANDS_MEET).map(([k, p]) => [k, { world: p, px: P(V(p)) }])),
-    bodies: BODIES_NOTE,
+    bodies: { girl: 'girl4 (assets/bodies)', boy: 'boy7 (assets/bodies)', dad: 'dad23 (assets/bodies)' },
+    sleeve_patch: PATCH ? { world: PATCH.centre.toArray().map((x) => +x.toFixed(3)), px: P(PATCH.centre), outward: PATCH.outward.toArray().map((x) => +x.toFixed(3)) } : null,
   });
   return { set: 'playground23', scene, root, cam, rig, near: shot.near ?? 0.1, far: shot.far ?? 30, figs, book: null, panes: {}, lights,
     header: shot.header || '', shadowLine: false, shadowPolys: null, subject: anchor, litBg: 0x0a0a12, flatBg: shot.beamMask ? 0x000000 : 0x6a6a6a, extra: extraOut };

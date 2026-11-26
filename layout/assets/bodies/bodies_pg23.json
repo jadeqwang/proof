@@ -1,5 +1,5 @@
 {
- "_note": "Set-local body specs for playground23 (make_bodies.py in this folder; same format as layout/assets/bodies/bodies.json). Additions: race asian_caucasian (0.5 / 0.5 / 0); targets = extra MakeHuman targets (name: weight) on top of the macros; per-body hairAssets (null = built from the scalp); hairBuild crop = a short cut from the scalp (side / top / lift thickness in ipd, part, front = hairline raised in ipd).",
+ "_note": "Set-local body specs for playground23 (make_bodies_pg23.py in layout/assets/bodies; same format as layout/assets/bodies/bodies.json). Additions: race asian_caucasian (0.5 / 0.5 / 0); targets = extra MakeHuman targets (name: weight) on top of the macros; per-body hairAssets (null = built from the scalp); hairBuild crop = a short cut from the scalp (side / top / lift thickness in ipd, part, front = hairline raised in ipd). crop.hairline: optional per-cut hairline table [[deg from front, ipd above the eyes], ...].",
  "hairAssets": {
   "kidbob": "long01",
   "bob": "bob02",
@@ -62,11 +62,45 @@
    "hairBuild": {
     "short": {
      "crop": {
-      "side": 0.06,
+      "side": 0.07,
       "top": 0.1,
       "lift": 0.02,
       "front": 0.0,
-      "edge": 0.2
+      "edge": 0.2,
+      "hairline": [
+       [
+        0,
+        1.0
+       ],
+       [
+        40,
+        0.95
+       ],
+       [
+        62,
+        0.45
+       ],
+       [
+        75,
+        0.15
+       ],
+       [
+        95,
+        -0.25
+       ],
+       [
+        110,
+        -0.95
+       ],
+       [
+        130,
+        -1.65
+       ],
+       [
+        180,
+        -1.9
+       ]
+      ]
      }
     }
    },
@@ -77,13 +111,13 @@
     "head-age-decr": 0.6,
     "head-round": 0.5,
     "head-fat-incr": 0.25,
-    "l-cheek-volume-incr": 0.9,
-    "r-cheek-volume-incr": 0.9,
+    "l-cheek-volume-incr": 0.7,
+    "r-cheek-volume-incr": 0.7,
     "chin-bones-decr": 0.5,
     "chin-height-decr": 0.4,
     "chin-prominent-decr": 0.3
    },
-   "_who": "the boy, 7, 1.32 m (99th percentile): a 7-year-old's proportions scaled up, slim; head ~20% larger than typical for 1.32 m (about 5.1 heads tall); soft round face, full cheeks, no jaw angle, short soft chin; half East Asian, half white; very dark short neat cut (~1 inch), forehead visible, no fringe; long-sleeved crew top and trousers (garment_long)"
+   "_who": "the boy, 7, 1.32 m (99th percentile): a 7-year-old's proportions scaled up, slim; head ~20% larger than typical for 1.32 m (about 5.1 heads tall); soft round face, full cheeks, no jaw angle, short soft chin; half East Asian, half white; very dark short neat cut (~1 inch), forehead visible, no fringe; long-sleeved crew top and trousers (garment_long); r5: the cut covers the back and sides of the head down to the nape (the r4 cut stopped high, and the cheeks and ears showed as pale shapes beside the hair from behind); cheeks 0.9 -> 0.7"
   },
   {
    "id": "dad23",
@@ -114,7 +148,7 @@
    "targets": {
     "head-fat-incr": 0.3
    },
-   "_who": "Dad in 2023, 67, Chinese; the dad body (37, slim) older and a little fuller in face and body; near-black full thick hair swept up and back with a side part on his left, lift on top, sides short; long-sleeved top and trousers"
+   "_who": "Dad in 2023, 67, Chinese; the dad body (37, slim) older and a little fuller in face and body; full thick salt-and-pepper hair, white at the temples (r5, Jade; the colour is painted by the set, playground23/build.js), swept up and back with a side part on his left, lift on top, sides short; white polo (short sleeves) and black trousers (r5, Jade)"
   }
  ]
 }

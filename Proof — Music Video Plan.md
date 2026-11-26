@@ -110,7 +110,7 @@ One hand, one rule: ink line and light wash on cream xuan paper, and in every sc
 | Morton Grove, grad school, about 2007 | Low sun through the picture window | The white hoodie with the IAS seal printed in blue on the chest | None | `mortongrove07` |
 | Housewarming, Mountain View, fall 2010 | Late-afternoon daylight, dusk, then fire poi | Her, over-rendered | Hug count, pitch contour, path across the room: one per shot | `mv10` (the real house: living room, kitchen, deck and yard) |
 | Voyager frame, 1990 | A band of scattered sunlight | The dot | None | 2D plate |
-| Playground, Austin, 2023 | Low sun through glass | A mote; three reflections | The dotted line again, unfinished | `playground23` |
+| Playground, Austin, 2023 (Catch Air, unbranded) | A space-theme spot beam under indoor lights | A mote; from behind, the kids climb onto a low soft-play shuttle, each holding Jade's or Dad's hand | The dotted line again, unfinished | `playground23` |
 
 The scientific plates (code-drawn, on one shared sheet, `media/footage/`) are cut in where a scene turns inward: frost (PLATE XIV), the artichoke's growth, the spiral count (PLATE XVIII: the artichoke; the romanesco and the spiral aloe are alternates), the spectrogram of her voice (PLATE XXI) and the neuron (PLATE IX).
 

@@ -11,6 +11,92 @@ node layout/engine/holdcheck.mjs media/layout/playground23
 node layout/engine/clipcheck.mjs --set playground23 --exclude beam_
 ```
 
+## 2026-11-26: round-5 decisions (done)
+
+Jade's answers (work/decisions/JADE_R5_DECISIONS.md, verbatim there):
+- Offering a hand: she added inputs/catchair_shuttle.png (a real photo of the real play shuttle: LOOK-ONLY, never sent to
+  an image model; the venue is a real business, so nothing from it is branded in the set). Rebuild the shuttle to that
+  form and scale; restage the kids mid-climb, each reaching back to a clearly held adult hand.
+- Pairs: Jade with the girl, Dad with the boy (as built).
+- Dad 2023: about 66-67 looking (chronologically 70; looks young, Westerners guess 50s); hair a bit more salt-and-pepper,
+  white at the temples; otherwise as his photo. Thin rectangular semi-rimless glasses.
+- The boy in socks.
+- Dad: white polo shirt, black pants, a black-ish backpack (Jade: a SwissGear; built as a GENERIC black laptop backpack,
+  no readable logo: FLAGGED) with kids' water bottles in the side pockets: one black/green with a blocky pixel pattern
+  (Jade said Minecraft: NO trademarked logo or characters, only the colours and a pixel-block texture as one canonical
+  decal) and one pink cat bottle (a generic cat face, one canonical decal). Jade did not describe her own outfit: kept
+  as built (FLAGGED).
+- Venue: Catch Air (Google Maps and Street View still say Catch Air). Recorded here only; the set stays unbranded.
+
+What was done:
+- **Bodies moved** to layout/assets/bodies as NEW files: girl4.glb, boy7.glb, dad23.glb, meta_pg23.json,
+  bodies_pg23.json, make_bodies_pg23.py (writes there; the shared bodies.json / meta.json / make_bodies.py / BODY_OF are
+  untouched). The set's bodies/ folder is deleted; bodies.js loads /assets/bodies/meta_pg23.json and swaps the three in
+  for this page. ASK engine-body: merge the three into meta.json and BODY_OF, then delete bodies.js.
+- **The pale shapes beside the boy's head**: his cut stopped high at the back sides (the shared HAIRLINE table), so his
+  full cheeks (cheek volume 0.9) and ears showed as pale points either side of a V of hair from behind. Fixed in the
+  body: a new crop option `hairline` brings his cut down round the back and sides to the nape; cheeks 0.9 -> 0.7.
+  Checked in PG1 (lit / form): none left.
+- **The shuttle, rebuilt to Jade's photo** (layout.js SHUTTLE / RAMP / STEP; build.js shuttle()): a low rounded body
+  (0.62 m, a rounded-box section lofted along x) narrowing into a nose with a black wrap-round windscreen band and a
+  black chin (art.js bodyArt, one image), a black belly line; a panelled wing ramp in front (black padded wedge, three
+  white panels in black frames) from 0.52 m at the body to the floor; a flat panelled wing beyond; a black padded block
+  (0.32 m); a taller rounded rear section (0.95 m) with a crawl-through arch and black slanted stripes on top. No
+  hatches, steps, cradle or fin any more. From the photo also: a red-and-white soft-play rocket and a generic hanging
+  astronaut (white, dark visor, no character). READ FROM THE PHOTO, FLAGGED: which piece is nose vs. rear (I read the
+  right piece as the nose, the arched piece as the rear), the scale (~0.75 / 0.95 m), no tail fin.
+- **Staging** (shots.js family()): the girl halfway up the ramp on the balls of her feet (left knee up, her left hand
+  on the ramp, leaning in 75 deg of spine bend), her right hand back in Jade's left; the boy with his right foot on the
+  block and his right hand on the body's top corner, his left hand back in Dad's right. Both kids' held hands: palm
+  medial, fingers back and down, elbow out (natural for an arm reaching back; the alternatives broke the elbow or the
+  wrist). The clasp: build.js stages the kids first, reads their SOLVED hand frames, then gives each adult a hold
+  cylinder through the child's palm centre (palm against the child's palm, axis in the child's palm plane tilted so the
+  adult's fingers point down-forward along the forearm: natural wrist), HOLD_R girl 0.058 / boy 0.07 m (the radius at
+  which the fingers touch the child's hand without entering it).
+  - holdcheck (Rapier): Jade-girl contact 0.5 mm, penetration 0 / 0, pass; Dad-boy 0.4 mm, 0 / 0, pass (PG1, PG2).
+  - clipcheck: PG1 / PG2 / PG2_plate pass: no body vs body; grips Jade-girl -0.7 mm, Dad-boy -2.7 mm (limit 3); joints
+    in range; the boy's sole 1 mm / trouser 5.5 mm into the block (cloth, soft padding).
+  - wrists: every hand inside its range after small turns (girl L 12, girl R 16, boy L 29, Dad R 16 deg toward the
+    forearm; Jade's grip needs none).
+- **The boy in socks**: sock 0xdcdcd6 (light grey: colour not given, FLAGGED).
+- **Dad 2023**: costume DAD23 white polo (short sleeves) + black trousers + dark shoes (shoes not described: FLAGGED);
+  poloCollar() a soft folded collar open at the front; dadHair(): one canonical salt-and-pepper skin
+  (art.js dadHairArt: near-black, fine grey and white flecks, greyer at the sides, white temples) mapped round his head;
+  the glasses (thin rectangular semi-rimless) as before. Body unchanged (age 67).
+- **Backpack + bottles** (real models, CC BY, credited in docs/credits_tools.md): layout/assets/props/backpack ("Diaper
+  Bags" by fabbear: a standard laptop daypack; the patch texture with the maker's logo removed by the download agent;
+  recoloured flat black: GENERIC, no logo, FLAGGED that Jade's is a SwissGear) worn on both shoulders (PACK scale 0.9);
+  layout/assets/props/kids_bottle ("Sport Waterbottle" by psychofisch) twice in the side pockets with one canonical
+  decal each (art.js pixelBottleArt: black / green pixel blocks, no logo or character; catBottleArt: pink with a
+  generic cat face). New prop folders only; props.json NOT edited (loadProps works by name): ASK engine-body to add
+  them to props.json.
+- **Jade's rare earth outfit** (jadeOutfit(), art.js jadeOutfitArt: ONE chart over her top and trouser garments, u round
+  her torso axis, v up it; sleeves measured down the arm so the arm bands sit at the chest band's distance from the
+  shoulder): cropped white jacket, bare midriff, black mock-neck front strip, orange chest and arm bands, pale-blue dot
+  on the left chest, a large pale-blue circle on the back (BLANK: the turnaround shows no lettering on it, so none is
+  placed; mostly hidden by her hair from behind), a blank sleeve patch with a black ring on her left upper arm, navy trousers with a black waistband and orange straps. White sneakers
+  as white socks (the engine has no shoes). FLAGGED: the trousers are the body's stock slim cut, not wide cargo; the
+  loose wave of her hair is not modelled; the jacket's "RARE EARTH" / "1420 MHz" lettering is not placed (not legible
+  on the turnaround). Costume warning: Jade's and Dad's tops are both white (dE 2.4): true to both outfits.
+- **Lead's fixes (same night):**
+  - The sleeve patch read as a white HEART (the jacket chart distorted it on the bent arm). It is now its own decal
+    (art.js sleevePatchArt, transparent outside the circle; build.js sleevePatch): 8 cm across, raycast onto the
+    sleeve along the arm's outward normal at 13 cm below the shoulder (the arm band). Measured side-on in a temporary
+    test camera along that normal: the inner disc is 450 x 461 px (aspect 0.98). In PG1 it is seen nearly edge-on (a
+    thin ellipse on the arm's outer side). Sidecar key `sleeve_patch` (world, px, outward).
+  - Dad's hair read as white radiating stripes: the first mapping clamped everything above the brow to one texture
+    row, stretching the flecks. Now a cap mapping (u azimuth, v the angle from the crown, 0-135 deg) and a new skin
+    (dadHairArt): near-black with fine 1-2 px grey / white flecks scattered over the whole cap (a little denser low on
+    the sides and back), white only at the temples above and in front of the ears; no edge map (the flecks stay out of
+    line / contour). Checked in a side test view and in PG1.
+  - Re-rendered all three passes; holdcheck and clipcheck pass as before; PG2 rhyme -1.8 deg, mote centred.
+- **Cameras**: PG1 pulled back and down (pos -0.1, 1.9, 4.1; lens 32) to show the whole shuttle, the ramp and the kids'
+  feet. PG2 unchanged: rhyme angle error -1.8 deg, travel right-to-left, the mote at (960, 540); the beam now lands on
+  the rear section. The rocket's nose cone enters PG2's left edge.
+- Rendered all three passes (27 files) into media/layout/playground23/. gallery.py not run (the lead's sweep).
+
+Venue (notes only): Catch Air (Jade: Google Maps and Street View still say Catch Air). The set stays unbranded.
+
 ## 2026-11-26 round 4 — PROGRESS (checkpoint)
 
 ### Jade's directions for this set (verbatim where quoted)

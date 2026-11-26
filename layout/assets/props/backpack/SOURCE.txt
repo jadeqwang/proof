@@ -1,0 +1,8 @@
+Model: "Diaper Bags" by fabbear on Sketchfab
+URL: https://sketchfab.com/3d-models/040089295e3a4ee684d4562a8fabce9f
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-000/040089295e3a4ee684d4562a8fabce9f.glb (uid 040089295e3a4ee684d4562a8fabce9f)
+Changes (for this film's layout guides): split into named parts (body, shoulder_straps, strap_webbing, buckles, trims; materials renamed to match), scaled to metres (bag body 0.45 m tall), origin moved to the bottom centre of the bag body, decimated from 41,184 to 19,599 tris, textures cut to 1024 px JPEG base colour only; the 'trims' texture (zip pulls, patches with the original brand's embossed text and logo) replaced by flat near-black, so no logo or text remains.
+Real-world size here (x, y up, z): 0.3699 x 0.4816 x 0.3961 m
+Used for: playground23 adult daypack (to be recoloured flat black); back panel and shoulder straps face -z, front pocket +z, side bottle pockets at +x and -x. Strap tails hang 0.032 m below the bag bottom (y = -0.032)

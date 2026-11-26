@@ -22,24 +22,38 @@ const rad = (d) => (d * Math.PI) / 180;
 
 export const HALL = { x0: -8, x1: 8, z0: -9, z1: 6, joistY: 5.0, deckY: 5.8, joistDZ: 1.5 };
 
-// ---------------------------------------------------------------- the play shuttle (soft play: foam over a frame, vinyl skin)
-// Fuselage: a cylinder along x, radius R, on a low black cradle; nose cone to +x; tail fin and delta wings at the rear.
-// Two hatches on the +z side (kid height): the sill is the cabin deck inside. Each has a padded step in front.
-export const SHUTTLE = { y: 0.74, z: -1.45, r: 0.64, x0: -1.75, x1: 1.45, nose: 0.75, wall: 0.06, deck: 0.42,
-  fin: { x0: -1.75, x1: -1.05, top: 2.2, t: 0.12 }, wing: { x0: -1.75, x1: -0.95, y: 0.3, span: 0.95, t: 0.1 } };
-export const HATCHES = { front: { x0: 0.25, x1: 0.85, y0: 0.42, y1: 1.08 }, rear: { x0: -0.95, x1: -0.35, y0: 0.42, y1: 1.08 } };
-export const STEP = { h: 0.22, z0: -0.92, z1: -0.5 };          // padded steps, the width of each hatch
+// ---------------------------------------------------------------- the play shuttle (r5: rebuilt to Jade's photo)
+// Jade (r5) added inputs/catchair_shuttle.png: a real photo of the real shuttle, LOOK-ONLY (never sent to an image
+// model). Read from it: a LOW white soft-play shuttle lying on the floor (no cradle, no hatches, no tail fin in view):
+// a rounded white nose with a black wrap-round windscreen band and a black chin; a black padded block beside it; a
+// black-and-white PANELLED wing that slopes from the body down to the floor as a ramp (white panels in black frames);
+// a taller rear section with a crawl-through ARCH and black slanted stripes on its rounded top; another panelled wing
+// flat on the floor beyond. Behind it in the photo: a red-and-white soft-play rocket, hanging planets, an astronaut.
+// Scale from the photo (bar stools, the 4-year-old-sized arch): nose ~0.75 m, rear section ~0.95 m, ~4.3 m long.
+// Pieces along x (nose to +x), the body centred on z = SHUTTLE.z, its camera-side face at z = -1.0:
+export const SHUTTLE = { z: -1.55, half: 0.55, top: 0.62, x0: -1.15, x1: 0.75, nose: 1.3, tipY: 0.3,
+  rear: { x0: -2.3, x1: -1.15, top: 0.95, arch: { cx: -1.72, w: 0.58, h: 0.62 } } };
+// the camera-side wing = the panelled ramp: top edge on the body side at z = -1.0 (y 0.52), outer edge on the floor
+export const RAMP = { x0: -0.35, x1: 0.62, xOut0: -0.2, xOut1: 0.4, zTop: -1.0, yTop: 0.52, zOut: -0.1, yOut: 0.06, panels: 3 };
+export const rampY = (z) => RAMP.yOut + (RAMP.yTop - RAMP.yOut) * (RAMP.zOut - z) / (RAMP.zOut - RAMP.zTop);   // the ramp's top surface
+// the black padded block beside the body (the photo's black block): the boy's step up
+export const STEP = { x0: -1.08, x1: -0.45, z0: -1.0, z1: -0.58, h: 0.32 };
+// set dressing from the photo: a soft-play rocket (red and white bands) and a hanging astronaut (generic, no character)
+export const ROCKET = { at: [-1.9, -3.3], r: 0.42, body: 1.9, cone: 0.75 };
+export const ASTRONAUT = { at: [1.5, 2.3, -3.6], h: 0.9 };
 
 // ---------------------------------------------------------------- the people (pelvis x, z). Seen from behind.
-// The girl (4, 1.09 m) stands on the front step, about to climb in, her right hand back in Jade's hand.
-// The boy (7, 1.32 m) stands on the rear step, right hand on the hatch frame, left hand back in Dad's open right hand.
-// WHO HELPS WHOM was chosen for the composition (flagged): Jade is nearer the camera-right and the nose; the smaller
-// child, who needs the step, is hers; Dad (67) helps the boy, who needs less lift.
-export const PEOPLE = { girl: [0.55, -0.66], boy: [-0.62, -0.68], jade: [0.92, -0.25], dad: [-0.97, -0.3] };
-// where the hands meet (the CHILD's palm centre): the child's hand hangs a little back and out, palm turned back; the
-// adult's open hand comes from behind and takes it palm to palm (adult palm facing forward, fingers down round it)
-export const HANDS_MEET = { jade_girl: [0.7, 0.78, -0.5], dad_boy: [-0.8, 0.88, -0.56] };
-export const PALM_GAP = { jade: 0.057, dad: 0.079 };   // adult hand-centre offset behind the child's palm centre (z, m): tuned with holdcheck (contact, no penetration)
+// Jade (r5): "You with the girl, Dad with the boy". Each child is MID-CLIMB and reaches back to a clearly held hand:
+// - the girl (4, 1.09 m) is halfway up the panelled ramp on the balls of her feet, her left hand on the ramp ahead,
+//   her right hand reaching back to Jade, who holds it (Jade stands on the floor behind her, to her right);
+// - the boy (7, 1.32 m) has his right foot up on the black block and his right hand on the top of the body, his left
+//   hand reaching back to Dad, who holds it (Dad stands behind him, to his left).
+// The hold (both pairs): hand in hand, palm to palm as in a handshake; the adult's fingers wrap round the child's hand
+// (engine hold: a cylinder through the child's palm centre, axis along the child's palm width), the child's fingers
+// lie along the adult's palm. Measured with holdcheck (figure:<child>:hand) and clipcheck.
+export const PEOPLE = { girl: [0.12, -0.66], boy: [-0.74, -0.5], jade: [0.69, -0.28], dad: [-1.24, -0.2] };
+export const HANDS_MEET = { jade_girl: [0.34, 0.8, -0.57], dad_boy: [-1.03, 0.74, -0.33] };   // the children's held palms: reachable (arm reach <= 1), back, a little out and down
+export const HOLD_R = { girl: 0.058, boy: 0.07 };     // the clasp: the wrapped radius round the child's hand (half its width + skin)
 
 // ---------------------------------------------------------------- the beam: an accent spot onto the shuttle's tail fin
 export const SPOT = { at: [3.25, 4.2, -2.5], halfAngle: 2.5, color: 0xfff1d8, kind: 'theatrical LED accent spot on a drop pipe from a joist, aimed at the play shuttle' };

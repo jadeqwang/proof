@@ -8,8 +8,9 @@
 //   planetArt(k)   equirectangular skins for the hanging planets: 'violet' (the lit one), 'ringed', 'moon'
 //   sweaterArt()   the boy's knit: deep azurite with small white stars; chestArt(): ONE ringed planet + ONE rocket
 //   dressArt()     the girl's dress print: pink with red strawberries (green tops), repeating
-//   shuttleArt()   the play shuttle's skin: white hull, black belly tiles, portholes; no text, no flag
+//   bodyArt()      the play shuttle's body + nose skin (r5, to Jade's photo): white, black belly, windscreen band, chin
 import { artFromCanvas, repeatArt } from '../_art.js';
+import { SHUTTLE } from './layout.js';
 
 function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
 const cv = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; };
@@ -120,11 +121,119 @@ export const dressArt = () => once('dress', () => {
 });
 
 // ---- the play shuttle's skin (wrapped round the fuselage: u along the length, v round it; v = 0.5 is the side facing +z)
-export const shuttleArt = () => once('shuttle', () => {
-  const W = 2048, H = 512, [c, g] = cv(W, H);
+// ---- the play shuttle body + nose skin (r5, to Jade's photo): u along x (bodyU), v round the section (0 / 1 the
+// bottom centre, 0.25 the +z side, 0.5 the top; painted symmetric about the top so either side reads the same).
+// White padded vinyl, a black belly band, a black wrap-round windscreen band of four slanted panes on the nose, a black
+// chin, faint panel seams. No text, no flag, no logo.
+export const bodyU = (x) => (x - SHUTTLE.x0) / (SHUTTLE.x1 + SHUTTLE.nose - SHUTTLE.x0);
+export const bodyArt = () => once('shuttleBody', () => {
+  const W = 2048, H = 512, [c, g] = cv(W, H), uN = bodyU(SHUTTLE.x1), U = (t) => W * (uN + (1 - uN) * t);
   g.fillStyle = '#f2f2ee'; g.fillRect(0, 0, W, H);
-  g.fillStyle = '#1c1c22'; g.fillRect(0, 0, W, H * 0.18); g.fillRect(0, H * 0.82, W, H * 0.18);   // black belly tiles (underside, v ~ 0 / 1)
-  g.strokeStyle = 'rgba(40,40,50,0.35)'; g.lineWidth = 3; for (let x = 128; x < W; x += 256) { g.beginPath(); g.moveTo(x, H * 0.18); g.lineTo(x, H * 0.82); g.stroke(); }   // panel seams
-  g.fillStyle = '#2a6ad8'; g.fillRect(0, H * 0.62, W, 14); g.fillStyle = '#e9542f'; g.fillRect(0, H * 0.66, W, 10);   // a blue and an orange stripe low on the +z side
+  g.strokeStyle = 'rgba(60,60,70,0.35)'; g.lineWidth = 3;
+  for (let x = SHUTTLE.x0 + 0.5; x < SHUTTLE.x1 + 0.2; x += 0.5) { const u = bodyU(x) * W; g.beginPath(); g.moveTo(u, H * 0.1); g.lineTo(u, H * 0.9); g.stroke(); }
+  g.fillStyle = '#18181c'; g.fillRect(0, 0, W, H * 0.09); g.fillRect(0, H * 0.91, W, H * 0.09);            // belly band
+  // the chin: black under the nose tip, rising toward the tip
+  g.beginPath(); g.moveTo(U(0.62), 0); g.lineTo(W, 0); g.lineTo(W, H * 0.3); g.lineTo(U(0.8), H * 0.2); g.closePath(); g.fill();
+  g.beginPath(); g.moveTo(U(0.62), H); g.lineTo(W, H); g.lineTo(W, H * 0.7); g.lineTo(U(0.8), H * 0.8); g.closePath(); g.fill();
+  // the windscreen band: over the top of the nose, from side to side, its ends slanted back
+  const u0 = U(0.2), u1 = U(0.52), v0 = H * 0.3, v1 = H * 0.7, sl = (u1 - u0) * 0.35;
+  g.beginPath(); g.moveTo(u0 + sl, v0); g.lineTo(u1, v0 + 0.04 * H); g.lineTo(u1, v1 - 0.04 * H); g.lineTo(u0 + sl, v1); g.lineTo(u0, H * 0.5); g.closePath(); g.fill();
+  g.strokeStyle = '#f2f2ee'; g.lineWidth = 9;   // the pane frames: slanted white bars across the band
+  for (const v of [0.4, 0.6]) { g.beginPath(); g.moveTo(u0 - 10, H * v); g.lineTo(u1 + 10, H * (v + (v < 0.5 ? -0.03 : 0.03))); g.stroke(); }
+  g.beginPath(); g.moveTo(u0 + (u1 - u0) * 0.45, v0); g.lineTo(u0 + (u1 - u0) * 0.6, v1); g.stroke();
+  return artFromCanvas(c, { edgeMax: 0.4 });
+});
+
+// ---- Dad's hair in 2023 (r5, Jade: "a bit more salt-and-pepper now and white at the temples"; otherwise as his photo:
+// full, swept up and back, side part, short sides). One canonical skin mapped round his head (build.js dadHair) as a
+// cap: u = azimuth round the head's up axis (0.5 = straight ahead, 0.25 / 0.75 = his sides), v = 1 at the crown down to
+// 0 at 135 deg from it. Near-black overall with fine, short, scattered grey and white single-strand flecks (no streaks),
+// a little greyer low on the sides and back; white only at the temples and sideburns, above and in front of the ears.
+// r5 fix (lead): the first mapping clamped everything above the brow to one texture row, so the flecks were stretched
+// into bright radiating stripes; now the whole cap has its own texture area. No edge map (flecks stay out of line).
+export const dadHairArt = () => once('dadHair6', () => {
+  const W = 2048, H = 1024, [c, g] = cv(W, H), R = rng(67);
+  g.fillStyle = '#1e1b19'; g.fillRect(0, 0, W, H);
+  for (let i = 0; i < 90000; i++) {
+    const u = R(), v = R(), a = Math.abs(u - 0.5) * 360;               // deg from the front
+    const side = Math.min(1, Math.max(0, (a - 40) / 60)), low = Math.min(1, Math.max(0, (0.6 - v) / 0.4));
+    if (R() > 0.07 + 0.09 * side * low) continue;
+    const L = 120 + Math.floor(R() * 110); g.fillStyle = `rgb(${L},${L},${L - 3})`;
+    g.fillRect(u * W, (1 - v) * H, 1 + R() * 1.5, 1 + R() * 1.5);
+  }
+  // the temples / sideburns: white, in front of and above each ear (azimuth ~56 deg, ~60-95 deg below the crown)
+  for (const sd of [-1, 1]) { const ux = (0.5 + sd * 0.145) * W, vy = (1 - 0.47) * H, gr = g.createRadialGradient(ux, vy, 4, ux, vy, W * 0.1);
+    gr.addColorStop(0, 'rgba(240,238,232,1)'); gr.addColorStop(0.6, 'rgba(222,220,214,0.85)'); gr.addColorStop(1, 'rgba(200,198,192,0)');
+    g.fillStyle = gr; g.beginPath(); g.ellipse(ux, vy, W * 0.085, H * 0.24, 0, 0, 2 * Math.PI); g.fill(); }
+  const e = document.createElement('canvas'); e.width = 8; e.height = 8; const eg = e.getContext('2d'); eg.fillStyle = '#ffffff'; eg.fillRect(0, 0, 8, 8);
+  return artFromCanvas(c, { edgeCanvas: e });
+});
+
+// ---- Jade's sleeve patch (r5 fix, lead: the patch painted into the jacket chart mapped as a heart on the bent arm): one
+// canonical decal, a small round blank patch with a black ring, laid on the sleeve by build.js sleevePatch (transparent
+// outside the circle, so it conforms as a circle)
+export const sleevePatchArt = () => once('sleevePatch', () => {
+  const S = 256, [c, g] = cv(S, S);
+  g.fillStyle = '#141416'; g.beginPath(); g.arc(S / 2, S / 2, S * 0.48, 0, 2 * Math.PI); g.fill();
+  g.fillStyle = '#f2f0ea'; g.beginPath(); g.arc(S / 2, S / 2, S * 0.38, 0, 2 * Math.PI); g.fill();
+  return artFromCanvas(c, { edgeMax: 0.5 });
+});
+
+// ---- the two kids' water bottles in Dad's backpack side pockets (r5, Jade): ONE canonical decal each, wrapped round
+// the bottle (u round, v up). No logo, no character, no lettering.
+// pixelBottleArt(): black and green with a blocky pixel-block pattern (Jade's "Minecraft" bottle: only the colours and a
+//   pixel-block texture; no trademarked logo or character).
+// catBottleArt(): pink with one generic cartoon cat face (round head, two triangle ears, dot eyes, whiskers).
+export const pixelBottleArt = () => once('pixelBottle', () => {
+  const W = 512, H = 512, [c, g] = cv(W, H), R = rng(1709), n = 16, s = W / n;
+  const greens = ['#1f7a2a', '#2f9a35', '#4cb648', '#176020', '#5fcf4f', '#2a8a30'];
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) { const blackBand = j < 4 || j >= n - 2;
+    g.fillStyle = blackBand ? (R() < 0.25 ? '#2a2a2a' : '#121212') : greens[Math.floor(R() * greens.length)]; g.fillRect(i * s, j * s, s, s); }
+  return artFromCanvas(c, { edgeMax: 0.3 });
+});
+export const catBottleArt = () => once('catBottle', () => {
+  const W = 512, H = 512, [c, g] = cv(W, H);
+  g.fillStyle = '#f49ac2'; g.fillRect(0, 0, W, H);
+  const cx = W * 0.5, cy = H * 0.55, r = W * 0.15;   // one cat face on the front (u 0.5)
+  g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(cx - r * 0.95, cy - r * 0.35); g.lineTo(cx - r * 0.7, cy - r * 1.35); g.lineTo(cx - r * 0.2, cy - r * 0.85); g.closePath(); g.fill();
+  g.beginPath(); g.moveTo(cx + r * 0.95, cy - r * 0.35); g.lineTo(cx + r * 0.7, cy - r * 1.35); g.lineTo(cx + r * 0.2, cy - r * 0.85); g.closePath(); g.fill();
+  g.beginPath(); g.ellipse(cx, cy, r, r * 0.85, 0, 0, 2 * Math.PI); g.fill();
+  g.fillStyle = '#2a1a22'; for (const s of [-1, 1]) { g.beginPath(); g.arc(cx + s * r * 0.38, cy - r * 0.1, r * 0.1, 0, 2 * Math.PI); g.fill(); }
+  g.fillStyle = '#e8507a'; g.beginPath(); g.moveTo(cx - r * 0.1, cy + r * 0.18); g.lineTo(cx + r * 0.1, cy + r * 0.18); g.lineTo(cx, cy + r * 0.3); g.closePath(); g.fill();
+  g.strokeStyle = '#2a1a22'; g.lineWidth = 4; for (const s of [-1, 1]) for (const d of [-0.12, 0.08]) { g.beginPath(); g.moveTo(cx + s * r * 0.3, cy + r * (0.28 + d)); g.lineTo(cx + s * r * 1.15, cy + r * (0.22 + d * 2)); g.stroke(); }
+  g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H * 0.08);   // a white band at the top (under the lid)
+  return artFromCanvas(c, { edgeMax: 0.3 });
+});
+
+// ---- Jade in 2023 (r5, Jade: "you can have me wearing the rare earth outfit": her chaosmonkey-video outfit, canon in
+// inputs/refs_chaosmonkey/CANON.md "Jade (v3)" and jade/jade_A_turnaround_v3.jpg). ONE canonical chart for her torso
+// and trouser garments (build.js jadeOutfit maps it): u = angle round her torso axis (0.5 = her front, 0.75 her left,
+// 0 / 1 her back), v = height along the torso axis from 0.6 m below the hip joint (0) to 0.75 m above it (1).
+// A cropped white racer jacket ending above the navel, worn open over a black mock-neck top (the front strip); bare
+// midriff; one orange band across the chest and round each upper arm at the same height; a small pale-blue dot on her
+// left chest; on the back a large pale-blue circle (BLANK: the turnaround shows no lettering on it); on her left sleeve
+// a small round blank patch with a black ring; wide navy cargo trousers, black waistband, orange straps hanging on the
+// outer and front thighs. hs = her shoulder height above the hip joint along the axis (m).
+export const JADE_CHART = { h0: -0.6, h1: 0.75 };
+export const jadeOutfitArt = (hs) => once('jadeOutfit2' + hs.toFixed(3), () => {
+  const W = 2048, H = 1024, [c, g] = cv(W, H), V = (h) => (1 - (h - JADE_CHART.h0) / (JADE_CHART.h1 - JADE_CHART.h0)) * H, U = (a) => (0.5 + a / (2 * Math.PI)) * W;
+  const rect = (a0, a1, h0, h1, col) => { g.fillStyle = col; g.fillRect(U(a0), V(h1), U(a1) - U(a0), V(h0) - V(h1)); };
+  const hem = 0.2, top = 0.17, belt = 0.1;   // jacket hem, the black top's hem, the trousers' waistband top (m above the hip joint)
+  rect(-Math.PI, Math.PI, JADE_CHART.h0, JADE_CHART.h1, '#f2f0ea');                       // jacket white
+  rect(-Math.PI, Math.PI, JADE_CHART.h0, belt, '#232a52');                                 // navy trousers
+  rect(-Math.PI, Math.PI, belt - 0.035, belt, '#141416');                                  // black waistband
+  rect(-Math.PI, Math.PI, belt, hem, '#e3b692');                                           // bare midriff
+  rect(-0.42, 0.42, top, hs, '#151517');                                                   // the black mock-neck top (jacket open)
+  rect(-0.42, 0.42, belt, top, '#e3b692');
+  // orange straps on the trousers: front thighs (a ~ +-0.35) and outer thighs (a ~ +-1.55), from the belt to the knee
+  for (const a of [-1.55, -0.35, 0.35, 1.55]) rect(a - 0.07, a + 0.07, belt - 0.55, belt - 0.02, '#e8792c');
+  for (const a of [-1.55, -0.35, 0.35, 1.55]) rect(a - 0.09, a + 0.09, belt - 0.2, belt - 0.17, '#141416');   // the black buckles
+  // the orange band across the chest and round both arms, the same height; broken by the open front
+  const bh = hs - 0.13; rect(-Math.PI, -0.42, bh - 0.018, bh + 0.018, '#e8792c'); rect(0.42, Math.PI, bh - 0.018, bh + 0.018, '#e8792c');
+  // the small pale-blue dot on her left chest (her left = +a)
+  g.fillStyle = '#8fb0dc'; g.beginPath(); g.ellipse(U(0.62), V(bh + 0.07), 0.025 / 0.14 * W / (2 * Math.PI), 0.025 / (JADE_CHART.h1 - JADE_CHART.h0) * H, 0, 0, 2 * Math.PI); g.fill();
+  // the large pale-blue circle on the back (centred a = pi: both chart edges), radius 0.085 m, centre above the band
+  for (const ux of [0, W]) { g.beginPath(); g.ellipse(ux, V(bh + 0.06), 0.085 / 0.13 * W / (2 * Math.PI), 0.085 / (JADE_CHART.h1 - JADE_CHART.h0) * H, 0, 0, 2 * Math.PI); g.fill(); }
+  // (the sleeve patch is its own decal now: sleevePatchArt)
   return artFromCanvas(c, { edgeMax: 0.4 });
 });

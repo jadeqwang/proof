@@ -1247,3 +1247,15 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
     - Mom's clothes are 14 mm into the chair.
   - Repaint: BO1, BO2, H1, H1b, PC2, PC3b, M1, M4b, M5.
   - Plan: BO2 -> X_sw -> AD_trace are plain cuts (done).
+- **playground agent done (round 1 of follow-ups):**
+  - The shuttle is rebuilt to Jade's photo: a low white body, a black-and-white panelled ramp wing, a black block and
+    an arch section, with a soft-play rocket and a generic astronaut behind.
+  - PG1 restaged with the kids mid-climb, each hand held; hold 0.4-0.5 mm, clip clean.
+  - Dad 2023: salt-and-pepper hair, white polo, black trousers, a generic black backpack with a pixel bottle and a
+    cat bottle (CC BY models).
+  - Jade in the Rare Earth outfit. Her back circle is blank: no lettering readable on the turnaround.
+  - Boy in socks; the pale shapes by his head (cheeks/ears under short hair) are fixed.
+  - Bodies moved to layout/assets/bodies/*_pg23. The engine agent will register them and remove the girlLegs()
+    workaround when its dress fix lands.
+  - Lead's look at PG1_lit: reads well. Sent back two fixes: her sleeve patch maps as a HEART, and Dad's grey hair
+    reads as white stripes/cornrows. Plan row updated.

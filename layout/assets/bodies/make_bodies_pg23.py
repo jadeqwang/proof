@@ -1,12 +1,20 @@
-# SET-LOCAL COPY for playground23 (the girl at 4, the boy at 7, Dad in 2023): a bridge until girl4 / boy7 / dad23 are
-# added to layout/assets/bodies and the engine's BODY_OF. Copied from layout/assets/bodies/make_bodies.py; HERE is this
-# folder, so bodies.json is read from here and <id>.glb + meta.json are written here. Additions over the shared script:
+# playground23 bodies (the girl at 4, the boy at 7, Dad in 2023): girl4 / boy7 / dad23. Moved here from the set's
+# bodies/ folder in round 5 (2026-11-26) as NEW files beside the shared ones (the shared make_bodies.py, bodies.json,
+# meta.json are not edited): this script reads bodies_pg23.json and writes <id>.glb + meta_pg23.json here.
+# TO MERGE (engine-body owner): add the three bodies to bodies.json / meta.json and map who -> id in humanMesh.js BODY_OF
+# (girl -> girl4, boy -> boy7, dad in 2023 -> dad23); playground23/bodies.js is the bridge until then.
+#   ~/opt/blender-4.5.17-linux-x64/blender -b --offline-mode --python layout/assets/bodies/make_bodies_pg23.py -- [id ...]
+# Additions over the shared script:
 #   - race "asian_caucasian" (half East Asian, half European: 0.5 / 0.5 / 0)
 #   - per-body "targets": {MakeHuman target name: weight} loaded on top of the macros before baking (head scale,
 #     cheeks, chin ...); helper joints move with them, so the rig, eyes and landmarks stay consistent
 #   - per-body "hairAssets" overriding the global map (null = no MakeHuman proxy: built from the scalp)
-#   - hairBuild "crop": a short cut grown from the scalp (the boy's soft short cut; Dad's swept-up side-parted cut)
-#   ~/opt/blender-4.5.17-linux-x64/blender -b --offline-mode --python layout/sets/playground23/bodies/make_bodies.py -- [id ...]
+#   - hairBuild "crop": a short cut grown from the scalp (the boy's soft short cut; Dad's swept-up side-parted cut);
+#     crop.hairline: an optional per-cut hairline table [(deg from the front, ipd above the eyes), ...] (r5: the boy's
+#     cut covers the back of the head down to the nape, so no skin shows beside the hair from behind)
+#   - hairBuild "dutch": the girl's two Dutch braids into low pigtails
+# Measured (r4): girl4 1.09 m, 5.68 heads; boy7 1.32 m, 5.15 heads (a typical 7-year-old is 6.2); dad23 1.72 m, 7.29.
+# MakeHuman / MPFB assets: CC0.
 # Build the rigged body meshes for the layout engine (PROOF_BODY=mesh) from bodies.json, headless:
 #   ~/opt/blender-4.5.17-linux-x64/blender -b --offline-mode --python layout/assets/bodies/make_bodies.py -- [id ...]
 # Needs the MPFB2 add-on (extension bl_ext.user_default.mpfb) and the MakeHuman system assets pack (CC0) in MPFB's
@@ -20,7 +28,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 addon_utils.enable("bl_ext.user_default.mpfb", default_set=True)
 from bl_ext.user_default.mpfb.services import HumanService, TargetService, LocationService  # noqa: E402
 
-SPEC = json.load(open(os.path.join(HERE, "bodies.json")))
+SPEC = json.load(open(os.path.join(HERE, "bodies_pg23.json")))
 DATA = LocationService.get_user_data()
 RACE = {"asian": (1.0, 0.0, 0.0), "caucasian": (0.0, 1.0, 0.0), "african": (0.0, 0.0, 1.0), "mixed": (0.34, 0.33, 0.33), "asian_caucasian": (0.5, 0.5, 0.0)}
 
@@ -272,7 +280,9 @@ def build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth):
             parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.005, key, field=hairline, subdiv=1)
             if how.get("knot"): parts[key + "__knot"] = bun_knot(basemesh, rig, key + "__knot", eC, ipd, how["knot"])
         if how.get("crop"):   # set-local: a short cut from the scalp (the boy; Dad in 2023)
-            parts[key] = crop(basemesh, rig, key, eC, ipd, hc, hairline, head, how["crop"])
+            tab = how["crop"].get("hairline")
+            hl = (lambda c, tab=tab: c.z - (eC.z + ipd * interp(ang(c), tab))) if tab else hairline
+            parts[key] = crop(basemesh, rig, key, eC, ipd, hc, hl, head, how["crop"])
         if how.get("dutch"):   # set-local: the girl's two Dutch braids into low pigtails, over close hair with a centre part
             parts[key + "__braids"] = dutch_braids(basemesh, rig, key + "__braids", eC, ipd, hc, how["dutch"])
         if how.get("perm"):   # Mama: a jaw-length, side-parted perm of loose springy curls (cast/mama/mama_R)
@@ -656,7 +666,7 @@ def build(spec):
 
 
 argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
-metaf = os.path.join(HERE, "meta.json")
+metaf = os.path.join(HERE, "meta_pg23.json")
 meta = json.load(open(metaf)) if os.path.exists(metaf) else {}
 for spec in SPEC["bodies"]:
     if argv and spec["id"] not in argv: continue

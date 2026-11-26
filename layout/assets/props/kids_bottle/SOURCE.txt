@@ -1,0 +1,8 @@
+Model: "Sport Waterbottle" by psychofisch on Sketchfab
+URL: https://sketchfab.com/3d-models/04b5fcbb2d644e608d7f836bdb136a85
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-021/04b5fcbb2d644e608d7f836bdb136a85.glb (uid 04b5fcbb2d644e608d7f836bdb136a85)
+Changes (for this film's layout guides): kept as named parts (body, lid, lid_seal, lid_band, lid_clip, spout, straw; materials renamed to match), scaled to metres (0.22 m tall), origin moved to the bottom centre; no textures in the source (flat colours; body is a transparent BLEND material).
+Real-world size here (x, y up, z): 0.0752 x 0.22 x 0.0915 m
+Used for: playground23 children's water bottle (flip-up straw cap; to be recoloured / decaled); upright along +y
