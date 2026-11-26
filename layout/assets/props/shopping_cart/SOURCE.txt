@@ -1,0 +1,11 @@
+Model: "Carro De La Compra" by alexvladimircm on Sketchfab
+URL: https://sketchfab.com/3d-models/c22286ade5ea493b890b3269e57b191f
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard 000-025: license "by"), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-025/c22286ade5ea493b890b3269e57b191f.glb (uid c22286ade5ea493b890b3269e57b191f)
+Changes (for this film's layout guides): joined, decimated 27,142 -> 20,000 tris, scaled uniformly to 0.98 m overall height (handle grip axis at 0.96 m; an American supermarket cart of the 1980s-90s), origin at the floor under the bbox centre, split into two meshes 'body' and 'handle' (the red handle grip bar, so engine/main.js holdsFor hulls the bar alone). Base-colour texture only (1024 px JPEG; no logos or text).
+Real-world size here (x, y up, z): 0.593 x 0.98 x 0.841 m (0.593 m wide, a medium US cart: it fits the 0.60 m lane in market93 M4b, not the 0.49 m gap)
+Orientation (glTF / three.js): y up; the nose (front) toward +z, the handle at -z (grip centre [0, 0.962, -0.402], along x, r ~0.018, 0.36 m long).
+Style: chrome wire basket with red plastic trim, a fold-down child seat at the handle end, a wire bottom rack, four casters: the American supermarket cart of the period.
+Used for: market93 the grandmother's cart (Marketplace on Oakton, Skokie, 1993)
+Pipeline: Blender 4.5, layout/assets/props/_pipeline/norm.py {"size":["h",0.98],"tris":20000,"origin":"bottom","split":{"handle":"cy>0.94 and sx>0.3"}}

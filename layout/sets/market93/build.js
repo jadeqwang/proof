@@ -8,6 +8,9 @@ import { CAST, PROP } from '../_cast.js';   // jade10 (and child10 proportions) 
 import { STORE, AISLE, ISLAND, ISLANDS, AWNING, bedY, HERO_BINS, binZ, GONDOLA, WALLCASE, WALLSHELF, PALLET, SCALE, AISLE_SIGN,
   TUBES, fixtureZ, KEY, DEAD, BEAM, beamRect, inBeam, LIGHTS, ARTICHOKE, ROMANESCO, ART_HELD, ART_ISLAND, ROM_ISLAND, CART, CAST93, PROP_CHILD10 } from './layout.js';
 import { artichoke, romanesco, place, latticeWorld } from './phyllo.js';
+import { loadProps, prop } from '../_props.js';
+import { SETTLED } from './settled.js';   // r5: the cart and its groceries, settled with Rapier (settle.mjs)
+await loadProps(['shopping_cart']);
 // PLATE XVIII's count by bract (written by media/footage/spirals/spirals.py; the bracts are the same, artichoke_bracts.json)
 import PLATE_COUNT from './artichoke_plate_count.json' with { type: 'json' };
 
@@ -159,20 +162,30 @@ function room(shot) {
 }
 
 // ---------------------------------------------------------------- the cart (local: +z = nose, origin on the floor under the basket centre)
+// r5 (Jade: "swap in a downloaded model"): the downloaded American supermarket cart (props/shopping_cart, "Carro De La Compra"
+// by alexvladimircm, CC BY 4.0; chrome wire basket with red trim, child seat, bottom rack; 0.62 x 1.02 x 0.875 m). Its red
+// handle grip is its own mesh, labelled as the bar, so the hold check takes the bar as the held object and the frame as its
+// support. Settled with Rapier (settle.mjs -> settled.js): the cart lands level on its four casters (lift 0), the carton and
+// the melon rest on the basket floor. Falls back to the hand-built cart if the model is missing.
 function cart(spec) {
-  const C = CART, g = new THREE.Group(), hl = C.len / 2, wr = C.wRear / 2, wn = C.wNose / 2, yb = C.bottom, yt = C.top, W = { grey: 0.58, col: 0x9aa0a8 };
-  const c = { rl: V(wr, yt, -hl), rr: V(-wr, yt, -hl), nl: V(wn, yt, hl), nr: V(-wn, yt, hl), rlb: V(wr * 0.9, yb, -hl + 0.04), rrb: V(-wr * 0.9, yb, -hl + 0.04), nlb: V(wn * 0.9, yb + 0.05, hl - 0.05), nrb: V(-wn * 0.9, yb + 0.05, hl - 0.05) };
-  g.add(quad([c.rl, c.nl, c.nlb, c.rlb], W), quad([c.nr, c.rr, c.rrb, c.nrb], W), quad([c.nl, c.nr, c.nrb, c.nlb], W), quad([c.rr, c.rl, c.rlb, c.rrb], W), quad([c.rlb, c.nlb, c.nrb, c.rrb], { grey: 0.5, col: 0x8a9098 }));
-  for (const s of [-1, 1]) { g.add(box(0.02, 0.02, C.len + 0.1, STEEL_D, [s * wr * 0.85, 0.16, -0.02])); g.add(box(0.025, C.handleY - 0.149, 0.025, STEEL_D, [s * wr * 0.95, (C.handleY + 0.131) / 2, -hl - 0.029], [-8, 0, 0]));
-    for (const zz of [-hl + 0.02, hl - 0.03]) g.add(cyl(0.055, 0.055, 0.025, { grey: 0.2, col: 0x222222 }, [s * wr * 0.85, 0.055, zz], [0, 0, 90], 12)); }
-  g.add(box(C.wRear * 0.8, 0.015, C.len * 0.8, STEEL, [0, 0.2, 0]));
-  // (hold pass 2026-11-26) the handle bar is its own labelled part, so the hold check takes the bar as the held object and
-  // the frame under it as its support; the uprights end 13 mm under the bar's axis (they ran 10 mm into it), the bar
-  // rests on their tops. The cart stands on its four wheels (bottoms at y = 0).
-  g.add(tag(cyl(0.014, 0.014, C.wRear, { grey: 0.3, col: 0xb23a2e }, [0, C.handleY, -hl - 0.09], [0, 0, 90], 10), "the grandmother's cart: handle bar"));
-  g.add(box(0.3, 0.16, 0.22, { grey: 0.7, col: 0xd9c9a0 }, [0.02, yb + 0.1, -0.1], [0, 12, 0])); g.add(ball(0.09, { grey: 0.6, col: 0x9ab56a }, [-0.05, yb + 0.12, 0.2]));
+  const C = CART, g = new THREE.Group();
+  const m = prop('shopping_cart', { at: [0, SETTLED.cart.lift, 0], label: "the grandmother's cart" });
+  if (m) { m.traverse((o) => { if (o.isMesh && /handle/.test(o.userData.part || o.name)) o.userData.label = "the grandmother's cart: handle bar"; }); g.add(m); }
+  else {   // the old hand-built cart (r4), kept only as the fallback
+    const hl = C.len / 2, wr = C.wRear / 2, W = { grey: 0.58, col: 0x9aa0a8 };
+    g.add(box(C.wRear, 0.4, C.len, W, [0, 0.7, 0]));
+    g.add(tag(cyl(C.barR, C.barR, C.barLen, { grey: 0.3, col: 0xb23a2e }, [0, C.handleY, C.barZ], [0, 0, 90], 10), "the grandmother's cart: handle bar"));
+    for (const s of [-1, 1]) g.add(box(0.025, C.handleY, 0.025, STEEL_D, [s * wr * 0.95, C.handleY / 2, -hl]));
+  }
+  // the groceries, where Rapier left them in the basket
+  const Q = (q) => new THREE.Quaternion(...q);
+  for (const it of SETTLED.items) {
+    const o = it.kind === 'carton' ? box(...SETTLED.CARTON, { grey: 0.7, col: 0xd9c9a0 }, [0, 0, 0]) : ball(SETTLED.MELON_R, { grey: 0.6, col: 0x9ab56a }, [0, 0, 0]);
+    o.position.set(it.at[0], it.at[1] + SETTLED.cart.lift, it.at[2]); o.quaternion.copy(Q(it.quat)); g.add(tag(o, it.kind === 'carton' ? 'groceries in the cart (carton)' : 'groceries in the cart (melon)'));
+  }
   g.position.set(spec.at[0], 0, spec.at[1]); g.rotation.y = rad(spec.yaw || 0); g.updateMatrixWorld(true);
-  g.userData.pt = (n) => ({ handleL: V(0.17, C.handleY + 0.012, -hl - 0.09), handleR: V(-0.17, C.handleY + 0.012, -hl - 0.09), barL: V(0.17, C.handleY, -hl - 0.09), barR: V(-0.17, C.handleY, -hl - 0.09), nose: V(0, yt, hl), centre: V(0, 0.7, 0) })[n]?.applyMatrix4(g.matrixWorld);
+  const bar = (x) => V(x, C.handleY, C.barZ);
+  g.userData.pt = (n) => ({ handleL: V(C.gripX, C.handleY + C.barR, C.barZ), handleR: V(-C.gripX, C.handleY + C.barR, C.barZ), barL: bar(C.gripX), barR: bar(-C.gripX), nose: V(0, C.top, C.len / 2), centre: V(0, 0.7, 0) })[n]?.applyMatrix4(g.matrixWorld);
   return tag(g, "the grandmother's cart");
 }
 

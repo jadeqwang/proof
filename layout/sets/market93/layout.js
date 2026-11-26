@@ -36,7 +36,7 @@ export const WALLCASE = { d: 0.7, h: 2.0, decks: [0.45, 0.85, 1.2, 1.52], canopy
   runs: [{ id: 'side', along: 'z', x: STORE.x1, z0: -8.2, z1: 8.2 }, { id: 'back', along: 'x', z: STORE.z0, x0: -1.0, x1: 6.8 }] };
 export const WALLSHELF = { x0: STORE.x0, d: 0.45, h: 2.0 };
 // a pallet of melon cartons left in the aisle on the gondola side: with her standing 0.25 m off the island, the gap
-// between her and the cartons (0.49 m) is narrower than the cart (0.56 m). That is why the grandmother has to wait.
+// between her and the cartons (0.49 m) is narrower than the cart (0.593 m, r5). That is why the grandmother has to wait.
 export const PALLET = { x0: -0.9, x1: -0.1, z0: -0.55, z1: 0.45, h: 0.14, carton: [0.38, 0.25, 0.48], layers: 3 };
 export const SCALE = { at: [1.7, -2.3], y: 1.75 };            // hanging produce scale over the cross aisle behind
 export const AISLE_SIGN = { x: 0, z: 2.5, y: 2.45, w: 1.3, h: 0.32 };   // hanging aisle marker over the cross aisle ahead
@@ -91,9 +91,14 @@ export const ART_HELD = { at: [+(JADE_STAND.at[0] + f[0] * 0.30).toFixed(3), 0.9
 export const ART_ISLAND = { at: [1.0, 0.972, 0.40], axis: [-0.07, 0.819, 0.569] };
 export const ROM_ISLAND = { at: [1.20, 1.105, 1.00], axis: [-0.10, 0.906, 0.41] };
 // the grandmother and her cart: waiting (behind Jade, under the dead strips) and passing (once the aisle is free)
-export const CART = { len: 0.9, wRear: 0.56, wNose: 0.44, top: 0.98, bottom: 0.42, handleY: 1.02 };
-export const GRANDMA_WAIT = { cart: { at: [0.15, -1.15], yaw: 0 }, at: [0.15, -1.92] };     // cart nose at z = -0.70
-export const GRANDMA_PASS = { cart: { at: [-0.4, 3.57], yaw: 0 }, at: [-0.4, 2.8] };   // overtaking on the gondola side
+// r5: the downloaded cart's measurements (props/shopping_cart, props.json): 0.841 m long, 0.593 m wide at the rear (its widest:
+// it fits the 0.60 m lane in M4b, not the 0.49 m gap), basket rim at the nose 0.63 m, the red handle grip's axis 0.962 m up at
+// z -0.402, radius 18 mm, 0.36 m long; her hands on the grip 0.105 m either side of the middle. (Was hand-built: 0.9 long,
+// 0.56 wide, bar at 1.02.)
+export const CART = { len: 0.841, wRear: 0.593, top: 0.634, handleY: 0.9617, barZ: -0.4023, barR: 0.0183, barLen: 0.358, gripX: 0.105 };
+// r5: she stands 0.23 m behind the (downloaded) cart's handle grip, as before; the grip is 0.40 m behind the cart's centre (was 0.54)
+export const GRANDMA_WAIT = { cart: { at: [0.15, -1.15], yaw: 0 }, at: [0.15, -1.78] };     // cart nose at z = -0.73
+export const GRANDMA_PASS = { cart: { at: [-0.4, 3.57], yaw: 0 }, at: [-0.4, 2.94] };   // overtaking on the gondola side
 export const MAMA_AHEAD = { at: [-0.35, 2.9], yaw: -90 };       // at the gondola, further up the aisle (out of the beam)
 export const MAMA_GRAB = { at: [0.14, 0.50], yaw: 60 };         // back at her right side, shoulder to shoulder; inside the beam
 export const WALK = { jade: { at: [0.50, 4.3], yaw: 70 }, mama: { at: [0.05, 4.85], yaw: 0 }, hold: [0.30, 0.97, 4.72] };

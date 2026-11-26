@@ -256,3 +256,28 @@ and measured hits. Times written elsewhere in this file before this section are 
   data/artichoke_arms.json` without NO_MARKET_COUNT. The written file is byte-identical to the committed one (8 / 5 arms,
   the same bracts), so it was already current. The run also rewrote data/artichoke_arms.json with 0.01 px rounding noise
   only; that was reverted.
+
+## 2026-11-26: round-5 decisions (work/decisions/JADE_R5_DECISIONS.md; R5 brief) — office-market agent
+- **The grandmother's cart is a downloaded model** (Jade: "Yes, swap in a downloaded model"). The set is an American
+  supermarket (Marketplace on Oakton, Skokie, 1993), so the cart is a supermarket shopping cart, not a granny trolley.
+  Searched Objaverse 1.0 (LVIS `shopping_cart` + `cart`, 66 models; licences from the Sketchfab metadata, only CC BY / CC0
+  kept); rendered eight candidates side by side. Picked "Carro De La Compra" by alexvladimircm (CC BY 4.0): chrome wire
+  basket with red trim, fold-down child seat, wire bottom rack, four casters, the American cart of the period; no logos.
+  The others were modern blue plastic, European trolleys, or broken-scale. -> layout/assets/props/shopping_cart/
+  (SOURCE.txt, LICENSE.txt; props.json entry `shopping_cart` with a `handle` grip), credited in docs/credits_tools.md.
+- **Real size:** scaled uniformly to 0.98 m overall: 0.593 m wide, 0.841 m long, handle grip axis 0.962 m. A 1.02 m
+  scale made it 0.617 wide, wider than the 0.60 m lane it starts into in M4b; 0.593 still cannot pass the 0.49 m gap.
+  `CART` (layout.js) now holds the model's measurements. ASSUMED medium cart size; flag if Jade remembers a bigger one.
+- **Grip re-staged:** the red handle grip is its own mesh labelled "the grandmother's cart: handle bar" (the hold
+  check's object; the frame under it is its support). Her hands are on the grip 0.105 m either side of the middle
+  (`CART.gripX`), power grip r 18 mm (`CART.barR`). She stands 0.23 m behind the grip as before, so her marks moved
+  0.14 m toward the cart (GRANDMA_WAIT/PASS `at`; GRANDMA_START also moved x 0.15 -> 0.2, the middle of the lane).
+- **Settled with Rapier** (`settle.mjs` -> `settled.js`; run `node layout/sets/market93/settle.mjs`): the cart as a
+  convex hull dropped onto the floor lands level on its four casters (lift 0, tilt 0.002 deg); the carton and the melon
+  dropped into the basket (trimesh of the model) rest on its wire floor. build.js places them from settled.js.
+- **Checks:** hold check 35/35 pass (the grip: capsules 1 mm off the bar with hold r = 18.3 + 4 mm; at r = 18.3 they
+  pinched 3.5 mm in, at +8 mm they lift off). Clipcheck: the mesh fingers still sit ~10.6 mm into the grip (the mesh hand
+  closes tighter than its capsules; an engine hand/mesh mismatch, flagged to the lead). "grandma in the grandmother's
+  cart 110 mm" is a false positive: the wire cart is an open mesh and the point there (her hand on the grip) has no cart
+  body geometry within 0.17 m in x. The cart clears the pallet by 4 mm in M4b. Re-rendered all three passes.
+- Seen: M1 (cart behind her, both hands round the red grip), M5, M4b (basket at the frame edge), WIDE.

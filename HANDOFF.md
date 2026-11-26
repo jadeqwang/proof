@@ -1231,3 +1231,19 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Repaint: AD_trace, AD_grab, WL_in, WL_top.
   - Lead's look at AD_trace_lit: it reads as a pointing finger near the frost rather than clearly tracing. Ask
     Jade whether it reads.
+- **office-market agent done:**
+  - BO1/BO2: little Jade's fingertip is on the middle of the missing slot, 1.9 px off. The old target was a seventh
+    face at the short row's spacing, 6.4 mm past the column.
+  - The lead changed tools/kf/handout.py's gap point to match layout.js GAP. It has not been re-run.
+  - The saturated lit guides (H1, H1b, PC3b, BO1, BO2) now have a per-shot exposure of 0.27, so 0% of each frame is
+    pure white.
+  - The resting hands no longer sink into the table.
+  - Market: a downloaded US supermarket cart (CC BY 4.0, alexvladimircm), settled with Rapier; grip re-staged.
+    Holds: office 25/25, market 35/35.
+  - Open:
+    - The grandmother's mesh fingers are 10.6 mm into the cart handle (the same mesh-hand vs grip gap as MG).
+    - The social worker's hand is 13.8 mm into the table.
+    - Feet 14 mm into the carpet (the engine soles fix should cover this).
+    - Mom's clothes are 14 mm into the chair.
+  - Repaint: BO1, BO2, H1, H1b, PC2, PC3b, M1, M4b, M5.
+  - Plan: BO2 -> X_sw -> AD_trace are plain cuts (done).

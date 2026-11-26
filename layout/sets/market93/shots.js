@@ -7,7 +7,7 @@
 // Fields as in attic88/shots.js, plus: art: 'held' | 'island' (where the hero artichoke is), cart: { at: [x, z], yaw },
 // time (plan timecode), position: 'outside' | 'inside' (the plan's two camera positions).
 // Set targets: 'art', 'art:tip', 'art:L', 'art:R', 'rom', 'rom:tip', 'cart:handleL|handleR|nose', 'forearm:<who>:<L|R>[:k]'.
-import { JADE_STAND, GRANDMA_WAIT, GRANDMA_PASS, MAMA_AHEAD, MAMA_GRAB, WALK, LOOKBACK_AZ, ART_HELD } from './layout.js';
+import { JADE_STAND, GRANDMA_WAIT, GRANDMA_PASS, MAMA_AHEAD, MAMA_GRAB, WALK, LOOKBACK_AZ, ART_HELD, CART } from './layout.js';
 
 // ---------------------------------------------------------------- grip specs (r4, 2026-11-26; NOTES.md "Grip specs from
 // reference photos"). Vectors are world; the engine takes `palm` / `fingers` as world directions and `to` as the palm centre.
@@ -49,9 +49,11 @@ const jadeStudy = (o = {}) => ({ at: JADE_STAND.at, yaw: JADE_STAND.yaw, legs: '
 // the grandmother behind her cart, both hands on the bar, a little stooped; she waits the whole time
 const grandma = (G, o = {}) => ({ at: G.at, yaw: G.cart.yaw, legs: 'stand', spine: { bend: 15 }, head: { look: 'jade10:head' },
   L: cartGrip('L'), R: cartGrip('R'), ...o });
-// (hold pass 2026-11-26) a power grip round the cart's handle bar (r 14 mm): the bar across the palm, thumb toward the other
+// (hold pass 2026-11-26) a power grip round the cart's handle bar (r5: the downloaded cart's red grip, r 18 mm): the bar across the palm, thumb toward the other
 // hand, fingers over the top and round under it (was: a palm target 12 mm above the bar, fingers through it)
-const cartGrip = (n) => ({ to: 'cart:bar' + n, hand: 'grip', palm: 'down', hold: { r: 0.014, prop: false, centre: true, axis: 'to:cart:bar' + (n === 'L' ? 'R' : 'L') },
+// r5: hold r = the grip's 18.3 mm + 4 mm: the capsule hand then closes 1 mm off the grip (holdcheck pass); at r = 18.3 the
+// capsules pinched 3.5 mm in and the mesh fingers sank 13 mm into the grip (clipcheck); at +8 mm the capsules lift off (adjacent).
+const cartGrip = (n) => ({ to: 'cart:bar' + n, hand: 'grip', palm: 'down', hold: { r: CART.barR + 0.004, prop: false, centre: true, axis: 'to:cart:bar' + (n === 'L' ? 'R' : 'L') },
   grasp: 'power', object: 'handle bar' });
 // Mama further up the aisle at the gondola, reading a shelf (out of the beam)
 const mamaAhead = { at: MAMA_AHEAD.at, yaw: MAMA_AHEAD.yaw, legs: 'stand', noApron: true, spine: { bend: 4 }, head: { look: [-0.95, 1.3, 2.9] },
@@ -116,7 +118,7 @@ const LIFT = { figs: { jade10: jadeLifted, grandma: grandma(GRANDMA_WAIT), mama:
 // M4b (r4, lead's decision 2026-11-26): THE LANDING, after the lift. She has been set down at the island's edge, facing the
 // produce, her back to the aisle; Mama, at her right, keeps a hand round her right forearm (the recurring grab, 2 of 3,
 // rhymes with attic88_day AD_grab); the artichoke is in her left hand against her stomach, eyes still on it. Both of them
-// are against the island, so the lane between them and the pallet is 0.6 m: the cart (0.56 m) is starting past, its
+// are against the island, so the lane between them and the pallet is 0.6 m: the cart (0.593 m, r5) is starting past, its
 // nose level with the pallet's end, the grandmother behind it. Mama uses her LEFT hand (she faces the girl and the
 // island; her left is the girl's side). Her arm hangs, so the grip is from the side: Mama's hand level, thumb up toward
 // the girl's elbow, palm against the forearm, fingers round the far side, mid-forearm, wrist straight in line with Mama's
@@ -127,7 +129,7 @@ const jadeLanded = { at: LAND_JADE.at, yaw: LAND_JADE.yaw, legs: 'stand', spine:
   R: { to: LAND_RH, hand: 'relax', palm: [0, -0.3, -0.95], fingers: [0.9, -0.4, 0.05] }, L: cradle(LAND_ART, 'L', { ...CRADLE_ONE, r: 0.069 }) };
 const mamaLand = { at: [0.64, 0.84], yaw: 150, legs: 'stand', noApron: true, spine: { bend: 18, twist: 8 }, head: { look: 'jade10:head' },
   L: { to: 'forearm:jade10:R:0.5', hand: 'grip', palm: LAND_PALM, hold: { r: GRAB_R.land, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' }, grasp: 'power', object: FOREARM }, R: 'side' };
-const GRANDMA_START = { cart: { at: [0.15, -0.05], yaw: 0 }, at: [0.15, -0.82] };   // cart nose at z = +0.40, level with the pallet's end
+const GRANDMA_START = { cart: { at: [0.2, -0.05], yaw: 0 }, at: [0.2, -0.68] };   // cart nose at z = +0.37, level with the pallet's end; r5: x 0.15 -> 0.2, the middle of the 0.6 m lane (the downloaded cart is 0.593 m wide)
 const LAND = { figs: { jade10: jadeLanded, grandma: grandma(GRANDMA_START, { head: { look: [0.15, 1.3, 3] } }), mama: mamaLand }, cart: GRANDMA_START.cart, art: LAND_ART };
 const LED = { figs: { jade10: jadeLed, mama: mamaLead, grandma: grandmaPass }, cart: GRANDMA_PASS.cart, art: 'island' };
 

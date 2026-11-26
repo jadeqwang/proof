@@ -326,13 +326,13 @@ def master(dpi=300):
             cells.append({"label": name, "row": r, "col": c, "centre": [cx, cy], "r": R,
                           "face_box": [cx - R * 1.12, cy - R * 1.12, cx + R * 1.12, cy + R * 1.12], "label_box": lbox,
                           "cell_box": [cx - PITCH_X * S / 2, cy - R * 1.3, cx + PITCH_X * S / 2, lbox[3] + 0.0015 * S]})
-    gx, gy = cell_m(HG["shortRow"], HG["shortCount"])
+    _, gy = cell_m(HG["shortRow"], HG["shortCount"])
+    gx = cell_m(HG["shortRow"] - 1, HG["cols"] - 1)[0]   # r5: the middle of the missing slot, in line with the column above (layout.js GAP)
     lx, ly = cell_m(HG["shortRow"], -1)
     info = {"page_px": [W, H], "dpi": dpi, "px_per_m": S, "title": TITLE, "title_box": tbox, "face_r_px": R,
             "pitch_px": [PITCH_X * S, PITCH_Y * S], "label_em_px": lem, "label_pt": lem / dpi * 72,
-            "gap": {"centre": [gx * S, oy + gy * S], "r": R, "note": "where a seventh face would follow ANXIOUS at the "
-                    "same spacing (layout.js GAP); the row sits a quarter cell left of centre, so 0.75 of the missing "
-                    "cell is at this end and 0.25 at the start. Her finger points HERE (r3)"},
+            "gap": {"centre": [gx * S, oy + gy * S], "r": R, "note": "the middle of the missing slot, in line with the last column above and below "
+                    "(layout.js GAP, r5). Her finger points HERE"},
             "gap_left": {"centre": [lx * S, oy + ly * S], "r": R}, "missing_faces": missing}
     page = (page > 0.5).astype(F32)                          # a 300 dpi laser print: no greys
     return page, cells, info
