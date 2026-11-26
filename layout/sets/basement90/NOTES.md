@@ -217,3 +217,45 @@ Source: `inputs/diagram_basement.png` (plan, top = back wall). Room unchanged, 4
 - Small, not changed: the bulb is an ellipsoid 60 x 78 mm (an A19 is about 60 x 110 mm, with a neck), and the chain is
   0.45 m. In B0_wide only the chain shows (top edge); the other B shots were not checked frame by frame, but the bulb sits
   above and in front of Dad, mostly out of their frames. If a shot ever frames it, make the bulb A19-shaped and the chain ~0.3 m.
+
+## 2026-11-26: round-3 decisions: young Jade's arms (B2, B4, B5; B1 and B3 checked)
+
+Jade: "in the basement scene, it really messes up kid Jade's arm." The r3 paintings were compared with their guides
+(`media/keyframes/r3/_layout_snapshot/basement90/*_form.png`). Only `shots.js` changed: no engine, no house geometry,
+so kitchen90 was not re-rendered. The engine is mid-rewrite (figure guides v2 behind `--gaze`). These renders use
+the default path, which was checked pixel-identical to HEAD's engine on B5.
+
+- **B2_face (camera).** Before: 24 mm, 0.3 m behind the glass at its left edge (her side). Her right arm pointed
+  straight at the lens, in front of seated Dad's chest; the foreshortened hand was about twice the size of her face,
+  and the painter attached the arm to Dad. Now: 35 mm at `screenPoint(2.0, -0.2, -0.45)`: still behind the screen
+  (monitor and computer hidden, the glass edge kept as a frame), but 0.27 m past the glass's right edge on Dad's side
+  and a little high. Her right arm now lies across her OWN chest: shoulder, short upper arm, elbow, forearm, and the
+  fingertip on the glass under her face, a child-sized hand. Her eyes are on the word. Dad's face and shoulder are at
+  frame left, beside and behind her; her shoulder still touches the edge of his torso silhouette, but the arm no longer
+  crosses it. Pose unchanged (B1 and B3 share it). Rejected: cameras on her outer side (the arm still runs over Dad's
+  chest and her head hides her shoulder), above, below, and showing the monitor (it hides the fingertip).
+- **B5_cat / B4_doubletake (pose `GROOM` / `jadeGroom`).** Before: the elbow was pushed forward at chest height, the
+  forearm vertical, the fist sticking out level at a right angle, and the upper arm 60 deg forward. Now: a child's
+  cat paw. The elbow pole points down and out to her right side; the upper arm runs down and forward; the forearm
+  rises diagonally up and INWARD to the wrist in front of her chin; a looser fist (`PAW`: the fist curled about 15 deg
+  less) droops forward-down from a wrist bent about 75 deg. The head is bowed to a look point 0.66 m high, 0.5 m
+  ahead (was 0.72 / 0.55), with spine bend 12 (was 10), so the mouth comes down toward the paw.
+  The wrist is targeted from `self:mouth` (`R.to: 'self:mouth', off: GROOM.palmOff`): the wrist centre is 4.5 cm in
+  front of and 2 cm below the mouth anchor (4.9 cm away). From the B5 camera that leaves a clear gap of a finger-width
+  or more: she only PRETENDS to lick. `GROOM.mouth` was read back from the render (sidecar contacts: 0 cm).
+  Checked from front, side, three-quarter, above and both cameras: upper arm, elbow and forearm each read.
+- **B5 camera.** Same angle (az -60 from her face, el -3), pulled back 0.85 -> 0.95 m, mouth at v 0.33 (was 0.4).
+  This keeps the shoulder nearest the lens less dominant and gives the lowered paw and the elbow room in the frame.
+- **B4.** Camera unchanged. She is seen from behind her right shoulder. Her upper arm, elbow and paw read, but from
+  this angle her forearm still projects nearly vertical (its inward slant runs away from the lens). Acceptable in a
+  wide two-shot; flagged.
+- **B1_feet:** no arms in frame. **B3_finger:** checked. The forearm and the articulated hand on the glass come from
+  behind her own head; the r3 painting reads correctly. Unchanged.
+- **Engine-side, not fixable here (see `work/arm_engine_notes.md`):** child limbs are about 35-45 % too thick (`girthK`
+  1.118 on `rS` and the deltoid, plus the x1.12 short-sleeve shell). That is the "fat tube with a shoulder ball" at
+  B5's close camera, still visible after the pose fix. There is also no wrist-flexion limit.
+- **Flag, wardrobe:** the guides give her short sleeves (`JADE_BASEMENT.sleeves: 'short'`), but every r3 painting gave
+  her a long-sleeved grey sweater. Not changed: it is a costume question for Jade. Long sleeves would also remove the
+  sleeve shell and the seam ring on the upper arm.
+- **Repaint in r4:** B2_face (new camera), B4_doubletake and B5_cat (new arm pose; B5 framing pulled back). B1 and B3
+  need no repaint for the arms.

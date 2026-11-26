@@ -779,3 +779,20 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   `office91/shots.js` and the plan; PC4 (= PC1's frame) now holds 1:27.4-1:32.7. The dictionary prop stays in Mom's
   hands in the wider shots (her default look is still 'dict'); ask if it should go entirely. Old renders of PC5 in
   media/layout/office91/ are stale, delete on the next office91 re-render.
+- **Jade, 2026-11-26:** "objects should also be held in a way that supports the object, not adjacent to the object,
+  and objects don't float on top of hands. does fal or cloudflare have gaming engine style tools ...? I don't want to
+  invent a physics engine from first principles." Answer: fal has rigging (Meshy, Hyper3D) and text-to-motion
+  (hunyuan-motion), nothing for grasp contact; Cloudflare none. Plan: Rapier (WASM) as a hold checker (drop test
+  with hands as colliders) + a grasp-template library, given to the engine agent; Jolt soft bodies suggested to the
+  cloth agent.
+- **Jade, 2026-11-26:** "let's do proper human body meshes always" and "always do correct physics for objects".
+  Saved to memory. Plan: MakeHuman (MPFB2) in headless Blender -> CC0 rigged GLB per cast member, a three.js adapter
+  posing the skeleton from the existing solver, behind PROOF_BODY=mesh; Rapier hold check for every object. The
+  engine agent was told to stop mannequin torso geometry and keep gaze/wrist/grasp/physics as standalone modules.
+  Launching the body-mesh agent was BLOCKED by the permission classifier; waiting on Jade.
+- **Jade, 2026-11-26:** "for any scene where we have background art or background objects on the walls, we should
+  incorporate them into the 3d model so that the image models don't invent new art between generations/clips
+  (tell-tale sign of AI-generation)." Saved to memory; an agent is auditing every set and texturing canonical art in.
+- **Basement arms agent done:** B2 new 35 mm camera past the screen's right edge, her arm crosses her own chest to the
+  word; B5 natural cat paw (elbow low, wrist ~75 deg, 4.5 cm gap); B4 unchanged pose. Child upper arms are 35-45% too
+  thick in the engine (`work/arm_engine_notes.md`); body meshes will replace that. Repaint B2, B4, B5.
