@@ -3,6 +3,7 @@
 // in the room behind the pane and drawn as silhouettes. So every mode shows them through the glass together with the
 // beam, with no compositing. They cast and receive no light, and are removed from the beam-mask twin.
 //   shot.beamMask (the generated twins beam_<id>): flat mode renders the lit volume white on black = the beam mask
+import { HUMAN } from '../../engine/humanMesh.js';
 import * as THREE from 'three';
 import { mk, box, cyl, ball, quad, tag, V, rad } from '../../engine/core.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
@@ -87,7 +88,7 @@ export function build(shot, { makeCam }) {
   if (!shot.beamMask && shot.reflections !== false) { refl = new THREE.Group(); refl.scale.set(1, 1, -1);
     const { figs: twin } = stage(shot.figs || {}, null, extra);
     for (const [who, f] of Object.entries(twin)) { f.traverse((o) => { if (!o.isMesh) return; o.userData.who = 'reflection:' + who; o.userData.label = `reflection of ${CAST[who].name} (silhouette)`;
-      o.userData.look = { grey: 0.16, col: 0x14161c, noCast: true, noRecv: true }; o.castShadow = false; o.receiveShadow = false; }); refl.add(f); }
+      o.userData.look = { grey: 0.16, col: 0x14161c, noCast: true, noRecv: true, ...(HUMAN.on ? { formTint: [0.2, 0.21, 0.24], flatCol: 0x14161c } : {}) };   /* mesh mode: the silhouette stays dark in form, not pale clay */ o.castShadow = false; o.receiveShadow = false; }); refl.add(f); }
     root.add(refl); }
   const cs = { ...shot, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   if (shot.eyeline) { const e = figs[shot.eyeline.who].userData.P.eyes.clone(), to = V(fix(shot.eyeline.to)); cs.pos = e.addScaledVector(to.sub(e).normalize(), shot.eyeline.back ?? 0.12).toArray(); delete cs.orbit; }

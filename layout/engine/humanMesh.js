@@ -367,6 +367,18 @@ function covered(B, body, gmeshes) {
   return out;
 }
 
+// The solver's neck length corrected to the body's (mesh mode only): the solver puts the eyes 0.005 H + neck + 0.46 head
+// above the shoulder centre; the body has its own eye height above the neck base. The difference shortens (or
+// lengthens) the solver's neck before anything is aimed at the face, so cameras, gaze and hands on the face are staged
+// on the face the mesh will have, and the neck keeps its natural length.
+export function neckDelta(who, c, pr) {
+  const B = HUMAN.bodies?.[bodyFor(who, c)]; if (!B) return 0;
+  const H = c.h, k = H / B.meta.h, lm = B.meta.landmarks_blender_zup, nb = B.meta.bones_blender_zup.neck_01.head;
+  const meshUp = ((lm.eye_l[2] + lm.eye_r[2]) / 2 - nb[2]) * k;
+  const neck0 = (1 - pr.sh - pr.head) * H + 0.02 * H, solverUp = 0.005 * H + neck0 + 0.46 * pr.head * H;
+  return Math.max(meshUp - solverUp, -0.7 * neck0);
+}
+
 // ---------------------------------------------------------------- the hook (mannequin.js buildFigure)
 export function dressFigure(g, spec, c, P, uid) {
   const id = bodyFor(spec.who, c), B = HUMAN.bodies?.[id];
@@ -378,7 +390,9 @@ export function dressFigure(g, spec, c, P, uid) {
   // drop the mannequin's meshes (keep held props: labelled meshes in the hand groups)
   const drop = []; g.traverse((o) => { if (o.isMesh && !o.userData.label) drop.push(o); }); for (const o of drop) o.parent.remove(o);
   const look = (key, col, extra = {}) => ({ grey: GREY[key] ?? 0.6, col: col ?? 0x808080, ...extra });
-  const skin = look('skin', c.skin), hairL = look('hair', c.hair);
+  // skin in its own warm tone in form / flat (pale cloth and bare skin always differ)
+  const sc = new THREE.Color(c.skin ?? 0xe0b090), skinTint = new THREE.Color(1, 1, 1).lerp(sc, 0.55);
+  const skin = look('skin', c.skin, { formTint: [skinTint.r, skinTint.g, skinTint.b], flatCol: c.skin }), hairL = look('hair', c.hair);
   const LK = { skin, skinHead: skin, skinNeck: skin, handL: skin, handR: skin, top: look('top', c.top), legsL: look('legs', c.legs), legsR: look('legs', c.legs),
     sockL: { grey: 0.5, col: c.sock ?? 0x6a6a70 }, sockR: { grey: 0.5, col: c.sock ?? 0x6a6a70 }, band: look('band', c.band), apron: look('apron', c.apron) };
   for (const r of ['top', 'legsL', 'legsR', 'sockL', 'sockR', 'band', 'apron']) LK[r] = clothes(LK[r]);

@@ -28,7 +28,7 @@ import { buildHand, ageOf, tipLocal } from './hand.js';
 import { realTorso, REAL_PELVIS } from './torso.js';
 import { FIG2, buildFace, gazeReport, torsoType, costumeLook, hex, naturalWrist, wristAngles } from './figure2.js';
 export { FIG2 } from './figure2.js';   // figure guides v2 switch (gaze, real torsos, costume colours): off = unchanged
-import { HUMAN, dressFigure } from './humanMesh.js';   // rigged body meshes (PROOF_BODY=mesh): off = unchanged
+import { HUMAN, dressFigure, neckDelta } from './humanMesh.js';   // rigged body meshes (PROOF_BODY=mesh): off = unchanged
 
 let BUILD_ID = 0;   // line-mode id groups are per built figure
 // limb girth factor by age: 1 for adults, rounder for small children
@@ -86,7 +86,7 @@ export function buildFigure(spec, ctx) {
   const add = (m) => { g.add(m); return m; };
 
   const legLen = pr.hip * H, D = { thigh: 0.49 * legLen, shin: 0.45 * legLen, ankleH: 0.06 * legLen, H, hipW: pr.hipW * H, L: legLen };
-  const torsoLen = (pr.sh - pr.hip) * H, headH = pr.head * H, neckLen = (1 - pr.sh - pr.head) * H + 0.02 * H;
+  const torsoLen = (pr.sh - pr.hip) * H, headH = pr.head * H, neckLen = (1 - pr.sh - pr.head) * H + 0.02 * H + (HUMAN.on ? neckDelta(spec.who, c, pr) : 0);   // mesh mode: the neck of the body that will be worn
   const legs = spec.legs || 'stand';
   const preL = legPreset(legs, 1, D, spec.legOpts || {}), preR = legPreset(legs, -1, D, spec.legOpts || {});
   const at = spec.at.length === 3 ? V(spec.at) : new THREE.Vector3(spec.at[0], (spec.floor || 0) + preL.py, spec.at[1]);
@@ -328,7 +328,12 @@ export function buildFigure(spec, ctx) {
         part([taperGeo(sweptPoint(torsoFrame, torsoProf, 0.8, Math.PI / 2 - s * 1.05, { inset: 0.018 * H * kg }), fu.clone().addScaledVector(cz, 0.004 * H), 0.016 * H * kg * k, 0.018 * H * kA),
           taperGeo(sweptPoint(torsoFrame, torsoProf, 0.74, -Math.PI / 2 + s * 1.0, { inset: 0.02 * H * kg }), fu.clone().addScaledVector(cz, -0.004 * H), 0.018 * H * kg * k, 0.019 * H * kA)], LK.top, FIG2.body ? 'torso' : c.sleeves === 'short' ? 'sleeve' + n : gU); } }
     const hg = new THREE.Group(); hg.name = spec.who + '.hand' + n; add(hg);
-    const hand = buildHand(n, Lh, shape, Wr, f, nrm, LK.skin, hg, { kind: c.kind, id: uid + 'hand' + n, palmGroup: foreLook === LK.skin ? uid + gF : null, hold: hold?.r });
+    // hold-fix 2026-11-26: a tapered cup is wrapped at its radius where the fingers are (was the rim radius: a 3 mm gap, and
+    // the cup slid down through the hand until it wedged)
+    const holdR = !hold ? undefined : hold.prop === false ? hold.r : (() => { const hh = hold.h ?? hold.r * 2.6, off = hold.off ?? hh * 0.12, tp = hold.taper ?? 0.85;
+      return hold.r * (tp + (1 - tp) * THREE.MathUtils.clamp((hh / 2 - off) / hh, 0, 1)); })();
+    const hand = buildHand(n, Lh, shape, Wr, f, nrm, LK.skin, hg, { kind: c.kind, id: uid + 'hand' + n, palmGroup: foreLook === LK.skin ? uid + gF : null, hold: holdR,
+      holdSlope: hold && hold.prop !== false ? hold.r * (1 - (hold.taper ?? 0.85)) / (hold.h ?? hold.r * 2.6) : 0 });
     if (hand.held && hold.prop !== false) { const hh = hold.h ?? hold.r * 2.6, ax = hand.held.axis.clone(), ctr = hand.held.centre.clone().addScaledVector(ax, hold.off ?? hh * 0.12);
       const cm = mk(new THREE.CylinderGeometry(hold.r, hold.r * (hold.taper ?? 0.85), hh, 20), hold.look || { grey: 0.9, col: 0xf0e8d0 }); cm.position.copy(ctr); cm.quaternion.setFromUnitVectors(UP, ax); tag(cm, hold.label || 'cup (held)'); hg.add(cm);
       P['held' + n] = ctr; }

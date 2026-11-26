@@ -232,14 +232,15 @@ def build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth):
     hb = spec.get("hairBuild", {}); ipd = (eyeL - eyeR).length; eC = (eyeL + eyeR) / 2
     bones = rig.data.bones
     hg = basemesh.vertex_groups["head"].index; eg = basemesh.vertex_groups["ears"].index
-    def head(f, dl): return all(v[dl].get(hg, 0) > 0.12 and v[dl].get(eg, 0) < 0.05 for v in f.verts)
+    ng = basemesh.vertex_groups["neck_01"].index
+    def head(f, dl): return all((v[dl].get(hg, 0) > 0.02 or v[dl].get(ng, 0) > 0.2) and v[dl].get(eg, 0) < 0.05 for v in f.verts)
     hc = eC + Vector((0, 1.4 * ipd, 0))   # a point inside the head, behind the eyes
     def ang(c): d = c - hc; return abs(math.degrees(math.atan2(d.x, -d.y)))   # 0 front, 90 over the ear, 180 back
     def interp(a, tab):
         for (a0, z0), (a1, z1) in zip(tab, tab[1:]):
             if a <= a1: t = (a - a0) / (a1 - a0); t = t * t * (3 - 2 * t); return z0 + (z1 - z0) * t
         return tab[-1][1]
-    HAIRLINE = [(0, 1.0), (40, 0.95), (62, 0.45), (75, 0.2), (100, 0.1), (125, -0.9), (180, -1.6)]   # ipd above the eyes
+    HAIRLINE = [(0, 1.0), (40, 0.95), (62, 0.45), (75, 0.2), (100, 0.05), (118, -0.85), (140, -1.5), (180, -1.62)]   # ipd above the eyes
     def hairline(c): return c.z - (eC.z + ipd * interp(ang(c), HAIRLINE))
     for st, how in hb.items():
         key = "hair_" + st
@@ -248,23 +249,25 @@ def build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth):
             delete_verts(parts[key], lambda co: co.z < z)
         if how.get("fringe"):   # a light fringe parted in the middle: two soft curtains, the forehead showing between them,
             # their lower edge well above the brows in the middle and sloping down toward the temples (cast sheets)
-            gap = 0.26 if how["fringe"] == "light" else 0.4
-            def fringe(c, gap=gap):
-                ax = abs(c.x) / ipd
-                return min(ax - gap, c.z - (eC.z + ipd * (0.85 - 0.4 * min(1.0, ax / 0.95))), 1.05 * ipd - abs(c.x))
+            lift = 0.0 if how["fringe"] == "light" else 0.22   # at 10 the fringe has grown out: higher
+            def fringe(c, lift=lift):
+                ax = abs(c.x) / ipd   # one soft fringe across the forehead, a slight lift at the centre parting, lower toward the temples
+                return min(c.z - (eC.z + ipd * (0.66 + lift + 0.1 * math.exp(-(ax / 0.14) ** 2) - 0.2 * min(1.0, ax / 0.95))), 1.05 * ipd - abs(c.x))
             def pick(c, n, f, dl): return head(f, dl) and c.y < eC.y + 0.2 * ipd and c.z > eC.z + 0.3 * ipd
-            parts[key + "__fringe"] = shell(basemesh, rig, pick, lambda co, n: 0.0035, key + "__fringe", field=fringe)
+            parts[key + "__fringe"] = shell(basemesh, rig, pick, lambda co, n: 0.0045, key + "__fringe", thick=0.003, field=fringe)
         if how.get("cap"):   # close hair over the whole scalp (pulled back under a bun)
             parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.005, key, field=hairline)
         if how.get("stepped"):
             # the step: from the fringe tip on the forehead back above the ear, round the back at ear-top level
-            STEP = [(0, 0.45), (35, 0.4), (70, 0.05), (100, -0.12), (180, -0.2)]   # the step at mid-ear height round the back (cast/first_love/fl_B_backhead_neck_v5)
+            STEP = [(0, 0.45), (35, 0.4), (62, 0.32), (88, 0.24), (112, 0.0), (140, -0.3), (180, -0.42)]   # over the ear tops, down to mid-ear height at the back   # the step at mid-ear height round the back (cast/first_love/fl_B_backhead_neck_v5)
             def step(c): return c.z - (eC.z + ipd * interp(ang(c), STEP))
-            parts[key + "__buzz"] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.0035, key + "__buzz", field=hairline)
+            NAPE = [(0, 1.0), (40, 0.95), (62, 0.45), (75, 0.2), (100, 0.0), (118, -0.75), (140, -1.15), (180, -1.3)]   # his buzz ends higher on the neck (fl_B)
+            def nape(c): return c.z - (eC.z + ipd * interp(ang(c), NAPE))
+            parts[key + "__buzz"] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.0035, key + "__buzz", field=nape)
             def top_off(co, n):
                 part = min(1.0, abs(co.x) / (0.12 * ipd)) if co.z > eC.z + 1.2 * ipd else 1.0   # the centre part: the layer dips along the midline on top
-                a = ang(co); back = max(0.0, min(1.0, (a - 90) / 40))
-                hang = 0.22 * max(0.0, eC.z + 0.55 * ipd - co.z) * back   # below the crown the layer hangs straight, off the skull
+                a = ang(co); back = max(0.0, min(1.0, (a - 55) / 50))
+                hang = 0.16 * max(0.0, eC.z + 0.7 * ipd - co.z) * back   # below the crown the layer hangs straight, off the skull
                 return 0.008 + 0.009 * (0.5 + 0.5 * part) + hang
             parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), top_off, key, thick=0.008, field=lambda c: min(hairline(c) + 0.3 * ipd, step(c)))
     return parts
