@@ -29,9 +29,9 @@ const swRest = (x, z, f = [-0.45, -0.08, -0.9], lift = 0.0215) => { const a = gr
 // elbow pole (down, 65 % outward, a little back) swung both elbows out wide, the upper arms abducted and flexed forward, and
 // the mesh shoulder folded. Poles DOWN and BACK by her hips keep the elbows in beside her ribs, the upper arms hanging
 // nearly vertical, the forearms reaching forward onto the table (L hand also 3 cm in toward her midline).
-const SW_ELBOW = { L: [-0.06, 0.55, 0.72], R: [0.46, 0.55, 0.72] };
+const SW_ELBOW = { L: [-0.12, 0.55, 0.9], R: [0.52, 0.55, 0.9] };   // poles out ~32 cm from her midline and back behind the chair: elbows a little out and back (in close they crumpled the armpit; the engine default, out wide, bulged the deltoid)
 const sw = (o = {}) => ({ at: SEATS.socialWorker, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 180, spine: { bend: 8 }, head: { look: 'jade7:eyes' },
-  L: { to: [0.0, TOP + 0.035, 0.22], hand: 'relax', palm: 'down', fingers: 'fwd', elbowAt: SW_ELBOW.L }, R: { ...swRest(0.27, 0.17), elbowAt: SW_ELBOW.R }, ...o });   // L on the table just left of the clipboard (hold pass: was on its edge, the fingers through the notes)
+  L: { to: [0.0, TOP + 0.035, 0.22], hand: 'relax', palm: 'down', fingers: [0.35, 0, -0.94], elbowAt: SW_ELBOW.L }, R: { ...swRest(0.27, 0.17), elbowAt: SW_ELBOW.R }, ...o });   // L on the table just left of the clipboard (hold pass: was on its edge, the fingers through the notes)
 const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: graspArms('tipOn', { centre: SW_TIP, at: [SW_TIP[0], SW_TIP[1] + 0.0005, SW_TIP[2]], axis: [-0.45, -0.5, -0.6], up: [0, 1, 0], palm: [0, -1, 0], label: 'yellow handout' }, { Lh: SW_LH, side: 'L' }).L, R: { ...swRest(0.25, 0.09, [-0.8, -0.08, -0.55], 0.027), elbowAt: [0.65, 0.9, 0.2] } });   // leaning in, her resting hand lies further up the notes; hold pass: her index pad lands ON the face (tipOn; pointAt put it about 1 cm off)
 // Mom holds the open dictionary in both hands, as you hold a paperback to read: each palm under one cover (palm toward
 // the back of the book), four fingers spread along the back of that cover toward its top edge, each thumb over the page

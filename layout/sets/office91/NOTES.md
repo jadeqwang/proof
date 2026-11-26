@@ -196,3 +196,26 @@ Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`.
   clean symmetric bow (two loops, knot, two notched tails) drawn in code is composited on every goose
   (tools/art/geese_bows.py; input sw_geese_print.v1.png). Geese unchanged. Re-rendered X_sw, PC3a, BO2, PC2, PC1, PC4,
   REF_wide, REF_plan (default + form/contour/light); beam masks unaffected (decal only).
+
+## 2026-11-26 round 4 — PROGRESS (checkpoint)
+Jade on X_sw: "the social worker's shoulders are weirdly misshapen".
+- **Diagnosis.** The social worker had no elbow pole, so the engine's default (down, 65 % outward, a little back;
+  engine/mannequin.js ~l.265) swung both elbows out wide. With the hands far forward on the table, her upper arms were
+  abducted and flexed, and the mesh shoulder over-deformed. You could see it in the new REF_sw_front/side/top/back views:
+  her left deltoid bulged, the front armpit crumpled, and from behind both deltoids peaked.
+- **Changed (shots.js).**
+  - `SW_ELBOW` poles (FINAL) L [-0.12, 0.55, 0.9], R [0.52, 0.55, 0.9]: elbows a little out and back. (Superseded first try
+    [-0.06/0.46, z 0.72] crumpled her left armpit in X_sw.) Earlier comparison:
+    straight down still folded the armpit, wider bulged the deltoid, and slightly out is the cleanest.
+  - L hand 3 cm in toward her midline, fingers angled inward [0.35, 0, -0.94]. Its forearm was +4 deg past the
+    pronation limit.
+  - BO2's own R elbow pole (out to her right, to clear the table) is unchanged.
+  - New reference views REF_sw_front / _side / _top / _back (not shots): the social worker alone, as staged.
+- **Left (engine/body, not mine).** A small notch or pale tick at the top of each shoulder seam (the acromion) is
+  still there in every pose. The pale slits were already visible in the earlier X_sw / PC3a renders. Likely cause: the
+  body's skin pokes through the sweatshirt where the clavicle (grouped 'torso' in humanMesh.js prep) meets the
+  upperarm group. Needs the body/engine owner.
+- **Status: DONE.** Full office91 re-render (three passes) with the final poles. I looked at X_sw, PC3a, PC2, BO2,
+  REF_wide and REF_sw_*: the shoulders and upper arms are smooth, with no armpit crumple and no deltoid bulge.
+  Holdcheck 25/25 pass. The sw R wrist sits exactly at its pronation limit (warning "+0 deg") in 13 shots: negligible.
+  The shoulder-seam tick (engine/body) remains: report sent to the lead.
