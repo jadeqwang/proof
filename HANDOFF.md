@@ -493,3 +493,32 @@ Jade pasted the decision-page answers. Logged verbatim in substance; being appli
   remap.py bug: times followed by ':' are skipped/mangled (all fixed by hand in the sets; the script is not fixed).
   BRpan_a moved to start on "truth by reference" 2:42.0 so it no longer overlaps the sweatshirt (2:39.6-2:42.0).
 - **Committed and pushed** (Jade: push everything except the private folders), gitignored folders stayed out.
+
+## Session of 2026-11-25 (night): keyframes round 2
+
+- **Painted:** 88 keyframes, one per shot in the -2sm cut, from the new set renders (121 takes), into
+  `media/keyframes/r2/<set>/` (gitignored; round 1 in `media/keyframes/<set>/` untouched). Per set: takes + `.txt`
+  sidecars, `_prompts/`, `picks.json` (pick, takes, time, header, status, note), `NOTES.md` (mv10: `NOTES_bridge.md`,
+  `NOTES_verse3.md`), `_picks*.jpg`. Painter brief: `media/keyframes/r2/_brief_r2.md`.
+- **Skipped (not in the cut):** all `REF_*`, `B0_*`, `K0_*`, `MG_wide`, market93 `PLAN`/`PLAN_B`/`WIDE` and the
+  alternates M7/M8/M8b; mv10 V3g (alternate), V3h and V3_rcv (reference), `_retired/` (V3d, V3_rev_eye_*); attic88
+  (unused). X_sw is painted but is a spare. Plates are not painted: stills from `media/footage/` sit on the page where
+  the plan places them (round 1's PAD, VOY and FINAL stills likewise).
+- **Review page:** `media/keyframes/r2/index.html` (`python3 tools/kf/r2_page.py` rebuilds it from the picks; linked
+  from the top of `media/keyframes/index.html`, and `tools/kf/gallery.py` keeps that link). Jade's pasted block starts
+  `Keyframes r2 (from media/keyframes/r2/index.html):`, one line per shot `- <id>: Good | Redo (note) | Wrong
+  staging (note) — <note>`.
+- **Route and cost:** Codex (tmux session `proof-kf2`) for the first ~63 images, then its plan limit (reset ~19:10);
+  the rest on gpt-image-2, ~$13.4 (ledger $10.26 -> $23.70). `tools/kf/kf.py` gained `KF_SESSION`, `--route auto`
+  (Codex until `work/kf_logs/CODEX_LIMIT_HIT` exists, then gpt2; delete the flag once Codex resets) and a wider
+  FORBIDDEN list (family photos, the refs_house/shanghai/mortongrove/devon_market photo folders, `_superseded/`).
+- **Regenerate a shot:** follow `_brief_r2.md`; the exact prompt and refs are in each take's sidecar and `_prompts/`.
+- **Weak:** AD_piano (limbs read ~8 years old; the new layout cuts her head), B4_doubletake (painted far wider than
+  the layout in 3 takes; crop v2), V3b (v3 has the set's tan-top friend but her hand shows 4 digits; v2 has a clean
+  hand but the cf_A hoodie Jade says looks like Z: my brief wrongly named cf_A), SI1 (the poi trail is a gold halo
+  round her head, against KEYFRAMES 6.6). Softer faults are in each card's painter note: gpt2 takes drift warm
+  (mv10 umber not violet; Codex shanghai sepia, gpt2 grey-green), closet light is soft not a crisp door wedge (the set
+  still lights the hands: widen `DOOR`), V1f blank faces read slightly as pale ovals, romanesco in M5/M6 has no
+  countable arms, V3_rcv_obl has her glance up at the lens, handout grids a little off the layout (place comp faces from
+  each pick). First love: every frame zoom-checked by the painters and the picks again by the lead; face turned away
+  in all.

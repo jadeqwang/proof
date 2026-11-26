@@ -25,8 +25,10 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "gen"))
 LOGS = os.path.join(ROOT, "work", "kf_logs")
-SESSION = "proof-kf"
-FORBIDDEN = ("source_refs", "/character sheets/")
+SESSION = os.environ.get("KF_SESSION", "proof-kf")   # KF_SESSION=proof-kf2 for a separate round
+LIMIT_FLAG = os.path.join(LOGS, "CODEX_LIMIT_HIT")   # written when Codex reports its plan limit; --route auto then goes to gpt2
+FORBIDDEN = ("source_refs", "/character sheets/", "family_photos", "refs_house", "refs_shanghai", "refs_mortongrove",
+             "refs_devon_market", "art style inspo", "/_superseded/")   # photos, and sheets replaced by newer ones
 
 CF = {
     "gpt2": ("openai/gpt-image-2", lambda p, refs: {"prompt": p, "size": "3072x1728", "quality": "high", **({"images": refs} if refs else {})}, 16),
@@ -72,6 +74,10 @@ def run_codex(prompt, refs, out, timeout=1500):
         time.sleep(3)
     if not os.path.exists(png):
         tail = open(log, errors="replace").read()[-600:] if os.path.exists(log) else ""
+        if "usage limit" in tail:
+            with open(LIMIT_FLAG, "w") as f:
+                f.write(time.strftime("%Y-%m-%d %H:%M") + "\n" + tail)
+            raise CodexLimit(tail)
         raise SystemExit(f"FAIL no image {out}: {tail}")
     if out.lower().endswith((".jpg", ".jpeg")):
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", png, "-q:v", "2", out], check=True)
@@ -79,6 +85,10 @@ def run_codex(prompt, refs, out, timeout=1500):
     else:
         os.replace(png, out)
     return f"codex image_gen (headless codex exec in tmux session {SESSION}; on plan, $0)"
+
+
+class CodexLimit(Exception):
+    pass
 
 
 def run_cf(route, prompt, refs, out, tag):
@@ -99,7 +109,7 @@ def run_cf(route, prompt, refs, out, tag):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--route", required=True, choices=["codex", *CF])
+    ap.add_argument("--route", required=True, choices=["codex", "auto", *CF], help="auto = codex until its plan limit is hit (flag file in work/kf_logs), then gpt2")
     ap.add_argument("--out", required=True)
     ap.add_argument("--prompt-file")
     ap.add_argument("--prompt")
@@ -130,7 +140,16 @@ def main():
         raise SystemExit(f"exists: {out} (use --force, or bump the version in the name)")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     t0 = time.time()
-    how = run_codex(prompt, refs, out) if a.route == "codex" else run_cf(a.route, prompt, refs, out, a.tag)
+    route = a.route
+    if route == "auto":
+        route = "gpt2" if os.path.exists(LIMIT_FLAG) else "codex"
+    try:
+        how = run_codex(prompt, refs, out) if route == "codex" else run_cf(route, prompt, refs, out, a.tag)
+    except CodexLimit as e:
+        if a.route != "auto":
+            raise SystemExit(f"FAIL codex usage limit {out}: {e}")
+        print("codex plan limit hit; falling back to gpt2", flush=True)
+        how = run_cf("gpt2", prompt, refs, out, a.tag)
     with open(os.path.splitext(out)[0] + ".txt", "w") as f:
         f.write(f"route: {how}\ndate: {time.strftime('%Y-%m-%d %H:%M')}\nreferences (generated sheets and set renders only, no photos):\n"
                 + "".join(f"  image {i + 1}: {os.path.relpath(p, ROOT)}" + (f"  [{w}]" if w else "") + "\n" for i, (p, w) in enumerate(refs))
