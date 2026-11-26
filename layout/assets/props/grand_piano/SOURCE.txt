@@ -1,0 +1,11 @@
+Model: "Grand Piano" by thanhthanh (Thanh Thanh) on Sketchfab
+URL: https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard 000-107), checked 2026-11-26
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-107/c4b11ae7ddb34b20a6207e4a3f244e2b.glb (uid c4b11ae7ddb34b20a6207e4a3f244e2b)
+Changes (for this film's layout guides): the piano bench that came with the model was deleted; joined into one mesh; scaled uniformly to metres (length keyboard front to tail = 2.16 m, a 7'1" grand); origin moved to the floor under the centre of the keyboard front edge (keyslip). 6,119 tris, no textures (flat colours: case near-black, keys, brass pedals and casters).
+Real-world size here (x, y up, z): 1.452 x 0.998 x 2.16 m
+Orientation (glTF / three.js): y up; the keyboard faces +z (front edge at z = 0, tail at z = -2.16); the straight bass-side spine is on -x (the player's left); centred on x = 0. Key tops at y ~0.71 m; closed lid top at y ~1.0 m.
+State: lid closed (part of the case, not a separate part); fallboard open, keys visible; no music desk; three legs with brass casters; lyre with three pedals.
+Used for: mortongrove07 living-room grand piano (ebony)
+Pipeline: Blender 4.5; bench removed by loose parts lying wholly in front of the keyboard, then _pipeline/norm.py {"size":["l",2.16],"tris":40000,"origin":"bottom"}, then the origin shifted +1.08 m to the keyboard front edge.

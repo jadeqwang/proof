@@ -1,18 +1,19 @@
 canonical background art for layout/assets/art/mortongrove07/mg_picture.png
-date: 2026-11-26 11:07
-route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
-raw: 1672x941, centre-cropped to aspect 1.454 (w/h), saved 1024x704
+date: 2026-11-26 13:59
+route: codex image_gen (headless codex exec in tmux session proof-mg; on plan, $0)
+raw: 1672x941, centre-cropped to aspect 1.606 (w/h), saved 1024x638
 refs: none
-assumed / invented: INVENTED: the subject (a muted impressionist field landscape), the cream mat and the colours are our proposal; Jade has only given its size (1.4 x 1.0 m, 4x larger)
+assumed / invented: INVENTED: composition, the calligraphy and seal; Jade gave the subject (Chinese watercolour horse mid-gallop, all four hooves visible) and the size 1.4 x 1.0 m
 
 prompt:
-IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.45:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.61:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
 
-A large framed art print as it hung over the couch in an ordinary suburban living room near Chicago in 2007: the
-print fills the image edge to edge, including its wide cream-white mat border (about 9% of the width on each side) and
-the print inside the mat. The print is a muted, decorator-style impressionist landscape reproduction: a quiet field of
-wheat and tall grass in soft ochre, sage green and warm grey, a line of round trees in the middle distance, a pale
-hazy cream-and-grey sky (almost no blue), soft visible brush strokes. Calm, faded, slightly yellowed colours. Straight
-on, no glass glare, no frame (the frame is built separately), just the mat and the print.
-post: cropped to the print only (the cream mat strips removed: the mat is built in code, mortongrove07/art.js)
-post (2026-11-26): resized to 1024x587 max and saved as a 256-colour PNG to keep the public repo small
+A traditional Chinese ink-and-wash painting (shuimo / xieyi style) on pale warm rice paper, as a framed print that hung over the couch in a suburban living room near Chicago in 2007. The image is ONLY the painting surface, edge to edge (no mat, no frame, no mount, no wall).
+
+Subject: ONE horse in full gallop, seen side-on, moving from left to right, mid-stride with its legs extended, mane and tail flying. Painted with bold, wet black and grey ink strokes and dry-brush texture for the mane and tail, the body modelled with graded ink washes, a few loose light ochre washes. Expressive, confident brushwork in the classic Chinese galloping-horse tradition.
+
+VERY IMPORTANT composition: the WHOLE horse is inside the picture with generous empty paper all round it. ALL FOUR HOOVES are clearly painted, separate and fully visible, well clear of the bottom edge (at least 15% of the height of empty paper below the lowest hoof). Ears, tail tip and nose are also well inside the edges. The horse occupies the middle 60% of the width, centred. No ground line or only a faint wash of grass far below the hooves.
+
+At the upper left, a short vertical column of calligraphy in black ink and one small red seal stamp (illegible, decorative). Muted, slightly aged paper tone; no blue. Straight-on, evenly lit, no glass glare.
+post: saved as a 256-colour PNG (1024x638); replaces the r3 invented field landscape (round 4, Jade: 'a chinese watercolor style horse mid-gallop with fully visible hooves'). Print area 1.06 x 0.66 m inside the cream mat.
+subject: JADE (r4). Invented: the pose, the calligraphy (four characters, 'fine steed galloping') and the red seal.

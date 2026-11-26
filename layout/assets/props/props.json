@@ -593,5 +593,19 @@
   "source": "Poly Haven/Rahul Chaudhary (CC0)",
   "credit": "\"Cardboard Box 01\" by Rahul Chaudhary, Poly Haven (CC0)",
   "use": "attic88_day: the storage boxes"
+ },
+ "grand_piano": {
+  "label": "grand piano (7'1\", ebony, lid closed)",
+  "size_m": [
+   1.452,
+   0.9983,
+   2.16
+  ],
+  "origin": "floor directly under the centre of the keyboard front edge; keyboard faces +z (tail at z=-2.16), straight bass-side spine on -x (player's left), y up",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/thanhthanh (CC BY 4.0)",
+  "credit": "\"Grand Piano\" by thanhthanh (https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b), CC BY 4.0",
+  "use": "mortongrove07 living-room grand piano"
  }
 }

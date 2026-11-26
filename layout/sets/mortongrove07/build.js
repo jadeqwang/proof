@@ -1,6 +1,6 @@
 // Build one mortongrove07 shot: the main floor of 5748 Capri Lane as Jade drew it (from layout.js; compass axes, x east,
 // z south): the living room (floral couch against the front wall beside the window, red rug, egg-carton plant table under
-// the west window), the piano / mirror / dining / entry part behind it, the vault with its ridge parallel to the street;
+// the west window), the piano / mirror / dining / entry part behind it, one tilted ceiling plane, high at the mirror wall (r4);
 // her seated, first love handing her the FOLDED IAS hoodie (shot.hoodie 'folded') or her lifting it as it UNFOLDS ('unfolding'); the real
 // afternoon sun (SCENE) through the front, west and dining windows.
 //   shot.beamMask (the twins beam_<id>): flat mode = the sun shafts white on black (sets/_beam.js applyBeamMask)
@@ -13,10 +13,12 @@ import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_b
 import { wall, hexa, kitchenChair, r3, hideLabels } from '../basement90/kit.js';
 import { sweatshirt, lapColliders, foldedSeal } from './sweatshirt.js';
 import { graspArms } from '../../engine/grasp.js';
+import { loadProps, prop } from '../_props.js';   // downloaded props (phase 2)
 import { framedPictureArt } from './art.js';   // fixed picture texture (background-art agent)   // the cloth hoodie (round 3)
-import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilY, DROP, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
+import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
   KITCHEN, STAIR, COUCH, END_TABLE_E, END_TABLE_W, RUG, COFFEE_TABLE, LOVESEAT, ARMCHAIR, PLANTS, PRINT, MIRROR, PIANO, BENCH, FLOOR_LAMP, CLOSET, DINING,
   HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, TURN, GARMENT, LIGHTS } from './layout.js';
+await loadProps(['mug', 'grand_piano']);
 
 // cast: `jade27` (kind adultJade27; stands in for Jade at about 24) and `firstLove27` (kind adultFirstLove, 1.78 m), both from ../_cast.js
 void CAST;
@@ -28,12 +30,12 @@ const CORK = { grey: 0.55, col: 0xb08a5a }, STRAP = { grey: 0.3, col: 0x5a3a24 }
 const GLASS = { glass: true, col: 0xfff6e0, opacity: 0.18, noCast: true };
 const OUTSIDE = { grey: 0.97, col: SUN.color, emit: SUN.color, emitI: 1.25, flatEmit: 0.97, noCast: true };
 
-// a wall whose top follows the vault. axis 'z': in the plane z = at, along x (top = ceilY(at), flat); axis 'x': in the
-// plane x = at, along z (a gable end: the top rises to the ridge at VAULT.z)
-// `flat` = under the dining part's flat 8-ft ceiling (DROP); `y0` = the bottom edge (a soffit hangs from y0 up to the vault)
-function vwall({ axis, at, a0, a1, t, out, holes = [], look, label, flat = false, y0 = 0 }) {
-  const top = (a) => (flat ? DROP.y : axis === 'x' ? ceilY(a) : ceilY(at)) + VAULT.t;
-  const pts = [[a0, y0], [a1, y0], [a1, top(a1)]]; if (!flat && axis === 'x' && VAULT.z > Math.min(a0, a1) && VAULT.z < Math.max(a0, a1)) pts.push([VAULT.z, top(VAULT.z)]); pts.push([a0, top(a0)]);
+// a wall whose top follows the ceiling plane (round 4: one tilted plane, high at the east wall). axis 'z': in the plane
+// z = at, along x (the front and north walls: trapezoids, tall at the mirror end); axis 'x': in the plane x = at, along z
+// (the east and west walls: level tops). `y0` = the bottom edge.
+function vwall({ axis, at, a0, a1, t, out, holes = [], look, label, y0 = 0 }) {
+  const top = (a) => (axis === 'z' ? ceilAt(a, at) : ceilAt(at, a)) + VAULT.t;
+  const pts = [[a0, y0], [a1, y0], [a1, top(a1)], [a0, top(a0)]];
   const sh = new THREE.Shape(); sh.moveTo(...pts[0]); for (const p of pts.slice(1)) sh.lineTo(...p); sh.lineTo(...pts[0]);
   for (const h of holes) { const p = new THREE.Path(), e = h.y0 <= 0 ? 1e-3 : h.y0; p.moveTo(h.a0, e); p.lineTo(h.a0, h.y1); p.lineTo(h.a1, h.y1); p.lineTo(h.a1, e); p.lineTo(h.a0, e); sh.holes.push(p); }
   const m = mk(new THREE.ExtrudeGeometry(sh, { depth: t, bevelEnabled: false }), look);
@@ -41,12 +43,10 @@ function vwall({ axis, at, a0, a1, t, out, holes = [], look, label, flat = false
   else { m.rotation.y = -Math.PI / 2; m.position.x = out > 0 ? at + t : at; }
   return tag(m, label);
 }
-// the vaulted ceiling: sloping drywall planes over [xa, xb] between z0 and z1 (split at the ridge)
-function vault(xa, xb, z0, z1, look, g) {
-  const t = VAULT.t, cuts = [z1, ...(VAULT.z < z1 && VAULT.z > z0 ? [VAULT.z] : []), z0];
-  for (let i = 0; i < cuts.length - 1; i++) { const p = cuts[i], q = cuts[i + 1];
-    const quadAt = (x) => [[x, ceilY(p), p], [x, ceilY(q), q], [x, ceilY(q) + t, q], [x, ceilY(p) + t, p]];
-    g.add(tag(hexa(quadAt(xa), quadAt(xb), look), 'vaulted ceiling (ridge east-west, parallel to the street)')); }
+// the ceiling: one tilted drywall plane over [xa, xb] x [z0, z1] (its underside on ceilAt)
+function ceilingPlane(xa, xb, z0, z1, look, g) {
+  const t = VAULT.t, quadAt = (x) => [[x, ceilAt(x, z1), z1], [x, ceilAt(x, z0), z0], [x, ceilAt(x, z0) + t, z0], [x, ceilAt(x, z1) + t, z1]];
+  g.add(tag(hexa(quadAt(xa), quadAt(xb), look), 'ceiling (one tilted plane: high at the mirror wall, low at the dining wall)'));
 }
 // a window in a wall: frame, mullions, stool, glass, and bright daylight beyond. W: south wall { x0, x1, z } or west wall { z0, z1, x }
 function windowSet(g, W, side, label) {
@@ -71,20 +71,16 @@ function room() {
   g.add(tag(box(x1 - x0 + T, 0.06, z1 - zJ + T, CARPET, [(x0 + x1 + T) / 2, -0.03, (z1 + zJ + T) / 2]), 'floor (wall-to-wall carpet)'));
   g.add(tag(box(x1 - xW + 2 * T, 0.06, zJ - z0 + 2 * T, CARPET, [(xW + x1) / 2, -0.03, (zJ + z0) / 2]), 'floor (wall-to-wall carpet)'));
   const CEIL = { grey: 0.86, col: 0xe6e0d0 };
-  // round 3: the vault (ridge at z -3.6, 3.6 m) over the living room and the piano / mirror side; the dining part under a
-  // flat 8-ft ceiling (DROP) with two soffits where the vault rises from it (facing east to the piano, south to the couch)
-  vault(x0 - T, x1 + T, zJ, z1 + T, CEIL, g); vault(DROP.x1, x1 + T, z0 - Ti, zJ, CEIL, g);
-  g.add(tag(box(DROP.x1 - xW + T, VAULT.t, zJ - z0 + Ti, CEIL, [(xW - T + DROP.x1) / 2, DROP.y + VAULT.t / 2, (zJ + z0 - Ti) / 2]), DROP.label));
-  g.add(vwall({ axis: 'x', at: DROP.x1, a0: z0 - Ti, a1: zJ, t: 0.08, out: -1, y0: DROP.y, look: PLASTER, label: 'soffit: the dining ceiling drops to 8 ft (facing the piano)' }));
-  g.add(vwall({ axis: 'z', at: zJ, a0: x0, a1: DROP.x1, t: 0.08, out: -1, y0: DROP.y, look: PLASTER, label: 'soffit: the dining ceiling drops to 8 ft (facing the living room)' }));
+  // round 4 (Jade): ONE tilted ceiling plane, high (3.6 m) at the east / mirror wall, low (2.44 m) at the west / dining wall
+  ceilingPlane(x0 - T, x1 + T, zJ, z1 + T, CEIL, g); ceilingPlane(xW - T, x1 + T, z0 - Ti, zJ, CEIL, g);
   // walls
   const P = PICTURE, Ww = WIN_W, Wd = WIN_D, D = FRONT_DOOR, S = SLIDER, St = STAIR;
-  g.add(vwall({ axis: 'z', at: z1, a0: x0 - T, a1: x1 + T, t: T, out: 1, holes: [{ a0: P.x0, a1: P.x1, y0: P.sill, y1: P.head }], look: PLASTER, label: 'front wall (south, Capri Lane)' }));
+  g.add(vwall({ axis: 'z', at: z1, a0: x0 - T, a1: x1 + T, t: T, out: 1, holes: [{ a0: P.x0, a1: P.x1, y0: P.sill, y1: P.head }], look: PLASTER, label: 'front wall (south, Capri Lane; a trapezoid under the tilted ceiling)' }));
   g.add(vwall({ axis: 'x', at: x0, a0: zJ, a1: z1, t: T, out: -1, holes: [{ a0: Ww.z0, a1: Ww.z1, y0: Ww.sill, y1: Ww.head }], look: PLASTER, label: 'west wall of the living room (egg-carton window)' }));
-  g.add(vwall({ axis: 'z', at: zJ, a0: xW - T, a1: x0, t: T, out: 1, holes: [{ a0: D.x0, a1: D.x1, y0: 0, y1: D.h }], look: PLASTER, flat: true, label: 'entry wall (front door, faces the street)' }));
-  g.add(vwall({ axis: 'x', at: xW, a0: z0 - Ti, a1: zJ, t: T, out: -1, holes: [{ a0: Wd.z0, a1: Wd.z1, y0: Wd.sill, y1: Wd.head }], look: PLASTER, flat: true, label: 'west wall (dining window; under the flat dining ceiling)' }));
+  g.add(vwall({ axis: 'z', at: zJ, a0: xW - T, a1: x0, t: T, out: 1, holes: [{ a0: D.x0, a1: D.x1, y0: 0, y1: D.h }], look: PLASTER, label: 'entry wall (front door, faces the street)' }));
+  g.add(vwall({ axis: 'x', at: xW, a0: z0 - Ti, a1: zJ, t: T, out: -1, holes: [{ a0: Wd.z0, a1: Wd.z1, y0: Wd.sill, y1: Wd.head }], look: PLASTER, label: 'west wall (dining window; the ceiling\'s low side)' }));
   g.add(vwall({ axis: 'z', at: z0, a0: xW - T, a1: x1 + T, t: Ti, out: -1, holes: [{ a0: S.x0, a1: S.x1, y0: 0, y1: S.h }], look: PLASTER, label: 'north wall (sliding door to the kitchen)' }));
-  g.add(vwall({ axis: 'x', at: x1, a0: z0 - Ti, a1: z1 + T, t: Ti, out: 1, holes: [{ a0: St.z0, a1: St.z1, y0: 0, y1: ROOM.h - 0.06 }], look: PLASTER, label: 'east wall (the full gable: mirror, piano; split-level wing beyond)' }));
+  g.add(vwall({ axis: 'x', at: x1, a0: z0 - Ti, a1: z1 + T, t: Ti, out: 1, holes: [{ a0: St.z0, a1: St.z1, y0: 0, y1: ROOM.h - 0.06 }], look: PLASTER, label: 'east wall (the ceiling\'s high side, level top: mirror, piano; split-level wing beyond)' }));
   // baseboards (front and east walls)
   g.add(tag(box(x1 - x0, 0.1, 0.015, TRIM, [(x0 + x1) / 2, 0.05, z1 - 0.008]), 'baseboard'));
   g.add(tag(box(0.015, 0.1, St.z1 - z1, TRIM, [x1 - 0.008, 0.05, (St.z1 + z1) / 2]), 'baseboard'));
@@ -222,21 +218,27 @@ function furniture() {
   g.add(tag(box(RUG.x1 - RUG.x0, 0.012, RUG.z1 - RUG.z0, { grey: 0.42, col: 0x9a2a26, recvShadowLine: true }, [(RUG.x0 + RUG.x1) / 2, 0.006, (RUG.z0 + RUG.z1) / 2]), 'red rug'));
   { const [cx, cz] = table(g, COFFEE_TABLE, 'coffee table');
     g.add(tag(box(0.22, 0.03, 0.28, { grey: 0.82, col: 0xe0d8c4 }, [cx + 0.2, COFFEE_TABLE.h + 0.015, cz], [0, -10, 0]), 'papers / a notebook'));
-    g.add(tag(cyl(0.04, 0.035, 0.1, { grey: 0.85, col: 0xe8e0d0 }, [cx - 0.1, COFFEE_TABLE.h + 0.05, cz - 0.1], null, 16), 'mug'));
+    { const m = prop('mug', { at: [cx - 0.1, COFFEE_TABLE.h, cz - 0.1], rot: [0, 140, 0], label: 'mug' });   // "Cup" by saleviim, CC BY 4.0
+      g.add(m || tag(cyl(0.04, 0.035, 0.1, { grey: 0.85, col: 0xe8e0d0 }, [cx - 0.1, COFFEE_TABLE.h + 0.05, cz - 0.1], null, 16), 'mug')); }
     g.add(tag(box(0.18, 0.025, 0.24, { grey: 0.3, col: 0x3a4a6a }, [cx + 0.45, COFFEE_TABLE.h + 0.045, cz + 0.05], [0, 14, 0]), 'textbook')); }
   { const [cx, cz] = table(g, END_TABLE_E, END_TABLE_E.label); lamp(g, [cx, cz], END_TABLE_E.h, 'table lamp (off)'); }
   table(g, END_TABLE_W, END_TABLE_W.label);
   { const L = LOVESEAT; g.add(tag(upholstered([(L.x0 + L.x1) / 2, (L.z0 + L.z1) / 2], -90, L.z1 - L.z0, L.x1 - L.x0, { cushions: 2 }), L.label)); }
   { const A = ARMCHAIR; g.add(tag(upholstered(A.at, A.yaw, A.w, A.d, { seat: A.seat, back: A.back, arm: A.arm }), 'armchair')); }
   plants(g);
-  // the framed picture over the couch (round 3: 4x larger, 1.4 x 1.0 m; its subject is not known: a plain panel in a frame)
+  // the framed picture over the couch (1.4 x 1.0 m; r4: a Chinese ink-and-wash horse at full gallop, art.js)
   g.add(tag(box(PRINT.w, PRINT.h, 0.035, { grey: 0.3, col: 0x4a3e30 }, [PRINT.x, PRINT.y, PRINT.z]), 'framed picture (frame)'));
-  g.add(tag(box(PRINT.w - 0.12, PRINT.h - 0.12, 0.01, { grey: 0.55, col: 0x8a8270 }, [PRINT.x, PRINT.y, PRINT.z - 0.02]), 'framed picture (subject unknown)'));
+  g.add(tag(box(PRINT.w - 0.12, PRINT.h - 0.12, 0.01, { grey: 0.55, col: 0x8a8270 }, [PRINT.x, PRINT.y, PRINT.z - 0.02]), 'framed picture (backing)'));
   g.add(framedPictureArt());
   // the far part: mirror, piano + bench, floor lamp, dining table + six chairs
   { const M = MIRROR; g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0x9aa4a8 }, [M.x - 0.02, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror (not reflecting in these renders)'));
     g.add(tag(box(0.045, M.y1 - M.y0 + 0.08, M.z1 - M.z0 + 0.08, { grey: 0.4, col: 0x6a5a40 }, [M.x - 0.01, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror frame')); }
-  g.add(piano());
+  // r4: a real downloaded 7'1" grand ("Grand Piano" by thanhthanh, CC BY 4.0; 2.16 x 1.45 m, lid closed). Model frame:
+  // keyboard faces +z, spine on -x (player's left); turned 180 deg so the keyboard faces NORTH (bench side) and the spine
+  // (player's left = east) runs along the mirror. Fallback: the hand-built piano().
+  { const pm = prop('grand_piano', { at: [PIANO.spineX - PIANO.W / 2, 0, PIANO.kbZ], rot: [0, 180, 0], label: '7-ft grand piano',
+      lookMat: { gpiano_main: { grey: 0.12, col: 0x16161a }, gpiano_w_keys: { grey: 0.92, col: 0xf2eee2 }, gpiano_b_keys: { grey: 0.1, col: 0x101010 }, gpiano_brass: { grey: 0.6, col: 0xc0a050 } } });
+    g.add(pm || piano()); }
   { const B = BENCH; const [cx, cz] = table(g, { ...B, h: B.h }, B.label, EBONY); g.add(tag(box(B.x1 - B.x0, 0.06, B.z1 - B.z0, { grey: 0.2, col: 0x2a2226 }, [cx, B.h + 0.03, cz]), B.label)); }
   { const F = FLOOR_LAMP; g.add(tag(cyl(0.14, 0.14, 0.03, WOOD_D, [F.at[0], 0.015, F.at[1]], null, 18), F.label)); g.add(tag(cyl(0.012, 0.012, F.h - 0.3, WOOD_D, [F.at[0], (F.h - 0.3) / 2, F.at[1]], null, 8), F.label));
     const sh = mk(new THREE.CylinderGeometry(0.16, 0.22, 0.3, 24, 1, true), { grey: 0.86, col: 0xeee4cc }); sh.position.set(F.at[0], F.h - 0.15, F.at[1]); sh.userData.double = true; g.add(tag(sh, F.label)); }
@@ -466,7 +468,7 @@ export function build(shot, { makeCam }) {
     return {
       time: FILM.time, plan_time: FILM.time, section: FILM.section, position: shot.position || null,
       film: { ...FILM, year: YEAR, place: 'Morton Grove, IL: the house she commuted from to Northwestern (Evanston); he had transferred from Harvard to Princeton' },
-      house: { ...HOUSE, ceiling: { kind: 'vaulted (cathedral), Jade', ridge: VAULT.ridge + ' at z ' + VAULT.z + ' (Jade r3: highest over the middle of the great room, about 3.6 m)', plate_m: ROOM.h, peak_m: VAULT.peak, pitch: VAULT.pitch + ' (about 3.9 in 12)', east_wall: 'the full gable (mirror, piano): its top shows the roof angle', dining: 'flat 8-ft ceiling over the dining part (x < ' + DROP.x1 + ', north of the jog), READING of Jade\'s "the dining room is the short side" (flagged)' },
+      house: { ...HOUSE, ceiling: { kind: 'one tilted plane (shed ceiling), Jade r4: high side the mirror (east) wall, low side the dining (west) wall', high_m: VAULT.high + ' at the east wall x ' + VAULT.xHigh + ' (FLAGGED: kept from her r3 3.6 m)', low_m: VAULT.low + ' at the west (dining) wall x ' + VAULT.xLow + ' (8-ft plate, FLAGGED)', pitch: VAULT.pitch + ' (about 2.2 in 12)', east_wall: 'level top at ' + VAULT.high + ' m (mirror, piano)', front_wall: 'a trapezoid behind the couch, ' + ceilAt(0, 0).toFixed(2) + ' m at x 0 to ' + VAULT.high + ' m at the east corner' },
         axes: 'x = east, z = south, y up; origin = inner SW corner of the living room', great_room_m: { x: [JOG.xW, ROOM.x1], z: [ROOM.z0, ROOM.z1], jog_z: JOG.z },
         orientation: 'Jade\'s drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)',
         couch: 'against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)' },

@@ -332,3 +332,41 @@ Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`. First
   (about 38 mm to the backs of the fingers). Fixing it changes the drape: that is a job for the cloth agent, with a look
   review afterwards.
 - Repaint: MG1, MG1_end (hands under the stack, his end corners), MG2/MG2_end (hands).
+
+## 2026-11-26 (late): round-4 decisions (work/decisions/JADE_R4_DECISIONS.md)
+
+- **Ceiling: ONE tilted plane (decided).** Jade: "the ceiling on the mirror side is all high and straight and flat. the
+  low side is the dining room side. the ceiling for this room is one plane", then (via the lead) "single ceiling
+  tilting from high to low, high side is mirror side, the wall behind jade on the couch is a trapezoid". Built as a shed
+  ceiling (layout.js `VAULT`, `ceilAt(x, z)`; build.js `ceilingPlane`, `vwall`): highest along the EAST (mirror) wall,
+  whose top is now level, falling west to the WEST (dining) wall. No ridge, no flat dining drop, no soffits (all removed).
+  The front wall behind the couch and the north (kitchen) wall are trapezoids, tall at the east end.
+  **Heights FLAGGED** (Jade gave none this round): 3.6 m at the east wall (her r3 "about 3.6 m" at the top), 2.44 m (8 ft)
+  at the dining wall x -1.4, so 2.70 m at the living room's west wall (x 0); pitch 0.184 (about 2.2 in 12). The two-version
+  question was dropped: decided.
+- **Grand piano 7'1" = 2.16 m: a real downloaded model** (`layout/assets/props/grand_piano/`, "Grand Piano" by
+  thanhthanh, Sketchfab via Objaverse, CC BY 4.0, credited; bench removed, scaled uniformly to 2.16 m, 1.452 m wide with
+  the real 1.22 m keyboard; lid closed, fallboard open, three legs, lyre). Turned 180 deg: keyboard NORTH (bench side),
+  spine (the player's left) along the mirror, as drawn. Ebony / ivory / brass looks per material. PIANO.L 2.16, W 1.452;
+  the hand-built `piano()` stays as the fallback if the model fails to load. Checked in REF_plan (south up) and REF_north.
+- **Picture: a Chinese ink-and-wash galloping horse** (Jade: "a chinese watercolor style horse mid-gallop with fully
+  visible hooves"), 1.4 x 1.0 m as built. New canonical texture `layout/assets/art/mortongrove07/mg_picture.png`
+  (Codex image_gen, tmux proof-mg, $0; prompt and notes in mg_picture.txt): one horse side-on, galloping left to right,
+  all four hooves well clear of every edge; invented: the pose, a four-character inscription ("fine steed galloping")
+  and a red seal at upper left (slightly cut by the left edge of the crop).
+- **Props phase 2:** the coffee-table mug is the downloaded `mug` ("Cup" by saleviim, CC BY 4.0; credited). Nothing in
+  this set is held except the hoodie, so the hold check is unchanged by the swap. The mug is not held, so its props.json
+  grips (reported mirrored by the shanghai86 agent; the lead fixes them centrally) are not used here; its base is at y 0
+  (measured on the glb), so it rests on the table top.
+
+## 2026-11-26 round 4 — PROGRESS (checkpoint)
+- DONE (code, scratch-rendered, looked at): ceiling = one tilted plane, 3.6 m east (mirror) -> 2.44 m west (dining),
+  front and north walls trapezoids (heights FLAGGED); grand piano = downloaded 7'1" model (2.16 x 1.452 m, CC BY,
+  credited); picture = Chinese ink-and-wash galloping horse, all four hooves clear (mg_picture.png, Codex proof-mg);
+  mug = downloaded model (credited). Checked: REF_north, REF_plan, MG_wide (lit/form) in the scratchpad only.
+- IN PROGRESS: a helper is measuring finger-vs-cloth penetration on the Jolt hoodie (MG2, MG2_end; MG1/MG1_end stack)
+  and fixing the hand colliders in sweatshirt_jolt.js / sweatshirt_sim.js; Truth-pixel counts must stay 0.
+- LEFT: apply any build.js/shots.js diff from the cloth fix; full three-pass re-render to media/layout/mortongrove07/
+  (r3 snapshot already taken); gallery; look at every changed shot; REPAINT_LIST.
+- Questions for Jade: none new (ceiling decided). Flags: ceiling heights 3.6 / 2.44 m; the inscription and seal on the
+  horse picture are invented.

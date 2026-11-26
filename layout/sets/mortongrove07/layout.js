@@ -76,19 +76,18 @@ export const travelDir = ({ az, elev }) => { const a = az * D2R, e = elev * D2R;
 // and then made to fit real furniture sizes. Living room 4.9 m wide as before (Jade: "room and light look right").
 export const ROOM = { x0: 0, x1: 4.9, z0: -7.2, z1: 0, h: 2.44, wallT: 0.2, wallInt: 0.12 };
 export const JOG = { z: -2.0, xW: -1.4 };   // north of z = -2.0 the room reaches west to x = -1.4 (the drawing's right-hand step)
-// THE CEILING IS VAULTED (Jade) and its ridge runs PARALLEL TO THE STREET (Jade, round 2): east-west. ROUND 3 (Jade,
-// 2026-11-26): "highest over the middle of the great room, about 3.6 m; the piano side and the mirror wall are all very
-// tall; the dining room is the short side". So the ridge is over the great room's own N-S middle (z -3.6), 3.6 m, and the
-// vault falls to the 8-ft plate at the front (south) and north walls (pitch 1.16 m in 3.6 m, about 3.9 in 12). The
-// EAST wall (mirror, piano) is a full gable: "the entire east wall is tall" and its top line shows the angle of the
-// roof. READING (flagged): "the dining room is the short side" = the dining part (west, north of the jog) is under a
-// FLAT 8-ft ceiling (DROP), with a dropped soffit at x DROP.x1 facing the piano and a short one at the jog line facing
-// the living room; the vault covers the living room and the piano / mirror side.
-export const VAULT = { ridge: 'east-west (parallel to Capri Lane), over the middle of the great room', z: -3.6, peak: 3.6, t: 0.06 };
-VAULT.pitch = +((VAULT.peak - ROOM.h) / (ROOM.z1 - VAULT.z)).toFixed(4);   // 0.3222 (about 3.9 in 12)
-export const ceilY = (z) => Math.max(ROOM.h, VAULT.peak - Math.abs(z - VAULT.z) * VAULT.pitch);   // vault surface over z
-export const DROP = { x0: JOG.xW, x1: 1.6, z0: ROOM.z0, z1: JOG.z, y: ROOM.h, label: 'flat 8-ft ceiling over the dining part ("the dining room is the short side")' };
-export const ceilAt = (x, z) => (x < DROP.x1 && z < DROP.z1 ? DROP.y : ceilY(z));
+// THE CEILING (round 4, Jade 2026-11-26, supersedes the r2/r3 vault with its E-W ridge and the flat dining drop): "the
+// ceiling on the mirror side is all high and straight and flat. the low side is the dining room side. the ceiling for
+// this room is one plane" and "single ceiling tilting from high to low, high side is mirror side, the wall behind jade
+// on the couch is a trapezoid". So ONE tilted plane (a shed ceiling) over the whole great room: highest along the EAST
+// (mirror) wall, whose top is level, falling westward to the 8-ft plate on the WEST (dining) wall. The front (south) wall
+// behind the couch and the north (kitchen) wall run across the slope: trapezoids, tall at the mirror end.
+// HEIGHTS (flagged; Jade gave none this round): high side 3.6 m (her r3 "about 3.6 m" at the top), low side 2.44 m
+// (8 ft) at the dining wall x -1.4; the living room's west wall (x 0) is then 2.70 m. Pitch 1.16 m in 6.3 m (about 2.2 in 12).
+export const VAULT = { ridge: 'none: one tilted plane (shed), high at the east (mirror) wall, low at the west (dining) wall', high: 3.6, low: ROOM.h, xHigh: ROOM.x1, xLow: JOG.xW, t: 0.06 };
+VAULT.peak = VAULT.high;
+VAULT.pitch = +((VAULT.high - VAULT.low) / (VAULT.xHigh - VAULT.xLow)).toFixed(4);   // 0.1841 (about 2.2 in 12)
+export const ceilAt = (x, _z) => VAULT.low + (x - VAULT.xLow) * VAULT.pitch;            // the ceiling plane over (x, z)
 
 // ---------------------------------------------------------------- windows and doors (drawing; sizes GUESSED)
 // FRONT window, south wall, west part (drawing: top wall, right of the couch). Narrower than round 1's 2.35 m: the drawn
@@ -122,13 +121,15 @@ export const PLANTS = { x0: 0.10, x1: 0.68, z0: -1.75, z1: -0.30, h: 0.42, carto
 export const PRINT = { x: 2.9, y: 1.64, z: -0.025, w: 1.4, h: 1.0 };
 
 // ---------------------------------------------------------------- the rest of the great room (drawing)
-export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.95, y1: 2.90, label: 'giant mirror' };   // east wall; round 3 (Jade): hangs HIGHER (was 0.25-2.20), its top now 2.90 on the tall gable wall
+export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.95, y1: 2.90, label: 'giant mirror' };   // east wall; round 3 (Jade): hangs HIGHER (was 0.25-2.20), its top now 2.90 on the tall east wall (3.6 m, r4)
 // 7-ft grand (Jade's drawing: "7' concert grand"; a 7-ft grand is strictly a semi-concert "B"-size grand, Steinway B
 // 211 x 148 cm: kept at that size because the drawing says 7'). Round 3 (Jade): "the correct shape of an actual grand":
 // PIANO.outline is a real grand's plan (straight spine on the bass side, a short straight treble side at the keyboard,
 // the concave bentside, the convex tail); see build.js piano(). As drawn: spine along the mirror (east), bentside to the
 // west, keyboard at the NORTH end with the bench there, so the pianist faces south toward the living room.
-export const PIANO = { spineX: 4.55, kbZ: -5.20, L: 2.11, W: 1.48, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, label: '7-ft grand piano' };
+// Round 4 (Jade): "7'1\" to be exact" = 2.16 m long (keyboard front to tail); width 1.452 m = the downloaded model's
+// (layout/assets/props/grand_piano, "Grand Piano" by thanhthanh, CC BY 4.0; its keyboard is the real 1.22 m).
+export const PIANO = { spineX: 4.55, kbZ: -5.20, L: 2.16, W: 1.452, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, label: '7-ft grand piano' };
 export const BENCH = { x0: 3.40, x1: 4.15, z0: -5.78, z1: -5.42, h: 0.50, label: 'piano bench' };
 export const FLOOR_LAMP = { at: [4.62, -6.02], h: 1.62, label: 'floor lamp (off)' };
 export const CLOSET = { x0: JOG.xW, x1: -0.15, z0: -4.05, z1: -3.00, h: 2.20, label: 'coat closet' };   // drawing: by the front door; its door on the east face (GUESS)
@@ -269,7 +270,7 @@ export function sunMargin(p) { return Math.max(...Object.values(sunMargins(p)));
 // does a surface with outward normal nn face the sun? (cosine of the incidence; <= 0 = the sun is behind it)
 export const sunCos = (nn) => +(-dot(norm(nn), SUN_DIR)).toFixed(3);
 const CLIP = [{ name: 'floor', n: [0, -1, 0], d: 0.0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 },
-  { name: 'ceiling (plate height: the sun enters below the window heads and only falls, so the vault never meets it)', n: [0, 1, 0], d: ROOM.h }];
+  { name: 'ceiling (plate height: the sun enters below the window heads and only falls, so the ceiling never meets it)', n: [0, 1, 0], d: ROOM.h }];
 export const BEAM = { name: 'front + west windows', kind: 'low afternoon sun through the front window beside the couch, the west (egg-carton) window and the dining window (parallel)', dir: SUN_DIR,
   apertures: APERTURES, aperture: APERTURE, clip: CLIP };
 

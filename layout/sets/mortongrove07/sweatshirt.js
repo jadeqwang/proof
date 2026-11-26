@@ -41,6 +41,9 @@ export function lapColliders(her, f, { hipY = 0.53, thigh = 0.42 } = {}) {
   for (const s of [-1, 1]) { const hip = P([her.at[0], hipY, her.at[1]], [lat, s * 0.09]), knee = P(hip, [f, thigh]);
     out.push({ type: 'capsule', a: hip, b: knee, r: 0.075 }, { type: 'capsule', a: knee, b: P(knee, [[0, 1, 0], -0.45], [f, 0.05]), r: 0.05 }); }
   out.push({ type: 'plane', y: 0 });
+  // not a collider: her chest, where her posed hands' palms face from (build.js: graspArms toward [her x, 1.0, her z]);
+  // the sim builds her hands round the grips from it (sweatshirt_jolt.js HAND)
+  out.push({ type: 'chest', at: [her.at[0], 1.0, her.at[1]] });
   return out;
 }
 

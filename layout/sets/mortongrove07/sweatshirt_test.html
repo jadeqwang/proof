@@ -5,8 +5,9 @@
 <body><script type="module">
 // Standalone renders of the cloth hoodie (sweatshirt_test.mjs drives this page). window.renderCloth(t, view) -> PNG data URL.
 import * as THREE from 'three';
-import { clothState, clothMeshes, lapColliders } from './sweatshirt.js';
-import { visibility } from './sweatshirt_sim.js';
+import { clothState, clothMeshes, lapColliders, smoothSurface } from './sweatshirt.js';
+import { handCapsules } from './sweatshirt_jolt.js';
+import { visibility, faces, THICK } from './sweatshirt_sim.js';
 import { GARMENT, HER, SHIRT } from './layout.js';
 try {
   const q = new URLSearchParams(location.search), W = +(q.get('w') || 1200), H = +(q.get('h') || 1200);
@@ -29,7 +30,7 @@ try {
       if (o.userData.print && !o.userData.printMaterial) o.material.polygonOffset = true, o.material.polygonOffsetFactor = -2;
       o.castShadow = o.receiveShadow = true; });
     scene.add(g);
-    for (const p of s.hands ? [s.hands.L, s.hands.R] : []) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.022, 16, 12), new THREE.MeshLambertMaterial({ color: 0xd9a080 })); m.position.set(...p); scene.add(m); }
+    if (!/^hand/.test(view)) for (const p of s.hands ? [s.hands.L, s.hands.R] : []) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.022, 16, 12), new THREE.MeshLambertMaterial({ color: 0xd9a080 })); m.position.set(...p); scene.add(m); }
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), new THREE.MeshLambertMaterial({ color: 0x9a8a72 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
     for (const c of colliders) if (c.type === 'capsule') { const a = new THREE.Vector3(...c.a), b = new THREE.Vector3(...c.b), d = b.clone().sub(a);
       const m = new THREE.Mesh(new THREE.CapsuleGeometry(c.r, d.length(), 6, 12), new THREE.MeshLambertMaterial({ color: 0x7d8fa8 })); m.position.copy(a).addScaledVector(d, 0.5);
@@ -46,6 +47,14 @@ try {
     else if (view === 'zoom' || view === 'zoomcam') { const n = g.userData.cloth.seal.normal; const dir = view === 'zoom' ? n : (() => { const e = along(0.22), d = [e[0] - c[0], e[1] - c[1], e[2] - c[2]], l = Math.hypot(...d); return d.map((v) => v / l); })();
       eye = [c[0] + dir[0] * 0.55, c[1] + dir[1] * 0.55 + (view === 'zoom' ? 0.08 : 0), c[2] + dir[2] * 0.55]; lens = 60; aim = c; }
     else if (view === 'front' || view === 'back') { const n = g.userData.cloth.seal.normal, k = view === 'front' ? 1.1 : -1.1; eye = [c[0] + n[0] * k, c[1] + 0.25, c[2] + n[2] * k]; lens = 45; aim = [c[0], c[1] - 0.1, c[2]]; }
+    else if (/^hand[LR][abcd]$/.test(view)) {   // contact debug: her posed hand (engine capsules, true size) on the cloth, close
+      const k = view[4], gr = s.hands.grip?.[k], ch = colliders.find((c) => c.type === 'chest')?.at;
+      if (gr && ch) { for (const c of handCapsules(k, gr.at, gr.axis, ch)) { const a = new THREE.Vector3(...c.a), b = new THREE.Vector3(...c.b), d = b.clone().sub(a);
+          const m = new THREE.Mesh(new THREE.CapsuleGeometry(c.r, d.length(), 6, 12), new THREE.MeshLambertMaterial({ color: 0xd9a080, transparent: true, opacity: 0.85 })); m.position.copy(a).addScaledVector(d, 0.5);
+          m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); scene.add(m); }
+        const ax = gr.axis.map((v) => v / Math.hypot(...gr.axis)), dd = [gr.at[0] - ch[0], 0, gr.at[2] - ch[2]], l = Math.hypot(...dd), n = dd.map((v) => v / l);
+        const dir = { a: n.map((v) => -v), b: ax, c: [n[0] * 0.3, 1, n[2] * 0.3], d: n }[view[5]], L = Math.hypot(...dir);
+        eye = gr.at.map((v, i) => v + dir[i] / L * 0.32 + (view[5] === 'b' ? [0, 0.03, 0][i] : 0)); aim = gr.at; lens = 50; } }
     else if (view === 'side') { const lat = [-SHIRT.f[2], 0, SHIRT.f[0]]; eye = [mid[0] + lat[0] * 1.6, 1.3, mid[2] + lat[2] * 1.6]; lens = 40; }
     const cam = new THREE.PerspectiveCamera(2 * Math.atan(18 / lens) * 180 / Math.PI * H / W, W / H, 0.05, 50); cam.position.set(...eye); cam.lookAt(...aim);
     // the check pass: the print with Truth's figure solid red, unlit; count red pixels (the PNG is the normal pass)
@@ -57,6 +66,12 @@ try {
     r.render(scene, cam);
     const vis = { ...visibility(s, [eye])[0], red };
     return { url: r.domElement.toDataURL('image/png'), check: window.__check, vis, hands: s.hands, seal: g.userData.cloth.seal };
+  };
+  // the cloth as rendered (smoothed mid-surface + per-vertex normals) for cloth_contact.mjs (finger-vs-cloth depths)
+  window.clothSurface = (t, simJSON, iters = 2) => {
+    const s = clothState({ anchors: GARMENT, t, colliders, sim: JSON.parse(simJSON || q.get('sim') || '{}') });
+    const x = smoothSurface(s.pat, s.x, s.held, iters), { N } = faces(s.pat, x);
+    return { x: Array.from(x), N: Array.from(N), tris: s.pat.tris.filter((tr) => tr[3] !== 'string').map((tr) => tr.slice(0, 3)), thick: THICK, hands: s.hands, held: s.held, piece: s.pat.P.map((p) => p.piece), uv: s.pat.P.map((p) => p.piece === "hood" ? p.h : p.u), chest: colliders.find((c) => c.type === 'chest')?.at };
   };
   window.__ready = true;
 } catch (e) { window.__error = String(e && e.stack || e); }
