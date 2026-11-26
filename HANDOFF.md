@@ -67,9 +67,9 @@
   - The BO1/BO2 sleeve covered the hand; in PC3a a pencil passed through the sweater.
   - Smaller items: K6 fists, WL_eye convergence, a hole in Dad's sleeve in B2, a patch on her eye in C2a, gaze
     targets for background guests.
-- **Props agent:** phase 1 downloads real CC0/CC-BY models (ladle, cups, bowls, juicer, appliances, cart...) to
+- **Props agent:** phase 1 DONE (23 models: 7 Poly Haven CC0, 16 Objaverse CC BY 4.0, licences checked; `work/props_audit.md`, sheets `media/layout/_sheets/propstest_*.jpg`). Phase 1 was: downloads real CC0/CC-BY models (ladle, cups, bowls, juicer, appliances, cart...) to
   `layout/assets/props/`, with `layout/sets/_props.js` and `work/props_audit.md`. Phase 2, swapping them into the sets
-  and re-checking holds, waits for the fix agent. Every model and its licence goes in `docs/credits_tools.md`.
+  and re-checking holds, waits for the fix agent. NOTE: the new ladle handle is a flat 10x5 mm strip, so re-solve `ladleGrip.js` and re-run holdcheck. Kept hand-built: punchbowl (redo as a lathe profile), canisters, basement PC/CRT, books, clipboard, crate, furniture, produce. Every model and its licence goes in `docs/credits_tools.md`.
 
 **Known weak spots:**
 - First love's hair still reads a little domed and cap-like in MG and closet.
