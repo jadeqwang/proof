@@ -11,9 +11,9 @@
    12.85
   ],
   "target": [
-   2.9034,
-   1.3895,
-   13.5716
+   2.9015,
+   1.3956,
+   13.5781
   ],
   "lens_mm": 24,
   "frame_width_mm": 36,
@@ -24,17 +24,17 @@
   "near": 0.05,
   "far": 60,
   "matrixWorld": [
-   -0.3628,
+   -0.366,
    0,
-   0.9319,
+   0.9306,
    0,
-   0.0981,
-   0.9944,
-   0.0382,
+   0.0951,
+   0.9948,
+   0.0374,
    0,
-   -0.9267,
-   0.1052,
-   -0.3608,
+   -0.9258,
+   0.1022,
+   -0.3641,
    0,
    1.05,
    1.6,
@@ -42,21 +42,21 @@
    1
   ],
   "viewMatrix": [
-   -0.3628,
-   0.0981,
-   -0.9267,
+   -0.366,
+   0.0951,
+   -0.9258,
    0,
    0,
-   0.9944,
-   0.1052,
+   0.9948,
+   0.1022,
    0,
-   0.9319,
-   0.0382,
-   -0.3608,
+   0.9306,
+   0.0374,
+   -0.3641,
    0,
-   -11.5935,
-   -2.1848,
-   5.4408,
+   -11.5743,
+   -2.1721,
+   5.4866,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "front_door": {
    "px": [
     [
-     8989.4,
-     673.2
+     8821.4,
+     671.6
     ],
     [
-     14794.1,
-     856.1
+     14313.3,
+     844.4
     ],
     [
-     17714.8,
-     -1630.5
+     16922,
+     -1530.2
     ],
     [
-     9918.7,
-     -711.1
+     9682,
+     -677.9
     ]
    ],
    "world": [
@@ -136,20 +136,20 @@
   "living_room_window_wnw": {
    "px": [
     [
-     3922.2,
-     518.7
+     3894.8,
+     521.7
     ],
     [
-     5481.9,
-     570.1
+     5424.7,
+     572.1
     ],
     [
-     5644,
-     137.7
+     5578.1,
+     145.3
     ],
     [
-     3994.6,
-     222.6
+     3963.9,
+     228.2
     ]
    ],
    "world": [
@@ -184,20 +184,20 @@
   "living_room_window_ssw": {
    "px": [
     [
-     3454.6,
-     535.2
+     3434,
+     538.3
     ],
     [
-     3548.1,
-     520.1
+     3526.2,
+     523.3
     ],
     [
-     3612.2,
-     220.2
+     3587.4,
+     225.7
     ],
     [
-     3524.7,
-     195.6
+     3501,
+     201.2
     ]
    ],
    "world": [
@@ -232,20 +232,20 @@
   "sliding_glass_door_to_the_deck": {
    "px": [
     [
-     -15676.9,
-     -1771.8
+     -16345.1,
+     -1853.8
     ],
     [
-     3305.6,
-     788.5
+     3288.4,
+     790.2
     ],
     [
-     3713.7,
-     -1272.7
+     3677.3,
+     -1249
     ],
     [
-     -8081.3,
-     4805.3
+     -8402.8,
+     4962.9
     ]
    ],
    "world": [
@@ -280,20 +280,20 @@
   "kitchen_window_over_the_sink_ese": {
    "px": [
     [
-     -1561.7,
-     119.4
+     -1580.5,
+     121.8
     ],
     [
-     -3256.6,
-     -119.8
+     -3301.8,
+     -120.7
     ],
     [
-     -2889.8,
-     989.6
+     -2937.7,
+     1000
     ],
     [
-     -1437.5,
-     735.8
+     -1458.2,
+     742
     ]
    ],
    "world": [
@@ -328,20 +328,20 @@
   "dining_window_ssw": {
    "px": [
     [
-     2878.8,
-     627.9
+     2865.3,
+     630.8
     ],
     [
-     3091.3,
-     593.7
+     3075.4,
+     596.6
     ],
     [
-     3175,
-     120.5
+     3155.6,
+     126.5
     ],
     [
-     2968.5,
-     66.7
+     2951.2,
+     73
     ]
    ],
    "world": [
@@ -376,20 +376,20 @@
   "tea_room_window_wnw": {
    "px": [
     [
-     -8463.8,
-     110.4
+     -8698.3,
+     107.3
     ],
     [
-     -4137.8,
-     253
+     -4208.1,
+     255.1
     ],
     [
-     -3981.3,
-     633
+     -4052,
+     640
     ],
     [
-     -7918.1,
-     835.6
+     -8141.8,
+     850
     ]
    ],
    "world": [
@@ -424,20 +424,20 @@
   "tea_room_window_nne": {
    "px": [
     [
-     -2329.1,
-     303.8
+     -2360.4,
+     306.9
     ],
     [
-     -1727.2,
-     313
+     -1749.4,
+     316.4
     ],
     [
-     -1676.8,
-     544.3
+     -1699.6,
+     549.2
     ],
     [
-     -2261.3,
-     558
+     -2293.3,
+     563.3
     ]
    ],
    "world": [
@@ -472,20 +472,20 @@
   "bathroom_window_wnw": {
    "px": [
     [
-     41351.5,
-     1453.3
+     37534.4,
+     1357.9
     ],
     [
-     -79709.7,
-     -1651.5
+     -100818.9,
+     -2184.5
     ],
     [
-     -60515.8,
-     1747.5
+     -72660.1,
+     2016.2
     ],
     [
-     49002.6,
-     -664.7
+     43490.6,
+     -537.8
     ]
    ],
    "world": [
@@ -520,20 +520,20 @@
   "bedroom_window_ese": {
    "px": [
     [
-     -72.1,
-     329.6
+     -78.8,
+     333.4
     ],
     [
-     -239.5,
-     306
+     -247.1,
+     309.7
     ],
     [
-     -215.3,
-     554.7
+     -223.4,
+     559.1
     ],
     [
-     -56.2,
-     519.3
+     -63.2,
+     523.5
     ]
    ],
    "world": [
@@ -568,20 +568,20 @@
   "bedroom_window_nne": {
    "px": [
     [
-     -524.9,
-     331.3
+     -534.4,
+     335.1
     ],
     [
-     -199.2,
-     336.3
+     -206.5,
+     340.1
     ],
     [
-     -182.9,
-     509.2
+     -190.6,
+     513.4
     ],
     [
-     -502.5,
-     516.7
+     -512.4,
+     521
     ]
    ],
    "world": [
@@ -616,20 +616,20 @@
   "bath_2_window_ese": {
    "px": [
     [
-     -719.7,
-     275
+     -730.5,
+     278.5
     ],
     [
-     -943.9,
-     250.4
+     -956.6,
+     253.7
     ],
     [
-     -900.4,
-     533.6
+     -913.9,
+     538.2
     ],
     [
-     -687.3,
-     513.4
+     -698.7,
+     517.8
     ]
    ],
    "world": [
@@ -663,749 +663,48 @@
   }
  },
  "heads": {
-  "A1": {
-   "px": [
-    8788.2,
-    459.2
-   ],
-   "eyes": [
-    9221.8,
-    461.3
-   ],
-   "mouth": [
-    9221.4,
-    415
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 94
-  },
-  "A2": {
-   "px": [
-    13525,
-    336
-   ],
-   "eyes": [
-    12648.1,
-    354.3
-   ],
-   "mouth": [
-    12673.9,
-    294.9
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 82
-  },
-  "A3": {
-   "px": [
-    11418.6,
-    547.7
-   ],
-   "eyes": [
-    10887.3,
-    533.3
-   ],
-   "mouth": [
-    10991,
-    474.5
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 133
-  },
-  "S1": {
-   "px": [
-    4663,
-    286.6
-   ],
-   "eyes": [
-    4757.9,
-    286.2
-   ],
-   "mouth": [
-    4762.3,
-    265.1
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 82
-  },
-  "B2": {
-   "px": [
-    5328.2,
-    255.7
-   ],
-   "eyes": [
-    5212.9,
-    264.3
-   ],
-   "mouth": [
-    5217.2,
-    242.1
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 75
-  },
-  "B1": {
-   "px": [
-    3890.7,
-    418.3
-   ],
-   "eyes": [
-    3932.9,
-    416.6
-   ],
-   "mouth": [
-    3933.7,
-    396.3
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 146
-  },
-  "E1": {
-   "px": [
-    11930.3,
-    510.5
-   ],
-   "eyes": [
-    11735.3,
-    514.3
-   ],
-   "mouth": [
-    11789.2,
-    456.7
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 165
-  },
-  "C1": {
-   "px": [
-    -1233117.1,
-    -1288.5
-   ],
-   "eyes": [
-    -787084,
-    -1731.8
-   ],
-   "mouth": [
-    -487100.1,
-    3744
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 3
-  },
-  "C2": {
-   "px": [
-    -196960.8,
-    -4298.3
-   ],
-   "eyes": [
-    -232521.5,
-    -5066.5
-   ],
-   "mouth": [
-    -188832.9,
-    -1860.2
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 173
-  },
-  "C3": {
-   "px": [
-    -10873.4,
-    601.7
-   ],
-   "eyes": [
-    -12313.5,
-    591.4
-   ],
-   "mouth": [
-    -12255.4,
-    715.5
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 126
-  },
-  "T1": {
-   "px": [
-    -5564.6,
-    400.4
-   ],
-   "eyes": [
-    -5125.6,
-    444.6
-   ],
-   "mouth": [
-    -5231.9,
-    509.4
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 121
-  },
-  "G1": {
-   "px": [
-    61748.3,
-    3572.2
-   ],
-   "eyes": [
-    24563.9,
-    1626.8
-   ],
-   "mouth": [
-    26835.5,
-    890.6
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 138
-  },
-  "H1": {
-   "px": [
-    -1074.3,
-    396.4
-   ],
-   "eyes": [
-    -1192.4,
-    387.5
-   ],
-   "mouth": [
-    -1181.8,
-    447
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 44
-  },
-  "W1": {
-   "px": [
-    -319.8,
-    600.6
-   ],
-   "eyes": [
-    -280.4,
-    597.5
-   ],
-   "mouth": [
-    -279.4,
-    617.5
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 65
-  },
-  "W2": {
-   "px": [
-    -169.3,
-    603.8
-   ],
-   "eyes": [
-    -140.4,
-    601.4
-   ],
-   "mouth": [
-    -139.5,
-    617.6
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 61
-  },
-  "W3": {
-   "px": [
-    -154.2,
-    571.5
-   ],
-   "eyes": [
-    -129.5,
-    569.8
-   ],
-   "mouth": [
-    -128.7,
-    584.8
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 55
-  },
-  "W4": {
-   "px": [
-    -24.1,
-    519.4
-   ],
-   "eyes": [
-    -5.8,
-    518.6
-   ],
-   "mouth": [
-    -5.3,
-    531.8
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 46
-  },
-  "D1": {
-   "px": [
-    167.6,
-    479.2
-   ],
-   "eyes": [
-    260.5,
-    475.3
-   ],
-   "mouth": [
-    258.3,
-    546.8
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 134,
-   "blocked_by": "D1 guest D1, poi audience on the deck (face undrawn)"
-  },
-  "D2": {
-   "px": [
-    315.5,
-    348.2
-   ],
-   "eyes": [
-    375.4,
-    355.1
-   ],
-   "mouth": [
-    372.3,
-    403.5
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 133,
-   "blocked_by": "D2 guest D2, poi audience on the deck (face undrawn)"
-  },
-  "poi": {
-   "px": [
-    1100.1,
-    544.5
-   ],
-   "eyes": [
-    1083.6,
-    544.3
-   ],
-   "mouth": [
-    1083.7,
-    558.6
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 49
-  },
   "jade27": {
    "px": [
-    1155.1,
-    498.3
+    1148,
+    504.1
    ],
    "eyes": [
     1152,
     496.8
    ],
    "mouth": [
-    1151.7,
-    504.8
+    1153.3,
+    503.5
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 15
+   "facing_camera_deg": 141,
+   "blocked_by": "jade27 Jade (27)"
   },
-  "firstLove27": {
+  "friend": {
    "px": [
-    1122.6,
-    489.9
+    1184.3,
+    488.9
    ],
    "eyes": [
-    1126.6,
-    488.8
+    1188.4,
+    482.6
    ],
    "mouth": [
-    1126.3,
-    498
+    1189.5,
+    489.6
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 164,
-   "blocked_by": "firstLove27 first love (27, never face-on)"
+   "facing_camera_deg": 145,
+   "blocked_by": "friend childhood friend (27; face undrawn, back and hands only)"
   }
  },
  "hands": {
-  "A1.L": {
-   "px": [
-    9523.1,
-    -146.9
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "A1.R": {
-   "px": [
-    9816.2,
-    158.6
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "A2.L": {
-   "px": [
-    14409.1,
-    -216.9
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "A2.R": {
-   "px": [
-    12909.9,
-    -431.1
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "A3.L": {
-   "px": [
-    10789.6,
-    180.2
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "A3.R": {
-   "px": [
-    14606.4,
-    -473.1
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "S1.L": {
-   "px": [
-    4854,
-    42.5
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "S1.R": {
-   "px": [
-    4621.1,
-    61.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "B2.L": {
-   "px": [
-    5629,
-    -27.9
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "B2.R": {
-   "px": [
-    5279.5,
-    111.7
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "B1.L": {
-   "px": [
-    3817.8,
-    162.5
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "B1.R": {
-   "px": [
-    4087.6,
-    288.2
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "E1.L": {
-   "px": [
-    11163.2,
-    169.6
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "E1.R": {
-   "px": [
-    14735.2,
-    -416.8
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "C1.L": {
-   "px": [
-    -29209.2,
-    3983.2
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "C1.R": {
-   "px": [
-    -117965.9,
-    7432.8
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "C2.L": {
-   "px": [
-    129602.4,
-    -15739.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "C2.R": {
-   "px": [
-    -19343.1,
-    1002.7
-   ],
-   "shape": "palmUp",
-   "in_frame": false,
-   "visible": false
-  },
-  "C3.L": {
-   "px": [
-    -16607.9,
-    1762.3
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "C3.R": {
-   "px": [
-    -9681.5,
-    1849.6
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "T1.L": {
-   "px": [
-    -4931.4,
-    805.3
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "T1.R": {
-   "px": [
-    -3905.7,
-    551.5
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "G1.L": {
-   "px": [
-    20733.9,
-    -7898.6
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "G1.R": {
-   "px": [
-    34871,
-    -4360.7
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "H1.L": {
-   "px": [
-    -757.1,
-    1064.1
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "H1.R": {
-   "px": [
-    -1221.6,
-    1108.3
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W1.L": {
-   "px": [
-    -251.9,
-    834.6
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W1.R": {
-   "px": [
-    -325.7,
-    877.6
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W2.L": {
-   "px": [
-    -113.3,
-    793.5
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W2.R": {
-   "px": [
-    -103.2,
-    706.9
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "W3.L": {
-   "px": [
-    -97.4,
-    748.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W3.R": {
-   "px": [
-    -170.3,
-    775.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W4.L": {
-   "px": [
-    40.4,
-    597.6
-   ],
-   "shape": "grip",
-   "in_frame": true,
-   "visible": true
-  },
-  "W4.R": {
-   "px": [
-    -46.1,
-    697.4
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "D1.L": {
-   "px": [
-    49.3,
-    1354.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "D1.R": {
-   "px": [
-    474,
-    861.4
-   ],
-   "shape": "grip",
-   "in_frame": true,
-   "visible": true
-  },
-  "D2.L": {
-   "px": [
-    229.8,
-    957.6
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": false
-  },
-  "D2.R": {
-   "px": [
-    479.1,
-    1005.5
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
-  },
-  "poi.L": {
-   "px": [
-    1130.9,
-    672.1
-   ],
-   "shape": "grip",
-   "in_frame": true,
-   "visible": true
-  },
-  "poi.R": {
-   "px": [
-    1012.1,
-    642.7
-   ],
-   "shape": "grip",
-   "in_frame": true,
-   "visible": true
-  },
   "jade27.L": {
    "px": [
-    1177.7,
-    601.3
+    1126.6,
+    600.7
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1413,28 +712,28 @@
   },
   "jade27.R": {
    "px": [
-    1133.3,
-    549.9
+    1179.5,
+    475.5
    ],
-   "shape": "grip",
+   "shape": "cup",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
-  "firstLove27.L": {
+  "friend.L": {
    "px": [
-    1092.8,
-    605.6
+    1184.4,
+    551.7
    ],
-   "shape": "relax",
+   "shape": "cup",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
-  "firstLove27.R": {
+  "friend.R": {
    "px": [
-    1159.2,
-    532.6
+    1216.6,
+    554.1
    ],
-   "shape": "palmUp",
+   "shape": "cup",
    "in_frame": true,
    "visible": true
   }
@@ -1442,24 +741,24 @@
  "lights": [
   {
    "name": "sun",
-   "kind": "the sun, 2010-10-02 18:25 PDT: elev 4.27 az 261.98 (pos: a point 30 m up the beam)",
+   "kind": "the sun, 2010-10-02 10:30 PDT: elev 36.49 az 131.83 (pos: a point 30 m up the beam)",
    "on": true,
-   "color": "#ffb070",
+   "color": "#ffe2b0",
    "world": [
-    -11.0181,
-    2.2337,
-    -11.6048
+    -0.3156,
+    17.8405,
+    36.2773
    ],
    "px": [
-    2133.9,
-    445.2
+    6053.2,
+    -3320
    ],
-   "in_front": false,
+   "in_front": true,
    "travel_dir_px": [
-    0.999,
-    -0.037
+    -0.794,
+    0.607
    ],
-   "toward_camera": -0.908,
+   "toward_camera": -0.035,
    "aim_world": [
     6,
     0,
@@ -1469,7 +768,7 @@
   {
    "name": "ceiling1",
    "kind": "living room ceiling light (flush glass dome) (ASSUMED type and place)",
-   "on": true,
+   "on": false,
    "color": "#ffd6a0",
    "world": [
     2.55,
@@ -1477,20 +776,20 @@
     2.55
    ],
    "px": [
-    6350.7,
-    821.4
+    6274.6,
+    819.7
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.997,
-    0.083
+    0.998,
+    0.055
    ],
-   "toward_camera": -0.825
+   "toward_camera": -0.823
   },
   {
    "name": "ceiling2",
    "kind": "dining pendant (paper drum) (ASSUMED type and place)",
-   "on": true,
+   "on": false,
    "color": "#ffd6a0",
    "world": [
     1.05,
@@ -1498,8 +797,8 @@
     7.65
    ],
    "px": [
-    4280.9,
-    349.4
+    4246.3,
+    353.9
    ],
    "in_front": false,
    "travel_dir_px": [
@@ -1511,7 +810,7 @@
   {
    "name": "ceiling3",
    "kind": "kitchen ceiling light (flush glass dome) (ASSUMED type and place)",
-   "on": true,
+   "on": false,
    "color": "#ffd6a0",
    "world": [
     3.35,
@@ -1519,20 +818,20 @@
     7.45
    ],
    "px": [
-    -73392.7,
-    -9536.5
+    -88829.1,
+    -11591.3
    ],
    "in_front": true,
    "travel_dir_px": [
     0.991,
     0.132
    ],
-   "toward_camera": -0.882
+   "toward_camera": -0.881
   },
   {
    "name": "poi",
    "kind": "fire poi (two moving flames; effective point between the circles)",
-   "on": true,
+   "on": false,
    "color": "#ff7a20",
    "world": [
     6.3,
@@ -1540,30 +839,30 @@
     15.6
    ],
    "px": [
-    1100.9,
-    652.1
+    1096.6,
+    656
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.371,
-    -0.928
+    0.263,
+    -0.965
    ],
-   "toward_camera": -0.984
+   "toward_camera": -0.985
   }
  ],
  "warnings": [],
- "intent": "Wide from the deck’s far corner, down the yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, the fire poi starting, and the giant lemon tree by the NNE fence with pomelo-sized lemons, she and first love under it. The house’s shadow covers the whole yard; only the top of the lemon canopy still has sun.",
+ "intent": "Wide from the deck’s far corner, down the empty morning yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, and the giant lemon tree by the NNE fence with pomelo-sized lemons. She reaches up into the tree for one; the childhood friend (face never drawn) beside her holds the bowl with the first lemons in it. No guests yet, no poi, no first love.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "yard",
  "time": "2:54.7-2:57.0",
- "section": "Verse 3",
+ "section": "Before the party",
  "scene": {
   "date": "2010-10-02",
-  "clock": "18:25",
+  "clock": "10:30",
   "tz": "PDT",
-  "sun_elev_deg": 4.27,
-  "sun_az_deg": 261.98,
+  "sun_elev_deg": 36.49,
+  "sun_az_deg": 131.83,
   "sun_up": true,
   "sunset": {
    "time": "18:52",
@@ -1577,61 +876,51 @@
  },
  "light_state": {
   "sun": true,
-  "ceiling": true,
-  "poi": true,
-  "sky": 0.55
+  "ceiling": false,
+  "poi": false,
+  "sky": 1
  },
  "amplitude_pct": 115,
  "sun_through_openings": {
-  "section": "verse3",
-  "time": "18:25",
-  "elev": 4.27,
-  "az": 261.98,
+  "section": "prep",
+  "time": "10:30",
+  "elev": 36.49,
+  "az": 131.83,
   "openings": [
    {
     "name": "front door",
     "frac": 0,
-    "by": {
-     "357 View St": 35
-    }
+    "by": "the sun is behind this wall"
    },
    {
     "name": "living room window (WNW)",
     "frac": 0,
-    "by": {
-     "357 View St": 35
-    }
+    "by": "the sun is behind this wall"
    },
    {
     "name": "living room window (SSW)",
-    "frac": 0,
-    "by": {
-     "357 View St": 35
-    }
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "sliding glass door to the deck",
-    "frac": 0,
-    "by": "the sun is behind this wall"
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "kitchen window over the sink (ESE)",
-    "frac": 0,
-    "by": "the sun is behind this wall"
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "dining window (SSW)",
-    "frac": 0,
-    "by": {
-     "357 View St": 35
-    }
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "tea room window (WNW)",
     "frac": 0,
-    "by": {
-     "345A View St": 35
-    }
+    "by": "the sun is behind this wall"
    },
    {
     "name": "tea room window (NNE)",
@@ -1641,14 +930,12 @@
    {
     "name": "bathroom window (WNW)",
     "frac": 0,
-    "by": {
-     "357 View St": 35
-    }
+    "by": "the sun is behind this wall"
    },
    {
     "name": "bedroom window (ESE)",
-    "frac": 0,
-    "by": "the sun is behind this wall"
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "bedroom window (NNE)",
@@ -1657,18 +944,17 @@
    },
    {
     "name": "bath 2 window (ESE)",
-    "frac": 0,
-    "by": "the sun is behind this wall"
+    "frac": 1,
+    "by": {}
    }
   ]
  },
  "sun_tests": {
-  "her_head": "shaded by house",
-  "first_love_head": "shaded by house",
+  "her_head": "sunlit",
   "lemon_canopy_top": "sunlit",
-  "lemon_canopy_side_toward_house": "shaded by house",
-  "expedit_top_centre": "shaded by exterior wall (WNW)",
-  "lawn_mid": "shaded by house"
+  "lemon_canopy_side_toward_house": "sunlit",
+  "expedit_top_centre": "shaded by ceiling",
+  "lawn_mid": "sunlit"
  },
  "footprints_world": {
   "sun_rooms": {
@@ -1864,12 +1150,12 @@
   "seam_world_X": 3.595,
   "seam_px": [
    [
-    20514.8,
-    -3104.8
+    19398.2,
+    -2900.4
    ],
    [
-    15643.1,
-    816.3
+    15101.1,
+    805
    ]
   ],
   "beauty_half": "LEFT as you face it = NNE (art and literature)",
@@ -1883,20 +1169,20 @@
     "half": "beauty",
     "px": [
      [
-      -63878.5,
-      8923
+      -79182.7,
+      10934.1
      ],
      [
-      91696.6,
-      -11675.7
+      72491.7,
+      -9112.8
      ],
      [
-      126051.4,
-      -20879.9
+      91536.2,
+      -14999.7
      ],
      [
-      -53358.9,
-      9525.1
+      -64067.7,
+      11323.5
      ]
     ],
     "contents": [
@@ -1913,20 +1199,20 @@
     "half": "beauty",
     "px": [
      [
-      82305.6,
-      -10432.3
+      66521.1,
+      -8323.6
      ],
      [
-      26284.4,
-      -3014.9
+      24507,
+      -2770.6
      ],
      [
-      28419,
-      -4333.9
+      26285,
+      -3961.3
      ],
      [
-      108898.3,
-      -17972.9
+      82183.7,
+      -13417.6
      ]
     ],
     "contents": [
@@ -1942,20 +1228,20 @@
     "half": "split",
     "px": [
      [
-      25472,
-      -2907.3
+      23802.5,
+      -2677.5
      ],
      [
-      15500.4,
-      -1587
+      14890.7,
+      -1499.6
      ],
      [
-      16190,
-      -2261.5
+      15503.5,
+      -2137.4
      ],
      [
-      27467.9,
-      -4172.7
+      25473,
+      -3823.9
      ]
     ],
     "contents": {
@@ -1980,20 +1266,20 @@
     "half": "truth",
     "px": [
      [
-      15221.2,
-      -1550.1
+      14633.9,
+      -1465.7
      ],
      [
-      11069.7,
-      -1000.4
+      10767.4,
+      -954.6
      ],
      [
-      11403.2,
-      -1450.2
+      11071.8,
+      -1387.7
      ],
      [
-      15884.4,
-      -2209.7
+      15224.2,
+      -2090.2
      ]
     ],
     "contents": [
@@ -2009,20 +1295,20 @@
     "half": "truth",
     "px": [
      [
-      10930,
-      -981.9
+      10635.7,
+      -937.2
      ],
      [
-      8655.3,
-      -680.7
+      8476.2,
+      -651.8
      ],
      [
-      8850,
-      -1017.5
+      8656.4,
+      -979.1
      ],
      [
-      11254.4,
-      -1425
+      10932,
+      -1364.1
      ]
     ],
     "contents": [
@@ -2047,20 +1333,20 @@
     "half": "beauty",
     "px": [
      [
-      -80378.3,
-      7978.6
+      -104974.4,
+      10269.7
      ],
      [
-      71425.8,
-      -6244.8
+      59581.2,
+      -5121.9
      ],
      [
-      90529.4,
-      -11362.9
+      71785.1,
+      -8894.4
      ],
      [
-      -64479.9,
-      8888.6
+      -80076.4,
+      10911.1
      ]
     ],
     "contents": [
@@ -2075,20 +1361,20 @@
     "half": "beauty",
     "px": [
      [
-      65619.6,
-      -5700.8
+      55504.1,
+      -4740.6
      ],
      [
-      24377.6,
-      -1836.6
+      22894.1,
+      -1690.4
      ],
      [
-      26191.3,
-      -2957.3
+      24428.9,
+      -2718.3
      ],
      [
-      81365.7,
-      -10165.7
+      65926.7,
+      -8130.3
      ]
     ],
     "contents": [
@@ -2108,20 +1394,20 @@
     "half": "split",
     "px": [
      [
-      23680.2,
-      -1771.2
+      22280.6,
+      -1633
      ],
      [
-      14842.1,
-      -943.1
+      14301.8,
+      -886.8
      ],
      [
-      15469.3,
-      -1556.5
+      14862.9,
+      -1470.7
      ],
      [
-      25384.8,
-      -2852
+      23728.9,
+      -2627
      ]
     ],
     "contents": [
@@ -2136,20 +1422,20 @@
     "half": "truth",
     "px": [
      [
-      14586.9,
-      -919.2
+      14065.7,
+      -864.7
      ],
      [
-      10742.4,
-      -559
+      10467.6,
+      -528.1
      ],
      [
-      11054.4,
-      -979.7
+      10753.4,
+      -934.7
      ],
      [
-      15191.2,
-      -1520.2
+      14607.1,
+      -1437.3
      ]
     ],
     "contents": [
@@ -2176,20 +1462,20 @@
     "half": "truth",
     "px": [
      [
-      10611.3,
-      -546.7
+      10343.6,
+      -516.5
      ],
      [
-      8461.4,
-      -345.3
+      8296.3,
+      -325
      ],
      [
-      8646.3,
-      -665.1
+      8467.8,
+      -636.7
      ],
      [
-      10915.1,
-      -961.5
+      10622.1,
+      -917.6
      ]
     ],
     "contents": [
@@ -2205,20 +1491,20 @@
     "half": "beauty",
     "px": [
      [
-      -108141.9,
-      6389.6
+      -155244.3,
+      8974.6
      ],
      [
-      58558.2,
-      -2797.3
+      50618.5,
+      -2351.4
      ],
      [
-      70719.8,
-      -6055.6
+      59105.8,
+      -4975
      ],
      [
-      -81326.9,
-      7924.3
+      -106541.6,
+      10229.3
      ]
     ],
     "contents": [
@@ -2236,20 +1522,20 @@
     "half": "beauty",
     "px": [
      [
-      54613.9,
-      -2580
+      47657.1,
+      -2188.5
      ],
      [
-      22737.8,
-      -823.3
+      21488,
+      -748.7
      ],
      [
-      24298,
-      -1787.4
+      22826.2,
+      -1645
      ],
      [
-      65024.3,
-      -5532
+      55092,
+      -4606.6
      ]
     ],
     "contents": [
@@ -2264,20 +1550,20 @@
     "half": "split",
     "px": [
      [
-      22132.5,
-      -789.9
+      20948.8,
+      -719.1
      ],
      [
-      14240.7,
-      -355
+      13760.7,
+      -323.6
      ],
      [
-      14813.7,
-      -915.3
+      14276.3,
+      -860.2
      ],
      [
-      23605.2,
-      -1723.7
+      22216.4,
+      -1589
      ]
     ],
     "contents": {
@@ -2301,20 +1587,20 @@
     "half": "truth",
     "px": [
      [
-      14006.7,
-      -342.1
+      13542.9,
+      -311.6
      ],
      [
-      10435.7,
-      -145.3
+      10185.6,
+      -126.9
      ],
      [
-      10728.1,
-      -539.7
+      10454.5,
+      -509.4
      ],
      [
-      14559.5,
-      -892
+      14041.1,
+      -838.6
      ]
     ],
     "contents": [
@@ -2331,20 +1617,20 @@
     "half": "truth",
     "px": [
      [
-      10312.4,
-      -138.5
+      10068.6,
+      -120.5
      ],
      [
-      8277.1,
-      -26.3
+      8124.7,
+      -13.5
      ],
      [
-      8452.9,
-      -330.5
+      8288.3,
+      -310.6
      ],
      [
-      10597.4,
-      -527.7
+      10330.8,
+      -498.1
      ]
     ],
     "contents": [
@@ -2367,20 +1653,20 @@
     "half": "beauty",
     "px": [
      [
-      -164680.9,
-      3153.5
+      -296311.1,
+      5340.3
      ],
      [
-      49664.4,
-      -414.6
+      44033,
+      -315.7
      ],
      [
-      58085.7,
-      -2670.7
+      50276.9,
+      -2245.8
      ],
      [
-      -109855.3,
-      6291.5
+      -158676,
+      8886.2
      ]
     ],
     "contents": [
@@ -2396,20 +1682,20 @@
     "half": "beauty",
     "px": [
      [
-      46809.8,
-      -367
+      41783.9,
+      -278.3
      ],
      [
-      21312.6,
-      57.4
+      20251.2,
+      79.5
      ],
      [
-      22668.9,
-      -780.7
+      21428.5,
+      -708.9
      ],
      [
-      54203.3,
-      -2463.6
+      47354.7,
+      -2090.1
      ]
     ],
     "contents": [
@@ -2434,20 +1720,20 @@
     "half": "split",
     "px": [
      [
-      20782.2,
-      66.2
+      19773.6,
+      87.4
      ],
      [
-      13689.4,
-      184.3
+      13261.8,
+      195.6
      ],
      [
-      14214.7,
-      -329.6
+      13737.3,
+      -299.2
      ],
      [
-      22067.3,
-      -748.6
+      20892.4,
+      -680.4
      ]
     ],
     "contents": [
@@ -2462,20 +1748,20 @@
     "half": "truth",
     "px": [
      [
-      13473.8,
-      187.9
+      13060.2,
+      199
      ],
      [
-      10147.6,
-      243.2
+      9919.9,
+      251.2
      ],
      [
-      10422.2,
-      -127.2
+      10173.2,
+      -109.3
      ],
      [
-      13981.6,
-      -317.1
+      13520.2,
+      -287.6
      ]
     ],
     "contents": [
@@ -2495,20 +1781,20 @@
     "half": "truth",
     "px": [
      [
-      10031.5,
-      245.2
+      9809.3,
+      253
      ],
      [
-      8101.6,
-      277.3
+      7961.1,
+      283.7
      ],
      [
-      8269,
-      -12.3
+      8117.2,
+      0.2
      ],
      [
-      10299.3,
-      -120.6
+      10056.5,
+      -103.1
      ]
     ],
     "contents": [
@@ -2523,20 +1809,20 @@
     "half": "beauty",
     "px": [
      [
-      -342851.7,
-      -7044.3
+      -3066572.4,
+      -66029.2
      ],
      [
-      43149.8,
-      1330.8
+      38989.6,
+      1243.3
      ],
      [
-      49326.1,
-      -323.9
+      43775.7,
+      -236.2
      ],
      [
-      -168662.8,
-      2925.6
+      -308991.3,
+      5013.6
      ]
     ],
     "contents": [
@@ -2558,20 +1844,20 @@
     "half": "beauty",
     "px": [
      [
-      40987.6,
-      1283.9
+      37223,
+      1205
      ],
      [
-      20062.6,
-      829.9
+      19155.1,
+      813.6
      ],
      [
-      21252.5,
-      94.6
+      20198.7,
+      114.7
      ],
      [
-      46509.6,
-      -281.9
+      41552.6,
+      -203.1
      ]
     ],
     "contents": [
@@ -2586,20 +1872,20 @@
     "half": "split",
     "px": [
      [
-      19593.8,
-      819.7
+      18729,
+      804.4
      ],
      [
-      13181.9,
-      680.6
+      12800.3,
+      675.9
      ],
      [
-      13665.5,
-      207.7
+      13240.1,
+      218.2
      ],
      [
-      20725.1,
-      102.4
+      19723.7,
+      121.7
      ]
     ],
     "contents": {
@@ -2624,20 +1910,20 @@
     "half": "truth",
     "px": [
      [
-      12982.8,
-      676.3
+      12613.2,
+      671.9
      ],
      [
-      9876.5,
-      608.9
+      9669,
+      608.1
      ],
      [
-      10134.9,
-      260.3
+      9908.2,
+      267.8
      ],
      [
-      13450.7,
-      210.9
+      13039.2,
+      221.2
      ]
     ],
     "contents": [
@@ -2653,20 +1939,20 @@
     "half": "truth",
     "px": [
      [
-      9766.9,
-      606.5
+      9564.3,
+      605.8
      ],
      [
-      7934.3,
-      566.7
+      7804.7,
+      567.7
      ],
      [
-      8093.9,
-      290.7
+      7953.8,
+      296.9
      ],
      [
-      10019.2,
-      262
+      9797.9,
+      269.4
      ]
     ],
     "contents": [
@@ -2697,328 +1983,31 @@
   },
   "printer_on_top": true,
   "px": [
-   6511.8,
-   -110.3
+   6418.9,
+   -97.9
   ]
  },
  "lemon_tree_px": [
-  1219.7,
-  271.8
+  1215,
+  275.9
  ],
  "poi_px": [
-  1100.9,
-  652.1
+  1096.6,
+  656
  ],
  "opening_px": [
-  4315.6,
-  127.5
+  4278.5,
+  134.2
  ],
- "first_love_costume": {
-  "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
-  "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
-  "height_m": 1.78
+ "jade_costume": {
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
+  "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
+  "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
+  "before_party": "same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)",
+  "sheet": "cast/jade_27/j27_costume_housewarming_v1.jpg"
  },
  "figure_report": {
-  "A1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.48
-   },
-   "headTurn": 24
-  },
-  "A2": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.49,
-    "R": 0.97
-   },
-   "headTurn": -31
-  },
-  "A3": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.46,
-    "R": 0.97
-   },
-   "headTurn": 32
-  },
-  "S1": {
-   "legs": {
-    "L": {
-     "reach": 0.76
-    },
-    "R": {
-     "reach": 0.76
-    }
-   },
-   "arms": {
-    "L": 1.11,
-    "R": 1.11
-   },
-   "headTurn": 80
-  },
-  "B2": {
-   "legs": {
-    "L": {
-     "reach": 0.78
-    },
-    "R": {
-     "reach": 0.78
-    }
-   },
-   "arms": {
-    "L": 1.13,
-    "R": 0.51
-   },
-   "headTurn": -80
-  },
-  "B1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.48
-   },
-   "headTurn": 1
-  },
-  "E1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.47,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "C1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.49
-   },
-   "headTurn": -24
-  },
-  "C2": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.52
-   },
-   "headTurn": 27
-  },
-  "C3": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.51,
-    "R": 0.97
-   },
-   "headTurn": -28
-  },
-  "T1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.47,
-    "R": 0.86
-   },
-   "headTurn": 4
-  },
-  "G1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.47
-   },
-   "headTurn": 0
-  },
-  "H1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "W1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "W2": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.5
-   },
-   "headTurn": 0
-  },
-  "W3": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "W4": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.47,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "D1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.5
-   },
-   "headTurn": 0
-  },
-  "D2": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "poi": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.64,
-    "R": 0.64
-   },
-   "headTurn": 0
-  },
   "jade27": {
    "legs": {
     "L": {
@@ -3030,11 +2019,11 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.49
+    "R": 1.21
    },
-   "headTurn": 0
+   "headTurn": -1
   },
-  "firstLove27": {
+  "friend": {
    "legs": {
     "L": {
      "reach": 1
@@ -3044,10 +2033,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.51
+    "L": 0.74,
+    "R": 0.73
    },
-   "headTurn": 0
+   "headTurn": 3
   }
  }
 }

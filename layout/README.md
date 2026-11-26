@@ -32,6 +32,31 @@ shadows on the page outlined and pale-filled) — the one to give the image mode
 as white lights and their shadows; `depth` linear, near white; `label` flat + names, the dashed blue 4:5 safe area,
 the computed hand-shadow polygons (purple, dashed) and a header; `lit` mood preview (coloured lights, shadows, glow).
 
+### Painter guides: `form`, `contour`, `light` (2026-11-25, opt-in)
+
+The image models misread the dark guides (grey cast-shadow fills in `line` read as extra objects; `flat` / `lit` of
+dusk, night and basement shots leave whole areas near-black). Three extra modes keep form and light apart. They are
+never in the default `--modes`; render them with `--modes form,contour,light --nojson`. The painter brief
+(`docs/KEYFRAME_BRIEF.md` "The guides") passes these three instead of line + flat.
+
+- `contour` = `line` without any shadow fill or terminator (no shadow-light pass): silhouettes, creases and object
+  boundaries only, black on white. Mirrors as in `line`.
+- `form` = evenly lit clay, no cast shadows, no set lights: per-pixel shade from the normal (soft key from above-left
+  of the camera + hemisphere sky/ground), range-checked screen-space occlusion from the depth buffer (contact
+  darkening, no halos past big depth jumps), contour lines in dark grey on top. Class tints (codes, not colours):
+  people near-white clay with mid-grey hair caps (`look.grey <= 0.15` on a figure), furniture beige, small props
+  pale blue-grey, the room shell grey; class = the world size of the mesh's label group (largest side > 2.6 m or
+  diagonal > 3.4 m = room; > 0.45 m = furniture; else prop); each label gets a small value offset so neighbours
+  separate, dark materials sit a little darker. Glass-look meshes are drawn as pale translucent cyan unless their
+  label says beam / shaft / volume / sunlight / steam / blade / cone / light. Emitters near-white.
+- `light` = the shot's real lights only: the `flat` rig minus ambient / hemisphere lights and minus shadowless
+  directional fills, on white Lambert (half-float target), banded into lit (white, irradiance > `hi` 0.42),
+  weak light (0.76, > `lo` 0.05) and shade (0.5), with wide smoothsteps so falloff reads as a ramp and shadow edges
+  stay crisp; the form and contours faintly underneath (+-22 %). Per-set override: `built.lightGuide = { lo, hi }`.
+  Emitters white. Its darkness is NOT the mood: the prompt words carry that.
+
+Code: `engine/render.js` `_guide()`, `_formMat()`, `_classify()`, `guideMat` (composite shader).
+
 ## Files
 
 ```
@@ -42,7 +67,7 @@ engine/book.js        the storybook (21 x 28 cm closed): closed or open, anchors
 engine/stage.js       two-pass staging (hands reach book/other figures), placeBook, headAt, solveCamera (orbit + aim),
                       hideParts (POV inserts), analytic shadow projection onto the spread
 engine/aim.js         target that puts a world point at a screen position (u, v)
-engine/render.js      the five modes, mirror compositing
+engine/render.js      the five modes + the three painter guides (form, contour, light), mirror compositing
 engine/main.js        page API: renderShot(id, mode), sidecar(id)
 sets/<set>/layout.js  SINGLE SOURCE OF TRUTH: every dimension in metres + the light list
 sets/<set>/build.js   room geometry from layout.js, figures, props, light rig per mode, set-specific targets

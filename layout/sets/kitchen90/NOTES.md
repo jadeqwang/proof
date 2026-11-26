@@ -57,3 +57,21 @@ and measured hits. Times written elsewhere in this file before this section are 
   the interlude's first bar: -2sm has only the thinned interlude (2:25.2-2:34.5; v3's full half 2:36-2:45 is gone), and the
   plan's merged interlude row follows the writing with the market walk-away (2:27.6-2:30.0) and the spiral plates to 2:34.5.
 - Outro: K5 3:55.0 (the cliff)-3:59.1, K6 -4:03.6, K7 -4:05.5, K8 -4:08.6, K9 -4:10.7, K10 -4:12.9 (pad swell).
+
+## r3: K1 is a tilt up, 2026-11-25 (night; Jade's r2 note)
+
+Jade: "camera should pan up from her face and up so that it's mostly her parents and then to her mom, and then it
+should look like an illustration in a science textbook where there's a caption for the image, which has 'Did she
+understand or just pattern match?'"
+
+- `K1_question` is now the tilt START: same camera position as before ([-0.7, 1.0, 2.0]), lens 60 (was 28), her eyes
+  at (0.5, 0.42): her face and hands, the parents cut at the neck (Mama's chin just in the top-right corner).
+- `K1_question_end` (new) = tilt END from the same position and lens: aim Mama's eyes at (0.68, 0.36): mostly the two
+  parents, Mama right of centre, Dad at the left edge, the child's head at the bottom edge. A pure pan/tilt (no move,
+  no zoom). The keyframe is painted as a science-textbook figure; the caption is laid on in code (no lettering in the
+  paint). Page guides with the figure frame and caption band: `media/keyframes/r3/kitchen90/_guides/` (frame
+  230,60-1690,881 of 1920x1080; band below it blank).
+- `K1_question_wide` = the old r2 K1 camera, kept as a reference (not in the cut).
+- Both K1 frames share 2:22.2-2:23.7. Re-rendered: all default modes, form/contour/light, beam masks, sidecars.
+- K2_taps, K3_understood, K4_writes: Jade replaced them with the artichoke growth footage (1:22-2:08 of
+  `media/footage/artichoke/out/artichoke_growth_preview.mp4`); the cameras stay for reference, not painted in r3.

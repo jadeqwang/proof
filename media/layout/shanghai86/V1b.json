@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   -1.7696,
-   0.7113,
-   -3.9123
+   -1.9242,
+   0.7563,
+   -3.9013
   ],
   "target": [
-   -1.8112,
-   -0.0379,
-   -2.0584
+   -0.0176,
+   0.1592,
+   -3.8106
   ],
   "lens_mm": 40,
   "frame_width_mm": 36,
@@ -24,39 +24,39 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   -0.9997,
+   -0.0475,
    0,
-   -0.0224,
+   0.9989,
    0,
-   -0.0084,
-   0.9272,
-   0.3745,
+   0.2982,
+   0.9544,
+   0.0142,
    0,
-   0.0208,
-   0.3746,
-   -0.927,
+   -0.9533,
+   0.2986,
+   -0.0454,
    0,
-   -1.7696,
-   0.7113,
-   -3.9123,
+   -1.9242,
+   0.7563,
+   -3.9013,
    1
   ],
   "viewMatrix": [
-   -0.9997,
-   -0.0084,
-   0.0208,
+   -0.0475,
+   0.2982,
+   -0.9533,
    0,
    0,
-   0.9272,
-   0.3746,
+   0.9544,
+   0.2986,
    0,
-   -0.0224,
-   0.3745,
-   -0.927,
+   0.9989,
+   0.0142,
+   -0.0454,
    0,
-   -1.8569,
-   0.7908,
-   -3.8562,
+   3.8055,
+   -0.0926,
+   -2.2371,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "windows": {
    "px": [
     [
-     22.4,
-     -1481.3
+     8660.1,
+     -3250.5
     ],
     [
-     1552.5,
-     -1464.2
+     -7252.9,
+     3115.9
     ],
     [
-     1428.1,
-     65.1
+     -21664.2,
+     -4330.8
     ],
     [
-     221.6,
-     69.7
+     5732.6,
+     783.4
     ]
    ],
    "world": [
@@ -128,8 +128,8 @@
    ],
    "behind_camera": [
     false,
-    false,
-    false,
+    true,
+    true,
     false
    ]
   }
@@ -137,44 +137,44 @@
  "heads": {
   "jade3": {
    "px": [
-    959.8,
-    2892.6
+    959.7,
+    1794.9
    ],
    "eyes": [
-    959.9,
-    1685.3
+    959.8,
+    1342.3
    ],
    "mouth": [
-    959.9,
-    2088.4
+    959.8,
+    1627.8
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 114
+   "facing_camera_deg": 136
   },
   "uncle": {
    "px": [
-    2566.9,
-    -2932
+    828.1,
+    -1136.4
    ],
    "eyes": [
-    1946.9,
-    -2151.5
+    879.9,
+    -907.7
    ],
    "mouth": [
-    2240.6,
-    -1816.3
+    842.4,
+    -701.8
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 53
+   "facing_camera_deg": 35
   }
  },
  "hands": {
   "jade3.L": {
    "px": [
-    584.9,
-    3594.8
+    677.1,
+    2976.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -182,8 +182,8 @@
   },
   "jade3.R": {
    "px": [
-    1335,
-    3594.8
+    1242.6,
+    2976.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -191,19 +191,19 @@
   },
   "uncle.L": {
    "px": [
-    960,
-    633.3
+    1034.2,
+    360.5
    ],
-   "shape": "cup",
+   "shape": "pinch",
    "in_frame": true,
    "visible": true
   },
   "uncle.R": {
    "px": [
-    1163.6,
-    119.2
+    959.9,
+    789.1
    ],
-   "shape": "pinch",
+   "shape": "cup",
    "in_frame": true,
    "visible": true
   }
@@ -220,13 +220,13 @@
     7.6196
    ],
    "px": [
-    -1942.1,
-    -1535.2
+    3210.1,
+    -1108.3
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.441,
-    0.898
+    -0.254,
+    0.967
    ],
    "toward_camera": 0.741,
    "aim_world": [
@@ -246,15 +246,15 @@
     -0.4
    ],
    "px": [
-    -371.4,
-    -857.1
+    4994.5,
+    -926.3
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.246,
-    0.969
+    -0.776,
+    0.631
    ],
-   "toward_camera": 0.511
+   "toward_camera": 0.484
   },
   {
    "name": "north",
@@ -267,19 +267,66 @@
     -0.6
    ],
    "px": [
-    -4368.5,
-    -1009.5
+    1970.8,
+    -391.6
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.892,
-    0.452
+    0.456,
+    0.89
    ],
-   "toward_camera": 0.698
+   "toward_camera": 0.722
+  },
+  {
+   "name": "sky_fill",
+   "kind": "shadowless sky fill through the whole run of balcony doors (round 2b)",
+   "on": true,
+   "color": "#dfe6ee",
+   "world": [
+    1.5,
+    1.6,
+    4
+   ],
+   "px": [
+    5852,
+    -686.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.888,
+    0.46
+   ],
+   "toward_camera": 0.713,
+   "aim_world": [
+    2.25,
+    0.6,
+    -3
+   ]
+  },
+  {
+   "name": "room_bounce",
+   "kind": "pale walls and ceiling bounce: sky/ceiling above, warm floorboards below (round 2b)",
+   "on": true,
+   "color": "#e6e8ea",
+   "world": [
+    2.25,
+    3,
+    -3
+   ],
+   "px": [
+    1407,
+    -1624.3
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.437,
+    0.9
+   ],
+   "toward_camera": 0.118
   }
  ],
  "warnings": [],
- "intent": "Inside: her eye-line onto his two hands in the light (camera ~0.1 m above her cross-legged eye height, as if she sits up tall, so the cupped palm reads): the left cupped palm-up holding something small, the right thumb and index pinching it from above, the other fingers fanned. Forearms and knees, no face.",
+ "intent": "Inside: her eye-line onto his two hands in the light: r3: the RIGHT hand cupped palm-up holding something small, the LEFT hand (wristwatch) pinching it from above with thumb and index, palm down, so the back of his left wrist and the round watch face turn up toward her (Jade: \"watch face should be visible\"). Forearms and knees, no face.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
   "travel_dir": [
@@ -329,20 +376,20 @@
   ],
   "source_px": [
    [
-    127.6,
-    -1442.4
+    9623.4,
+    -3532
    ],
    [
-    1575.9,
-    -1426.7
+    -7114.1,
+    2965.9
    ],
    [
-    1464.2,
-    -111.8
+    -16041.1,
+    -1891.9
    ],
    [
-    280.4,
-    -109.3
+    6450.4,
+    457.2
    ]
   ],
   "aperture_glass_world": [
@@ -520,16 +567,16 @@
     ],
     "floor_px": [
      [
-      608,
-      228.4
+      7725.7,
+      1728.8
      ],
      [
-      1785.7,
-      222.1
+      -8524.8,
+      -2660.4
      ],
      [
-      4285.9,
-      1772.5
+      -599.4,
+      -2304.9
      ]
     ]
    },
@@ -593,24 +640,24 @@
     ],
     "floor_px": [
      [
-      -1279,
-      238.5
+      2713.4,
+      374.9
      ],
      [
-      252.1,
-      230.3
+      5386.9,
+      1097.1
      ],
      [
-      23205,
-      13504.2
+      1347.8,
+      -2217.6
      ],
      [
-      -810.5,
-      -1387.8
+      5585.8,
+      -2027.5
      ],
      [
-      380.6,
-      -1375.6
+      55659.9,
+      -22134.3
      ]
     ]
    },
@@ -669,20 +716,20 @@
     ],
     "floor_px": [
      [
-      -3236.6,
-      249
+      1929,
+      163.1
      ],
      [
-      -1648.2,
-      240.5
+      2485.5,
+      313.4
      ],
      [
-      1056.8,
-      -1368.7
+      -9857.2,
+      4173.5
      ],
      [
-      3817.9,
-      -1340.5
+      -916.8,
+      583.6
      ]
     ]
    },
@@ -751,24 +798,24 @@
     ],
     "floor_px": [
      [
-      -4953.9,
-      258.2
+      1645.8,
+      86.6
      ],
      [
-      -3619.6,
-      251
+      1848.7,
+      141.4
      ],
      [
-      4450,
-      -1334
+      -624.7,
+      466.3
      ],
      [
-      7033.5,
-      -1307.6
+      -17.5,
+      222.5
      ],
      [
-      -6303.3,
-      391.7
+      1494,
+      87.3
      ]
     ]
    }
@@ -792,16 +839,16 @@
   ],
   "footprint_floor_px": [
    [
-    608,
-    228.4
+    7725.7,
+    1728.8
    ],
    [
-    1785.7,
-    222.1
+    -8524.8,
+    -2660.4
    ],
    [
-    4285.9,
-    1772.5
+    -599.4,
+    -2304.9
    ]
   ],
   "footprint_east_wall": null,
@@ -835,24 +882,24 @@
    ],
    "px": [
     [
-     1785.7,
-     222.1
+     -8524.8,
+     -2660.4
     ],
     [
-     1662.1,
-     -5.8
+     -9839.9,
+     -1785.1
     ],
     [
-     1833.3,
-     -1426.1
+     -5138.2,
+     2196.1
     ],
     [
-     6975.4,
-     -1500.7
+     -187.7,
+     246.4
     ],
     [
-     4285.9,
-     1772.5
+     -599.4,
+     -2304.9
     ]
    ]
   },
@@ -863,19 +910,19 @@
    "jade3": {
     "head": {
      "in": true,
-     "margin_m": 0.226
+     "margin_m": 0.209
     },
     "eyes": {
      "in": true,
-     "margin_m": 0.253
+     "margin_m": 0.208
     },
     "handL": {
      "in": true,
-     "margin_m": 0.619
+     "margin_m": 0.56
     },
     "handR": {
      "in": true,
-     "margin_m": 0.618
+     "margin_m": 0.602
     },
     "hip": {
      "in": true,
@@ -885,23 +932,23 @@
    "uncle": {
     "head": {
      "in": false,
-     "margin_m": -0.138
+     "margin_m": -0.29
     },
     "eyes": {
      "in": false,
-     "margin_m": -0.064
+     "margin_m": -0.211
     },
     "handL": {
      "in": true,
-     "margin_m": 0.409
+     "margin_m": 0.142
     },
     "handR": {
      "in": true,
-     "margin_m": 0.302
+     "margin_m": 0.25
     },
     "hip": {
      "in": true,
-     "margin_m": 0.3
+     "margin_m": 0.072
     }
    }
   },
@@ -941,24 +988,24 @@
  "points_world": {
   "jade3": {
    "eyes": [
-    -1.773,
+    -1.643,
     0.536,
-    -3.767
+    -3.888
    ],
    "head": [
-    -1.771,
+    -1.723,
     0.534,
-    -3.847
+    -3.892
    ],
    "handL": [
-    -1.716,
+    -1.66,
     0.164,
-    -3.785
+    -3.945
    ],
    "handR": [
-    -1.829,
+    -1.665,
     0.164,
-    -3.788
+    -3.832
    ],
    "hip": [
     -1.77,
@@ -968,29 +1015,29 @@
   },
   "uncle": {
    "eyes": [
-    -1.927,
-    0.965,
-    -3.469
+    -1.267,
+    0.954,
+    -3.891
    ],
    "head": [
-    -1.995,
-    1.036,
-    -3.478
+    -1.205,
+    1.029,
+    -3.904
    ],
    "handL": [
-    -1.78,
-    0.5,
-    -3.449
+    -1.3,
+    0.617,
+    -3.849
    ],
    "handR": [
-    -1.828,
-    0.617,
-    -3.421
+    -1.35,
+    0.5,
+    -3.874
    ],
    "hip": [
-    -2.3,
+    -0.9,
     0.42,
-    -3.519
+    -3.969
    ]
   }
  },
@@ -1020,8 +1067,8 @@
     }
    },
    "arms": {
-    "L": 0.94,
-    "R": 0.72
+    "L": 0.64,
+    "R": 0.88
    },
    "headTurn": 0
   }

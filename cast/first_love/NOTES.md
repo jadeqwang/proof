@@ -178,3 +178,25 @@ Weak spots: the step is now right (glossy top layer abruptly over an even matte 
 layer toward a BOWL / MUSHROOM cut with a thick, level rim, most in A and G (B v4 is the slimmest); E and D still
 show the v3 taper (not redone this round). Seal: Truth wears a drape off one shoulder (the real seal's unclothed
 Truth was moderation-blocked); the tree is a slim central tree rather than the broad crown behind both figures.
+
+## 2026-11-25 late (v5: the gift is a WHITE HOODIE with a BLUE chest-size seal)
+Jade: the IAS gift is a WHITE pullover HOODIE (hood, drawstrings, kangaroo pocket) with the IAS seal printed in BLUE, in
+the print style and SIZE of her reference (`inputs/refs_ias/Pasted image (2).png`, private): a SOLID filled disc, the
+figures, tree and lettering in white reverse, INSTITUTE FOR ADVANCED STUDY round the rim, FOUNDED 1930 at the bottom,
+TRUTH and BEAUTY inside, centred on the chest, about 40% of the front's width. Supersedes round 2's "almost the whole
+front". Design = the official seal (`inputs/refs_ias/Pasted image.png`).
+- **Jade approved (2026-11-25) sending exactly two refs to the image model:** the seal art (copied to
+  `work/ias/ias_seal_ref.png`) and a garment-only crop of the hoodie photo (`work/ias/hoodie_crop_garment.png`: cut
+  below the chin, the bare neck in the hood's V painted out white, the trousers and hands below the waistband cropped
+  off; viewed and checked before sending). Both live in gitignored `work/`; nothing else from `inputs/` was sent.
+- Generator `_prompts/v5/flgen.py` (tmux `proof-fl5`, now closed): blocks from v4 plus `hoodie.txt` (garment + print,
+  referring to "the SEAL REFERENCE" / "the HOODIE REFERENCE"); sidecars state the approval.
+- **H (prop sheet) BLOCKED twice by output moderation ("sexual")**, both with the real seal art as a ref (t1; t2 also
+  asked for simple flat silhouettes at small print size). Truth is unclothed on the real seal. Per instructions no drapery
+  was invented; **no H sheet exists now** (H v1 moved to `_superseded/`). Logs: `work/kf_logs/H_t1_*`, `H_t2_*`.
+- **G t1 ACCEPTED as `fl_G_ots_hair_v4.jpg`** (refs: B v4, G v3 for layout and hair, seal art, hoodie crop): the
+  folded white hoodie in his hands shows drawstrings, the hood edge and the blue filled-disc print with white figures
+  (lettering garbled at that size, as expected). Hair and layout match G v3 (the same mild bowl tendency as v3, no
+  worse). Faces zoom-checked: studies 1, 2, 4, 5 are lost profiles (ear, cheek, stubbled jaw; no eye, nose or mouth);
+  3 and 6 from above/behind. G v3 moved to `_superseded/`.
+- Spend: 3 Codex images (2 moderation-blocked), $0; no plan limit, no gpt2.

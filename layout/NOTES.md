@@ -104,3 +104,15 @@ three phalanges and real knuckles, an opposable thumb (CMC, MCP, IP), a shoulder
 - Still open: hands at wide-shot scale fill in as dark blobs in line mode (fingers 1-2 px wide; unavoidable at that
   size); the raised-arm armpit fold draws a small flap line; AD_keys / AD_piano are flat hands as staged (a curled
   "tapping" hand would be a staging choice: hand: { shape: 'relax' }).
+
+## 2026-11-25 night: painter guide modes (form / contour / light)
+- Jade: low ambient light makes surfaces ambiguous in the paintings; even the guides are hard to read. Added three
+  opt-in modes in `engine/render.js` (existing modes untouched; diffed: line/flat unchanged). See README "Painter guides".
+- Looked at B4_doubletake, B1_feet, V3_rcv_obl, V3_nailed, CL_ots, V1a, MG1 beside line/flat/lit: contour loses the
+  zigzag shadow fills (V1a table/armchair); form makes dusk mv10 and the basement fully readable (glass coffee table
+  now visible); light shows the sun patches / screen spill / bulb falloff as light, not as dark form.
+- Rendered form/contour/light for all ten sets (not attic88), shots only; basement90 / shanghai86 / market93 last,
+  after their agents' changes (23:00-23:04). Gallery shows the three modes. A/B paints: `media/keyframes/r3_test/`.
+- Known: tints are codes, so a model may take them as colours (market93: the artichoke and romanesco are blue-grey
+  "props", the produce beige); the light map shows only lights that cast shadows plus point/spot practicals, so a shot
+  whose real light is a shadowless fill reads as all shade.

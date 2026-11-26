@@ -216,7 +216,10 @@ function equidistant() { let best = null;   // the nearest point (smallest commo
 export const HER_SPOT = equidistant();
 
 // ---------------------------------------------------------------- places
-const [HX, HZ] = HER_SPOT.at; const ARMCHAIRS_ACROSS_X = () => ARMCHAIRS[1].at[0];
+const [HX, HZ] = HER_SPOT.at;
+// state A only (r3): the 'across' armchair pulled up beside the table's north end, east of her, turned to face her
+const UC_AT = [HX + 0.99, HZ - 0.085];
+export const UNCLE_CHAIR = { id: 'across (pulled up, state A)', at: UC_AT, yaw: +(Math.atan2(HX - UC_AT[0], HZ - UC_AT[1]) / D2R).toFixed(1), w: AW, d: AD }; const ARMCHAIRS_ACROSS_X = () => ARMCHAIRS[1].at[0];
 export const PLACES = {
   // state B: she sits CROSS-LEGGED (Jade, decision page) at the equidistant spot, facing the table and the windows
   // (south), working on the table's north end
@@ -229,14 +232,20 @@ export const PLACES = {
   // couch's north seat, leaning toward her, his hands low (0.5 m, her eye height ~0.53) in the light between them, just
   // west of the table's north-west corner. He used to sit in the 'across' armchair east of the table, but at 08:30 the sun
   // stands south-east of her, so his body sat between her face and the sun and shaded it; on the couch he is west of her.
-  uncleSeat: [COUCH.x1 - 0.16, COUCH.z0 + 0.42], uncleHands: [COUCH.x1 + 0.36, 0.5, COUCH.z0 + 0.49], jadeStand: HER_SPOT.at,
+  // r3 (Jade, r2 review: "uncle should be seated on an armchair"): the 'across' armchair is pulled up to the table's
+  // NORTH end, EAST of her, facing her (UNCLE_CHAIR). The sun comes from the SE (yaw ~35 deg from her), so anything due
+  // east or north of her cannot shade her face: his body is ~1.2 m north of her face's ray to the sun. In state B the
+  // armchair is back across the table. (My choice: flag. The couch-end seat of round 2 is no longer used.)
+  uncleSeat: [UNCLE_CHAIR.at[0] + 0.12 * Math.sin(UNCLE_CHAIR.yaw * D2R), UNCLE_CHAIR.at[1] + 0.12 * Math.cos(UNCLE_CHAIR.yaw * D2R)],   // pelvis on the front of the seat
+  uncleHands: [HX + 0.42, 0.5, HZ + 0.02], jadeStand: HER_SPOT.at,
   // everybody else, out of the light
   mother: [DOOR.x0 + 0.5, ROOM.z0 - 0.08],     // in the north doorway, its west end (nearest her daughter), a hand on the west jamb
   grandma: [ARMCHAIRS_ACROSS_X() + 0.08, TABLE.cz],   // in the 'across' armchair (state B), just outside the light
   aunt: [1.3, -2.45], uncleLaugh: [0.8, -3.35],   // east of the group (with doors all along the south wall there is no dark gap between shafts any more)
 };
 // one sheet of old-style Chinese toilet paper (草纸, coarse straw paper): Jade's size, a little over half-Letter
-export const PAPER = { w: 0.16, h: 0.23, t: 0.00035, stack: 34, col: 0xd9cdb0 };
+// r3 (Jade, r2 review, V1h: "a large stack is visible nearby"): 34 -> 200 sheets (two 刀 bundles, ~7 cm)
+export const PAPER = { w: 0.16, h: 0.23, t: 0.00035, stack: 200, col: 0xd9cdb0 };
 // Decision page: "many more bits, messier", same spread area. Was { 1:1, 2:2, 3:4, 4:8, 5:14, 6:22, 7:36, 8:50, 9:40 } (177);
 // now ~4x the pieces (720), weighted to the small generations, plus a gen-10 confetti tier
 export const DRIFT_COUNTS = { 1: 1, 2: 3, 3: 6, 4: 14, 5: 28, 6: 55, 7: 100, 8: 160, 9: 200, 10: 150 };
@@ -245,5 +254,7 @@ export const LIGHTS = {
   sun: { kind: BEAM.kind, color: SUN.color, dir: SUN_DIR },
   sky: { kind: 'soft skylight through the same windows', color: 0xcfd8e0 },
   north: { kind: 'dim skylight through the east bays of doors', color: 0xc8d0d8 },
-  amb: { kind: 'room bounce', color: 0x8a8478 },
+  amb: { kind: 'room bounce (raised round 2b)', color: 0x8a8478, I: 1.4 },
+  skyFill: { kind: 'shadowless sky fill through the whole run of balcony doors (round 2b)', I: 0.9 },
+  hemi: { kind: 'pale walls and ceiling bounce: sky/ceiling above, warm floorboards below (round 2b)', I: 0.9 },
 };

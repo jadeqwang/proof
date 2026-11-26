@@ -17,6 +17,81 @@ are measured from what is drawn. No image model is in the picture (one Codex tri
 | 2 | Romanesco, *Brassica oleracea* Botrytis group, head + one floret enlarged | head: 8, then 13; floret: 8, then 13 | 20.0 s |
 | 3 | spiral aloe, *Aloe polyphylla*, rosette | the five leaf ranks (no second family, see below) | 13.0 s |
 
+## 2026-11-26 (Jade's keyframe r2 review: one bright-gold line at a time; the count takes the romanesco's slot)
+
+Jade on PLATE_artichoke: "Good. Animate each line of the spiral in bright gold, one at a time." On PLATE_romanesco:
+"this is a good time to show the counting of the spirals in the artichoke" (a romanesco would need its model built
+from a real romanesco photo: the romanesco clip is now an alternate). So the artichoke clip was re-timed into ONE
+continuous count that the edit cuts in two. Geometry, bracts, arms and the numeral-to-bract assignment are unchanged
+(checked: every numeral sits on the same arm and the same end bract as before. Only some numerals' pixel positions on
+the plate moved, because the placer now places them in a different order).
+
+- **One line at a time, in bright gold.** The live arm draws as solid bright gold (`thread.GOLD_BRIGHT` 1.00/0.80/0.18,
+  no paper tooth, 4.2 px instead of 3.2). From 0.08 s after it arrives, it settles over about 0.5 s to the quieter
+  gold pencil at 62%, so only one line shines at any moment. Each numeral is bright while it is written, then settles to
+  70%. The two totals stay bright. Code: `Gold.add(..., bright_fn=)` in `thread.py`, and `one_at_a_time` and `last` in
+  `CLIPS['artichoke']` in `spirals.py`. Romanesco and aloe are unaffected.
+- **Order: the 8 family first, then the other family, 5.** That matches the market shots, which count the artichoke's
+  8 arms. The numbering is kept: the 8s still start from 6 o'clock and the 5s from 12 (`start`).
+- **Timing (9.5 s, 228 frames):** plate alone 0-0.6 s. 8 family, numerals 1-7 written by 4.55 s (arm 7 ends 4.55, its
+  numeral by about 4.9). **Cut A ends at 5.0 s**: the count is one short when the hand takes her forearm. **Cut B starts at
+  5.0 s**: arm 8 draws 5.15-5.85 and "8" is written; the 5 family runs 6.25-8.55 (arms end at 6.69, 7.21, 7.69, 8.14
+  and 8.55); then the clip holds on both totals, 8.55-9.5.
+  - Cut A is PLATE_artichoke in verse 2a, at 1x: clip 0 = song 2:09.2, 5.0 = 2:14.2 (M4, the grab). It is intercut with
+    M2 and M3, whose numerals on the real artichoke land at the same clip times.
+  - Cut B goes in the romanesco's old slot, 2:30.0-2:34.5 (4.5 s, at 1x): the count resumes after the growth footage.
+- Outputs: `out/artichoke_spirals_{master_prores422hq,gold_alpha_prores4444}.mov` and `out/artichoke_spirals_preview.mp4`
+  (the whole 9.5 s); `out/artichoke_spirals_cutA_verse2a_preview.mp4` (0-5.0) and
+  `out/artichoke_spirals_cutB_interlude_preview.mp4` (5.0-9.5), H.264 cuts of the master;
+  `data/artichoke_arms.json`; stills `stills/artichoke_t02.80.png` (a live line), `t05.00` (the cut: 7 of 8),
+  `t07.20` (the 5 family) and `t09.40` (both totals). The old `artichoke_t11.00` and `t16.90` stills (17 s timing) are deleted.
+  The previous data file is in `work/artichoke_arms_before_bright.json`.
+- **Not written: `layout/sets/market93/artichoke_plate_count.json`.** Set agents own `layout/sets/` tonight, so this
+  render ran with `NO_MARKET_COUNT=1` (a new guard in `spirals.py`). Its bract and numeral content is unchanged. Only
+  its `t_start` and `t_end` are stale (the old 5-then-8 times). To refresh it, run `spirals.py artichoke --data
+  data/artichoke_arms.json` without the variable.
+- Re-render: `NO_MARKET_COUNT=1 $PY spirals.py artichoke --plate stills/artichoke_plate16.png --data
+  data/artichoke_arms.json --at 2.8 5.0 7.2 9.4 --out stills/artichoke.png --movies out --jobs 12`, then the two ffmpeg
+  cuts (`-t 5.0` and `-ss 5.0` from the master). `render_all.sh` now uses these still times and always sets NO_MARKET_COUNT=1.
+- Romanesco: the clip is unchanged and is now an **alternate**. If it comes back, Jade wants its drawing built from a
+  real romanesco photo.
+
+## 2026-11-25 (artichoke from Jade's ref; supersedes the artichoke lines below where they differ)
+
+Jade: the artichoke drawing and its spiral tracing are to follow the real artichoke, her reference photo
+`inputs/ref_artichoke.png` (a watermarked web photo; gitignored, looked at only, never copied or sent to a model). Fig. 1
+now draws the **same bracts as the market93 artichoke**: `plants.artichoke()` no longer generates them, it reads
+`layout/sets/market93/artichoke_bracts.json` (written by `layout/sets/market93/artichoke_spec.mjs`, the one generator) and
+draws its surface with `_bract_xyz()`, a torch port of the JS `bractPoint()` that is checked against the JSON's samples
+on every run (an assert). So bract n is the same bract in the market shots and on the plate, on the same arms (n mod 5,
+n mod 8), in the same place: the market's `REF_artichoke_top` (frame up = the plate's up) is this view, line for line.
+
+- **Form (from the photo):** 32 broad, thick, cupped bracts hanging from their tips on overlapping shells; the outer
+  ones wider and opening out into lobes round the rim; the inner ones tight over a closed apex with a small pit; every
+  tip with rounded shoulders, a V-notch, a small point in the notch and 2-3 ragged teeth a side. Both faces are drawn
+  (from above, the open outer bracts show their inner face). One extra element, the body under the bracts (index -1,
+  never counted), closes the pit as the market mesh's core does. Plan radius 318 px per head radius (was 400; the open
+  outer bracts reach 1.28).
+- **Lattice:** azimuth n x 137.5078 deg; plan radius sin(theta_n) = 0.038 (n + 0.55) up to theta 1.2 rad, then even
+  steps down the flank. The equal-area lattice used before reads 8 and 13 from above once the bracts are this broad (the
+  flank foreshortens the outer rows); this one reads 5 and 8 from apex to rim.
+- **Count (bract 5 on, as before):** 27 counted, 49 neighbour pairs, index differences 8: 19, 5: 18, 3: 6, 13: 5, 2: 1
+  (76% in the families). Winding outward on screen: 5 anticlockwise (-131 deg), 8 clockwise (+44 deg), the same hand as
+  before and as the market mesh (measured there on `REF_artichoke_top`: 5: 17, 8: 16; 5 -131 deg, 8 +40 deg). 5 arms of
+  5-6 bracts, 8 arms of 3-4. Anchors on the drawn path: max 0.39 px.
+- **The count by bract** goes to `layout/sets/market93/artichoke_plate_count.json` whenever `data/artichoke_arms.json`
+  is written (`write_market_count`); the market sidecars list it as `artichoke.plate_count` (numeral, arm, bracts, the
+  bract the numeral is written past, its pixel position in that shot, and the outermost bract of that arm that faces
+  the camera, for numerals whose end bract is round the back) and mark the bracts `plate_numeral5` / `plate_numeral8`.
+- **Timing unchanged** (17.0 s; 5 arms 1.5-7.6 s, 8 arms 8.6-14.6 s). New arm ends: the 8 family's numeral 7 lands at
+  **14.059 s**, 8 at 14.6 s (the same times as before: the arm counts per family are unchanged). The plan's rows are unchanged: the count stops at 7 for the grab
+  (2:14.2), resumes from 8 on the interlude's downbeat (2:25.2) and is over by about 2:29.5.
+- Re-rendered: `stills/artichoke_plate16.png`, `stills/artichoke_t05.00|t11.00|t16.90.png`, `data/artichoke_arms.json`,
+  `out/artichoke_spirals_{master_prores422hq,gold_alpha_prores4444}.mov`, `out/artichoke_spirals_preview.mp4`
+  (`spirals.py artichoke ...` as in `render_all.sh`; the romanesco and aloe were not touched).
+- The sources below still hold; the 'Green Globe' description from the Hoare photo agrees with Jade's photo. Where the
+  text below says 34 bracts, an equal-area lattice or the old check numbers, read this entry.
+
 ## Files
 
 | Path | What |
@@ -54,7 +129,7 @@ outer bracts of a globe head:
 - The bract tips follow UPOV TG/184/4 Rev. (artichoke test guidelines: the outer bract apex is acute, flat or
   emarginate; a mucro is present or absent; the violet runs from absent to strong). They also follow a CC BY-SA photo of 'Green Globe'
   (Richard Hoare, geograph 4056091). That photo shows broad, thick, grey-green bracts with a V-notch at the tip and a
-  tiny point in it, no spine, and a faint violet-grey flush. The apex of a closed head is rounded to flat. Drawn: 34 bracts
+  tiny point in it, no spine, and a faint violet-grey flush. The apex of a closed head is rounded to flat. Drawn (until 2026-11-25; now 32 bracts from Jade's photo, see the top): 34 bracts
   with notched, bluntly pointed tips, a low keel, the thickened tip flared a little, grey-green with a violet flush and
   brownish tips on the outer bracts.
 - The cultivar is stated as 'Green Globe' because the bract shape is drawn from it. No source gives counts per
@@ -99,7 +174,7 @@ Romanesco_broccoli_(Brassica_oleracea).jpg (Ivar Leidus, CC BY-SA 4.0); Aloe_pol
 **The phyllotaxis model** (`plants.py`). Element n (counted from the apex or centre outward) lies at azimuth
 n x 137.5078 deg, the golden angle; for the aloe the divergence is 142.8 deg, see below. Element n lies on arm n mod F
 of family F.
-- Artichoke: the tips lie on an equal-area (Vogel) lattice on the globe, cos(theta_n) = 1 - (n + 1.2)(1 - cos 1.95) /
+- Artichoke (until 2026-11-25; now the shared market93 layout, see the entry at the top): the tips lie on an equal-area (Vogel) lattice on the globe, cos(theta_n) = 1 - (n + 1.2)(1 - cos 1.95) /
   (N + 1.2). The bracts rise from the receptacle, and their tips crowd the crown at much the same size.
   A logarithmic lattice was tried first: it shrinks the crown bracts to nothing and swells the outer ones, and read as
   a cabbage. On this lattice the contact spirals change with radius: 3 and 5 at the crown, 5 and 8 over the outer
@@ -163,7 +238,7 @@ outward along an arm.
 
 | Plant, view | Counted elements | Neighbour pairs | Index differences (count) | In the counted families | Winding outward |
 |---|---|---|---|---|---|
-| artichoke (bract 5 on) | 29 | 51 | 5: 18, 8: 18, 13: 9, 3: 5, 1: 1 | 71% | 5: anticlockwise (-160 deg); 8: clockwise (+45 deg) |
+| artichoke (bract 5 on; 2026-11-25, Jade's ref) | 27 | 49 | 8: 19, 5: 18, 3: 6, 13: 5, 2: 1 | 76% | 5: anticlockwise (-131 deg); 8: clockwise (+44 deg) |
 | Romanesco head | 107 | 209 | 8: 99, 13: 94, 5: 8, 21: 8 | 92% | 8: anticlockwise (-241 deg); 13: clockwise (+87 deg) |
 | Romanesco floret (inset) | 50 | 87 | 8: 42, 13: 37, 5: 8 | 91% | 8: anticlockwise (-102 deg); 13: clockwise (+36 deg) |
 | aloe | 150 | 129 | 5: 123, 10: 3, 58: 2, 2: 1 | 95% | 5: anticlockwise (-174 deg, about half a turn) |

@@ -1,5 +1,41 @@
 # mortongrove07: notes and assumptions
 
+## 2026-11-25 night (r3, from Jade's r2 keyframe review): ONE continuous camera, folded -> unfolding
+
+Jade on r2 (overrides tonight's "held up unfolded against herself"): MG1 = he hands it FOLDED, the fold cutting off part
+of the (large) seal, the camera ZOOMS IN past his shoulder during the clip, never the reverse angle; MG2 = not a
+close-up but the SAME continuous camera, continuing, as she takes it and it UNFOLDS.
+
+- **Hoodie prop, two states** (`shot.hoodie` = `'folded'` | `'unfolding'`; layout.js `FOLD` / `FSEAL` and `SHIRT` /
+  `SEAL`; build.js `hoodieFolded()` / `hoodieUnfolding()`, a shared `sealGroup(R, cut)` that clips the disc, ring and
+  figures at a fold line).
+  - FOLDED (MG1, MG1_end, MG_wide, REF_plan): a stack 0.38 x 0.36 x 0.06 m between them at y 0.92, 0.52 m from him
+    toward her and 0.12 m to his left; front up, NECKLINE AT HER END (so the seal reads upright for him and the camera
+    behind him, and she can lift it by the shoulders straight into MG2); the waistband end folded UP over the front from
+    his end (0.15 m flap, plain back panel outside, ribbed edge), its edge across the seal: **28% of the seal's height
+    hidden**. The disc is 0.23 m as before (60% of the folded width: "very large"). Grips: his hands under the near END
+    at its two corners (thumbs on top; so the camera sees past his left forearm), hers on the far side edges.
+  - UNFOLDING (MG2): she has lifted it by the shoulder seams (collar at fwd 0.34, y 1.10); the front hangs 0.27 m to the
+    remaining fold, the seal upright on it (its bottom 15% round the fold); the lower part (0.42 m) swings out toward
+    him and down at 45 deg, half open, the pocket on its underside. His hands now low at his sides.
+- **Cameras: one dolly + zoom along a fixed axis** (shots.js `MOVE`): `MG1` = start, orbit round his head (relBody az
+  135, el 26, dist 1.6, 35 mm), solved camera (2.565, 2.348, -2.632) aimed at (2.305, 1.181, -1.028); `MG1_end` (NEW: the
+  cut point, MG1's last = MG2's first) 12% along the line, 40 mm; `MG2` 20% along, 42 mm, aim 4 cm lower (a slight tilt
+  with the falling cloth). The camera stays behind his head plane: his facing angle 139 / 137 / 134 deg (back of head
+  and left ear; never the face). MG2's old close insert is gone; no reverse angle anywhere. If the solved MG1 camera
+  changes (staging edits), re-read it from `MG1.json` and update `MOVE`.
+- **Sun unchanged** (5 Nov 2007 15:30 CST). In-shaft margins (front window): her eyes 0.47 m, the folded seal 0.19 m,
+  the unfolding seal 0.27 m; the folded seal faces UP (it can take the sun: the light map shows a lit patch on the
+  stack), the unfolding seal faces him (in skylight, as before).
+- Re-rendered: guides, masks (`beam_MG1_end*` new), contour/form/light. Old r2-era MG2 close-insert guides overwritten.
+- Keyframes r3: `media/keyframes/r3/mortongrove07/` (MG1_v2, MG1_end_v2, MG2_v2).
+- **Plan-row wording (plan not edited):** bridge 2:39.6-2:42.0: "One continuous over-the-shoulder push-in from behind
+  him (his hair and ear only): she sits on the floral couch by the front window; he hands her a white hoodie, FOLDED so
+  the fold hides part of the big blue IAS seal (2:39.6, MG1); on the same camera, still pushing in, she takes it and it
+  unfolds, the seal revealed (2:40.2-2:42.0, MG2). No reverse angle. Cut to the Expedit pan on 'truth by reference'."
+- Superseded below: round 2's "UNFOLDED and held up" hoodie paragraph, its staging line and the MG1/MG2 rows of the
+  camera table (MG2 is no longer a close insert).
+
 ## 2026-11-25 (round 2 answers)
 
 Applied from Jade's decision-page round 2 and her hand-drawn floor plan (`inputs/refs_mortongrove/Pasted image.png`,
@@ -57,27 +93,34 @@ lower left; stairs bottom-left running left out of the room; a sliding door to t
   1.50 m) with its spine along the mirror, keyboard at the NORTH end, bench north of it, so the pianist faces south
   toward the living room; floor lamp NE; dining table 1.90 x 0.95 m, rounded ends as drawn, long axis E-W, six chairs (2 +
   2 + one at each end).
-- **The sweatshirt is UNFOLDED and held up** (Jade: the seal is huge, almost the whole front, and only reads unfolded).
-  She holds it by the shoulder seams against herself, the front toward him (and every camera behind him): 0.58 m chest,
-  0.69 m long; the upper part from her collarbone (1.06 m) down to her knees, the lower part folding forward over them
-  to the ribbed hem; sleeves hanging beside it; crew collar. The seal: 0.38 m across (two-thirds of the chest width), a
-  dark-blue ring with the two standing figures, TRUTH left, BEAUTY right as one faces it; lettering in label mode.
+- **The gift is a WHITE HOODIE, UNFOLDED and held up** (Jade, 2026-11-25 late, superseding "sweatshirt" and "the
+  seal almost the whole front"). Held by the shoulder seams against herself, the front toward him (and every camera
+  behind him): 0.58 m front, 0.69 m long; the upper part from her collarbone (1.06 m) down to her knees, the lower part
+  folding forward over them to the ribbed waistband; sleeves hanging beside it. Hoodie parts: the hood hanging BEHIND
+  the neckline (between the hoodie and her; its folded top just shows above the neck), the neck opening's rim, two
+  flat white drawstrings (0.21 m, 0.088 m apart), a kangaroo pouch pocket (0.32 -> 0.38 m wide) from 0.36 m below the
+  shoulder line, straddling the knee fold, to the waistband. The seal: a CHEST print in BLUE (0x2f62a8), a SOLID filled
+  disc 0.23 m across (40% of the front's width), centred 0.19 m below the shoulder line, the figures (placeholders:
+  two white bars and heads) and a thin inner ring in white reverse, TRUTH left, BEAUTY right as one faces it; rim
+  lettering INSTITUTE FOR ADVANCED STUDY / FOUNDED 1930 for the painter. Size and position measured off Jade's size
+  reference (`inputs/refs_ias/`, private: a product photo of a hoodie with the print at chest size, about 40% of the
+  front). The prop sheet for painters is `cast/first_love/fl_H_ias_hoodie_v2.jpg` (if it exists: see that folder's NOTES).
 - Staging: she sits on the couch's west cushion (next to the window), turned 16 deg toward him, holding it up and
   looking up at him. He stands at the coffee table's west end (x 1.95, z -1.48), 0.95 m from her, leaning in a little,
   hands low and open (he has just let go). His forearms show (sleeves pushed).
 - Cameras: **MG1** now over his LEFT shoulder (behind and above, 35 mm): his head and ear at frame right (133 deg from
-  the lens, no face), her face, the whole seal upright and readable (35 deg off its normal), the window top right.
+  the lens, no face), her face, the whole chest print upright and readable (40 deg off its normal), the window top right.
   **MG2** (was her eye-line onto a folded stack) is now a close insert from just past his left side at her chest
-  height: the seal fills the frame upright, her hands on the shoulders, her chin and face above; his head out of frame
+  height: the hoodie front fills the frame with the chest print upright at centre, her hands on the shoulders, her chin and face above; his head out of frame
   (89 deg, not visible). **MG_wide** now from the dining table behind him (his head 145 deg). New **REF_north** (room
   reference toward the piano, dining and kitchen; NO figures, because that camera would face him). **REF_plan** is
   oriented as Jade drew it (south up) to compare against her drawing.
 
 **Sun re-check (SCENE unchanged: Monday 5 Nov 2007, 15:30 CST, elevation 10.9, azimuth 237.0).** The sun still honestly
-reaches her: through the front window her eyes are 0.46 m inside the shaft, her head 0.30, the seal 0.28 (the shaft
-also crosses the sweatshirt). It comes from behind her left shoulder, so it RIMS her hair, cheek and shoulder and lights
-the BACK of the sweatshirt; the seal's front faces him (north-west) and is in the window's skylight, not the sun
-(incidence cosine -0.23). Physical, not a staging choice: from a couch on the south wall a sweatshirt turned toward
+reaches her: through the front window her eyes are 0.46 m inside the shaft, her head 0.30, the seal 0.32 (the shaft
+also crosses the hoodie). It comes from behind her left shoulder, so it RIMS her hair, cheek and shoulder and lights
+the BACK of the hoodie; the seal's front faces him (north-west) and is in the window's skylight, not the sun
+(incidence cosine -0.23). Physical, not a staging choice: from a couch on the south wall a hoodie turned toward
 someone standing in front of her faces north, and no Chicago winter sun can fall on it; the only grazing sun on the
 front (cosine up to 0.25) is late spring evenings through the west window (late March / April, 17:00-18:00).
 `sweep.mjs` (re-run for the 1.5 m window): 74 of 511 afternoon suns between October and April put both her eyes and
@@ -97,15 +140,17 @@ built as drawn (a racetrack oval). The child's table and chair in the HANDOFF be
 lounger), not this house: nothing to apply here. The TV (invented) is gone; nothing in the drawing replaces it.
 
 **Plan-row impacts** (plan not edited): the bridge line at 2:39.6 ("she sits on a floral couch by the windows; over
-his shoulder (only his hair), he hands her a white sweatshirt with the IAS seal") still holds; what changed is the
+his shoulder (only his hair), he hands her a white hoodie with the IAS seal") still holds; what changed is the
 moment shown: she is already holding it UNFOLDED, seal to camera, rather than a folded hand-over. The plan's summary
 table ("Low sun through the picture window") still holds. If Jade wants the hand-over itself seen, it needs a beat
 before this one (no time in 2.3 s).
 
 ## From Jade (authoritative)
 - She sits on a FLORAL couch near some windows. Over the shoulder from behind him, only his hair (his ear is fine); he
-  gives her the sweatshirt: WHITE, IAS seal in DARK BLUE, round, two standing figures, TRUTH (left) and BEAUTY (right).
-  The seal is HUGE, almost the whole front; the sweatshirt has to be unfolded to see it (round 2).
+  gives her the gift: a WHITE HOODIE (hood, drawstrings, kangaroo pocket) with the IAS seal printed in BLUE, round, two
+  standing figures, TRUTH (left) and BEAUTY (right) (2026-11-25 late: hoodie, not sweatshirt). The print is a solid
+  filled blue disc with the design in white reverse, chest-sized, about 40% of the front's width, as in her size
+  reference (supersedes round 2's "HUGE, almost the whole front"). She holds it unfolded.
 - The three-seat floral couch stands against the FRONT (south) wall, and its end stops just before the window begins:
   couch and window side by side on the same wall.
 - The ceiling is VAULTED, its ridge PARALLEL TO THE STREET (round 2). There is another window (round 2). The floor plan
@@ -132,14 +177,14 @@ before this one (no time in 2.3 s).
 ## Cameras
 | id | what | his face | notes |
 |---|---|---|---|
-| `MG1` | over his left shoulder, behind and above (35 mm), looking south-west | 133 deg: back of head and ear | her face (30 deg to lens), the whole seal upright (35 deg off its normal), her hands on the shoulders, window top right |
-| `MG2` | close insert past his left side at her chest height (35 mm) | head out of frame (89 deg, not visible) | the seal fills the frame upright; her hands; her chin/face above; window backlight at frame right |
+| `MG1` | over his left shoulder, behind and above (35 mm), looking south-west | 133 deg: back of head and ear | her face (30 deg to lens), the whole chest print upright (40 deg off its normal), her hands on the shoulders, window top right |
+| `MG2` | close insert past his left side at her chest height (35 mm) | head out of frame (89 deg, not visible) | the hoodie front fills the frame, the chest print upright at centre; her hands; her chin/face above; window backlight at frame right |
 | `MG_wide` | reference wide from the dining table behind him (20 mm), looking south | 145 deg | couch, window, egg-carton table, armchair, loveseat |
 | `REF_north` | reference toward the piano, mirror, dining, closet, kitchen slider (18 mm) | no figures | the vault rising to its E-W ridge |
 | `REF_plan` | plan, SOUTH UP as Jade drew it | from above | compare with her drawing; white outlines = the three sun shafts |
 
 Sidecars carry `time` / `film`, `house` (orientation, ceiling), `sun` (margins per window: front / west / dining, and
-`seal_front_cos`), `sweatshirt` (state, collar, seal with `reads_upright_on_screen`, grips), `first_love` (face_shown
+`seal_front_cos`), `hoodie` (was `sweatshirt`; kind, state, collar, seal with `reads_upright_on_screen`, grips), `first_love` (face_shown
 false, facing angle), `beam` (solid[0] = front window), `points_world` (now with knees). `panes`: `front_window`,
 `west_window`, `seal_square` (TL, TR, BR, BL as one faces the front).
 
@@ -153,8 +198,9 @@ false, facing angle), `beam` (solid[0] = front window), `points_world` (now with
 - Questions for Jade (decision page): orientation; front window size; ridge position; she holds it seated vs stands;
   loveseat; closet door; mirror reflections wanted in renders?
 - The mirror does not reflect (the engine can composite one mirror, as car26; not wired here: no current camera sees it).
-- Small shadow-line acne on the couch arms in line mode; the sweatshirt is flat panels (folds, drape and the seal's
-  lettering are for the painter); the seal figures are placeholders.
+- Small shadow-line acne on the couch arms in line mode; the hoodie is flat panels (folds, drape and the seal's
+  lettering are for the painter); the seal figures are placeholders (white bars); the drawstrings cross the disc as
+  in Jade's reference.
 
 ## History
 - 2026-11-25 late: ceiling rebuilt as a vault (ridge N-S, 4/12, peak 3.26 m). Superseded by round 2 (ridge E-W).

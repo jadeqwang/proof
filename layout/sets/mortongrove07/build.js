@@ -1,7 +1,7 @@
 // Build one mortongrove07 shot: the main floor of 5748 Capri Lane as Jade drew it (from layout.js; compass axes, x east,
 // z south): the living room (floral couch against the front wall beside the window, red rug, egg-carton plant table under
 // the west window), the piano / mirror / dining / entry part behind it, the vault with its ridge parallel to the street;
-// her seated holding the UNFOLDED IAS sweatshirt up against herself, first love standing and leaning in; the real
+// her seated, first love handing her the FOLDED IAS hoodie (shot.hoodie 'folded') or her lifting it as it UNFOLDS ('unfolding'); the real
 // afternoon sun (SCENE) through the front, west and dining windows.
 //   shot.beamMask (the twins beam_<id>): flat mode = the sun shafts white on black (sets/_beam.js applyBeamMask)
 import * as THREE from 'three';
@@ -13,7 +13,7 @@ import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_b
 import { wall, hexa, kitchenChair, r3, hideLabels } from '../basement90/kit.js';
 import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilY, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
   KITCHEN, STAIR, COUCH, END_TABLE_E, END_TABLE_W, RUG, COFFEE_TABLE, LOVESEAT, ARMCHAIR, PLANTS, PRINT, MIRROR, PIANO, BENCH, FLOOR_LAMP, CLOSET, DINING,
-  HER, HIM, SHIRT, GRIP, SEAL, LIGHTS } from './layout.js';
+  HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, LIGHTS } from './layout.js';
 
 // cast: `jade27` (kind adultJade27; stands in for Jade at about 24) and `firstLove27` (kind adultFirstLove, 1.78 m), both from ../_cast.js
 void CAST;
@@ -210,45 +210,101 @@ function furniture() {
   return g;
 }
 
-// the UNFOLDED sweatshirt held up against her: the front's upper part (seal) from the collar down to her knees, the lower
-// part folding forward over them to the hem band; sleeves hanging beside it; the IAS seal almost the whole front.
-function sweatshirt() {
+// The IAS seal as a group in its own plane: x = right as one faces the print, y = up, z = out of the cloth. `cut` (m below
+// the centre, or null) = a fold line: everything below it is hidden under the cloth (the disc, ring and figures clipped).
+function sealGroup(R, cut, S) {
+  const g = new THREE.Group(), BLUE = { grey: 0.38, col: S.seal }, REV = { grey: 0.95, col: S.color }, SL = 'IAS seal (blue filled-disc chest print)';
+  const c = cut == null || cut >= R ? null : cut;
+  const discShape = (r) => { const sh = new THREE.Shape(); if (c == null) { sh.absarc(0, 0, r, 0, Math.PI * 2, false); return sh; }
+    const t0 = Math.asin(Math.max(-1, Math.min(1, -c / r))); sh.absarc(0, 0, r, t0, Math.PI - t0, false); sh.closePath(); return sh; };
+  const add = (geom, look, z, label) => { const m = mk(geom, look); m.position.z = z; m.userData.double = true; g.add(tag(m, label, true)); return m; };
+  add(new THREE.ShapeGeometry(discShape(R), 56), BLUE, 0, SL);
+  // thin white ring inside the edge (an arc if clipped)
+  { const r0 = R * 0.86, r1 = R * 0.89, rm = (r0 + r1) / 2; let ts = 0, tl = Math.PI * 2;
+    if (c != null && c < rm) { const t0 = Math.asin(-c / rm); ts = t0; tl = Math.PI - 2 * t0; }
+    add(new THREE.RingGeometry(r0, r1, 56, 1, ts, tl), REV, 0.0012, SL); }
+  // two standing figures (placeholders: bars and heads), TRUTH left, BEAUTY right; clipped at the cut
+  for (const s of [-1, 1]) { const x = s * R * 0.22, lab = s < 0 ? 'seal: TRUTH (left)' : 'seal: BEAUTY (right)';
+    let y0 = -R * 0.12 - R * 0.475, y1 = -R * 0.12 + R * 0.475; if (c != null) y0 = Math.max(y0, -c);
+    if (y1 > y0) { const m = add(new THREE.PlaneGeometry(R * 0.2, y1 - y0), REV, 0.0012, lab); m.position.set(x, (y0 + y1) / 2, 0.0012); }
+    const hy = R * 0.45; if (c == null || hy > -c) { const m = add(new THREE.CircleGeometry(R * 0.09, 16), REV, 0.0012, lab); m.position.set(x, hy, 0.0012); } }
+  // label mode only: the words, so the guide reads which way up and which side is which
+  { const tex = textTexture([{ text: 'TRUTH   BEAUTY', font: 'bold 50px DejaVu Sans, sans-serif' }], { w: 1024, h: 160, fg: '#ffffff', bg: 'rgba(0,0,0,0)' });
+    const m = mk(new THREE.PlaneGeometry(R * 1.6, R * 0.26), { grey: 0.95, map: tex, only: ['label'] }); m.position.set(0, R * 0.3, 0.003); m.userData.double = true; g.add(tag(m, 'seal lettering (label mode)', true)); }
+  return g;
+}
+const orientSeal = (g, right, up, out, at) => { const q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(V(right), V(up), V(out)));
+  g.quaternion.copy(q); g.position.copy(V(at)); return g; };
+
+// FOLDED (MG1): the stack between his hands and hers, the front on top with the neckline at her end, the seal upright for
+// the camera behind him; the waistband end folded up over the front from his end, its ribbed edge across the seal.
+function hoodieFolded() {
+  const g = new THREE.Group(); const S = FOLD;
+  const WHITE = { grey: 0.95, col: S.color, recvShadowLine: true }, RIB = { grey: 0.9, col: 0xe8e6e0, recvShadowLine: true }, STR = { grey: 0.85, col: 0xe2dfd8 };
+  const basis = new THREE.Matrix4().makeBasis(V(S.u), V(S.n), V(S.w)).premultiply(new THREE.Matrix4());
+  // makeBasis needs a right-handed frame: u x n should = w; if not, flip the local x
+  const hand = V(S.u).cross(V(S.n)).dot(V(S.w)) > 0 ? 1 : -1;
+  const q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(V(S.u).multiplyScalar(hand), V(S.n), V(S.w))); void basis;
+  const pc = V(S.c); const L = (x, y, z) => pc.clone().add(V(x * hand, y, z).applyQuaternion(q));   // x along u (his left), y up (n), z toward her (w)
+  const put = (m, p, label) => { m.position.copy(p); m.quaternion.copy(q); g.add(tag(m, label)); return m; };
+  const T = S.thick, A = S.along, W = S.across, BODY = 'IAS hoodie (white, folded)';
+  put(box(W, T * 0.55, A, WHITE), L(0, -T * 0.2, 0), BODY);                                  // the folded layers underneath
+  put(box(W - 0.012, T * 0.4, A - 0.01, WHITE), L(0, T * 0.25, 0), BODY);                    // the front (top layer)
+  // the flap: the waistband end folded up over the front from HIS end (z = -A/2), 0.15 m long, a little proud of the front
+  const fl = S.flap, fz = -A / 2 + fl / 2;
+  put(box(W - 0.004, 0.014, fl - 0.03, WHITE), L(0, T / 2 + 0.007, fz - 0.015), 'hoodie: lower body folded up over the front (plain back panel)');
+  put(box(W - 0.004, 0.016, 0.035, RIB), L(0, T / 2 + 0.008, -A / 2 + fl - 0.0175), 'hoodie waistband (ribbed), its edge across the seal');
+  put(box(W, T + 0.016, 0.02, WHITE), L(0, 0.004, -A / 2 - 0.006), 'hoodie: the fold (his end)');
+  // the neckline at her end: the hood folded under, its rim a half ring on the top edge
+  { const tor = mk(new THREE.TorusGeometry(0.07, 0.013, 8, 24, Math.PI), WHITE);
+    tor.quaternion.copy(q).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0)));
+    tor.position.copy(L(0, T / 2 + 0.004, A / 2 - 0.005)); g.add(tag(tor, 'hoodie neckline (hood folded under)')); }
+  // two flat drawstrings from the neckline lying across the top toward him (over the upper rim of the seal)
+  for (const s of [-1, 1]) put(box(0.01, 0.003, 0.13, STR), L(s * 0.045, T / 2 + 0.004, A / 2 - 0.09), 'hoodie drawstring');
+  // the seal on the front, upright for the camera (its top toward her), clipped by the flap's edge
+  const right = V(S.u).multiplyScalar(-1), up = V(S.w), out = V(S.n);
+  g.add(orientSeal(sealGroup(S.sealR, S.sealCut, S), right, up, out, S.sealC));
+  return g;
+}
+
+// UNFOLDING (MG2): she has lifted it by the shoulder seams; the front's upper part hangs from her hands, the seal upright
+// on it, facing him; below the remaining fold line the lower part swings down and out toward him, half open.
+function hoodieUnfolding() {
   const g = new THREE.Group(); const S = SHIRT, t = S.thick, WHITE = { grey: 0.95, col: S.color, recvShadowLine: true }, RIB = { grey: 0.9, col: 0xe8e6e0, recvShadowLine: true };
+  const POCK = { grey: 0.92, col: 0xeeebe4, recvShadowLine: true }, STR = { grey: 0.85, col: 0xe2dfd8 };
   const P = (p, ...terms) => terms.reduce((s, [v, k]) => s.map((c, i) => c + v[i] * k), p.slice());
   const r = S.r, n = S.n, hw = S.chest / 2;
-  // a flat panel between two edge points (left-right half width w0 at a, w1 at b), thickness t along n
-  const panel = (a, b, w0, w1, look, label, off = 0) => { const q = (c, w, s) => P(c, [r, s * w], [n, off]);
-    const near = [q(a, w0, -1), q(a, w0, 1), q(b, w1, 1), q(b, w1, -1)].map((p) => P(p, [n, t / 2])), far = [q(a, w0, -1), q(a, w0, 1), q(b, w1, 1), q(b, w1, -1)].map((p) => P(p, [n, -t / 2]));
-    g.add(tag(hexa(near, far, look), label)); };
   const nb = (() => { const c = [S.b[1] * r[2] - S.b[2] * r[1], S.b[2] * r[0] - S.b[0] * r[2], S.b[0] * r[1] - S.b[1] * r[0]]; const l = Math.hypot(...c); return c.map((v) => v / l); })();
-  panel(S.T, S.K, hw, hw, WHITE, 'IAS sweatshirt (white, unfolded, held up)');
-  { const hem0 = P(S.K, [S.b, S.lower - 0.06]); // lower part over her knees, then the ribbed hem band
-    const q = (c, s) => P(c, [r, s * hw]); const lay = (a, b, look) => { const near = [q(a, -1), q(a, 1), q(b, 1), q(b, -1)].map((p) => P(p, [nb, t / 2 * Math.sign(nb[1] || 1)])), far = [q(a, -1), q(a, 1), q(b, 1), q(b, -1)].map((p) => P(p, [nb, -t / 2 * Math.sign(nb[1] || 1)])); g.add(tag(hexa(near, far, look), 'IAS sweatshirt (white, unfolded, held up)')); };
-    lay(S.K, hem0, WHITE); lay(hem0, S.H, RIB); }
-  // sleeves: hanging from the shoulder corners beside the body, a little behind it, cuffs at the bottom
+  const nUp = nb.map((v) => v * Math.sign(nb[1] || 1));                       // the upper face of the swinging part (its back panel)
+  const slabAB = (a, b, w0, w1, m, look, label, off = 0, th = t) => { const q = (c, w, s) => P(c, [r, s * w], [m, off]);
+    const quad4 = [q(a, w0, -1), q(a, w0, 1), q(b, w1, 1), q(b, w1, -1)];
+    g.add(tag(hexa(quad4.map((p) => P(p, [m, th / 2])), quad4.map((p) => P(p, [m, -th / 2])), look), label)); };
+  slabAB(S.T, S.K, hw, hw, n, WHITE, 'IAS hoodie (white, unfolding): the front, hanging from her hands');
+  const hem0 = P(S.K, [S.b, S.lower - 0.06]);
+  slabAB(S.K, hem0, hw, hw, nUp, WHITE, 'hoodie: lower part still folded, swinging down (back panel up)'); slabAB(hem0, S.H, hw, hw, nUp, RIB, 'hoodie waistband (ribbed)');
+  // the kangaroo pocket is on the swinging part's UNDERSIDE (the front), facing down and away from the camera
+  { const a0 = P(S.K, [S.b, 0.04]); slabAB(a0, hem0, S.pocket.wTop / 2, S.pocket.wBot / 2, nUp, POCK, 'hoodie kangaroo pocket (underside)', -(t / 2 + 0.003), 0.004); }
+  // the fold itself: a soft roll along the fold line
+  { const roll = mk(new THREE.CylinderGeometry(0.012, 0.012, S.chest, 12), WHITE); roll.quaternion.setFromUnitVectors(V(0, 1, 0), V(r)); roll.position.copy(V(S.K)); g.add(tag(roll, 'hoodie: the fold')); }
+  // sleeves: hanging from the shoulder corners beside the front, a little behind it, cuffs at the bottom
   for (const s of [-1, 1]) { const sh0 = P(S.T, [r, s * (hw + S.sleeve.w0 / 2 - 0.02)], [S.a, -0.04]), end = P(sh0, [S.a, -S.sleeve.len * 0.75], [r, s * 0.03]);
     const c0 = P(sh0, [n, -0.015]), c1 = P(end, [n, -0.015]); const half0 = S.sleeve.w0 / 2, half1 = S.sleeve.w1 / 2;
     const near = [P(c0, [r, -half0]), P(c0, [r, half0]), P(c1, [r, half1]), P(c1, [r, -half1])].map((p) => P(p, [n, t / 2])), far = near.map((p) => P(p, [n, -t]));
-    g.add(tag(hexa(near, far, WHITE), 'sweatshirt sleeve'));
-    const cuffEnd = P(c1, [S.b, 0.07]); const nearC = [P(c1, [r, -half1]), P(c1, [r, half1]), P(cuffEnd, [r, half1]), P(cuffEnd, [r, -half1])], farC = nearC.map((p) => P(p, [nb, -t]));
-    g.add(tag(hexa(nearC, farC, RIB), 'sweatshirt cuff')); }
-  // crew-neck collar: a ribbed half ring at the top centre, opening down
-  { const tor = mk(new THREE.TorusGeometry(0.08, 0.013, 8, 24, Math.PI), RIB); const basis = new THREE.Matrix4().makeBasis(V(r), V(S.a), V(n));
-    tor.quaternion.setFromRotationMatrix(basis); tor.rotateZ(Math.PI); tor.position.copy(V(P(S.T, [S.a, 0.0], [n, t / 2 + 0.004]))); g.add(tag(tor, 'sweatshirt collar (ribbed)')); }
-  // the seal: a dark-blue ring (the lettering band), two standing figures inside (TRUTH left, BEAUTY right as one faces it)
-  const q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(V(r), V(S.a), V(n)));
-  const sc = V(SEAL.centre), NAVY = { grey: 0.18, col: S.seal };
-  const ring = mk(new THREE.RingGeometry(S.sealR * 0.80, S.sealR, 56), NAVY); ring.quaternion.copy(q); ring.position.copy(sc); ring.userData.double = true; g.add(tag(ring, 'IAS seal (Truth, Beauty)', true));
-  const inner = mk(new THREE.RingGeometry(S.sealR * 0.74, S.sealR * 0.77, 56), NAVY); inner.quaternion.copy(q); inner.position.copy(sc); inner.userData.double = true; g.add(tag(inner, 'IAS seal (Truth, Beauty)', true));
-  for (const s of [-1, 1]) { const fc = sc.clone().addScaledVector(V(r), s * S.sealR * 0.32);
-    const body = mk(new THREE.PlaneGeometry(0.045, 0.17), NAVY); body.quaternion.copy(q); body.position.copy(fc.clone().addScaledVector(V(S.a), -0.02)); body.userData.double = true; g.add(tag(body, s < 0 ? 'seal: TRUTH (left)' : 'seal: BEAUTY (right)', true));
-    const head = mk(new THREE.CircleGeometry(0.018, 16), NAVY); head.quaternion.copy(q); head.position.copy(fc.clone().addScaledVector(V(S.a), 0.085)); head.userData.double = true; g.add(tag(head, s < 0 ? 'seal: TRUTH (left)' : 'seal: BEAUTY (right)', true)); }
-  // label mode only: the words, so the guide reads which way up and which side is which
-  { const tex = textTexture([{ text: 'TRUTH      BEAUTY', font: 'bold 64px DejaVu Sans, sans-serif' }], { w: 1024, h: 160, fg: '#1c2a5a', bg: 'rgba(255,255,255,0)' });
-    const R = S.sealR * 0.75, c0 = sc.clone().addScaledVector(V(n), 0.003).addScaledVector(V(S.a), -S.sealR * 0.42), hr = V(r).multiplyScalar(R), ha = V(S.a).multiplyScalar(R * 0.12);
-    g.add(tag(quad([c0.clone().sub(hr).add(ha), c0.clone().add(hr).add(ha), c0.clone().add(hr).sub(ha), c0.clone().sub(hr).sub(ha)], { grey: 0.95, map: tex, only: ['label'] }), 'seal lettering (label mode)')); }
+    g.add(tag(hexa(near, far, WHITE), 'hoodie sleeve'));
+    const cuffEnd = P(c1, [S.a, -0.07]); const nearC = [P(c1, [r, -half1]), P(c1, [r, half1]), P(cuffEnd, [r, half1]), P(cuffEnd, [r, -half1])], farC = nearC.map((p) => P(p, [n, -t]));
+    g.add(tag(hexa(nearC, farC, RIB), 'hoodie cuff')); }
+  // the hood hanging down BEHIND the front (between the hoodie and her), its folded top just above the neckline; the neck rim
+  { const H = S.hood; slabAB(P(S.T, [S.a, H.up]), P(S.T, [S.a, -H.down]), H.w / 2 * 0.8, H.w / 2, n, WHITE, 'hoodie hood (hanging behind)', -(t + 0.02), 0.03);
+    const tor = mk(new THREE.TorusGeometry(0.065, 0.014, 8, 24, Math.PI), WHITE); const basis = new THREE.Matrix4().makeBasis(V(r), V(S.a), V(n));
+    tor.quaternion.setFromRotationMatrix(basis); tor.rotateZ(Math.PI); tor.position.copy(V(P(S.T, [S.a, 0.0], [n, t / 2 + 0.006]))); g.add(tag(tor, 'hoodie hood rim (neck opening)')); }
+  // two flat drawstrings hanging from the neck opening down over the chest, either side of the print's top
+  for (const s of [-1, 1]) { const a0 = P(S.T, [S.a, -0.06], [r, s * S.string.dx]), b0 = P(a0, [S.a, -S.string.len], [r, s * 0.008]);
+    slabAB(a0, b0, 0.005, 0.005, n, STR, 'hoodie drawstring', t / 2 + 0.008, 0.004); }
+  // the seal, upright, its bottom sliver round the fold line
+  g.add(orientSeal(sealGroup(S.sealR, S.sealCut, S), r, S.a, n, comb3(S.c, n, t / 2 + 0.002)));
   return g;
 }
+const comb3 = (p, v, k) => p.map((c, i) => c + v[i] * k);
 
 // plain cork sandals (Naot-type) under his bare feet
 function sandals(fig) {
@@ -260,13 +316,15 @@ function sandals(fig) {
   return tag(g, 'cork sandals (Naot-type)');
 }
 
-export const NAMED = { shirt: SHIRT.c, seal: SEAL.centre, collar: SHIRT.T, ...GRIP };
+export const NAMED = { shirt: SHIRT.c, seal: SEAL.centre, collar: SHIRT.T, ...GRIP,
+  stack: FOLD.c, fseal: FSEAL.centre, neck: FOLD.neck, fHisL: FOLD.grip.hisL, fHisR: FOLD.grip.hisR, fHerL: FOLD.grip.herL, fHerR: FOLD.grip.herR };
 delete NAMED.r;
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && p.mid ? { mid: p.mid.map(fix) } : p);
 
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
-  root.add(room()); root.add(couch()); root.add(furniture()); root.add(sweatshirt());
+  const state = shot.hoodie || 'unfolding';
+  root.add(room()); root.add(couch()); root.add(furniture()); root.add(state === 'folded' ? hoodieFolded() : hoodieUnfolding());
   const solids = [], sunk = [];
   for (const A of Object.values(APERTURES)) if (A) { solids.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12 })); sunk.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12, sink: 0.01 })); }
   if (!shot.beamMask) {
@@ -296,25 +354,27 @@ export function build(shot, { makeCam }) {
   };
   if (shot.beamMask) applyBeamMask(root, solids, { label: 'sun shaft (mask)', cam, surfaceOnly: !!shot.beamSurf });
 
-  const lights = [{ name: 'sun', kind: LIGHTS.sun.kind, pos: sunFrom, aim: V(SHIRT.c), color: '#' + SUN.color.toString(16).padStart(6, '0'), on: true },
+  const lights = [{ name: 'sun', kind: LIGHTS.sun.kind, pos: sunFrom, aim: V(state === 'folded' ? FOLD.c : SHIRT.c), color: '#' + SUN.color.toString(16).padStart(6, '0'), on: true },
     { name: 'sky', kind: LIGHTS.sky.kind, pos: winC.clone().add(V(0, 0, 1)), aim: V(HER.at[0], 1.0, HER.at[1]), color: '#dfe6f0', on: true }];
   const W = PICTURE, Pq = (x, y) => V(x, y, W.z), Ww = WIN_W, Wq = (z, y) => V(Ww.x, y, z);
   const panes = { front_window: [Pq(W.x1, W.head), Pq(W.x0, W.head), Pq(W.x0, W.sill), Pq(W.x1, W.sill)],   // TL,TR,BR,BL seen from inside (looking south)
     west_window: [Wq(Ww.z1, Ww.head), Wq(Ww.z0, Ww.head), Wq(Ww.z0, Ww.sill), Wq(Ww.z1, Ww.sill)] };          // seen from inside (looking west)
-  const sc = V(SEAL.centre), sr = V(SHIRT.r), sa = V(SHIRT.a), R = SHIRT.sealR;
+  const FS = state === 'folded', SL_ = FS ? FSEAL : SEAL, SN = FS ? FOLD.n : SHIRT.n;
+  const sc = V(SL_.centre), sr = FS ? V(FOLD.u).multiplyScalar(-1) : V(SHIRT.r), sa = FS ? V(FOLD.w) : V(SHIRT.a), R = SHIRT.sealR;
   panes.seal_square = [sc.clone().addScaledVector(sr, -R).addScaledVector(sa, R), sc.clone().addScaledVector(sr, R).addScaledVector(sa, R), sc.clone().addScaledVector(sr, R).addScaledVector(sa, -R), sc.clone().addScaledVector(sr, -R).addScaledVector(sa, -R)];
 
   const anchor = V(fix(shot.beamAnchor || 'shirt'));
   const extraOut = (c, P) => {
     const pt = (p) => ({ world: r3(V(p)), px: P(V(p)) });
     const toCam = c.position.clone().sub(sc).normalize();
-    const seal = { label: 'IAS seal (Truth, Beauty)', what: 'Institute for Advanced Study seal, DARK BLUE line print on a WHITE sweatshirt, HUGE: almost the whole front (diameter ' + (2 * R).toFixed(2) + ' m on a ' + SHIRT.chest + ' m chest): round, two standing figures labelled TRUTH (left) and BEAUTY (right)',
-      radius_m: R, centre: pt(SEAL.centre), top: pt(SEAL.top), bottom: pt(SEAL.bottom), truth_side: pt(SEAL.truth), beauty_side: pt(SEAL.beauty),
+    const seal = { label: 'IAS seal (Truth, Beauty)', what: 'Institute for Advanced Study seal printed in BLUE on a WHITE HOODIE, CHEST-SIZED (diameter ' + (2 * R).toFixed(2) + ' m on a ' + SHIRT.chest + ' m front, about 40% of its width, centred on the chest below the drawstrings; Jade 2026-11-25, NOT the whole front; on the FOLDED stack it spans about 60% of the folded width): a SOLID filled blue disc with the design in white reverse: two standing classical women hand in hand before a leafy tree, TRUTH (left, raising a hand mirror) and BEAUTY (right, pleated gown); INSTITUTE FOR ADVANCED STUDY round the rim, FOUNDED 1930 at the bottom (see cast/first_love/fl_H_ias_hoodie_v2.jpg)',
+      radius_m: R, centre: pt(SL_.centre), top: pt(SL_.top), bottom: pt(SL_.bottom), truth_side: pt(SL_.truth), beauty_side: pt(SL_.beauty),
+      hidden_by_fold: FS ? { share_of_height: FOLD.sealHidden, how: 'the lower body folded up over the front from his end: its ribbed waistband edge lies across the seal\'s lower part' } : { share_of_height: SHIRT.sealHidden, how: 'the bottom sliver curves round the remaining fold line; the rest is revealed' },
       corner_order: 'panes.seal_square = TL, TR, BR, BL as one faces the front (a painted seal maps straight on)',
-      facing: 'out of the front of the sweatshirt she holds up against herself: toward him and the cameras behind him; upright',
-      normal_to_camera_deg: +(Math.acos(Math.max(-1, Math.min(1, V(SHIRT.n).dot(toCam)))) * 180 / Math.PI).toFixed(0),
-      reads_upright_on_screen: (() => { const a = P(V(SEAL.bottom)), b = P(V(SEAL.top)); return a && b ? b[1] < a[1] : null; })(),
-      sun_on_front: { cos_incidence: sunCos(SHIRT.n), note: 'negative = the sun is BEHIND the front: the seal is in the windows\' skylight; the sun lights the back of the sweatshirt and rims its edges' } };
+      facing: FS ? 'up, on top of the folded stack between them; upright for him and the camera behind him (its top toward her)' : 'out of the hanging front of the hoodie she has just lifted: toward him and the camera behind him; upright',
+      normal_to_camera_deg: +(Math.acos(Math.max(-1, Math.min(1, V(SN).dot(toCam)))) * 180 / Math.PI).toFixed(0),
+      reads_upright_on_screen: (() => { const a = P(V(SL_.bottom)), b = P(V(SL_.top)); return a && b ? b[1] < a[1] : null; })(),
+      sun_on_front: { cos_incidence: sunCos(SN), note: 'negative = the sun is BEHIND the print; positive = it can fall on it (subject to the shafts and shadows)' } };
     const he = figs.firstLove27?.userData.P, she = figs.jade27?.userData.P;
     return {
       time: FILM.time, plan_time: FILM.time, section: FILM.section, position: shot.position || null,
@@ -323,17 +383,18 @@ export function build(shot, { makeCam }) {
         axes: 'x = east, z = south, y up; origin = inner SW corner of the living room', great_room_m: { x: [JOG.xW, ROOM.x1], z: [ROOM.z0, ROOM.z1], jog_z: JOG.z },
         orientation: 'Jade\'s drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)',
         couch: 'against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)' },
-      sweatshirt: { colour: 'white', state: 'UNFOLDED, held up against her by the shoulder seams, the front toward him (Jade: the seal is huge and only reads unfolded)', chest_m: SHIRT.chest, length_m: +(SHIRT.upper + SHIRT.lower).toFixed(2),
-        collar: pt(SHIRT.T), seal, grips: Object.fromEntries(['herL', 'herR'].map((k) => [k, pt(GRIP[k])])),
-        note: 'her two hands close on the shoulder seams (thumbs behind, fingers over the top); the body hangs in front of her and folds forward over her knees; sleeves hang beside it' },
+      hoodie: { colour: 'white', kind: 'pullover hoodie: hood (hanging behind the neckline), two flat drawstrings, kangaroo pouch pocket, ribbed cuffs and waistband', state: FS ? 'FOLDED: a stack ' + FOLD.across + ' x ' + FOLD.along + ' m, front up, neckline at her end; the waistband end folded up over the front from his end, hiding the lower part of the seal; he hands it over, both hold it' : 'UNFOLDING: she has lifted it by the shoulder seams; the front hangs from her hands toward him, the seal revealed; the lower part, still folded, swings down and out (half open)',
+        chest_m: SHIRT.chest, length_m: 0.69,
+        collar: pt(FS ? FOLD.neck : SHIRT.T), seal, grips: FS ? Object.fromEntries(Object.entries(FOLD.grip).filter(([k]) => k !== 'r').map(([k, v]) => [k, pt(v)])) : Object.fromEntries(['herL', 'herR'].map((k) => [k, pt(GRIP[k])])),
+        note: FS ? 'each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers' : 'her two hands close on the shoulder seams (thumbs behind, fingers over the top); sleeves hang beside the front; the pocket is on the swinging part\'s underside' },
       first_love: { who: 'first love (a real person: never named, never face-on)', face_shown: false,
         facing_camera_deg: he ? +(Math.acos(Math.max(-1, Math.min(1, he.headFwd.dot(c.position.clone().sub(he.head).normalize())))) * 180 / Math.PI).toFixed(0) : null,
         hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', feet: 'Birkenstock-type cork sandals (Naot), bare feet', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',
         hands: 'same absolute size as hers (18.3 cm); feet 24.8 cm (cast kind adultFirstLove)' },
       jade: { cast: 'jade27 (kind adultJade27) standing in for Jade at about 24; no closer age in the cast table' },
       sun: { scene: SCENE, elevation_deg: SUN.altitude, azimuth_deg: SUN.azimuth, travel_dir: SUN_DIR.map((v) => +v.toFixed(4)), note: 'computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)',
-        in_sun_margin_m: { her_eyes: she ? sunMargins(she.eyes.toArray()) : null, her_head: she ? sunMargins(she.head.toArray()) : null, seal: sunMargins(SEAL.centre), his_head: he ? sunMargins(he.head.toArray()) : null },
-        seal_front_cos: sunCos(SHIRT.n) },
+        in_sun_margin_m: { her_eyes: she ? sunMargins(she.eyes.toArray()) : null, her_head: she ? sunMargins(she.head.toArray()) : null, seal: sunMargins(SL_.centre), his_head: he ? sunMargins(he.head.toArray()) : null },
+        seal_front_cos: sunCos(SN) },
       beam: beamSidecar({ name: BEAM.name, kind: BEAM.kind, solid: solids[0], anchor, P, cam: c, extra: { sun_altitude_deg: SUN.altitude, sun_azimuth_deg: SUN.azimuth, solids: Object.keys(APERTURES).filter((k) => APERTURES[k]), note: 'solid[0] = the front window (the others: west, dining), each narrowed by its wall reveal for this sun; eaves not modelled (a low sun passes under them)' } }),
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'chin', 'handL', 'handR', 'hip', 'shoulderC', 'kneeL', 'kneeR'].map((k) => [k, r3(f.userData.P[k])]))])),
     };

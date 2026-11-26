@@ -34,23 +34,29 @@ export const BEAM = { kind: 'one fluorescent tube behind a louvre, straight down
 // from the others at both ends. Read from little Jade's side (she sits at -z facing +z), so reading left-to-right runs
 // toward -x and the top of the page is at +z.
 export const HANDOUT = { cx: -0.3, cz: -0.06, w: 0.216, h: 0.279, t: 0.0006, cols: 7, rows: 5, shortRow: 3, shortCount: 6,
+  shortShift: 0.25,   // r3 (Jade): the row of six sits a quarter cell LEFT of centre as she reads (not perfectly centred)
   margin: 0.018, title: 0.035, bottom: 0.02, faceR: 0.0098, labelW: 0.02, color: 0xf2df6a };
 const HG = HANDOUT;
 export const cellPitch = { x: (HG.w - 2 * HG.margin) / HG.cols, z: (HG.h - HG.title - HG.bottom) / HG.rows };
 export const rowCount = (r) => (r === HG.shortRow ? HG.shortCount : HG.cols);
 // centre of the face in row r (0 = top), column c (0 = first as she reads); each row is centred on the page
-export const cell = (r, c) => [HG.cx + ((rowCount(r) - 1) / 2 - c) * cellPitch.x, TOP + HG.t, HG.cz + HG.h / 2 - HG.title - (r + 0.5) * cellPitch.z + 0.005];
+// (the short row is shifted HG.shortShift cells toward the reading-left, which is +x)
+export const cell = (r, c) => [HG.cx + ((rowCount(r) - 1) / 2 - c + (r === HG.shortRow ? HG.shortShift : 0)) * cellPitch.x, TOP + HG.t, HG.cz + HG.h / 2 - HG.title - (r + 0.5) * cellPitch.z + 0.005];
 export const hasFace = (r, c) => c >= 0 && c < rowCount(r);
-// the gap: where a seventh face would follow the short row's last one, at the same spacing (the row is centred, so the
-// missing width is split between its two ends; this is the end she reads to)
+// the gap: where a seventh face would follow the short row's last one, at the same spacing (the row sits a quarter cell
+// left of centre, so most of the missing width is at this end, the end she reads to)
 export const GAP = cell(HG.shortRow, HG.shortCount);
-export const ANXIOUS = cell(HG.shortRow, HG.shortCount - 1);  // the short row's last face: she points at it, and the adult's finger lands on it too
-// the two fingertips share that one face: hers on its near edge (her side, -z), the adult's on its far edge
-export const JADE_TIP = [ANXIOUS[0], ANXIOUS[1], ANXIOUS[2] - 0.006];
+export const ANXIOUS = cell(HG.shortRow, HG.shortCount - 1);  // the short row's last face: the face closest to the gap
+// r3 (Jade 2026-11-25, reverses the r2 choice): HER finger points at the EMPTY SPACE where a seventh face would be (the
+// tip on the gap's centre, a touch toward her side); the adult's finger then lands on the CLOSEST face to that space
+// (ANXIOUS, its far edge) and reads its label.
+export const JADE_TIP = [GAP[0], GAP[1], GAP[2] - 0.003];
 export const SW_TIP = [ANXIOUS[0], ANXIOUS[1], ANXIOUS[2] + 0.007];
+// r3: the row of six carries some of the larger-looking faces (SCARED, EXCITED, UPSET have marks outside the circle;
+// they swapped places with CALM, NERVOUS, THANKFUL). Ported by hand to tools/kf/handout.py LABELS.
 export const LABELS = [
-  ['HAPPY', 'SAD', 'ANGRY', 'SCARED', 'SURPRISED', 'SLEEPY', 'GRUMPY'], ['PROUD', 'SHY', 'BORED', 'EXCITED', 'LONELY', 'BRAVE', 'SORRY'],
-  ['TIRED', 'SILLY', 'CONFUSED', 'JEALOUS', 'HURT', 'CURIOUS', 'UPSET'], ['CALM', 'WORRIED', 'GUILTY', 'NERVOUS', 'THANKFUL', 'ANXIOUS'],
+  ['HAPPY', 'SAD', 'ANGRY', 'CALM', 'SURPRISED', 'SLEEPY', 'GRUMPY'], ['PROUD', 'SHY', 'BORED', 'NERVOUS', 'LONELY', 'BRAVE', 'SORRY'],
+  ['TIRED', 'SILLY', 'CONFUSED', 'JEALOUS', 'HURT', 'CURIOUS', 'THANKFUL'], ['SCARED', 'WORRIED', 'EXCITED', 'GUILTY', 'UPSET', 'ANXIOUS'],
   ['FRUSTRATED', 'HOPEFUL', 'EMBARRASSED', 'DISAPPOINTED', 'LOVED', 'SAFE', 'MAD'],
 ];
 
@@ -59,7 +65,7 @@ export const SEATS = {
   jade: [-0.3, -0.6],            // facing +z (the cameras)
   socialWorker: [0.2, 0.55],     // across the table, diagonally, facing -z: the frontal camera looks past her right shoulder
   mom: [0.42, -0.66],            // beside little Jade (her left), facing +z
-  dad: [1.0, -0.06],             // at the table's +x end, facing -x
+  dad: [0.76, -1.04],            // r3 (Jade): STANDING behind Mom's chair (to her left), facing +z, his right hand on her left shoulder
 };
 export const CHAIR = { seat: 0.44, hipAdult: 0.52, hipChild: 0.53 };
 export const DICT = { at: [0.5, 0.82, -0.36], w: 0.075, h: 0.105, t: 0.024, color: 0xb0201a };   // the little red dictionary, in Mom's hands
@@ -73,6 +79,29 @@ export const CABINET = { x0: 1.34, x1: 1.78, z0: -1.46, z1: -0.82, h: 1.32 };   
 export const SHELF = { x0: -1.78, x1: -1.48, z0: -1.3, z1: -0.1, h: 0.9 };                     // low bookshelf of games and books
 export const DESK = { cx: 1.42, cz: 1.4, w: 0.7, d: 1.1, h: 0.74 };                            // the social worker's desk
 export const CLOCK = { x: 0.95, y: 2.1, r: 0.15 };                                             // on the back wall, frame-right of her
-export const POSTER = { x: 0.85, y: 1.45, w: 0.45, h: 0.6 };
+// ---------------------------------------------------------------- the back wall's art (r3, Jade: "decor on the wall behind
+// her: an alphabet, turkeys drawn as handprints, other elementary school children's art"). ONE wall, fixed here, seen in
+// PC1 = PC4 and PC2. November/December 1991: Thanksgiving handprint turkeys still up. Kept clear: a patch frame-left of her
+// face (x < -0.72, y 0.78..1.22) for the toner labels.
+export const ALPHA = { x0: -1.66, x1: 1.66, y: 1.47, h: 0.15, n: 26, card: 0xf8f4e8 };
+export const BOARD = { x0: -0.2, x1: 0.78, y0: 0.82, y1: 1.36, frame: 0.025 };                  // cork board right of her head (frame-right)
+// children's pictures: [cx, cy, w, h, kind]; kind = 'turkey' (handprint turkey on construction paper) | 'drawing'
+export const ART = [
+  [-1.38, 1.30, 0.21, 0.16, 'turkey'], [-1.12, 1.31, 0.21, 0.16, 'turkey'], [-0.86, 1.30, 0.21, 0.16, 'turkey'],   // a row of three turkeys, upper left
+  [-0.06, 1.18, 0.2, 0.26, 'drawing'], [0.17, 1.2, 0.22, 0.17, 'turkey'], [0.4, 1.17, 0.21, 0.27, 'drawing'], [0.63, 1.2, 0.2, 0.15, 'turkey'],   // on the board
+  [0.03, 0.96, 0.22, 0.17, 'drawing'], [0.3, 0.96, 0.24, 0.18, 'drawing'], [0.58, 0.97, 0.2, 0.17, 'drawing'],
+  [1.05, 1.15, 0.22, 0.28, 'drawing'], [1.05, 0.86, 0.22, 0.17, 'turkey'],
+];
+export const POSTER = null;   // r3: the poster gave way to the board
 
 export const LIGHTS = { tube: { kind: BEAM.kind, color: TUBE.color }, amb: { kind: 'bounce off the table and carpet', color: 0x7a8088 } };
+
+// ---------------------------------------------------------------- THE CORRIDOR OUTSIDE THE DOOR (r3, a SEPARATE TIME)
+// Jade: "you need facial expressions" is said to her at about TEN, "right outside the school counselor's door". This set is
+// 1991 with her at seven, so the corridor is staged as a later visit (about 1993-94) at the same door; flagged for Jade.
+// The office's left wall (x = -1.8, outer face at -1.95) is the corridor's right-hand wall as you face the door.
+export const HALL = { x0: -4.3, x1: -1.95, z0: -2.5, z1: 4.5, h: 2.75, tile: 0.3 };
+export const HALL_LIGHT = { x: -3.0, y: 2.72, z: 0.7, w: 0.6, d: 1.2 };          // a ceiling fluorescent panel over her (diffuser, all lamps on)
+export const HALL_KID = [-2.17, 0.52];        // little Jade (10): back against the wall beside the door (door's near jamb at z 0.87)
+export const HALL_MOM = [-2.45, -0.08];       // Mom: in front of her and to her right, stooping, facing her
+export const HALL_BOARD = { z0: -1.9, z1: -0.35, y0: 0.95, y1: 1.75 };          // a corridor bulletin board of class art on the same wall

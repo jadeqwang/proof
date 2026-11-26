@@ -2469,6 +2469,14 @@
   1155.3,
   702.2
  ],
+ "jade_costume": {
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
+  "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
+  "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
+  "before_party": "same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)",
+  "sheet": "cast/jade_27/j27_costume_housewarming_v1.jpg"
+ },
  "crossing": {
   "note": "Jade’s sequence (2026-11-25 round 2); marks, route, speeds and dwells OURS. World [X (NNE), Z (ESE)] on the floor.",
   "marks": {

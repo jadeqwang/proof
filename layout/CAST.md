@@ -26,7 +26,8 @@ Rules
   height exists once; the two first-love keys share `FIRST_LOVE_H`.
 - A costume change that is not a different year goes on the figure spec, not in the table:
   `figs: { jade7: { ..., costume: { sock: 0xe6b996, sleeves: 'short' } } }` (engine `spec.costume`: colours, sleeves,
-  hair style; never height or proportions). basement90 uses it for her bare feet (`BAREFOOT` in `house.js`).
+  hair style; never height or proportions). basement90 uses it for her summer top and white socks, and Dad's grey socks (`JADE_BASEMENT` / `DAD_BASEMENT`
+  in `house.js`; Jade 2026-11-25: socks, not bare feet); the sock cuffs and Dad's slippers are set-local meshes (`kit.js footwear()`).
 - Set-local extras stay in their set's `build.js` and are registered with `addCast()` (exported by `_cast.js`), which
   throws if a set tries to redefine a shared key: shanghai86 `uncle` 1.70, `aunt` 1.58, `grandma` 1.50; office91 `sw`
   1.65; market93 `grandma` 1.52 (a stranger, not the Shanghai grandmother); mv10 guests `A1`..`G1`, `poi`;

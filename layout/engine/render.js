@@ -5,8 +5,16 @@
 //   depth : linear depth, near white -> far black
 //   label : flat + names of visible objects and characters, the 4:5 safe area, shot header
 //   lit   : mood preview: dark room, coloured lights, cast shadows, emitter glow
+//   (guides for the painter, 2026-11-25; opt-in, never in the default --modes)
+//   form    : evenly lit clay: hemisphere fill + a soft key from beside the camera, NO cast shadows, range-checked
+//             screen-space occlusion and grey contour lines; people / furniture / props / room shell get faint
+//             distinct tints (class codes, not colours)
+//   contour : the line render without any shadow fill or terminator: silhouettes, creases, object boundaries on white
+//   light   : two- or three-tone light map of the shot's real lights (fills and ambient removed): lit white, weak
+//             light pale grey, shade 50 % grey; the form and contours faintly underneath
 // A built shot (from a set's build.js) is { scene, cam, rig(mode) -> [lights], near, far, header, mirror?, shadowLine? }
 import * as THREE from 'three';
+const GLASS_VOLUME = /beam|shaft|volume|sunlight|steam|blade|cone|light/i;   // glass-look meshes that are light, not glass
 
 export class ModeRenderer {
   constructor(W, H) {
@@ -86,6 +94,67 @@ export class ModeRenderer {
     });
     const q = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.edgeMat); q.frustumCulled = false;
     this.quadScene = new THREE.Scene(); this.quadScene.add(q); this.quadCam = new THREE.Camera();
+
+    // --- guide modes (form / contour / light) ---
+    this.formT = new THREE.WebGLRenderTarget(W, H, { samples: 4 });
+    this.irrT = new THREE.WebGLRenderTarget(W, H, { samples: 4, type: THREE.HalfFloatType });
+    this.guideMat = new THREE.ShaderMaterial({
+      depthTest: false, depthWrite: false,
+      uniforms: { tG: { value: this.gbuf.texture }, tI: { value: this.idT.texture }, tF: { value: this.formT.texture }, tL: { value: this.irrT.texture },
+        uPx: { value: new THREE.Vector2(1 / W, 1 / H) }, uNT: { value: 0.25 }, uDT: { value: 0.035 }, uMode: { value: 0 },
+        uLine: { value: 0.62 }, uAO: { value: 0.32 }, uLo: { value: 0.05 }, uHi: { value: 0.42 }, uShade: { value: 0.5 }, uMid: { value: 0.76 }, uUnder: { value: 0.22 }, uUnderLine: { value: 0.28 } },
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }',
+      fragmentShader: `
+        uniform sampler2D tG, tI, tF, tL; uniform vec2 uPx; uniform float uNT, uDT, uMode, uLine, uAO, uLo, uHi, uShade, uMid, uUnder, uUnderLine; varying vec2 vUv;
+        vec4 G(vec2 o){ return texture2D(tG, vUv + o*uPx); }
+        vec4 I(vec2 o){ return texture2D(tI, vUv + o*uPx); }
+        float edge(){
+          vec4 c = G(vec2(0.)); vec3 n0 = c.rgb*2.-1.; float d0 = c.a; vec4 i0 = I(vec2(0.)); float e = 0.;
+          vec2 offs[4]; offs[0]=vec2(1.,0.); offs[1]=vec2(0.,1.); offs[2]=vec2(1.,1.); offs[3]=vec2(1.,-1.);
+          for (int k=0;k<4;k++){
+            vec4 a = G(offs[k]), b = G(-offs[k]);
+            if (d0 > 0.) {
+              e = max(e, step(uNT, 1.-dot(n0, a.rgb*2.-1.)) * step(0.0001, a.a));
+              e = max(e, step(uNT, 1.-dot(n0, b.rgb*2.-1.)) * step(0.0001, b.a));
+              float lap = abs(a.a + b.a - 2.*d0); e = max(e, step(uDT, lap / max(d0, 1e-4)));
+            }
+            vec4 ia = I(offs[k]), ib = I(-offs[k]);
+            e = max(e, step(0.002, distance(i0, ia))); e = max(e, step(0.002, distance(i0, ib)));
+          }
+          return e;
+        }
+        // range-checked occlusion from the linear depth: neighbours a little nearer than this pixel darken it
+        float occl(){
+          float d0 = G(vec2(0.)).a; if (d0 <= 0.) return 0.;
+          float o = 0., n = 0.;
+          for (int r=0;r<2;r++){ float rad = r==0 ? 7. : 19.;
+            for (int k=0;k<8;k++){ float a = float(k)*0.7854 + float(r)*0.39; vec2 off = vec2(cos(a), sin(a))*rad;
+              float dn = G(off).a; n += 1.;
+              if (dn <= 0.) continue;
+              float dd = (d0 - dn) / d0;           // + : the neighbour is nearer
+              o += smoothstep(0.004, 0.05, dd) * (1. - smoothstep(0.10, 0.25, dd)); } }
+          return o / n;
+        }
+        void main(){
+          float e = edge();
+          vec3 f = texture2D(tF, vUv).rgb; float bg = step(G(vec2(0.)).a, 0.);
+          float ao = occl();
+          vec3 form = f * (1. - uAO*ao);
+          if (uMode < 0.5) {                                   // form
+            gl_FragColor = vec4(mix(form, vec3(0.08), e*uLine), 1.);
+          } else {                                             // light
+            float irr = dot(texture2D(tL, vUv).rgb, vec3(0.333));
+            float lo = smoothstep(uLo*0.6, uLo*1.6, irr), hi = smoothstep(uHi*0.6, uHi*1.4, irr);   // wide: falloff reads as a ramp, a shadow edge (a jump) stays crisp
+            float tone = mix(uShade, mix(uMid, 1., hi), lo);
+            float fl = dot(form, vec3(0.333));               // faint form underneath (+-uUnder around the tone)
+            float v = tone * (1. - uUnder + uUnder*clamp(fl/0.8, 0., 1.2));
+            v = mix(v, v*0.55, e*uUnderLine);
+            gl_FragColor = vec4(vec3(clamp(v, 0., 1.)), 1.);
+          }
+        }`,
+    });
+    const gq = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.guideMat); gq.frustumCulled = false;
+    this.guideScene = new THREE.Scene(); this.guideScene.add(gq);
   }
 
   // --- material switching -------------------------------------------------------------------------
@@ -110,6 +179,11 @@ export class ModeRenderer {
     } else if (pass === 'glow') {
       mat = L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap })
         : new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide, transparent: !!L.glass, opacity: L.glass ? 0 : 1, depthWrite: !L.glass });
+    } else if (pass === 'form') {
+      mat = L.glass ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.62, 0.74, 0.80), transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide })
+        : L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.97, 0.97, 0.97), side: THREE.DoubleSide }) : this._formMat(ud.formTint || [0.8, 0.8, 0.8]);
+    } else if (pass === 'irr') {   // irradiance of the shot's real lights on white (light mode)
+      mat = L.emit ? new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }) : new THREE.MeshLambertMaterial({ color: 0xffffff, side: THREE.DoubleSide });
     } else if (pass === 'mask') {
       mat = L.recvShadowLine ? new THREE.MeshLambertMaterial({ color: 0xffffff, side: THREE.DoubleSide }) : new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide });
     }
@@ -123,9 +197,10 @@ export class ModeRenderer {
       if (!o.isMesh) return; const L = o.userData.look; if (!L) return;
       if (o.userData.baseVisible === undefined) o.userData.baseVisible = o.visible;
       let v = o.userData.baseVisible;
-      if (L.only && !L.only.includes(vis)) v = false;
-      if (L.hide && L.hide.includes(vis)) v = false;
-      if (L.glass && vis !== 'lit') v = false;
+      const vv = vis === 'form' ? 'line' : vis;   // form sees what line sees, plus solid glass (table tops, panes)
+      if (L.only && !L.only.includes(vv)) v = false;
+      if (L.hide && L.hide.includes(vv)) v = false;
+      if (L.glass && vis !== 'lit' && !(vis === 'form' && !GLASS_VOLUME.test(o.userData.label || ''))) v = false;
       o.visible = v; if (!v) return;
       const gk = o.userData.idGroup; let k = gk != null ? groups.get(gk) : undefined;
       if (k === undefined) { k = i++; if (gk != null) groups.set(gk, k); }
@@ -195,8 +270,83 @@ export class ModeRenderer {
       if (built.litPost) built.litPost(g, this);
       return base;
     }
+    if (mode === 'form' || mode === 'contour' || mode === 'light') return this._guide(built, mode, cam);
     throw new Error('unknown mode ' + mode);
   }
+  // --- guide modes ------------------------------------------------------------------------------
+  _formMat(tint) {
+    return new THREE.ShaderMaterial({
+      side: THREE.DoubleSide, clipping: true, uniforms: { uTint: { value: new THREE.Vector3(...tint) } },
+      vertexShader: `#include <common>
+        #include <clipping_planes_pars_vertex>
+        varying vec3 vN; varying vec3 vW;
+        void main(){ vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix * normal); vW = (modelMatrix*vec4(position,1.)).xyz; gl_Position = projectionMatrix * mv;
+        #include <clipping_planes_vertex>
+        }`,
+      fragmentShader: `#include <common>
+        #include <clipping_planes_pars_fragment>
+        uniform vec3 uTint; varying vec3 vN; varying vec3 vW;
+        void main(){
+        #include <clipping_planes_fragment>
+          vec3 n = normalize(vN); if (!gl_FrontFacing) n = -n;
+          vec3 wn = normalize((vec4(n, 0.) * viewMatrix).xyz);            // view -> world (orthonormal)
+          vec3 key = normalize(vec3(-0.45, 0.55, 0.75));                   // soft key from above-left of the camera
+          float k = max(dot(n, key), 0.);
+          float hemi = 0.5 + 0.5*wn.y;                                     // sky above, ground below
+          float v = 0.58 + 0.27*k + 0.15*hemi;
+          gl_FragColor = vec4(uTint * v / 0.8 * 0.92, 1.); }`,
+    });
+  }
+  // class per visible mesh: people (userData.who), else by the world size of its label group: room shell / furniture / prop
+  _classify(meshes) {
+    const boxes = new Map();
+    for (const m of meshes) { if (m.userData.who) continue; const k = m.userData.label || ('#' + m.id);
+      const b = new THREE.Box3().setFromObject(m); if (b.isEmpty()) continue; if (!boxes.has(k)) boxes.set(k, b); else boxes.get(k).union(b); }
+    const hash = (str) => { let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 1000) / 1000; };
+    const TINT = { person: [0.92, 0.915, 0.905], hair: [0.56, 0.55, 0.54], room: [0.77, 0.77, 0.78], furniture: [0.84, 0.80, 0.72], prop: [0.70, 0.80, 0.90] };
+    for (const m of meshes) {
+      let cls, k = m.userData.label || ('#' + m.id);
+      if (m.userData.who) cls = (m.material?.userData?.hair || (m.userData.look?.grey ?? 1) <= 0.15) ? 'hair' : 'person';
+      else { const b = boxes.get(k); const s = b ? b.getSize(new THREE.Vector3()) : new THREE.Vector3(1, 1, 1);
+        const big = Math.max(s.x, s.y, s.z), diag = s.length();
+        cls = big > 2.6 || diag > 3.4 ? 'room' : big > 0.45 ? 'furniture' : 'prop'; }
+      const g = m.userData.look?.flatGrey ?? m.userData.look?.grey ?? 0.6;
+      const j = cls === 'person' || cls === 'hair' ? 0 : (hash(k) - 0.5) * 0.09 - (0.6 - Math.min(g, 0.9)) * 0.2;   // neighbouring objects differ slightly; dark materials a little darker
+      m.userData.formTint = TINT[cls].map((c) => Math.min(1, c * (1 + j)));
+      m.userData.formClass = cls;
+      if (m.userData.mats) delete m.userData.mats.form;
+    }
+  }
+  _guide(built, mode, cam) {
+    const { scene } = built;
+    // geometry buffers (normals + depth, ids) exactly as line mode sees the scene
+    this._prep(scene, 'gbuf', 'line'); this._lights(scene, built, 'none');
+    this._render(scene, cam, this.gbuf, 0x000000, 0);
+    this._prep(scene, 'id', 'line'); this._render(scene, cam, this.idT, 0x000000, 1);
+    this.guideMat.uniforms.uNT.value = built.edgeNT ?? 0.25;
+    if (mode === 'contour') {
+      this.edgeMat.uniforms.uMask.value = 0; this.edgeMat.uniforms.uNT.value = built.edgeNT ?? 0.25;
+      this.r.setRenderTarget(null); this.r.setClearColor(0xffffff, 1); this.r.clear(); this.r.render(this.quadScene, this.quadCam);
+      return this._toCanvas();
+    }
+    // the form pass (no lights needed: the shader shades from the normal)
+    const { meshes } = this._prep(scene, 'id', 'line'); this._classify(meshes);
+    this._prep(scene, 'form', 'form'); this._lights(scene, built, 'none');
+    this._render(scene, cam, this.formT, built.formBg ?? 0xf2f2f2, 1);
+    if (mode === 'light') {
+      // the shot's real lights: the flat rig without ambient / hemisphere fills and without shadowless directional fills
+      this._prep(scene, 'irr', 'flat'); const rig = this._lights(scene, built, 'flat');
+      const drop = []; rig.traverse((l) => { if (l.isAmbientLight || l.isHemisphereLight || (l.isDirectionalLight && !l.castShadow)) drop.push(l); });
+      drop.forEach((l) => l.parent.remove(l));
+      this._render(scene, cam, this.irrT, 0x000000, 1);
+      const gl = built.lightGuide || {};
+      this.guideMat.uniforms.uLo.value = gl.lo ?? 0.05; this.guideMat.uniforms.uHi.value = gl.hi ?? 0.42;
+    }
+    this.guideMat.uniforms.uMode.value = mode === 'light' ? 1 : 0;
+    this.r.setRenderTarget(null); this.r.setClearColor(0xffffff, 1); this.r.clear(); this.r.render(this.guideScene, this.quadCam);
+    return this._toCanvas();
+  }
+
   // the mask target holds r = lit by the shadow light; set g = 1 on shadow receivers (second pass with colorWrite on g only)
   _maskFlag(built, cam) {
     const { scene } = built; const gl = this.r.getContext();
@@ -243,7 +393,7 @@ export class ModeRenderer {
       if (mode === 'lit') { mg.globalAlpha = 0.85; }
       mg.drawImage(refl, 0, 0);
       const g = main.getContext('2d'); g.drawImage(mask, 0, 0);
-      if (mode === 'line') { // outline the mirror glass
+      if (mode === 'line' || mode === 'contour') { // outline the mirror glass
         g.strokeStyle = '#000'; g.lineWidth = 2; const q = built.mirror.quadPx(built.cam); g.beginPath(); q.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y))); g.closePath(); g.stroke(); }
     }
     return main;

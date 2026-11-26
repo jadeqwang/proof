@@ -5,7 +5,8 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, applyBeamMask } from '../_beam.js';
 import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, CHAIR, spokePoint, FEET, PROPS, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
-import { wall, hexa, polyline, swivelChair, r3, hideLabels } from './kit.js';
+import { wall, hexa, polyline, swivelChair, r3, hideLabels, footwear } from './kit.js';
+import { FOOTWEAR } from './house.js';
 
 const CONC = { grey: 0.62, col: 0x77756f }, BLOCK = { grey: 0.7, col: 0x8a8880 }, WOOD = { grey: 0.5, col: 0x6b5236 }, WOOD_D = { grey: 0.36, col: 0x4a3826 };
 const BEIGE = { grey: 0.8, col: 0xc9c2ad }, DARK = { grey: 0.2, col: 0x222226 }, CARD = { grey: 0.6, col: 0x9a7c55 };
@@ -95,7 +96,9 @@ function furniture(shot) {
   return g;
 }
 
-const CEIL_LIT = 3.2, AMB_LIT = 0.7;   // lit-preview levels of the ceiling bulb and its bounce (tuned by eye on B0_wide / B4)
+// lit-preview levels of the ceiling bulb, its bounce, and a warm sky/ground fill (2026-11-25 second pass, Jade: more ambient so
+// the image models can read everything; was CEIL 3.2 / AMB 0.7 / no fill). Tuned by eye on B0_wide / B2 / B3 / B4.
+const CEIL_LIT = 3.6, AMB_LIT = 1.35, FILL_LIT = 1.0;
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   root.add(room(shot)); root.add(furniture(shot));
@@ -104,6 +107,7 @@ export function build(shot, { makeCam }) {
   const extra = (t) => (t === 'word' ? V(WORD_P) : t === 'screen' ? V(SCREEN.c) : null);
   const { figs } = stage(shot.figs, null, extra);
   for (const f of Object.values(figs)) root.add(f);
+  for (const [who, fw] of Object.entries(FOOTWEAR)) if (figs[who]) root.add(footwear(figs[who], fw));   // socks / slippers (Jade 2026-11-25)
   // the lit volume (lit preview only) and its cut on the floor (label mode only)
   const far = beamFar(), term = deskTerminator(0), wAt = (z) => SCREEN.w / 2 + Math.tan(rad(BEAM.halfAngleDeg)) * (z - SCREEN.c[2]);
   const sc = screenCorners(); root.add(tag(hexa([sc[1], sc[0], sc[3], sc[2]], far, { glass: true, col: BEAM.color, opacity: 0.05, noCast: true, noRecv: true }), 'beam volume'));
@@ -126,6 +130,7 @@ export function build(shot, { makeCam }) {
     // the ceiling bulb: the room's ambient (warm, soft shadows); the screen stays the cold key at the desk
     if (lampOn) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.ceiling.color, white ? (shot.light?.ceilI ?? 0.8) : (shot.light?.ceilLit ?? CEIL_LIT), 9, 1.2);
       p.position.copy(Bp); p.castShadow = true; p.shadow.camera.near = 0.05; p.shadow.camera.far = 8; p.shadow.radius = mode === 'lit' ? 8 : 3; L.push(p); }
+    if (!white && lampOn && (shot.light?.fillLit ?? FILL_LIT) > 0) L.push(new THREE.HemisphereLight(0xffe2bc, 0x4a4036, shot.light?.fillLit ?? FILL_LIT));   // shadowless bounce: shape without killing the bulb's shadows
     L.push(new THREE.AmbientLight(white ? 0xffffff : (lampOn ? LIGHTS.dark.color : 0x0a0c18), white ? (lampOn ? 1.0 : 1.25) : (lampOn ? (shot.light?.ambLit ?? AMB_LIT) : 1.2)));
     if (white && !lampOn) { const d = new THREE.DirectionalLight(0xffffff, 0.7); d.position.set(1, 3, 2.5); L.push(d); }
     return L; };

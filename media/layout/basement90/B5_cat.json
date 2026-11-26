@@ -200,8 +200,8 @@
   },
   "jade7.R": {
    "px": [
-    1016.8,
-    467.4
+    1072.6,
+    492.9
    ],
    "shape": "fist",
    "in_frame": true,
@@ -258,7 +258,7 @@
   }
  ],
  "warnings": [],
- "intent": "Close, level, from her front-right: her right forearm raised, the fist jutting forward like a paw, the back of the wrist at her mouth (tongue out to it: paint it), head bowed and cocked, eyes half closed, entirely absorbed. She stands in the open in the screen light, not hiding. The paw must read in silhouette.",
+ "intent": "Close, level, from her front-right: her right forearm raised, the fist jutting forward like a paw, the back of the wrist just in front of her mouth, PRETENDING to lick it (r3, Jade: tongue tip out, NOT touching; a small gap), head bowed and cocked, eyes half closed, entirely absorbed. She stands in the open in the screen light, not hiding. The paw must read in silhouette.",
  "time": "2:21.4-2:22.2 \"Good catch!\"",
  "position": "outside",
  "beam": {
@@ -578,28 +578,28 @@
   {
    "a": "jade7:wristR",
    "a_world": [
-    -0.0818,
-    1.0057,
-    -0.7462
+    -0.0593,
+    0.9957,
+    -0.738
    ],
    "b": [
-    -0.09171705612920554,
-    1.009,
-    -0.7498226089399662
+    -0.06916443323034374,
+    0.9989999999999999,
+    -0.7416141255001502
    ],
    "distance_cm": 1.1
   },
   {
    "a": "jade7:handR",
    "a_world": [
-    -0.0514,
-    0.9954,
-    -0.7351
+    -0.0288,
+    0.9854,
+    -0.7269
    ],
    "b": [
-    -0.05139369941108946,
-    0.9954490884428305,
-    -0.7351461073488739
+    -0.028841076512227663,
+    0.9854490884428305,
+    -0.7269376239090578
    ],
    "distance_cm": 0
   }
@@ -631,7 +631,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.53
+    "R": 0.57
    },
    "headTurn": 1
   }

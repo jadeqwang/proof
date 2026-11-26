@@ -1,8 +1,9 @@
 // THE MAIN FLOOR OF 5748 CAPRI LANE, MORTON GROVE, IL, ABOUT 2007 ("Proof": bridge, "Beauty on this side", -2sm 159.62 s on).
 // Single source of truth (metres, y up, floor at y = 0). Grad school: she commutes from this house to Northwestern.
-// First love has just given her a white sweatshirt with the Institute for Advanced Study seal (TRUTH left, BEAUTY right)
-// in dark blue, the seal almost the whole front (Jade); she holds it UNFOLDED up against herself, the front toward him
-// (and the camera behind him). He is a real person: never named, never face-on; every camera is behind him.
+// First love has just given her a WHITE HOODIE with the Institute for Advanced Study seal (TRUTH left, BEAUTY right)
+// printed in BLUE on the chest, a filled-disc print about 40% of the front's width (Jade, 2026-11-25, from her size
+// reference; supersedes "almost the whole front"). r3 (Jade's r2 review): he hands it FOLDED (the fold hides part of
+// the seal), then, on the same continuous camera, she lifts it and it UNFOLDS (see FOLD / SHIRT below). He is a real person: never named, never face-on; every camera is behind him.
 //
 // ROUND 2 (2026-11-25): the room is now fitted to JADE'S HAND-DRAWN FLOOR PLAN (inputs/refs_mortongrove/, private).
 // One open great room: the living room at the drawing's top, the piano / dining / entry part below it, wider by a jog
@@ -125,32 +126,71 @@ export const DINING = { table: { c: [0.15, -5.60], w: 1.90, d: 0.95, h: 0.74 }, 
 
 // ---------------------------------------------------------------- the people
 // her (jade27 standing in for about 24): on the couch's WEST cushion (next to the window), sitting a little forward,
-// turned toward him, holding the unfolded sweatshirt up against herself by its shoulders. him (firstLove27): standing at
+// turned toward him, holding the unfolded hoodie up against herself by its shoulders. him (firstLove27): standing at
 // the west end of the coffee table, in front of her and a little to her left (west), leaning in.
 const cushW = (COUCH.x1 - COUCH.x0 - 2 * COUCH.armW) / 3;
 export const HER = { at: [COUCH.x0 + COUCH.armW + cushW / 2, COUCH.z1 - (COUCH.d - 0.36)], yaw: 196 };
 export const HIM = { at: [1.95, -1.48] };
 HIM.yaw = +(Math.atan2(HER.at[0] - HIM.at[0], HER.at[1] - HIM.at[1]) * 180 / Math.PI).toFixed(1);   // faces her
 
-// ---------------------------------------------------------------- the sweatshirt, UNFOLDED, held up against her
-// Jade: the seal is HUGE (almost the whole front) and the sweatshirt must be unfolded to see it. She holds it by the
-// shoulder seams, its front toward him; the body hangs down in front of her and folds forward over her knees.
-// Frame: f = her facing (horizontal), r = the VIEWER'S RIGHT looking at the front (= her left), a = up the front's upper
-// panel, n = out of the front (toward him and the camera).
-export const SHIRT = { chest: 0.58, upper: 0.45, lower: 0.20, top: { fwd: 0.30, y: 1.06 }, knee: { fwd: 0.41, y: 0.585 }, drop: 0.07,
-  sleeve: { len: 0.60, w0: 0.16, w1: 0.11 }, thick: 0.012, sealR: 0.19, sealDown: 0.285, color: 0xf4f2ec, seal: 0x1c2a5a };
+// ---------------------------------------------------------------- the hoodie: FOLDED (MG1), then UNFOLDING (MG2)
+// Jade (r2 review, 2026-11-25 night): MG1 = he hands it to her FOLDED, the fold cutting off part of the (large) seal,
+// the camera zooming in past his shoulder; MG2 = the SAME continuous camera, further in, as she takes it and it UNFOLDS
+// (the seal revealed). Supersedes tonight's "held up unfolded against herself".
+// A WHITE pullover hoodie (hood, two drawstrings, kangaroo pouch pocket, ribbed cuffs and waistband), the IAS seal printed
+// in BLUE as a solid filled disc 0.23 m across on the chest (about 40% of the front's 0.58 m width), figures in white reverse.
+const SEAL_R = 0.115, SEAL_DOWN = 0.19, WHITE_C = 0xf4f2ec, BLUE_C = 0x2f62a8;
+
+// FOLDED: a stack 0.38 across (sides and sleeves folded behind) x 0.36 long x 0.06 thick, held between them at y 0.88,
+// 0.50 m from him toward her and 0.12 m to his LEFT (the camera is over his left shoulder). The FRONT is on top with the
+// NECKLINE at HER end, so the seal reads UPRIGHT for him and for the camera behind him (and she can lift it by the
+// shoulders straight into MG2). The waistband end is folded UP over the front from HIS end: a 0.15 m flap (the plain
+// back panel outside, the ribbed waistband its free edge) lying across the lower part of the seal, hiding about a third
+// of its height. Frame: w = horizontal him -> her, tipped `tilt` deg (his end a little higher, toward the camera);
+// u = his left (= camera left: TRUTH side), n = up out of the front.
+export const FOLD = { across: 0.38, along: 0.36, thick: 0.06, tilt: 8, flap: 0.15, y: 0.92, fromHim: 0.52, toHisLeft: 0.12, sealR: SEAL_R, sealFromNeck: 0.16, color: WHITE_C, seal: BLUE_C };
+{ const wh = norm([HER.at[0] - HIM.at[0], 0, HER.at[1] - HIM.at[1]]), t = rad(FOLD.tilt);
+  FOLD.wh = wh; FOLD.w = norm([wh[0] * Math.cos(t), -Math.sin(t), wh[2] * Math.cos(t)]);
+  FOLD.u = norm(cross([0, 1, 0], wh));
+  let n = norm(cross(FOLD.w, FOLD.u)); if (n[1] < 0) n = mul(n, -1); FOLD.n = n;
+  FOLD.c = comb([HIM.at[0], FOLD.y, HIM.at[1]], [wh, FOLD.fromHim], [FOLD.u, FOLD.toHisLeft]).map((v) => +v.toFixed(4));
+  FOLD.neck = comb(FOLD.c, [FOLD.w, FOLD.along / 2]);                                   // neckline edge centre (her end)
+  FOLD.top = comb(FOLD.c, [FOLD.n, FOLD.thick / 2]);
+  FOLD.sealC = comb(FOLD.top, [FOLD.w, FOLD.along / 2 - FOLD.sealFromNeck], [FOLD.n, 0.002]).map((v) => +v.toFixed(4));
+  FOLD.flapEdge = FOLD.along - FOLD.flap;                                                 // from the neck: where the flap's free edge lies
+  FOLD.sealCut = +(FOLD.flapEdge - FOLD.sealFromNeck).toFixed(3);                         // the cut line's distance below the seal centre
+  FOLD.sealHidden = +((SEAL_R - FOLD.sealCut) / (2 * SEAL_R)).toFixed(2); }               // share of the seal's height under the flap
+// grips: each hand closes on the stack's side edge, thumb on top; his near his end, hers near hers
+{ const r = FOLD.thick / 2, side = FOLD.across / 2 - r, inset = 0.10, C = FOLD.c, u = FOLD.u, w = FOLD.w;
+  FOLD.grip = { hisL: comb(C, [u, side], [w, -inset]), hisR: comb(C, [u, -side], [w, -inset]),
+    herL: comb(C, [u, -side], [w, inset]), herR: comb(C, [u, side], [w, inset]), r };
+  // his hands on the near END (the fold at his end), at its two corners: thumbs on top, fingers under, forearms coming
+  // straight from him (so the over-the-shoulder camera sees past his left forearm onto the seal)
+  const endIn = FOLD.along / 2 - r, cornerIn = FOLD.across / 2 - 0.07;
+  FOLD.grip.hisL = comb(C, [w, -endIn], [u, cornerIn]); FOLD.grip.hisR = comb(C, [w, -endIn], [u, -cornerIn]); }
+
+// UNFOLDING: she has lifted it by the shoulder seams (the neckline end of the stack): the front's upper part hangs from
+// her hands in front of her chest, facing him (and the camera), the seal upright on it; 0.27 m below the shoulder line
+// the rest is still folded, the lower part swinging down and out toward him, half open (45 deg below the horizontal):
+// its fold edge crosses the bottom sliver of the seal (about 15% of its height), the rest of the seal now revealed.
+// Frame: f = her facing, r = the VIEWER'S RIGHT looking at the front (= her left), a = up the hanging front, n = out of it.
+export const SHIRT = { chest: 0.58, upper: 0.27, lower: 0.42, top: { fwd: 0.34, y: 1.10 }, hang: { fwd: 0.38 }, flapDeg: 45,
+  sleeve: { len: 0.60, w0: 0.16, w1: 0.11 }, thick: 0.012, sealR: SEAL_R, sealDown: SEAL_DOWN, color: WHITE_C, seal: BLUE_C,
+  hood: { w: 0.34, up: 0.05, down: 0.30 }, string: { dx: 0.044, len: 0.21 }, pocket: { wTop: 0.32, wBot: 0.38 } };
 { const y = rad(HER.yaw), f = [Math.sin(y), 0, Math.cos(y)];
   SHIRT.f = f; SHIRT.r = [Math.cos(y), 0, -Math.sin(y)];                          // her left = the viewer's right
   const base = [HER.at[0], 0, HER.at[1]];
   SHIRT.T = comb(base, [f, SHIRT.top.fwd], [[0, 1, 0], SHIRT.top.y]);             // top centre (collar)
-  SHIRT.K = comb(base, [f, SHIRT.knee.fwd], [[0, 1, 0], SHIRT.knee.y]);           // where it bends over her knees
+  const dx = SHIRT.hang.fwd - SHIRT.top.fwd, dy = Math.sqrt(SHIRT.upper ** 2 - dx ** 2);
+  SHIRT.K = comb(base, [f, SHIRT.hang.fwd], [[0, 1, 0], SHIRT.top.y - dy]);       // the remaining fold line (bottom of the hanging part)
   SHIRT.a = norm(add(SHIRT.T, mul(SHIRT.K, -1)));
-  SHIRT.upper = +Math.hypot(...add(SHIRT.T, mul(SHIRT.K, -1))).toFixed(3);
   let n = norm(cross(SHIRT.r, SHIRT.a)); if (dot(n, f) < 0) n = mul(n, -1); SHIRT.n = n;
-  // the lower part runs on over her knees, forward and down
-  SHIRT.b = norm(comb([0, 0, 0], [f, 0.85], [[0, 1, 0], -0.53]));                   // down-the-front direction past the knees
-  SHIRT.H = comb(SHIRT.K, [SHIRT.b, SHIRT.lower]);                                 // hem centre
-  SHIRT.c = comb(SHIRT.T, [SHIRT.a, -SHIRT.sealDown]).map((v) => +v.toFixed(4));   // the seal's centre (on the upper part)
+  const fd = rad(SHIRT.flapDeg);
+  SHIRT.b = norm(comb([0, 0, 0], [f, Math.cos(fd)], [[0, 1, 0], -Math.sin(fd)]));   // the folded part: out toward him and down
+  SHIRT.H = comb(SHIRT.K, [SHIRT.b, SHIRT.lower]);                                 // its far edge (the waistband)
+  SHIRT.c = comb(SHIRT.T, [SHIRT.a, -SHIRT.sealDown]).map((v) => +v.toFixed(4));   // the seal's centre
+  SHIRT.sealCut = +(SHIRT.upper - SHIRT.sealDown).toFixed(3);                      // fold line below the seal centre
+  SHIRT.sealHidden = +Math.max(0, (SEAL_R - SHIRT.sealCut) / (2 * SEAL_R)).toFixed(2);
 }
 // her two hands close on the shoulder seams (top corners): left hand at +r, right hand at -r
 const sh = SHIRT.chest / 2 - 0.04;
@@ -158,6 +198,9 @@ export const GRIP = { herL: comb(SHIRT.T, [SHIRT.r, sh]), herR: comb(SHIRT.T, [S
 const front = comb(SHIRT.c, [SHIRT.n, SHIRT.thick / 2 + 0.002]);
 export const SEAL = { centre: front, top: comb(front, [SHIRT.a, SHIRT.sealR]), bottom: comb(front, [SHIRT.a, -SHIRT.sealR]),
   truth: comb(front, [SHIRT.r, -SHIRT.sealR * 0.45]), beauty: comb(front, [SHIRT.r, SHIRT.sealR * 0.45]) };
+// the same for the folded state (on the stack's top; up = toward her = -... w points to her, so the seal's top is +w)
+export const FSEAL = { centre: FOLD.sealC, top: comb(FOLD.sealC, [FOLD.w, SEAL_R]), bottom: comb(FOLD.sealC, [FOLD.w, -SEAL_R]),
+  truth: comb(FOLD.sealC, [FOLD.u, SEAL_R * 0.45]), beauty: comb(FOLD.sealC, [FOLD.u, -SEAL_R * 0.45]) };
 
 // ---------------------------------------------------------------- the beams: three west/south openings
 export const SUN_POS = sunPosition(SCENE);

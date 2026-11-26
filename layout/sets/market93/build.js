@@ -8,6 +8,8 @@ import { CAST, PROP } from '../_cast.js';   // jade10 (and child10 proportions) 
 import { STORE, AISLE, ISLAND, ISLANDS, AWNING, bedY, HERO_BINS, binZ, GONDOLA, WALLCASE, WALLSHELF, PALLET, SCALE, AISLE_SIGN,
   TUBES, fixtureZ, KEY, DEAD, BEAM, beamRect, inBeam, LIGHTS, ARTICHOKE, ROMANESCO, ART_HELD, ART_ISLAND, ROM_ISLAND, CART, CAST93, PROP_CHILD10 } from './layout.js';
 import { artichoke, romanesco, place, latticeWorld } from './phyllo.js';
+// PLATE XVIII's count by bract (written by media/footage/spirals/spirals.py; the bracts are the same, artichoke_bracts.json)
+import PLATE_COUNT from './artichoke_plate_count.json' with { type: 'json' };
 
 // set-local cast: registered on the shared tables only if nobody has added them (engine files are not edited)
 for (const [k, v] of Object.entries(CAST93)) if (!CAST[k]) CAST[k] = v;   // set-local extra: the grandmother
@@ -172,11 +174,13 @@ function cart(spec) {
 }
 
 // ---------------------------------------------------------------- build
+const ART_UPRIGHT = { at: [ART_ISLAND.at[0], ART_ISLAND.at[1] + 0.03, ART_ISLAND.at[2]], axis: [0, 1, 0] };
 export function build(shot, { makeCam, W = 1920, H = 1080 }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   root.add(room(shot));
   // the two hero vegetables
-  const held = (shot.art ?? 'held') === 'held', AP = held ? ART_HELD : ART_ISLAND;
+  // art: 'held' (in her hands) | 'island' (back on its heap) | 'upright' (reference views: on the heap's spot, axis vertical)
+  const held = (shot.art ?? 'held') === 'held', AP = held ? ART_HELD : shot.art === 'upright' ? ART_UPRIGHT : ART_ISLAND;
   const art = place(artichoke(), AP.at, AP.axis), rom = place(romanesco(), ROM_ISLAND.at, ROM_ISLAND.axis); root.add(art, rom);
   const artC = V(AP.at), artAxis = V(AP.axis).normalize(), romC = V(ROM_ISLAND.at), romAxis = V(ROM_ISLAND.axis).normalize();
   const cartG = shot.cart ? cart(shot.cart) : null; if (cartG) root.add(cartG);
@@ -227,7 +231,15 @@ export function build(shot, { makeCam, W = 1920, H = 1080 }) {
     return {
       beam: { source: BEAM.src, cross_half_angle_deg: BEAM.crossDeg, end_half_angle_deg: BEAM.endDeg, footprint_floor: rect(0), footprint_bed_height: rect(0.95), source_px: [P(V(BEAM.src.x, BEAM.src.y, BEAM.src.z0)), P(V(BEAM.src.x, BEAM.src.y, BEAM.src.z1))],
         in_beam: Object.fromEntries([...Object.entries(figs).map(([w, f]) => [w, inBeam(f.userData.P.chest.toArray())]), ['artichoke', inBeam(artC.toArray())], ['romanesco', inBeam(romC.toArray())]]) },
-      artichoke: { state: held ? 'held' : 'on the island', centre_px: P(artC), tip_px: P(artC.clone().addScaledVector(artAxis, ARTICHOKE.R * ARTICHOKE.stretch)), centre_world: AP.at, axis: AP.axis, rule: ARTICHOKE, bracts: lat(art, ARTICHOKE.arms) },
+      artichoke: (() => { const bracts = lat(art, ARTICHOKE.arms), byN = Object.fromEntries(bracts.map((b) => [b.n, b]));
+        // the plate's numerals on this view: numeral k of family F is written at the outer end of its arm, on bract numeral_bract
+        for (const f of PLATE_COUNT.families) for (const k of f.numerals) { const b = byN[k.numeral_bract]; if (b) b['plate_numeral' + f.F] = k.numeral; }
+        const plate_count = PLATE_COUNT.families.map((f) => ({ F: f.F, winding_on_plate: f.winding, numerals: f.numerals.map((k) => ({ numeral: k.numeral, arm: k.arm, bracts: k.bracts,
+          numeral_bract: k.numeral_bract, numeral_bract_px: byN[k.numeral_bract]?.px ?? null, numeral_bract_faces_camera: byN[k.numeral_bract]?.faces_camera ?? null,
+          // where the numeral's bract is round the back in this view: the outermost bract of the same arm that faces the camera
+          last_facing_bract: [...k.bracts].reverse().find((n) => byN[n]?.faces_camera) ?? null })) }));
+        return { state: held ? 'held' : shot.art === 'upright' ? 'upright (reference view)' : 'on the island', centre_px: P(artC), tip_px: P(artC.clone().addScaledVector(artAxis, ARTICHOKE.R * ARTICHOKE.stretch)), centre_world: AP.at, axis: AP.axis, rule: ARTICHOKE,
+          plate_count, bracts }; })(),
       romanesco: { centre_px: P(romC), tip_px: P(romC.clone().addScaledVector(romAxis, ROMANESCO.R * ROMANESCO.stretch)), centre_world: ROM_ISLAND.at, axis: ROM_ISLAND.axis, rule: ROMANESCO, florets: lat(rom, ROMANESCO.arms) },
       plan_time: shot.time || null, position: shot.position || null,
     };

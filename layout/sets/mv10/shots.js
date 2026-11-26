@@ -161,14 +161,20 @@ export const SHOTS = [
     intent: 'Identical camera and pose to BR6; everything except her is removed. Bare paper with one thing left on it.' },
 
   // ================================================================ VERSE 3 2:54.7-3:19.1 (the party at 115%; the sun going down)
-  { id: 'V3a', lens: 24, space: 'yard', time: '2:54.7-2:57.0', section: 'Verse 3', pos2: 'outside', amp: 115,
-    pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.46], far: 60,
-    header: 'Verse 3 2:54.7: "Housewarming, lemonade from the yard": the party at sundown, from the deck',
-    intent: 'Wide from the deck’s far corner, down the yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, the fire poi starting, and the giant lemon tree by the NNE fence with pomelo-sized lemons, she and first love under it. The house’s shadow covers the whole yard; only the top of the lemon canopy still has sun.',
-    figs: partyFigs(jadeTree(), heTree()) },
+  // V3a RESTAGED 2026-11-25 (r2 review, Jade): "this should be a time before the party where she and the childhood
+  // friend are picking lemons and making a punch bowl of lemonade for the guests, no guests have arrived yet, it's early
+  // in the day, the lemons should be pomelo shaped". Same camera (the deck's far corner, down the yard); the morning yard,
+  // empty: she reaches up into the tree, the friend holds the bowl (V3b's staging, seen wide). No guests, no poi, no first love.
+  { id: 'V3a', lens: 24, space: 'yard', time: '2:54.7-2:57.0', section: 'Before the party', pos2: 'outside', amp: 115,
+    pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.46], far: 60, bowl: [10.51, Y(1.0, GRADE), 18.8],
+    header: 'Verse 3 2:54.7: "Housewarming, lemonade from the yard": before the party (10:30), she and the childhood friend picking the pomelo-sized lemons, wide from the deck',
+    intent: 'Wide from the deck’s far corner, down the empty morning yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, and the giant lemon tree by the NNE fence with pomelo-sized lemons. She reaches up into the tree for one; the childhood friend (face never drawn) beside her holds the bowl with the first lemons in it. No guests yet, no poi, no first love.',
+    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'cup', palm: 'up', fingers: 'fwd' }, L: 'side' }),
+      friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] },
+        L: { to: [10.64, Y(1.06, GRADE), 18.72], hand: 'cup', palm: 'up', fingers: 'fwd' }, R: { to: [10.38, Y(1.06, GRADE), 18.88], hand: 'cup', palm: 'up', fingers: 'fwd' } }) } },
   // V3b RESTAGED 2026-11-25 (late): Jade: the lemonade was made BEFORE the party: she and the childhood friend picked the
   // lemons; first love, Z and the guests had not arrived. So this is the picking, in the early-afternoon sun (section
-  // 'Before the party', 14:00, OUR clock): her hand up to a lemon, the friend beside her holding the bowl. No first love
+  // 'Before the party', 10:30 since Jade's r2 review (was 14:00), OUR clock): her hand up to a lemon, the friend beside her holding the bowl. No first love
   // (he stood beside her here before: the conflict), no guests, no poi. Same camera and t as before.
   // 2026-11-25 (round 2): Jade: at "housewarming, lemonade from the yard" they pick the lemons AND prepare the lemonade
   // in the kitchen (juicer, rinds, mixing), like a botanical illustration. Two shots inside V3b's old slot (177.0-179.19):
@@ -176,12 +182,12 @@ export const SHOTS = [
   { id: 'V3b', lens: 24, space: 'yard', time: '2:57.0-2:58.0', section: 'Before the party',
     timing: { timeline: TL, line: 'Housewarming, lemonade from the yard', start_s: 177.0, end_s: 178.043, words: '"(lemon)ade from the"', was: '177.0-179.2 (V3b alone)' }, pos2: 'inside', amp: 115, hideParts: { jade27: ['head'] },
     pos: [9.85, Y(1.52, GRADE), 17.85], target: [10.3, Y(1.98, GRADE), 18.7], bowl: [10.51, Y(1.0, GRADE), 18.8],
-    header: 'Verse 3 2:57.0 (memory, before the party, 14:00): picking the lemons with the childhood friend; her hand comes up to one (then V3b_prep)',
+    header: 'Verse 3 2:57.0 (memory, before the party, 10:30): picking the lemons with the childhood friend; her hand comes up to one (then V3b_prep)',
     intent: 'Inside: her view up into the tree, early afternoon, before anyone else has come. Pomelo-sized lemons in the sun; her hand rises into frame toward the nearest; just ahead of her the childhood friend (back to us, face never drawn) looks up into the tree, holding the bowl of the first lemons (below frame here; sidecar shows it). They will make the lemonade from these.',
     figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'cup', palm: 'up', fingers: 'fwd' }, L: 'side' }),
       friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] },
         L: { to: [10.64, Y(1.06, GRADE), 18.72], hand: 'cup', palm: 'up', fingers: 'fwd' }, R: { to: [10.38, Y(1.06, GRADE), 18.88], hand: 'cup', palm: 'up', fingers: 'fwd' } }) } },
-  // the lemonade prep (2026-11-25 round 2): on the pale dining table in the 14:00 sun from the SSW dining window (OUR choice
+  // the lemonade prep (2026-11-25 round 2): on the pale dining table in the morning daylight (10:30) from the SSW dining window (OUR choice
   // of surface; Jade said "in the kitchen"). Straight down, ORTHOGRAPHIC, like the plates (artichoke, romanesco): the cut
   // lemons' segments, the ribbed juicer, the rinds, the bowl being stirred; only their hands and forearms enter. No party
   // food is out yet. Postdoc Jade at the table's NNE end presses a half on the juicer; the childhood friend (face never
@@ -191,7 +197,7 @@ export const SHOTS = [
     pos: [1.0, 2.36, 7.66], target: [1.0, 0, 7.66], up: [0, 0, -1], near: 0.05, far: 5, hide: ['dining pendant (paper drum)'], light: { amb: 0.7, litAmb: 1.3 },
     subject: [1.3, DINING.h, 7.6],
     timing: { timeline: TL, line: 'Housewarming, lemonade from the yard', start_s: 178.043, end_s: 179.19, words: '"yard" (held to the line end; V3c follows at 179.2)' },
-    header: 'Verse 3 2:58.0 (memory, before the party, 14:00): the lemonade prep, flat-lay from straight above (botanical plate)',
+    header: 'Verse 3 2:58.0 (memory, before the party, 10:30): the lemonade prep, flat-lay from straight above (botanical plate)',
     intent: 'Inside the memory, straight down on the dining table in the early-afternoon sun from the SSW window (frame left): a cutting board with two pomelo-sized lemons cut across (ten segments, pith, seeds: the botanical cross-section), the knife; the glass reamer with a half pressed on it under her hand; a bowl of picked lemons, two still with leaves; a bowl of squeezed rinds; sugar; a water pitcher; the giant punchbowl half full, the childhood friend stirring it with a long wooden spoon. Only hands and forearms in frame: hers from the right (NNE end), his from the bottom (ESE side). Paint it like the artichoke plate: engraved line, pale ground, one gold accent at most.',
     figs: { jade27: { at: [2.22, 7.42], yaw: -90, legs: 'stand', spine: { bend: 24 }, head: { look: [PREP.reamer.at[0], 0.82, PREP.reamer.at[1]] },
         R: { to: [PREP.reamer.at[0], 0.95, PREP.reamer.at[1] - 0.01], hand: 'cup', palm: 'down', fingers: 'fwd' },
@@ -215,7 +221,9 @@ export const SHOTS = [
     header: 'Verse 3 3:03.8: "He said I absolutely nailed it": by the Expedit, first love leans in and whispers to her (back of his head)',
     intent: 'Outside, over first love’s right shoulder (back of his head only, frame left, close to her ear). She stands by the Expedit, in front of its truth half, facing the room; he has stepped in close at her right and bends to whisper. We do not hear it; she listens at 115%, eyes to the room, the grin coming. Ceiling light, dusk in the front window behind the camera; guests at the couch and the glass table out of focus.',
     figs: { ...crowd({ drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'T1'] }), jade27: { at: SHELF_MARK, yaw: 195, legs: 'stand', head: { look: [3.6, 1.5, 0.9], tilt: 6 }, L: 'side', R: cupArm('R', 195) },
-      firstLove27: { at: HE_NAIL, yaw: yawTo(HE_NAIL, SHELF_MARK), legs: 'stand', spine: { bend: 15, side: -8 }, head: { look: 'jade27:earR', tilt: -10 }, L: 'side', R: 'side' } } },
+      firstLove27: { at: HE_NAIL, yaw: yawTo(HE_NAIL, SHELF_MARK), legs: 'stand', spine: { bend: 15, side: -8 }, head: { look: 'jade27:earR', tilt: -10 }, L: 'side',
+        // Jade (r2 review): "maybe his hand and arm could be up to imply whispering": his right hand raised, cupped between his mouth and her right ear
+        R: { to: 'jade27:earR', off: [0.07, -0.03, -0.035], hand: 'cup', palm: [-0.91, 0, 0.41], fingers: 'up', elbow: 'down' } } } },
   // Jade (2026-11-25): on "I nod, past hour reviewed" the camera PUSHES IN to her temple; spectrograms of her voice follow.
   // Timeline -2sm full mix: line 189.11-191.52, "nod," 189.23-189.79. MOVED 2026-11-25 (round 2): Jade: the nod is at the
   // SHELF, straight after the "nailed it" whisper (it was never under the lemon tree). She stands on her shelf mark as in
@@ -306,6 +314,12 @@ export const SHOTS = [
 
 // resolve copies
 for (const s of SHOTS) if (s.same) { const o = SHOTS.find((x) => x.id === s.same); Object.assign(s, { ...o, ...s, id: s.id }); }
+
+// her housewarming outfit (Jade, 2026-11-25) in every party shot: black jacket (long sleeves) over a black tee, black
+// boot-cut yoga pants, socks (colour ASSUMED mid-grey). build.js housewarming() adds the tee sliver, the meatball marker
+// and the flare. Also before the party (V3a, V3b, V3b_prep): ASSUMED same outfit, socks outdoors (OPEN: Jade has not answered).
+export const JADE_HOUSEWARMING = { outfit: 'housewarming', top: 0x1b1b1e, legs: 0x151517, sock: 0x8c8c90, sleeves: 'long' };
+for (const s of SHOTS) if (s.figs?.jade27) s.figs.jade27 = { ...s.figs.jade27, costume: JADE_HOUSEWARMING };
 
 // beam mask twins: every camera has a `beam_<id>` twin (every light that is on in the shot, together) and one per real
 // light with a shaft or a footprint: beam_<id>__sun (shafts through the openings, while the sun is up) and

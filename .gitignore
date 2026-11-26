@@ -29,3 +29,9 @@ analysis/m2sm/stems/
 
 # Jade's hand drawing of the closet (2026-11-25), private like the other refs
 inputs/refs_closet.png
+inputs/ref_artichoke.png
+inputs/refs_ias/
+
+# first-love rejected takes (not face-checked) and the superseded nude-seal sheet: never public
+cast/first_love/_prompts/*/takes/*.jpg
+cast/first_love/_superseded/fl_H_*

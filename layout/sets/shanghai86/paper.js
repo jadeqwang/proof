@@ -74,3 +74,6 @@ export function pieceMesh(q, map, look = PAPER_LOOK) {
   for (let i = 0; i < pos.count; i++) { const p = map(pos.getX(i), pos.getY(i)); pos.setXYZ(i, p.x, p.y, p.z); }
   geo.computeVertexNormals(); const m = mk(geo, look); m.userData.double = true; return m;
 }
+
+// r3: split one given piece in two (its two halves fit back together along one ragged tear); returns [a, b, tear]
+export function splitPiece(q, seed) { const [a, b] = split(q, rng(seed)); const T = a.e.find((e) => e && b.e.includes(e) && !q.e.includes(e)); return [a, b, T]; }

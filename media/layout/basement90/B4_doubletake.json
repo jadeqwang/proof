@@ -200,8 +200,8 @@
   },
   "jade7.R": {
    "px": [
-    776.6,
-    587.6
+    801.9,
+    598.2
    ],
    "shape": "fist",
    "in_frame": true,
@@ -258,7 +258,7 @@
   }
  ],
  "warnings": [],
- "intent": "From the open floor, front-left: Dad has rolled back and swivelled to his left, hands still over the keys, and stares at her (three-quarter on his face). She has hopped off the spokes and stands in the open, in the screen light, in profile: right hand curled into a fist like a paw, raised to her mouth, pretending to lick her wrist, head cocked. Not hiding.",
+ "intent": "From the open floor, front-left: Dad has rolled back and swivelled to his left, hands still over the keys, and stares at her (three-quarter on his face). She has hopped off the spokes and stands in the open, in the screen light, in profile: right hand curled into a fist like a paw, raised to her mouth, pretending to lick her wrist (a small gap: the tongue does not touch), head cocked. Not hiding. She is 7-8, about 1.25 m.",
  "time": "2:19.8-2:21.4 \"Good catch!\" (drums stop)",
  "position": "outside (on Dad)",
  "beam": {
@@ -587,7 +587,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.53
+    "R": 0.57
    },
    "headTurn": 1
   }

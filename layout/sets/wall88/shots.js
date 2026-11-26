@@ -1,26 +1,65 @@
-// INSIDE THE WALL, 1988 camera table ("Proof", chorus 1, 1:37.4-1:54.5, into the tail at 1:54.5; -2sm master, retimed 2026-11-25). Two camera positions:
-// outside (frontal on her face, looking down the cavity toward -z) and inside (along her eye-line, toward +z).
+// INSIDE THE WALL, 1988 camera table ("Proof", chorus 1, 1:37.4-1:54.5, into the tail at 1:54.5; -2sm master, retimed 2026-11-25).
+// r3 (Jade's r2 review, 2026-11-25): she STANDS, her back against the side wall (the brick), facing the boards, and is
+// slowly turning her head to look through the blade of light; WL_in shows the single file of restaurant workers along
+// the brick (they blink in and out) and then the empty cavity (WL_in_empty, the frame the Voyager pull-back starts from).
+// Two camera positions: outside (down the cavity toward -z, at her face) and inside (along the file, toward +z).
 // No header and no gold field note in this scene. Fields as attic88_day/shots.js.
 // Set points usable as targets: mote, eye, crack, bladeMid. Every shot has a twin `beam_<id>` (flat mode = beam mask).
-import { SEAT, EYE } from './layout.js';
+import { STAND, EYE, WORKERS, CAVITY, bladeY } from './layout.js';
 
-// knees up, arms round them, back to the closed end; she is holding still. headAt puts her right eye in the blade.
-const jadeStill = (o = {}) => ({ at: SEAT.at, yaw: SEAT.yaw, legs: 'knees', spine: { bend: 8 }, head: { look: [0, EYE[1], 1.0] },
+// r2 pose (seated, knees up), superseded by jadeStand; kept for reference
+const jadeStill = (o = {}) => ({ at: [0.0, -0.45], yaw: 0, legs: 'knees', spine: { bend: 8 }, head: { look: [0, EYE[1], 1.0] },
   L: { to: 'self:kneeL', off: [0.0, 0.05, 0.0], hand: 'relax', palm: 'down' }, R: { to: 'self:kneeR', off: [0.0, 0.05, 0.0], hand: 'relax', palm: 'down' }, ...o });
 
+// r3: standing, back flat to the brick, facing the boards; head turned STAND.turn deg toward her left (+z, the camera),
+// mid-way through turning back toward the crack. Both palms flat back against the brick beside her hips.
+const BRICK_X = CAVITY.x1 - 0.008;
+const palmsToBrick = (z, y, dz) => ({
+  L: { to: [BRICK_X, y, z + dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' },
+  R: { to: [BRICK_X, y, z - dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } });
+const jadeStand = (o = {}) => ({ at: STAND.at, yaw: STAND.yaw, legs: 'stand', head: { turn: STAND.turn, nod: 3 },
+  ...palmsToBrick(STAND.at[1], 0.52, 0.13), ...o });
+
+// the workers: backs to the brick, facing the boards (-x), holding their breath (see layout.js WORKERS)
+const W_X = CAVITY.x1 - 0.115;
+function worker(w) {
+  const base = { at: [W_X, w.z], yaw: -90, legs: 'stand' };
+  switch (w.pose) {
+    case 'mouth': return { ...base, head: { nod: 8, turn: 12 }, R: { to: 'self:mouth', off: [-0.035, -0.01, 0], hand: 'flat', palm: 'back', fingers: 'left', elbow: 'down' },
+      L: { to: 'side', hand: 'fist' } };
+    case 'clasp': return { ...base, head: { nod: 22 }, L: { to: 'self:waist', off: [-0.13, 0.02, 0.0], hand: 'grip', palm: 'in', fingers: 'down' },
+      R: { to: 'self:waist', off: [-0.15, 0.04, 0.0], hand: 'grip', palm: 'in', fingers: 'down' } };
+    case 'pray': return { ...base, head: { nod: 26 }, L: { to: 'self:chin', off: [-0.09, -0.07, 0.012], hand: 'flat', palm: 'in', fingers: 'up' },
+      R: { to: 'self:chin', off: [-0.09, -0.07, -0.012], hand: 'flat', palm: 'in', fingers: 'up' } };
+    case 'flat': return { ...base, head: { nod: -8 }, ...palmsToBrick(w.z, 0.80, 0.2) };
+    default: throw new Error('pose ' + w.pose);
+  }
+}
+const WORKER_FIGS = Object.fromEntries(WORKERS.map((w) => [w.key, worker(w)]));
+
+// inside camera: down the cavity from the closed end, near the boards, 2 cm above the sheet of light. The rhyme needs
+// the camera at the sheet; the sheet is at her eye where she stands against the brick, and rises toward the boards, so
+// this is her eye-line moved out of the file to the boards side and lifted to the sheet there. Level, along the file.
+const IN_X = -0.15, IN_Y = +(bladeY(IN_X) + 0.02).toFixed(3);
+const IN_CAM = { lens: 28, pos: [IN_X, IN_Y, -0.60], target: [0.10, IN_Y, 2.6] };
+
 const BASE = [
-  { id: 'WL_out', lens: 35, orbit: { at: 'littleJade:eyes', az: 0, el: 0, dist: 1.0 }, aim: ['littleJade:eyes', 0.5, 0.38], focus: ['littleJade'], position: 'outside', time: '1:37.4-1:45.5 and 1:45.5-1:51.0', section: 'Chorus 1 ("Inside?" / "My voice goes blind")', beamAnchor: 'eye',
-    header: '1:37.4 OUTSIDE: frontal, level, locked off; dark, then the blade across one eye',
-    intent: 'The outside position, inside the wall. Square on her face down the length of the cavity, boards frame-left, brick frame-right. "Inside?" is this frame with the light off (dark). Then the blade: a thin sheet from the crack, upper left, across her right eye and the bridge of her nose. "My voice goes blind": her mouth opens just under the light, and closes. Nothing else moves.',
-    figs: { littleJade: jadeStill() } },
-  { id: 'WL_eye', lens: 85, orbit: { at: 'littleJade:eyes', az: 0, el: 0, dist: 0.62 }, aim: ['eye', 0.42, 0.45], focus: ['littleJade'], position: 'outside', time: '1:40.7-1:45.5', section: 'Chorus 1 ("I honestly don\'t know")', beamAnchor: 'eye',
-    header: '1:40.7 OUTSIDE, close: one eye in the blade, following the mote',
-    intent: 'Same axis as WL_out, pushed in to her eyes. The lit eye tracks the mote; the other is in the dark. In full depth: the mote and one eye.',
-    figs: { littleJade: jadeStill() } },
-  { id: 'WL_in', lens: 35, eyeline: { who: 'littleJade', to: [0, EYE[1] + 0.02, 1.0], back: 0.11 }, aim: ['mote', 0.5, 0.5], position: 'inside', time: '1:51.0-1:54.5, start of the 1:54.5 pull-back', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote',
-    header: '1:51.0 INSIDE / RHYME FRAME: along her eye-line; the blade is the diagonal, the mote in it',
-    intent: 'The inside position, and the frame that rhymes with the attic beam. From her eyes along the cavity: the crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees, through the centre of frame. The mote hangs in it, then drops out of the light. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.',
-    figs: { littleJade: jadeStill() } },
+  { id: 'WL_out', lens: 35, orbit: { at: 'littleJade:eyes', az: -8, el: 0, dist: 1.6 }, aim: ['littleJade:eyes', 0.6, 0.3], focus: ['littleJade'], position: 'outside', time: '1:37.4-1:45.5 and 1:45.5-1:51.0', section: 'Chorus 1 ("Inside?" / "My voice goes blind")', beamAnchor: 'eye',
+    header: '1:37.4 OUTSIDE: down the cavity, level, locked off; she stands, back to the brick, turning into the blade',
+    intent: 'r3. The outside position, inside the wall. Down the length of the cavity: boards and the crack frame-left, brick frame-right. She stands with her back flat against the brick, palms on it, facing the boards; her head is turned toward us and slowly turns back toward the crack, and as it turns the thin sheet of light from the crack comes onto her eye. "Inside?" is this frame with the light off (dark). "My voice goes blind": her mouth opens just under the light, and closes. Inside she is scared (heart fast); her face does not know how to show it.',
+    figs: { littleJade: jadeStand() } },
+  { id: 'WL_eye', lens: 85, orbit: { at: 'littleJade:eyes', az: -10, el: 0, dist: 0.62 }, aim: ['littleJade:eyes', 0.5, 0.45], focus: ['littleJade'], position: 'outside', time: '1:40.7-1:45.5', section: 'Chorus 1 ("I honestly don\'t know")', beamAnchor: 'eye',
+    header: '1:40.7 OUTSIDE, close: same staging; her eye turning into the blade',
+    intent: 'r3. Same staging as WL_out, pushed in to her face, three-quarters, turning toward the crack. The blade crosses one eye and the bridge of the nose. She is scared inside, her heart is fast, but her face does not fully know how to recognise it or show it: still, uncertain, not a clear expression of fear.',
+    figs: { littleJade: jadeStand() } },
+  { id: 'WL_in', ...IN_CAM, position: 'inside', time: '1:51.0-1:54.5 (they blink in and out)', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote', workers: true,
+    header: '1:51.0 INSIDE, state A: the file of restaurant workers along the brick, holding their breath',
+    intent: 'r3 (Jade): they blink in and out. A single file of Chinese restaurant workers, backs to the brick (frame-left), facing the boards (frame-right), holding their breath, terrified, some praying silently. They blink in and out of existence and then it is the empty wall space again (WL_in_empty). The blade crosses them at the waist. Faces unreached (strangers): fear and prayer are in hands, shoulders and bowed heads.',
+    figs: WORKER_FIGS },
+  { id: 'WL_in_empty', ...IN_CAM, position: 'inside', time: '1:51.0-1:54.5, end state; start of the 1:54.5 pull-back', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote',
+    header: '1:51.0 INSIDE, state B / RHYME FRAME: the same cavity, empty; the blade is the diagonal',
+    intent: 'r3. The same camera as WL_in with nobody there: the empty wall space. The crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.',
+    figs: {} },
 ];
 const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, header: 'beam mask for ' + s.id }));
 export const SHOTS = BASE.concat(TWINS);

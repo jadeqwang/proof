@@ -1,5 +1,61 @@
 # market93: produce aisle, Marketplace on Oakton, Skokie, 1993
 
+## 2026-11-25 night, keyframes r3 (Jade's r2 review: M4 hands, M4b mid-pull)
+
+- **M4 hands.** Mama's grip (`mamaGrab`, also used by M4b) had its `hold.axis` pointing to the girl's elbow (`:0.1`), which
+  wrapped the four fingers round the FAR side of the forearm: from M4's camera (in front of her) only a block-like back of
+  the hand showed, and the r2 painting invented a stacked double hand. Axis now toward the wrist (`:0.95`): the palm is on
+  top, the thumb round the far side and the four fingers curl down the NEAR side, each finger readable in form/contour.
+  The camera is unchanged. (M5/`mamaLead` keeps its own axis; M5 is footage now anyway.)
+- **M4b restaged mid-pull** (Jade: "mid-action shot of pulling her out of the way from blocking the aisle"). New poses
+  `jadePulled` / `mamaPull` (blocking `PULL`): Mama stepped back to (-0.08, 0.66), yaw 100, stride, leaning back, right hand
+  wrapped round the girl's right forearm; the girl tipped toward her (spine side 10, twist -14), right foot stepping out,
+  right hand dragged off the artichoke (hanging loose), the artichoke held against her stomach in her LEFT hand, eyes still
+  on it. The camera is now pinned by `pos`/`target` to M1's exact camera (from the M1 sidecar), since an orbit on her eyes
+  would follow her lean. Mama's head is cut by the top edge at the eyes (as before). The grandmother and cart unchanged.
+- **M5, M6** are replaced in the cut by the artichoke growth footage (1:22-2:08 of `artichoke_growth_preview.mp4`, shared
+  with kitchen K2-K4); their cameras stay as alternates.
+- Re-rendered the whole set (all modes, beam masks, painter guides).
+
+## 2026-11-25 (artichoke from Jade's ref) (supersedes the artichoke lines below)
+
+Jade gave `inputs/ref_artichoke.png` (a watermarked web photo, gitignored; looked at only, never copied, never sent to a
+model) as THE market artichoke. What was taken from it, as geometry only: a globe head seen from straight above, round in
+plan; broad, thick, cupped bracts that wrap the head and overlap like roof tiles; the outer ones wider and opening outward
+(lobes round the rim), the inner ones tighter toward a closed apex with a small pit; every tip broad, with a V-notch in
+the middle, a small point in the notch and ragged little teeth on the shoulders (the torn look); about 30 bracts visible.
+
+- **One bract layout for the mesh and PLATE XVIII.** `artichoke_spec.mjs` (plain JS, no three) generates all 32 bracts:
+  lattice point, tip frame, width, length, shell, flare, notch, point, teeth, thickness, and `bractPoint()` (the surface).
+  `node layout/sets/market93/artichoke_spec.mjs` writes `artichoke_bracts.json`, which
+  `media/footage/spirals/plants.py` reads (and re-checks `bractPoint` against the JSON's `check` samples). Same bracts,
+  same indices, same hand, same shapes in both. Re-run the spec script after any change to it, then the plate.
+- **Lattice.** Bract n: azimuth n x 137.5078 deg; plan radius sin(theta_n) = 0.038 (n + 0.55) up to theta 1.2 rad, then
+  even steps down the flank (n = 31 at theta ~2.0). The old log lattice (73 bracts) and an equal-area lattice were tried:
+  seen from above, the foreshortened flank makes the eye read 8 and 13. This one reads 5 and 8 from apex to rim.
+- **Counts, measured on `REF_artichoke_top` (sidecar anchors, Delaunay neighbours, bracts n >= 5 facing the camera):**
+  index differences 5: 17, 8: 16, 3: 6, 13: 2. Walking outward on screen, the 8-arms turn clockwise (+40 deg), the
+  5-arms anticlockwise (-131 deg): the plate's hand. Bract n is on arm n % 8 (and n % 5), as before.
+- **Bracts.** Each hangs down from its tip along the meridian on a shell a little outside the bracts above it, so outer
+  bracts cover inner bases. Convex across (margins tucked), tips standing out more toward the rim (flare 0.02-0.30 head
+  radii), 2.5-1.4 mm thick (front, back and rim faces, so the line render outlines each one). Tip outline: rounded
+  shoulders, V-notch, a point in it, 2-3 ragged teeth a side. The tips reach 0.35 spacings past the lattice point toward
+  the apex, so the innermost meet over it (a small pit stays, as in the photo).
+- **Size.** R = 0.045 m: 11.5 cm across the open outer bracts, about 9.5 cm across the closed body, 9 cm tall plus a
+  2.6 cm cut stem (pale cut face). In her hands (M1-M4b) it sits as before (`art:L` / `art:R` unchanged).
+- **Sidecar.** `artichoke.bracts` lists the 32 bracts (was 73) with `arm8`, `arm5`, `arm13`, `px`, `faces_camera`, `w`;
+  the point is the count's anchor (on the exposed part, just below the lattice point), the same point the plate uses.
+- **The plate's count, by bract.** PLATE XVIII Fig. 1 now draws these same bracts (media/footage/spirals/NOTES.md, same
+  date). Its run writes `artichoke_plate_count.json` (do not edit); every sidecar carries it as `artichoke.plate_count`:
+  per family and numeral the arm, its bracts, `numeral_bract` (the plate writes the numeral past it) with its `px` here,
+  and `last_facing_bract` (the outermost bract of that arm facing this camera). Bracts carry `plate_numeral8` /
+  `plate_numeral5`. 8-family numeral bracts: 1 n27, 2 n30, 3 n25, 4 n28, 5 n31, 6 n26, 7 n29, 8 n24.
+  Facing the camera (8 family): M2 / M3 / M7 / M9 1 3 6 8 (2 4 5 7 are on bracts round the far side: put those numerals on
+  `last_facing_bract`, n22 n20 n23 n21, or at the rim where the arm leaves view); M6 1 2 3 7 8; M4 1 2 7 8.
+- **New reference views:** `REF_artichoke_top` (ortho, straight down the axis, frame up = the plate's up, so each bract sits
+  where it sits on the plate) and `REF_artichoke_34` (85 mm, 3/4 from above). The artichoke stands upright on the heap's
+  spot (`art: 'upright'`), the heaps hidden.
+
 Render: `node layout/render.mjs --set market93` (from the repo root). Output in `media/layout/market93/`,
 contact sheets `media/layout/market93/_sheet_{label,line,lit}.jpg`.
 
@@ -48,7 +104,7 @@ The beam volume is also a mesh in the scene (`only: ['beam']`), invisible in the
   the forearm has Jade's body or Mama between it and the grandmother. M4b (M1's camera, with the hand) is where she reads.
 - Inside shots M2, M3, M6 to M9 do not contain the grandmother.
 - The `lit` preview uses one round spot that circumscribes the rectangular footprint; trust `BEAM`, not the preview edge.
-- The artichoke is a rosette of flat scales on a sphere: right spiral counts, generic silhouette.
+- (Superseded 2026-11-25) The artichoke was a rosette of flat scales on a sphere: right spiral counts, generic silhouette.
 - No floor tile lines, no signage text, no checkouts. Bins other than the hero island's aisle side are single lumps.
 
 ## Integration pass, 2026-11-22 (supersedes anything above that contradicts it)

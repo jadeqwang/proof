@@ -276,6 +276,53 @@
     0.068
    ],
    "toward_camera": -0.974
+  },
+  {
+   "name": "sky_fill",
+   "kind": "shadowless sky fill through the whole run of balcony doors (round 2b)",
+   "on": true,
+   "color": "#dfe6ee",
+   "world": [
+    1.5,
+    1.6,
+    4
+   ],
+   "px": [
+    340.2,
+    272.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.907,
+    0.422
+   ],
+   "toward_camera": -0.552,
+   "aim_world": [
+    2.25,
+    0.6,
+    -3
+   ]
+  },
+  {
+   "name": "room_bounce",
+   "kind": "pale walls and ceiling bounce: sky/ceiling above, warm floorboards below (round 2b)",
+   "on": true,
+   "color": "#e6e8ea",
+   "world": [
+    2.25,
+    3,
+    -3
+   ],
+   "px": [
+    809.8,
+    2482.4
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.995,
+    -0.104
+   ],
+   "toward_camera": -0.895
   }
  ],
  "warnings": [],
@@ -1009,11 +1056,12 @@
     -3.265
    ]
   ],
+  "paper_r3": null,
   "sheet_cm": [
    16,
    23
   ],
-  "stack_sheets": 34,
+  "stack_sheets": 200,
   "drift": {
    "table": 128,
    "floor": 468,

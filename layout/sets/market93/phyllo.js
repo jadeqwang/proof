@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { mk, cyl, tag } from '../../engine/core.js';
 import { GOLDEN_DEG, ARTICHOKE, ROMANESCO } from './layout.js';
+import { SPEC, bracts, bractPoint, anchor } from './artichoke_spec.mjs';
 
 const GA = GOLDEN_DEG * Math.PI / 180;
 // lattice point n -> { n, theta, phi, p (on the stretched body), nrm (outward), up (along the surface toward the tip), rho }
@@ -26,24 +27,44 @@ function merge(parts) { // [[geometry, Matrix4]] -> one non-indexed geometry
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('normal', new THREE.BufferAttribute(nor, 3)); return g;
 }
 
-const ART_LOOK = { grey: 0.52, col: 0x6f8a55 }, ART_IN = { grey: 0.4, col: 0x586f48 }, STEM = { grey: 0.45, col: 0x77895a };
-let artGeo = null;
-// the hero artichoke: 61 bracts, each its own mesh (so the line render outlines every one), 8 / 5 spiral arms
+const ART_LOOK = { grey: 0.52, col: 0x6f8a55 }, ART_IN = { grey: 0.4, col: 0x586f48 }, STEM = { grey: 0.45, col: 0x77895a }, CUT = { grey: 0.7, col: 0xc9d39a };
+// spec frame (plate: z = axis to the apex, x / y the plan) -> this group's frame (+y = the tip), in metres.
+// The swap of y and z keeps the hand: n + 1 is clockwise from n seen from the tip, as on PLATE XVIII.
+const toMesh = (p, R) => [R * p[0], R * p[2], R * p[1]];
+const NS = 12, NT = 41;     // grid of one bract face: along (base -> edge) x across (resolves the notch, point and teeth)
+function bractGeo(b, R) {
+  const pos = [], idx = [], at = (f, i, j) => f * NS * NT + i * NT + j;
+  for (const back of [0, 1]) for (let i = 0; i < NS; i++) { const sp = i / (NS - 1);
+    for (let j = 0; j < NT; j++) pos.push(...toMesh(bractPoint(b, sp, -1 + 2 * j / (NT - 1), back).p, R)); }
+  for (let i = 0; i < NS - 1; i++) for (let j = 0; j < NT - 1; j++) {
+    idx.push(at(0, i, j), at(0, i + 1, j), at(0, i, j + 1), at(0, i + 1, j), at(0, i + 1, j + 1), at(0, i, j + 1));
+    idx.push(at(1, i, j), at(1, i, j + 1), at(1, i + 1, j), at(1, i + 1, j), at(1, i, j + 1), at(1, i + 1, j + 1)); }
+  // the rim (the bract's thickness): the free edge and both margins, front to back
+  const ring = [];
+  for (let i = 0; i < NS; i++) ring.push([i, 0]);
+  for (let j = 1; j < NT; j++) ring.push([NS - 1, j]);
+  for (let i = NS - 2; i >= 0; i--) ring.push([i, NT - 1]);
+  for (let k = 0; k < ring.length - 1; k++) { const [i0, j0] = ring[k], [i1, j1] = ring[k + 1];
+    idx.push(at(0, i0, j0), at(1, i0, j0), at(0, i1, j1), at(1, i0, j0), at(1, i1, j1), at(0, i1, j1)); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals();
+  return g;
+}
+let artGeos = null;
+// the hero artichoke (Jade's reference photo; shared bract layout with PLATE XVIII, see artichoke_spec.mjs):
+// 32 broad cupped bracts with notched tips, each its own mesh (so the line render outlines every one), 8 / 5 arms
 export function artichoke() {
-  const A = ARTICHOKE, g = new THREE.Group(), L = lattice(A);
-  if (!artGeo) artGeo = new THREE.SphereGeometry(1, 14, 10);
-  const core = mk(new THREE.SphereGeometry(A.R * 0.9, 20, 14), ART_IN); core.scale.set(1, A.stretch, 1); g.add(core);
-  for (const b of L) {
-    const rho = Math.max(b.rho, 0.004), w = 0.9 * rho, len = 1.15 * rho, t = 0.26 * rho, lift = 0.1;
-    const y = b.up.clone().multiplyScalar(Math.cos(lift)).addScaledVector(b.nrm, Math.sin(lift)).normalize();
-    const x = new THREE.Vector3().crossVectors(y, b.nrm).normalize(), z = new THREE.Vector3().crossVectors(x, y).normalize();
-    const m = mk(artGeo, b.n % 2 ? ART_LOOK : { ...ART_LOOK, grey: 0.58 });
-    m.position.copy(b.p).addScaledVector(y, 0.22 * len).addScaledVector(b.nrm, 0.04 * rho);
-    m.quaternion.setFromRotationMatrix(basis(x, y, z)); m.scale.set(w / 2, len / 2, t / 2);
-    m.userData.bract = b.n; g.add(m);
-  }
-  g.add(cyl(0.011, 0.013, 0.05, STEM, [0, -A.R * A.stretch - 0.02, 0], null, 10));
-  g.userData.lattice = L;
+  const A = ARTICHOKE, g = new THREE.Group(), B = bracts(), R = A.R;
+  if (!artGeos) artGeos = B.map((b) => bractGeo(b, R));
+  // the body under the bracts (closes the apex pit and the gaps low down)
+  const core = mk(new THREE.SphereGeometry(R * 0.74, 24, 16), ART_IN); core.scale.set(1, SPEC.stretch, 1); g.add(core);
+  B.forEach((b, i) => { const m = mk(artGeos[i], b.n % 2 ? ART_LOOK : { ...ART_LOOK, grey: 0.58 }); m.userData.bract = b.n; g.add(m); });
+  // the short cut stem, its cut face pale
+  const yb = -R * 0.86 * SPEC.stretch, sl = 0.026;
+  g.add(cyl(0.0115, 0.0135, sl, STEM, [0, yb - sl / 2 + 0.004, 0], null, 14));
+  g.add(cyl(0.0112, 0.0112, 0.0008, CUT, [0, yb - sl + 0.0036, 0], null, 14));
+  // the lattice the sidecar lists: one point per bract, the count's anchor on its exposed part
+  g.userData.lattice = B.map((b) => { const ap = anchor(b), p = new THREE.Vector3(...toMesh(ap, R));
+    const nrm = new THREE.Vector3(...toMesh(b.Nv, 1)).normalize(); return { n: b.n, theta: b.theta, phi: b.phi, p, nrm, rho: R * Math.sin(b.theta) }; });
   return tag(g, 'THE ARTICHOKE (full depth; 8 / 5 spiral arms)');
 }
 

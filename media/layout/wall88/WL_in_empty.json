@@ -1,0 +1,352 @@
+{
+ "shot": "WL_in_empty",
+ "set": "wall88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.15,
+   1.231,
+   -0.6
+  ],
+  "target": [
+   0.1,
+   1.231,
+   2.6
+  ],
+  "lens_mm": 28,
+  "frame_width_mm": 36,
+  "hfov_deg": 65.47,
+  "vfov_deg": 39.761,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.997,
+   0,
+   0.0779,
+   0,
+   0,
+   1,
+   0,
+   0,
+   -0.0779,
+   0,
+   -0.997,
+   0,
+   -0.15,
+   1.231,
+   -0.6,
+   1
+  ],
+  "viewMatrix": [
+   -0.997,
+   0,
+   -0.0779,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0.0779,
+   0,
+   -0.997,
+   0,
+   -0.1028,
+   -1.231,
+   -0.6099,
+   1
+  ],
+  "projectionMatrix": [
+   1.5556,
+   0,
+   0,
+   0,
+   0,
+   2.7654,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {},
+ "hands": {},
+ "lights": [
+  {
+   "name": "blade",
+   "kind": "bare bulb in the room beyond, through the crack",
+   "on": true,
+   "color": "#ffe2b0",
+   "world": [
+    -1.45,
+    2.3107,
+    0.2
+   ],
+   "px": [
+    3873.2,
+    -1775.6
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.765,
+    0.644
+   ],
+   "toward_camera": -0.144,
+   "aim_world": [
+    -0.23,
+    1.287,
+    -0.25
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "r3. The same camera as WL_in with nobody there: the empty wall space. The crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.",
+ "film": {
+  "time": "1:51.0-1:54.5, end state; start of the 1:54.5 pull-back",
+  "section": "Chorus 1 (\"Nowhere to go\") into Tail 1",
+  "position": "inside"
+ },
+ "beam": {
+  "name": "blade",
+  "kind": "a blade of light through a crack between two boards (bare bulb in the room beyond)",
+  "model": "diverging from a point source",
+  "source_world": [
+   -1.45,
+   2.3107,
+   0.2
+  ],
+  "direction_of_travel": [
+   0.7635,
+   -0.6452,
+   -0.0275
+  ],
+  "aperture_world": [
+   [
+    -0.23,
+    1.2852,
+    -0.6
+   ],
+   [
+    -0.23,
+    1.2852,
+    0.1
+   ],
+   [
+    -0.23,
+    1.272,
+    0.1
+   ],
+   [
+    -0.23,
+    1.272,
+    -0.6
+   ]
+  ],
+  "aperture_px": [
+   [
+    -18154.7,
+    13534
+   ],
+   [
+    1249.9,
+    422.9
+   ],
+   [
+    1249.9,
+    451.5
+   ],
+   [
+    -18154.7,
+    10366.1
+   ]
+  ],
+  "footprints": {
+   "outer wall": {
+    "world": [
+     [
+      0.23,
+      0.8986,
+      -0.9016
+     ],
+     [
+      0.23,
+      0.8986,
+      0.0623
+     ],
+     [
+      0.23,
+      0.8804,
+      0.0623
+     ],
+     [
+      0.23,
+      0.8804,
+      -0.9016
+     ]
+    ],
+    "px": [
+     [
+      3176,
+      -1291
+     ],
+     [
+      251.6,
+      1259.6
+     ],
+     [
+      251.6,
+      1299
+     ],
+     [
+      3176,
+      -1391.3
+     ]
+    ]
+   },
+   "closed end": {
+    "world": [
+     [
+      -0.0013,
+      1.0772,
+      -0.75
+     ],
+     [
+      -0.0012,
+      1.0929,
+      -0.75
+     ],
+     [
+      0.23,
+      0.8986,
+      -0.75
+     ],
+     [
+      0.23,
+      0.8804,
+      -0.75
+     ]
+    ],
+    "px": [
+     [
+      2691.7,
+      -1124.3
+     ],
+     [
+      2691.7,
+      -954.4
+     ],
+     [
+      5822.1,
+      -3598.9
+     ],
+     [
+      5822.1,
+      -3825.5
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   -0.06,
+   1.136,
+   0.15
+  ],
+  "anchor_px": [
+   898,
+   728
+  ],
+  "on_screen": {
+   "from_px": [
+    1049.5,
+    600.6
+   ],
+   "to_px": [
+    747.9,
+    854.4
+   ],
+   "angle_deg": 40.1,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": 0.1,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "physical_slope_deg": 40,
+  "thickness_m": 0.0132,
+  "crack_px": [
+   [
+    -18154.7,
+    13534
+   ],
+   [
+    1249.9,
+    422.9
+   ],
+   [
+    1249.9,
+    451.5
+   ],
+   [
+    -18154.7,
+    10366.1
+   ]
+  ],
+  "note": "a thin planar sheet, level along the cavity: seen along the cavity it is a line at the physical slope"
+ },
+ "mote": {
+  "seed": 1988,
+  "count": 120,
+  "hero_world": [
+   -0.06,
+   1.1359620663880896,
+   0.15
+  ],
+  "hero_px": [
+   898,
+   728
+  ],
+  "path_px": [
+   [
+    898,
+    728
+   ],
+   [
+    895.2,
+    781.4
+   ],
+   [
+    894.8,
+    922.2
+   ]
+  ],
+  "note": "hero -> exit (drops out of the sheet) -> gone"
+ },
+ "points_world": {},
+ "figure_report": {}
+}

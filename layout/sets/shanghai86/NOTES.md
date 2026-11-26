@@ -2,6 +2,69 @@
 
 **Read "2026-11-25 (round 2 answers)" first (just below). It overrides every older section where they differ.**
 
+## 2026-11-26 (round 3: Jade's r2 keyframe review)
+
+Jade's notes (`media/keyframes/r3/JADE_R2_REVIEW.md`) and what was built. Files: `layout.js`, `build.js`, `paper.js`, `shots.js`.
+
+- **V1a, uncle in an ARMCHAIR (my choice: flag).** State A only: the 'across' armchair is pulled up to the table's
+  NORTH end, EAST of her, turned to face her (`UNCLE_CHAIR`, at (-0.78, -3.98), yaw -85; in state B it is back across
+  the table). Why there: the 08:30 sun comes from her SSE (yaw ~35 deg), so nothing due east or north of her can come
+  between her face and the sun. The couch-south-end ('opposite') armchair was 2.6 m away across the table, too far to
+  show her something small. His hands now (-1.35, 0.50, -3.87), 0.42 m in front of her, 8 cm over table height, lit.
+  V1a camera now 62 deg to the window side of her eye-line (was 38): she is three-quarter, lit, his knee and hands at
+  frame right, his head out of frame.
+- **V1b, watch face visible.** The hands are swapped: his RIGHT hand cups palm-up, his LEFT (the watch hand) pinches
+  from above palm-down, so the back of the left wrist and the watch face turn up toward her. New prop `wristWatch()`
+  (band round the forearm, case + face on the back of the wrist). V1b camera 0.62 m (was 0.5), the pellet lower in frame
+  so the wrist and watch are in.
+- **Tiny pieces (V1c, V1d_*, V1h).** New `paperProps()` (build.js) driven by `shot.paper` (`rip`, `held`, `laid`, `bits`)
+  and `splitPiece()` (paper.js). One piece followed through: P0 = generation 6 (2.2 x 3.0 cm). V1c: P0 mid-rip held
+  up at her chin (tilted 35 deg, V1c camera el 5 so her face clears her hands). V1d_1: P0, the tear just starting.
+  V1d_2: its halves (gen 7, ~2.2 x 1.5 cm): left hand holds one up, right hand puts the other down flat at `PD`.
+  V1d_4: the kept half ripped again (two ~1 cm bits, mid-rip); the put-down half lies at PD. (Reading of "takes the
+  half from the clip above": the half she KEPT; flag.) V1d_8: a generation-11 bit (~7 x 8 mm, halves ~4-7 mm)
+  between four fingertips, a close POV (50 mm, 0.26 m). V1h: a heap of 36 gen 9-11 bits (2-8 mm) on the clear patch.
+- **Hands:** tearing pinches via `tip: index` + `pinch` (palm in, thumbs on top, index fingers under, fingers forward
+  and a little down), two pinches 0.9-1.6 cm apart. Child-3 reach limits the hands to ~0.36 m in front of her (just off
+  the table's north edge); further and the arms fall short.
+- **POV cameras (V1d_1/2/4):** new close POV from her eyes onto her hands (35 mm, 0.40 m, el 50); the table's NW corner
+  and two straight edges are in frame (Jade: "coffee table was an impossible shape").
+- **V1d_8 is two cameras:** `V1d_8` (POV hands close-up, start of the pan) and new `V1d_8_end` (the pan's end: from her
+  eyes, low, across the room to Mother in the hall doorway). `V1d_8.move` names the pan.
+- **V1f: relatives at the hall doorway.** Grandmother (now standing), aunt and uncle stand in the hall just past the
+  threshold east of Mother (GM (1.75,-6.36), AU (2.3,-6.42), UL (2.05,-6.8)), leaning in, laughing. The 'across' armchair
+  is empty in state B now. V1f camera: from her eyes, low, 40 mm, onto the doorway. `ADULTS` = the doorway.
+- **V1g:** she turns her head toward the laughter (frame right), now a near-profile (the doorway is behind her left
+  shoulder; the head look is aimed ~40 deg left, not at the doorway itself, so her face still reads).
+- **V1h:** its own POV (was `same: V1d_8`): the heap of tiny bits in the lower middle, the big stack upper right.
+- **Stack:** `PAPER.stack` 34 -> 200 sheets (~7 cm; Jade: "a large stack visible nearby"). Visible in V1c, V1e, V1g, V1h.
+- **V1e** (Jade: Good): camera unchanged, but the set changed visibly since r2 (no lounger, wide doorway, 08:30 bands,
+  big stack): repainted with the r2 pick as a look reference.
+- Renders: all modes + sidecars (`--exclude beam_`), masks, form/contour/light guides. Sidecar `tissue.paper_r3` lists
+  each piece (what, generation, size in cm, world centre).
+
+## 2026-11-25 (round 2b: brighter shade, Jade)
+
+Jade: "the Shanghai living room ... should have higher ambient light, in addition to the visible shadows, so the image
+models can tell what's going on." Lit mode only (`build.js` rig, values in `LIGHTS` in `layout.js`). Sun, staging,
+cameras, flat mode and the beam masks are unchanged (the masks are still sun-only; flat/mask PNGs came out identical).
+
+| lit-mode light | before | after |
+|---|---|---|
+| sun (shadowed directional) | 6.5 | 6.5 (unchanged) |
+| sky point / north point / floor bounce point | 1.3 / 0.6 / 0.55 | unchanged |
+| ambient `0x8a8478` | 0.7 | **1.4** (`LIGHTS.amb.I`) |
+| sky fill: shadowless directional `0xdfe6ee` from the balcony doors, (1.5,1.6,4.0) -> (2.25,0.6,-3.0) | none | **0.9** (`LIGHTS.skyFill.I`) |
+| walls/ceiling bounce: hemisphere `0xe6e8ea` above / `0xb09878` below | none | **0.9** (`LIGHTS.hemi.I`) |
+
+- A per-shot `light: { fill }` multiplier scales all three fill terms (default 1); `light.amb` still overrides the ambient.
+- Result: the shade side of both figures, the couch, the armchairs, the bookcases, the coffee table's apron and the
+  paper bits now read (the shade was near-black). Mean frame grey, before -> after: V1a 175 -> 198, V1b 152 -> 176,
+  V1c 172 -> 195, V1g 171 -> 195, REF_wide 158 -> 180, V1d_4 159 -> 184. The sun bands and
+  stile/pier shadows are still crisp (fill casts no shadows), just with lighter shade between them. Sunlit pale things
+  (mugs, paper, her face) were already near clipping and still are.
+- Light study (`lightstudy/`, same build) re-rendered and the sheets rebuilt.
+
 ## 2026-11-25 (round 2 answers)
 
 Jade's directions (decision page, round 2) and what was built. Files: `layout.js`, `build.js`, `shots.js`, `lightstudy/`,

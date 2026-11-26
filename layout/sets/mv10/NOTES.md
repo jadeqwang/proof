@@ -7,6 +7,24 @@ sh layout/sets/mv10/sheet.sh label line lit flat                       # contact
 python3 layout/gallery.py
 ```
 
+## 2026-11-25 (r2 review): V3a before the party, 10:30; V3_nailed hand up
+
+**Jade:** V3a and V3b are BEFORE the party, early in the day: she and the childhood friend pick the (pomelo-sized)
+lemons and make a punch bowl of lemonade; no guests. V3a is restaged on its old camera as the empty morning yard
+(her reaching into the tree, the friend holding the bowl; V3b's staging seen wide). The "Before the party" clock moved
+from 14:00 to 10:30 (**ASSUMED**, "early in the day"; sun az 132, elev 36). V3_nailed: his right hand is raised,
+cupped between his mouth and her right ear (Jade: "his hand and arm could be up to imply whispering").
+
+## 2026-11-25: her housewarming outfit (Jade)
+
+**Jade:** thin black jacket, NASA meatball on the chest, over a fitted black tee with an SR-71 (planform from above,
+angled down-left, dark grey tone-on-tone, barely visible: jacket on), boot-cut black yoga pants, socks. In every party
+shot (`shots.js` JADE_HOUSEWARMING; `build.js` housewarming() adds a 4 cm tee sliver, a blue 8 cm meatball disc on her
+LEFT chest and the boot-cut flare: a cone from the knee to a hem 1.2 cm off the floor, 0.07 m radius). **ASSUMED:**
+zip front worn unzipped, nearly closed; hip length; socks plain mid-grey. Before the party (V3a, V3b, V3b_prep, now 10:30) she wears
+the same outfit, socks outdoors (**ASSUMED**; OPEN: same outfit then? shoes in the yard?). Also socks on the lawn in
+V3a / SI1 (party in the yard): shoes outside? Sheet: `cast/jade_27/j27_costume_housewarming_v1.jpg`.
+
 ## 2026-11-25 (round 2 answers): kitchen dressing, the new room crossing, the nod at the shelf, the lemonade prep
 
 Supersedes the sections below where they differ. **Jade** = her answer; **ASSUMED** = our choice to make it buildable;

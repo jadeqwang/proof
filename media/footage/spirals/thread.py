@@ -23,6 +23,7 @@ F32 = np.float32
 GOLD_LIGHT = np.array([0.76, 0.57, 0.20], F32)     # comp.py's gold pencil, light pressure
 GOLD_DARK = np.array([0.50, 0.36, 0.12], F32)      # ... where the lead bit
 GOLD_LEAF = np.array([0.93, 0.79, 0.43], F32)      # burnished: where the stroke runs across the light
+GOLD_BRIGHT = np.array([1.00, 0.80, 0.18], F32)    # the line being drawn now (Jade, r2 review: "each line ... in bright gold, one at a time")
 PAPER = np.array([0.925, 0.885, 0.795], F32)       # frost's paper (the clearance)
 KEY_PAD = 1.4                                       # keyline: canvas px beyond the gold on each side
 UMBER = np.array([0.30, 0.20, 0.08], F32)          # the keyline under the gold (as gold leaf is laid over a drawn line)
@@ -162,10 +163,12 @@ class Gold:
         self.tooth = tooth.ravel()
         self.items = []
 
-    def add(self, strokes, t0, t1, alpha_fn=None, ease=True, clear=False):
+    def add(self, strokes, t0, t1, alpha_fn=None, ease=True, clear=False, bright_fn=None):
+        """bright_fn(t) in 0..1: how far the stroke is lifted to bright gold (solid, untoothed, GOLD_BRIGHT)."""
         Ls = np.array([max(s.length, 1e-3) for s in strokes])
         c = np.concatenate([[0], np.cumsum(Ls)]) / Ls.sum()
-        self.items.append(dict(strokes=strokes, t0=t0, t1=t1, c=c, alpha=alpha_fn, ease=ease, clear=clear))
+        self.items.append(dict(strokes=strokes, t0=t0, t1=t1, c=c, alpha=alpha_fn, ease=ease, clear=clear,
+                               bright=bright_fn))
 
     def render(self, t):
         """-> (rgb premultiplied? no: straight colour (H, W, 3), alpha (H, W)) at output resolution."""
@@ -195,6 +198,7 @@ class Gold:
             fa = it['alpha'](t) if it['alpha'] else 1.0
             if fa <= 0.002:
                 continue
+            br = float(it['bright'](t)) if it.get('bright') else 0.0
             for k, s in enumerate(it['strokes']):
                 if u <= it['c'][k] or len(s.idx) == 0:
                     continue
@@ -209,6 +213,9 @@ class Gold:
                 k_dark = np.clip((s.pr - 0.85) * 2.5 + (0.5 - take) * 0.5, 0, 1)
                 col = GOLD_LIGHT[None] + (GOLD_DARK - GOLD_LIGHT)[None] * k_dark[:, None]
                 col = col + (GOLD_LEAF - col) * (0.55 * sheen * take)[:, None]
+                if br > 0:                                              # the live line: solid bright gold
+                    a = a + (s.cov * front * fa - a) * br
+                    col = col + (GOLD_BRIGHT[None] + (GOLD_LEAF - GOLD_BRIGHT)[None] * (0.35 * sheen)[:, None] - col) * br
                 # the keyline first (faint umber, a little wider), then the gold over it
                 ka = s.key * front * 0.42 * fa
                 a_tot = a + ka * (1 - a)

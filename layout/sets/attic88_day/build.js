@@ -8,7 +8,16 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { matsAndPillows, textbooks4, quilt4 } from '../attic88/v4.js';
 import { ROOM, roofY, WINDOW, DOOR, STAIRWELL, PROPS, SUN, SUN_DIR, BEAM, beamAxis, AXIS_FLOOR_T, FROST, FERN, READING, KEYS, keysCorners, MOTE, LIGHTS } from './layout.js';
-import '../_cast.js';   // the shared cast table (this set uses the engine's littleJade and mama)
+import { addCast, CAST, PROP } from '../_cast.js';   // the shared cast table (this set uses the engine's littleJade and mama)
+import { footwear } from '../basement90/kit.js';    // set-local socks (basement90's footwear(), read-only import)
+
+// r3 (Jade 2026-11-25): at the paper keys she is 4.5, not 5, and in socks. No 4.5 kind in the engine or _cast.js, so a
+// SET-LOCAL kind `child4h` = the mean of the engine's child4 and child5 proportions, and a set-local cast key `jade4h`
+// (littleJade's look, 1.045 m: 50th-percentile girl at 4.5 is about 1.05 m; littleJade at 5 is 1.08 here). Flagged in NOTES.
+{ const a = PROP.child4, b = PROP.child5, mean = Object.fromEntries(Object.keys(b).map((k) => [k, +((a[k] + b[k]) / 2).toFixed(4)]));
+  addCast({ jade4h: { ...CAST.littleJade, name: 'little Jade (4.5)', h: 1.045, kind: 'child4h' } }, { child4h: mean }); }
+// white cotton crew socks (cuff ~9 cm up the shin at her size), same construction as basement90 jade7
+export const SOCKS = { jade4h: { cuff: { h: 0.075, look: { grey: 0.92, col: 0xeeeae0 } } }, littleJade: { cuff: { h: 0.075, look: { grey: 0.92, col: 0xeeeae0 } } } };
 import { beamSolid, beamMesh, beamWire, beamSidecar } from './beam.js';
 
 const WOOD = { grey: 0.45, col: 0x5a3f2a }, WOOD_D = { grey: 0.32, col: 0x3d2a1c }, FLOOR = { grey: 0.55, col: 0x6a4a30, recvShadowLine: true };
@@ -97,11 +106,20 @@ function props() {
   const g = new THREE.Group();
   matsAndPillows(g); textbooks4(g, 'stack');
   for (const who of ['mama', 'littleJade']) g.add(quilt4({ who, mode: 'folded' }, {}).group);   // beds made: both quilts folded at the foot
-  // the paper keyboard, in the beam
-  { const { at: [x, z], yaw, w, d } = KEYS; const grp = new THREE.Group(); grp.position.set(x, 0.001, z); grp.rotation.y = rad(yaw);
+  // the paper keyboard, in the beam (r3, Jade: flat printed paper, the keys never depress; real key sizes, white margins)
+  // Paper = two A4 sheets landscape taped end to end (KEYS.w x KEYS.d); the printed keyboard (KEYS.kb) is centred on it with
+  // white margins; white keys 23.5 x 150 mm, black keys 13.7 x 95 mm from the far edge. Everything is ink on paper:
+  // sub-millimetre, nothing raised. One strip of clear tape over the seam, two map-fold creases across the depth.
+  { const { at: [x, z], yaw, w, d, kb } = KEYS; const grp = new THREE.Group(); grp.position.set(x, 0.001, z); grp.rotation.y = rad(yaw);
     grp.add(box(w, 0.0008, d, { grey: 0.98, col: 0xf0ece0, recvShadowLine: true }, [0, 0.0004, 0]));
-    const n = KEYS.whites, kw = w / n; for (let k = 1; k < n; k++) grp.add(box(0.0015, 0.0011, d * 0.96, { grey: 0.15, col: 0x222222, noCast: true }, [-w / 2 + k * kw, 0.0006, 0]));
-    for (const k of [0, 1, 3, 4, 5, 7, 8, 10, 11, 12]) grp.add(box(kw * 0.6, 0.0012, d * 0.58, { grey: 0.08, col: 0x111111, noCast: true }, [-w / 2 + (k + 1) * kw, 0.0007, -d * 0.21]));
+    const n = kb.whites, kw = kb.white[0], KL = kb.white[1], x0 = -n * kw / 2, zf = -KL / 2;   // keyboard is centred on the paper
+    const ink = { grey: 0.15, col: 0x222222, noCast: true }, inkB = { grey: 0.08, col: 0x111111, noCast: true };
+    for (let k = 0; k <= n; k++) grp.add(box(0.0012, 0.0002, KL, ink, [x0 + k * kw, 0.0009, 0]));        // key outlines, incl. both ends
+    for (const zz of [zf, -zf]) grp.add(box(n * kw, 0.0002, 0.0012, ink, [0, 0.0009, zz]));             // far and near edge of the keyboard
+    const BO = [[1, -2.3], [2, 2.3], [4, -3.3], [5, 0], [6, 3.3]];                                         // boundary index in the octave, offset mm
+    for (let o = 0; o < n / 7; o++) for (const [b, off] of BO) grp.add(box(kb.black[0], 0.0002, kb.black[1], inkB, [x0 + (o * 7 + b) * kw + off / 1000, 0.001, zf + kb.black[1] / 2]));
+    grp.add(box(0.019, 0.0003, d, { grey: 0.9, col: 0xe8eef0, noCast: true }, [0, 0.0011, 0]));         // clear tape over the seam
+    for (const cx of [-w / 4, w / 4]) grp.add(box(0.0008, 0.0001, d, { grey: 0.82, col: 0xd8d4c8, noCast: true }, [cx, 0.00085, 0]));   // fold creases
     g.add(tag(grp, 'paper piano keys (printout)')); }
   // the reading spot at the sill: a folded cushion to kneel on, a book left on the sill board
   { const C = READING.cushion; const c = box(C.w, C.t, C.d, { grey: 0.74, col: 0x8a6a52 }, [C.at[0], C.t / 2, C.at[1]]); c.rotation.y = rad(-4); g.add(tag(c, 'cushion (reading spot)'));
@@ -151,6 +169,7 @@ export function build(shot, { makeCam }) {
   const extra = (t) => (NAMED[t] ? V(NAMED[t]) : null);
   const { figs } = stage(shot.figs || {}, null, extra);
   for (const f of Object.values(figs)) root.add(f);
+  for (const [who, fw] of Object.entries(SOCKS)) if (figs[who]) root.add(footwear(figs[who], fw));   // socks (Jade r3)
   // camera: shot.eyeline = { who, to, back } puts the camera on that figure's eye-line, `back` metres in front of the eyes
   const cs = { ...shot, orbit: shot.orbit ? { ...shot.orbit, at: fix(shot.orbit.at) } : undefined, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   if (shot.eyeline) { const e = figs[shot.eyeline.who].userData.P.eyes.clone(), to = V(fix(shot.eyeline.to)); cs.pos = e.addScaledVector(to.sub(e).normalize(), shot.eyeline.back ?? 0.12).toArray(); delete cs.orbit; }
@@ -185,7 +204,7 @@ export function build(shot, { makeCam }) {
       panes: Object.fromEntries(Object.entries(perPane).map(([k, s]) => [k, { aperture_px: s.aperture.map((p) => P(p)), floor_px: (s.caps.floor || []).map((p) => P(p)), floor_world: (s.caps.floor || []).map(r3) }])) } }),
     mote: { seed: MOTE.seed, count: MOTE.count, hero_world: MOTE.hero, hero_px: P(V(MOTE.hero)), path_px: [MOTE.hero, MOTE.exit, MOTE.dark, MOTE.reenter].map((p) => P(V(p))), note: 'hero -> exit (leaves the beam through its east face) -> dark -> reenter' },
     frost: { fern_pane: FERN.pane, fern_root_px: P(V(FERN.root)), fern_tip_px: P(V(FERN.tip)), fern_root_world: FERN.root, fern_tip_world: FERN.tip },
-    keys: { corners_px: kc.map((p) => P(V(p))), corners_world: kc, corner_order: 'TL,TR,BR,BL as the player reads it (left = lowest note, top = far edge with the black keys)', whites: KEYS.whites },
+    keys: { corners_px: kc.map((p) => P(V(p))), corners_world: kc, corner_order: 'TL,TR,BR,BL as the player reads it (left = lowest note, top = far edge with the black keys)', note: 'corners of the PAPER; the printed keyboard is centred on it', keyboard: { whites: KEYS.kb.whites, white_mm: [23.5, 150], black_mm: [13.7, 95], size_m: [KEYS.kb.whites * KEYS.kb.white[0], KEYS.kb.white[1]], margins_m: [(KEYS.w - KEYS.kb.whites * KEYS.kb.white[0]) / 2, (KEYS.d - KEYS.kb.white[1]) / 2] } },
     points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'handL', 'handR', 'hip', 'shoulderC'].map((k) => [k, r3(f.userData.P[k])]))])),
   });
   return { set: 'attic88_day', scene, root, cam, rig, near: shot.near ?? 0.3, far: shot.far ?? 9, figs, book: null, panes, lights,

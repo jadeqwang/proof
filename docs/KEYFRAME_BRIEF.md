@@ -20,8 +20,9 @@ same one. The people who love her read her hands.
 ```
 PY=/home/jade/Documents/halys-video/.venv/bin/python        # run from /home/jade/Documents/proof
 $PY tools/kf/kf.py --route codex --out media/keyframes/<set>/<SHOT>_v1.jpg --prompt-file prompts/kf/<set>/<SHOT>_v1.txt \
-    --ref "media/layout/<set>/<SHOT>_line.png:the layout drawing from the 3D set, composition only" \
-    --ref "media/layout/<set>/<SHOT>_flat.png:the lighting guide from the 3D set, white = light, grey = shade" \
+    --ref "media/layout/<set>/<SHOT>_contour.png:the layout drawing from the 3D set: composition, camera and the outline of every object (lines only, no shadows drawn)" \
+    --ref "media/layout/<set>/<SHOT>_form.png:the same view as evenly lit grey clay: what every surface and object is and how far away (tints only tell people, furniture, small props apart; they are not colours)" \
+    --ref "media/layout/<set>/<SHOT>_light.png:the light map: white = in the light, pale grey = weak light, mid grey = shade (where the light falls, not how dark the picture is)" \
     --ref "<face sheet>:<what it is for>" ...
 ```
 
@@ -36,6 +37,24 @@ $PY tools/kf/kf.py --route codex --out media/keyframes/<set>/<SHOT>_v1.jpg --pro
 - Look at every result yourself (Read the image; downscale to about 1400 px wide first with `convert`). Judge it
   against the checklist below. At most THREE takes per shot; if none passes, keep the best, say what is wrong, move on.
 - Record your pick per shot in `media/keyframes/<set>/picks.json`: `{"<SHOT>": {"pick": "<file>", "note": "..."}}`.
+
+## The guides (since 2026-11-25 night: contour / form / light)
+
+Every shot has three painter guides, rendered from the 3D set (`node layout/render.mjs --set <set> --modes
+form,contour,light --nojson`; see `layout/README.md`). Pass them as the first three refs, in this order:
+
+| file | what it tells the painter | caption for `--ref` |
+|---|---|---|
+| `<SHOT>_contour.png` | composition: camera, sizes, positions, every silhouette and crease; NO shadow shapes | the layout drawing from the 3D set: composition, camera and the outline of every object (lines only, no shadows drawn) |
+| `<SHOT>_form.png` | what each surface and object is, all of it readable at mid-to-light values, no cast shadows | the same view as evenly lit grey clay: what every surface and object is and how far away (tints only tell people, furniture, small props apart; they are not colours) |
+| `<SHOT>_light.png` | where the shot's real lights fall (white), weak light (pale grey), shade (50 % grey) | the light map: white = in the light, pale grey = weak light, mid grey = shade (where the light falls, not how dark the picture is) |
+
+- The painting's mood and darkness come from the PROMPT'S WORDS (the LIGHT paragraph), never from the guides: the
+  guides are deliberately bright so nothing is ambiguous. Say in the prompt how dark the shade is and what colour.
+- In the form guide people are blank white clay with grey hair caps; the faint blue-grey things are small props,
+  the beige ones furniture, the grey ones the room. Pale cyan, semi-transparent = glass.
+- `_line.png` / `_flat.png` / `_lit.png` still exist; use `_lit.png` only as an extra mood hint, never as the main
+  light guide (its darks hide form). Do not pass `_line.png` (its grey shadow fills read as extra objects).
 
 ## Prompt skeleton (the working example is `prompts/looktest/ad_out_v1.txt`; read it)
 
@@ -95,6 +114,22 @@ Sections, in this order, each starting with its label in capitals:
 - Family in the 2023 coda: grandfather and grandson are seen against the light as plain dark-wash figures in
   profile. Only her own reflection is drawn.
 
+## Housewarming costume (Jade, 27) (Jade 2026-11-25)
+- mv10, every PARTY shot (bridge, the room crossing, the "nailed it" whisper, the nod / push-in, the greeting, the hug,
+  the yard, silence, chorus 2b): a THIN black zip-front jacket, worn unzipped but hanging nearly closed, long sleeves;
+  the NASA "meatball" on its LEFT chest (her left: frame right when she faces us; blue circle, white stars, white
+  orbit ring, red vector chevron, NASA in white). Under it a fitted black t-shirt with an SR-71 Blackbird print seen
+  from ABOVE (planform, nose angled down-left, reads as a triangle), dark grey on black, subtle; the jacket is ON in
+  every shot, so the print is at most a sliver between the fronts: never paint the whole plane. Boot-cut black yoga
+  pants (snug to the knee, flaring to a hem that covers the heel). Socks, no shoes (sock colour plain mid-grey:
+  ASSUMED). This REPLACES the navy dress, orange belt, pendant, tights and flats of the jade27 A/B/C/H/X sheets for
+  mv10: pass those for her face and body only and say "ignore the navy dress".
+- Sheet: `cast/jade_27/j27_costume_housewarming_v1.jpg` (front, 3/4, back, jacket on; insets: meatball, tee print,
+  hem and sock). Layout: `spec.costume` JADE_HOUSEWARMING in `layout/sets/mv10/shots.js` (black jacket and pants, grey
+  socks, a tee sliver strip and a blue meatball disc marker; flare from the knee).
+- Before the party (V3a, V3b lemon picking, V3b_prep; 10:30): the SAME outfit, socks outdoors (ASSUMED; Jade has not
+  answered: same outfit? shoes outside?).
+
 ## Scene table
 
 | Set (dir under `media/layout/`) | Place, year | Light source | Shade wash to name | Her sheets (dir under `cast/`) | Attention object |
@@ -112,7 +147,7 @@ Sections, in this order, each starting with its label in capitals:
 
 Other sheets: Mama `inputs/refs_chaosmonkey/mama/` (canon, 1988) and `cast/mama/` (resting face, hands); Dad
 `cast/dad/`; first love `cast/first_love/`; strangers `cast/strangers/<who>/`. Each sheet's `.txt` sidecar holds the
-character description that made it: paste from there so the wording stays identical. Per shot, pass 2 guides plus at
+character description that made it: paste from there so the wording stays identical. Per shot, pass the 3 guides plus at
 most 4 sheets: for a close-up the H heads sheet and the hand sheet (children: always both `lj_H_heads_v3`-type and
 the fine-line sheet, see `inputs/refs_chaosmonkey/CANON.md` "Which refs to pass"); for a full figure the H heads and
 the A turnaround; add a pose or hands sheet only if the shot is that pose.
@@ -141,7 +176,7 @@ the A turnaround; add a pose or hands sheet only if the shot is that pose.
 
 ## Checklist for every take
 
-1. Composition matches the layout guide (camera, sizes, positions). No unnamed cubes.
+1. Composition matches the contour guide (camera, sizes, positions); every object is the thing the form guide shows. No unnamed cubes.
 2. Light is bare paper: no yellow, no glow, no painted rays. Shade is one quiet wash in the scene's tint, not black.
 3. Her face is on model for her age (large eyes, strong straight brows, the right hair), with the expression the
    shot calls for and no added smile. Catch-lights present in shade.

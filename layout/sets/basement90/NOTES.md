@@ -1,5 +1,51 @@
 # basement90 — Decatur basement, 1990 (verse 2b 2:16, "Good catch!" 2:21)
 
+## 2026-11-25 night, keyframes r3 (Jade's r2 review: B3 hand, pretend lick)
+
+- **B3_finger camera** az 165 / el 34 / 0.68 m -> az 168 / el 50 / 0.55 m (still over her left shoulder, now from above):
+  at the old height the back of her head hid the whole hand except the index tip; Jade asked for the fully articulated
+  hand. Now the forearm, the back of the hand, the extended index on the glass and the three curled fingers + thumb all
+  show in contour/form, the word marker just right of the fingertip, Dad's head at the right edge.
+- **Pretend lick (B4, B5).** `GROOM.wrist` moved from 2.6 cm to 5 cm in front of her lips (and 1 cm lower): she only
+  PRETENDS to lick (Jade: tongue not touching). The paw now has a visible gap to the mouth in B4 and B5. Intents updated.
+- **B2 gaze:** the head already looks at `word` (her fingertip is on it); the camera sits just behind the glass, so her
+  eyes on her fingertip look almost into the lens, a little to frame left and down. No set change; the prompt now says so
+  (the r2 paint had her eyes off to frame right).
+- **B4 height:** jade7 is 1.22 m (`_cast.js`), within 7-8 years (~1.2-1.3 m); unchanged.
+- Re-rendered the whole set (all modes, beam masks, painter guides).
+
+## Socks, slippers, more ambient, 2026-11-25 late (supersedes "bare feet" and the CEIL/AMB values below)
+
+Jade: "7-8 year old Jade in the basement should be wearing socks, and her dad should be wearing socks and slippers in
+all those scenes." And: "the basement should have higher ambient light, in addition to the visible shadows, so the image
+models can tell what's going on."
+
+- **Costume** (`house.js`): `JADE_BASEMENT` (was `BAREFOOT`) = summer top, short sleeves, sock 0xeeeae0; `DAD_BASEMENT`
+  = sock 0x74767c; both on every basement figure spec (`shots.js`). `FOOTWEAR` lists the set-local meshes per cast key.
+  **ASSUMED, flag to Jade:** her socks plain white cotton crew socks; his socks mid grey; his slippers plain brown
+  (0x5a4434) felt slip-on scuffs, backless (the grey sock heel shows), thin sole. Alternatives: closed-heel felt
+  slippers (`slipper.open: 0`), or the cloth/plastic house slippers many Chinese households used.
+- **Engine has only a sock colour** (`costume.sock` on its foot mesh), no shoes, no cuff. Built set-locally in `kit.js`
+  `footwear(fig, spec)` (engine untouched; `build.js` adds it after `stage()`): a sock shell 2 mm over the engine foot
+  (own colour and flat grey), a sock cuff tube 6 cm (her) / 7 cm (him) up the shin, 3 mm proud of the trouser leg
+  (radius from the engine's leg arithmetic: 0.019 / 0.036 H girthK), one line-mode id group per sock so only the cuff
+  top draws; the slipper = a sole traced from the foot's footprint + a vamp arching over the foot from 42 % of its
+  length to the toe, fitted by raycasting onto the engine foot surface (6 mm wall), closed to a point at the toe.
+- **Looked at:** B1 line: two white socks with a clean cuff line over her trouser hems on the spokes; Dad's brown scuff
+  behind, the opening edge reads. A close test camera on Dad's feet (removed): scuff, open heel, sock cuff all read.
+  Known: the engine's heel is a ball, so his sock heel bulges behind the scuff; a small notch at the slipper toe tip.
+  B0_wide: feet tiny but present. B4 / B5: feet out of frame (no change needed).
+- **Ambient** (`build.js`, lit mode): `CEIL_LIT` 3.2 -> 3.6, `AMB_LIT` 0.7 -> 1.35, new shadowless warm
+  `HemisphereLight` fill 0xffe2bc / 0x4a4036 at `FILL_LIT` 1.0 (per-shot `light.fillLit`). The bulb still casts
+  soft shadows; the screen spot (unchanged, 5) stays the cool key at the desk. Flat mode unchanged.
+  Looked at: B0_wide every surface reads (stair, heater, joists, desk, chair); B4 two-shot, desk and joists clear;
+  B3 the monitor, printer, PC and both heads read; B5 face, paw and desk; B2 the room behind them now reads.
+- **B2 far 4 -> 7:** the far plane was cutting the front wall / stair (it rendered as the black lit background). B2's
+  faces still clip toward white in the screen key at 0.3 m (pre-existing; the screen spot is untouched).
+- Painter brief (`media/keyframes/r2/_brief_r2.md`) has the costume line. Conflicts not regenerated: lj07 sheets
+  (A/B/C/H sidecars) say "bare feet" and "dark navy stirrup leggings"; Dad v5 A/B say "brown leather shoes"; the plan
+  (Verse 2b row) and old B1 prompts say "bare feet".
+
 ## Ceiling light, 2026-11-25 (round 2 answers; supersedes "the only light" / "bare bulb off" below)
 
 Jade: the B4 double-take image is too dark, she can't see what is going on; the basement had more ambient light from a

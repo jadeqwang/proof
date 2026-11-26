@@ -825,7 +825,26 @@
    ]
   ],
   "corner_order": "TL,TR,BR,BL as the player reads it (left = lowest note, top = far edge with the black keys)",
-  "whites": 14
+  "note": "corners of the PAPER; the printed keyboard is centred on it",
+  "keyboard": {
+   "whites": 21,
+   "white_mm": [
+    23.5,
+    150
+   ],
+   "black_mm": [
+    13.7,
+    95
+   ],
+   "size_m": [
+    0.4935,
+    0.15
+   ],
+   "margins_m": [
+    0.05024999999999999,
+    0.03
+   ]
+  }
  },
  "points_world": {
   "littleJade": {

@@ -276,10 +276,57 @@
     0.116
    ],
    "toward_camera": -0.439
+  },
+  {
+   "name": "sky_fill",
+   "kind": "shadowless sky fill through the whole run of balcony doors (round 2b)",
+   "on": true,
+   "color": "#dfe6ee",
+   "world": [
+    1.5,
+    1.6,
+    4
+   ],
+   "px": [
+    382.2,
+    778.3
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.932,
+    -0.362
+   ],
+   "toward_camera": -0.963,
+   "aim_world": [
+    2.25,
+    0.6,
+    -3
+   ]
+  },
+  {
+   "name": "room_bounce",
+   "kind": "pale walls and ceiling bounce: sky/ceiling above, warm floorboards below (round 2b)",
+   "on": true,
+   "color": "#e6e8ea",
+   "world": [
+    2.25,
+    3,
+    -3
+   ],
+   "px": [
+    3177.6,
+    -1133.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.694,
+    0.72
+   ],
+   "toward_camera": -0.169
   }
  ],
  "warnings": [],
- "intent": "Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, in the dark, far beyond the reach of the light. Mother's face is drawn.",
+ "intent": "Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, out of the light. Mother's face is drawn.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
   "travel_dir": [
@@ -935,85 +982,72 @@
   "generation_pieces": 8,
   "gold_dot_px": [
    [
-    636,
-    665.3
-   ],
-   [
-    630.2,
-    670.7
-   ],
-   [
-    583.2,
-    664
-   ],
-   [
-    560.7,
-    668.7
-   ],
-   [
-    605.2,
-    675.6
-   ],
-   [
-    592,
-    678.9
-   ],
-   [
-    540.3,
-    674.4
-   ],
-   [
-    535.3,
-    678.1
+    550,
+    673.3
    ]
   ],
   "gold_dot_world": [
    [
-    -1.501,
-    0.423,
-    -3.49
-   ],
-   [
-    -1.485,
-    0.423,
-    -3.399
-   ],
-   [
-    -1.611,
-    0.423,
-    -3.499
-   ],
-   [
-    -1.628,
-    0.423,
-    -3.417
-   ],
-   [
-    -1.507,
-    0.423,
-    -3.317
-   ],
-   [
-    -1.515,
-    0.423,
-    -3.265
-   ],
-   [
-    -1.634,
-    0.423,
-    -3.322
-   ],
-   [
-    -1.622,
-    0.423,
-    -3.265
+    -1.63,
+    0.421,
+    -3.364
    ]
+  ],
+  "paper_r3": [
+   {
+    "what": "laid on the table",
+    "gen": 7,
+    "size_cm": [
+     2.3,
+     1.4
+    ],
+    "world": [
+     -1.6300000000000001,
+     0.4206,
+     -3.363818957780646
+    ]
+   },
+   {
+    "what": "heap of the tiniest bits",
+    "gens": {
+     "9": 4,
+     "10": 10,
+     "11": 22
+    },
+    "at": [
+     -1.53,
+     -3.3338189577806463
+    ],
+    "example_size_cm": [
+     [
+      "9",
+      [
+       1.6,
+       1.2
+      ]
+     ],
+     [
+      "10",
+      [
+       0.9,
+       1.1
+      ]
+     ],
+     [
+      "11",
+      [
+       0.9,
+       0.5
+      ]
+     ]
+    ]
+   }
   ],
   "sheet_cm": [
    16,
    23
   ],
-  "stack_sheets": 34,
+  "stack_sheets": 200,
   "drift": {
    "table": 128,
    "floor": 468,
@@ -1042,7 +1076,7 @@
   ]
  },
  "state": "B: a week later, the drift",
- "tissue_pieces": 8,
+ "tissue_pieces": 0,
  "times": [
   48.14,
   50.52

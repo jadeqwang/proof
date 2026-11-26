@@ -68,13 +68,14 @@ export const LIGHTS = {
 };
 
 // ---------------------------------------------------------------- the two things in full depth
-// Phyllotaxis: bract/floret n sits at azimuth n * 137.5078 deg and at polar angle theta_n from the tip with
+// Phyllotaxis (the romanesco; the artichoke uses the equal-area lattice of artichoke_spec.mjs): floret n sits at azimuth n * 137.5078 deg and at polar angle theta_n from the tip with
 //   tan(theta_n / 2) = tan(theta0 / 2) * exp(lnG * n)
 // (the conformal image of a cylinder lattice on the sphere, so the visible spiral families are the same everywhere).
 // lnG = 2 pi / (sqrt(5) * a * b) makes the pair (a, b) the conspicuous one.
 export const GOLDEN_DEG = 137.50776405003785;
-export const ARTICHOKE = { R: 0.05, stretch: 1.12, N: 73, theta0: 0.06, lnG: 2 * Math.PI / (Math.sqrt(5) * 5 * 8), arms: [8, 5, 13],
-  count: 8, note: 'the film counts the 8 arms; bract n is on arm n % 8 (and n % 5 the other way)' };
+export const ARTICHOKE = { R: 0.045, stretch: 1.04, N: 32, lattice: 'sin(theta_n) = 0.038 (n + 0.55) to theta 1.2 rad, then even steps; phi_n = n x 137.5 deg (artichoke_spec.mjs)',
+  arms: [8, 5, 13], count: 8, shared: 'artichoke_spec.mjs -> artichoke_bracts.json (the same bracts as PLATE XVIII Fig. 1)',
+  note: 'the film counts the 8 arms; bract n is on arm n % 8 (and n % 5 the other way); seen from the tip the 8-arms wind clockwise outward' };
 export const ROMANESCO = { R: 0.075, stretch: 1.25, N: 143, theta0: 0.05, lnG: 2 * Math.PI / (Math.sqrt(5) * 8 * 13), arms: [13, 8, 21],
   sub: { arms: [5, 3], s0: 0.16 }, note: 'floret n is on arm n % 13 (and n % 8); every floret repeats the rule with 5 / 3 arms' };
 

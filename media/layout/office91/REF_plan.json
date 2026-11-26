@@ -144,20 +144,20 @@
   },
   "dad": {
    "px": [
-    1276.4,
-    429.3
+    1225.4,
+    108.3
    ],
    "eyes": [
-    1248.3,
-    450.5
+    1213,
+    141.1
    ],
    "mouth": [
-    1251.5,
-    451.8
+    1214,
+    136.7
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 84,
+   "facing_camera_deg": 83,
    "blocked_by": "drop ceiling"
   }
  },
@@ -200,26 +200,26 @@
   },
   "mama91.L": {
    "px": [
-    1159.1,
-    319.6
+    1155.6,
+    326.7
    ],
-   "shape": "grip",
+   "shape": "relax",
    "in_frame": true,
    "visible": false
   },
   "mama91.R": {
    "px": [
-    1114.7,
-    312.4
+    1118.2,
+    326.7
    ],
-   "shape": "thumbsUp",
+   "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "dad.L": {
    "px": [
-    1137.8,
-    461.8
+    1315.6,
+    237.8
    ],
    "shape": "palmUp",
    "in_frame": true,
@@ -227,12 +227,12 @@
   },
   "dad.R": {
    "px": [
-    1230.8,
-    393.3
+    1173,
+    237
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   }
  },
  "lights": [
@@ -422,8 +422,8 @@
    "dad": {
     "head": false,
     "eyes": false,
-    "handL": true,
-    "handR": false,
+    "handL": false,
+    "handR": true,
     "chest": false
    }
   }
@@ -516,7 +516,7 @@
    {
     "row": 0,
     "col": 3,
-    "label": "SCARED",
+    "label": "CALM",
     "world": [
      -0.3,
      0.7206,
@@ -614,7 +614,7 @@
    {
     "row": 1,
     "col": 3,
-    "label": "EXCITED",
+    "label": "NERVOUS",
     "world": [
      -0.3,
      0.7206,
@@ -754,7 +754,7 @@
    {
     "row": 2,
     "col": 6,
-    "label": "UPSET",
+    "label": "THANKFUL",
     "world": [
      -0.3771,
      0.7206,
@@ -768,14 +768,14 @@
    {
     "row": 3,
     "col": 0,
-    "label": "CALM",
+    "label": "SCARED",
     "world": [
-     -0.2357,
+     -0.2293,
      0.7206,
      -0.1073
     ],
     "px": [
-     876.2,
+     878.5,
      413
     ]
    },
@@ -784,54 +784,54 @@
     "col": 1,
     "label": "WORRIED",
     "world": [
-     -0.2614,
+     -0.255,
      0.7206,
      -0.1073
     ],
     "px": [
-     867,
+     869.3,
      413
     ]
    },
    {
     "row": 3,
     "col": 2,
-    "label": "GUILTY",
+    "label": "EXCITED",
     "world": [
-     -0.2871,
+     -0.2807,
      0.7206,
      -0.1073
     ],
     "px": [
-     857.9,
+     860.2,
      413
     ]
    },
    {
     "row": 3,
     "col": 3,
-    "label": "NERVOUS",
+    "label": "GUILTY",
     "world": [
-     -0.3129,
+     -0.3064,
      0.7206,
      -0.1073
     ],
     "px": [
-     848.8,
+     851,
      413
     ]
    },
    {
     "row": 3,
     "col": 4,
-    "label": "THANKFUL",
+    "label": "UPSET",
     "world": [
-     -0.3386,
+     -0.3321,
      0.7206,
      -0.1073
     ],
     "px": [
-     839.6,
+     841.9,
      413
     ]
    },
@@ -840,12 +840,12 @@
     "col": 5,
     "label": "ANXIOUS",
     "world": [
-     -0.3643,
+     -0.3579,
      0.7206,
      -0.1073
     ],
     "px": [
-     830.5,
+     832.8,
      413
     ]
    },
@@ -957,16 +957,16 @@
   ],
   "rows_centred": true,
   "gap_world": [
-   -0.39,
+   -0.3836,
    0.7206,
    -0.1073
   ],
   "gap_px": [
-   821.3,
+   823.6,
    413
   ],
   "anxious_px": [
-   830.5,
+   832.8,
    413
   ],
   "cell_pitch_m": {
@@ -1017,25 +1017,25 @@
     }
    },
    "arms": {
-    "L": 0.52,
-    "R": 0.56
+    "L": 0.64,
+    "R": 0.74
    },
    "headTurn": 17
   },
   "dad": {
    "legs": {
     "L": {
-     "reach": 0.74
+     "reach": 1
     },
     "R": {
-     "reach": 0.74
+     "reach": 1
     }
    },
    "arms": {
-    "L": 0.85,
-    "R": 0.68
+    "L": 0.82,
+    "R": 0.93
    },
-   "headTurn": 38
+   "headTurn": -15
   }
  }
 }

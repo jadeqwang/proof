@@ -5,10 +5,10 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { CAST } from '../../engine/mannequin.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam.js';
-import { tearTree, tearOne, pieceMesh, centroid, area, PAPER_LOOK } from './paper.js';
+import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
   APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, BALCONY_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
-  PAINTING, SCROLLS, PENDANT, PENDANT2, CLOCK, PLANT, HER_SPOT, LIGHTS } from './layout.js';
+  PAINTING, SCROLLS, PENDANT, PENDANT2, CLOCK, PLANT, HER_SPOT, LIGHTS, UNCLE_CHAIR } from './layout.js';
 
 // set-local extras only (heights in metres); little Jade (3) = `jade3` and Mama = `mama86` come from ../_cast.js. Faces the film leaves as paper are flagged `undrawn`.
 addCast({
@@ -175,7 +175,7 @@ function furniture(shot) {
   g.add(couch());
   { const T = TABLE, t = tableRect(T.cx, T.cz, T.w, T.d, T.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'coffee table (茶几)' });
     t.add(box(T.w - 0.1, 0.02, T.d - 0.1, WOOD, [T.cx, 0.12, T.cz])); g.add(tag(t, 'coffee table (茶几)', true)); }
-  for (const a of ARMCHAIRS) g.add(armchair(a));
+  for (const a of ARMCHAIRS) g.add(armchair(shot.state === 'A' && a.id === 'across' ? UNCLE_CHAIR : a));   // r3: state A, the uncle's armchair pulled up east of her
   { const S = SIDE_TABLE; g.add(tableRect(S.cx, S.cz, S.w, S.d, S.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'side table' }));
     const sh = box(S.w - 0.08, 0.02, S.d - 0.08, WOOD, [S.cx, 0.15, S.cz]); g.add(tag(sh, 'side table')); }
   g.add(lounger());
@@ -251,6 +251,68 @@ function heroPieces(n, figs, out) {
       g.add(pieceMesh(q, map)); out.push({ gen: depth, world: map(c[0], c[1]).toArray() }); });
   }
   return tag(g, `草纸: generation ${n} (${n} piece${n > 1 ? 's' : ''}, the gold dots)`);
+}
+// ---------------------------------------------------------------- r3: the tiny pieces in her hands (Jade's r2 review)
+// shot.paper = { rip: { gen, seed, open, tilt }, held: { L|R: { gen, seed, flat, tilt } }, laid: [{ gen, seed, at: [x, z], yaw }],
+//   bits: { at: [x, z], r, gens: { g: n } } }. A pinch point is the midpoint of a hand's thumb and index tips. Held pieces lie
+// in a plane through her hands' pinches, running AWAY from her (thumbs on top, index fingers under), tipped up by `tilt`
+// deg toward her eyes; `rip` = one piece between both pinches, torn from its near edge (between her hands) toward its far
+// edge, the two halves opened `open` deg about the still-joined far end (mid-rip).
+const halfOf = (h) => splitPiece(tearOne(h[1], h[0]), h[1] + 1)[h[2]];   // [gen, seed, 0|1]: one half of tearOne(seed, gen)
+const pieceOf = (S, dflt) => S.piece || (S.half ? halfOf(S.half) : tearOne(S.seed ?? dflt, S.gen));
+const pinch = (P, n) => P['thumb' + n].clone().add(P['index' + n]).multiplyScalar(0.5);
+function paperProps(spec, figs, out) {
+  const g = new THREE.Group(); if (!spec) return g; const F = figs.jade3, P = F && F.userData.P;
+  const yaw = rad(F ? F.userData.spec.yaw ?? PLACES.jadeYaw : PLACES.jadeYaw), fwdH = V(Math.sin(yaw), 0, Math.cos(yaw)), UPV = V(0, 1, 0);
+  const planeFrame = (across, tilt) => { const f = fwdH.clone().addScaledVector(across, -fwdH.dot(across)).normalize(); const ft = f.clone().multiplyScalar(Math.cos(rad(tilt))).addScaledVector(UPV, Math.sin(rad(tilt))).normalize(); return { ft, nrm: new THREE.Vector3().crossVectors(across, ft).normalize() }; };
+  // place a piece: sheet point (u, v) -> world, with the piece's local axes a (sheet dir) -> X (world), b -> Y (world), origin o (sheet) -> O (world)
+  const placer = (o, a, O, X, Y) => (u, v) => { const du = u - o[0], dv = v - o[1], b = [-a[1], a[0]]; const s = du * a[0] + dv * a[1], t = du * b[0] + dv * b[1]; return O.clone().addScaledVector(X, s).addScaledVector(Y, t); };
+  const sizeCm = (q) => { const o = outline(q); const xs = o.map((p) => p[0]), ys = o.map((p) => p[1]); return [+((Math.max(...xs) - Math.min(...xs)) * 100).toFixed(1), +((Math.max(...ys) - Math.min(...ys)) * 100).toFixed(1)]; };
+  if (spec.rip && P) {
+    const R = spec.rip, q = R.from ? halfOf(R.from) : tearOne(R.seed ?? 606, R.gen), [ha, hb, T] = splitPiece(q, R.from ? R.from[1] + 2 : (R.seed ?? 606) + 1);
+    const A = pinch(P, 'L'), B = pinch(P, 'R'), across = B.clone().sub(A).normalize(), M = A.clone().add(B).multiplyScalar(0.5);
+    const { ft, nrm } = planeFrame(across, R.tilt ?? 25);
+    const L = Math.hypot(T.B[0] - T.A[0], T.B[1] - T.A[1]), d = [(T.B[0] - T.A[0]) / L, (T.B[1] - T.A[1]) / L];
+    const start = M.clone().addScaledVector(ft, -(R.edge ?? 0.004)), pivot = start.clone().addScaledVector(ft, L);
+    for (const [h, sgn] of [[ha, 1], [hb, -1]]) {
+      const c = centroid(h); const side = Math.sign((c[0] - T.A[0]) * -d[1] + (c[1] - T.A[1]) * d[0]) || 1;   // which side of the tear (sheet)
+      // sheet tear dir d -> ft; sheet normal (-d1, d0) -> across * s, with s chosen so this half lands on its hand's side
+      const wantSide = h === ha ? -1 : 1;   // ha toward A (her left hand), hb toward B
+      const Y = across.clone().multiplyScalar(side * wantSide);
+      const th = rad((R.open ?? 10) / 2) * wantSide * -1, Q = new THREE.Quaternion().setFromAxisAngle(nrm, th);
+      const base = placer(T.A, d, start, ft, Y);
+      const map = (u, v) => base(u, v).sub(pivot).applyQuaternion(Q).add(pivot);
+      g.add(pieceMesh(h, map)); out.push({ what: 'rip half', gen: h.g, size_cm: sizeCm(h), world: map(c[0], c[1]).toArray() });
+    }
+    out.push({ what: 'piece being ripped', gen: q.g, size_cm: sizeCm(q) });
+  }
+  for (const n of ['L', 'R']) { const H = spec.held && spec.held[n]; if (!H || !P) continue;
+    const q = pieceOf(H, 707), c = centroid(q), o = outline(q), Pp = pinch(P, n);
+    const other = pinch(P, n === 'L' ? 'R' : 'L'), across = (n === 'L' ? other.clone().sub(Pp) : Pp.clone().sub(other)).setY(0).normalize();
+    let ft, Y; if (H.flat) { ft = fwdH.clone(); Y = across.clone(); } else { const fr = planeFrame(across, H.tilt ?? 25); ft = fr.ft; Y = across.clone(); }
+    const vmin = Math.min(...o.map((p) => p[1] - c[1]));   // the near edge (sheet v toward her)
+    const O = H.flat ? V(Pp.x, TABLE.h + 0.0006, Pp.z) : Pp.clone(); O.addScaledVector(ft, -vmin - (H.edge ?? 0.004));
+    const map = (u, v) => O.clone().addScaledVector(Y, u - c[0]).addScaledVector(ft, v - c[1]);
+    g.add(pieceMesh(q, map)); out.push({ what: `held, ${n} hand${H.flat ? ' (being put down)' : ''}`, gen: q.g, size_cm: sizeCm(q), world: map(c[0], c[1]).toArray() }); }
+  for (const Lp of spec.laid || []) { const q = pieceOf(Lp, 808), c = centroid(q), y = rad(Lp.yaw ?? 0);
+    const map = (u, v) => { const a = u - c[0], b = v - c[1]; return V(Lp.at[0] + a * Math.cos(y) - b * Math.sin(y), TABLE.h + 0.0006, Lp.at[1] + a * Math.sin(y) + b * Math.cos(y)); };
+    g.add(pieceMesh(q, map)); out.push({ what: 'laid on the table', gen: q.g, size_cm: sizeCm(q), world: map(c[0], c[1]).toArray() }); }
+  if (spec.bits) { const B = spec.bits, r = rng(B.seed ?? 11); let k = 0;
+    for (const [gs, cnt] of Object.entries(B.gens)) for (let i = 0; i < cnt; i++) { const q = tearOne(9000 + +gs * 31 + i * 3, +gs), c = centroid(q), y = r() * 6.283;
+      const rr = B.r * Math.sqrt(r()), a0 = r() * 6.283, x = B.at[0] + rr * Math.cos(a0), z = B.at[1] + rr * Math.sin(a0), lift = TABLE.h + 0.0006 + 0.0004 * (k++ % 3);
+      const map = (u, v) => { const a = u - c[0], b = v - c[1]; return V(x + a * Math.cos(y) - b * Math.sin(y), lift, z + a * Math.sin(y) + b * Math.cos(y)); };
+      g.add(pieceMesh(q, map)); }
+    out.push({ what: 'heap of the tiniest bits', gens: B.gens, at: B.at, example_size_cm: Object.keys(B.gens).map((gs) => [gs, sizeCm(tearOne(1, +gs))]) }); }
+  return tag(g, '草纸: the tiny pieces (in her hands / just torn)');
+}
+// a wristwatch on the back of a wrist (r3, Jade: "watch face should be visible": the face is on the side opposite the palm)
+function wristWatch(fig, n) {
+  const P = fig.userData.P, h = P.hands[n], W = P['wrist' + n], f = W.clone().sub(P['elbow' + n]).normalize(), nm = h.n.clone().normalize(), back = nm.clone().negate().addScaledVector(f, nm.dot(f)).normalize();   // f: the forearm axis
+  const g = new THREE.Group(), at = W.clone().addScaledVector(f, -0.028), BAND = { grey: 0.3, col: 0x3a2a1e }, CASE = { grey: 0.75, col: 0xc8c8c0 }, FACE = { grey: 0.97, col: 0xf6f2e6 };
+  const band = mk(new THREE.TorusGeometry(0.03, 0.0045, 6, 24), BAND); band.position.copy(at); band.quaternion.setFromUnitVectors(V(0, 0, 1), f); band.scale.set(1, 1, 1); g.add(band);
+  const cs = mk(new THREE.CylinderGeometry(0.0155, 0.0155, 0.007, 24), CASE); cs.position.copy(at).addScaledVector(back, 0.026); cs.quaternion.setFromUnitVectors(V(0, 1, 0), back); g.add(cs);
+  const fc = mk(new THREE.CylinderGeometry(0.0125, 0.0125, 0.0015, 24), FACE); fc.position.copy(at).addScaledVector(back, 0.0302); fc.quaternion.setFromUnitVectors(V(0, 1, 0), back); g.add(fc);
+  return tag(g, `wristwatch (${n === 'L' ? 'left' : 'right'} wrist, face on the back of the wrist)`);
 }
 // the stack she brought (34 sheets, straight mill edges)
 function stack() {
@@ -345,9 +407,10 @@ export function build(shot, { makeCam }) {
   const tea = teaAndSteam(); if (shot.state !== 'A') root.add(tea);   // the tea (and its steam) is a week-later detail: state A keeps the table bare
   let dr = null; const hero = [];
   let hb = null;
-  if (shot.state !== 'A') { root.add(stack()); dr = drift(shot, figs); root.add(dr); root.add(heroPieces(shot.tissue ?? 8, figs, hero));
+  if (shot.state !== 'A') { root.add(stack()); dr = drift(shot, figs); root.add(dr); root.add(shot.paper ? paperProps(shot.paper, figs, hero) : heroPieces(shot.tissue ?? 8, figs, hero));
     if (figs.jade3) { hb = hairBit(figs.jade3); root.add(hb.mesh); } }
-  const ballAt = (F) => F.uncle.userData.P.handL.clone().add(V(0, 0.024, 0));   // in his cupped left palm, under the right pinch
+  const ballAt = (F) => F.uncle.userData.P.handR.clone().add(V(0, 0.024, 0));   // r3: in his cupped RIGHT palm, under the left (watch) hand's pinch
+  if (shot.state === 'A' && figs.uncle) root.add(wristWatch(figs.uncle, 'L'));
   if (shot.state === 'A' && figs.uncle) root.add(tag(ball(0.012, PAPER_LOOK, ballAt(figs).toArray()), 'something small (he shapes it)'));
   // the beam: the lit aperture (overhang, parapet, reveals) swept along the sun into the room, clipped by its planes
   const clip = [{ name: 'floor', n: [0, -1, 0], d: 0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'west wall', n: [-1, 0, 0], d: -ROOM.x0 },
@@ -375,14 +438,23 @@ export function build(shot, { makeCam }) {
   const mkSun = (color, I) => { const s = new THREE.DirectionalLight(color, I); s.target.position.copy(C0); s.position.copy(C0).addScaledVector(V(SUN_DIR), -14); s.castShadow = true;
     const c = s.shadow.camera; c.left = -6.0; c.right = 6.0; c.top = 7.0; c.bottom = -7.0; c.near = 1; c.far = 30; c.updateProjectionMatrix(); s.shadow.bias = -0.0005; s.shadow.normalBias = 0.005; s.shadow.radius = 1.2; return s; };
   const lightList = [{ name: 'sun_through_windows', kind: LIGHTS.sun.kind, pos: C0.clone().addScaledVector(V(SUN_DIR), -14), aim: C0, color: '#fff1d0', on: true },
-    { name: 'sky', kind: LIGHTS.sky.kind, pos: V(0, 1.4, -0.4), color: '#cfd8e0', on: true }, { name: 'north', kind: LIGHTS.north.kind, pos: V(4.75, 1.5, -0.6), color: '#c8d0d8', on: true }];
+    { name: 'sky', kind: LIGHTS.sky.kind, pos: V(0, 1.4, -0.4), color: '#cfd8e0', on: true }, { name: 'north', kind: LIGHTS.north.kind, pos: V(4.75, 1.5, -0.6), color: '#c8d0d8', on: true },
+    { name: 'sky_fill', kind: LIGHTS.skyFill.kind, pos: V(1.5, 1.6, 4.0), aim: V(2.25, 0.6, -3.0), color: '#dfe6ee', on: true },
+    { name: 'room_bounce', kind: LIGHTS.hemi.kind, pos: V(2.25, 3.0, -3.0), color: '#e6e8ea', on: true }];
   const rig = (mode) => {
     if (mode === 'none' || shot.beamMask) return [];
     if (mode === 'mask') return [mkSun(0xffffff, 6)];
     if (mode === 'lit') { const sky = new THREE.PointLight(0xcfd8e0, 1.3, 7, 1.2); sky.position.set(0, 1.5, -0.45);
       const north = new THREE.PointLight(0xc8d0d8, 0.6, 6, 1.4); north.position.set(4.75, 1.6, -0.6);
       const bounce = new THREE.PointLight(0xffe2b0, 0.55, 3.2, 1.4); bounce.position.set(-1.0, 0.25, -3.2);
-      return [mkSun(SUN.color, 6.5), sky, north, bounce, new THREE.AmbientLight(0x8a8478, shot.light?.amb ?? 0.7)]; }
+      // shade fill (round 2b, Jade: "higher ambient light, in addition to the visible shadows"): a winter morning room with a
+      // whole wall of glass is bright in the shade. Sky through the 10 m of doors (a broad shadowless directional from the
+      // south, cool), the pale walls and ceiling bouncing it (hemisphere: ceiling/sky above, warm floor below), and a raised
+      // ambient. None of these cast shadows, so the sun's bands and the stile shadows stay crisp; the masks are sun-only.
+      const F = shot.light?.fill ?? 1;
+      const skyFill = new THREE.DirectionalLight(0xdfe6ee, LIGHTS.skyFill.I * F); skyFill.position.set(1.5, 1.6, 4.0); skyFill.target.position.set(2.25, 0.6, -3.0);
+      const hemi = new THREE.HemisphereLight(0xe6e8ea, 0xb09878, LIGHTS.hemi.I * F);
+      return [mkSun(SUN.color, 6.5), sky, north, bounce, skyFill, skyFill.target, hemi, new THREE.AmbientLight(LIGHTS.amb.color, (shot.light?.amb ?? LIGHTS.amb.I) * F)]; }
     const d = new THREE.DirectionalLight(0xffffff, 0.8); d.position.set(-1, 3, 2);
     return [mkSun(0xffffff, 2.6), new THREE.AmbientLight(0xffffff, 1.45), d];
   };
@@ -403,7 +475,7 @@ export function build(shot, { makeCam }) {
       mother_margin_m: figs.mama86 ? Math.max(...['head', 'hip', 'handL', 'handR'].map((k) => beamMargin(figs.mama86.userData.P[k].toArray().map((v, i) => (i === 2 ? Math.max(v, ROOM.z0 + 0.01) : v))))) : null,
       floor_reach_m: foot.length ? +Math.max(...foot.map((p) => -p.z)).toFixed(2) : null, north_wall_m: -ROOM.z0, her_spot: HER_SPOT, couch_to_corner_m: COUCH_TO_CORNER, shelf_clearance_m: SHELF_CLEAR,
       door_gap_m: (() => { const pts = SOURCES.length ? solids.flatMap((so) => so.caps.floor || []) : []; let best = 9; for (let x = ROOM.x0 + 0.02; x < ROOM.x1; x += 0.025) for (let z = -0.02; z > ROOM.z0; z -= 0.025) if (inBeam([x, 0.001, z])) best = Math.min(best, Math.hypot(Math.max(DOOR.x0 - x, 0, x - DOOR.x1), z - ROOM.z0)); return +best.toFixed(2); })() },
-      tissue: shot.state === 'A' ? null : { generation_pieces: shot.tissue ?? 8, gold_dot_px: hero.map((h) => P(V(h.world))), gold_dot_world: hero.map((h) => h.world.map((v) => +v.toFixed(3))),
+      tissue: shot.state === 'A' ? null : { generation_pieces: shot.tissue ?? 8, gold_dot_px: hero.filter((h) => h.world).map((h) => P(V(h.world))), gold_dot_world: hero.filter((h) => h.world).map((h) => h.world.map((v) => +v.toFixed(3))), paper_r3: shot.paper ? hero : null,
         sheet_cm: [PAPER.w * 100, PAPER.h * 100], stack_sheets: PAPER.stack, drift: dr ? dr.userData.stats : null, hair_bit_world: hb ? hb.world : null, hair_bit_px: hb ? P(V(hb.world)) : null },
       state: shot.state === 'A' ? 'A: the uncle explains (no drift yet)' : 'B: a week later, the drift', tissue_pieces: shot.tissue || 0, times: shot.t || null,
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'handL', 'handR', 'hip'].map((k) => [k, r3(f.userData.P[k])]))])) };

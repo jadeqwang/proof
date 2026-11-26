@@ -5,8 +5,19 @@ import * as THREE from 'three';
 import { box, ball, tag, V, rad } from '../../engine/core.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
-import { CAVITY, SEAT, CRACK, BULB, BEAM, bladeY, EYE, MOTE, LIGHTS, SLOPE } from './layout.js';
-import '../_cast.js';   // the shared cast table (this set uses the engine's littleJade)
+import { CAVITY, SEAT, CRACK, BULB, BEAM, bladeY, EYE, MOTE, LIGHTS, SLOPE, WORKERS } from './layout.js';
+import { CAST, addCast } from '../_cast.js';   // the shared cast table (this set uses the engine's littleJade)
+
+// r3: the restaurant workers in WL_in (set-local strangers, faces undrawn). Kitchen whites, aprons, a waiter's white
+// shirt; colours are lit-preview placeholders only.
+const WCOL = { w1: { top: 0xe8e4da, legs: 0x2a2a2e, apron: 0xd8d2c4, hairStyle: 'bun' }, w2: { top: 0xe8e4da, legs: 0x3a3a3e, apron: 0xd8d2c4 },
+  w3: { top: 0x5a6a7a, legs: 0x2a2a2e, apron: 0xd8d2c4, hairStyle: 'bob' }, w4: { top: 0xf0eee8, legs: 0x151518 }, w5: { top: 0xe8e4da, legs: 0x3a3a3e, apron: 0xd8d2c4 } };
+addCast(Object.fromEntries(WORKERS.map((w) => [w.key, { name: `restaurant worker ${w.key.slice(1)} (face undrawn)`, h: w.h, kind: 'adult', skin: 0xd8a87e, hair: 0x15110f, sleeves: 'long', undrawn: true, ...WCOL[w.key] }])));
+// strangers' faces are "unreached": hide the mannequin's nose cone, eye dots and mouth bar (as office91 undraw)
+function undraw(fig) {
+  fig.traverse((o) => { if (!o.isMesh) return; const L = o.userData.look || {}, t = o.geometry.type;
+    if (t === 'ConeGeometry' || L.col === 0x8a3b34 || (L.col === 0x111111 && t === 'SphereGeometry')) { o.visible = false; o.userData.baseVisible = false; } });
+}
 import { beamSolid, beamMesh, beamWire, beamSidecar } from './beam.js';
 
 const BOARD = { grey: 0.42, col: 0x4a3a2a, recvShadowLine: true }, STUD = { grey: 0.5, col: 0x6a5238, recvShadowLine: true };
@@ -47,7 +58,7 @@ export function build(shot, { makeCam }) {
   root.add(tag(ball(0.006, { grey: 1, col: 0xffd24a, emit: 0xffd24a, flatEmit: 1, only: ['label', 'lit'], noCast: true }, MOTE.hero), 'the mote'));
 
   const { figs } = stage(shot.figs || {}, null, (t) => (NAMED[t] ? V(NAMED[t]) : null));
-  for (const f of Object.values(figs)) { root.add(f); f.traverse((o) => { if (o.isMesh && o.userData.look) o.userData.look = { ...o.userData.look, recvShadowLine: true }; }); }
+  for (const [who, f] of Object.entries(figs)) { if (CAST[who]?.undrawn) undraw(f); root.add(f); f.traverse((o) => { if (o.isMesh && o.userData.look) o.userData.look = { ...o.userData.look, recvShadowLine: true }; }); }
   const cs = { ...shot, orbit: shot.orbit ? { ...shot.orbit, at: fix(shot.orbit.at) } : undefined, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   if (shot.eyeline) { const e = figs[shot.eyeline.who].userData.P.eyes.clone(), to = V(fix(shot.eyeline.to)); cs.pos = e.addScaledVector(to.sub(e).normalize(), shot.eyeline.back ?? 0.12).add(V(shot.eyeline.off || [0, 0, 0])).toArray(); delete cs.orbit; }
   Object.assign(shot, solveCamera(cs, figs, null, aim));
@@ -56,7 +67,8 @@ export function build(shot, { makeCam }) {
 
   const anchor = V(fix(shot.beamAnchor || 'mote'));
   const bulb = V(BULB), crackMid = V(NAMED.crack);
-  const mkSpot = (color, I) => { const s = new THREE.SpotLight(color, I, 0, rad(17), 0.05, 0); s.position.copy(bulb); s.target.position.copy(crackMid); s.castShadow = true;
+  // r3: the cone is wider (30 deg, was 17) so it covers the longer crack
+  const mkSpot = (color, I) => { const s = new THREE.SpotLight(color, I, 0, rad(30), 0.02, 0); s.position.copy(bulb); s.target.position.copy(crackMid); s.castShadow = true;
     s.shadow.camera.near = 0.6; s.shadow.camera.far = 4; s.shadow.bias = -0.0002; s.shadow.normalBias = 0.001; s.shadow.radius = 1; return s; };
   const rig = (mode) => {
     if (mode === 'none' || shot.beamMask) return [];
@@ -77,9 +89,11 @@ export function build(shot, { makeCam }) {
         crack_px: BEAM.aperture.map((p) => P(V(p))), note: 'a thin planar sheet, level along the cavity: seen along the cavity it is a line at the physical slope' } }),
       mote: { seed: MOTE.seed, count: MOTE.count, hero_world: MOTE.hero, hero_px: P(V(MOTE.hero)), path_px: [MOTE.hero, MOTE.exit, MOTE.gone].map((p) => P(V(p))), note: 'hero -> exit (drops out of the sheet) -> gone' },
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'mouth', 'handL', 'handR', 'hip'].map((k) => [k, r3(f.userData.P[k])]))])) };
-    const f = figs.littleJade; if (f) { const Pf = f.userData.P, R = Pf.headH / 2; const eyeR = Pf.eyes.clone().addScaledVector(Pf.headX, -0.3 * R);   // her right eye
-      out.blade_on_face = { right_eye_world: r3(eyeR), right_eye_px: P(eyeR), sheet_height_at_right_eye_m: +bladeY(eyeR.x).toFixed(4), right_eye_above_sheet_cm: +((eyeR.y - bladeY(eyeR.x)) * 100).toFixed(1),
-        mouth_above_sheet_cm: +((Pf.mouth.y - bladeY(Pf.mouth.x)) * 100).toFixed(1), in_lit_length: eyeR.z > CRACK.z0 - 0.1 && eyeR.z < CRACK.z1 }; }
+    const f = figs.littleJade; if (f) { const Pf = f.userData.P, R = Pf.headH / 2;
+      const eyeR = Pf.eyes.clone().addScaledVector(Pf.headX, -0.3 * R), eyeL = Pf.eyes.clone().addScaledVector(Pf.headX, 0.3 * R);
+      const above = (p) => +((p.y - bladeY(p.x)) * 100).toFixed(1);
+      out.blade_on_face = { right_eye_world: r3(eyeR), right_eye_px: P(eyeR), right_eye_above_sheet_cm: above(eyeR), left_eye_world: r3(eyeL), left_eye_px: P(eyeL), left_eye_above_sheet_cm: above(eyeL),
+        nose_above_sheet_cm: above(Pf.nose), mouth_above_sheet_cm: above(Pf.mouth), sheet_half_thickness_cm: +(BEAM.thickness * 50).toFixed(2), in_lit_length: eyeR.z > CRACK.z0 - 0.1 && eyeR.z < CRACK.z1 }; }
     return out;
   };
   return { set: 'wall88', scene, root, cam, rig, near: shot.near ?? 0.15, far: shot.far ?? 2.5, figs, book: null, panes: {}, lights,

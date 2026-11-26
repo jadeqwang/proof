@@ -12,13 +12,13 @@
   ],
   "target": [
    -0.6974,
-   1.2847,
-   0.0204
+   1.0013,
+   0
   ],
-  "lens_mm": 28,
+  "lens_mm": 60,
   "frame_width_mm": 36,
-  "hfov_deg": 65.47,
-  "vfov_deg": 39.761,
+  "hfov_deg": 33.398,
+  "vfov_deg": 19.157,
   "ortho": null,
   "roll_deg": 0,
   "near": 0.05,
@@ -28,13 +28,13 @@
    0,
    0.0013,
    0,
-   -0.0002,
-   0.9898,
-   0.1424,
+   0,
+   1,
+   0.0006,
    0,
    -0.0013,
-   -0.1424,
-   0.9898,
+   -0.0006,
+   1,
    0,
    -0.7,
    1,
@@ -43,29 +43,29 @@
   ],
   "viewMatrix": [
    1,
-   -0.0002,
+   0,
    -0.0013,
    0,
    0,
-   0.9898,
-   -0.1424,
+   1,
+   -0.0006,
    0,
    0.0013,
-   0.1424,
-   0.9898,
+   0.0006,
+   1,
    0,
    0.6974,
-   -1.2747,
-   -1.8382,
+   -1.0013,
+   -2.0003,
    1
   ],
   "projectionMatrix": [
-   1.5556,
+   3.3333,
    0,
    0,
    0,
    0,
-   2.7654,
+   5.9259,
    0,
    0,
    0,
@@ -88,20 +88,20 @@
   "window_upper": {
    "px": [
     [
-     904.9,
-     371.4
+     838.8,
+     -292.9
     ],
     [
-     1294.9,
-     371.5
+     1697,
+     -292.6
     ],
     [
-     1300.7,
-     547.1
+     1697,
+     97.4
     ],
     [
-     903.9,
-     547
+     838.8,
+     97.2
     ]
    ],
    "world": [
@@ -136,20 +136,20 @@
   "window_lower": {
    "px": [
     [
-     903.9,
-     547
+     838.8,
+     97.2
     ],
     [
-     1300.7,
-     547.1
+     1697,
+     97.4
     ],
     [
-     1306.6,
-     728.8
+     1697.1,
+     487.5
     ],
     [
-     903,
-     728.8
+     838.8,
+     487.4
     ]
    ],
    "world": [
@@ -184,20 +184,20 @@
   "cabinet_glass": {
    "px": [
     [
-     3122.9,
-     -120
+     5958.5,
+     -1459
     ],
     [
-     2287.3,
-     217.6
+     3925,
+     -645.6
     ],
     [
-     2370.8,
-     849.9
+     3925.8,
+     740.1
     ],
     [
-     3353.4,
-     916.1
+     5960.9,
+     875.8
     ]
    ],
    "world": [
@@ -233,16 +233,16 @@
  "heads": {
   "jade7": {
    "px": [
-    958.3,
-    709.3
+    956.5,
+    446.2
    ],
    "eyes": [
     960,
-    712.8
+    453.6
    ],
    "mouth": [
-    959.9,
-    751.2
+    959.8,
+    534.5
    ],
    "in_frame": true,
    "visible": true,
@@ -250,44 +250,44 @@
   },
   "dad": {
    "px": [
-    674.5,
-    423
+    335.1,
+    -176.9
    ],
    "eyes": [
-    726.5,
-    422.1
+    448.8,
+    -179
    ],
    "mouth": [
-    723.2,
-    455.5
+    443.3,
+    -104.3
    ],
-   "in_frame": true,
-   "visible": true,
+   "in_frame": false,
+   "visible": false,
    "facing_camera_deg": 78
   },
   "mama90": {
    "px": [
-    1252.8,
-    481.1
+    1597.5,
+    -47.7
    ],
    "eyes": [
-    1204.7,
-    473.9
+    1493,
+    -63.5
    ],
    "mouth": [
-    1203.5,
-    505.4
+    1489,
+    6
    ],
-   "in_frame": true,
-   "visible": true,
+   "in_frame": false,
+   "visible": false,
    "facing_camera_deg": 79
   }
  },
  "hands": {
   "jade7.L": {
    "px": [
-    1051.6,
-    939.9
+    1151.1,
+    924
    ],
    "shape": "relax",
    "in_frame": true,
@@ -295,8 +295,8 @@
   },
   "jade7.R": {
    "px": [
-    863,
-    942.7
+    757.9,
+    929.8
    ],
    "shape": "relax",
    "in_frame": true,
@@ -304,8 +304,8 @@
   },
   "dad.L": {
    "px": [
-    709.8,
-    863.1
+    434.7,
+    767.1
    ],
    "shape": "relax",
    "in_frame": true,
@@ -313,8 +313,8 @@
   },
   "dad.R": {
    "px": [
-    787.3,
-    628.3
+    589.4,
+    273.4
    ],
    "shape": "palmUp",
    "in_frame": true,
@@ -322,8 +322,8 @@
   },
   "mama90.L": {
    "px": [
-    1333.6,
-    912.1
+    1740.9,
+    867.6
    ],
    "shape": "relax",
    "in_frame": true,
@@ -331,8 +331,8 @@
   },
   "mama90.R": {
    "px": [
-    1193.1,
-    683.5
+    1457.7,
+    391.5
    ],
    "shape": "relax",
    "in_frame": true,
@@ -351,8 +351,8 @@
     0.3
    ],
    "px": [
-    958.1,
-    242.8
+    955.8,
+    -587.1
    ],
    "in_front": true,
    "travel_dir_px": [
@@ -377,13 +377,13 @@
     -6.5215
    ],
    "px": [
-    785.5,
-    337.7
+    574.7,
+    -369.3
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.333,
-    0.943
+    0.339,
+    0.941
    ],
    "toward_camera": 0.902,
    "aim_world": [
@@ -394,8 +394,8 @@
   }
  ],
  "warnings": [],
- "intent": "Frontal, level, locked off, across the table: Jade small in the lamp’s cone, fingers tapping; Dad and Mama standing behind her either side, talking to each other across the top of her head, their faces above the shade’s cut-off (out of the light).",
- "time": "2:22.2-2:23.7 the question",
+ "intent": "Start of a slow tilt up from one fixed camera across the table: Jade small in the lamp’s cone, fingers tapping; Dad and Mama standing behind her either side, only their bodies and talking hands in frame, their heads above the top edge.",
+ "time": "2:22.2-2:23.7 the question (tilt START)",
  "position": "outside",
  "scene": "night (verse 2 / interlude)",
  "beam": {
@@ -409,8 +409,8 @@
     0.3
    ],
    "px": [
-    958.1,
-    242.8
+    955.8,
+    -587.1
    ]
   },
   "axis": [

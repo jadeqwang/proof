@@ -22,7 +22,7 @@
   "ortho": null,
   "roll_deg": 0,
   "near": 0.05,
-  "far": 4,
+  "far": 7,
   "matrixWorld": [
    -0.9736,
    0,
@@ -70,11 +70,11 @@
    0,
    0,
    0,
-   -1.0253,
+   -1.0144,
    -1,
    0,
    0,
-   -0.1013,
+   -0.1007,
    0
   ],
   "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"

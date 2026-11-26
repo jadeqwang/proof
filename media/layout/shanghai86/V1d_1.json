@@ -6,66 +6,66 @@
  "desc": "",
  "camera": {
   "position": [
-   -1.6795,
-   0.8221,
-   -3.6652
+   -1.7348,
+   0.7764,
+   -3.7973
   ],
   "target": [
-   -1.2257,
-   -0.7523,
-   -2.5185
+   -1.2599,
+   -0.663,
+   -2.4925
   ],
-  "lens_mm": 28,
+  "lens_mm": 35,
   "frame_width_mm": 36,
-  "hfov_deg": 65.47,
-  "vfov_deg": 39.761,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
   "ortho": null,
   "roll_deg": 0,
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   -0.9298,
+   -0.9397,
    0,
-   0.368,
+   0.342,
    0,
-   0.2897,
-   0.6166,
-   0.732,
+   0.2462,
+   0.6943,
+   0.6763,
    0,
-   -0.2269,
-   0.7872,
-   -0.5734,
+   -0.2375,
+   0.7197,
+   -0.6524,
    0,
-   -1.6795,
-   0.8221,
-   -3.6652,
+   -1.7348,
+   0.7764,
+   -3.7973,
    1
   ],
   "viewMatrix": [
-   -0.9298,
-   0.2897,
-   -0.2269,
+   -0.9397,
+   0.2462,
+   -0.2375,
    0,
    0,
-   0.6166,
-   0.7872,
+   0.6943,
+   0.7197,
    0,
-   0.368,
-   0.732,
-   -0.5734,
+   0.342,
+   0.6763,
+   -0.6524,
    0,
-   -0.2129,
-   2.6625,
-   -3.1298,
+   -0.3314,
+   2.4561,
+   -3.4481,
    1
   ],
   "projectionMatrix": [
-   1.5556,
+   1.9444,
    0,
    0,
    0,
    0,
-   2.7654,
+   3.4568,
    0,
    0,
    0,
@@ -88,20 +88,20 @@
   "windows": {
    "px": [
     [
-     1289.6,
-     -4112.9
+     1137.5,
+     -3690.8
     ],
     [
-     5520.1,
-     -5914.6
+     4421.9,
+     -4687.6
     ],
     [
-     2354.1,
-     -621.2
+     2456.6,
+     -697.7
     ],
     [
-     1099,
-     -745.7
+     1052.6,
+     -807.9
     ]
    ],
    "world": [
@@ -137,62 +137,62 @@
  "heads": {
   "jade3": {
    "px": [
-    982.8,
-    4181.7
+    960,
+    2329
    ],
    "eyes": [
-    1034.9,
-    2629.6
+    960,
+    1498.9
    ],
    "mouth": [
-    1023.3,
-    2536.7
+    960,
+    1699.2
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 68
+   "facing_camera_deg": 103
   },
   "mama86": {
    "px": [
-    4256.2,
-    -193.6
+    4876.5,
+    -60.6
    ],
    "eyes": [
-    4231.8,
-    -185.7
+    4855.8,
+    -48
    ],
    "mouth": [
-    4350.8,
-    -253.7
+    4979.4,
+    -123.6
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 3
+   "facing_camera_deg": 1
   }
  },
  "hands": {
   "jade3.L": {
    "px": [
-    582.7,
-    1169.8
+    743.9,
+    855.8
    ],
    "shape": "pinch",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   },
   "jade3.R": {
    "px": [
-    1421.2,
-    1194.3
+    1176.2,
+    855.8
    ],
    "shape": "pinch",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   },
   "mama86.L": {
    "px": [
-    7839.6,
-    -1668.3
+    8431.6,
+    -1535.7
    ],
    "shape": "relax",
    "in_frame": false,
@@ -200,8 +200,8 @@
   },
   "mama86.R": {
    "px": [
-    4317.9,
-    -770.8
+    4816.6,
+    -684.2
    ],
    "shape": "relax",
    "in_frame": false,
@@ -220,15 +220,15 @@
     7.6196
    ],
    "px": [
-    -805.4,
-    -3325.3
+    -917.9,
+    -3153.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.333,
-    0.943
+    0.342,
+    0.94
    ],
-   "toward_camera": 0.663,
+   "toward_camera": 0.704,
    "aim_world": [
     2.25,
     1.2,
@@ -246,15 +246,15 @@
     -0.4
    ],
    "px": [
-    660.9,
-    -2144.7
+    559,
+    -2164.3
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.145,
-    0.989
+    -0.172,
+    0.985
    ],
-   "toward_camera": 0.399
+   "toward_camera": 0.457
   },
   {
    "name": "north",
@@ -267,19 +267,66 @@
     -0.6
    ],
    "px": [
-    -1739.9,
-    -1978.4
+    -2046,
+    -2021.6
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.733,
-    0.68
+    0.759,
+    0.651
    ],
-   "toward_camera": 0.655
+   "toward_camera": 0.678
+  },
+  {
+   "name": "sky_fill",
+   "kind": "shadowless sky fill through the whole run of balcony doors (round 2b)",
+   "on": true,
+   "color": "#dfe6ee",
+   "world": [
+    1.5,
+    1.6,
+    4
+   ],
+   "px": [
+    827.7,
+    -1815.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.343,
+    0.939
+   ],
+   "toward_camera": 0.698,
+   "aim_world": [
+    2.25,
+    0.6,
+    -3
+   ]
+  },
+  {
+   "name": "room_bounce",
+   "kind": "pale walls and ceiling bounce: sky/ceiling above, warm floorboards below (round 2b)",
+   "on": true,
+   "color": "#e6e8ea",
+   "world": [
+    2.25,
+    3,
+    -3
+   ],
+   "px": [
+    49331.7,
+    43228.1
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.75,
+    0.661
+   ],
+   "toward_camera": 0.056
   }
  ],
  "warnings": [],
- "intent": "Inside, the tissue camera: her eye-line onto her own hands over the table corner. One whole sheet (16 x 23 cm) held low over the table (cross-legged, her eyes are only ~10 cm above its top).",
+ "intent": "Inside (POV): her eye-line onto her own hands just off the table's north-west corner: a tiny piece (~2 x 3 cm) pinched between both thumbs and index fingers, the tear just starting between them. The table corner, its edges and the big stack beyond.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
   "travel_dir": [
@@ -329,20 +376,20 @@
   ],
   "source_px": [
    [
-    1447.6,
-    -4027.4
+    1283.4,
+    -3627.1
    ],
    [
-    5462.6,
-    -5644.5
+    4421,
+    -4535.4
    ],
    [
-    2538.7,
-    -868.8
+    2621.2,
+    -959.6
    ],
    [
-    1186.6,
-    -956.2
+    1142.7,
+    -1030.7
    ]
   ],
   "aperture_glass_world": [
@@ -520,16 +567,16 @@
     ],
     "floor_px": [
      [
-      1406.3,
-      -486.2
+      1407.2,
+      -556.1
      ],
      [
-      2713.9,
-      -310.9
+      2877.2,
+      -398.7
      ],
      [
-      4868.7,
-      2548.1
+      5664.6,
+      2560.3
      ]
     ]
    },
@@ -593,24 +640,24 @@
     ],
     "floor_px": [
      [
-      58.3,
-      -666.9
+      -138.2,
+      -721.6
      ],
      [
-      1096.9,
-      -527.7
+      1055.3,
+      -593.8
      ],
      [
-      17160.8,
-      18857.4
+      34126.3,
+      32773.4
      ],
      [
-      295.4,
-      -3519.8
+      155.6,
+      -3287.8
      ],
      [
-      1739.1,
-      -4089.7
+      1635.8,
+      -3713.4
      ]
     ]
    },
@@ -669,20 +716,20 @@
     ],
     "floor_px": [
      [
-      -830.4,
-      -786.1
+      -1174.3,
+      -832.6
      ],
      [
-      -139,
-      -693.4
+      -367,
+      -746.1
      ],
      [
-      2985.1,
-      -4581.6
+      2840.4,
+      -4059.7
      ],
      [
-      29201.6,
-      -14930.9
+      18695.3,
+      -8618.4
      ]
     ]
    },
@@ -751,24 +798,24 @@
     ],
     "floor_px": [
      [
-      -1376.5,
-      -859.3
+      -1818,
+      -901.5
      ],
      [
-      -967.1,
-      -804.4
+      -1334.9,
+      -849.7
      ],
      [
-      139231.9,
-      -58366.8
+      35795.5,
+      -13535.2
      ],
      [
-      -16686.1,
-      3183.9
+      -28942.2,
+      5078.7
      ],
      [
-      -1675.5,
-      -813.3
+      -2179.8,
+      -853.9
      ]
     ]
    }
@@ -792,16 +839,16 @@
   ],
   "footprint_floor_px": [
    [
-    1406.3,
-    -486.2
+    1407.2,
+    -556.1
    ],
    [
-    2713.9,
-    -310.9
+    2877.2,
+    -398.7
    ],
    [
-    4868.7,
-    2548.1
+    5664.6,
+    2560.3
    ]
   ],
   "footprint_east_wall": null,
@@ -835,24 +882,24 @@
    ],
    "px": [
     [
-     2713.9,
-     -310.9
+     2877.2,
+     -398.7
     ],
     [
-     2731.7,
-     -671.3
+     2851.3,
+     -766.5
     ],
     [
-     6851.3,
-     -6207.9
+     5300.9,
+     -4791
     ],
     [
-     -7850.1,
-     -180
+     -16345.4,
+     1533
     ],
     [
-     4868.7,
-     2548.1
+     5664.6,
+     2560.3
     ]
    ]
   },
@@ -863,19 +910,19 @@
    "jade3": {
     "head": {
      "in": true,
-     "margin_m": 0.242
+     "margin_m": 0.258
     },
     "eyes": {
      "in": true,
-     "margin_m": 0.274
+     "margin_m": 0.297
     },
     "handL": {
      "in": true,
-     "margin_m": 0.405
+     "margin_m": 0.386
     },
     "handR": {
      "in": true,
-     "margin_m": 0.43
+     "margin_m": 0.397
     },
     "hip": {
      "in": true,
@@ -932,25 +979,70 @@
   "door_gap_m": 0.23
  },
  "tissue": {
-  "generation_pieces": 1,
+  "generation_pieces": 8,
   "gold_dot_px": [
    [
-    1004.6,
-    799.3
+    923,
+    659.2
+   ],
+   [
+    984.6,
+    655.6
    ]
   ],
   "gold_dot_world": [
    [
-    -1.619,
-    0.456,
-    -3.478
+    -1.64,
+    0.474,
+    -3.559
+   ],
+   [
+    -1.652,
+    0.474,
+    -3.553
    ]
+  ],
+  "paper_r3": [
+   {
+    "what": "rip half",
+    "gen": 7,
+    "size_cm": [
+     2.3,
+     1.8
+    ],
+    "world": [
+     -1.6395576945510553,
+     0.4736231893435578,
+     -3.5585597056820104
+    ]
+   },
+   {
+    "what": "rip half",
+    "gen": 7,
+    "size_cm": [
+     2.2,
+     1.5
+    ],
+    "world": [
+     -1.6516083133663642,
+     0.4739536870756368,
+     -3.5534193981589066
+    ]
+   },
+   {
+    "what": "piece being ripped",
+    "gen": 6,
+    "size_cm": [
+     2.2,
+     3
+    ]
+   }
   ],
   "sheet_cm": [
    16,
    23
   ],
-  "stack_sheets": 34,
+  "stack_sheets": 200,
   "drift": {
    "table": 128,
    "floor": 468,
@@ -969,17 +1061,17 @@
    }
   },
   "hair_bit_world": [
-   -1.668,
-   0.586,
-   -3.764
+   -1.655,
+   0.572,
+   -3.74
   ],
   "hair_bit_px": [
-   427,
-   2970.8
+   451.8,
+   1306.3
   ]
  },
  "state": "B: a week later, the drift",
- "tissue_pieces": 1,
+ "tissue_pieces": 0,
  "times": [
   37.85,
   41.43
@@ -987,24 +1079,24 @@
  "points_world": {
   "jade3": {
    "eyes": [
-    -1.72,
-    0.525,
-    -3.743
+    -1.707,
+    0.51,
+    -3.722
    ],
    "head": [
-    -1.743,
-    0.528,
-    -3.82
+    -1.735,
+    0.521,
+    -3.797
    ],
    "handL": [
-    -1.558,
-    0.446,
-    -3.604
+    -1.621,
+    0.463,
+    -3.61
    ],
    "handR": [
-    -1.746,
-    0.446,
-    -3.535
+    -1.702,
+    0.463,
+    -3.581
    ],
    "hip": [
     -1.77,
@@ -1014,9 +1106,9 @@
   },
   "mama86": {
    "eyes": [
-    0.645,
+    0.646,
     1.501,
-    -6.082
+    -6.081
    ],
    "head": [
     0.712,
@@ -1051,10 +1143,10 @@
     }
    },
    "arms": {
-    "L": 1.05,
-    "R": 1.05
+    "L": 0.91,
+    "R": 0.91
    },
-   "headTurn": -4
+   "headTurn": 0
   },
   "mama86": {
    "legs": {
@@ -1069,7 +1161,7 @@
     "L": 0.97,
     "R": 0.83
    },
-   "headTurn": 1
+   "headTurn": 2
   }
  }
 }

@@ -5,12 +5,15 @@ Every element (bract, floret, leaf) has an index n counted from the apex outward
 n x 137.5078 deg (the golden angle) and on a logarithmic lattice: its distance from the apex grows by a constant
 factor per index, so the contact parastichies are the same pair (a, b) from the centre to the rim, and element n lies on
 arm n mod a of the a-family and arm n mod b of the b-family. lnG = 2 pi / (sqrt 5 a b) makes the a- and b-parastichies
-cross at about right angles (the same rule as layout/sets/market93/phyllo.js).
+cross at about right angles (the same rule as layout/sets/market93/phyllo.js uses for the romanesco).
+The artichoke is the exception: its bracts are read from the market93 artichoke's shared layout (see artichoke()).
 
 Each builder returns a dict with per-element numpy arrays and a `sample(sel, density)` function that yields 3D
 surface samples (x, y, z) and surface coordinates (s, t) for the selected elements, for the z-buffer.
 """
+import json
 import math
+import os
 
 import numpy as np
 import torch
@@ -43,75 +46,100 @@ def _grid(ns, nt, dev=DEV):
 # ---------------------------------------------------------------------------------------------------------------
 # globe artichoke
 
-def artichoke(a=5, b=8, N=34, theta_max=1.95, n0=1.2, flat=0.9, lattice='equal', theta0=0.06, seed=1):
-    """Involucral bracts of a closed globe-artichoke head (z scaled by `flat`), seen from above.
-    The bracts rise from the receptacle at the base and their tips crowd together at the crown at much the same size,
-    so the tips are placed on an equal-area (Vogel) lattice on the globe: bract n at azimuth n x 137.5 deg and
-    cos(theta_n) = 1 - (n + n0) (1 - cos theta_max) / (N + n0). On such a lattice the contact spirals change with
-    distance from the centre (3 and 5 at the crown, 5 and 8 over the outer bracts); verify() measures them.
-    lattice='log' gives the older conformal lattice, tan(theta_n / 2) = tan(theta0 / 2) exp(lnG n)."""
-    r = np.random.default_rng(seed)
-    g = lnG(a, b)
-    n = np.arange(N + b + 2)
-    if lattice == 'log':
-        theta = 2 * np.arctan(np.tan(theta0 / 2) * np.exp(g * n))
-    else:
-        theta = np.arccos(np.clip(1 - (n + n0) * (1 - math.cos(theta_max)) / (N + n0), -1, 1))
-    phi = n * GA
-    Nn, Un, En = frame_on_sphere(theta, phi)
-    P = Nn.copy()
-    # local spacing: distance to the a- and b-neighbours outward
-    da = np.linalg.norm(P[a:a + N + 1] - P[:N + 1], axis=1)[:N]
-    db = np.linalg.norm(P[b:b + N + 1] - P[:N + 1], axis=1)[:N]
-    d = np.sqrt(da * db)
-    keep = slice(0, N)
-    el = dict(kind='bract', n=n[keep], theta=theta[keep], phi=phi[keep], P=P[keep], N=Nn[keep], U=Un[keep],
-              E=En[keep], d=d, a=a, b=b, N_el=N, flat=flat)
-    # bract shape: length along the meridian (toward the apex), width along the parallel, in units of the spacing
-    el['L'] = 1.85 * d * (1 + 0.05 * r.standard_normal(N))
-    el['W'] = 1.15 * d * (1 + 0.04 * r.standard_normal(N))
-    el['lift'] = 0.24 * d                                     # how far the tip stands proud of the head
-    el['twist'] = 0.05 * r.standard_normal(N)                 # tiny irregularity of each bract
-    el['notch'] = np.clip(0.075 + 0.02 * r.standard_normal(N), 0.04, 0.11)
-    # the anchor of the count: on the bract's midline, three quarters of the way to the tip (the exposed part)
-    sa_ = 0.72
-    u_ = sa_ * el['L']
-    h_ = el['lift'] * (-0.5 + 1.6 * sa_ ** 1.3)
-    A3 = el['P'] + u_[:, None] * el['U'] + (h_ - u_ ** 2 / 2)[:, None] * el['N']
-    A3[:, 2] *= flat
-    el['anchor3d'] = A3
+# The bracts are NOT generated here: they are the market93 artichoke's, read from the shared layout
+# layout/sets/market93/artichoke_bracts.json (written by layout/sets/market93/artichoke_spec.mjs), so the plate and the
+# market mesh have the same bracts, indices, hand and shapes, and a numeral lands on the same bract in both.
+# _bract_xyz() is that file's bractPoint(), in torch; artichoke() checks it against the JSON's `check` samples.
+REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', '..'))
+ART_JSON = os.path.join(REPO, 'layout', 'sets', 'market93', 'artichoke_bracts.json')
+
+
+def _smooth(a, b, x):
+    t = torch.clamp((x - a) / (b - a), 0, 1)
+    return t * t * (3 - 2 * t)
+
+
+def _tri(x):
+    return 2 * torch.abs(x - torch.floor(x) - 0.5) - 0.5
+
+
+def _edge(b, t):
+    a = torch.abs(t)
+    return b['W'] * (b['shoulder'] * a * a + b['notch'] * torch.clamp(1 - a / 0.55, min=0)
+                     - b['mucro'] * torch.clamp(1 - a / 0.06, min=0)
+                     - b['teeth'] * _tri(b['tk'] * a + b['tph']) * _smooth(0.15, 0.3, a) * (1 - _smooth(0.7, 0.9, a)))
+
+
+def _halfw(s):
+    return 0.55 + 0.45 * torch.sin(math.pi * torch.clamp(s / 1.45, 0, 1)) ** 0.8
+
+
+def _bract_xyz(b, sp, t, back, stretch):
+    """artichoke_spec.mjs bractPoint(): sp 0 base .. 1 free edge, t -1 .. 1 across. Returns xyz [..., 3] and s."""
+    e = _edge(b, t)
+    ud = e + (1 - sp) * (b['L'] - e)
+    s = 1 - ud / b['L']
+    v = t * _halfw(s) * b['W'] / 2 + b['twist'] * ud
+    dx, dy = -ud, v
+    dd = torch.sqrt(dx * dx + dy * dy)
+    k = torch.where(dd > 1e-9, torch.sin(dd) / torch.clamp(dd, min=1e-9), torch.ones_like(dd))
+    c = torch.cos(dd)
+    Nv, Uv, Ev = (torch.tensor(b[q], device=sp.device, dtype=T32) for q in ('Nv', 'Uv', 'Ev'))
+    d = c[..., None] * Nv + k[..., None] * (dx[..., None] * Uv + dy[..., None] * Ev)
+    tw = t * _halfw(s)
+    rad = b['shell'] + b['flare'] * s ** 3 - b['cup'] * b['W'] * tw * tw * (1 - 0.6 * s ** 4)
+    if back:
+        rad = rad - b['thick'] * (1 - 0.45 * s)
+    X = rad[..., None] * d
+    X[..., 2] = X[..., 2] * stretch
+    return X, s
+
+
+def artichoke(a=5, b=8):
+    """Involucral bracts of a closed globe-artichoke head ('Green Globe', Jade's reference photo), seen from above:
+    the market93 artichoke's 32 bracts (see ART_JSON). Bract n's lattice point is at azimuth n x 137.5 deg (n + 1
+    clockwise from n on the plate, x right, y down) with plan radius sin(theta_n) = 0.038 (n + 0.55) to theta 1.2,
+    then even steps down the flank; seen from above the contact spirals are 5 and 8."""
+    J = json.load(open(ART_JSON))
+    B = J['bracts']
+    stretch = J['spec']['stretch']
+    N = len(B)
+    # the torch surface must be the JS one
+    bi = {bb['n']: bb for bb in B}
+    for ck in J['check']:
+        X, _ = _bract_xyz(bi[ck['n']], torch.tensor(float(ck['sp'])), torch.tensor(float(ck['t'])), ck['back'], stretch)
+        err = float(np.abs(X.numpy() - np.array(ck['p'])).max())
+        assert err < 2e-4, f"plants._bract_xyz differs from artichoke_spec.mjs bractPoint by {err} (bract {ck['n']})"
+    # one more element after the bracts: the body under them (the market mesh's core sphere, 0.74 head radii), which
+    # closes the apex pit; its index is -1, so it is on no arm and never counted
+    CORE_R, CORE_CAP = 0.74, 0.7
+    core = dict(n=-1, theta=0.0, phi=0.0, Nv=[0, 0, 1.0], Uv=[1.0, 0, 0], Ev=[0, 1.0, 0], d=0.3, L=CORE_R * CORE_CAP,
+                W=2 * CORE_R * math.sin(CORE_CAP), anchor=[0, 0, CORE_R * stretch])
+    arr = lambda k: np.array([bb[k] for bb in B] + [core[k]], np.float64)
+    el = dict(kind='bract', n=arr('n').astype(int), theta=arr('theta'), phi=arr('phi'), N=arr('Nv'), U=arr('Uv'),
+              E=arr('Ev'), d=arr('d'), a=a, b=b, N_el=N + 1, flat=stretch, L=arr('L'), W=arr('W'), shared=ART_JSON)
+    el['P'] = np.array([[math.sin(t) * math.cos(p), math.sin(t) * math.sin(p), math.cos(t)] for t, p in zip(el['theta'], el['phi'])])
+    # the anchor of the count: the shared anchor (on the midline, on the exposed part), the market sidecar's point too
+    el['anchor3d'] = arr('anchor')
 
     def sample(sel, dens):
-        """dens: samples per plant unit (along the surface). Yields (xyz [M,3], s [M], t [M], id [M]) tensors."""
+        """dens: samples per plant unit (along the surface). Yields (xyz [M,3], s [M], t [M], id [M]) tensors.
+        Both faces: from above, the open outer bracts show their inner face."""
         for i in sel:
-            L, W = el['L'][i], el['W'][i]
-            ns = int(max(6, L * dens * 1.3))
-            nt = int(max(6, W * dens * 1.3))
-            s, t = _grid(ns, nt)
-            # outline ('Green Globe'): broad, widest above the middle, the tip broadly rounded at the shoulders with
-            # a small V-notch in the middle (UPOV TG/184 'emarginate'; the photo of 'Green Globe' in NOTES.md)
-            half = 0.58 + 0.42 * torch.sin(np.pi * torch.clamp(s / 1.25, 0, 1)) ** 0.8
-            nt_ = el['notch'][i]
-            tip = 1 - 0.62 * torch.abs(t) ** 1.5 - nt_ * torch.exp(-(t / 0.09) ** 2)
-            inside = (s <= tip) & (s >= 0)
-            tw = el['twist'][i]
-            u = s * L                                          # along the meridian toward the apex
-            v = t * half * W / 2 + tw * u                      # across
-            # the bract follows the head's curvature, stands proud toward its tip, and is convex across
-            sag = u * u / 2.0
-            # a stiff scale: nearly flat across with a low keel down the middle, the margins curving down onto the
-            # bracts beneath; the thickened tip flares a little outward (its shadow falls on the next bract)
-            h = el['lift'][i] * (-0.5 + 1.6 * s ** 1.3) \
-                - 0.16 * W * (t * half) ** 2 - 0.07 * W * torch.abs(t * half) \
-                + 0.05 * L * torch.clamp((s - 0.78) / 0.22, 0, 1) ** 2
-            Pt = torch.tensor(el['P'][i], device=DEV, dtype=T32)
-            Ut = torch.tensor(el['U'][i], device=DEV, dtype=T32)
-            Et = torch.tensor(el['E'][i], device=DEV, dtype=T32)
-            Nt = torch.tensor(el['N'][i], device=DEV, dtype=T32)
-            X = Pt + u[..., None] * Ut + v[..., None] * Et + (h - sag)[..., None] * Nt
-            X[..., 2] = X[..., 2] * flat                        # a globe a little flattened on top
-            m = inside
-            yield X[m], s[m], t[m], torch.full((int(m.sum()),), i, device=DEV, dtype=torch.int32)
+            if i == N:                                         # the core: a cap, s 1 at the apex, t round it
+                sg, tg = _grid(int(max(8, CORE_R * CORE_CAP * dens)), int(max(16, 2 * math.pi * CORE_R * dens)))
+                pol, az = (1 - sg) * CORE_CAP, (tg + 1) * math.pi
+                X = torch.stack([CORE_R * torch.sin(pol) * torch.cos(az), CORE_R * torch.sin(pol) * torch.sin(az),
+                                 CORE_R * stretch * torch.cos(pol)], -1)
+                yield X.reshape(-1, 3), sg.reshape(-1), tg.reshape(-1), torch.full((sg.numel(),), i, device=DEV, dtype=torch.int32)
+                continue
+            bb = B[i]
+            ns = int(max(6, bb['L'] * dens * 1.3))
+            nt = int(max(6, bb['W'] * dens * 1.3))
+            sp, t = _grid(ns, nt)
+            for back in (0, 1):
+                X, s = _bract_xyz(bb, sp, t, back, stretch)
+                yield X.reshape(-1, 3), s.reshape(-1), t.reshape(-1), torch.full((sp.numel(),), i, device=DEV, dtype=torch.int32)
 
     el['sample'] = sample
     return el

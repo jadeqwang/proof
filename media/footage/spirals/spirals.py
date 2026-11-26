@@ -175,7 +175,7 @@ CAPTIONS = dict(
 
 
 LAYOUTS = dict(
-    artichoke=dict(radius=400),
+    artichoke=dict(radius=318),
     aloe=dict(radius=392),
     romanesco=dict(radius=318, centre=(492, 440),
                    inset=dict(centre=(1318, 440), r=318, fill=0.72, pick_r=0.56, pick_ang=0.0)),
@@ -345,6 +345,8 @@ class Plate:
             if vk == 'inset':
                 return (el['parent'] == self.floret) & (el['level'] == 2)
             return el['level'] == 1
+        if 'n' in el:
+            return np.asarray(el['n']) >= 0        # the artichoke's core (n = -1) is no bract
         return np.ones(el['N_el'], bool)
 
     def index(self, vk='main'):
@@ -518,7 +520,16 @@ def place_numeral(path, size, taken, frame_box, start=0.75, mask=None, centre=No
 
 
 CLIPS = dict(
-    artichoke=dict(dur=17.0, passes=[dict(F=5, t=(1.5, 7.6), n_min=5, smooth=6.0), dict(F=8, t=(8.6, 14.6), n_min=5, smooth=6.0)]),
+    # 2026-11-26 (Jade, r2 review: "animate each line of the spiral in bright gold, one at a time"; the romanesco's slot
+    # becomes the artichoke's count): ONE line at a time, each drawn in bright gold, then settling to the gold pencil
+    # as the next one starts. The 8 family first (the market artichoke's 8 arms), 1-7 over verse 2a, cut by the grab at
+    # 5.0 s; then (the interlude, from 5.0 s = song 2:30.0) arm 8 and the other family, 5. 'start' keeps the numerals
+    # on the same arms as before (8 from 6 o'clock, 5 from 12), so the market's per-bract numerals are unchanged.
+    artichoke=dict(dur=9.5, one_at_a_time=True, line=4.2,
+                   passes=[dict(F=8, t=(0.6, 4.55), last=(5.15, 5.85), n_min=5, smooth=6.0, start=math.pi / 2, first=1.7),
+                           dict(F=5, t=(6.25, 8.55), n_min=5, smooth=6.0, start=-math.pi / 2, first=1.5)]),
+    # the earlier artichoke timing (5 then 8, gold pencil only, 17.0 s), for reference:
+    # dict(dur=17.0, passes=[dict(F=5, t=(1.5, 7.6), n_min=5, smooth=6.0), dict(F=8, t=(8.6, 14.6), n_min=5, smooth=6.0)])
     aloe=dict(dur=13.0, passes=[dict(F=5, t=(1.5, 9.5), first=1.8, r_max=0.92, smooth=20.0)]),
     romanesco=dict(dur=20.0, passes=[dict(F=8, t=(1.4, 5.8), line=3.4), dict(F=13, t=(6.4, 10.8), line=3.4),
                                      dict(F=8, view='inset', t=(12.3, 14.6), descend=(11.1, 12.1), num=28, line=2.8),
@@ -572,10 +583,15 @@ class Clip:
             prev_same = [q for q in self.spec['passes'][:pi] if q.get('view', 'main') == vk]
             start = ps.get('start', -math.pi / 2 if not prev_same else math.pi / 2)   # 12 o'clock, then 6 o'clock
             order = np.argsort(np.mod(ang - start, 2 * math.pi))
-            times = pass_times(len(arms), *ps['t'], first=ps.get('first', 2.2))
-            pass_end = ps['t'][1]
+            if 'last' in ps:                                    # the last arm on its own clock (after the cut)
+                times = pass_times(len(arms) - 1, *ps['t'], first=ps.get('first', 2.2)) + [tuple(ps['last'])]
+                pass_end = ps['last'][1]
+            else:
+                times = pass_times(len(arms), *ps['t'], first=ps.get('first', 2.2))
+                pass_end = ps['t'][1]
             nsize = ps.get('num', NUM_SIZE) * k
-            lw = ps.get('line', LINE_W) * k
+            lw = ps.get('line', self.spec.get('line', LINE_W)) * k
+            one = self.spec.get('one_at_a_time', False)
             if 'descend' in ps:                                  # the thread goes down into one floret
                 a_, b_ = P.lead_pts
                 d0, d1 = ps['descend']
@@ -596,7 +612,16 @@ class Clip:
 
                 def line_alpha(t, pe=pass_end, solo=(n_pass == 1)):
                     return 1.0 if (solo or t < pe + 0.3) else 1 - 0.30 * min(1.0, (t - pe - 0.3) / 0.8)
-                self.gold.add([st], t0, t1, line_alpha)
+
+                def bright_line(t, a_=t0, b_=t1):                  # bright while drawn, settles over 0.45 s after
+                    return 1.0 if t <= b_ + 0.08 else max(0.0, 1 - (t - b_ - 0.08) / 0.45)
+
+                def settled_alpha(t, b_=t1):                       # then a quieter gold pencil, so only the live line shines
+                    return 1.0 if t <= b_ + 0.08 else 1 - 0.38 * min(1.0, (t - b_ - 0.08) / 0.6)
+                if one:
+                    self.gold.add([st], t0, t1, settled_alpha, bright_fn=bright_line)
+                else:
+                    self.gold.add([st], t0, t1, line_alpha)
                 num = str(j + 1)
                 c = place_numeral(path, nsize, taken, fb, mask=self.plant_mask, centre=(cx, cy))
                 strokes = thread.glyph_strokes(num, c[0] * ss, c[1] * ss, nsize * ss, 2.9 * k * ss,
@@ -609,7 +634,18 @@ class Clip:
                         return 1.0
                     return 1 - 0.40 * min(1.0, (t - pe - 0.3) / 0.8)
                 tn0 = t1 - 0.04
-                self.gold.add(strokes, tn0, tn0 + 0.20 + 0.12 * len(num), num_alpha, ease=False, clear=True)
+                if one:
+                    def num_alpha1(t, b_=t1, tot=is_total):
+                        return 1.0 if (tot or t <= b_ + 0.08) else 1 - 0.30 * min(1.0, (t - b_ - 0.08) / 0.6)
+
+                    def num_bright(t, b_=t1, tot=is_total):
+                        if t <= b_ + 0.3:
+                            return 1.0
+                        return 0.85 if tot else max(0.0, 1 - (t - b_ - 0.3) / 0.45)
+                    self.gold.add(strokes, tn0, tn0 + 0.20 + 0.12 * len(num), num_alpha1, ease=False, clear=True,
+                                  bright_fn=num_bright)
+                else:
+                    self.gold.add(strokes, tn0, tn0 + 0.20 + 0.12 * len(num), num_alpha, ease=False, clear=True)
                 pd['arms'].append(dict(count=j + 1, arm=arm['k'], elements=arm['elements'],
                                        anchors=arm['anchors'], path=path[::8].round(1).tolist(),
                                        numeral=num, numeral_at=[round(float(c[0]), 1), round(float(c[1]), 1)],
@@ -680,6 +716,22 @@ def render_movies(clip, outdir, jobs=8, fps=24):
     return master, alpha, prev
 
 
+MARKET_COUNT = os.path.join(plants.REPO, 'layout', 'sets', 'market93', 'artichoke_plate_count.json')
+
+
+def write_market_count(data):
+    """The plate's count, by bract, for the market93 sidecar (the bracts are the same: plants.ART_JSON): for each family
+    and numeral, the arm (n mod F), its bracts centre outward, and the bract at whose end the numeral is written."""
+    out = dict(about='PLATE XVIII Fig. 1 count, written by media/footage/spirals/spirals.py from data/artichoke_arms.json; '
+                     'bract numbers are the shared artichoke_bracts.json n. Do not edit by hand.',
+               families=[dict(F=p_['family'], winding=p_['winding'], total=p_['total'],
+                              numerals=[dict(numeral=int(a['numeral']), arm=a['arm'], bracts=a['elements'],
+                                             numeral_bract=a['elements'][-1], t_start=a['t_start'], t_end=a['t_end'])
+                                        for a in p_['arms']]) for p_ in data['passes']])
+    json.dump(out, open(MARKET_COUNT, 'w'), indent=1)
+    print('wrote', MARKET_COUNT)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('plant')
@@ -701,6 +753,9 @@ def main():
         save(c.img, args.plate)
     if args.data:
         json.dump(c.data, open(args.data, 'w'), indent=1)
+        if (args.plant == 'artichoke' and os.path.abspath(args.data) == os.path.join(HERE, 'data', 'artichoke_arms.json')
+                and not os.environ.get('NO_MARKET_COUNT')):
+            write_market_count(c.data)
         print(json.dumps(c.data['verify']))
         print([(p_['family'], p_['view'], p_['total'], p_['winding']) for p_ in c.data['passes']])
     for t in args.at or []:

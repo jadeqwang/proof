@@ -3,6 +3,31 @@
 "Proof": Attic, Netherlands, winter 1988, by day. Derived from `../attic88` (which is not modified): the shell,
 window, stair door and v4 fixed furniture are imported from `../attic88/layout.js` and `../attic88/v4.js`.
 
+
+## r3 changes, 2026-11-25 night (Jade's r2 review; supersedes anything below that contradicts it)
+
+- **Paper keys** (`KEYS.kb` in layout.js, build.js): flat printed paper, keys never depress. The printed keyboard is now
+  real piano size: 21 white keys (3 octaves C..B) at 23.5 x 150 mm, black keys 13.7 x 95 mm from the far edge (real
+  2-3 offsets), 0.4935 m long, centred on the same two taped A4 sheets (0.594 x 0.21) with 50 mm white margins at the
+  ends and 30 mm along the long edges. Was 14 keys filling the whole paper (42 mm keys). Added: one strip of clear tape
+  over the seam and two map-fold creases (ink-thin, flat). Sidecar `keys.keyboard` gives the printed size and margins;
+  `keys.corners_*` are still the PAPER's corners. Hands at the keys now softly curved (`KEYHAND` in shots.js), not flat.
+- **Age 4.5 + socks** (AD_piano, AD_wide): no 4.5 kind exists in the engine or `_cast.js`, so build.js adds a
+  SET-LOCAL kind `child4h` (the mean of the engine's child4 and child5 proportions) and a set-local cast key `jade4h`
+  (littleJade's look, 1.045 m) via `addCast` (FLAG: if 4.5 recurs elsewhere, promote it to `_cast.js`). White crew socks
+  (7.5 cm cuff) via basement90's `footwear()` (imported read-only from `../basement90/kit.js`), on `jade4h` and on
+  `littleJade` wherever her feet are in a shot. AD_frost_look keeps `littleJade` (5, no feet in view; carried).
+  OPEN for Jade: the keys scene (AD_wide 0:05, AD_piano 1:08) is now 4.5; AD_trace / AD_grab at the sill are still "five
+  years old" in the intent. Same day or not?
+- **AD_piano camera**: 35 mm, orbit el 28, dist 1.3 (was 40 mm, el 30, 0.95): her head (bent down, face hidden) and the
+  whole paper with its margins are in frame, so the 4.5 proportions read; was cut at the shoulders.
+- **AD_out, AD_thumbs RETIRED** ("you need facial expressions" is said at ~10, not at 5): moved to `RETIRED` in shots.js
+  (not rendered); renders moved to `media/layout/attic88_day/_retired/`. office91 restages them at 10.
+- **AD_mote KEPT** as the rhyme frame: it never depended on the line (no figure in frame, only her eye-line); it carries
+  the beam diagonal for the 0:00 pad and the coda hit + bar 1. Its 0:09-0:16.7 intro slot lost its whisper: the intro
+  0:07-0:18.2 now has AD_mote and the artichoke footage (AD_keys) to fill it; re-sequence in the edit.
+- **AD_keys** is footage in r3 (artichoke growth 0-20 s); the camera stays (keys resized) for the coda bar 3 reuse.
+
 ## Assumptions (the plan leaves these open)
 - **Window faces due south.** +x = south, +z = west. Sun: mid January, about 10:40 solar time, azimuth 160, altitude
   16 degrees, so the light travels north, a little west, and down (`SUN_DIR`). Change `SUN` in layout.js to re-aim;

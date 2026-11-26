@@ -741,24 +741,24 @@
  "lights": [
   {
    "name": "sun",
-   "kind": "the sun, 2010-10-02 14:00 PDT: elev 46.35 az 202.88 (pos: a point 30 m up the beam)",
+   "kind": "the sun, 2010-10-02 10:30 PDT: elev 36.49 az 131.83 (pos: a point 30 m up the beam)",
    "on": true,
    "color": "#ffe2b0",
    "world": [
-    -17.6627,
-    22.5071,
-    5.3616
+    -3.3156,
+    18.6405,
+    27.2773
    ],
    "px": [
-    -19872.8,
-    -2025.7
+    -3857.4,
+    22438.3
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.993,
-    0.117
+    0.227,
+    -0.974
    ],
-   "toward_camera": -0.855,
+   "toward_camera": -0.709,
    "aim_world": [
     3,
     0.8,
@@ -859,10 +859,10 @@
  "section": "Before the party",
  "scene": {
   "date": "2010-10-02",
-  "clock": "14:00",
+  "clock": "10:30",
   "tz": "PDT",
-  "sun_elev_deg": 46.35,
-  "sun_az_deg": 202.88,
+  "sun_elev_deg": 36.49,
+  "sun_az_deg": 131.83,
   "sun_up": true,
   "sunset": {
    "time": "18:52",
@@ -883,9 +883,9 @@
  "amplitude_pct": 115,
  "sun_through_openings": {
   "section": "prep",
-  "time": "14:00",
-  "elev": 46.35,
-  "az": 202.88,
+  "time": "10:30",
+  "elev": 36.49,
+  "az": 131.83,
   "openings": [
    {
     "name": "front door",
@@ -904,17 +904,13 @@
    },
    {
     "name": "sliding glass door to the deck",
-    "frac": 0.26,
-    "by": {
-     "house roof (eave / rake)": 26
-    }
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "kitchen window over the sink (ESE)",
-    "frac": 0,
-    "by": {
-     "house roof (eave / rake)": 35
-    }
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "dining window (SSW)",
@@ -938,10 +934,8 @@
    },
    {
     "name": "bedroom window (ESE)",
-    "frac": 0,
-    "by": {
-     "house roof (eave / rake)": 35
-    }
+    "frac": 1,
+    "by": {}
    },
    {
     "name": "bedroom window (NNE)",
@@ -950,10 +944,8 @@
    },
    {
     "name": "bath 2 window (ESE)",
-    "frac": 0,
-    "by": {
-     "house roof (eave / rake)": 35
-    }
+    "frac": 1,
+    "by": {}
    }
   ]
  },
@@ -2013,6 +2005,14 @@
   "start_s": 178.043,
   "end_s": 179.19,
   "words": "\"yard\" (held to the line end; V3c follows at 179.2)"
+ },
+ "jade_costume": {
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
+  "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
+  "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
+  "before_party": "same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)",
+  "sheet": "cast/jade_27/j27_costume_housewarming_v1.jpg"
  },
  "figure_report": {
   "jade27": {

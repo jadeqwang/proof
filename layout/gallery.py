@@ -20,7 +20,7 @@ TITLES = {
     'mortongrove07': 'Living room, Morton Grove, about 2007 (the sweatshirt)',
     'closet02': 'Closet, about 2002', 'playground23': 'Playground, Austin, 2023',
 }
-MODES = ['line', 'label', 'flat', 'lit', 'depth', 'beam']
+MODES = ['line', 'label', 'flat', 'lit', 'depth', 'contour', 'form', 'light', 'beam']   # contour/form/light = the painter guides
 
 
 def text(v):
@@ -150,8 +150,8 @@ dialog::backdrop { background:#000; }
 </div></dialog>
 <script>
 const SETS = /*DATA*/;
-const MODES = ['line','label','flat','lit','depth','beam'];
-const NAMES = {line:'Line', label:'Label', flat:'Flat', lit:'Lit', depth:'Depth', beam:'Beam mask'};
+const MODES = ['line','label','flat','lit','depth','contour','form','light','beam'];
+const NAMES = {line:'Line', label:'Label', flat:'Flat', lit:'Lit', depth:'Depth', contour:'Contour', form:'Form', light:'Light map', beam:'Beam mask'};
 let mode = 'label';
 const $ = (t, a = {}, ...kids) => { const e = document.createElement(t); for (const k in a) k === 'text' ? e.textContent = a[k] : e.setAttribute(k, a[k]); e.append(...kids); return e; };
 const main = document.getElementById('main'), flat = [];

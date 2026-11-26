@@ -46,11 +46,14 @@ HG = dict(w=0.216, h=0.279, cols=7, rows=5, shortRow=3, shortCount=6, margin=0.0
           faceR=0.0098, labelW=0.02, color=0xF2DF6A)
 PITCH_X = (HG["w"] - 2 * HG["margin"]) / HG["cols"]
 PITCH_Y = (HG["h"] - HG["title"] - HG["bottom"]) / HG["rows"]
+SHORT_SHIFT = 0.25                 # r3 (Jade): the row of six sits a quarter cell left of centre (layout.js HANDOUT.shortShift)
+# r3: the row of six carries some of the larger-looking faces (marks outside the circle): SCARED, EXCITED, UPSET swapped
+# places with CALM, NERVOUS, THANKFUL (layout.js LABELS)
 LABELS = [
-    ["HAPPY", "SAD", "ANGRY", "SCARED", "SURPRISED", "SLEEPY", "GRUMPY"],
-    ["PROUD", "SHY", "BORED", "EXCITED", "LONELY", "BRAVE", "SORRY"],
-    ["TIRED", "SILLY", "CONFUSED", "JEALOUS", "HURT", "CURIOUS", "UPSET"],
-    ["CALM", "WORRIED", "GUILTY", "NERVOUS", "THANKFUL", "ANXIOUS"],
+    ["HAPPY", "SAD", "ANGRY", "CALM", "SURPRISED", "SLEEPY", "GRUMPY"],
+    ["PROUD", "SHY", "BORED", "NERVOUS", "LONELY", "BRAVE", "SORRY"],
+    ["TIRED", "SILLY", "CONFUSED", "JEALOUS", "HURT", "CURIOUS", "THANKFUL"],
+    ["SCARED", "WORRIED", "EXCITED", "GUILTY", "UPSET", "ANXIOUS"],
     ["FRUSTRATED", "HOPEFUL", "EMBARRASSED", "DISAPPOINTED", "LOVED", "SAFE", "MAD"],
 ]
 TITLE = "HOW DO YOU FEEL TODAY?"
@@ -74,7 +77,7 @@ def row_count(r):
 
 def cell_m(r, c):
     """Centre of the face in row r (0 = top), column c (0 = first as read), in metres from the page's top-left."""
-    return (HG["w"] / 2 + (c - (row_count(r) - 1) / 2) * PITCH_X, HG["title"] + (r + 0.5) * PITCH_Y - FACE_UP)
+    return (HG["w"] / 2 + (c - (row_count(r) - 1) / 2 - (SHORT_SHIFT if r == HG["shortRow"] else 0)) * PITCH_X, HG["title"] + (r + 0.5) * PITCH_Y - FACE_UP)
 
 
 def font(px):
@@ -328,7 +331,8 @@ def master(dpi=300):
     info = {"page_px": [W, H], "dpi": dpi, "px_per_m": S, "title": TITLE, "title_box": tbox, "face_r_px": R,
             "pitch_px": [PITCH_X * S, PITCH_Y * S], "label_em_px": lem, "label_pt": lem / dpi * 72,
             "gap": {"centre": [gx * S, oy + gy * S], "r": R, "note": "where a seventh face would follow ANXIOUS at the "
-                    "same spacing (layout.js GAP); the row is centred, so half of the missing cell is at each end"},
+                    "same spacing (layout.js GAP); the row sits a quarter cell left of centre, so 0.75 of the missing "
+                    "cell is at this end and 0.25 at the start. Her finger points HERE (r3)"},
             "gap_left": {"centre": [lx * S, oy + ly * S], "r": R}, "missing_faces": missing}
     page = (page > 0.5).astype(F32)                          # a 300 dpi laser print: no greys
     return page, cells, info

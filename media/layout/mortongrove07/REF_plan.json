@@ -186,42 +186,42 @@
   "seal_square": {
    "px": [
     [
-     873.6,
-     207.1
+     873.7,
+     209.3
     ],
     [
-     920.3,
-     193.6
+     900.8,
+     197.8
     ],
     [
-     923.4,
-     204.2
+     912.2,
+     224.6
     ],
     [
-     876.6,
-     217.6
+     885.1,
+     236.1
     ]
    ],
    "world": [
     [
-     2.4252,
-     0.9692,
-     -0.9489
+     2.4241,
+     0.9329,
+     -0.9666
     ],
     [
-     2.0599,
-     0.9692,
-     -0.8441
+     2.2125,
+     0.9329,
+     -0.8765
     ],
     [
-     2.0363,
-     0.599,
-     -0.9265
+     2.1233,
+     0.9649,
+     -1.086
     ],
     [
-     2.4016,
-     0.599,
-     -1.0313
+     2.3349,
+     0.9649,
+     -1.1761
     ]
    ],
    "behind_camera": [
@@ -235,16 +235,16 @@
  "heads": {
   "jade27": {
    "px": [
-    885.5,
-    163.4
+    886.5,
+    168.6
    ],
    "eyes": [
-    890.1,
-    173.7
+    891.3,
+    178.8
    ],
    "mouth": [
-    891.2,
-    175.8
+    892.6,
+    180.7
    ],
    "in_frame": true,
    "visible": true,
@@ -252,28 +252,28 @@
   },
   "firstLove27": {
    "px": [
-    926.1,
-    255.8
+    924.4,
+    251.7
    ],
    "eyes": [
-    921.1,
-    244.3
+    919.3,
+    240.5
    ],
    "mouth": [
-    922.4,
-    247.4
+    920.8,
+    244
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 129,
+   "facing_camera_deg": 132,
    "blocked_by": "firstLove27 first love (27, never face-on)"
   }
  },
  "hands": {
   "jade27.L": {
    "px": [
-    927.3,
-    190
+    912.8,
+    197.7
    ],
    "shape": "grip",
    "in_frame": true,
@@ -281,8 +281,8 @@
   },
   "jade27.R": {
    "px": [
-    864.2,
-    202.2
+    865.3,
+    217.9
    ],
    "shape": "grip",
    "in_frame": true,
@@ -290,19 +290,19 @@
   },
   "firstLove27.L": {
    "px": [
-    910.9,
-    291.4
+    889.4,
+    247.9
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": true
   },
   "firstLove27.R": {
    "px": [
-    962.5,
-    269.4
+    917.7,
+    235.8
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": true
   }
@@ -324,14 +324,14 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.837,
-    0.547
+    -0.83,
+    0.558
    ],
-   "toward_camera": -0.081,
+   "toward_camera": -0.068,
    "aim_world": [
-    2.2329,
-    0.7823,
-    -0.9302
+    2.2642,
+    0.92,
+    -1.0486
    ]
   },
   {
@@ -350,10 +350,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.558,
-    0.83
+    -0.551,
+    0.834
    ],
-   "toward_camera": -0.001,
+   "toward_camera": 0.055,
    "aim_world": [
     2.3333,
     1,
@@ -427,120 +427,147 @@
   "orientation": "Jade's drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)",
   "couch": "against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)"
  },
- "sweatshirt": {
+ "hoodie": {
   "colour": "white",
-  "state": "UNFOLDED, held up against her by the shoulder seams, the front toward him (Jade: the seal is huge and only reads unfolded)",
+  "kind": "pullover hoodie: hood (hanging behind the neckline), two flat drawstrings, kangaroo pouch pocket, ribbed cuffs and waistband",
+  "state": "FOLDED: a stack 0.38 x 0.36 m, front up, neckline at her end; the waistband end folded up over the front from his end, hiding the lower part of the seal; he hands it over, both hold it",
   "chest_m": 0.58,
   "length_m": 0.69,
   "collar": {
    "world": [
-    2.2506,
-    1.06,
-    -0.8684
+    2.334,
+    0.8949,
+    -0.8846
    ],
    "px": [
-    895.9,
-    196.8
+    885.2,
+    198.8
    ]
   },
   "seal": {
    "label": "IAS seal (Truth, Beauty)",
-   "what": "Institute for Advanced Study seal, DARK BLUE line print on a WHITE sweatshirt, HUGE: almost the whole front (diameter 0.38 m on a 0.58 m chest): round, two standing figures labelled TRUTH (left) and BEAUTY (right)",
-   "radius_m": 0.19,
+   "what": "Institute for Advanced Study seal printed in BLUE on a WHITE HOODIE, CHEST-SIZED (diameter 0.23 m on a 0.58 m front, about 40% of its width, centred on the chest below the drawstrings; Jade 2026-11-25, NOT the whole front; on the FOLDED stack it spans about 60% of the folded width): a SOLID filled blue disc with the design in white reverse: two standing classical women hand in hand before a leafy tree, TRUTH (left, raising a hand mirror) and BEAUTY (right, pleated gown); INSTITUTE FOR ADVANCED STUDY round the rim, FOUNDED 1930 at the bottom (see cast/first_love/fl_H_ias_hoodie_v2.jpg)",
+   "radius_m": 0.115,
    "centre": {
     "world": [
-     2.2308,
-     0.7841,
-     -0.9377
+     2.2737,
+     0.9489,
+     -1.0263
     ],
     "px": [
-     898.5,
-     205.6
+     893,
+     217
     ]
    },
    "top": {
     "world": [
-     2.2426,
-     0.9692,
-     -0.8965
+     2.3183,
+     0.9329,
+     -0.9215
     ],
     "px": [
-     897,
-     200.4
+     887.3,
+     203.6
     ]
    },
    "bottom": {
     "world": [
-     2.2189,
-     0.599,
-     -0.9789
+     2.2291,
+     0.9649,
+     -1.1311
     ],
     "px": [
-     900,
-     210.9
+     898.7,
+     230.4
     ]
    },
    "truth_side": {
     "world": [
-     2.3129,
-     0.7841,
-     -0.9613
+     2.3213,
+     0.9489,
+     -1.0466
     ],
     "px": [
-     887.9,
-     208.6
+     886.9,
+     219.6
     ]
    },
    "beauty_side": {
     "world": [
-     2.1486,
-     0.7841,
-     -0.9141
+     2.2261,
+     0.9489,
+     -1.006
     ],
     "px": [
-     909,
-     202.6
+     899.1,
+     214.4
     ]
    },
+   "hidden_by_fold": {
+    "share_of_height": 0.28,
+    "how": "the lower body folded up over the front from his end: its ribbed waistband edge lies across the seal's lower part"
+   },
    "corner_order": "panes.seal_square = TL, TR, BR, BL as one faces the front (a painted seal maps straight on)",
-   "facing": "out of the front of the sweatshirt she holds up against herself: toward him and the cameras behind him; upright",
-   "normal_to_camera_deg": 59,
+   "facing": "up, on top of the folded stack between them; upright for him and the camera behind him (its top toward her)",
+   "normal_to_camera_deg": 26,
    "reads_upright_on_screen": true,
    "sun_on_front": {
-    "cos_incidence": -0.237,
-    "note": "negative = the sun is BEHIND the front: the seal is in the windows' skylight; the sun lights the back of the sweatshirt and rims its edges"
+    "cos_incidence": 0.211,
+    "note": "negative = the sun is BEHIND the print; positive = it can fall on it (subject to the shafts and shadows)"
    }
   },
   "grips": {
-   "herL": {
+   "hisL": {
     "world": [
-     2.0103,
-     1.06,
-     -0.7995
+     2.3164,
+     0.9409,
+     -1.2323
     ],
     "px": [
-     926.7,
-     187.9
+     887.5,
+     243.3
+    ]
+   },
+   "hisR": {
+    "world": [
+     2.0956,
+     0.9409,
+     -1.1382
+    ],
+    "px": [
+     915.8,
+     231.3
+    ]
+   },
+   "herL": {
+    "world": [
+     2.1558,
+     0.9061,
+     -0.8948
+    ],
+    "px": [
+     908.1,
+     200.1
     ]
    },
    "herR": {
     "world": [
-     2.491,
-     1.06,
-     -0.9373
+     2.4502,
+     0.9061,
+     -1.0202
     ],
     "px": [
-     865.2,
-     205.6
+     870.4,
+     216.2
     ]
    }
   },
-  "note": "her two hands close on the shoulder seams (thumbs behind, fingers over the top); the body hangs in front of her and folds forward over her knees; sleeves hang beside it"
+  "note": "each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers"
  },
  "first_love": {
   "who": "first love (a real person: never named, never face-on)",
   "face_shown": false,
-  "facing_camera_deg": 129,
+  "facing_camera_deg": 132,
   "hair": "dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)",
   "feet": "Birkenstock-type cork sandals (Naot), bare feet",
   "forearms": "sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE",
@@ -568,27 +595,27 @@
   "note": "computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)",
   "in_sun_margin_m": {
    "her_eyes": {
-    "front": 0.463,
-    "west": -1.234,
-    "dining": -6.444
+    "front": 0.466,
+    "west": -1.188,
+    "dining": -6.398
    },
    "her_head": {
-    "front": 0.303,
-    "west": -1.338,
-    "dining": -6.547
+    "front": 0.374,
+    "west": -1.292,
+    "dining": -6.502
    },
    "seal": {
-    "front": 0.28,
-    "west": -0.942,
-    "dining": -6.152
+    "front": 0.187,
+    "west": -0.881,
+    "dining": -6.091
    },
    "his_head": {
-    "front": -0.539,
-    "west": -0.41,
-    "dining": -5.62
+    "front": -0.476,
+    "west": -0.451,
+    "dining": -5.661
    }
   },
-  "seal_front_cos": -0.237
+  "seal_front_cos": 0.211
  },
  "beam": {
   "name": "front + west windows",
@@ -727,22 +754,22 @@
    }
   },
   "anchor_world": [
-   2.2329,
-   0.7823,
-   -0.9302
+   2.2319,
+   0.9121,
+   -0.9339
   ],
   "anchor_px": [
-   898.2,
-   204.7
+   898.3,
+   205.1
   ],
   "on_screen": {
    "from_px": [
-    908.7,
-    197.8
+    908.9,
+    198.3
    ],
    "to_px": [
-    887.6,
-    211.5
+    887.8,
+    212
    ],
    "angle_deg": 33,
    "travel": "right-to-left"
@@ -773,29 +800,29 @@
  "points_world": {
   "jade27": {
    "eyes": [
-    2.2963,
-    1.264,
-    -0.6885
+    2.2867,
+    1.2559,
+    -0.7285
    ],
    "head": [
-    2.3321,
-    1.2282,
-    -0.608
+    2.3242,
+    1.2204,
+    -0.6486
    ],
    "chin": [
-    2.2958,
-    1.143,
-    -0.6836
+    2.284,
+    1.135,
+    -0.722
    ],
    "handL": [
-    2.0058,
-    1.0884,
-    -0.8153
+    2.1184,
+    0.9283,
+    -0.8755
    ],
    "handR": [
-    2.4985,
-    1.0783,
-    -0.9111
+    2.49,
+    0.9283,
+    -1.0338
    ],
    "hip": [
     2.3333,
@@ -803,9 +830,9 @@
     -0.58
    ],
    "shoulderC": [
-    2.3216,
-    1.0228,
-    -0.6211
+    2.3129,
+    1.0166,
+    -0.6514
    ],
    "kneeL": [
     2.1226,
@@ -820,29 +847,29 @@
   },
   "firstLove27": {
    "eyes": [
-    2.0539,
-    1.6267,
-    -1.2399
+    2.068,
+    1.6097,
+    -1.2101
    ],
    "head": [
-    2.0146,
-    1.658,
-    -1.3293
+    2.0285,
+    1.6463,
+    -1.2974
    ],
    "chin": [
-    2.0191,
-    1.5294,
-    -1.3199
+    2.0306,
+    1.5173,
+    -1.2947
    ],
    "handL": [
-    2.1339,
-    0.8216,
-    -1.608
+    2.3013,
+    0.9689,
+    -1.2676
    ],
    "handR": [
-    1.7303,
-    0.8216,
-    -1.4359
+    2.0805,
+    0.9689,
+    -1.1736
    ],
    "hip": [
     1.95,
@@ -850,9 +877,9 @@
     -1.48
    ],
    "shoulderC": [
-    1.9814,
-    1.4498,
-    -1.4063
+    1.9901,
+    1.4434,
+    -1.3859
    ],
    "kneeL": [
     2.0653,
@@ -877,10 +904,10 @@
     }
    },
    "arms": {
-    "L": 0.63,
-    "R": 0.38
+    "L": 0.5,
+    "R": 0.6
    },
-   "headTurn": 9
+   "headTurn": 10
   },
   "firstLove27": {
    "legs": {
@@ -892,8 +919,8 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.97
+    "L": 0.8,
+    "R": 0.87
    },
    "headTurn": 1
   }

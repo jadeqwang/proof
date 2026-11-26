@@ -32,8 +32,9 @@ export const horiz = (bearing) => [Math.cos((bearing - BEARING.X) * D2R), Math.s
 //   silence  19:20 / chorus2b 19:22  just past the end of civil dusk (19:17): no sun, a deep blue sky; ceiling lights
 //                   inside, the fire poi outside.
 export const SCENE = { date: '2010-10-02', tzHours: -7, tz: 'PDT', lat: 37.39095, lon: -122.07744,
-  times: { prep: '14:00', bridge: '16:30', hardstop: '16:31', verse3: '18:25', silence: '19:20', chorus2b: '19:22' } };
-// prep 14:00: picking the lemons before the party (Jade 2026-11-25 (late): she and the childhood friend picked them
+  times: { prep: '10:30', bridge: '16:30', hardstop: '16:31', verse3: '18:25', silence: '19:20', chorus2b: '19:22' } };
+// prep 10:30 (was 14:00; Jade r2 review 2026-11-25: "it's early in the day"; 10:30 is OUR pick, flagged): picking the
+// lemons before the party (Jade 2026-11-25 (late): she and the childhood friend picked them
 // and made the lemonade BEFORE first love, Z and the guests arrived). The clock time is OUR pick (ASSUMED).
 export const SECTION_KEY = { 'Before the party': 'prep', 'Bridge': 'bridge', 'Hard stop': 'hardstop', 'Verse 3': 'verse3', 'Silence': 'silence', 'Chorus 2b': 'chorus2b' };
 
@@ -389,7 +390,7 @@ export const PARTY_FOOD = {
     ['rect', [0.22, 0.30], 4.57, 6.78, 'snacks (bag of tortilla chips)'], ['round', 0.10, 4.60, 9.05, 'snacks (bowl of nuts)'], ['round', 0.10, 4.30, 5.73, 'snacks (bowl of salsa)']],
 };
 // the lemonade prep BEFORE the party (Jade 2026-11-25 round 2: "they pick the lemons AND prepare the lemonade in the
-// kitchen (juicer, rinds, mixing)"): on the dining table, where the SSW window's 14:00 sun falls (our choice of surface:
+// kitchen (juicer, rinds, mixing)"): on the dining table, where the SSW window's daylight falls (10:30 since the r2 review) (our choice of surface:
 // the counters are in shade and crowded; ASSUMED). Everything here is OURS except juicer, rinds, mixing and the lemons.
 export const PREP = { board: { at: [1.00, 7.42], w: 0.45, d: 0.30 }, knife: { at: [1.00, 7.62] }, reamer: { at: [1.62, 7.42], r: 0.09 },
   lemonsBowl: { at: [0.40, 7.46], r: 0.16 }, rindsBowl: { at: [0.60, 7.88], r: 0.14 }, punch: { at: [1.05, 7.84] }, sugar: { at: [0.27, 7.95] }, pitcher: { at: [1.84, 7.90], r: 0.07 },

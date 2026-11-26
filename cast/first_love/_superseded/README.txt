@@ -18,3 +18,10 @@ the change from the long top to the short lower hair is too gradual; it is reall
 and grown out ~6 months (an even short buzz with a visible step, not a taper). G v2's sweatshirt seal was also a small
 generic emblem; the IAS seal is huge, nearly the whole front. Replaced by fl_B_backhead_neck_v4 (hair anchor),
 fl_A_turnaround_back_v4, fl_G_ots_hair_v3, plus the new prop sheet fl_H_ias_sweatshirt_v1. Do not pass these as hair refs.
+
+Superseded 2026-11-25 (late). H v1 (fl_H_ias_sweatshirt_v1, never pushed): Jade: the gift is a WHITE HOODIE (hood,
+drawstrings, kangaroo pocket), not a crew-neck sweatshirt, and the seal is a BLUE filled-disc chest print about 40% of
+the front's width, not a navy line seal over almost the whole front. Its Truth also wears an invented drape (the real
+seal's Truth is unclothed). Do not pass it as a garment or seal reference.
+G v3 (same date): its folded garment is the old white crew-neck sweatshirt with the huge navy seal; replaced by
+fl_G_ots_hair_v4 (same hair and layout, the gift now a folded white hoodie with the blue chest print).

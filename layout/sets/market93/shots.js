@@ -21,7 +21,7 @@ const mamaAhead = { at: MAMA_AHEAD.at, yaw: MAMA_AHEAD.yaw, legs: 'stand', noApr
   L: 'side', R: { to: [-0.92, 1.28, 2.82], hand: 'relax', palm: 'down' } };
 // Mama back at her right side: her right hand comes down onto Jade's right forearm
 const mamaGrab = (o = {}) => ({ at: MAMA_GRAB.at, yaw: MAMA_GRAB.yaw, legs: 'stand', noApron: true, spine: { bend: 12 }, head: { look: 'jade10:head' },
-  R: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: 0.027, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.1' } }, L: 'side', ...o });   // (2026-11-25) the fingers wrap her forearm (engine hold, no prop); was a palm target 2.2 cm above it
+  R: { to: 'forearm:jade10:R', hand: 'grip', palm: 'down', hold: { r: 0.027, prop: false, centre: true, axis: 'to:forearm:jade10:R:0.95' } }, L: 'side', ...o });   // (2026-11-25) the fingers wrap her forearm (engine hold, no prop); was a palm target 2.2 cm above it
 // walked away up the aisle (+z): Mama leads by the forearm, Jade is turned side-on and looks back at the artichoke
 const jadeLed = { at: WALK.jade.at, yaw: WALK.jade.yaw, legs: 'stand', legOpts: { ankleL: [0.075, -0.63, 0.12], ankleR: [0.075, -0.63, -0.12] }, spine: { twist: 30, bend: 2 },
   head: { look: 'art', pitchK: 0.9 }, R: { to: WALK.hold, hand: 'relax', palm: 'down' }, L: 'side' };
@@ -31,6 +31,17 @@ const grandmaPass = grandma(GRANDMA_PASS, { head: { nod: 6 }, legOpts: { ankleL:
 
 const WAIT = { figs: { jade10: jadeStudy(), grandma: grandma(GRANDMA_WAIT), mama: mamaAhead }, cart: GRANDMA_WAIT.cart, art: 'held' };
 const GRAB = { figs: { jade10: jadeStudy({ head: { look: 'art:tip' } }), grandma: grandma(GRANDMA_WAIT), mama: mamaGrab() }, cart: GRANDMA_WAIT.cart, art: 'held' };
+// M4b (r3, Jade on r2: "she should be mid-action shot of pulling her out of the way from blocking the aisle"): the pull
+// itself. Mama has stepped back toward the front of the store past the pallet's end, weight on her back foot, and draws
+// the forearm toward her; the girl is tipped off balance toward her, right foot stepping out, the right hand dragged off
+// the artichoke, which she still holds in her left hand; her eyes stay on it. The grandmother and cart wait behind.
+const jadePulled = { at: [0.49, 0.43], yaw: 20, legs: 'stand', legOpts: { ankleR: [0.19, -0.6, 0.03], ankleL: [0.03, -0.62, -0.03] },
+  spine: { bend: 9, side: 10, twist: -14 }, head: { look: 'art:tip', tilt: -6 },
+  R: { to: [0.20, 0.97, 0.64], hand: 'relax', palm: 'down', fingers: [-0.85, -0.1, 0.5] },
+  L: { to: 'art:L', hand: 'cup', palm: 'in', fingers: 'fwd' } };
+const mamaPull = mamaGrab({ at: [-0.08, 0.66], yaw: 100, legOpts: { ankleL: [0.09, -0.73, 0.16], ankleR: [0.10, -0.74, -0.24] },
+  spine: { bend: -4, twist: -10 }, head: { look: 'jade10:head' } });
+const PULL = { figs: { jade10: jadePulled, grandma: grandma(GRANDMA_WAIT), mama: mamaPull }, cart: GRANDMA_WAIT.cart, art: 'held' };
 const LED = { figs: { jade10: jadeLed, mama: mamaLead, grandma: grandmaPass }, cart: GRANDMA_PASS.cart, art: 'island' };
 
 export const SHOTS = [
@@ -56,10 +67,11 @@ export const SHOTS = [
     orbit: { at: 'forearm:jade10:R', az: 350, el: 31, dist: 0.92 }, aim: ['forearm:jade10:R', 0.5, 0.52],
     header: 'verse 2a 2:14.2 THE GRAB (recurring framing, 2 of 3): a hand closes on her forearm',
     intent: "The attic grab's framing, mirrored: down onto her right forearm from 0.92 m, Mama's forearm coming in on the diagonal from frame left and closing on it, the artichoke still in her hands frame right. The cart and the grandmother are out of this frame (the camera looks down); M4b, unchanged, is where they are seen." },
-  { id: 'M4b', lens: 40, time: '2:15.2-2:16.1 verse 2a (last beat)', position: 'outside', ...GRAB,
-    orbit: { at: 'jade10:eyes', az: JADE_STAND.yaw, el: 0, dist: 1.55 }, aim: ['jade10:eyes', 0.52, 0.4], focus: ['jade10'],
-    header: 'verse 2a 2:15.2 OUTSIDE again, same camera as M1: the arm is pulled and we notice the grandmother',
-    intent: "M1's locked-off frame, unchanged, with Mama now at her side (frame left) and the hand on her forearm. Nothing else has moved: the grandmother and her cart are where they were in M1, and this is where the viewer sees them." },
+  // (r3, 2026-11-25 night) restaged mid-pull (Jade's r2 note); M1's camera pinned by position (M1 sidecar), since her eyes move
+  { id: 'M4b', lens: 40, time: '2:15.2-2:16.1 verse 2a (last beat)', position: 'outside', ...PULL,
+    pos: [1.1164, 1.2147, 2.0379], target: [0.3996, 1.1136, 0.1735], focus: ['jade10'],
+    header: 'verse 2a 2:15.2 OUTSIDE again, M1\'s camera: mid-pull, Mama draws her out of the aisle; we notice the grandmother',
+    intent: "M1's locked-off frame, mid-action: Mama (frame left) has stepped back and is pulling her by the forearm out of the way, the girl tipped toward her, a foot stepping out, her right hand dragged off the artichoke, still held in her left, eyes still on it. The grandmother and her cart wait where they were in M1, now in clear view: she was blocking the aisle." },
   // ---------------------------------------------------------------- interlude 2:25.2-2:34.5 (-2sm; after Dad's answer, kitchen K4 2:25.2-2:27.6)
   { id: 'M5', lens: 35, time: '2:27.6-2:29.0 interlude (bar 2, -2sm)', position: 'outside', ...LED,
     orbit: { at: 'art', az: LOOKBACK_AZ + 180, el: 20, dist: 0.42 }, aim: ['jade10:eyes', 0.45, 0.36], focus: ['jade10'],
@@ -88,6 +100,12 @@ export const SHOTS = [
     header: 'drum coda INSIDE: the finished count (same camera as M7, nobody in the aisle)',
     intent: 'One bar of the coda: the artichoke with all eight numerals. Identical framing to M7 so the gold layer can be reused.' },
   // ---------------------------------------------------------------- reference views (not shots)
+  // the artichoke alone, upright, for comparing with Jade's reference photo and PLATE XVIII (2026-11-25): straight down
+  // its axis, frame up = the plate's up (so the bracts sit where they sit on the plate), and a 3/4 view
+  { id: 'REF_artichoke_top', lens: 'ortho', ortho: { w: 0.24 }, pos: [1.0, 1.6, 0.40], target: [1.0, 0.9, 0.40], up: [0, 0, -1], figs: {}, art: 'upright',
+    hide: ['artichokes (heap)', 'romanesco (heap)'], header: 'reference: the artichoke from straight above (as Jade\'s photo and PLATE XVIII)', intent: 'Bract shapes, the closed apex and the 5 / 8 spirals.' },
+  { id: 'REF_artichoke_34', lens: 85, orbit: { at: 'art', az: 200, el: 30, dist: 0.6 }, aim: ['art', 0.5, 0.5], figs: {}, art: 'upright',
+    hide: ['artichokes (heap)', 'romanesco (heap)'], header: 'reference: the artichoke, 3/4 from above', intent: 'Silhouette: squat globe, cupped bracts opening outward, short cut stem.' },
   { id: 'PLAN', lens: 'ortho', ortho: { w: 26 }, pos: [0.7, 30, 0], target: [0.7, 0, 0], up: [1, 0, 0], hide: ['drop ceiling'], ...WAIT,
     header: 'reference: plan, blocking A (waiting). Right = +z (front of store), up = +x (islands)', intent: 'Plan of the department with the waiting blocking and the beam footprint.' },
   { id: 'PLAN_B', lens: 'ortho', ortho: { w: 9 }, pos: [0.6, 30, 1.6], target: [0.6, 0, 1.6], up: [1, 0, 0], hide: ['drop ceiling'], ...LED,

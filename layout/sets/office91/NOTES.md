@@ -1,5 +1,40 @@
 # office91 — notes and assumptions
 
+## r3 changes (2026-11-25/26 overnight, from Jade's r2 review) — newest first; supersedes anything below
+
+- **Painted**: all shots in `media/keyframes/r3/office91/` (see its NOTES.md); guides re-rendered (default, beam masks,
+  form/contour/light). Open for Jade: BO2's note is cut off ("this part should be paired with ..."); is the corridor at
+  ten a later visit, or should the whole office be age ten (same visit)?
+
+- **Handout.** The row of six now sits a quarter cell LEFT of centre as she reads (`HANDOUT.shortShift = 0.25`; the
+  missing width is 0.25 cell at the start of the row, 0.75 at its end). The row carries some of the larger-looking faces:
+  SCARED, WORRIED, EXCITED, GUILTY, UPSET, ANXIOUS (SCARED, EXCITED, UPSET have marks outside the circle; they swapped
+  places with CALM, NERVOUS, THANKFUL). Ported to `tools/kf/handout.py` (LABELS, SHORT_SHIFT).
+- **Her finger points at the EMPTY SPACE** (`JADE_TIP` = the gap, where a seventh face would be), not at a face: this
+  reverses the earlier JADE_TIP choice. In BO2 the adult's finger lands on the CLOSEST face to that space (ANXIOUS,
+  `SW_TIP`) and reads it. Jade's BO2 note ends "this part should be paired with" (cut off): open question.
+- **Back wall art** (one wall, `ALPHA`, `BOARD`, `ART` in layout.js): an Aa-Zz alphabet strip at 1.40-1.55 m across the
+  whole back wall, three handprint turkeys upper left, a cork board with a red scalloped border frame-right of her head
+  with turkeys and crayon drawings, two more pictures beyond it. The poster is gone. A patch frame-left of her face
+  (x < -0.72, y 0.78-1.22) stays bare for the toner labels. Seen in PC1 = PC4 and PC2.
+- **Dad stands** behind Mom's chair in every shot (`SEATS.dad` [0.62, -1.04]); left hand on her left shoulder, palm
+  down (his watch on the back of that wrist, face up), right hand open, palm up, toward the social worker. His chair is
+  pushed in empty at the table's end. PC2 is now a two-shot of the parents (Mom seated, listening; Dad mid-explanation)
+  from past the table's end on the social worker's side.
+- **PC3 split** into `PC3a` (pan start, the sweatshirt) and `PC3b` (pan end, the sheet): one camera position at her
+  eyes, a tilt down with a little pan left. `PC3` no longer exists.
+- **PC5**: closer (0.55 m, from between her and Mom), Mom's hands restaged: left hand palm up under the spine, right
+  hand under the right cover with the thumb over the fore-edge.
+- **The corridor (a SEPARATE TIME, about 1993-94, her at TEN)**: `HALL*` in layout.js, `corridor()` in build.js:
+  the corridor outside the counselor's door (this room's left wall from outside: the door, a nameplate, a board of
+  class art), one ceiling panel. New shots `FE_out` ("You need facial expressions", whispered, -2sm 8.76-10.51) and
+  `FE_thumbs` ("But not like that", 18.23-18.94), replacing the attic's AD_out / AD_thumbs restaging. Cast: `jade10`,
+  `mama91`. This set is 1991 with her at seven, so the corridor is a later visit: ASK JADE whether the office itself
+  should be age ten (the poem's cheek-pushing answers the social worker's "She doesn't make much facial expression",
+  which would make it the same visit). Plan rows to change (not edited here): 0:04.9-0:18.2 (whisper 1 at 0:08.8) and
+  0:18.2-0:19.0 (whisper 2).
+
+
 Set for the "groove in" handout shot (0:19-0:30), the pre-chorus (1:18-1:34) and the band-out (1:34-1:37).
 Numbers live in `layout.js`.
 

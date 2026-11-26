@@ -12,9 +12,11 @@
 import { SEAT, READING } from './layout.js';
 
 // ---------------------------------------------------------------- recurring poses
+// r3: fingers softly curved on the flat paper (playing posture), not flat
+const KEYHAND = { shape: 'flat', curl: { all: [18, 34, 16] } };
 // at the paper keyboard: cross-legged in the tail of the beam, facing up the beam; hands on the keys
 const jadeKeys = (o = {}) => ({ at: SEAT.at, yaw: SEAT.yaw, legs: 'cross', spine: { bend: 38 }, head: { look: 'keys' },
-  L: { to: 'keysL', hand: 'flat', palm: 'down', fingers: 'fwd' }, R: { to: 'keysR', hand: 'flat', palm: 'down', fingers: 'fwd' }, ...o });
+  L: { to: 'keysL', hand: KEYHAND, palm: 'down', fingers: 'fwd' }, R: { to: 'keysR', hand: KEYHAND, palm: 'down', fingers: 'fwd' }, ...o });
 // the same seat, sitting up: hands off the keys, face toward the outside camera, eyes on the mote
 const FACE_AZ = 115;                                   // the direction her face points (orbit az: 0 = +z, 90 = +x); the mote is 15 deg to her left of it
 const jadeUp = (o = {}) => ({ at: SEAT.at, yaw: SEAT.yaw, legs: 'cross', spine: { bend: 10 }, head: { look: [1.38, 0.59, 0.09] }, L: 'kneeL', R: 'kneeR', ...o });
@@ -27,32 +29,20 @@ const BASE = [
   { id: 'AD_wide', lens: 24, pos: [0.2, 1.15, 2.1], aim: ['beamMid', 0.52, 0.5], position: 'wide', time: '0:05', section: 'Taps (header: Attic, 1988)', beamAnchor: 'beamMid',
     header: '0:05 master: the attic by day, one shaft of low sun',
     intent: 'Establishing frame for the header. The window is the only opening; the sun comes through the four panes and falls as one diagonal shaft from upper right to lower left, ending on the paper keyboard where she sits. Everything else is paper.',
-    figs: { littleJade: jadeKeys() } },
+    figs: { jade4h: jadeKeys() } },   // r3: 4.5 years old, white socks (build.js jade4h)
   { id: 'AD_keys', lens: 35, orbit: { at: 'keys', rel: 'littleJade', az: 180, el: 64, dist: 0.62 }, aim: ['keys', 0.5, 0.52], hideParts: { littleJade: ['head'] }, position: 'inside', time: '0:05-0:07 (and coda bar 3, 4:19.2-4:21.7, -2sm)', section: 'Taps', beamAnchor: 'keys',
     header: '0:05 inside: her fingers tap on the paper keyboard in the light',
     intent: 'Her own view down at her hands (her head hidden for the POV). The printout is square to her, low notes at her left; both hands on the keys, the sun raking across the paper from the top right. The taps we hear start here. Reused in the drum coda.',
     figs: { littleJade: jadeKeys() } },
-  { id: 'AD_out', lens: 32, orbit: { at: 'littleJade:eyes', az: FACE_AZ, el: 0, dist: 0.8 }, aim: ['littleJade:eyes', 0.5, 0.36], focus: ['littleJade'], position: 'outside', time: '0:07-0:18.2', section: 'Taps, whisper 1 at 0:08.8', beamAnchor: 'keysNear',
-    header: '0:07 OUTSIDE: frontal, level, locked off on her face; eyes on one mote',
-    intent: 'The outside position. Level with her eyes, square to her face, locked off. Her face is above the light; her knees and the keyboard at the bottom of frame are in it. Her eyes are on one mote 15 degrees to her left of the lens; they keep travelling when it leaves the beam. The whisper lands on this face (toner label space either side of her head).',
-    figs: { littleJade: jadeUp() } },
   { id: 'AD_mote', lens: 28, eyeline: { who: 'littleJade', to: 'mote', back: 0.14 }, aim: ['mote', 0.5, 0.5], position: 'inside', time: '0:09-0:16.7 (and coda hit + bar 1, 4:14.3-4:16.8, -2sm: the ringed mote; the diagonal for the 0:00 pad)', section: 'Taps', beamAnchor: 'mote',
     header: '0:09 INSIDE / RHYME FRAME: along her eye-line to the mote; the beam is the diagonal',
     intent: 'The inside position, and the frame the beams rhyme on. Along her eye-line: the mote at the centre of frame, the frosted window top right, the shaft crossing from upper right to lower left at 40 degrees. The mote drifts right, out through the near face of the beam, and comes back in. The gold ring and the dotted line are drawn here. The 0:00 pad paints the same diagonal band on bare paper.',
     figs: { littleJade: jadeUp() } },
-  // ---------------------------------------------------------------- 0:18.2 whisper 2
-  { id: 'AD_thumbs', lens: 40, orbit: { at: 'littleJade:eyes', az: FACE_AZ, el: 0, dist: 0.66 }, aim: ['littleJade:eyes', 0.5, 0.4], focus: ['littleJade'], position: 'outside', time: '0:18.2-0:19.0', section: 'Whisper 2', beamAnchor: 'keysNear',
-    header: '0:18.2 OUTSIDE, closer: two adult thumbs enter toward her cheeks; cut before they touch',
-    intent: 'Same axis as AD_out, pushed in. Two adult hands come in from either side of the lens, thumbs leading, and stop a hand-width short of her cheeks. The adult is behind the camera: only forearms and hands are in frame.',
-    figs: { littleJade: jadeUp(),
-      mama: { at: [1.36, 0.10], yaw: -65, legs: 'kneel', spine: { bend: 8 }, head: { look: 'littleJade:eyes' },
-        L: { to: 'littleJade:mouth', off: [0.189, -0.01, 0.004], hand: 'thumbsUp', fingers: [-1.228, 0.1, 0.002], palm: 'down', elbow: 'down' },   // R mirrored in the camera's vertical plane (integration pass)
-        R: { to: 'littleJade:mouth', off: [0.118, -0.01, -0.148], hand: 'thumbsUp', fingers: [-0.79, 0.1, 0.94], palm: 'down', elbow: 'down' } } } },
   // ---------------------------------------------------------------- 1:08.3 piano break, second four bars
-  { id: 'AD_piano', lens: 40, orbit: { at: 'keys', az: 62, el: 30, dist: 0.95 }, aim: [{ mid: ['littleJade:handL', 'littleJade:handR'] }, 0.5, 0.66], position: 'inside', time: '1:08.3-1:13.2', section: 'Piano break (attic half)', beamAnchor: 'keys',
+  { id: 'AD_piano', lens: 35, orbit: { at: 'keys', az: 62, el: 28, dist: 1.3 }, aim: [{ mid: ['jade4h:handL', 'jade4h:handR'] }, 0.5, 0.64], position: 'inside', time: '1:08.3-1:13.2', section: 'Piano break (attic half)', beamAnchor: 'keys',
     header: '1:08.3 low on the paper keys: her fingers play the melody we hear',
     intent: 'Low and close across the printout from the window side, just outside the beam: both hands on the paper keys in the light, her face above them in shadow, looking down. Fingering comes from the note onsets (renderer layer); the keyboard quad is in the sidecar.',
-    figs: { littleJade: jadeKeys() } },
+    figs: { jade4h: jadeKeys() } },   // r3: 4.5 years old, white socks
   { id: 'AD_frost_look', lens: 50, pos: [0.12, 0.70, 0.92], aim: ['window', 0.7, 0.34], position: 'inside', time: '1:13.2-1:17.2', section: 'Piano break (attic half)', beamAnchor: 'beamMid',
     header: '1:13.2 over her shoulder: she looks up at the frost on the pane',
     intent: 'From behind her right shoulder along her new eye-line: her head lifts from the keys to the window. The four frosted panes are the brightest thing; the shaft comes from them toward us.',
@@ -78,6 +68,23 @@ const BASE = [
     header: '3:43 plate: the frost fern pane, square on (the fern regrows and becomes a neuron)',
     intent: 'Square on to the lower pane with the fern, from inside. No figure. The procedural fern grows from its root in the lower right corner; the pane quad and the root and tip are in the sidecar. The frame widens with the arbor in the renderer, not in the set.',
     figs: {} },
+];
+// RETIRED in r3 (Jade 2026-11-25): "you need facial expressions" is said to her at about 10, not at 5 in the attic, so the two
+// outside whisper shots leave this set (restaged at 10 by office91 / elsewhere). Kept here for reference only: NOT rendered.
+// Their old renders are in media/layout/attic88_day/_retired/.
+export const RETIRED = [
+  { id: 'AD_out', lens: 32, orbit: { at: 'littleJade:eyes', az: FACE_AZ, el: 0, dist: 0.8 }, aim: ['littleJade:eyes', 0.5, 0.36], focus: ['littleJade'], position: 'outside', time: '0:07-0:18.2', section: 'Taps, whisper 1 at 0:08.8', beamAnchor: 'keysNear',
+    header: '0:07 OUTSIDE: frontal, level, locked off on her face; eyes on one mote',
+    intent: 'The outside position. Level with her eyes, square to her face, locked off. Her face is above the light; her knees and the keyboard at the bottom of frame are in it. Her eyes are on one mote 15 degrees to her left of the lens; they keep travelling when it leaves the beam. The whisper lands on this face (toner label space either side of her head).',
+    figs: { littleJade: jadeUp() } },
+  // ---------------------------------------------------------------- 0:18.2 whisper 2
+  { id: 'AD_thumbs', lens: 40, orbit: { at: 'littleJade:eyes', az: FACE_AZ, el: 0, dist: 0.66 }, aim: ['littleJade:eyes', 0.5, 0.4], focus: ['littleJade'], position: 'outside', time: '0:18.2-0:19.0', section: 'Whisper 2', beamAnchor: 'keysNear',
+    header: '0:18.2 OUTSIDE, closer: two adult thumbs enter toward her cheeks; cut before they touch',
+    intent: 'Same axis as AD_out, pushed in. Two adult hands come in from either side of the lens, thumbs leading, and stop a hand-width short of her cheeks. The adult is behind the camera: only forearms and hands are in frame.',
+    figs: { littleJade: jadeUp(),
+      mama: { at: [1.36, 0.10], yaw: -65, legs: 'kneel', spine: { bend: 8 }, head: { look: 'littleJade:eyes' },
+        L: { to: 'littleJade:mouth', off: [0.189, -0.01, 0.004], hand: 'thumbsUp', fingers: [-1.228, 0.1, 0.002], palm: 'down', elbow: 'down' },   // R mirrored in the camera's vertical plane (integration pass)
+        R: { to: 'littleJade:mouth', off: [0.118, -0.01, -0.148], hand: 'thumbsUp', fingers: [-0.79, 0.1, 0.94], palm: 'down', elbow: 'down' } } } },
 ];
 const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, header: 'beam mask for ' + s.id }));
 export const SHOTS = BASE.concat(TWINS);

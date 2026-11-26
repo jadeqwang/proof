@@ -54,6 +54,45 @@ function sandals(fig) {
   return g;
 }
 
+// Her housewarming outfit (Jade, 2026-11-25): a thin black jacket, NASA "meatball" on the left chest, worn OVER a fitted
+// black tee with an SR-71 print (planform from above, angled down-left, dark grey tone-on-tone: barely visible, a sliver
+// between the open jacket fronts at most), boot-cut black yoga pants, socks, no shoes. The engine colours the torso /
+// sleeves / legs / feet (shots.js JADE_HOUSEWARMING); this adds what it cannot: the tee's sliver between the jacket fronts,
+// a meatball marker disc, and the boot-cut flare (a cone from the knee to a hem just off the floor, over the foot).
+// ASSUMED (flagged): zip-front jacket worn unzipped, fronts nearly closed (tee sliver ~4 cm); hip-length; meatball ~8 cm;
+// socks plain mid-grey; hem 1.2 cm off the floor, ~44 cm round at the hem.
+export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)',
+  tee: 'fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts', pants: 'boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)',
+  feet: 'socks, no shoes (Jade); colour plain mid-grey ASSUMED', before_party: 'same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)', sheet: 'cast/jade_27/j27_costume_housewarming_v1.jpg' };
+function housewarming(fig) {
+  const out = new THREE.Group(), P = fig.userData.P, H = P.H; fig.updateMatrixWorld(true);
+  const BLACK_TEE = { grey: 0.3, col: 0x2a2a2e }, MEATBALL = { grey: 0.78, col: 0x0b3d91 }, PANT = { grey: 0.42, col: 0x151517 };
+  const hitM = []; fig.traverse((m) => { const g = m.userData?.idGroup; if (m.isMesh && g && (g.endsWith(':torso') || g.endsWith(':pelvis'))) hitM.push(m); });
+  const rc = new THREE.Raycaster();
+  const surf = (u, v, d) => { const o = P.shoulderC.clone().addScaledVector(P.cy, v).addScaledVector(P.cx, u).addScaledVector(P.cz, 0.4);
+    rc.set(o, P.cz.clone().negate()); rc.far = 0.6; const h = rc.intersectObjects(hitM, false)[0]; if (!h) return null;
+    const n = h.face.normal.clone().transformDirection(h.object.matrixWorld); if (n.dot(P.cz) < 0) n.negate(); return h.point.clone().addScaledVector(n, d); };
+  const who = (m, label) => { m.userData.who = 'jade27'; return tag(m, label); };
+  // the tee between the jacket fronts: a 4 cm strip from just under the neckline to the jacket hem
+  { const v0 = -0.035, v1 = -(P.shoulderC.distanceTo(P.waist) + 0.09), N = 14, w = 0.02, verts = [], idx = [];
+    for (let i = 0; i <= N; i++) { const v = v0 + (v1 - v0) * i / N; for (const u of [-w, w]) { const p = surf(u, v, 0.003) || P.shoulderC.clone().addScaledVector(P.cy, v).addScaledVector(P.cx, u); verts.push(p.x, p.y, p.z); } }
+    for (let i = 0; i < N; i++) { const a = 2 * i; idx.push(a, a + 1, a + 3, a, a + 3, a + 2); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3)); g.setIndex(idx); g.computeVertexNormals();
+    const m = mk(g, BLACK_TEE); m.userData.double = true; m.userData.idGroup = 'jade27:tee'; out.add(who(m, 'Jade (27): tee between the jacket fronts (SR-71 print, barely visible)')); }
+  // the meatball on the jacket's left chest (her own left = +cx)
+  { const c = surf(0.085, -0.1, 0.004); if (c) { const n = c.clone().sub(surf(0.085, -0.1, 0)).normalize();
+    const m = mk(new THREE.CircleGeometry(0.04, 32), MEATBALL); m.position.copy(c); m.lookAt(c.clone().add(n)); m.userData.double = true; m.userData.idGroup = 'jade27:meatball';
+    out.add(who(m, 'Jade (27): NASA meatball (jacket, left chest)')); } }
+  // boot-cut flare: from the knee (fitted) to the hem
+  for (const s of ['L', 'R']) { const K = P['knee' + s], A = P['ankle' + s], sole = Math.min(P['heel' + s].y, P['toe' + s].y);
+    const sd = A.clone().sub(K).normalize(), hemY = sole + 0.012, len = K.distanceTo(A) + Math.max(0, (A.y - hemY) / Math.max(0.3, -sd.y));
+    const rTop = 0.036 * H + 0.002, rHem = 0.07;
+    const m = mk(new THREE.CylinderGeometry(rTop, rHem, len, 28, 1, true), PANT); m.userData.double = true; m.userData.idGroup = 'jade27:flare' + s;
+    m.position.copy(K).addScaledVector(sd, len / 2); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, -1, 0), sd);
+    out.add(who(m, 'Jade (27): boot-cut yoga pants (flare)')); }
+  return out;
+}
+
 const PLASTER = { grey: 0.82, col: 0xcfc6b4 }, STUCCO = { grey: 0.72, col: 0xb8b0a0 }, FLOORW = { grey: 0.6, col: 0x8a6a48 }, TILE = { grey: 0.75, col: 0xbab4a8 };
 const WOOD = { grey: 0.5, col: 0x8a6440 }, FENCE = { grey: 0.42, col: 0x7a5238 }, DARK = { grey: 0.12, col: 0x161616 }, GLASS = { glass: true, col: 0x9ab0c0, opacity: 0.14, noCast: true };
 const rng = (seed) => () => { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
@@ -558,6 +597,7 @@ export function build(shot, { makeCam }) {
   if (shot.hide) { root.traverse((o) => { if (o.isMesh && shot.hide.some((h) => o.userData.label === h || (h.endsWith('*') && (o.userData.label || '').startsWith(h.slice(0, -1))))) { o.visible = false; o.userData.baseVisible = false; } });
     for (const f of Object.values(figs)) if (shot.hide.includes(f.name)) f.traverse((o) => { if (o.isMesh) { o.visible = false; o.userData.baseVisible = false; } }); }
   if (figs.firstLove27 && !(shot.hide || []).includes('firstLove27')) root.add(sandals(figs.firstLove27));
+  if (figs.jade27 && figs.jade27.userData.spec.costume?.outfit === 'housewarming' && !(shot.hide || []).includes('jade27')) root.add(housewarming(figs.jade27));
   hideParts(shot.hideParts, figs);
   Object.assign(shot, solveCamera(shot, figs, null, aim));
   const cam = makeCam(shot);
@@ -607,6 +647,7 @@ export function build(shot, { makeCam }) {
       eyeL_px: P(Pj.eyeL.clone()), eyeR_px: P(Pj.eyeR.clone()), eyes_mid_px: P(Pj.eyes.clone()), templeL_px: P(Pj.templeL.clone()), templeR_px: P(Pj.templeR.clone()),
       eyeL_world: Pj.eyeL.toArray().map((v) => +v.toFixed(4)), templeL_world: Pj.templeL.toArray().map((v) => +v.toFixed(4)), head_pose: shot.figs.jade27.head }; }
     if (figs.firstLove27) out.first_love_costume = FIRST_LOVE_COSTUME;
+    if (figs.jade27) out.jade_costume = figs.jade27.userData.spec.costume?.outfit === 'housewarming' ? HOUSEWARMING_COSTUME : { note: 'before the party: her CAST jade27 look kept (OPEN: same outfit as the party? shoes outside?)' };
     if (shot.crossing) { const R = ROOM_CROSSING, px = (x, z, y = 0.02) => P(V(x, y, z)), { legs, stops, ...rest } = R;
       const people = Object.entries(figs).map(([w, f]) => { const p = f.userData.P, pel = p.hip || p.waist || p.head;
         return { who: w, label: CAST[w].name, floor_world: [+pel.x.toFixed(3), +pel.z.toFixed(3)], floor_px: px(pel.x, pel.z), head_px: P(p.head.clone()) }; })

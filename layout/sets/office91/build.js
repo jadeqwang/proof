@@ -4,7 +4,7 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { CAST, PROP } from '../../engine/mannequin.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, splitAtTop, applyBeamMask } from '../_beam.js';
-import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, POSTER } from './layout.js';
+import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
 
 // set-local extra only; little Jade (7) = `jade7`, Mama = `mama91` and `dad` come from ../_cast.js
 addCast({
@@ -53,7 +53,8 @@ function furniture() {
   g.add(chair(SEATS.jade[0], SEATS.jade[1] - 0.03, 0, { look: CH, label: "little Jade's chair" }));
   g.add(chair(SEATS.socialWorker[0], SEATS.socialWorker[1] + 0.03, 180, { look: CH, label: "social worker's chair" }));
   g.add(chair(SEATS.mom[0], SEATS.mom[1] - 0.03, 0, { look: CH, label: "Mom's chair" }));
-  g.add(chair(SEATS.dad[0] + 0.03, SEATS.dad[1], -90, { look: CH, label: "Dad's chair" }));
+  // r3: Dad stands behind Mom; his chair is pushed in at the table's +x end, empty
+  g.add(chair(TABLE.cx + TABLE.w / 2 + 0.12, TABLE.cz, -90, { look: CH, label: "empty chair (Dad stands)" }));
   { const C = CABINET, cx = (C.x0 + C.x1) / 2, cz = (C.z0 + C.z1) / 2, grp = new THREE.Group(); grp.add(box(C.x1 - C.x0, C.h, C.z1 - C.z0, STEEL, [cx, C.h / 2, cz]));
     for (let k = 0; k < 4; k++) { grp.add(box(C.x1 - C.x0 - 0.04, 0.29, 0.012, { grey: 0.66, col: 0x9a9a90 }, [cx, 0.18 + k * 0.32, C.z1 + 0.006])); grp.add(box(0.1, 0.02, 0.02, DARK, [cx, 0.27 + k * 0.32, C.z1 + 0.02])); }
     g.add(tag(grp, 'filing cabinet')); g.add(tag(box(0.24, 0.12, 0.13, { grey: 0.7, col: 0x8aa0b8 }, [cx, C.h + 0.06, cz + 0.1]), 'box of tissues')); }
@@ -67,12 +68,75 @@ function furniture() {
     g.add(tag(grp, "social worker's desk")); g.add(tag(box(0.3, 0.12, 0.38, { grey: 0.7, col: 0xc8c0a8 }, [D.cx + 0.1, D.h + 0.06, D.cz + 0.2]), 'electric typewriter'));
     g.add(tag(box(0.2, 0.07, 0.22, { grey: 0.65, col: 0xb8b09a }, [D.cx + 0.05, D.h + 0.035, D.cz - 0.3]), 'telephone')); }
   g.add(tag(cyl(CLOCK.r, CLOCK.r, 0.04, { grey: 0.9, col: 0xe8e8e0 }, [CLOCK.x, CLOCK.y, ROOM.z0 + 0.02], [90, 0, 0]), 'wall clock'));
-  g.add(tag(box(POSTER.w, POSTER.h, 0.006, { grey: 0.86, col: 0xd8d0b0 }, [POSTER.x, POSTER.y, ROOM.z0 + 0.004]), 'poster'));
+  g.add(wallArt());
   // on the table: the social worker's clipboard and pen, a pencil cup
   { const c = new THREE.Group(); c.position.set(CLIPBOARD.at[0], TOP, CLIPBOARD.at[1]); c.rotation.y = rad(CLIPBOARD.yaw);
     c.add(box(0.23, 0.006, 0.32, { grey: 0.4, col: 0x6a4a30 }, [0, 0.003, 0])); c.add(box(0.21, 0.002, 0.28, { grey: 0.95, col: 0xf0f0ea }, [0, 0.007, -0.01])); c.add(box(0.1, 0.012, 0.03, STEEL, [0, 0.012, 0.14]));
     g.add(tag(c, 'clipboard (her notes)')); }
   g.add(tag(cyl(0.035, 0.035, 0.1, { grey: 0.45, col: 0x3a5a8a }, [0.58, TOP + 0.05, 0.24]), 'pencil cup'));
+  return g;
+}
+
+// ---------------------------------------------------------------- r3: children's art on the back wall, and the corridor
+const PAPERS = [0xc8783a, 0xd8b048, 0x8a5a3a, 0xb04a3a, 0x5a7a4a, 0xe0c890, 0x7a8ab0];
+// a handprint turkey: a child's hand traced on construction paper, fingers = feathers, thumb = head (flat shape, in a plane
+// facing `n`). Drawn in a local xy plane, then placed.
+function handprint(s) {
+  const sh = new THREE.Shape(); sh.absarc(0, -0.1 * s, 0.26 * s, 0, Math.PI * 2, false);
+  const g = new THREE.Group(); g.add(mk(new THREE.ShapeGeometry(sh, 16), { grey: 0.45, col: 0x7a4a2a }));
+  [[-0.5, 0.42], [-0.18, 0.62], [0.16, 0.62], [0.46, 0.44]].forEach(([dx, h], k) => {   // four fingers fanned up = feathers
+    const f = new THREE.Mesh(new THREE.CapsuleGeometry(0.075 * s, h * s, 4, 8)); const m = mk(f.geometry, { grey: 0.5 + 0.06 * k, col: [0xc04a2a, 0xe0a030, 0x6a8a3a, 0xd06a2a][k] });
+    m.position.set(dx * 0.5 * s, 0.25 * s + h * s * 0.45, 0.0005 * (k + 1)); m.rotation.z = -dx * 0.55; g.add(m); });
+  const th = mk(new THREE.CapsuleGeometry(0.08 * s, 0.32 * s, 4, 8), { grey: 0.5, col: 0x8a5a3a }); th.position.set(-0.36 * s, -0.22 * s, 0.003); th.rotation.z = 1.1; g.add(th);   // thumb = head
+  return g;
+}
+function picture(w, h, kind, k) {
+  const g = new THREE.Group(); const paper = kind === 'turkey' ? PAPERS[k % PAPERS.length] : 0xf4f0e6;
+  g.add(mk(new THREE.PlaneGeometry(w, h), { grey: kind === 'turkey' ? 0.72 : 0.92, col: paper }));
+  if (kind === 'turkey') { const t = handprint(Math.min(w, h) * 0.75); t.position.z = 0.0008; g.add(t); }
+  else { // crayon drawing: a sun, a house or a person, a ground line
+    const sun = mk(new THREE.CircleGeometry(h * 0.12, 16), { grey: 0.8, col: 0xe8c030 }); sun.position.set(w * 0.3, h * 0.3, 0.0008); g.add(sun);
+    const ho = mk(new THREE.PlaneGeometry(w * 0.34, h * 0.3), { grey: 0.55, col: [0xb04030, 0x3a6aa0, 0x4a8a4a][k % 3] }); ho.position.set(-w * 0.12, -h * 0.12, 0.0008); g.add(ho);
+    const gr = mk(new THREE.PlaneGeometry(w * 0.9, h * 0.05), { grey: 0.5, col: 0x4a8a3a }); gr.position.set(0, -h * 0.3, 0.0009); g.add(gr); }
+  return g;
+}
+function wallArt() {
+  const g = new THREE.Group(), z = ROOM.z0 + 0.003, put = (o, x, y, zz = z) => { o.position.set(x, y, zz); return o; };
+  // the alphabet strip: 26 cards (an upper and lower case letter with a small picture each); the letters are the cards' print
+  const A = ALPHA, cw = (A.x1 - A.x0) / A.n;
+  for (let k = 0; k < A.n; k++) { const c = new THREE.Group(); c.add(mk(new THREE.PlaneGeometry(cw * 0.94, A.h), { grey: 0.94, col: A.card }));
+    const L = mk(new THREE.PlaneGeometry(cw * 0.42, A.h * 0.42), { grey: 0.2, col: [0xb03030, 0x2a5a9a, 0x2a7a3a][k % 3] }); L.position.set(-cw * 0.2, A.h * 0.16, 0.0006); c.add(L);
+    const P = mk(new THREE.CircleGeometry(A.h * 0.14, 12), { grey: 0.6, col: 0xd09040 }); P.position.set(cw * 0.22, -A.h * 0.2, 0.0006); c.add(P);
+    g.add(tag(put(c, A.x0 + (k + 0.5) * cw, A.y), 'alphabet strip (Aa to Zz cards)')); }
+  // the cork board, with a scalloped paper border
+  { const B = BOARD, w = B.x1 - B.x0, h = B.y1 - B.y0, bd = new THREE.Group();
+    bd.add(box(w + 2 * B.frame, h + 2 * B.frame, 0.012, { grey: 0.55, col: 0xc04040 }, [0, 0, 0.006])); bd.add(box(w, h, 0.014, { grey: 0.62, col: 0xb89a6a }, [0, 0, 0.007]));
+    g.add(tag(put(bd, (B.x0 + B.x1) / 2, (B.y0 + B.y1) / 2, ROOM.z0), 'bulletin board (cork, scalloped border)')); }
+  ART.forEach(([x, y, w, h, kind], k) => { const onBoard = x > BOARD.x0 && x < BOARD.x1 && y > BOARD.y0 && y < BOARD.y1;
+    g.add(tag(put(picture(w, h, kind, k), x, y, ROOM.z0 + (onBoard ? 0.016 : 0.003)), kind === 'turkey' ? 'handprint turkey (child art)' : "child's crayon drawing")); });
+  return g;
+}
+function corridor() {
+  const g = new THREE.Group(), H = HALL, cx = (H.x0 + H.x1) / 2, cz = (H.z0 + H.z1) / 2, W = { grey: 0.82, col: 0xd8d2c0 };
+  g.add(tag(box(H.x1 - H.x0, 0.04, H.z1 - H.z0, { grey: 0.7, col: 0xc8c4b4, recvShadowLine: true }, [cx, -0.02, cz]), 'corridor floor (vinyl tile)'));
+  g.add(tag(box(H.x1 - H.x0, 0.03, H.z1 - H.z0, { grey: 0.85, col: 0xd8d6cc }, [cx, H.h + 0.015, cz]), 'corridor ceiling'));
+  g.add(tag(box(0.15, H.h, H.z1 - H.z0, W, [H.x0 - 0.075, H.h / 2, cz]), 'corridor far wall'));
+  g.add(tag(box(0.012, 0.12, H.z1 - H.z0, { grey: 0.45, col: 0x6a6a60 }, [H.x1 - 0.006, 0.06, cz]), 'baseboard'));
+  g.add(tag(box(0.012, 0.12, H.z1 - H.z0, { grey: 0.45, col: 0x6a6a60 }, [H.x0 + 0.006, 0.06, cz]), 'baseboard'));
+  { const L = HALL_LIGHT; g.add(tag(box(L.w, 0.02, L.d, { grey: 1, col: 0xffffff, emit: 0xf4f8ff, emitI: 1.2, flatEmit: 0.98, noCast: true }, [L.x, L.y, L.z]), 'ceiling light panel (corridor)')); }
+  // the counsellor's door from the corridor side: slab, frame, wired-glass light, a small nameplate
+  { const D = DOOR, x = H.x1, grp = new THREE.Group(), FR = { grey: 0.5, col: 0x6a5a48 };
+    grp.add(box(0.03, D.h, D.w, { grey: 0.6, col: 0x8a7458 }, [x - 0.015, D.h / 2, D.z]));
+    grp.add(box(0.04, 0.06, D.w + 0.12, FR, [x - 0.02, D.h + 0.03, D.z])); for (const s of [-1, 1]) grp.add(box(0.04, D.h, 0.06, FR, [x - 0.02, D.h / 2, D.z + s * (D.w / 2 + 0.03)]));
+    grp.add(box(0.035, 0.6, 0.12, { grey: 0.35, col: 0x3a4248 }, [x - 0.018, 1.45, D.z + 0.25])); grp.add(ball(0.03, STEEL, [x - 0.07, 1.0, D.z - D.w / 2 + 0.08]));
+    g.add(tag(grp, "counselor's door (corridor side, closed)"));
+    g.add(tag(box(0.01, 0.07, 0.25, { grey: 0.3, col: 0x2a3a4a }, [x - 0.005, 1.62, D.z - D.w / 2 - 0.22]), 'nameplate beside the door')); }
+  // a corridor board of class art on the same wall, beyond her
+  { const B = HALL_BOARD, w = B.z1 - B.z0, h = B.y1 - B.y0, bd = new THREE.Group();
+    bd.add(box(0.012, h + 0.05, w + 0.05, { grey: 0.55, col: 0x3a5a9a }, [0, 0, 0])); bd.add(box(0.014, h, w, { grey: 0.62, col: 0xb89a6a }, [-0.002, 0, 0]));
+    bd.position.set(H.x1 - 0.008, (B.y0 + B.y1) / 2, (B.z0 + B.z1) / 2); g.add(tag(bd, 'corridor bulletin board (class art)'));
+    for (let k = 0; k < 8; k++) { const p = picture(0.24, 0.2, k % 3 === 0 ? 'turkey' : 'drawing', k + 3); p.rotation.y = -Math.PI / 2;
+      p.position.set(H.x1 - 0.018, B.y0 + 0.2 + (k % 2) * 0.38, B.z0 + 0.2 + Math.floor(k / 2) * 0.37); g.add(tag(p, 'class art (corridor)')); } }
   return g;
 }
 
@@ -90,11 +154,11 @@ function handout() {
 const handoutCorners = () => { const H = HANDOUT, y = TOP + H.t; return [[H.cx + H.w / 2, y, H.cz + H.h / 2], [H.cx - H.w / 2, y, H.cz + H.h / 2], [H.cx - H.w / 2, y, H.cz - H.h / 2], [H.cx + H.w / 2, y, H.cz - H.h / 2]]; };
 
 const NAMES = { handout: [HANDOUT.cx, TOP, HANDOUT.cz], gap: GAP, anxious: ANXIOUS, dict: DICT.at, dadPalm: DAD_PALM, tube: [TUBE.cx, TUBE.y, TUBE.cz],
-  shortRow: [HANDOUT.cx, TOP, GAP[2]], wallSpace: [-0.95, 1.1, ROOM.z0] };
+  shortRow: [HANDOUT.cx, TOP, GAP[2]], wallSpace: [-0.95, 1.1, ROOM.z0], door: [HALL.x1, 1.2, DOOR.z] };
 
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
-  root.add(room()); root.add(furniture()); root.add(handout());
+  root.add(room()); root.add(furniture()); root.add(handout()); root.add(corridor());
   const extra = (t) => (NAMES[t] ? V(NAMES[t]) : null);
   const { figs } = stage(shot.figs, null, extra);
   fixLeftHands(figs);
@@ -120,6 +184,12 @@ export function build(shot, { makeCam }) {
   const lightList = [{ name: 'fluorescent_tube', kind: BEAM.kind, pos: tubeP, aim: V(NAMES.handout), color: '#eef4ff', on: true }];
   const rig = (mode) => {
     const L = []; if (mode === 'none' || shot.beamMask) return L; const white = mode !== 'lit';
+    if (shot.hall) {   // the corridor: one diffused ceiling panel over her, soft; the office tube is behind the wall
+      const s = new THREE.SpotLight(0xffffff, mode === 'lit' ? 3.0 : 1.4, 0, rad(62), 0.7, 0); s.position.set(HALL_LIGHT.x, HALL_LIGHT.y - 0.03, HALL_LIGHT.z); s.target.position.set(HALL_LIGHT.x + 0.5, 0, HALL_LIGHT.z);
+      s.castShadow = true; s.shadow.camera.near = 0.3; s.shadow.camera.far = 5; s.shadow.radius = 8; L.push(s);
+      L.push(new THREE.AmbientLight(mode === 'lit' ? 0x9aa0a8 : 0xffffff, mode === 'lit' ? 0.7 : 1.5));
+      if (mode !== 'lit') { const d = new THREE.DirectionalLight(0xffffff, 0.9); d.position.set(-3, 3, 2); L.push(d); }
+      return L; }
     // three spots along the tube, straight down, each cut at CUT.across: together a stadium close to the wedge's footprint
     for (const dx of [-0.27, 0, 0.27]) { const s = new THREE.SpotLight(white ? 0xffffff : TUBE.color, mode === 'lit' ? 2.6 : mode === 'mask' ? 6 : 1.0, 0, rad(CUT.across), 0.12, 0);
       s.position.set(TUBE.cx + dx, TUBE.y - 0.02, TUBE.cz); s.target.position.set(TUBE.cx + dx, 0, TUBE.cz); s.castShadow = true; s.shadow.camera.near = 0.3; s.shadow.camera.far = 4; s.shadow.radius = mode === 'lit' ? 5 : 1; L.push(s); }
