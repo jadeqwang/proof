@@ -71,9 +71,10 @@ export const READING = { cushion: { at: [3.13, -0.74], w: 0.42, d: 0.46, t: 0.06
 export const SEAT = { at: [0.46, 0.55], yaw: 130 };                       // little Jade's pelvis and facing (0 = +z, 90 = +x)
 const f = [Math.sin(rad(SEAT.yaw)), Math.cos(rad(SEAT.yaw))];             // her facing in plan (x, z)
 export const KEYS = { at: [SEAT.at[0] + 0.40 * f[0], SEAT.at[1] + 0.40 * f[1]], yaw: SEAT.yaw + 180, w: 0.594, d: 0.21,
-  // r3 (Jade): the printed keyboard at real piano size, white margins round it: 3 octaves (C..B) = 21 whites x 23.5 mm = 0.4935 m
-  // on the 0.594 m paper (50 mm margins left and right), keys 150 mm on the 210 mm depth (30 mm margins). Was 14 keys filling the paper.
-  kb: { whites: 21, white: [0.0235, 0.150], black: [0.0137, 0.095] } };
+  // r4 (Jade): the printed keyboard is an exact canvas texture (keyboard.js): C3..C6, 22 whites x 23.5 mm = 0.517 m on the
+  // 0.594 m paper (38.5 mm margins left and right), keys 150 mm on the 210 mm depth (30 mm margins), black keys 13.7 x 95 mm.
+  // (r3: 21 whites C..B drawn as ink boxes; before that 14 keys filling the paper.)
+  kb: { whites: 22, white: [0.0235, 0.150], black: [0.0137, 0.095] } };
 // world corners of the printout, as the player reads it: TL (far left = lowest note, far edge), TR, BR, BL
 export const keysCorners = () => { const a = rad(KEYS.yaw), ux = [Math.cos(a), -Math.sin(a)], uz = [Math.sin(a), Math.cos(a)];   // local x, local z in plan
   const P = (lx, lz) => [KEYS.at[0] + ux[0] * lx + uz[0] * lz, 0.002, KEYS.at[1] + ux[1] * lx + uz[1] * lz];

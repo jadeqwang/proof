@@ -24,6 +24,12 @@ const jadeUp = (o = {}) => ({ at: SEAT.at, yaw: SEAT.yaw, legs: 'cross', spine: 
 const jadeSill = (o = {}) => ({ at: READING.kneel, floor: READING.cushion.t, yaw: 90, legs: 'kneel', spine: { bend: 6 }, head: { look: 'fern' },
   R: { to: 'fern', off: [-0.085, -0.015, 0.02], hand: 'point', fingers: [1, 0.2, -0.12], palm: 'down' }, L: { to: 'sill', off: [-0.02, 0.05, -0.22], hand: 'flat', palm: 'down', fingers: 'fwd' }, ...o });
 
+// r4: the grip target for the grab (resolved in build.js extra): the child's right forearm at 0.5 elbow -> wrist
+const GRAB_K = 0.3;
+const GRAB_R = { to: `forearm:littleJade:R:${GRAB_K}`, hand: 'grip', palm: `to:forearmDown:littleJade:R:${GRAB_K}`,
+  hold: { r: 0.026, prop: false, centre: true, axis: 'to:forearm:littleJade:R:0.95' },
+  grasp: { kind: 'forearm', of: 'littleJade:R', k: GRAB_K, from: 'above', note: 'palm on top, fingers round the far side and under, thumb round the near side' } };   // (grasp: a note for the grasp module; the engine ignores it)
+
 const BASE = [
   // ---------------------------------------------------------------- 0:05 taps, whisper 1
   { id: 'AD_wide', lens: 24, pos: [0.2, 1.15, 2.1], aim: ['beamMid', 0.52, 0.5], position: 'wide', time: '0:05', section: 'Taps (header: Attic, 1988)', beamAnchor: 'beamMid',
@@ -61,8 +67,15 @@ const BASE = [
     header: '1:37.4 a hand closes on her forearm (then cut to black)',
     intent: "Mama's hand comes in from frame right and closes on the forearm of the tracing hand; the finger is still on the glass. First of the three forearm grabs. Mama kneels beside her, between the cushion and the textbook stack; only her arm needs to be in frame.",
     figs: { littleJade: jadeSill(),
-      mama: { at: [3.20, 0.02], yaw: 176, legs: 'kneel', spine: { bend: 16 }, head: { look: 'littleJade:head' },
-        R: { to: 'littleJade:wristR', off: [-0.06, 0.012, 0.0], hand: 'grip', palm: 'down', fingers: [0.1, -0.5, -1] }, L: 'kneeL' } } },
+      // r4 (Jade: "make it an actual grab, top-down"): a power grip round the middle of her forearm from ABOVE: palm laid on the
+      // top of the forearm (square to it), the four fingers wrapping round the far side and under, the thumb round the near
+      // side; the forearm runs across Mama's palm (engine hold: cylinder r 2.6 cm = a 4.5-5-year-old's forearm in a jacket
+      // sleeve). Mama kneels at her right, turned toward her (yaw 215), so her forearm comes in from frame right and a little
+      // down onto the grip. A standing, bent-over Mama (arm straight down) cannot reach without her body filling this camera,
+      // and the engine has no high kneel; with the body meshes, a high kneel (thighs upright) would bring the arm down steeper.
+      // Was: a palm target beside the wrist (palm 'down', fingers pointing past the arm): read as a hand laid alongside.
+      mama: { at: [3.20, 0.00], yaw: 215, legs: 'kneel', spine: { bend: 10 }, head: { look: 'littleJade:head' },
+        R: GRAB_R, L: 'kneeL' } } },
   // ---------------------------------------------------------------- 3:43 tail 2
   { id: 'AD_fern', lens: 50, pos: [2.74, 0.66, -0.60], target: [3.49, 0.66, -0.60], position: 'plate', time: '3:43.0-3:55.0 (-2sm; outro line 1 enters over it at 3:54.0)', section: 'Tail 2', beamAnchor: 'fernMid',
     header: '3:43 plate: the frost fern pane, square on (the fern regrows and becomes a neuron)',

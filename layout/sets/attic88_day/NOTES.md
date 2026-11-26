@@ -4,6 +4,44 @@
 window, stair door and v4 fixed furniture are imported from `../attic88/layout.js` and `../attic88/v4.js`.
 
 
+## r4 set fixes, 2026-11-26 afternoon (Jade's r3 review; supersedes anything below that contradicts it)
+
+- **Paper keys = one exact texture** (`keyboard.js`; AD_piano: "the piano keys should be taped such that they represent
+  *an accurate piano*"). The printout is ONE textured plane, drawn in code on a canvas (no image model): two A4 sheets
+  landscape taped end to end (594 x 210 mm), black toner on white paper. Keyboard **C3..C6: 22 white + 15 black = 37 keys**
+  (three octaves and the top C; middle C = C4 = 8th white key from the left), real size: white 23.5 x 150 mm, black
+  13.7 x 95 mm printed from the far edge, groups of 2 (C# D#) and 3 (F# G# A#), no black key at E-F or B-C, real offsets
+  (2.3 mm out in the C-E group; 3.4 mm out / centred in the F-B group). 517 mm keyboard centred: 38.5 mm margins at the ends,
+  30 mm along the long edges (r3 had 21 whites C..B as ink boxes). The seam (x = 0) falls on the F4|G4 boundary, under F#4,
+  with 19 mm clear tape over it. Map fold: creases at the seam and the quarter lines (+-148.5 mm) and once lengthwise at
+  105 mm (folded packet 148.5 x 105 mm). Guides: flat / form / lit use the texture; line / contour multiply a hand-drawn
+  edge map (every key edge, black keys solid black, tape edges and creases in grey) via the shared `_art.js` path, so every
+  mode shows the exact layout. The mask twin blanks the texture. Sidecar `keys.keyboard`: range, sizes, margins, every
+  black key's mm position from the keyboard's left edge, tape, folds. Assumption: no printed labels (no "middle C" text),
+  as the painters are told "no text".
+- **Answer to Jade's question** ("if you bake it into the 3d model, will that keep the image model on track?"): yes, it is
+  the strongest lever we have: the guide now carries the exact key pattern in every mode, so the painter copies it rather
+  than inventing it. It is not a guarantee: painters still drift on repeated patterns, so the r4 prompts should also state
+  the pattern in words (37 keys C to C, black keys 2-3-2-3-2-3, none between E-F and B-C, count them) and the take must be
+  checked by counting.
+- **AD_grab restaged** ("the mom's hand is weird b/c the model is wrong. make it an actual grab, top-down"): Mama's right
+  hand is now a power grip ROUND the child's right forearm (engine `hold`: cylinder r 2.6 cm, centre at 0.3 of elbow ->
+  wrist, axis along the forearm), palm laid on the top of the forearm square to it (`forearmDown:` named point in build.js),
+  fingers wrapping round the far side and under, thumb round the near side. Measured: palm centre 4.2 cm off the forearm
+  axis (= 2.6 cm radius + palm thickness), so the hand is ON the arm (r3: a palm target 6 cm beside the wrist, fingers
+  pointing past it). From this camera the back of Mama's hand faces the lens (the forearm's top faces the camera, dot 0.87).
+  Mama kneels at her right turned toward her (at [3.20, 0.00], yaw 215, bend 10): her forearm enters from frame right and
+  a little down; her head and body are out of frame. Camera unchanged (the shared grab framing).
+  LIMITS (current mannequin): the mitt hand only roughly shows four wrapped fingers; a standing, bent-over Mama (arm straight
+  down, the most "top-down") cannot reach without her body filling this camera, and the engine has no high kneel. When the
+  body meshes land: high kneel (thighs upright) so the arm comes down steeper; the grip spec (`GRAB_R` in shots.js, with a
+  `grasp` note for the grasp module) stays. Sidecar now also lists elbowR / wristR / shoulderR and the wrist report.
+- **AD_trace caption**: Jade's caption "Were you afraid during the raid?" carries over from X_sw into AD_trace (comp
+  handles captions; nothing in the set).
+- Snapshotted the r3 guides to `media/keyframes/r3/_layout_snapshot/attic88_day/` before re-rendering.
+- Shots that see the new keyboard texture: AD_wide, AD_keys, AD_piano. AD_frost_look, AD_mote, AD_trace, AD_grab, AD_fern
+  do not show the paper.
+
 ## r3 changes, 2026-11-25 night (Jade's r2 review; supersedes anything below that contradicts it)
 
 - **Paper keys** (`KEYS.kb` in layout.js, build.js): flat printed paper, keys never depress. The printed keyboard is now
