@@ -801,3 +801,6 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   agent's file) when tried. Jade approved retrying the Blender/MPFB install; the body-mesh agent is now running.
 - **Jade, 2026-11-26:** keep a file of every tool and model used, for the closing credits slide ("Animated by Opus 5.5
   and a supporting cast of models: ..."). Now `docs/credits_tools.md`; the agent brief tells agents to add to it.
+- **Jade, 2026-11-26 (~midday):** "the same version of clothing logo should be in each frame (not 2 different versions
+  of the NASA meatball logo)." Given to the background-art agent (canonical decals under layout/assets/art/logos/);
+  added to global CLAUDE.md and project memory. Jade is at 45/104 on the r3 keyframe page, stepped away to cook.
