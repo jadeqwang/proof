@@ -1,17 +1,39 @@
 # Proof — handoff for the next session
 
-## START HERE (written at the end of the 2026-11-25 session)
+## START HERE (updated at the end of the 2026-11-25 late/night session)
 
-> **Update (2026-11-25, late):** Jade's answers are in and applied (see the last section, "Jade's answers from the
-> decision page", and the entries after it). The plan and all sets are now on the -2sm master. New open questions
-> go on the rebuilt `media/decisions.html`; the keyframe round from the new renders is under way (`media/keyframes/`).
+**State:** Jade's first round of decision-page answers is applied (log: section "Session of 2026-11-25 (late)").
+The plan (`Proof — Music Video Plan.md`) and all eleven sets are on the -2sm master (`inputs/Proof (-2sm).wav`;
+song map and v3->-2sm time map in `analysis/m2sm/`). Keyframe round 2 (88 shots) is painted from the new renders.
+Everything except the private/gitignored folders is committed on `main` and pushed to GitHub.
 
-**First thing: Jade will paste answers from the decision page.** The page is `media/decisions.html` (open it in a
-browser; 35 cards with renders, grouped by song/plan, Mountain View, Shanghai, Decatur, Morton Grove, cast, plates,
-other). Jade presses "Copy my answers" and pastes a block starting `Decisions (from media/decisions.html):`. Each
-line is `- <card title>: <chosen option> — <note>`; blank cards mean "keep the current choice". The card ids,
-context and options are in the `D` array inside the page. Apply the answers, then update the page (remove answered
-cards, add new questions) so it stays the single list of open decisions.
+**First thing: Jade will paste one or two answer blocks:**
+1. `Decisions (from media/decisions.html):` — 22 open questions (Song and plan, Mountain View, Shanghai, Morton
+   Grove, Cast, Plates, Ear checks with audio clips in `media/decisions_audio/`). Each line is
+   `- <card title>: <chosen option> — <note>`; untouched cards mean "keep current". Card ids/context/options are in
+   the page's `D` array; answered cards from 2026-11-25 are in a collapsed list at the bottom. Apply the answers,
+   then remove answered cards and add new questions so the page stays the single list of open decisions.
+2. `Keyframes r2 (from media/keyframes/r2/index.html):` — one line per shot, `- <shot id>: Good | Redo | Wrong
+   staging — <note>`. Redo per the "keyframes round 2" section at the end (brief, routes, `kf.py --route auto`).
+   Wrong staging means fix the set first (`layout/sets/<set>/`), re-render, then repaint. Rebuild the page with
+   `python3 tools/kf/r2_page.py`. Keyframes stay local (gitignored).
+
+**Also waiting:** `inputs/refs_closet.png` (untracked, NOT pushed: ask Jade before it goes public, and whether to
+gitignore it like the other refs) is Jade's hand drawing of the closet (closet02) as seen from outside: a sliding
+door covering the LEFT half; the open RIGHT half has a top shelf (textbooks, shoeboxes), a rod with clothes hanging
+mostly down to about two-thirds of the height, a few long coats down the left edge of the open half, and Jade
+sitting low near the centre-right with a folded duvet in front of / under her. Jade has not yet said anything
+about it in a session: compare with `layout/sets/closet02/` and ask before rebuilding the set from it.
+
+**Loose ends (not decisions):** `analysis/m2sm/remap.py` mangles times followed by ':' (sets were fixed by hand);
+engine: shanghai86 V1g fringe stands off her forehead like a plank (`layout/engine/mannequin.js`);
+`inputs/refs_house/interior_plan.png` still draws mv10's console as a circle. Current first-love sheets are the v3
+set (`cast/first_love/fl_B_backhead_neck_v3.jpg` is the hair anchor); Dad's are `cast/dad/*_v5_likeness*`.
+
+**Housekeeping:** Codex plan limit was hit at ~18:30 on 2026-11-25; delete `work/kf_logs/CODEX_LIMIT_HIT` once it
+resets so `--route auto` goes back to Codex. Spend so far is in `docs/spend_ledger.jsonl` (~$23.70).
+Already public from an earlier push (before this session): `inputs/refs_chaosmonkey/source_refs/` (real photos) and
+`inputs/refs_devon_market/` (web photos). Jade was told; no answer yet on removing them.
 
 **How Jade works (keep doing this):** delegate to subagents and relay conclusions; log every direction Jade gives in
 the dated section at the end of this file as it happens (checkpointing); look at renders yourself before reporting;
@@ -22,10 +44,10 @@ Claude's local memory, never in repo files. His face is never shown or drawn. `i
 age-37 portraits), `inputs/refs_house/`, `inputs/refs_shanghai/`, `inputs/refs_mortongrove/` are gitignored. Do not
 push `docs/poem_digest.md` or `media/keyframes/` without asking (both gitignored now).
 
-**Git:** today's work is committed on local branch `session-2026-11-25` (branched from local `main`, which is itself
-ahead of `origin/main`). Nothing is pushed. Whether to push is a decision-page card.
+**Git:** everything is on `main`, pushed to `origin` (github.com/jadeqwang/proof, PUBLIC); branch
+`session-2026-11-25` was pushed too and equals an earlier point of `main`.
 
-**What changed on 2026-11-25** (details in the dated section at the end):
+**What changed on 2026-11-25, before the answers** (details in the dated section at the end):
 - *Sets* (`layout/sets/`): `mv10` rebuilt as the real 345B View St from Jade's hand drawings (real Expedit shelf,
   shelf pan, overhead room-crossing shot, temple/eye push-ins, honest fall-2010 sun; the three-lamp shadows dropped);
   `shanghai86` rebuilt as the real Xiefa Apartments living room (253 Wuyuan Rd, east flat, 三楼), four rounds of
