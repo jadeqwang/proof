@@ -799,3 +799,5 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Jade, 2026-11-26:** basement top is the long-sleeved grey sweater (`JADE_BASEMENT` in basement90/house.js:
   0x9a968e, sleeves long). Re-render of basement90 PENDING: the engine was mid-edit (syntax error in the engine
   agent's file) when tried. Jade approved retrying the Blender/MPFB install; the body-mesh agent is now running.
+- **Jade, 2026-11-26:** keep a file of every tool and model used, for the closing credits slide ("Animated by Opus 5.5
+  and a supporting cast of models: ..."). Now `docs/credits_tools.md`; the agent brief tells agents to add to it.
