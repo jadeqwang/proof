@@ -1304,3 +1304,13 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
     - holdcheck's hand is thinner than the mesh hand (proximal 6-15 mm, palm 10-17 mm): widen the hand.js capsules
       or check with the mesh hand.
     - Seated thighs are ~14 mm into chairs engine-wide: raise seated hip heights ~5 mm.
+- **Decision page round 6 built** (13 cards, proof-decisions-v7; the r5 page is backed up in work/decisions/).
+- **Re-render sweep done:**
+  - Shoulders on every turned-away figure are natural.
+  - First love's hair is right in mv10 SI1, but warm chestnut under the closet key.
+  - Floor clipping is gone everywhere: basement 7/7 clean, kitchen 12/16.
+  - NEW from the soles fix: first love's foot 15.8 mm into the closet wall; jade27 deeper into the mv10 counter toe
+    kick (39 mm) and cabinet doors (9 mm). N3's cloth into jade27 in V3_rcv_obl_k3 went from 38.1 to 43.4 mm.
+  - Dark lit guides (<35 mean) in wall88, market93, kitchen90 and mv10; AD_fern is blown out.
+  - The legacy attic88 renders (259 MB, untracked) were deleted.
+- **Post-sweep fix agent running:** those clip failures, the brightness pass, and the closet hair light.
