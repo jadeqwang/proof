@@ -11,9 +11,9 @@
    0.55
   ],
   "target": [
-   -0.5769,
-   -0.0059,
-   -0.5903
+   -0.538,
+   0.0191,
+   -0.5423
   ],
   "lens_mm": 45,
   "frame_width_mm": 36,
@@ -24,17 +24,17 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   0.5811,
+   0.5553,
    0,
-   0.8139,
+   0.8317,
    0,
-   0.157,
-   0.9812,
-   -0.1121,
+   0.1501,
+   0.9836,
+   -0.1002,
    0,
-   -0.7986,
-   0.193,
-   0.5702,
+   -0.818,
+   0.1805,
+   0.5462,
    0,
    -2.174,
    0.38,
@@ -42,21 +42,21 @@
    1
   ],
   "viewMatrix": [
-   0.5811,
-   0.157,
-   -0.7986,
+   0.5553,
+   0.1501,
+   -0.818,
    0,
    0,
-   0.9812,
-   0.193,
+   0.9836,
+   0.1805,
    0,
-   0.8139,
-   -0.1121,
-   0.5702,
+   0.8317,
+   -0.1002,
+   0.5462,
    0,
-   0.8156,
-   0.0302,
-   -2.123,
+   0.7498,
+   0.0076,
+   -2.1473,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "screen": {
    "px": [
     [
-     353.3,
-     -1448.5
+     269.2,
+     -1410
     ],
     [
-     688.4,
-     -1232.5
+     605.8,
+     -1190.9
     ],
     [
-     695.1,
-     -885.1
+     614,
+     -847.8
     ],
     [
-     370.8,
-     -1038.8
+     287.8,
+     -1004.3
     ]
    ],
    "world": [
@@ -137,16 +137,16 @@
  "heads": {
   "dad": {
    "px": [
-    1122.7,
-    -1799.3
+    1033.7,
+    -1737.7
    ],
    "eyes": [
-    959.5,
-    -1667.6
+    873.3,
+    -1612.9
    ],
    "mouth": [
-    990.4,
-    -1541.8
+    904.6,
+    -1489.1
    ],
    "in_frame": false,
    "visible": false,
@@ -154,27 +154,27 @@
   },
   "jade7": {
    "px": [
-    707.9,
-    -1719.7
+    809.4,
+    -1654.1
    ],
    "eyes": [
-    641.4,
-    -1589.6
+    701.9,
+    -1536.8
    ],
    "mouth": [
-    667.3,
-    -1465.8
+    719.1,
+    -1424
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 133
+   "facing_camera_deg": 121
   }
  },
  "hands": {
   "dad.L": {
    "px": [
-    580.6,
-    -693.7
+    500,
+    -659.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -182,8 +182,8 @@
   },
   "dad.R": {
    "px": [
-    829,
-    -601.8
+    749.2,
+    -566
    ],
    "shape": "relax",
    "in_frame": false,
@@ -191,8 +191,8 @@
   },
   "jade7.L": {
    "px": [
-    202.8,
-    -805
+    117.5,
+    -772.7
    ],
    "shape": "flat",
    "in_frame": false,
@@ -200,8 +200,8 @@
   },
   "jade7.R": {
    "px": [
-    552.6,
-    -1232.2
+    523.6,
+    -1156.8
    ],
    "shape": "point",
    "in_frame": false,
@@ -213,22 +213,22 @@
    "name": "screen",
    "kind": "CRT screen (blue, area source); the BEAM (the light that matters)",
    "on": true,
-   "color": "#3f6dff",
+   "color": "#9db4f0",
    "world": [
     -1.024,
     1.085,
     -0.558
    ],
    "px": [
-    563.7,
-    -1151.4
+    481.4,
+    -1112.9
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.241,
-    0.97
+    0.289,
+    0.957
    ],
-   "toward_camera": 0.188,
+   "toward_camera": 0.148,
    "aim_world": [
     -1.024,
     0.885,
@@ -246,25 +246,25 @@
     0.6
    ],
    "px": [
-    4565.8,
-    -10516.5
+    4097.2,
+    -9465.1
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.302,
-    0.953
+    -0.29,
+    0.957
    ],
-   "toward_camera": -0.429
+   "toward_camera": -0.436
   }
  ],
  "warnings": [],
- "intent": "Low and close from the open floor: her two feet in white socks (no shoes) on two spokes of the five-spoke base, casters, Dad’s socks and slippers beyond. The screen light comes over the desk edge from frame left; the desk cuts it, so the foot nearer the desk is in shadow.",
+ "intent": "Low and close from the open floor: her two feet in white socks (no shoes) standing with their weight on two legs of the chair’s black five-star base (r4, Jade: both feet on the wheely part), each sole square on top of a leg, toes and heel over the edges; the hub and gas column, the twin-wheel casters; Dad’s grey socks and brown slippers beyond. The c. 1990 task chair is black nylon base and casters, charcoal blue-grey tweed seat. The screen light comes over the desk edge from frame left; the desk cuts it, so the foot nearer the desk is in shadow.",
  "time": "2:16.1-2:17.2 Verse 2b",
  "position": "inside (detail)",
  "beam": {
   "name": "CRT screen glow",
   "model": "area source (the screen rectangle), radiating into +z; frustum spreading by half_angle from the rectangle, faded out at range",
-  "color": "#3f6dff",
+  "color": "#9db4f0",
   "on": true,
   "source_corners": [
    {
@@ -274,8 +274,8 @@
      -0.578
     ],
     "px": [
-     353.3,
-     -1448.5
+     269.2,
+     -1410
     ]
    },
    {
@@ -285,8 +285,8 @@
      -0.578
     ],
     "px": [
-     688.4,
-     -1232.5
+     605.8,
+     -1190.9
     ]
    },
    {
@@ -296,8 +296,8 @@
      -0.578
     ],
     "px": [
-     695.1,
-     -885.1
+     614,
+     -847.8
     ]
    },
    {
@@ -307,8 +307,8 @@
      -0.578
     ],
     "px": [
-     370.8,
-     -1038.8
+     287.8,
+     -1004.3
     ]
    }
   ],
@@ -329,8 +329,8 @@
      2.022
     ],
     "px": [
-     4747.2,
-     -4356.8
+     4388.6,
+     -4010.9
     ]
    },
    {
@@ -340,8 +340,8 @@
      2.022
     ],
     "px": [
-     1466.5,
-     2756.3
+     1408.4,
+     2796.9
     ]
    },
    {
@@ -351,8 +351,8 @@
      2.022
     ],
     "px": [
-     1784.6,
-     -3515.5
+     1663.7,
+     -3366.4
     ]
    },
    {
@@ -362,8 +362,8 @@
      2.022
     ],
     "px": [
-     3276.5,
-     2284.3
+     3167.8,
+     2267.1
     ]
    }
   ],
@@ -384,8 +384,8 @@
        0.082
       ],
       "px": [
-       -6808.1,
-       5846.9
+       -7994.7,
+       6713
       ]
      },
      {
@@ -395,8 +395,8 @@
        0.082
       ],
       "px": [
-       2067.2,
-       456.3
+       1978,
+       481.6
       ]
      }
     ],
@@ -408,8 +408,8 @@
        0.419
       ],
       "px": [
-       3935.2,
-       -2126.1
+       3702,
+       -1981.5
       ]
      },
      {
@@ -419,8 +419,8 @@
        0.419
       ],
       "px": [
-       2514.5,
-       410.6
+       2410,
+       434.7
       ]
      }
     ]
@@ -431,36 +431,36 @@
  "word": {
   "centre": {
    "world": [
-    -1.0834,
-    1.1002,
+    -1.0852,
+    1.0997,
     -0.578
    ],
    "px": [
-    463.8,
-    -1213
+    378.6,
+    -1175.8
    ]
   },
   "underline": [
    {
     "world": [
-     -1.105,
-     1.0946,
+     -1.0931,
+     1.096,
      -0.577
     ],
     "px": [
-     436.9,
-     -1218.7
+     369.8,
+     -1175.1
     ]
    },
    {
     "world": [
-     -1.0618,
-     1.0946,
+     -1.0774,
+     1.096,
      -0.577
     ],
     "px": [
-     493.1,
-     -1186.9
+     390.3,
+     -1163.3
     ]
    }
   ],
@@ -474,88 +474,88 @@
     -0.07
    ],
    "px": [
-    1256.2,
-    584.6
+    1181.9,
+    613.4
    ]
   },
   "spoke_tips": [
    {
     "world": [
      -1.291,
-     0.1,
+     0.0886,
      0.124
     ],
     "px": [
-     1358.5,
-     751.5
+     1284,
+     805.5
     ]
    },
    {
     "world": [
      -1.291,
-     0.1,
+     0.0886,
      -0.264
     ],
     "px": [
-     667,
-     627.9
+     592.7,
+     682.8
     ]
    },
    {
     "world": [
      -0.922,
-     0.1,
+     0.0886,
      -0.3838
     ],
     "px": [
-     910.8,
-     499.8
+     836.8,
+     547.9
     ]
    },
    {
     "world": [
      -0.694,
-     0.1,
+     0.0886,
      -0.07
     ],
     "px": [
-     1496.7,
-     498.9
+     1418.7,
+     543.6
     ]
    },
    {
     "world": [
      -0.922,
-     0.1,
+     0.0886,
      0.2438
     ],
     "px": [
-     1894.6,
-     625.6
+     1810,
+     671.4
     ]
    }
   ],
   "feet_stand_at": [
    {
     "world": [
-     -1.2586,
-     0.1,
-     -0.2405
+     -1.1939,
+     0.1019,
+     -0.1934
     ],
     "px": [
-     743.6,
-     622.3
+     818.7,
+     639
     ]
    },
    {
     "world": [
-     -1.2586,
-     0.1,
-     0.1005
+     -1.1939,
+     0.1019,
+     0.0534
     ],
     "px": [
-     1342.7,
-     725.7
+     1240.5,
+     703.8
     ]
    }
   ]
@@ -582,14 +582,14 @@
      "reach": 0.99
     },
     "R": {
-     "reach": 1.01
+     "reach": 1
     }
    },
    "arms": {
-    "L": 0.66,
-    "R": 0.91
+    "L": 0.89,
+    "R": 0.92
    },
-   "headTurn": -7
+   "headTurn": -10
   }
  }
 }

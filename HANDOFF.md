@@ -831,3 +831,8 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **market93 r4 agent:** artichoke grips from below (web refs, specs in NOTES), M2/M3 numerals re-synced (8 lands 2:13.34-2:13.65), M4 Mama bends, M4b arm sideways; new M4c lift. Lead sent back: M4c in M4b's framing, M4b becomes the landing (forearm grab), plan row reworded.
 - **attic88_day r4 agent done:** keyboard.js exact paper keyboard (C3-C6, 22 white/15 black, real sizes, tape on F4|G4, map folds; edge map for line/contour); AD_grab real wrap grip (GRAB_R), Mama kneeling.
 - **market93 done:** M4c lift (pulled back 1 m, 32 mm, feet off the floor, Mama's palm-up gesture), M4b landing = forearm grab rhyming AD_grab; M4 and M4b_pull alternates; plan row 2:06.3-2:16.1 reworded.
+- **basement90 r4 agent done:** c.1990 task chair (five-star base, casters, gas lift, tweed), feet on two base legs;
+  B2 head looks at the fingertip point; B3 new camera, 5.25" sleeve stack, canonical 80x25 DOS screen (dark blue on
+  light grey, C program, missed rename `total` on line 10); B4/B5 mouth closed, lips and chin on the wrist. Glow now
+  cool white (flagged). GOTCHA: the default render modes skip the painter guides; also run
+  `--modes form,contour,light --nojson` after a default render.

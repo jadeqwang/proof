@@ -38,22 +38,73 @@ export function kitchenChair(at, yaw, look, o = {}) {
   g.add(box(sw - lg, 0.09, 0.02, look, [0, bh - 0.06, -sd / 2 + lg / 2])); g.add(box(sw - lg, 0.05, 0.02, look, [0, bh - 0.22, -sd / 2 + lg / 2]));
   return g;
 }
-// five-spoke swivel task chair. spec: { at [x, z], seatYaw deg (0 = sitter faces +z), spoke0 deg (world angle of spoke 0) }
+// a loft: a closed tube through stations { c: [x,y,z], x: side dir, y: up dir, w, h, rt (top corner radius, fraction
+// of h), rb (bottom) } with a rounded-rectangle cross-section; ends capped. One mesh (no seams in line mode).
+export function loft(stations, look, seg = 5) {
+  const prof = (w, h, rt, rb) => { const pts = [], hw = w / 2, hh = h / 2, R1 = Math.min(rt * h, hw), R0 = Math.min(rb * h, hw);
+    const arc = (cx, cy, r, a0, a1) => { for (let i = 0; i <= seg; i++) { const a = a0 + (a1 - a0) * i / seg; pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } };
+    arc(hw - R0, -hh + R0, R0, -Math.PI / 2, 0); arc(hw - R1, hh - R1, R1, 0, Math.PI / 2); arc(-hw + R1, hh - R1, R1, Math.PI / 2, Math.PI); arc(-hw + R0, -hh + R0, R0, Math.PI, Math.PI * 1.5);
+    return pts; };
+  const P = [], idx = [], rows = [];
+  for (const st of stations) { const x = V(st.x).normalize(), y = V(st.y).normalize(), c = V(st.c), pr = prof(st.w, st.h, st.rt ?? 0.3, st.rb ?? 0.1), row = [];
+    for (const [u, v] of pr) { const p = c.clone().addScaledVector(x, u).addScaledVector(y, v); row.push(P.length / 3); P.push(p.x, p.y, p.z); } rows.push(row); }
+  const n = rows[0].length;
+  for (let k = 0; k < rows.length - 1; k++) for (let j = 0; j < n; j++) { const a = rows[k][j], b = rows[k][(j + 1) % n], c2 = rows[k + 1][(j + 1) % n], d = rows[k + 1][j]; idx.push(a, d, c2, a, c2, b); }
+  for (const [row, flip] of [[rows[0], true], [rows[rows.length - 1], false]]) { const cc = row.reduce((s, i) => s.add(V(P[i * 3], P[i * 3 + 1], P[i * 3 + 2])), V()).multiplyScalar(1 / n), ci = P.length / 3; P.push(cc.x, cc.y, cc.z);
+    for (let j = 0; j < n; j++) flip ? idx.push(ci, row[(j + 1) % n], row[j]) : idx.push(ci, row[j], row[(j + 1) % n]); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setIndex(idx); g.computeVertexNormals();
+  const m = mk(g, look); m.userData.double = true; return m;
+}
+// c. 1990 five-star swivel task chair (r4, see layout.js CHAIR). spec: { at [x, z], seatYaw deg (0 = sitter faces +z),
+// spoke0 deg (world angle of spoke 0) }. Base: hub, five tapered rounded legs rising to the hub, a socket boss under each
+// tip, a hooded twin-wheel caster on a swivel stem (trailing outward), a telescoping black shroud and chrome piston;
+// top: steel tilt plate, tension knob, height lever, seat (plywood shell + foam, waterfall front), J-bar, backrest.
 export function swivelChair(C, spec = {}) {
-  const at = spec.at || C.at, seatYaw = spec.seatYaw ?? C.seatYaw, spoke0 = spec.spoke0 ?? C.spoke0;
-  const g = new THREE.Group(); const MET = { grey: 0.22, col: 0x1c1c20 }, FAB = { grey: 0.36, col: 0x4a3f38 };
-  const hub = V(at[0], C.spokeTop - 0.02, at[1]);
-  g.add(tag(cyl(0.045, 0.05, 0.07, MET, [hub.x, C.spokeTop - 0.005, hub.z]), 'chair hub'));
-  for (let k = 0; k < 5; k++) { const a = rad(spoke0 + 72 * k), d = V(Math.cos(a), 0, Math.sin(a));
-    const tip = hub.clone().addScaledVector(d, C.spokeR); tip.y = C.spokeTop - 0.03;
-    g.add(tag(slab(hub.clone().setY(C.spokeTop - 0.0175), tip.clone().setY(C.spokeTop - 0.0175 - 0.012), C.spokeW, 0.035, V(-d.z, 0, d.x), MET), 'chair spokes (five)'));
-    g.add(tag(ball(C.caster, MET, [tip.x, C.caster, tip.z]), 'casters')); }
-  g.add(tag(cyl(0.025, 0.025, C.seatTop - C.seat.t - C.spokeTop, MET, [hub.x, (C.seatTop - C.seat.t + C.spokeTop) / 2, hub.z], null, 12), 'gas column'));
-  const top = new THREE.Group(); top.position.set(at[0], 0, at[1]); top.rotation.y = rad(seatYaw);
-  top.add(box(C.seat.w, C.seat.t, C.seat.d, FAB, [0, C.seatTop - C.seat.t / 2, 0]));
-  top.add(slab(V(0, C.seatTop - C.seat.t, -C.seat.d / 2 + 0.03), V(0, (C.back.y0 + C.back.y1) / 2, C.back.z - 0.035), 0.05, 0.015, V(1, 0, 0), MET));
-  top.add(box(C.back.w, C.back.y1 - C.back.y0, C.back.t, FAB, [0, (C.back.y0 + C.back.y1) / 2, C.back.z]));
-  g.add(tag(top, 'swivel chair'));
+  const at = spec.at || C.at, seatYaw = spec.seatYaw ?? C.seatYaw, spoke0 = spec.spoke0 ?? C.spoke0, K = C.look, Lg = C.leg, H = C.hub, cs = C.caster;
+  const g = new THREE.Group(), base = new THREE.Group(); base.position.set(at[0], 0, at[1]); g.add(base);
+  base.add(tag(cyl(H.r, H.r * 1.15, H.y1 - H.y0, K.base, [0, (H.y0 + H.y1) / 2, 0], null, 24), 'chair base (five-star, black nylon)'));
+  base.add(tag(cyl(H.r * 0.82, H.r * 0.82, 0.006, K.base, [0, H.y1 + 0.003, 0], null, 24), 'chair base (five-star, black nylon)'));
+  for (let k = 0; k < 5; k++) { const a = rad(spoke0 + 72 * k), d = [Math.cos(a), 0, Math.sin(a)], sd = [-d[2], 0, d[0]];
+    const st = []; for (let i = 0; i <= 6; i++) { const t = i / 6, r = Lg.r0 + (Lg.r1 - Lg.r0) * t, top = Lg.top0 + (Lg.top1 - Lg.top0) * t, bot = Lg.bot0 + (Lg.bot1 - Lg.bot0) * t;
+      const end = i === 6 ? 0.85 : 1;   // a rounded nose at the tip
+      st.push({ c: [d[0] * r, (top + bot) / 2, d[2] * r], x: sd, y: [0, 1, 0], w: (Lg.w0 + (Lg.w1 - Lg.w0) * t) * end, h: (top - bot) * (i === 6 ? 0.9 : 1), rt: 0.45, rb: 0.12 }); }
+    base.add(tag(loft(st, K.base), 'chair base (five-star, black nylon)'));
+    // the caster: socket boss under the tip, a swivel stem, a hood over two 50 mm wheels, trailing outward
+    const rs = C.spokeR, sx = d[0] * rs, sz = d[2] * rs, wy = cs.wheel, tx = sx + d[0] * cs.trail, tz = sz + d[2] * cs.trail;
+    base.add(tag(cyl(0.016, 0.018, 0.012, K.base, [sx, cs.stemY - 0.006, sz], null, 16), 'casters (twin-wheel, black)'));
+    base.add(tag(cyl(0.006, 0.006, cs.stemY - wy - 0.02, K.chrome, [sx, (cs.stemY + wy + 0.02) / 2, sz], null, 10), 'casters (twin-wheel, black)'));
+    const hood = new THREE.Group(); hood.position.set((sx + tx) / 2, wy + 0.012, (sz + tz) / 2); hood.rotation.y = -a; base.add(hood);   // local x = along the leg
+    hood.add(box(cs.trail + 0.03, 0.03, cs.gap, K.caster, [0, 0, 0]));
+    hood.add(cyl(0.02, 0.02, cs.gap, K.caster, [-(cs.trail + 0.03) / 2 + 0.01, 0.005, 0], [90, 0, 0], 16));
+    for (const s of [-1, 1]) hood.add(cyl(wy, wy, cs.w, K.caster, [(cs.trail + 0.03) / 2 - 0.016 + 0.0, -0.012, s * (cs.gap / 2 + cs.w / 2)], [90, 0, 0], 24));
+    tag(hood, 'casters (twin-wheel, black)'); }
+  // gas column: a three-step telescoping black shroud, then the chrome piston into the tilt plate
+  const plateY = C.seatTop - C.seat.t - 0.03;
+  const sh = [[0.029, H.y1, 0.2], [0.026, 0.2, 0.26], [0.023, 0.26, 0.31]];
+  for (const [r, y0, y1] of sh) base.add(tag(cyl(r, r, y1 - y0, K.shell, [0, (y0 + y1) / 2, 0], null, 20), 'gas column (shroud, piston)'));
+  base.add(tag(cyl(0.014, 0.014, plateY - 0.31, K.chrome, [0, (plateY + 0.31) / 2, 0], null, 14), 'gas column (shroud, piston)'));
+  // the top: turns with the seat
+  const top = new THREE.Group(); top.position.set(at[0], 0, at[1]); top.rotation.y = rad(seatYaw); g.add(top);
+  top.add(tag(box(0.2, 0.025, 0.22, K.steel, [0, plateY + 0.0125, 0.02]), 'seat mechanism (tilt plate)'));
+  top.add(tag(cyl(0.022, 0.022, 0.03, K.shell, [0, plateY - 0.01, 0.125], [90, 0, 0], 16), 'seat mechanism (tension knob)'));
+  top.add(tag(slab(V(-0.09, plateY + 0.01, 0.06), V(-0.2, plateY - 0.005, 0.1), 0.012, 0.008, V(0, 1, 0), K.steel), 'seat mechanism (height lever)'));
+  top.add(tag(ball(0.012, K.shell, [-0.205, plateY - 0.006, 0.102]), 'seat mechanism (height lever)'));
+  // seat: a black plastic under-shell, then the cushion as a loft from back to front (waterfall front edge dips 2 cm)
+  const S = C.seat, sy0 = C.seatTop - S.t;
+  top.add(tag(loft([{ c: [0, sy0 + 0.008, -S.d / 2 + 0.01], x: [1, 0, 0], y: [0, 1, 0], w: S.w - 0.02, h: 0.016, rt: 0.3, rb: 0.3 }, { c: [0, sy0 + 0.008, S.d / 2 - 0.02], x: [1, 0, 0], y: [0, 1, 0], w: S.w - 0.02, h: 0.016, rt: 0.3, rb: 0.3 }], K.shell), 'seat (fabric)'));
+  { const st = [], N = 8; for (let i = 0; i <= N; i++) { const t = i / N, z = -S.d / 2 + S.d * t, front = Math.max(0, (t - 0.7) / 0.3), back = Math.max(0, (0.12 - t) / 0.12);
+      const h = (S.t - 0.016) * (1 - 0.55 * front * front - 0.35 * back * back), yc = sy0 + 0.016 + h / 2 - 0.01 * front;
+      st.push({ c: [0, yc, z], x: [1, 0, 0], y: [0, 1, 0], w: S.w * (1 - 0.06 * back - 0.04 * front), h, rt: 0.42, rb: 0.15 }); }
+    top.add(tag(loft(st, K.fabric), 'seat (fabric)')); }
+  // J-bar: steel bar from under the seat back, up behind the backrest
+  const B = C.back, by = (B.y0 + B.y1) / 2;
+  top.add(tag(slab(V(0, plateY + 0.01, -0.04), V(0, plateY + 0.01, -S.d / 2 - 0.03), 0.05, 0.01, V(1, 0, 0), K.steel), 'back bar (steel)'));
+  top.add(tag(slab(V(0, plateY + 0.005, -S.d / 2 - 0.03), V(0, by, B.z - B.t / 2 - 0.008), 0.05, 0.01, V(1, 0, 0), K.steel), 'back bar (steel)'));
+  // backrest: shell + cushion, curved a little around the sitter
+  { const st = [], N = 6; for (let i = 0; i <= N; i++) { const t = i / N, y = B.y0 + (B.y1 - B.y0) * t, e = Math.sin(Math.PI * t);
+      st.push({ c: [0, y, B.z + 0.01 * e], x: [1, 0, 0], y: [0, 0, 1], w: B.w * (0.92 + 0.08 * e), h: B.t * (0.55 + 0.45 * e), rt: 0.45, rb: 0.25 }); }
+    top.add(tag(loft(st, K.fabric), 'backrest (fabric)')); }
+  tag(g, 'swivel chair');
   return g;
 }
 // world offset -> a figure's body-local frame (x = its left, z = its front) for legOpts.ankleL / ankleR.

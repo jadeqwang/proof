@@ -11,9 +11,9 @@
    1.22
   ],
   "target": [
-   -1.1301,
-   1.1599,
-   -0.6527
+   -1.0585,
+   1.1111,
+   -0.6305
   ],
   "lens_mm": 22,
   "frame_width_mm": 36,
@@ -24,17 +24,17 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   0.9416,
+   0.9283,
    0,
-   0.3368,
+   0.372,
    0,
-   -0.0353,
-   0.9945,
-   0.0988,
+   -0.03,
+   0.9968,
+   0.0748,
    0,
-   -0.335,
-   -0.105,
-   0.9364,
+   -0.3707,
+   -0.0805,
+   0.9252,
    0,
    -1.8,
    0.95,
@@ -42,21 +42,21 @@
    1
   ],
   "viewMatrix": [
-   0.9416,
-   -0.0353,
-   -0.335,
+   0.9283,
+   -0.03,
+   -0.3707,
    0,
    0,
-   0.9945,
-   -0.105,
+   0.9968,
+   -0.0805,
    0,
-   0.3368,
-   0.0988,
-   0.9364,
+   0.372,
+   0.0748,
+   0.9252,
    0,
-   1.2839,
-   -1.1289,
-   -1.6456,
+   1.2171,
+   -1.0921,
+   -1.7196,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "screen": {
    "px": [
     [
-     958.7,
-     519.6
+     914.9,
+     490.8
     ],
     [
-     1107,
-     526.1
+     1062.7,
+     497.9
     ],
     [
-     1108.5,
-     643.1
+     1063.5,
+     614.3
     ],
     [
-     958.7,
-     642.1
+     914.5,
+     613.2
     ]
    ],
    "world": [
@@ -137,44 +137,44 @@
  "heads": {
   "dad": {
    "px": [
-    1205.1,
-    385.4
+    1159.5,
+    358.4
    ],
    "eyes": [
-    1151.9,
-    381.8
+    1112.5,
+    357.9
    ],
    "mouth": [
-    1163.8,
-    439.3
+    1125.1,
+    415.9
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 34
+   "facing_camera_deg": 30
   },
   "jade7": {
    "px": [
-    597.7,
-    485.2
+    664.8,
+    508.9
    ],
    "eyes": [
-    675.6,
-    559.9
+    733.4,
+    595.8
    ],
    "mouth": [
-    632.1,
-    604.8
+    681.4,
+    632.1
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 75
+   "facing_camera_deg": 81
   }
  },
  "hands": {
   "dad.L": {
    "px": [
-    993.2,
-    670.4
+    948.8,
+    641.4
    ],
    "shape": "relax",
    "in_frame": true,
@@ -182,8 +182,8 @@
   },
   "dad.R": {
    "px": [
-    1086.4,
-    749.1
+    1041.1,
+    719.3
    ],
    "shape": "relax",
    "in_frame": true,
@@ -191,17 +191,17 @@
   },
   "jade7.L": {
    "px": [
-    496.2,
-    1102.1
+    394.5,
+    1064.7
    ],
    "shape": "relax",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   },
   "jade7.R": {
    "px": [
-    723.7,
-    661
+    679.8,
+    647.4
    ],
    "shape": "fist",
    "in_frame": true,
@@ -213,15 +213,15 @@
    "name": "screen",
    "kind": "CRT screen (blue, area source); the BEAM (the light that matters)",
    "on": true,
-   "color": "#3f6dff",
+   "color": "#9db4f0",
    "world": [
     -1.024,
     1.085,
     -0.558
    ],
    "px": [
-    1039.8,
-    581.7
+    995.6,
+    553.1
    ],
    "in_front": true,
    "travel_dir_px": [
@@ -246,25 +246,25 @@
     0.6
    ],
    "px": [
-    1326.3,
-    -740.3
+    1292.6,
+    -788.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.191,
-    0.982
+    -0.194,
+    0.981
    ],
    "toward_camera": -0.527
   }
  ],
  "warnings": [],
- "intent": "From the open floor front-left, just in front of the stair (2026-11-26: 22 mm, 0.3 m closer than before, the stair’s room-side stringer is at z 1.28): Dad has rolled back and swivelled to his left, hands still over the keys, and stares at her (three-quarter on his face). She has hopped off the spokes and stands in the open, in the screen light, in profile: right hand curled into a fist like a paw, raised to her mouth, pretending to lick her wrist (a small gap: the tongue does not touch), head cocked. Not hiding. She is 7-8, about 1.25 m.",
+ "intent": "From the open floor front-left, just in front of the stair (2026-11-26: 22 mm, 0.3 m closer than before, the stair’s room-side stringer is at z 1.28): Dad has rolled back and swivelled to his left, hands still over the keys, and stares at her (three-quarter on his face). She has hopped off the spokes and stands in the open, in the screen light, in profile, hunched over her paw: right hand curled into a loose fist like a paw, her closed lips and her chin resting ON the back of her wrist (r4, Jade: mouth closed, tongue in, lips and chin touching the wrist), head cocked. Not hiding. She is 7-8, about 1.25 m.",
  "time": "2:19.8-2:21.4 \"Good catch!\" (drums stop)",
  "position": "outside (on Dad)",
  "beam": {
   "name": "CRT screen glow",
   "model": "area source (the screen rectangle), radiating into +z; frustum spreading by half_angle from the rectangle, faded out at range",
-  "color": "#3f6dff",
+  "color": "#9db4f0",
   "on": true,
   "source_corners": [
    {
@@ -274,8 +274,8 @@
      -0.578
     ],
     "px": [
-     958.7,
-     519.6
+     914.9,
+     490.8
     ]
    },
    {
@@ -285,8 +285,8 @@
      -0.578
     ],
     "px": [
-     1107,
-     526.1
+     1062.7,
+     497.9
     ]
    },
    {
@@ -296,8 +296,8 @@
      -0.578
     ],
     "px": [
-     1108.5,
-     643.1
+     1063.5,
+     614.3
     ]
    },
    {
@@ -307,8 +307,8 @@
      -0.578
     ],
     "px": [
-     958.7,
-     642.1
+     914.5,
+     613.2
     ]
    }
   ],
@@ -329,8 +329,8 @@
      2.022
     ],
     "px": [
-     4897.4,
-     -2732.4
+     4654.9,
+     -2572.4
     ]
    },
    {
@@ -340,8 +340,8 @@
      2.022
     ],
     "px": [
-     3599.8,
-     4162.5
+     3186.5,
+     3647.4
     ]
    },
    {
@@ -351,8 +351,8 @@
      2.022
     ],
     "px": [
-     2577.8,
-     -1544
+     2529.7,
+     -1552.2
     ]
    },
    {
@@ -362,8 +362,8 @@
      2.022
     ],
     "px": [
-     11139.3,
-     9704.7
+     7622.7,
+     6589.9
     ]
    }
   ],
@@ -384,8 +384,8 @@
        0.082
       ],
       "px": [
-       -493.9,
-       2118.9
+       -565.1,
+       2108
       ]
      },
      {
@@ -395,8 +395,8 @@
        0.082
       ],
       "px": [
-       2102.6,
-       1323.9
+       2000.9,
+       1260.9
       ]
      }
     ],
@@ -408,8 +408,8 @@
        0.419
       ],
       "px": [
-       -4260.2,
-       4515
+       -4805.1,
+       4833.4
       ]
      },
      {
@@ -419,8 +419,8 @@
        0.419
       ],
       "px": [
-       2703.1,
-       1366.9
+       2541.2,
+       1289.3
       ]
      }
     ]
@@ -431,36 +431,36 @@
  "word": {
   "centre": {
    "world": [
-    -1.0834,
-    1.1002,
+    -1.0852,
+    1.0997,
     -0.578
    ],
    "px": [
-    1001.8,
-    572.5
+    956.8,
+    544
    ]
   },
   "underline": [
    {
     "world": [
-     -1.105,
-     1.0946,
+     -1.0931,
+     1.096,
      -0.577
     ],
     "px": [
-     989.9,
-     575.5
+     952.6,
+     546
     ]
    },
    {
     "world": [
-     -1.0618,
-     1.0946,
+     -1.0774,
+     1.096,
      -0.577
     ],
     "px": [
-     1014.2,
-     576.1
+     961.4,
+     546.3
     ]
    }
   ],
@@ -474,88 +474,88 @@
     0.07
    ],
    "px": [
-    1282.9,
-    1467.7
+    1227.5,
+    1414.5
    ]
   },
   "spoke_tips": [
    {
     "world": [
      -1.291,
-     0.1,
+     0.0886,
      0.264
     ],
     "px": [
-     1149,
-     1690.8
+     1096.6,
+     1645
     ]
    },
    {
     "world": [
      -1.291,
-     0.1,
+     0.0886,
      -0.124
     ],
     "px": [
-     983.3,
-     1412.4
+     936.4,
+     1378.9
     ]
    },
    {
     "world": [
      -0.922,
-     0.1,
+     0.0886,
      -0.2438
     ],
     "px": [
-     1208.5,
-     1300.3
+     1157.1,
+     1264.5
     ]
    },
    {
     "world": [
      -0.694,
-     0.1,
+     0.0886,
      0.07
     ],
     "px": [
-     1525.1,
-     1402.3
+     1460.3,
+     1356.7
     ]
    },
    {
     "world": [
      -0.922,
-     0.1,
+     0.0886,
      0.3838
     ],
     "px": [
-     1607.4,
-     1679.1
+     1534.2,
+     1619.6
     ]
    }
   ],
   "feet_stand_at": [
    {
     "world": [
-     -1.2586,
-     0.1,
-     -0.2405
+     -1.1939,
+     0.1019,
+     -0.1934
     ],
     "px": [
-     974.3,
-     1350.9
+     989.6,
+     1316.6
     ]
    },
    {
     "world": [
-     -1.2586,
-     0.1,
-     0.1005
+     -1.1939,
+     0.1019,
+     0.0534
     ],
     "px": [
-     1096.5,
-     1543.2
+     1082.2,
+     1442.7
     ]
    }
   ]
@@ -574,7 +574,7 @@
     "L": 0.87,
     "R": 0.63
    },
-   "headTurn": 56
+   "headTurn": 60
   },
   "jade7": {
    "legs": {
@@ -586,10 +586,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.52
+    "L": 0.98,
+    "R": 0.46
    },
-   "headTurn": 0
+   "headTurn": 1
   }
  }
 }

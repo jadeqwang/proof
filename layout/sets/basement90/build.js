@@ -4,7 +4,8 @@ import { mk, box, cyl, ball, quad, slab, tag, V, rad } from '../../engine/core.j
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, applyBeamMask } from '../_beam.js';
-import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
+import { artFromCanvas } from '../_art.js';
+import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, DOS, FLOPPY, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
 import { wall, hexa, polyline, swivelChair, r3, hideLabels, footwear } from './kit.js';
 import { FOOTWEAR } from './house.js';
 
@@ -63,14 +64,57 @@ function room(shot = {}) {
   return g;
 }
 
-function screenTexture() { // label mode only: rows of code as grey bars (no invented text), THE WORD boxed, its gold underline
-  const c = document.createElement('canvas'); c.width = 810; c.height = 600; const g = c.getContext('2d');
-  g.fillStyle = '#16307a'; g.fillRect(0, 0, 810, 600); g.fillStyle = '#c8d8ff';
-  for (let i = 0; i < TEXT.lines; i++) { const y = (TEXT.top + i * TEXT.pitch) * 600, ind = [0, 1, 1, 2, 2, 2, 1, 1, 2, 2, 1, 0, 0, 1][i] * 40; let x = TEXT.left * 810 + ind;
-    for (let k = 0; k < 6; k++) { const w = 40 + ((i * 7 + k * 13) % 5) * 22; if (x + w > 760) break; if (!(i === 6 && x + w > WORD.u0 * 810 - 12 && x < WORD.u1 * 810 + 12)) g.fillRect(x, y - 24, w, 16); x += w + 14; if ((i + k) % 4 === 3) break; } }
-  g.fillStyle = '#ffffff'; g.fillRect(WORD.u0 * 810, (WORD.v - TEXT.pitch) * 600 + 13, (WORD.u1 - WORD.u0) * 810, 16);
-  g.fillStyle = '#e8b030'; g.fillRect(WORD.u0 * 810 - 4, WORD.v * 600 - 3, (WORD.u1 - WORD.u0) * 810 + 8, 6);
-  return new THREE.CanvasTexture(c);
+// THE CANONICAL SCREEN (r4, Jade 2026-11-26): an 80 x 25 DOS text screen, dark blue text on light grey (Jade), drawn in
+// code so every shot shows the same characters. The editor's top line names the file and the cursor position; the bottom
+// line is the key help. The C program (ASSUMED content, flag): the class average from a file of scores. Dad has renamed
+// the variable `total` to `sum` (declaration, initialiser, loop); he missed the one on row 10, `(float) total / n`:
+// THE WORD her finger is on (DOS.wordRow / wordCol in layout.js; checked against the text below at build time).
+export const DOS_TEXT = [
+  null,   // row 0: the title bar (drawn inverse)
+  '/* GRADES.C -- average of the class scores */',
+  '#include <stdio.h>',
+  '',
+  'int readscores(int s[]);',
+  '',
+  'main()',
+  '{',
+  '    int score[40], n, i;  long sum = 0;  float avg;',
+  '    n = readscores(score);  for (i = 0; i < n; i++) sum += score[i];',
+  '    avg = (float) total / n;',
+  '    printf("Average: %.1f\\n", avg);',
+  '    return 0;',
+  '}',
+  '',
+  'int readscores(int s[])',
+  '{',
+  '    FILE *f = fopen("SCORES.DAT", "r");  int k = 0;',
+  '    while (k < 40 && fscanf(f, "%d", &s[k]) == 1) k++;',
+  '    fclose(f);',
+  '    return k;',
+  '}',
+  '',
+  '',
+  null,   // row 24: the key-help line (drawn inverse)
+];
+const DOS_BAR = ' C:\\WORK\\GRADES.C                                     Line 10  Col 24  Insert ', DOS_HELP = ' F1 Help  F2 Save  F3 Open  F9 Make  F10 Menu  Alt-X Exit';
+const DOS_GREY = '#aaaaaa', DOS_BLUE = '#0000aa';   // the VGA text palette's light grey (7) and blue (1)
+let _dos = null;
+function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, greys for flat / label / form, edges for line / contour
+  if (_dos) return _dos;
+  if (DOS_TEXT[DOS.wordRow].substr(DOS.wordCol, DOS.word.length) !== DOS.word) throw new Error('basement90: THE WORD is not at DOS.wordRow / wordCol');
+  const W = 2048, Hh = Math.round(W * SCREEN.h / SCREEN.w), c = document.createElement('canvas'); c.width = W; c.height = Hh; const g = c.getContext('2d');
+  g.fillStyle = '#0a0a0c'; g.fillRect(0, 0, W, Hh);   // overscan border
+  const x0 = DOS.u0 * W, y0 = DOS.v0 * Hh, cw = (DOS.u1 - DOS.u0) * W / DOS.cols, ch = (DOS.v1 - DOS.v0) * Hh / DOS.rows;
+  g.fillStyle = DOS_GREY; g.fillRect(x0, y0, cw * DOS.cols, ch * DOS.rows);
+  g.textBaseline = 'middle'; g.font = `bold ${Math.round(ch * 0.8)}px "DejaVu Sans Mono", "Liberation Mono", monospace`;
+  const put = (row, text, fg, bg) => { if (bg) { g.fillStyle = bg; g.fillRect(x0, y0 + row * ch, cw * DOS.cols, ch); } g.fillStyle = fg;
+    for (let k = 0; k < Math.min(text.length, DOS.cols); k++) { const t = text[k]; if (t === ' ') continue; const m = g.measureText(t).width; g.save(); g.translate(x0 + k * cw + cw / 2, y0 + row * ch + ch * 0.54); g.scale(Math.min(1, cw * 0.92 / m), 1); g.fillText(t, -m / 2, 0); g.restore(); } };
+  put(0, DOS_BAR.padEnd(DOS.cols), DOS_GREY, DOS_BLUE); put(DOS.rows - 1, DOS_HELP.padEnd(DOS.cols), DOS_GREY, DOS_BLUE);
+  DOS_TEXT.forEach((t, r) => { if (t != null) put(r, t, DOS_BLUE); });
+  // the text cursor (an underline block) just after THE WORD, where he stopped
+  g.fillStyle = DOS_BLUE; g.fillRect(x0 + (DOS.wordCol + DOS.word.length) * cw, y0 + DOS.wordRow * ch + ch * 0.82, cw, ch * 0.14);
+  _dos = artFromCanvas(c, { src: 'basement90 dosScreen() (code-drawn)' });
+  return _dos;
 }
 
 function furniture(shot) {
@@ -90,17 +134,36 @@ function furniture(shot) {
   g.add(tag(box(M.w, M.h, M.d * 0.45, BEIGE, [x, my, C.zBack + M.d - M.d * 0.225]), 'CRT monitor'));
   g.add(tag(box(M.w * 0.72, M.h * 0.78, M.d * 0.55, BEIGE, [x, my, C.zBack + M.d * 0.275 + 0.0]), 'CRT monitor'));
   const on = shot.light?.screen !== false, sc = screenCorners().map((p) => V(p));
-  g.add(tag(quad(sc, { grey: on ? 0.95 : 0.2, col: 0x101830, emit: on ? BEAM.color : undefined, emitI: 1.5, flatEmit: 0.96, hide: ['label'], noCast: true }), 'screen (the beam source)'));
-  g.add(tag(quad(sc, { grey: 0.9, map: screenTexture(), only: ['label'], noCast: true }), 'screen (the beam source)'));
+  // the glass: the canonical DOS screen. Lit: it glows (emissive, the texture in colour); every other mode: the same
+  // texture as fixed art (greys in flat / label / form, its edges in line / contour). Screen off: dark glass.
+  const D0 = dosScreen();
+  if (on) { g.add(tag(quad(sc, { grey: 0.95, col: 0x101830, emit: 0xffffff, emitI: 0.5, litMap: D0.art, only: ['lit'], noCast: true }), 'screen (the beam source)'));
+    g.add(tag(quad(sc, { grey: 0.9, art: D0.art, artGrey: D0.artGrey, artEdge: D0.artEdge, hide: ['lit'], noCast: true }), 'screen (the beam source)')); }
+  else g.add(tag(quad(sc, { grey: 0.2, col: 0x101830, noCast: true }), 'screen (the beam source)'));
   g.add(tag(polyline([...screenCorners()].map((p) => [p[0], p[1], p[2] + 0.0005]), 0.0015, { grey: 0.3, col: 0x30343c, noCast: true }, true), 'screen glass edge'));
-  // THE WORD: a sliver proud of the glass, in every mode (the gold underline is drawn under it by the renderer)
-  { const a = screenPoint(WORD.u0, WORD.v - TEXT.pitch * 0.82, 0.0012), b = screenPoint(WORD.u1, WORD.v - TEXT.pitch * 0.12, 0.0012);
-    g.add(tag(box(b[0] - a[0], a[1] - b[1], 0.0008, { grey: 1, col: 0xffffff, emit: 0xdfe8ff, emitI: 1.6, flatEmit: 1, noCast: true }, [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, a[2]]), 'THE WORD (the one he missed)')); }
+  // THE WORD (label mode only): a white sliver over it, the gold underline is drawn under it by the renderer; elsewhere
+  // the word is the texture's own characters
+  { const a = screenPoint(WORD.u0, WORD.v - TEXT.pitch * 0.95, 0.0012), b = screenPoint(WORD.u1, WORD.v - TEXT.pitch * 0.05, 0.0012);
+    g.add(tag(box(b[0] - a[0], a[1] - b[1], 0.0008, { grey: 1, col: 0xffffff, only: ['label'], noCast: true }, [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, a[2]]), 'THE WORD (the one he missed)')); }
   const KB = PC.keyboard; g.add(tag(box(KB.w, KB.h, KB.d, BEIGE, [x, D.top + KB.h / 2, KB.z], [6, 0, 0]), 'keyboard'));
   const PR = PC.printer; g.add(tag(box(PR.w, PR.h, PR.d, BEIGE, [PR.x, D.top + PR.h / 2, PR.z]), 'dot-matrix printer'));
   g.add(tag(box(PR.w * 0.62, 0.3, 0.004, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, D.top + PR.h + 0.1, PR.z - 0.07], [-22, 0, 0]), 'fanfold paper'));
   g.add(tag(box(0.24, 0.05, 0.28, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, 0.025, D.z1 + 0.25]), 'fanfold paper'));
-  g.add(tag(box(0.1, 0.1, 0.14, DARK, [D.x0 + 0.18, D.top + 0.05, D.z0 + 0.22], [0, -20, 0]), 'box of floppy disks'));
+  // floppy disks (r4, Jade: the old box "is in a weird shape"): a neat flat stack of 5.25 in disks (period-right for a
+  // 1990 PC with two 5.25 in drives, flag) at real size: each disk in its white paper sleeve (14.0 cm square, 1.8 mm),
+  // squared up by hand (a few mm / deg of drift); the top one out of its sleeve: black jacket 13.3 cm, white label, hub
+  // ring, head slot (brown media showing)
+  { const F = FLOPPY, grp = new THREE.Group(); grp.position.set(F.x, D.top, F.z); grp.rotation.y = rad(F.yaw);
+    for (let k = 0; k < F.n; k++) { const j = Math.sin(k * 2.39) , y = k * F.sleeveT + F.sleeveT / 2;
+      grp.add(box(F.sleeve, F.sleeveT * 0.96, F.sleeve, { grey: 0.9, col: 0xebe7da }, [j * 0.003, y, Math.cos(k * 1.7) * 0.003], [0, j * 2.5, 0])); }
+    const ty = F.n * F.sleeveT, J = F.jacket, top = new THREE.Group(); top.position.set(0.012, ty + F.jacketT / 2, -0.006); top.rotation.y = rad(-7); grp.add(top);
+    top.add(box(J, F.jacketT, J, { grey: 0.12, col: 0x121214 }, [0, 0, 0]));
+    top.add(box(0.08, 0.0004, 0.028, { grey: 0.95, col: 0xf2f0e8 }, [0, F.jacketT / 2 + 0.0002, -J / 2 + 0.022]));
+    top.add(cyl(0.0195, 0.0195, 0.0004, { grey: 0.55, col: 0x8a7a62 }, [0, F.jacketT / 2 + 0.0002, 0], null, 24));
+    top.add(cyl(0.0145, 0.0145, 0.0006, { grey: 0.3, col: 0x2a2620 }, [0, F.jacketT / 2 + 0.0003, 0], null, 24));
+    top.add(box(0.012, 0.0004, 0.03, { grey: 0.35, col: 0x5a3f26 }, [0, F.jacketT / 2 + 0.0002, J / 2 - 0.027]));
+    top.add(box(0.006, 0.0004, 0.004, { grey: 0.6, col: 0x9a9a9a }, [J / 2 - 0.012, F.jacketT / 2 + 0.0002, -J / 2 + 0.045]));   // write-protect notch
+    g.add(tag(grp, 'floppy disks (5.25 in, a stack)')); }
   // the 1950s wringer washer (ASSUMED type): round enamel tub on four legs with casters, motor box under it, agitator,
   // a power wringer (two rollers in a frame) on a post at the back of the tub
   { const W = PROPS.washer, EN = { grey: 0.9, col: 0xdedbd2 }, ST = { grey: 0.45, col: 0x6a6c70 }, RB = { grey: 0.3, col: 0x3c3a36 };
@@ -151,7 +214,7 @@ export function build(shot, { makeCam }) {
   const rig = (mode) => { const L = []; if (mode === 'none' || shot.beamMask) return L; const white = mode !== 'lit';
     if (on) { const s = new THREE.SpotLight(white ? 0xffffff : BEAM.color, mode === 'lit' ? 5 : 2.0, 0, rad(BEAM.halfAngleDeg + 8), 0.45, mode === 'lit' ? 1.5 : 0);
       s.position.copy(Lp); s.target.position.copy(La); s.castShadow = true; s.shadow.camera.near = 0.03; s.shadow.camera.far = 8; s.shadow.radius = mode === 'lit' ? 6 : 2; L.push(s);
-      if (mode === 'lit') { const p = new THREE.PointLight(BEAM.color, 0.35, 1.2, 1.6); p.position.copy(Lp).add(V(0, 0, 0.12)); L.push(p); } }
+      if (mode === 'lit') { const p = new THREE.PointLight(BEAM.color, 0.12, 1.2, 1.6); p.position.copy(Lp).add(V(0, 0, 0.12)); L.push(p); } }
     if (mode === 'mask') return L;
     // the ceiling bulb: the room's ambient (warm, soft shadows); the screen stays the cold key at the desk
     if (lampOn) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.ceiling.color, white ? (shot.light?.ceilI ?? 0.8) : (shot.light?.ceilLit ?? CEIL_LIT), 9, 1.2);

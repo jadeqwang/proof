@@ -11,9 +11,9 @@
    -1.028
   ],
   "target": [
-   -1.724,
-   0.8915,
-   0.6053
+   -1.5999,
+   0.9195,
+   0.688
   ],
   "lens_mm": 35,
   "frame_width_mm": 36,
@@ -24,17 +24,17 @@
   "near": 0.05,
   "far": 7,
   "matrixWorld": [
-   -0.8283,
+   -0.8682,
    0,
-   -0.5604,
+   -0.4963,
    0,
-   -0.0934,
-   0.986,
-   0.1381,
+   -0.0758,
+   0.9883,
+   0.1326,
    0,
-   0.5525,
-   0.1668,
-   -0.8167,
+   0.4904,
+   0.1527,
+   -0.858,
    0,
    -0.619,
    1.225,
@@ -42,21 +42,21 @@
    1
   ],
   "viewMatrix": [
-   -0.8283,
-   -0.0934,
-   0.5525,
+   -0.8682,
+   -0.0758,
+   0.4904,
    0,
    0,
-   0.986,
-   0.1668,
+   0.9883,
+   0.1527,
    0,
-   -0.5604,
-   0.1381,
-   -0.8167,
+   -0.4963,
+   0.1326,
+   -0.858,
    0,
-   -1.0887,
-   -1.1237,
-   -0.7018,
+   -1.0476,
+   -1.1212,
+   -0.7655,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "screen": {
    "px": [
     [
-     1501.5,
-     336.9
+     1657.5,
+     366.5
     ],
     [
-     858.2,
-     369
+     999.5,
+     395.5
     ],
     [
-     864.3,
-     1040.5
+     997.3,
+     1068
     ],
     [
-     1475.9,
-     868
+     1626.5,
+     910.8
     ]
    ],
    "world": [
@@ -137,16 +137,16 @@
  "heads": {
   "dad": {
    "px": [
-    668.2,
-    139.6
+    814.7,
+    167.9
    ],
    "eyes": [
-    762.9,
-    178.1
+    907.2,
+    205.7
    ],
    "mouth": [
-    745.5,
-    315.5
+    888.3,
+    341.8
    ],
    "in_frame": true,
    "visible": true,
@@ -154,27 +154,27 @@
   },
   "jade7": {
    "px": [
-    1117,
-    383.9
+    1095.3,
+    377.4
    ],
    "eyes": [
     1152,
-    410.4
+    410.5
    ],
    "mouth": [
-    1130.7,
-    512.5
+    1141.5,
+    512.7
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 19
+   "facing_camera_deg": 26
   }
  },
  "hands": {
   "dad.L": {
    "px": [
-    1189.7,
-    1214.3
+    1325.7,
+    1256.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -182,8 +182,8 @@
   },
   "dad.R": {
    "px": [
-    750.1,
-    1388.2
+    878.9,
+    1413.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -191,17 +191,17 @@
   },
   "jade7.L": {
    "px": [
-    1526.8,
-    1073.2
+    1679.3,
+    1125.2
    ],
    "shape": "flat",
-   "in_frame": true,
-   "visible": true
+   "in_frame": false,
+   "visible": false
   },
   "jade7.R": {
    "px": [
-    1210.4,
-    601.3
+    1268.7,
+    651.7
    ],
    "shape": "point",
    "in_frame": true,
@@ -213,20 +213,20 @@
    "name": "screen",
    "kind": "CRT screen (blue, area source); the BEAM (the light that matters)",
    "on": true,
-   "color": "#3f6dff",
+   "color": "#9db4f0",
    "world": [
     -1.024,
     1.085,
     -0.558
    ],
    "px": [
-    1173.2,
-    644.4
+    1314.5,
+    675.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.845,
-    -0.535
+    -0.838,
+    -0.546
    ],
    "toward_camera": -0.965,
    "aim_world": [
@@ -246,25 +246,25 @@
     0.6
    ],
    "px": [
-    542.3,
-    -669.4
+    703.4,
+    -620.3
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.272,
-    0.962
+    0.26,
+    0.966
    ],
    "toward_camera": 0.497
   }
  ],
  "warnings": [],
- "intent": "The camera looks out from behind the screen (0.45 m back, past the glass’s right edge on Dad’s side, a little high; monitor and computer hidden, the glass edge and the word stay as a thin frame): her blue-lit face nearly frontal, looking at her fingertip on the glass; her RIGHT arm runs from her own shoulder across her own chest to the fingertip (a 7-year-old’s small hand), clear of Dad. Dad’s face and shoulder at frame left, beside and behind her. Locked off.",
+ "intent": "The camera looks out from behind the screen (0.45 m back, past the glass’s right edge on Dad’s side, a little high; monitor and computer hidden, the glass edge stays as a thin frame): her face lit cool white by the screen, nearly frontal; her EYES ARE ON HER OWN FINGERTIP on the glass (r4: her head looks exactly at the fingertip point, under the word); her RIGHT arm runs from her own shoulder, elbow low under her chest, to the fingertip (a 7-year-old’s small hand), clear of Dad. Long-sleeved grey sweater. Dad’s face and shoulder at frame left, beside and behind her. Locked off.",
  "time": "2:17.2-2:18.3 Verse 2b",
  "position": "outside",
  "beam": {
   "name": "CRT screen glow",
   "model": "area source (the screen rectangle), radiating into +z; frustum spreading by half_angle from the rectangle, faded out at range",
-  "color": "#3f6dff",
+  "color": "#9db4f0",
   "on": true,
   "source_corners": [
    {
@@ -274,8 +274,8 @@
      -0.578
     ],
     "px": [
-     1501.5,
-     336.9
+     1657.5,
+     366.5
     ]
    },
    {
@@ -285,8 +285,8 @@
      -0.578
     ],
     "px": [
-     858.2,
-     369
+     999.5,
+     395.5
     ]
    },
    {
@@ -296,8 +296,8 @@
      -0.578
     ],
     "px": [
-     864.3,
-     1040.5
+     997.3,
+     1068
     ]
    },
    {
@@ -307,8 +307,8 @@
      -0.578
     ],
     "px": [
-     1475.9,
-     868
+     1626.5,
+     910.8
     ]
    }
   ],
@@ -329,8 +329,8 @@
      2.022
     ],
     "px": [
-     13323.7,
-     10739.3
+     29768.1,
+     24744.7
     ]
    },
    {
@@ -340,8 +340,8 @@
      2.022
     ],
     "px": [
-     2063.4,
-     -1638.8
+     2267,
+     -1666.7
     ]
    },
    {
@@ -351,8 +351,8 @@
      2.022
     ],
     "px": [
-     1775.7,
-     1808
+     1940.1,
+     1905.6
     ]
    },
    {
@@ -362,8 +362,8 @@
      2.022
     ],
     "px": [
-     -11513.5,
-     12423.2
+     -7881,
+     8895.4
     ]
    }
   ],
@@ -384,8 +384,8 @@
        0.082
       ],
       "px": [
-       1720.7,
-       1326.4
+       1883.6,
+       1395.8
       ]
      },
      {
@@ -395,8 +395,8 @@
        0.082
       ],
       "px": [
-       -3686,
-       4251
+       -2969.7,
+       3728.5
       ]
      }
     ],
@@ -408,8 +408,8 @@
        0.419
       ],
       "px": [
-       1712.5,
-       1100.4
+       1876.1,
+       1159.2
       ]
      },
      {
@@ -419,8 +419,8 @@
        0.419
       ],
       "px": [
-       -7059.8,
-       4856.9
+       -5194,
+       3846.3
       ]
      }
     ]
@@ -431,36 +431,36 @@
  "word": {
   "centre": {
    "world": [
-    -1.0834,
-    1.1002,
+    -1.0852,
+    1.0997,
     -0.578
    ],
    "px": [
-    1343.5,
-    590.7
+    1494.3,
+    624.8
    ]
   },
   "underline": [
    {
     "world": [
-     -1.105,
-     1.0946,
+     -1.0931,
+     1.096,
      -0.577
     ],
     "px": [
-     1384.6,
-     599.2
+     1508.3,
+     632.6
     ]
    },
    {
     "world": [
-     -1.0618,
-     1.0946,
+     -1.0774,
+     1.096,
      -0.577
     ],
     "px": [
-     1295.4,
-     613.3
+     1474.7,
+     637.2
     ]
    }
   ],
@@ -474,88 +474,88 @@
     -0.07
    ],
    "px": [
-    645.1,
-    2008.5
+    766.2,
+    2033.5
    ]
   },
   "spoke_tips": [
    {
     "world": [
      -1.291,
-     0.1,
+     0.0886,
      0.124
     ],
     "px": [
-     849.3,
-     1644.5
+     974.7,
+     1690.7
     ]
    },
    {
     "world": [
      -1.291,
-     0.1,
+     0.0886,
      -0.264
     ],
     "px": [
-     1162.7,
-     2024.9
+     1289,
+     2104.1
     ]
    },
    {
     "world": [
      -0.922,
-     0.1,
+     0.0886,
      -0.3838
     ],
     "px": [
-     727,
-     2641.6
+     839.3,
+     2705
     ]
    },
    {
     "world": [
      -0.694,
-     0.1,
+     0.0886,
      -0.07
     ],
     "px": [
-     83.9,
-     2330.1
+     218.1,
+     2330.8
     ]
    },
    {
     "world": [
      -0.922,
-     0.1,
+     0.0886,
      0.2438
     ],
     "px": [
-     341.6,
-     1752.5
+     473.9,
+     1770.2
     ]
    }
   ],
   "feet_stand_at": [
    {
     "world": [
-     -1.2586,
-     0.1,
-     -0.2405
+     -1.1939,
+     0.1019,
+     -0.1934
     ],
     "px": [
-     1099.5,
-     2022.9
+     1095.6,
+     2065.3
     ]
    },
    {
     "world": [
-     -1.2586,
-     0.1,
-     0.1005
+     -1.1939,
+     0.1019,
+     0.0534
     ],
     "px": [
-     829.1,
-     1680.5
+     909.2,
+     1787.1
     ]
    }
   ]
@@ -582,14 +582,14 @@
      "reach": 0.99
     },
     "R": {
-     "reach": 1.01
+     "reach": 1
     }
    },
    "arms": {
-    "L": 0.66,
-    "R": 0.91
+    "L": 0.89,
+    "R": 0.92
    },
-   "headTurn": -7
+   "headTurn": -10
   }
  }
 }

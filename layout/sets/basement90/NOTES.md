@@ -259,3 +259,62 @@ the default path, which was checked pixel-identical to HEAD's engine on B5.
   sleeve shell and the seam ring on the upper arm.
 - **Repaint in r4:** B2_face (new camera), B4_doubletake and B5_cat (new arm pose; B5 framing pulled back). B1 and B3
   need no repaint for the arms.
+
+## 2026-11-26 afternoon: r4 set fixes (Jade's r3 review: B1 chair/feet, B2 eyes, B3 arm/floppies/screen, B4/B5 lick)
+
+Re-rendered first (the sweater, `JADE_BASEMENT.sleeves: 'long'`, now shows in every guide), then the fixes below.
+The r3 page still reads `media/keyframes/r3/_layout_snapshot/basement90/` (snapshotted earlier; not touched).
+Note for whoever renders next: the default `render.mjs` modes do NOT include the painter guides; run
+`--modes form,contour,light --nojson` too (the guides were stale from 10:56 until this pass).
+
+- **Chair (B1, Jade: "look up detailed models of actual chairs").** `kit.js swivelChair()` rewritten, numbers in
+  `layout.js CHAIR`: a plain c. 1990 armless secretarial / task chair. 26 in (66 cm) five-star base (spoke radius
+  0.33 m), each leg a tapered rounded beam (new `loft()` helper: rounded-rectangle sections) 6.6 cm wide / top 12.2 cm
+  at the hub, 4.8 cm / 8.8 cm at the tip; hub 7 cm; under each tip a socket boss, chrome swivel stem, a hood and two
+  50 mm wheels trailing 2.2 cm outward; a three-step black telescoping shroud over a chrome gas piston; a steel tilt
+  plate with tension knob and height lever; seat 46 x 44 cm, plastic under-shell + foam cushion with a waterfall front;
+  steel J-bar to a separate curved backrest. References (modelling only, no image went to a model): current
+  replacement-base listings (economy bases 24-26 in, 28 in standard, 2 in hub bore, 2 in hooded dual-wheel casters:
+  walmart.com/ip/17368615490, vevor.com office-chair-base category, quill.com Duet caster) and vintage listings
+  (chairish.com Steelcase swivel-tilt c. 1970s; 1stdibs Herman Miller five-star task chair). **Colours ASSUMED, flag:**
+  black glass-filled nylon base and casters, charcoal blue-grey tweed upholstery (0x4e5664), black steel. Alternative:
+  polished-aluminium base, brown or burgundy fabric.
+- **Her feet (B1).** `FEET` now at 0.21 m from the hub (was 0.29, where the legs are narrow); `jadeOnSpokes()` puts
+  each foot's weight point (0.3 foot lengths ahead of the ankle, between heel and ball) square on top of its leg
+  (`legTop(r)`), sole 3 mm (the sock) above it. Both feet visibly stand on the base in B1 (checked from front, side
+  and B1). The engine points feet along her body yaw, so each foot crosses its leg (heel and toes overhang).
+- **Eyes (B2, B3).** Her head looks at `WORD_TIP` (layout.js), which is exactly where her index fingertip is placed
+  (`R.tip: { finger: 'index', at: WORD_TIP }`; sidecar B3 contacts: 0.0 cm). The pupils still look straight ahead in
+  the default engine path (dot eyes); the engine gaze switch will aim them at `P.lookAt` = this point.
+- **Arm (B3, Jade: "not coming out of her shoulder at the correct angle").** The arm was a straight reach running
+  directly under her bowed head, so from over her left shoulder it seemed to start at her face. Now: spine twist -8 ->
+  +10 (the reaching shoulder leads), the fingertip placed by `tip`, finger along the shoulder-to-tip line, elbow toward
+  `elbowAt` low under her own chest (not out toward Dad); B3 camera az 168 / el 50 / 0.55 -> az 180 / el 72 / 0.65
+  (from above and behind): the arm visibly comes from her right shoulder past the right side of her head, up-left to
+  the glass. B2: the elbow now sits in front of her own chest (it touches the edge of Dad's silhouette in this camera).
+- **Floppies (B3).** The 10 x 10 x 14 cm "box" is gone. `FLOPPY`: a neat flat stack of 11 **5.25 in** disks (period-
+  right for a 1990 home PC with two 5.25 in drive slots, as modelled; flag: 3.5 in also existed by 1990) in white paper
+  sleeves 14.0 cm square, 1.8 mm each, squared up by hand; the top disk out of its sleeve: black 13.3 cm jacket, white
+  label, hub ring, head slot (brown media), write-protect notch.
+- **THE SCREEN (canonical, every shot that sees the glass: B0, B3, B4, B5).** `build.js dosScreen()` draws one 80 x 25
+  DOS text screen in code (VGA light grey #aaaaaa, text VGA blue #0000aa; Jade: "dark blue text on grey"): title bar
+  `C:\WORK\GRADES.C ... Line 10 Col 24 Insert`, key-help line, and a short **C** program (ASSUMED, flag; Turbo-C era;
+  BASIC equally plausible): the class average from SCORES.DAT. Dad renamed `total` -> `sum` (declaration, initialiser,
+  loop) and missed one on line 10: `avg = (float) total / n;` — THE WORD (`DOS.wordRow/wordCol`, checked at build time;
+  `WORD` / `WORD_P` now come from the text grid, ~0.5 cm from the old bar layout). Cursor just after it. Lit: the glass
+  glows with the texture; flat / label / form show its greys, line / contour its edges (`_art.js artFromCanvas`). Label
+  mode keeps the white sliver over the word; the gold underline is still the renderer's. The content of the program
+  is invented (flag). **The glow colour changed** (`BEAM.color` 0x3f6dff -> 0x9db4f0): a grey screen gives a cool
+  CRT white, not saturated blue; the plan's "blue light" is now read as cool screen light (flag to Jade).
+- **Lick (B4, B5; Jade: "mouth closed, tongue in. lips and chin contacting wrist"; REPLACES the r3 gap).** She hunches
+  over the paw (spine bend 12 -> 28, look point 0.66 -> 0.62 m); the forearm still rises diagonally inward from a low
+  elbow, the loose fist droops; the wrist is placed so the sweater cuff (r 2.2 cm) runs across the line from her lips
+  to her chin, 1 cm out from the mannequin face, wrist joint 1.5 cm on (`GROOM.contactP`, `wrist0`; iterated with the
+  forearm direction read back to convergence). Sidecar check: lips 0.18 cm and chin 0.18 cm from the cuff surface, the
+  lips on the cuff 3.3 cm behind the wrist joint, the chin at the joint. The mannequin's mouth is a closed line; no
+  tongue modelled. The smooth skull has no jaw, so the cuff sinks ~1 cm into it (stands in for the soft lip-chin
+  hollow). B5 reads more "chin on paw" than "paw out front"; acceptable per Jade's contact note, flag.
+- **Repaint in r4:** B1_feet (chair, feet), B2_face (arm, eyes, screen light colour), B3_finger (camera, arm, screen,
+  floppies), B4_doubletake and B5_cat (lick contact, hunch, screen). B0 are references.
+- **Waiting on the engine:** aimed pupils (gaze switch), slimmer child arms / natural wrist (body mesh), a real jaw and
+  lips for the lick contact.
