@@ -164,3 +164,35 @@ Checked with `--gaze` + engine/holdcheck.mjs, mannequin and `--body mesh`.
 - Not checked: hands resting on the table itself (Jade's hands, the social worker's left hand, Dad's hand on Mom's
   shoulder). The table is not a held object, and its laminate skin and core share one label, so they cannot be hulled.
 - Repaint where visible: PC1, PC4, X_sw, PC3a/b (her right hand and the clipboard moved), BO1/BO2 (finger angles).
+
+## 2026-11-26: round-4 decisions (R4D brief; Jade's answers in work/decisions/JADE_R4_DECISIONS.md)
+- **art_sw (Jade: "Geese, dusty rose").** The social worker's print is now ONE canonical decal,
+  layout/assets/art/logos/sw_geese_print.png (+ .txt): five plump white geese walking in a row on stitched grass, a
+  cornflower-blue ribbon bow on each, the FOURTH turned the other way, c.1991 country-craft style. Made with Codex
+  image_gen in tmux `proof-office` (free), with the cast sheet cast/strangers/social_worker/social_worker_faceC_v1.png
+  as the reference, so it matches the sheet. White keyed to transparency (border and enclosed gaps). On the chest
+  (art.js SW_PRINT): 25 cm wide (30 cm wrapped the outer goose round her side), nudged 2 cm (u) onto the mesh's midline.
+  Sweatshirt `top` is dusty rose SW_ROSE 0xb97a78 (was sage 0x7a9a8a); r4lib names it "dusty rose".
+  sw_tree_print.png (the tree proposal) is no longer used. The cast sheet text already said geese + dusty rose: unchanged.
+- **Skirt (flag, my call).** sw `legs` 0x3a3e4a charcoal -> 0x7088a8 washed-blue denim, as the cast sheet's "mid-calf
+  straight denim skirt in washed blue" (the r4 prompt fallback already said #8fa8c8). Legs are rarely in frame.
+- **r4 prompts.** media/keyframes/r4/office91/_prompts/_make.py: the sweatshirt, the sw:chest look target, the PC1 gaze
+  line and the sw_print art ref now say geese / dusty rose and point at sw_geese_print.png (was the cracked tree).
+- **off_table, art_office_kids, art_office_corridor, art_alphabet:** kept as built (Jade).
+- **Props phase 2.** Downloaded models replace four boxes (build.js; each falls back to its box if the model is missing):
+  `typewriter` (IBM Selectric II, recoloured beige 0xc8c0a8: INVENTED colour) and `telephone` on her desk, both turned to
+  face -x (she would sit at the desk facing the right wall); `tissue_box` on the filing cabinet (its own navy, was
+  blue-grey); `pencil_cup` with pencils on the meeting table (19 cm to the tips; was a 10 cm blue cylinder).
+  Credits: docs/credits_tools.md (already listed; marked "In office91"). Clipboard and dictionary stay hand-built (audit).
+  Hold check after re-render: 21/21 pass (no prop here is held; the swapped ones are all resting).
+- **X_sw in the cut (Jade via lead).** X_sw 1:35.6-1:36.0 (was an unplaced spare) carries the plates' caption "Were you
+  afraid during the raid?", small and low (comp_all.py CAPTIONS, size 25 at [960, 1032]), held into attic88_day
+  AD_trace. Aim 0.45 -> 0.40 so the print sits a little higher and the caption lies over the clipboard edge. BO2 shortened
+  to 1:34.7-1:35.6. FLAG: BO2's intent still says "match cut on the pointing finger follows"; X_sw now sits between BO2
+  and AD_trace, so that match cut is now BO2 -> X_sw -> AD_trace (the plan should say which).
+- Re-rendered (three passes), all shots looked at: X_sw, PC3a, BO2, PC2, REF_wide show the changes. Hold check 21/21.
+- Known, not new: two small skin-coloured slits at the sweatshirt's shoulder seams (mesh), visible in X_sw/PC3a form.
+- **Bows fixed (Jade: "the bows shouldn't be messed up like that").** sw_geese_print.png v2: the AI bows were erased and one
+  clean symmetric bow (two loops, knot, two notched tails) drawn in code is composited on every goose
+  (tools/art/geese_bows.py; input sw_geese_print.v1.png). Geese unchanged. Re-rendered X_sw, PC3a, BO2, PC2, PC1, PC4,
+  REF_wide, REF_plan (default + form/contour/light); beam masks unaffected (decal only).

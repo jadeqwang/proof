@@ -62,20 +62,55 @@ TONER_FORCE = {
 }
 
 
-# In-picture captions (Jade's words, set in the plates' caption type, IM FELL). A record for the edit: comp.py does not
-# draw captions yet, so nothing below is composited by this pass. Song times are the plan's.
+# In-picture captions (Jade's words, set in the plates' caption type, IM FELL: comp.draw_caption). Song times are the
+# plan's (-2sm master). Entries with "draw" are laid on the shot's comp still by this pass (comp.py's "caption" spec:
+# small, italic, centred low in frame); the others are a record for the edit, placed by hand later.
 CAPTIONS = {
     ("office91", "X_sw"): {"text": "Were you afraid during the raid?", "carries_into": ("attic88_day", "AD_trace"),
-                           "source": "Jade, 2026-11-26 (r3 review)",
-                           "note": "On X_sw (the counselor's sweatshirt) and held across the cut into AD_trace (1:36.0-1:37.4); "
-                                   "X_sw's slot is not timed yet (spare). Type, place and timing are proposals."},
+                           "time": "1:35.6-1:37.4 (on with X_sw, held across the cut into AD_trace, off at the band hit)",
+                           "slot": "X_sw 1:35.6-1:36.0 (Jade r4, option a): the beat after 'looks' ends (95.56); BO2 1:34.7-1:35.6",
+                           "source": "Jade, 2026-11-26 (r3 review); type and place Jade r4: plates' caption type, small and low",
+                           "draw": {"size": 25, "at": [960, 1032]}},
     ("attic88_day", "AD_trace"): {"text": "Were you afraid during the raid?", "carried_from": ("office91", "X_sw"),
-                                  "source": "Jade, 2026-11-26 (r3 review)", "time": "1:36.0-1:37.4 (off at the band hit, AD_grab)"},
+                                  "source": "Jade, 2026-11-26 (r3 review); r4: plates' caption type, small and low",
+                                  "time": "1:36.0-1:37.4 (off at the band hit, AD_grab)",
+                                  "draw": {"size": 25, "at": [960, 1032]}},
     ("market93", "M2"): {"text": "artichoke", "time": "2:11.9-2:13.6", "source": "Jade, 2026-11-26",
                          "note": "small lowercase specimen label beside the real artichoke"},
-    ("kitchen90", "K1_question"): {"text": "Did she understand or just pattern match?", "time": "2:22.2-2:23.7", "source": "Jade"},
-    ("closet02", "(opening shot, id not settled)"): {"text": "I don't want to apply to medical school.", "time": "3:23.4-3:26.1 (proposal; the opening closet shot)", "source": "Jade, 2026-11-26"},
+    ("kitchen90", "K1_question"): {"text": "Did she understand or just pattern match?", "time": "2:22.2-2:23.7", "source": "Jade",
+                                   "note": "textbook caption with a figure number, under the picture inside a thin rule"},
+    ("closet02", "CL_wide"): {"text": "I don't want to apply to medical school.", "time": "3:23.4-3:26.1 (drums alone; still on at 'How do you feel?' 3:24.8)",
+                              "source": "Jade, 2026-11-26; r4: plates' caption type, small and low, 3:23.4-3:26.1",
+                              "draw": {"size": 25, "at": [960, 1032]}},
 }
+
+
+# The Voyager frame's ring (VOY v1: the moongazing compass ring, gold pencil, clockwise from 12). Jade r4: it draws on
+# as the pull-back lands on the Voyager frame, and stands alone (no Sagan quote). The pull-back (1:54.5) lands on the
+# tail-1 downbeat 119.19 (1:59.2, time_map.json downbeats_m2sm), so the ring is complete at 1:59.98, just before the
+# vocalise (2:00.3), and the frame holds through it to 2:06.3.
+VOY_RING = {"land_s": 119.19, "draw_s": 0.79, "hold_to_s": 126.32,
+            "ring": {"type": "ring", "at": [1123, 468], "r": 250, "gap": 0, "start": -90, "cw": True,
+                     "width": 3.0, "pressure": 1.0, "wobble": 0},
+            "src": "media/keyframes/plates/VOY_v1.jpg"}
+
+
+def voy_progress(t):
+    """Share of the ring drawn at song time t (seconds, -2sm master): 0 before the landing, 1 from land + 0.79 s."""
+    return min(1.0, max(0.0, (t - VOY_RING["land_s"]) / VOY_RING["draw_s"]))
+
+
+def voy_spec(t, out):
+    """comp.py spec for the Voyager frame at song time t."""
+    ring = {**VOY_RING["ring"], "progress": voy_progress(t)}
+    return {"src": VOY_RING["src"], "ground": GROUND, "out": out, "gold": [ring] if ring["progress"] > 0 else []}
+
+
+def caption_spec(folder, shot):
+    c = CAPTIONS.get((folder, shot))
+    if not c or "draw" not in c:
+        return None
+    return {"text": c["text"], **c["draw"]}
 
 
 def _load(p):
@@ -177,6 +212,9 @@ def one(folder, shot, pick, cj):
     t = TONER_FORCE.get((folder, shot)) or _toner(c.get("toner"), warn, (folder, shot))
     if t:
         spec["toner"] = t
+    cap = caption_spec(folder, shot)
+    if cap:
+        spec["caption"] = cap
     h = c.get("header")
     if isinstance(h, str) and h.strip():
         h = {"text": h, "at": [96, 84], "size": 30}

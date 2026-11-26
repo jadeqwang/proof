@@ -27,7 +27,10 @@ export function scrollArt(text, sig = '') {
   g.fillStyle = '#b3241c'; g.fillRect(px + 18, py1 - 120, 34, 34); g.fillStyle = '#efe7d2'; g.font = `24px ${CJK}`; g.fillText('印', px + 35, py1 - 103);
   return artFromCanvas(c);
 }
-export const SCROLL_TEXT = { '-1.85': ['海内存知己', ''], '-1.3': ['宁静致远', '丙寅冬'], '-0.75': ['天涯若比邻', ''] };   // by z; facing the west wall, z -1.85 is on your right (the first line of a couplet hangs right)
+// Round-4 decisions (Jade): only TWO scrolls, on the hall half of the west wall: the Wang Bo couplet pair. Facing the west wall
+// the more northerly (more negative z) one is on your right, and the first line of a couplet hangs on the right. The middle
+// scroll (宁静致远) is dropped; its signature 丙寅冬 moves to the left (second) line, where a couplet is signed.
+export const scrollTextFor = (i) => [['海内存知己', ''], ['天涯若比邻', '丙寅冬']][i];   // i = 0: northern (right), 1: southern (left)
 
 // December 1986 (1 Dec = Monday), Sunday first, Sundays red; the photo above
 export function calendarArt() {

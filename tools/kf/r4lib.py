@@ -68,9 +68,9 @@ FIRST_LOVE_HAIR = ("His hair is 60-70% dark chocolate brown: a warm, rich dark b
 FIRST_LOVE_FACE = ("He is seen from behind: the back of his head and his hair only; his face is turned fully away and is "
                    "never shown: no eye, no nose, no mouth, no cheek in profile.")
 FIRST_LOVE_REFS = {
-    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v5.png", "his back-of-head sheet, the hair anchor (cut and step; "
+    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v6.png", "his back-of-head sheet, the hair anchor (cut and step; "
                 "the colour is the 60-70% dark chocolate brown in the prompt)"),
-    "fl_ots": ("cast/first_love/fl_G_ots_hair_v5.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
+    "fl_ots": ("cast/first_love/fl_G_ots_hair_v6.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
                "and the side; face never shown)"),
     "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (the current one; hands only)"),
 }

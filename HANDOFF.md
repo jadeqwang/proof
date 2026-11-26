@@ -964,3 +964,132 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Jade:** the ladle is weirdly shaped; use downloadable models for common household objects. Props agent: phase 1 audit + downloads (Poly Haven, Smithsonian, Kenney, Quaternius, Sketchfab CC0/CC-BY) into layout/assets/props/ + _props.js; phase 2 swap-in after the re-render agent finishes. Rule added to global CLAUDE.md. r4 repaint tooling ready (tools/kf/r4lib.py, r4_run.py, r4_page.py, media/keyframes/r4/<set>/_prompts/; 74 shots, 148 takes, Codex only); run after the re-render AND props swap.
 - **Switch-over done:** mesh bodies + gaze are the DEFAULT (PROOF_BODY=mannequin / PROOF_GAZE=0 to revert). All sets re-rendered incl. painter guides and masks. Holds 421/423 on the mesh (MG2/MG2_end soft hoodie). Friend body rebuilt 1.85 m, caucasian; hair 0x9a7a52 (flag). Problem list sent back for fixing: POV head-hide on mesh (casterMeshes) cuts arms/hair, ears through hair, hair specks, B4/B5 face hidden, BO sleeves over hand, pencil through sweater, stray hand PC3b, K6 fists, WL_eye wall-eyed, MG cap/stack/rag.
 - **Jade, 2026-11-26 evening:** HOLD the r4 repaint until she has answered the round-4 decision page (and finished the r3 review); otherwise much would be repainted twice. Fixes and prop swap continue; no painting.
+
+## Session of 2026-11-26 (late evening): Jade's round-4 decision answers
+
+- Pasted and saved verbatim: `work/decisions/JADE_R4_DECISIONS.md` (all 42 cards answered). The r3 keyframe review
+  (the other 59 cards) is not in yet.
+- Interpretations to check with Jade:
+  - mg_dining_ceiling: read as "no slope and no step: two flat levels, high on the mirror side, low over the dining
+    side, the dining room's ceiling one flat plane". The MG agent flags its reading.
+  - voy_ring_time: "as the pull-back lands on the Voyager frame", so the 0.79 s draw-on starts at the landing.
+  - Wall: an optional brief overhead shot (WL_top) is added as an alternate, not yet in the plan.
+- Applying with set agents (brief `work/decisions/R4D_BRIEF.md`). Each set agent also does that set's props phase-2 swap,
+  so no two agents touch the same set.
+- **Jade, mid-session:** "in the closet scene, put her in the red stanford sweatshirt, white seal on pocket level, but
+  scrunched up and illegible b/c of fabric". Sent to the closet02 agent: one canonical seal decal at pocket level,
+  folded so it can't be read.
+- **Jade, mg_dining_ceiling settled:** "single ceiling tilting from high to low, high side is mirror side, the wall
+  behind jade on the couch is a trapezoid". This replaces my earlier "two flat levels" reading. Sent to the MG agent.
+- **Jade: repaint r4 without the rest of the r3 review.** "a lot of the r3 questions are hard to answer b/c so many
+  images are made from models where wrists are at weird angles or clip through things, so let's do the repaint and
+  then i'll do comments on r4". The hold is lifted. The other 59 r3 cards are superseded, and Jade reviews r4
+  instead. Plan:
+  1. the set agents finish;
+  2. a wrist-and-clipping audit across every shot (wrist angles within natural limits, zero penetration, measured);
+  3. a final re-render sweep and the gallery;
+  4. the REPAINT_LIST covers every shot;
+  5. paint on free Codex, most-corrected sets first, continuing after the plan-limit reset;
+  6. the r4 page.
+- **Plan/comp r4 agent done:**
+  - comp.py draw_caption() (IM FELL italic, small and low); CAPTIONS draw specs for X_sw, AD_trace and CL_wide.
+  - VOY ring keyed to start at 1:59.2 (119.19 s, flagged: the plan had no landing time), 0.79 s, no quote.
+  - Cliff at 3:54.9.
+  - BR1-BR3 now neuron footage (5.9x); the CODA_bud slot is the only bloom (7.756x).
+  - Basement screen cool white and the QBasic chat app in the plan.
+  - Test frames in media/keyframes/r4/plates/CAP_* and VOY_ring_*.
+  - Proposed X_sw 1:35.6-1:36.0, which needs BO2 shortened to 1:34.7-1:35.6 (not done).
+- **Jade:**
+  - xsw_slot = (a): X_sw at 1:35.6-1:36.0, BO2 shortened to 1:34.7-1:35.6. Sent to the office91 and plan agents.
+  - **The playground is Catch Air in Austin** (an indoor play centre). A new dedicated playground23 agent is
+    rebuilding it with no Catch Air branding (a real business). The office agent handed playground23 off.
+  - **Guide brightness check before repaint:** check every guide sent to the painter, so none is too dark for the
+    image model to read. Measure luminance and look at it; brighten the light/exposure where needed. Part of the
+    pre-repaint audit (step 2 above).
+- **Jade on Catch Air:** "most of catch air is far from windows, it's all indoor overhead lights, and it's all space
+  themed". The low sun through glass is gone. The playground agent is building 2-3 options at PG2 for the beam/mote
+  rhyme's light source (a fixture, a theme light/porthole, or dropping the beam here), with reflections in the play
+  structure's acrylic. Jade picks.
+- **Jade, the playground beam is (b):** a space-theme light gives the beam. New staging: "instead of looking at reflections
+  (which is a bit boring to look at), we can have me and my dad offering a hand to the 2 kids getting into a play
+  space shuttle". The reflections are dropped. The kids' ages/sexes are unknown (placeholder 3-6, flagged; asked
+  Jade). Dad at ~66-67 is flagged.
+- **closet02 agent done:**
+  - Window wedge plus a flush-mount dome ceiling light (type guessed).
+  - The futon is turned 90 degrees, with a matte black rounded-square tube railing in rounded-rectangle arm loops.
+  - CL_ots camera lowered to 0.76 m.
+  - She wears a red pullover hoodie, with a code-drawn generic seal decal (closet_seal.png) on the kangaroo pocket,
+    cut by sculpted creases and illegible.
+  - The cast/jade_19 sheet text still says a grey hoodie (the cast agent's folder).
+  - Repaint: CL_wide, CL_hands, CL_ots, CL_chin (+ CL_elev ref).
+  - Lead removed the stray untracked media/layout/attic88/A* renders.
+  - Lead's look: lit is bright enough. His hair is still a smooth cap (the cast agent's job), and the closet clothes
+    are flat slabs with no hangers (pre-existing).
+- **Jade, the playground kids:** "girl, younger, age 4, boy, older, age 7, her image is in
+  1-music-shipped/chaosmonkey-video, and his image is in the original moongazing video".
+  - The girl: chaosmonkey-video/design/characters/daughter/daughter_A_turnaround_v3.jpg (strawberry dress, brown
+    braided pigtails), 109 cm.
+  - The boy: moongazing/media/chars/T/SHEET.jpg (star/planet/rocket sweater), 132 cm.
+  - The sheets are referenced by path and not copied into this public repo. No names.
+  - Sent to the playground agent. pg_kids is answered; pg_dad_age is still open.
+- **Jade:** "dad's hair should be like his reference photo". inputs/family_photos/Pasted image.png is the real
+  photo: look only, never sent to a model. The lead read it as near-black, full, swept up and back with a side part,
+  short sides, at most a faint grey at the temples, and thin rectangular semi-rimless glasses. Sent to the playground
+  agent for 2023 Dad (no longer grey). pg_dad_age is partly answered: the hair is settled, the age ~66-67 is still
+  assumed.
+- **office91 agent done:**
+  - Geese decal sw_geese_print.png on dusty rose 0xb97a78.
+  - Her skirt changed to washed denim per the cast sheet (flagged).
+  - Real typewriter, phone, tissues and pencil cup.
+  - X_sw shot at 1:35.6-1:36.0, BO2 at 1:34.7-1:35.6.
+  - Holds 21/21.
+  - market93: no change needed (holds 35/35, artichoke count already current).
+  - Repaint: X_sw, PC3a, BO2, PC2 (PC1/PC4 if the sweatshirt shows).
+- **Jade, the boy:** "son is 99th percentile height for his age and has a 20% larger head than typical for his age and
+  height, so he looks like a younger kid who happens to be tall". Sent to the playground agent.
+- **shanghai86 agent done:**
+  - Plain brown-rust suite (0x683826).
+  - Two scrolls (the Wang Bo couplet) on the hall-door half; balcony-side scrolls removed; 宁静致远 dropped.
+  - Real thermos flasks, mugs and plant. Holds 24/24.
+  - Repaint: V1a-V1h (+ PB1).
+  - Lead checked REF_wide_lit: scrolls by the hall doors, suite reads, bright enough.
+  - **TODO lead:** the mug grip points in props.json are mirrored (handle on +x). Fix centrally once the agents are
+    done; MG and mv10 were warned.
+  - The pre-existing wrist warnings on jade3 R and mama86 R in every Shanghai shot go to the wrist audit.
+- **Jade:** "the shot for the space shuttle should be from behind so we don't look closely at the kids faces". Hard
+  rule for every playground shot: the children's faces are never readable. Sent to the playground agent.
+- **Cast/hair agent done:**
+  - First love v6 sheets: fl_B_backhead_neck_v6.png and fl_G_ots_hair_v6.png (lived-in, finger-combed pieces), plus
+    fl_A_turnaround_back_v5.jpg (notch only). The 3D hair has combed ridges and a squarer top.
+  - Mama: jaw-length side-parted perm at every age (part over her right eye, flagged). CAST.md updated.
+  - Aunt, grandmother and adult_f buns are now built into the GLB (humanMesh.js guard).
+  - The lead pointed r4lib.py and _brief_r4.md at v6. The lead looked at B v6: no face, lost profiles only. The
+    colour reads medium brown, lighter than 0x352219: the prompts must keep saying dark chocolate.
+  - Lead's look at bodytest_lit: very dark. Mama's perm reads as a smooth bob at that light.
+  - wall88/NOTES.md still says bun.
+  - Sweep: every set (Mama is in 8, first love in 3).
+- **Jade on the sweatshirts:**
+  - **Geese:** "the geese are basically fine but the bows shouldn't be messed up like that (in the AI-generated
+    image way)". The office agent is redrawing clean bows and compositing them on.
+  - **Closet:** "the actual stanford sweatshirt I have is an oversized darker near-brick-red with STANFORD sewn in
+    cream block letters, but I felt like that was too legible. I was envisioning taking the existing hoodie and making
+    it cardinal red with a white seal at the pocket instead of whatever that is. also she shoudl be wearing socks."
+    The closet agent is redoing it: her existing hoodie recoloured cardinal, a clean white seal broken only by real
+    folds, no lettering, white socks.
+- **Jade, first love's hair reference:** "the actor who plays gaius baltar from battlestar galactica -- it's that
+  color hair, similar degree of messiness". The cast agent is making v7 sheets and mesh hair: the cut is kept; the
+  colour and the tousle are matched in words. The actor's name stays out of image prompts.
+- **Jade: Mama's part (over her right eye) is fine.**
+- **Closet hoodie redone:** her sheet's open zip hoodie in cardinal #8C1515 over a white tee, with a clean white
+  seal (rings and a tree, no letters) on the left pocket half, partly folded; white socks. Question cl_seal_place
+  (open vs zipped).
+- **Geese bows redrawn in code** (tools/art/geese_bows.py), identical on all five geese; the v1 decal is kept.
+- The lead looked at CL_elev_lit and X_sw_lit; both are clean.
+- **Jade:**
+  - "the seal should be on breast pocket location, the normal place where school seals go, not on a lower pocket".
+    The closet agent is moving it to the left chest, still broken by folds. cl_seal_place is answered.
+  - "geese location and image is fine but the social worker's shoulders are weirdly misshapen". The office agent
+    is diagnosing it: pose vs skinning.
+- **Jade: "hold off on the repaints until next session, i think".** No r4 painting this session. Finish the set
+  fixes, the wrist/clip/brightness audit and the re-render sweep, so the next session can start painting straight
+  away.

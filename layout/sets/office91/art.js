@@ -16,9 +16,13 @@ const U = (n) => `/assets/art/office91/${n}.png`;
 export const PICS = ['turkey_1', 'turkey_2', 'turkey_3', 'turkey_4', 'turkey_6', 'board_house', 'board_rainbow', 'board_family', 'board_snowman', 'drawing_2',
   'corridor_turkey_1', 'corridor_turkey_2', 'corridor_turkey_3', 'corridor_drawing_1', 'corridor_drawing_2', 'corridor_drawing_3', 'corridor_drawing_4', 'corridor_drawing_5'];
 export const ART_TEX = await loadArt(Object.fromEntries([...PICS, 'alphabet_cards'].map((n) => [n, n === 'alphabet_cards' ? [U(n), { maxPx: 4096 }] : U(n)])));
-// the social worker's sweatshirt print (Jade, brainstorm: "Christmas sweatshirt with cracked print"; the tree design is
-// INVENTED, matched to what r3 PC3a / X_sw painted): layout/assets/art/logos/sw_tree_print.png, 17 x 20 cm, chest centre
-export const SW_PRINT = { w: 0.17, h: 0.2, ...(await loadArt({ tex: ['/assets/art/logos/sw_tree_print.png', { bg: '#7a9a8a' }] })) };
+// the social worker's sweatshirt print. Jade, R4 decision art_sw (2026-11-26): "Geese, dusty rose". One canonical decal,
+// layout/assets/art/logos/sw_geese_print.png (Codex image_gen, after the cast sheet cast/strangers/social_worker/: five
+// white geese with blue bows, the fourth faces right, stitched grass; c.1991 country craft), 25 cm wide, chest centre (u: lateral nudge onto the mesh's midline), on
+// the dusty-rose sweatshirt (SW_ROSE, the cast entry's top in build.js). Replaces the Christmas tree proposal (sw_tree_print.png).
+export const SW_ROSE = 0xb97a78;
+const SW_PNG_ASPECT = 966 / 292;
+export const SW_PRINT = { w: 0.25, h: 0.25 / SW_PNG_ASPECT, u: 0.02, ...(await loadArt({ tex: ['/assets/art/logos/sw_geese_print.png', { bg: '#b97a78' }] })) };
 
 // one card of the strip: a plane whose UVs take the k-th 26th of the image
 export function alphabetCard(k, w, h) {

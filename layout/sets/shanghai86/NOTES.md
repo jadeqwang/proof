@@ -886,3 +886,33 @@ Every hand on an object is checked now (`--gaze` sidecar `holds`, engine/holdche
   1 mm slab 8 x 8 mm, set exactly between the overlapping pads and square to the pad axis, also falls 3 m (scratch
   `skbc_t13.mjs`). Rapier reports a point 5 mm off the plane of the thickened half as inside its hull (`skbc_t11.mjs`).
   Larger squares hit index2 / thumb1, because the child pinch converges behind the pads.
+
+## 2026-11-26 (late evening): round-4 decisions (Jade, work/decisions/JADE_R4_DECISIONS.md)
+- **sh_railing_flat**: "the railings were on our flat anyway". Kept as built (white iron railings on our, the east, flat).
+- **sh_suite_colour** "brown or rust" + **art_sh_upholstery** "plain": couch and all three armchairs are now a PLAIN
+  brown-rust wool (joinery.js FABRIC 0x683826 / cushions 0x744130 / piping 0x4e281a; build.js couch reads the same
+  constants). Shade is MY pick (a deep rust, redder and darker than the orange-brown floor 0x8a5a34). Flat greys 0.30 /
+  0.36 vs floor 0.56 and plaster 0.76, so it separates in flat; form gives furniture its own class tint; in lit the
+  sunlit faces go warm orange-rust, the shaded faces brown. Checked in REF_armchairs and REF_wide (lit, flat, form).
+  The armchair beside the bookcase is close in flat grey to the bookcase cupboards (0.30 vs 0.38); its white lace covers
+  and outline carry it.
+- **art_sh** "2 scrolls on the hallway side of the room, no scrolls on balcony side": the three scrolls at z -0.75 /
+  -1.3 / -1.85 (west wall, balcony half) are gone. TWO hang on the west wall's hall (north) half, centred in the free
+  plaster between the painting frame and the north bookcase end (z ~-4.43 and ~-5.03, top 2.5 m, 0.42 x 1.5 m), behind
+  the 'beside' armchair. They carry the Wang Bo couplet: 海内存知己 on the right (north) as the first line, 天涯若比邻 on
+  the left with the 丙寅冬 signature; 宁静致远 dropped. READING: "hallway side" = the north half of the room, the end
+  with the hall doors (flag). Painting, calendar and clock did not have to move.
+- **Props phase 2**: downloaded models swapped in (work/props_audit.md): the two hot-water flasks on the TV cabinet
+  (`thermos`, 0.36 m, the red one as modelled, the green one recoloured 0x3a7a5a), the tea mugs (`mug` body, handle to +x,
+  code tea surface and lid kept), the potted plant by the balcony doors (`potted_plant`, 0.6 m). Hand-built fallbacks stay
+  in code if a model is missing. No shot holds a mug, flask or plant; holds are paper only. Credits: docs/credits_tools.md.
+- Prompts (media/keyframes/r4/shanghai86/_prompts/_make.py): "three scrolls" -> two at the hall end; V1g's room note
+  says plain brown-rust wool.
+- Mug placement GOTCHA: props.json's `mug` grips have x mirrored. Measured from the GLB rim vertices, the body is centred
+  at model x -0.015 with the handle on +x (props.json says body +0.015, handle -0.046). The set places the mug at x+0.015
+  unrotated. Flagged for the props owner (mortongrove07 also uses `mug`).
+- Holdcheck after the swap: 24/24 pass (paper only; no prop is held in this set).
+- Looked at every changed shot. Scrolls show in REF_wide, REF_beam, REF_armchairs, V1e (top left, both readable). In V1f
+  (from the hall) they hang just above the frame edge behind the bookcase end; only the roller ends peek in, so the V1f
+  prompt now says no scrolls on the visible wall. Flat: the armchairs in V1c / V1e are close in grey to the bookcase
+  cupboards behind them (both dark); lit (hue) and form (class tint) separate them. Prompt note in work/r4/REPAINT_LIST.md.

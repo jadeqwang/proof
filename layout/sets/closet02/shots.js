@@ -11,7 +11,12 @@ import { maskTwins } from './beam.js';
 // round 3 (Jade, 2026-11-26): both get the engine's opt-in clothed torso (torso: 'real') so the guides read as people, and
 // he mirrors her: squarely in front of her on her centre line, same cross-legged lean, the four hands at the door line
 const REAL = (sex) => ({ torso: 'real', sex });
-const jade = (o = {}) => ({ ...SEATS.jade19, ...REAL('f'), fringe: 'none', legs: 'cross', spine: { bend: 14 }, head: { look: 'firstLove19:eyes' },
+// round 4 (Jade, 2026-11-26, corrected): "taking the existing hoodie and making it cardinal red with a white seal at the
+// pocket ... also she should be wearing socks". Her cast-sheet zip hoodie (worn open over a white tee), now cardinal;
+// build.js adds the tee, zip edges, split pocket, hood, the seal on the pocket, folds over it and white socks. Legs follow
+// her cast sheet (mid-blue bootcut jeans, white socks; work/costume_audit.md flagged the old navy / grey).
+export const SWEATSHIRT = { top: 0x8c1515, legs: 0x4f6d93, sock: 0xeeece6, sleeves: 'long' };
+const jade = (o = {}) => ({ ...SEATS.jade19, ...REAL('f'), costume: SWEATSHIRT, fringe: 'none', legs: 'cross', spine: { bend: 14 }, head: { look: 'firstLove19:eyes' },
   L: { to: 'hands', off: [0.085, -0.016, -0.025], hand: 'palmUp', palm: 'up', fingers: 'fwd' }, R: { to: 'hands', off: [-0.085, -0.016, -0.025], hand: 'palmUp', palm: 'up', fingers: 'fwd' }, ...o });
 const him = (o = {}) => ({ ...SEATS.firstLove, ...REAL('m'), legs: 'cross', spine: { bend: 14 }, head: { look: 'jade19:eyes' },
   L: { to: 'hands', off: [-0.085, 0.016, 0.025], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: 'hands', off: [0.085, 0.016, 0.025], hand: 'relax', palm: 'down', fingers: 'fwd' }, ...o });
@@ -32,9 +37,9 @@ const BASE = [
     header: '3:28 INSIDE: her eye-line down to the four hands in the light',
     intent: 'Her own view down (her head hidden for the POV): her two hands palm-up, his two on them, at the door line, the sun on them from the bedroom; his knees and the carpet beyond. Four hands. No field note.',
     figs: { jade19: jade({ head: { look: 'hands' } }), firstLove19: him({ head: { look: 'hands' } }) } },
-  { id: 'CL_ots', lens: 50, pos: [1.05, 0.90, 1.40], aim: ['jade19:eyes', 0.56, 0.40], focus: ['jade19'], sync: 'lip', singers: ['jade19'], position: 'outside', time: '3:29.4-3:32.5', section: 'Chorus 2a ("I honestly don\'t know", sung to him)', beamAnchor: 'face',
+  { id: 'CL_ots', lens: 50, pos: [1.05, 0.76, 1.40], aim: ['jade19:eyes', 0.56, 0.40], focus: ['jade19'], sync: 'lip', singers: ['jade19'], position: 'outside', time: '3:29.4-3:32.5', section: 'Chorus 2a ("I honestly don\'t know", sung to him)', beamAnchor: 'face',
     header: '3:29.4 OUTSIDE, over his shoulder: level on her face, in the light; "I honestly don\'t know", sung to him',
-    intent: 'Over his right shoulder, level with her eyes, locked off. Sung shot (synced). Her whole face is in the sun that comes over his shoulder; the hems of the hanging clothes just above her head, the long coats dark frame-left behind her; his shoulder and the back of his head are the dark frame-left edge. Same question as the school office; here the answer is enough.',
+    intent: 'Over his right shoulder, low (round 4, Jade: lower, as on cast/first_love/fl_G_ots_hair_v5.png: the camera at about his ear height, looking a touch up at her, so the back of his head is seen level, not from above), locked off. Sung shot (synced). Her whole face is in the sun that comes over his shoulder; the hems of the hanging clothes just above her head, the long coats dark frame-left behind her; his shoulder and the back of his head are the dark frame-left edge. Same question as the school office; here the answer is enough.',
     figs: { jade19: jade(), firstLove19: him() } },
   { id: 'CL_chin', lens: 40, pos: [1.05, 0.84, 0.80], aim: ['firstLove19:chin', 0.40, 0.45], position: 'outside', time: '3:32.5-3:34.2', section: 'Chorus 2a', beamAnchor: 'hands',
     header: '3:32.5 the back of her hand against his chin',

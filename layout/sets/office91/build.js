@@ -6,12 +6,16 @@ import { chestPoint } from '../../engine/humanMesh.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, splitAtTop, applyBeamMask } from '../_beam.js';
 import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL_ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
-import { ART_TEX, alphabetCard, clockFace, SW_PRINT, decalMesh } from './art.js';
+import { ART_TEX, alphabetCard, clockFace, SW_PRINT, SW_ROSE, decalMesh } from './art.js';
 import { artPlane } from '../_art.js';
+import { loadProps, prop } from '../_props.js';
+// props phase 2 (2026-11-26): downloaded models (work/props_audit.md, layout/assets/props/, credits in docs/credits_tools.md); each
+// falls back to the old hand-built box if its model is missing
+await loadProps(['typewriter', 'telephone', 'tissue_box', 'pencil_cup']);
 
 // set-local extra only; little Jade (7) = `jade7`, Mama = `mama91` and `dad` come from ../_cast.js
 addCast({
-  sw: { name: 'social worker (face undrawn)', h: 1.65, kind: 'adult', skin: 0xe2b9a0, hair: 0x6a4a30, top: 0x7a9a8a, legs: 0x3a3e4a, hairStyle: 'bob', sleeves: 'long', undrawn: true },
+  sw: { name: 'social worker (face undrawn)', h: 1.65, kind: 'adult', skin: 0xe2b9a0, hair: 0x6a4a30, top: SW_ROSE, legs: 0x7088a8, hairStyle: 'bob', sleeves: 'long', undrawn: true },   // top: dusty rose (Jade, art_sw 2026-11-26; was sage 0x7a9a8a); legs: washed-blue denim skirt as the cast sheet (was charcoal 0x3a3e4a)
 }, CHILD_PROP);
 
 const WALL = { grey: 0.8, col: 0xcfc9b8 }, CARPET = { grey: 0.45, col: 0x5a5f68, recvShadowLine: true }, LAM = { grey: 0.7, col: 0xb8a888, recvShadowLine: true }, STEEL = { grey: 0.6, col: 0x8a8a80 }, DARK = { grey: 0.25, col: 0x2a2a2a };
@@ -100,7 +104,7 @@ function furniture() {
   g.add(chair(TABLE.cx + TABLE.w / 2 + 0.12, TABLE.cz, -90, { look: CH, label: "empty chair (Dad stands)" }));
   { const C = CABINET, cx = (C.x0 + C.x1) / 2, cz = (C.z0 + C.z1) / 2, grp = new THREE.Group(); grp.add(box(C.x1 - C.x0, C.h, C.z1 - C.z0, STEEL, [cx, C.h / 2, cz]));
     for (let k = 0; k < 4; k++) { grp.add(box(C.x1 - C.x0 - 0.04, 0.29, 0.012, { grey: 0.66, col: 0x9a9a90 }, [cx, 0.18 + k * 0.32, C.z1 + 0.006])); grp.add(box(0.1, 0.02, 0.02, DARK, [cx, 0.27 + k * 0.32, C.z1 + 0.02])); }
-    g.add(tag(grp, 'filing cabinet')); g.add(tag(box(0.24, 0.12, 0.13, { grey: 0.7, col: 0x8aa0b8 }, [cx, C.h + 0.06, cz + 0.1]), 'box of tissues')); }
+    g.add(tag(grp, 'filing cabinet')); g.add(prop('tissue_box', { at: [cx, C.h, cz + 0.1] }) || tag(box(0.24, 0.12, 0.13, { grey: 0.7, col: 0x8aa0b8 }, [cx, C.h + 0.06, cz + 0.1]), 'box of tissues')); }
   { const S = SHELF, cx = (S.x0 + S.x1) / 2, cz = (S.z0 + S.z1) / 2, d = S.z1 - S.z0, grp = new THREE.Group(), WD = { grey: 0.5, col: 0x8a6a48 };
     for (const y of [0.02, 0.45, S.h - 0.01]) grp.add(box(S.x1 - S.x0, 0.02, d, WD, [cx, y, cz])); for (const s of [-1, 1]) grp.add(box(S.x1 - S.x0, S.h, 0.02, WD, [cx, S.h / 2, cz + s * (d / 2 - 0.01)]));
     g.add(tag(grp, 'low bookshelf'));
@@ -108,8 +112,10 @@ function furniture() {
     for (let k = 0; k < 9; k++) g.add(tag(box(0.2, 0.26 - (k % 3) * 0.03, 0.03, { grey: 0.4 + (k % 4) * 0.1, col: [0x7a3a2a, 0x3a5a7a, 0x4a6a3a, 0xa08a50][k % 4] }, [cx, 0.46 + (0.26 - (k % 3) * 0.03) / 2, cz + 0.05 + k * 0.034]), 'books')); }
   { const D = DESK, grp = new THREE.Group(); grp.add(box(D.w, 0.03, D.d, { grey: 0.55, col: 0x7a6248 }, [D.cx, D.h - 0.015, D.cz]));
     for (const s of [-1, 1]) grp.add(box(D.w - 0.04, D.h - 0.03, 0.03, STEEL, [D.cx, (D.h - 0.03) / 2, D.cz + s * (D.d / 2 - 0.02)]));
-    g.add(tag(grp, "social worker's desk")); g.add(tag(box(0.3, 0.12, 0.38, { grey: 0.7, col: 0xc8c0a8 }, [D.cx + 0.1, D.h + 0.06, D.cz + 0.2]), 'electric typewriter'));
-    g.add(tag(box(0.2, 0.07, 0.22, { grey: 0.65, col: 0xb8b09a }, [D.cx + 0.05, D.h + 0.035, D.cz - 0.3]), 'telephone')); }
+    g.add(tag(grp, "social worker's desk")); // props phase 2: an IBM Selectric II (the model is red; recoloured the set's beige, which is invented) and a beige
+    // push-button desk phone, both facing -x (she sits at the desk facing the right wall)
+    g.add(prop('typewriter', { at: [D.cx + 0.1, D.h, D.cz + 0.2], rot: [0, -90, 0], recolor: 0xc8c0a8 }) || tag(box(0.3, 0.12, 0.38, { grey: 0.7, col: 0xc8c0a8 }, [D.cx + 0.1, D.h + 0.06, D.cz + 0.2]), 'electric typewriter'));
+    g.add(prop('telephone', { at: [D.cx + 0.05, D.h, D.cz - 0.3], rot: [0, -90, 0] }) || tag(box(0.2, 0.07, 0.22, { grey: 0.65, col: 0xb8b09a }, [D.cx + 0.05, D.h + 0.035, D.cz - 0.3]), 'telephone')); }
   g.add(tag(cyl(CLOCK.r, CLOCK.r, 0.04, { grey: 0.9, col: 0xe8e8e0 }, [CLOCK.x, CLOCK.y, ROOM.z0 + 0.02], [90, 0, 0]), 'wall clock'));
   { const f = mk(new THREE.CircleGeometry(CLOCK.r * 0.97, 48), { noCast: true, ...artLookOf(clockFace()) }); f.position.set(CLOCK.x, CLOCK.y, ROOM.z0 + 0.0405); g.add(tag(f, 'wall clock')); }   // 2026-11-26: fixed face
   g.add(wallArt());
@@ -119,7 +125,7 @@ function furniture() {
     // the notes, the notes on the board and the board on the table (one label made the board a part of the notes, not a support)
     c.add(tag(box(0.23, 0.006, 0.32, { grey: 0.4, col: 0x6a4a30 }, [0, 0.003, 0]), 'clipboard: the board')); c.add(box(0.21, 0.002, 0.28, { grey: 0.95, col: 0xf0f0ea }, [0, 0.007, -0.01])); c.add(tag(box(0.1, 0.012, 0.03, STEEL, [0, 0.012, 0.14]), 'clipboard: the clip'));
     g.add(tag(c, 'clipboard (her notes)')); }
-  g.add(tag(cyl(0.035, 0.035, 0.1, { grey: 0.45, col: 0x3a5a8a }, [0.58, TOP + 0.05, 0.24]), 'pencil cup'));
+  g.add(prop('pencil_cup', { at: [0.58, TOP, 0.24] }) || tag(cyl(0.035, 0.035, 0.1, { grey: 0.45, col: 0x3a5a8a }, [0.58, TOP + 0.05, 0.24]), 'pencil cup'));   // props phase 2: a real pencil cup with pencils (19 cm to the tips)
   return g;
 }
 
@@ -211,12 +217,12 @@ export function build(shot, { makeCam }) {
   fixLeftHands(figs);
   for (const [who, f] of Object.entries(figs)) { if (CAST[who].undrawn) undraw(f); root.add(f); }
   // the sweatshirt print: the thing her eyes rest on
-  if (figs.sw && SW_PRINT.tex) {   // 2026-11-26: the canonical print (logos/sw_tree_print.png, art.js), a flat decal on the chest; to move it onto a body mesh, change only place()
+  if (figs.sw && SW_PRINT.tex) {   // 2026-11-26: the canonical print (logos/sw_geese_print.png since art_sw, art.js), a flat decal on the chest; to move it onto a body mesh, change only place()
     const P = figs.sw.userData.P, pr = PROP.adult, H = P.H, c0 = P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.018).addScaledVector(P.cy, 0.0);
     const flat = (s, t) => c0.clone().addScaledVector(P.cx, (s - 0.5) * SW_PRINT.w).addScaledVector(P.cy, (t - 0.5) * SW_PRINT.h);
     const vc = P.chest.clone().sub(P.shoulderC).dot(P.cy);   // PROOF_BODY=mesh: the print conforms to the sweatshirt (engine/humanMesh.js chestPoint)
-    const m = decalMesh(SW_PRINT.tex, (s, t) => chestPoint(figs.sw, (s - 0.5) * SW_PRINT.w, vc + (t - 0.5) * SW_PRINT.h) || flat(s, t), { grey: 0.6, col: 0x7a9a8a });
-    m.userData.who = 'sw'; root.add(tag(m, 'sweatshirt print (Christmas tree, cracked)')); }
+    const m = decalMesh(SW_PRINT.tex, (s, t) => chestPoint(figs.sw, (s - 0.5) * SW_PRINT.w + (SW_PRINT.u || 0), vc + (t - 0.5) * SW_PRINT.h) || flat(s, t), { grey: 0.6, col: SW_ROSE });
+    m.userData.who = 'sw'; root.add(tag(m, 'sweatshirt print (five geese)')); }
   else if (figs.sw) { const P = figs.sw.userData.P, pr = PROP.adult, H = P.H; const m = box(0.2, 0.13, 0.004, { grey: 0.88, col: 0xe8e0c8 });
     m.position.copy(P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.022).addScaledVector(P.cy, 0.02)); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(P.cx, P.cy, P.cz)); root.add(tag(m, 'sweatshirt print')); }
   // the little red dictionary in Mom's hands, open, pages fanning under her thumb

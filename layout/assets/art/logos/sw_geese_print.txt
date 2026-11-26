@@ -1,0 +1,28 @@
+canonical background art for layout/assets/art/logos/sw_geese_print.png
+date: 2026-11-26 13:58
+route: codex image_gen (headless codex exec in tmux session proof-office; on plan, $0)
+raw: 2021x778, centre-cropped to aspect 2.600 (w/h), saved 1024x394
+refs: cast/strangers/social_worker/social_worker_faceC_v1.png
+assumed / invented: Jade (R4 decision art_sw): geese on dusty rose. Design follows the social-worker cast sheet (five white geese, blue bows, the fourth faces right, stitched grass); style c.1991 country craft; exact drawing invented
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 2.60:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+The chest print of a c.1991 American country-craft sweatshirt, as the print itself, on a plain flat pure white
+background (#FFFFFF everywhere outside the print, nothing else). A row of FIVE plump white farm geese walking in single
+file, side view, evenly spaced along one line: geese 1, 2, 3 and 5 face LEFT, the FOURTH goose (second from the right)
+faces RIGHT, the other way, beak to beak with the fifth. Each goose has an orange beak and orange feet, a small black
+eye, soft grey shading on the wing, and a small cornflower-blue ribbon bow tied at its neck. Under their feet a thin
+line of small green stitched grass tufts runs the width of the row. Country-craft style of 1991: simple, soft, sweet,
+like a puff-paint / screen-printed appliqué from a craft-fair sweatshirt, flat colours with light outline, a little
+naive. Match the geese of the reference sheet's chest study exactly (count, colours, bows, the fourth goose turned).
+Flat, straight-on, no fabric, no sweatshirt, no shadow, no text, centred with a white margin all round.
+post: near-white background connected to the border keyed out to transparency (flood fill, so the geese's own pale
+  bodies and the white between their legs inside the outline stay), cropped to the print + 6 px; see the size line below
+size on the garment: 31 cm wide, chest centre (layout/sets/office91/art.js SW_PRINT), on dusty rose (Jade, art_sw)
+supersedes: sw_tree_print.png (the Christmas tree proposal, rejected by Jade 2026-11-26 in favour of geese)
+post: also keyed: every enclosed pure-white region over 150 px (the gaps between legs and under the touching tails), so the rose shows through as on a real print
+v2 (2026-11-26, Jade: "the geese are basically fine but the bows shouldn't be messed up like that"): the AI-drawn bows
+  were erased and ONE clean code-drawn bow (two smooth loops, a round knot, two notched tails; symmetric; cornflower
+  blue with a navy outline) composited on every goose's neck: tools/art/geese_bows.py sw_geese_print.v1.png -> this file.
+  The geese themselves are unchanged. sw_geese_print.v1.png = the keyed Codex image before the bow fix (the script's input).

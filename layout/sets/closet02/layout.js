@@ -21,17 +21,28 @@ export const ROOM = { x0: -0.95, x1: 0.95, z0: -0.73, z1: -WALL.t, h: WALL.h }; 
 export const DOORS = { w: 0.90, h: 2.01, t: 0.032, zFront: -0.030, zRear: -0.075 };
 DOORS.edge = OPEN.x0 + DOORS.w;                                            // +0.02: the free edge of the stack (nearly the centre, as drawn)
 
-// the bedroom: only its floor and the closet wall are built (cameras look into the closet)
-export const BEDROOM = { x0: -1.8, x1: 2.6, z1: 3.2 };
+// the bedroom: only its floor and the closet wall are built (cameras look into the closet). x1 widened 2026-11-26 (r4) so
+// the rotated futon stands on carpet.
+export const BEDROOM = { x0: -1.8, x1: 3.4, z1: 3.2 };
 // the futon (Jade, round 3, 2026-11-26): to the RIGHT of the closet, not blocking the entrance, in its down (bed) mode
-// because they slept on it; down, it "just barely reaches the closet". Matte black metal frame, navy plaid blanket.
-// ASSUMPTION (flagged): a full-size bi-fold metal futon, mattress 1.37 x 1.91 m (54 x 75 in), 0.15 m thick on a deck at
-// 0.30 m. Read as: its back is against the bedroom's right-hand wall (x = x1, not built), its length runs out from the
-// closet wall into the room (one arm frame against the closet wall), and folded down it reaches toward the closet so its
-// left edge stops just short of the right jamb's casing (x0 = OPEN.x1 + 0.03). The arms stay up (0.66 m) and only
-// span the sofa-mode depth (0.88 m) from the wall; the folded-down half sticks out past them toward the closet.
-export const FUTON = { x0: 0.91, w: 1.37, z0: 0.03, len: 1.91, deck: 0.30, mat: 0.15, arm: 0.66, armD: 0.88, tube: 0.019, drape: 0.14 };
-FUTON.x1 = FUTON.x0 + FUTON.w; FUTON.z1 = FUTON.z0 + FUTON.len; FUTON.top = FUTON.deck + FUTON.mat;
+// because they slept on it; matte black metal frame, navy plaid blanket.
+// Round 4 (Jade, 2026-11-26: "placement is in the right spot, but rotate it 90 degrees so the matte black railing is
+// visible. the railing should be a rounded square."): same spot (its left end just past the right jamb, against the
+// closet wall), turned 90 degrees: its LENGTH now runs along the closet wall (x), the back of the frame is against the
+// closet wall, and the two arm frames stand at the two ends (x), so the arm by the closet and the front rail face the
+// bedroom and every camera. RAILING READ BOTH WAYS (flagged): each arm is a rounded-rectangle loop of tube, and the tube
+// itself is a rounded-square section (1 in / 25 mm, 6 mm corner radius), matte black.
+// ASSUMPTION (flagged): a full-size bi-fold metal futon, mattress 1.91 x 1.37 m (75 x 54 in), 0.15 m thick on a deck at
+// 0.30 m; arms 0.66 m high spanning the sofa-mode depth (0.88 m) from the wall; the folded-down half runs on past them
+// into the room on two legs and a front rail.
+export const FUTON = { x0: 0.95, len: 1.91, w: 1.37, z0: 0.03, deck: 0.30, mat: 0.15, arm: 0.66, armD: 0.88, armGap: 0.05, tube: 0.025, tubeR: 0.006, corner: 0.08, drape: 0.14 };
+FUTON.mx0 = FUTON.x0 + FUTON.armGap; FUTON.mx1 = FUTON.mx0 + FUTON.len;          // the mattress along x
+FUTON.x1 = FUTON.mx1 + FUTON.armGap; FUTON.z1 = FUTON.z0 + FUTON.w; FUTON.top = FUTON.deck + FUTON.mat;
+// the ceiling light (Jade, round 4: "there is also a ceiling light"): ASSUMED type (flagged): a 2002 US bedroom's
+// flush-mount frosted-glass dome (13 in / 0.33 m across, 0.12 m deep) on a white canopy, centred over the bedroom in front
+// of the closet. It is on, but dim beside the sun: a soft, warm fill. Never in frame in the film shots (all look into
+// the closet, away from it); its light is in lit / light / flat.
+export const CEIL_LIGHT = { at: [0.75, WALL.h, 1.85], r: 0.165, h: 0.12, color: 0xffd6a0 };
 
 // ---------------------------------------------------------------- what is in the closet (from the drawing)
 // Drawing heights scaled to the 2.03 m opening: shelf ~1.63, rod ~1.48, clothes' hems ~0.94, coats ~0.40. A real
@@ -108,5 +119,6 @@ export const WINDOW = { back: 8.0, spill: 0.30, sillAt: 0.75, w: 7.0 };
 export const MOTE = { seed: 2002, count: 80 };   // dust in the light; no hero mote in this scene
 export const LIGHTS = {
   door: { kind: 'late-afternoon sun from the bedroom window behind him (parallel)', dir: SUN_DIR, color: SUN.color },
-  // nothing else: the closet has no light of its own
+  // round 4 (Jade): the bedroom's ceiling light is on too, a soft dim fill (the closet itself has no light of its own)
+  ceiling: { kind: 'bedroom ceiling light: flush-mount frosted glass dome, warm, on (soft dim fill)', pos: [CEIL_LIGHT.at[0], CEIL_LIGHT.at[1] - CEIL_LIGHT.h * 0.6, CEIL_LIGHT.at[2]], color: CEIL_LIGHT.color },
 };

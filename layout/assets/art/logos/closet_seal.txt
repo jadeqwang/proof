@@ -1,0 +1,10 @@
+canonical clothing decal for layout/assets/art/logos/closet_seal.png
+date: 2026-11-26
+route: drawn in code (layout/sets/closet02/seal_art.py, PIL), no image model, $0
+used by: closet02 (jade19's red university sweatshirt), via layout/sets/closet02/art.js
+what: a crisp, simple white circular seal (outer rim, a thin second ring, inner rim, a conifer; NO letters or marks),
+  white on transparent, 1024 px square. NOT the real university seal and carries no real letters: Jade wants the print
+  illegible, so only its shape and colour need to be the same in every shot. Folds in her seated pose break it up; the
+  decal itself is never distorted.
+Jade (2026-11-26): "in the closet scene, put her in the red stanford sweatshirt, white seal on pocket level, but scrunched
+  up and illegible b/c of fabric".

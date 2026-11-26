@@ -769,6 +769,50 @@ def draw_header(frame, hd, sh):
     return frame
 
 
+# The plates' caption type (frost's sheet: IM FELL, media/footage/frost/fonts). Captions in the picture are set in it,
+# centred, as on the plates ("Fig. 1." and the caption under the pane). Jade, round 4: small and low in frame.
+FELL = os.path.join(ROOT, 'media', 'footage', 'frost', 'fonts')
+FELL_FACES = {'italic': 'IMFeENit28P.ttf', 'roman': 'IMFeENrm28P.ttf', 'sc': 'IMFeENsc28P.ttf'}
+CAPTION_SIZE = 25                       # authoring px; the plates' caption is 27 at 1080, their sub-caption 21
+CAPTION_AT = [960, 1032]                # centre of the baseline: low in frame, clear of the edge
+
+
+def draw_caption(frame, cap, sh):
+    """A caption in the plates' type: {"text", "at": [x, y] (centre of the baseline; default low centre), "size",
+    "face": italic|roman|sc, "density" (0..1 of the light taken, default 0.78), "align": center|left}."""
+    if not cap:
+        return frame
+    from PIL import Image, ImageDraw, ImageFont
+    caps = cap if isinstance(cap, list) else [cap]
+    s = sh.s
+    for c in caps:
+        text = str(c.get('text', '')).strip()
+        if not text:
+            continue
+        f = ImageFont.truetype(os.path.join(FELL, FELL_FACES[c.get('face', 'italic')]),
+                               max(4, int(round(float(c.get('size', CAPTION_SIZE)) * s))))
+        bb = f.getbbox(text)
+        pad = 6
+        im = Image.new('L', (bb[2] - bb[0] + 2 * pad, bb[3] - bb[1] + 2 * pad), 0)
+        ImageDraw.Draw(im).text((pad - bb[0], pad - bb[1]), text, fill=255, font=f)
+        m = np.asarray(im, F32) / 255.0
+        m = np.clip(blur(m, 0.30 * s) * 1.05, 0, 1)                            # ink sinks in a little
+        x, y = c.get('at', CAPTION_AT)
+        w = bb[2] - bb[0]
+        X = int(round(x * s)) - pad + bb[0] - (0 if c.get('align') == 'left' else w // 2)
+        Y = int(round(y * s)) - (pad - bb[1] + f.getmetrics()[0])
+        H, W = frame.shape[:2]
+        x0, y0, x1, y1 = max(0, X), max(0, Y), min(W, X + m.shape[1]), min(H, Y + m.shape[0])
+        if x1 <= x0 or y1 <= y0:
+            continue
+        mm = m[y0 - Y:y1 - Y, x0 - X:x1 - X]
+        dens = float(c.get('density', 0.78))
+        d = -math.log(max(1e-3, 1 - dens)) / float(INK_K.mean())
+        gr = 1 + 0.35 * np.clip(-sh.hz[y0:y1, x0:x1], -1.5, 1.5) * 0.4
+        frame[y0:y1, x0:x1] *= ink_T(mm * d * gr)
+    return frame
+
+
 # --------------------------------------------------------------------------------------------------------------------
 # compose
 
@@ -777,6 +821,7 @@ def _overlays(frame, spec, sh, lit, dens, seed):
     draw_gold(frame, spec.get('gold'), sh, seed)
     draw_header(frame, spec.get('header'), sh)
     draw_toner(frame, spec.get('toner'), sh, seed)
+    draw_caption(frame, spec.get('caption'), sh)
     return np.clip(frame, 0, 1)
 
 

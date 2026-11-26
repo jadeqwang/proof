@@ -977,7 +977,7 @@
  },
  "times": [
   94.68,
-  96
+  95.6
  ],
  "gaze": {
   "jade7": {
@@ -1174,8 +1174,8 @@
    "torso": "capsule"
   },
   "sw": {
-   "top": "#7a9a8a",
-   "legs": "#3a3e4a",
+   "top": "#b97a78",
+   "legs": "#7088a8",
    "sleeves": "long",
    "sock": "#6a6a70",
    "torso": "capsule"
@@ -29413,9 +29413,9 @@
   {
    "a": "sw",
    "b": "jade7",
-   "top_a": "#7a9a8a",
+   "top_a": "#b97a78",
    "top_b": "#b8c4d8",
-   "deltaE_top": 28.1,
+   "deltaE_top": 39.4,
    "close": false
   }
  ],

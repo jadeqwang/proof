@@ -151,6 +151,32 @@
     0.8,
     -0.26
    ]
+  },
+  {
+   "name": "ceiling",
+   "kind": "bedroom ceiling light: flush-mount frosted glass dome, warm, on (soft dim fill)",
+   "on": true,
+   "color": "#ffd6a0",
+   "world": [
+    0.75,
+    2.368,
+    1.85
+   ],
+   "px": [
+    1441.9,
+    -274.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.254,
+    0.967
+   ],
+   "toward_camera": -0.818,
+   "aim_world": [
+    0.75,
+    0,
+    1.85
+   ]
   }
  ],
  "warnings": [],
@@ -342,6 +368,12 @@
   "count": 80
  },
  "mask": null,
+ "futon_clearance": {
+  "jade19": {
+   "min_gap_to_frame_m": 0.093,
+   "verts_inside_mattress": 0
+  }
+ },
  "points_world": {
   "jade19": {
    "eyes": [
@@ -422,10 +454,10 @@
  },
  "costume": {
   "jade19": {
-   "top": "#8a94a8",
-   "legs": "#2c3140",
+   "top": "#8c1515",
+   "legs": "#4f6d93",
    "sleeves": "long",
-   "sock": "#6a6a70",
+   "sock": "#eeece6",
    "torso": "real f"
   }
  },
@@ -467,7 +499,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade19": 0.0312
+  "jade19": 0.0317
  },
  "colour_separation": [],
  "figure_report": {

@@ -176,6 +176,32 @@
     0.8,
     -0.26
    ]
+  },
+  {
+   "name": "ceiling",
+   "kind": "bedroom ceiling light: flush-mount frosted glass dome, warm, on (soft dim fill)",
+   "on": true,
+   "color": "#ffd6a0",
+   "world": [
+    0.75,
+    2.368,
+    1.85
+   ],
+   "px": [
+    1714.6,
+    9848.9
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.081,
+    0.997
+   ],
+   "toward_camera": -0.411,
+   "aim_world": [
+    0.75,
+    0,
+    1.85
+   ]
   }
  ],
  "warnings": [
@@ -372,6 +398,16 @@
   "count": 80
  },
  "mask": null,
+ "futon_clearance": {
+  "jade19": {
+   "min_gap_to_frame_m": 0.093,
+   "verts_inside_mattress": 0
+  },
+  "firstLove19": {
+   "min_gap_to_frame_m": 0.088,
+   "verts_inside_mattress": 0
+  }
+ },
  "points_world": {
   "jade19": {
    "eyes": [
@@ -572,10 +608,10 @@
  },
  "costume": {
   "jade19": {
-   "top": "#8a94a8",
-   "legs": "#2c3140",
+   "top": "#8c1515",
+   "legs": "#4f6d93",
    "sleeves": "long",
-   "sock": "#6a6a70",
+   "sock": "#eeece6",
    "torso": "real f"
   },
   "firstLove19": {
@@ -665,15 +701,15 @@
  "holds": [],
  "figure_frame_fraction": {
   "firstLove19": 0.3257,
-  "jade19": 0.2611
+  "jade19": 0.2634
  },
  "colour_separation": [
   {
    "a": "firstLove19",
    "b": "jade19",
    "top_a": "#5a6a58",
-   "top_b": "#8a94a8",
-   "deltaE_top": 28.9,
+   "top_b": "#8c1515",
+   "deltaE_top": 64.2,
    "close": false
   }
  ],

@@ -16,3 +16,10 @@ export function plaidArt() {
   for (let y = 0; y < S; y += 2) { g.fillStyle = 'rgba(0,0,0,0.06)'; g.fillRect(0, y, S, 1); }   // twill texture
   plaid = repeatArt(artFromCanvas(c, { edgeMax: 0.3 })); return plaid;
 }
+
+// 2026-11-26 (r4, Jade: "put her in the red stanford sweatshirt, white seal on pocket level, but scrunched up and illegible
+// b/c of fabric"): the ONE seal decal (layout/assets/art/logos/closet_seal.png, drawn by seal_art.py; generic, no real
+// letters), flattened onto the sweatshirt's cardinal. build.js maps it at pocket level and folds the cloth over it.
+import { loadArt } from '../_art.js';
+export const CARDINAL = 0x8c1515;
+export const SEAL = await loadArt({ seal: ['/assets/art/logos/closet_seal.png', { bg: '#8c1515' }] });

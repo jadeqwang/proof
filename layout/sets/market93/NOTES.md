@@ -241,3 +241,18 @@ and measured hits. Times written elsewhere in this file before this section are 
 - M4b: Jade's right forearm now reaches forward to LAND_RH (it used to hang), and Mama's palm (LAND_PALM) is on top
   of it. With the forearm hanging, a level grip was out of the wrist's range: the wrist rule turned the hand 54 deg
   off the forearm.
+
+## 2026-11-26: round-4 decisions (R4D brief)
+- **Props phase 2: nothing to swap.** work/props_audit.md lists no downloaded model for this set (hanging scale, produce,
+  artichoke and romanesco are canonical code). The audit says "grocery cart: none in market93", but the grandmother's
+  cart IS here (hand-built, with the cartGrip holds); no cart model was downloaded, so it stays hand-built. A CC0/CC-BY
+  shopping-cart model would be a phase-3 candidate (flag).
+- **Hold check** on the current renders (mesh bodies, gaze): 35/35 pass, including the artichoke grips from below (M4b,
+  M4b_pull) and the M4 / M4b / M4c forearm grabs. Not re-rendered: no set file changed.
+- **M4 / M4b / M4c rhyme with attic88_day AD_grab** (Mama grabbing the girl's forearm). Another agent is restaging AD_grab
+  with both people standing; M4 / M4b framing is unchanged here on purpose. Whoever paints them should check that the
+  rhyme still reads (same grabbing hand and forearm side) once AD_grab is re-rendered.
+- **artichoke_plate_count.json refreshed** (HANDOFF TODO): ran `media/footage/spirals/spirals.py artichoke --data
+  data/artichoke_arms.json` without NO_MARKET_COUNT. The written file is byte-identical to the committed one (8 / 5 arms,
+  the same bracts), so it was already current. The run also rewrote data/artichoke_arms.json with 0.01 px rounding noise
+  only; that was reverted.

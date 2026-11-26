@@ -2157,11 +2157,11 @@
   }
  ],
  "figure_frame_fraction": {
-  "uncle": 0.0936,
-  "aunt": 0.0897,
-  "mama86": 0.0754,
+  "uncle": 0.1036,
+  "aunt": 0.0821,
   "grandma": 0.0524,
-  "jade3": 0.0047
+  "jade3": 0.0047,
+  "mama86": 0.0563
  },
  "colour_separation": [
   {
@@ -2174,14 +2174,6 @@
   },
   {
    "a": "uncle",
-   "b": "mama86",
-   "top_a": "#e8e4d8",
-   "top_b": "#6f7f9a",
-   "deltaE_top": 44.1,
-   "close": false
-  },
-  {
-   "a": "uncle",
    "b": "grandma",
    "top_a": "#e8e4d8",
    "top_b": "#4a4f5a",
@@ -2189,11 +2181,11 @@
    "close": false
   },
   {
-   "a": "aunt",
+   "a": "uncle",
    "b": "mama86",
-   "top_a": "#9a6a5a",
+   "top_a": "#e8e4d8",
    "top_b": "#6f7f9a",
-   "deltaE_top": 37.2,
+   "deltaE_top": 44.1,
    "close": false
   },
   {
@@ -2205,10 +2197,18 @@
    "close": false
   },
   {
-   "a": "mama86",
-   "b": "grandma",
-   "top_a": "#6f7f9a",
-   "top_b": "#4a4f5a",
+   "a": "aunt",
+   "b": "mama86",
+   "top_a": "#9a6a5a",
+   "top_b": "#6f7f9a",
+   "deltaE_top": 37.2,
+   "close": false
+  },
+  {
+   "a": "grandma",
+   "b": "mama86",
+   "top_a": "#4a4f5a",
+   "top_b": "#6f7f9a",
    "deltaE_top": 21.4,
    "close": false
   }

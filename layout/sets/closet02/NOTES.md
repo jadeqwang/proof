@@ -1,5 +1,45 @@
 # closet02: notes and assumptions
 
+## 2026-11-26 (late): round-4 decisions (supersedes anything below that contradicts it)
+
+Jade's answers: `work/decisions/JADE_R4_DECISIONS.md` (Closet), plus a direction sent mid-session.
+
+**What changed**
+- **Light (cl_light: "Window sun over his shoulder (crisp wedge) — there is also a ceiling light").** The sun wedge is
+  unchanged and stays the key. NEW: the bedroom ceiling light (`CEIL_LIGHT` in layout.js, `ceilingLight()` in build.js),
+  ASSUMED type (flag): a 2002 flush-mount frosted-glass dome, 0.33 m across, on a white canopy at (0.75, 2.44, 1.85), on.
+  It is a soft warm point light (wide soft shadows) in lit (6.0) and flat / light (2.4); the shadow-line pass (line mode)
+  keeps the sun's crisp edges only. The fixture and a small ceiling plate are non-casting (the ceiling would otherwise
+  block the stand-in sun). It is out of frame in every film shot; the sidecar `lights` lists it.
+- **Futon (cl_futon: same spot, rotated 90 degrees, matte black railing visible, "the railing should be a rounded
+  square").** Its length now runs along the closet wall (x 0.95-2.96), the back against the wall, an arm frame at each
+  end; the folded-down half reaches 1.40 m into the room on legs and a front rail. Read BOTH ways (flag): each arm is a
+  rounded-rectangle loop, and the tube is a rounded-square section (25 mm, 6 mm corner radius). Swept in code
+  (`sweepTube`), matte black, dark in form too. BEDROOM.x1 3.4 so it stands on carpet. No licensed futon model was found
+  in the props library (props_audit has none); built in code.
+- **CL_ots lower (cl_cam_height).** Camera y 0.90 -> 0.76 (about his ear height), as on fl_G_ots_hair_v5.png.
+- **Four hands (cl_hands_open).** Checked: CL_wide has her fingertips at her temples and his hands on his knees; the four
+  hands first come together in CL_hands (3:28). Nothing changed.
+- **Plaid (art_plaid): kept.**
+- **Her hoodie (Jade, corrected: "taking the existing hoodie and making it cardinal red with a white seal at the pocket
+  instead of whatever that is. also she should be wearing socks"; her real sweatshirt's cream STANFORD letters are left
+  out on purpose: too legible).** Her cast-sheet hoodie: zip-up, worn OPEN over a white tee, hood down. Only the
+  colour changes, to cardinal 0x8c1515 (`SWEATSHIRT` in shots.js). `sweatshirt()` in build.js adds: the white tee strip
+  between the open fronts, zip edges, a split kangaroo pocket, the hood as a roll round the back of the neck (under her
+  hair), ONE seal decal (`layout/assets/art/logos/closet_seal.png`, drawn by `seal_art.py`: three rings and a conifer, no
+  letters, not the real seal), and two soft tapered fold rolls over the pocket that hide parts of it. The decal itself
+  is undistorted (the first version's shear and squash read as a smear and is gone). Seal position (Jade, r4: "on breast pocket location, the normal place
+  where school seals go"): her LEFT chest, 8 cm across, centre 8.5 cm left of and 10 cm below the shoulder centre, on the
+  open hoodie's left front panel; two folds cross it. The kangaroo pocket is plain. Sculpted folds, not a cloth simulation.
+  **Socks:** white sock shells over both feet (the body mesh showed toes, which read as bare). Jeans mid-blue, as on the sheet.
+  **Cast sheet:** `cast/jade_19/*` still say a heather-grey hoodie with "No logos". Not edited (the cast agent owns cast/); the prompts override it.
+- **Props phase 2:** nothing to swap (props_audit: closet02 books are canonical code spines; no held props). Hold check
+  not applicable (hand-on-hand contacts only, as before). Futon clearance measured per shot in the sidecar
+  (`futon_clearance`): her nearest vertex 9.3 cm and his 8.8 cm from the frame; none inside the mattress.
+
+**Repaint in r4:** CL_wide, CL_hands (red sleeves), CL_ots, CL_chin (+ CL_elev reference). Prompt notes in
+`work/r4/REPAINT_LIST.md` (closet02 section).
+
 ## 2026-11-26: round-3 decisions (supersedes anything below that contradicts it)
 
 Jade's answers: `work/decisions/JADE_R3_DECISIONS.md` (Closet). The r3 review page now reads the old renders from

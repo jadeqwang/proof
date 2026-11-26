@@ -206,7 +206,12 @@ export const RADIATOR = { wall: 'east', x: ROOM.x1 - 0.06, z0: -1.05, z1: -0.4, 
 export const CALENDAR = { wall: 'east', z: -4.4, y: 1.45, w: 0.36, h: 0.52 };
 // west wall (Jade: calligraphy hanging scrolls; one large framed traditional painting, wall not stated: placed here, over the couch)
 export const PAINTING = { wall: 'west', z: (COUCH.z0 + COUCH.z1) / 2, y: 1.72, w: 1.3, h: 0.72 };
-export const SCROLLS = [-0.75, -1.3, -1.85].map((z) => ({ wall: 'west', z, top: 2.5, w: 0.42, h: 1.5 }));
+// Round-4 decisions (Jade, art_sh): "2 scrolls on the hallway side of the room, no scrolls on balcony side". The three scrolls
+// that hung on the west wall near the balcony doors (z -0.75 / -1.3 / -1.85) are gone; TWO now hang on the west wall's
+// HALL half, centred in the free plaster between the painting's frame (z -3.74) and the north bookcase's end (z -5.72),
+// behind the 'beside' armchair (reading "hallway side" as the north half of the room, nearest the hall doors: flag).
+const SCROLL_MID = ((PAINTING.z - PAINTING.w / 2 - 0.05) + SHELF_FRONT) / 2;
+export const SCROLLS = [+(SCROLL_MID + 0.3).toFixed(3), +(SCROLL_MID - 0.3).toFixed(3)].map((z) => ({ wall: 'west', z, top: 2.5, w: 0.42, h: 1.5 }));
 export const CLOCK = { wall: 'east', z: -5.0, y: 2.25 };
 export const PLANT = [ROOM.x0 + 0.28, -0.22];
 export const PENDANT = { x: 0, z: -3.0, drop: 0.55 };

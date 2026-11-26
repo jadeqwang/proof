@@ -1,5 +1,5 @@
 // SCHOOL OFFICE (about 1991) camera table: the "groove in" handout shot (0:19.0-0:29.7), the pre-chorus (1:17.2-1:32.7) and
-// the band-out (1:32.7-1:36.0). Times are -2sm master seconds (analysis/m2sm/song_map.md; retimed from v2 2026-11-25,
+// the band-out (1:32.7-1:35.6) and X_sw (1:35.6-1:36.0). Times are -2sm master seconds (analysis/m2sm/song_map.md; retimed from v2 2026-11-25,
 // cuts on the -2sm sung onsets and the measured groove / band-out hits); `t` = [start, end] of the clip a camera serves.
 // The plan's two camera positions:  OUTSIDE = frontal, level, locked off on her face, with bare wall frame-left of it for
 // the toner label.  INSIDE = along her eye-line, close (her head is hidden in those guides: the camera is her eyes).
@@ -25,8 +25,13 @@ const SW_LH = 0.178, CLIP_TOP = TOP + 0.008;   // her hand length (as swPoint); 
 const REST_HAND = { shape: 'flat', curl: { index: [4, 8, 4], middle: [5, 8, 4], ring: [6, 8, 4], little: [6, 8, 4] }, spread: 3 };   // a hand lying open on a page
 const swRest = (x, z, f = [-0.45, -0.08, -0.9], lift = 0.0215) => { const a = graspArms('restOn', { centre: [x, CLIP_TOP, z], at: [x, CLIP_TOP, z], up: [0, 1, 0], axis: f, label: 'clipboard (her notes)' }, { Lh: SW_LH, side: 'R' }).R;
   a.to[1] += lift; return Object.assign(a, { hand: REST_HAND, fingers: f, palm: [f[2] * 0.12, -1, -f[0] * 0.12] }); };   // palm rolled a little onto the little-finger side
+// shoulder fix (Jade on X_sw: "the social worker's shoulders are weirdly misshapen"): without a pole the engine's default
+// elbow pole (down, 65 % outward, a little back) swung both elbows out wide, the upper arms abducted and flexed forward, and
+// the mesh shoulder folded. Poles DOWN and BACK by her hips keep the elbows in beside her ribs, the upper arms hanging
+// nearly vertical, the forearms reaching forward onto the table (L hand also 3 cm in toward her midline).
+const SW_ELBOW = { L: [-0.06, 0.55, 0.72], R: [0.46, 0.55, 0.72] };
 const sw = (o = {}) => ({ at: SEATS.socialWorker, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 180, spine: { bend: 8 }, head: { look: 'jade7:eyes' },
-  L: { to: [-0.03, TOP + 0.035, 0.24], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: swRest(0.27, 0.17), ...o });   // L on the table just left of the clipboard (hold pass: was on its edge, the fingers through the notes)
+  L: { to: [0.0, TOP + 0.035, 0.22], hand: 'relax', palm: 'down', fingers: 'fwd', elbowAt: SW_ELBOW.L }, R: { ...swRest(0.27, 0.17), elbowAt: SW_ELBOW.R }, ...o });   // L on the table just left of the clipboard (hold pass: was on its edge, the fingers through the notes)
 const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: graspArms('tipOn', { centre: SW_TIP, at: [SW_TIP[0], SW_TIP[1] + 0.0005, SW_TIP[2]], axis: [-0.45, -0.5, -0.6], up: [0, 1, 0], palm: [0, -1, 0], label: 'yellow handout' }, { Lh: SW_LH, side: 'L' }).L, R: { ...swRest(0.25, 0.09, [-0.8, -0.08, -0.55], 0.027), elbowAt: [0.65, 0.9, 0.2] } });   // leaning in, her resting hand lies further up the notes; hold pass: her index pad lands ON the face (tipOn; pointAt put it about 1 cm off)
 // Mom holds the open dictionary in both hands, as you hold a paperback to read: each palm under one cover (palm toward
 // the back of the book), four fingers spread along the back of that cover toward its top edge, each thumb over the page
@@ -108,8 +113,8 @@ export const SHOTS = [
   { id: 'BO1', t: [92.68, 94.68], ...GAP_CAM, figs: ALL(jadePoint()),
     header: '1:32.7 INSIDE band out "that\'s just how it looks": she points at the EMPTY SPACE after the row of six (gold circle round it)',
     intent: 'r3 (Jade): inside, the gap camera: her small index finger comes down on the empty space where a seventh face would be, not on a face.' },
-  { id: 'BO2', t: [94.68, 96.00], ...GAP_CAM, figs: ALL(jadePoint(), swPoint()),
-    header: '1:34.7 INSIDE the adult\'s finger lands on the closest face to her empty space and reads its label: ANXIOUS',
+  { id: 'BO2', t: [94.68, 95.6], ...GAP_CAM, figs: ALL(jadePoint(), swPoint()),   // r4 (Jade, 2026-11-26): shortened (was -96.00) for X_sw
+    header: '1:34.7-1:35.6 INSIDE the adult\'s finger lands on the closest face to her empty space and reads its label: ANXIOUS',
     intent: 'r3 (Jade): same camera. Her finger stays on the empty space; an adult index finger arrives from across the table and lands on the CLOSEST face to it (the row\'s last face). Match cut on the pointing finger follows.' },
 
   // ---------------------------------------------------------------- r3: THE CORRIDOR, a SEPARATE TIME (about 1993-94, her at TEN)
@@ -121,9 +126,19 @@ export const SHOTS = [
   { id: 'FE_thumbs', hall: true, t: [18.23, 19.0], lens: 40, orbit: { at: 'jade10:eyes', az: -52, el: 2, dist: 0.95 }, aim: ['jade10:eyes', 0.62, 0.42], focus: ['jade10', 'mama91'],
     figs: { jade10: kid10({ spine: { bend: -6 }, head: { look: [-3.2, 1.3, 0.62] } }), mama91: momThumbs() },
     header: '0:18.2 OUTSIDE, closer: "But not like that": Mom\'s thumbs push her cheeks into a smile', intent: 'Closer, three-quarter from the door side: Mom stoops squarely in front of her (Mom in near profile, frame left), her hands cupping her daughter\'s jaw, the thumbs pressing the cheeks up into a smile under a deepening frown; the girl pulls her head back against the wall.' },
-  // ---------------------------------------------------------------- spare (not placed in the Structure table)
-  { id: 'X_sw', lens: 50, orbit: { at: 'sw:chest', az: -156, el: 4, dist: 1.05 }, aim: ['sw:chest', 0.5, 0.45], ...INSIDE, figs: ALL(),
-    header: 'spare INSIDE: what she looks at instead of the face: the sweatshirt print and the table', intent: 'Inside: her eye-line across the table at the social worker\'s sweatshirt, forearms and clipboard; the head is above the frame line. Unplaced spare for the pre-chorus.' },
+  // shoulder check (Jade on X_sw: "the social worker's shoulders are weirdly misshapen"): the social worker alone, as
+  // staged in PC1-PC4 / X_sw, from the front, her right side, above and behind. Not shots.
+  ...[['front', -165, 8], ['side', -95, 8], ['top', -160, 60], ['back', 25, 20]].map(([k, az, el]) => ({ id: 'REF_sw_' + k, lens: 35,
+    orbit: { at: 'sw:chest', az, el, dist: 1.25 }, aim: ['sw:chest', 0.5, 0.5], figs: { sw: sw({ head: { look: [0.2, 0.9, -0.5] } }) },
+    header: `SHOULDER CHECK (reference): the social worker alone, ${k}`, intent: 'Not a shot: her shoulders, upper arms and sleeves as staged.' })),
+  // ---------------------------------------------------------------- r4 (Jade, 2026-11-26): X_sw INSERTED at 1:35.6-1:36.0,
+  // after BO2 and before the cut to attic88_day AD_trace. It carries the plates' caption "Were you afraid during the raid?",
+  // small and low (tools/kf/comp_all.py CAPTIONS: size 25 at px [960, 1032]), held across the cut into AD_trace. The print sits a
+  // little above centre so the bottom strip (the sweatshirt's lower front, her forearms and the clipboard edge) stays calm under the caption.
+  { id: 'X_sw', t: [95.6, 96.0], lens: 50, orbit: { at: 'sw:chest', az: -156, el: 4, dist: 1.05 }, aim: ['sw:chest', 0.5, 0.4], ...INSIDE, figs: ALL(),
+    caption: { text: 'Were you afraid during the raid?', at_px: [960, 1032], size: 25, note: 'small and low; carried into attic88_day AD_trace' },
+    header: '1:35.6 INSIDE caption "Were you afraid during the raid?": the social worker\'s sweatshirt, five geese on dusty rose',
+    intent: 'Inside: her eye-line across the table at the social worker\'s dusty-rose sweatshirt with its row of five geese, forearms and clipboard; the head above the frame line. The caption is laid small and low over the bottom centre; keep that strip free of busy detail.' },
 ];
 
 for (const s of SHOTS) if (s.same) { const o = SHOTS.find((x) => x.id === s.same); Object.assign(s, { ...o, ...s, id: s.id }); }

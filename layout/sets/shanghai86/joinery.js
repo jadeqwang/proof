@@ -179,8 +179,11 @@ export function bookcases() {
 // ---------------------------------------------------------------- armchair
 // The common Shanghai upholstered armchair of the 1950s-80s (单人沙发): a boxy sprung body on four short tapered dark
 // wood legs, rolled arms, a slightly reclined back with a curved top, one loose seat cushion with piping; in winter a
-// crocheted white cover (沙发巾) over the back and one over each arm. Fabric: a muted olive-green wool, the same as the couch (my choice, r4: the old khaki matched the plaster in the shade).
-export const FABRIC = { grey: 0.48, col: 0x5c6a4e, recvShadowLine: true }, FABRIC_C = { grey: 0.54, col: 0x6a785a, recvShadowLine: true }, PIPE = { grey: 0.4, col: 0x48543c };
+// crocheted white cover (沙发巾) over the back and one over each arm. Fabric: a PLAIN brown-rust wool, the same as the couch
+// (round-4 decisions, Jade: sh_suite_colour "brown or rust", art_sh_upholstery "plain"; was olive green). The exact shade is
+// my pick: a deep rust, redder and darker than the orange-brown floor, darker than the plaster in every mode (flat greys
+// 0.30 / 0.36 vs floor 0.56 and walls 0.76).
+export const FABRIC = { grey: 0.30, col: 0x683826, recvShadowLine: true }, FABRIC_C = { grey: 0.36, col: 0x744130, recvShadowLine: true }, PIPE = { grey: 0.26, col: 0x4e281a };
 const LACE = { grey: 0.95, col: 0xf2efe6 }, LEG = { grey: 0.3, col: 0x3e2a1c };
 export function armchair(a) {
   const g = new THREE.Group(); g.position.set(a.at[0], 0, a.at[1]); g.rotation.y = rad(a.yaw);

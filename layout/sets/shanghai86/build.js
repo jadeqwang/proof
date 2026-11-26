@@ -7,7 +7,9 @@ import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam.js';
 import * as ART from './art.js';   // 2026-11-26: fixed wall art and spines
 import { artPlane } from '../_art.js';
-import { hallDoorLeaves, bookcases, armchair as armchairR4, slippers } from './joinery.js';   // r4: real hinges, bookcases, armchairs, slippers
+import { loadProps, prop } from '../_props.js';   // props phase 2 (2026-11-26): real downloaded models (work/props_audit.md)
+await loadProps(['thermos', 'mug', 'potted_plant']);
+import { hallDoorLeaves, bookcases, armchair as armchairR4, slippers, FABRIC, FABRIC_C } from './joinery.js';   // r4: real hinges, bookcases, armchairs, slippers
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
   APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, BALCONY_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
@@ -125,9 +127,9 @@ function room() {
 }
 
 // ---------------------------------------------------------------- furniture
-// r4 (Jade, V1g: the painters lost the armchairs against the wall): the suite's wool is a muted olive green (my choice), not
-// the old khaki that matched the plaster in the shade; couch and armchairs alike (joinery.js FABRIC)
-const UPH = CLOTH(0.48, 0x5c6a4e, { recvShadowLine: true }), UPH_C = CLOTH(0.54, 0x6a785a, { recvShadowLine: true });
+// r4 (Jade, V1g: the painters lost the armchairs against the wall): not the old khaki that matched the plaster. Round-4
+// decisions (Jade): "brown or rust", plain: a plain brown-rust wool, couch and armchairs alike (joinery.js FABRIC)
+const UPH = CLOTH(FABRIC.grey, FABRIC.col, { recvShadowLine: true }), UPH_C = CLOTH(FABRIC_C.grey, FABRIC_C.col, { recvShadowLine: true });
 function couch() {   // against the WEST wall, facing +x
   const C = COUCH, g = new THREE.Group(), len = C.z1 - C.z0, d = C.x1 - C.x0, cz = (C.z0 + C.z1) / 2, cx = (C.x0 + C.x1) / 2, iw = len - 2 * C.armW;
   g.add(box(d - 0.04, 0.2, len - 0.04, UPH, [cx, 0.2, cz]));                                                     // base
@@ -197,25 +199,30 @@ function furniture(shot) {
     g.add(tag(box(0.34, 0.32, 0.42, { grey: 0.3, col: 0x3a3a38 }, [cx, T.h + 0.16, cz]), 'TV (14", under a cloth)'));
     g.add(tag(box(0.36, 0.006, 0.48, LACE, [cx, T.h + 0.323, cz]), 'TV (14", under a cloth)'));
     g.add(tag(box(0.005, 0.24, 0.44, LACE, [cx - 0.175, T.h + 0.21, cz]), 'TV (14", under a cloth)'));
-    for (const [dz, c] of [[0.33, 0xb03a2a], [-0.33, 0x3a7a5a]]) { const th = new THREE.Group(); th.add(cyl(0.055, 0.06, 0.3, { grey: 0.6, col: c }, [cx + 0.05, T.h + 0.15, cz + dz])); th.add(cyl(0.03, 0.045, 0.06, { grey: 0.8, col: 0xc8c8c8 }, [cx + 0.05, T.h + 0.33, cz + dz])); g.add(tag(th, 'thermos flasks')); } }
+    // props phase 2: the downloaded 暖水瓶 (thermos, CC BY, docs/credits_tools.md), 0.36 m tall; the red one as modelled, the green
+    // one recoloured (its flower print kept). Hand-built cylinders only if the model is missing.
+    for (const [dz, c] of [[0.33, null], [-0.33, 0x3a7a5a]]) { const pm = prop('thermos', { at: [cx + 0.05, T.h, cz + dz], size: { h: 0.36 }, rot: [0, -90, 0], ...(c ? { recolor: c } : {}) });
+      if (pm) { g.add(pm); continue; }
+      const th = new THREE.Group(); th.add(cyl(0.055, 0.06, 0.3, { grey: 0.6, col: c ?? 0xb03a2a }, [cx + 0.05, T.h + 0.15, cz + dz])); th.add(cyl(0.03, 0.045, 0.06, { grey: 0.8, col: 0xc8c8c8 }, [cx + 0.05, T.h + 0.33, cz + dz])); g.add(tag(th, 'thermos flasks')); } }
   { const R = RADIATOR; for (let k = 0; k < 12; k++) g.add(tag(box(0.12, R.h, 0.035, { grey: 0.7, col: 0xb8b0a0 }, [R.x - 0.02, 0.12 + R.h / 2, R.z0 + ((R.z1 - R.z0) * (k + 0.5)) / 12]), 'radiator (cold)')); }
   { const C = CALENDAR; g.add(tag(box(0.01, C.h, C.w, { grey: 0.9, col: 0xe8dcc8 }, [ROOM.x1 - 0.006, C.y, C.z]), 'wall calendar (挂历)'));
     const p = artPlane(ART.calendarArt(), C.w, C.h); p.rotation.y = -Math.PI / 2; p.position.set(ROOM.x1 - 0.0115, C.y, C.z); g.add(tag(p, 'wall calendar (挂历)')); }
-  // west wall: one large framed traditional Chinese painting over the couch, calligraphy hanging scrolls (挂轴) beside it
+  // west wall: one large framed traditional Chinese painting over the couch; two calligraphy hanging scrolls (挂轴) on its hall half (r4)
   { const Pn = PAINTING, x = ROOM.x0 + 0.02;
     g.add(tag(box(0.035, Pn.h + 0.1, Pn.w + 0.1, { grey: 0.3, col: 0x3a2a1a }, [x, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
     g.add(tag(box(0.01, Pn.h, Pn.w, { grey: 0.88, col: 0xe4dcc4, recvShadowLine: true }, [x + 0.02, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
     if (ART.ART_TEX.painting) { const p = artPlane(ART.ART_TEX.painting, Pn.w, Pn.h); p.rotation.y = Math.PI / 2; p.position.set(x + 0.0255, Pn.y, Pn.z); g.add(tag(p, 'framed traditional Chinese painting (国画)')); }
-    for (const S of SCROLLS) { const yc = S.top - S.h / 2, grp = new THREE.Group();
+    for (const S of [...SCROLLS].sort((a, b) => a.z - b.z)) { const si = [...SCROLLS].sort((a, b) => a.z - b.z).indexOf(S), yc = S.top - S.h / 2, grp = new THREE.Group();
       grp.add(box(0.006, S.h, S.w, { grey: 0.9, col: 0xece4d0, recvShadowLine: true }, [ROOM.x0 + 0.006, yc, S.z]));
       for (const y of [S.top, S.top - S.h]) grp.add(cyl(0.012, 0.012, S.w + 0.06, { grey: 0.3, col: 0x3a2a1a }, [ROOM.x0 + 0.015, y, S.z], [90, 0, 0], 10));
       grp.add(cyl(0.001, 0.001, 0.25, { grey: 0.2, col: 0x222222 }, [ROOM.x0 + 0.006, S.top + 0.12, S.z], null, 4));
-      { const [t, sig] = ART.SCROLL_TEXT[String(S.z)] || ['', '']; const p = artPlane(ART.scrollArt(t, sig), S.w, S.h); p.rotation.y = Math.PI / 2; p.position.set(ROOM.x0 + 0.0095, yc, S.z); grp.add(p); }
+      { const [t, sig] = ART.scrollTextFor(si); const p = artPlane(ART.scrollArt(t, sig), S.w, S.h); p.rotation.y = Math.PI / 2; p.position.set(ROOM.x0 + 0.0095, yc, S.z); grp.add(p); }
       g.add(tag(grp, 'calligraphy hanging scrolls (书法挂轴)')); } }
   g.add(tag(cyl(0.11, 0.11, 0.05, { grey: 0.82, col: 0xe8e4d8 }, [ROOM.x1 - 0.03, CLOCK.y, CLOCK.z], [0, 0, 90]), 'wall clock'));
   { const f = mk(new THREE.CircleGeometry(0.107, 48), { noCast: true, grey: 0.85, col: 0xeeeeee, ...(({ art, artGrey, artEdge }) => ({ art, artGrey, artEdge }))(ART.clockFace()) }); f.rotation.y = -Math.PI / 2; f.position.set(ROOM.x1 - 0.0555, CLOCK.y, CLOCK.z); g.add(tag(f, 'wall clock')); }
-  g.add(tag(cyl(0.12, 0.09, 0.22, { grey: 0.5, col: 0x8a5a3a }, [PLANT[0], 0.11, PLANT[1]]), 'potted plant'));
-  g.add(tag(ball(0.2, { grey: 0.45, col: 0x4a6a3a }, [PLANT[0], 0.4, PLANT[1]], [1, 0.9, 1]), 'potted plant'));
+  { const pm = prop('potted_plant', { at: [PLANT[0], 0, PLANT[1]], size: { h: 0.6 } });   // props phase 2: Poly Haven potted_plant_02 (CC0), 0.6 m
+    if (pm) g.add(pm); else { g.add(tag(cyl(0.12, 0.09, 0.22, { grey: 0.5, col: 0x8a5a3a }, [PLANT[0], 0.11, PLANT[1]]), 'potted plant'));
+      g.add(tag(ball(0.2, { grey: 0.45, col: 0x4a6a3a }, [PLANT[0], 0.4, PLANT[1]], [1, 0.9, 1]), 'potted plant')); } }
   for (const P of [PENDANT, PENDANT2]) { g.add(tag(cyl(0.004, 0.004, P.drop, { grey: 0.1, col: 0x111111 }, [P.x, ROOM.h - P.drop / 2, P.z], null, 6), 'ceiling lights (off)'));
     g.add(tag(cyl(0.04, 0.2, 0.12, { grey: 0.88, col: 0xeeeae0 }, [P.x, ROOM.h - P.drop - 0.04, P.z], null, 20), 'ceiling lights (off)')); }
   // the old dining room's end: the long table (long axis north-south since the decision page), chairs, sideboard
@@ -400,10 +407,16 @@ function hairBit(fig) {
 function teaAndSteam(shot = {}) {
   const g = new THREE.Group(), PORC = { grey: 0.9, col: 0xf0ede4 }, steamPts = []; const r = rng(7);
   PLACES.mugs.forEach(([x, z], i) => {
-    const y0 = TABLE.h; g.add(tag(cyl(0.038, 0.034, 0.095, PORC, [x, y0 + 0.0475, z]), 'mugs of green tea'));
-    g.add(tag(cyl(0.032, 0.032, 0.003, { grey: 0.6, col: 0x9aa050 }, [x, y0 + 0.085, z]), 'mugs of green tea'));
-    const hd = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.006, 6, 14, Math.PI), new THREE.MeshBasicMaterial()); hd.userData.look = PORC; hd.castShadow = true; hd.receiveShadow = true;
-    hd.position.set(x + 0.038, y0 + 0.05, z); hd.rotation.set(0, 0, -Math.PI / 2); g.add(tag(hd, 'mugs of green tea'));
+    const y0 = TABLE.h;
+    // props phase 2: the downloaded mug body (saleviim "Cup", CC BY), handle turned to +x as before; the tea surface and the
+    // lid stay code (no lidded CC BY tea mug was found). Nobody holds a mug in this set.
+    // GLB measured (rim vertices): the body's rim is centred at model x -0.015 and the handle is on +x. props.json's mug
+    // grips have x the wrong way round (body +0.015, handle -0.046): FLAG for the props owner. So: no turn, shift +15 mm.
+    const pm = prop('mug', { at: [x + 0.015, y0, z], label: 'mugs of green tea', look: PORC });
+    if (pm) g.add(pm); else { g.add(tag(cyl(0.038, 0.034, 0.095, PORC, [x, y0 + 0.0475, z]), 'mugs of green tea'));
+      const hd = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.006, 6, 14, Math.PI), new THREE.MeshBasicMaterial()); hd.userData.look = PORC; hd.castShadow = true; hd.receiveShadow = true;
+      hd.position.set(x + 0.038, y0 + 0.05, z); hd.rotation.set(0, 0, -Math.PI / 2); g.add(tag(hd, 'mugs of green tea')); }
+    g.add(tag(cyl(pm ? 0.031 : 0.032, pm ? 0.031 : 0.032, 0.003, { grey: 0.6, col: 0x9aa050 }, [x, y0 + 0.085, z]), 'mugs of green tea'));
     if (i === 0) g.add(tag(cyl(0.042, 0.042, 0.008, PORC, [x - 0.07, y0 + 0.004, z - 0.06]), 'mug lid (off)'));
     // r3 open issue (V1h guides: "a stick in a mug"): was two straight 0.42 m tubes from the mug's centre. Now three thin wisps
     // per mug, each starting at a different point of the rim, drifting off to one side as it rises (~0.2-0.26 m), the curl

@@ -7,13 +7,13 @@
  "camera": {
   "position": [
    1.05,
-   0.9,
+   0.76,
    1.4
   ],
   "target": [
-   0.3814,
-   0.7515,
-   -0.4791
+   0.3795,
+   0.7762,
+   -0.4842
   ],
   "lens_mm": 50,
   "frame_width_mm": 36,
@@ -26,37 +26,37 @@
   "matrixWorld": [
    0.9421,
    0,
-   -0.3352,
+   -0.3353,
    0,
-   -0.0249,
-   0.9972,
-   -0.07,
+   0.0027,
+   1,
+   0.0076,
    0,
-   0.3343,
-   0.0742,
-   0.9395,
+   0.3352,
+   -0.0081,
+   0.9421,
    0,
    1.05,
-   0.9,
+   0.76,
    1.4,
    1
   ],
   "viewMatrix": [
    0.9421,
-   -0.0249,
-   0.3343,
+   0.0027,
+   0.3352,
    0,
    0,
-   0.9972,
-   0.0742,
+   1,
+   -0.0081,
    0,
-   -0.3352,
-   -0.07,
-   0.9395,
+   -0.3353,
+   0.0076,
+   0.9421,
    0,
    -0.5199,
-   -0.7734,
-   -1.7332,
+   -0.7735,
+   -1.6648,
    1
   ],
   "projectionMatrix": [
@@ -89,36 +89,36 @@
   "jade19": {
    "px": [
     1116.5,
-    424.8
+    435.7
    ],
    "eyes": [
     1075.2,
     432
    ],
    "mouth": [
-    1078.1,
-    527.3
+    1078.5,
+    528.3
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 18
+   "facing_camera_deg": 17
   },
   "firstLove19": {
    "px": [
-    755.1,
-    519.1
+    754.9,
+    434.8
    ],
    "eyes": [
     839.1,
-    497.8
+    435.6
    ],
    "mouth": [
-    836.9,
-    633.1
+    836.3,
+    571
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 156,
+   "facing_camera_deg": 155,
    "blocked_by": "firstLove19 first love (19)"
   }
  },
@@ -129,25 +129,25 @@
    -0.02
   ],
   "meet_px": [
-   968.6,
-   1193.6
+   968.9,
+   1182.8
   ],
   "each_px": {
    "jade19.L": [
-    1122.4,
-    1223.5
+    1126.4,
+    1213.4
    ],
    "jade19.R": [
-    848.1,
-    1192
+    845.6,
+    1189.5
    ],
    "firstLove19.L": [
-    815.5,
-    1163.8
+    812.4,
+    1152.4
    ],
    "firstLove19.R": [
-    1097.7,
-    1195.2
+    1101,
+    1175.6
    ]
   }
  },
@@ -163,19 +163,45 @@
     1.8939
    ],
    "px": [
-    -759.3,
-    5425.6
+    -1075.9,
+    7098.7
    ],
    "in_front": false,
    "travel_dir_px": [
-    -0.351,
-    0.936
+    -0.312,
+    0.95
    ],
-   "toward_camera": -0.838,
+   "toward_camera": -0.794,
    "aim_world": [
     0.55,
     0.8,
     -0.26
+   ]
+  },
+  {
+   "name": "ceiling",
+   "kind": "bedroom ceiling light: flush-mount frosted glass dome, warm, on (soft dim fill)",
+   "on": true,
+   "color": "#ffd6a0",
+   "world": [
+    0.75,
+    2.368,
+    1.85
+   ],
+   "px": [
+    4684.9,
+    14379
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.25,
+    0.968
+   ],
+   "toward_camera": -0.774,
+   "aim_world": [
+    0.75,
+    0,
+    1.85
    ]
   }
  ],
@@ -185,7 +211,7 @@
   "wrist: firstLove19 L hand turned 23.4 deg toward the forearm to keep the wrist in range (was flex 44.3, radial -52.7)",
   "wrist: firstLove19 R hand turned 23.4 deg toward the forearm to keep the wrist in range (was flex 44.3, radial -52.7)"
  ],
- "intent": "Over his right shoulder, level with her eyes, locked off. Sung shot (synced). Her whole face is in the sun that comes over his shoulder; the hems of the hanging clothes just above her head, the long coats dark frame-left behind her; his shoulder and the back of his head are the dark frame-left edge. Same question as the school office; here the answer is enough.",
+ "intent": "Over his right shoulder, low (round 4, Jade: lower, as on cast/first_love/fl_G_ots_hair_v5.png: the camera at about his ear height, looking a touch up at her, so the back of his head is seen level, not from above), locked off. Sung shot (synced). Her whole face is in the sun that comes over his shoulder; the hems of the hanging clothes just above her head, the long coats dark frame-left behind her; his shoulder and the back of his head are the dark frame-left edge. Same question as the school office; here the answer is enough.",
  "film": {
   "time": "3:29.4-3:32.5",
   "section": "Chorus 2a (\"I honestly don't know\", sung to him)",
@@ -225,20 +251,20 @@
   ],
   "aperture_px": [
    [
-    169.8,
-    -287.9
+    187.7,
+    -318.5
    ],
    [
-    1837.6,
-    -1132.1
+    1796.5,
+    -1168.7
    ],
    [
-    1753.3,
-    2469.8
+    1805.9,
+    2491.1
    ],
    [
-    220.8,
-    2077.3
+    182,
+    2115.4
    ]
   ],
   "footprints": {
@@ -267,20 +293,20 @@
     ],
     "px": [
      [
-      924,
-      1057.1
+      923.4,
+      1175.9
      ],
      [
-      1755.8,
-      2364.1
+      1805.6,
+      2371.3
      ],
      [
-      218.9,
-      1990.1
+      182.2,
+      2019
      ],
      [
-      356,
-      1084.9
+      343.8,
+      1200.4
      ]
     ]
    },
@@ -309,20 +335,20 @@
     ],
     "px": [
      [
-      324.8,
-      1290.6
+      307.9,
+      1382.3
      ],
      [
-      315.7,
-      788.3
+      309,
+      861
      ],
      [
-      1149.2,
-      517.4
+      1149.7,
+      568.1
      ],
      [
-      1144.5,
-      1403.6
+      1150.2,
+      1483.3
      ]
     ]
    }
@@ -333,19 +359,19 @@
    -0.26
   ],
   "anchor_px": [
-   1091.3,
-   495.6
+   1091.6,
+   500
   ],
   "on_screen": {
    "from_px": [
-    1122.4,
-    412.9
+    1122.3,
+    406.6
    ],
    "to_px": [
-    1063.2,
-    570.6
+    1063.7,
+    585
    ],
-   "angle_deg": 69.4,
+   "angle_deg": 71.8,
    "travel": "right-to-left"
   },
   "rhyme": {
@@ -358,7 +384,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": 29.4,
+   "angle_error_deg": 31.8,
    "travel_ok": true
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
@@ -373,6 +399,16 @@
   "count": 80
  },
  "mask": null,
+ "futon_clearance": {
+  "jade19": {
+   "min_gap_to_frame_m": 0.093,
+   "verts_inside_mattress": 0
+  },
+  "firstLove19": {
+   "min_gap_to_frame_m": 0.088,
+   "verts_inside_mattress": 0
+  }
+ },
  "points_world": {
   "jade19": {
    "eyes": [
@@ -505,8 +541,8 @@
     432
    ],
    "target_px": [
-    839.2,
-    497.8
+    839.1,
+    435.6
    ],
    "target_in_front": true
   },
@@ -562,7 +598,7 @@
    "warnings": [],
    "eyes_px": [
     839.1,
-    497.8
+    435.6
    ],
    "target_px": [
     1075.2,
@@ -573,10 +609,10 @@
  },
  "costume": {
   "jade19": {
-   "top": "#8a94a8",
-   "legs": "#2c3140",
+   "top": "#8c1515",
+   "legs": "#4f6d93",
    "sleeves": "long",
-   "sock": "#6a6a70",
+   "sock": "#eeece6",
    "torso": "real f"
   },
   "firstLove19": {
@@ -665,16 +701,16 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "firstLove19": 0.204,
-  "jade19": 0.1566
+  "firstLove19": 0.255,
+  "jade19": 0.1298
  },
  "colour_separation": [
   {
    "a": "firstLove19",
    "b": "jade19",
    "top_a": "#5a6a58",
-   "top_b": "#8a94a8",
-   "deltaE_top": 28.9,
+   "top_b": "#8c1515",
+   "deltaE_top": 64.2,
    "close": false
   }
  ],
