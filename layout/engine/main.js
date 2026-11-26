@@ -2,9 +2,12 @@
 //   window.shotList() -> [ids]; window.renderShot(id, mode) -> PNG data URL; window.sidecar(id) -> JSON object
 import * as THREE from 'three';
 import { ModeRenderer } from './render.js';
+import { FIG2 } from './figure2.js';
+import { drawGazeOverlay } from './gaze.js';
 
 const q = new URLSearchParams(location.search);
 const W = Number(q.get('w') || 1920), H = Number(q.get('h') || 1080), SET = q.get('set') || 'attic88';
+FIG2.on = q.get('gaze') === '1'; FIG2.body = q.get('body2') === '1';   // gaze + wrists (--gaze) / mannequin body v2 (--body2); off = unchanged
 const R = new ModeRenderer(W, H);
 const { build, buildV3 } = await import(`../sets/${SET}/build.js`);
 const { SHOTS: SHOTS_V1 } = await import(`../sets/${SET}/shots.js`);
@@ -72,9 +75,41 @@ function labelOverlay(b, canvas, shot) {
   // header
   g.font = '700 26px DejaVu Sans, sans-serif'; const head = `${shot.id}  ${shot.lens} mm  ${b.header || ''}`;
   const hw = g.measureText(head).width + 20; g.fillStyle = 'rgba(0,0,0,0.75)'; g.fillRect(0, 0, hw, 40); g.fillStyle = '#fff'; g.fillText(head, 10, 7);
+  if (FIG2.on) drawGazeOverlay(g, b, px, W, H);
   // hand-shadow polygons, as computed (dashed)
   if (b.shadowPolys) { g.save(); g.setLineDash([6, 5]); g.strokeStyle = '#7a00b0'; g.lineWidth = 2;
     for (const poly of b.shadowPolys.px) { g.beginPath(); poly.forEach(([x, y], i) => (i ? g.lineTo(x, y) : g.moveTo(x, y))); g.closePath(); g.stroke(); } g.restore(); }
+}
+
+// v2: every hand that grips / holds something, the object it holds (the engine's held cylinder, or the nearest small set
+// object within 3 cm of the hand) as world points for a convex hull, and the capsules of every hand touching that object.
+const GRIPS = new Set(['grip', 'pinch', 'cup']);
+function holdsFor(b) {
+  const r4 = (v) => v.toArray().map((x) => +x.toFixed(4));
+  const hands = []; for (const [who, f] of Object.entries(b.figs || {})) { const Pf = f.userData.P, spec = f.userData.spec;
+    for (const n of ['L', 'R']) { const a = spec[n], h = Pf.hands?.[n]; if (!h?.capsules || !a || typeof a !== 'object') continue;
+      const shape = typeof a.hand === 'string' ? a.hand : a.hand?.shape; if (!a.hold && !GRIPS.has(shape)) continue;
+      hands.push({ who, n, h, a, shape, held: Pf['held' + n] }); } }
+  const objs = new Map(); const cands = []; b.scene.traverse((o) => { if (!o.isMesh || o.userData.baseVisible === false) return; const L = o.userData.look; if (!L || L.glass || (L.only && !L.only.includes('flat'))) return;
+    if (o.userData.who && !/held/.test(o.userData.label || '')) return; const bb = new THREE.Box3().setFromObject(o); if (bb.isEmpty() || bb.getSize(new THREE.Vector3()).length() > 1.2) return; cands.push({ o, bb }); });
+  const capsD = (h, bb) => Math.min(...h.capsules.map((c) => Math.min(bb.distanceToPoint(c.a), bb.distanceToPoint(c.b)) - c.r));
+  for (const H of hands) { let best = null;
+    if (H.held) { H.h.group.traverse((o) => { if (o.isMesh && /held|cup/.test(o.userData.label || '') && o.geometry.type === 'CylinderGeometry') best = { o, bb: new THREE.Box3().setFromObject(o), d: 0 }; }); }
+    if (!best) for (const c of cands) { if (c.o.userData.who) continue; const d = capsD(H.h, c.bb); if (d < 0.03 && (!best || d < best.d)) best = { ...c, d }; }
+    if (!best) { objs.set('none:' + H.who + H.n, { label: null, hands: [H], note: 'no object within 3 cm of the hand' }); continue; }
+    const k = best.o.uuid; if (!objs.has(k)) objs.set(k, { o: best.o, bb: best.bb, label: best.o.userData.label || best.o.geometry.type, hands: [] }); objs.get(k).hands.push(H); }
+  const out = [];
+  for (const e of objs.values()) {
+    const rec = { object: e.label, note: e.note, hands: e.hands.map((H) => ({ who: H.who, arm: H.n, shape: H.shape, engine_held: !!H.held, capsules: H.h.capsules.map((c) => ({ part: c.part, a: r4(c.a), b: r4(c.b), r: +c.r.toFixed(4) })) })) };
+    if (e.o) { // other hands touching the same object count as support too
+      for (const [who, f] of Object.entries(b.figs || {})) for (const n of ['L', 'R']) { const h = f.userData.P.hands?.[n]; if (!h?.capsules || rec.hands.some((x) => x.who === who && x.arm === n)) continue;
+        if (capsD(h, e.bb) < 0.01) rec.hands.push({ who, arm: n, shape: h.shape, touching_only: true, capsules: h.capsules.map((c) => ({ part: c.part, a: r4(c.a), b: r4(c.b), r: +c.r.toFixed(4) })) }); }
+      const pos = e.o.geometry.attributes.position, step = Math.max(1, Math.floor(pos.count / 400)), pts = []; const v = new THREE.Vector3();
+      e.o.updateMatrixWorld(); for (let i = 0; i < pos.count; i += step) { v.fromBufferAttribute(pos, i).applyMatrix4(e.o.matrixWorld); pts.push(r4(v)); }
+      rec.hull = pts; rec.size_m = r4(e.bb.getSize(new THREE.Vector3())); }
+    out.push(rec);
+  }
+  return out;
 }
 
 function namedPt(t, b) { const [w, part] = t.split(':'); if (w === 'book') return b.book.anchors[part].clone(); return b.figs[w].userData.P[part].clone(); }
@@ -149,6 +184,29 @@ window.sidecar = (id) => {
     if (shot.contacts) out.contacts = shot.contacts.map(([a, c2, tol = 3]) => { const pa = namedPt(a, b), pc = namedPt(c2, b); const d = pa.distanceTo(pc) * 100;
       if (d > tol) out.warnings.push(`contact ${a} -> ${c2} is ${d.toFixed(1)} cm apart (tolerance ${tol})`); return { a, b: c2, distance_cm: +d.toFixed(1), ok: d <= tol, a_px: P(pa), b_px: P(pc) }; });
     out.layout_version = 4;
+  }
+  if (FIG2.on) { // v2: gaze per figure (look target, head / eye split, error, pointing check) and the costume colours in use
+    out.gaze = {}; out.costume = {};
+    for (const [who, f] of Object.entries(b.figs || {})) { const Pf = f.userData.P; if (!Pf.gaze) continue;
+      const gz = Pf.gaze; out.gaze[who] = { ...gz, eyes_px: P(Pf.gazeInfo.eyes), target_px: Pf.lookAt ? P(Pf.lookAt) : null, target_in_front: Pf.lookAt ? px(Pf.lookAt, cam).front : null };
+      for (const w of gz.warnings) out.warnings.push('gaze: ' + w);
+      out.costume[who] = Pf.costume;
+      if (Pf.wrists) { (out.wrists ||= {})[who] = Pf.wrists;
+        for (const [n, w] of Object.entries(Pf.wrists)) if (w.hand_turned_deg) out.warnings.push(`wrist: ${who} ${n} hand turned ${w.hand_turned_deg} deg toward the forearm to keep the wrist in range (was flex ${w.before.flex_deg}, radial ${w.before.radial_deg})`);
+        for (const [n, w] of Object.entries(Pf.wrists)) if (w.out_of_range.length) out.warnings.push(`wrist: ${who} ${n} ${w.hold ? 'grip cannot be reached naturally' : 'beyond the wrist range'} (${w.out_of_range.join(', ')}; flex ${w.flex_deg}, radial ${w.radial_deg}, twist ${w.twist_deg}, after an elbow swivel of ${w.elbow_swivel_deg} deg)`); } }
+    out.holds = holdsFor(b);   // held objects + hand capsules for engine/holdcheck.mjs (Rapier)
+    // close two-person frames: figures that fill the frame, and how far apart their main (top) colours are
+    const area = {}; for (let y = 1; y < H; y += 4) for (let x = 1; x < W; x += 4) { const m = idp.meshAt(x, y); const w = m?.userData.who; if (w) area[w] = (area[w] || 0) + 1; }
+    const tot = (W / 4) * (H / 4), big = Object.entries(area).filter(([, n]) => n / tot > 0.04).map(([w]) => w);
+    const lab = (h) => { const c = new THREE.Color(h); const f = (v) => (v > 0.04045 ? ((v + 0.055) / 1.055) ** 2.4 : v / 12.92); const r = f(c.r), gg = f(c.g), bb = f(c.b);
+      const X = (0.4124 * r + 0.3576 * gg + 0.1805 * bb) / 0.9505, Y = 0.2126 * r + 0.7152 * gg + 0.0722 * bb, Z = (0.0193 * r + 0.1192 * gg + 0.9505 * bb) / 1.089;
+      const t = (v) => (v > 0.008856 ? Math.cbrt(v) : 7.787 * v + 16 / 116); return [116 * t(Y) - 16, 500 * (t(X) - t(Y)), 200 * (t(Y) - t(Z))]; };
+    out.figure_frame_fraction = Object.fromEntries(Object.entries(area).map(([w, n]) => [w, +(n / tot).toFixed(4)]));
+    out.colour_separation = [];
+    for (let i = 0; i < big.length; i++) for (let j = i + 1; j < big.length; j++) { const A = out.costume[big[i]], B = out.costume[big[j]]; if (!A || !B) continue;
+      const la = lab(A.top), lb = lab(B.top), dE = Math.hypot(la[0] - lb[0], la[1] - lb[1], la[2] - lb[2]);
+      const e = { a: big[i], b: big[j], top_a: A.top, top_b: B.top, deltaE_top: +dE.toFixed(1), close: dE < 20 }; out.colour_separation.push(e);
+      if (e.close) out.warnings.push(`costume: ${big[i]} and ${big[j]} both fill the frame and their tops are close in colour (dE ${e.deltaE_top}: ${A.top} vs ${B.top})`); }
   }
   out.figure_report = Object.fromEntries(Object.entries(b.figs || {}).map(([w, f]) => [w, f.userData.report]));
   return out;

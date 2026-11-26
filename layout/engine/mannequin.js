@@ -13,9 +13,10 @@
 //   head    { look: target, turn: deg toward own left, nod: deg down, tilt: deg toward own right }
 //   torso   'real' (opt-in, with sex 'f' | 'm'): a clothed torso with waist, hips, bust / pectorals, shoulder blades
 //           (engine/torso.js). Default: the swept capsule.
+//           (FIG2.body, opt-in: every figure gets the real torso unless torso: 'capsule')
 //   fringe  'none' (opt-in): no fringe plank on 'bob' / 'long' hair; a thin hairline shell over the forehead instead.
 //   costume { top, legs, sock, sleeves, hairStyle, ... }: per-shot look over the CAST entry (height and kind are fixed)
-//   L / R   arm: { to: target (palm centre), hand: shape name, palm: dir, fingers: dir, elbow: dir }
+//   L / R   arm: { to: target (palm centre), hand: shape name, palm: dir, fingers: dir, elbow: dir, elbowAt: point }
 //           or a shortcut string: 'side' | 'lap' | 'kneeL' | 'kneeR'
 // targets: [x,y,z] | '<who>:<part>' (head, nose, mouth, ear, forehead, chin, handL, ...) | 'book:<anchor>' | any key the
 // set resolver knows. dirs: [x,y,z] world | 'up' 'down' 'fwd' 'back' 'left' 'right' 'in' 'out' (figure-relative) |
@@ -25,6 +26,8 @@ import { mk, limb, ball, slab, V, rad, UP, ik, basisQ, tag } from './core.js';
 import { taperGeo, chainGeos, ellipsoidGeo, sweptGeo, sweptPoint, partMesh } from './anatomy.js';
 import { buildHand, ageOf, tipLocal } from './hand.js';
 import { realTorso, REAL_PELVIS } from './torso.js';
+import { FIG2, buildFace, gazeReport, torsoType, costumeLook, hex, naturalWrist, wristAngles } from './figure2.js';
+export { FIG2 } from './figure2.js';   // figure guides v2 switch (gaze, real torsos, costume colours): off = unchanged
 
 let BUILD_ID = 0;   // line-mode id groups are per built figure
 // limb girth factor by age: 1 for adults, rounder for small children
@@ -78,6 +81,7 @@ export function buildFigure(spec, ctx) {
   const g = new THREE.Group(); g.name = spec.who;
   const look = (k) => ({ grey: GREY[k] ?? 0.6, col: c[k] ?? 0x808080 });
   const LK = { skin: look('skin'), hair: look('hair'), top: look('top'), legs: look('legs'), apron: look('apron'), band: look('band'), dark: { grey: 0.05, col: 0x111111 }, sock: { grey: 0.5, col: c.sock ?? 0x6a6a70 } };
+  if (FIG2.body) for (const k of ['top', 'legs', 'apron', 'band', 'sock']) LK[k] = costumeLook(LK[k]);   // v2: clothing in its real colour in form / flat
   const add = (m) => { g.add(m); return m; };
 
   const legLen = pr.hip * H, D = { thigh: 0.49 * legLen, shin: 0.45 * legLen, ankleH: 0.06 * legLen, H, hipW: pr.hipW * H, L: legLen };
@@ -112,8 +116,10 @@ export function buildFigure(spec, ctx) {
   const CF = { x: cx, y: cy, z: cz };
   const SH = { L: shC.clone().addScaledVector(cx, pr.shW * H).addScaledVector(cy, -0.012 * H), R: shC.clone().addScaledVector(cx, -pr.shW * H).addScaledVector(cy, -0.012 * H) };
   // pelvis (stays children[0]: engine/body.js reads its quaternion)
-  const realT = spec.torso === 'real';   // opt-in clothed torso (engine/torso.js); needs spec.sex 'f' | 'm'
-  const pR = realT ? REAL_PELVIS[spec.sex] : [0.1, 0.072, 0.07]; if (!pR) throw new Error("torso: 'real' needs sex 'f' or 'm'");
+  const realT = spec.torso === 'real' || (FIG2.body && spec.torso !== 'capsule');   // opt-in clothed torso (engine/torso.js); needs spec.sex 'f' | 'm'; v2: everyone
+  const tt = FIG2.body ? torsoType(spec.who, c, ageOf(c.kind)) : null;
+  const tSex = FIG2.body && (tt.type === 'c' || !spec.sex) ? tt.type : spec.sex;   // v2: children always 'c'; adults: the spec's sex, else from the cast key
+  const pR = realT ? REAL_PELVIS[tSex] : [0.1, 0.072, 0.07]; if (!pR) throw new Error("torso: 'real' needs sex 'f' or 'm'");
   const pelvis = add(ball(1, spec.who === 'daughter' ? LK.top : LK.legs, hip.clone().addScaledVector(by, 0.02 * H).addScaledVector(bz, -0.006 * H).toArray(), [pR[0] * H, pR[1] * H, pR[2] * H])); pelvis.quaternion.copy(qB); pelvis.userData.idGroup = uid + 'pelvis';
   let torsoFrame, torsoProf;
   { const T = [];
@@ -124,15 +130,16 @@ export function buildFigure(spec, ctx) {
     const kw = pr.chestW / 0.19 * H, kd = pr.chestD / 0.125 * H;
     torsoFrame = (t) => { const k = THREE.MathUtils.smoothstep(t, 0.15, 0.75); qT.copy(qB).slerp(qC, k);
       return { o: p0.clone().multiplyScalar((1 - t) ** 2).addScaledVector(pc, 2 * t * (1 - t)).addScaledVector(p2, t * t), x: ex.set(1, 0, 0).applyQuaternion(qT).clone(), z: ez.set(0, 0, 1).applyQuaternion(qT).clone() }; };
-    if (realT) { const R = realTorso(torsoFrame, { sex: spec.sex, H, kw, kd }); torsoProf = R.prof; T.push(R.geo); }
+    if (realT) { const R = realTorso(torsoFrame, { sex: tSex, H, kw, kd }); torsoProf = R.prof; T.push(R.geo); }
     else {
     torsoProf = [[0, 0.084 * kw, 0.058 * kd], [0.2, 0.081 * kw, 0.056 * kd], [0.35, 0.075 * kw, 0.055 * kd], [0.62, 0.088 * kw, 0.06 * kd], [0.8, 0.095 * kw, 0.0625 * kd], [1, 0.092 * kw, 0.055 * kd]];
     T.push(sweptGeo(torsoFrame, torsoProf, { nu: 30, nv: 36 })); }
     for (const s of [1, -1]) {
       const S = SH[s > 0 ? 'L' : 'R'], out = cx.clone().multiplyScalar(s);
-      T.push(taperGeo(shC.clone().addScaledVector(cy, 0.022 * H).addScaledVector(cz, -0.014 * H), S.clone().addScaledVector(cy, 0.01 * H).addScaledVector(cz, -0.004 * H), 0.024 * H * kg, 0.019 * H * kg));   // trapezius
+      T.push(FIG2.body ? taperGeo(shC.clone().addScaledVector(cy, 0.024 * H).addScaledVector(cz, -0.016 * H), S.clone().addScaledVector(cy, 0.002 * H).addScaledVector(cz, -0.006 * H).addScaledVector(out, -0.012 * H), 0.025 * H * kg, 0.015 * H * kg)   // v2: the slope from the neck runs down into the deltoid cap
+        : taperGeo(shC.clone().addScaledVector(cy, 0.022 * H).addScaledVector(cz, -0.014 * H), S.clone().addScaledVector(cy, 0.01 * H).addScaledVector(cz, -0.004 * H), 0.024 * H * kg, 0.019 * H * kg));   // trapezius
       { const rc = 0.0075 * H * kg;   // clavicle: one straight bone from the sternal notch to the acromion, half buried in the chest's top edge
-        T.push(taperGeo(sweptPoint(torsoFrame, torsoProf, 0.965, s > 0 ? rad(80) : Math.PI - rad(80), { inset: rc * 1.9 }), S.clone().addScaledVector(cy, 0.002 * H).addScaledVector(cz, 0.006 * H).addScaledVector(out, -0.024 * H), rc * 0.85, rc * 0.9, { radial: 16, cap: 5 }));   // the sternal end sinks in (no bumps on the chest)
+        T.push(taperGeo(sweptPoint(torsoFrame, torsoProf, 0.965, s > 0 ? rad(80) : Math.PI - rad(80), { inset: rc * 1.9 }), (FIG2.body ? S.clone().addScaledVector(cy, -0.006 * H).addScaledVector(cz, 0.002 * H).addScaledVector(out, -0.032 * H) : S.clone().addScaledVector(cy, 0.002 * H).addScaledVector(cz, 0.006 * H).addScaledVector(out, -0.024 * H)), rc * 0.85, rc * 0.9, { radial: 16, cap: 5 }));   // the sternal end sinks in (no bumps on the chest)
       }
     }
     part(T, LK.top, 'torso'); }
@@ -202,9 +209,12 @@ export function buildFigure(spec, ctx) {
   const R = headH / 2;
   const HL = (x, y, z) => new THREE.Vector3(x * R, y * R, z * R).applyQuaternion(qH).add(head);
   const skull = add(ball(R, LK.skin, head.toArray(), [pr.wk, 1, 0.9])); skull.quaternion.copy(qH); skull.userData.part = 'head';
-  const nose = mk(new THREE.ConeGeometry(R * 0.13, R * 0.34, 8), LK.skin); nose.position.copy(HL(0, -0.12, 0.9)); nose.quaternion.copy(qH.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)))); add(nose);
+  let gazeInfo = null;
+  if (FIG2.on) gazeInfo = buildFace({ add, who: spec.who, head, qH, hx, hy, hdir, R, eyeX: 0.3, eyeY: 0.08, skin: LK.skin, lookAt: P.lookAt || null, kid: ageOf(c.kind) < 13 });
+  if (!FIG2.on || gazeInfo.face !== 'blank') { // v2 'blank' faces get the gaze-aimed nose wedge from buildFace instead
+    const nose = mk(new THREE.ConeGeometry(R * 0.13, R * 0.34, 8), LK.skin); nose.position.copy(HL(0, -0.12, 0.9)); nose.quaternion.copy(qH.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)))); add(nose); }
   for (const s of [-1, 1]) {
-    add(ball(R * 0.075, LK.dark, HL(s * 0.3, 0.08, 0.82).toArray()));
+    if (!FIG2.on) add(ball(R * 0.075, LK.dark, HL(s * 0.3, 0.08, 0.82).toArray()));   // v2: eyes from buildFace (or none)
     add(ball(R * 0.17, LK.skin, HL(s * pr.wk * 0.97, 0.0, 0.0).toArray(), [0.45, 1, 0.75]));
   }
   { const m = mk(new THREE.BoxGeometry(R * 0.36, R * 0.05, R * 0.05), { grey: 0.3, col: 0x8a3b34 }); m.position.copy(HL(0, -0.48, 0.78)); m.quaternion.copy(qH); add(m); }
@@ -250,7 +260,8 @@ export function buildFigure(spec, ctx) {
     const resolveDir = (d) => (typeof d === 'string' && d.startsWith('to:')) ? ctx.resolve(d.slice(3), P).sub(target).normalize() : dirOf(d);
     let f = resolveDir(a.fingers), nrm = resolveDir(a.palm);
     const thumbDir = a.thumb ? resolveDir(a.thumb) : null;
-    const pole = a.elbow ? (resolveDir(a.elbow) || V(a.elbow)) : UP.clone().negate().addScaledVector(cx, s * 0.65).addScaledVector(cz, -0.3);
+    const pole = a.elbowAt ? ctx.resolve(a.elbowAt, P).sub(shoulder).normalize()   // elbowAt: a point the elbow should bend toward (pole solved from it)
+      : a.elbow ? (resolveDir(a.elbow) || V(a.elbow)) : UP.clone().negate().addScaledVector(cx, s * 0.65).addScaledVector(cz, -0.3);
     const hold = a.hold ? (typeof a.hold === 'number' ? { r: a.hold } : a.hold) : null;
     // hold.axis: turn the hand about its palm normal so the held cylinder (a forearm, a rail) runs along this direction
     if (hold?.axis && nrm) { const ax = resolveDir(hold.axis); const nn = nrm.clone().normalize(); ax.addScaledVector(nn, -ax.dot(nn)).normalize();
@@ -276,18 +287,35 @@ export function buildFigure(spec, ctx) {
     }
     if (!nrm) { nrm = UP.clone().negate(); if (Math.abs(nrm.dot(f)) > 0.9) nrm = cz.clone(); }
     nrm.addScaledVector(f, -nrm.dot(f)).normalize();
+    if (FIG2.on && a.to !== 'side') { // v2: natural wrists (engine/figure2.js naturalWrist): elbow swivel first, then the wrist
+      const isHold = !!hold || ['grip', 'pinch', 'cup'].includes(typeof shape === 'string' ? shape : shape?.shape);
+      // a cylinder held along hold.axis can be gripped with the hand either way round along it (thumb toward either end):
+      // take the way round whose wrist is natural (the forearm turns, the grip on the object stays)
+      if (hold?.axis) { const t2 = hold.centre ? target.clone().addScaledVector(f, 0.24 * Lh) : target.clone(), f2 = f.clone().negate();
+        const r2 = ik(shoulder, t2.clone().addScaledVector(f2, -0.26 * Lh), ua, fa, pole);
+        const badness = (rr, ff) => { const A = wristAngles(shoulder, rr.mid, rr.end, ff, nrm, n); return Math.max(0, A.flex - 60) + Math.max(0, -A.flex - 60) + Math.max(0, A.radial - 20) + Math.max(0, -A.radial - 30) + 0.25 * (Math.abs(A.flex) + Math.abs(A.radial)) + (A.twist == null ? 0 : 0.5 * Math.max(0, Math.abs(A.twist) - 80)); };
+        if (r2.reach <= 1.0 && badness(r2, f2) < badness(r, f) - 10) { target = t2; f = f2; r = r2; (P.gripFlip ||= {})[n] = true; } }
+      const wr = naturalWrist({ shoulder, target, f, nrm, side: n, ua, fa, Lh, pole, r, isHold, clampHand: !!hold || (!isHold && !a.tip), fixedElbow: !!(a.elbow || a.elbowAt), ik, out: cx.clone().multiplyScalar(s) });
+      r = wr.r; f = wr.f; nrm = wr.nrm; (P.wrists ||= {})[n] = { ...wr.report, grip_reversed: !!P.gripFlip?.[n] }; }
     // ---- arm geometry: deltoid cap from the acromion down the humerus, upper arm and forearm as one smooth chain
     // (the elbow is their shared sphere), the distal forearm flattened like a wrist, armpit folds into the torso
     const S = shoulder, E = r.mid, Wr = r.end, u = E.clone().sub(S).normalize(), out = cx.clone().multiplyScalar(s);
     const tH = n === 'R' ? new THREE.Vector3().crossVectors(f, nrm) : new THREE.Vector3().crossVectors(nrm, f); tH.normalize();
     const foreLook = c.sleeves === 'long' ? LK.top : LK.skin, upperLook = c.sleeves === 'short' ? LK.skin : LK.top;
-    const rS = 0.0285 * H * kg, rE = 0.0205 * H * kg, rF = 0.0215 * H * kg, rW = 0.0145 * H * kg, F1 = E.clone().lerp(Wr, 0.3);
-    const gU = upperLook === foreLook ? 'arm' + n : 'uarm' + n, gF = upperLook === foreLook ? 'arm' + n : 'farm' + n;
-    const delt = taperGeo(S.clone().addScaledVector(cy, 0.006 * H), S.clone().addScaledVector(u, 0.42 * ua), 0.03 * H * kg, 0.024 * H * kg, { radial: 18 });
-    const upper = taperGeo(S, E, rS, upperLook === foreLook ? rE : rE * 1.1, { radial: 18 });   // a sleeve edge at the elbow: the sleeve encloses the joint (no coincident surfaces)
+    const kA = FIG2.body ? 1 + 0.08 * (16 - Math.min(16, ageOf(c.kind))) / 13 : kg;   // v2: children's arms slimmer than the default roundness
+    const rS = 0.0285 * H * kA, rE = 0.0205 * H * kA, rF = 0.0215 * H * kA, rW = 0.0145 * H * kA, F1 = E.clone().lerp(Wr, 0.3);
+    // v2: the arm shares the torso's line id when it is the same cloth (no seam ring at the shoulder; silhouettes still
+    // draw from the normals)
+    const gU = FIG2.body && upperLook === LK.top ? 'torso' : upperLook === foreLook ? 'arm' + n : 'uarm' + n, gF = FIG2.body && foreLook === LK.top ? 'torso' : upperLook === foreLook ? 'arm' + n : 'farm' + n;
+    // v2 deltoid: an ellipsoid along the humerus wrapping its head, its top at the acromion, its inner side sunk in the
+    // torso (the old sphere-cone stood on the shoulder like a ball)
+    const delt = FIG2.body ? (() => { let ox = out.clone().addScaledVector(u, -out.dot(u)); if (ox.lengthSq() < 0.01) ox = cz.clone().addScaledVector(u, -cz.dot(u)); ox.normalize();
+        return ellipsoidGeo(S.clone().addScaledVector(u, 0.15 * ua).addScaledVector(cy, -0.006 * H), [0.027 * H * kA, 0.27 * ua, 0.026 * H * kA], { x: ox, y: u, z: new THREE.Vector3().crossVectors(ox, u) }, { w: 22, h: 16 }); })()
+      : taperGeo(S.clone().addScaledVector(cy, 0.006 * H), S.clone().addScaledVector(u, 0.42 * ua), 0.03 * H * kg, 0.024 * H * kg, { radial: 18 });
+    const upper = taperGeo(FIG2.body ? S.clone().addScaledVector(u, 0.1 * ua) : S, E, rS, upperLook === foreLook ? rE : rE * 1.1, { radial: 18 });   // a sleeve edge at the elbow: the sleeve encloses the joint (no coincident surfaces)
     const fore = [taperGeo(E, F1, rE, rF, { radial: 16 }), taperGeo(F1, Wr, rF, rW, { radial: 16, side: tH, sz: 0.72 })];
     if (c.sleeves === 'short') {
-      part([delt, taperGeo(S, S.clone().lerp(E, 0.42), rS * 1.12, (rS + (rE - rS) * 0.42) * 1.14, { radial: 18 })], LK.top, 'sleeve' + n);
+      part([delt, taperGeo(FIG2.body ? S.clone().addScaledVector(u, 0.1 * ua) : S, S.clone().lerp(E, 0.42), rS * 1.12, (rS + (rE - rS) * 0.42) * 1.14, { radial: 18 })], LK.top, FIG2.body ? 'torso' : 'sleeve' + n);
       part([upper, ...fore], LK.skin, gU);
     } else if (gU === gF) part([delt, upper, ...fore], upperLook, gU);
     else { part([delt, upper], upperLook, gU); part(fore, foreLook, gF); }
@@ -296,8 +324,8 @@ export function buildFigure(spec, ctx) {
     // the arm); they only grow as the upper arm leaves the side (a hanging arm has none: they would stand off the chest)
     { const el = Math.acos(THREE.MathUtils.clamp(-u.dot(cy), -1, 1)), k = THREE.MathUtils.smoothstep(el, rad(35), rad(95));
       if (k > 0.05) { const fu = S.clone().addScaledVector(u, 0.28 * ua);
-        part([taperGeo(sweptPoint(torsoFrame, torsoProf, 0.8, Math.PI / 2 - s * 1.05, { inset: 0.018 * H * kg }), fu.clone().addScaledVector(cz, 0.004 * H), 0.016 * H * kg * k, 0.018 * H * kg),
-          taperGeo(sweptPoint(torsoFrame, torsoProf, 0.74, -Math.PI / 2 + s * 1.0, { inset: 0.02 * H * kg }), fu.clone().addScaledVector(cz, -0.004 * H), 0.018 * H * kg * k, 0.019 * H * kg)], LK.top, c.sleeves === 'short' ? 'sleeve' + n : gU); } }
+        part([taperGeo(sweptPoint(torsoFrame, torsoProf, 0.8, Math.PI / 2 - s * 1.05, { inset: 0.018 * H * kg }), fu.clone().addScaledVector(cz, 0.004 * H), 0.016 * H * kg * k, 0.018 * H * kA),
+          taperGeo(sweptPoint(torsoFrame, torsoProf, 0.74, -Math.PI / 2 + s * 1.0, { inset: 0.02 * H * kg }), fu.clone().addScaledVector(cz, -0.004 * H), 0.018 * H * kg * k, 0.019 * H * kA)], LK.top, FIG2.body ? 'torso' : c.sleeves === 'short' ? 'sleeve' + n : gU); } }
     const hg = new THREE.Group(); hg.name = spec.who + '.hand' + n; add(hg);
     const hand = buildHand(n, Lh, shape, Wr, f, nrm, LK.skin, hg, { kind: c.kind, id: uid + 'hand' + n, palmGroup: foreLook === LK.skin ? uid + gF : null, hold: hold?.r });
     if (hand.held && hold.prop !== false) { const hh = hold.h ?? hold.r * 2.6, ax = hand.held.axis.clone(), ctr = hand.held.centre.clone().addScaledVector(ax, hold.off ?? hh * 0.12);
@@ -307,11 +335,14 @@ export function buildFigure(spec, ctx) {
     P['middle' + n] = hand.tips.middle; P['ring' + n] = hand.tips.ring; P['little' + n] = hand.tips.little; P['knuckle' + n] = hand.knuckles.middle;
     P['forearm' + n] = E.clone().lerp(Wr, 0.55); P['upperArm' + n] = S.clone().lerp(E, 0.5);
     const shapeName = typeof shape === 'string' ? shape : (shape.shape || 'relax');
-    P.hands[n] = { group: hg, shape: shapeName, pose: hand.pose, f, n: nrm, t: hand.t, reach: +r.reach.toFixed(2) };
+    P.hands[n] = { group: hg, shape: shapeName, pose: hand.pose, f, n: nrm, t: hand.t, reach: +r.reach.toFixed(2), capsules: hand.capsules, joints: hand.joints, Lh };   // capsules / joints: world data (engine/holdcheck.mjs, mesh adapters)
   }
   g.traverse((o) => { o.userData.who = spec.who; });
   tag(g, c.name);
   g.userData.report = { legs: legInfo, arms: { L: P.hands.L.reach, R: P.hands.R.reach }, headTurn: P.headTurn };
+  if (FIG2.on) { P.gaze = gazeReport(spec, P, ctx, gazeInfo, hs); P.gazeInfo = gazeInfo;
+    P.costume = { top: hex(c.top), legs: hex(spec.who === 'daughter' ? c.skin : c.legs), sleeves: c.sleeves, sock: hex(c.sock ?? 0x6a6a70), apron: c.apron && !spec.noApron ? hex(c.apron) : undefined, band: c.band ? hex(c.band) : undefined,
+      torso: realT ? `real ${tSex}${tt && !spec.sex ? ' (' + tt.how + ')' : ''}` : 'capsule' }; }
   return g;
 }
 

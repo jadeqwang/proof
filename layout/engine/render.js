@@ -14,6 +14,7 @@
 //             light pale grey, shade 50 % grey; the form and contours faintly underneath
 // A built shot (from a set's build.js) is { scene, cam, rig(mode) -> [lights], near, far, header, mirror?, shadowLine? }
 import * as THREE from 'three';
+import { FIG2 } from './figure2.js';   // figure guides v2 (costume wash, figure-against-figure outlines); off = unchanged
 const GLASS_VOLUME = /beam|shaft|volume|sunlight|steam|blade|cone|light/i;   // glass-look meshes that are light, not glass
 
 export class ModeRenderer {
@@ -170,20 +171,28 @@ export class ModeRenderer {
     if (pass === 'flat' || pass === 'label') {
       const gv = L.flatGrey ?? L.grey ?? 0.6;
       if (L.emit) mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(L.flatEmit ?? 0.97, L.flatEmit ?? 0.97, L.flatEmit ?? 0.97), side: THREE.DoubleSide });
+      else if (L.art) mat = new THREE.MeshLambertMaterial({ map: L.artGrey || L.art, side: THREE.DoubleSide });   // fixed background art (sets/_art.js): its greys
+      else if (L.flatCol != null) mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(L.flatCol), side: THREE.DoubleSide });   // v2: clothing / eyes in their colour
       else if (L.map && pass === 'label') mat = new THREE.MeshBasicMaterial({ map: L.map, transparent: true, side: THREE.DoubleSide });
       else mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(gv, gv, gv), side: THREE.DoubleSide });
     } else if (pass === 'lit') {
       if (L.glass) mat = new THREE.MeshBasicMaterial({ color: L.col ?? 0x8899aa, transparent: true, opacity: L.opacity ?? 0.12, side: THREE.DoubleSide, depthWrite: false });
       else if (L.emit) { const c = new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1); mat = new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap }); }
+      else if (L.art) mat = new THREE.MeshLambertMaterial({ map: L.art, side: THREE.DoubleSide });   // fixed background art in colour
       else mat = new THREE.MeshLambertMaterial({ color: L.col ?? 0x808080, side: THREE.DoubleSide });
     } else if (pass === 'glow') {
       mat = L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap })
         : new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide, transparent: !!L.glass, opacity: L.glass ? 0 : 1, depthWrite: !L.glass });
     } else if (pass === 'form') {
       mat = L.glass ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.62, 0.74, 0.80), transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide })
-        : L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.97, 0.97, 0.97), side: THREE.DoubleSide }) : this._formMat(ud.formTint || [0.8, 0.8, 0.8]);
+        : L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.97, 0.97, 0.97), side: THREE.DoubleSide })
+        : L.art ? this._formArtMat(ud.formTint || [0.8, 0.8, 0.8], L.artGrey || L.art) : this._formMat(ud.formTint || [0.8, 0.8, 0.8]);
+    } else if (pass === 'artline') {   // fixed background art: its edge map, white elsewhere (multiplied over line / contour)
+      mat = new THREE.MeshBasicMaterial({ color: 0xffffff, map: L.art ? (L.artEdge || null) : null, side: THREE.DoubleSide });
     } else if (pass === 'irr') {   // irradiance of the shot's real lights on white (light mode)
       mat = L.emit ? new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }) : new THREE.MeshLambertMaterial({ color: 0xffffff, side: THREE.DoubleSide });
+    } else if (pass === 'costume') {   // v2: clothing colour, white elsewhere (the wash over contour / light)
+      mat = new THREE.MeshBasicMaterial({ color: L.costumeCol != null && !L.emit ? new THREE.Color(L.costumeCol) : new THREE.Color(1, 1, 1), side: THREE.DoubleSide });
     } else if (pass === 'mask') {
       mat = L.recvShadowLine ? new THREE.MeshLambertMaterial({ color: 0xffffff, side: THREE.DoubleSide }) : new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide });
     }
@@ -232,6 +241,28 @@ export class ModeRenderer {
   _toCanvas() { const c = document.createElement('canvas'); c.width = this.W; c.height = this.H; c.getContext('2d').drawImage(this.canvas, 0, 0); return c; }
 
   renderView(built, mode, cam) {
+    const c = this._renderView(built, mode, cam);
+    if (FIG2.body) this._fig2Post(built, mode, cam, c);
+    return c;
+  }
+  // v2: the costume colour wash over contour (pale) and light, and a dark outline where one figure meets another
+  _fig2Post(built, mode, cam, c) {
+    const g = c.getContext('2d');
+    if (mode === 'contour' || mode === 'light') {
+      this._prep(built.scene, 'costume', 'line'); this._lights(built.scene, built, 'none');
+      this._render(built.scene, cam, null, 0xffffff, 1);
+      g.save(); g.globalCompositeOperation = 'multiply'; g.globalAlpha = mode === 'contour' ? 0.42 : 0.55; g.drawImage(this.canvas, 0, 0); g.restore();
+    }
+    if (['flat', 'label', 'form', 'light'].includes(mode)) {
+      const id = this.idPass(built, cam), W = this.W, H = this.H, who = new Array(W * H);
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const k = ((H - 1 - y) * W + x) * 4; const m = id.byId.get((id.buf[k] << 16) | (id.buf[k + 1] << 8) | id.buf[k + 2]); who[y * W + x] = m ? m.userData.who || null : null; }
+      const im = g.getImageData(0, 0, W, H), d = im.data;
+      for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { const i = y * W + x, a = who[i]; if (!a) continue;
+        for (const j of [i - 1, i + 1, i - W, i + W]) { const b = who[j]; if (b && b !== a) { d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = 26; break; } } }
+      g.putImageData(im, 0, 0);
+    }
+  }
+  _renderView(built, mode, cam) {
     const { scene } = built; const W = this.W, H = this.H;
     scene.background = null;
     if (mode === 'line') {
@@ -245,7 +276,7 @@ export class ModeRenderer {
       if (useMask) this._maskFlag(built, cam);
       this.edgeMat.uniforms.uMask.value = useMask; this.edgeMat.uniforms.uNT.value = built.edgeNT ?? 0.25;
       this.r.setRenderTarget(null); this.r.setClearColor(0xffffff, 1); this.r.clear(); this.r.render(this.quadScene, this.quadCam);
-      return this._toCanvas();
+      return this._artLines(built, cam, this._toCanvas());
     }
     if (mode === 'depth') {
       this.depthMat.uniforms.uNear.value = built.near ?? 0.3; this.depthMat.uniforms.uFar.value = built.far ?? 10;
@@ -297,6 +328,40 @@ export class ModeRenderer {
           gl_FragColor = vec4(uTint * v / 0.8 * 0.92, 1.); }`,
     });
   }
+  // fixed background art (opt-in: look.art, sets/_art.js): the form shading modulated by the picture's greys
+  _formArtMat(tint, map) {
+    return new THREE.ShaderMaterial({
+      side: THREE.DoubleSide, clipping: true, uniforms: { uTint: { value: new THREE.Vector3(...tint) }, tMap: { value: map } },
+      vertexShader: `#include <common>
+        #include <clipping_planes_pars_vertex>
+        varying vec3 vN; varying vec2 vUv;
+        void main(){ vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix * normal); vUv = uv; gl_Position = projectionMatrix * mv;
+        #include <clipping_planes_vertex>
+        }`,
+      fragmentShader: `#include <common>
+        #include <clipping_planes_pars_fragment>
+        uniform vec3 uTint; uniform sampler2D tMap; varying vec3 vN; varying vec2 vUv;
+        void main(){
+        #include <clipping_planes_fragment>
+          vec3 n = normalize(vN); if (!gl_FrontFacing) n = -n;
+          vec3 wn = normalize((vec4(n, 0.) * viewMatrix).xyz);
+          vec3 key = normalize(vec3(-0.45, 0.55, 0.75));
+          float k = max(dot(n, key), 0.);
+          float hemi = 0.5 + 0.5*wn.y;
+          float v = 0.58 + 0.27*k + 0.15*hemi;
+          float a = texture2D(tMap, vUv).r;
+          gl_FragColor = vec4(uTint * v / 0.8 * 0.92 * (0.3 + 0.7*a), 1.); }`,
+    });
+  }
+  // line / contour: multiply the edge maps of any visible fixed art over the canvas (no art in the scene: unchanged)
+  _artLines(built, cam, c) {
+    let any = false; built.scene.traverse((o) => { if (o.isMesh && o.visible && o.userData.look?.art) any = true; });
+    if (!any) return c;
+    this._prep(built.scene, 'artline', 'line'); this._lights(built.scene, built, 'none');
+    this._render(built.scene, cam, null, 0xffffff, 1);
+    const g = c.getContext('2d'); g.save(); g.globalCompositeOperation = 'multiply'; g.drawImage(this.canvas, 0, 0); g.restore();
+    return c;
+  }
   // class per visible mesh: people (userData.who), else by the world size of its label group: room shell / furniture / prop
   _classify(meshes) {
     const boxes = new Map();
@@ -305,6 +370,7 @@ export class ModeRenderer {
     const hash = (str) => { let h = 2166136261; for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); } return ((h >>> 0) % 1000) / 1000; };
     const TINT = { person: [0.92, 0.915, 0.905], hair: [0.56, 0.55, 0.54], room: [0.77, 0.77, 0.78], furniture: [0.84, 0.80, 0.72], prop: [0.70, 0.80, 0.90] };
     for (const m of meshes) {
+      if (m.userData.look?.formTint) { m.userData.formTint = m.userData.look.formTint; m.userData.formClass = m.userData.who ? 'costume' : 'tinted'; if (m.userData.mats) delete m.userData.mats.form; continue; }   // v2 (engine/figure2.js)
       let cls, k = m.userData.label || ('#' + m.id);
       if (m.userData.who) cls = (m.material?.userData?.hair || (m.userData.look?.grey ?? 1) <= 0.15) ? 'hair' : 'person';
       else { const b = boxes.get(k); const s = b ? b.getSize(new THREE.Vector3()) : new THREE.Vector3(1, 1, 1);
@@ -327,7 +393,7 @@ export class ModeRenderer {
     if (mode === 'contour') {
       this.edgeMat.uniforms.uMask.value = 0; this.edgeMat.uniforms.uNT.value = built.edgeNT ?? 0.25;
       this.r.setRenderTarget(null); this.r.setClearColor(0xffffff, 1); this.r.clear(); this.r.render(this.quadScene, this.quadCam);
-      return this._toCanvas();
+      return this._artLines(built, cam, this._toCanvas());
     }
     // the form pass (no lights needed: the shader shades from the normal)
     const { meshes } = this._prep(scene, 'id', 'line'); this._classify(meshes);

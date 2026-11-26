@@ -13,7 +13,8 @@
 import * as THREE from 'three';
 import { mk, limb, ball, slab, V, rad, UP, basisQ, tag } from './core.js';
 import { buildFigure, CAST, PROP } from './mannequin.js';
-import { buildHand } from './hand.js';
+import { buildHand, ageOf } from './hand.js';
+import { FIG2, buildFace, costumeLook } from './figure2.js';   // figure guides v2 (eyes that aim, costume colours); off = unchanged
 
 const GREY = { skin: 0.78, hair: 0.12, top: 0.62, legs: 0.42, band: 0.5, dark: 0.08, sock: 0.5, joint: 0.7 };
 // limits (degrees). Children are a little more flexible.
@@ -70,7 +71,10 @@ export function buildBody(spec0, ctx) {
   const g = new THREE.Group(); g.name = spec.who;
   const look = (k) => ({ grey: GREY[k] ?? 0.6, col: c[k] ?? 0x808080 });
   const LK = { skin: look('skin'), hair: look('hair'), top: look('top'), legs: look('legs'), band: look('band'), dark: { grey: 0.05, col: 0x111111 }, sock: { grey: 0.5, col: 0x6a6a70 } };
-  const add = (m) => { g.add(m); return m; };
+  if (FIG2.body) for (const k of ['top', 'legs', 'band', 'sock']) LK[k] = costumeLook(LK[k]);
+  // v2 (FIG2.body): the body is the engine mannequin's (real torso, shoulder girdle, eyes that aim, costume colours) and this
+  // module adds only its v4 hair and glasses and its joint-limit report: its own capsule geometry is built but not added
+  const add = FIG2.body ? (m) => m : (m) => { g.add(m); return m; };
   const { hip, waist, shoulderC: shC, cx, cy, cz } = P; const bx = P.left, by = P.up;
   const legLook = spec.who === 'daughter' ? LK.skin : LK.legs;
   // ---- torso: pelvis, abdomen, ribcage, girdle
@@ -106,7 +110,7 @@ export function buildBody(spec0, ctx) {
     // rebuild the hand group in place (stage.casterMeshes / hideParts use P.hands[n].group)
     const hg = new THREE.Group(); hg.name = spec.who + '.hand' + n; add(hg);
     const h5 = hand5(n, pr.hand * H, spec[n]?.hand || hd.shape, W, hd.f, hd.n, LK.skin, hg, G.finger, c.kind);
-    hd.group = hg; P['index' + n] = h5.tips.index; P['thumb' + n] = h5.tips.thumb;
+    if (!FIG2.body) { hd.group = hg; P['index' + n] = h5.tips.index; P['thumb' + n] = h5.tips.thumb; }
     P['forearm' + n] = E.clone().lerp(W, 0.55); P['upperArm' + n] = S.clone().lerp(E, 0.5);
     // ---- limits
     const u = E.clone().sub(S).normalize(), f = W.clone().sub(E).normalize();
@@ -133,10 +137,13 @@ export function buildBody(spec0, ctx) {
   add(limb(neckBase, HL(0, -0.55, -0.15), G.neck * H, LK.skin)); P.neck = neckBase.clone().lerp(HL(0, -0.55, -0.15), 0.5);
   const skull = add(ball(R, LK.skin, P.head.toArray(), [pr.wk, 1, 0.9])); skull.quaternion.copy(qH); skull.userData.part = 'head';
   const jaw = add(ball(R * 0.62, LK.skin, HL(0, -0.36, 0.12).toArray(), [pr.wk * 1.05, 0.8, 0.9])); jaw.quaternion.copy(qH);
-  const nose = mk(new THREE.ConeGeometry(R * 0.12, R * 0.3, 8), LK.skin); nose.position.copy(HL(0, -0.12, 0.9)); nose.quaternion.copy(qH.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)))); add(nose);
-  for (const s of [-1, 1]) { add(ball(R * (kid ? 0.1 : 0.075), LK.dark, HL(s * 0.32, 0.06, 0.83).toArray())); add(ball(R * 0.17, LK.skin, HL(s * pr.wk * 0.97, 0.0, 0.0).toArray(), [0.45, 1, 0.75])); }
+  const gi = FIG2.on && !FIG2.body ? buildFace({ add, who: spec.who, head: P.head, qH, hx: P.headX, hy: P.headUp, hdir: P.headFwd, R, eyeX: 0.32, eyeY: 0.06, skin: LK.skin, lookAt: P.lookAt || null, kid: ageOf(c.kind) < 13 }) : null;   // gaze eyes (with FIG2.body the mannequin's own face is used)
+  if (gi) P.gazeInfo = gi;
+  if (!gi || gi.face !== 'blank') { const nose = mk(new THREE.ConeGeometry(R * 0.12, R * 0.3, 8), LK.skin); nose.position.copy(HL(0, -0.12, 0.9)); nose.quaternion.copy(qH.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)))); add(nose); }
+  for (const s of [-1, 1]) { if (!gi) add(ball(R * (kid ? 0.1 : 0.075), LK.dark, HL(s * 0.32, 0.06, 0.83).toArray())); add(ball(R * 0.17, LK.skin, HL(s * pr.wk * 0.97, 0.0, 0.0).toArray(), [0.45, 1, 0.75])); }
   { const m = mk(new THREE.BoxGeometry(R * 0.34, R * 0.05, R * 0.05), { grey: 0.3, col: 0x8a3b34 }); m.position.copy(HL(0, -0.48, 0.8)); m.quaternion.copy(qH); add(m); }
-  if (spec.who === 'mama' || spec.who === 'jade') for (const s of [-1, 1]) { const ring = mk(new THREE.TorusGeometry(R * 0.2, R * 0.025, 6, 18), LK.dark); ring.position.copy(HL(s * 0.32, 0.06, 0.95)); ring.quaternion.copy(qH); ring.scale.set(1.2, 0.8, 1); add(ring); }   // glasses
+  if (spec.who === 'mama' || spec.who === 'jade') for (const s of [-1, 1]) { const ring = mk(new THREE.TorusGeometry(R * 0.2, R * 0.025, 6, 18), LK.dark); ring.position.copy(HL(s * 0.32, 0.06, 0.95)); ring.quaternion.copy(qH); ring.scale.set(1.2, 0.8, 1); g.add(ring); }   // glasses
+  if (FIG2.body) { const hairCol = CAST[spec.who].hair; for (const o of old.children.slice()) { const L = o.userData.look; if (L && L.grey === 0.12 && L.col === hairCol) continue; g.add(o); } }   // the mannequin without its own hair
   hairCap(g, P, R, pr, LK.hair, spec.hair || HAIR4[spec.who]);
   g.traverse((o) => { o.userData.who = spec.who; });
   tag(g, c.name);

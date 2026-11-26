@@ -208,7 +208,7 @@ export function buildHand(side, Lh, spec, wrist, f, n, look, g, opts = {}) {
   if (opts.hold) { pose = wrapPose(pose, G, opts.hold / Lh, pf.fing); pose.thumb = solveGoal(pose, G, pose.thumb.goal); }
   else if (pose.thumb.touch) pose = { ...pose, thumb: solveTouch(pose, G, pf.fing) };
   const W = (p) => L(p.x, p.y, p.z);
-  const out = { meshes: [], tips: {}, knuckles: {}, pose };
+  const out = { meshes: [], tips: {}, knuckles: {}, pose, capsules: [], joints: {} };   // capsules / joints: world data for engine/holdcheck.mjs and mesh adapters (no effect on the render)
   const add = (m) => { g.add(m); out.meshes.push(m); return m; };
   // palm (with the heel of the hand reaching back over the wrist joint)
   const P = G.palm;
@@ -218,6 +218,8 @@ export function buildHand(side, Lh, spec, wrist, f, n, look, g, opts = {}) {
     const { pts } = fingerChain(fn, pose, G); const r = G.rad[fn].map((x) => x * pf.fing * Lh); const w = pts.map(W);
     const geos = []; for (let k = 0; k < 3; k++) geos.push(taperGeo(w[k], w[k + 1], r[k], r[k + 1], { radial: rs, cap: 4 }));
     add(partMesh(geos, look, `${id}.${fn}`));
+    for (let k = 0; k < 3; k++) out.capsules.push({ part: `${fn}${k + 1}`, a: w[k], b: w[k + 1], r: (r[k] + r[k + 1]) / 2 }); out.joints[fn] = w;
+    out.capsules.push({ part: 'palm:' + fn, a: L(G.mcp[fn][0] * 0.8, 0.02, 0), b: w[0], r: P.t1 * pf.palmT * Lh * 0.9 });
     out.tips[fn] = w[3]; out.knuckles[fn] = w[0];
   }
   // thumb: metacarpal (its flesh is the thenar pad), proximal and distal phalanges
@@ -225,7 +227,8 @@ export function buildHand(side, Lh, spec, wrist, f, n, look, g, opts = {}) {
     // the metacarpal (thenar) belongs to the palm's surface: the visible thumb starts at its MCP knuckle
     add(partMesh([taperGeo(w[0], w[1], r[0], r[1], { radial: rs, cap: 4 })], look, opts.palmGroup || id + '.palm'));
     add(partMesh([taperGeo(w[1], w[2], r[1] * 0.93, r[2], { radial: rs, cap: 4 }), taperGeo(w[2], w[3], r[2], r[3], { radial: rs, cap: 4 })], look, `${id}.thumb`));   // starts just inside the thenar's end: a clean knuckle line, no coincident surfaces
-    out.tips.thumb = w[3]; out.knuckles.thumb = w[1]; }
+    out.tips.thumb = w[3]; out.knuckles.thumb = w[1];
+    for (let k = 0; k < 3; k++) out.capsules.push({ part: `thumb${k}`, a: w[k], b: w[k + 1], r: (r[k] + r[k + 1]) / 2 }); out.joints.thumb = w; }
   out.palm = L(0, 0.26, 0); out.t = t; out.q = q;
   if (pose.hold) out.held = { centre: L(0, pose.hold.cy, pose.hold.cz), axis: t.clone(), r: pose.hold.R * Lh };
   out.indexTip = out.tips.index; out.thumbTip = out.tips.thumb;

@@ -69,6 +69,63 @@ exactly as before (checked pixel-identical on office91 BO1). First used by close
 Also opt-in: `fringe: 'none'` drops the fringe plank of 'bob' / 'long' hair for a thin hairline shell over the forehead
 (the plank reads as a headset when the head is bowed). Default unchanged.
 
+### Gaze, natural wrists, held objects (2026-11-26, opt-in: `--gaze` or `PROOF_GAZE=1`)
+
+Jade: the mannequins had two fixed dots for eyes, so the guides never showed where a figure looks, which cost many
+keyframe corrections. OFF by default: without the switch every render and sidecar is byte-identical to before
+(checked on office91 BO1, closet02 CL_ots, attic88 v4_B1, basement90 B2_face / B3_finger, all seven modes).
+
+```sh
+node layout/render.mjs --set basement90 --shots B3_finger --gaze --out /tmp/x     # --out <dir>: write to <dir>/<set>/
+node layout/engine/holdcheck.mjs /tmp/x/basement90                                # Rapier hold check over the sidecars
+```
+
+- **Eyes** (`engine/figure2.js` `buildFace`, the aim maths in `engine/gaze.js`). The head still takes only part of a
+  look (`pitchK`, the 80 deg yaw clamp). The eyes take the rest: each eye aims at `P.lookAt` from its own centre,
+  clamped to 35 deg yaw and 30 deg pitch of travel, with the upper lid following the eye pitch, so a figure looking
+  down reads from above. They show in every mode: in `line` / `contour` the iris and pupil are drawn as circles; in
+  form / flat / lit the white is light and the iris dark (`look.formTint` / `look.flatCol`). Who gets drawn eyes:
+  `faceKind(who)`. That is `drawn` for jade* / littleJade / mama* / dad. It is `blank` for everyone else: the face stays
+  paper, with a brow ridge that drops with the gaze and a nose wedge aimed along the gaze (a CylinderGeometry, so the
+  sets' `undraw()` keeps it). It is `none` for first love: no eyes, ever.
+- **Label mode**: a dotted line from between the eyes to the look target, tagged `looks at: <target>`, magenta when
+  the eyes cannot reach it or a pointing check fails. When there is no target it shows a short ray and `no look target`.
+- **Sidecar** `gaze.<who>` holds: `look_target {name, world}`, `head_deg` (head vs chest), `eye_deg` (eyes vs head,
+  wanted vs clamped), `gaze_error_deg`, `beyond_eye_range`, `points[]` (arms with `hand: 'point'`: target and
+  `look_off_deg`), `reaches[]`, `eyes_px`, `target_px`. Warnings are prefixed `gaze:`: beyond eye travel, points but
+  has no look target, or looks more than 15 deg away from where it points (self-targets are skipped).
+- **Natural wrists** (`engine/wrist.js`): for every arm, `wristAngles` gives flexion (+ toward the palm), radial
+  deviation and forearm twist against the elbow plane. Ranges are flexion / extension 60, radial 20 / ulnar 30, and
+  supination 85 / pronation 80. For grips (`hold`, or the shapes grip / pinch / cup) the elbow swivels first (+-45 deg,
+  +-25 when the shot gives `elbow`). It only moves for a real gain, and never into akimbo or above the shoulder.
+  - A cylinder held along `hold.axis` may be taken the other way round (thumb toward the other end) when that keeps
+    the wrist natural. Example: mortongrove07 MG1, where her wrists went from about 150 deg extension to in range.
+  - A hand holding its own prop, or a free hand (no `tip`), is then turned toward the forearm until it is in range.
+    A grip on a set object keeps the grip and is reported instead.
+  - Sidecar keys: `wrists.<who>.<L|R>` and the `wrist:` warnings.
+  - New arm option (not gated): `elbowAt: point`, the elbow bends toward a point (the pole is solved from it).
+- **Held objects** (`engine/grasp.js`, `engine/holdcheck.mjs`).
+  - `GRASPS` is the template table: power, mugHandle, pinch, paperEdge, palmUnder, twoHandsBelow, twoHandsSides and
+    shoulderSeams.
+  - `graspArms(name, objFrame)` gives arm specs that hold the object (fingers round it, or the palm under its weight).
+    `objectFromHand(name, solvedHand)` places a prop from the solved hand. Neither is wired into any shot yet.
+  - The sidecar key `holds` has one entry per gripping hand: the object (the engine's held cylinder, or the nearest
+    small set object within 3 cm) as world hull points, plus the capsules of every hand on it. The capsules are new
+    data from `engine/hand.js` (`capsules`, `joints` on `P.hands[n]`); the render is unchanged.
+  - `holdcheck.mjs` runs Rapier (`@dimforge/rapier3d-compat`, installed OUTSIDE the repo in
+    `/home/jade/Documents/layout-deps`, override `RAPIER_DIR`). Hands are fixed capsules and the object is a dynamic
+    convex hull, with 1 s of gravity.
+  - Its flags are `adjacent` (no contact within 2 mm at t = 0), `penetrates` (more than 3 mm) and `falls` (more than
+    1 cm). It checks the hands only: an object also resting on a table is reported as falling.
+- Also built and STOPPED (rigged human meshes will replace the mannequins), behind its own switch `--body2` /
+  `PROOF_BODY2=1`: a real torso for every figure (`torso.js` rows 'f', 'm' and a new 'c' for children), a shoulder
+  girdle (trapezius into an ellipsoid deltoid cap, the arm in the torso's line group, slimmer child arms), costume
+  colours in form / flat with a colour wash in contour / light, figure-against-figure outlines, and body.js taking the
+  mannequin's body. Sidecar `costume`, `colour_separation` and `figure_frame_fraction` come with `--gaze`.
+- For a mesh adapter: `engine/gaze.js` (eyeAim / gazeSplit for eye bones, gazeReport, drawGazeOverlay),
+  `engine/wrist.js`, `engine/grasp.js` and `engine/holdcheck.mjs` (`checkHold({ hull, capsules })`) work on solved
+  points only. Audits: `work/gaze_audit.md` and `work/costume_audit.md`.
+
 ## Files
 
 ```
@@ -81,6 +138,7 @@ engine/stage.js       two-pass staging (hands reach book/other figures), placeBo
 engine/aim.js         target that puts a world point at a screen position (u, v)
 engine/render.js      the five modes + the three painter guides (form, contour, light), mirror compositing
 engine/main.js        page API: renderShot(id, mode), sidecar(id)
+engine/gaze.js engine/wrist.js engine/grasp.js engine/holdcheck.mjs engine/figure2.js   opt-in gaze / wrists / holds (above)
 sets/<set>/layout.js  SINGLE SOURCE OF TRUTH: every dimension in metres + the light list
 sets/<set>/build.js   room geometry from layout.js, figures, props, light rig per mode, set-specific targets
 sets/<set>/shots.js   the camera table

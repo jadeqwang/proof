@@ -23,6 +23,10 @@ const ROWS = {
     [0.68, 0.088, 0.062, 0.066, 0.74], [0.8, 0.091, 0.058, 0.068, 0.72], [0.92, 0.091, 0.054, 0.064, 0.72], [1, 0.080, 0.044, 0.052, 0.75]],
   m: [[0, 0.094, 0.056, 0.062, 0.8], [0.15, 0.089, 0.058, 0.054, 0.8], [0.35, 0.083, 0.060, 0.050, 0.78], [0.55, 0.089, 0.066, 0.062, 0.74],
     [0.70, 0.096, 0.068, 0.070, 0.7], [0.82, 0.100, 0.064, 0.072, 0.68], [0.92, 0.100, 0.058, 0.068, 0.7], [1, 0.088, 0.046, 0.054, 0.75]],
+  // 'c' (figure guides v2, engine/figure2.js): a child under a sweater: no waist, a round belly, no bust or pectorals,
+  // narrow shoulders (widths / depths are scaled by the child's own chestW / chestD through kw / kd)
+  c: [[0, 0.088, 0.058, 0.060, 0.82], [0.2, 0.085, 0.062, 0.056, 0.82], [0.4, 0.082, 0.064, 0.054, 0.8], [0.6, 0.083, 0.060, 0.056, 0.78],
+    [0.8, 0.088, 0.055, 0.060, 0.76], [0.92, 0.088, 0.051, 0.058, 0.76], [1, 0.078, 0.043, 0.050, 0.78]],
 };
 // bumps: radial displacement (fraction of H) = amp * exp(-(dt/st)^2 - (dv/sv)^2); st is [below, above] the centre
 const BUMPS = {
@@ -38,13 +42,17 @@ const BUMPS = {
     { t: 0.72, st: [0.14, 0.10], v: 0, sv: 0.30, amp: 0.006 }, { t: 0.72, st: [0.14, 0.10], v: Math.PI, sv: 0.30, amp: 0.006 },          // lats under the arms
     { t: 0.06, st: [0.10, 0.10], v: BACK, sv: 0.7, amp: 0.008 },
   ],
+  c: [
+    { t: 0.79, st: [0.09, 0.09], v: BACK + 0.62, sv: 0.34, amp: 0.005 }, { t: 0.79, st: [0.09, 0.09], v: BACK - 0.62, sv: 0.34, amp: 0.005 },   // shoulder blades
+    { t: 0.07, st: [0.10, 0.10], v: BACK, sv: 0.7, amp: 0.007 },
+  ],
 };
 const TOP = 1.07;   // top of the surface in t (1 = the shoulder line)
 const GROOVE = { t0: 0.25, t1: 0.92, sv: 0.11, amp: -0.0045 };   // the spine's groove down the back
 
 // frame(t) -> { o, x, z } as in buildFigure; kw / kd scale widths / depths (H for a standard adult)
 export function realTorso(frame, { sex = 'f', H, kw = H, kd = H, nu = 34, nv = 44, e1 = 0.5 } = {}) {
-  const rows = ROWS[sex], bumps = BUMPS[sex]; if (!rows) throw new Error("torso: 'real' needs sex 'f' or 'm'");
+  const rows = ROWS[sex], bumps = BUMPS[sex]; if (!rows) throw new Error("torso: 'real' needs sex 'f', 'm' or 'c' (child)");
   const disp = (t, v) => {
     let d = 0;
     for (const b of bumps) { const dt = t - b.t, st = dt < 0 ? b.st[0] : b.st[1], dv = angd(v, b.v); d += b.amp * Math.exp(-((dt / st) ** 2) - (dv / b.sv) ** 2); }
@@ -66,4 +74,4 @@ export function realTorso(frame, { sex = 'f', H, kw = H, kd = H, nu = 34, nv = 4
   return { geo, prof };
 }
 // pelvis ellipsoid radii (fractions of H) for the real torso: her hips wider than the default ball
-export const REAL_PELVIS = { f: [0.106, 0.074, 0.074], m: [0.096, 0.072, 0.07] };
+export const REAL_PELVIS = { f: [0.106, 0.074, 0.074], m: [0.096, 0.072, 0.07], c: [0.1, 0.072, 0.072] };

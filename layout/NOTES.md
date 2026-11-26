@@ -116,3 +116,21 @@ three phalanges and real knuckles, an opposable thumb (CMC, MCP, IP), a shoulder
 - Known: tints are codes, so a model may take them as colours (market93: the artichoke and romanesco are blue-grey
   "props", the produce beige); the light map shows only lights that cast shadows plus point/spot practicals, so a shot
   whose real light is a shadowless fill reads as all shade.
+
+## 2026-11-26: gaze, natural wrists, held objects (opt-in `--gaze`); mannequin body v2 (`--body2`, stopped)
+- Jade: the dots for eyes never showed where a figure looks. With `--gaze` the mannequins get eyes that aim (drawn for
+  Jade, Mama and Dad; a brow and nose cue on strangers' paper faces; nothing on first love), a dotted gaze line in label
+  mode, and sidecar `gaze` / `wrists` / `holds` / `costume` / `colour_separation`. See README "Gaze, natural wrists,
+  held objects".
+- Off = byte-identical. Checked on closet02 CL_ots, attic88 v4_B1 and basement90 B2_face / B3_finger (against a copy
+  of the HEAD engine). office91 BO1 was identical until 11:00; after that office91 failed to load for everyone ("source
+  image cannot be decoded", the new office91 art.js of another agent).
+- Reusable files for the rigged-mesh pipeline: `engine/gaze.js`, `engine/wrist.js`, `engine/grasp.js` and
+  `engine/holdcheck.mjs` (Rapier in /home/jade/Documents/layout-deps). `engine/hand.js` now also returns hand capsules
+  and joints (data only).
+- `--body2` (stopped when meshes were chosen): real torsos for all (with a child 'c' row in torso.js), the shoulder
+  girdle, costume colours and figure outlines.
+- Audits: `work/gaze_audit.md`, `work/hold_audit.md`, `work/costume_audit.md`.
+- Mishap: between 10:45 and 10:58 a duplicate declaration in engine/gaze.js broke every render that started in that
+  window. A stray command at about 11:04 also wrote `--gaze` attic88 renders into media/layout/attic88/. Those were
+  restored: the two tracked files were checked out, and the 494 new files deleted.
