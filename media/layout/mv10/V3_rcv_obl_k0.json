@@ -889,6 +889,41 @@
    "facing_camera_deg": 103,
    "blocked_by": "R1 guest R1, at the shelf: says something (face undrawn)"
   },
+  "friend": {
+   "px": [
+    1363.4,
+    215.9
+   ],
+   "eyes": [
+    1355.6,
+    212.8
+   ],
+   "mouth": [
+    1356,
+    222.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 149,
+   "blocked_by": "friend childhood friend (27; face undrawn, back and hands only)"
+  },
+  "firstLove27": {
+   "px": [
+    944.1,
+    248.9
+   ],
+   "eyes": [
+    959.6,
+    251.2
+   ],
+   "mouth": [
+    956,
+    258.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 106
+  },
   "N1": {
    "px": [
     141.9,
@@ -1159,6 +1194,42 @@
    "in_frame": true,
    "visible": true
   },
+  "friend.L": {
+   "px": [
+    1344.6,
+    235.2
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "friend.R": {
+   "px": [
+    1317.3,
+    241.3
+   ],
+   "shape": "cup",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.L": {
+   "px": [
+    926.6,
+    311.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.R": {
+   "px": [
+    955.9,
+    355
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
   "N1.L": {
    "px": [
     213.9,
@@ -1309,7 +1380,7 @@
   }
  ],
  "warnings": [],
- "intent": "Same camera. Start: she stands just inside the kitchen by the opening, talking with K1 by the fridge; N1 and N2 are on the front walk outside (heads above the front wall). The doorbell rings at 194.85 s.",
+ "intent": "Same camera. Start: she stands just inside the kitchen by the opening, talking with K1 (a guest) by the dark-beige fridge; the childhood friend refills the snack bowls on the counter behind her; first love is at the Expedit for a moment, back three-quarter to us, looking along the art books; N1 and N2 are on the front walk outside (heads above the front wall). The doorbell rings at 194.85 s.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "room",
@@ -1421,6 +1492,7 @@
  },
  "sun_tests": {
   "her_head": "shaded by exterior wall (SSW)",
+  "first_love_head": "shaded by 357 View St",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -2469,8 +2541,13 @@
   1155.3,
   702.2
  ],
+ "first_love_costume": {
+  "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
+  "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
+  "height_m": 1.78
+ },
  "jade_costume": {
-  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
   "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
@@ -2803,7 +2880,13 @@
    }
   },
   "speedup": 4.68,
-  "fit_note": "the sequence takes ~19.3 s in real time; the line is 4.13 s, so the shot runs 4.7x fast (uniform). Alternative: hold the stops shorter (a beat each) and let the walks run ~3x.",
+  "fit_note": "the sequence takes ~19.3 s in real time; the line is 4.13 s, so the shot runs 4.7x fast, an EVEN time-lapse (Jade, r3 decisions 2026-11-26: \"an even time-lapse, about 4.7x\"; the 'stops as beats, walks ~3x' alternative is rejected).",
+  "who": {
+   "K1": "unnamed guest she talks with in the kitchen (Jade r3)",
+   "R1": "unnamed guest who speaks at the shelf (Jade r3)",
+   "friend": "the childhood friend, HELPING in the kitchen (Jade r3: \"childhood friend was helping\"): refilling the snack bowls on the core-wall counter in every key (OUR task)",
+   "firstLove27": "Jade r3: \"he was at the shelf briefly and then went to talk to an unnamed guest elsewhere\": k0 at the Expedit (back three-quarter), middle and k3 by the SSW living-room window with guest B1, his back to the camera (where, and the guest, OURS)"
+  },
   "keys": {
    "V3_rcv_obl_k0": "start (S0: talking in the kitchen, before the bell)",
    "V3_rcv_obl": "middle (S2: stopped by the shelf, turned to R1; N1 and N2 just inside)",
@@ -3017,6 +3100,38 @@
     "head_px": [
      925.3,
      346.8
+    ]
+   },
+   {
+    "who": "friend",
+    "label": "childhood friend (27; face undrawn, back and hands only)",
+    "floor_world": [
+     4,
+     6.7
+    ],
+    "floor_px": [
+     1319.4,
+     382.9
+    ],
+    "head_px": [
+     1363.4,
+     215.9
+    ]
+   },
+   {
+    "who": "firstLove27",
+    "label": "first love (27, never face-on)",
+    "floor_world": [
+     3.95,
+     3.86
+    ],
+    "floor_px": [
+     938.7,
+     403.7
+    ],
+    "head_px": [
+     944.1,
+     248.9
     ]
    },
    {
@@ -3248,6 +3363,36 @@
     "R": 0.97
    },
    "headTurn": -21
+  },
+  "friend": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.95,
+    "R": 1.27
+   },
+   "headTurn": 14
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": -25
   },
   "N1": {
    "legs": {

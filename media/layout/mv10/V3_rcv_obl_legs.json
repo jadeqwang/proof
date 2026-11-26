@@ -677,7 +677,7 @@
     267.2
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 136,
    "blocked_by": "A1 guest A1 (face undrawn)"
   },
@@ -695,7 +695,7 @@
     236.6
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 66
   },
   "A3": {
@@ -712,7 +712,7 @@
     226.4
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 73
   },
   "S1": {
@@ -729,7 +729,7 @@
     640.6
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 112
   },
   "B2": {
@@ -746,26 +746,25 @@
     582.3
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 54
   },
   "B1": {
    "px": [
-    705.1,
-    744.9
+    852.4,
+    589.6
    ],
    "eyes": [
-    689,
-    737.1
+    852.5,
+    604.1
    ],
    "mouth": [
-    692.6,
-    742.9
+    853.2,
+    610.4
    ],
    "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 118,
-   "blocked_by": "B1 guest B1 (face undrawn)"
+   "visible": false,
+   "facing_camera_deg": 57
   },
   "C1": {
    "px": [
@@ -781,7 +780,7 @@
     297.5
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 95
   },
   "C2": {
@@ -798,7 +797,7 @@
     308.9
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 84
   },
   "C3": {
@@ -815,7 +814,7 @@
     258.3
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 50
   },
   "T1": {
@@ -832,7 +831,7 @@
     223.5
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 147,
    "blocked_by": "T1 guest T1, at the punchbowl (face undrawn)"
   },
@@ -850,7 +849,7 @@
     440.3
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 107
   },
   "K1": {
@@ -867,7 +866,7 @@
     425.9
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 83
   },
   "R1": {
@@ -884,8 +883,44 @@
     360.7
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 66
+  },
+  "friend": {
+   "px": [
+    1363.4,
+    215.9
+   ],
+   "eyes": [
+    1355.6,
+    212.8
+   ],
+   "mouth": [
+    1356,
+    222.7
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 149,
+   "blocked_by": "friend childhood friend (27; face undrawn, back and hands only)"
+  },
+  "firstLove27": {
+   "px": [
+    853.4,
+    691.4
+   ],
+   "eyes": [
+    853,
+    673.3
+   ],
+   "mouth": [
+    853.8,
+    679
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 116,
+   "blocked_by": "firstLove27 first love (27, never face-on)"
   },
   "N1": {
    "px": [
@@ -901,7 +936,7 @@
     306.3
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 55
   },
   "N2": {
@@ -918,7 +953,7 @@
     246.4
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 51
   },
   "N3": {
@@ -935,7 +970,7 @@
     345.2
    ],
    "in_frame": true,
-   "visible": true,
+   "visible": false,
    "facing_camera_deg": 55
   },
   "N4": {
@@ -964,7 +999,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "A1.R": {
    "px": [
@@ -973,7 +1008,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "A2.L": {
    "px": [
@@ -982,7 +1017,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "A2.R": {
    "px": [
@@ -1000,7 +1035,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "A3.R": {
    "px": [
@@ -1009,7 +1044,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "S1.L": {
    "px": [
@@ -1018,7 +1053,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "S1.R": {
    "px": [
@@ -1027,7 +1062,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "B2.L": {
    "px": [
@@ -1036,7 +1071,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "B2.R": {
    "px": [
@@ -1045,25 +1080,25 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "B1.L": {
    "px": [
-    706.8,
-    835.4
+    897.2,
+    660.7
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "B1.R": {
    "px": [
-    692,
-    741.2
+    821.1,
+    667.4
    ],
-   "shape": "grip",
+   "shape": "palmUp",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "C1.L": {
    "px": [
@@ -1072,7 +1107,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "C1.R": {
    "px": [
@@ -1081,7 +1116,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "C2.L": {
    "px": [
@@ -1090,7 +1125,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "C2.R": {
    "px": [
@@ -1099,7 +1134,7 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "C3.L": {
    "px": [
@@ -1108,7 +1143,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "C3.R": {
    "px": [
@@ -1117,7 +1152,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "T1.L": {
    "px": [
@@ -1126,7 +1161,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "T1.R": {
    "px": [
@@ -1135,7 +1170,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "jade27.L": {
    "px": [
@@ -1144,7 +1179,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "jade27.R": {
    "px": [
@@ -1153,7 +1188,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "K1.L": {
    "px": [
@@ -1162,7 +1197,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "K1.R": {
    "px": [
@@ -1171,7 +1206,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "R1.L": {
    "px": [
@@ -1180,7 +1215,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "R1.R": {
    "px": [
@@ -1189,7 +1224,43 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": true
+   "visible": false
+  },
+  "friend.L": {
+   "px": [
+    1344.6,
+    235.2
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  },
+  "friend.R": {
+   "px": [
+    1317.3,
+    241.3
+   ],
+   "shape": "cup",
+   "in_frame": true,
+   "visible": false
+  },
+  "firstLove27.L": {
+   "px": [
+    824.9,
+    754.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "firstLove27.R": {
+   "px": [
+    875.4,
+    682.9
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
   },
   "N1.L": {
    "px": [
@@ -1198,7 +1269,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N1.R": {
    "px": [
@@ -1207,7 +1278,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N2.L": {
    "px": [
@@ -1216,7 +1287,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N2.R": {
    "px": [
@@ -1225,7 +1296,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N3.L": {
    "px": [
@@ -1234,7 +1305,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N3.R": {
    "px": [
@@ -1243,7 +1314,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N4.L": {
    "px": [
@@ -1252,7 +1323,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N4.R": {
    "px": [
@@ -1489,6 +1560,7 @@
  },
  "sun_tests": {
   "her_head": "shaded by exterior wall (WNW)",
+  "first_love_head": "shaded by 357 View St",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -2537,8 +2609,13 @@
   1155.3,
   702.2
  ],
+ "first_love_costume": {
+  "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
+  "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
+  "height_m": 1.78
+ },
  "jade_costume": {
-  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
   "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
@@ -2871,7 +2948,13 @@
    }
   },
   "speedup": 4.68,
-  "fit_note": "the sequence takes ~19.3 s in real time; the line is 4.13 s, so the shot runs 4.7x fast (uniform). Alternative: hold the stops shorter (a beat each) and let the walks run ~3x.",
+  "fit_note": "the sequence takes ~19.3 s in real time; the line is 4.13 s, so the shot runs 4.7x fast, an EVEN time-lapse (Jade, r3 decisions 2026-11-26: \"an even time-lapse, about 4.7x\"; the 'stops as beats, walks ~3x' alternative is rejected).",
+  "who": {
+   "K1": "unnamed guest she talks with in the kitchen (Jade r3)",
+   "R1": "unnamed guest who speaks at the shelf (Jade r3)",
+   "friend": "the childhood friend, HELPING in the kitchen (Jade r3: \"childhood friend was helping\"): refilling the snack bowls on the core-wall counter in every key (OUR task)",
+   "firstLove27": "Jade r3: \"he was at the shelf briefly and then went to talk to an unnamed guest elsewhere\": k0 at the Expedit (back three-quarter), middle and k3 by the SSW living-room window with guest B1, his back to the camera (where, and the guest, OURS)"
+  },
   "keys": {
    "V3_rcv_obl_k0": "start (S0: talking in the kitchen, before the bell)",
    "V3_rcv_obl": "middle (S2: stopped by the shelf, turned to R1; N1 and N2 just inside)",
@@ -2963,16 +3046,16 @@
     "who": "B1",
     "label": "guest B1 (face undrawn)",
     "floor_world": [
-     0.6,
-     2.55
+     1.5,
+     3.3
     ],
     "floor_px": [
-     749.1,
-     851.1
+     868.5,
+     711.5
     ],
     "head_px": [
-     705.1,
-     744.9
+     852.4,
+     589.6
     ]
    },
    {
@@ -3085,6 +3168,38 @@
     "head_px": [
      916.7,
      346.9
+    ]
+   },
+   {
+    "who": "friend",
+    "label": "childhood friend (27; face undrawn, back and hands only)",
+    "floor_world": [
+     4,
+     6.7
+    ],
+    "floor_px": [
+     1319.4,
+     382.9
+    ],
+    "head_px": [
+     1363.4,
+     215.9
+    ]
+   },
+   {
+    "who": "firstLove27",
+    "label": "first love (27, never face-on)",
+    "floor_world": [
+     0.85,
+     3.3
+    ],
+    "floor_px": [
+     870.2,
+     806.7
+    ],
+    "head_px": [
+     853.4,
+     691.4
     ]
    },
    {
@@ -3248,9 +3363,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.48
+    "R": 0.52
    },
-   "headTurn": 1
+   "headTurn": 0
   },
   "C1": {
    "legs": {
@@ -3356,6 +3471,36 @@
     "R": 0.54
    },
    "headTurn": -34
+  },
+  "friend": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.95,
+    "R": 1.27
+   },
+   "headTurn": 14
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": 0
   },
   "N1": {
    "legs": {

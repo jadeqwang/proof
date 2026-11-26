@@ -783,7 +783,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 167,
-   "blocked_by": "fridge (Jade: normal size, by the 2x2)"
+   "blocked_by": "fridge (Jade: normal size, dark beige, against the partition behind the 2x2)"
   },
   "C1": {
    "px": [
@@ -1030,20 +1030,20 @@
   },
   "firstLove27": {
    "px": [
-    2179.1,
-    258.7
+    1541,
+    260
    ],
    "eyes": [
-    2275.9,
-    259.4
+    1640,
+    260
    ],
    "mouth": [
-    2266.4,
-    317.3
+    1632.2,
+    324
    ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 94
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 82
   }
  },
  "hands": {
@@ -1427,21 +1427,21 @@
   },
   "firstLove27.L": {
    "px": [
-    1937,
-    946.4
+    1326.2,
+    1013.4
    ],
    "shape": "relax",
-   "in_frame": false,
+   "in_frame": true,
    "visible": false
   },
   "firstLove27.R": {
    "px": [
-    2326.7,
-    995.1
+    1709.2,
+    1072.2
    ],
    "shape": "relax",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   }
  },
  "lights": [
@@ -2724,7 +2724,7 @@
   "height_m": 1.78
  },
  "jade_costume": {
-  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
   "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",

@@ -5,7 +5,8 @@ import { mk, box, cyl, ball, quad, tag, V, rad, slab } from '../../engine/core.j
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
-import { CAST } from '../_cast.js';
+import { CAST, PROP } from '../_cast.js';
+import { ladleGrip, buildLadle } from './ladleGrip.js';
 import { glassTable } from './glassTable.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
   COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
@@ -62,7 +63,7 @@ function sandals(fig) {
 // a meatball marker disc, and the boot-cut flare (a cone from the knee to a hem just off the floor, over the foot).
 // ASSUMED (flagged): zip-front jacket worn unzipped, fronts nearly closed (tee sliver ~4 cm); hip-length; meatball ~8 cm;
 // socks plain mid-grey; hem 1.2 cm off the floor, ~44 cm round at the hem.
-export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)',
+export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)',
   tee: 'fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts', pants: 'boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)',
   feet: 'socks, no shoes (Jade); colour plain mid-grey ASSUMED', before_party: 'same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)', sheet: 'cast/jade_27/j27_costume_housewarming_v1.jpg' };
 function housewarming(fig) {
@@ -319,6 +320,7 @@ function punchbowl(g, [x, z], y, { fill = 0.8, tool = 'ladle', lab = 'giant punc
   g.add(tag(cyl(rl, rl, 0.006, LEMONADE, [x, yl, z], null, 40), 'lemonade (in the punchbowl)'));
   const RS = rng(5); for (let i = 0; i < 6; i++) { const a = RS() * Math.PI * 2, rr = RS() * rl * 0.7;
     g.add(tag(cyl(0.035, 0.035, 0.006, { ...FLESH, grey: 0.93 }, [x + Math.cos(a) * rr, yl + 0.005, z + Math.sin(a) * rr], null, 16), 'lemon slices (floating)')); }
+  if (tool === 'none') return null;   // V3b_prep: the ladle is built with the hand that holds it (ladleGrip.js)
   const lean = V(-0.35, 1, 0.25).normalize(), foot = V(x + 0.05, yl - 0.03, z - 0.04), L = tool === 'ladle' ? 0.40 : 0.42, top = foot.clone().addScaledVector(lean, L);
   const h = cyl(tool === 'ladle' ? 0.008 : 0.011, tool === 'ladle' ? 0.008 : 0.011, L, tool === 'ladle' ? STEEL : WOOD, foot.clone().addScaledVector(lean, L / 2).toArray(), null, 8);
   h.quaternion.setFromUnitVectors(V(0, 1, 0), lean); g.add(tag(h, tool === 'ladle' ? 'ladle' : 'long wooden spoon (stirring)'));
@@ -351,8 +353,8 @@ function kitchen(g, dressing) {
     g.add(tag(box(0.025, COUNTER_H - 0.13, D.z1 - D.z0 - 0.006, STEEL, [fx + 0.005, 0.1 + (COUNTER_H - 0.13) / 2, zc]), 'dishwasher (Jade)'));
     g.add(tag(box(0.03, 0.025, D.z1 - D.z0 - 0.12, { grey: 0.5, col: 0x8a8a8c }, [fx - 0.02, COUNTER_H - 0.09, zc]), 'dishwasher (handle)')); }
   // the fridge near the 2x2 (Jade): back to the partition, doors facing ESE into the kitchen
-  { const F = FRIDGE, cx = (F.x0 + F.x1) / 2, W = { grey: 0.93, col: F.col };
-    g.add(tag(box(F.x1 - F.x0, F.h, F.z1 - F.z0 - 0.04, W, [cx, F.h / 2, (F.z0 + F.z1 - 0.04) / 2]), 'fridge (Jade: normal size, by the 2x2)'));
+  { const F = FRIDGE, cx = (F.x0 + F.x1) / 2, W = { grey: F.grey ?? 0.6, col: F.col };
+    g.add(tag(box(F.x1 - F.x0, F.h, F.z1 - F.z0 - 0.04, W, [cx, F.h / 2, (F.z0 + F.z1 - 0.04) / 2]), 'fridge (Jade: normal size, dark beige, against the partition behind the 2x2)'));
     for (const [ya, yb] of [[0.02, F.freezerY - 0.01], [F.freezerY + 0.01, F.h - 0.01]]) {
       g.add(tag(box(F.x1 - F.x0 - 0.01, yb - ya, 0.04, W, [cx, (ya + yb) / 2, F.z1 - 0.02]), 'fridge (door)'));
       g.add(tag(box(0.025, Math.min(0.5, (yb - ya) * 0.6), 0.03, STEEL, [F.x1 - 0.07, ya + (yb - ya) * (ya < 0.5 ? 0.7 : 0.35), F.z1 + 0.02]), 'fridge (handle)')); } }
@@ -393,30 +395,31 @@ function kitchen(g, dressing) {
     for (const f of PARTY_FOOD.table) food(g, f, yT, R);
     for (const f of PARTY_FOOD.counters) food(g, f, COUNTER_H, R);
   } else if (dressing === 'prep') {
-    const P = PREP, y = yT;
-    // cutting board, knife, two halves cut face up (one with the knife beside it)
+    // the prep on the counter by the sink (Jade r3, 2026-11-26; layout.js PREP): the core-wall run's ESE end and the corner
+    const P = PREP, y = COUNTER_H;
+    // cutting board, knife, two halves cut face up
     g.add(tag(box(P.board.w, 0.022, P.board.d, { grey: 0.7, col: 0xc8a070 }, [P.board.at[0], y + 0.011, P.board.at[1]]), 'cutting board'));
     P.halves.forEach(([x, z], i) => lemonHalf(g, [x, y + 0.022, z], TREE.lemonR, i * 0.4, 'lemon half (cut face up)'));
-    g.add(tag(box(0.2, 0.004, 0.035, STEEL, [P.knife.at[0] - 0.05, y + 0.024, P.knife.at[1] - 0.03], [0, 10, 0]), 'knife'));
-    g.add(tag(box(0.11, 0.018, 0.024, DARK, [P.knife.at[0] + 0.1, y + 0.031, P.knife.at[1] - 0.05], [0, 10, 0]), 'knife'));
+    g.add(tag(box(0.2, 0.004, 0.035, STEEL, [P.knife.at[0] - 0.05, y + 0.003, P.knife.at[1] - 0.03], [0, 10, 0]), 'knife'));
+    g.add(tag(box(0.11, 0.018, 0.024, DARK, [P.knife.at[0] + 0.1, y + 0.01, P.knife.at[1] - 0.05], [0, 10, 0]), 'knife'));
     // the glass reamer (juicer): a dish with a ribbed cone, juice in the dish, a half pressed on it (cut face down)
     { const [x, z] = P.reamer.at, r = P.reamer.r;
       g.add(tag(cyl(r, r * 0.85, 0.045, GLASSY, [x, y + 0.0225, z], null, 32), 'juicer (glass reamer)'));
       g.add(tag(cyl(r * 0.85, r * 0.85, 0.004, LEMONADE, [x, y + 0.035, z], null, 32), 'juice (in the reamer)'));
       g.add(tag(cyl(0.008, 0.045, 0.06, GLASSY, [x, y + 0.075, z], null, 10), 'juicer (ribbed cone)'));
       const d = mk(new THREE.SphereGeometry(TREE.lemonR, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), LEMON); d.scale.set(1, 1.22, 1); d.position.set(x, y + 0.085, z); g.add(tag(d, 'lemon half (pressed on the juicer)'));
-      g.add(tag(box(0.08, 0.01, 0.03, GLASSY, [x + r + 0.03, y + 0.03, z]), 'juicer (handle)')); }
+      g.add(tag(box(0.03, 0.01, 0.08, GLASSY, [x, y + 0.03, z - r - 0.03]), 'juicer (handle)')); }
     // the bowl of picked lemons (from V3b), two with leaves still on
     { const [x, z] = P.lemonsBowl.at, r = P.lemonsBowl.r, b = bowlMesh(r, 0.6, CERAMIC); b.position.set(x, y + 0.6 * r, z); g.add(tag(b, 'bowl of picked lemons'));
-      [[-0.05, -0.04], [0.06, -0.03], [0.0, 0.06], [-0.07, 0.05]].forEach(([dx, dz], k) => { g.add(tag(ball(TREE.lemonR, LEMON, [x + dx, y + 0.08 + (k % 2) * 0.03, z + dz], [1, 0.85, 1.22]), 'lemons (picked, pomelo-sized)'));
-        if (k < 2) g.add(tag(ball(0.045, { grey: 0.4, col: 0x3a6a2a }, [x + dx + 0.08, y + 0.17, z + dz - 0.05], [1, 0.12, 0.45]), 'lemon leaf (still on the stem)')); }); }
+      [[-0.05, -0.04], [0.05, -0.03], [0.0, 0.06], [-0.06, 0.05]].forEach(([dx, dz], k) => { g.add(tag(ball(TREE.lemonR, LEMON, [x + dx, y + 0.08 + (k % 2) * 0.03, z + dz], [1, 0.85, 1.22]), 'lemons (picked, pomelo-sized)'));
+        if (k < 2) g.add(tag(ball(0.045, { grey: 0.4, col: 0x3a6a2a }, [x + dx - 0.07, y + 0.17, z + dz - 0.05], [1, 0.12, 0.45]), 'lemon leaf (still on the stem)')); }); }
     // the rinds
     { const [x, z] = P.rindsBowl.at, r = P.rindsBowl.r, b = bowlMesh(r, 0.5, CERAMIC); b.position.set(x, y + 0.5 * r, z); g.add(tag(b, 'bowl of squeezed rinds'));
-      for (let k = 0; k < P.rinds; k++) { const a = k * 1.05, rr = k ? 0.075 : 0; rind(g, [x + Math.cos(a) * rr, y + 0.075 + (k ? 0 : 0.03), z + Math.sin(a) * rr], TREE.lemonR * 0.9, [0.45 * Math.sin(k * 1.3) * (k ? 1 : 0), k * 0.9, 0.45 * Math.cos(k * 1.7) * (k ? 1 : 0)]); } }
-    // sugar, the water pitcher, the punchbowl being mixed (half full, the long spoon in it)
+      for (let k = 0; k < P.rinds; k++) { const a = k * 1.25, rr = k ? 0.05 : 0; rind(g, [x + Math.cos(a) * rr, y + 0.06 + (k ? 0 : 0.03), z + Math.sin(a) * rr], TREE.lemonR * 0.75, [0.45 * Math.sin(k * 1.3) * (k ? 1 : 0), k * 0.9, 0.45 * Math.cos(k * 1.7) * (k ? 1 : 0)]); } }
+    // sugar on the counter, the water pitcher standing in the sink, the punchbowl being mixed (the ladle: ladleGrip.js)
     g.add(tag(box(0.12, 0.2, 0.08, { grey: 0.92, col: 0xece8dc }, [P.sugar.at[0], y + 0.1, P.sugar.at[1]]), 'bag of sugar'));
-    g.add(tag(cyl(P.pitcher.r, P.pitcher.r * 0.9, 0.24, GLASSY, [P.pitcher.at[0], y + 0.12, P.pitcher.at[1]], null, 24), 'pitcher of water'));
-    PREP.spoonTop = punchbowl(g, P.punch.at, y, { fill: 0.45, tool: 'spoon', lab: 'giant punchbowl (mixing the lemonade)' }).toArray();
+    { const py = P.pitcher.inSink ? y - 0.17 : y; g.add(tag(cyl(P.pitcher.r, P.pitcher.r * 0.9, 0.24, GLASSY, [P.pitcher.at[0], py + 0.12, P.pitcher.at[1]], null, 24), 'pitcher of water (by the sink)')); }
+    punchbowl(g, P.punch.at, y, { fill: P.punchFill, tool: 'none', lab: 'giant punchbowl (mixing the lemonade)' });
   }
 }
 // the room crossing's legs as arrows on the floor (diagnostic shots only: shot.legs), and a ring at each stop
@@ -497,10 +500,14 @@ function yard(shot, lt) {
   { const P = PATIO, DK = { grey: 0.55, col: 0x9a7a54 };
     const deck = (x0, x1, z0, z1, lab) => { g.add(tag(box(x1 - x0, 0.04, z1 - z0, DK, [(x0 + x1) / 2, P.top - 0.02, (z0 + z1) / 2]), lab));
       g.add(tag(box(x1 - x0 - 0.06, P.top - 0.04 - GRADE, z1 - z0 - 0.06, { grey: 0.35, col: 0x5a4a38 }, [(x0 + x1) / 2, (P.top - 0.04 + GRADE) / 2, (z0 + z1) / 2]), lab + ' (skirt)')); };
-    deck(P.x0, P.x1, P.z0, P.z1, 'patio (deck)'); deck(STAIRS.x0, STAIRS.x1, STAIRS.landing.z0, STAIRS.landing.z1, 'stairs (landing)');
-    const rise = (P.top - GRADE) / STAIRS.risers, run = 0.4;
-    for (let k = 1; k < STAIRS.risers; k++) { const top = P.top - k * rise, z0 = STAIRS.z0 + (k - 1) * run;
-      g.add(tag(box(STAIRS.x1 - STAIRS.x0, top - GRADE, run, DK, [(STAIRS.x0 + STAIRS.x1) / 2, (top + GRADE) / 2, z0 + run / 2]), 'stairs')); }
+    deck(P.x0, P.x1, P.z0, P.z1, 'patio (deck)');
+    // the stairs (Jade r3): one flight ALONG the house's ESE wall, descending NNE from the deck's NNE edge (layout.js STAIRS)
+    const rise = (P.top - GRADE) / STAIRS.risers, run = STAIRS.run, SZ0 = STAIRS.z0 + 0.01, SZ1 = STAIRS.z1, szc = (SZ0 + SZ1) / 2;
+    for (let k = 1; k < STAIRS.risers; k++) { const top = P.top - k * rise, x0 = STAIRS.x0 + (k - 1) * run;
+      g.add(tag(box(run, top - GRADE, SZ1 - SZ0, DK, [x0 + run / 2, (top + GRADE) / 2, szc]), 'stairs (along the house wall)'));
+      g.add(tag(box(0.03, 0.03, SZ1 - SZ0, { grey: 0.4, col: 0x6a5238 }, [x0 + 0.015, top - 0.015, szc]), 'stairs (tread nosing)')); }
+    // the open side's stringer (the wall side is the house)
+    { const a = V(STAIRS.x0, P.top - 0.12, SZ1 - 0.02), b = V(STAIRS.x1 + 0.1, GRADE, SZ1 - 0.02); g.add(tag(slab(a, b, 0.24, 0.04, V(0, 1, 0), DK), 'stairs (stringer)')); }
     // the wood railing (Jade, 2026-11-25 late): round the deck and the landing, and both sides of the stairs, sloping with them.
     // A run from a to b (world [x, yBase, z]), posts at the ends and <= 1.8 m, top and bottom rails, balusters.
     const RW = { grey: 0.5, col: 0x8a6a48 };
@@ -508,12 +515,11 @@ function yard(shot, lt) {
       for (let k = 0; k <= nP; k++) { const p = A.clone().addScaledVector(d, k / nP); g.add(tag(box(RAIL.post, RAIL.h + 0.05, RAIL.post, RW, [p.x, p.y + (RAIL.h + 0.05) / 2, p.z]), lab + ' (post)')); }
       for (const [yy, hh] of [[RAIL.h - RAIL.rail[1] / 2, RAIL.rail[1]], [0.1, 0.04]]) g.add(tag(slab(A.clone().add(V(0, yy, 0)), B.clone().add(V(0, yy, 0)), RAIL.rail[0], hh, side, RW), lab));
       const nB = Math.floor(L / RAIL.gap); for (let k = 1; k < nB; k++) { const p = A.clone().addScaledVector(d, k / nB); g.add(tag(box(RAIL.baluster, RAIL.h - 0.14, RAIL.baluster, RW, [p.x, p.y + 0.12 + (RAIL.h - 0.14) / 2, p.z]), lab + ' (balusters)')); } };
-    const yT = P.top, sEnd = STAIRS.z0 + (STAIRS.risers - 1) * run;
+    const yT = P.top;
     railRun([P.x0, yT, P.z0 + 0.05], [P.x0, yT, P.z1], 'deck railing');
     railRun([P.x0, yT, P.z1], [P.x1, yT, P.z1], 'deck railing');
-    railRun([P.x1, yT, P.z1], [P.x1, yT, STAIRS.z0], 'deck railing');
-    railRun([STAIRS.x1, yT, P.z0 + 0.05], [STAIRS.x1, yT, STAIRS.z0], 'deck railing');
-    railRun([STAIRS.x1, yT, STAIRS.z0], [STAIRS.x1, GRADE, sEnd + 0.3], 'stair railing (wood)'); }
+    railRun([P.x1, yT, P.z1], [P.x1, yT, STAIRS.z1], 'deck railing');
+    railRun([STAIRS.x0, yT, STAIRS.z1], [STAIRS.x1 + 0.05, GRADE, STAIRS.z1], 'stair railing (wood)'); }
   // strawberry bed (raised timber), mint barrel, hose, clothesline, fences
   { const S = STRAWBERRY, B = { grey: 0.45, col: 0x7a5a3a }, cx = (S.x0 + S.x1) / 2, cz = (S.z0 + S.z1) / 2, y = GRADE + S.h / 2;
     for (const z of [S.z0, S.z1]) g.add(tag(box(S.x1 - S.x0, S.h, 0.05, B, [cx, y, z]), 'strawberry bed'));
@@ -557,8 +563,10 @@ function yard(shot, lt) {
   // (the lemonade table on the deck: REMOVED 2026-11-25 round 2; the lemonade is in the punchbowl in the kitchen)
   // fire poi: the two circles (trails) and the two flames at their current place
   if (lt.poi) { const FIRE = { grey: 0.97, col: 0xffb040, emit: 0xff7a20, emitI: 1.6, flatEmit: 0.97 };
-    [1, -1].forEach((s, i) => { const c = poiCentre(s); const t = mk(new THREE.TorusGeometry(POI.r, 0.012, 6, 48), { ...FIRE, emitI: 0.8 });
-      t.position.set(...c); t.rotation.y = rad(POI.yaw + 90); g.add(tag(t, 'fire poi (circle swept by the flame)'));
+    [1, -1].forEach((s, i) => { const c = poiCentre(s);
+      // shot.poiTrail === false: the flames only, no swept circles (SI1: the circles painted as a gold ring round her head)
+      if (shot.poiTrail !== false) { const t = mk(new THREE.TorusGeometry(POI.r, 0.012, 6, 48), { ...FIRE, emitI: 0.8 });
+        t.position.set(...c); t.rotation.y = rad(POI.yaw + 90); g.add(tag(t, 'fire poi (circle swept by the flame)')); }
       const a = rad(shot.poiPhase ?? 40) + i * Math.PI * 0.8, f = rad(POI.yaw), fx = Math.sin(f), fz = Math.cos(f);
       const hp = [c[0] + Math.cos(a) * POI.r * fx, c[1] + Math.sin(a) * POI.r, c[2] + Math.cos(a) * POI.r * fz];
       g.add(tag(ball(POI.headR * 2.2, FIRE, hp, [1, 1.5, 1]), 'fire poi flame'));
@@ -592,7 +600,16 @@ export function build(shot, { makeCam }) {
     root.add(tag(mk(new THREE.SphereGeometry(0.16, 24, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), BW).translateX(bx).translateY(by + 0.1).translateZ(bz), 'bowl of picked lemons'));
     for (const [dx, dz] of [[0.05, 0.02], [-0.06, -0.03], [0.0, -0.07]]) root.add(tag(ball(TREE.lemonR, { grey: 0.95, col: 0xf2d21c }, [bx + dx, by + 0.03, bz + dz], [1, 1.2, 1]), 'lemons (picked)')); }
   const extra = (t) => { if (t === 'poiL') return V(poiCentre(1)); if (t === 'poiR') return V(poiCentre(-1)); if (t.startsWith('mark:')) { const m = MARKS[t.slice(5)]; return V(m[0], 1.5, m[1]); } return null; };
+  // V3b_prep (Jade r3): the friend's right hand holds the ladle in a real grip; the arm, the hand pose and the ladle are
+  // solved together (ladleGrip.js) from where the ladle's bowl sits in the lemonade
+  let grip = null;
+  if (shot.ladle && shot.figs?.[shot.ladle.who]) { const L = PREP.ladle, who = shot.ladle.who, c = CAST[who], Lh = (PROP[c.kind] || PROP.adult).hand * c.h;
+    const yl = PREP.y + PUNCHBOWL.foot + PUNCHBOWL.h * PREP.punchFill;
+    grip = ladleGrip({ bowlC: [L.bowlAt[0], yl + (L.lift ?? 0), L.bowlAt[1]], L, Lh, medial: shot.ladle.medial, elbow: shot.ladle.elbow, kind: c.kind });
+    shot.figs[who] = { ...shot.figs[who], R: grip.arm }; }
   const { figs } = stage(shot.figs, null, extra);
+  if (grip) { buildLadle(root, grip, PREP.ladle, STEEL, LEMONADE); shot.ladleGrip = { note: 'the friend\u2019s right hand round the ladle (ladleGrip.js)', hand_len_m: +grip.Lh.toFixed(4), curl: grip.curl, thumb: grip.thumb,
+    fist_centre_world: grip.G.toArray().map((v) => +v.toFixed(3)), handle_up_dir: grip.up.toArray().map((v) => +v.toFixed(3)), thumb_tip_world: figs[shot.ladle.who].userData.P.thumbR.toArray().map((v) => +v.toFixed(3)), thumb_goal_world: grip.thumbGoalWorld.toArray().map((v) => +v.toFixed(3)), search: grip.search }; }
   // extra face anchors for the push-ins (V3_rev_*): each eye (half the 6.2 cm interpupillary distance off the eyes' midpoint)
   // and each temple (68 % of the way from the ear to the eyes, 2.2 cm up: forward of the mannequin's hair shell). headX points to the figure's own LEFT.
   for (const f of Object.values(figs)) { const P = f.userData.P; if (!P.eyes || !P.headX) continue;
@@ -650,6 +667,7 @@ export function build(shot, { makeCam }) {
       expedit_2x2: { world: { X: [EXPEDIT2.X0, EXPEDIT2.X1], Z: [EXPEDIT2.Zc - EXPEDIT2.W / 2, EXPEDIT2.Zc + EXPEDIT2.W / 2], faces: 'SSW (-X)' }, printer_on_top: true, px: P(V(EXPEDIT2.X0 + 0.2, EXPEDIT2.H + 0.1, EXPEDIT2.Zc)) },
       lemon_tree_px: P(V(TREE.at[0], TREE.canopyY, TREE.at[1])), poi_px: P(poiP), opening_px: P(V((OPENING.x0 + OPENING.x1) / 2, 1.0, OPENING.z)) };
     if (shot.timing) out.timing = shot.timing;
+    if (shot.ladleGrip) out.ladle_grip = { ...shot.ladleGrip, fist_px: P(V(shot.ladleGrip.fist_centre_world)) };
     if (shot.faceMarks && figs.jade27) { const Pj = figs.jade27.userData.P; out.face_marks = { note: 'her eye and temple, px in THIS frame (start or end key of the push-in): where the overlay begins', who: 'jade27',
       eyeL_px: P(Pj.eyeL.clone()), eyeR_px: P(Pj.eyeR.clone()), eyes_mid_px: P(Pj.eyes.clone()), templeL_px: P(Pj.templeL.clone()), templeR_px: P(Pj.templeR.clone()),
       eyeL_world: Pj.eyeL.toArray().map((v) => +v.toFixed(4)), templeL_world: Pj.templeL.toArray().map((v) => +v.toFixed(4)), head_pose: shot.figs.jade27.head }; }

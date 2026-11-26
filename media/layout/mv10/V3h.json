@@ -1011,38 +1011,37 @@
   },
   "jade27": {
    "px": [
-    1546.6,
-    292
+    523,
+    793.6
    ],
    "eyes": [
-    1542,
-    296.6
+    516.7,
+    795.3
    ],
    "mouth": [
-    1541.7,
-    296.9
+    516.7,
+    795.3
    ],
    "in_frame": true,
-   "visible": false,
-   "facing_camera_deg": 65,
-   "blocked_by": "lemon tree canopy"
+   "visible": true,
+   "facing_camera_deg": 107
   },
   "firstLove27": {
    "px": [
-    1502.1,
-    336.6
+    513.4,
+    771
    ],
    "eyes": [
-    1507.1,
-    331.5
+    516.4,
+    777.5
    ],
    "mouth": [
-    1506.9,
-    331.7
+    516.4,
+    777.5
    ],
    "in_frame": true,
-   "visible": false,
-   "facing_camera_deg": 111
+   "visible": true,
+   "facing_camera_deg": 91
   }
  },
  "hands": {
@@ -1408,26 +1407,26 @@
   },
   "jade27.L": {
    "px": [
-    1555.1,
-    303.7
+    525.3,
+    807.8
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "jade27.R": {
    "px": [
-    1529.2,
-    299.5
+    517.9,
+    780.2
    ],
-   "shape": "grip",
+   "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "firstLove27.L": {
    "px": [
-    1491.7,
-    325.2
+    528,
+    766
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1435,12 +1434,12 @@
   },
   "firstLove27.R": {
    "px": [
-    1526.3,
-    332
+    500.1,
+    778.6
    ],
-   "shape": "palmUp",
+   "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   }
  },
  "lights": [
@@ -1460,10 +1459,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.845,
-    -0.535
+    0.81,
+    -0.587
    ],
-   "toward_camera": -0.381,
+   "toward_camera": 0.266,
    "aim_world": [
     6,
     0,
@@ -1486,10 +1485,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.905,
-    -0.424
+    0.979,
+    -0.204
    ],
-   "toward_camera": -0.435
+   "toward_camera": -0.508
   },
   {
    "name": "ceiling2",
@@ -1507,10 +1506,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.761,
-    -0.648
+    -0.936,
+    -0.351
    ],
-   "toward_camera": -0.382
+   "toward_camera": -0.177
   },
   {
    "name": "ceiling3",
@@ -1528,10 +1527,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.845,
-    -0.535
+    -0.989,
+    0.145
    ],
-   "toward_camera": -0.46
+   "toward_camera": -0.452
   },
   {
    "name": "poi",
@@ -1549,8 +1548,8 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.548,
-    -0.836
+    -0.957,
+    0.29
    ],
    "toward_camera": -0.203
   }
@@ -1667,8 +1666,8 @@
   ]
  },
  "sun_tests": {
-  "her_head": "shaded by house",
-  "first_love_head": "shaded by house",
+  "her_head": "shaded by exterior wall (WNW)",
+  "first_love_head": "shaded by 357 View St",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -2723,7 +2722,7 @@
   "height_m": 1.78
  },
  "jade_costume": {
-  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
   "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
@@ -2789,24 +2788,24 @@
     10.85
    ],
    [
-    4,
+    3.6,
     0,
-    10.75
+    10.554
    ],
    [
-    4.87,
+    3.88,
     0,
-    11.1
+    10.554
    ],
    [
-    4.87,
+    4.779999999999999,
     -0.7,
-    12.9
+    10.554
    ],
    [
-    5.7,
+    5.6,
     -0.7,
-    13.6
+    11.4
    ],
    [
     7.2,
@@ -2870,20 +2869,20 @@
     801.8
    ],
    [
-    1043.8,
-    704.1
+    1030.1,
+    732
    ],
    [
-    1068.2,
-    643.3
+    1030.1,
+    712.5
    ],
    [
-    1193.9,
-    643.3
+    1030.1,
+    649.6
    ],
    [
-    1242.8,
-    585.4
+    1089.2,
+    592.4
    ],
    [
     1375.4,
@@ -3211,7 +3210,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.49
+    "R": 0.97
    },
    "headTurn": 0
   },
@@ -3226,7 +3225,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.51
+    "R": 0.97
    },
    "headTurn": 0
   }

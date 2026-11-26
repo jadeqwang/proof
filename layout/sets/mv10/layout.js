@@ -376,8 +376,10 @@ export const SINK = { x0: 3.45, x1: 4.15, z: KITCHEN.z1 - 0.32 };        // unde
 export const STOVE = { x: 4.89 - 0.32, z0: 7.0, z1: 7.76, kind: '30-inch freestanding range (OURS: type)' };
 // Jade: dishwasher under the counter to the right of the stove (24", next to it, ESE side)
 export const DISHWASHER = { run: 1, z0: 7.78, z1: 8.39, kind: '24-inch dishwasher, stainless front (finish OURS)' };
-// Jade: normal-size fridge near the 2x2 (30" top-freezer, 1.72 m: OUR model; white: OUR colour, a 2010 rental)
-export const FRIDGE = { x0: 2.30, x1: 3.06, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.74, h: 1.72, freezerY: 1.22, col: 0xf0efe9, kind: '30-inch top-freezer fridge, white (model and colour OURS)' };
+// Jade: normal-size fridge near the 2x2 (30" top-freezer, 1.72 m: OUR model). Place confirmed by Jade (r3 decisions,
+// 2026-11-26): "against the wall behind the 2x2" (option a, the partition run). Colour (Jade, same answer): DARK BEIGE,
+// not white, not stainless. The exact shade is OURS: a dark almond / biscuit enamel of the period (0x9a8a6c).
+export const FRIDGE = { x0: 2.30, x1: 3.06, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.74, h: 1.72, freezerY: 1.22, col: 0x9a8a6c, grey: 0.6, kind: '30-inch top-freezer fridge, dark beige enamel (Jade r3: dark beige; model and exact shade OURS)' };
 // Jade: a stainless step-lid trash can in the space to the right of the sink (on the floor past the ESE run's SSW end)
 export const TRASH = { at: [3.10, 9.55], r: 0.15, h: 0.66, kind: 'stainless-steel step-lid trash can (~30 L; size OURS)' };
 // Jade: upper cabinets; every cabinet door dark walnut. Uppers 0.33 deep, 1.40..2.16 m (OUR sizes); none over the
@@ -411,11 +413,18 @@ export const PARTY_FOOD = {
     ['rect', [0.22, 0.30], 4.57, 6.78, 'snacks (bag of tortilla chips)'], ['round', 0.10, 4.60, 9.05, 'snacks (bowl of nuts)'], ['round', 0.10, 4.30, 5.73, 'snacks (bowl of salsa)']],
 };
 // the lemonade prep BEFORE the party (Jade 2026-11-25 round 2: "they pick the lemons AND prepare the lemonade in the
-// kitchen (juicer, rinds, mixing)"): on the dining table, where the SSW window's daylight falls (10:30 since the r2 review) (our choice of surface:
-// the counters are in shade and crowded; ASSUMED). Everything here is OURS except juicer, rinds, mixing and the lemons.
-export const PREP = { board: { at: [1.00, 7.42], w: 0.45, d: 0.30 }, knife: { at: [1.00, 7.62] }, reamer: { at: [1.62, 7.42], r: 0.09 },
-  lemonsBowl: { at: [0.40, 7.46], r: 0.16 }, rindsBowl: { at: [0.60, 7.88], r: 0.14 }, punch: { at: [1.05, 7.84] }, sugar: { at: [0.27, 7.95] }, pitcher: { at: [1.84, 7.90], r: 0.07 },
-  halves: [[0.92, 7.40, 'up'], [1.10, 7.46, 'up']], rinds: 6 };
+// kitchen (juicer, rinds, mixing)"). WHERE (Jade, r3 decisions 2026-11-26): "the counter by the sink". Moved from the
+// dining table to the counter beside the sink: the core-wall run's ESE end (over and past the dishwasher) and the corner
+// where it meets the sink run (counter top x 4.255..4.89, z 8.2..9.80). The sink is at frame right in V3b_prep. Every
+// position below is OURS; juicer, rinds, mixing and the lemons are Jade's. The friend stirs the punchbowl with a LADLE
+// held in a real grip (Jade r3: "the hand should be holding the ladle in a realistic way"): see ladleGrip.js.
+// LADLE: the ladle's bowl dips in the lemonade at `bowlAt` (world X, Z; its height follows the fill); the handle rises from
+// it toward the friend at `rise` deg above level, `len` m from the ladle's rim to the middle of his fist.
+export const PREP = { surface: 'counter by the sink', y: COUNTER_H, board: { at: [4.50, 9.04], w: 0.34, d: 0.28 }, knife: { at: [4.40, 9.24] }, reamer: { at: [4.41, 9.45], r: 0.09 },
+  lemonsBowl: { at: [4.73, 9.56], r: 0.15 }, rindsBowl: { at: [4.775, 9.06], r: 0.11 }, punch: { at: [4.57, 8.45] }, punchFill: 0.55, sugar: { at: [4.80, 8.80] }, pitcher: { at: [4.225, 9.63], r: 0.065 },
+  halves: [[4.43, 9.02, 'up'], [4.58, 9.07, 'up']], rinds: 5,
+  ladle: { bowlAt: [4.45, 8.50], bowlR: 0.045, len: 0.24, rise: 60, yawDeg: -30, handleR: 0.0085, hook: 0.07, y0: 0.40, lift: 0.03 },
+  friendAt: [3.84, 8.44], jadeAt: [3.98, 9.02] };
 // "pale IKEA dinner table" with "pale benches, tucked in": end-on to the SSW wall (Jade). 1.8 x 0.9 m: OURS.
 export const DINING = { x0: T, x1: T + 1.8, z0: 7.2, z1: 8.1, h: 0.74, col: 0xe2cfa6,
   benches: [{ x0: 0.3, x1: 1.8, z0: 6.98, z1: 7.30 }, { x0: 0.3, x1: 1.8, z0: 8.0, z1: 8.32 }], benchH: 0.45 };
@@ -435,7 +444,13 @@ export const CEILING_ON = { prep: false, bridge: false, hardstop: false, verse3:
 // the yard. Railing 0.91 m (36") with 2x2 balusters at ~12 cm, posts at the corners and <= 1.8 m: OUR details.
 export const PATIO = { x0: 0.93, x1: 3.88, z0: HOUSE.Z, z1: 12.97, top: 0, kind: 'wood deck level with the house floor (Jade), wood railing and wood stairs down to the yard' };
 export const RAIL = { h: 0.91, post: 0.09, rail: [0.09, 0.04], baluster: 0.035, gap: 0.12 };
-export const STAIRS = { x0: 3.88, x1: 5.86, landing: { z0: HOUSE.Z, z1: 11.3 }, z0: 11.3, z1: 12.9, risers: 4 };   // descending ESE to the lawn by the mint
+// STAIRS (Jade, r3 decisions 2026-11-26: "the stairs should be descending next to the wall of the house"). Rebuilt: the
+// flight now runs ALONG the house's ESE wall, its inner side against the wall, descending NNE (+X) from the deck's NNE
+// edge to the lawn (was: a deck-level landing out to Z 11.3, then four risers descending ESE, away from the house).
+// It stays inside the band Jade drew beside the patio (X 3.9..5.9). Four 17.5 cm risers (unchanged), three treads of
+// 0.30 m (OURS), width 1.20 m (OURS; her band is 2.8 m deep: the rest is lawn). Railing on the open (ESE) side.
+export const STAIRS = { x0: 3.88, z0: HOUSE.Z, z1: HOUSE.Z + 1.20, risers: 4, run: 0.30, along: 'the ESE house wall, descending NNE (+X)' };
+STAIRS.x1 = STAIRS.x0 + (STAIRS.risers - 1) * STAIRS.run;   // X 4.78: the foot of the flight, on the lawn
 export const STRAWBERRY = { x0: 1.03, x1: 3.89, z0: 13.07, z1: 15.06, h: 0.25, kind: 'strawberry plants and flowers, a raised timber bed' };
 export const MINT = { at: [4.84, 14.2], r: 0.33, h: 0.45, kind: 'half whisky barrel of mint (drawn ~1.7 m across: real size used)' };
 export const HOSE = { at: [9.57, 11.12], r: 0.26 };
@@ -463,13 +478,16 @@ export const poiCentre = (s) => { const a = POI.yaw * Math.PI / 180, lx = Math.c
 
 // ---------------------------------------------------------------- her path (the gold line of verse 3): [X, Z, floor y]
 // shelf -> through the opening -> round the dining table's NNE end -> the sliding door (greeting) -> the deck (hug)
-// -> the landing and down the stairs -> across the lawn -> under the lemon tree (first love).
+// -> down the stairs along the house wall -> across the lawn toward the lemon tree. REFERENCE ONLY (the old v3 route;
+// V3h). Jade (r3, 2026-11-26): first love was never under the lemon tree; nobody is staged there during the party now.
 // the shelf mark keeps its old 0.92 m from the Expedit's front (which moved 0.32 m WNW with the thick wall)
 export const MARK = { shelf: [2.72, 3.30] };
+const STAIR_Z = (STAIRS.z0 + STAIRS.z1) / 2;
 export const PATH = [[2.72, 3.30, 0], [2.0, 4.15, 0], [1.15, 5.0, 0], [1.55, 6.05, 0], [2.45, 6.75, 0], [2.55, 7.65, 0], [2.4, 8.6, 0], [1.55, 9.3, 0], [1.21, 9.95, 0],
-  [1.6, 10.6, PATIO.top], [2.6, 10.85, PATIO.top], [4.0, 10.75, PATIO.top], [4.87, 11.1, PATIO.top], [4.87, 12.9, GRADE], [5.7, 13.6, GRADE], [7.2, 15.5, GRADE], [9.0, 17.2, GRADE], [9.9, 17.95, GRADE]];
-export const MARKS = { shelf: MARK.shelf, crossing: [1.9, 6.4], greeting: [1.21, 9.62], hug: [2.6, 10.85], stairs: [4.87, 12.1], tree: [9.9, 17.95] };
-export const MARK_FLOOR = { shelf: 0, crossing: 0, greeting: 0, hug: PATIO.top, stairs: GRADE + (PATIO.top - GRADE) / 2, tree: GRADE };
+  [1.6, 10.6, PATIO.top], [2.6, 10.85, PATIO.top], [3.6, STAIR_Z, PATIO.top], [STAIRS.x0, STAIR_Z, PATIO.top], [STAIRS.x1, STAIR_Z, GRADE], [5.6, 11.4, GRADE], [7.2, 15.5, GRADE], [9.0, 17.2, GRADE], [9.9, 17.95, GRADE]];
+// silence (SI1) moved INDOORS (Jade r3: "move SI1 indoors"): just inside the open sliding door, the yard and the poi behind her
+export const MARKS = { shelf: MARK.shelf, crossing: [1.9, 6.4], greeting: [1.21, 9.62], hug: [2.6, 10.85], stairs: [(STAIRS.x0 + STAIRS.x1) / 2, STAIR_Z], tree: [9.9, 17.95], silence: [1.22, 9.58] };
+export const MARK_FLOOR = { shelf: 0, crossing: 0, greeting: 0, hug: PATIO.top, stairs: GRADE + (PATIO.top - GRADE) / 2, tree: GRADE, silence: 0 };
 
 // ---------------------------------------------------------------- sun visibility (analytic, for the numbers in NOTES and the sidecars)
 // March from p toward the sun; blocked by: the house (walls to the plate, the gable roof, the eaves), the neighbour
@@ -555,8 +573,8 @@ export const FOOTPRINTS = {
 // shelf says something, she stops -> the doorbell again -> crosses to the door again to welcome more guests.
 // The marks, the route through the opening, the speeds and the dwell times are OURS (a plausible party walk); the
 // sequence is Jade's. Who she talks to (K1), who speaks at the shelf (R1) and the guests (N1..N4) are set-local figures.
-// Real time (invented) is ~20 s; the -2sm line lasts 4.13 s (194.59-198.72), so the shot plays it ~4.8x fast (a
-// uniform time-lapse: `slot` times below). The old route (shelf -> dining -> sliding door) is gone with it.
+// Real time (invented) is ~19.3 s; the -2sm line lasts 4.13 s (194.59-198.72), so the shot plays it ~4.7x fast (a
+// uniform time-lapse: `slot` times below). Jade CHOSE this (r3 decisions 2026-11-26: "an even time-lapse, about 4.7x"). The old route (shelf -> dining -> sliding door) is gone with it.
 export const RC_MARKS = { kitchen: [1.75, 6.25], door: [4.10, 0.78], stop: [2.55, 2.91], door2: [3.95, 0.70], K1: [2.45, 6.62], R1: [3.25, 3.72] };
 export const ROOM_CROSSING = (() => {
   const M = RC_MARKS, len = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
@@ -583,6 +601,8 @@ export const ROOM_CROSSING = (() => {
   const legs = items.filter((o) => o.kind === 'leg'), walked = legs.reduce((a, o) => a + o.length_m, 0);
   return { note: 'Jade’s sequence (2026-11-25 round 2); marks, route, speeds and dwells OURS. World [X (NNE), Z (ESE)] on the floor.', marks: M, items, legs, stops: items.filter((o) => o.kind === 'stop'),
     real_total_s: +t.toFixed(3), walked_m: +walked.toFixed(3), slot, speedup: +(1 / k).toFixed(2),
-    fit_note: `the sequence takes ~${t.toFixed(1)} s in real time; the line is 4.13 s, so the shot runs ${(1 / k).toFixed(1)}x fast (uniform). Alternative: hold the stops shorter (a beat each) and let the walks run ~3x.`,
+    fit_note: `the sequence takes ~${t.toFixed(1)} s in real time; the line is 4.13 s, so the shot runs ${(1 / k).toFixed(1)}x fast, an EVEN time-lapse (Jade, r3 decisions 2026-11-26: "an even time-lapse, about 4.7x"; the 'stops as beats, walks ~3x' alternative is rejected).`,
+    who: { K1: 'unnamed guest she talks with in the kitchen (Jade r3)', R1: 'unnamed guest who speaks at the shelf (Jade r3)', friend: 'the childhood friend, HELPING in the kitchen (Jade r3: "childhood friend was helping"): refilling the snack bowls on the core-wall counter in every key (OUR task)',
+      firstLove27: 'Jade r3: "he was at the shelf briefly and then went to talk to an unnamed guest elsewhere": k0 at the Expedit (back three-quarter), middle and k3 by the SSW living-room window with guest B1, his back to the camera (where, and the guest, OURS)' },
     keys: { V3_rcv_obl_k0: 'start (S0: talking in the kitchen, before the bell)', V3_rcv_obl: 'middle (S2: stopped by the shelf, turned to R1; N1 and N2 just inside)', V3_rcv_obl_k3: 'end (S3: at the door again, N3 and N4 on the step)' } };
 })();

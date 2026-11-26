@@ -638,3 +638,95 @@ stainless range hood is replaced (`layout.js` `OTR_MICROWAVE`, built in `build.j
 - No mv10 film shot frames the stove; it shows only in the overviews (V3_rcv, V3_rcv_obl and keys, V3h), re-rendered
   with the table above.
 
+
+## 2026-11-26: round-3 decisions
+
+Jade's answers (verbatim in `work/decisions/JADE_R3_DECISIONS.md`, "Mountain View 2010"), applied. Supersedes anything
+above that contradicts it.
+
+1. **Room crossing timing (V3_rcv*):** Jade chose "an even time-lapse, about 4.7x". The model already plays it that way:
+   `ROOM_CROSSING` real time 19.3 s in the 4.13 s line = 4.68x, uniform (`fit_note` now records her choice; the
+   "stops as beats, walks ~3x" alternative is dropped). No geometry change.
+2. **Who is in the kitchen / at the shelf:** K1 (she talks with, kitchen) and R1 (speaks at the shelf) stay UNNAMED
+   guests. NEW: the **childhood friend** "was helping": in all three crossing keys he stands at the core-wall counter
+   refilling the snack bowls (popcorn bowl, bag of chips). The task and spot are OURS.
+   - Pronoun: the lead's brief says "her"; the repo (cast sheet `cast/childhood_friend/cf_A_back_v1`, build.js) has the
+     friend as a young man. Kept as built. **FLAG: confirm with Jade** (one-line question below).
+3. **First love during the arrivals:** "at the shelf briefly, then went to talk to an unnamed guest elsewhere". Staged:
+   k0 (start, she is in the kitchen): he stands at the Expedit's beauty half, back three-quarter to the camera, looking
+   along the art books (3.95, 3.86). Middle key and k3: he is by the SSW living-room window (0.85, 3.30), back to the
+   camera, talking with guest B1 (moved there, 1.50, 3.30, facing him). Where, and which guest: OURS.
+4. **V3b split:** unchanged (picking 2:57.0, then the making from straight above 2:58.0), as Jade chose.
+   **The ladle grip (new, set-local `ladleGrip.js`; engine untouched):** the friend's right hand is the engine's
+   articulated hand with joint angles solved for the ladle: the handle is a 17 mm steel rod; the solver searches the
+   hand's roll about the handle, the handle's angle across the palm and which face the thumb lies on, scoring (a)
+   wrist straight (finger axis along the forearm, elbow at the given point), (b) palm not turned outward (no forearm
+   over-rotation), (c) the thumb on the handle's top, (d) the thumb reaching it. Result: a closed fist round the handle
+   (fingers wrapped round it: MCP 77-100, PIP 38-109, DIP 61-74 deg), the thumb laid along the handle on top pointing up
+   it (tip on the steel, 0.9 mm error), wrist deviation ~31 deg (inside a real wrist's range), palm facing his midline.
+   The ladle stands steeply (60 deg) in the punchbowl near its nearer rim, the hand at the top end, the hanging tab
+   just above the thumb; the ladle's bowl is lifted to the surface with lemonade in it. Numbers in the sidecar
+   `ladle_grip`. Checked from three references (set references, not film shots, no beam twins):
+   `T0_ladlegrip_a` (from the far side of the counter: the knuckles and wrapped fingers), `T0_ladlegrip_b` (over his
+   right shoulder: the thumb on top), `T0_ladlegrip_top` (the V3b_prep camera zoomed to 0.42 m across: what the painter
+   sees). The earlier tries are in the log: a thumb along a handle that runs square across the palm cannot lie along
+   it (it stood up off the fist), and the "serving" grip with the thumb toward the bowl needs the forearm pointing down
+   into the bowl (elbow high): neither read right, so the fist grip with the thumb on top was kept.
+   - ASSUMED: steel ladle, 9 cm bowl, round 17 mm handle with a flat tab end; which hand (right); his left hand steadying
+     the punchbowl at its rim.
+5. **Where the lemonade was made: "the counter by the sink".** `PREP` moved from the dining table to the core-wall run's
+   ESE end and the corner where it meets the sink run (counter top X 4.26..4.89, Z 8.2..9.8): punchbowl over the
+   dishwasher, sugar, cutting board with two halves and the knife, a small bowl of rinds against the wall, the glass
+   reamer in the corner, the bowl of picked lemons, the water pitcher beside the sink. Postdoc Jade (3.98, 9.02) presses
+   a half on the reamer; the friend (3.84, 8.44) stirs. V3b_prep camera: straight down, orthographic, 1.72 m across,
+   NNE (the core wall) up the frame, the sink at bottom right; the core-wall upper cabinets and their pulls are hidden
+   (they sit between the lens and the counter); both heads hidden (hands and forearms only, as before).
+   - **Window-mullion shadow:** the SSW dining-window shadow on the table no longer applies (nothing is on the table) and
+     is dropped. At 10:30 (sun az 132, elev 36) the sun now comes through the KITCHEN window over the sink (ESE wall) and
+     falls in a band across this counter, Jade's shadow in it. That is the computed sun, kept.
+6. **Fridge:** "against the wall behind the 2x2" (where it already was) and **dark beige**: `FRIDGE.col` 0x9a8a6c (a
+   dark almond / biscuit enamel; the shade is OURS), flat grey 0.6. Was white (our pick).
+7. **V3e "fifteen percent above amplitude" (3:06.0-3:09.1):** the cutaway to the poi spinner stays, and Jade: "the stairs
+   should be descending next to the wall of the house". **The stairs are rebuilt** (`STAIRS`): one flight ALONG the
+   house's ESE wall, its inner side against the wall, descending NNE (+X) from the deck's NNE edge (X 3.88) to the lawn
+   (X 4.78): four 17.5 cm risers, three 0.30 m treads, 1.20 m wide (Z 9.95..11.15), a stringer and a sloping railing on
+   the open side. The old deck-level landing out to Z 11.3 and the flight descending ESE away from the house are gone.
+   It stays inside the band Jade drew beside the patio (X 3.9..5.9); the tread run and width are OURS. V3e's aim moved
+   (poi at 0.36 of the frame width) so the flight shows at frame right, running down the wall under the kitchen window.
+   Knock-ons: her old v3 PATH (V3h reference) goes down the new flight; `MARKS.stairs` moved; V3f's extra deck guest
+   moved off the stairs to (3.55, 10.45).
+8. **SI1 moved indoors** (first love was never under the lemon tree). She stands just inside the open sliding glass door
+   (`MARKS.silence` 1.22, 9.58), facing into the kitchen and the lens (85 mm, 1.4 m); first love beside her at frame
+   right, back to the lens, watching the fire through the glass (never face-on). The lens is swung 9 deg off the
+   poi-her line, so the poi's flames sit low at frame left beside her, not behind her head. Where she stands: OURS.
+   - **Poi trail fixed (HANDOFF fault):** SI1 sets `poiTrail: false`: the two swept circles are not drawn in its guides,
+     only the two flames, so nothing gold can be painted round her head (KEYFRAMES 6.6). Other shots keep the circles.
+   - **V3a check:** V3a (2:54.7) no longer has him: since the r2 review it is the pre-party picking (her and the friend,
+     no guests, no first love). The only remaining "first love under the tree" was the V3h plan reference: its figures
+     now stand at the shelf (V3_nailed marks). `jadeTree` / `heTree` remain only as helpers for V3a / V3b poses.
+9. **The deck:** punchbowl only, no table on the deck: already so since round 2 (the lemonade table was removed; the
+   punchbowl is on the kitchen counter right of the stove). No change.
+
+Known faults from HANDOFF, fixed in the set:
+- **NASA lettering legible:** `HOUSEWARMING_COSTUME.jacket` (sidecar `jade_costume`) now says the meatball is small
+  (~8 cm) and carries NO legible lettering ("paint no letters, no word NASA"). The model never had letters; the painter
+  prompt reads the sidecar.
+- **C2b, she holds the cup:** her hand sat on his left wrist next to his cup. Now nobody holds a cup in C2a / C2b: his
+  left forearm is held out bare, her empty hand taps mid-forearm (`firstLove27:forearmL`); his right arm hangs.
+  (Tried first: the cup in his right hand. It still sat mid-frame in C2b, so it was dropped.)
+
+Shots changed (repaint in r4): V3b_prep (moved to the sink counter, new hand and ladle), V3e (stairs), SI1 (indoors,
+no trail), V3_rcv_obl / _k0 / _k3 (friend and first love added; the legs diagnostic and V3_rcv reference too), C2b and
+C2a (no cup), V3h (reference: principals at the shelf, new stairs, path), V3f (the extra deck guest moved; the new
+stairs show at its frame edge only), V3a (the stair railing in its foreground is now the flight along the wall), V3c
+(the fridge behind her is now dark beige). Also check any other shot that sees into the kitchen for the fridge colour.
+Unchanged staging: BR*, HS1, V3b, V3_nailed, V3_rev_temple_*.
+
+Questions for Jade (proposed for the decision page):
+- **cf_who:** the childhood friend: a man (as the cast sheet draws him) or a woman? Options: man (as built) / woman.
+  Recommendation: ask; keep as built until answered. Image: `media/layout/mv10/V3_rcv_obl_k0_lit.png`.
+- **v3b_grip:** the friend's ladle grip: fist round the handle, thumb on top (as built) / the serving grip, thumb
+  pointing down the handle to the bowl (elbow raised). Recommendation: as built. Image:
+  `media/layout/mv10/T0_ladlegrip_b_form.png`.
+- **si1_where:** SI1 inside the open sliding door with the poi beside her (as built) / at the Expedit (no poi in frame).
+  Recommendation: as built. Image: `media/layout/mv10/SI1_lit.png`.

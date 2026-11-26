@@ -749,3 +749,22 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   is the opening: fingers to temples, camera high right, bottom fifth clear for the caption. Repaint all four CL shots.
   Lead sent it back: a block across her bowed forehead (fringe plank) reads as binoculars.
 - Closet fringe plank fixed with opt-in `fringe:'none'` (engine; default off, BO1 pixel-identical).
+- **Jade, 2026-11-26:** "the three.js models have dots for eyes, so the image 'actors' can't be told to look where
+  they're pointing and this is a problem." Cause: `head.look` turns the head only ~62% of the pitch and the eye balls
+  are fixed forward. An engine agent is building aimed eyes (sclera, iris, lids), a gaze line in label mode, sidecar
+  gaze checks vs pointing, and `work/gaze_audit.md`, behind a switch until the mv10 and cloth agents finish; then
+  flip it on and re-render all sets before r4.
+- **Jade, 2026-11-26:** "we should probably make realistic torso shapes and paint them in the main color of that
+  character's clothing. in some over the shoulder shots in close proximity, the image models do really weird things
+  by confusing one person's shoulder for another person's torso." Given to the same engine agent: real torsos for
+  every figure by default, clothing in real costume colours in form/contour/light (replacing code tints), separation
+  outlines, and a costume audit. Same switch as the eyes.
+- **Jade, 2026-11-26:** "in the basement scene, it really messes up kid Jade's arm." Lead's read of the r3 guides:
+  B2 her pointing arm crosses Dad's chest, huge foreshortened hand, painted as Dad's hand; B4/B5 cat pose has a fat
+  upper arm and oversized shoulder ball merging with her chest, forearm at a stiff right angle. A basement agent is
+  restaging (shots.js only; engine notes go to `work/arm_engine_notes.md` for the engine agent).
+- **mv10 agent done:** childhood friend refills snack bowls in the kitchen; first love at the Expedit in k0, then by
+  the SSW window with guest B1; `ladleGrip.js` (real grip, `T0_ladlegrip_*`); V3b_prep top-down at the counter by the
+  sink with window sun; fridge dark beige; one stair flight down the house's ESE wall, V3e reframed; SI1 just inside
+  the sliding door, poi low, no circles; V3a/V3h no first love under the tree; NASA meatball small, no lettering;
+  C2a/C2b no cup. Repaint in r4: V3b_prep, V3e, SI1, V3_rcv_obl (+k0, k3), C2a, C2b, V3a, V3c, V3f.

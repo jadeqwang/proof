@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   11.2018,
-   0.8706,
-   18.7987
+   0.4409,
+   1.5706,
+   8.2935
   ],
   "target": [
-   9.5267,
-   0.8325,
-   17.7066
+   1.4767,
+   1.5325,
+   10.0039
   ],
   "lens_mm": 85,
   "frame_width_mm": 36,
@@ -24,39 +24,39 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   0.5461,
+   -0.8554,
    0,
-   -0.8377,
+   0.518,
    0,
-   -0.016,
+   0.0099,
    0.9998,
-   -0.0104,
+   0.0163,
    0,
-   0.8375,
-   0.019,
-   0.546,
+   -0.5179,
+   0.0191,
+   -0.8552,
    0,
-   11.2018,
-   0.8706,
-   18.7987,
+   0.4409,
+   1.5706,
+   8.2935,
    1
   ],
   "viewMatrix": [
-   0.5461,
-   -0.016,
-   0.8375,
+   -0.8554,
+   0.0099,
+   -0.5179,
    0,
    0,
    0.9998,
-   0.019,
+   0.0191,
    0,
-   -0.8377,
-   -0.0104,
-   0.546,
+   0.518,
+   0.0163,
+   -0.8552,
    0,
-   9.6297,
-   -0.4961,
-   -19.6635,
+   -3.919,
+   -1.7098,
+   7.2912,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "front_door": {
    "px": [
     [
-     4193.8,
-     132.3
+     7128.5,
+     848.7
     ],
     [
-     4492.7,
-     116.8
+     8453,
+     887.1
     ],
     [
-     4484,
-     706
+     8513.8,
+     -1040.3
     ],
     [
-     4186.1,
-     694.4
+     7174.1,
+     -907.2
     ]
    ],
    "world": [
@@ -127,29 +127,29 @@
     ]
    ],
    "behind_camera": [
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true
    ]
   },
   "living_room_window_wnw": {
    "px": [
     [
-     3310.8,
-     173.4
+     3823.5,
+     766.1
     ],
     [
-     3738.7,
-     150.8
+     5323.6,
+     811.4
     ],
     [
-     3735.3,
-     446.1
+     5339.4,
+     -48.7
     ],
     [
-     3308.1,
-     446.6
+     3832.5,
+     15.1
     ]
    ],
    "world": [
@@ -175,29 +175,29 @@
     ]
    ],
    "behind_camera": [
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true
    ]
   },
   "living_room_window_ssw": {
    "px": [
     [
-     2738.8,
-     153.4
+     3274.6,
+     930.9
     ],
     [
-     2980.8,
-     167.5
+     3374.2,
+     820.6
     ],
     [
-     2978.4,
-     446.5
+     3383.2,
+     -61.6
     ],
     [
-     2736.6,
-     446.2
+     3285.8,
+     -217.2
     ]
    ],
    "world": [
@@ -223,29 +223,29 @@
     ]
    ],
    "behind_camera": [
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true
    ]
   },
   "sliding_glass_door_to_the_deck": {
    "px": [
     [
-     1984.1,
-     19.6
+     -842.1,
+     -403.9
     ],
     [
-     1537,
-     68.3
+     2795.1,
+     -952.5
     ],
     [
-     1535.3,
-     742.1
+     2748.4,
+     5138.5
     ],
     [
-     1980.8,
-     778.5
+     -813.9,
+     3339.3
     ]
    ],
    "world": [
@@ -280,20 +280,20 @@
   "kitchen_window_over_the_sink_ese": {
    "px": [
     [
-     2593.5,
-     -55.5
+     -2493.8,
+     -181.4
     ],
     [
-     2254.5,
-     -17.9
+     -1774.7,
+     -294.6
     ],
     [
-     2252.4,
-     382
+     -1756.9,
+     1260.8
     ],
     [
-     2590.5,
-     376.3
+     -2474.7,
+     1139.4
     ]
    ],
    "world": [
@@ -328,20 +328,20 @@
   "dining_window_ssw": {
    "px": [
     [
-     1779.8,
-     97.8
+     -6467.6,
+     11711.6
     ],
     [
-     2056.5,
-     113.9
+     2200.5,
+     2119.4
     ],
     [
-     2055,
-     430.8
+     2220.7,
+     -1738
     ],
     [
-     1778.6,
-     429.7
+     -7371.9,
+     -15894.6
     ]
    ],
    "world": [
@@ -367,29 +367,29 @@
     ]
    ],
    "behind_camera": [
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true
    ]
   },
   "tea_room_window_wnw": {
    "px": [
     [
-     5967.4,
-     33.1
+     17317.5,
+     1173.6
     ],
     [
-     7175.6,
-     -30.7
+     29770.3,
+     1549.6
     ],
     [
-     7163.3,
-     441.6
+     30092,
+     -1096.5
     ],
     [
-     5958.8,
-     443.2
+     17437,
+     -560.8
     ]
    ],
    "world": [
@@ -415,29 +415,29 @@
     ]
    ],
    "behind_camera": [
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true
    ]
   },
   "tea_room_window_nne": {
    "px": [
     [
-     8517.1,
-     -137.1
+     354994.6,
+     13098.3
     ],
     [
-     8581.4,
-     -200.2
+     -46766.8,
+     -1363.1
     ],
     [
-     8561.1,
-     437.4
+     -45908.6,
+     2949.3
     ],
     [
-     8498.8,
-     438.9
+     406704,
+     -19817.6
     ]
    ],
    "world": [
@@ -463,29 +463,29 @@
     ]
    ],
    "behind_camera": [
+    true,
     false,
     false,
-    false,
-    false
+    true
    ]
   },
   "bathroom_window_wnw": {
    "px": [
     [
-     4802.5,
-     125.1
+     9966.8,
+     847.8
     ],
     [
-     5081.1,
-     111.6
+     11461.3,
+     883.5
     ],
     [
-     5077.5,
-     317.7
+     11493.9,
+     146
     ],
     [
-     4799.3,
-     323
+     9992.5,
+     171.7
     ]
    ],
    "world": [
@@ -511,29 +511,29 @@
     ]
    ],
    "behind_camera": [
-    false,
-    false,
-    false,
-    false
+    true,
+    true,
+    true,
+    true
    ]
   },
   "bedroom_window_ese": {
    "px": [
     [
-     7010.5,
-     -545.5
+     -4437.8,
+     124.7
     ],
     [
-     4863.6,
-     -307.4
+     -4049.5,
+     63.6
     ],
     [
-     4851.5,
-     434.7
+     -4029.8,
+     997.1
     ],
     [
-     6985.8,
-     428.8
+     -4420,
+     912.2
     ]
    ],
    "world": [
@@ -568,20 +568,20 @@
   "bedroom_window_nne": {
    "px": [
     [
-     8858.8,
-     -472.1
+     -8470.6,
+     15.3
     ],
     [
-     9027,
-     -637.1
+     -5837.5,
+     110.1
     ],
     [
-     8991.1,
-     426.6
+     -5814,
+     932.5
     ],
     [
-     8828.9,
-     430.6
+     -8429.1,
+     1064
     ]
    ],
    "world": [
@@ -616,20 +616,20 @@
   "bath_2_window_ese": {
    "px": [
     [
-     3240.3,
-     -78
+     -3258.1,
+     46.7
     ],
     [
-     2969.3,
-     -50.4
+     -2998.7,
+     14.5
     ],
     [
-     2966.7,
-     253.4
+     -2986.2,
+     765.9
     ],
     [
-     3237.2,
-     242.4
+     -3245.7,
+     743
     ]
    ],
    "world": [
@@ -665,361 +665,324 @@
  "heads": {
   "A1": {
    "px": [
-    3992.9,
-    225
+    7269.6,
+    563.4
    ],
    "eyes": [
-    4022.9,
-    224
+    7436.8,
+    563.7
    ],
    "mouth": [
-    4020.5,
-    243
+    7426.8,
+    497.6
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 59
+   "facing_camera_deg": 105
   },
   "A2": {
    "px": [
-    4214,
-    259.1
+    8578.1,
+    414
    ],
    "eyes": [
-    4185.1,
-    256
+    8397.4,
+    429.6
    ],
    "mouth": [
-    4183.7,
-    273.9
+    8392.7,
+    364.5
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 119
+   "facing_camera_deg": 70
   },
   "A3": {
    "px": [
-    4023.9,
-    193.9
+    8396.1,
+    668.3
    ],
    "eyes": [
-    4018.1,
-    197.6
+    8199.3,
+    654.3
    ],
    "mouth": [
-    4018.5,
-    217.7
+    8222.2,
+    577.1
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 165
+   "facing_camera_deg": 120
   },
   "S1": {
    "px": [
-    3447,
-    362.5
+    4606.4,
+    200.7
    ],
    "eyes": [
-    3468.9,
-    360.3
+    4700.3,
+    203.6
    ],
    "mouth": [
-    3467.4,
-    376.2
+    4699.7,
+    155.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 52
+   "facing_camera_deg": 87
   },
   "B2": {
    "px": [
-    3595.9,
-    368.2
+    5198.3,
+    161.2
    ],
    "eyes": [
-    3570.1,
-    364.8
+    5106.6,
+    174.3
    ],
    "mouth": [
-    3568.5,
-    380.3
+    5105.2,
+    126.7
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 107
+   "facing_camera_deg": 68
   },
   "B1": {
    "px": [
-    2966.3,
-    255.9
+    3895.1,
+    522.6
    ],
    "eyes": [
-    2991.2,
-    257.4
+    3947.9,
+    516.7
    ],
    "mouth": [
-    2988.6,
-    274
+    3943.5,
+    456.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 116
+   "facing_camera_deg": 150
   },
   "E1": {
    "px": [
-    4297.4,
-    209.2
+    8011.1,
+    598.9
    ],
    "eyes": [
-    4310.5,
-    207.9
+    7931.3,
+    603.4
    ],
    "mouth": [
-    4310,
-    227.6
+    7934.3,
+    538.9
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 159
+   "facing_camera_deg": 154
   },
   "C1": {
    "px": [
-    3084.7,
-    198.6
+    -417127.6,
+    -4039.8
    ],
    "eyes": [
-    3056.1,
-    195.1
+    -155863.7,
+    -1661.3
    ],
    "mouth": [
-    3055.9,
-    217.3
+    -154208.8,
+    1183.9
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 50
+   "facing_camera_deg": 41
   },
   "C2": {
    "px": [
-    2811.7,
-    147.9
+    -19960.9,
+    -768.6
    ],
    "eyes": [
-    2843.8,
-    148.3
+    -23171.4,
+    -922.3
    ],
    "mouth": [
-    2841.7,
-    172.6
+    -22907.4,
+    -355.3
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 126
+   "facing_camera_deg": 127
   },
   "C3": {
    "px": [
-    3054.3,
-    224.3
+    -16364,
+    818.1
    ],
    "eyes": [
-    3057.8,
-    220.2
+    -18260.4,
+    774.4
    ],
    "mouth": [
-    3057.8,
-    241.9
+    -18338.8,
+    1099.5
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 174
+   "facing_camera_deg": 80
   },
   "T1": {
    "px": [
-    2898.6,
-    172.1
+    -7429.9,
+    367.2
    ],
    "eyes": [
-    2931.6,
-    185.7
+    -7434.8,
+    471.3
    ],
    "mouth": [
-    2920,
-    208.2
+    -7430.1,
+    618.8
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 62
-  },
-  "G1": {
-   "px": [
-    1474.4,
-    143.5
-   ],
-   "eyes": [
-    1493.2,
-    144.4
-   ],
-   "mouth": [
-    1492.4,
-    169.5
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 150,
-   "blocked_by": "G1 guest G1, the greeting (face undrawn)"
-  },
-  "H1": {
-   "px": [
-    1821.8,
-    142.4
-   ],
-   "eyes": [
-    1797.1,
-    141.1
-   ],
-   "mouth": [
-    1797,
-    168
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 143,
-   "blocked_by": "H1 guest H1, the hug (face undrawn)"
+   "facing_camera_deg": 150
   },
   "W1": {
    "px": [
-    3265.2,
-    403.3
+    -2674,
+    1007.2
    ],
    "eyes": [
-    3234.1,
-    400.3
+    -2563.6,
+    993.2
    ],
    "mouth": [
-    3234.6,
-    435.7
+    -2565.8,
+    1053.1
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 31
+   "facing_camera_deg": 109
   },
   "W2": {
    "px": [
-    3577,
-    464.1
+    -2763.1,
+    1054.7
    ],
    "eyes": [
-    3540.9,
-    460.7
+    -2664.2,
+    1041.8
    ],
    "mouth": [
-    3541.2,
-    496.2
+    -2665.4,
+    1093
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 35
+   "facing_camera_deg": 101
   },
   "W3": {
    "px": [
-    4076.8,
-    436.1
+    -3203.2,
+    996.1
    ],
    "eyes": [
-    4032.6,
-    432.4
+    -3097.8,
+    985.1
    ],
    "mouth": [
-    4033.1,
-    471.3
+    -3099.3,
+    1036.1
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 38
+   "facing_camera_deg": 91
   },
   "W4": {
    "px": [
-    5039.5,
-    352.3
+    -3448.9,
+    852.5
    ],
    "eyes": [
-    4971.7,
-    348.4
+    -3348.7,
+    845.5
    ],
    "mouth": [
-    4972.8,
-    397.2
+    -3350.7,
+    894
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 43
+   "facing_camera_deg": 77
   },
   "D1": {
    "px": [
-    1067.7,
-    174
+    1672,
+    482.3
    ],
    "eyes": [
-    1066.6,
-    172.4
+    1624,
+    483.5
    ],
    "mouth": [
-    1066.7,
-    198.3
+    1627.3,
+    542.4
    ],
    "in_frame": true,
-   "visible": false,
-   "facing_camera_deg": 3,
-   "blocked_by": "jade27 Jade (27)"
+   "visible": true,
+   "facing_camera_deg": 148,
+   "blocked_by": "D1 guest D1, poi audience on the deck (face undrawn)"
   },
   "D2": {
    "px": [
-    1227.1,
-    99.1
+    1094.6,
+    361.5
    ],
    "eyes": [
-    1223.6,
-    97.9
+    1064.4,
+    367.9
    ],
    "mouth": [
-    1223.9,
-    127.8
+    1067.2,
+    426.3
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 6,
-   "blocked_by": "firstLove27 first love (27, never face-on)"
+   "facing_camera_deg": 158,
+   "blocked_by": "jade27 Jade (27)"
   },
   "poi": {
    "px": [
-    968.3,
-    387.2
+    359.1,
+    753.6
    ],
    "eyes": [
-    1020.5,
-    382.4
+    338.1,
+    753.1
    ],
    "mouth": [
-    1019.8,
-    432.9
+    338.5,
+    785.6
    ],
    "in_frame": true,
-   "visible": false,
-   "facing_camera_deg": 137,
-   "blocked_by": "jade27 Jade (27)"
+   "visible": true,
+   "facing_camera_deg": 25
   },
   "jade27": {
    "px": [
-    959.9,
-    478.8
+    960,
+    479.6
    ],
    "eyes": [
     960,
-    453.5
+    453.6
    ],
    "mouth": [
     960,
-    648.4
+    655.4
    ],
    "in_frame": true,
    "visible": true,
@@ -1027,28 +990,28 @@
   },
   "firstLove27": {
    "px": [
-    1305,
-    246.5
+    1834.3,
+    182.1
    ],
    "eyes": [
-    1281.4,
-    255.1
+    1740.9,
+    197.2
    ],
    "mouth": [
-    1282.7,
-    372.8
+    1746.2,
+    349.8
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 169,
+   "facing_camera_deg": 155,
    "blocked_by": "firstLove27 first love (27, never face-on)"
   }
  },
  "hands": {
   "A1.L": {
    "px": [
-    4049.5,
-    468.3
+    7358.2,
+    -267.8
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1056,8 +1019,8 @@
   },
   "A1.R": {
    "px": [
-    4006,
-    338.9
+    7656.2,
+    146.2
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1065,8 +1028,8 @@
   },
   "A2.L": {
    "px": [
-    4178.4,
-    400.9
+    8751.8,
+    -132.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1074,8 +1037,8 @@
   },
   "A2.R": {
    "px": [
-    4198.3,
-    490
+    8251.7,
+    -400.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1083,8 +1046,8 @@
   },
   "A3.L": {
    "px": [
-    4026.6,
-    319.7
+    8038.4,
+    196.1
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1092,8 +1055,8 @@
   },
   "A3.R": {
    "px": [
-    4101.7,
-    458.2
+    8927.1,
+    -399.8
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1101,8 +1064,8 @@
   },
   "S1.L": {
    "px": [
-    3410.9,
-    531.5
+    4774.5,
+    -359.7
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1110,8 +1073,8 @@
   },
   "S1.R": {
    "px": [
-    3354.9,
-    530.7
+    4547.2,
+    -343.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1119,8 +1082,8 @@
   },
   "B2.L": {
    "px": [
-    3570.8,
-    538.5
+    5426,
+    -419
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1128,8 +1091,8 @@
   },
   "B2.R": {
    "px": [
-    3532.6,
-    464.9
+    5158.5,
+    -155.9
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1137,8 +1100,8 @@
   },
   "B1.L": {
    "px": [
-    2938.5,
-    471.4
+    3702.9,
+    -242.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1146,8 +1109,8 @@
   },
   "B1.R": {
    "px": [
-    3034,
-    358.1
+    4117.4,
+    147
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1155,8 +1118,8 @@
   },
   "E1.L": {
    "px": [
-    4292.7,
-    331.3
+    7693.7,
+    211.1
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1164,8 +1127,8 @@
   },
   "E1.R": {
    "px": [
-    4371.4,
-    463.4
+    8387.1,
+    -264.9
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1173,8 +1136,8 @@
   },
   "C1.L": {
    "px": [
-    3152.4,
-    484.7
+    -101414.2,
+    21767.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1182,8 +1145,8 @@
   },
   "C1.R": {
    "px": [
-    3009.2,
-    335.2
+    -68700.7,
+    7769.8
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1191,8 +1154,8 @@
   },
   "C2.L": {
    "px": [
-    2798.5,
-    462.1
+    -28908.9,
+    8004.8
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1200,8 +1163,8 @@
   },
   "C2.R": {
    "px": [
-    2944.7,
-    256.6
+    -18389.6,
+    1347.8
    ],
    "shape": "palmUp",
    "in_frame": false,
@@ -1209,8 +1172,8 @@
   },
   "C3.L": {
    "px": [
-    2979.3,
-    363.8
+    -19422.5,
+    3188.8
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1218,8 +1181,8 @@
   },
   "C3.R": {
    "px": [
-    3120.6,
-    506.3
+    -19173.5,
+    5034.1
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1227,8 +1190,8 @@
   },
   "T1.L": {
    "px": [
-    2973.4,
-    319.4
+    -7885.2,
+    1380.4
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1236,53 +1199,17 @@
   },
   "T1.R": {
    "px": [
-    3042,
-    231.9
+    -7251.9,
+    779.2
    ],
    "shape": "grip",
    "in_frame": false,
    "visible": false
   },
-  "G1.L": {
-   "px": [
-    1404.2,
-    469.4
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": false
-  },
-  "G1.R": {
-   "px": [
-    1548.9,
-    300
-   ],
-   "shape": "grip",
-   "in_frame": true,
-   "visible": true
-  },
-  "H1.L": {
-   "px": [
-    1742.3,
-    491.3
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
-  },
-  "H1.R": {
-   "px": [
-    1887.1,
-    490.7
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": false
-  },
   "W1.L": {
    "px": [
-    3368.9,
-    864.9
+    -2727,
+    1752.9
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1290,8 +1217,8 @@
   },
   "W1.R": {
    "px": [
-    3148.6,
-    847.6
+    -2560.9,
+    1814.9
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1299,8 +1226,8 @@
   },
   "W2.L": {
    "px": [
-    3677,
-    930
+    -2775.6,
+    1686.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1308,8 +1235,8 @@
   },
   "W2.R": {
    "px": [
-    3431,
-    684.2
+    -2492.6,
+    1356.6
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1317,8 +1244,8 @@
   },
   "W3.L": {
    "px": [
-    4187,
-    947.6
+    -3176.8,
+    1623.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1326,8 +1253,8 @@
   },
   "W3.R": {
    "px": [
-    3945,
-    922
+    -3170.1,
+    1688.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1335,8 +1262,8 @@
   },
   "W4.L": {
    "px": [
-    4947.9,
-    652.9
+    -3197.1,
+    1128
    ],
    "shape": "grip",
    "in_frame": false,
@@ -1344,8 +1271,8 @@
   },
   "W4.R": {
    "px": [
-    4869.5,
-    960.2
+    -3475.3,
+    1510.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1353,17 +1280,17 @@
   },
   "D1.L": {
    "px": [
-    1151.9,
-    504.1
+    1493.1,
+    1267.3
    ],
    "shape": "relax",
-   "in_frame": true,
+   "in_frame": false,
    "visible": false
   },
   "D1.R": {
    "px": [
-    1022.7,
-    331.1
+    1639,
+    835.7
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1371,26 +1298,26 @@
   },
   "D2.L": {
    "px": [
-    1323,
-    478.8
+    906.8,
+    1142.1
    ],
    "shape": "relax",
-   "in_frame": true,
+   "in_frame": false,
    "visible": false
   },
   "D2.R": {
    "px": [
-    1130.7,
-    478.6
+    1276.1,
+    1124.1
    ],
    "shape": "relax",
-   "in_frame": true,
+   "in_frame": false,
    "visible": false
   },
   "poi.L": {
    "px": [
-    838.2,
-    755.4
+    513.7,
+    1017.9
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1398,17 +1325,17 @@
   },
   "poi.R": {
    "px": [
-    1313.4,
-    785.5
+    132.1,
+    1002.7
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "jade27.L": {
    "px": [
-    1563.1,
-    2851.7
+    1583.4,
+    2932.2
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1416,8 +1343,8 @@
   },
   "jade27.R": {
    "px": [
-    356.8,
-    2851.7
+    336.6,
+    2932.2
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1425,8 +1352,8 @@
   },
   "firstLove27.L": {
    "px": [
-    903.1,
-    1823.6
+    1319.5,
+    2281.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -1434,10 +1361,10 @@
   },
   "firstLove27.R": {
    "px": [
-    1695.1,
-    1810.6
+    1836.1,
+    1084.9
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": false,
    "visible": false
   }
@@ -1449,24 +1376,24 @@
    "on": false,
    "color": "#ff8a4a",
    "world": [
-    -7.2088,
-    -3.5365,
-    -13.7025
+    -10.2088,
+    -2.7365,
+    -22.7025
    ],
    "px": [
-    3301.1,
-    1054.6
+    1945.9,
+    -157.8
    ],
-   "in_front": true,
+   "in_front": false,
    "travel_dir_px": [
-    -0.971,
-    -0.239
+    0.84,
+    -0.542
    ],
-   "toward_camera": 0.873,
+   "toward_camera": -0.971,
    "aim_world": [
-    6,
-    0,
-    13
+    3,
+    0.8,
+    4
    ]
   },
   {
@@ -1480,15 +1407,15 @@
     2.55
    ],
    "px": [
-    3463.7,
-    28.3
+    6609.4,
+    1410.6
    ],
-   "in_front": true,
+   "in_front": false,
    "travel_dir_px": [
-    -0.984,
-    0.177
+    0.987,
+    0.163
    ],
-   "toward_camera": 0.85
+   "toward_camera": -0.739
   },
   {
    "name": "ceiling2",
@@ -1501,15 +1428,15 @@
     7.65
    ],
    "px": [
-    2140.1,
-    251.6
+    17517.8,
+    -527.2
    ],
-   "in_front": true,
+   "in_front": false,
    "travel_dir_px": [
-    -0.982,
-    0.189
+    0.998,
+    -0.06
    ],
-   "toward_camera": 0.959
+   "toward_camera": -0.896
   },
   {
    "name": "ceiling3",
@@ -1522,15 +1449,15 @@
     7.45
    ],
    "px": [
-    2816.3,
-    -83.4
+    -16265.7,
+    -4313.4
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.957,
-    0.289
+    0.963,
+    0.268
    ],
-   "toward_camera": 0.899
+   "toward_camera": -0.229
   },
   {
    "name": "poi",
@@ -1543,22 +1470,22 @@
     15.6
    ],
    "px": [
-    961.9,
-    779.1
+    362.2,
+    999.7
    ],
    "in_front": true,
    "travel_dir_px": [
-    0,
-    -1
+    0.754,
+    -0.657
    ],
-   "toward_camera": 0.996
+   "toward_camera": 0.979
   }
  ],
  "warnings": [],
- "intent": "Outside, frontal, level, locked off, close: she has turned from him to the lens. Dusk is gone; the fire poi burns directly behind her across the lawn and rims her. One cut from 115 to 100: lighter line, no gesture. Synced, hushed, last word unpitched.",
+ "intent": "Outside, frontal, level, locked off, close, INDOORS: she stands just inside the open sliding glass door, facing into the kitchen and the lens; she has turned from him to us. Night outside: through the doorway beside her, over the deck railing, the two flames of the fire poi on the dark lawn (flames only, off to the side of her head: no ring, no halo, nothing gold round her head). The kitchen ceiling light on her face; first love at frame edge beside her, back to the lens, watching the fire. One cut from 115 to 100: lighter line, no gesture. Synced, hushed, last word unpitched.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
- "space": "yard",
+ "space": "room",
  "time": "3:19.1-3:23.4",
  "section": "Silence",
  "scene": {
@@ -1787,12 +1714,12 @@
   "seam_world_X": 3.595,
   "seam_px": [
    [
-    3506,
-    728.7
+    12934.3,
+    -3458.6
    ],
    [
-    3512.2,
-    143.4
+    12706.8,
+    1136.4
    ]
   ],
   "beauty_half": "LEFT as you face it = NNE (art and literature)",
@@ -1806,20 +1733,20 @@
     "half": "beauty",
     "px": [
      [
-      3803.6,
-      614.7
+      19286.6,
+      -3450.2
      ],
      [
-      3685.7,
-      611.4
+      16376.5,
+      -3010.1
      ],
      [
-      3684.5,
-      721.4
+      16440.7,
+      -4015.6
      ],
      [
-      3802.3,
-      726.9
+      19372.6,
+      -4586.1
      ]
     ],
     "contents": [
@@ -1836,20 +1763,20 @@
     "half": "beauty",
     "px": [
      [
-      3680.3,
-      611.3
+      16254.6,
+      -2991.7
      ],
      [
-      3567.2,
-      608.1
+      13957.5,
+      -2644.3
      ],
      [
-      3566.1,
-      715.8
+      14005.9,
+      -3541.8
      ],
      [
-      3679,
-      721.1
+      16317.9,
+      -3991.7
      ]
     ],
     "contents": [
@@ -1865,20 +1792,20 @@
     "half": "split",
     "px": [
      [
-      3562,
-      608
+      13860,
+      -2629.5
      ],
      [
-      3453.6,
-      605
+      12000.7,
+      -2348.4
      ],
      [
-      3452.5,
-      710.4
+      12037.9,
+      -3158.9
      ],
      [
-      3560.8,
-      715.5
+      13907.8,
+      -3522.7
      ]
     ],
     "contents": {
@@ -1903,20 +1830,20 @@
     "half": "truth",
     "px": [
      [
-      3448.6,
-      604.8
+      11920.9,
+      -2336.3
      ],
      [
-      3344.5,
-      601.9
+      10385.2,
+      -2104
      ],
      [
-      3343.5,
-      705.3
+      10414.1,
+      -2842.9
      ],
      [
-      3447.5,
-      710.2
+      11957.6,
+      -3143.3
      ]
     ],
     "contents": [
@@ -1932,20 +1859,20 @@
     "half": "truth",
     "px": [
      [
-      3339.7,
-      601.8
+      10318.6,
+      -2094
      ],
      [
-      3239.7,
-      599
+      9028.8,
+      -1898.9
      ],
      [
-      3238.7,
-      700.4
+      9051.6,
+      -2577.8
      ],
      [
-      3338.6,
-      705.1
+      10347.3,
+      -2829.9
      ]
     ],
     "contents": [
@@ -1970,20 +1897,20 @@
     "half": "beauty",
     "px": [
      [
-      3805.1,
-      497
+      19197.3,
+      -2271.7
      ],
      [
-      3687,
-      496.1
+      16309.8,
+      -1965.8
      ],
      [
-      3685.8,
-      606.2
+      16373.4,
+      -2962.6
      ],
      [
-      3803.7,
-      609.4
+      19282.5,
+      -3396.6
      ]
     ],
     "contents": [
@@ -1998,20 +1925,20 @@
     "half": "beauty",
     "px": [
      [
-      3681.6,
-      496.1
+      16188.8,
+      -1953
      ],
      [
-      3568.5,
-      495.3
+      13907.2,
+      -1711.3
      ],
      [
-      3567.3,
-      603
+      13955.2,
+      -2601.9
      ],
      [
-      3680.3,
-      606.1
+      16251.6,
+      -2944.4
      ]
     ],
     "contents": [
@@ -2031,20 +1958,20 @@
     "half": "split",
     "px": [
      [
-      3563.2,
-      495.2
+      13810.3,
+      -1701
      ],
      [
-      3454.8,
-      494.4
+      11962.1,
+      -1505.2
      ],
      [
-      3453.7,
-      600
+      11999,
+      -2310
      ],
      [
-      3562.1,
-      602.9
+      13857.7,
+      -2587.3
      ]
     ],
     "contents": [
@@ -2059,20 +1986,20 @@
     "half": "truth",
     "px": [
      [
-      3449.7,
-      494.4
+      11882.7,
+      -1496.8
      ],
      [
-      3345.6,
-      493.6
+      10355.1,
+      -1334.9
      ],
      [
-      3344.6,
-      597
+      10383.8,
+      -2069.1
      ],
      [
-      3448.6,
-      599.8
+      11919.2,
+      -2298.1
      ]
     ],
     "contents": [
@@ -2099,20 +2026,20 @@
     "half": "truth",
     "px": [
      [
-      3340.8,
-      493.6
+      10288.8,
+      -1327.9
      ],
      [
-      3240.7,
-      492.8
+      9005,
+      -1191.9
      ],
      [
-      3239.8,
-      594.2
+      9027.7,
+      -1866.8
      ],
      [
-      3339.7,
-      596.9
+      10317.3,
+      -2059.2
      ]
     ],
     "contents": [
@@ -2128,20 +2055,20 @@
     "half": "beauty",
     "px": [
      [
-      3806.5,
-      379.2
+      19108.9,
+      -1104.7
      ],
      [
-      3688.4,
-      380.8
+      16243.7,
+      -930.5
      ],
      [
-      3687.1,
-      490.9
+      16306.8,
+      -1918.7
      ],
      [
-      3805.1,
-      491.7
+      19193.3,
+      -2218.6
      ]
     ],
     "contents": [
@@ -2159,20 +2086,20 @@
     "half": "beauty",
     "px": [
      [
-      3682.9,
-      380.8
+      16123.6,
+      -923.2
      ],
      [
-      3569.7,
-      382.3
+      13857.3,
+      -785.4
      ],
      [
-      3568.5,
-      490.1
+      13905,
+      -1669.2
      ],
      [
-      3681.6,
-      490.9
+      16185.8,
+      -1906.1
      ]
     ],
     "contents": [
@@ -2187,20 +2114,20 @@
     "half": "split",
     "px": [
      [
-      3564.5,
-      382.4
+      13761,
+      -779.6
      ],
      [
-      3455.9,
-      383.7
+      11923.7,
+      -667.9
      ],
      [
-      3454.8,
-      489.4
+      11960.3,
+      -1467.1
      ],
      [
-      3563.3,
-      490.1
+      13808.1,
+      -1659.1
      ]
     ],
     "contents": {
@@ -2224,20 +2151,20 @@
     "half": "truth",
     "px": [
      [
-      3450.9,
-      383.8
+      11844.7,
+      -663.1
      ],
      [
-      3346.7,
-      385.1
+      10325.1,
+      -570.7
      ],
      [
-      3345.7,
-      488.7
+      10353.7,
+      -1300.2
      ],
      [
-      3449.8,
-      489.4
+      11881,
+      -1458.9
      ]
     ],
     "contents": [
@@ -2254,20 +2181,20 @@
     "half": "truth",
     "px": [
      [
-      3341.8,
-      385.2
+      10259.2,
+      -566.7
      ],
      [
-      3241.7,
-      386.5
+      8981.5,
+      -489.1
      ],
      [
-      3240.8,
-      488
+      9004,
+      -1160
      ],
      [
-      3340.8,
-      488.6
+      10287.5,
+      -1293.3
      ]
     ],
     "contents": [
@@ -2290,20 +2217,20 @@
     "half": "beauty",
     "px": [
      [
-      3807.9,
-      261.4
+      19021.3,
+      51.1
      ],
      [
-      3689.7,
-      265.3
+      16178.2,
+      95.9
      ],
      [
-      3688.4,
-      375.5
+      16240.7,
+      -883.8
      ],
      [
-      3806.5,
-      373.9
+      19104.9,
+      -1052.1
      ]
     ],
     "contents": [
@@ -2319,20 +2246,20 @@
     "half": "beauty",
     "px": [
      [
-      3684.2,
-      265.4
+      16058.9,
+      97.8
      ],
      [
-      3571,
-      269.2
+      13807.8,
+      133.3
      ],
      [
-      3569.8,
-      377.2
+      13855.1,
+      -743.7
      ],
      [
-      3682.9,
-      375.6
+      16120.6,
+      -876.8
      ]
     ],
     "contents": [
@@ -2357,20 +2284,20 @@
     "half": "split",
     "px": [
      [
-      3565.7,
-      269.4
+      13712.1,
+      134.8
      ],
      [
-      3457.1,
-      273
+      11885.6,
+      163.6
      ],
      [
-      3456,
-      378.7
+      11922,
+      -630.1
      ],
      [
-      3564.5,
-      377.2
+      13758.8,
+      -738
      ]
     ],
     "contents": [
@@ -2385,20 +2312,20 @@
     "half": "truth",
     "px": [
      [
-      3452,
-      273.1
+      11807.1,
+      164.8
      ],
      [
-      3347.8,
-      276.6
+      10295.4,
+      188.6
      ],
      [
-      3346.7,
-      380.2
+      10323.8,
+      -536.2
      ],
      [
-      3450.9,
-      378.8
+      11843,
+      -625.5
      ]
     ],
     "contents": [
@@ -2418,20 +2345,20 @@
     "half": "truth",
     "px": [
      [
-      3342.9,
-      276.8
+      10229.8,
+      189.6
      ],
      [
-      3242.8,
-      280.1
+      8958,
+      209.7
      ],
      [
-      3241.8,
-      381.7
+      8980.4,
+      -457.3
      ],
      [
-      3341.9,
-      380.3
+      10257.9,
+      -532.4
      ]
     ],
     "contents": [
@@ -2446,20 +2373,20 @@
     "half": "beauty",
     "px": [
      [
-      3809.3,
-      143.3
+      18934.6,
+      1195.8
      ],
      [
-      3691,
-      149.7
+      16113.2,
+      1113.6
      ],
      [
-      3689.8,
-      260
+      16175.2,
+      142.2
      ],
      [
-      3807.9,
-      256
+      19017.4,
+      103.2
      ]
     ],
     "contents": [
@@ -2481,20 +2408,20 @@
     "half": "beauty",
     "px": [
      [
-      3685.5,
-      150
+      15994.8,
+      1110.1
      ],
      [
-      3572.2,
-      156
+      13758.6,
+      1045
      ],
      [
-      3571,
-      264.1
+      13805.6,
+      174.7
      ],
      [
-      3684.3,
-      260.2
+      16056,
+      143.9
      ]
     ],
     "contents": [
@@ -2509,20 +2436,20 @@
     "half": "split",
     "px": [
      [
-      3566.9,
-      156.3
+      13663.5,
+      1042.2
      ],
      [
-      3458.2,
-      162.1
+      11847.7,
+      989.3
      ],
      [
-      3457.1,
-      268
+      11883.8,
+      201.1
      ],
      [
-      3565.8,
-      264.3
+      13709.9,
+      176
      ]
     ],
     "contents": {
@@ -2547,20 +2474,20 @@
     "half": "truth",
     "px": [
      [
-      3453.2,
-      162.4
+      11769.6,
+      987
      ],
      [
-      3348.9,
-      167.9
+      10265.8,
+      943.1
      ],
      [
-      3347.8,
-      271.7
+      10294,
+      222.9
      ],
      [
-      3452.1,
-      268.1
+      11805.4,
+      202.2
      ]
     ],
     "contents": [
@@ -2576,20 +2503,20 @@
     "half": "truth",
     "px": [
      [
-      3344,
-      168.2
+      10200.6,
+      941.2
      ],
      [
-      3243.8,
-      173.6
+      8934.7,
+      904.3
      ],
      [
-      3242.8,
-      275.2
+      8956.9,
+      241.2
      ],
      [
-      3343,
-      271.8
+      10228.5,
+      223.8
      ]
     ],
     "contents": [
@@ -2620,21 +2547,21 @@
   },
   "printer_on_top": true,
   "px": [
-   2933.1,
-   447.8
+   8285.7,
+   -1137.7
   ]
  },
  "lemon_tree_px": [
-  -11775.4,
-  -52489.6
+  -58.6,
+  86.2
  ],
  "poi_px": [
-  961.9,
-  779.1
+  362.2,
+  999.7
  ],
  "opening_px": [
-  2655.6,
-  417.1
+  4966.3,
+  -581
  ],
  "first_love_costume": {
   "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
@@ -2642,7 +2569,7 @@
   "height_m": 1.78
  },
  "jade_costume": {
-  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); NASA meatball insignia on its LEFT chest (blue disc, white stars, white orbit ring, red vector chevron, NASA in white)",
+  "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (about 8 cm) on its LEFT chest: a blue disc with white specks, a thin white orbit ring and a red chevron. At this size NO LETTERING IS LEGIBLE: paint no letters, no word NASA (r3 fault: the lettering was painted legibly)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
   "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
@@ -2815,36 +2742,6 @@
    },
    "headTurn": 4
   },
-  "G1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.47
-   },
-   "headTurn": 0
-  },
-  "H1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
   "W1": {
    "legs": {
     "L": {
@@ -2976,7 +2873,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.97
+    "R": 0.48
    },
    "headTurn": 0
   }
