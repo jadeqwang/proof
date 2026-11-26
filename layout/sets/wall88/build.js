@@ -5,14 +5,14 @@ import * as THREE from 'three';
 import { box, ball, tag, V, rad } from '../../engine/core.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
-import { CAVITY, SEAT, CRACK, BULB, BEAM, bladeY, EYE, MOTE, LIGHTS, SLOPE, WORKERS } from './layout.js';
+import { CAVITY, SEAT, STAND, CRACK, BULB, BEAM, bladeY, EYE, MOTE, LIGHTS, SLOPE, WORKERS, FILE_LOOK } from './layout.js';
 import { CAST, addCast } from '../_cast.js';   // the shared cast table (this set uses the engine's littleJade)
 
 // r3: the restaurant workers in WL_in (set-local strangers, faces undrawn). Kitchen whites, aprons, a waiter's white
 // shirt; colours are lit-preview placeholders only.
 const WCOL = { w1: { top: 0xe8e4da, legs: 0x2a2a2e, apron: 0xd8d2c4, hairStyle: 'bun' }, w2: { top: 0xe8e4da, legs: 0x3a3a3e, apron: 0xd8d2c4 },
   w3: { top: 0x5a6a7a, legs: 0x2a2a2e, apron: 0xd8d2c4, hairStyle: 'bob' }, w4: { top: 0xf0eee8, legs: 0x151518 }, w5: { top: 0xe8e4da, legs: 0x3a3a3e, apron: 0xd8d2c4 } };
-addCast(Object.fromEntries(WORKERS.map((w) => [w.key, { name: `restaurant worker ${w.key.slice(1)} (face undrawn)`, h: w.h, kind: 'adult', skin: 0xd8a87e, hair: 0x15110f, sleeves: 'long', undrawn: true, ...WCOL[w.key] }])));
+addCast(Object.fromEntries(WORKERS.filter((w) => w.key !== 'mama').map((w) => [w.key, { name: `restaurant worker ${w.key.slice(1)} (face undrawn)`, h: w.h, kind: 'adult', skin: 0xd8a87e, hair: 0x15110f, sleeves: 'long', undrawn: true, ...WCOL[w.key] }])));
 // strangers' faces are "unreached": hide the mannequin's nose cone, eye dots and mouth bar (as office91 undraw)
 function undraw(fig) {
   fig.traverse((o) => { if (!o.isMesh) return; const L = o.userData.look || {}, t = o.geometry.type;
@@ -34,7 +34,7 @@ function cavity() {
   // the lit room seen through the crack (emissive, casts nothing)
   g.add(tag(box(0.004, CRACK.gap + 0.03, CRACK.z1 - CRACK.z0 + 0.06, { grey: 1, col: 0xffe2b0, emit: 0xffe2b0, emitI: 1.4, flatEmit: 1, noCast: true }, [C.x0 - B.t - 0.012, CRACK.y, (CRACK.z0 + CRACK.z1) / 2]), 'the crack (lit room beyond)'));
   for (const z of C.stud.z) g.add(tag(box(C.stud.d, C.h, C.stud.w, STUD, [C.x0 + C.stud.d / 2, C.h / 2, z]), 'stud'));
-  g.add(tag(box(L, 0.045, C.stud.d, STUD, [C.x0 + C.stud.d / 2, 0.0225, zc], [0, 90, 0]), 'sole plate'));
+  // r4: no sole plate in the cavity (it would sit under the workers' toes); the studs stand on the floor
   // the outer wall, the floor, the two ends, the top
   g.add(tag(box(0.1, C.h, L, BRICK, [C.x1 + 0.05, C.h / 2, zc]), 'outer wall (brick)'));
   for (let y = 0.075 * 4; y < C.h; y += 0.075 * 4) g.add(tag(box(0.004, 0.012, L, { grey: 0.26, col: 0x2a1c18, noCast: true }, [C.x1 - 0.001, y, zc]), 'outer wall (brick)'));
@@ -45,7 +45,8 @@ function cavity() {
   return g;
 }
 
-export const NAMED = { mote: MOTE.hero, eye: EYE, crack: [CRACK.x, CRACK.y, (CRACK.z0 + CRACK.z1) / 2], bladeMid: [0, bladeY(0), -0.1] };
+export const NAMED = { mote: MOTE.hero, eye: EYE, crack: [CRACK.x, CRACK.y, (CRACK.z0 + CRACK.z1) / 2], bladeMid: [0, bladeY(0), -0.1],
+  toMama: FILE_LOOK, daughter: [STAND.at[0] - 0.05, 0.95, STAND.at[1] + 0.03] };   // r4: her look target; where Mama looks (her daughter's eyes)
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && p.mid ? { mid: p.mid.map(fix) } : p);
 
 export function build(shot, { makeCam }) {
@@ -63,6 +64,7 @@ export function build(shot, { makeCam }) {
   if (shot.eyeline) { const e = figs[shot.eyeline.who].userData.P.eyes.clone(), to = V(fix(shot.eyeline.to)); cs.pos = e.addScaledVector(to.sub(e).normalize(), shot.eyeline.back ?? 0.12).add(V(shot.eyeline.off || [0, 0, 0])).toArray(); delete cs.orbit; }
   Object.assign(shot, solveCamera(cs, figs, null, aim));
   hideParts(shot.hideParts, figs);
+  if (shot.hide) root.traverse((o) => { if (o.isMesh && shot.hide.includes(o.userData.label)) o.visible = false; });   // r4: plan view
   const cam = makeCam(shot);
 
   const anchor = V(fix(shot.beamAnchor || 'mote'));

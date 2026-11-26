@@ -1,5 +1,51 @@
 # wall88: notes and assumptions
 
+## 2026-11-26: round-4 set fixes (Jade's r3 review; SUPERSEDES the r3 section below where they differ)
+
+Jade: WL_out "the image model did something picasso on her face, unlike the next shot"; WL_eye "something about
+WL_eye_v1.jpg is better. she's looking in a direction that makes sense"; WL_in "make the closest one her mom, and then
+next to mom, the praying lady ... there should be just barely enough space for their feet ... almost coffin-like";
+WL_in_empty "there's too much space in here ... barely wide enough for a grown person's feet".
+
+- **Cavity 32 cm** clear, board face to brick (was 46): `CAVITY.x0/x1` = -0.16 / +0.16. Adults stand pelvis 10.5 cm off
+  the brick: heel ~5 cm off it, toes ~1 cm short of the boards (checked in `WL_plan`). No sole plate (it sat under the
+  toes); the studs stand on the floor. Studs at 45 cm centres past the crack (0.18, 0.63 ... 2.43) so each adult stands
+  in one bay, shoulder to shoulder; a stud face is 25 cm off the brick, no room for a foot in front of it.
+  NOTE: Jade also said "the wall in the model looks right" (the r3 guide); the painter widened it. Narrowed anyway, per
+  "barely wide enough for a grown person's feet".
+- **The file, nearest first**: Mama (the engine's `mama`: 1988, restaurant apron, bun, 1.60 m) at z 0.405, then the
+  praying lady (w1) at 0.855, then w2 (hand over mouth), w3 (hands clasped), w4 (palms on the brick). The r3 fifth
+  worker (w5, a man praying) dropped: the bays hold five. ASSUMED Mama's pose ('shield'): right palm flat back on the
+  brick toward the closed end (between the file and her daughter), left palm on the brick by her hip, head turned back
+  and down toward where her daughter stands (named point `daughter`), holding her breath. Her face is drawn (family).
+- **Her look (WL_out, WL_eye) = WL_eye_v1**: head near-frontal to the outside camera (77 deg left of her chest), eyes a
+  further ~22 deg to picture RIGHT, at Mama's hip/hand beside her in the file (`toMama`, layout.js `FILE_LOOK`; Mama
+  is not in the outside shots, a set point). Same pose in both shots. The blade now crosses her picture-right (left)
+  eye in both (sidecar `blade_on_face`: left eye 0.0 cm, right eye 4.4 cm under the sheet). `CRACK_Y` 1.287 -> 1.206.
+  ASSUMED the "direction that makes sense" is toward Mama/the file (v1's irises go picture right, i.e. down the cavity
+  on the brick side); she is no longer looking into the crack: the light comes onto her eye from the side.
+- **Cameras**: WL_out 50 mm (was 35) at 1.6 m, az -5 (inside the 32 cm cavity, beside the stud faces): the near stud
+  fills the left of frame, she stands frame-right, face at one plain near-frontal angle. WL_eye 85 mm at 0.62 m, az -12
+  (as v1). WL_in / WL_in_empty 35 mm (was 28), 10 cm further back (z -0.70), 7.5 cm off the boards (just clear of the stud
+  faces), tilted up ~4 deg so Mama's face is in frame; rhyme 0.3 deg. The walls fill both sides, the feet are below
+  frame: no floor at all is in the guide.
+- **Guides rendered with `--gaze`** (engine opt-in: eyes with irises aimed at the look target; strangers stay paper).
+  Re-render with: `node layout/render.mjs --set wall88 --exclude beam_ --gaze` (+ `--modes form,contour,light --nojson`;
+  masks `--prefix beam_ --modes flat --nojson`).
+- **WL_plan** (new, reference only, not painted, no beam twin): ortho from above, top plate hidden (`shot.hide`).
+- r3 guides snapshotted to `media/keyframes/r3/_layout_snapshot/wall88/`.
+
+Painter prompt notes (r4)
+- WL_out "picasso" face: what invited it in r3: the head at 45 deg three-quarters while the prompt asked the irises to
+  go the OTHER way (to the crack), the mannequin's slab fringe and dot eyes at an oblique angle, the blade cutting the
+  face in two, and a small face in a wide frame. r4: ask for ONE plain angle, the face almost square to us, both irises
+  turned the same way to the right of the picture (toward her mother, out of frame), the strip of bare paper across
+  the right-hand eye only; give WL_eye_v1 as the face/angle reference so the two shots match.
+- WL_in / WL_in_empty: say "a cavity barely wider than an adult's foot is long, about thirty centimetres; the bodies
+  nearly touch the boards; no floor is visible, no floorboards"; walls close on both edges of frame; dark. Mama nearest
+  (her face sheet, apron, bun), looking back and down toward us; the praying woman just past her shoulder.
+- WL_out: the big plain upright at the left is a stud seen side-on, close to the lens, with the boards behind it.
+
 ## r3 restaging, 2026-11-25 night (Jade's r2 review; SUPERSEDES the seated staging below)
 
 Jade: WL_out "almost right, but she should be standing, not seated, her back against the side wall, and she's slowly

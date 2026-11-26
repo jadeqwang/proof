@@ -6,6 +6,8 @@
 // No header and no gold field note in this scene. Fields as attic88_day/shots.js.
 // Set points usable as targets: mote, eye, crack, bladeMid. Every shot has a twin `beam_<id>` (flat mode = beam mask).
 import { STAND, EYE, WORKERS, CAVITY, bladeY } from './layout.js';
+// r4 (2026-11-26): cavity 32 cm (coffin-like), Mama nearest in the file then the praying lady, her look = WL_eye_v1
+// (head near-frontal to the outside camera, eyes to picture right toward Mama beside her: target 'toMama'), longer lenses.
 
 // r2 pose (seated, knees up), superseded by jadeStand; kept for reference
 const jadeStill = (o = {}) => ({ at: [0.0, -0.45], yaw: 0, legs: 'knees', spine: { bend: 8 }, head: { look: [0, EYE[1], 1.0] },
@@ -17,11 +19,13 @@ const BRICK_X = CAVITY.x1 - 0.008;
 const palmsToBrick = (z, y, dz) => ({
   L: { to: [BRICK_X, y, z + dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' },
   R: { to: [BRICK_X, y, z - dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } });
-const jadeStand = (o = {}) => ({ at: STAND.at, yaw: STAND.yaw, legs: 'stand', head: { turn: STAND.turn, nod: 3 },
+// r4: head.look 'toMama' (layout.js FILE_LOOK: Mama beside her in the file): the head turns most of the way toward the
+// outside cameras (near-frontal to them), the eyes take the rest, to picture right; the same pose in WL_out and WL_eye so the face reads at one plain angle in both.
+const jadeStand = (o = {}) => ({ at: STAND.at, yaw: STAND.yaw, legs: 'stand', head: { look: 'toMama', turn: STAND.turn, nod: 2 },
   ...palmsToBrick(STAND.at[1], 0.52, 0.13), ...o });
 
 // the workers: backs to the brick, facing the boards (-x), holding their breath (see layout.js WORKERS)
-const W_X = CAVITY.x1 - 0.115;
+const W_X = CAVITY.x1 - 0.105;   // r4: pelvis 10.5 cm off the brick: heels ~5 cm off it, toes ~1 cm short of the boards
 function worker(w) {
   const base = { at: [W_X, w.z], yaw: -90, legs: 'stand' };
   switch (w.pose) {
@@ -32,6 +36,11 @@ function worker(w) {
     case 'pray': return { ...base, head: { nod: 26 }, L: { to: 'self:chin', off: [-0.09, -0.07, 0.012], hand: 'flat', palm: 'in', fingers: 'up' },
       R: { to: 'self:chin', off: [-0.09, -0.07, -0.012], hand: 'flat', palm: 'in', fingers: 'up' } };
     case 'flat': return { ...base, head: { nod: -8 }, ...palmsToBrick(w.z, 0.80, 0.2) };
+    // r4 Mama: right palm flat back on the brick toward the closed end (between the file and her daughter), left hand
+    // flat on the brick beside her hip; head turned back toward where her daughter stands (named point 'daughter')
+    case 'shield': return { ...base, head: { look: 'daughter' },
+      R: { to: [BRICK_X, 0.84, w.z - 0.22], hand: 'flat', palm: [1, 0, 0], fingers: 'down' },
+      L: { to: [BRICK_X, 0.78, w.z + 0.15], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } };
     default: throw new Error('pose ' + w.pose);
   }
 }
@@ -40,15 +49,17 @@ const WORKER_FIGS = Object.fromEntries(WORKERS.map((w) => [w.key, worker(w)]));
 // inside camera: down the cavity from the closed end, near the boards, 2 cm above the sheet of light. The rhyme needs
 // the camera at the sheet; the sheet is at her eye where she stands against the brick, and rises toward the boards, so
 // this is her eye-line moved out of the file to the boards side and lifted to the sheet there. Level, along the file.
-const IN_X = -0.15, IN_Y = +(bladeY(IN_X) + 0.02).toFixed(3);
-const IN_CAM = { lens: 28, pos: [IN_X, IN_Y, -0.60], target: [0.10, IN_Y, 2.6] };
+// r4: 35 mm (was 28: the wide lens opened the cavity up and the painter widened it further), 10 cm further back,
+// 7.5 cm off the boards (just clear of the studs' faces, so no stud stands across the frame), tilted up 4 deg so Mama's face (nearest, 1.1 m) stays in frame.
+const IN_X = CAVITY.x0 + 0.075, IN_Y = +(bladeY(IN_X) + 0.02).toFixed(3);
+const IN_CAM = { lens: 35, pos: [IN_X, IN_Y, -0.70], target: [0.06, IN_Y + 0.22, 2.6] };
 
 const BASE = [
-  { id: 'WL_out', lens: 35, orbit: { at: 'littleJade:eyes', az: -8, el: 0, dist: 1.6 }, aim: ['littleJade:eyes', 0.6, 0.3], focus: ['littleJade'], position: 'outside', time: '1:37.4-1:45.5 and 1:45.5-1:51.0', section: 'Chorus 1 ("Inside?" / "My voice goes blind")', beamAnchor: 'eye',
+  { id: 'WL_out', lens: 50, orbit: { at: 'littleJade:eyes', az: -5, el: 0, dist: 1.6 }, aim: ['littleJade:eyes', 0.6, 0.3], focus: ['littleJade'], position: 'outside', time: '1:37.4-1:45.5 and 1:45.5-1:51.0', section: 'Chorus 1 ("Inside?" / "My voice goes blind")', beamAnchor: 'eye',
     header: '1:37.4 OUTSIDE: down the cavity, level, locked off; she stands, back to the brick, turning into the blade',
     intent: 'r3. The outside position, inside the wall. Down the length of the cavity: boards and the crack frame-left, brick frame-right. She stands with her back flat against the brick, palms on it, facing the boards; her head is turned toward us and slowly turns back toward the crack, and as it turns the thin sheet of light from the crack comes onto her eye. "Inside?" is this frame with the light off (dark). "My voice goes blind": her mouth opens just under the light, and closes. Inside she is scared (heart fast); her face does not know how to show it.',
     figs: { littleJade: jadeStand() } },
-  { id: 'WL_eye', lens: 85, orbit: { at: 'littleJade:eyes', az: -10, el: 0, dist: 0.62 }, aim: ['littleJade:eyes', 0.5, 0.45], focus: ['littleJade'], position: 'outside', time: '1:40.7-1:45.5', section: 'Chorus 1 ("I honestly don\'t know")', beamAnchor: 'eye',
+  { id: 'WL_eye', lens: 85, orbit: { at: 'littleJade:eyes', az: -12, el: 0, dist: 0.62 }, aim: ['littleJade:eyes', 0.5, 0.45], focus: ['littleJade'], position: 'outside', time: '1:40.7-1:45.5', section: 'Chorus 1 ("I honestly don\'t know")', beamAnchor: 'eye',
     header: '1:40.7 OUTSIDE, close: same staging; her eye turning into the blade',
     intent: 'r3. Same staging as WL_out, pushed in to her face, three-quarters, turning toward the crack. The blade crosses one eye and the bridge of the nose. She is scared inside, her heart is fast, but her face does not fully know how to recognise it or show it: still, uncertain, not a clear expression of fear.',
     figs: { littleJade: jadeStand() } },
@@ -62,4 +73,8 @@ const BASE = [
     figs: {} },
 ];
 const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, header: 'beam mask for ' + s.id }));
-export const SHOTS = BASE.concat(TWINS);
+// r4: plan view (not painted): checks the 32 cm cavity, the stud bays and the feet (toes short of the boards)
+const PLAN = { id: 'WL_plan', lens: 0, ortho: { w: 3.9 }, pos: [0, 6, 0.95], target: [0, 0, 0.95], up: [1, 0, 0], near: 3.5, far: 7,
+  hide: ['top plate'], position: 'plan', header: 'PLAN (reference, not painted): the cavity from above, 32 cm clear; boards at the bottom, brick at the top',
+  intent: 'r4 check: cavity width, stud bays, feet.', figs: { littleJade: jadeStand(), ...WORKER_FIGS } };
+export const SHOTS = BASE.concat(TWINS, [PLAN]);
