@@ -11,6 +11,8 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_beam.js';
 import { wall, hexa, kitchenChair, r3, hideLabels } from '../basement90/kit.js';
+import { sweatshirt, lapColliders, foldedSeal } from './sweatshirt.js';
+import { graspArms } from '../../engine/grasp.js';   // the cloth hoodie (round 3)
 import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilY, DROP, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
   KITCHEN, STAIR, COUCH, END_TABLE_E, END_TABLE_W, RUG, COFFEE_TABLE, LOVESEAT, ARMCHAIR, PLANTS, PRINT, MIRROR, PIANO, BENCH, FLOOR_LAMP, CLOSET, DINING,
   HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, TURN, GARMENT, LIGHTS } from './layout.js';
@@ -299,7 +301,7 @@ function hoodieFolded() {
   for (const s of [-1, 1]) put(box(0.01, 0.003, 0.13, STR), L(s * 0.045, T / 2 + 0.004, A / 2 - 0.09), 'hoodie drawstring');
   // the seal on the front, upright for the camera (its top toward her), clipped by the flap's edge
   const right = V(S.u).multiplyScalar(-1), up = V(S.w), out = V(S.n);
-  g.add(orientSeal(sealGroup(S.sealR, S.sealCut, S), right, up, out, S.sealC));
+  g.add(orientSeal(foldedSeal(S.sealR, S.sealCut, { seal: S.seal, cloth: S.color }), right, up, out, S.sealC));   // the pleat: Truth folded under (sweatshirt.js)
   return g;
 }
 
@@ -384,8 +386,20 @@ export function build(shot, { makeCam }) {
   //   root.add(sweatshirt({ state, anchor: GARMENT[state], t: shot.clothT ?? 1, seal: { r: SHIRT.sealR, down: SHIRT.sealDown } }));
   // States: 'folded' (MG1, MG1_end: he hands it over), 'unfolding' (MG2: lifted by the shoulders, front toward him),
   // 'turned' (MG2_end: she has turned it round so the front faces her; hands TURN.grip, 0.50 m apart at y 1.14).
-  const G = GARMENT[state] || GARMENT.unfolding;
-  root.add(state === 'folded' ? hoodieFolded() : state === 'turned' ? garmentOutline(G) : hoodieUnfolding());   // placeholder props until sweatshirt.js lands
+  const G = GARMENT[state] || GARMENT.unfolding; void garmentOutline; void hoodieUnfolding;
+  if (state === 'folded') root.add(hoodieFolded());
+  else { // the cloth module (sweatshirt.js): simulated from GARMENT.unfolding (t 0) to GARMENT.turned (t 1); her hands go
+    // where the cloth is held (right hand: the pinch of the pleat at t 0; left: the pinch, right: Beauty's shoulder at t 1)
+    const cloth = sweatshirt({ state, anchors: GARMENT, t: shot.clothT, colliders: lapColliders(HER, SHIRT.f) });
+    root.add(cloth); const H = cloth.userData.cloth.hands;
+    if (state === 'turned') Object.assign(NAMED, { tHerL: H.L, tHerR: H.R, tseal: cloth.userData.cloth.seal.centre });
+    else Object.assign(NAMED, { herR: H.R });
+    // her hands close round what the cloth is held by (Jade: support the object, natural wrists): a power grip round the
+    // pinched bundle / the rolled shoulder seam, palm toward it from her side (engine/grasp.js), at the cloth's own grip
+    const her = shot.figs?.jade27, chest = [HER.at[0], 1.0, HER.at[1]];
+    if (her) for (const k of ['L', 'R']) { const gr = H.grip?.[k]; if (!gr) continue;
+      const spec = graspArms('power', { centre: gr.at, axis: gr.axis, r: gr.r }, { side: k, toward: chest })[k];
+      her[k] = { ...(typeof her[k] === 'object' ? her[k] : {}), ...spec }; } }
   const solids = [], sunk = [];
   for (const A of Object.values(APERTURES)) if (A) { solids.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12 })); sunk.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12, sink: 0.01 })); }
   if (!shot.beamMask) {

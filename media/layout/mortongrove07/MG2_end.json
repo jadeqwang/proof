@@ -233,33 +233,33 @@
  "heads": {
   "jade27": {
    "px": [
-    886.9,
-    221.5
+    882.1,
+    214.8
    ],
    "eyes": [
-    934.8,
-    305.8
+    927,
+    294.6
    ],
    "mouth": [
-    922.3,
-    354.1
+    917.1,
+    346.6
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 56
+   "facing_camera_deg": 52
   },
   "firstLove27": {
    "px": [
-    1665.6,
-    -0.8
+    1667,
+    -1.2
    ],
    "eyes": [
-    1506,
-    10
+    1506.3,
+    8.3
    ],
    "mouth": [
-    1532.5,
-    140.9
+    1532.2,
+    139.4
    ],
    "in_frame": false,
    "visible": false,
@@ -269,8 +269,8 @@
  "hands": {
   "jade27.L": {
    "px": [
-    1365.7,
-    406.6
+    1063.2,
+    655.7
    ],
    "shape": "grip",
    "in_frame": true,
@@ -278,8 +278,8 @@
   },
   "jade27.R": {
    "px": [
-    759,
-    607.5
+    862.6,
+    591.9
    ],
    "shape": "grip",
    "in_frame": true,
@@ -321,10 +321,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.758,
-    0.652
+    -0.767,
+    0.641
    ],
-   "toward_camera": 0.412,
+   "toward_camera": 0.424,
    "aim_world": [
     2.2319,
     0.9121,
@@ -347,10 +347,10 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.426,
-    0.905
+    -0.449,
+    0.894
    ],
-   "toward_camera": 0.599,
+   "toward_camera": 0.628,
    "aim_world": [
     2.3333,
     1,
@@ -596,14 +596,14 @@
   "note": "computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)",
   "in_sun_margin_m": {
    "her_eyes": {
-    "front": 0.52,
-    "west": -1.151,
-    "dining": -6.361
+    "front": 0.513,
+    "west": -1.158,
+    "dining": -6.368
    },
    "her_head": {
-    "front": 0.432,
-    "west": -1.254,
-    "dining": -6.464
+    "front": 0.42,
+    "west": -1.262,
+    "dining": -6.472
    },
    "seal": {
     "front": 0.117,
@@ -611,9 +611,9 @@
     "dining": -6.046
    },
    "his_head": {
-    "front": -0.522,
-    "west": -0.421,
-    "dining": -5.631
+    "front": -0.523,
+    "west": -0.42,
+    "dining": -5.63
    }
   },
   "seal_front_cos": 0.25
@@ -755,24 +755,24 @@
    }
   },
   "anchor_world": [
-   2.2051,
-   0.9515,
-   -1.0271
+   2.2187,
+   1.0039,
+   -1.0293
   ],
   "anchor_px": [
-   1091.7,
-   753.2
+   1076.6,
+   703.4
   ],
   "on_screen": {
    "from_px": [
-    1183.6,
-    676.9
+    1170.8,
+    626.7
    ],
    "to_px": [
-    995,
-    833.5
+    977.5,
+    784.1
    ],
-   "angle_deg": 39.7,
+   "angle_deg": 39.2,
    "travel": "right-to-left"
   },
   "rhyme": {
@@ -785,7 +785,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": -0.3,
+   "angle_error_deg": -0.8,
    "travel_ok": true
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
@@ -801,29 +801,29 @@
  "points_world": {
   "jade27": {
    "eyes": [
-    2.2812,
-    1.1897,
-    -0.7618
+    2.2866,
+    1.198,
+    -0.7581
    ],
    "head": [
-    2.3061,
-    1.2189,
-    -0.6748
+    2.3091,
+    1.222,
+    -0.6689
    ],
    "chin": [
-    2.3036,
-    1.0997,
-    -0.6838
+    2.3055,
+    1.1036,
+    -0.6847
    ],
    "handL": [
-    1.979,
-    1.1597,
-    -0.9088
+    2.2249,
+    1.0316,
+    -1.0069
    ],
    "handR": [
-    2.4474,
-    1.1675,
-    -1.0891
+    2.373,
+    1.1264,
+    -1.0304
    ],
    "hip": [
     2.3333,
@@ -848,19 +848,19 @@
   },
   "firstLove27": {
    "eyes": [
-    2.0591,
-    1.6142,
-    -1.2352
+    2.0595,
+    1.6155,
+    -1.236
    ],
    "head": [
-    2.019,
-    1.6528,
-    -1.3213
+    2.0188,
+    1.6534,
+    -1.3222
    ],
    "chin": [
-    2.0201,
-    1.5239,
-    -1.3212
+    2.0205,
+    1.5244,
+    -1.3213
    ],
    "handL": [
     2.1339,
@@ -905,10 +905,10 @@
     }
    },
    "arms": {
-    "L": 0.68,
-    "R": 0.93
+    "L": 0.84,
+    "R": 0.76
    },
-   "headTurn": 0
+   "headTurn": -2
   },
   "firstLove27": {
    "legs": {

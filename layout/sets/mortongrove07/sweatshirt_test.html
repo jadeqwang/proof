@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>IAS hoodie cloth test</title>
+<style>html, body { margin: 0; background: #222; } canvas { display: block; }</style>
+<script type="importmap">{ "imports": { "three": "/three/build/three.module.js" } }</script></head>
+<body><script type="module">
+// Standalone renders of the cloth hoodie (sweatshirt_test.mjs drives this page). window.renderCloth(t, view) -> PNG data URL.
+import * as THREE from 'three';
+import { clothState, clothMeshes, lapColliders } from './sweatshirt.js';
+import { visibility } from './sweatshirt_sim.js';
+import { GARMENT, HER, SHIRT } from './layout.js';
+try {
+  const q = new URLSearchParams(location.search), W = +(q.get('w') || 1200), H = +(q.get('h') || 1200);
+  const r = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); r.setSize(W, H); r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap;
+  document.body.appendChild(r.domElement);
+  let printMap = null;
+  try { const tex = await new THREE.TextureLoader().loadAsync('/__print.png'); tex.anisotropy = 8; printMap = tex; } catch (e) { console.warn('no print texture: plain disc'); }
+  let checkMap = null;
+  try { checkMap = await new THREE.TextureLoader().loadAsync('/__check.png'); } catch (e) { console.warn('no check texture'); }
+  const colliders = lapColliders(HER, SHIRT.f);
+  const MOVE = { from: [2.5649, 2.3477, -2.6317], to: [2.3047, 1.1811, -1.0281] };
+  const along = (k) => MOVE.from.map((v, i) => v + (MOVE.to[i] - v) * k);
+  const herEyes = [HER.at[0] + SHIRT.f[0] * 0.05, 1.22, HER.at[1] + SHIRT.f[2] * 0.05];
+  window.renderCloth = (t, view) => {
+    const s = clothState({ anchors: GARMENT, t, colliders: q.get('nocol') ? [] : colliders, sim: JSON.parse(q.get('sim') || '{}') });
+    const g = clothMeshes(s, { printMap });
+    const scene = new THREE.Scene(); scene.background = new THREE.Color(0x8d8a84);
+    g.traverse((o) => { if (!o.isMesh) return; const L = o.userData.look;
+      o.material = o.userData.printMaterial || new THREE.MeshLambertMaterial({ color: q.get('dbg') && /\bhood\b/.test(o.userData.label) ? 0xcc4444 : q.get('dbg') && /sleeve|cuff/.test(o.userData.label) ? 0x44aa44 : L.col, side: THREE.DoubleSide });
+      if (o.userData.print && !o.userData.printMaterial) o.material.polygonOffset = true, o.material.polygonOffsetFactor = -2;
+      o.castShadow = o.receiveShadow = true; });
+    scene.add(g);
+    for (const p of s.hands ? [s.hands.L, s.hands.R] : []) { const m = new THREE.Mesh(new THREE.SphereGeometry(0.022, 16, 12), new THREE.MeshLambertMaterial({ color: 0xd9a080 })); m.position.set(...p); scene.add(m); }
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), new THREE.MeshLambertMaterial({ color: 0x9a8a72 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    for (const c of colliders) if (c.type === 'capsule') { const a = new THREE.Vector3(...c.a), b = new THREE.Vector3(...c.b), d = b.clone().sub(a);
+      const m = new THREE.Mesh(new THREE.CapsuleGeometry(c.r, d.length(), 6, 12), new THREE.MeshLambertMaterial({ color: 0x7d8fa8 })); m.position.copy(a).addScaledVector(d, 0.5);
+      m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); m.receiveShadow = m.castShadow = true; scene.add(m); }
+    scene.add(new THREE.HemisphereLight(0xdfe6f0, 0x6a5a48, 1.1));
+    const sun = new THREE.DirectionalLight(0xfff0d8, 1.6); sun.position.set(-2, 3, 2.5); sun.target.position.set(...s.hands.R); scene.add(sun.target);
+    sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); const sc = sun.shadow.camera; sc.left = sc.bottom = -1; sc.right = sc.top = 1; sc.near = 0.5; sc.far = 10; sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.01;
+    sun.position.set(s.hands.R[0] - 1.5, s.hands.R[1] + 2, s.hands.R[2] + 1.5); scene.add(sun);
+    const c = g.userData.cloth.seal.centre, mid = [c[0], c[1] - 0.12, c[2]];
+    let eye, lens = 50, aim = mid;
+    if (view === 'cam') { eye = along(0.22); lens = 42; aim = [mid[0], mid[1] + 0.05, mid[2]]; }
+    else if (view === 'close') { eye = along(0.50); lens = 50; aim = [mid[0], mid[1] + 0.05, mid[2]]; }
+    else if (view === 'her') { eye = herEyes; lens = 35; }
+    else if (view === 'zoom' || view === 'zoomcam') { const n = g.userData.cloth.seal.normal; const dir = view === 'zoom' ? n : (() => { const e = along(0.22), d = [e[0] - c[0], e[1] - c[1], e[2] - c[2]], l = Math.hypot(...d); return d.map((v) => v / l); })();
+      eye = [c[0] + dir[0] * 0.55, c[1] + dir[1] * 0.55 + (view === 'zoom' ? 0.08 : 0), c[2] + dir[2] * 0.55]; lens = 60; aim = c; }
+    else if (view === 'front' || view === 'back') { const n = g.userData.cloth.seal.normal, k = view === 'front' ? 1.1 : -1.1; eye = [c[0] + n[0] * k, c[1] + 0.25, c[2] + n[2] * k]; lens = 45; aim = [c[0], c[1] - 0.1, c[2]]; }
+    else if (view === 'side') { const lat = [-SHIRT.f[2], 0, SHIRT.f[0]]; eye = [mid[0] + lat[0] * 1.6, 1.3, mid[2] + lat[2] * 1.6]; lens = 40; }
+    const cam = new THREE.PerspectiveCamera(2 * Math.atan(18 / lens) * 180 / Math.PI * H / W, W / H, 0.05, 50); cam.position.set(...eye); cam.lookAt(...aim);
+    // the check pass: the print with Truth's figure solid red, unlit; count red pixels (the PNG is the normal pass)
+    let red = -1;
+    if (checkMap) { const keep = new Map(); g.traverse((o) => { if (o.isMesh && o.userData.print) { keep.set(o, o.material); o.material = new THREE.MeshBasicMaterial({ map: checkMap, transparent: true, alphaTest: 0.5, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2 }); } });
+      r.render(scene, cam); const c2 = document.createElement('canvas'); c2.width = W; c2.height = H; const x2 = c2.getContext('2d'); x2.drawImage(r.domElement, 0, 0);
+      const d = x2.getImageData(0, 0, W, H).data; red = 0; for (let i = 0; i < d.length; i += 4) if (d[i] > 190 && d[i + 1] < 70 && d[i + 2] < 70) red++;
+      window.__check = c2.toDataURL('image/png'); for (const [o, m] of keep) o.material = m; }
+    r.render(scene, cam);
+    const vis = { ...visibility(s, [eye])[0], red };
+    return { url: r.domElement.toDataURL('image/png'), check: window.__check, vis, hands: s.hands, seal: g.userData.cloth.seal };
+  };
+  window.__ready = true;
+} catch (e) { window.__error = String(e && e.stack || e); }
+</script></body></html>

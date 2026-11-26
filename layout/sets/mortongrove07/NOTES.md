@@ -262,3 +262,50 @@ false, facing angle), `beam` (solid[0] = front window), `points_world` (now with
   the plan cuts to the Expedit pan), line 159.62-164.36, time 2:39.6-2:42.0; MG2 header 2:40.2. NB mv10's `BRpan_a`
   also starts at 159.62 on "Beauty on this side"; the plan starts the pan on "truth by reference" (2:42.0): one of the
   two wants settling.
+
+## 2026-11-26: round-3 decisions (the cloth hoodie)
+
+Jade: "Frame it so Truth falls in the folds -- because the sweatshirt is a soft material, it can move as she's holding
+it and turning it." He hands it over (MG1), she turns it so the print faces her (MG2 -> MG2_end).
+
+- **Files:** `sweatshirt.js` (meshes, API), `sweatshirt_jolt.js` (Jolt Physics soft body; jolt-physics 1.1.2 WASM vendored
+  at `layout/vendor/jolt-physics/`, 3.2 MB, MIT), `sweatshirt_sim.js` (pattern, pressed pleat, choreography, Truth check),
+  `sweatshirt_print.py` (print texture from `work/ias/`), `sweatshirt_test.html/.mjs` (standalone renders, `SW_*`).
+- **Engine:** the lead asked for an existing engine (Jolt first). Jolt solves the cloth (edges, shear, distance bend,
+  kinematic held vertices, collisions with her fists and thighs). Jolt has NO cloth self-collision, which a hoodie needs
+  (pleat layers, hood behind the back, sleeves on the body), so a contact projection between layers runs after each
+  Jolt step (`selfContact`). Jolt's dihedral bend blew up at the pleat's 180-degree folds; distance bend is used.
+- **How Truth hides (assumption, flagged):** a vertical KNIFE PLEAT pressed through the seal from when he folded it,
+  pattern x -0.059..+0.010 m from the seal centre folded under, Beauty's side on top (its fold edge runs down beside the
+  two women's joined hands). Truth's face-side is between cloth layers, hidden from both sides. She holds it by a fistful
+  of that pleat under the neckline the whole time (right hand, handed to the left after the turn). Jade did not say how
+  it was folded; the pleat is my reading of "falls in the folds".
+- **Her hands differ from the room agent's anchors** (GARMENT grips at both shoulder seams, 0.50 m apart): a hand on
+  each shoulder seam pulls the chest flat and opens any fold over Truth. t 0: right hand at the pinch (centre of the
+  chest, under the neckline), left on Beauty's shoulder seam, 6 cm in and 3 cm down for slack. t 1: left hand on the
+  pinch, right on Beauty's shoulder, 8 cm in and 3 cm down. build.js's swap-in block writes these into NAMED (herR;
+  tHerL, tHerR, tseal) so the figures' hands go where the cloth is held.
+- **Choreography (t):** 0-0.14 holds it up; 0.14 left lets go; 0.14-0.52 right turns it half round by the pinch; 0.50-0.56
+  left takes the pinch; 0.56-0.84 right takes Beauty's shoulder and brings it up; 0.84-1 holds it, front to her.
+- **Check:** every SW render is also drawn with Truth's figure (a conservative box) painted solid red; red pixels are
+  counted. Renders with Truth pixels go to gitignored `work/sweatshirt/`; only renders with none go to
+  `media/layout/mortongrove07/`. The engine guides (MG2, MG2_end) carry a plain blue disc only (no texture).
+- **Weak:** the one-handed phase (t 0.2-0.6) is a crumpled hang; cuffs crumple; at t 1 the print reads poorly even from
+  her side (the disc gathers at the pinch). MG1/MG1_end's folded stack (the set's own prop) still shows the seal's upper
+  part including Truth's silhouette: to be consistent it should show the pleat (Truth's strip folded under).
+- **fal:** not used, $0.
+- **Lead's fixes (same day):** air damping kept low and the body's bend stiffness unchanged (stiffer bends and heavy
+  damping both opened the pleat in tests); instead a 2-pass display smoothing takes out the one-cell crinkles (the Truth
+  check renders the smoothed surface); ribbing bends 10x stiffer; drawstrings dropped (STRING.n = 0); the pinch is a
+  whole hand, 9 cm of the pleat (4 rows), which keeps it shut through the turn; the MG1 stack's seal is the same pleat
+  (`foldedSeal`: Beauty only, Truth folded under); her hands take a power grip (engine/grasp.js) round the pinched
+  bundle / the rolled shoulder seam at the cloth's own grip points, palms toward it from her side. Re-timing the turn
+  shorter (one-handed hang only t 0.10-0.30) made the swing open the pleat, so the original timing stays.
+
+## 2026-11-26: fixed background art and clothing decals (Jade: art and logos the same in every shot)
+- The framed picture over the couch has a canonical image: layout/assets/art/mortongrove07/mg_picture.png (a muted
+  impressionist field landscape, no strong blue, in a cream mat 0.11 m; SUBJECT INVENTED, Jade gave only the size).
+- NOT YET IN THE RENDERS: build.js belongs to the cloth agent. HOOK for the lead: in build.js add
+  `import { framedPictureArt } from './art.js';` and, after the two 'framed picture' lines, `g.add(framedPictureArt());`
+  (checked in a scratch copy: MG_wide, MG1 lit/line/form). Then re-render and repaint MG1, MG1_end, MG2.
+- The IAS seal decal is the cloth agent's (sweatshirt.js). The mirror stays a blank box (only reference views see it).
