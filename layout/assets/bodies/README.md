@@ -1,0 +1,51 @@
+# Rigged body meshes (PROOF_BODY=mesh)
+
+One rigged human body per person and age, used by `layout/engine/humanMesh.js` when the layout renders with
+`--body mesh` (or `PROOF_BODY=mesh`). Off by default: without the switch the mannequins render exactly as before.
+
+## Source and licence
+
+- MakeHuman base mesh, targets, eyes, eyebrows and hair proxies from the **MakeHuman system assets** pack (CC0), via
+  **MPFB2 2.0.18** (MakeHuman for Blender, from extensions.blender.org) in **Blender 4.5.17 LTS** (blender.org Linux
+  tarball). Both installed outside the repo, in `~/opt/blender-4.5.17-linux-x64/` and Blender's user extension folder;
+  the asset pack is unpacked in MPFB's user data (`~/.config/blender/4.5/extensions/.user/user_default/mpfb/data`).
+- No network access during the build (MPFB's online access is off); no paid service.
+
+## Rebuild
+
+```sh
+~/opt/blender-4.5.17-linux-x64/blender -b --offline-mode --python layout/assets/bodies/make_bodies.py            # all
+~/opt/blender-4.5.17-linux-x64/blender -b --offline-mode --python layout/assets/bodies/make_bodies.py -- dad mama  # some
+```
+
+About 25 s a body. Writes `<id>.glb` and `meta.json` (per body: measured height, rest bones in Blender z-up, eye and
+mouth landmarks, hair styles, MPFB macros).
+
+## Settings (bodies.json)
+
+Per body: sex, age (MakeHuman age macro: 1 yr = 0, 11 = 0.1875, 25 = 0.5, 90 = 1), exact height (the rig and meshes
+are scaled so sole-to-crown is the cast height, soles at y = 0), weight and muscle macros (0.5 = average), race
+weights, face, hair styles. Ages and builds come from the cast sheets' sidecars (`cast/*/*.txt`); guesses are marked
+`_age` / `_build` in the file.
+
+| id | who (layout key) | sex | age | h (m) | face | notes |
+|---|---|---|---|---|---|---|
+| jade03, jade04h, jade05, jade07, jade10 | jade3, jade4h, littleJade, jade7, jade10 | f | 3, 4.5, 5, 7, 10 | 0.95 - 1.38 | drawn | hair `ponytail01` (open face) |
+| jade19, jade27, jade40 | jade19, jade27, jade (adult, playground23 / bed26 / car26) | f | 19, 27, 40 (guess) | 1.63, 1.65, 1.65 | drawn | |
+| mama | mama, mama86, mama90, mama91 | f | 36 (sheet: mid to late thirties) | 1.60 | drawn | bun = close hair + a bun ball |
+| dad | dad | m | 37 | 1.72 | drawn | slim, narrow shoulders (sheet) |
+| firstlove19, firstlove27 | firstLove19, firstLove27 | m | 19, 27 | 1.78 | **none** | no eyes, nose or mouth: the front of the head is faired smooth (safeguard; his face is never shown) |
+| friend | friend (mv10) | m | 27 | 1.73 | blank | slight build (sheet) |
+| uncle, aunt, grandma, sw | shanghai86 uncle / aunt / grandma, market93 grandma, office91 social worker | m / f | 40, 38, 68, 40 (guesses) | 1.70, 1.58, 1.51, 1.65 | blank | |
+| daughter, toddler, partner | bed26 / car26 daughter, playground23 toddler / partner | f, f (guess), m | 4, 1.7, 40 | 1.02, 0.82, 1.78 | blank | |
+| adult_f, adult_m | every other adult (mv10 guests, wall88 workers), scaled to the cast height | f / m | 32, 35 | 1.64, 1.76 | blank | sex from the cast entry / key, else hairStyle (as figure2.js) |
+
+Faces: `drawn` = MakeHuman eyes (eyeballs on their own bones `eye_l` / `eye_r`, aimed by `engine/gaze.js`) and
+eyebrows; `blank` = strangers the film leaves undrawn: the eye openings are cut, filled and faired over (thin-plate),
+nose and mouth kept as a gaze cue; `none` = first love: eyes, nose tip and mouth cut, the whole front of the face faired.
+All bodies: the nipples are pressed flat (clothes cover the chest; the region colours are painted on the body).
+
+Rig: MPFB `game_engine` skeleton (pelvis, spine_01-03, neck_01, head, clavicles, arms, hands with three bones per
+finger and thumb, legs, feet, balls) plus `eye_l` / `eye_r` added by the script. Glb: positions, normals, 4 joint
+influences, no materials, no UVs. Mesh nodes: `body`, `eyes`, `brows`, `hair_<style>` (style names as the engine's
+`hairStyle`; `kidbob` = the children's `bob`).

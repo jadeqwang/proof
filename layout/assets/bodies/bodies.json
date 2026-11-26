@@ -1,0 +1,321 @@
+{
+ "_note": "Body specs for make_bodies.py (MPFB2 / MakeHuman CC0 assets). h = standing height in metres (matches layout/sets/_cast.js); age in years; weight / muscle are MPFB macros 0..1 (0.5 = average); race weights asian / caucasian / african; face: drawn (eyeballs + brows), blank (eyes and mouth smoothed over, nose kept: strangers whose faces the film leaves undrawn), none (whole face smoothed, no eyes: first love, never face-on). hair: hairStyle names (engine) to export. Ages that are not in the cast sheets are marked guess.",
+ "hairAssets": {
+  "kidbob": "ponytail01",
+  "bob": "bob02",
+  "long": "long01",
+  "short": "short02",
+  "bun": "short02",
+  "pigtails": "braid01"
+ },
+ "bodies": [
+  {
+   "id": "jade03",
+   "sex": "f",
+   "age": 3,
+   "h": 0.95,
+   "weight": 0.55,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "kidbob"
+   ]
+  },
+  {
+   "id": "jade04h",
+   "sex": "f",
+   "age": 4.5,
+   "h": 1.045,
+   "weight": 0.52,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "kidbob"
+   ]
+  },
+  {
+   "id": "jade05",
+   "sex": "f",
+   "age": 5,
+   "h": 1.08,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "kidbob"
+   ]
+  },
+  {
+   "id": "jade07",
+   "sex": "f",
+   "age": 7,
+   "h": 1.22,
+   "weight": 0.45,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "kidbob",
+    "long"
+   ]
+  },
+  {
+   "id": "jade10",
+   "sex": "f",
+   "age": 10,
+   "h": 1.38,
+   "weight": 0.45,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "kidbob",
+    "long"
+   ]
+  },
+  {
+   "id": "jade19",
+   "sex": "f",
+   "age": 19,
+   "h": 1.63,
+   "weight": 0.42,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "long",
+    "bob"
+   ]
+  },
+  {
+   "id": "jade27",
+   "sex": "f",
+   "age": 27,
+   "h": 1.65,
+   "weight": 0.45,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "long",
+    "bob"
+   ]
+  },
+  {
+   "id": "jade40",
+   "sex": "f",
+   "age": 40,
+   "h": 1.65,
+   "weight": 0.48,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "long",
+    "bob"
+   ],
+   "_age": "guess: adult Jade in playground23 (2023) / bed26 / car26"
+  },
+  {
+   "id": "mama",
+   "sex": "f",
+   "age": 36,
+   "h": 1.6,
+   "weight": 0.5,
+   "muscle": 0.55,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "bun",
+    "bob"
+   ],
+   "_age": "cast sheet: mid to late thirties"
+  },
+  {
+   "id": "dad",
+   "sex": "m",
+   "age": 37,
+   "h": 1.72,
+   "weight": 0.35,
+   "muscle": 0.4,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "short"
+   ],
+   "_build": "cast sheet: slim and light, narrow shoulders"
+  },
+  {
+   "id": "firstlove19",
+   "sex": "m",
+   "age": 19,
+   "h": 1.78,
+   "weight": 0.35,
+   "muscle": 0.45,
+   "race": "caucasian",
+   "face": "none",
+   "hair": [
+    "short"
+   ],
+   "_build": "cast sheet: thinner and narrower-shouldered than at 27",
+   "_hair": "short02: short04 left specks on the back of the head in line mode that read like a face"
+  },
+  {
+   "id": "firstlove27",
+   "sex": "m",
+   "age": 27,
+   "h": 1.78,
+   "weight": 0.42,
+   "muscle": 0.5,
+   "race": "caucasian",
+   "face": "none",
+   "hair": [
+    "short"
+   ],
+   "_build": "Jade: about 5'10\", lean",
+   "_hair": "short02: short04 left specks on the back of the head in line mode that read like a face"
+  },
+  {
+   "id": "friend",
+   "sex": "m",
+   "age": 27,
+   "h": 1.73,
+   "weight": 0.4,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "blank",
+   "hair": [
+    "short"
+   ],
+   "_build": "cast sheet: medium height, a slight easy build"
+  },
+  {
+   "id": "uncle",
+   "sex": "m",
+   "age": 40,
+   "h": 1.7,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "blank",
+   "hair": [
+    "short"
+   ],
+   "_age": "guess"
+  },
+  {
+   "id": "aunt",
+   "sex": "f",
+   "age": 38,
+   "h": 1.58,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "asian",
+   "face": "blank",
+   "hair": [
+    "bun"
+   ],
+   "_age": "guess"
+  },
+  {
+   "id": "grandma",
+   "sex": "f",
+   "age": 68,
+   "h": 1.51,
+   "weight": 0.55,
+   "muscle": 0.4,
+   "race": "asian",
+   "face": "blank",
+   "hair": [
+    "bun"
+   ],
+   "_age": "guess (Shanghai grandmother 1.50; market93 stranger 1.52 uses it too)"
+  },
+  {
+   "id": "sw",
+   "sex": "f",
+   "age": 40,
+   "h": 1.65,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "mixed",
+   "face": "blank",
+   "hair": [
+    "bob"
+   ],
+   "_age": "guess"
+  },
+  {
+   "id": "daughter",
+   "sex": "f",
+   "age": 4,
+   "h": 1.02,
+   "weight": 0.52,
+   "muscle": 0.5,
+   "race": "mixed",
+   "face": "blank",
+   "hair": [
+    "pigtails"
+   ]
+  },
+  {
+   "id": "toddler",
+   "sex": "f",
+   "age": 1.7,
+   "h": 0.82,
+   "weight": 0.55,
+   "muscle": 0.5,
+   "race": "mixed",
+   "face": "blank",
+   "hair": [
+    "kidbob"
+   ],
+   "_age": "guess; sex guessed"
+  },
+  {
+   "id": "partner",
+   "sex": "m",
+   "age": 40,
+   "h": 1.78,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "mixed",
+   "face": "blank",
+   "hair": [
+    "short"
+   ],
+   "_age": "guess"
+  },
+  {
+   "id": "adult_f",
+   "sex": "f",
+   "age": 32,
+   "h": 1.64,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "mixed",
+   "face": "blank",
+   "hair": [
+    "bob",
+    "long",
+    "bun"
+   ]
+  },
+  {
+   "id": "adult_m",
+   "sex": "m",
+   "age": 35,
+   "h": 1.76,
+   "weight": 0.5,
+   "muscle": 0.5,
+   "race": "mixed",
+   "face": "blank",
+   "hair": [
+    "short"
+   ]
+  }
+ ]
+}

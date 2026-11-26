@@ -280,3 +280,29 @@ sets/_sheet.sh   sh layout/sets/_sheet.sh <set> [mode ...]  -> media/layout/_she
 node layout/render.mjs --set kitchen90 --exclude beam_                        # the shots, five modes + sidecars
 node layout/render.mjs --set kitchen90 --prefix beam_ --modes flat --nojson   # the beam masks (white = in the light)
 ```
+
+## Rigged human meshes: `--body mesh` (2026-11-26, opt-in)
+
+`node layout/render.mjs --set <set> --body mesh [--gaze] --out <scratch>` (or `PROOF_BODY=mesh`) replaces every
+mannequin with a rigged MakeHuman body (`assets/bodies/`, CC0, built headless in Blender + MPFB2; see its README).
+Off = the mannequins exactly as before (checked: mortongrove07 + kitchen90, line / flat / form, 0 px difference).
+
+- `engine/humanMesh.js`; the hook is one line at the end of `mannequin.js` `buildFigure` (`dressFigure`) and the
+  loader in `main.js` (`?body=mesh`). The pose solver is unchanged: the adapter reads the solved joints (P.*) and aims
+  each bone along its segment (stretched to the solved length; twist from the chest frame, the elbow plane turning
+  toward the hand frame along the forearm, the knee / foot direction), places the hand on the solver's hand frame and
+  every finger bone on the solver's finger joints (tips land where the hold check expects them), the feet on the foot
+  frame, the head rigidly on the solver's head frame **by its eyes** (neck stretch capped at +30 %; any rest moves
+  P.eyes / nose / mouth / chin / ears with the mesh face, and the report says how far: `figure_report.<who>.body`).
+  Eyes: the `eye_l` / `eye_r` bones are aimed with `gaze.js eyeAim` at `head.look`.
+- The skinned mesh is baked on the CPU into ordinary static meshes, so every mode (line, contour, form, flat, lit,
+  label, depth, light) and the beam masks work unchanged; shadows, ids, raycasts and `hideParts` (head and neck skin
+  and hair are their own meshes; hands sit in the hand groups) see plain meshes.
+- Clothing = colour regions from the cast entry / `spec.costume`: top (torso, arms to the sleeve length:
+  long / pushed / short / none), legs, socks, band, apron, dress; skin elsewhere. Region borders are cut through the
+  triangles (clean hems in line mode). Costume colours tint form / flat (as figure2's costumeLook). Hair: MakeHuman
+  CC0 hair proxies by `hairStyle`, lifted 4 mm off the scalp. Mesh idGroups `…:legL/R`, `…:footL/R` keep
+  basement90's `footwear()` working.
+- Faces: Jade (every age), Mama, Dad drawn (eyeballs + brows); strangers blank (eyes faired over, nose and mouth
+  kept); first love none (front of the head faired smooth, no eyes).
+- Test set: `sets/bodytest/` (hands, child arms, cast line-up front and back).

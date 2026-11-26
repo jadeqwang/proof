@@ -28,6 +28,7 @@ import { buildHand, ageOf, tipLocal } from './hand.js';
 import { realTorso, REAL_PELVIS } from './torso.js';
 import { FIG2, buildFace, gazeReport, torsoType, costumeLook, hex, naturalWrist, wristAngles } from './figure2.js';
 export { FIG2 } from './figure2.js';   // figure guides v2 switch (gaze, real torsos, costume colours): off = unchanged
+import { HUMAN, dressFigure } from './humanMesh.js';   // rigged body meshes (PROOF_BODY=mesh): off = unchanged
 
 let BUILD_ID = 0;   // line-mode id groups are per built figure
 // limb girth factor by age: 1 for adults, rounder for small children
@@ -337,9 +338,10 @@ export function buildFigure(spec, ctx) {
     const shapeName = typeof shape === 'string' ? shape : (shape.shape || 'relax');
     P.hands[n] = { group: hg, shape: shapeName, pose: hand.pose, f, n: nrm, t: hand.t, reach: +r.reach.toFixed(2), capsules: hand.capsules, joints: hand.joints, Lh };   // capsules / joints: world data (engine/holdcheck.mjs, mesh adapters)
   }
+  if (HUMAN.on) dressFigure(g, spec, c, P, uid);   // PROOF_BODY=mesh: the solved pose drives a rigged human mesh (engine/humanMesh.js)
   g.traverse((o) => { o.userData.who = spec.who; });
   tag(g, c.name);
-  g.userData.report = { legs: legInfo, arms: { L: P.hands.L.reach, R: P.hands.R.reach }, headTurn: P.headTurn };
+  g.userData.report = { legs: legInfo, arms: { L: P.hands.L.reach, R: P.hands.R.reach }, headTurn: P.headTurn, ...(P.bodyReport ? { body: P.bodyReport } : {}) };
   if (FIG2.on) { P.gaze = gazeReport(spec, P, ctx, gazeInfo, hs); P.gazeInfo = gazeInfo;
     P.costume = { top: hex(c.top), legs: hex(spec.who === 'daughter' ? c.skin : c.legs), sleeves: c.sleeves, sock: hex(c.sock ?? 0x6a6a70), apron: c.apron && !spec.noApron ? hex(c.apron) : undefined, band: c.band ? hex(c.band) : undefined,
       torso: realT ? `real ${tSex}${tt && !spec.sex ? ' (' + tt.how + ')' : ''}` : 'capsule' }; }

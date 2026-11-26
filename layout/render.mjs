@@ -18,6 +18,7 @@ for (let i = 0; i < argv.length; i++) if (argv[i].startsWith('--')) args[argv[i]
 const SET = args.set || 'attic88';
 const W = Number(args.w || 1920), H = Number(args.h || 1080);
 const modes = String(args.modes || 'line,flat,depth,label,lit').split(',');
+const BODY = String(args.body || process.env.PROOF_BODY || '');   // 'mesh': rigged human meshes (engine/humanMesh.js)
 const GAZE = !!args.gaze || process.env.PROOF_GAZE === '1', BODY2 = !!args.body2 || process.env.PROOF_BODY2 === '1';
 const OUT = args.out ? path.resolve(String(args.out), SET) : path.join(REPO, 'media/layout', SET); fs.mkdirSync(OUT, { recursive: true });
 
@@ -30,7 +31,7 @@ try {
   const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   page.on('console', (m) => { if (['error', 'warning'].includes(m.type()) && !/GPU stall|swiftshader|WebGL/i.test(m.text())) console.error('[page]', m.text()); });
   page.on('pageerror', (e) => console.error('[pageerror]', e.message));
-  await page.goto(`http://127.0.0.1:${port}/index.html?set=${SET}&w=${W}&h=${H}${GAZE ? '&gaze=1' : ''}${BODY2 ? '&body2=1' : ''}`);
+  await page.goto(`http://127.0.0.1:${port}/index.html?set=${SET}&w=${W}&h=${H}${GAZE ? '&gaze=1' : ''}${BODY2 ? '&body2=1' : ''}${BODY === 'mesh' ? '&body=mesh' : ''}`);
   await page.waitForFunction(() => window.__ready !== undefined || window.__error, null, { timeout: 120000 });
   const err = await page.evaluate(async () => { try { await window.__ready; return window.__error || null; } catch (e) { return window.__error || String(e); } });
   if (err) throw new Error(err);

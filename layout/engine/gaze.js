@@ -16,7 +16,7 @@
 import * as THREE from 'three';
 import { rad } from './core.js';
 
-export const EYE_YAW = 35, EYE_PITCH = 30;   // degrees of eye travel in the socket (beyond: the target is out of eye range)
+export const EYE_YAW = 35, EYE_PITCH = 30, EYE_PITCH_DOWN = 45;   // degrees of eye travel in the socket: yaw, up, down (lead 2026-11-26: down raised to 45; the audit found 58 looks beyond 30 down)
 const dg = (r) => +(r * 180 / Math.PI).toFixed(1);
 const angBetween = (a, b) => Math.acos(THREE.MathUtils.clamp(a.clone().normalize().dot(b.clone().normalize()), -1, 1));
 
@@ -37,7 +37,7 @@ export function targetName(t) {
 export function eyeAim(d, F) {
   const x = d.dot(F.hx), y = d.dot(F.hy), z = d.dot(F.hdir);
   const rawYaw = Math.atan2(x, z), rawPitch = Math.asin(THREE.MathUtils.clamp(y, -1, 1));
-  const yaw = THREE.MathUtils.clamp(rawYaw, -rad(EYE_YAW), rad(EYE_YAW)), pitch = THREE.MathUtils.clamp(rawPitch, -rad(EYE_PITCH), rad(EYE_PITCH));
+  const yaw = THREE.MathUtils.clamp(rawYaw, -rad(EYE_YAW), rad(EYE_YAW)), pitch = THREE.MathUtils.clamp(rawPitch, -rad(EYE_PITCH_DOWN), rad(EYE_PITCH));
   const dir = F.hdir.clone().multiplyScalar(Math.cos(yaw) * Math.cos(pitch)).addScaledVector(F.hx, Math.sin(yaw) * Math.cos(pitch)).addScaledVector(F.hy, Math.sin(pitch)).normalize();
   return { dir, yaw, pitch, rawYaw, rawPitch };
 }
@@ -53,7 +53,7 @@ export function gazeReport(spec, P, ctx, info, hs) {
   const hYaw = Math.atan2(P.headFwd.dot(cx), P.headFwd.dot(cz)), hPitch = Math.asin(THREE.MathUtils.clamp(P.headFwd.dot(cy), -1, 1));
   const out = { face: info.face, look_target: hs.look ? { name: targetName(hs.look), world: P.lookAt ? P.lookAt.toArray().map((v) => +v.toFixed(3)) : null } : null,
     head_deg: { yaw_left: dg(hYaw), pitch_up: dg(hPitch), note: 'head relative to the chest' },
-    eye_deg: { yaw_left: dg(info.eyeYaw), pitch_up: dg(info.eyePitch), wanted_yaw: dg(info.rawYaw), wanted_pitch: dg(info.rawPitch), note: `eyes relative to the head; travel clamped to +-${EYE_YAW} yaw, +-${EYE_PITCH} pitch` },
+    eye_deg: { yaw_left: dg(info.eyeYaw), pitch_up: dg(info.eyePitch), wanted_yaw: dg(info.rawYaw), wanted_pitch: dg(info.rawPitch), note: `eyes relative to the head; travel clamped to +-${EYE_YAW} yaw, ${EYE_PITCH} up / ${EYE_PITCH_DOWN} down` },
     gaze_error_deg: dg(info.error), beyond_eye_range: info.error > rad(1), points: [], reaches: [], warnings: [] };
   const name = spec.who;
   if (out.beyond_eye_range) out.warnings.push(`${name}'s look target is ${out.gaze_error_deg} deg beyond eye travel (head ${out.head_deg.yaw_left}/${out.head_deg.pitch_up}, eyes want ${out.eye_deg.wanted_yaw}/${out.eye_deg.wanted_pitch}): turn the head or the body`);
