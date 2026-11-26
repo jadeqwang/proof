@@ -30,9 +30,9 @@ weights, face, hair styles. Ages and builds come from the cast sheets' sidecars 
 
 | id | who (layout key) | sex | age | h (m) | face | notes |
 |---|---|---|---|---|---|---|
-| jade03, jade04h, jade05, jade07, jade10 | jade3, jade4h, littleJade, jade7, jade10 | f | 3, 4.5, 5, 7, 10 | 0.95 - 1.38 | drawn | hair `ponytail01` (open face) |
+| jade03, jade04h, jade05, jade07, jade10 | jade3, jade4h, littleJade, jade7, jade10 | f | 3, 4.5, 5, 7, 10 | 0.95 - 1.38 | drawn | hair: long01 cut to length + fringe (below) |
 | jade19, jade27, jade40 | jade19, jade27, jade (adult, playground23 / bed26 / car26) | f | 19, 27, 40 (guess) | 1.63, 1.65, 1.65 | drawn | |
-| mama | mama, mama86, mama90, mama91 | f | 36 (sheet: mid to late thirties) | 1.60 | drawn | bun = close hair + a bun ball |
+| mama | mama, mama86, mama90, mama91 | f | 36 (sheet: mid to late thirties) | 1.60 | drawn | bun = long01 cut at the nape + a bun ball; bob = bob02 |
 | dad | dad | m | 37 | 1.72 | drawn | slim, narrow shoulders (sheet) |
 | firstlove19, firstlove27 | firstLove19, firstLove27 | m | 19, 27 | 1.78 | **none** | no eyes, nose or mouth: the front of the head is faired smooth (safeguard; his face is never shown) |
 | friend | friend (mv10) | m | 27 | 1.73 | blank | slight build (sheet) |
@@ -41,11 +41,26 @@ weights, face, hair styles. Ages and builds come from the cast sheets' sidecars 
 | adult_f, adult_m | every other adult (mv10 guests, wall88 workers), scaled to the cast height | f / m | 32, 35 | 1.64, 1.76 | blank | sex from the cast entry / key, else hairStyle (as figure2.js) |
 
 Faces: `drawn` = MakeHuman eyes (eyeballs on their own bones `eye_l` / `eye_r`, aimed by `engine/gaze.js`) and
-eyebrows; `blank` = strangers the film leaves undrawn: the eye openings are cut, filled and faired over (thin-plate),
-nose and mouth kept as a gaze cue; `none` = first love: eyes, nose tip and mouth cut, the whole front of the face faired.
+eyebrows; `blank` = strangers the film leaves undrawn: same as `none` since pass 2; `none` = first love: eyes, nose tip and mouth cut, the whole front of the face faired.
 All bodies: the nipples are pressed flat (clothes cover the chest; the region colours are painted on the body).
+
+Garments (MakeHuman CC0 clothes, fitted and rigged to each body by MPFB): `garment_long` (male_casualsuit02: a crew-neck
+long-sleeved top and jeans), `garment_short` (female_casualsuit01 / male_casualsuit04: a tee and jeans), `garment_skirt`
+(the lower half of female_elegantsuit01; daughter, adult_f). Each is two pieces (top, trousers); the engine trims them to
+the costume (sleeve length, trouser length, dress) along exact region borders, colours them and hides the body under them.
+
+Hair (`hairBuild` in bodies.json; `build_hair` in the script) is grown from the body's own scalp where no MakeHuman hair
+fits the cast sheets, with edges cut along smooth lines (`isocut`):
+- first love (`hair_fl`): a long top layer with a centre part over an even short buzz (`hair_fl__buzz`), a visible step
+  (solidified rim) from the fringe tip on the forehead back above the ear and round the back at mid-ear height, the
+  layer hanging straight at the back (cast/first_love/fl_B_backhead_neck_v5).
+- the children (`hair_kidbob` + `__fringe`): MakeHuman long01 cut to the sheet's length (3: chin; 4.5 and 5: shoulders;
+  7: shoulder blades; 10: mid-back) and a light fringe parted in the middle, its edge well above the brows; the engine
+  adds the small half-ponytail high at the back.
+- bun (Mama, aunt, grandmother, women guests): long01 cut at the nape; the engine adds the bun.
+Strangers' faces are now as featureless as first love's (cast/strangers sheets: no mark inside the face).
 
 Rig: MPFB `game_engine` skeleton (pelvis, spine_01-03, neck_01, head, clavicles, arms, hands with three bones per
 finger and thumb, legs, feet, balls) plus `eye_l` / `eye_r` added by the script. Glb: positions, normals, 4 joint
-influences, no materials, no UVs. Mesh nodes: `body`, `eyes`, `brows`, `hair_<style>` (style names as the engine's
-`hairStyle`; `kidbob` = the children's `bob`).
+influences, no materials, no UVs. Mesh nodes: `body`, `eyes`, `brows`, `garment_*`, `hair_<style>` and its `hair_<style>__<piece>` pieces (style names
+as the engine's `hairStyle`; `kidbob` = the children's `bob`; `fl` = first love's cut).

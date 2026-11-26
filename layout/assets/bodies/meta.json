@@ -25,7 +25,7 @@
   },
   "smoothed_verts": 0,
   "hair": {
-   "kidbob": "ponytail01"
+   "kidbob": "long01"
   },
   "eyes": {
    "l": {
@@ -56,7 +56,10 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_kidbob": 3718
+   "hair_kidbob": 1348,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "hair_kidbob__fringe": 106
   },
   "bones_blender_zup": {
    "Root": {
@@ -817,7 +820,7 @@
   },
   "smoothed_verts": 0,
   "hair": {
-   "kidbob": "ponytail01"
+   "kidbob": "long01"
   },
   "eyes": {
    "l": {
@@ -848,7 +851,10 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_kidbob": 3718
+   "hair_kidbob": 1605,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "hair_kidbob__fringe": 108
   },
   "bones_blender_zup": {
    "Root": {
@@ -1609,7 +1615,7 @@
   },
   "smoothed_verts": 0,
   "hair": {
-   "kidbob": "ponytail01"
+   "kidbob": "long01"
   },
   "eyes": {
    "l": {
@@ -1640,7 +1646,10 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_kidbob": 3718
+   "hair_kidbob": 1618,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "hair_kidbob__fringe": 108
   },
   "bones_blender_zup": {
    "Root": {
@@ -2401,7 +2410,7 @@
   },
   "smoothed_verts": 0,
   "hair": {
-   "kidbob": "ponytail01",
+   "kidbob": "long01",
    "long": "long01"
   },
   "eyes": {
@@ -2433,8 +2442,11 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_kidbob": 3718,
-   "hair_long": 3239
+   "hair_kidbob": 2766,
+   "hair_long": 3239,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "hair_kidbob__fringe": 104
   },
   "bones_blender_zup": {
    "Root": {
@@ -3195,7 +3207,7 @@
   },
   "smoothed_verts": 0,
   "hair": {
-   "kidbob": "ponytail01",
+   "kidbob": "long01",
    "long": "long01"
   },
   "eyes": {
@@ -3227,8 +3239,11 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_kidbob": 3718,
-   "hair_long": 3239
+   "hair_kidbob": 3239,
+   "hair_long": 3239,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "hair_kidbob__fringe": 84
   },
   "bones_blender_zup": {
    "Root": {
@@ -4022,7 +4037,9 @@
    "eyes": 1064,
    "brows": 124,
    "hair_long": 3239,
-   "hair_bob": 1653
+   "hair_bob": 1653,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -4816,7 +4833,9 @@
    "eyes": 1064,
    "brows": 124,
    "hair_long": 3239,
-   "hair_bob": 1653
+   "hair_bob": 1653,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -5610,7 +5629,9 @@
    "eyes": 1064,
    "brows": 124,
    "hair_long": 3239,
-   "hair_bob": 1653
+   "hair_bob": 1653,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -6371,7 +6392,7 @@
   },
   "smoothed_verts": 0,
   "hair": {
-   "bun": "short02",
+   "bun": "long01",
    "bob": "bob02"
   },
   "eyes": {
@@ -6403,8 +6424,10 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_bun": 1755,
-   "hair_bob": 1653
+   "hair_bun": 975,
+   "hair_bob": 1653,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -7196,7 +7219,9 @@
   "parts": {
    "eyes": 1064,
    "brows": 124,
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696
   },
   "bones_blender_zup": {
    "Root": {
@@ -7957,11 +7982,16 @@
   },
   "smoothed_verts": 1599,
   "hair": {
+   "fl": "procedural",
    "short": "short02"
   },
   "eyes": null,
   "parts": {
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696,
+   "hair_fl__buzz": 430,
+   "hair_fl": 814
   },
   "bones_blender_zup": {
    "Root": {
@@ -8696,11 +8726,16 @@
   },
   "smoothed_verts": 1588,
   "hair": {
+   "fl": "procedural",
    "short": "short02"
   },
   "eyes": null,
   "parts": {
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696,
+   "hair_fl__buzz": 422,
+   "hair_fl": 806
   },
   "bones_blender_zup": {
    "Root": {
@@ -9414,7 +9449,7 @@
   "h": 1.73,
   "measured_h": 1.73,
   "sole_z": -0.0,
-  "verts": 12664,
+  "verts": 12119,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -9433,13 +9468,15 @@
     1.53862
    ]
   },
-  "smoothed_verts": 722,
+  "smoothed_verts": 1553,
   "hair": {
    "short": "short02"
   },
   "eyes": null,
   "parts": {
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696
   },
   "bones_blender_zup": {
    "Root": {
@@ -10153,7 +10190,7 @@
   "h": 1.7,
   "measured_h": 1.7,
   "sole_z": 0.0,
-  "verts": 12708,
+  "verts": 12175,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -10172,13 +10209,15 @@
     1.51023
    ]
   },
-  "smoothed_verts": 760,
+  "smoothed_verts": 1603,
   "hair": {
    "short": "short02"
   },
   "eyes": null,
   "parts": {
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696
   },
   "bones_blender_zup": {
    "Root": {
@@ -10892,7 +10931,7 @@
   "h": 1.58,
   "measured_h": 1.58,
   "sole_z": 0.0,
-  "verts": 12688,
+  "verts": 12139,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -10911,13 +10950,15 @@
     1.41069
    ]
   },
-  "smoothed_verts": 769,
+  "smoothed_verts": 1578,
   "hair": {
-   "bun": "short02"
+   "bun": "long01"
   },
   "eyes": null,
   "parts": {
-   "hair_bun": 1755
+   "hair_bun": 975,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -11631,7 +11672,7 @@
   "h": 1.51,
   "measured_h": 1.51,
   "sole_z": 0.0,
-  "verts": 12734,
+  "verts": 12179,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -11650,13 +11691,15 @@
     1.34939
    ]
   },
-  "smoothed_verts": 808,
+  "smoothed_verts": 1626,
   "hair": {
-   "bun": "short02"
+   "bun": "long01"
   },
   "eyes": null,
   "parts": {
-   "hair_bun": 1755
+   "hair_bun": 982,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -12370,7 +12413,7 @@
   "h": 1.65,
   "measured_h": 1.65,
   "sole_z": 0.0,
-  "verts": 12718,
+  "verts": 12220,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -12389,13 +12432,15 @@
     1.47861
    ]
   },
-  "smoothed_verts": 780,
+  "smoothed_verts": 1672,
   "hair": {
    "bob": "bob02"
   },
   "eyes": null,
   "parts": {
-   "hair_bob": 1653
+   "hair_bob": 1653,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -13109,7 +13154,7 @@
   "h": 1.02,
   "measured_h": 1.02,
   "sole_z": 0.0,
-  "verts": 13192,
+  "verts": 12383,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -13128,13 +13173,16 @@
     0.8689
    ]
   },
-  "smoothed_verts": 1211,
+  "smoothed_verts": 1862,
   "hair": {
    "pigtails": "braid01"
   },
   "eyes": null,
   "parts": {
-   "hair_pigtails": 4493
+   "hair_pigtails": 4493,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "garment_skirt": 350
   },
   "bones_blender_zup": {
    "Root": {
@@ -13848,7 +13896,7 @@
   "h": 0.82,
   "measured_h": 0.82,
   "sole_z": 0.0,
-  "verts": 13240,
+  "verts": 12434,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -13867,13 +13915,15 @@
     0.68298
    ]
   },
-  "smoothed_verts": 1237,
+  "smoothed_verts": 1935,
   "hair": {
-   "kidbob": "ponytail01"
+   "kidbob": "long01"
   },
   "eyes": null,
   "parts": {
-   "hair_kidbob": 3718
+   "hair_kidbob": 3239,
+   "garment_long": 2136,
+   "garment_short": 2197
   },
   "bones_blender_zup": {
    "Root": {
@@ -14587,7 +14637,7 @@
   "h": 1.78,
   "measured_h": 1.78,
   "sole_z": 0.0,
-  "verts": 12650,
+  "verts": 12160,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -14606,13 +14656,15 @@
     1.59278
    ]
   },
-  "smoothed_verts": 701,
+  "smoothed_verts": 1588,
   "hair": {
    "short": "short02"
   },
   "eyes": null,
   "parts": {
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696
   },
   "bones_blender_zup": {
    "Root": {
@@ -15326,7 +15378,7 @@
   "h": 1.64,
   "measured_h": 1.64,
   "sole_z": 0.0,
-  "verts": 12718,
+  "verts": 12220,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -15345,17 +15397,20 @@
     1.46987
    ]
   },
-  "smoothed_verts": 778,
+  "smoothed_verts": 1670,
   "hair": {
    "bob": "bob02",
    "long": "long01",
-   "bun": "short02"
+   "bun": "long01"
   },
   "eyes": null,
   "parts": {
    "hair_bob": 1653,
    "hair_long": 3239,
-   "hair_bun": 1755
+   "hair_bun": 983,
+   "garment_long": 2136,
+   "garment_short": 2197,
+   "garment_skirt": 377
   },
   "bones_blender_zup": {
    "Root": {
@@ -16069,7 +16124,7 @@
   "h": 1.76,
   "measured_h": 1.76,
   "sole_z": 0.0,
-  "verts": 12646,
+  "verts": 12158,
   "face": "blank",
   "landmarks_blender_zup": {
    "eye_l": [
@@ -16088,13 +16143,15 @@
     1.57551
    ]
   },
-  "smoothed_verts": 699,
+  "smoothed_verts": 1586,
   "hair": {
    "short": "short02"
   },
   "eyes": null,
   "parts": {
-   "hair_short": 1755
+   "hair_short": 1755,
+   "garment_long": 2136,
+   "garment_short": 1696
   },
   "bones_blender_zup": {
    "Root": {

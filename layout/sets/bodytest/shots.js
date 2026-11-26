@@ -4,6 +4,8 @@ const HANDS = { L: { to: 'self:shoulderL', off: [0.05, -0.15, 0.4], hand: 'grip'
 const HANDS2 = { L: { to: 'self:chest', off: [0.12, -0.1, 0.22], hand: 'pinch', palm: 'down', fingers: 'fwd' }, R: { to: 'self:chest', off: [-0.12, -0.12, 0.25], hand: 'relax', palm: 'up' } };
 const CASTF = ['mama', 'dad', 'jade27', 'jade19', 'jade10', 'jade7', 'littleJade', 'jade3', 'firstLove27', 'firstLove19'];
 export const SHOTS = [
+  { id: 'fl_back', lens: 50, orbit: { at: 'firstLove27:head', rel: 'firstLove27', az: 160, el: 5, dist: 0.9 }, figs: { firstLove27: { at: [0, 0], legs: 'stand', yaw: 0, L: 'side', R: 'side' } }, header: 'first love, back of the head (stepped cut)' },
+  { id: 'fl_back_nod', lens: 50, orbit: { at: 'firstLove27:head', rel: 'firstLove27', az: 150, el: 15, dist: 0.9 }, figs: { firstLove27: { at: [0, 0], legs: 'stand', yaw: 0, head: { nod: 25, turn: 20 }, L: 'side', R: 'side' } }, header: 'first love, head bowed and turned' },
   { id: 'hands_a', lens: 50, orbit: { at: 'jade27:chest', az: -30, el: 10, dist: 1.3 }, figs: { jade27: { at: [0, 0], legs: 'stand', yaw: 0, head: { look: [-0.15, 1.05, 0.5] }, ...HANDS } }, header: 'grip L, point R' },
   { id: 'hands_b', lens: 50, orbit: { at: 'jade27:chest', az: 25, el: 25, dist: 1.2 }, figs: { jade27: { at: [0, 0], legs: 'stand', yaw: 0, head: { look: [0.12, 1.15, 0.3] }, ...HANDS2 } }, header: 'pinch L, relax palm-up R' },
   { id: 'kid_arms', lens: 50, orbit: { at: 'jade7:chest', az: -35, el: 8, dist: 1.3 }, figs: { jade7: { at: [0, 0], legs: 'stand', yaw: 0, head: { look: [-0.15, 1.05, 0.5] }, L: 'side', R: { to: 'self:shoulderR', off: [-0.05, 0.05, 0.3], hand: 'point', palm: 'down' } } }, header: 'child arms' },

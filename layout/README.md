@@ -298,11 +298,15 @@ Off = the mannequins exactly as before (checked: mortongrove07 + kitchen90, line
 - The skinned mesh is baked on the CPU into ordinary static meshes, so every mode (line, contour, form, flat, lit,
   label, depth, light) and the beam masks work unchanged; shadows, ids, raycasts and `hideParts` (head and neck skin
   and hair are their own meshes; hands sit in the hand groups) see plain meshes.
-- Clothing = colour regions from the cast entry / `spec.costume`: top (torso, arms to the sleeve length:
+- Clothing (pass 2): real garment meshes (MakeHuman CC0 clothes fitted to each body: crew top + jeans, tee + jeans,
+  skirt), trimmed per costume (sleeves long / pushed / short / none, dress), coloured, the body hidden under them; the
+  apron is the garment's front panel lifted 6 mm; socks are the foot colour. Decals: `chestPoint(fig, u, v)` finds the
+  cloth (office91 print); mv10's meatball raycast finds the top by its `:torso` line id. Regions: top (torso, arms to the sleeve length:
   long / pushed / short / none), legs, socks, band, apron, dress; skin elsewhere. Region borders are cut through the
   triangles (clean hems in line mode). Costume colours tint form / flat (as figure2's costumeLook). Hair: MakeHuman
   CC0 hair proxies by `hairStyle`, lifted 4 mm off the scalp. Mesh idGroups `…:legL/R`, `…:footL/R` keep
   basement90's `footwear()` working.
-- Faces: Jade (every age), Mama, Dad drawn (eyeballs + brows); strangers blank (eyes faired over, nose and mouth
-  kept); first love none (front of the head faired smooth, no eyes).
+- Faces: Jade (every age), Mama, Dad drawn (eyeballs + brows); strangers and first love: the front of the head faired
+  smooth (no eyes, nose or mouth). Hair per the cast sheets (assets/bodies/README.md): first love's stepped cut, the
+  children's cut-to-length hair with a parted fringe and half-ponytail, buns.
 - Test set: `sets/bodytest/` (hands, child arms, cast line-up front and back).

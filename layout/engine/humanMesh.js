@@ -124,8 +124,8 @@ function solvePose(B, bones, P, spec, c, k) {
   const headAt = P.eyes.clone().addScaledVector(hz, -0.0075 * H);
   M.head = rigidMatrix(E0, I3, headAt, RH);
   let neckTop = hd('head').clone().applyMatrix4(M.head);
-  { // ...within reason: the neck stretches at most 30 % (or shrinks 15 %); beyond that the head stays short of the eyes
-    const nb = C0.clone().applyMatrix4(chestRigid), L0 = hd('head').distanceTo(C0), L1 = neckTop.distanceTo(nb), Lc = THREE.MathUtils.clamp(L1, 0.85 * L0, 1.3 * L0);
+  { // ...within reason: the neck stretches at most 18 % (or shrinks 15 %); beyond that the head stays short of the eyes
+    const nb = C0.clone().applyMatrix4(chestRigid), L0 = hd('head').distanceTo(C0), L1 = neckTop.distanceTo(nb), Lc = THREE.MathUtils.clamp(L1, 0.85 * L0, 1.18 * L0);
     if (Math.abs(Lc - L1) > 1e-4) { const d = neckTop.clone().sub(nb).normalize(), sh = d.multiplyScalar(Lc - L1); headAt.add(sh); neckTop.add(sh); M.head = rigidMatrix(E0, I3, headAt, RH);
       // the face's named points follow the mesh face, so cameras and other figures' hands (second staging pass) find it
       P.headMeshOffset = +sh.length().toFixed(3);
@@ -275,22 +275,23 @@ const clothes = (lk) => { const col = new THREE.Color(lk.col ?? 0x808080); retur
 const GREY = { skin: 0.78, hair: 0.12, top: 0.62, legs: 0.42, apron: 0.72, band: 0.5 };
 // the costume's region at a rest point p with skin weights wm (Map joint index -> weight): top / legs / sock / skin /
 // band / apron / hand / skinHead. Region borders are cut exactly through the triangles (refine), so hems are clean lines.
-function labeller(B, c, spec) {
+function labeller(B, c, spec, opt = {}) {
   const { jg, H0, C0, bones } = prep(B), T = C0.y - H0.y, waistY = H0.y + 0.3 * T, collarY = C0.y - 0.035 * T, h0 = B.meta.h;
   const sleeves = c.sleeves || 'long', dress = !!c.dress, legsSkin = spec.who === 'daughter';
-  const bandY = c.band ? H0.y + (0.38 + 0.62 * 0.2 - 0.06) * T : null, bandH = 0.0175 * h0;
-  const apron = c.apron && !spec.noApron;
+  const bandH = 0.0175 * h0, bandY = c.band ? Math.max(H0.y + (0.38 + 0.62 * 0.2 - 0.06) * T, H0.y + 0.3 * T + bandH + 0.012 * h0) : null;   // clear of the waistline
+  const apron = c.apron && !spec.noApron && !opt.noApron;
   const SEG = { ual: 'upperarm_l', uar: 'upperarm_r', fal: 'lowerarm_l', far: 'lowerarm_r', thl: 'thigh_l', thr: 'thigh_r', calfl: 'calf_l', calfr: 'calf_r' };
   const segA = {}; for (const [k, bn] of Object.entries(SEG)) { const h = bones[bn].head, a = bones[bn].tail.clone().sub(h); const L = a.length(); segA[k] = { h, a: a.divideScalar(L), L }; }
   return (p, wm) => {
     const s = {}; for (const [j, w] of wm) s[jg[j]] = (s[jg[j]] || 0) + w;
     let d = 'torso', bw = -1; for (const [g, w] of Object.entries(s)) if (w > bw) { bw = w; d = g; }
-    const { x, y, z } = p, side = d.slice(-1).toUpperCase(); let t = 0;
+    const { x, y, z } = p; if ((d.startsWith('th') || d === 'neck') && y >= waistY && y < C0.y - 0.06 * T) d = 'torso';   // the waistline by height only (thigh / torso dominance flips along a zigzag)
+    const side = d.slice(-1).toUpperCase(); let t = 0;
     if (segA[d]) { const S = segA[d]; t = ((x - S.h.x) * S.a.x + (y - S.h.y) * S.a.y + (z - S.h.z) * S.a.z) / S.L; }
     let r = 'skin';
     // the neckline: one smooth line round the neck (lower in front), the same rule for torso and neck vertices
     const collar = C0.y - 0.045 * T * THREE.MathUtils.clamp((z - C0.z) / (0.04 * h0) + 0.5, 0, 1) - 0.004 * h0;
-    if (d === 'torso' || d === 'neck') r = y < waistY ? (dress ? 'top' : 'legs') : y > collar ? (d === 'neck' ? 'skinNeck' : 'skin') : 'top';
+    if (d === 'torso' || d === 'neck') r = y < waistY ? (dress ? 'top' : 'legs') : (y > collar && !opt.garment) ? (d === 'neck' ? 'skinNeck' : 'skin') : 'top';
     else if (d.startsWith('ua')) r = sleeves === 'none' ? 'skin' : sleeves === 'short' ? (t < 0.42 ? 'top' : 'skin') : 'top';
     else if (d.startsWith('fa')) r = sleeves === 'long' ? 'top' : sleeves === 'pushed' ? (t < 0.35 ? 'top' : 'skin') : 'skin';
     else if (d.startsWith('th')) r = dress && t < 0.5 ? 'top' : 'legs';
@@ -305,27 +306,45 @@ function labeller(B, c, spec) {
   };
 }
 // cut the rest body along the costume's region borders: returns { pos, jnt, wgt, idx, tri (label per triangle) }
-function refine(B, c, spec) {
-  const key = [c.sleeves, !!c.dress, c.band ? 1 : 0, c.apron && !spec.noApron ? 1 : 0, spec.who === 'daughter'].join('|');
+function refine(B, c, spec, part = 'body', opt = {}) {
+  const key = [part, c.sleeves, !!c.dress, c.band ? 1 : 0, c.apron && !spec.noApron ? 1 : 0, spec.who === 'daughter', JSON.stringify(opt)].join('|');
   (B.refined ||= {}); if (B.refined[key]) return B.refined[key];
-  const L = labeller(B, c, spec), body = B.meshes.body, n0 = body.pos.length / 3;
+  const L = labeller(B, c, spec, opt), body = B.meshes[part], n0 = body.pos.length / 3;
   const pos = [], W = [];
   for (let i = 0; i < n0; i++) { pos.push(new THREE.Vector3(body.pos[i * 3], body.pos[i * 3 + 1], body.pos[i * 3 + 2]));
     const m = new Map(); for (let j = 0; j < 4; j++) { const w = body.wgt[i * 4 + j]; if (w > 0) m.set(body.jnt[i * 4 + j], (m.get(body.jnt[i * 4 + j]) || 0) + w); } W.push(m); }
   const cls = (l) => (l && l.startsWith('skin') ? 'skin' : l);   // head / neck / body skin differ only as meshes: no cut between them
-  const lab = pos.map((p, i) => L(p, W[i])), labC = lab.map(cls);
+  // garments are layers (shirt over jeans): each connected piece keeps to its own half (the shirt is never trousers,
+  // the jeans never the top), so overlapping layers do not stripe each other's colour
+  let piece = null;
+  if (opt.garment) { const par = new Int32Array(n0).map((_, i) => i), fd = (a) => { while (par[a] !== a) { par[a] = par[par[a]]; a = par[a]; } return a; };
+    for (let f = 0; f < body.idx.length; f += 3) { const a = fd(body.idx[f]); for (const b of [body.idx[f + 1], body.idx[f + 2]]) par[fd(b)] = a; }
+    const sum = new Map(); for (let i = 0; i < n0; i++) { const r = fd(i), e = sum.get(r) || [0, 0]; e[0] += body.pos[i * 3 + 1]; e[1]++; sum.set(r, e); }
+    const { H0, C0 } = prep(B), waistY = H0.y + 0.3 * (C0.y - H0.y);
+    piece = new Array(n0); for (let i = 0; i < n0; i++) { const e = sum.get(fd(i)); piece[i] = e[0] / e[1] > waistY ? 'upper' : 'lower'; } }
+  const LP = (p, w, pc) => { const l = L(p, w); if (!pc) return l;
+    if (pc === 'upper' && l.startsWith('legs')) return 'top';
+    if (pc === 'lower' && (l === 'top' || l === 'band' || l === 'apron')) return 'legs' + (p.x > 0 ? 'L' : 'R');
+    return l; };
+  const pcOf = []; for (let i = 0; i < n0; i++) pcOf.push(piece ? piece[i] : null);
+  const lab = pos.map((p, i) => LP(p, W[i], pcOf[i])), labC = lab.map(cls);
   const mix = (a, b, t) => { const m = new Map(); for (const [j, w] of W[a]) m.set(j, w * (1 - t)); for (const [j, w] of W[b]) m.set(j, (m.get(j) || 0) + w * t); return m; };
   const cut = new Map();
   const crossing = (a, b) => { const k = a < b ? a + ':' + b : b + ':' + a; if (cut.has(k)) return cut.get(k);
     const la = labC[a]; let lo = 0, hi = 1;
-    for (let it = 0; it < 12; it++) { const t = (lo + hi) / 2; if (cls(L(pos[a].clone().lerp(pos[b], t), mix(a, b, t))) === la) lo = t; else hi = t; }
-    const t = (lo + hi) / 2; pos.push(pos[a].clone().lerp(pos[b], t)); W.push(mix(a, b, t)); lab.push(null); labC.push(null); cut.set(k, pos.length - 1); return pos.length - 1; };
-  const idx = [], tri = [], I = body.idx;
+    for (let it = 0; it < 12; it++) { const t = (lo + hi) / 2; if (cls(LP(pos[a].clone().lerp(pos[b], t), mix(a, b, t), pcOf[a])) === la) lo = t; else hi = t; }
+    const t = (lo + hi) / 2; pos.push(pos[a].clone().lerp(pos[b], t)); W.push(mix(a, b, t)); lab.push(null); labC.push(null); pcOf.push(pcOf[a]); cut.set(k, pos.length - 1); return pos.length - 1; };
+  const idx = [], tri = [], I = Array.from(body.idx), depth = new Map(), mids = new Map();
+  // a triangle that three regions meet in is split in four (midpoints, labelled) until each piece has at most two
+  const mid = (a, b) => { const key = a < b ? a + ':' + b : b + ':' + a; if (mids.has(key)) return mids.get(key); pos.push(pos[a].clone().lerp(pos[b], 0.5)); W.push(mix(a, b, 0.5)); pcOf.push(pcOf[a]);
+    const lv = LP(pos[pos.length - 1], W[W.length - 1], pcOf[a]); lab.push(lv); labC.push(cls(lv)); mids.set(key, pos.length - 1); return pos.length - 1; };
+  const split4 = ([a, b, c], d) => { const ab = mid(a, b), bc = mid(b, c), ca = mid(c, a);
+    for (const t of [[a, ab, ca], [ab, b, bc], [ca, bc, c], [ab, bc, ca]]) { depth.set(I.length / 3, d); I.push(...t); } };
   for (let f = 0; f < I.length / 3; f++) {
     const v = [I[f * 3], I[f * 3 + 1], I[f * 3 + 2]], l = v.map((i) => labC[i]);
     const pick = (c) => lab[v.find((i) => labC[i] === c)];   // the specific label (skinHead / skinNeck / skin) of that class
     if (l[0] === l[1] && l[1] === l[2]) { idx.push(...v); tri.push(pick(l[0])); continue; }
-    const set = new Set(l); if (set.size === 3) { idx.push(...v); tri.push(pick(l[0])); continue; }
+    const set = new Set(l); if (set.size === 3) { if ((depth.get(f) || 0) < 3) { split4(v, (depth.get(f) || 0) + 1); continue; } idx.push(...v); tri.push(pick(l[0])); continue; }
     const o = l[0] !== l[1] && l[0] !== l[2] ? 0 : l[1] !== l[0] && l[1] !== l[2] ? 1 : 2;   // the odd corner first, winding kept
     const A = v[o], Bv = v[(o + 1) % 3], C = v[(o + 2) % 3], pab = crossing(A, Bv), pac = crossing(A, C);
     idx.push(A, pab, pac); tri.push(lab[A]); idx.push(pab, Bv, C); tri.push(lab[Bv]); idx.push(pab, C, pac); tri.push(lab[Bv]);
@@ -334,6 +353,18 @@ function refine(B, c, spec) {
   for (let i = 0; i < n; i++) { P[i * 3] = pos[i].x; P[i * 3 + 1] = pos[i].y; P[i * 3 + 2] = pos[i].z;
     const e = [...W[i]].sort((x, y) => y[1] - x[1]).slice(0, 4), sw = e.reduce((s, x) => s + x[1], 0) || 1; e.forEach(([j, w], k) => { J[i * 4 + k] = j; Wt[i * 4 + k] = w / sw; }); }
   return (B.refined[key] = { pos: P, jnt: J, wgt: Wt, idx: new Uint32Array(idx), tri });
+}
+
+// body vertices under a garment (rest pose: a garment vertex within 2.5 cm of a body vertex of the same clothed region);
+// the body's triangles there are dropped so skin never pokes through the cloth
+function covered(B, body, gmeshes) {
+  const cell = 0.025 * B.meta.h / 1.65, key = (x, y, z) => `${Math.floor(x / cell)},${Math.floor(y / cell)},${Math.floor(z / cell)}`, grid = new Map();
+  for (const G of gmeshes) for (let i = 0; i < G.pos.length / 3; i++) { const k2 = key(G.pos[i * 3], G.pos[i * 3 + 1], G.pos[i * 3 + 2]); grid.set(k2, (grid.get(k2) || 0) + 1); }
+  const n = body.pos.length / 3, out = new Uint8Array(n);
+  for (let i = 0; i < n; i++) { const x = body.pos[i * 3], y = body.pos[i * 3 + 1], z = body.pos[i * 3 + 2]; let hit = false;
+    for (let a = -1; a <= 1 && !hit; a++) for (let b = -1; b <= 1 && !hit; b++) for (let c2 = -1; c2 <= 1 && !hit; c2++) if (grid.has(key(x + a * cell, y + b * cell, z + c2 * cell))) hit = true;
+    out[i] = hit ? 1 : 0; }
+  return out;
 }
 
 // ---------------------------------------------------------------- the hook (mannequin.js buildFigure)
@@ -351,22 +382,46 @@ export function dressFigure(g, spec, c, P, uid) {
   const LK = { skin, skinHead: skin, skinNeck: skin, handL: skin, handR: skin, top: look('top', c.top), legsL: look('legs', c.legs), legsR: look('legs', c.legs),
     sockL: { grey: 0.5, col: c.sock ?? 0x6a6a70 }, sockR: { grey: 0.5, col: c.sock ?? 0x6a6a70 }, band: look('band', c.band), apron: look('apron', c.apron) };
   for (const r of ['top', 'legsL', 'legsR', 'sockL', 'sockR', 'band', 'apron']) LK[r] = clothes(LK[r]);
-  const GROUP = { skin: 'skin', skinHead: 'skin', skinNeck: 'skin', handL: 'skin', handR: 'skin', top: 'top', band: 'band', apron: 'apron', legsL: 'legL', legsR: 'legR', sockL: 'footL', sockR: 'footR' };
+  const GROUP = { skin: 'skin', skinHead: 'skin', skinNeck: 'skin', handL: 'skin', handR: 'skin', top: 'torso', band: 'band', apron: 'torso', legsL: 'legL', legsR: 'legR', sockL: 'footL', sockR: 'footR' };   // 'torso': sets find the chest by this id (mv10 decal raycast)
   // body
   const body = refine(B, c, spec), pos = bake(body, B.jointNames, k, M, TW), nrm = normalsOf(pos, body.idx), idx = body.idx, tr = body.tri;
+  const gkey = c.sleeves === 'short' && B.meshes.garment_short ? 'garment_short' : 'garment_long';
+  const garments = [[gkey, {}]]; if (c.dress && B.meshes.garment_skirt) garments.push(['garment_skirt', { skirt: true }]);
+  const CLOTHED = new Set(['top', 'band', 'apron', 'legsL', 'legsR']);
+  const cov = (body.cov ||= {})[garments.map((x) => x[0]).join('+') + (c.dress ? 'D' : '')] ||= covered(B, body, garments.filter(([gk]) => B.meshes[gk]).map(([gk]) => B.meshes[gk]));
+  const hidden = (f) => CLOTHED.has(tr[f]) && cov[idx[f * 3]] && cov[idx[f * 3 + 1]] && cov[idx[f * 3 + 2]];
   for (const r of new Set(tr)) {
-    const geo = subGeo(pos, nrm, idx, (f) => tr[f] === r); if (!geo) continue;
+    const geo = subGeo(pos, nrm, idx, (f) => tr[f] === r && !hidden(f)); if (!geo) continue;
     const m = mk(geo, LK[r] || skin); m.userData.idGroup = uid + GROUP[r]; m.userData.bodyRegion = r;
     if (r === 'handL' || r === 'handR') P.hands[r.slice(-1)].group.add(m); else g.add(m);
   }
+  // garments (MakeHuman CC0 clothes, fitted to this body in Blender): the long-sleeved top + jeans, or the tee + jeans for
+  // short sleeves; trimmed to the costume's sleeve / trouser length (cut exactly along the region border) and coloured;
+  // a dress = the top + the skirt. The body's clothed regions share the garment's line id (no seam where skin pokes).
+  const GTRIM = new Set(['skin', 'skinHead', 'skinNeck', 'handL', 'handR', 'sockL', 'sockR']);
+  for (const [gk, o] of garments) {
+    if (!B.meshes[gk]) continue;
+    const G = refine(B, c, spec, gk, { garment: true, noApron: true }), gp = bake(G, B.jointNames, k, M, TW), gn = normalsOf(gp, G.idx);
+    for (const r of new Set(G.tri)) { if (GTRIM.has(r) || (c.dress && !o.skirt && r.startsWith('legs'))) continue;
+      const geo = subGeo(gp, gn, G.idx, (f) => G.tri[f] === r); if (!geo) continue;
+      const m = mk(geo, o.skirt ? LK.top : LK[r] || LK.top); m.userData.idGroup = uid + (o.skirt ? 'skirt' : GROUP[r]); m.userData.garment = gk; m.userData.double = true; g.add(m); }
+    // the apron: the garment's front panel lifted 6 mm, its own mesh (an edge in line mode)
+    if (c.apron && !spec.noApron && !o.skirt) { const A = refine(B, c, spec, gk, { garment: true }), ap = bake(A, B.jointNames, k, M, TW), an = normalsOf(ap, A.idx);
+      for (let i = 0; i < ap.length; i++) ap[i] += an[i] * 0.006;
+      const geo = subGeo(ap, an, A.idx, (f) => A.tri[f] === 'apron'); if (geo) { const m = mk(geo, LK.apron); m.userData.idGroup = uid + 'apron'; m.userData.double = true; g.add(m); } }
+  }
   // hair (one style), brows, eyes
   const style = c.hairStyle || 'short';
-  const hairKey = B.meshes['hair_kid' + style] ? 'hair_kid' + style : B.meshes['hair_' + style] ? 'hair_' + style : Object.keys(B.meshes).find((x) => x.startsWith('hair_'));
+  const hairKey = B.meshes.hair_fl ? 'hair_fl' : B.meshes['hair_kid' + style] ? 'hair_kid' + style : B.meshes['hair_' + style] ? 'hair_' + style : Object.keys(B.meshes).find((x) => x.startsWith('hair_') && !x.includes('__'));
   const addPart = (key, lk, grp, lift = 0) => { const ms = B.meshes[key]; if (!ms) return null; const p = bake(ms, B.jointNames, k, M, TW);
     const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.BufferAttribute(p, 3)); geo.setIndex(new THREE.BufferAttribute(ms.idx, 1)); geo.computeVertexNormals();
     if (lift) { const nn = geo.getAttribute('normal').array; for (let i = 0; i < p.length; i++) p[i] += nn[i] * lift; geo.getAttribute('position').needsUpdate = true; }
     const m = mk(geo, lk); m.userData.idGroup = uid + grp; m.userData.double = true; g.add(m); return m; };
-  if (hairKey) addPart(hairKey, hairL, 'hair', 0.004 * c.h / 1.7);   // lifted 4 mm off the scalp: a thin shell on the skin z-fights into specks in line mode
+  if (hairKey) { const proxy = hairKey !== 'hair_fl';   // MakeHuman proxies sit on the scalp; the shells built from it are already off it
+    addPart(hairKey, hairL, 'hair', proxy ? 0.004 * c.h / 1.7 : 0);   // lifted 4 mm: a thin shell on the skin z-fights into specks in line mode
+    for (const x of Object.keys(B.meshes)) if (x.startsWith(hairKey + '__')) addPart(x, hairL, 'hair'); }
+  if (hairKey === 'hair_kidbob') { const b = mk(new THREE.SphereGeometry(P.headH * 0.07, 16, 12), hairL);   // the small half-ponytail tied high at the back of the crown (cast sheets): a tuft hanging down the back
+    b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.56).addScaledVector(P.headUp, P.headH * 0.12); b.scale.set(1, 2.2, 0.85); b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
   if (style === 'bun') { const b = mk(new THREE.SphereGeometry(P.headH * 0.2, 20, 14), hairL); b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.5).addScaledVector(P.headUp, P.headH * 0.02); b.scale.set(1, 0.85, 0.8); b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
   const face = faceKind(spec.who), drawn = face === 'drawn' && !c.undrawn;
   if (drawn && B.meshes.brows) addPart('brows', hairL, 'brows');
@@ -383,8 +438,35 @@ function eyes(g, B, k, M, TW, uid) {
   for (let i = 0; i < n; i++) { const x = ms.pos[i * 3] * k, y = ms.pos[i * 3 + 1] * k, z = ms.pos[i * 3 + 2] * k; const c = x > 0 ? ctr.l : ctr.r;
     const d = new THREE.Vector3(x - c.x, y - c.y, z - c.z).normalize(); const a = Math.acos(THREE.MathUtils.clamp(d.z, -1, 1));
     cls[i] = a < 0.27 ? 'pupil' : a < 0.6 ? 'iris' : 'sclera'; }
-  const nrm = normalsOf(pos, ms.idx);
+  // the iris and pupil borders cut through the triangles (round, not a triangle staircase)
+  const P0 = [], W0 = []; for (let i = 0; i < n; i++) P0.push(new THREE.Vector3(ms.pos[i * 3] * k, ms.pos[i * 3 + 1] * k, ms.pos[i * 3 + 2] * k));
+  const labAt = (p) => { const c = p.x > 0 ? ctr.l : ctr.r; const d = p.clone().sub(c).normalize(); const a = Math.acos(THREE.MathUtils.clamp(d.z, -1, 1)); return a < 0.27 ? 'pupil' : a < 0.6 ? 'iris' : 'sclera'; };
+  const lab = P0.map(labAt), idx2 = [], tri = [], cut = new Map(), I = ms.idx, src = [];
+  const crossing = (a, b) => { const key = a < b ? a + ':' + b : b + ':' + a; if (cut.has(key)) return cut.get(key); let lo = 0, hi = 1;
+    for (let it = 0; it < 12; it++) { const t = (lo + hi) / 2; if (labAt(P0[a].clone().lerp(P0[b], t)) === lab[a]) lo = t; else hi = t; }
+    P0.push(P0[a].clone().lerp(P0[b], (lo + hi) / 2)); lab.push(null); src.push(a); cut.set(key, P0.length - 1); return P0.length - 1; };
+  for (let f = 0; f < I.length / 3; f++) { const v = [I[f * 3], I[f * 3 + 1], I[f * 3 + 2]], l = v.map((i) => lab[i]);
+    if ((l[0] === l[1] && l[1] === l[2]) || new Set(l).size === 3) { idx2.push(...v); tri.push(l[0]); continue; }
+    const o = l[0] !== l[1] && l[0] !== l[2] ? 0 : l[1] !== l[0] && l[1] !== l[2] ? 1 : 2, A = v[o], Bv = v[(o + 1) % 3], C = v[(o + 2) % 3], pab = crossing(A, Bv), pac = crossing(A, C);
+    idx2.push(A, pab, pac, pab, Bv, C, pab, C, pac); tri.push(lab[A], lab[Bv], lab[Bv]); }
+  const m2 = { pos: new Float32Array(P0.length * 3), jnt: new Uint16Array(P0.length * 4), wgt: new Float32Array(P0.length * 4) };
+  for (let i = 0; i < P0.length; i++) { m2.pos[i * 3] = P0[i].x / k; m2.pos[i * 3 + 1] = P0[i].y / k; m2.pos[i * 3 + 2] = P0[i].z / k; const s0 = i < n ? i : src[i - n];
+    for (let j = 0; j < 4; j++) { m2.jnt[i * 4 + j] = ms.jnt[s0 * 4 + j]; m2.wgt[i * 4 + j] = ms.wgt[s0 * 4 + j]; } }
+  const pos2 = bake(m2, B.jointNames, k, M, TW), I2 = new Uint32Array(idx2), nrm = normalsOf(pos2, I2);
   const LOOK = { sclera: { grey: 0.96, col: 0xf3f0ea, noCast: true }, iris: { grey: 0.16, col: 0x3a2a1e, noCast: true }, pupil: { grey: 0.03, col: 0x060505, noCast: true } };
-  for (const r of ['sclera', 'iris', 'pupil']) { const geo = subGeo(pos, nrm, ms.idx, (f) => { const a = cls[ms.idx[f * 3]], b = cls[ms.idx[f * 3 + 1]], c = cls[ms.idx[f * 3 + 2]]; return (b === c ? b : a) === r; });
+  for (const r of ['sclera', 'iris', 'pupil']) { const geo = subGeo(pos2, nrm, I2, (f) => tri[f] === r);
     if (!geo) continue; const m = mk(geo, LOOK[r]); m.userData.idGroup = uid + 'eye_' + r; m.userData.gaze = r; g.add(m); }
+}
+
+// A point on the clothed chest of a dressed figure, for decals (prints, logos): (u, v) metres along the chest frame
+// (u toward the figure's left, v up from the shoulder centre), found by a ray from in front onto the top garment;
+// lift metres off the cloth. null if the figure is not a mesh body or the ray misses.
+export function chestPoint(fig, u, v, lift = 0.003) {
+  const P = fig.userData.P; if (!P?.bodyMesh) return null;
+  const hit = []; fig.traverse((m) => { if (m.isMesh && m.userData.garment && /:torso$/.test(m.userData.idGroup || '')) hit.push(m); });
+  const o = P.shoulderC.clone().addScaledVector(P.cy, v).addScaledVector(P.cx, u).addScaledVector(P.cz, 0.4);
+  const rc = new THREE.Raycaster(o, P.cz.clone().negate(), 0, 0.6); fig.updateMatrixWorld(true);
+  const h = rc.intersectObjects(hit, false)[0]; if (!h) return null;
+  const n = h.face.normal.clone().transformDirection(h.object.matrixWorld); if (n.dot(P.cz) < 0) n.negate();
+  return h.point.clone().addScaledVector(n, lift);
 }

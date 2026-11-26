@@ -2,6 +2,7 @@
 import { THREE, mk, box, cyl, ball, quad, tag, V, rad, addCast, CHILD_PROP, wall, beamMeshes, undraw, resolvePts, fixLeftHands, chair, tableRect } from './common.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { CAST, PROP } from '../../engine/mannequin.js';
+import { chestPoint } from '../../engine/humanMesh.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, splitAtTop, applyBeamMask } from '../_beam.js';
 import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL_ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
@@ -210,7 +211,9 @@ export function build(shot, { makeCam }) {
   // the sweatshirt print: the thing her eyes rest on
   if (figs.sw && SW_PRINT.tex) {   // 2026-11-26: the canonical print (logos/sw_tree_print.png, art.js), a flat decal on the chest; to move it onto a body mesh, change only place()
     const P = figs.sw.userData.P, pr = PROP.adult, H = P.H, c0 = P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.018).addScaledVector(P.cy, 0.0);
-    const m = decalMesh(SW_PRINT.tex, (s, t) => c0.clone().addScaledVector(P.cx, (s - 0.5) * SW_PRINT.w).addScaledVector(P.cy, (t - 0.5) * SW_PRINT.h), { grey: 0.6, col: 0x7a9a8a });
+    const flat = (s, t) => c0.clone().addScaledVector(P.cx, (s - 0.5) * SW_PRINT.w).addScaledVector(P.cy, (t - 0.5) * SW_PRINT.h);
+    const vc = P.chest.clone().sub(P.shoulderC).dot(P.cy);   // PROOF_BODY=mesh: the print conforms to the sweatshirt (engine/humanMesh.js chestPoint)
+    const m = decalMesh(SW_PRINT.tex, (s, t) => chestPoint(figs.sw, (s - 0.5) * SW_PRINT.w, vc + (t - 0.5) * SW_PRINT.h) || flat(s, t), { grey: 0.6, col: 0x7a9a8a });
     m.userData.who = 'sw'; root.add(tag(m, 'sweatshirt print (Christmas tree, cracked)')); }
   else if (figs.sw) { const P = figs.sw.userData.P, pr = PROP.adult, H = P.H; const m = box(0.2, 0.13, 0.004, { grey: 0.88, col: 0xe8e0c8 });
     m.position.copy(P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.022).addScaledVector(P.cy, 0.02)); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(P.cx, P.cy, P.cz)); root.add(tag(m, 'sweatshirt print')); }

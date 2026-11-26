@@ -165,6 +165,111 @@ def fair_nipples(obj):
     me.update(); return int(core.sum())
 
 
+CLOTHES = os.path.join(DATA, "clothes")
+
+
+def add_clothes(basemesh, name):
+    return HumanService.add_mhclo_asset(os.path.join(CLOTHES, name, name + ".mhclo"), basemesh, asset_type="Clothes", subdiv_levels=0)
+
+
+def delete_verts(obj, pred):
+    bm = bmesh.new(); bm.from_mesh(obj.data)
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if pred(v.co)], context="VERTS"); bm.to_mesh(obj.data); bm.free(); obj.data.update()
+
+
+def isocut(bm, field):
+    """Cut the mesh along the zero line of field(co) (edges split where it changes sign, faces split along it) and drop
+    the faces on its negative side: smooth hair edges instead of the mesh's face staircase."""
+    fv = {v: field(v.co) for v in bm.verts}
+    new = []
+    for e in [e for e in bm.edges if (fv[e.verts[0]] > 0) != (fv[e.verts[1]] > 0)]:
+        a, b = e.verts; t = fv[a] / (fv[a] - fv[b])
+        ne, nv = bmesh.utils.edge_split(e, a, t); fv[nv] = 0.0; new.append(nv)
+    ns = set(new)
+    for f in list({f for v in new for f in v.link_faces}):
+        vs = [v for v in f.verts if v in ns]
+        if len(vs) == 2:
+            try: bmesh.ops.connect_verts(bm, verts=vs)
+            except Exception: pass
+    kill = [f for f in bm.faces if sum(fv.get(v, field(v.co)) for v in f.verts) / len(f.verts) < 0]
+    bmesh.ops.delete(bm, geom=kill, context="FACES")
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
+
+
+def shell(base, rig, pick, offset, name, thick=0.0, field=None):
+    """A hair shell grown from the body's own surface: the picked faces of the (face-edited) body, cut along field = 0
+    (if given), pushed out along their normals by offset(co, n), optionally solidified (a visible rim: the step of a
+    cut), skinned like the skin under it."""
+    obj = base.copy(); obj.data = base.data.copy(); obj.name = name; bpy.context.scene.collection.objects.link(obj)
+    for m in list(obj.modifiers): obj.modifiers.remove(m)
+    bm = bmesh.new(); bm.from_mesh(obj.data); bm.faces.ensure_lookup_table()
+    dl = bm.verts.layers.deform.active; bg = base.vertex_groups["body"].index
+    keep = {f for f in bm.faces if all(v[dl].get(bg, 0) > 0.5 for v in f.verts) and pick(f.calc_center_median(), f.normal, f, dl)}
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f not in keep], context="FACES")
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
+    if field: isocut(bm, field)
+    bm.normal_update()
+    for v in bm.verts: v.co = v.co + v.normal * offset(v.co, v.normal)
+    bm.to_mesh(obj.data); bm.free(); obj.data.update()
+    if thick:
+        md = obj.modifiers.new("solid", "SOLIDIFY"); md.thickness = thick; md.offset = -1.0; md.use_rim = True
+        bpy.ops.object.select_all(action="DESELECT"); bpy.context.view_layer.objects.active = obj; obj.select_set(True)
+        bpy.ops.object.modifier_apply(modifier=md.name)
+    # the shell keeps the skin's own weights (head and neck bones), so it moves with the scalp and nape it covers
+    md = obj.modifiers.new("Armature", "ARMATURE"); md.object = rig
+    return obj
+
+
+def in_group(obj, name, f, dl, w=0.5):
+    gi = obj.vertex_groups[name].index
+    return sum(1 for v in f.verts if v[dl].get(gi, 0) > w) * 2 > len(f.verts)
+
+
+def build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth):
+    """Hair to the cast sheets (bodies.json "hairBuild"): kids' long hair trimmed to length + a light parted fringe of
+    strands; first love's stepped cut (a long top layer with a centre part over an even short buzz, a visible step);
+    close pulled-back hair under a bun."""
+    hb = spec.get("hairBuild", {}); ipd = (eyeL - eyeR).length; eC = (eyeL + eyeR) / 2
+    bones = rig.data.bones
+    hg = basemesh.vertex_groups["head"].index; eg = basemesh.vertex_groups["ears"].index
+    def head(f, dl): return all(v[dl].get(hg, 0) > 0.12 and v[dl].get(eg, 0) < 0.05 for v in f.verts)
+    hc = eC + Vector((0, 1.4 * ipd, 0))   # a point inside the head, behind the eyes
+    def ang(c): d = c - hc; return abs(math.degrees(math.atan2(d.x, -d.y)))   # 0 front, 90 over the ear, 180 back
+    def interp(a, tab):
+        for (a0, z0), (a1, z1) in zip(tab, tab[1:]):
+            if a <= a1: t = (a - a0) / (a1 - a0); t = t * t * (3 - 2 * t); return z0 + (z1 - z0) * t
+        return tab[-1][1]
+    HAIRLINE = [(0, 1.0), (40, 0.95), (62, 0.45), (75, 0.2), (100, 0.1), (125, -0.9), (180, -1.6)]   # ipd above the eyes
+    def hairline(c): return c.z - (eC.z + ipd * interp(ang(c), HAIRLINE))
+    for st, how in hb.items():
+        key = "hair_" + st
+        if how.get("trim") and key in parts:   # MakeHuman long hair cut to the sheet's length
+            z = {"nape": mouth.z - 0.2 * ipd, "chin": mouth.z - 0.95 * ipd, "shoulders": bones["neck_01"].head_local.z - 0.6 * ipd, "blades": bones["spine_03"].head_local.z, "midback": bones["spine_02"].head_local.z}[how["trim"]]
+            delete_verts(parts[key], lambda co: co.z < z)
+        if how.get("fringe"):   # a light fringe parted in the middle: two soft curtains, the forehead showing between them,
+            # their lower edge well above the brows in the middle and sloping down toward the temples (cast sheets)
+            gap = 0.26 if how["fringe"] == "light" else 0.4
+            def fringe(c, gap=gap):
+                ax = abs(c.x) / ipd
+                return min(ax - gap, c.z - (eC.z + ipd * (0.85 - 0.4 * min(1.0, ax / 0.95))), 1.05 * ipd - abs(c.x))
+            def pick(c, n, f, dl): return head(f, dl) and c.y < eC.y + 0.2 * ipd and c.z > eC.z + 0.3 * ipd
+            parts[key + "__fringe"] = shell(basemesh, rig, pick, lambda co, n: 0.0035, key + "__fringe", field=fringe)
+        if how.get("cap"):   # close hair over the whole scalp (pulled back under a bun)
+            parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.005, key, field=hairline)
+        if how.get("stepped"):
+            # the step: from the fringe tip on the forehead back above the ear, round the back at ear-top level
+            STEP = [(0, 0.45), (35, 0.4), (70, 0.05), (100, -0.12), (180, -0.2)]   # the step at mid-ear height round the back (cast/first_love/fl_B_backhead_neck_v5)
+            def step(c): return c.z - (eC.z + ipd * interp(ang(c), STEP))
+            parts[key + "__buzz"] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.0035, key + "__buzz", field=hairline)
+            def top_off(co, n):
+                part = min(1.0, abs(co.x) / (0.12 * ipd)) if co.z > eC.z + 1.2 * ipd else 1.0   # the centre part: the layer dips along the midline on top
+                a = ang(co); back = max(0.0, min(1.0, (a - 90) / 40))
+                hang = 0.22 * max(0.0, eC.z + 0.55 * ipd - co.z) * back   # below the crown the layer hangs straight, off the skull
+                return 0.008 + 0.009 * (0.5 + 0.5 * part) + hang
+            parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), top_off, key, thick=0.008, field=lambda c: min(hairline(c) + 0.3 * ipd, step(c)))
+    return parts
+
+
 def build(spec):
     clear()
     mac = TargetService.get_default_macro_info_dict()
@@ -181,11 +286,21 @@ def build(spec):
         parts["eyes"] = HumanService.add_mhclo_asset(os.path.join(DATA, "eyes/high-poly/high-poly.mhclo"), basemesh, asset_type="Eyes", subdiv_levels=0)
         parts["brows"] = HumanService.add_mhclo_asset(os.path.join(DATA, "eyebrows/eyebrow001/eyebrow001.mhclo"), basemesh, asset_type="Eyebrows", subdiv_levels=0)
     for st in dict.fromkeys(spec["hair"]):
-        asset = SPEC["hairAssets"][st]
+        asset = SPEC["hairAssets"].get(st)
+        if not asset: continue   # built from the scalp (build_hair)
         parts["hair_" + st] = HumanService.add_mhclo_asset(os.path.join(DATA, f"hair/{asset}/{asset}.mhclo"), basemesh, asset_type="Hair", subdiv_levels=0)
+    # garments (MakeHuman CC0 clothes proxies, fitted and rigged by MPFB): a long-sleeved crew top + jeans, a tee + jeans,
+    # a skirt (the lower half of the elegant suit); the engine trims and colours them per costume
+    parts["garment_long"] = add_clothes(basemesh, "male_casualsuit02")
+    parts["garment_short"] = add_clothes(basemesh, "female_casualsuit01" if spec["sex"] == "f" else "male_casualsuit04")
+    if spec.get("skirt"):
+        parts["garment_skirt"] = add_clothes(basemesh, "female_elegantsuit01")
+        zw = rig.data.bones["spine_01"].head_local.z
+        delete_verts(parts["garment_skirt"], lambda co: co.z > zw)
     smoothed = 0
     print("NIPPLES", fair_nipples(basemesh), flush=True)
-    if spec["face"] in ("none", "blank"): smoothed = smooth_face(basemesh, spec["face"], eyeL, eyeR, mouth)
+    if spec["face"] in ("none", "blank"): smoothed = smooth_face(basemesh, "none", eyeL, eyeR, mouth)   # strangers too: no mark inside the face (cast/strangers sheets)
+    build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth)
     # drop the helper geometry (everything outside the 'body' group) and the mask modifier
     bg = basemesh.vertex_groups["body"].index
     bm = bmesh.new(); bm.from_mesh(basemesh.data); bm.verts.ensure_lookup_table()
@@ -239,7 +354,7 @@ def build(spec):
                               export_influence_nb=4, export_all_influences=False)
     bones = {b.name: {"head": [round(x, 5) for x in b.head_local], "tail": [round(x, 5) for x in b.tail_local], "parent": b.parent.name if b.parent else None} for b in rig.data.bones}
     return {"id": spec["id"], "h": spec["h"], "measured_h": round(max(zs) - min(zs), 4), "sole_z": round(min(zs), 4), "verts": len(basemesh.data.vertices),
-            "face": spec["face"], "landmarks_blender_zup": lm, "smoothed_verts": smoothed, "hair": {st: SPEC["hairAssets"][st] for st in spec["hair"]}, "eyes": meta_eyes,
+            "face": spec["face"], "landmarks_blender_zup": lm, "smoothed_verts": smoothed, "hair": {st: SPEC["hairAssets"].get(st, "procedural") for st in spec["hair"]}, "eyes": meta_eyes,
             "parts": {k: len(o.data.vertices) for k, o in parts.items()}, "bones_blender_zup": bones,
             "macros": {k: (round(v, 4) if isinstance(v, float) else v) for k, v in mac.items()}}
 

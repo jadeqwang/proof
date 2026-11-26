@@ -1,12 +1,12 @@
 {
- "_note": "Body specs for make_bodies.py (MPFB2 / MakeHuman CC0 assets). h = standing height in metres (matches layout/sets/_cast.js); age in years; weight / muscle are MPFB macros 0..1 (0.5 = average); race weights asian / caucasian / african; face: drawn (eyeballs + brows), blank (eyes and mouth smoothed over, nose kept: strangers whose faces the film leaves undrawn), none (whole face smoothed, no eyes: first love, never face-on). hair: hairStyle names (engine) to export. Ages that are not in the cast sheets are marked guess.",
+ "_note": "Body specs for make_bodies.py (MPFB2 / MakeHuman CC0 assets). h = standing height in metres (matches layout/sets/_cast.js); age in years; weight / muscle are MPFB macros 0..1 (0.5 = average); race weights asian / caucasian / african; face: drawn (eyeballs + brows), blank (eyes and mouth smoothed over, nose kept: strangers whose faces the film leaves undrawn), none (whole face smoothed, no eyes: first love, never face-on). hair: hairStyle names (engine) to export. Ages that are not in the cast sheets are marked guess. hairBuild: procedural hair from the scalp (make_bodies.py build_hair): trim = cut MakeHuman long hair to chin / shoulders / blades / midback; fringe = parted strands well above the brows; cap = close hair for a bun (the bun itself is added by the engine); stepped = first love's cut. skirt: also export a skirt garment (dress costumes).",
  "hairAssets": {
-  "kidbob": "ponytail01",
+  "kidbob": "long01",
   "bob": "bob02",
   "long": "long01",
   "short": "short02",
-  "bun": "short02",
-  "pigtails": "braid01"
+  "pigtails": "braid01",
+  "bun": "long01"
  },
  "bodies": [
   {
@@ -20,7 +20,13 @@
    "face": "drawn",
    "hair": [
     "kidbob"
-   ]
+   ],
+   "hairBuild": {
+    "kidbob": {
+     "trim": "chin",
+     "fringe": "light"
+    }
+   }
   },
   {
    "id": "jade04h",
@@ -33,7 +39,13 @@
    "face": "drawn",
    "hair": [
     "kidbob"
-   ]
+   ],
+   "hairBuild": {
+    "kidbob": {
+     "trim": "shoulders",
+     "fringe": "light"
+    }
+   }
   },
   {
    "id": "jade05",
@@ -46,7 +58,13 @@
    "face": "drawn",
    "hair": [
     "kidbob"
-   ]
+   ],
+   "hairBuild": {
+    "kidbob": {
+     "trim": "shoulders",
+     "fringe": "light"
+    }
+   }
   },
   {
    "id": "jade07",
@@ -60,7 +78,13 @@
    "hair": [
     "kidbob",
     "long"
-   ]
+   ],
+   "hairBuild": {
+    "kidbob": {
+     "trim": "blades",
+     "fringe": "light"
+    }
+   }
   },
   {
    "id": "jade10",
@@ -74,7 +98,13 @@
    "hair": [
     "kidbob",
     "long"
-   ]
+   ],
+   "hairBuild": {
+    "kidbob": {
+     "trim": "midback",
+     "fringe": "grown"
+    }
+   }
   },
   {
    "id": "jade19",
@@ -132,7 +162,12 @@
     "bun",
     "bob"
    ],
-   "_age": "cast sheet: mid to late thirties"
+   "_age": "cast sheet: mid to late thirties",
+   "hairBuild": {
+    "bun": {
+     "trim": "nape"
+    }
+   }
   },
   {
    "id": "dad",
@@ -158,10 +193,15 @@
    "race": "caucasian",
    "face": "none",
    "hair": [
+    "fl",
     "short"
    ],
    "_build": "cast sheet: thinner and narrower-shouldered than at 27",
-   "_hair": "short02: short04 left specks on the back of the head in line mode that read like a face"
+   "hairBuild": {
+    "fl": {
+     "stepped": 1
+    }
+   }
   },
   {
    "id": "firstlove27",
@@ -173,10 +213,15 @@
    "race": "caucasian",
    "face": "none",
    "hair": [
+    "fl",
     "short"
    ],
    "_build": "Jade: about 5'10\", lean",
-   "_hair": "short02: short04 left specks on the back of the head in line mode that read like a face"
+   "hairBuild": {
+    "fl": {
+     "stepped": 1
+    }
+   }
   },
   {
    "id": "friend",
@@ -218,7 +263,12 @@
    "hair": [
     "bun"
    ],
-   "_age": "guess"
+   "_age": "guess",
+   "hairBuild": {
+    "bun": {
+     "trim": "nape"
+    }
+   }
   },
   {
    "id": "grandma",
@@ -232,7 +282,12 @@
    "hair": [
     "bun"
    ],
-   "_age": "guess (Shanghai grandmother 1.50; market93 stranger 1.52 uses it too)"
+   "_age": "guess (Shanghai grandmother 1.50; market93 stranger 1.52 uses it too)",
+   "hairBuild": {
+    "bun": {
+     "trim": "nape"
+    }
+   }
   },
   {
    "id": "sw",
@@ -259,7 +314,8 @@
    "face": "blank",
    "hair": [
     "pigtails"
-   ]
+   ],
+   "skirt": true
   },
   {
    "id": "toddler",
@@ -302,7 +358,13 @@
     "bob",
     "long",
     "bun"
-   ]
+   ],
+   "hairBuild": {
+    "bun": {
+     "trim": "nape"
+    }
+   },
+   "skirt": true
   },
   {
    "id": "adult_m",
