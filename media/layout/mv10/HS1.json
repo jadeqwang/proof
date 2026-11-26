@@ -2027,7 +2027,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade27": 0.2445
+  "jade27": 0.2818
  },
  "colour_separation": [],
  "figure_report": {
@@ -2061,7 +2061,10 @@
      "upperarm_stretch": 1.08,
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
-    }
+    },
+    "sole_shift_mm_L": 20.1,
+    "sole_shift_mm_R": 20.1,
+    "sole_lowest_y_m": 0.004
    }
   }
  }

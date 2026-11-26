@@ -5421,7 +5421,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "T1": 0.1885
+  "T1": 0.1886
  },
  "colour_separation": [],
  "figure_report": {
@@ -5455,7 +5455,10 @@
      "upperarm_stretch": 1.22,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": 0.0042
    }
   }
  }

@@ -400,7 +400,7 @@
  "mask": null,
  "futon_clearance": {
   "jade19": {
-   "min_gap_to_frame_m": 0.093,
+   "min_gap_to_frame_m": 0.088,
    "verts_inside_mattress": 0
   },
   "firstLove19": {
@@ -701,8 +701,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "firstLove19": 0.4144,
-  "jade19": 0.295
+  "firstLove19": 0.4312,
+  "jade19": 0.2883
  },
  "colour_separation": [
   {
@@ -745,7 +745,10 @@
      "upperarm_stretch": 1.24,
      "forearm_stretch": 1.08,
      "hand_scale": 1.07
-    }
+    },
+    "sole_shift_mm_L": 18.9,
+    "sole_shift_mm_R": 18.9,
+    "sole_lowest_y_m": 0.0793
    }
   },
   "firstLove19": {
@@ -778,7 +781,10 @@
      "upperarm_stretch": 1.14,
      "forearm_stretch": 1,
      "hand_scale": 0.93
-    }
+    },
+    "sole_shift_mm_L": 4.3,
+    "sole_shift_mm_R": 4.3,
+    "sole_lowest_y_m": -0.0103
    }
   }
  }

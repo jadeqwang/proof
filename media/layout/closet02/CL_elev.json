@@ -370,7 +370,7 @@
  "mask": null,
  "futon_clearance": {
   "jade19": {
-   "min_gap_to_frame_m": 0.093,
+   "min_gap_to_frame_m": 0.088,
    "verts_inside_mattress": 0
   }
  },
@@ -499,7 +499,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade19": 0.0317
+  "jade19": 0.031
  },
  "colour_separation": [],
  "figure_report": {
@@ -533,7 +533,10 @@
      "upperarm_stretch": 1.15,
      "forearm_stretch": 1.08,
      "hand_scale": 1.07
-    }
+    },
+    "sole_shift_mm_L": 18.9,
+    "sole_shift_mm_R": 18.9,
+    "sole_lowest_y_m": 0.0793
    }
   }
  }

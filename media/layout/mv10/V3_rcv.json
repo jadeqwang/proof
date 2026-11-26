@@ -17889,11 +17889,11 @@
   "N1": 0.0014,
   "C1": 0.0014,
   "C2": 0.0018,
-  "R1": 0.0017,
+  "R1": 0.0016,
   "jade27": 0.0014,
   "K1": 0.0014,
-  "B2": 0.0021,
-  "S1": 0.0024,
+  "B2": 0.0022,
+  "S1": 0.0025,
   "B1": 0.0017,
   "firstLove27": 0.0014
  },
@@ -17929,7 +17929,10 @@
      "upperarm_stretch": 0.99,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.4,
+    "sole_shift_mm_R": 8.4,
+    "sole_lowest_y_m": 0.0044
    }
   },
   "A2": {
@@ -17962,7 +17965,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19,
+    "sole_shift_mm_R": 19,
+    "sole_lowest_y_m": 0.004
    }
   },
   "A3": {
@@ -17995,7 +18001,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.7,
+    "sole_shift_mm_R": 8.7,
+    "sole_lowest_y_m": 0.0045
    }
   },
   "S1": {
@@ -18028,7 +18037,10 @@
      "upperarm_stretch": 1.03,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0
    }
   },
   "B2": {
@@ -18061,7 +18073,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 18.8,
+    "sole_shift_mm_R": 18.8,
+    "sole_lowest_y_m": 0
    }
   },
   "B1": {
@@ -18094,7 +18109,10 @@
      "upperarm_stretch": 1.07,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.2,
+    "sole_shift_mm_R": 8.2,
+    "sole_lowest_y_m": 0.0043
    }
   },
   "C1": {
@@ -18127,7 +18145,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20,
+    "sole_shift_mm_R": 20,
+    "sole_lowest_y_m": 0.0042
    }
   },
   "C2": {
@@ -18160,7 +18181,10 @@
      "upperarm_stretch": 1.07,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.6,
+    "sole_shift_mm_R": 8.6,
+    "sole_lowest_y_m": 0.0045
    }
   },
   "C3": {
@@ -18193,7 +18217,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 18.6,
+    "sole_shift_mm_R": 18.6,
+    "sole_lowest_y_m": 0.0039
    }
   },
   "T1": {
@@ -18226,7 +18253,10 @@
      "upperarm_stretch": 1.22,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": 0.0042
    }
   },
   "jade27": {
@@ -18259,7 +18289,10 @@
      "upperarm_stretch": 1.03,
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
-    }
+    },
+    "sole_shift_mm_L": 20.1,
+    "sole_shift_mm_R": 20.1,
+    "sole_lowest_y_m": 0.004
    }
   },
   "K1": {
@@ -18292,7 +18325,10 @@
      "upperarm_stretch": 0.99,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.2,
+    "sole_shift_mm_R": 8.2,
+    "sole_lowest_y_m": 0.0043
    }
   },
   "R1": {
@@ -18325,7 +18361,10 @@
      "upperarm_stretch": 1.12,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.5,
+    "sole_shift_mm_R": 19.5,
+    "sole_lowest_y_m": 0.0041
    }
   },
   "friend": {
@@ -18358,7 +18397,10 @@
      "upperarm_stretch": 1.16,
      "forearm_stretch": 0.98,
      "hand_scale": 0.93
-    }
+    },
+    "sole_shift_mm_L": 8.9,
+    "sole_shift_mm_R": 8.9,
+    "sole_lowest_y_m": 0.0045
    }
   },
   "firstLove27": {
@@ -18391,7 +18433,10 @@
      "upperarm_stretch": 0.99,
      "forearm_stretch": 0.98,
      "hand_scale": 0.9
-    }
+    },
+    "sole_shift_mm_L": 4.2,
+    "sole_shift_mm_R": 4.2,
+    "sole_lowest_y_m": 0.0044
    }
   },
   "N1": {
@@ -18424,7 +18469,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.4,
+    "sole_shift_mm_R": 8.4,
+    "sole_lowest_y_m": 0.0044
    }
   },
   "N3": {
@@ -18457,7 +18505,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": -0.6958
    }
   },
   "N4": {
@@ -18490,7 +18541,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.6,
+    "sole_shift_mm_R": 8.6,
+    "sole_lowest_y_m": -0.6955
    }
   }
  }

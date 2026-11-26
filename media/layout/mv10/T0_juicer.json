@@ -25812,7 +25812,10 @@
      "upperarm_stretch": 1.12,
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
-    }
+    },
+    "sole_shift_mm_L": 20.1,
+    "sole_shift_mm_R": 20.1,
+    "sole_lowest_y_m": 0.004
    }
   },
   "friend": {
@@ -25845,7 +25848,10 @@
      "upperarm_stretch": 1.11,
      "forearm_stretch": 0.98,
      "hand_scale": 0.93
-    }
+    },
+    "sole_shift_mm_L": 8.9,
+    "sole_shift_mm_R": 8.9,
+    "sole_lowest_y_m": 0.0045
    }
   }
  }

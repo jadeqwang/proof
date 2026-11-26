@@ -697,7 +697,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama90": 0.0141,
+  "mama90": 0.0142,
   "jade7": 0.0039
  },
  "colour_separation": [],
@@ -771,7 +771,7 @@
     },
     "sole_shift_mm_L": 19.7,
     "sole_shift_mm_R": 19.7,
-    "sole_lowest_y_m": 0.0159
+    "sole_lowest_y_m": 0.0301
    }
   }
  }

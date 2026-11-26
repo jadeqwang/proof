@@ -19231,8 +19231,8 @@
   }
  ],
  "figure_frame_fraction": {
-  "firstLove27": 0.1574,
-  "jade27": 0.1726
+  "firstLove27": 0.1573,
+  "jade27": 0.1814
  },
  "colour_separation": [
   {
@@ -19275,7 +19275,10 @@
      "upperarm_stretch": 0.99,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.4,
+    "sole_shift_mm_R": 8.4,
+    "sole_lowest_y_m": 0.0044
    }
   },
   "A2": {
@@ -19308,7 +19311,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19,
+    "sole_shift_mm_R": 19,
+    "sole_lowest_y_m": 0.004
    }
   },
   "A3": {
@@ -19341,7 +19347,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.7,
+    "sole_shift_mm_R": 8.7,
+    "sole_lowest_y_m": 0.0045
    }
   },
   "S1": {
@@ -19374,7 +19383,10 @@
      "upperarm_stretch": 1.03,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0
    }
   },
   "B2": {
@@ -19407,7 +19419,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 18.8,
+    "sole_shift_mm_R": 18.8,
+    "sole_lowest_y_m": 0
    }
   },
   "B1": {
@@ -19440,7 +19455,10 @@
      "upperarm_stretch": 0.99,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.2,
+    "sole_shift_mm_R": 8.2,
+    "sole_lowest_y_m": 0.0043
    }
   },
   "E1": {
@@ -19473,7 +19491,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.5,
+    "sole_shift_mm_R": 8.5,
+    "sole_lowest_y_m": 0.0044
    }
   },
   "C1": {
@@ -19506,7 +19527,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20,
+    "sole_shift_mm_R": 20,
+    "sole_lowest_y_m": 0.0042
    }
   },
   "C2": {
@@ -19539,7 +19563,10 @@
      "upperarm_stretch": 1.07,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.6,
+    "sole_shift_mm_R": 8.6,
+    "sole_lowest_y_m": 0.0045
    }
   },
   "C3": {
@@ -19572,7 +19599,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 18.6,
+    "sole_shift_mm_R": 18.6,
+    "sole_lowest_y_m": 0.0039
    }
   },
   "T1": {
@@ -19605,7 +19635,10 @@
      "upperarm_stretch": 1.22,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": 0.0042
    }
   },
   "G1": {
@@ -19638,7 +19671,10 @@
      "upperarm_stretch": 0.99,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.5,
+    "sole_shift_mm_R": 8.5,
+    "sole_lowest_y_m": 0.0044
    }
   },
   "H1": {
@@ -19671,7 +19707,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 20,
+    "sole_shift_mm_R": 20,
+    "sole_lowest_y_m": 0.0042
    }
   },
   "W1": {
@@ -19704,7 +19743,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.3,
+    "sole_shift_mm_R": 8.3,
+    "sole_lowest_y_m": -0.6957
    }
   },
   "W2": {
@@ -19737,7 +19779,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.3,
+    "sole_shift_mm_R": 19.3,
+    "sole_lowest_y_m": -0.696
    }
   },
   "W3": {
@@ -19770,7 +19815,10 @@
      "upperarm_stretch": 1.09,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.9,
+    "sole_shift_mm_R": 19.9,
+    "sole_lowest_y_m": -0.6959
    }
   },
   "W4": {
@@ -19803,7 +19851,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.5,
+    "sole_shift_mm_R": 8.5,
+    "sole_lowest_y_m": -0.6956
    }
   },
   "D1": {
@@ -19836,7 +19887,10 @@
      "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.2,
+    "sole_shift_mm_R": 19.2,
+    "sole_lowest_y_m": 0.004
    }
   },
   "D2": {
@@ -19869,7 +19923,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
-    }
+    },
+    "sole_shift_mm_L": 8.3,
+    "sole_shift_mm_R": 8.3,
+    "sole_lowest_y_m": 0.0043
    }
   },
   "jade27": {
@@ -19902,7 +19959,10 @@
      "upperarm_stretch": 1.19,
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
-    }
+    },
+    "sole_shift_mm_L": 20.1,
+    "sole_shift_mm_R": 20.1,
+    "sole_lowest_y_m": 0.004
    }
   },
   "firstLove27": {
@@ -19935,7 +19995,10 @@
      "upperarm_stretch": 1.01,
      "forearm_stretch": 0.98,
      "hand_scale": 0.9
-    }
+    },
+    "sole_shift_mm_L": 4.2,
+    "sole_shift_mm_R": 4.2,
+    "sole_lowest_y_m": 0.0044
    }
   }
  }

@@ -5996,7 +5996,7 @@
  ],
  "figure_frame_fraction": {
   "firstLove27": 0.0093,
-  "jade27": 0.0046
+  "jade27": 0.0047
  },
  "colour_separation": [],
  "figure_report": {
@@ -6033,7 +6033,7 @@
     },
     "sole_shift_mm_L": 20.1,
     "sole_shift_mm_R": 20.1,
-    "sole_lowest_y_m": -0.0149
+    "sole_lowest_y_m": 0
    }
   },
   "firstLove27": {
