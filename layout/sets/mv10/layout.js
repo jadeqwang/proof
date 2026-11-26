@@ -427,11 +427,11 @@ export const PARTY_FOOD = {
 // it toward the friend at `rise` deg above level, `len` m from the ladle's rim to the middle of his fist.
 export const PREP = { surface: 'counter by the sink', y: COUNTER_H, board: { at: [4.50, 9.04], w: 0.34, d: 0.28 }, knife: { at: [4.40, 9.24] }, reamer: { at: [4.41, 9.45], r: 0.09 },
   lemonsBowl: { at: [4.73, 9.56], r: 0.15 }, rindsBowl: { at: [4.775, 9.06], r: 0.11 }, punch: { at: [4.57, 8.45] }, punchFill: 0.55, sugar: { at: [4.80, 8.80] }, pitcher: { at: [4.225, 9.63], r: 0.065 },
-  halves: [[4.43, 9.02, 'up'], [4.58, 9.07, 'up']], rinds: 5,
+  halves: [[4.50, 8.96, 'up'], [4.60, 9.08, 'up']], rinds: 5,
   // r4 (2026-11-26 late): the REAL ladle (props/ladle; ladleGrip.js LADLE_M): bowlAt = its bowl's centre, `lift` = that centre
   // above the lemonade's surface (its rim just under it); the handle is the model's flat strip, so no handleR / len / hook
   ladle: { bowlAt: [4.45, 8.50], rise: 80, yawDeg: -50, y0: 0.40, lift: -0.006, wrapPad: 0.0015, thumbPress: 0.001, elbow: [3.90, 1.10, 8.65] },
-  friendAt: [3.84, 8.44], jadeAt: [4.06, 9.10] };   // jadeAt: 11 cm nearer the corner (hold pass 2026-11-26: her arms could not reach the reamer)
+  friendAt: [3.84, 8.44], jadeAt: [4.07, 8.99] };   // jadeAt: 11 cm nearer the corner (hold pass 2026-11-26: her arms could not reach the reamer)
 // r4 props phase 2: the downloaded juicer scaled to 18 cm across: its dish rim and cone tip heights (measured on the model:
 // rim 0.027, tip 0.0687 at 17 cm) for the pressed half and her hands (shots.js prepFigs reads PREP_JUICER)
 // halfY: the pressed half's cut face, 12 mm over the rim: the half is pushed DOWN OVER the cone (the cone inside the fruit,

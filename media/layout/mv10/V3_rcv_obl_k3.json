@@ -838,20 +838,20 @@
   },
   "jade27": {
    "px": [
-    446.6,
-    287.4
+    446.5,
+    287.3
    ],
    "eyes": [
-    434.7,
-    279.7
+    434,
+    280.3
    ],
    "mouth": [
-    436.9,
-    285.6
+    436.2,
+    286.3
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 121,
+   "facing_camera_deg": 120,
    "blocked_by": "jade27 Jade (27)"
   },
   "K1": {
@@ -962,20 +962,20 @@
   },
   "N3": {
    "px": [
-    388.7,
-    252.3
+    379.4,
+    252.5
    ],
    "eyes": [
-    399.9,
-    257.9
+    391.2,
+    257.5
    ],
    "mouth": [
-    402.8,
-    264.5
+    394.2,
+    264.1
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 54
+   "facing_camera_deg": 55
   },
   "N4": {
    "px": [
@@ -983,12 +983,12 @@
     229.7
    ],
    "eyes": [
-    331.5,
-    234.2
+    331.4,
+    234.3
    ],
    "mouth": [
     334.5,
-    241.3
+    241.4
    ],
    "in_frame": true,
    "visible": true,
@@ -1304,21 +1304,21 @@
   },
   "N3.L": {
    "px": [
-    437.8,
-    303.8
+    429.2,
+    304.1
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N3.R": {
    "px": [
-    445.8,
-    289.5
+    423.4,
+    288
    ],
    "shape": "flat",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "N4.L": {
    "px": [
@@ -1327,7 +1327,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "N4.R": {
    "px": [
@@ -1356,8 +1356,8 @@
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.878,
-    -0.478
+    0.875,
+    -0.483
    ],
    "toward_camera": -0.219,
    "aim_world": [
@@ -1382,8 +1382,8 @@
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.963,
-    -0.269
+    -0.965,
+    -0.263
    ],
    "toward_camera": -0.836
   },
@@ -1446,7 +1446,7 @@
    "in_front": true,
    "travel_dir_px": [
     -0.994,
-    0.112
+    0.11
    ],
    "toward_camera": -0.148
   }
@@ -1468,7 +1468,7 @@
   "wrist: friend L beyond the wrist range (ulnar deviation +27 deg; flex -47.4, radial -57.4, twist -45.6, after an elbow swivel of 0 deg)",
   "wrist: firstLove27 R hand turned 13.8 deg toward the forearm to keep the wrist in range (was flex -25.9, radial -42.3)",
   "wrist: N1 R hand turned 13.8 deg toward the forearm to keep the wrist in range (was flex -26.2, radial -42.5)",
-  "wrist: N3 R beyond the wrist range (ulnar deviation +14 deg, pronation +3 deg; flex -55.1, radial -44, twist -82.6, after an elbow swivel of 0 deg)"
+  "wrist: N3 R beyond the wrist range (ulnar deviation +11 deg, pronation +17 deg; flex -42.9, radial -40.9, twist -96.7, after an elbow swivel of 0 deg)"
  ],
  "intent": "Same camera. End: she is back at the front door, now open wide, stepping back with a hand up in welcome; N3 is stepping in, N4 on the threshold; N1 and N2 have joined the group by the glass console; R1 is back at the spines; first love is still by the side window with the guest, his back to us; the friend is still at the snacks.",
  "layout_set": "mv10",
@@ -3157,8 +3157,8 @@
      421.1
     ],
     "head_px": [
-     446.6,
-     287.4
+     446.5,
+     287.3
     ]
    },
    {
@@ -3262,15 +3262,15 @@
     "label": "guest N3, arriving (2nd doorbell) (face undrawn)",
     "floor_world": [
      4.22,
-     0.3
+     0.24
     ],
     "floor_px": [
-     457.3,
-     393.7
+     449.1,
+     394
     ],
     "head_px": [
-     388.7,
-     252.3
+     379.4,
+     252.5
     ]
    },
    {
@@ -3667,21 +3667,21 @@
    "look_target": {
     "name": "N3:eyes",
     "world": [
-     4.156,
-     1.556,
-     0.395
+     4.162,
+     1.557,
+     0.339
     ]
    },
    "head_deg": {
-    "yaw_left": -34.1,
-    "pitch_up": 6.8,
+    "yaw_left": -30.4,
+    "pitch_up": 6,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": 2.7,
+    "pitch_up": 2.3,
     "wanted_yaw": 0,
-    "wanted_pitch": 2.7,
+    "wanted_pitch": 2.3,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -3690,12 +3690,12 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    434.7,
-    279.7
+    434,
+    280.3
    ],
    "target_px": [
-    400,
-    257.9
+    391.3,
+    257.4
    ],
    "target_in_front": true
   },
@@ -3926,21 +3926,21 @@
    "look_target": {
     "name": "jade27:eyes",
     "world": [
-     4,
-     1.51,
-     0.626
+     3.996,
+     1.509,
+     0.621
     ]
    },
    "head_deg": {
-    "yaw_left": -24.1,
-    "pitch_up": -3.5,
+    "yaw_left": -20.4,
+    "pitch_up": -3.2,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": -5.9,
+    "pitch_up": -5.1,
     "wanted_yaw": 0,
-    "wanted_pitch": -5.9,
+    "wanted_pitch": -5.1,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -3949,12 +3949,12 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    399.9,
-    257.9
+    391.2,
+    257.5
    ],
    "target_px": [
-    434.7,
-    279.7
+    434,
+    280.3
    ],
    "target_in_front": true
   },
@@ -3963,13 +3963,13 @@
    "look_target": {
     "name": "jade27:eyes",
     "world": [
-     4,
-     1.51,
-     0.626
+     3.996,
+     1.509,
+     0.621
     ]
    },
    "head_deg": {
-    "yaw_left": -19.3,
+    "yaw_left": -19.7,
     "pitch_up": -5.6,
     "note": "head relative to the chest"
    },
@@ -3986,12 +3986,12 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    331.5,
-    234.2
+    331.4,
+    234.3
    ],
    "target_px": [
-    434.7,
-    279.7
+    434,
+    280.3
    ],
    "target_in_front": true
   }
@@ -4483,19 +4483,19 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -55.1,
-    "radial_deg": -44,
-    "twist_deg": -82.6,
-    "elbow_flex_deg": 95.9,
+    "flex_deg": -42.9,
+    "radial_deg": -40.9,
+    "twist_deg": -96.7,
+    "elbow_flex_deg": 115.4,
     "before": {
-     "flex_deg": -55.1,
-     "radial_deg": -44,
-     "twist_deg": -82.6
+     "flex_deg": -42.9,
+     "radial_deg": -40.9,
+     "twist_deg": -96.7
     },
     "hand_turned_deg": null,
     "out_of_range": [
-     "ulnar deviation +14 deg",
-     "pronation +3 deg"
+     "ulnar deviation +11 deg",
+     "pronation +17 deg"
     ],
     "grip_reversed": false
    }
@@ -17997,8 +17997,8 @@
   "T1": 0.0044,
   "A3": 0.0043,
   "A2": 0.0022,
-  "N4": 0.002,
-  "N3": 0.0028,
+  "N4": 0.0017,
+  "N3": 0.0034,
   "C3": 0.0034,
   "N2": 0.0009,
   "A1": 0.0039,
@@ -18388,7 +18388,7 @@
     "L": 0.97,
     "R": 0.73
    },
-   "headTurn": -34,
+   "headTurn": -30,
    "body": {
     "mesh": "jade27",
     "scale": 1,
@@ -18638,9 +18638,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.68
+    "R": 0.54
    },
-   "headTurn": -24,
+   "headTurn": -20,
    "body": {
     "mesh": "adult_f",
     "scale": 1.049,
@@ -18653,8 +18653,8 @@
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 97,
-     "upperarm_stretch": 1.05,
+     "elbow_bend_deg": 119,
+     "upperarm_stretch": 1.04,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
@@ -18676,7 +18676,7 @@
     "L": 0.97,
     "R": 0.97
    },
-   "headTurn": -19,
+   "headTurn": -20,
    "body": {
     "mesh": "adult_m",
     "scale": 1.04,

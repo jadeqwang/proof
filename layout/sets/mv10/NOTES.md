@@ -847,3 +847,17 @@ Jade's answers (verbatim in `work/decisions/JADE_R4_DECISIONS.md`) applied. Supe
 - Gaze: no warnings for her, first love or the friend in SI1, V3b_prep, V3a.
 - Changed shots (diffed against HEAD's guides) and prompt notes: work/r4/REPAINT_LIST.md, mv10 section.
 - Not committed (the lead commits).
+
+## 2026-11-26: post-sweep fixes (after the r5 engine soles fix)
+- **V3b_prep / T0_juicer / T0_ladlegrip_a/b/top (jade27 at the counter by the sink).** With soles 2-4 mm up her toes went
+  39.1 mm into the ESE run's toe kick and 8.9 mm into its doors (her hip/belly cloth was also 86.7 mm into the base
+  cabinet). PREP.jadeAt [4.06, 9.10] -> [4.07, 8.99] (11 cm back from the counter front); spine bend 10 -> 22 so her
+  right palm still reaches the half on the juicer (reach 0.98); the cut half on the board moved [4.43, 9.02] ->
+  [4.50, 8.96] (her right sleeve crossed it); her left hand flat on the counter: fingers along the forearm
+  ([0.5, 0, 0.87], wrist turn 22.7 -> 14.2 deg) and 15 mm higher (the mesh palm was 17.5 mm into the top, now 0.7).
+  Clipcheck: toe kick, doors, base cabinets and counter top all clear. Holds unchanged (lemon half 0/0.1 mm, ladle pass).
+- **V3_rcv_obl_k3:** N3 stood with his raised hand 0.62 m into her (cloth 43.4 mm). N3 [4.22, 0.30] -> [4.22, 0.24],
+  his welcoming hand [4.1, 1.3, 0.62] -> [4.12, 1.3, 0.47]: jade27 / N3 clear (his wrist violation also gone).
+- **Lit brightness:** build.js rig takes `light: { exposure }` (lit pass only, scales sun / ceiling / poi / ambient
+  together, as office91 r5). C2b 2.4, C2a 1.9, SI1 1.7, V3_rev_temple_a/b 1.6 (REV_EX), V3f 1.2. Means: C2b 19.5 -> 40.4,
+  C2a 21.0 -> 40.2, SI1 24.4 -> 42.1, temple_a 25.3 -> 41.1, temple_b 26.2 -> 43.0, V3f 34.4 -> 40.5; 0 % white; still night.

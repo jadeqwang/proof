@@ -689,14 +689,17 @@ export function build(shot, { makeCam }) {
   ];
   const rig = (mode) => {
     const Ls = []; if (mode === 'none' || mode === 'mask' || shot.beamMask) return Ls; const white = mode !== 'lit';
-    if (lt.sun) { const d = new THREE.DirectionalLight(white ? 0xffffff : sun.color, white ? (lt.sunI ?? 1.5) : (lt.sunLit ?? (sun.elev > 8 ? 3.2 : 2.4)));
+    // 2026-11-26 post-sweep (as office91 r5): per-shot exposure for the LIT pass only (`light: { exposure }` scales every lit
+    // light, so the brightest source stays the brightest); other passes are unchanged
+    const EX = white ? 1 : (lt.exposure ?? 1);
+    if (lt.sun) { const d = new THREE.DirectionalLight(white ? 0xffffff : sun.color, white ? (lt.sunI ?? 1.5) : EX * (lt.sunLit ?? (sun.elev > 8 ? 3.2 : 2.4)));
       d.position.copy(sc).addScaledVector(sunDir, -40); d.target.position.copy(sc); d.castShadow = true; const s = d.shadow.camera;
       s.left = -half; s.right = half; s.top = half; s.bottom = -half; s.near = 1; s.far = 95; d.shadow.radius = 1.5; d.shadow.bias = -0.0006; Ls.push(d); }
-    if (lt.ceiling) for (const c of CEILING_LIGHTS) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.ceiling.color, white ? (lt.ceilI ?? 0.9) : (lt.ceilLit ?? 2.4), 7, 1.3);
+    if (lt.ceiling) for (const c of CEILING_LIGHTS) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.ceiling.color, white ? (lt.ceilI ?? 0.9) : EX * (lt.ceilLit ?? 2.4), 7, 1.3);
       p.position.set(c.at[0], c.pendant ? c.at[1] - 0.12 : HOUSE.ceil - 0.12, c.at[2]); p.castShadow = true; p.shadow.camera.near = 0.05; p.shadow.camera.far = 8; Ls.push(p); }
-    if (lt.poi) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.poi.color, white ? 2.2 : (lt.poiLit ?? 14), 8, 1.3); p.position.copy(poiP); p.castShadow = true; p.shadow.camera.near = 0.1; p.shadow.camera.far = 9; Ls.push(p); }
+    if (lt.poi) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.poi.color, white ? 2.2 : EX * (lt.poiLit ?? 14), 8, 1.3); p.position.copy(poiP); p.castShadow = true; p.shadow.camera.near = 0.1; p.shadow.camera.far = 9; Ls.push(p); }
     const skyCol = lt.sky >= 0.9 ? 0xb4c2d8 : lt.sky >= 0.5 ? 0x8a84a8 : LIGHTS.sky.night;
-    Ls.push(new THREE.AmbientLight(white ? 0xffffff : skyCol, white ? (lt.amb ?? (0.45 + 0.4 * lt.sky)) : (lt.litAmb ?? (lt.sky >= 0.9 ? 1.9 : lt.sky >= 0.5 ? 1.15 : 0.6))));
+    Ls.push(new THREE.AmbientLight(white ? 0xffffff : skyCol, white ? (lt.amb ?? (0.45 + 0.4 * lt.sky)) : EX * (lt.litAmb ?? (lt.sky >= 0.9 ? 1.9 : lt.sky >= 0.5 ? 1.15 : 0.6))));
     if (white) { const d = new THREE.DirectionalLight(0xffffff, lt.fill ?? 0.35); d.position.set(3, 6, -4); Ls.push(d); }
     return Ls;
   };

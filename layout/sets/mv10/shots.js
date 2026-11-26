@@ -147,7 +147,7 @@ const prepPress = (thDeg = 30, lift = 0.010, tipDeg = 10) => ({ ...(() => { cons
   for (let i = 0; i < 3; i++) at[i] += up[i] * lift;
   { const t = tipDeg * Math.PI / 180, c = Math.cos(t), s = Math.sin(t), F = fing.map((x, i) => x * c - up[i] * s), U = up.map((x, i) => x * c + fing[i] * s); fing = F; up = U; }
   return graspArms('restOn', { centre: C, at, axis: fing, up, label: 'lemon half (pressed on the juicer)', hand: 'flat' }, { Lh: LH(1.65), side: 'R' }).R; })(), hand: PREP_RHAND });
-const prepFigs = () => ({ jade27: { at: PREP.jadeAt, yaw: yawTo(PREP.jadeAt, PREP.reamer.at), legs: 'stand', spine: { bend: 10 },   // hold pass: she stands 11 cm nearer (layout.js PREP.jadeAt): her arms were straight and short of the reamer
+const prepFigs = () => ({ jade27: { at: PREP.jadeAt, yaw: yawTo(PREP.jadeAt, PREP.reamer.at), legs: 'stand', spine: { bend: 22 },   // hold pass: she stands 11 cm nearer (layout.js PREP.jadeAt): her arms were straight and short of the reamer
         head: { look: [PREP.reamer.at[0], COUNTER_H, PREP.reamer.at[1]] },
         // hold pass (2026-11-26): her right palm presses the half's dome on its far shoulder (30 deg past the top, the palm
         // square to the rind there, fingers over it and down, the heel and wrist raised toward her so the wrist clears the
@@ -156,7 +156,7 @@ const prepFigs = () => ({ jade27: { at: PREP.jadeAt, yaw: yawTo(PREP.jadeAt, PRE
         // tipped 14 deg down so her wrist clears the rim, rolled 20 deg (little
         // finger side up: the solved hand rolled that side into the dish) (the rim: 4.5 cm above the counter;
         // the palm 6 mm over it, the rolled hand's ring side lower)
-        R: prepPress(...PREP_PRESS), L: { to: [4.29, COUNTER_H + 0.013, 9.30], hand: 'flat', palm: 'down', fingers: [0.75, 0, 0.66] } },   // r4: her left hand flat on the counter beside the juicer (the pomelo half covers the real juicer's rim; palm on its 3 cm side put her wrist into it)
+        R: prepPress(...PREP_PRESS), L: { to: [4.29, COUNTER_H + 0.028, 9.30], hand: 'flat', palm: 'down', fingers: [0.5, 0, 0.87] } },   // r4: her left hand flat on the counter beside the juicer (the pomelo half covers the real juicer's rim; palm on its 3 cm side put her wrist into it)
       friend: { at: PREP.friendAt, yaw: 90, legs: 'stand', spine: { bend: 6 }, head: { look: [PREP.punch.at[0], 1.0, PREP.punch.at[1]] },
         R: 'side',   // replaced in build.js by the ladle grip (shot.ladle)
         L: { to: [4.27, COUNTER_H + 0.30, 8.27], hand: 'relax', palm: 'down', fingers: [1, -0.4, 0.2] } } });   // his left hand steadies the punchbowl at its rim
@@ -190,7 +190,7 @@ function rcFigs(phase) {
   if (phase === 2) { f.N1 = stand([3.75, 1.35], yawTo([3.75, 1.35], [1.6, 1.0]), { head: { look: [1.6, 1.2, 1.0] } });   // re-render pass 2026-11-26: turned toward what he looks at (was 6 deg past eye travel) f.N2 = stand([4.35, 1.55], -10, { head: { look: [2.2, 1.4, 3.5] } });
     f.N3 = onGrade([4.1, -2.4], 0, { head: { look: [4.3, 1.6, 0] } }); f.N4 = onGrade([4.7, -2.7], 0, { head: { look: [4.3, 1.6, 0] } }); }
   if (phase === 3) { f.N1 = stand([3.55, 2.55], 60, { head: { look: [4.05, 1.55, 3.05] }, cup: 'R' }); f.N2 = stand([4.05, 2.35], 30, { head: { look: [4.05, 1.55, 3.05] } });
-    f.N3 = stand([4.22, 0.3], -10, { head: { look: 'jade27:eyes' }, R: { to: [4.1, 1.3, 0.62], hand: 'flat', fingers: 'up', palm: [0, 0, 1] } }); f.N4 = stand([4.35, -0.15], -5, { head: { look: 'jade27:eyes' } }); }
+    f.N3 = stand([4.22, 0.24], -10, { head: { look: 'jade27:eyes' }, R: { to: [4.12, 1.3, 0.47], hand: 'flat', fingers: 'up', palm: [0, 0, 1] } }); f.N4 = stand([4.35, -0.15], -5, { head: { look: 'jade27:eyes' } }); }
   return f;
 }
 const RC_HIDE = ['ceiling', 'roof', 'gable end', 'living room ceiling light (flush glass dome)', 'kitchen ceiling light (flush glass dome)', 'dining pendant (paper drum)', 'exterior wall (SSW)', 'living room window (SSW) (glass)', 'dining window (SSW) (glass)', 'living room window (SSW) (sill)', 'dining window (SSW) (sill)', 'living room window (SSW) (mullion)', 'dining window (SSW) (mullion)'];
@@ -211,6 +211,7 @@ const panShot = (id, key, t0, t1, lyric, intent, extra = {}) => ({ id, lens: PAN
   timing: { timeline: TL, start_s: t0, end_s: t1, lyric, v3_song_map_s: { a: [169.4, 171.8], m1: [171.8, 174.4], b: [174.4, 176.67], c: null }[key], move: 'lateral track along the Expedit face, level, same lens (35 mm) and height (1.45 m), 1.45 m from the frame front; camera X ' + PAN_X.a.toFixed(3) + ' (beauty half centre) -> ' + PAN_X.m1.toFixed(3) + ' (seam) -> ' + PAN_X.b.toFixed(3) + ' (cube 4,4) -> back to ' + PAN_X.c.toFixed(3) + ' (the seam: end frame, held)', her: 'NOT in frame (Jade, 2026-11-25 late: shelf only)' },
   header: `Bridge ${(t0 / 60 | 0)}:${(t0 % 60).toFixed(1).padStart(4, '0')}: "${lyric}" (pan across the Expedit, ${key})`, intent, figs: PAN_FIGS(), ...extra });
 
+const REV_EX = { a: 1.6, b: 1.6 };   // 2026-11-26 post-sweep: lit exposure for the V3_rev push-in (night, black hair fills _b)
 export const SHOTS = [
   // ================================================================ BRIDGE 2:34.5-2:52.5 (living room, late-afternoon daylight)
   { id: 'BR1', lens: 35, space: 'room', time: '2:34.5', section: 'Bridge', pos2: 'outside', amp: 100,
@@ -322,6 +323,7 @@ export const SHOTS = [
   // staging, so that from her left he is back / three-quarter rear only). Same lens, dolly in; _a = start
   // (medium close-up), _b = end (extreme close-up). Sidecar `face_marks` gives the eye / temple px in each frame.
   // the eye variants are RETIRED 2026-11-25 (late): Jade chose the temple
+  // 2026-11-26 post-sweep: per-shot lit exposure (build.js rig; lit pass only) for the dark night guides (target mean >= ~40)
   ...['temple'].flatMap((k) => { const at = k === 'temple' ? 'jade27:templeL' : 'jade27:eyeL', az = k === 'temple' ? 62 : 32, d1 = k === 'temple' ? 0.19 : 0.13;
     const base = { lens: 50, space: 'room', section: 'Verse 3', pos2: 'inside', amp: 115, faceMarks: true, focus: ['jade27'], near: 0.03, far: 60,
       timing: { timeline: TL, line: 'I nod, past hour reviewed', line_s: [189.11, 191.52], nod_word_s: [189.231, 189.79], push_in: [189.11, 191.52], instrumental_track_s: { line: [189.122, 191.537], nod: [189.243, 189.802] } },
@@ -329,11 +331,11 @@ export const SHOTS = [
         firstLove27: heShelf({ at: [3.22, 3.80], yaw: 12, head: { look: [SHELF_W.cube(2, 4)[0], 1.55, SHELF_W.front] }, L: 'side' }) } };
     const lab = k === 'temple' ? 'her left temple, three-quarter toward profile' : 'her left eye, three-quarter';
     return [
-      { id: `V3_rev_${k}_a`, ...base, time: '3:09.1', orbit: { at, rel: 'jade27', az, el: 2, dist: 0.85 }, aim: [at, 0.5, 0.42],
+      { id: `V3_rev_${k}_a`, ...base, light: { exposure: REV_EX.a }, time: '3:09.1', orbit: { at, rel: 'jade27', az, el: 2, dist: 0.85 }, aim: [at, 0.5, 0.42],
         move: { to_shot: `V3_rev_${k}_b`, kind: 'dolly in along the same line, same 50 mm lens', start_s: 189.11, end_s: 191.52, timeline: '-2sm full mix' },
         header: `Verse 3 3:09.1: "I nod, past hour reviewed": push-in start, ${lab} (medium close-up)`,
         intent: `Start of the push-in, at the shelf right after the whisper: her head and shoulders, ${lab}, mid-nod; behind her the Expedit under the ceiling light and first love back at the spines (back of his head only).` },
-      { id: `V3_rev_${k}_b`, ...base, time: '3:11.5', orbit: { at, rel: 'jade27', az, el: 2, dist: d1 }, aim: [at, 0.5, 0.5],
+      { id: `V3_rev_${k}_b`, ...base, light: { exposure: REV_EX.b }, time: '3:11.5', orbit: { at, rel: 'jade27', az, el: 2, dist: d1 }, aim: [at, 0.5, 0.5],
         header: `Verse 3 3:11.5: "...reviewed": push-in end, extreme close-up on ${lab}`,
         intent: `End of the push-in: ${lab} fills the frame; the overlay (the review, then the spectrograms of her voice) begins here.` }]; }),
   // 2026-11-25 (round 2): with the whisper (3:03.8) and the nod (3:09.1) both at the shelf, she cannot be under the tree in
@@ -345,7 +347,7 @@ export const SHOTS = [
     header: 'Verse 3 3:06.0: "fifteen percent above amplitude": the fire poi, the second light (cutaway; she is at the shelf)',
     intent: 'Cutaway (was her point of view from under the tree; she is now at the shelf from 3:03.8 to 3:11.5). The poi spinner on the lawn, seen from behind and to the side, performing toward the audience lined along the house’s ESE wall and on the deck, two circles of fire lighting them. Behind them, frame right: the wooden stairs run DOWN ALONG THE HOUSE WALL from the deck to the lawn (a single flight against the wall, under the kitchen window, railing on its open side). From here on the poi is the light source.',
     figs: crowd() },
-  { id: 'V3f', lens: 50, space: 'yard', time: '3:11.6-3:12.8 ("Hug durations"; the spectrogram plate takes "pitch contours" 3:12.8-3:14.6, or intercut)', section: 'Verse 3', pos2: 'outside', amp: 115,
+  { id: 'V3f', light: { exposure: 1.2 }, lens: 50, space: 'yard', time: '3:11.6-3:12.8 ("Hug durations"; the spectrogram plate takes "pitch contours" 3:12.8-3:14.6, or intercut)', section: 'Verse 3', pos2: 'outside', amp: 115,
     orbit: { at: 'jade27:eyes', az: -30, el: 4, dist: 1.9 }, aim: ['jade27:eyes', 0.5, 0.4], focus: ['jade27'],
     header: 'Verse 3 3:11.6: "Hug durations": a hug on the deck, gold ticks counting it',
     intent: 'Outside on her face over the hugged guest’s shoulder (guest back to us). Her arms round the guest, chin over the shoulder, eyes to lens-side: counting. Gold ticks accumulate along the top of the embrace.',
@@ -395,7 +397,7 @@ export const SHOTS = [
   // the partition, out of frame. First love: just past her right shoulder (frame left), back three-quarter to the lens,
   // turned back to the spines (OUR staging, as in V3_rev): at the frame edge only, never face-on. Light: the living-room
   // ceiling light (night). The poi stays on the lawn in the world (the party goes on) but nothing of it is in frame.
-  { id: 'SI1', lens: 85, space: 'room', time: '3:19.1-3:23.4', section: 'Silence', pos2: 'outside', amp: 100, sync: 'lip', singers: ['jade27'], poiTrail: false,
+  { id: 'SI1', light: { exposure: 1.7 }, lens: 85, space: 'room', time: '3:19.1-3:23.4', section: 'Silence', pos2: 'outside', amp: 100, sync: 'lip', singers: ['jade27'], poiTrail: false,
     orbit: { at: 'jade27:eyes', az: 196, el: 0, dist: 1.5 }, aim: ['jade27:eyes', 0.5, 0.42], near: 0.05, focus: ['jade27'],
     header: 'Silence 3:19.5: "I think he’s right. Honestly." close, hushed, back at 100% (at the Expedit, no poi)',
     intent: 'Outside, frontal, level, locked off, close, INDOORS at the Expedit: she stands in front of the truth half of the shelf, facing the room and the lens; she has turned from him to us. Behind her the dark espresso shelf (cubes of books and objects) under the living-room ceiling light; night. First love at the frame edge beside her, back to the lens, looking at the spines (back of his head only, never his face). No fire, no poi, no ring, nothing gold round her head. One cut from 115 to 100: lighter line, no gesture. Synced, hushed, last word unpitched.',
@@ -403,12 +405,12 @@ export const SHOTS = [
       firstLove27: heShelf({ at: [3.10, 3.66], yaw: 14, head: { look: [SHELF_W.cube(2, 4)[0], 1.55, SHELF_W.front] }, L: 'side' }) } },
 
   // ================================================================ CHORUS 2b 3:34.2-3:43.0 (back at the shelf; night, ceiling lights)
-  { id: 'C2a', lens: 70, space: 'room', time: '3:34.2-3:39.6', section: 'Chorus 2b', pos2: 'outside', amp: 100, sync: 'anti', singers: ['jade27'],
+  { id: 'C2a', light: { exposure: 1.9 }, lens: 70, space: 'room', time: '3:34.2-3:39.6', section: 'Chorus 2b', pos2: 'outside', amp: 100, sync: 'anti', singers: ['jade27'],
     orbit: { at: 'jade27:eyes', az: yawTo(SHELF_MARK, HE_C2) + 42, el: 3, dist: 2.1 }, aim: ['jade27:eyes', 0.56, 0.38], focus: ['jade27'],
     header: 'Chorus 2b 3:34.2: "I open my mouth, my voice goes blind": mouth open, not moving with the vocal; eyes bright (over his shoulder)',
     intent: 'The anti-sync shot, over first love’s shoulder (back of his head, frame left). Her mouth opens and holds; she is thinking it at him. Behind her the truth half of the Expedit under the ceiling light; night in the windows. Hold it long.',
     figs: { ...crowd({ drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'T1'] }), jade27: jadeC2({ head: { look: 'firstLove27:eyes', turn: 20 } }), firstLove27: heC2() } },
-  { id: 'C2b', lens: 30, space: 'room', time: '3:39.6-3:43.0', section: 'Chorus 2b', pos2: 'inside', amp: 100,
+  { id: 'C2b', light: { exposure: 2.4 }, lens: 30, space: 'room', time: '3:39.6-3:43.0', section: 'Chorus 2b', pos2: 'inside', amp: 100,
     orbit: { at: 'firstLove27:wristL', az: 85, el: 48, dist: 0.95 }, aim: ['firstLove27:wristL', 0.45, 0.74], subject: [SHELF_MARK[0] + 0.3, 1.2, SHELF_MARK[1] - 0.28],
     header: 'Chorus 2b 3:39.6: her hand taps on his forearm; he looks down at it (from behind his shoulder)',
     intent: 'Inside, close, from above and behind his left shoulder: the back of his head tipped down, his bare left forearm held out (its hair clearly visible), her empty hand tapping on it; neither of them holds a cup. The percussion is her. Third of the film’s hands-on-a-forearm, the only one that is hers.',
