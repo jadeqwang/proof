@@ -768,3 +768,14 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   sink with window sun; fridge dark beige; one stair flight down the house's ESE wall, V3e reframed; SI1 just inside
   the sliding door, poi low, no circles; V3a/V3h no first love under the tree; NASA meatball small, no lettering;
   C2a/C2b no cup. Repaint in r4: V3b_prep, V3e, SI1, V3_rcv_obl (+k0, k3), C2a, C2b, V3a, V3c, V3f.
+- **Jade, 2026-11-26:** "can you make the torsos shaped realistically like torsos across all instances there are
+  mannequins? the shoulder structure is causing weird distortions across lots of keyframes." Sent to the engine
+  agent: default for every figure in every set and both code paths, a continuous shoulder girdle (trapezius, clavicle,
+  deltoid cap, armpit, scapula; no ball joint), checked on one shot per set.
+- **Jade, 2026-11-26:** "the wrists should always be positioned naturally when holding an object." Sent to the engine
+  agent: grip solving rotates the forearm and moves the elbow before bending the wrist, within natural ranges;
+  sidecar warning when a grip can't be reached naturally.
+- **Jade, 2026-11-26:** "we're dropping the dictionary shot because it was so bad." PC5 removed from
+  `office91/shots.js` and the plan; PC4 (= PC1's frame) now holds 1:27.4-1:32.7. The dictionary prop stays in Mom's
+  hands in the wider shots (her default look is still 'dict'); ask if it should go entirely. Old renders of PC5 in
+  media/layout/office91/ are stale, delete on the next office91 re-render.

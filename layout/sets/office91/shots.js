@@ -79,11 +79,9 @@ export const SHOTS = [
     header: '1:23.3 INSIDE lyric-free gap: pan start, the social worker\'s sweatshirt', intent: 'Inside: her eye-line on the sweatshirt print, no face (the head above the frame line); the tilt down begins.' },
   { id: 'PC3b', t: [85.3, 87.37], lens: 35, pos: [-0.3, 1.0564, -0.3737], aim: ['handout', 0.5, 0.5], ...INSIDE, figs: ALL(jadeRead()),
     header: '1:25.3 INSIDE: pan end, the sheet', intent: 'Inside: her true eye-line onto the handout, close and raking; the social worker\'s forearms and clipboard beyond the top of the page, no face. Her eye then runs down the grid toward the short row.' },
-  { id: 'PC4', same: 'PC1', t: [87.37, 90.78], header: '1:27.4 OUTSIDE "Her face doesn\'t make much expression": the same frame, shorter',
+  { id: 'PC4', same: 'PC1', t: [87.37, 92.68], header: '1:27.4 OUTSIDE "Her face doesn\'t make much expression": the same frame, held through "(For our culture," (PC5 dropped)',
     intent: 'Identical camera to PC1 (the film\'s rhyme); a second toner label lands in the same place.' },
-  { id: 'PC5', t: [90.78, 92.68], lens: 50, orbit: { at: 'dict', az: -98, el: 18, dist: 0.55 }, aim: ['dict', 0.5, 0.5],   // r3: from her side, level with the book: the fore-edge and Mom's right thumb face the lens
-    figs: ALL(),
-    header: '1:30.8 "(For our culture,": Mom\'s thumb racing through the little red dictionary', intent: 'The reply is a hand: Mom\'s thumb riffling the pages of a pocket dictionary, seen from little Jade\'s side. No faces.' },
+  // PC5 (Mom's thumb through the red dictionary, 1:30.8) DROPPED by Jade 2026-11-26 ("so bad"); PC4 holds to 1:32.7.
 
   // ---------------------------------------------------------------- band out, 1:32.7-1:36.0
   { id: 'BO1', t: [92.68, 94.68], ...GAP_CAM, figs: ALL(jadePoint()),
