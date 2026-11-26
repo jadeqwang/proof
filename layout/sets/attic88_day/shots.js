@@ -53,11 +53,16 @@ const BASE = [
     intent: 'From behind her right shoulder along her new eye-line: her head lifts from the keys to the window. The four frosted panes are the brightest thing; the shaft comes from them toward us.',
     figs: { littleJade: jadeKeys({ spine: { bend: 20 }, head: { look: 'fern' } }) } },
   // ---------------------------------------------------------------- 1:36.0 "How do you feel?" and the band hit
-  // r4b: she stands, so the camera moved over her right shoulder (was [2.98, 1.06, -0.48], 50 mm, aimed at the fern tip: her standing
-  // head filled it); the FINGERTIP (now on fernMid) is at (0.5, 0.55), as the office's pointing finger; 40 mm so root and tip are in
-  { id: 'AD_trace', lens: 40, pos: [3.0, 1.0, -0.3], aim: ['littleJade:indexR', 0.5, 0.55], position: 'inside', time: '1:36.0-1:37.4', section: '"How do you feel?"', beamAnchor: 'fernMid',
-    header: '1:36.0 match cut on the pointing finger: five years old, tracing the frost fern',
-    intent: 'Close on her right index finger on the lower pane, following the fern from its root. Framed so the fingertip sits where the pointing finger sat in the school office. She stands at the sill, in the full light (r4b: standing, as in the grab a moment later; was kneeling on the cushion).',
+  // r5 (Jade, 2026-11-26: the hand "reads as a thumbs-up, not a tracing finger"; BO2 -> AD_trace is now a PLAIN cut, so no
+  // finger match): restaged by measurement (trace_search.mjs, trace_preview.mjs). Her index FINGERTIP is on fernMid (the
+  // engine's `tip` option, grabpose.js TRACE_R), the finger laid almost square to the glass, the other fingers curled,
+  // the thumb resting on them. The camera moved round to her right side, behind and above her right shoulder blade, so the
+  // finger is seen side-on against the frosted pane with her face in profile above it, eyes on the fingertip (gaze
+  // target fernMid). Was: 40 mm from straight behind her right shoulder, [3.0, 1.0, -0.3], fingertip at (0.5, 0.55): the
+  // finger stood up out of the fist, end-on to the lens, and read as a thumbs-up.
+  { id: 'AD_trace', lens: 35, pos: [3.05, 1.08, 0.02], aim: ['littleJade:indexR', 0.6, 0.66], position: 'inside', time: '1:36.0-1:37.4', section: '"How do you feel?"', beamAnchor: 'fernMid',
+    header: '1:36.0 (plain cut from BO2) five years old, her fingertip on the frost fern',
+    intent: 'Her right index fingertip on the lower pane, on the frost fern, the other fingers curled; seen from her right side so the finger reads side-on against the glass. Her face in profile above it, looking at where the finger touches. She stands at the sill, in the full light (r4b: standing, as in the grab a moment later). r5: a plain cut from BO2, not a match cut.',
     figs: { littleJade: jadeAtSill() } },
   // r4b CAMERA (grab_camera.mjs, 200 candidates scored on the id pass): from the window corner, 24 mm, low over the sill board
   // at the child's left, looking back into the room: her finger on the frosted pane frame left, Mama's hand closing on her

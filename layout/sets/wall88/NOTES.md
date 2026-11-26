@@ -1,5 +1,28 @@
 # wall88: notes and assumptions
 
+## 2026-11-26: round-5 decisions (Jade's r5 answers + the fix list; SUPERSEDES everything below where they differ)
+- DONE: all three changes made; three passes rendered and looked at; clipcheck all pass; holdcheck: nothing held.
+- **WL_top is a real shot at 1:51.0-1:52.2** (Jade, wl_top: "Try it at 1:51.0-1:52.2"). No longer an alternate: in BASE
+  before WL_in. WL_in and WL_in_empty now 1:52.2-1:54.5 (the file blinks, then the empty frame; the pull-back at 1:54.5
+  unchanged). It is still a cutaway (top plate lifted): the plan's "no cutaway of the wall from outside" needs rewording
+  (the lead edits the plan; wording in the r5 report).
+- **The stray hand by Mama's neck in WL_in_form was the praying woman (w1, second in the file)**, not Mama: identified by
+  rendering with each figure removed. From the inside camera the only part of her not hidden by Mama or the stud is a
+  3-4 cm slit in front of Mama's throat; her undrawn cheek, her ear and the fingertips of her praying hands (palms
+  together under the chin) filled it and read as a disembodied hand. Fix: palms together lower, at her breastbone,
+  elbows down at her sides; head pressed back toward the brick (nod -14) and turned toward her right (-60). Measured as
+  the flat-pass difference with and without her: her visible area 10.9k -> 3.2k px; the slit now shows w2's dark hair
+  beyond her, with a sliver of her chin under Mama's hair and a ~10 px speck of fingertip at the stud edge. Hiding her
+  completely was not possible inside the rules: bowing her (spine 12-28 deg) put her head 10 mm into the boards (the
+  cavity is 32 cm), lower hands put her elbows into Mama's left arm, and camera moves (x +-2 cm, z -0.62..-0.74) and
+  Mama head nod/tilt changed the slit by <15 %. Clip check pass.
+- **Brightness (lit pass)**: fill 0x30343c x 0.25 -> 0x7a8498 x 2.2 (build.js `rig('lit')`). Mean luminance 0-255, before
+  -> after: WL_in 38.6 -> 61.2 (the old mean was almost all the blade and the lit boards: the file was black), WL_in_empty
+  38.6 -> 61.0, WL_out 3.8 -> 36.9, WL_eye 42.3 -> 70.2, WL_top 3.0 -> 16.0 (most of that frame is the black outside the
+  cavity; the heads now read), WL_plan 8.4 -> 14.8. Inside the beam mask vs outside it (after): WL_in 124 vs 34, WL_out
+  126 vs 35, WL_eye 109 vs 41, WL_top 103 vs 14: the blade stays the brightest thing in every frame.
+- The engine's natural-wrist pass turns w1's hands 5 and 19 deg toward the forearms (sidecar warning; in range after).
+
 ## 2026-11-26 round 4 — PROGRESS (checkpoint)
 - DONE (see the section below for numbers): brick texture (brick.js, Waalformaat, every mode); Mama's palms re-solved
   (wl_search.mjs; gaps 0.5-0.6 mm, flat to 1 deg, joints in range); file 13.5 cm off the brick, 50 cm apart, soles lifted

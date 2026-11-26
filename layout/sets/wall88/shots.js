@@ -43,8 +43,16 @@ function worker(w) {
     // the hold check reads as gripping something and found nothing within 3 cm)
     case 'clasp': return { ...base, head: { nod: 22 }, L: { to: 'self:waist', off: [-0.085, 0.0, 0.0], hand: 'relax', palm: 'in', fingers: 'down', elbow: 'down' },
       R: { to: 'self:waist', off: [-0.10, 0.02, 0.0], hand: 'relax', palm: 'in', fingers: 'down', elbow: 'down' } };   // r4b: hands 5 cm nearer her waist, elbows hanging down at her sides (were 1 cm into the boards and 3.8 cm into w2)
-    case 'pray': return { ...base, head: { nod: 20 }, L: { to: 'self:chin', off: [-0.07, -0.07, 0.012], hand: 'flat', palm: 'in', fingers: 'up' },
-      R: { to: 'self:chin', off: [-0.07, -0.07, -0.012], hand: 'flat', palm: 'in', fingers: 'up' } };   // r4b: 2 cm nearer, head 6 deg less bowed (the boards are 6 mm past her toes now)
+    // r5 (Jade's fix list: "a stray hand by Mama's ear at the stud" in WL_in): it was THIS woman (w1, second in the file):
+    // from the inside camera the only part of her not hidden by Mama or the stud is a 3-4 cm slit in front of Mama's
+    // throat, and her undrawn cheek, ear and the fingertips of her praying hands (palms together under the chin) filled it,
+    // reading as a disembodied hand. Now: palms together lower, at her breastbone, elbows down at her sides; head pressed
+    // back toward the brick (nod -14) and turned toward her right (-60, toward the closed end and the light). Measured
+    // (flat-pass difference with and without her): her visible area 10.9k -> 3.2k px, the slit now shows w2's dark hair
+    // beyond her; a sliver of her chin under Mama's hair and a ~10 px speck of fingertip at the stud edge remain. Clip check
+    // pass (no hands in the boards, elbows clear of Mama's left arm). Was: nod 20, hands at off [-0.07, -0.07].
+    case 'pray': return { ...base, head: { nod: -14, turn: -60 }, L: { to: 'self:chin', off: [-0.055, -0.16, 0.012], hand: 'flat', palm: 'in', fingers: 'up', elbow: 'down' },
+      R: { to: 'self:chin', off: [-0.055, -0.16, -0.012], hand: 'flat', palm: 'in', fingers: 'up', elbow: 'down' } };
     case 'flat': return { ...base, head: { nod: -8 }, ...palmsToBrick(w.z, 0.80, 0.13, 0.030) };   // r4b: hands 7 cm nearer his hips (his elbows were in w3)
     // r4 Mama: right palm flat back on the brick toward the closed end (between the file and her daughter), left hand
     // flat on the brick beside her hip; head turned back toward where her daughter stands (named point 'daughter')
@@ -92,26 +100,26 @@ const BASE = [
     header: '1:40.7 OUTSIDE, close: same staging; her eye turning into the blade',
     intent: 'r3. Same staging as WL_out, pushed in to her face, three-quarters, turning toward the crack. The blade crosses one eye and the bridge of the nose. She is scared inside, her heart is fast, but her face does not fully know how to recognise it or show it: still, uncertain, not a clear expression of fear.',
     figs: { littleJade: jadeStand() }, clip: CLIP_KID },
-  { id: 'WL_in', ...IN_CAM, position: 'inside', time: '1:51.0-1:54.5 (they blink in and out)', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote', workers: true,
-    header: '1:51.0 INSIDE, state A: the file of restaurant workers along the brick, holding their breath',
+  { id: 'WL_in', ...IN_CAM, position: 'inside', time: '1:52.2-1:54.5 (they blink in and out; r5: after WL_top 1:51.0-1:52.2)', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote', workers: true,
+    header: '1:52.2 INSIDE, state A: the file of restaurant workers along the brick, holding their breath',
     intent: 'r3 (Jade): they blink in and out. A single file of Chinese restaurant workers, backs to the brick (frame-left), facing the boards (frame-right), holding their breath, terrified, some praying silently. They blink in and out of existence and then it is the empty wall space again (WL_in_empty). The blade crosses them at the waist. Faces unreached (strangers): fear and prayer are in hands, shoulders and bowed heads.',
     figs: WORKER_FIGS, clip: CLIP_FILE },
-  { id: 'WL_in_empty', ...IN_CAM, position: 'inside', time: '1:51.0-1:54.5, end state; start of the 1:54.5 pull-back', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote',
-    header: '1:51.0 INSIDE, state B / RHYME FRAME: the same cavity, empty; the blade is the diagonal',
+  { id: 'WL_in_empty', ...IN_CAM, position: 'inside', time: '1:52.2-1:54.5, end state; start of the 1:54.5 pull-back', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote',
+    header: '1:52.2 INSIDE, state B / RHYME FRAME: the same cavity, empty; the blade is the diagonal',
     intent: 'r3. The same camera as WL_in with nobody there: the empty wall space. The crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.',
     figs: {} },
 ];
-// r4b (Jade, wl_count: "yes, five; a brief overhead shot would also be interesting to add, perhaps"): ALTERNATE, NOT IN THE
-// PLAN YET. Straight down into the cavity onto the five heads in their stud bays, the brick face (its courses give the
-// scale) along the top of frame, the boards along the bottom, the blade of light at the closed end, frame left. It is
-// a cutaway: the top plate is lifted off (shot.hide), which the plan's wall notes avoid ("no cutaway of the wall from
-// outside"); flagged. Proposed slot: the first blink of "Nowhere to go", 1:51.0-1:52.2, then WL_in and WL_in_empty.
-// The camera is 2.6 m above the floor, 24 mm, the cavity running across the frame (brick at the top: the camera is
+// WL_top, the overhead (r4b alternate, made a REAL SHOT in r5: Jade, wl_top: "Try it at 1:51.0-1:52.2"). Straight down into
+// the cavity onto the five heads in their stud bays, the brick face (its courses give the scale) along the top of frame,
+// the boards along the bottom, the blade of light at the closed end, frame left. The top plate is lifted off (shot.hide):
+// a cutaway, which the plan's wall notes avoided ("no cutaway of the wall from outside"); Jade chose to try it, so the plan
+// wording changes (see NOTES). It opens "Nowhere to go" at 1:51.0; WL_in (the file, blinking) takes over at 1:52.2.
+// The camera is 3.45 m above the floor, 24 mm, the cavity running across the frame (brick at the top: the camera is
 // 2 mm toward the boards so three.js's lookAt has a defined up).
-BASE.push({ id: 'WL_top', lens: 24, pos: [-0.002, 3.45, 1.20], target: [0, 0, 1.20], hide: ['top plate'], near: 0.5, far: 4.5, position: 'overhead (alternate)',
-  time: 'proposed 1:51.0-1:52.2 (alternate; not in the plan yet)', section: 'Chorus 1 ("Nowhere to go")', beamAnchor: 'mote', workers: true,
-  header: 'ALTERNATE (not in the plan): straight down into the cavity onto the five heads',
-  intent: 'r4b alternate (Jade: "a brief overhead shot would also be interesting"). From straight above, the narrow slot of the cavity runs across the frame: brick (courses of small bricks) along the top, the boards and their studs along the bottom. Five people stand in a single file, one per stud bay, backs to the brick, facing the boards, shoulders almost touching: we see the tops of their heads (Mama nearest the closed end at frame left, with her bun; the praying woman next to her) and their shoulders. The thin blade of light from the crack falls across the floor at the closed end, frame left. Dark, still, holding their breath.',
+BASE.splice(BASE.findIndex((s) => s.id === 'WL_in'), 0, { id: 'WL_top', lens: 24, pos: [-0.002, 3.45, 1.20], target: [0, 0, 1.20], hide: ['top plate'], near: 0.5, far: 4.5, position: 'overhead',
+  time: '1:51.0-1:52.2', section: 'Chorus 1 ("Nowhere to go")', beamAnchor: 'mote', workers: true,
+  header: '1:51.0 OVERHEAD: straight down into the cavity onto the five heads, holding their breath',
+  intent: 'r5 (Jade: "Try it at 1:51.0-1:52.2"). From straight above, the narrow slot of the cavity runs across the frame: brick (courses of small bricks) along the top, the boards and their studs along the bottom. Five people stand in a single file, one per stud bay, backs to the brick, facing the boards, shoulders almost touching: we see the tops of their heads (Mama nearest the closed end at frame left, her bob; the praying woman next to her) and their shoulders. The thin blade of light from the crack falls across the floor at the closed end, frame left. Dark, still, holding their breath. Cut to WL_in at 1:52.2.',
   figs: WORKER_FIGS, clip: CLIP_FILE });
 const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, header: 'beam mask for ' + s.id }));
 // r4: plan view (not painted): checks the 32 cm cavity, the stud bays and the feet (toes short of the boards)

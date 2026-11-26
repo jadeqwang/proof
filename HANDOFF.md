@@ -1217,3 +1217,17 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   temples, semi-rimless glasses, white polo, black pants, black backpack with a black/green pixel bottle and a pink
   cat bottle, boy in socks, Catch Air), cast (first love v8: hair colour matched to Gaius Baltar's in the prompt).
 - Jade's own 2023 outfit was not described: keep the guess, ask again.
+- **Jade: "you can have me wearing the rare earth outfit"** for playground23 (her chaosmonkey-video outfit, CANON.md
+  "Jade (v3)": cropped white racer jacket with orange bands, black mock-neck, navy cargo trousers with orange straps,
+  pale-blue circle on the back). Sent to the playground agent; back decals as canonical textures.
+- **attic-wall agent done:**
+  - AD_trace restaged: the index fingertip is on the frost fern, the other fingers are curled, and the camera is now
+    35 mm from her right side.
+  - The stray hand in WL_in was the praying worker's, now tucked away (a ~10 px fingertip speck remains).
+  - WL_top is a real shot at 1:51.0-1:52.2; WL_in/WL_in_empty run 1:52.2-1:54.5.
+  - Lit guides brightened (WL_out 3.8->36.9 mean, WL_in 38.6->61.2); the beam is still 3-7x brighter than its
+    surroundings.
+  - AD keys shots still flag reach 1.23-1.41 (arms fully stretched to the keys), as in r4.
+  - Repaint: AD_trace, AD_grab, WL_in, WL_top.
+  - Lead's look at AD_trace_lit: it reads as a pointing finger near the frost rather than clearly tracing. Ask
+    Jade whether it reads.

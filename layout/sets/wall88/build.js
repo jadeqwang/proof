@@ -84,7 +84,8 @@ export function build(shot, { makeCam }) {
   const rig = (mode) => {
     if (mode === 'none' || shot.beamMask) return [];
     if (mode === 'mask') return [mkSpot(0xffffff, 6)];
-    if (mode === 'lit') return [mkSpot(LIGHTS.blade.color, 30), new THREE.AmbientLight(0x30343c, 0.25)];
+    // r5 brightness pass (fix list: "WL_in_lit is nearly black"): fill 0x30343c x 0.25 -> 0x7a8498 x 2.2, a cool dark fill a painter can read; the blade stays the brightest thing
+    if (mode === 'lit') return [mkSpot(LIGHTS.blade.color, 30), new THREE.AmbientLight(0x7a8498, 2.2)];
     const d = new THREE.DirectionalLight(0xffffff, 0.9); d.position.set(0.3, 2, cam.position.z > 0 ? 3 : -3);
     return [mkSpot(0xffffff, 9), new THREE.AmbientLight(0xffffff, 1.5), d];
   };

@@ -4,6 +4,33 @@
 window, stair door and v4 fixed furniture are imported from `../attic88/layout.js` and `../attic88/v4.js`.
 
 
+## 2026-11-26: round-5 decisions (Jade's r5 answers; SUPERSEDES everything below where they differ)
+- DONE: AD_trace restaged, AD_grab kept (grip re-checked), lit brightness pass, three passes rendered and looked at.
+- **AD_grab: the wider 24 mm shot** (Jade: "Wider 24 mm, showing the grab and the paper keyboard"). Kept as built in r4b.
+  There was no alternate tight framing in shots.js (the 50 mm market-rhyme framing exists only as `grab_camera.mjs orbit`
+  search mode, never as a shot); nothing to drop.
+- **AD_trace restaged** (Jade's fix list: "the hand reads as a thumbs-up, not a tracing finger"; and BO2 -> AD_trace is now
+  a plain cut, so the finger no longer matches BO2's). The arm now uses the engine's `tip` option: the index FINGERTIP sits
+  on fernMid (`grabpose.js TRACE_R`), finger laid 80 deg to the glass, tilted 20 deg toward her right; index a little
+  bent at the tip, the other three curled, thumb resting on the middle finger. Found by `trace_search.mjs` (grid of
+  finger angle x in-glass tilt; clip check per candidate, joints, reach, fingertip-pad gap): pass, wrist flex -49 /
+  radial -7 / twist -31 (all in range; shallower finger angles of 35-65 deg all over-extend the wrist), pad 1.2 mm off
+  the glass. New camera: 35 mm from her right side above the shoulder blade, [3.05, 1.08, 0.02], fingertip at (0.6, 0.66):
+  the finger is side-on against the frosted pane, her face in profile above it, eyes on the fingertip (gaze target
+  fernMid). From straight behind (the old camera) the same finger still reads as an upright digit, so the camera move is
+  the real fix. `trace_preview.mjs` renders variants.
+- The same arm is in AD_grab (one moment): Mama's grip re-checked: hold r 0.052 (was 0.05; at 0.05 the new forearm put
+  the grip 12.5 mm into the sleeve, over the 12 mm cloth tolerance): clipcheck grip 7.8 mm into the sleeve, skin 0, pass;
+  holdcheck contact 1.7 mm, pass (0.054 failed holdcheck's 2 mm 'adjacent' test).
+- **AD_grab re-looked at**: the grab, Mama's face and the whole paper keyboard on the floor read; the finger is on the pane.
+- **Brightness (lit pass)**: ambient 0x6f7f95 x 0.45 -> x 1.5 (build.js `rig('lit')`). Mean luminance 0-255, before ->
+  after: AD_wide 27.2 -> 41.3, AD_grab 60.0 -> 72.8, AD_mote 53.6 -> 66.6, AD_piano 53.1 -> 66.4, AD_frost_look 54.4 ->
+  68.4, AD_keys 115.2 -> 131.6, AD_fern 175.6 -> 188.6, AD_trace 94.8 (old camera) -> 78.7. Inside the beam mask vs
+  outside it (after): AD_wide 91 vs 24, AD_grab 98 vs 23, AD_trace 94 vs 42, AD_mote 96 vs 24, AD_piano 92 vs 19,
+  AD_frost_look 128 vs 29: the beam (and the window) stay the brightest things.
+- Checks: clipcheck AD_trace / AD_grab / AD_mote pass; the four keys shots still fail only the old stretched-arm reach flag
+  (1.23-1.41, r4, unchanged). holdcheck AD_grab pass. Rendered all three passes; gallery and sheets rebuilt.
+
 ## 2026-11-26 round 4 — PROGRESS (checkpoint)
 - DONE: engine/clipcheck.mjs + clipdump.js (Rapier). AD_grab restaged, both standing (grabpose.js GRAB_P, solved by
   grab_search.mjs; robust to 8-15 mm / 3 deg nudges): clipcheck PASS: no window / wall / stack / body penetration, grip

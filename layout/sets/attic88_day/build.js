@@ -197,7 +197,7 @@ export function build(shot, { makeCam }) {
     if (mode === 'none' || shot.beamMask) return [];
     if (mode === 'mask') return [mkSun(0xffffff, 6)];
     if (mode === 'lit') { const p = new THREE.PointLight(SUN.sky, 0.6, 5, 1.4); p.position.set(WINDOW.x - 0.4, WINDOW.sill + 0.5, WINDOW.z);
-      return [mkSun(SUN.color, 9), p, new THREE.AmbientLight(0x6f7f95, 0.45)]; }
+      return [mkSun(SUN.color, 9), p, new THREE.AmbientLight(0x6f7f95, 1.5)]; }   // r5 brightness pass: ambient 0.45 -> 1.5 (painters read the room outside the beam; the window and the beam stay the brightest)
     const d = new THREE.DirectionalLight(0xffffff, 1.0); d.position.set(-1, 3, 2);
     return [mkSun(0xffffff, 7), new THREE.AmbientLight(0xffffff, 1.5), d];
   };
