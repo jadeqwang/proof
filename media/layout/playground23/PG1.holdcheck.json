@@ -1,0 +1,30 @@
+[
+ {
+  "object": "the girl (4)",
+  "who": "jade.L relax",
+  "contact_mm": 0.5,
+  "penetration_mm": 0,
+  "deepest_part": "ring1",
+  "soft_mm": 0,
+  "drop_cm": 0,
+  "supports": [],
+  "support_gap_mm": null,
+  "fixed": true,
+  "pass": true,
+  "flags": []
+ },
+ {
+  "object": "the boy (7)",
+  "who": "dad.R flat",
+  "contact_mm": 1.6,
+  "penetration_mm": 0,
+  "deepest_part": "middle1",
+  "soft_mm": 0,
+  "drop_cm": 0,
+  "supports": [],
+  "support_gap_mm": null,
+  "fixed": true,
+  "pass": true,
+  "flags": []
+ }
+]

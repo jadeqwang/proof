@@ -1,51 +1,62 @@
-// PLAYGROUND, AUSTIN, 2023. SINGLE SOURCE OF TRUTH (metres, y up, ground at y = 0).
-// The last bar of the drum coda and the final shot. Very small: glass, low sun through it, a family of three
-// reflected as silhouettes, one mote.
+// PLAYGROUND, AUSTIN, 2023. SINGLE SOURCE OF TRUTH (metres, y up, floor at y = 0).
+// r4 rebuild (2026-11-26): the playground is an indoor children's play centre in Austin (Jade: "the playground is Catch
+// Air in Austin"; "most of catch air is far from windows, it's all indoor overhead lights, and it's all space themed").
+// Generic and UNBRANDED: no names, signs, logos or brand marks anywhere (it is a real business).
 //
-// The glass is the playground's wooden clubhouse, which has a big acrylic FRONT PANE and a smaller BACK WINDOW.
-// The low sun is behind the clubhouse. It comes through the back window and crosses the dim, dusty room as one
-// shaft: the beam. The family stands in front, in the clubhouse's own shade, looking in through the front pane. Behind
-// them the playground is in full sun, so their reflections in the front pane are silhouettes. The mote is in the beam.
-// (A beam entering by the same pane you look through cannot read as a diagonal: every sight line starts inside it.
-// Hence two panes: the sun's and the family's.)
-//   z = 0 is the front pane. z > 0 = outside, the family. z < 0 = inside. z = -2.6 = back wall with the sun's window.
-//   x: -2.2 = left wall ... +1.0 = right wall. A camera looking at the pane (toward -z) has -x frame-left.
+// Jade (r4): "(b) would be good, and instead of looking at reflections (which is a bit boring to look at), we can have me
+// and my dad offering a hand to the 2 kids getting into a play space shuttle"; "the shot for the space shuttle should
+// be from behind so we don't look closely at the kids faces".
+//
+// The room: deep inside a big dark hall (black open-web joists, black deck), lit by round LED high-bay fixtures; padded
+// vinyl floor printed with orbits and planets; a space mural on the back wall; a three-level soft-play structure
+// behind; hanging planets. In front of it a soft-play SPACE SHUTTLE lies on the floor, nose to the right, with two
+// hatches on the side facing the camera. The girl (4) climbs into the front hatch with Jade's hand; the boy (7) is
+// about to climb into the rear hatch with Dad's hand. The cameras are behind them (no child's face is ever readable).
+//
+// THE BEAM (Jade's option b): a theatrical accent spot clamped high on a joist above and beyond the shuttle's nose,
+// aimed down-left onto the shuttle's tail fin. In the dusty air its cone reads as a shaft; one mote hangs in it above
+// the shuttle. On PG2 (Jade's eye-line, she looks up from the girl to the mote) the shaft crosses the frame from upper
+// right to lower left at the attic's 40 degrees, the mote at the centre (attic88_day RHYME).
+//   x: right on screen (cameras look toward -z).  z > 0: toward the cameras.  The shuttle's axis is at z = -1.45.
 const rad = (d) => (d * Math.PI) / 180;
 
-export const HOUSE = { x0: -2.2, x1: 1.0, z0: -2.6, z1: 0.0, h: 2.3, wallT: 0.06, door: { z0: -2.3, z1: -1.5, h: 1.5 } };   // doorway in the LEFT wall (shade side)
-export const PANE = { x0: -0.75, x1: 0.75, y0: 0.7, y1: 1.9, z: 0.0, frame: 0.06 };          // the family's pane
-export const BACKWIN = { x0: 0.1, x1: 0.7, y0: 1.1, y1: 1.9, z: -2.6, frame: 0.05 };         // the sun's pane
-export const BENCH = { x0: -2.15, x1: -1.2, z0: -1.3, z1: -0.95, h: 0.32 };                  // a low bench on the left wall
+export const HALL = { x0: -8, x1: 8, z0: -9, z1: 6, joistY: 5.0, deckY: 5.8, joistDZ: 1.5 };
 
-// ---------------------------------------------------------------- the family (pelvis x, z; all face the glass)
-// ASSUMPTION: the family is adult Jade, her partner, and their child, who in 2023 is a toddler carried on the
-// partner's arm, so that all three faces are at pane height.
-export const FAMILY = { jade: [0.62, 0.95], partner: [-0.1, 1.02], toddler: [0.16, 1.03, 0.9] };
+// ---------------------------------------------------------------- the play shuttle (soft play: foam over a frame, vinyl skin)
+// Fuselage: a cylinder along x, radius R, on a low black cradle; nose cone to +x; tail fin and delta wings at the rear.
+// Two hatches on the +z side (kid height): the sill is the cabin deck inside. Each has a padded step in front.
+export const SHUTTLE = { y: 0.74, z: -1.45, r: 0.64, x0: -1.75, x1: 1.45, nose: 0.75, wall: 0.06, deck: 0.42,
+  fin: { x0: -1.75, x1: -1.05, top: 2.2, t: 0.12 }, wing: { x0: -1.75, x1: -0.95, y: 0.3, span: 0.95, t: 0.1 } };
+export const HATCHES = { front: { x0: 0.25, x1: 0.85, y0: 0.42, y1: 1.08 }, rear: { x0: -0.95, x1: -0.35, y0: 0.42, y1: 1.08 } };
+export const STEP = { h: 0.22, z0: -0.92, z1: -0.5 };          // padded steps, the width of each hatch
 
-// ---------------------------------------------------------------- the sun and the beam
-// Late afternoon, altitude 25 deg, behind the clubhouse. In plan the light travels toward the family (+z) and 24 deg
-// to their left (-x). Chosen so that (1) the shaft lands on the floor and the foot of the front wall and never leaves
-// through the front pane, and (2) on PG2 (the eye-line frame) it crosses the screen from upper right to lower left
-// about 40 deg below the horizontal: the attic's diagonal (attic88_day RHYME).
-export const SUN = { altitude: 25, off_normal: 24, color: 0xffd9a0, sky: 0xbfd0e6, time: 'about two hours before sunset' };
-const ca = Math.cos(rad(SUN.altitude));
-export const SUN_DIR = [-ca * Math.sin(rad(SUN.off_normal)), -Math.sin(rad(SUN.altitude)), ca * Math.cos(rad(SUN.off_normal))];   // direction of TRAVEL
-const W = BACKWIN;
-const rect = [[W.x1, W.y1, W.z], [W.x0, W.y1, W.z], [W.x0, W.y0, W.z], [W.x1, W.y0, W.z]];   // TL, TR, BR, BL seen from outside the back wall
-export const BEAM = { name: 'sun', kind: 'low sun through the clubhouse back window', dir: SUN_DIR, aperture: rect, centre: [(W.x0 + W.x1) / 2, (W.y0 + W.y1) / 2, W.z],
-  clip: [{ name: 'floor', n: [0, -1, 0], d: 0 }, { name: 'left wall', n: [-1, 0, 0], d: -HOUSE.x0 }, { name: 'front wall', n: [0, 0, 1], d: HOUSE.z1 }] };
-export const beamFrom = (p, t) => p.map((c, i) => c + SUN_DIR[i] * t);
+// ---------------------------------------------------------------- the people (pelvis x, z). Seen from behind.
+// The girl (4, 1.09 m) stands on the front step, about to climb in, her right hand back in Jade's hand.
+// The boy (7, 1.32 m) stands on the rear step, right hand on the hatch frame, left hand back in Dad's open right hand.
+// WHO HELPS WHOM was chosen for the composition (flagged): Jade is nearer the camera-right and the nose; the smaller
+// child, who needs the step, is hers; Dad (67) helps the boy, who needs less lift.
+export const PEOPLE = { girl: [0.55, -0.66], boy: [-0.62, -0.68], jade: [0.92, -0.25], dad: [-0.97, -0.3] };
+// where the hands meet (the CHILD's palm centre): the child's hand hangs a little back and out, palm turned back; the
+// adult's open hand comes from behind and takes it palm to palm (adult palm facing forward, fingers down round it)
+export const HANDS_MEET = { jade_girl: [0.7, 0.78, -0.5], dad_boy: [-0.8, 0.88, -0.56] };
+export const PALM_GAP = { jade: 0.057, dad: 0.079 };   // adult hand-centre offset behind the child's palm centre (z, m): tuned with holdcheck (contact, no penetration)
 
-// ---------------------------------------------------------------- the mote
-// One seeded field for the set; the hero mote is fixed. It hangs 2.3 m down the beam, 0.2 m under the beam's top
-// face and nearer the front pane than the reflections' virtual images. It drifts up, out through the top of the light
-// (4:24.1, -2sm), and the gold dotted line continues along `after` and stops.
-const hero = beamFrom([0.4, 1.7, W.z], 2.3);
-export const MOTE = { seed: 2023, count: 400, hero, exit: [hero[0] + 0.05, hero[1] + 0.3, hero[2]], after: [hero[0] + 0.12, hero[1] + 0.5, hero[2]] };
+// ---------------------------------------------------------------- the beam: an accent spot onto the shuttle's tail fin
+export const SPOT = { at: [3.25, 4.2, -2.5], halfAngle: 2.5, color: 0xfff1d8, kind: 'theatrical LED accent spot on a drop pipe from a joist, aimed at the play shuttle' };
+export const MOTE_HERO = [0.1, 1.75, -1.8];
+export const SPOT_DIR = (() => { const d = MOTE_HERO.map((v, i) => v - SPOT.at[i]); const l = Math.hypot(...d); return d.map((v) => v / l); })();
+export const MOTE = { seed: 2023, count: 400, hero: MOTE_HERO,
+  exit: [MOTE_HERO[0] + 0.06, MOTE_HERO[1] + 0.32, MOTE_HERO[2] + 0.05], after: [MOTE_HERO[0] + 0.14, MOTE_HERO[1] + 0.52, MOTE_HERO[2] + 0.08] };
 
-// ---------------------------------------------------------------- outside
-export const SWING = { x: 2.6, z: 3.6, w: 2.4, h: 2.2 };
+// ---------------------------------------------------------------- the room's light: round LED high-bays on a 3 m grid
+export const FIXTURES = (() => { const out = []; for (let x = -6; x <= 6; x += 3) for (let z = -7.5; z <= 4.5; z += 3) out.push([x, HALL.joistY - 0.35, z]); return out; })();
 export const LIGHTS = {
-  sun: { kind: 'low sun behind the clubhouse, through its back window (parallel)', dir: SUN_DIR, color: SUN.color },
-  sky: { kind: 'open sky (ambient); the clubhouse interior gets it only through the two panes and the doorway', color: SUN.sky },
+  highbays: { kind: 'round LED high-bay fixtures (UFO type), cool white, on a 3 m grid under the joists; the room light', color: 0xf2f6ff },
+  spot: { kind: SPOT.kind, color: SPOT.color },
 };
+
+// ---------------------------------------------------------------- the soft-play structure behind (three levels)
+export const STRUCT = { x0: -6.0, x1: 4.5, z0: -7.6, z1: -4.0, bay: 1.5, levels: [0, 1.2, 2.4], roof: 3.6 };
+// hanging planets (centre, radius, skin): the violet one hangs left of the shuttle; none is in the beam
+export const PLANETS = [{ at: [-3.6, 3.4, -2.6], r: 0.6, skin: 'violet' }, { at: [2.6, 3.7, -5.0], r: 0.5, skin: 'ringed', ring: true }, { at: [-0.6, 4.0, -6.0], r: 0.35, skin: 'moon' }];
+export { rad };

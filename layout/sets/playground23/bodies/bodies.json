@@ -1,0 +1,120 @@
+{
+ "_note": "Set-local body specs for playground23 (make_bodies.py in this folder; same format as layout/assets/bodies/bodies.json). Additions: race asian_caucasian (0.5 / 0.5 / 0); targets = extra MakeHuman targets (name: weight) on top of the macros; per-body hairAssets (null = built from the scalp); hairBuild crop = a short cut from the scalp (side / top / lift thickness in ipd, part, front = hairline raised in ipd).",
+ "hairAssets": {
+  "kidbob": "long01",
+  "bob": "bob02",
+  "long": "long01",
+  "short": "short02",
+  "pigtails": "braid01"
+ },
+ "bodies": [
+  {
+   "id": "girl4",
+   "sex": "f",
+   "age": 4,
+   "h": 1.09,
+   "weight": 0.55,
+   "muscle": 0.5,
+   "race": "asian_caucasian",
+   "face": "drawn",
+   "hair": [
+    "pigtails"
+   ],
+   "skirt": true,
+   "targets": {
+    "head-round": 0.3,
+    "l-cheek-volume-incr": 0.4,
+    "r-cheek-volume-incr": 0.4
+   },
+   "_who": "the girl, 4 (half Chinese, half European); round little kid, big round head; warm brown curly hair in two Dutch braids into low pigtails (built from the scalp: close hair with a centre part + two braided chains into low pigtails with curly ends; the engine colours them); a dress",
+   "hairAssets": {
+    "pigtails": null
+   },
+   "hairBuild": {
+    "pigtails": {
+     "crop": {
+      "side": 0.06,
+      "top": 0.05,
+      "part": "centre",
+      "edge": 0.3
+     },
+     "dutch": {
+      "radius": 0.3
+     }
+    }
+   }
+  },
+  {
+   "id": "boy7",
+   "sex": "m",
+   "age": 6.75,
+   "h": 1.32,
+   "weight": 0.42,
+   "muscle": 0.45,
+   "race": "asian_caucasian",
+   "face": "drawn",
+   "hair": [
+    "short"
+   ],
+   "hairAssets": {
+    "short": null
+   },
+   "hairBuild": {
+    "short": {
+     "crop": {
+      "side": 0.06,
+      "top": 0.1,
+      "lift": 0.02,
+      "front": 0.0,
+      "edge": 0.2
+     }
+    }
+   },
+   "targets": {
+    "head-scale-vert-incr": 1.15,
+    "head-scale-horiz-incr": 1.1,
+    "head-scale-depth-incr": 1.1,
+    "head-age-decr": 0.6,
+    "head-round": 0.5,
+    "head-fat-incr": 0.25,
+    "l-cheek-volume-incr": 0.9,
+    "r-cheek-volume-incr": 0.9,
+    "chin-bones-decr": 0.5,
+    "chin-height-decr": 0.4,
+    "chin-prominent-decr": 0.3
+   },
+   "_who": "the boy, 7, 1.32 m (99th percentile): a 7-year-old's proportions scaled up, slim; head ~20% larger than typical for 1.32 m (about 5.1 heads tall); soft round face, full cheeks, no jaw angle, short soft chin; half East Asian, half white; very dark short neat cut (~1 inch), forehead visible, no fringe; long-sleeved crew top and trousers (garment_long)"
+  },
+  {
+   "id": "dad23",
+   "sex": "m",
+   "age": 67,
+   "h": 1.72,
+   "weight": 0.5,
+   "muscle": 0.4,
+   "race": "asian",
+   "face": "drawn",
+   "hair": [
+    "short"
+   ],
+   "hairAssets": {
+    "short": null
+   },
+   "hairBuild": {
+    "short": {
+     "crop": {
+      "side": 0.07,
+      "top": 0.2,
+      "lift": 0.25,
+      "part": "left",
+      "front": 0.0
+     }
+    }
+   },
+   "targets": {
+    "head-fat-incr": 0.3
+   },
+   "_who": "Dad in 2023, 67, Chinese; the dad body (37, slim) older and a little fuller in face and body; near-black full thick hair swept up and back with a side part on his left, lift on top, sides short; long-sleeved top and trousers"
+  }
+ ]
+}
