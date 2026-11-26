@@ -4,7 +4,9 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { CAST, PROP } from '../../engine/mannequin.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, splitAtTop, applyBeamMask } from '../_beam.js';
-import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
+import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL_ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
+import { ART_TEX, alphabetCard, clockFace, SW_PRINT, decalMesh } from './art.js';
+import { artPlane } from '../_art.js';
 
 // set-local extra only; little Jade (7) = `jade7`, Mama = `mama91` and `dad` come from ../_cast.js
 addCast({
@@ -46,9 +48,49 @@ function room() {
   return g;
 }
 
+// r4 (2026-11-26): the meeting table as a real US school activity table of about 1991 (the Virco / Krueger kind):
+// a 1-1/8" (29 mm) particleboard top faced with almond woodgrain laminate, square corners eased to a 25 mm radius,
+// wrapped in a dark brown vinyl T-mould edge band; a steel channel apron 75 mm deep, set 45 mm in from the edge, in
+// almond enamel; four height-adjustable legs: a 32 mm square almond steel upper tube with a row of adjustment holes,
+// a 25 mm chrome round insert below it, a black nylon glide; a steel corner bracket at each leg. The top surface stays
+// at TABLE.h; its footprint stays TABLE.w x TABLE.d.
+const TBL = { top: 0.029, band: 0.004, r: 0.025, apronH: 0.075, apronIn: 0.045, apronT: 0.018, leg: 0.032, legIn: 0.07, insertR: 0.0115, sleeveLow: 0.36, glideH: 0.014,
+  LAMINATE: { grey: 0.8, col: 0xd9caa6, recvShadowLine: true }, BAND: { grey: 0.3, col: 0x4a3626 }, CORE: { grey: 0.62, col: 0xb09a74 },
+  ENAMEL: { grey: 0.66, col: 0xc2b698 }, CHROME: { grey: 0.82, col: 0xc8ccd0 }, GLIDE: { grey: 0.12, col: 0x1c1c1c }, HOLE: { grey: 0.15, col: 0x2a2620 } };
+function roundRect(w, d, r) { const s = new THREE.Shape(), x = w / 2, z = d / 2;
+  s.moveTo(-x + r, -z); s.lineTo(x - r, -z); s.quadraticCurveTo(x, -z, x, -z + r); s.lineTo(x, z - r); s.quadraticCurveTo(x, z, x - r, z);
+  s.lineTo(-x + r, z); s.quadraticCurveTo(-x, z, -x, z - r); s.lineTo(-x, -z + r); s.quadraticCurveTo(-x, -z, -x + r, -z); return s; }
+function schoolTable(T) {
+  const g = new THREE.Group(), K = TBL, y1 = T.h, y0 = T.h - K.top;
+  const slabGeo = (shape, h) => { const geo = new THREE.ExtrudeGeometry(shape, { depth: h, bevelEnabled: false, curveSegments: 6 }); geo.rotateX(Math.PI / 2); return geo; };   // shape (x, z) -> extruded down from y = 0
+  // laminate face (a skin on the core), the particleboard core, and the T-mould band round the edge, 1 mm proud of the top
+  const face = mk(slabGeo(roundRect(T.w - 2 * K.band, T.d - 2 * K.band, K.r), 0.0012), K.LAMINATE); face.position.set(T.cx, y1, T.cz); g.add(face);
+  const core = mk(slabGeo(roundRect(T.w - 2 * K.band, T.d - 2 * K.band, K.r), K.top - 0.0012), K.CORE); core.position.set(T.cx, y1 - 0.0012, T.cz); g.add(core);
+  { const ring = roundRect(T.w, T.d, K.r + K.band); ring.holes.push(roundRect(T.w - 2 * K.band, T.d - 2 * K.band, K.r));
+    const b = mk(slabGeo(ring, K.top + 0.001), K.BAND); b.position.set(T.cx, y1 + 0.001, T.cz); g.add(b); }
+  // apron: four steel channels under the top (a vertical web with a short return flange at the bottom)
+  const ax = T.w / 2 - K.apronIn, az = T.d / 2 - K.apronIn, ay = y0 - K.apronH / 2;
+  for (const s of [-1, 1]) {
+    g.add(box(2 * ax, K.apronH, 0.0025, K.ENAMEL, [T.cx, ay, T.cz + s * az])); g.add(box(2 * ax, 0.0025, K.apronT, K.ENAMEL, [T.cx, y0 - K.apronH + 0.00125, T.cz + s * (az - K.apronT / 2)]));
+    g.add(box(0.0025, K.apronH, 2 * az, K.ENAMEL, [T.cx + s * ax, ay, T.cz])); g.add(box(K.apronT, 0.0025, 2 * az, K.ENAMEL, [T.cx + s * (ax - K.apronT / 2), y0 - K.apronH + 0.00125, T.cz]));
+  }
+  // legs, inside the apron corners
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+    const lx = T.cx + sx * (T.w / 2 - K.legIn), lz = T.cz + sz * (T.d / 2 - K.legIn);
+    g.add(box(K.leg, y0 - K.sleeveLow, K.leg, K.ENAMEL, [lx, (y0 + K.sleeveLow) / 2, lz]));                       // upper square tube
+    for (let k = 0; k < 6; k++) g.add(box(0.007, 0.007, 0.0015, K.HOLE, [lx, K.sleeveLow + 0.05 + k * 0.025, lz + sz * (K.leg / 2 + 0.0004)]));   // adjustment holes (outer face)
+    g.add(box(K.leg + 0.004, 0.012, K.leg + 0.004, K.ENAMEL, [lx, K.sleeveLow + 0.006, lz]));                     // collar at the sleeve's foot
+    g.add(cyl(K.insertR, K.insertR, K.sleeveLow - K.glideH + 0.02, K.CHROME, [lx, (K.sleeveLow + K.glideH) / 2, lz], null, 16));   // chrome insert
+    g.add(cyl(0.017, 0.019, K.glideH, K.GLIDE, [lx, K.glideH / 2, lz], null, 16));                                 // glide
+    // corner bracket: a steel plate bolted across the apron corner behind the leg
+    const br = box(0.11, K.apronH * 0.8, 0.003, K.ENAMEL, [lx - sx * 0.016, ay, lz - sz * 0.016]); br.rotation.y = sx * sz > 0 ? Math.PI / 4 : -Math.PI / 4; g.add(br);
+  }
+  return tag(g, 'meeting table');
+}
+
 function furniture() {
   const g = new THREE.Group(); const T = TABLE;
-  g.add(tableRect(T.cx, T.cz, T.w, T.d, T.h, { look: STEEL, topLook: LAM, top: 0.03, leg: 0.04, label: 'meeting table' }));
+  g.add(schoolTable(T));
   const CH = { grey: 0.4, col: 0x4a5a6a };
   g.add(chair(SEATS.jade[0], SEATS.jade[1] - 0.03, 0, { look: CH, label: "little Jade's chair" }));
   g.add(chair(SEATS.socialWorker[0], SEATS.socialWorker[1] + 0.03, 180, { look: CH, label: "social worker's chair" }));
@@ -68,6 +110,7 @@ function furniture() {
     g.add(tag(grp, "social worker's desk")); g.add(tag(box(0.3, 0.12, 0.38, { grey: 0.7, col: 0xc8c0a8 }, [D.cx + 0.1, D.h + 0.06, D.cz + 0.2]), 'electric typewriter'));
     g.add(tag(box(0.2, 0.07, 0.22, { grey: 0.65, col: 0xb8b09a }, [D.cx + 0.05, D.h + 0.035, D.cz - 0.3]), 'telephone')); }
   g.add(tag(cyl(CLOCK.r, CLOCK.r, 0.04, { grey: 0.9, col: 0xe8e8e0 }, [CLOCK.x, CLOCK.y, ROOM.z0 + 0.02], [90, 0, 0]), 'wall clock'));
+  { const f = mk(new THREE.CircleGeometry(CLOCK.r * 0.97, 48), { noCast: true, ...artLookOf(clockFace()) }); f.position.set(CLOCK.x, CLOCK.y, ROOM.z0 + 0.0405); g.add(tag(f, 'wall clock')); }   // 2026-11-26: fixed face
   g.add(wallArt());
   // on the table: the social worker's clipboard and pen, a pencil cup
   { const c = new THREE.Group(); c.position.set(CLIPBOARD.at[0], TOP, CLIPBOARD.at[1]); c.rotation.y = rad(CLIPBOARD.yaw);
@@ -90,7 +133,10 @@ function handprint(s) {
   const th = mk(new THREE.CapsuleGeometry(0.08 * s, 0.32 * s, 4, 8), { grey: 0.5, col: 0x8a5a3a }); th.position.set(-0.36 * s, -0.22 * s, 0.003); th.rotation.z = 1.1; g.add(th);   // thumb = head
   return g;
 }
-function picture(w, h, kind, k) {
+const artLookOf = (a) => ({ grey: 0.9, col: 0xeeeeee, art: a.art, artGrey: a.artGrey, artEdge: a.artEdge });
+// 2026-11-26: a picture with a fixed image (layout/assets/art/office91) is that image on a plane; without one, the old shapes
+function picture(w, h, kind, k, img) {
+  if (img && ART_TEX[img]) { const m = artPlane(ART_TEX[img], w, h); const g = new THREE.Group(); g.add(m); return g; }
   const g = new THREE.Group(); const paper = kind === 'turkey' ? PAPERS[k % PAPERS.length] : 0xf4f0e6;
   g.add(mk(new THREE.PlaneGeometry(w, h), { grey: kind === 'turkey' ? 0.72 : 0.92, col: paper }));
   if (kind === 'turkey') { const t = handprint(Math.min(w, h) * 0.75); t.position.z = 0.0008; g.add(t); }
@@ -104,16 +150,14 @@ function wallArt() {
   const g = new THREE.Group(), z = ROOM.z0 + 0.003, put = (o, x, y, zz = z) => { o.position.set(x, y, zz); return o; };
   // the alphabet strip: 26 cards (an upper and lower case letter with a small picture each); the letters are the cards' print
   const A = ALPHA, cw = (A.x1 - A.x0) / A.n;
-  for (let k = 0; k < A.n; k++) { const c = new THREE.Group(); c.add(mk(new THREE.PlaneGeometry(cw * 0.94, A.h), { grey: 0.94, col: A.card }));
-    const L = mk(new THREE.PlaneGeometry(cw * 0.42, A.h * 0.42), { grey: 0.2, col: [0xb03030, 0x2a5a9a, 0x2a7a3a][k % 3] }); L.position.set(-cw * 0.2, A.h * 0.16, 0.0006); c.add(L);
-    const P = mk(new THREE.CircleGeometry(A.h * 0.14, 12), { grey: 0.6, col: 0xd09040 }); P.position.set(cw * 0.22, -A.h * 0.2, 0.0006); c.add(P);
+  for (let k = 0; k < A.n; k++) { const c = new THREE.Group(); c.add(alphabetCard(k, cw * 0.94, A.h));   // 2026-11-26: fixed cards (alphabet_cards.png)
     g.add(tag(put(c, A.x0 + (k + 0.5) * cw, A.y), 'alphabet strip (Aa to Zz cards)')); }
   // the cork board, with a scalloped paper border
   { const B = BOARD, w = B.x1 - B.x0, h = B.y1 - B.y0, bd = new THREE.Group();
     bd.add(box(w + 2 * B.frame, h + 2 * B.frame, 0.012, { grey: 0.55, col: 0xc04040 }, [0, 0, 0.006])); bd.add(box(w, h, 0.014, { grey: 0.62, col: 0xb89a6a }, [0, 0, 0.007]));
     g.add(tag(put(bd, (B.x0 + B.x1) / 2, (B.y0 + B.y1) / 2, ROOM.z0), 'bulletin board (cork, scalloped border)')); }
-  ART.forEach(([x, y, w, h, kind], k) => { const onBoard = x > BOARD.x0 && x < BOARD.x1 && y > BOARD.y0 && y < BOARD.y1;
-    g.add(tag(put(picture(w, h, kind, k), x, y, ROOM.z0 + (onBoard ? 0.016 : 0.003)), kind === 'turkey' ? 'handprint turkey (child art)' : "child's crayon drawing")); });
+  ART.forEach(([x, y, w, h, kind, img], k) => { const onBoard = x > BOARD.x0 && x < BOARD.x1 && y > BOARD.y0 && y < BOARD.y1;
+    g.add(tag(put(picture(w, h, kind, k, img), x, y, ROOM.z0 + (onBoard ? 0.016 : 0.003)), kind === 'turkey' ? 'handprint turkey (child art)' : "child's crayon drawing")); });
   return g;
 }
 function corridor() {
@@ -135,7 +179,7 @@ function corridor() {
   { const B = HALL_BOARD, w = B.z1 - B.z0, h = B.y1 - B.y0, bd = new THREE.Group();
     bd.add(box(0.012, h + 0.05, w + 0.05, { grey: 0.55, col: 0x3a5a9a }, [0, 0, 0])); bd.add(box(0.014, h, w, { grey: 0.62, col: 0xb89a6a }, [-0.002, 0, 0]));
     bd.position.set(H.x1 - 0.008, (B.y0 + B.y1) / 2, (B.z0 + B.z1) / 2); g.add(tag(bd, 'corridor bulletin board (class art)'));
-    for (let k = 0; k < 8; k++) { const p = picture(0.24, 0.2, k % 3 === 0 ? 'turkey' : 'drawing', k + 3); p.rotation.y = -Math.PI / 2;
+    for (let k = 0; k < 8; k++) { const p = picture(0.24, 0.2, k % 3 === 0 ? 'turkey' : 'drawing', k + 3, HALL_ART[k]); p.rotation.y = -Math.PI / 2;
       p.position.set(H.x1 - 0.018, B.y0 + 0.2 + (k % 2) * 0.38, B.z0 + 0.2 + Math.floor(k / 2) * 0.37); g.add(tag(p, 'class art (corridor)')); } }
   return g;
 }
@@ -164,7 +208,11 @@ export function build(shot, { makeCam }) {
   fixLeftHands(figs);
   for (const [who, f] of Object.entries(figs)) { if (CAST[who].undrawn) undraw(f); root.add(f); }
   // the sweatshirt print: the thing her eyes rest on
-  if (figs.sw) { const P = figs.sw.userData.P, pr = PROP.adult, H = P.H; const m = box(0.2, 0.13, 0.004, { grey: 0.88, col: 0xe8e0c8 });
+  if (figs.sw && SW_PRINT.tex) {   // 2026-11-26: the canonical print (logos/sw_tree_print.png, art.js), a flat decal on the chest; to move it onto a body mesh, change only place()
+    const P = figs.sw.userData.P, pr = PROP.adult, H = P.H, c0 = P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.018).addScaledVector(P.cy, 0.0);
+    const m = decalMesh(SW_PRINT.tex, (s, t) => c0.clone().addScaledVector(P.cx, (s - 0.5) * SW_PRINT.w).addScaledVector(P.cy, (t - 0.5) * SW_PRINT.h), { grey: 0.6, col: 0x7a9a8a });
+    m.userData.who = 'sw'; root.add(tag(m, 'sweatshirt print (Christmas tree, cracked)')); }
+  else if (figs.sw) { const P = figs.sw.userData.P, pr = PROP.adult, H = P.H; const m = box(0.2, 0.13, 0.004, { grey: 0.88, col: 0xe8e0c8 });
     m.position.copy(P.chest.clone().addScaledVector(P.cz, pr.chestD * H * 0.5 - 0.022).addScaledVector(P.cy, 0.02)); m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(P.cx, P.cy, P.cz)); root.add(tag(m, 'sweatshirt print')); }
   // the little red dictionary in Mom's hands, open, pages fanning under her thumb
   if (figs.mama91) { const d = new THREE.Group(); d.position.set(...DICT.at); d.rotation.set(rad(-50), 0, 0);

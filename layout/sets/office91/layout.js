@@ -50,7 +50,11 @@ export const ANXIOUS = cell(HG.shortRow, HG.shortCount - 1);  // the short row's
 // r3 (Jade 2026-11-25, reverses the r2 choice): HER finger points at the EMPTY SPACE where a seventh face would be (the
 // tip on the gap's centre, a touch toward her side); the adult's finger then lands on the CLOSEST face to that space
 // (ANXIOUS, its far edge) and reads its label.
-export const JADE_TIP = [GAP[0], GAP[1], GAP[2] - 0.003];
+// r4 (Jade, BO1/BO2: "the center/top of the fingertip should be on the spot where there isn't a dot. pretend there's an
+// invisible dot in that space"): JADE_TIP is now the GAP itself, the point her index fingertip's PAD rests on (the
+// centre of the invisible seventh face). shots.js places the fingertip with the engine's `tip` placement, the tip's
+// centre one pad radius above the page, so the pad touches the page exactly on the gap.
+export const JADE_TIP = [GAP[0], GAP[1], GAP[2]];
 export const SW_TIP = [ANXIOUS[0], ANXIOUS[1], ANXIOUS[2] + 0.007];
 // r3: the row of six carries some of the larger-looking faces (SCARED, EXCITED, UPSET have marks outside the circle;
 // they swapped places with CALM, NERVOUS, THANKFUL). Ported by hand to tools/kf/handout.py LABELS.
@@ -85,13 +89,18 @@ export const CLOCK = { x: 0.95, y: 2.1, r: 0.15 };                              
 // face (x < -0.72, y 0.78..1.22) for the toner labels.
 export const ALPHA = { x0: -1.66, x1: 1.66, y: 1.47, h: 0.15, n: 26, card: 0xf8f4e8 };
 export const BOARD = { x0: -0.2, x1: 0.78, y0: 0.82, y1: 1.36, frame: 0.025 };                  // cork board right of her head (frame-right)
-// children's pictures: [cx, cy, w, h, kind]; kind = 'turkey' (handprint turkey on construction paper) | 'drawing'
+// children's pictures: [cx, cy, w, h, kind, image]; kind = 'turkey' (handprint turkey on construction paper) | 'drawing';
+// image = layout/assets/art/office91/<image>.png (2026-11-26: fixed textures, every picture INVENTED, flagged in NOTES).
+// The board holds the five pictures the r3 painting PC1_v1 showed (house and sun, a turkey, a rainbow; a stick family,
+// pines and a snowman), in its arrangement; it had seven blank ones before.
 export const ART = [
-  [-1.38, 1.30, 0.21, 0.16, 'turkey'], [-1.12, 1.31, 0.21, 0.16, 'turkey'], [-0.86, 1.30, 0.21, 0.16, 'turkey'],   // a row of three turkeys, upper left
-  [-0.06, 1.18, 0.2, 0.26, 'drawing'], [0.17, 1.2, 0.22, 0.17, 'turkey'], [0.4, 1.17, 0.21, 0.27, 'drawing'], [0.63, 1.2, 0.2, 0.15, 'turkey'],   // on the board
-  [0.03, 0.96, 0.22, 0.17, 'drawing'], [0.3, 0.96, 0.24, 0.18, 'drawing'], [0.58, 0.97, 0.2, 0.17, 'drawing'],
-  [1.05, 1.15, 0.22, 0.28, 'drawing'], [1.05, 0.86, 0.22, 0.17, 'turkey'],
+  [-1.38, 1.30, 0.21, 0.16, 'turkey', 'turkey_1'], [-1.12, 1.31, 0.21, 0.16, 'turkey', 'turkey_2'], [-0.86, 1.30, 0.21, 0.16, 'turkey', 'turkey_3'],   // a row of three turkeys, upper left
+  [-0.06, 1.21, 0.2, 0.24, 'drawing', 'board_house'], [0.27, 1.22, 0.22, 0.17, 'turkey', 'turkey_4'], [0.6, 1.21, 0.2, 0.24, 'drawing', 'board_rainbow'],   // on the board, top row
+  [0.1, 0.95, 0.28, 0.19, 'drawing', 'board_family'], [0.5, 0.95, 0.28, 0.19, 'drawing', 'board_snowman'],                                           // on the board, bottom row
+  [1.05, 1.15, 0.22, 0.28, 'drawing', 'drawing_2'], [1.05, 0.86, 0.22, 0.17, 'turkey', 'turkey_6'],
 ];
+// the corridor board's eight pictures (a later school year, about 1993-94): image names, in build order
+export const HALL_ART = ['corridor_turkey_1', 'corridor_drawing_1', 'corridor_drawing_2', 'corridor_turkey_2', 'corridor_drawing_3', 'corridor_drawing_4', 'corridor_turkey_3', 'corridor_drawing_5'];
 export const POSTER = null;   // r3: the poster gave way to the board
 
 export const LIGHTS = { tube: { kind: BEAM.kind, color: TUBE.color }, amb: { kind: 'bounce off the table and carpet', color: 0x7a8088 } };

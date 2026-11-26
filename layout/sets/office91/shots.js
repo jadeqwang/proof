@@ -12,7 +12,11 @@ const dangle = { seatH: CHAIR.hipChild, ankleL: [0.07, -0.3, 0.25], ankleR: [0.0
 const jade = (o = {}) => ({ at: SEATS.jade, legs: 'seat', legOpts: dangle, yaw: 0, spine: { bend: 8 }, head: { look: [0.0, 0.86, 0.3] },   // eyes on the sweatshirt and the table, never the face
   L: { to: [HX + 0.17, TOP + 0.03, -0.28], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [HX - 0.17, TOP + 0.03, -0.28], hand: 'relax', palm: 'down', fingers: 'fwd' }, ...o });
 const jadeRead = (o = {}) => jade({ spine: { bend: 20 }, head: { look: 'handout' }, ...o });
-const jadePoint = (o = {}) => jadeRead({ R: pointAt(JADE_TIP, [0.1, -0.5, 0.86], 0.122, 'R'), head: { look: 'gap' }, ...o });
+// r4: her index fingertip's pad ON the gap (JADE_TIP): `tip` puts the fingertip centre there, raised by the child's
+// distal pad radius (0.040 hand units x 1.097 child finger scale x 0.122 m hand = 5.4 mm), so the pad meets the page on
+// the gap. The finger comes down at 30 deg, so the lowest point of the finger is that pad. She looks at the gap.
+const JADE_PAD_R = 0.0054;
+const jadePoint = (o = {}) => jadeRead({ R: { tip: { finger: 'index', at: JADE_TIP, off: [0, JADE_PAD_R, 0] }, hand: 'point', fingers: [0.1, -0.5, 0.86], palm: [0, -1, 0] }, head: { look: 'gap' }, ...o });
 const sw = (o = {}) => ({ at: SEATS.socialWorker, legs: 'seat', legOpts: { seatH: CHAIR.hipAdult }, yaw: 180, spine: { bend: 8 }, head: { look: 'jade7:eyes' },
   L: { to: [0.08, TOP + 0.035, 0.24], hand: 'relax', palm: 'down', fingers: 'fwd' }, R: { to: [0.33, TOP + 0.04, 0.25], hand: 'pinch', palm: 'down', fingers: 'fwd' }, ...o });
 const swPoint = () => sw({ spine: { bend: 42 }, head: { look: 'anxious' }, L: pointAt(SW_TIP, [-0.45, -0.5, -0.6], 0.178, 'L') });
@@ -53,6 +57,9 @@ export const SHOTS = [
   // ---------------------------------------------------------------- reference (not in the cut)
   { id: 'REF_plan', lens: 0, ortho: { w: 5.4 }, pos: [0, 6, 0.25], target: [0, 0, 0.25], up: [0, 0, -1], near: 3.56, far: 7, figs: ALL(), beamLine: false,
     header: 'PLAN (reference): yellow = the tube\'s lit wedge (floor footprint) and its section on the table', intent: 'Top view of the set with the ceiling cut away. Not a shot.' },
+  // r4: the meeting table on its own (school activity table: laminate top, T-mould edge, steel apron, adjustable legs)
+  { id: 'REF_table', lens: 30, pos: [-1.35, 0.95, 0.75], target: [-0.45, 0.5, 0.0], figs: {}, header: 'TABLE (reference): the meeting table, from the door side, low',
+    intent: 'The meeting table as built (r4): almond woodgrain laminate top 29 mm thick, dark brown T-mould edge band, almond steel apron, adjustable legs (square almond upper tube with holes, chrome insert, black glide). Not a shot.' },
   { id: 'REF_wide', lens: 22, pos: [-1.5, 1.6, 1.8], aim: ['handout', 0.52, 0.62], figs: ALL(),
     header: 'MASTER (reference): the office from the door corner', intent: 'The whole set: the tube over the table, the four seats, bare wall behind her. Not a shot.' },
 
@@ -68,9 +75,9 @@ export const SHOTS = [
   { id: 'PC1', t: [77.24, 81.50], ...OUTSIDE_CAM, figs: ALL(),
     header: '1:17.2 OUTSIDE (sung 1:18.3) "She doesn\'t talk like other children": toner label lands frame-left of her face',
     intent: 'Outside: frontal, level, locked off, from beside the social worker\'s shoulder. Her face right of centre under the tube, eyes down on the sweatshirt and the table; bare wall frame-left for the toner label.' },
-  { id: 'PC2', t: [81.50, 83.27], lens: 35, orbit: { at: { mid: ['mama91:head', 'dad:head'] }, az: 24, el: -2, dist: 2.0 }, aim: [{ mid: ['mama91:head', 'dad:head'] }, 0.56, 0.4], figs: ALL(jade(), sw(), momListen()), focus: ['mama91', 'dad'], hide: ['little red dictionary'],
+  { id: 'PC2', t: [81.50, 83.27], lens: 30, orbit: { at: { mid: ['mama91:head', 'dad:head'] }, az: 26, el: 10, dist: 2.0 }, aim: [{ mid: ['mama91:head', 'dad:head'] }, 0.5, 0.3], figs: ALL(jade(), sw(), momListen()), focus: ['mama91', 'dad'], hide: ['little red dictionary'],
     header: '1:21.5 "(Her English comes from books)": Dad, standing behind Mom, explains',
-    intent: 'r3 (Jade): Mom seated, Dad standing behind her with his left hand on her shoulder, mid-explanation, his right hand open toward the social worker. From the social worker\'s side of the table, past the table\'s end. The back wall\'s children\'s art (the same wall as PC1/PC4) behind them.' },
+    intent: 'r3 (Jade): Mom seated, Dad standing behind her with his left hand on her shoulder, mid-explanation, his right hand open toward the social worker. From the social worker\'s side of the table, past the table\'s end. The back wall\'s children\'s art (the same wall as PC1/PC4) behind them. r4 (Jade: "the table is a very wrong shape b/c it\'s not on screen"): the camera is up at a standing adult\'s eye height (1.75 m) and wider, so the table top, its banded edge and its near corner run across the lower third: the table\'s shape is in frame.' },
   // r3 (Jade): "it should pan down from the counselor's sweatshirt down to the sheet". One camera position at her eyes
   // (head hidden), two aims: PC3a = start (the sweatshirt print), PC3b = end (the sheet). The move is a tilt down with a
   // little pan left (the sheet is 0.5 m left of the sweatshirt).

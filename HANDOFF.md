@@ -823,3 +823,5 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   furniture not colliders), costume_audit.md (sheet mismatches; Dad vs jade7 tops too close in K1/K3/PC2, uncle vs
   jade3 in V1a). TODO: wire grasp templates into every held-object shot after the meshes; raise eye down-travel to
   ~45 deg; fix costume mismatches against the sheets.
+- **Plates agent done:** artichoke counts 1-8 in cut A (ends 4.75 s), metallic gold with glints/twinkles (thread.py, opt-in); VOY v1 ring = moongazing cosmos.js Sagan ring (gold pencil, comp.py ring keys); CAPTIONS table in comp_all.py (record only, comp doesn't draw captions yet). Outputs media/keyframes/r4/plates/.
+- **office91 r4 agent done:** schoolTable() (almond laminate, brown T-mould, steel apron/legs) + REF_table; PC2 at standing eye height 30 mm with the table in frame; BO1/BO2 JADE_TIP = the gap (pad on it), look 'gap'; FE_thumbs art matches FE_out; PC5 renders deleted. Repaint list collecting in work/r4/REPAINT_LIST.md.

@@ -1,5 +1,38 @@
 # office91 — notes and assumptions
 
+## 2026-11-26: r4 set fixes (from Jade's r3 review; work/decisions/R4_SET_BRIEF.md) — newest first
+
+- **Who did what.** Set agent (this section): the table, PC2's camera, BO1/BO2's finger, PC5 clean-up, REF_table.
+  Background-art agent (not this section): every picture on the walls, the alphabet strip, the clock face, the shelf
+  items (layout/assets/art/office91/, art.js, the `ART` / `HALL_ART` image names in layout.js, `picture()` /
+  `wallArt()` in build.js).
+- **The meeting table** (`schoolTable()` in build.js, constants `TBL`; replaces the generic `tableRect`): a US school
+  activity table of about 1991 (the Virco / Krueger kind; from memory of the type, no web photos used): 1-1/8" (29 mm)
+  particleboard top faced with almond woodgrain laminate (lit colour #d9caa6), corners eased to a 25 mm radius, wrapped
+  in a dark brown vinyl T-mould edge band; a 75 mm steel channel apron set 45 mm in from the edge, almond enamel; four
+  height-adjustable legs: 32 mm square almond upper tube with a row of adjustment holes, a collar, a 23 mm chrome
+  round insert, a black nylon glide; a steel bracket across each apron corner. Footprint and top height unchanged
+  (1.40 x 0.65 m, top at 0.72 m), so nothing staged on it moves. See `REF_table` (new reference view, not a shot).
+  The colour follows the pale almond top the painter gave PC1 (Good). ASSUMED: almond laminate + brown edge; flag if
+  Jade remembers a different table (grey laminate, wood).
+- **PC2** (Jade: "the table is a very wrong shape b/c it's not on screen"): the camera rose to a standing adult's eye
+  height (1.75 m; el -2 -> 10) and widened (35 -> 30 mm), parents at u 0.5 / v 0.3: the table top, its banded edge and
+  its +x end corner now run across the lower third under Mom's hands, so its shape is in frame. Little Jade and the
+  handout's corner sit frame-left; the social worker is out of frame.
+- **BO1 / BO2: her fingertip on the gap** (Jade: "the center/top of the fingertip should be on the spot where there
+  isn't a dot. pretend there's an invisible dot in that space"). `JADE_TIP` = `GAP` (the centre of the missing seventh
+  face). Her right hand now uses the engine's `tip` placement (`tip: { finger: 'index', at: JADE_TIP, off: [0, 5.4 mm, 0] }`):
+  the index fingertip's centre sits one child pad radius above the page, so the PAD touches the page exactly on the
+  gap; checked with a marker at the gap (it sits under the top/centre of the fingertip in the BO1 camera). She looks
+  at the gap (`head.look: 'gap'`; real eye aim comes with the gaze module). The adult's finger (`SW_TIP`, ANXIOUS) is
+  unchanged. Repaint note: the painter must keep the fingertip over `handout.gap_px` (in BO1.json / BO2.json), not
+  above it on the paper.
+- **PC5** dropped (removed from shots.js by the lead); its stale guides deleted from media/layout/office91/ (the r3
+  snapshot in media/keyframes/r3/_layout_snapshot/office91/ keeps them for the r3 page).
+- **X_sw caption** (Jade, r3 review): "Were you afraid during the raid?" (comp handles captions; AD_trace carries it
+  over).
+- **FE_thumbs** shows the same textured corridor art as FE_out now that the art agent's pictures are in the model.
+
 ## r3 changes (2026-11-25/26 overnight, from Jade's r2 review) — newest first; supersedes anything below
 
 - **Painted**: all shots in `media/keyframes/r3/office91/` (see its NOTES.md); guides re-rendered (default, beam masks,
