@@ -768,3 +768,14 @@ Questions for Jade (proposed for the decision page):
 - Her hand on his elbow (bridge) / forearm (C2): tagged grasp 'restOn' so the contact is checked.
 - Book spines: the spine-lettering planes have their own label ('spine lettering: <kind>, <half>'): the check took the paper-thin plane
   for the book. His textbook pinch targets 'textbooks (truth)', 3 mm deeper.
+
+## 2026-11-26: the childhood friend (Jade, late notes)
+- Jade: "childhood friend is about 6'0 or 6'1\" Ukrainian (but Russian speaking)". Height 1.73 (ours) -> 1.85 m (build.js
+  GUEST `friend`; LH(1.85) in shots.js). Re-staged for the holds: V3a / V3b spine bend 12 (the taller arms turned his
+  hands 36 deg and pressed the palms 16 mm into the bowl); V3_rcv stands 3 cm nearer the snacks. Face still undrawn.
+- Jade: "his arm hairs are dark blond". FLAGGED: said right after the note on the friend, so read as the friend's; but the
+  only shots that feature arm hair are first love's forearm (C2a / C2b, `FIRST_LOVE_COSTUME.forearms`). Not applied to
+  either (the layout does not draw hair on arms); decision-page question: whose arm hair is dark blond, the friend's or
+  first love's? Recorded for the paint prompts once confirmed.
+
+## 2026-11-26 evening (Jade): the childhood friend's arm hair is dark blond. (Settles the flag above.)

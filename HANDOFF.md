@@ -846,3 +846,4 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Jade (told the hold agent directly, 2026-11-26 evening):** the childhood friend is 1.85 m (was a 1.73 guess),
   Ukrainian, Russian-speaking; "his arm hairs are dark blond" (whose: the friend's or first love's? asked on the
   decision page). mv10 build.js GUEST friend + LH(1.85) updated; his holds re-staged and passing.
+- **Jade:** the childhood friend's arm hair is dark blond (answered; card removed, logged in the page's done list). Painter prompts for shots showing his bare forearms should say so.
