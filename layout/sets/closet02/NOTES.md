@@ -28,6 +28,10 @@ Jade's answers: `work/decisions/JADE_R3_DECISIONS.md` (Closet). The r3 review pa
   well right of him: with him in line, a lower camera put his head over hers); rhyme angle re-tuned to 40.0 degrees
   (error 0). The lower fifth of the frame is his seat, the carpet and the futon: room for the caption. The shot
   carries `caption` in shots.js; the timing and type are the plan's call.
+- **No fringe plank on her** (lead's note: with her head bowed the fringe slab read as binoculars / a VR headset at
+  her eyes): new opt-in engine flag `fringe: 'none'` (all her specs in this set) replaces the plank with a thin hairline
+  shell over the forehead. CL_wide now shows the crown of her bowed head with the fingertips at the temples; default
+  off, office91 BO1 still pixel-identical.
 - `CL_ots` camera moved right (x 0.74 -> 1.05) so his head no longer hides her face (the engine had warned "jade19's
   face is blocked"). `CL_elev` now shows the opening pose instead of head in hands.
 - **His face** (facing-camera angle, 180 = back of head): CL_wide 149, CL_ots 156, CL_chin 139, CL_hands head out of

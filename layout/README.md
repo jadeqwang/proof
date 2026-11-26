@@ -66,6 +66,9 @@ pectoral shelf and lats ('m'), shoulder blades and a spine groove; the surface r
 the shoulders slope. Same spine frame, arms, clavicles and armpit folds. Default off: figures without the flag build
 exactly as before (checked pixel-identical on office91 BO1). First used by closet02 (round 3).
 
+Also opt-in: `fringe: 'none'` drops the fringe plank of 'bob' / 'long' hair for a thin hairline shell over the forehead
+(the plank reads as a headset when the head is bowed). Default unchanged.
+
 ## Files
 
 ```

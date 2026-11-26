@@ -748,3 +748,4 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   option `torso:'real', sex:'f'|'m'` (`layout/engine/torso.js`; default off, office91 BO1 pixel-identical). CL_wide
   is the opening: fingers to temples, camera high right, bottom fifth clear for the caption. Repaint all four CL shots.
   Lead sent it back: a block across her bowed forehead (fringe plank) reads as binoculars.
+- Closet fringe plank fixed with opt-in `fringe:'none'` (engine; default off, BO1 pixel-identical).
