@@ -158,4 +158,10 @@ export const SHOTS = [
 // beam mask twins (integration pass): every camera has a `beam_<id>` twin; `--prefix beam_ --modes flat --nojson` renders
 // the lit volume white on black. Appended last, so copies made with `same` are already resolved.
 import { maskTwins } from '../_beam.js';
+// post-sweep 2026-11-26 (painter guides too dark: lit mean K8_glass 22.0, K0_wide_night 27.6, K0_plan 28.1, K0_seat_side 29.5,
+// K1_question_end 31.2, K7_turns 33.4 of 255): per-shot lit lift (build.js rig, shot.litLift). Night shots stay night: the
+// fill is lifted enough to read the room, the pendant stays the brightest thing.
+const LIT_LIFT = { K8_glass: { amb: 2.8, key: 1.4 }, K0_plan: { amb: 2.2, key: 1.3 }, K7_turns: { amb: 1.6, key: 1.1 },
+  K0_wide_night: { amb: 4, key: 1.2 }, K0_seat_side: { amb: 4, key: 1.1 }, K1_question_end: { amb: 4, key: 1.2 } };
+for (const s of SHOTS) if (LIT_LIFT[s.id]) s.litLift = LIT_LIFT[s.id];
 SHOTS.push(...maskTwins(SHOTS, { surf: true }));   // + beam_<id>__surf: lit surfaces only

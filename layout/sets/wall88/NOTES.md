@@ -209,3 +209,9 @@ and measured hits. Times written elsewhere in this file before this section are 
 ## 2026-11-26: hold pass
 - w3 ('clasp'): the hands hold each other, not an object. Both hands are now 'relax' (were 'grip', which the hold check
   read as gripping something, and found nothing within 3 cm). No hold to check.
+
+## 2026-11-26: post-sweep brightness pass
+Per-shot lit-pass lift (office91's mechanism): `shot.light = { key, amb, bg }` scales the blade spot and the cool fill, and sets
+the lit background (build.js rig). WL_top `{ key: 7, amb: 2.3 }`: lit mean 16.0 -> 35.8 (the cutaway's built darkness
+outside the cavity, ~55 % of the frame, stays black; the blade on the floor is still the brightest thing, #fbfacc against
+the pale shirts' #b4c0d8). WL_plan (reference) `{ amb: 2.4, bg: 0x2a2b2f }`: 14.8 -> 54.9. Other passes unchanged.

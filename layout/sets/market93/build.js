@@ -235,7 +235,7 @@ export function build(shot, { makeCam, W = 1920, H = 1080 }) {
     const L = []; if (mode === 'none' || shot.beamMask) return L; const white = mode !== 'lit';
     // preview only: a cone that circumscribes the beam's rectangular footprint (the exact volume is the prism in layout.js BEAM)
     const half = Math.atan(Math.hypot(fr.x1 - fr.x0, fr.z1 - fr.z0) / 2 / TUBES.y);
-    const s = new THREE.SpotLight(white ? 0xffffff : BEAM.color, mode === 'lit' ? 9 : mode === 'mask' ? 6 : 1.4, 0, half, 0.15, mode === 'lit' ? 1.2 : 0);
+    const s = new THREE.SpotLight(white ? 0xffffff : BEAM.color, mode === 'lit' ? 9 * (shot.light?.key ?? 1) : mode === 'mask' ? 6 : 1.4, 0, half, 0.15, mode === 'lit' ? 1.2 : 0);
     s.position.copy(keyP).add(V(0, -0.06, 0)); s.target.position.set(keyP.x, 0, keyP.z); s.castShadow = true; s.shadow.camera.near = 0.3; s.shadow.camera.far = 6; L.push(s);
     if (mode === 'mask') return L;
     L.push(new THREE.AmbientLight(white ? 0xffffff : 0x7f8aa0, mode === 'lit' ? (shot.light?.amb ?? 0.55) : 1.75));

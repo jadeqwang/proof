@@ -105,16 +105,16 @@
   },
   "firstLove19": {
    "px": [
-    960,
-    -1334.1
+    1093.4,
+    -1335.7
    ],
    "eyes": [
-    960,
-    -735
+    1048,
+    -738.1
    ],
    "mouth": [
-    960,
-    -633.2
+    1044.8,
+    -635.1
    ],
    "in_frame": false,
    "visible": false,
@@ -207,8 +207,8 @@
  "warnings": [
   "wrist: jade19 L beyond the wrist range (radial deviation +22 deg, supination +23 deg; flex -14.9, radial 41.6, twist 107.7, after an elbow swivel of 0 deg)",
   "wrist: jade19 R beyond the wrist range (radial deviation +22 deg, supination +23 deg; flex -14.9, radial 41.6, twist 107.7, after an elbow swivel of 0 deg)",
-  "wrist: firstLove19 L hand turned 23.4 deg toward the forearm to keep the wrist in range (was flex 44.3, radial -52.7)",
-  "wrist: firstLove19 R hand turned 23.4 deg toward the forearm to keep the wrist in range (was flex 44.3, radial -52.7)"
+  "wrist: firstLove19 L hand turned 24.2 deg toward the forearm to keep the wrist in range (was flex 45.9, radial -55.2)",
+  "wrist: firstLove19 R hand turned 22.4 deg toward the forearm to keep the wrist in range (was flex 42.2, radial -49.6)"
  ],
  "intent": "Her own view down (her head hidden for the POV): her two hands palm-up, his two on them, at the door line, the sun on them from the bedroom; his knees and the carpet beyond. Four hands. No field note.",
  "film": {
@@ -404,7 +404,7 @@
    "verts_inside_mattress": 0
   },
   "firstLove19": {
-   "min_gap_to_frame_m": 0.088,
+   "min_gap_to_frame_m": 0.109,
    "verts_inside_mattress": 0
   }
  },
@@ -448,19 +448,19 @@
   },
   "firstLove19": {
    "eyes": [
-    0.55,
-    0.731,
-    0.1289
+    0.5322,
+    0.7313,
+    0.1294
    ],
    "head": [
-    0.55,
-    0.788,
-    0.2142
+    0.5245,
+    0.7881,
+    0.2144
    ],
    "chin": [
-    0.55,
-    0.6615,
-    0.2396
+    0.5249,
+    0.6616,
+    0.2397
    ],
    "handL": [
     0.465,
@@ -473,12 +473,12 @@
     0.005
    ],
    "hip": [
-    0.55,
+    0.52,
     0.1513,
     0.38
    ],
    "shoulderC": [
-    0.55,
+    0.52,
     0.6755,
     0.2999
    ]
@@ -556,15 +556,15 @@
     ]
    },
    "head_deg": {
-    "yaw_left": 0,
+    "yaw_left": -4.6,
     "pitch_up": -25.1,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": -26,
+    "pitch_up": -25.9,
     "wanted_yaw": 0,
-    "wanted_pitch": -26,
+    "wanted_pitch": -25.9,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -596,8 +596,8 @@
    ],
    "warnings": [],
    "eyes_px": [
-    960,
-    -735
+    1048,
+    -738.1
    ],
    "target_px": [
     960,
@@ -667,32 +667,32 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 19.1,
-    "radial_deg": -27.3,
-    "twist_deg": -76.2,
-    "elbow_flex_deg": 107,
+    "flex_deg": 19.7,
+    "radial_deg": -28.9,
+    "twist_deg": -78.9,
+    "elbow_flex_deg": 104.7,
     "before": {
-     "flex_deg": 44.3,
-     "radial_deg": -52.7,
-     "twist_deg": -91.6
+     "flex_deg": 45.9,
+     "radial_deg": -55.2,
+     "twist_deg": -95.6
     },
-    "hand_turned_deg": 23.4,
+    "hand_turned_deg": 24.2,
     "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 19.1,
-    "radial_deg": -27.3,
-    "twist_deg": -76.2,
-    "elbow_flex_deg": 107,
+    "flex_deg": 18.5,
+    "radial_deg": -25.5,
+    "twist_deg": -73.3,
+    "elbow_flex_deg": 108.8,
     "before": {
-     "flex_deg": 44.3,
-     "radial_deg": -52.7,
-     "twist_deg": -91.6
+     "flex_deg": 42.2,
+     "radial_deg": -49.6,
+     "twist_deg": -87.1
     },
-    "hand_turned_deg": 23.4,
+    "hand_turned_deg": 22.4,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -700,8 +700,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "firstLove19": 0.3247,
-  "jade19": 0.2624
+  "firstLove19": 0.3341,
+  "jade19": 0.26
  },
  "colour_separation": [
   {
@@ -760,24 +760,24 @@
     }
    },
    "arms": {
-    "L": 0.6,
-    "R": 0.6
+    "L": 0.62,
+    "R": 0.59
    },
-   "headTurn": 0,
+   "headTurn": -5,
    "body": {
     "mesh": "firstlove19",
     "scale": 1,
     "face": "none",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 105,
+     "elbow_bend_deg": 102,
      "upperarm_stretch": 1.05,
      "forearm_stretch": 1,
      "hand_scale": 0.93
     },
     "R": {
-     "elbow_bend_deg": 105,
-     "upperarm_stretch": 1.05,
+     "elbow_bend_deg": 107,
+     "upperarm_stretch": 1.06,
      "forearm_stretch": 1,
      "hand_scale": 0.93
     },

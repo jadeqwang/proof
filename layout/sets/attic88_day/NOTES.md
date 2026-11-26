@@ -207,3 +207,9 @@ and measured hits. Times written elsewhere in this file before this section are 
   hold r 0.031. It is checked as `object: 'figure:littleJade:armR'`. It passes on the mannequin. On the mesh body the
   fingers sink ~9 mm into her loose sleeve: the sleeve stands ~1 cm off the mannequin's forearm, which is plausible for
   a hand closing on cloth.
+
+## 2026-11-26: post-sweep exposure (AD_fern)
+AD_fern_lit was 52 % pure white: the pane fills the frame, and the lit pass adds the emissive winter sky's blurred glow
+(~2.7x) on top. New per-shot `light: { sky, exposure }` (build.js): `sky` scales only the sky emitter, `exposure` the sun,
+sky fill and ambient. AD_fern `{ sky: 0.3 }`: 52 % -> 0 % pure white, mean 188.6 -> 174.0; the sky reads pale blue
+behind the frost pane. Other shots unchanged.

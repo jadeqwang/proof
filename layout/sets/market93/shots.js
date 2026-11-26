@@ -217,6 +217,13 @@ export const SHOTS = [
     header: 'reference: the aisle from the front of the store, blocking at the grab', intent: 'Establishing view down the aisle toward the back wall: islands frame left, gondola frame right, tube rows overhead, the key strip over her.' },
 ];
 
+// post-sweep 2026-11-26 (painter guides too dark: lit mean PLAN 16.0, WIDE 24.4, M4c 28.5, PLAN_B 28.9, M6 30.8, M4b_pull
+// 33.6, M1 34.4 of 255): per-shot lit-pass lift (office91's mechanism, build.js rig): `amb` = the cool fill (default 0.55),
+// `key` scales the key strip with it so the beam stays the brightest thing. Lit pass only; the twins are made after this.
+const LIT_LIFT = { PLAN: { amb: 2.0, key: 1.8 }, WIDE: { amb: 1.3, key: 1.4 }, M4c: { amb: 1.1, key: 1.3 }, PLAN_B: { amb: 1.1, key: 1.3 },
+  M6: { amb: 1.0, key: 1.2 }, M4b_pull: { amb: 0.9, key: 1.15 }, M1: { amb: 0.9, key: 1.15 } };
+for (const s of SHOTS) if (LIT_LIFT[s.id]) s.light = { ...(s.light || {}), ...LIT_LIFT[s.id] };
+
 // beam mask twins (integration pass): every camera has a `beam_<id>` twin; `--prefix beam_ --modes flat --nojson` renders
 // the lit volume white on black. Appended last, so copies made with `same` are already resolved.
 import { maskTwins } from '../_beam.js';

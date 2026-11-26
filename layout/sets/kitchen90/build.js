@@ -125,13 +125,16 @@ export function build(shot, { makeCam }) {
   const sunFrom = V(WINDOW.x, WINDOW.sill + WINDOW.h / 2, WINDOW.z).addScaledVector(V(SUN.dir), -5);
   const lights = [{ name: 'pendant', kind: LIGHTS.pendant.kind, pos: V(BEAM_NIGHT.apex), aim: V(PENDANT.x, 0, PENDANT.z), color: '#ffc98a', on: !day },
     { name: 'sun', kind: LIGHTS.sun.kind, pos: sunFrom, aim: V(WINDOW.x, WINDOW.sill + WINDOW.h / 2, WINDOW.z), color: '#fff0d0', on: day }];
-  const rig = (mode) => { const L = []; if (mode === 'none' || shot.beamMask) return L; const white = mode !== 'lit';
-    if (day) { const d = new THREE.DirectionalLight(white ? 0xffffff : SUN.color, mode === 'lit' ? 3.2 : 2.0); d.position.copy(sunFrom); d.target.position.copy(sunFrom).add(V(SUN.dir)); d.castShadow = true;
+  // post-sweep 2026-11-26: per-shot lit-pass lift (office91's per-shot exposure, here shot.litLift because shot.light is
+  // 'day' / 'night'): `key` scales the sun / pendant, `amb` the fill. Lit pass only.
+  const LK = mode0 => (mode0 === 'lit' ? { key: shot.litLift?.key ?? 1, amb: shot.litLift?.amb ?? 1 } : { key: 1, amb: 1 });
+  const rig = (mode) => { const L = []; if (mode === 'none' || shot.beamMask) return L; const white = mode !== 'lit'; const X = LK(mode);
+    if (day) { const d = new THREE.DirectionalLight(white ? 0xffffff : SUN.color, mode === 'lit' ? 3.2 * X.key : 2.0); d.position.copy(sunFrom); d.target.position.copy(sunFrom).add(V(SUN.dir)); d.castShadow = true;
       const c = d.shadow.camera; c.left = -3.2; c.right = 3.2; c.top = 3.2; c.bottom = -3.2; c.near = 0.5; c.far = 14; d.shadow.radius = 2; L.push(d); }
-    else { const s = new THREE.SpotLight(white ? 0xffffff : BEAM_NIGHT.color, mode === 'lit' ? 9 : 2.0, 0, rad(BEAM_NIGHT.halfAngleDeg), 0.25, mode === 'lit' ? 1.3 : 0);
+    else { const s = new THREE.SpotLight(white ? 0xffffff : BEAM_NIGHT.color, mode === 'lit' ? 9 * X.key : 2.0, 0, rad(BEAM_NIGHT.halfAngleDeg), 0.25, mode === 'lit' ? 1.3 : 0);
       s.position.set(...BEAM_NIGHT.apex); s.target.position.set(PENDANT.x, 0, PENDANT.z); s.castShadow = true; s.shadow.camera.near = 0.12; s.shadow.camera.far = 6; s.shadow.radius = mode === 'lit' ? 5 : 2; L.push(s); }
     if (mode === 'mask') return L;
-    L.push(new THREE.AmbientLight(white ? 0xffffff : (day ? 0x8a94a8 : 0x141018), white ? 1.25 : (day ? 0.55 : 1.0)));
+    L.push(new THREE.AmbientLight(white ? 0xffffff : (day ? 0x8a94a8 : 0x141018), white ? 1.25 : (day ? 0.55 : 1.0) * X.amb));
     if (white) { const d = new THREE.DirectionalLight(0xffffff, 0.6); d.position.set(1, 3, 2.5); L.push(d); }
     return L; };
   const W = WINDOW, ym = W.sill + W.h / 2, P3 = (x, y) => V(x, y, W.z);

@@ -109,6 +109,10 @@ const BASE = [
     intent: 'r3. The same camera as WL_in with nobody there: the empty wall space. The crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.',
     figs: {} },
 ];
+// post-sweep 2026-11-26 (painter guides too dark: WL_plan lit mean 14.8, WL_top 16.0 of 255): the overheads' lit pass gets a
+// stronger blade and cool fill (the darkness outside the cavity stays black, as built); the blade stays the brightest thing
+const TOP_LIFT = { key: 7, amb: 2.3 };
+const PLAN_LIFT = { amb: 2.4, bg: 0x2a2b2f };   // WL_plan is a reference (not painted): a grey void so the plan reads; blade unchanged
 // WL_top, the overhead (r4b alternate, made a REAL SHOT in r5: Jade, wl_top: "Try it at 1:51.0-1:52.2"). Straight down into
 // the cavity onto the five heads in their stud bays, the brick face (its courses give the scale) along the top of frame,
 // the boards along the bottom, the blade of light at the closed end, frame left. The top plate is lifted off (shot.hide):
@@ -116,7 +120,7 @@ const BASE = [
 // wording changes (see NOTES). It opens "Nowhere to go" at 1:51.0; WL_in (the file, blinking) takes over at 1:52.2.
 // The camera is 3.45 m above the floor, 24 mm, the cavity running across the frame (brick at the top: the camera is
 // 2 mm toward the boards so three.js's lookAt has a defined up).
-BASE.splice(BASE.findIndex((s) => s.id === 'WL_in'), 0, { id: 'WL_top', lens: 24, pos: [-0.002, 3.45, 1.20], target: [0, 0, 1.20], hide: ['top plate'], near: 0.5, far: 4.5, position: 'overhead',
+BASE.splice(BASE.findIndex((s) => s.id === 'WL_in'), 0, { id: 'WL_top', lens: 24, pos: [-0.002, 3.45, 1.20], target: [0, 0, 1.20], hide: ['top plate'], near: 0.5, far: 4.5, position: 'overhead', light: TOP_LIFT,
   time: '1:51.0-1:52.2', section: 'Chorus 1 ("Nowhere to go")', beamAnchor: 'mote', workers: true,
   header: '1:51.0 OVERHEAD: straight down into the cavity onto the five heads, holding their breath',
   intent: 'r5 (Jade: "Try it at 1:51.0-1:52.2"). From straight above, the narrow slot of the cavity runs across the frame: brick (courses of small bricks) along the top, the boards and their studs along the bottom. Five people stand in a single file, one per stud bay, backs to the brick, facing the boards, shoulders almost touching: we see the tops of their heads (Mama nearest the closed end at frame left, her bob; the praying woman next to her) and their shoulders. The thin blade of light from the crack falls across the floor at the closed end, frame left. Dark, still, holding their breath. Cut to WL_in at 1:52.2.',
@@ -124,6 +128,6 @@ BASE.splice(BASE.findIndex((s) => s.id === 'WL_in'), 0, { id: 'WL_top', lens: 24
 const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, header: 'beam mask for ' + s.id }));
 // r4: plan view (not painted): checks the 32 cm cavity, the stud bays and the feet (toes short of the boards)
 const PLAN = { id: 'WL_plan', lens: 0, ortho: { w: 3.9 }, pos: [0, 6, 0.95], target: [0, 0, 0.95], up: [1, 0, 0], near: 3.5, far: 7,
-  hide: ['top plate'], position: 'plan', header: 'PLAN (reference, not painted): the cavity from above, 32 cm clear; boards at the bottom, brick at the top',
+  hide: ['top plate'], light: PLAN_LIFT, position: 'plan', header: 'PLAN (reference, not painted): the cavity from above, 32 cm clear; boards at the bottom, brick at the top',
   intent: 'r4 check: cavity width, stud bays, feet.', figs: { littleJade: jadeStand(), ...WORKER_FIGS }, clip: { touch: [...CLIP_KID.touch, ...CLIP_FILE.touch] } };
 export const SHOTS = BASE.concat(TWINS, [PLAN]);

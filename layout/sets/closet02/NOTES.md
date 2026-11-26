@@ -189,3 +189,15 @@ hers), fingertips on her own temples, and the back of her hand on his chin. The 
 meshes are never candidate objects, the fallback picks whatever part of the other figure lies within 1 cm by bounding box
 (for CL_chin his own forearm, not his chin), and every hand inside that figure's box, its owner's included, is counted as
 touching. Tried and reverted (shots.js unchanged); asked the hold agent for an engine option (body-part targets).
+
+## 2026-11-26: post-sweep fixes (after the engine r5 soles fix)
+- **His foot in the wall.** With the soles 2-4 mm above the floor, first love's crossed foot was 15.8 mm into the right
+  jamb (bedroom wall) at floor height in all four shots. `SEATS.firstLove` x 0.55 -> 0.52 (3 cm off her centre line,
+  facing and pose unchanged). Stepping him back 3.5 cm instead only moved the foot into the casing (7.3 mm). Clipcheck:
+  his wall / casing contact is gone. Still flagged, pre-existing: his skin 10.3 mm into the carpet, her knee 13.4 mm
+  into the bedroom wall, her hair/sleeve into the hanging clothes, and knee-to-knee overlap between them (his skin
+  32.5 / cloth 46 mm into her; was 33.4 / 45.2).
+- **His hair under the warm key.** FL_HAIR 0x1f1915 rendered warm chestnut in lit (#4d3623 on CL_ots). A closet-only
+  lit-pass override (`FL_HAIR_LIT` 0x141214 in build.js, his hair meshes only; other passes and _cast.js unchanged)
+  now reads #2f2620 on CL_ots, against the v8 sheet's ~#2e2420. CL_chin reads dark cool brown too.
+- Re-rendered all three passes.

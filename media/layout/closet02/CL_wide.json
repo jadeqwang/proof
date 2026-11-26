@@ -105,20 +105,20 @@
   },
   "firstLove19": {
    "px": [
-    845.8,
-    484.6
+    826.9,
+    480.6
    ],
    "eyes": [
-    874.2,
-    452.7
+    859.8,
+    449.8
    ],
    "mouth": [
-    873.1,
-    493
+    859.2,
+    490.1
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 145,
+   "facing_camera_deg": 142,
    "blocked_by": "firstLove19 first love (19)"
   }
  },
@@ -142,12 +142,12 @@
     385.6
    ],
    "firstLove19.L": [
-    826.6,
-    628.6
+    812.1,
+    625.1
    ],
    "firstLove19.R": [
-    1044.2,
-    682.1
+    1028.3,
+    678.2
    ]
   }
  },
@@ -400,7 +400,7 @@
    "verts_inside_mattress": 0
   },
   "firstLove19": {
-   "min_gap_to_frame_m": 0.088,
+   "min_gap_to_frame_m": 0.109,
    "verts_inside_mattress": 0
   }
  },
@@ -444,37 +444,37 @@
   },
   "firstLove19": {
    "eyes": [
-    0.55,
+    0.5265,
     0.8112,
-    0.1638
+    0.164
    ],
    "head": [
-    0.55,
-    0.8165,
+    0.5199,
+    0.8164,
     0.2662
    ],
    "chin": [
-    0.55,
+    0.5245,
     0.6948,
-    0.2233
+    0.2235
    ],
    "handL": [
-    0.3352,
+    0.3052,
     0.2456,
     -0.0585
    ],
    "handR": [
-    0.7648,
+    0.7348,
     0.2456,
     -0.0585
    ],
    "hip": [
-    0.55,
+    0.52,
     0.1513,
     0.38
    ],
    "shoulderC": [
-    0.55,
+    0.52,
     0.6755,
     0.2999
    ]
@@ -529,7 +529,7 @@
     ]
    },
    "head_deg": {
-    "yaw_left": 0,
+    "yaw_left": -3.7,
     "pitch_up": 5.7,
     "note": "head relative to the chest"
    },
@@ -546,8 +546,8 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    874.2,
-    452.7
+    859.8,
+    449.8
    ],
    "target_px": [
     960,
@@ -644,8 +644,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade19": 0.0328,
-  "firstLove19": 0.0577
+  "jade19": 0.0339,
+  "firstLove19": 0.0581
  },
  "colour_separation": [],
  "figure_report": {
@@ -698,7 +698,7 @@
     "L": 0.86,
     "R": 0.86
    },
-   "headTurn": 0,
+   "headTurn": -4,
    "body": {
     "mesh": "firstlove19",
     "scale": 1,

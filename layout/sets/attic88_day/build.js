@@ -158,6 +158,11 @@ const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && 
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   const { g: roomG, panes } = room(); root.add(roomG); root.add(props());
+  // post-sweep 2026-11-26: per-shot lit-pass exposure (office91's mechanism): shot.light.exposure scales the sun, the sky
+  // fill and the ambient; shot.light.sky scales the emissive winter sky seen through the panes (the lit pass adds its blurred
+  // glow about 2.7x on top, so a pane filling the frame clipped: AD_fern, square on to the pane, was 52 % pure white)
+  const EX = shot.light?.exposure ?? 1, SKY = shot.light?.sky ?? 1;
+  if (SKY !== 1) roomG.traverse((o) => { if (o.isMesh && o.userData.look?.emitI != null && /winter sky/.test(o.userData.label || o.parent?.userData?.label || '')) o.userData.look = { ...o.userData.look, emitI: o.userData.look.emitI * SKY }; });
   // the beam: exact solids per pane (footprints), one solid for the four together (volume / mask)
   const perPane = Object.fromEntries(Object.entries(BEAM.apertures).map(([k, a]) => [k, beamSolid({ aperture: a, dir: BEAM.dir, clip: BEAM.clip })]));
   const whole = beamSolid({ aperture: BEAM.whole, dir: BEAM.dir, clip: BEAM.clip });
@@ -196,8 +201,8 @@ export function build(shot, { makeCam }) {
   const rig = (mode) => {
     if (mode === 'none' || shot.beamMask) return [];
     if (mode === 'mask') return [mkSun(0xffffff, 6)];
-    if (mode === 'lit') { const p = new THREE.PointLight(SUN.sky, 0.6, 5, 1.4); p.position.set(WINDOW.x - 0.4, WINDOW.sill + 0.5, WINDOW.z);
-      return [mkSun(SUN.color, 9), p, new THREE.AmbientLight(0x6f7f95, 1.5)]; }   // r5 brightness pass: ambient 0.45 -> 1.5 (painters read the room outside the beam; the window and the beam stay the brightest)
+    if (mode === 'lit') { const p = new THREE.PointLight(SUN.sky, 0.6 * EX, 5, 1.4); p.position.set(WINDOW.x - 0.4, WINDOW.sill + 0.5, WINDOW.z);
+      return [mkSun(SUN.color, 9 * EX), p, new THREE.AmbientLight(0x6f7f95, 1.5 * EX)]; }   // r5 brightness pass: ambient 0.45 -> 1.5 (painters read the room outside the beam; the window and the beam stay the brightest)
     const d = new THREE.DirectionalLight(0xffffff, 1.0); d.position.set(-1, 3, 2);
     return [mkSun(0xffffff, 7), new THREE.AmbientLight(0xffffff, 1.5), d];
   };

@@ -245,3 +245,9 @@ Jade (k_booster): "How does little Jade reach the kitchen table? Something else 
   supination; her seated thighs 14.7 mm into the pulled-out chair (soft tissue / cloth).
 - Looked at: K1_question, K1_question_end (form: the whisper reads, his mouth at her ear, his face half hidden),
   K0_seat_side, K0_wide_night.
+
+## 2026-11-26: post-sweep brightness pass
+Per-shot lit lift `shot.litLift = { key, amb }` (shot.light is 'day'/'night' here), build.js rig, lit pass only. Lit mean
+before -> after: K8_glass 22.0 -> 42.2, K0_wide_night 27.6 -> 40.7, K0_plan 28.1 -> 41.9, K0_seat_side 29.5 -> 41.9,
+K1_question_end 31.2 -> 40.1, K7_turns 33.4 -> 41.3. Night shots still read as night: the dark purple fill is lifted, the
+pendant's cone stays the brightest thing.

@@ -83,7 +83,8 @@ const BASE = [
       // Was (r4): kneeling, forearm through the window frame by 24.5 mm, into the stack by up to 21.5 mm.
       mama: mamaGrab(GRAB_P) } },
   // ---------------------------------------------------------------- 3:43 tail 2
-  { id: 'AD_fern', lens: 50, pos: [2.74, 0.66, -0.60], target: [3.49, 0.66, -0.60], position: 'plate', time: '3:43.0-3:55.0 (-2sm; outro line 1 enters over it at 3:54.0)', section: 'Tail 2', beamAnchor: 'fernMid',
+  { id: 'AD_fern', lens: 50, pos: [2.74, 0.66, -0.60], target: [3.49, 0.66, -0.60], position: 'plate', light: { sky: 0.3 },   // post-sweep 2026-11-26: lit was 52 % pure white (the sky through the pane + its glow)
+    time: '3:43.0-3:55.0 (-2sm; outro line 1 enters over it at 3:54.0)', section: 'Tail 2', beamAnchor: 'fernMid',
     header: '3:43 plate: the frost fern pane, square on (the fern regrows and becomes a neuron)',
     intent: 'Square on to the lower pane with the fern, from inside. No figure. The procedural fern grows from its root in the lower right corner; the pane quad and the root and tip are in the sidecar. The frame widens with the arbor in the renderer, not in the set.',
     figs: {} },

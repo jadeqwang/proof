@@ -64,7 +64,7 @@ export const DUVET = { at: [0.55, -0.40], w: 0.58, d: 0.58, h: 0.09 };
 // halfway between them. The light still clears his right shoulder (it comes from +x, 0.35 m right of his head).
 export const SEATS = {
   jade19: { at: [0.55, 0.139 + DUVET.h, -0.42], yaw: 0 },                 // pelvis lifted by the duvet
-  firstLove: { at: [0.55, 0.38], yaw: 180 },
+  firstLove: { at: [0.52, 0.38], yaw: 180 },   // 2026-11-26 post-sweep: x 0.55 -> 0.52 (3 cm off her centre line): with the soles fix his crossed foot was 15.8 mm into the right jamb (bedroom wall); stepping back instead put it into the casing
 };
 export const HANDS = [0.55, 0.41, -0.02];                                    // where the four hands meet: at the door line, on the shared centre line
 export const FACE = [0.55, 0.80, -0.26];                                     // about where her face is (for the light)

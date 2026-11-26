@@ -281,3 +281,8 @@ and measured hits. Times written elsewhere in this file before this section are 
   cart 110 mm" is a false positive: the wire cart is an open mesh and the point there (her hand on the grip) has no cart
   body geometry within 0.17 m in x. The cart clears the pallet by 4 mm in M4b. Re-rendered all three passes.
 - Seen: M1 (cart behind her, both hands round the red grip), M5, M4b (basket at the frame edge), WIDE.
+
+## 2026-11-26: post-sweep brightness pass
+Per-shot lit lift (shots.js `LIT_LIFT`, build.js: `light.key` now scales the key strip; `light.amb` the fill as before).
+Lit mean before -> after: PLAN 16.0 -> 45.2, WIDE 24.4 -> 46.8, M4c 28.5 -> 46.1, PLAN_B 28.9 -> 47.6, M6 30.8 -> 44.6,
+M4b_pull 33.6 -> 45.3, M1 34.4 -> 46.6 (pure white <= 0.7 %). The key strip's pool is still the brightest thing. Hold 35/35.
