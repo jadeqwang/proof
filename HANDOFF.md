@@ -804,3 +804,14 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Jade, 2026-11-26 (~midday):** "the same version of clothing logo should be in each frame (not 2 different versions
   of the NASA meatball logo)." Given to the background-art agent (canonical decals under layout/assets/art/logos/);
   added to global CLAUDE.md and project memory. Jade is at 45/104 on the r3 keyframe page, stepped away to cook.
+- **Sweatshirt cloth agent:** Jolt Physics soft body (`layout/vendor/jolt-physics/`, MIT, 3.2 MB) in
+  `mortongrove07/sweatshirt*.js`; Truth hidden in a vertical knife pleat she pinches; renders with any Truth pixel go
+  to gitignored `work/sweatshirt/`. Sent back: rag-like folds from t 0.4, floating drawstrings, MG1 stack silhouette.
+- **Jade's r3 review (45/104) saved** to media/keyframes/r3/JADE_R3_REVIEW.md. Set agents dispatched with work/decisions/R4_SET_BRIEF.md; repaint r4 after body meshes land. B4/B5 CHANGE: mouth closed, tongue in, lips and chin CONTACTING the wrist (replaces the gap).
+- **r4 plan (lead, 2026-11-26 afternoon):** set-fix agents running for attic88_day, office91, shanghai86, wall88,
+  market93 (+ new M4c 2:14.2-2:15.2), basement90, kitchen90, plus plates/comp (artichoke count ends at 8, shimmering
+  gold; VOY v1 with a moongazing-style circle round the mote; X_sw/AD_trace caption "Were you afraid during the
+  raid?"). Then, in order: body meshes (PROOF_BODY=mesh) + gaze/grasp switch on, wall art/logos in, every set
+  re-rendered, then repaint r4 into media/keyframes/r4/ for every shot not marked Good plus every shot whose set
+  changed visibly (the per-agent repaint lists above). Painting on the free Codex route only: no paid spend agreed for
+  r4 yet (PROOF_CAP = current spend); if Codex's plan limit hits, pause and resume when it resets.
