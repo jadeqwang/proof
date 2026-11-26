@@ -4,6 +4,51 @@
 window, stair door and v4 fixed furniture are imported from `../attic88/layout.js` and `../attic88/v4.js`.
 
 
+## 2026-11-26 round 4 — PROGRESS (checkpoint)
+- DONE: engine/clipcheck.mjs + clipdump.js (Rapier). AD_grab restaged, both standing (grabpose.js GRAB_P, solved by
+  grab_search.mjs; robust to 8-15 mm / 3 deg nudges): clipcheck PASS: no window / wall / stack / body penetration, grip
+  gap -9.1 mm into the sleeve (cloth), 0 mm skin; Mama's wrist flex 1, radial 16, twist -22; elbow 46; spine bend 54,
+  twist 20; knees 58-60. Was: 24.5 mm through the window frame, 21.5 mm into the stack, wrist 30 deg past range.
+  AD_trace: she stands too (camera moved over her right shoulder, 40 mm, fingertip at 0.5/0.55); PASS.
+  New AD_grab camera (grab_camera.mjs): 24 mm, pos [3.224, 1.164, -1.805], target [2.744, 0.525, -0.396] (may be
+  tilted up to y 0.62 so Mama's head is whole): finger on the pane, the grab, Mama's face and the whole paper keyboard.
+  Props phase 2: TV, cardboard boxes, bulb (Poly Haven CC0); credits updated. Cushion moved aside.
+- Other attic shots: no window clipping; nobody else kneels (keys shots sit cross-legged). Flags: sitting bodies sink
+  11 mm into the floorboards (soft tissue, within tolerance); at the keys (AD_wide/keys/piano/frost_look) the arms are
+  fully stretched, IK reach 1.23-1.41 (hands touch the paper in the renders; arms straight).
+- DONE (milestone 2): AD_grab target tilted to y 0.62 (Mama's head whole); attic88_day re-rendered (3 passes) and
+  looked at; gallery rebuilt. Final clipcheck: AD_grab, AD_trace, AD_mote pass; the keys shots only fail the stretched-arm
+  reach flag above. FLAG: AD_grab no longer the shared 50 mm grab framing; market93 M4/M4b may want a matching wide.
+- Question for Jade: AD_grab wide (grab + keyboard) vs the tight 50 mm grab insert? rec: wide. Img AD_grab_form.png.
+- clipcheck: `node layout/engine/clipcheck.mjs --set <set> --exclude beam_ [--shots A,B] [--json out.json]` -> one table
+  per shot: body vs world (skin / cloth mm inside), body vs body, grips (gap, cloth, skin), palm touches (`clip.touch` in
+  a shot: gap mm, palm angle to the wall), joints vs limits. Pass = skin <= 3 mm, cloth / cushion / floor <= 12 mm.
+  Scripts: `openClipPage(set)` + `window.clipDumpSpec(shot)` + `checkDump()` for searches; `window.visSpec` /
+  `window.renderSpec` (engine/main.js, additive) for camera searches and previews.
+
+## 2026-11-26 (late): round-4 decisions (Jade's answers; SUPERSEDES everything below where they differ)
+
+Jade (ad_grab_pose): "mom's arm is really unnatural and clips thru the window, please use a game engine or something / no
+one is kneeling, there's no time for that, it's an emergency to go-go-go get out alive. both people are standing."
+
+- **Measured, not by eye**: new engine module `engine/clipcheck.mjs` (+ `engine/clipdump.js`): every vertex of every
+  baked mesh body against every set mesh and every other body (Rapier point projection on oriented trimeshes), joints
+  against their limits, grips. `node layout/engine/clipcheck.mjs --set attic88_day --exclude beam_`. The r4 AD_grab failed
+  it: Mama's arm 24.5 mm into the window frame, her body up to 21.5 mm into the textbook stack, her grip 14 mm into the
+  child's sleeve, her right wrist 30 deg past its radial range and 21 deg past pronation.
+- **Both standing** (`grabpose.js`, solved by `grab_search.mjs`: the engine's IK proposes, clipcheck measures; 3 runs, ~400
+  candidates). The child stands at the sill (pelvis [3.18, -0.68], turned 11 deg toward her right, leaning 9 deg),
+  right index on the fern (fernMid) on the lower right pane, left arm hanging. Mama stands at her right beyond the
+  textbook stack (pelvis [3.02, 0.07], facing 164 deg: toward the child and a little toward the window), knees bent
+  (pelvis 11 cm down), bent 47 deg at the hips and turned 20 deg, and closes her right hand round the middle of the
+  child's right forearm: the forearm grip kept (palm on the near top, fingers round the far side and under, thumb round
+  the near side; hold.r 4.9 cm as the hand closes on the sleeve). Left arm hangs under its shoulder.
+- **AD_trace** is the moment before: the child stands the same way (was kneeling on the cushion). The cushion now lies
+  pushed aside behind her left (`READING.cushion` [2.80, -1.12]); she knelt there to read, earlier.
+- Props phase 2: the TV (Poly Haven television_02), the storage boxes (cardboard_box_01) and the bare bulb
+  (lightbulb_01), all CC0, replace the hand-built boxes / ball (`_props.js`; credits in docs/credits_tools.md). Nothing in
+  this set is held, so the hold check has nothing new (the forearm grab is a body grip: clipcheck measures it).
+
 ## r4 set fixes, 2026-11-26 afternoon (Jade's r3 review; supersedes anything below that contradicts it)
 
 - **Paper keys = one exact texture** (`keyboard.js`; AD_piano: "the piano keys should be taped such that they represent

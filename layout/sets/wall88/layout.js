@@ -11,18 +11,22 @@
 // toward -z at her face; the inside camera looks toward +z along the file, so for it the crack wall is frame-RIGHT and
 // the blade falls from upper right to lower left.
 const rad = (d) => (d * Math.PI) / 180;
-export const CAVITY = { x0: -0.16, x1: 0.16, z0: -0.75, z1: 2.65, h: 2.0,
+export const CAVITY = { x0: -0.16, x1: 0.16, z0: -0.75, z1: 2.75, h: 2.0,
   board: { h: 0.14, t: 0.02 },                       // horizontal boards on the partition
   // studs on the partition's cavity side. r4: 45 cm centres past the crack (was 86) so each worker stands in one bay,
   // toes between two studs (a stud's face is 25 cm off the brick: no room for a foot in front of it)
-  stud: { w: 0.045, d: 0.07, z: [-0.68, 0.18, 0.63, 1.08, 1.53, 1.98, 2.43] } };
+  // r4b: 50 cm centres (was 45): measured on the mesh bodies (clipcheck), adults 45 cm apart stood 3-4 cm INTO each
+  // other at the shoulders (clothes); 50 cm is the closest file in which shoulders only touch. Dutch timber-frame
+  // partitions use 40-60 cm stud centres. The cavity is 10 cm longer for it (z1 2.65 -> 2.75).
+  stud: { w: 0.045, d: 0.07, z: [-0.68, 0.155, 0.655, 1.155, 1.655, 2.155, 2.655] } };
 export const SEAT = { at: [0.0, -0.45], yaw: 0 };     // r2: seated knees-up (superseded, kept for reference)
 // r3: standing, back flat to the brick (pelvis 8.5 cm off it), facing the boards; TURN = head turned toward her left (+z)
 // r4: pelvis 8.5 cm off the brick as before (x follows the narrower cavity). LOOK (r4, Jade picked WL_eye_v1: "she's
 // looking in a direction that makes sense"): the head turned toward the outside camera, one plain near-frontal angle,
 // and the eyes turned past it to picture RIGHT, down the cavity along the brick toward the file (where Mama stands in
 // WL_in). `turn` is now the offset from that look (deg toward her own left; negative = the head takes less of it).
-export const STAND = { at: [CAVITY.x1 - 0.085, -0.35], yaw: -90, turn: -20 };
+// r4b: pelvis 10.7 cm off the brick (was 8.5): on the mesh body her back stood 13 mm (skin) / 21 mm (clothes) inside the brick
+export const STAND = { at: [CAVITY.x1 - 0.107, -0.35], yaw: -90, turn: -20 };
 // her look target: Mama, standing next to her in the file (WL_in, first bay), at the height of Mama's hip and hand,
 // which is the child's eye height. Named 'toMama' in build.js. Mama is not in the outside shots' figs: a set point.
 export const FILE_LOOK = [0.10, 0.98, 0.40];
@@ -35,7 +39,7 @@ export const SLOPE = 40;
 // r3: she stands, so the crack is higher (CRACK_Y: the sheet crosses her turned head at her near (left) eye, measured
 // in the sidecar `blade_on_face`). Length unchanged (0.7 m): the file of workers in WL_in stands beyond the light, in
 // the dark ("being out of the beam is safety"; a longer crack was tried and put the sheet over the outside camera).
-export const CRACK_Y = 1.206;   // r4: 8 cm lower (the narrower cavity and her new head angle; sidecar blade_on_face)
+export const CRACK_Y = 1.161;   // r4b: 4.5 cm lower again (she stands 2.2 cm further from the brick and 1.55 cm higher: sidecar blade_on_face had her left eye 4.5 cm under the sheet). r4: 1.206
 export const CRACK = { x: CAVITY.x0, y: CRACK_Y, z0: -0.60, z1: 0.10, gap: 0.03 };
 export const BULB = [CRACK.x - CAVITY.board.t - 1.2, CRACK.y + (1.2 + CAVITY.board.t) * Math.tan(rad(SLOPE)), 0.2];
 // what gets through a 30 mm gap in a 20 mm board at this slope, measured at the board's inner face
@@ -69,10 +73,10 @@ export const MOTE = { seed: 1988, count: 120, hero: [-0.06, bladeY(-0.06), 0.15]
 // shoulder to shoulder); the r3 fifth worker (w5, a man praying) dropped for the bays.
 export const WORKERS = [
   { key: 'mama', z: 0.405, h: 1.60, pose: 'shield', sex: 'f' },
-  { key: 'w1', z: 0.855, h: 1.62, pose: 'pray', sex: 'f' },
-  { key: 'w2', z: 1.305, h: 1.70, pose: 'mouth', sex: 'm' },
-  { key: 'w3', z: 1.755, h: 1.58, pose: 'clasp', sex: 'f' },
-  { key: 'w4', z: 2.205, h: 1.70, pose: 'flat', sex: 'm' },
+  { key: 'w1', z: 0.905, h: 1.62, pose: 'pray', sex: 'f' },    // r4b: 50 cm apart (was 45: shoulders 3-4 cm into each other)
+  { key: 'w2', z: 1.405, h: 1.70, pose: 'mouth', sex: 'm' },
+  { key: 'w3', z: 1.905, h: 1.58, pose: 'clasp', sex: 'f' },
+  { key: 'w4', z: 2.405, h: 1.70, pose: 'flat', sex: 'm' },
 ];
 
 export const LIGHTS = {

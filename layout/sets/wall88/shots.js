@@ -15,38 +15,60 @@ const jadeStill = (o = {}) => ({ at: [0.0, -0.45], yaw: 0, legs: 'knees', spine:
 
 // r3: standing, back flat to the brick, facing the boards; head turned STAND.turn deg toward her left (+z, the camera),
 // mid-way through turning back toward the crack. Both palms flat back against the brick beside her hips.
-const BRICK_X = CAVITY.x1 - 0.008;
-const palmsToBrick = (z, y, dz) => ({
-  L: { to: [BRICK_X, y, z + dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' },
-  R: { to: [BRICK_X, y, z - dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } });
+// r4b: the palm centre PALM_OFF off the brick face (was 8 mm: on the mesh body that put the palm 13-21 mm INTO the brick;
+// clipcheck touch: palm skin on the brick, 0-1 mm)
+const PALM_OFF = 0.022, BRICK_X = CAVITY.x1 - PALM_OFF;
+const palmsToBrick = (z, y, dz, off = PALM_OFF) => ({
+  L: { to: [CAVITY.x1 - off, y, z + dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' },
+  R: { to: [CAVITY.x1 - off, y, z - dz], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } });
 // r4: head.look 'toMama' (layout.js FILE_LOOK: Mama beside her in the file): the head turns most of the way toward the
 // outside cameras (near-frontal to them), the eyes take the rest, to picture right; the same pose in WL_out and WL_eye so the face reads at one plain angle in both.
-const jadeStand = (o = {}) => ({ at: STAND.at, yaw: STAND.yaw, legs: 'stand', head: { look: 'toMama', turn: STAND.turn, nod: 2 },
+// r4b: standing figures are lifted SOLE_LIFT: the baked mesh feet sit ~13 mm under the engine's ankle-height floor
+// (engine/clipcheck.mjs measured 12-16 mm into the floor for every standing body); pelvis y given explicitly
+const SOLE_LIFT = 0.0155, ADULT_HIP = 0.52, CHILD5_HIP = 0.46;
+const standAt = (x, z, h, k = ADULT_HIP) => [x, +(k * h + SOLE_LIFT).toFixed(4), z];
+const jadeStand = (o = {}) => ({ at: standAt(STAND.at[0], STAND.at[1], 1.08, CHILD5_HIP), yaw: STAND.yaw, legs: 'stand', head: { look: 'toMama', turn: STAND.turn, nod: 2 },
   ...palmsToBrick(STAND.at[1], 0.52, 0.13), ...o });
 
 // the workers: backs to the brick, facing the boards (-x), holding their breath (see layout.js WORKERS)
-const W_X = CAVITY.x1 - 0.105;   // r4: pelvis 10.5 cm off the brick: heels ~5 cm off it, toes ~1 cm short of the boards
+// r4b: pelvis 13.5 cm off the brick (was 10.5): measured on the mesh bodies (clipcheck), the backs of the clothes stood
+// 2-3 cm INSIDE the brick at 10.5; at 13.5 the back of the clothes is ~1 mm off the brick and the toes ~6 mm short of the boards
+const W_X = CAVITY.x1 - 0.135;
 function worker(w) {
-  const base = { at: [W_X, w.z], yaw: -90, legs: 'stand' };
+  const base = { at: standAt(W_X, w.z, w.h), yaw: -90, legs: 'stand' };
   switch (w.pose) {
-    case 'mouth': return { ...base, head: { nod: 8, turn: 12 }, R: { to: 'self:mouth', off: [-0.035, -0.01, 0], hand: 'flat', palm: 'back', fingers: 'left', elbow: 'down' },
-      L: { to: 'side', hand: 'fist' } };
+    case 'mouth': return { ...base, head: { nod: 4, turn: 12 }, R: { to: 'self:mouth', off: [-0.028, -0.01, 0], hand: 'flat', palm: 'back', fingers: 'left', elbow: 'down' },
+      L: { to: 'self:hipL', off: [-0.075, -0.07, -0.02], hand: 'fist', palm: 'in', fingers: 'down' } };   // r4b: fist against the front of his thigh (hanging at his side it stood 3.8 cm into w3)
     // (hold pass 2026-11-26) the clasp holds no object: each hand curls loosely round the other ('relax', was 'grip', which
     // the hold check reads as gripping something and found nothing within 3 cm)
-    case 'clasp': return { ...base, head: { nod: 22 }, L: { to: 'self:waist', off: [-0.13, 0.02, 0.0], hand: 'relax', palm: 'in', fingers: 'down' },
-      R: { to: 'self:waist', off: [-0.15, 0.04, 0.0], hand: 'relax', palm: 'in', fingers: 'down' } };
-    case 'pray': return { ...base, head: { nod: 26 }, L: { to: 'self:chin', off: [-0.09, -0.07, 0.012], hand: 'flat', palm: 'in', fingers: 'up' },
-      R: { to: 'self:chin', off: [-0.09, -0.07, -0.012], hand: 'flat', palm: 'in', fingers: 'up' } };
-    case 'flat': return { ...base, head: { nod: -8 }, ...palmsToBrick(w.z, 0.80, 0.2) };
+    case 'clasp': return { ...base, head: { nod: 22 }, L: { to: 'self:waist', off: [-0.085, 0.0, 0.0], hand: 'relax', palm: 'in', fingers: 'down', elbow: 'down' },
+      R: { to: 'self:waist', off: [-0.10, 0.02, 0.0], hand: 'relax', palm: 'in', fingers: 'down', elbow: 'down' } };   // r4b: hands 5 cm nearer her waist, elbows hanging down at her sides (were 1 cm into the boards and 3.8 cm into w2)
+    case 'pray': return { ...base, head: { nod: 20 }, L: { to: 'self:chin', off: [-0.07, -0.07, 0.012], hand: 'flat', palm: 'in', fingers: 'up' },
+      R: { to: 'self:chin', off: [-0.07, -0.07, -0.012], hand: 'flat', palm: 'in', fingers: 'up' } };   // r4b: 2 cm nearer, head 6 deg less bowed (the boards are 6 mm past her toes now)
+    case 'flat': return { ...base, head: { nod: -8 }, ...palmsToBrick(w.z, 0.80, 0.13, 0.030) };   // r4b: hands 7 cm nearer his hips (his elbows were in w3)
     // r4 Mama: right palm flat back on the brick toward the closed end (between the file and her daughter), left hand
     // flat on the brick beside her hip; head turned back toward where her daughter stands (named point 'daughter')
-    case 'shield': return { ...base, head: { look: 'daughter' },
-      R: { to: [BRICK_X, 0.84, w.z - 0.22], hand: 'flat', palm: [1, 0, 0], fingers: 'down' },
-      L: { to: [BRICK_X, 0.78, w.z + 0.15], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } };
+    case 'shield': return mamaShield(MAMA_P);
     default: throw new Error('pose ' + w.pose);
   }
 }
-const WORKER_FIGS = Object.fromEntries(WORKERS.map((w) => [w.key, worker(w)]));
+// r4b (Jade: "her arm is in an impossible position, her palm can be on the brick but needs to be in a way that physically
+// makes sense"; r4 had her right palm flat on the brick BEHIND her hip, 22 cm toward the closed end, fingers down, which
+// needs the arm drawn back past the body). Now: both palms flat on the brick the way a body pressed back against a wall
+// puts them: the right arm out from her side toward the closed end, where her daughter is (palm 40 cm along the wall from
+// her pelvis, 22 cm beyond her shoulder, at hip height 0.82 m, fingers pointing down and toward her daughter, elbow
+// slightly bent), the left palm just behind her left hip; her head turned back toward her daughter.
+// Solved with the engine's IK and checked with Rapier on the baked mesh body (wl_search.mjs, engine/clipcheck.mjs): see
+// NOTES. p: palm centre offsets from the brick face (rx, lx, m), heights (ry, ly), along the wall from her pelvis (rz, lz),
+// the right fingers' rise (rfy), head turn, spine side bend.
+export const MAMA_Z = 0.405;
+export const mamaShield = (p) => ({ at: standAt(W_X, MAMA_Z, 1.60), yaw: -90, legs: 'stand', spine: { side: p.side || 0 }, head: { look: 'daughter', turn: p.turn || 0 },
+  R: { to: [+(CAVITY.x1 - p.rx).toFixed(4), p.ry, +(MAMA_Z + p.rz).toFixed(4)], hand: 'flat', palm: [1, 0, 0], fingers: [0, p.rfy, -1] },
+  L: { to: [+(CAVITY.x1 - p.lx).toFixed(4), p.ly, +(MAMA_Z + p.lz).toFixed(4)], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } });
+// solved: wl_search.mjs run 2 (60 candidates round a hand-reasoned seed); palms 0.5-0.6 mm off the brick, flat to 1 deg, no
+// penetration, every joint in range (NOTES.md)
+const MAMA_P = { rz: -0.40, ry: 0.824, rx: 0.028, rfy: -1.497, lz: 0.169, ly: 0.755, lx: 0.028, turn: -0.84, side: 0.13 };
+export const WORKER_FIGS = Object.fromEntries(WORKERS.map((w) => [w.key, worker(w)]));
 
 // inside camera: down the cavity from the closed end, near the boards, 2 cm above the sheet of light. The rhyme needs
 // the camera at the sheet; the sheet is at her eye where she stands against the brick, and rises toward the boards, so
@@ -54,29 +76,46 @@ const WORKER_FIGS = Object.fromEntries(WORKERS.map((w) => [w.key, worker(w)]));
 // r4: 35 mm (was 28: the wide lens opened the cavity up and the painter widened it further), 10 cm further back,
 // 7.5 cm off the boards (just clear of the studs' faces, so no stud stands across the frame), tilted up 4 deg so Mama's face (nearest, 1.1 m) stays in frame.
 const IN_X = CAVITY.x0 + 0.075, IN_Y = +(bladeY(IN_X) + 0.02).toFixed(3);
-const IN_CAM = { lens: 35, pos: [IN_X, IN_Y, -0.70], target: [0.06, IN_Y + 0.22, 2.6] };
+export const IN_CAM = { lens: 35, pos: [IN_X, IN_Y, -0.70], target: [0.06, IN_Y + 0.22, 2.6] };
 
+// r4b: contacts the clip check (engine/clipcheck.mjs) measures: palm skin on the brick
+const CLIP_KID = { touch: [['littleJade.handL', 'outer wall (brick)'], ['littleJade.handR', 'outer wall (brick)']] };
+const CLIP_FILE = { touch: [['mama.handR', 'outer wall (brick)'], ['mama.handL', 'outer wall (brick)'], ['w4.handL', 'outer wall (brick)'], ['w4.handR', 'outer wall (brick)']] };
 const BASE = [
-  { id: 'WL_out', lens: 50, orbit: { at: 'littleJade:eyes', az: -5, el: 0, dist: 1.6 }, aim: ['littleJade:eyes', 0.6, 0.3], focus: ['littleJade'], position: 'outside', time: '1:37.4-1:45.5 and 1:45.5-1:51.0', section: 'Chorus 1 ("Inside?" / "My voice goes blind")', beamAnchor: 'eye',
+  // r4b: az -3 (was -5): she stands 2.2 cm nearer the boards and the studs moved to 50 cm centres, so at -5 the stud at z 1.155
+  // stood 18 cm in front of the lens across her face
+  { id: 'WL_out', lens: 50, orbit: { at: 'littleJade:eyes', az: -3, el: 0, dist: 1.6 }, aim: ['littleJade:eyes', 0.6, 0.3], focus: ['littleJade'], position: 'outside', time: '1:37.4-1:45.5 and 1:45.5-1:51.0', section: 'Chorus 1 ("Inside?" / "My voice goes blind")', beamAnchor: 'eye',
     header: '1:37.4 OUTSIDE: down the cavity, level, locked off; she stands, back to the brick, turning into the blade',
     intent: 'r3. The outside position, inside the wall. Down the length of the cavity: boards and the crack frame-left, brick frame-right. She stands with her back flat against the brick, palms on it, facing the boards; her head is turned toward us and slowly turns back toward the crack, and as it turns the thin sheet of light from the crack comes onto her eye. "Inside?" is this frame with the light off (dark). "My voice goes blind": her mouth opens just under the light, and closes. Inside she is scared (heart fast); her face does not know how to show it.',
-    figs: { littleJade: jadeStand() } },
+    figs: { littleJade: jadeStand() }, clip: CLIP_KID },
   { id: 'WL_eye', lens: 85, orbit: { at: 'littleJade:eyes', az: -12, el: 0, dist: 0.62 }, aim: ['littleJade:eyes', 0.5, 0.45], focus: ['littleJade'], position: 'outside', time: '1:40.7-1:45.5', section: 'Chorus 1 ("I honestly don\'t know")', beamAnchor: 'eye',
     header: '1:40.7 OUTSIDE, close: same staging; her eye turning into the blade',
     intent: 'r3. Same staging as WL_out, pushed in to her face, three-quarters, turning toward the crack. The blade crosses one eye and the bridge of the nose. She is scared inside, her heart is fast, but her face does not fully know how to recognise it or show it: still, uncertain, not a clear expression of fear.',
-    figs: { littleJade: jadeStand() } },
+    figs: { littleJade: jadeStand() }, clip: CLIP_KID },
   { id: 'WL_in', ...IN_CAM, position: 'inside', time: '1:51.0-1:54.5 (they blink in and out)', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote', workers: true,
     header: '1:51.0 INSIDE, state A: the file of restaurant workers along the brick, holding their breath',
     intent: 'r3 (Jade): they blink in and out. A single file of Chinese restaurant workers, backs to the brick (frame-left), facing the boards (frame-right), holding their breath, terrified, some praying silently. They blink in and out of existence and then it is the empty wall space again (WL_in_empty). The blade crosses them at the waist. Faces unreached (strangers): fear and prayer are in hands, shoulders and bowed heads.',
-    figs: WORKER_FIGS },
+    figs: WORKER_FIGS, clip: CLIP_FILE },
   { id: 'WL_in_empty', ...IN_CAM, position: 'inside', time: '1:51.0-1:54.5, end state; start of the 1:54.5 pull-back', section: 'Chorus 1 ("Nowhere to go") into Tail 1', beamAnchor: 'mote',
     header: '1:51.0 INSIDE, state B / RHYME FRAME: the same cavity, empty; the blade is the diagonal',
     intent: 'r3. The same camera as WL_in with nobody there: the empty wall space. The crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.',
     figs: {} },
 ];
+// r4b (Jade, wl_count: "yes, five; a brief overhead shot would also be interesting to add, perhaps"): ALTERNATE, NOT IN THE
+// PLAN YET. Straight down into the cavity onto the five heads in their stud bays, the brick face (its courses give the
+// scale) along the top of frame, the boards along the bottom, the blade of light at the closed end, frame left. It is
+// a cutaway: the top plate is lifted off (shot.hide), which the plan's wall notes avoid ("no cutaway of the wall from
+// outside"); flagged. Proposed slot: the first blink of "Nowhere to go", 1:51.0-1:52.2, then WL_in and WL_in_empty.
+// The camera is 2.6 m above the floor, 24 mm, the cavity running across the frame (brick at the top: the camera is
+// 2 mm toward the boards so three.js's lookAt has a defined up).
+BASE.push({ id: 'WL_top', lens: 24, pos: [-0.002, 3.45, 1.20], target: [0, 0, 1.20], hide: ['top plate'], near: 0.5, far: 4.5, position: 'overhead (alternate)',
+  time: 'proposed 1:51.0-1:52.2 (alternate; not in the plan yet)', section: 'Chorus 1 ("Nowhere to go")', beamAnchor: 'mote', workers: true,
+  header: 'ALTERNATE (not in the plan): straight down into the cavity onto the five heads',
+  intent: 'r4b alternate (Jade: "a brief overhead shot would also be interesting"). From straight above, the narrow slot of the cavity runs across the frame: brick (courses of small bricks) along the top, the boards and their studs along the bottom. Five people stand in a single file, one per stud bay, backs to the brick, facing the boards, shoulders almost touching: we see the tops of their heads (Mama nearest the closed end at frame left, with her bun; the praying woman next to her) and their shoulders. The thin blade of light from the crack falls across the floor at the closed end, frame left. Dark, still, holding their breath.',
+  figs: WORKER_FIGS, clip: CLIP_FILE });
 const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, header: 'beam mask for ' + s.id }));
 // r4: plan view (not painted): checks the 32 cm cavity, the stud bays and the feet (toes short of the boards)
 const PLAN = { id: 'WL_plan', lens: 0, ortho: { w: 3.9 }, pos: [0, 6, 0.95], target: [0, 0, 0.95], up: [1, 0, 0], near: 3.5, far: 7,
   hide: ['top plate'], position: 'plan', header: 'PLAN (reference, not painted): the cavity from above, 32 cm clear; boards at the bottom, brick at the top',
-  intent: 'r4 check: cavity width, stud bays, feet.', figs: { littleJade: jadeStand(), ...WORKER_FIGS } };
+  intent: 'r4 check: cavity width, stud bays, feet.', figs: { littleJade: jadeStand(), ...WORKER_FIGS }, clip: { touch: [...CLIP_KID.touch, ...CLIP_FILE.touch] } };
 export const SHOTS = BASE.concat(TWINS, [PLAN]);

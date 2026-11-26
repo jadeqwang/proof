@@ -11,6 +11,8 @@ import { ROOM, roofY, WINDOW, DOOR, STAIRWELL, PROPS, SUN, SUN_DIR, BEAM, beamAx
 import { addCast, CAST, PROP } from '../_cast.js';   // the shared cast table (this set uses the engine's littleJade and mama)
 import { footwear } from '../basement90/kit.js';    // set-local socks (basement90's footwear(), read-only import)
 import { KB, blackKeys, paperKeysMesh } from './keyboard.js';   // r4: the paper keys as one exact texture
+import { loadProps, prop, PROPS as PP } from '../_props.js';   // r4b props phase 2 (work/props_audit.md)
+await loadProps(['tv_small', 'cardboard_box', 'bulb']);
 
 // r3 (Jade 2026-11-25): at the paper keys she is 4.5, not 5, and in socks. No 4.5 kind in the engine or _cast.js, so a
 // SET-LOCAL kind `child4h` = the mean of the engine's child4 and child5 proportions, and a set-local cast key `jade4h`
@@ -121,15 +123,21 @@ function props() {
     const [cw, ch, cd] = T.crate; for (const s of [-1, 1]) grp.add(box(0.02, ch, cd, WOOD, [s * (cw / 2 - 0.01), ch / 2, 0]));
     for (let k = 0; k < 3; k++) grp.add(box(cw, 0.06, 0.02, WOOD, [0, 0.05 + k * 0.1, cd / 2 - 0.01]));
     grp.add(box(cw, 0.02, cd, WOOD, [0, ch - 0.01, 0]));
-    const [tw, th, td] = T.tv; grp.add(box(tw, th, td * 0.6, { grey: 0.35, col: 0x3a3a3a }, [0, ch + th / 2, -td * 0.1]));
-    grp.add(box(tw * 0.6, th * 0.7, td * 0.4, { grey: 0.3, col: 0x2e2e2e }, [0, ch + th / 2, -td * 0.5]));
-    grp.add(box(tw * 0.72, th * 0.68, 0.01, { grey: 0.12, col: 0x101418 }, [-tw * 0.06, ch + th / 2 + 0.01, td * 0.2 + 0.002]));
+    // r4b props phase 2: the downloaded TV (Poly Haven television_02, CC0), fitted to the layout's 0.36 m width; was three boxes
+    const [tw, th, td] = T.tv; const tv = prop('tv_small', { at: [0, ch, 0], size: { w: tw } });
+    if (tv) grp.add(tv); else { grp.add(box(tw, th, td * 0.6, { grey: 0.35, col: 0x3a3a3a }, [0, ch + th / 2, -td * 0.1]));
+      grp.add(box(tw * 0.6, th * 0.7, td * 0.4, { grey: 0.3, col: 0x2e2e2e }, [0, ch + th / 2, -td * 0.5]));
+      grp.add(box(tw * 0.72, th * 0.68, 0.01, { grey: 0.12, col: 0x101418 }, [-tw * 0.06, ch + th / 2 + 0.01, td * 0.2 + 0.002])); }
     g.add(tag(grp, 'small TV (off) on a crate')); }
-  for (const [x, z, w, h, d, yaw, y = 0] of PROPS.boxes) { const b = box(w, h, d, { grey: 0.6, col: 0x9a7c55 }, [x, y + h / 2, z]); b.rotation.y = rad(yaw); g.add(tag(b, 'storage boxes')); }
+  // r4b props phase 2: downloaded cardboard boxes (Poly Haven cardboard_box_01, CC0), each scaled to the layout's box
+  for (const [x, z, w, h, d, yaw, y = 0] of PROPS.boxes) { const S = PP.cardboard_box?.size_m, cb = S && prop('cardboard_box', { at: [x, y, z], rot: [0, yaw, 0], scale: [w / S[0], h / S[1], d / S[2]] });
+    if (cb) { g.add(cb); continue; } const b = box(w, h, d, { grey: 0.6, col: 0x9a7c55 }, [x, y + h / 2, z]); b.rotation.y = rad(yaw); g.add(tag(b, 'storage boxes')); }
   for (const [x, z, yaw] of PROPS.sacks) { const s = ball(0.24, { grey: 0.72, col: 0xc9bc9a }, [x, 0.2, z], [1, 0.85, 0.75]); s.rotation.y = rad(yaw); g.add(tag(s, 'rice sacks'));
     g.add(tag(cyl(0.06, 0.1, 0.12, { grey: 0.72, col: 0xc9bc9a }, [x, 0.42, z]), 'rice sacks')); }
   { const B = PROPS.bulb; g.add(tag(cyl(0.004, 0.004, B.drop, { grey: 0.1, col: 0x111111 }, [B.x, ROOM.ridge - 0.18 - B.drop / 2, B.z], null, 6), 'bare bulb (off)'));
-    g.add(tag(ball(0.035, { grey: 0.8, col: 0x9a9a8a }, [B.x, ROOM.ridge - 0.18 - B.drop - 0.03, B.z], [1, 1.3, 1]), 'bare bulb (off)')); }
+    // r4b props phase 2: the downloaded bulb (Poly Haven lightbulb_01, CC0), cap up on its cord (as basement90); was a ball
+    const bb = prop('bulb', { at: [B.x, ROOM.ridge - 0.18 - B.drop, B.z], rot: [180, 0, 0] });
+    g.add(bb || tag(ball(0.035, { grey: 0.8, col: 0x9a9a8a }, [B.x, ROOM.ridge - 0.18 - B.drop - 0.03, B.z], [1, 1.3, 1]), 'bare bulb (off)')); }
   return g;
 }
 
@@ -162,10 +170,14 @@ export function build(shot, { makeCam }) {
   // 'forearmDown:<who>:<L|R>[:k]' = 0.1 m from that point straight down, square to the forearm (for a palm laid on top of it)
   const extra = (t, figs) => {
     if (typeof t !== 'string') return null; if (NAMED[t]) return V(NAMED[t]);
-    const m = /^forearm(Down)?:(\w+):([LR])(?::([\d.]+))?$/.exec(t); if (!m || !figs || !figs[m[2]]) return null;
+    // r4b: 'forearmSide:<who>:<L|R>:<k>:<deg>' = the same, the direction turned <deg> about the forearm from straight down
+    // toward world +z (the side Mama comes from): 0 = a palm on top of the forearm, 90 = a palm on its +z side
+    const m = /^forearm(Down|Side)?:(\w+):([LR])(?::([\d.]+))?(?::(-?[\d.]+))?$/.exec(t); if (!m || !figs || !figs[m[2]]) return null;
     const P = figs[m[2]].userData.P, E = P['elbow' + m[3]], W = P['wrist' + m[3]]; if (!E || !W) return null;
     const p = E.clone().lerp(W, m[4] ? +m[4] : 0.6); if (!m[1]) return p;
-    const a = W.clone().sub(E).normalize(), d = new THREE.Vector3(0, -1, 0); d.addScaledVector(a, -d.dot(a)).normalize(); return p.addScaledVector(d, 0.1); };
+    const a = W.clone().sub(E).normalize(), d = new THREE.Vector3(0, -1, 0); d.addScaledVector(a, -d.dot(a)).normalize();
+    if (m[1] === 'Side') { const s = new THREE.Vector3(0, 0, 1); s.addScaledVector(a, -s.dot(a)).addScaledVector(d, -s.dot(d)).normalize(); const r = rad(+(m[5] || 0)); d.multiplyScalar(Math.cos(r)).addScaledVector(s, Math.sin(r)).normalize(); }
+    return p.addScaledVector(d, 0.1); };
   const { figs } = stage(shot.figs || {}, null, extra);
   for (const f of Object.values(figs)) root.add(f);
   for (const [who, fw] of Object.entries(SOCKS)) if (figs[who]) root.add(footwear(figs[who], fw));   // socks (Jade r3)

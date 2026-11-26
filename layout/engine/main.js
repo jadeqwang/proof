@@ -263,4 +263,25 @@ window.sidecar = (id) => {
   out.figure_report = Object.fromEntries(Object.entries(b.figs || {}).map(([w, f]) => [w, f.userData.report]));
   return out;
 };
+// r4 (2026-11-26): body / world triangles + joint angles for engine/clipcheck.mjs (additive; nothing else calls it)
+import { clipDump } from './clipdump.js';
+window.clipDump = (id) => clipDump(get(id), SHOT[id]);
+// a shot object that is not in the set's table (pose / camera searches): built fresh, not cached; returns the clip dump,
+// the solved camera and, with opts.px, named world points projected to pixels
+window.clipDumpSpec = (shot, opts = {}) => { const s = JSON.parse(JSON.stringify(shot)); const b = (s.v3 && buildV3 ? buildV3 : build)(s, { makeCam, W, H }); b.scene.updateMatrixWorld(true);
+  const out = clipDump(b, s); out.camera = { pos: s.pos, target: s.target }; if (opts.px) out.px = Object.fromEntries(Object.entries(opts.px).map(([k, p]) => { const q = px(new THREE.Vector3(...p), b.cam); return [k, [q.x, q.y, q.front]]; })); return out; };
+// render a shot object that is not in the table (searches; previews): PNG data URL
+window.renderSpec = (shot, mode = 'form') => { const s = JSON.parse(JSON.stringify(shot)); const b = (s.v3 && buildV3 ? buildV3 : build)(s, { makeCam, W, H }); b.scene.updateMatrixWorld(true);
+  const c = R.render(b, mode === 'label' ? 'label' : mode); if (mode === 'label') labelOverlay(b, c, s); return c.toDataURL('image/png'); };
+// camera searches: visible pixels per label (substring) or per figure part ('who' or 'who:handR' via the hand groups),
+// sampled every 3 px, and named world points / figure points in pixels (with occlusion: is that point the nearest surface?)
+window.visSpec = (shot, { labels = [], points = {} } = {}) => { const s = JSON.parse(JSON.stringify(shot)); const b = (s.v3 && buildV3 ? buildV3 : build)(s, { makeCam, W, H }); b.scene.updateMatrixWorld(true);
+  const id = R.idPass(b), cnt = Object.fromEntries(labels.map((l) => [l, 0]));
+  for (let y = 1; y < H; y += 3) for (let x = 1; x < W; x += 3) { const m = id.meshAt(x, y); if (!m) continue; const tagS = (m.userData.label || '') + '|' + (m.userData.who || '') + '|' + (m.userData.idGroup || '').split(':').pop();
+    for (const l of labels) if (tagS.includes(l)) cnt[l]++; }
+  const pts = {}; for (const [k, t] of Object.entries(points)) { let p; if (Array.isArray(t)) p = new THREE.Vector3(...t); else { const [w, part] = t.split(':'); p = b.figs[w]?.userData.P[part]?.clone(); } if (!p) continue;
+    const q = px(p, b.cam); const rc = new THREE.Raycaster(b.cam.position, p.clone().sub(b.cam.position).normalize(), 0.01, p.distanceTo(b.cam.position) - 0.03);
+    const hits = rc.intersectObjects(b.scene.children, true).filter((h) => h.object.visible && h.object.userData.baseVisible !== false && h.object.userData.look && !h.object.userData.look.glass && !(h.object.userData.look.only && !h.object.userData.look.only.includes('flat')));
+    pts[k] = { px: [q.x, q.y], front: q.front, blocked_by: hits.length ? (hits[0].object.userData.who ? hits[0].object.userData.who + ' ' : '') + (hits[0].object.userData.label || '') + '|' + (hits[0].object.userData.bodyRegion || (hits[0].object.userData.idGroup || '').split(':').pop()) : null }; }
+  return { counts: cnt, points: pts, camera: { pos: s.pos, target: s.target } }; };
 window.__ready = Promise.resolve(true);

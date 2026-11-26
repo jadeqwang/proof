@@ -19,6 +19,7 @@ function undraw(fig) {
     if (t === 'ConeGeometry' || L.col === 0x8a3b34 || (L.col === 0x111111 && t === 'SphereGeometry')) { o.visible = false; o.userData.baseVisible = false; } });
 }
 import { beamSolid, beamMesh, beamWire, beamSidecar } from './beam.js';
+import { brickArt, BRICK as BRICK_SIZE } from './brick.js';   // r4b: the brick face as one exact texture
 
 const BOARD = { grey: 0.42, col: 0x4a3a2a, recvShadowLine: true }, STUD = { grey: 0.5, col: 0x6a5238, recvShadowLine: true };
 const BRICK = { grey: 0.36, col: 0x4a342c, recvShadowLine: true }, FLOOR = { grey: 0.3, col: 0x2a221c, recvShadowLine: true };
@@ -36,8 +37,14 @@ function cavity() {
   for (const z of C.stud.z) g.add(tag(box(C.stud.d, C.h, C.stud.w, STUD, [C.x0 + C.stud.d / 2, C.h / 2, z]), 'stud'));
   // r4: no sole plate in the cavity (it would sit under the workers' toes); the studs stand on the floor
   // the outer wall, the floor, the two ends, the top
-  g.add(tag(box(0.1, C.h, L, BRICK, [C.x1 + 0.05, C.h / 2, zc]), 'outer wall (brick)'));
-  for (let y = 0.075 * 4; y < C.h; y += 0.075 * 4) g.add(tag(box(0.004, 0.012, L, { grey: 0.26, col: 0x2a1c18, noCast: true }, [C.x1 - 0.001, y, zc]), 'outer wall (brick)'));
+  // r4b (Jade: "draw the brick texture into the wall so you can tell the distance of things"): the brick face carries ONE
+  // exact running-bond texture at true brick size (brick.js: Waalformaat 210 x 50 mm, 10 mm joints) in every guide mode.
+  // On the box's -x face (the one in the cavity) the texture's u runs along +z from the closed end and v up from the floor.
+  // (Was: one dark course line every 0.3 m.)
+  { const a = brickArt(L, C.h), m = box(0.1, C.h, L, { ...BRICK, art: a.art, artGrey: a.artGrey, artEdge: a.artEdge }, [C.x1 + 0.05, C.h / 2, zc]);
+    // only the cavity face (-x, BoxGeometry's 2nd face: vertices 4-7) carries the courses; the other faces sample one mortar texel
+    const uv = m.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) if (i < 4 || i > 7) uv.setXY(i, 0.0005, 0.0005); uv.needsUpdate = true;
+    g.add(tag(m, 'outer wall (brick)')); }
   g.add(tag(box(C.x1 - C.x0 + 0.3, 0.04, L, FLOOR, [0, -0.02, zc]), 'floor of the cavity (dust)'));
   g.add(tag(box(C.x1 - C.x0, C.h, 0.05, BOARD, [0, C.h / 2, C.z0 - 0.025]), 'closed end'));
   g.add(tag(box(C.x1 - C.x0, C.h, 0.05, BOARD, [0, C.h / 2, C.z1 + 0.025]), 'end she came in by (board pulled to)'));
@@ -65,6 +72,8 @@ export function build(shot, { makeCam }) {
   Object.assign(shot, solveCamera(cs, figs, null, aim));
   hideParts(shot.hideParts, figs);
   if (shot.hide) root.traverse((o) => { if (o.isMesh && shot.hide.includes(o.userData.label)) o.visible = false; });   // r4: plan view
+  // r4b WL_top: the cutaway from above: everything outside the cavity is darkness (no invented room or street round it)
+  if (shot.hide && shot.position?.startsWith('overhead')) root.add(tag(box(8, 0.02, 12, { grey: 0.04, col: 0x050505, noCast: true }, [0, -0.06, 1.0]), 'darkness outside the cavity (cutaway)'));
   const cam = makeCam(shot);
 
   const anchor = V(fix(shot.beamAnchor || 'mote'));

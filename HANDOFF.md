@@ -1115,3 +1115,23 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Lead's look: no face. The hair reads chestnut/medium brown, lighter and redder than a rich dark brown. Shown to
     Jade.
   - Stale: the playground23 copy of make_bodies.py; prose refs to v5 in closet02.
+- **office91 shoulders:** the cause was staging. She had no elbow target, so the elbows flared and the shoulder
+  over-deformed; elbow targets were added in shots.js. LEFT FOR NEXT SESSION: a small notch at the top of each
+  shoulder seam, likely skin poking through the garment at the collarbone/upper arm. It's a body/garment fix in
+  layout/assets/bodies or humanMesh.js, and probably affects every mesh figure with raised or forward arms.
+- **attic88_day + wall88 agent done:**
+  - New layout/engine/clipcheck.mjs (Rapier: body vs world/body, contacts, joint limits). Run it with
+    `node layout/engine/clipcheck.mjs --set S --exclude beam_`.
+  - AD_grab: both standing, IK-searched, 0 mm penetration, new 24 mm camera showing the keyboard. It no longer
+    rhymes with M4's 50 mm framing: question for Jade.
+  - AD_trace is standing too.
+  - WL_in: re-solved, palm flat on the brick, 0 mm. The line of five moved off the brick and is spaced 50 cm apart.
+  - Brick texture: Dutch Waalformaat (the attic is in the Netherlands per the plan).
+  - WL_top alternate, proposed for 1:51.0-1:52.2.
+  - Mesh soles sit ~13 mm under the floor in every set: an engine fix for next session.
+  - Lead's look:
+    - AD_grab_lit reads and is bright enough.
+    - WL_in_lit is almost all black (only the beam and mote): the painters must get form/contour, or the lit needs
+      lift.
+    - WL_in_form shows a stray hand by Mama's neck/ear against the stud. NEXT SESSION: identify whose hand it is and
+      fix it.

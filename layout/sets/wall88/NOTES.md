@@ -1,5 +1,63 @@
 # wall88: notes and assumptions
 
+## 2026-11-26 round 4 — PROGRESS (checkpoint)
+- DONE (see the section below for numbers): brick texture (brick.js, Waalformaat, every mode); Mama's palms re-solved
+  (wl_search.mjs; gaps 0.5-0.6 mm, flat to 1 deg, joints in range); file 13.5 cm off the brick, 50 cm apart, soles lifted
+  15.5 mm; child moved 2.2 cm, CRACK_Y 1.161 (blade on her left eye 0.0 cm again), WL_out az -3 (a stud blocked her face);
+  WL_top alternate added. clipcheck: all five shots PASS (skin 0 mm everywhere; cloth <= 4.4 mm). Rendered (3 passes)
+  and looked at WL_in, WL_in line, WL_top, WL_out.
+- DONE (milestone 2): final clipcheck all pass; gallery rebuilt. Flags: brick format assumed (NL Waalformaat); WL_top is a cutaway (plan says none) and not in the plan;
+  engine-wide mesh soles ~13 mm under the floor.
+- Question for Jade: WL_top in the cut at 1:51.0-1:52.2? (yes / no) rec: try it. Img WL_top_flat.png.
+- clipcheck: `node layout/engine/clipcheck.mjs --set <set> --exclude beam_ [--shots A,B] [--json out.json]` -> one table
+  per shot: body vs world (skin / cloth mm inside), body vs body, grips (gap, cloth, skin), palm touches (`clip.touch` in
+  a shot: gap mm, palm angle to the wall), joints vs limits. Pass = skin <= 3 mm, cloth / cushion / floor <= 12 mm.
+  Scripts: `openClipPage(set)` + `window.clipDumpSpec(shot)` + `checkDump()` for searches; `window.visSpec` /
+  `window.renderSpec` (engine/main.js, additive) for camera searches and previews.
+
+## 2026-11-26 (late): round-4 decisions (Jade's answers; SUPERSEDES everything below where they differ)
+
+Jade: WL_in "her arm is in an impossible position, her palm can be on the brick but needs to be in a way that physically
+makes sense (use a game engine or some other tool for this) / please draw the brick texture into the wall so you can
+tell the distance of things"; wl_count "yes, five; a brief overhead shot would also be interesting to add, perhaps".
+
+- **Measured, not by eye** (new engine module, `engine/clipcheck.mjs` + `engine/clipdump.js`): every vertex of every baked
+  mesh body against every set mesh and every other body, with Rapier point projection on oriented trimeshes; joints
+  against their limits; palm-on-wall contacts (`clip.touch` in shots.js). `node layout/engine/clipcheck.mjs --set wall88
+  --exclude beam_`. The r4 staging failed it everywhere: every back 13-29 mm into the brick, every sole 12-16 mm into the
+  floor, adults 45 cm apart 35-40 mm into each other at the shoulders, w3's hands 10 mm into the boards, the palms on the
+  brick 11-21 mm into it, Mama's right wrist 100-130 deg past its range.
+- **Mama (WL_in) re-solved** (`wl_search.mjs`: the engine's IK proposes, clipcheck measures; 60 candidates round a
+  hand-reasoned seed): both palms flat on the brick the way a body pressed back against a wall puts them. Right arm out
+  from her side toward the closed end, where her daughter is: palm 40 cm along the wall from her pelvis (22 cm beyond the
+  shoulder), at hip height 0.82 m, fingers down and toward her daughter, elbow bent 41 deg; left palm just behind her left
+  hip. Head turned back toward her daughter. Measured: palm gaps 0.6 / 0.5 mm, palm normals 0.7 / 0 deg off the wall
+  normal, no skin inside anything, wrists in range (R flex -7, ulnar 29 (limit 30), twist -13; L flex -10, ulnar 15).
+  A higher reach (chest height, 30+ cm beyond the shoulder) was tried: the elbow ran past its rotation limit or the
+  wrist past 90 deg; the engine's IK cannot put that palm flat on the wall within the joint ranges.
+- **The file**: pelvis 13.5 cm off the brick (was 10.5): backs of the clothes ~1 mm off the brick, toes ~6 mm short of
+  the boards (32 cm cavity kept). **50 cm apart** (was 45): adults 45 cm apart stood 3-4 cm into each other. Studs moved
+  to 50 cm centres between them (`CAVITY.stud.z`), cavity 10 cm longer (z1 2.75). w2's free hand is a fist against his
+  thigh (hanging, it was in w3); w3's clasped hands 5 cm nearer her waist, elbows down; w1's praying hands 2 cm nearer,
+  head 6 deg less bowed; w4's palms 7 cm nearer his hips. Palm centres 22 mm (child) / 28-30 mm (adults) off the brick.
+- **Floor**: every standing body is lifted 15.5 mm (`SOLE_LIFT`): the baked mesh soles sat 12-16 mm under the floor
+  (an engine-wide offset between the solver's ankle height and the mesh foot; FLAG for the engine, every set).
+- **The child (WL_out, WL_eye)**: pelvis 10.7 cm off the brick (was 8.5; her back was 13 mm into it), lifted 15.5 mm;
+  palms 22 mm off. Her eye moved ~2 cm toward the boards and up 1.5 cm; the blade on her face is re-measured in the sidecar
+  (`blade_on_face`).
+- **Brick texture** (`brick.js`): ONE running-bond texture drawn in code at true size on the brick's cavity face, in every
+  guide mode (lit: colour; flat / form: greys; line / contour: a drawn edge map of every joint). ASSUMED Dutch
+  Waalformaat, 210 x 50 mm faces, 10 mm joints (a course every 60 mm, a stretcher every 220 mm): the building is the
+  Netherlands restaurant of the attic (the neon sign reads CHIN. IND. SPEC. REST.). FLAG: US modular (194 x 57 + 10) if
+  the wall is elsewhere (`BRICK` in brick.js). The other faces of the brick box carry one mortar texel.
+- **WL_top** (new, ALTERNATE, not in the plan): straight down into the cavity onto the five heads, 24 mm from 3.45 m,
+  the top plate lifted off (a cutaway: the plan's wall notes say "no cutaway of the wall from outside"; FLAG), everything
+  outside the cavity black. Proposed slot: the first blink of "Nowhere to go", 1:51.0-1:52.2, then WL_in, WL_in_empty.
+  Beam twin `beam_WL_top`.
+- Clip results after the fix (mesh bodies): all five shots pass; worst skin penetration 0 mm; cloth pressed: the child's
+  shirt 4.2 mm on the brick, w2's sleeve 4.4 mm on the boards, w2/w3 sleeves 0.5 mm. Joints all in range.
+- r3/r4 snapshot: the r3 page already reads `media/keyframes/r3/_layout_snapshot/wall88/`.
+
 ## 2026-11-26: round-4 set fixes (Jade's r3 review; SUPERSEDES the r3 section below where they differ)
 
 Jade: WL_out "the image model did something picasso on her face, unlike the next shot"; WL_eye "something about

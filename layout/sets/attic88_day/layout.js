@@ -61,7 +61,9 @@ export const FERN = { pane: 'window_BR', root: [W.x - 0.012, W.sill + 0.03, zB -
 // ---------------------------------------------------------------- the reading spot at the sill
 // She kneels on a folded cushion at the window and uses the sill board as a desk; the textbook stack (attic88 v4,
 // STACK4) is at her right hand.
-export const READING = { cushion: { at: [3.13, -0.74], w: 0.42, d: 0.46, t: 0.06 }, book: { at: [3.415, W.sill - 0.035, -1.02], w: 0.13, d: 0.19, t: 0.018, yaw: 6 },
+// r4b (Jade: "no one is kneeling ... both people are standing"): she now STANDS at the sill to trace the fern, so the
+// cushion she reads on lies pushed aside behind her left (was at [3.13, -0.74], under where she now stands).
+export const READING = { cushion: { at: [2.80, -1.12], w: 0.42, d: 0.46, t: 0.06 }, book: { at: [3.415, W.sill - 0.035, -1.02], w: 0.13, d: 0.19, t: 0.018, yaw: 6 },
   kneel: [3.13, -0.70] };
 
 // ---------------------------------------------------------------- the paper keyboard, in the beam

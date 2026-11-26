@@ -10,6 +10,7 @@
 // 4:16.8, 4:19.2, 4:21.7), last hit / drums stop 4:24.1.
 // Every shot has a twin `beam_<id>` (same camera, beamMask: true): render it in flat mode for the beam mask.
 import { SEAT, READING } from './layout.js';
+import { kidAtSill, mamaGrab, GRAB_P } from './grabpose.js';   // r4b: both standing at the sill (grab_search.mjs)
 
 // ---------------------------------------------------------------- recurring poses
 // r3: fingers softly curved on the flat paper (playing posture), not flat
@@ -24,12 +25,10 @@ const jadeUp = (o = {}) => ({ at: SEAT.at, yaw: SEAT.yaw, legs: 'cross', spine: 
 const jadeSill = (o = {}) => ({ at: READING.kneel, floor: READING.cushion.t, yaw: 90, legs: 'kneel', spine: { bend: 6 }, head: { look: 'fern' },
   R: { to: 'fern', off: [-0.085, -0.015, 0.02], hand: 'point', fingers: [1, 0.2, -0.12], palm: 'down' }, L: { to: 'sill', off: [-0.02, 0.05, -0.22], hand: 'flat', palm: 'down', fingers: 'fwd' }, ...o });
 
-// r4: the grip target for the grab (resolved in build.js extra): the child's right forearm at 0.5 elbow -> wrist
-const GRAB_K = 0.5;
-const GRAB_R = { to: `forearm:littleJade:R:${GRAB_K}`, hand: 'grip', palm: `to:forearmDown:littleJade:R:${GRAB_K}`,
-  hold: { r: 0.040, prop: false, centre: true, axis: 'to:forearm:littleJade:R:0.95' }, object: 'figure:littleJade:armR',
-  grasp: { kind: 'forearm', of: 'littleJade:R', k: GRAB_K, from: 'above', note: 'palm on top, fingers round the far side and under, thumb round the near side' } };   // (grasp: a note for the grasp module; the engine ignores it)
-
+// r4b: the grab's grip (grabpose.js GRIP) replaces r4's GRAB_R (kneeling Mama, palm on top): same forearm grip at 0.5
+// elbow -> wrist, now from a standing Mama, palm turned GRAB_P.palm deg toward her side, hold.r GRAB_P.holdR.
+// r4b standing at the sill (Jade: "no one is kneeling"): AD_trace and AD_grab are one moment, so she stands in both.
+const jadeAtSill = () => kidAtSill(GRAB_P);
 const BASE = [
   // ---------------------------------------------------------------- 0:05 taps, whisper 1
   { id: 'AD_wide', lens: 24, pos: [0.2, 1.15, 2.1], aim: ['beamMid', 0.52, 0.5], position: 'wide', time: '0:05', section: 'Taps (header: Attic, 1988)', beamAnchor: 'beamMid',
@@ -54,28 +53,30 @@ const BASE = [
     intent: 'From behind her right shoulder along her new eye-line: her head lifts from the keys to the window. The four frosted panes are the brightest thing; the shaft comes from them toward us.',
     figs: { littleJade: jadeKeys({ spine: { bend: 20 }, head: { look: 'fern' } }) } },
   // ---------------------------------------------------------------- 1:36.0 "How do you feel?" and the band hit
-  { id: 'AD_trace', lens: 50, pos: [2.98, 1.06, -0.48], aim: ['fern', 0.5, 0.55], position: 'inside', time: '1:36.0-1:37.4', section: '"How do you feel?"', beamAnchor: 'fernMid',
+  // r4b: she stands, so the camera moved over her right shoulder (was [2.98, 1.06, -0.48], 50 mm, aimed at the fern tip: her standing
+  // head filled it); the FINGERTIP (now on fernMid) is at (0.5, 0.55), as the office's pointing finger; 40 mm so root and tip are in
+  { id: 'AD_trace', lens: 40, pos: [3.0, 1.0, -0.3], aim: ['littleJade:indexR', 0.5, 0.55], position: 'inside', time: '1:36.0-1:37.4', section: '"How do you feel?"', beamAnchor: 'fernMid',
     header: '1:36.0 match cut on the pointing finger: five years old, tracing the frost fern',
-    intent: 'Close on her right index finger on the lower pane, following the fern from its root. Framed so the fingertip sits where the pointing finger sat in the school office. She kneels on the cushion at the sill, in the full light.',
-    figs: { littleJade: jadeSill() } },
-  // THE GRAB framing (shared with market93 M4; see NOTES.md): 50 mm, 0.92 m from the grabbed forearm, 31 deg above it,
-  // 30 deg round to the child's right, the forearm's midpoint at (0.5, 0.52), the adult forearm entering on a diagonal from
-  // the upper corner. Here the camera is BEHIND her (the window wall is 0.1 m in front of her hand; her forward is az 90,
-  // camera az 300), so Mama's hand enters from frame RIGHT; in the market (camera in front) it enters from frame left.
-  // (Was: pos [2.72, 1.22, -0.12] aimed at the wrist: 0.90 m, 31 deg up, 33 deg round; the change is small.)
-  { id: 'AD_grab', lens: 50, orbit: { at: { mid: ['littleJade:wristR', 'littleJade:elbowR'] }, az: 300, el: 31, dist: 0.92 }, aim: [{ mid: ['littleJade:wristR', 'littleJade:elbowR'] }, 0.5, 0.52], position: 'outside', time: '1:37.4', section: 'Band hits', beamAnchor: 'fernMid',
+    intent: 'Close on her right index finger on the lower pane, following the fern from its root. Framed so the fingertip sits where the pointing finger sat in the school office. She stands at the sill, in the full light (r4b: standing, as in the grab a moment later; was kneeling on the cushion).',
+    figs: { littleJade: jadeAtSill() } },
+  // r4b CAMERA (grab_camera.mjs, 200 candidates scored on the id pass): from the window corner, 24 mm, low over the sill board
+  // at the child's left, looking back into the room: her finger on the frosted pane frame left, Mama's hand closing on her
+  // forearm, Mama's face bent over her, and on the floor beyond them the paper keyboard, whole (all four corners), in the
+  // tail of the beam. Was THE GRAB framing shared with market93 M4 (50 mm, 0.92 m, 31 deg up, 30 deg round to her right):
+  // with both standing, an orbit of that size round the forearm finds no frame that also holds the keyboard (it is 3 m
+  // away across the room), and from her back Mama's body covers the grab. FLAG: M4 / M4b may want a matching wide.
+  { id: 'AD_grab', lens: 24, pos: [3.224, 1.164, -1.805], target: [2.744, 0.62, -0.396], position: 'outside', time: '1:37.4', section: 'Band hits', beamAnchor: 'fernMid',
     header: '1:37.4 a hand closes on her forearm (then cut to black)',
-    intent: "Mama's hand comes in from frame right and closes on the forearm of the tracing hand; the finger is still on the glass. First of the three forearm grabs. Mama kneels beside her, between the cushion and the textbook stack; only her arm needs to be in frame.",
-    figs: { littleJade: jadeSill(),
-      // r4 (Jade: "make it an actual grab, top-down"): a power grip round the middle of her forearm from ABOVE: palm laid on the
-      // top of the forearm (square to it), the four fingers wrapping round the far side and under, the thumb round the near
-      // side; the forearm runs across Mama's palm (engine hold: cylinder r 2.6 cm = a 4.5-5-year-old's forearm in a jacket
-      // sleeve). Mama kneels at her right, turned toward her (yaw 215), so her forearm comes in from frame right and a little
-      // down onto the grip. A standing, bent-over Mama (arm straight down) cannot reach without her body filling this camera,
-      // and the engine has no high kneel; with the body meshes, a high kneel (thighs upright) would bring the arm down steeper.
-      // Was: a palm target beside the wrist (palm 'down', fingers pointing past the arm): read as a hand laid alongside.
-      mama: { at: [3.20, 0.00], yaw: 215, legs: 'kneel', spine: { bend: 10 }, head: { look: 'littleJade:head' },
-        R: GRAB_R, L: 'kneeL' } } },
+    intent: "Mama's hand comes down and closes on the forearm of the tracing hand; the finger is still on the glass. First of the three forearm grabs. Both stand: Mama has rushed in and bends over her daughter's right side, knees bent, to grab her and go.",
+    figs: { littleJade: jadeAtSill(),
+      // r4b (Jade: "mom's arm is really unnatural and clips thru the window ... no one is kneeling ... both people are
+      // standing"): Mama STANDS at the child's right, beyond the textbook stack, knees bent and bent forward at the hips (a
+      // rush, not a stoop), turned toward her, and closes her right hand round the middle of the child's right forearm (the
+      // forearm grip kept: palm on its near top, fingers round the far side and under, thumb round the near side). Solved
+      // with the engine's IK within joint limits and checked with Rapier on the mesh bodies (grab_search.mjs,
+      // engine/clipcheck.mjs): no penetration of the window, the walls, the stack or the child; numbers in NOTES.md.
+      // Was (r4): kneeling, forearm through the window frame by 24.5 mm, into the stack by up to 21.5 mm.
+      mama: mamaGrab(GRAB_P) } },
   // ---------------------------------------------------------------- 3:43 tail 2
   { id: 'AD_fern', lens: 50, pos: [2.74, 0.66, -0.60], target: [3.49, 0.66, -0.60], position: 'plate', time: '3:43.0-3:55.0 (-2sm; outro line 1 enters over it at 3:54.0)', section: 'Tail 2', beamAnchor: 'fernMid',
     header: '3:43 plate: the frost fern pane, square on (the fern regrows and becomes a neuron)',

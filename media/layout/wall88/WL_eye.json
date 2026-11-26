@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   -0.081,
-   0.9583,
-   0.3393
+   -0.1009,
+   0.9727,
+   0.3412
   ],
   "target": [
-   0.3348,
-   0.9345,
-   -1.6169
+   0.3149,
+   0.9489,
+   -1.615
   ],
   "lens_mm": 85,
   "frame_width_mm": 36,
@@ -36,9 +36,9 @@
    0.0119,
    0.9781,
    0,
-   -0.081,
-   0.9583,
-   0.3393,
+   -0.1009,
+   0.9727,
+   0.3412,
    1
   ],
   "viewMatrix": [
@@ -54,9 +54,9 @@
    -0.0116,
    0.9781,
    0,
-   0.0087,
-   -0.9541,
-   -0.3601,
+   0.0278,
+   -0.9684,
+   -0.3663,
    1
   ],
   "projectionMatrix": [
@@ -88,27 +88,27 @@
  "heads": {
   "littleJade": {
    "px": [
-    1014.6,
-    529.8
+    999.7,
+    523.3
    ],
    "eyes": [
     960.2,
-    485.8
+    486
    ],
    "mouth": [
-    960.6,
-    865.5
+    960.9,
+    865.2
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 5
+   "facing_camera_deg": 4
   }
  },
  "hands": {
   "littleJade.L": {
    "px": [
-    1802.4,
-    3794.1
+    1838.2,
+    3884.3
    ],
    "shape": "flat",
    "in_frame": false,
@@ -116,8 +116,8 @@
   },
   "littleJade.R": {
    "px": [
-    1265.2,
-    2810.2
+    1292.5,
+    2877.4
    ],
    "shape": "flat",
    "in_frame": false,
@@ -132,30 +132,27 @@
    "color": "#ffe2b0",
    "world": [
     -1.38,
-    2.2297,
+    2.1847,
     0.2
    ],
    "px": [
-    40515.8,
-    39187
+    41771.9,
+    39117.4
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.711,
-    0.703
+    0.725,
+    0.688
    ],
-   "toward_camera": -0.305,
+   "toward_camera": -0.384,
    "aim_world": [
     -0.16,
-    1.206,
+    1.161,
     -0.25
    ]
   }
  ],
- "warnings": [
-  "wrist: littleJade L hand turned 3.3 deg toward the forearm to keep the wrist in range (was flex -13.6, radial -31)",
-  "wrist: littleJade R hand turned 3.3 deg toward the forearm to keep the wrist in range (was flex -13.6, radial -31)"
- ],
+ "warnings": [],
  "intent": "r3. Same staging as WL_out, pushed in to her face, three-quarters, turning toward the crack. The blade crosses one eye and the bridge of the nose. She is scared inside, her heart is fast, but her face does not fully know how to recognise it or show it: still, uncertain, not a clear expression of fear.",
  "film": {
   "time": "1:40.7-1:45.5",
@@ -168,7 +165,7 @@
   "model": "diverging from a point source",
   "source_world": [
    -1.38,
-   2.2297,
+   2.1847,
    0.2
   ],
   "direction_of_travel": [
@@ -179,41 +176,41 @@
   "aperture_world": [
    [
     -0.16,
-    1.2042,
+    1.1592,
     -0.6
    ],
    [
     -0.16,
-    1.2042,
+    1.1592,
     0.1
    ],
    [
     -0.16,
-    1.191,
+    1.146,
     0.1
    ],
    [
     -0.16,
-    1.191,
+    1.146,
     -0.6
    ]
   ],
   "aperture_px": [
    [
-    -413.9,
-    -753.6
+    -308.3,
+    -447.2
    ],
    [
-    -1722.1,
-    -4706.7
+    -1250.4,
+    -3333.2
    ],
    [
-    -1720.1,
-    -4424
+    -1248.9,
+    -3060
    ],
    [
-    -413.7,
-    -686.8
+    -308.1,
+    -380.9
    ]
   ],
   "footprints": {
@@ -221,41 +218,41 @@
     "world": [
      [
       0.16,
-      0.9352,
+      0.8902,
       -0.8098
      ],
      [
       0.16,
-      0.9352,
+      0.8902,
       0.0738
      ],
      [
       0.16,
-      0.9186,
+      0.8736,
       0.0738
      ],
      [
       0.16,
-      0.9186,
+      0.8736,
       -0.8098
      ]
     ],
     "px": [
      [
-      947.7,
-      575.1
+      1021,
+      802.6
      ],
      [
-      3599.2,
-      823.2
+      3816.3,
+      1666.2
      ],
      [
-      3597.5,
-      1066.8
+      3814.5,
+      1904.1
      ],
      [
-      947.7,
-      639.5
+      1021,
+      866.6
      ]
     ]
    },
@@ -263,64 +260,64 @@
     "world": [
      [
       0.0687,
-      0.9962,
+      0.9512,
       -0.75
      ],
      [
       0.0687,
-      1.0119,
+      0.9669,
       -0.75
      ],
      [
       0.16,
-      0.9352,
+      0.8902,
       -0.75
      ],
      [
       0.16,
-      0.9186,
+      0.8736,
       -0.75
      ]
     ],
     "px": [
      [
-      629.1,
-      329.1
+      709.5,
+      574.3
      ],
      [
-      629.1,
-      264.1
+      709.5,
+      509.7
      ],
      [
-      997.6,
-      579.8
+      1074.4,
+      819.1
      ],
      [
-      997.6,
-      647.5
+      1074.4,
+      886.4
      ]
     ]
    }
   },
   "anchor_world": [
    0.03,
-   1.0382,
+   0.9932,
    -0.3
   ],
   "anchor_px": [
-   789.5,
-   -73.3
+   923.5,
+   344.1
   ],
   "on_screen": {
    "from_px": [
-    278.8,
-    -578
+    427.5,
+    -126.7
    ],
    "to_px": [
-    1238.5,
-    370.4
+    1360.1,
+    758.6
    ],
-   "angle_deg": 44.7,
+   "angle_deg": 43.5,
    "travel": "left-to-right"
   },
   "rhyme": {
@@ -333,7 +330,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": 4.7,
+   "angle_error_deg": 3.5,
    "travel_ok": false
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
@@ -341,20 +338,20 @@
   "thickness_m": 0.0132,
   "crack_px": [
    [
-    -413.9,
-    -753.6
+    -308.3,
+    -447.2
    ],
    [
-    -1722.1,
-    -4706.7
+    -1250.4,
+    -3333.2
    ],
    [
-    -1720.1,
-    -4424
+    -1248.9,
+    -3060
    ],
    [
-    -413.7,
-    -686.8
+    -308.1,
+    -380.9
    ]
   ],
   "note": "a thin planar sheet, level along the cavity: seen along the cavity it is a line at the physical slope"
@@ -364,25 +361,25 @@
   "count": 120,
   "hero_world": [
    -0.06,
-   1.1136990405704992,
+   1.0686990405704992,
    0.15
   ],
   "hero_px": [
-   505.5,
-   -3268.1
+   965.9,
+   -1753.1
   ],
   "path_px": [
    [
-    505.5,
-    -3268.1
+    965.9,
+    -1753.1
    ],
    [
-    1165.5,
-    -3871.5
+    1827.9,
+    -1547.4
    ],
    [
-    4057.2,
-    -1319.7
+    5286.4,
+    3945.7
    ]
   ],
   "note": "hero -> exit (drops out of the sheet) -> gone"
@@ -390,60 +387,60 @@
  "points_world": {
   "littleJade": {
    "eyes": [
-    0.0479,
-    0.9583,
-    -0.2672
+    0.028,
+    0.9727,
+    -0.2653
    ],
    "head": [
-    0.0725,
-    0.9516,
-    -0.3423
+    0.0504,
+    0.967,
+    -0.3412
    ],
    "mouth": [
-    0.0481,
-    0.9063,
-    -0.2676
+    0.0284,
+    0.9207,
+    -0.2664
    ],
    "handL": [
-    0.152,
+    0.138,
     0.52,
     -0.22
    ],
    "handR": [
-    0.152,
+    0.138,
     0.52,
     -0.48
    ],
    "hip": [
-    0.075,
-    0.4968,
+    0.053,
+    0.5123,
     -0.35
    ]
   }
  },
  "blade_on_face": {
   "right_eye_world": [
-   0.0215,
-   0.9583,
-   -0.2758
+   0.0013,
+   0.9727,
+   -0.2732
   ],
   "right_eye_px": [
-   758.6,
-   485.8
+   757.8,
+   486
   ],
-  "right_eye_above_sheet_cm": -8.7,
+  "right_eye_above_sheet_cm": -4.5,
   "left_eye_world": [
-   0.0744,
-   0.9583,
-   -0.2585
+   0.0548,
+   0.9727,
+   -0.2574
   ],
   "left_eye_px": [
-   1163.8,
-   485.8
+   1164.1,
+   486
   ],
-  "left_eye_above_sheet_cm": -4.3,
-  "nose_above_sheet_cm": -9,
-  "mouth_above_sheet_cm": -11.7,
+  "left_eye_above_sheet_cm": 0,
+  "nose_above_sheet_cm": -4.7,
+  "mouth_above_sheet_cm": -7.4,
   "sheet_half_thickness_cm": 0.66,
   "in_lit_length": true
  },
@@ -459,15 +456,15 @@
     ]
    },
    "head_deg": {
-    "yaw_left": 71.9,
-    "pitch_up": -0.5,
+    "yaw_left": 73.6,
+    "pitch_up": -1.2,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 22.6,
-    "pitch_up": 2.3,
+    "pitch_up": 1.7,
     "wanted_yaw": 22.6,
-    "wanted_pitch": 2.3,
+    "wanted_pitch": 1.7,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -477,11 +474,11 @@
    "warnings": [],
    "eyes_px": [
     960.2,
-    485.8
+    486
    ],
    "target_px": [
-    -38125.1,
-    4958.2
+    -58810.3,
+    2576.5
    ],
    "target_in_front": false
   }
@@ -501,32 +498,32 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -11.7,
-    "radial_deg": -27.5,
-    "twist_deg": -4,
-    "elbow_flex_deg": 57.3,
+    "flex_deg": -15.2,
+    "radial_deg": -23.2,
+    "twist_deg": -1.6,
+    "elbow_flex_deg": 43.4,
     "before": {
-     "flex_deg": -13.6,
-     "radial_deg": -31,
-     "twist_deg": -3
+     "flex_deg": -15.2,
+     "radial_deg": -23.2,
+     "twist_deg": -1.6
     },
-    "hand_turned_deg": 3.3,
+    "hand_turned_deg": null,
     "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -11.7,
-    "radial_deg": -27.5,
-    "twist_deg": -4,
-    "elbow_flex_deg": 57.3,
+    "flex_deg": -15.2,
+    "radial_deg": -23.2,
+    "twist_deg": -1.6,
+    "elbow_flex_deg": 43.4,
     "before": {
-     "flex_deg": -13.6,
-     "radial_deg": -31,
-     "twist_deg": -3
+     "flex_deg": -15.2,
+     "radial_deg": -23.2,
+     "twist_deg": -1.6
     },
-    "hand_turned_deg": 3.3,
+    "hand_turned_deg": null,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -534,7 +531,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "littleJade": 0.5906
+  "littleJade": 0.5927
  },
  "colour_separation": [],
  "figure_report": {
@@ -548,24 +545,24 @@
     }
    },
    "arms": {
-    "L": 0.88,
-    "R": 0.88
+    "L": 0.93,
+    "R": 0.93
    },
-   "headTurn": 72,
+   "headTurn": 74,
    "body": {
     "mesh": "jade05",
     "scale": 1,
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 70,
-     "upperarm_stretch": 1.04,
+     "elbow_bend_deg": 56,
+     "upperarm_stretch": 1.01,
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
     "R": {
-     "elbow_bend_deg": 70,
-     "upperarm_stretch": 1.04,
+     "elbow_bend_deg": 56,
+     "upperarm_stretch": 1.01,
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     }
