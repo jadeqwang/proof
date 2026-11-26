@@ -1,20 +1,42 @@
 # Proof — handoff for the next session
 
-## IF INTERRUPTED (late evening 2026-11-26): read this first
+## NEXT SESSION START HERE (end of 2026-11-26)
 
-- Round-4 answers are applied in part. Read "Session of 2026-11-26 (late evening)" at the end of this file for every
-  direction Jade gave tonight.
-- Committed: fbe5f46 (plan, captions, closet, Shanghai, office) and 451c887 (cast v7, Mama's perm).
-- Agents were still working on mortongrove07, basement90+kitchen90, attic88_day+wall88 (owns
-  engine/clipcheck.mjs), mv10, playground23 (Catch Air rebuild) and office91 (social worker's shoulders). Each one
-  writes a "PROGRESS (checkpoint)" section in its set's NOTES.md. Resume from those.
-- Then:
-  1. a wrist/clip/brightness audit;
-  2. fix the mirrored mug grips in props.json;
-  3. the re-render sweep (every set);
-  4. commit;
-  5. Jade wants a round of fixes next session BEFORE the r4 repaint. Open questions are in
-     work/decisions/NEW_QUESTIONS_R5.md.
+**State:** every round-4 answer is applied and committed. Nothing has been painted for r4 yet.
+- Jade said a round of fixes comes FIRST, then the r4 repaint (she reviews r4 instead of the rest of r3).
+- The log for tonight is "Session of 2026-11-26 (late evening)" at the end of this file.
+
+**First thing: Jade pastes her round-5 answers.**
+- The page is media/decisions.html: 16 cards, key proof-decisions-v6, source work/decisions/NEW_QUESTIONS_R5.md.
+  The round-4 page is backed up at work/decisions/decisions_r4_page_backup.html.
+- Save the paste verbatim to work/decisions/JADE_R5_DECISIONS.md and apply it.
+
+**The round of fixes:** every item is in tonight's log; the sets' NOTES.md hold the details.
+1. MG2/MG2_end: fingers 13-20 mm into the hoodie. Needs a cloth pinch grasp plus engine/hand.js wrapPose (thumb
+   palm-side). Keep Truth at 0 (sweatshirt_test.mjs, cloth_contact.mjs).
+2. kitchen90 K1: restore the whisper. The gap is now 14.9 cm (was 5.8) and the heads are above the frame.
+3. playground23:
+   - make the hands read as offering a hand, with the kids mid-climb;
+   - fix the pale shapes beside the boy's head;
+   - move the kid and Dad-67 bodies from the set's bodies/ into layout/assets/bodies;
+   - fix the engine bug where dress figures have no bare legs.
+4. wall88 WL_in_form: a stray hand by Mama's ear at the stud.
+5. attic AD_trace: the hand reads as a thumbs-up, not a tracing finger.
+6. Body/engine:
+   - the shoulder-seam notch (humanMesh prep, clavicle vs upper-arm group);
+   - the dark blob on the social worker's back (REF_sw_back);
+   - mesh soles ~13 mm under the floor;
+   - wrists past their limits (Dad pronation in basement90, the B4/B5 cat paw, jade3/mama86 R in shanghai86).
+7. Mirrored mug grips in props.json (handle on +x).
+8. Brightness pass on every painter guide. MG_wide_lit and WL_in_lit are nearly black.
+9. First love's hair colour: v7 reads chestnut (decision card).
+10. CAP_X_sw comp still has the old tree sweatshirt: re-comp it after the X_sw repaint.
+
+**Then:**
+1. The re-render sweep of all sets (3 passes each).
+2. Re-run clipcheck.mjs, check_bodies.mjs and holdcheck.
+3. python3 layout/gallery.py, and commit.
+4. Paint r4 per the old START HERE below: free Codex, most-corrected sets first.
 
 ## START HERE (updated the evening of 2026-11-26)
 
@@ -1135,3 +1157,45 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
       lift.
     - WL_in_form shows a stray hand by Mama's neck/ear against the stud. NEXT SESSION: identify whose hand it is and
       fix it.
+- **office91 shoulders DONE** (SW_ELBOW targets; 25/25 holds). Left: the shoulder-seam notch (humanMesh.js prep(), clavicle vs upper-arm groups; garment not covering). The right-most goose's tail is slightly ragged.
+- **playground23 rebuilt (done):**
+  - An indoor space-themed play centre, a soft-play shuttle, a theme spot beam (PG2 39.5 degrees, mote centred).
+  - From behind, Jade with the girl and Dad with the boy; clip and hold pass. Brightness is fine.
+  - Kid and Dad-67 bodies are a stopgap in the set's bodies/; move them to layout/assets/bodies.
+  - Engine bug: dress figures have no bare legs.
+  - Lead's look at PG1:
+    - The hand contact doesn't read as "offering a hand": the adults' hands hover by the kids' backs or hips, and
+      the kids stand on the steps facing the hatches rather than climbing in. NEXT SESSION: restage so each child
+      reaches up/back to a clearly held hand mid-climb.
+    - Pale shapes stick out either side of the boy's head (ears?). Check them.
+  - Questions: Catch Air vs PlayMazing (renamed 2019); who helps whom; the boy in boots or socks; Dad's glasses;
+    2023 clothes.
+- **basement90 + kitchen90 done:**
+  - check_bodies.mjs (three-mesh-bvh): 0 body overlaps (was 1125-1865 tri pairs).
+  - Eyes: the "crossed" look came from 0.34 m convergence; now 0.42-0.46 m.
+  - The QBasic 1.1 editor with CHAT.BAS (COM1 split-screen chat); the missed rename is txt$ -> outLine$.
+  - IBM keyboard, bulb, kettle and rice cooker models.
+  - Open: Dad's wrists are past the pronation limit (11/26 deg); the B4/B5 cat-paw wrist is 91 deg past (kept for
+    the lips contact); Jade's forearms are 15 mm into the kitchen table; check_bodies hangs on K4_writes.
+  - **Lead caught:** the K1 whisper gap grew from 5.8 cm to 14.9 cm (sidecar whisper.gap_m), and both points are
+    above the frame (px y<0). Jade said Dad whispers in Mama's ear: NEXT SESSION restore a whisper-close gap without
+    overlap.
+  - Questions: the QBasic colours; how Jade reaches the table (phone book recommended).
+- **mv10 done:**
+  - Fist grip with the thumb on top, on the real ladle (strip 11x3.3 mm).
+  - SI1 at the Expedit; first love's back of head at the left edge.
+  - Only Jade's six titles are lettered.
+  - Red cups, juicer, bowls, pitcher; lemons and rinds settled with Rapier (settle.mjs).
+  - Holds 308/308. A 12 deg radial-wrist warning remains on the friend's grip.
+  - Lead's look: SI1 reads. First love's hair renders orange-brown in SI1_lit (lighter than intended); check the
+    colour after the sweep.
+- **mortongrove07 done, except the hands:**
+  - Done: one tilted ceiling plane (3.6 -> 2.44 m, flagged), the 7'1" grand model (CC BY), the ink horse (invented
+    inscription and seal), the real mug.
+  - NOT FIXED: fingers 13-20 mm into the hoodie in MG2/MG2_end. Every fix opened the pleat and showed Truth. It
+    needs a cloth pinch grasp plus an engine/hand.js wrapPose change (thumb palm-side for cloth).
+    cloth_contact.mjs measures it.
+  - Truth 0 in every media/ SW_*.png. The untracked SW_*_close/_her test PNGs are left uncommitted.
+  - Lead's look at MG_wide_lit: very dark; the mirror reads as a blank dark slab. Brightness pass needed.
+- **Decision page rebuilt for round 5** (16 cards, proof-decisions-v6). Seen while building it: AD_trace reads as a
+  thumbs-up; a dark blob on the social worker's back in REF_sw_back.
