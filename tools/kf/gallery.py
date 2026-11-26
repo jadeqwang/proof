@@ -209,6 +209,7 @@ def main():
     page = (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>Proof: keyframes and sheets</title><style>{css}</style></head><body>'
             f'<header><h1>Proof: keyframes and sheets</h1>'
+            + ('<p class="when" style="font-size:16px"><b>Newest: <a href="r3/index.html">Round 3 keyframes, painted from the new contour / form / light guides after your round-2 review (review page with options)</a></b>.</p>' if os.path.exists(os.path.join(KF, 'r3', 'index.html')) else '')
             + ('<p class="when" style="font-size:16px"><b>New: <a href="r2/index.html">Round 2 keyframes, from the new set renders (review page with options)</a></b>. This page is round 1, painted from superseded guides.</p>' if os.path.exists(os.path.join(KF, 'r2', 'index.html')) else '')
             + f'<p class="when">{total} shots with a pick · regenerate with '
             f'<code>python3 tools/kf/gallery.py</code> · click any image for the full file</p><div class="lede">{intro}</div></header>'
