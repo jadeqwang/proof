@@ -695,8 +695,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama90": 0.0216,
-  "jade7": 0.0233
+  "mama90": 0.0213,
+  "jade7": 0.0236
  },
  "colour_separation": [],
  "figure_report": {
@@ -730,7 +730,10 @@
      "upperarm_stretch": 1,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
-    }
+    },
+    "sole_shift_mm_L": 15.1,
+    "sole_shift_mm_R": 15.1,
+    "sole_lowest_y_m": 0.0028
    }
   },
   "mama90": {
@@ -763,7 +766,10 @@
      "upperarm_stretch": 1.22,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
-    }
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0159
    }
   }
  }

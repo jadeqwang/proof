@@ -17,9 +17,18 @@ import { TABLE, SEAT, CHAIRS, OUTRO, PAPER, MOTE, GLASS, reflect, WINDOW } from 
 import { seatHip } from '../basement90/house.js';
 import { graspArms } from '../../engine/grasp.js';
 
-const TY = TABLE.h + 0.04;   // (r4 decisions) was + 0.025: her relaxed fingertips went 15 mm into the table top
+const TY = TABLE.h + 0.052;   // (r4 decisions) was + 0.025: her relaxed fingertips went 15 mm into the table top; (r5) + 0.04 -> 0.052: sitting higher on her folded foot, her hands' angle changed and the fingertips were 12 mm in
 // ---------------------------------------------------------------- night: the question
-const jadeAtTable = (o = {}) => ({ at: [CHAIRS.jade[0], CHAIRS.jade[1] + 0.06], legs: 'seat', legOpts: { seatH: seatHip('jade7', SEAT), footFwd: 0.16 }, yaw: 0, spine: { bend: 6 }, head: { look: [-0.68, 0.9, 0.5] },
+// (r5 decisions, Jade 2026-11-26: how she reaches the table: "sitting on one foot, other foot dangling") she sits on her
+// LEFT foot (assumed side: the free right leg is the writing side's): the left leg folded under her, knee forward on the
+// seat, shin back along it, the foot lying sole-up under her left buttock (legs 'kneel': both feet point back); the right
+// leg hangs off the seat front, knee just past the edge, the shin swung a little back under it, toes pointing down
+// (39 deg of plantar flexion, in range). Her pelvis rests on the folded heel: FOLD.py above the floor (was seatHip
+// 0.517: +6.8 cm), which lifts her elbows over the table top (they were 3 cm below it and her forearms 15 mm into its
+// front edge). Measured with basement90/check_bodies.mjs (see NOTES "2026-11-26: round-5 decisions").
+const FOLD = { py: 0.618, z: 0.07, ankleL: [0.07, 0.518, 0.01], ankleR: [0.08, 0.30, 0.14], poleL: [0, -0.3, 1] };   // knee forward, the shin's front (tibia) DOWN on the seat (calf up under the thigh, as in seiza)   // ankle y values are heights above the floor
+const jadeAtTable = (o = {}) => ({ at: [CHAIRS.jade[0], FOLD.py, CHAIRS.jade[1] + FOLD.z], legs: 'kneel',
+  legOpts: { ankleL: [FOLD.ankleL[0], FOLD.ankleL[1] - FOLD.py, FOLD.ankleL[2]], ankleR: [FOLD.ankleR[0], FOLD.ankleR[1] - FOLD.py, FOLD.ankleR[2]], poleL: FOLD.poleL }, yaw: 0, spine: { bend: 6 }, head: { look: [-0.68, 0.9, 0.5] },
   R: { to: [-0.82, TY, 0.06], hand: 'relax', palm: 'down', fingers: [0.15, 0, 1] }, L: { to: [-0.58, TY, 0.04], hand: 'relax', palm: 'down' }, ...o });
 // the parents stand behind her, either side, facing each other across the top of her head
 const dadTalk = (o = {}) => ({ at: [-1.28, -0.8], legs: 'stand', yaw: 68, spine: { bend: 3 }, head: { look: 'mama90:eyes' }, R: { to: [-1.0, 1.22, -0.62], hand: 'palmUp', palm: 'up', fingers: [1, 0.1, 0.2] }, L: 'side', ...o });
@@ -35,11 +44,17 @@ const mamaTalk = (o = {}) => ({ at: [-0.12, -0.8], legs: 'stand', yaw: -68, spin
 // hand on the child's chair (0.69 m; they had been on her ear 8.6 cm away = cross-eyed). His right hand hangs (the cupped
 // hand went through her shoulder from this side); his left at the small of her back, fingers along it. Mama's right hand
 // now joins her left on the chair back (it hung into Dad); both palms 1.5 cm higher (they were 6 mm into the rail).
-const DAD = { at: [-0.79, -1.13], yaw: 44, bend: 18, side: 0, look: [-0.51, 0.93, -0.5], turn: 0, nod: 0, Loff: [0, -0.2, -0.17], Lfing: [1, -0.2, 0], R: 'side' };
+// (r5, the whisper restored; HANDOFF: the gap had grown to 14.9 cm and his mouth sat behind her ear) Dad comes round
+// to her right side (-0.92, -0.97, yaw 62) and bends lower (29), head turned in past her ear (look 0.7 m on, past her
+// face), chin a little up (nod -10) and his head tipped away from her (tilt -20) so his MOUTH leads, not his brow; Mama
+// tips her head toward him (tilt -6 -> +12), listening. Measured (scratch sweep with three-mesh-bvh, then
+// check_bodies.mjs): mouth 5.9 cm from her ear point (her hair over the ear is 3-4 cm thick), 0 intersecting pairs,
+// clearance 2-3 mm between his cheek and her hair. A closer mouth puts his face into her hair.
+const DAD = { at: [-0.92, -0.97], yaw: 62, bend: 29, side: 0, look: [0, 1.38, -0.68], turn: 0, nod: -10, tilt: -20, Loff: [0, -0.2, -0.17], Lfing: [1, -0.2, 0], R: 'side' };
 const MAMA_R = { to: [-0.66, 0.915, -0.5], hand: 'relax', palm: 'down' };
-const dadWhisper = (o = {}) => ({ at: DAD.at, legs: 'stand', yaw: DAD.yaw, spine: { bend: DAD.bend, side: DAD.side }, head: { look: DAD.look, turn: DAD.turn, nod: DAD.nod },
+const dadWhisper = (o = {}) => ({ at: DAD.at, legs: 'stand', yaw: DAD.yaw, spine: { bend: DAD.bend, side: DAD.side }, head: { look: DAD.look, turn: DAD.turn, nod: DAD.nod, tilt: DAD.tilt },
   R: DAD.R, L: { to: 'mama90:shoulderC', off: DAD.Loff, hand: 'relax', palm: [0.3, 0, 1], fingers: DAD.Lfing }, ...o });   // R = camera side
-const mamaListen = (o = {}) => ({ at: [-0.5, -0.88], legs: 'stand', yaw: -18, spine: { bend: 4 }, head: { look: [-0.72, 0.8, -0.1], tilt: -6 }, R: MAMA_R, L: { to: [-0.51, 0.915, -0.5], hand: 'relax', palm: 'down' }, ...o });   // left hand on the back of the child's chair
+const mamaListen = (o = {}) => ({ at: [-0.5, -0.88], legs: 'stand', yaw: -18, spine: { bend: 4 }, head: { look: [-0.72, 0.8, -0.1], tilt: 12 }, R: MAMA_R, L: { to: [-0.51, 0.915, -0.5], hand: 'relax', palm: 'down' }, ...o });   // left hand on the back of the child's chair
 const NIGHT = { jade7: jadeAtTable(), dad: dadWhisper(), mama90: mamaListen() };
 // she writes: right hand holds the pencil on the paper, left hand steadies the sheet, head down
 // (r4) K1: she is doing her homework (Jade): an open workbook, pencil in her right hand on the right-hand page, left hand
@@ -56,7 +71,10 @@ const LH7 = 0.107 * 1.22;   // little Jade (7)'s hand length (PROP child7 hand x
 const PENCIL_GAP = 0.007 - 0.002;   // hold pass 2: the pinch now opens to exactly this gap: 1 mm squeeze a side
 const pencilArm = (top) => ({ tip: { finger: 'index', at: [PAPER.c[0] - 0.006, top + 0.024, PAPER.c[2] - 0.012] }, hand: { shape: 'pinch', thumb: { gap: PENCIL_GAP }, curl: { middle: [40, 60, 30], ring: [55, 75, 40], little: [65, 80, 45] } },
   palm: [0.55, -0.8, 0.1], fingers: [1.2, -0.6, 1], grasp: 'pinch', object: 'pencil' });   // the hand on its little-finger side, fingers toward her middle, as a child writes (the wrist in range)
-const restL = (at, label, axis, elbowAt) => ({ ...graspArms('restOn', { centre: at, at, up: [0, 1, 0], axis, hand: { shape: 'flat', thumb: { opp: 0, sweep: 20, abd: -10, mcp: 0, ip: 0 } }, label }, { Lh: LH7, side: 'L' }).L,
+// (r5) lift: the heel of the hand and the wrist ON the table rather than in it: the mesh wrist (r 2.3 cm) hung 15 mm
+// below the top with the palm centre on it; lifted, the fingers curl a little so their pads still touch the paper
+const restL = (at, label, axis, elbowAt, lift = 0, curl = [8, 12, 6]) => ({ ...graspArms('restOn', { centre: at, at: lift ? [at[0], at[1] + lift, at[2]] : at, up: [0, 1, 0], axis,
+    hand: lift ? { shape: 'relax', curl: { all: curl }, thumb: { opp: 0, sweep: 20, abd: -10, mcp: 0, ip: 0 } } : { shape: 'flat', thumb: { opp: 0, sweep: 20, abd: -10, mcp: 0, ip: 0 } }, label }, { Lh: LH7, side: 'L' }).L,
   palm: [-0.14, -1, 0], ...(elbowAt ? { elbowAt } : {}) });   // rolled a little onto the little-finger side, so the thumb's ball does not press through the sheet
 const L_FING = [-0.9, 0, 1], L_ELBOW = [-0.35, 0.9, -0.12];   // her left elbow lifted a little out to the side, so the forearm comes down onto the page, not through the table edge
 export const PAGE_TOP = TABLE.h + 0.003, SHEET_TOP = PAPER.c[1] + 0.0006;   // workbook right page / the loose sheet (build.js)
@@ -66,8 +84,8 @@ export const PAGE_TOP = TABLE.h + 0.003, SHEET_TOP = PAPER.c[1] + 0.0006;   // w
 // (r4 decisions) her eyes on the next printed row, 10 cm beyond the pencil (0.31 m away): on the pencil tip they were 0.23 m
 // away, which reads cross-eyed in a guide
 const READ_AT = [PAPER.c[0], PAGE_TOP, PAPER.c[2] + 0.1];
-const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: READ_AT, pitchK: 0.8 }, R: pencilArm(PAGE_TOP), L: restL([PAPER.c[0] + 0.2, PAGE_TOP, PAPER.c[2] - 0.105], 'homework (open workbook)', [-1.4, 0, 1], L_ELBOW) }) };
-const WRITE = { jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: pencilArm(SHEET_TOP), L: restL([PAPER.c[0] + 0.075, SHEET_TOP + 0.003, PAPER.c[2] + 0.04], 'paper: “it was correct”', L_FING, L_ELBOW) }),
+const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: READ_AT, pitchK: 0.8 }, R: pencilArm(PAGE_TOP), L: restL([PAPER.c[0] + 0.2, PAGE_TOP, PAPER.c[2] - 0.105], 'homework (open workbook)', [-1.4, 0, 1], L_ELBOW, 0.017, [10, 13, 7]) }) };
+const WRITE = { jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: pencilArm(SHEET_TOP), L: restL([PAPER.c[0] + 0.075, SHEET_TOP + 0.003, PAPER.c[2] + 0.04], 'paper: “it was correct”', L_FING, L_ELBOW, 0.016, [12, 16, 9]) }),
   dad: dadTalk({ head: { look: 'paper' }, R: 'side' }), mama90: mamaTalk({ head: { look: 'dad:eyes' }, R: 'side' }) };
 // ---------------------------------------------------------------- day: outro
 const CH = OUTRO.child, MC = OUTRO.motherChair;
@@ -98,12 +116,15 @@ export const SHOTS = [
     header: 'MASTER night: pendant over the table, the only light; parents over her head', intent: 'Set reference, night scene, from the front-right corner.' },
   { id: 'K0_wide_day', lens: 22, pos: [-1.55, 1.5, 1.9], aim: [[0.5, 0.95, -0.2], 0.52, 0.55], light: 'day', figs: THUMBS, time: 'reference', position: 'reference',
     header: 'MASTER day: sun shaft from the window; Mother’s chair, the child, the cabinet glass at right', intent: 'Set reference, outro, from the front-left corner: the window shaft crosses the chair and the child and lands on the floor.' },
+  // (r5) set reference: how she reaches the table (Jade: "sitting on one foot, other foot dangling"), from her left side, low
+  { id: 'K0_seat_side', lens: 28, pos: [0.75, 0.75, -0.45], aim: [[-0.7, 0.62, -0.2], 0.5, 0.5], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', pencilFit: PENCIL_FIT, time: 'reference', position: 'reference', near: 0.05, far: 6,
+    header: 'REFERENCE: how she reaches the table: sitting on her folded left foot, the right foot dangling', intent: 'Set reference (not in the cut), from her left at seat height: she sits on her own left foot (the leg folded under her on the seat, the foot sole-up under her bottom), her right leg hangs off the front of the seat, toes pointing down; her elbows clear the table top.' },
   // ---------------------------------------------------------------- 2:22.2-2:25.2 the question (-2sm; "Did she understand..." sung 2:20.9-2:25.5)
   // (r3, Jade's r2 note 2026-11-25) K1 is now a TILT UP from one fixed camera: it starts on her face (K1_question) and
   // rises until the frame is mostly the parents, ending on Mama's face (K1_question_end). The end frame is painted as a
   // science-textbook figure; its caption "Did she understand or just pattern match?" is laid on in code, not painted.
   // The old locked-off frontal wide (lens 28, her eyes at v 0.66) is kept as K1_question_wide for reference.
-  { id: 'K1_question', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.42], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', pencilFit: PENCIL_FIT, focus: ['jade7'], time: '2:22.2-2:23.7 the question (tilt START)', position: 'outside',
+  { id: 'K1_question', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.28] /* r5: 0.42 -> 0.28: Dad now bends lower to whisper, and Mama's face had come into the top edge */ , light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', pencilFit: PENCIL_FIT, focus: ['jade7'], time: '2:22.2-2:23.7 the question (tilt START)', position: 'outside',
     header: 'the question 2:22.2 OUTSIDE, tilt START: on her face at the table; the parents’ torsos at the edges', intent: 'Start of a slow tilt up from one fixed camera across the table: Jade small in the lamp’s cone, fingers tapping; Dad and Mama standing behind her either side, only their bodies and talking hands in frame, their heads above the top edge.' },
   { id: 'K1_question_end', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['mama90:eyes', 0.62, 0.36], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', pencilFit: PENCIL_FIT, focus: ['mama90'], time: '2:22.2-2:23.7 the question (tilt END)', position: 'outside',
     header: 'the question 2:23.7 OUTSIDE, tilt END: mostly the parents, ending on Mama; science-textbook figure', intent: 'End of the tilt up (same camera as K1_question): the frame is mostly the two parents talking over her head, settling on Mama’s face; only the top of the child’s head at the bottom edge. Painted as a science-textbook illustration with a caption band (caption laid on in code).' },

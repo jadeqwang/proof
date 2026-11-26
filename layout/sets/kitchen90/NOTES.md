@@ -207,3 +207,41 @@ All other eye targets were already 0.5-1.6 m; every eye pair meets its target (0
   cheeks), K6_mother, K0_wide_day, K7-K10 (K10 has the kettle in frame, sitting on the coils).
 - CHECKPOINT UPDATE: the subagent finished (see its dated section above). LEFT: K4_writes is unmeasured
   (check_bodies.mjs hangs on it, probably the ray-parity depth pass; its parents stand 1.16 m apart).
+
+## 2026-11-26: round-5 decisions (kitchen-basement agent)
+
+Jade (k_booster): "How does little Jade reach the kitchen table? Something else — sitting on one foot, other foot dangling".
+- Age: the brief said "~3-4"; the cast and every kitchen90 shot use `jade7` (little Jade, 7, 1.22 m). Kept jade7 (flag).
+- **Staged (shots.js `FOLD`, `jadeAtTable`):** she sits on her LEFT foot (side assumed, flag): legs 'kneel' (both feet
+  point back), pelvis set directly at 0.618 m (was seatHip 0.517: +10 cm, the folded shin and foot under her), left ankle
+  overridden to lie on the seat under her (0.518 m up, 1 cm ahead of the hip), knee pole forward-down so the shin's front
+  lies on the seat (calf up, as in seiza); right leg hangs off the seat front, knee 4 cm past the edge, the shin swung back
+  ~30 deg, the toes pointing down-back (about 39 deg of plantar flexion: in range). Her hip moved 4 cm forward on the seat
+  (z -0.23) so the dangling calf clears the seat's front edge.
+- Measured (check_bodies.mjs --parts): Jade vs table 0 pairs (clearance 0.3-0.6 mm) in K0_wide_night, K1_question, K4;
+  vs chair 0 mm deep (her right thigh just touches the front edge: contact); no other body contact. The 15 mm forearms
+  into the table are gone. Left hands (`restL` `lift`, `curl`): K1 1.7 cm up, fingers curled 10/13/7 deg (pads on the page:
+  holdcheck contact 0 mm, pass); K4 1.6 cm up, curl 12/16/9 (1.9 mm above the sheet, 0.6 mm above the table). Tapping hands `TY` +0.04 -> +0.052.
+- New set-reference shot `K0_seat_side` (from her left at seat height) shows the folded leg and the dangling foot.
+- Engine request (not made): a per-leg foot direction in legOpts (footL / footR) so a dangling foot can point forward
+  while the folded one points back; today both legs share the preset's foot direction.
+- **The whisper (K1, HANDOFF fix 2).** Dad round to her right side (at -0.92, -0.97, yaw 62, bend 29), head turned in
+  past her ear (look [0, 1.38, -0.68], 0.70 m away: eyes converge, not crossed), chin a little up (nod -10), head tipped
+  away from her (tilt -20) so the mouth leads rather than his brow; Mama tips her head toward him (tilt -6 -> +12). Found
+  by a scratch sweep (Dad position / yaw / bend / head, Mama tilt) measuring the gap and three-mesh-bvh overlap at each
+  step. Sidecar `whisper.gap_m` 0.149 -> **0.059** (her hair over the ear is 3-4 cm thick, measured by ray from the ear
+  point); dad vs mama90 **0 intersecting pairs, clearance 2.6 mm** (his cheek to her hair). Any closer and his face
+  enters her hair (bend 30: 265-1231 pairs). His left hand stays at the small of her back, right hand hangs.
+  check_bodies prints "deepest 94.8 mm" for dad-in-mama with 0 crossing pairs: a ray-parity artifact of her open hair
+  shell (now labelled as such in the output), not an overlap.
+- **Heads in frame:** K1_question_end (dad 988,304 / mama 1214,366), K1_question_wide, K0_wide_night, K3_understood: both
+  heads in frame. K1_question is the tilt START, whose intent keeps the heads above the top edge: with Dad lower, Mama's
+  face had entered the top edge, so its aim moved 0.42 -> 0.28 (heads at y -212 / -146, as intended; the "heads above the
+  frame" the lead saw were this shot's sidecar).
+- **Checks (all 16 shots, 3 passes + masks re-rendered):** check_bodies.mjs PASS on every shot (bodies 0 pairs; eyes all
+  converge; K4_writes now measured: parents > 5 cm apart, Jade vs table 0.6 mm clear); clipcheck: all night / homework
+  shots pass (Jade 1.2 mm into the pencil = the pinch); holdcheck 8 / 8 pass. Pre-existing, NOT fixed (not in my brief):
+  Mama's thumbs wrists in the day shots (K0_plan, K0_wide_day, K5, K6) are 63 deg past extension, 85 ulnar, 32
+  supination; her seated thighs 14.7 mm into the pulled-out chair (soft tissue / cloth).
+- Looked at: K1_question, K1_question_end (form: the whisper reads, his mouth at her ear, his face half hidden),
+  K0_seat_side, K0_wide_night.

@@ -78,8 +78,11 @@ function room(shot = {}) {
 // wordperfect-like environments"; earlier: "dark blue text on grey ... he was renaming a variable. it was DOS era"):
 // the MS-DOS QBasic 1.1 editor (c. 1990), 80 x 25, drawn in code so every shot shows the same characters. Menu bar (row
 // 0), the CHAT.BAS window with its border and scroll bar, the 2-line Immediate window, the status line with the cursor's
-// line:column. Colours: Jade's dark blue text on light grey (QBasic's Options > Display sets them; its default is the
-// reverse, grey on blue: flagged). The program (real QBasic 1.1 syntax; ASSUMED content, flag): the main loop of a
+// line:column. Colours (r5 decisions, Jade 2026-11-26: "QBasic default: light grey on blue"): the real QBasic 1.1
+// defaults in the VGA text palette: the edit windows light grey #AAAAAA text on blue #0000AA, the active window's
+// title in reverse video, the menu bar black on light grey with each menu's access letter in bright white, the
+// scroll bar a grey track with a black thumb, the status line bright white on cyan #00AAAA with the line:column
+// field in black after a separator (bar colours from screenshots of the real editor, from memory: flag). The program (real QBasic 1.1 syntax; ASSUMED content, flag): the main loop of a
 // split-screen chat over the modem on COM1, his keystrokes in the left pane, the friend's in the right (the panes are
 // drawn by SUBs DrawPanes / PutPane, off screen). Dad has renamed `txt$` to `outLine$` (Search > Change, one by one) and
 // missed the one on row 10, `PRINT #1, txt$` (it would send his friend an empty line): THE WORD her finger is on
@@ -114,7 +117,8 @@ export const DOS_TEXT = [
 ];
 const DOS_BAR = '  File  Edit  View  Search  Run  Debug  Options                              Help ';
 const DOS_HELP = ' <Shift+F1=Help> <F6=Window> <F2=Subs> <F5=Run> <F8=Step>              00009:023 ';
-const DOS_GREY = '#aaaaaa', DOS_BLUE = '#0000aa';   // the VGA text palette's light grey (7) and blue (1)
+const DOS_GREY = '#aaaaaa', DOS_BLUE = '#0000aa', DOS_BLACK = '#000000', DOS_WHITE = '#ffffff', DOS_CYAN = '#00aaaa';   // VGA text palette 7, 1, 0, 15, 3
+const DOS_TITLE = ' CHAT.BAS ';   // the active window's title (reverse video)
 let _dos = null;
 function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, greys for flat / label / form, edges for line / contour
   if (_dos) return _dos;
@@ -122,7 +126,7 @@ function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, g
   const W = 2048, Hh = Math.round(W * SCREEN.h / SCREEN.w), c = document.createElement('canvas'); c.width = W; c.height = Hh; const g = c.getContext('2d');
   g.fillStyle = '#0a0a0c'; g.fillRect(0, 0, W, Hh);   // overscan border
   const x0 = DOS.u0 * W, y0 = DOS.v0 * Hh, cw = (DOS.u1 - DOS.u0) * W / DOS.cols, ch = (DOS.v1 - DOS.v0) * Hh / DOS.rows;
-  g.fillStyle = DOS_GREY; g.fillRect(x0, y0, cw * DOS.cols, ch * DOS.rows);
+  g.fillStyle = DOS_BLUE; g.fillRect(x0, y0, cw * DOS.cols, ch * DOS.rows);
   g.textBaseline = 'middle'; g.font = `bold ${Math.round(ch * 0.8)}px "DejaVu Sans Mono", "Liberation Mono", monospace`;
   // the IDE's window frame: the box-drawing characters as full-cell strokes (they join up, as in VGA text mode); the
   // scroll-bar track (light shade) as a dither
@@ -134,12 +138,26 @@ function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, g
       case '├': Vv(y, y + ch); H(mx, x + cw); return true; case '┤': Vv(y, y + ch); H(x, mx); return true;
       case '░': for (let yy = 0; yy < 8; yy++) for (let xx = 0; xx < 4; xx++) if ((xx + yy) % 2 === 0) g.fillRect(x + (xx + 0.25) * cw / 4, y + yy * ch / 8, cw / 8, ch / 16); return true;
       default: return false; } };
-  const put = (row, text, fg, bg) => { if (bg) { g.fillStyle = bg; g.fillRect(x0, y0 + row * ch, cw * DOS.cols, ch); } g.fillStyle = fg;
-    for (let k = 0; k < Math.min(text.length, DOS.cols); k++) { const t = text[k]; if (t === ' ') continue; if (boxChar(t, x0 + k * cw, y0 + row * ch, fg)) continue; const m = g.measureText(t).width; g.save(); g.translate(x0 + k * cw + cw / 2, y0 + row * ch + ch * 0.54); g.scale(Math.min(1, cw * 0.92 / m), 1); g.fillText(t, -m / 2, 0); g.restore(); } };
-  put(0, DOS_BAR.padEnd(DOS.cols), DOS_GREY, DOS_BLUE); put(DOS.rows - 1, DOS_HELP.padEnd(DOS.cols), DOS_GREY, DOS_BLUE);
-  DOS_TEXT.forEach((t, r) => { if (t != null) put(r, t, DOS_BLUE); });
+  // per-cell colours: col(row, k) -> [fg, bg|null]
+  const put = (row, text, col) => { for (let k = 0; k < Math.min(text.length, DOS.cols); k++) { const [fg, bg] = col(k, text[k]); const x = x0 + k * cw, y = y0 + row * ch;
+      if (bg) { g.fillStyle = bg; g.fillRect(x, y, cw + 0.5, ch + 0.5); } const t = text[k]; if (t === ' ') continue; g.fillStyle = fg;
+      if (t === '■') { g.fillRect(x + cw * 0.12, y + ch * 0.25, cw * 0.76, ch * 0.5); continue; }
+      if (boxChar(t, x, y, fg)) continue; const m = g.measureText(t).width; g.save(); g.translate(x + cw / 2, y + ch * 0.54); g.scale(Math.min(1, cw * 0.92 / m), 1); g.fillText(t, -m / 2, 0); g.restore(); } };
+  // menu bar: black on grey, each menu's first letter bright white
+  const bar = DOS_BAR.padEnd(DOS.cols); put(0, bar, (k, t) => [t !== ' ' && (k === 0 || bar[k - 1] === ' ') ? DOS_WHITE : DOS_BLACK, DOS_GREY]);
+  // status line: bright white on cyan; the line:column field black after a separator
+  const help = DOS_HELP.padEnd(DOS.cols), sep = help.lastIndexOf('0000') - 2; const helpRow = help.slice(0, sep) + '│' + help.slice(sep + 1);
+  put(DOS.rows - 1, helpRow, (k) => [k >= sep ? DOS_BLACK : DOS_WHITE, DOS_CYAN]);
+  const tA = DOS_TEXT[1].indexOf(DOS_TITLE), sbTop = 2, sbBot = 20;
+  DOS_TEXT.forEach((t, r) => { if (t == null) return;
+    const text = r === sbTop ? t.slice(0, DOS.cols - 1) + '■' : t;   // the scroll thumb at the top (the view is at line 1)
+    put(r, text, (k) => {
+      if (r === 1 && k >= tA && k < tA + DOS_TITLE.length) return [DOS_BLUE, DOS_GREY];   // active window title, reverse video
+      if (k === DOS.cols - 1 && r >= sbTop && r <= sbBot) return [DOS_BLACK, DOS_GREY];      // scroll bar: grey track, black thumb
+      if (k === DOS.cols - 1 && r === 1) return [DOS_BLACK, DOS_GREY];                      // its up arrow
+      return [DOS_GREY, null]; }); });
   // the text cursor (an underline block) just after THE WORD, where he stopped
-  g.fillStyle = DOS_BLUE; g.fillRect(x0 + (DOS.wordCol + DOS.word.length) * cw, y0 + DOS.wordRow * ch + ch * 0.82, cw, ch * 0.14);
+  g.fillStyle = DOS_GREY; g.fillRect(x0 + (DOS.wordCol + DOS.word.length) * cw, y0 + DOS.wordRow * ch + ch * 0.82, cw, ch * 0.14);
   _dos = artFromCanvas(c, { src: 'basement90 dosScreen() (code-drawn)' });
   return _dos;
 }

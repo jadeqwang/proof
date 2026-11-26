@@ -1278,3 +1278,14 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - The v7 sheets stay until decisions.html stops linking them.
   - Sweep: mv10 (his shots), closet02, mortongrove07. _cast.js changed during the cast agent's tests, so the
     committed MG r5 renders may carry a test colour.
+- **kitchen-basement agent done:**
+  - QBasic 1.1 default colours (#AAAAAA on #0000AA, the menu bar and status line from memory).
+  - Jade (jade7, 1.22 m; the lead's brief wrongly said 3-4) sits on her folded left foot with the right leg
+    dangling, clearing the table; new ref shot K0_seat_side.
+  - K1 whisper gap 0.059 m with zero overlap.
+  - Dad's pronation is in range; the cat paw is re-solved at 59.5 deg (limit 60).
+  - The check_bodies hang was three-mesh-bvh's uncapped search, now capped at 5 cm (set-local).
+  - Still failing: the kitchen day shots (Mama's thumb wrists 63 deg past, thighs 14.7 mm into the chair;
+    pre-existing) and the basement soles (engine fix).
+  - Engine ask: a per-leg foot direction (footL/footR) in legOpts.
+  - Repaint: B3, B4, B5, B0_wide, B2, K1_question, K1_question_end, K3, K0_wide_night.

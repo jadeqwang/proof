@@ -1,6 +1,6 @@
 // basement90 / kitchen90 body checks (r4 decisions, 2026-11-26; Jade: "make sure her eyes are not cross-eyed in the
 // three.js model, and also make sure her body doesn't clip thru her dad's body").
-//   node layout/sets/basement90/check_bodies.mjs [--set basement90] [--shots B1_feet,B2_face] [--json out.json]
+//   node layout/sets/basement90/check_bodies.mjs [--set basement90] [--shots B1_feet,B2_face] [--json out.json] [--parts] [--skip-deep]
 // For every shot (default: every non-beam shot of the set) it builds the scene in the real page (same build as
 // render.mjs, mesh bodies + gaze on), bakes every visible figure mesh to world triangles and, in Node:
 //   1. BODY vs BODY: for each pair of figures, the triangle pairs that intersect (three-mesh-bvh shapecast +
@@ -25,6 +25,10 @@ const { chromium } = require(PW);
 const argv = process.argv.slice(2), args = {};
 for (let i = 0; i < argv.length; i++) if (argv[i].startsWith('--')) args[argv[i].slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
 const SET = args.set || 'basement90', MIN_LOOK_M = 0.25;
+// (r5, 2026-11-26) three-mesh-bvh's closestPointToGeometry walks (nearly) every triangle pair when the two meshes are far
+// apart: dad vs mama 11 cm apart took 66 s, and K4_writes (parents 1.16 m apart) never finished. The clearance search is
+// now capped at CLR_MAX: beyond it the clearance is reported as "> CLR_MAX" (null clearance_mm, clearance_gt_mm set).
+const CLR_MAX = Number(args['clr-max'] || 0.05);   // 0.15 still took ~1 min for two bodies 11 cm apart
 
 const port = 9300 + (process.pid % 200), server = await serve(port);
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/opt/google/chrome/chrome', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
@@ -91,7 +95,7 @@ function bodyPair(A, B) {
   let pairs = 0; const where = [];
   ga.boundsTree.bvhcast(gb.boundsTree, I, { intersectsTriangles: (ta, tb) => { if (ta.intersectsTriangle(tb)) { pairs++; if (where.length < 5) where.push(ta.a.toArray().map((v) => +v.toFixed(3))); } return false; } });
   // clearance: closest distance between the two meshes
-  const t1 = {}, t2 = {}; const res = ga.boundsTree.closestPointToGeometry(gb, I, t1, t2);
+  const t1 = {}, t2 = {}; const res = ga.boundsTree.closestPointToGeometry(gb, I, t1, t2, 0, CLR_MAX);   // (r5) capped: uncapped, two bodies far apart took minutes to hours (the K4_writes hang)
   const clearance = res ? res.distance : null; if (args.debug) console.log('closest', JSON.stringify(t1), JSON.stringify(t2));
   // deepest vertex of A inside B (and B inside A): ray parity against the other body (+x ray), capped sampling
   const deep = deepIn;
@@ -99,7 +103,7 @@ function bodyPair(A, B) {
   const byPart = {};
   if (pairs) for (const pa of A.parts) { const g1 = geomOf([pa]); for (const pb of B.parts) { const g2 = geomOf([pb]); let n = 0;
     g1.boundsTree.bvhcast(g2.boundsTree, I, { intersectsTriangles: (x, y) => { if (x.intersectsTriangle(y)) n++; return false; } }); if (n) byPart[`${pa.label} x ${pb.label}`] = n; } }
-  return { intersecting_triangle_pairs: pairs, by_part: byPart, sample_points: where, clearance_mm: clearance == null ? null : +(clearance * 1000).toFixed(1), deepest_A_in_B: deep(ga, gb), deepest_B_in_A: deep(gb, ga) };
+  return { intersecting_triangle_pairs: pairs, by_part: byPart, sample_points: where, clearance_mm: clearance == null ? (pairs ? 0 : null) : +(clearance * 1000).toFixed(1), ...(clearance == null && !pairs ? { clearance_gt_mm: CLR_MAX * 1000 } : {}), deepest_A_in_B: deep(ga, gb), deepest_B_in_A: deep(gb, ga) };
 }
 function eyes(g) {
   if (!g.lookAt || !g.eyeCentres) return null;
@@ -128,15 +132,18 @@ function analyse(id, dump) {
   out.furniture = {};
   for (const w of who) { const gf = geomOf(dump.figs[w].parts); for (const [lab, pr] of Object.entries(dump.props || {})) { const gp2 = geomOf(pr.parts), I = new THREE.Matrix4(); let n = 0;
     gf.boundsTree.bvhcast(gp2.boundsTree, I, { intersectsTriangles: (x, y) => { if (x.intersectsTriangle(y)) n++; return false; } });
-    const c = gf.boundsTree.closestPointToGeometry(gp2, I, {}, {}); out.furniture[`${w} vs ${lab}`] = { intersecting_triangle_pairs: n, clearance_mm: c ? +(c.distance * 1000).toFixed(1) : null, ...(n ? (() => { const d = deepIn(gf, gp2); return { deepest_mm: d.mm, deepest_at: d.at }; })() : { deepest_mm: 0 }) }; } }
+    const c = gf.boundsTree.closestPointToGeometry(gp2, I, {}, {}, 0, CLR_MAX); out.furniture[`${w} vs ${lab}`] = { intersecting_triangle_pairs: n, clearance_mm: c ? +(c.distance * 1000).toFixed(1) : null, ...(n ? (() => { const d = deepIn(gf, gp2); return { deepest_mm: d.mm, deepest_at: d.at }; })() : { deepest_mm: 0 }) };
+    if (n && args.parts) { const bp = {}; for (const pa of dump.figs[w].parts) { const g1 = geomOf([pa]); let k = 0;   // (r5) --parts: which body part meets the object, and how deep
+        g1.boundsTree.bvhcast(gp2.boundsTree, I, { intersectsTriangles: (x, y) => { if (x.intersectsTriangle(y)) k++; return false; } }); if (k) bp[pa.label] = { pairs: k, deepest_mm: deepIn(g1, gp2).mm }; }
+      out.furniture[`${w} vs ${lab}`].by_part = bp; } } }
   out.joints = Object.fromEntries(Object.entries(dump.gaze).map(([w, g]) => [w, g.joints]));
   if (args.joints) for (const [w, j] of Object.entries(out.joints)) console.log(w, JSON.stringify(Object.fromEntries(Object.entries(j).filter(([k]) => String(args.joints).split(',').includes(k)))));
   const bad = Object.values(out.bodies).some((r) => r.intersecting_triangle_pairs > 0) || Object.values(out.eyes).some((e) => !e.ok);
   out.pass = !bad;
   console.log(`${SET} ${id}: ${out.pass ? 'PASS' : 'FAIL'}`);
-  for (const [k, r] of Object.entries(out.bodies)) { console.log(`  ${k}: ${r.intersecting_triangle_pairs} intersecting tri pairs, clearance ${r.clearance_mm} mm, deepest ${r.deepest_A_in_B.mm} / ${r.deepest_B_in_A.mm} mm${r.sample_points.length ? ' near ' + JSON.stringify(r.sample_points[0]) : ''}`);
+  for (const [k, r] of Object.entries(out.bodies)) { console.log(`  ${k}: ${r.intersecting_triangle_pairs} intersecting tri pairs, clearance ${r.clearance_mm ?? '>' + r.clearance_gt_mm} mm, deepest ${r.deepest_A_in_B.mm} / ${r.deepest_B_in_A.mm} mm${!r.intersecting_triangle_pairs && (r.deepest_A_in_B.mm || r.deepest_B_in_A.mm) ? ' (ray parity only, no surface crossing: an open shell such as hair; not an overlap)' : ''}${r.sample_points.length ? ' near ' + JSON.stringify(r.sample_points[0]) : ''}`);
     for (const [k2, n] of Object.entries(r.by_part || {})) console.log(`      ${k2}: ${n}`); }
-  for (const [k, r] of Object.entries(out.furniture)) if (r.intersecting_triangle_pairs || r.clearance_mm < 5) console.log(`  ${k}: ${r.intersecting_triangle_pairs} tri pairs, clearance ${r.clearance_mm} mm, deepest ${r.deepest_mm} mm${r.deepest_at ? ' at ' + JSON.stringify(r.deepest_at) : ''}`);
+  for (const [k, r] of Object.entries(out.furniture)) if (r.intersecting_triangle_pairs || (r.clearance_mm != null && r.clearance_mm < 5)) console.log(`  ${k}: ${r.intersecting_triangle_pairs} tri pairs, clearance ${r.clearance_mm} mm, deepest ${r.deepest_mm} mm${r.deepest_at ? ' at ' + JSON.stringify(r.deepest_at) : ''}${r.by_part ? ' ' + JSON.stringify(r.by_part) : ''}`);
   for (const [w, e] of Object.entries(out.eyes)) console.log(`  ${w} eyes: target ${e.distance_m} m, IPD ${e.ipd_mm} mm, L ${e.eye_l.yaw_left}/${e.eye_l.pitch_up} R ${e.eye_r.yaw_left}/${e.eye_r.pitch_up}, vergence ${e.vergence_deg} (expect ${e.vergence_expected_deg}), rays meet ${e.rays_meet_at_m} m (miss ${e.rays_miss_mm} mm, ${e.meet_off_target_mm} mm off target)${e.ok ? '' : '  <-- CHECK'}`);
   return out;
 }

@@ -61,7 +61,7 @@ export const screenCorners = () => [screenPoint(0, 0), screenPoint(1, 0), screen
 // THE SCREEN (r4, 2026-11-26, Jade: "make something of a code block, it would have been dark blue text on grey, and he
 // was renaming a variable. it was DOS era"; r4 decisions: "it wasn't c, this was qbasic era ... a weekend project with
 // his friend, a real time chat application"): one canonical 80 x 25 screen (build.js dosScreen(), drawn in code), the
-// MS-DOS QBasic editor with CHAT.BAS, dark blue text on light grey, the same in every shot that sees the glass. Dad has
+// MS-DOS QBasic editor with CHAT.BAS, light grey text on blue (r5: QBasic 1.1 default; was dark blue on light grey), the same in every shot that sees the glass. Dad has
 // renamed `txt$` to `outLine$`; one `txt$` is left, on row 10 (`PRINT #1, txt$`): THE WORD she points at.
 // The text area fills the glass less a black overscan border; cell (col, row) centre in glass u, v (0..1, as read):
 export const DOS = { cols: 80, rows: 25, u0: 0.035, u1: 0.965, v0: 0.04, v1: 0.96, wordRow: 10, wordCol: 19, word: 'txt$', was: 'txt$', now: 'outLine$' };

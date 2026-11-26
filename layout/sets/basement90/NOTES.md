@@ -406,3 +406,40 @@ Every hand that touches something is now checked (`--gaze` sidecar `holds`, engi
   (pre-existing).
 - QUESTION for Jade: "QBasic screen colours?" (a) dark blue text on light grey, as you remembered [rec, built] (b) QBasic's
   default light grey on blue. Image: media/layout/basement90/B3_finger_lit.png
+
+## 2026-11-26: round-5 decisions (kitchen-basement agent)
+
+Jade (b_qb_colours): "QBasic default: light grey on blue".
+- **The canonical screen (build.js `dosScreen`) now uses the real QBasic 1.1 default colours** (VGA text palette): edit
+  windows light grey #AAAAAA text on blue #0000AA; the active window's title " CHAT.BAS " in reverse video (blue on grey);
+  menu bar black on light grey with each menu's access letter in bright white; the vertical scroll bar a grey track with
+  a black thumb; status line bright white on cyan #00AAAA with the line:column field in black after a separator; the text
+  cursor grey. The characters, layout and THE WORD (`txt$`, row 10) are unchanged. FLAG: the bar colours (white-on-cyan
+  status line, white access letters) are from memory of the real editor's screenshots; a web search did not confirm them.
+  B3 intent updated. The screen GLOW stays Jade's r4 "cool white" (BEAM.color 0x9db4f0); a mostly-blue screen would
+  realistically cast a bluer light: flagged as a question.
+- **Dad's typing wrists (B0-B3).** Palm-flat-down hands with tucked elbows needed 91 / 106 deg of forearm pronation (limit
+  80). Each hand now rolls onto its little-finger side (thumb up: L 15 deg, R 32 deg) and the right hand's fingers turn
+  in (FX -0.35), as a typist's hands do (`ROLL`, `FX`, `tap()` in shots.js). Measured: L twist -91 -> -78.5, R -106.5 ->
+  -77.3, flexion 39 / 54, deviation 10 / 5: all in range (no sidecar wrist warning for Dad in B0-B3).
+- **The cat paw (B4/B5) is now a natural wrist.** The drooping paw was 91 deg past flexion, 115 ulnar, 57 pronation. The
+  new paw (solved in a scratch search over forearm direction, roll and flexion with engine/wrist.js's wristAngles, elbow
+  within 1.2 cm of the arm's reach, from the read-back face points): elbow low in front of her ribs, the forearm rising
+  steeply up and in to a wrist just under her chin, the wrist bent 55-60 deg so the loose fist is palm-down, knuckles
+  forward and in; the top of the bent wrist / sweater cuff faces up into her bowed face, her lips and chin on it. Head a
+  little less bowed (spine 28 -> 26, look 0.8 m out at 0.70 m). Engine report: flex 59.5, radial -2.3, twist -77.4 (in
+  range). Looked at B5_cat lit: reads as a cat paw at her chin.
+- **check_bodies.mjs hang (K4_writes) found and fixed (set-local, not an engine issue):** three-mesh-bvh's
+  `closestPointToGeometry` with no distance cap walks nearly every triangle pair when two meshes are far apart (11 cm took
+  66 s; the K4 parents 1.16 m apart never finished). The clearance search is now capped (`CLR_MAX` 0.05 m, `--clr-max`);
+  farther pairs print "clearance >50 mm". K4_writes now checks in 6 s. New `--parts`: per-body-part breakdown of
+  furniture contacts.
+- Rolling Dad's hands put his ring fingertip 7.9 mm into the keys (holdcheck): TYPE_HAND ring / little curls raised
+  (ring 50/58/30, little 58/64/34); now 1.1 mm (pass).
+- **Checks (all 7 shots, 3 passes + masks re-rendered):** check_bodies.mjs PASS on every shot (check_bodies.json
+  rewritten); holdcheck 14 / 14 pass; no wrist out of range for anyone in the sidecars. clipcheck still FAILs every shot
+  on Dad's mesh soles 14.3 mm into the concrete slab: the engine's known "mesh soles ~13 mm under the floor" (engine-body
+  agent's fix list), not staging. Looked at: B3_finger (screen readable, grey on blue, cyan status line), B4_doubletake,
+  B5_cat.
+- QUESTION for Jade (proposed): "The screen glow on her face, now that the screen is blue?" (a) keep cool white [as built]
+  (b) a light blue cast. Image: media/layout/basement90/B2_face_lit.png.

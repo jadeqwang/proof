@@ -27,9 +27,15 @@ const LH_DAD = 0.108 * 1.72, LH7 = 0.107 * 1.22;
 const LIFT_L = 0.02, CURL_L = 12;   // hand lengths (PROP hand x height)
 const DAD_SEAT_LIFT = 0.006;   // r4: his seat bones 6 mm up, onto the cushion (measured 6.5 mm into the seat's foam at 0)
 const DAD_ELBOW_L = [-1.14, 0.8, -0.24], DAD_ELBOW_R = [-0.87, 0.8, -0.24];   // r4: his left elbow tucked in at his side, so she can stand beside him
-const TYPE_HAND = { shape: 'relax', curl: { index: [34, 40, 20], middle: [30, 36, 18], ring: [36, 42, 22], little: [40, 46, 24] } };
-const tap = (dx, side) => graspArms('tipOn', { centre: KB_TOP(dx, -0.012), at: KB_TOP(dx, -0.012), up: KB_UP, axis: [0, -KB_UP[2], -KB_UP[1]], finger: 'middle', hand: TYPE_HAND,
-  fingers: [dx > 0 ? -0.15 : 0.15, -0.2, -1], label: 'keyboard' }, { Lh: LH_DAD, side })[side];
+const TYPE_HAND = { shape: 'relax', curl: { index: [34, 40, 20], middle: [30, 36, 18], ring: [50, 58, 30], little: [58, 64, 34] } };   // (r5) ring + little curled more: the hands now roll onto that side (ROLL) and the ring tip went 7.9 mm into the keys
+// (r5, wrists) each hand rolled ROLL deg onto its little-finger side (thumb side up, palm a little toward the midline)
+// and the right hand's fingers turned FX inward, as a typist's hands sit: palm-flat-down hands with his elbows tucked
+// needed 91 / 106 deg of pronation (limit 80; sidecar: pronation L +11, R +26 deg over). Measured (scratch tuning on
+// B1_feet): L twist -91 -> about -78, R -106.5 -> about -79; flexion and deviation stay in range.
+const ROLL = { L: 15, R: 32 }, FX = { L: 0.15, R: -0.35 };
+const tap = (dx, side) => { const a = ROLL[side] * Math.PI / 180, s = side === 'R' ? -1 : 1, h = Math.hypot(KB_UP[0], KB_UP[1]);
+  return graspArms('tipOn', { centre: KB_TOP(dx, -0.012), at: KB_TOP(dx, -0.012), up: KB_UP, axis: [0, -KB_UP[2], -KB_UP[1]], finger: 'middle', hand: TYPE_HAND,
+    palm: [s * Math.sin(a) * h, -Math.cos(a) * h, -KB_UP[2]], fingers: [FX[side], -0.2, -1], label: 'keyboard' }, { Lh: LH_DAD, side })[side]; };
 const dadTyping = (o = {}) => ({ costume: DAD_BASEMENT, at: CHAIR.at, legs: 'seat', legOpts: { seatH: seatHip('dad', CHAIR.seatTop) + DAD_SEAT_LIFT, footFwd: 0.47 }, yaw: 180, spine: { bend: 8, side: 10 }, head: { look: 'screen' },
   L: { ...tap(-0.09, 'L'), elbowAt: DAD_ELBOW_L }, R: { ...tap(0.09, 'R'), elbowAt: DAD_ELBOW_R }, ...o });
 // Jade standing on the two spokes at Dad's left (right foot on the front spoke, left on the back one), leaning over
@@ -99,9 +105,24 @@ const GROOM = { at: gp([-0.25, -0.85]), yaw: 70, wrist: null };
   GROOM.palmOff = GROOM.wristOff.map((v, i) => v + GROOM.fingers[i] * 0.26 * 0.107 * 1.22);   // palm centre = wrist + 0.26 hand lengths (engine)
   GROOM.palmC = GROOM.mouth.map((v, i) => v + GROOM.palmOff[i]);
   GROOM.elbow = nrm(loc([0.3, -0.8, 0.6])); }   // elbow pole: down and out to her right side, a little forward
+// (r5, wrists: the drooping paw above was 91 deg past the wrist's flexion limit, 115 ulnar, 57 pronation). A natural
+// paw that keeps her lips and chin on the back of the wrist: the elbow low in front of her ribs, the forearm rising
+// steeply up and inward to a wrist just under her chin, the wrist bent 55 deg (limit 60) so the curled fist turns
+// palm-DOWN with the knuckles forward and inward, and the bend's back (the top of the wrist / sweater cuff) faces up
+// into her bowed face. Her head is a little less bowed (spine 28 -> 26, look point 0.8 m out at 0.70 m), so her face
+// meets the wrist from above-front. Solved in scratch (search over forearm direction, roll and flexion with
+// engine/wrist.js wristAngles; elbow within 1.2 cm of the upper arm's reach) from the read-back face points, then
+// checked in the render: flex 55, radial 0, twist -77 (all in range).
+GROOM.look = (() => { const a = GROOM.yaw * Math.PI / 180; return [GROOM.at[0] + Math.sin(a) * 0.8, 0.70, GROOM.at[1] + Math.cos(a) * 0.8]; })();
+GROOM.mouth = [-1.686, 0.958, 0.303]; GROOM.chin = [-1.727, 0.937, 0.27];   // read back (r5 head pose)
+GROOM.contactP = [-1.7027, 0.9384, 0.2845];   // between lips and chin, 1 cm out from the face
+GROOM.wrist = [-1.6908, 0.9218, 0.2765];      // wrist centre 2.2 cm under the contact (the cuff's radius)
+GROOM.fingers = [0.646, 0.208, -0.734]; GROOM.palm = [0.276, -0.961, -0.029];
+GROOM.palmC = GROOM.wrist.map((v, i) => v + GROOM.fingers[i] * 0.26 * 0.107 * 1.22);
+GROOM.elbow = [0.123, -0.159, -0.031];         // elbow pole: from the shoulder toward the solved elbow [-1.716, 0.764, 0.346]
 // a loose fist (the engine's fist curled about 15 deg less, thumb less tight)
 const PAW = { shape: 'fist', curl: { index: [72, 92, 50], middle: [76, 94, 52], ring: [80, 96, 54], little: [84, 96, 54] }, thumb: { opp: 0.6, mcp: 24, ip: 16, touch: 'middle.mid' } };
-const jadeGroom = (o = {}) => ({ costume: JADE_BASEMENT, at: GROOM.at, legs: 'stand', yaw: GROOM.yaw, spine: { bend: 28, side: 4 }, head: { look: GROOM.look, pitchK: 1, tilt: 20 },
+const jadeGroom = (o = {}) => ({ costume: JADE_BASEMENT, at: GROOM.at, legs: 'stand', yaw: GROOM.yaw, spine: { bend: 26, side: 4 }, head: { look: GROOM.look, pitchK: 1, tilt: 20 },
   R: { to: GROOM.palmC, hand: PAW, fingers: GROOM.fingers, palm: GROOM.palm, elbow: GROOM.elbow },
   L: 'side', ...o });
 const GC = { dad: dadDouble(), jade7: jadeGroom() };
@@ -123,7 +144,7 @@ export const SHOTS = [
     header: 'Verse 2b 2:17.2 OUTSIDE: from behind the screen, on her face; her own arm across her chest to the fingertip on the glass', intent: 'The camera looks out from behind the screen (0.45 m back, past the glass’s right edge on Dad’s side, a little high; monitor and computer hidden, the glass edge stays as a thin frame): her face lit cool white by the screen (Jade r4: cool white, not blue), nearly frontal; her EYES ARE ON HER OWN FINGERTIP on the glass, 0.46 m away, both eyes converging on it (not crossed); her RIGHT arm runs from her own shoulder to the fingertip (a 7-year-old’s small hand); she stands beside Dad’s left shoulder, 2 cm clear of him (measured), he leans a little to his right to make room. Long-sleeved grey sweater. Dad’s face and shoulder at frame left, beside and behind her. Locked off.' },
   { id: 'B3_finger', lens: 35, orbit: { at: 'jade7:head', rel: 'jade7', az: 200, el: 55, dist: 0.6 }, aim: [WORD_P, 0.47, 0.4], figs: POINT, time: '2:18.3-2:19.8 Verse 2b ("I point to one he missed" 2:18.3)', position: 'inside', near: 0.05, far: 4,
     contacts: [['indexR', WORD_TIP], ['shoulderR', WORD_TIP], ['elbowR', WORD_TIP], ['wristR', WORD_TIP]], subject: WORD_P,
-    header: 'Verse 2b 2:18.3 INSIDE: POINTING FINGER (2 of 3): small finger on the glass under the word he missed', intent: 'From above and behind her left shoulder (r4 decisions: az 200 / el 55 / 0.6 m; the back of her head at the bottom of the frame, her RIGHT arm rising from her shoulder up to the glass): the DOS screen, the MS-DOS QBasic editor (c. 1990) with CHAT.BAS, the real-time chat program Dad is writing with his friend on a weekend (dark blue text on light grey, 80 x 25, menu bar, window frame, Immediate window, status line: the canonical screen texture, paint it exactly), her right index fingertip on the glass just under `txt$` on line 9 (`PRINT #1, txt$`), the one he forgot to rename to `outLine$` (the gold underline goes under it). Dad’s right hand on the keyboard’s arrow keys, his head frame right. A neat stack of 5.25 in floppy disks on the desk at left. One of the film’s three pointing-finger framings.' },
+    header: 'Verse 2b 2:18.3 INSIDE: POINTING FINGER (2 of 3): small finger on the glass under the word he missed', intent: 'From above and behind her left shoulder (r4 decisions: az 200 / el 55 / 0.6 m; the back of her head at the bottom of the frame, her RIGHT arm rising from her shoulder up to the glass): the DOS screen, the MS-DOS QBasic editor (c. 1990) with CHAT.BAS, the real-time chat program Dad is writing with his friend on a weekend (the QBasic default colours: light grey text on blue, black-on-grey menu bar, white-on-cyan status line, 80 x 25, window frame, Immediate window: the canonical screen texture, paint it exactly), her right index fingertip on the glass just under `txt$` on line 9 (`PRINT #1, txt$`), the one he forgot to rename to `outLine$` (the gold underline goes under it). Dad’s right hand on the keyboard’s arrow keys, his head frame right. A neat stack of 5.25 in floppy disks on the desk at left. One of the film’s three pointing-finger framings.' },
   // ---------------------------------------------------------------- 2:19.8-2:22.2 "Good catch!" (band stop 2:19.8, sung 2:20.0)
   { id: 'B4_doubletake', lens: 22, pos: [-1.80, 0.95, 1.22],   // 2026-11-26: was 24 mm at gp([-0.35, 0.92, 0.45]) = [-1.97, 0.92, 1.50], now under the stair: pulled 0.3 m in along its own line, clear of the stair's room-side stringer (z 1.28), 22 mm keeps the two-shot
     aim: [{ mid: ['dad:eyes', 'jade7:eyes'] }, 0.5, 0.42], figs: GC, chair: CHAIR_GC, focus: ['dad', 'jade7'], time: '2:19.8-2:21.4 "Good catch!" (drums stop)', position: 'outside (on Dad)',
