@@ -815,3 +815,11 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   re-rendered, then repaint r4 into media/keyframes/r4/ for every shot not marked Good plus every shot whose set
   changed visibly (the per-agent repaint lists above). Painting on the free Codex route only: no paid spend agreed for
   r4 yet (PROOF_CAP = current spend); if Codex's plan limit hits, pause and resume when it resets.
+- **Engine agent done:** `--gaze`/PROOF_GAZE=1 (aimed eyes for Jade/Mama/Dad, stranger brow/nose cue, first love
+  nothing, label gaze line, sidecar gaze checks, natural wrists), `--body2`/PROOF_BODY2=1 (interim real torsos +
+  costume colours, superseded by meshes), `--out <dir>`. Modules: engine/gaze.js, wrist.js, grasp.js (8 templates,
+  not wired into shots yet), holdcheck.mjs (Rapier in /home/jade/Documents/layout-deps). Audits in work/:
+  gaze_audit.md, hold_audit.md (NOTHING passes yet: thumb sinks ~9 mm into cups, pinches pass through paper,
+  furniture not colliders), costume_audit.md (sheet mismatches; Dad vs jade7 tops too close in K1/K3/PC2, uncle vs
+  jade3 in V1a). TODO: wire grasp templates into every held-object shot after the meshes; raise eye down-travel to
+  ~45 deg; fix costume mismatches against the sheets.
