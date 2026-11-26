@@ -233,16 +233,16 @@
  "heads": {
   "jade7": {
    "px": [
-    1155.9,
+    1156.4,
     561.7
    ],
    "eyes": [
-    1128.1,
-    551.7
+    1128.7,
+    551.1
    ],
    "mouth": [
-    1126.3,
-    574.4
+    1126.6,
+    573.8
    ],
    "in_frame": true,
    "visible": true,
@@ -251,20 +251,20 @@
   },
   "mama90": {
    "px": [
-    1020.8,
-    524.2
+    1007.6,
+    517.2
    ],
    "eyes": [
-    1047.3,
-    530.7
+    1033.5,
+    522.2
    ],
    "mouth": [
-    1043.9,
-    554
+    1030.9,
+    545.5
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 48
+   "facing_camera_deg": 47
   }
  },
  "hands": {
@@ -288,8 +288,8 @@
   },
   "mama90.L": {
    "px": [
-    1164.6,
-    586.2
+    1122.4,
+    572.9
    ],
    "shape": "relax",
    "in_frame": true,
@@ -297,8 +297,8 @@
   },
   "mama90.R": {
    "px": [
-    1112.8,
-    596.2
+    1078,
+    580.6
    ],
    "shape": "relax",
    "in_frame": true,
@@ -360,8 +360,8 @@
   }
  ],
  "warnings": [
-  "wrist: mama90 L beyond the wrist range (radial deviation +14 deg; flex -49.9, radial 34.1, twist -16.7, after an elbow swivel of 0 deg)",
-  "wrist: mama90 R beyond the wrist range (radial deviation +14 deg; flex -49.9, radial 34.1, twist -16.7, after an elbow swivel of 0 deg)"
+  "wrist: mama90 L beyond the wrist range (extension +63 deg, ulnar deviation +85 deg, supination +32 deg; flex -123.3, radial -115.2, twist 116.6, after an elbow swivel of 0 deg)",
+  "wrist: mama90 R beyond the wrist range (extension +63 deg, ulnar deviation +85 deg, supination +32 deg; flex -123.3, radial -115.2, twist 116.6, after an elbow swivel of 0 deg)"
  ],
  "intent": "Set reference, outro, from the front-left corner: the window shaft crosses the chair and the child and lands on the floor.",
  "time": "reference",
@@ -541,20 +541,20 @@
     "name": "mama90:eyes",
     "world": [
      0.55,
-     1.12,
-     -0.079
+     1.136,
+     -0.127
     ]
    },
    "head_deg": {
     "yaw_left": 0,
-    "pitch_up": 4.4,
+    "pitch_up": 5.4,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": 0.9,
+    "pitch_up": 1.9,
     "wanted_yaw": 0,
-    "wanted_pitch": 0.9,
+    "wanted_pitch": 1.9,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -563,12 +563,12 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    1128.1,
-    551.7
+    1128.7,
+    551.1
    ],
    "target_px": [
-    1047.3,
-    530.7
+    1033.5,
+    522.2
    ],
    "target_in_front": true
   },
@@ -578,20 +578,20 @@
     "name": "jade7:eyes",
     "world": [
      0.55,
-     1.096,
-     0.178
+     1.097,
+     0.18
     ]
    },
    "head_deg": {
     "yaw_left": 0,
-    "pitch_up": 9.9,
+    "pitch_up": 4,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": 4.8,
+    "pitch_up": 0.7,
     "wanted_yaw": 0,
-    "wanted_pitch": 4.8,
+    "wanted_pitch": 0.7,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -603,32 +603,32 @@
      "target": "jade7:mouth",
      "shape": "relax",
      "world": [
-      0.644,
-      1.008,
-      0.213
+      0.63,
+      1.027,
+      0.096
      ],
-     "look_off_deg": 22.7
+     "look_off_deg": 25.8
     },
     {
      "arm": "R",
      "target": "jade7:mouth",
      "shape": "relax",
      "world": [
-      0.456,
-      1.008,
-      0.213
+      0.47,
+      1.027,
+      0.096
      ],
-     "look_off_deg": 22.7
+     "look_off_deg": 25.8
     }
    ],
    "warnings": [],
    "eyes_px": [
-    1047.3,
-    530.7
+    1033.5,
+    522.2
    ],
    "target_px": [
-    1128.1,
-    551.7
+    1128.7,
+    551.2
    ],
    "target_in_front": true
   }
@@ -654,36 +654,40 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -49.9,
-    "radial_deg": 34.1,
-    "twist_deg": -16.7,
-    "elbow_flex_deg": 72.9,
+    "flex_deg": -123.3,
+    "radial_deg": -115.2,
+    "twist_deg": 116.6,
+    "elbow_flex_deg": 103.3,
     "before": {
-     "flex_deg": -49.9,
-     "radial_deg": 34.1,
-     "twist_deg": -16.7
+     "flex_deg": -123.3,
+     "radial_deg": -115.2,
+     "twist_deg": 116.6
     },
     "hand_turned_deg": null,
     "out_of_range": [
-     "radial deviation +14 deg"
+     "extension +63 deg",
+     "ulnar deviation +85 deg",
+     "supination +32 deg"
     ],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -49.9,
-    "radial_deg": 34.1,
-    "twist_deg": -16.7,
-    "elbow_flex_deg": 72.9,
+    "flex_deg": -123.3,
+    "radial_deg": -115.2,
+    "twist_deg": 116.6,
+    "elbow_flex_deg": 103.3,
     "before": {
-     "flex_deg": -49.9,
-     "radial_deg": 34.1,
-     "twist_deg": -16.7
+     "flex_deg": -123.3,
+     "radial_deg": -115.2,
+     "twist_deg": 116.6
     },
     "hand_turned_deg": null,
     "out_of_range": [
-     "radial deviation +14 deg"
+     "extension +63 deg",
+     "ulnar deviation +85 deg",
+     "supination +32 deg"
     ],
     "grip_reversed": false
    }
@@ -691,8 +695,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama90": 0.0218,
-  "jade7": 0.0231
+  "mama90": 0.0216,
+  "jade7": 0.0233
  },
  "colour_separation": [],
  "figure_report": {
@@ -732,15 +736,15 @@
   "mama90": {
    "legs": {
     "L": {
-     "reach": 0.84
+     "reach": 0.81
     },
     "R": {
-     "reach": 0.84
+     "reach": 0.81
     }
    },
    "arms": {
-    "L": 0.81,
-    "R": 0.81
+    "L": 0.63,
+    "R": 0.63
    },
    "headTurn": 0,
    "body": {
@@ -749,14 +753,14 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 70,
-     "upperarm_stretch": 1.24,
+     "elbow_bend_deg": 100,
+     "upperarm_stretch": 1.22,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 70,
-     "upperarm_stretch": 1.24,
+     "elbow_bend_deg": 100,
+     "upperarm_stretch": 1.22,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     }

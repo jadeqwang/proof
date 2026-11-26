@@ -12,6 +12,11 @@
 import * as THREE from 'three';
 import { mk, box, cyl, ball, limb, tag, V } from '../../engine/core.js';
 import { ROOM, WINDOW, COUNTER, STOVE, FRIDGE } from './layout.js';
+import { loadProps, prop } from '../_props.js';
+
+// props phase 2 (r4 decisions, 2026-11-26): the kettle and the rice cooker are downloaded models (layout/assets/props/,
+// credits in docs/credits_tools.md); the canisters, sink, faucet, cabinets and dish rack stay hand-built (work/props_audit.md)
+await loadProps(['kettle', 'rice_cooker']);
 
 // ---------------------------------------------------------------- materials (invented, flagged)
 export const KLOOK = {
@@ -58,12 +63,12 @@ export const KIT = {
 // counter items: [x, z] centres, fixed. Every one INVENTED (flagged in NOTES.md).
 export const ITEMS = {
   canisters: [[-1.72, z0 + 0.13, 0.068, 0.22], [-1.585, z0 + 0.13, 0.058, 0.19], [-1.47, z0 + 0.13, 0.049, 0.16]],   // [x, z, r, h] glazed brown stoneware, oak lids
-  riceCooker: { x: -1.27, z: z0 + 0.22, r: 0.125, h: 0.2 },            // white, black carry handle, cord to the outlet behind
+  riceCooker: { x: -1.27, z: z0 + 0.22, r: 0.122, h: 0.26 },           // white (downloaded model, 0.24 m across, 0.26 m tall)
   dishRack: { x0: -1.08, x1: -0.76, z0: z0 + 0.12, z1: z0 + 0.5 },     // white coated wire on an almond drainboard
   paperTowel: { x: -1.18, y: 1.3, z: z0 + 0.15, w: 0.28, r: 0.06 },     // under the left upper cabinet
   soap: { x: 0.19, z: z0 + 0.1 },                                       // green dish soap bottle (no label)
   sponge: { x: 0.19, z: z0 + 0.3 },                                     // yellow sponge
-  kettle: { x: STOVE.x0 + 0.2, z: z0 + 0.2 },                           // red enamel kettle on the back-left burner
+  kettle: { x: STOVE.x0 + 0.2, z: z0 + 0.2, rot: 0 },                   // red enamel kettle on the back-left burner (downloaded model)
 };
 
 // ---------------------------------------------------------------- pieces
@@ -202,12 +207,12 @@ function counterItems() {
   for (const [x, z, r, h] of I.canisters) { g.add(tag(cyl(r, r, h, { grey: 0.34, col: 0x7a5236 }, [x, top + h / 2, z], null, 20), 'canisters (brown stoneware)'));
     g.add(tag(cyl(r + 0.004, r + 0.004, 0.025, KLOOK.oak, [x, top + h + 0.0125, z], null, 20), 'canisters (brown stoneware)'));
     g.add(tag(ball(0.014, KLOOK.oak, [x, top + h + 0.032, z]), 'canisters (brown stoneware)')); }
-  { const R = I.riceCooker, W = { grey: 0.92, col: 0xf1eee6 };
-    g.add(tag(cyl(R.r, R.r * 0.92, R.h, W, [R.x, top + R.h / 2, R.z], null, 28), 'rice cooker (white)'));
-    const lid = ball(R.r * 0.98, W, [R.x, top + R.h, R.z], [1, 0.32, 1]); g.add(tag(lid, 'rice cooker (white)'));
-    g.add(tag(ball(0.018, KLOOK.black, [R.x, top + R.h + R.r * 0.31, R.z]), 'rice cooker (white)'));
-    const hdl = mk(new THREE.TorusGeometry(R.r * 0.85, 0.007, 6, 24, Math.PI), KLOOK.black); hdl.position.set(R.x, top + R.h * 0.92, R.z); hdl.rotation.y = 0; g.add(tag(hdl, 'rice cooker (white)'));
-    g.add(tag(box(0.05, 0.035, 0.012, KLOOK.black, [R.x, top + 0.06, R.z + R.r * 0.95]), 'rice cooker (white)')); }     // switch
+  { const R = I.riceCooker;   // "Rice Cooker Lowpoly" (CC BY), 0.24 x 0.26 x 0.25 m, origin at its base: stands on the counter top; switch toward the room
+    const m = prop('rice_cooker', { at: [R.x, top, R.z] });
+    if (m) g.add(m);
+    else { const W = { grey: 0.92, col: 0xf1eee6 };   // fallback: the hand-built one
+      g.add(tag(cyl(R.r, R.r * 0.92, R.h, W, [R.x, top + R.h / 2, R.z], null, 28), 'rice cooker (white)'));
+      g.add(tag(ball(R.r * 0.98, W, [R.x, top + R.h, R.z], [1, 0.32, 1]), 'rice cooker (white)')); } }
   { const D = I.dishRack, cx = (D.x0 + D.x1) / 2, cz = (D.z0 + D.z1) / 2, w = D.x1 - D.x0, d = D.z1 - D.z0, wire = { grey: 0.95, col: 0xf4f3ee }, lab = 'dish rack (white wire, almond drainboard)';
     g.add(tag(box(w + 0.04, 0.012, d + 0.03, KLOOK.almondD, [cx, top + 0.006, cz]), lab));
     for (const x of [D.x0, D.x1]) for (const y of [0.03, 0.1]) g.add(tag(limb(V(x, top + y, D.z0), V(x, top + y, D.z1), 0.003, wire), lab));
@@ -223,12 +228,12 @@ function counterItems() {
   g.add(tag(cyl(0.03, 0.033, 0.2, { grey: 0.5, col: 0x5f9e4e }, [I.soap.x, top + 0.1, I.soap.z], null, 16), 'dish soap (green bottle)'));
   g.add(tag(cyl(0.01, 0.014, 0.03, { grey: 0.9, col: 0xf0f0e8 }, [I.soap.x, top + 0.215, I.soap.z], null, 10), 'dish soap (green bottle)'));
   g.add(tag(box(0.07, 0.025, 0.1, { grey: 0.78, col: 0xe8c84a }, [I.sponge.x, top + 0.0125, I.sponge.z]), 'sponge (yellow)'));
-  { const K = I.kettle, y = STOVE.h + 0.012, R = { grey: 0.36, col: 0xb23a2e };
-    g.add(tag(cyl(0.075, 0.1, 0.16, R, [K.x, y + 0.08, K.z], null, 24), 'kettle (red enamel)'));
-    g.add(tag(ball(0.075, R, [K.x, y + 0.16, K.z], [1, 0.35, 1]), 'kettle (red enamel)'));
-    g.add(tag(ball(0.016, KLOOK.black, [K.x, y + 0.195, K.z]), 'kettle (red enamel)'));
-    g.add(tag(limb(V(K.x + 0.07, y + 0.07, K.z + 0.02), V(K.x + 0.15, y + 0.15, K.z + 0.04), 0.012, R), 'kettle (red enamel)'));
-    const hdl = mk(new THREE.TorusGeometry(0.06, 0.008, 6, 20, Math.PI), KLOOK.black); hdl.position.set(K.x, y + 0.2, K.z); g.add(tag(hdl, 'kettle (red enamel)')); }
+  { const K = I.kettle, y = STOVE.h + 0.017;   // "Teapot" stovetop kettle (CC BY), 0.21 x 0.24 x 0.19 m, body red enamel (props.json defaults); its base on the coil tops (coil torus y STOVE.h + 0.012, tube r 0.005)
+    const m = prop('kettle', { at: [K.x, y, K.z], rot: [0, K.rot || 0, 0] });
+    if (m) g.add(m);
+    else { const R = { grey: 0.36, col: 0xb23a2e };   // fallback: the hand-built one
+      g.add(tag(cyl(0.075, 0.1, 0.16, R, [K.x, y + 0.08, K.z], null, 24), 'kettle (red enamel)'));
+      g.add(tag(ball(0.075, R, [K.x, y + 0.16, K.z], [1, 0.35, 1]), 'kettle (red enamel)')); } }
   return g;
 }
 

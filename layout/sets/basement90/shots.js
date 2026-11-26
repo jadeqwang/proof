@@ -16,7 +16,7 @@ import { seatHip, JADE_BASEMENT, DAD_BASEMENT } from './house.js';
 import { ankleLocal } from './kit.js';
 
 // ---------------------------------------------------------------- recurring poses
-const JYAW = 166, S = jadeOnSpokes(JYAW);
+const JYAW = 166, S = jadeOnSpokes(JYAW, 0.165, 0.03);
 const mid = (a, b) => a.map((v, i) => (v + b[i]) / 2);
 const KEYS = (dx) => gp([0.6 + dx, DESK.top + 0.05, -1.5]);
 // Dad at the keyboard, facing the screen (-z)
@@ -25,11 +25,13 @@ const KEYS = (dx) => gp([0.6 + dx, DESK.top + 0.05, -1.5]);
 // desk with the fingertips in the air. The keyboard rests on the desk (checked by engine/holdcheck.mjs).
 const LH_DAD = 0.108 * 1.72, LH7 = 0.107 * 1.22;
 const LIFT_L = 0.02, CURL_L = 12;   // hand lengths (PROP hand x height)
+const DAD_SEAT_LIFT = 0.006;   // r4: his seat bones 6 mm up, onto the cushion (measured 6.5 mm into the seat's foam at 0)
+const DAD_ELBOW_L = [-1.14, 0.8, -0.24], DAD_ELBOW_R = [-0.87, 0.8, -0.24];   // r4: his left elbow tucked in at his side, so she can stand beside him
 const TYPE_HAND = { shape: 'relax', curl: { index: [34, 40, 20], middle: [30, 36, 18], ring: [36, 42, 22], little: [40, 46, 24] } };
 const tap = (dx, side) => graspArms('tipOn', { centre: KB_TOP(dx, -0.012), at: KB_TOP(dx, -0.012), up: KB_UP, axis: [0, -KB_UP[2], -KB_UP[1]], finger: 'middle', hand: TYPE_HAND,
-  fingers: [dx > 0 ? 0.12 : -0.12, -0.35, -1], label: 'keyboard' }, { Lh: LH_DAD, side })[side];
-const dadTyping = (o = {}) => ({ costume: DAD_BASEMENT, at: CHAIR.at, legs: 'seat', legOpts: { seatH: seatHip('dad', CHAIR.seatTop), footFwd: 0.36 }, yaw: 180, spine: { bend: 8 }, head: { look: 'screen' },
-  L: tap(-0.09, 'L'), R: tap(0.09, 'R'), ...o });
+  fingers: [dx > 0 ? -0.15 : 0.15, -0.2, -1], label: 'keyboard' }, { Lh: LH_DAD, side })[side];
+const dadTyping = (o = {}) => ({ costume: DAD_BASEMENT, at: CHAIR.at, legs: 'seat', legOpts: { seatH: seatHip('dad', CHAIR.seatTop) + DAD_SEAT_LIFT, footFwd: 0.47 }, yaw: 180, spine: { bend: 8, side: 10 }, head: { look: 'screen' },
+  L: { ...tap(-0.09, 'L'), elbowAt: DAD_ELBOW_L }, R: { ...tap(0.09, 'R'), elbowAt: DAD_ELBOW_R }, ...o });
 // Jade standing on the two spokes at Dad's left (right foot on the front spoke, left on the back one), leaning over
 // the desk edge, RIGHT index finger on the glass at THE WORD, left hand on the desk
 // r4: her head looks at WORD_TIP = her fingertip on the glass (Jade: "her eyes should be looking at the same place as her
@@ -37,11 +39,13 @@ const dadTyping = (o = {}) => ({ costume: DAD_BASEMENT, at: CHAIR.at, legs: 'sea
 // the finger running along her arm's line from the shoulder. Spine twist -8 -> +10: the reaching (right) shoulder leads,
 // so the straight arm runs from her right shoulder past the right side of her bowed head (Jade on B3: the arm "is not
 // coming out of her shoulder at the correct angle").
-const TIP_DIR = (() => { const sh = [-1.063, 0.995, -0.091], d = WORD_TIP.map((v, i) => v - sh[i]), l = Math.hypot(...d); return d.map((v) => v / l); })();   // shoulderR read back from the sidecar (B3 contacts)
+const SH_R = [-1.24, 0.9, -0.21];   // r4: her right shoulder, read back from check_bodies.mjs (B3)
+const JADE_ELBOW_R = SH_R.map((v, i) => v + (WORD_TIP[i] - v) * 0.5 + [0.02, -0.03, 0.01][i]);   // r4: elbow just under the shoulder-to-fingertip line, clear above his left hand
+const TIP_DIR = (() => { const sh = SH_R, d = WORD_TIP.map((v, i) => v - sh[i]), l = Math.hypot(...d); return d.map((v) => v / l); })();   // shoulderR read back from the sidecar (B3 contacts)
 const DESK_L = { at: [gp([0.2, 0])[0], DESK.top + LIFT_L, DESK.z1 - 0.07], hand: { shape: 'relax', curl: { all: [CURL_L, CURL_L * 1.4, CURL_L * 0.7] }, thumb: { opp: 0, sweep: 36, abd: -6, mcp: 0, ip: 0 } } };
-const jadePointing = (o = {}) => ({ costume: JADE_BASEMENT, at: S.pelvis, legs: 'stand', yaw: JYAW, spine: { bend: 36, twist: 10 }, head: { look: WORD_TIP, pitchK: 0.8 },
+const jadePointing = (o = {}) => ({ costume: JADE_BASEMENT, at: S.pelvis, legs: 'stand', yaw: JYAW, spine: { bend: 26, twist: 20 }, head: { look: WORD_TIP, pitchK: 0.8 },
   legOpts: { ankleR: ankleLocal(S.ankles.front, S.pelvis, JYAW, 'R'), ankleL: ankleLocal(S.ankles.back, S.pelvis, JYAW, 'L') },
-  R: { tip: { finger: 'index', at: WORD_TIP }, hand: 'point', fingers: TIP_DIR, palm: 'down', elbowAt: [-1.085, 0.84, -0.33], grasp: 'tipOn', object: 'CRT monitor' },   // hold pass: the pad on the glass, checked against the monitor   // elbow low under her own chest line, not out toward Dad
+  R: { tip: { finger: 'index', at: WORD_TIP }, hand: 'point', fingers: TIP_DIR, palm: 'down', elbowAt: JADE_ELBOW_R, grasp: 'tipOn', object: 'CRT monitor' },   // hold pass: the pad on the glass, checked against the monitor   // elbow low under her own chest line, not out toward Dad
   // (hold pass) the left hand rests on the desk top (grasp 'restOn'; was a flat palm 2 cm in the air): fingers a little
   // curled with their pads on the wood, the palm a few mm up so the heel of the hand / wrist clears the top, thumb level
   L: { ...graspArms('restOn', { centre: DESK_L.at, at: DESK_L.at, up: [0, 1, 0], axis: [0.3, 0, -1], hand: DESK_L.hand, label: 'desk' }, { Lh: LH7, side: 'L' }).L }, ...o });
@@ -55,8 +59,8 @@ const POINT_B2 = { ...POINT, jade7: { ...POINT.jade7, R: { ...POINT.jade7.R, gra
 // of her wrist (r4, Jade 2026-11-26), head cocked.
 // (Jade, decision page 2026-11-25: NOT under the desk; hiding reads as fearful.)
 const CHAIR_GC = { at: gp([0.6, -0.98]), seatYaw: 222 };
-const dadDouble = (o = {}) => ({ costume: DAD_BASEMENT, at: CHAIR_GC.at, legs: 'seat', legOpts: { seatH: seatHip('dad', CHAIR.seatTop), footFwd: 0.38 }, yaw: CHAIR_GC.seatYaw, spine: { bend: 4, twist: 14 }, head: { look: 'jade7:eyes' },
-  L: { to: gp([0.42, DESK.top + 0.2, -1.36]), hand: 'relax', palm: 'down' }, R: { to: KEYS(0.02), off: [0, 0.03, 0.02], hand: 'relax', palm: 'down', fingers: [0, 0, -1] }, ...o });
+const dadDouble = (o = {}) => ({ costume: DAD_BASEMENT, at: CHAIR_GC.at, legs: 'seat', legOpts: { seatH: seatHip('dad', CHAIR.seatTop) + DAD_SEAT_LIFT, footFwd: 0.46 }, yaw: CHAIR_GC.seatYaw, spine: { bend: 4, twist: 14 }, head: { look: 'jade7:eyes' },
+  L: { to: gp([0.42, DESK.top + 0.2, -1.36]), hand: 'relax', palm: 'down' }, R: { to: KEYS(0.02), off: [0, 0.075, 0.02], hand: 'relax', palm: 'down', fingers: [0, 0, -1] }, ...o });
 // her grooming pose. GROOM.at = pelvis [x, z], yaw (70: three-quarter toward Dad and the open room, her right side toward
 // the open floor, i.e. toward the cameras).
 // 2026-11-26 arm fix (Jade: "it really messes up kid Jade's arm"): a child's cat paw. The elbow hangs low in front of
@@ -112,14 +116,14 @@ export const SHOTS = [
     intent: 'Set reference: the whole basement from the front-right corner, over the two watermelons: the stair along the front wall (frame left), the desk standing free in the middle with Dad and Jade at it, the empty floor behind and left of it, the lally post at the desk’s back-right corner, the 1950s wringer washer beyond. The screen and the ceiling bulb light it.' },
   // ---------------------------------------------------------------- 2:16.1-2:19.8 Verse 2b ("Basement" sung 2:16.1)
   { id: 'B1_feet', lens: 45, pos: gp([-0.55, 0.38, -0.5]), aim: [mid(FEET.front, FEET.back), 0.53, 0.62], figs: POINT, time: '2:16.1-2:17.2 Verse 2b', position: 'inside (detail)', subject: mid(FEET.front, FEET.back),
-    header: 'Verse 2b 2:16.1: her socked feet standing on the chair’s five-star base, screen light from the desk', intent: 'Low and close from the open floor: her two feet in white socks (no shoes) standing with their weight on two legs of the chair’s black five-star base (r4, Jade: both feet on the wheely part), each sole square on top of a leg, toes and heel over the edges; the hub and gas column, the twin-wheel casters; Dad’s grey socks and brown slippers beyond. The c. 1990 task chair is black nylon base and casters, charcoal blue-grey tweed seat. The screen light comes over the desk edge from frame left; the desk cuts it, so the foot nearer the desk is in shadow.' },
+    header: 'Verse 2b 2:16.1: her socked feet standing on the chair’s five-star base, screen light from the desk', intent: 'Low and close from the open floor: her two feet in white socks (no shoes) standing with their weight on two legs of the chair’s black five-star base (r4, Jade: both feet on the wheely part), each sole square on top of a leg, toes and heel over the edges; the hub and gas column, the twin-wheel casters; Dad’s grey socks and brown slippers beyond. The c. 1990 task chair is black nylon base and casters, charcoal blue-grey tweed seat (Jade r4: as built). r4: her feet stand out on the leg tips (0.32 m from the hub), so her legs pass outside the seat, beside Dad, not through him. The screen light comes over the desk edge from frame left; the desk cuts it, so the foot nearer the desk is in shadow.' },
   // 2026-11-26 arm fix: was 24 mm at screenPoint(0.02, 0.3, -0.3) (behind the glass's left edge, on her side): her arm pointed straight at the lens in front of Dad's chest and the painter gave it to Dad. Now from behind the glass and 0.27 m past its right edge (Dad's side), a little high: her arm lies across her OWN chest, shoulder -> elbow -> forearm -> fingertip, under her face
   { id: 'B2_face', lens: 35, pos: screenPoint(2.0, -0.2, -0.45), aim: ['jade7:eyes', 0.6, 0.38], figs: POINT_B2, focus: ['jade7'], time: '2:17.2-2:18.3 Verse 2b', position: 'outside', near: 0.05, far: 7,
     hide: ['CRT monitor', 'computer (desktop', 'screen (the beam', 'floppy drive', 'fanfold paper', 'dot-matrix printer', 'beam volume'],
-    header: 'Verse 2b 2:17.2 OUTSIDE: from behind the screen, on her face; her own arm across her chest to the fingertip on the glass', intent: 'The camera looks out from behind the screen (0.45 m back, past the glass’s right edge on Dad’s side, a little high; monitor and computer hidden, the glass edge stays as a thin frame): her face lit cool white by the screen, nearly frontal; her EYES ARE ON HER OWN FINGERTIP on the glass (r4: her head looks exactly at the fingertip point, under the word); her RIGHT arm runs from her own shoulder, elbow low under her chest, to the fingertip (a 7-year-old’s small hand), clear of Dad. Long-sleeved grey sweater. Dad’s face and shoulder at frame left, beside and behind her. Locked off.' },
-  { id: 'B3_finger', lens: 35, orbit: { at: 'jade7:head', rel: 'jade7', az: 180, el: 72, dist: 0.65 }, aim: [WORD_P, 0.47, 0.4], figs: POINT, time: '2:18.3-2:19.8 Verse 2b ("I point to one he missed" 2:18.3)', position: 'inside', near: 0.05, far: 4,
+    header: 'Verse 2b 2:17.2 OUTSIDE: from behind the screen, on her face; her own arm across her chest to the fingertip on the glass', intent: 'The camera looks out from behind the screen (0.45 m back, past the glass’s right edge on Dad’s side, a little high; monitor and computer hidden, the glass edge stays as a thin frame): her face lit cool white by the screen (Jade r4: cool white, not blue), nearly frontal; her EYES ARE ON HER OWN FINGERTIP on the glass, 0.46 m away, both eyes converging on it (not crossed); her RIGHT arm runs from her own shoulder to the fingertip (a 7-year-old’s small hand); she stands beside Dad’s left shoulder, 2 cm clear of him (measured), he leans a little to his right to make room. Long-sleeved grey sweater. Dad’s face and shoulder at frame left, beside and behind her. Locked off.' },
+  { id: 'B3_finger', lens: 35, orbit: { at: 'jade7:head', rel: 'jade7', az: 200, el: 55, dist: 0.6 }, aim: [WORD_P, 0.47, 0.4], figs: POINT, time: '2:18.3-2:19.8 Verse 2b ("I point to one he missed" 2:18.3)', position: 'inside', near: 0.05, far: 4,
     contacts: [['indexR', WORD_TIP], ['shoulderR', WORD_TIP], ['elbowR', WORD_TIP], ['wristR', WORD_TIP]], subject: WORD_P,
-    header: 'Verse 2b 2:18.3 INSIDE: POINTING FINGER (2 of 3): small finger on the glass under the word he missed', intent: 'From above and behind her (r4: az 180 / el 72 / 0.65 m; her arm now visibly comes from her RIGHT shoulder, past the right side of her bowed head, angled up-left to the glass): the DOS screen (dark blue text on light grey, 80 x 25, a C program, the canonical screen texture: paint it exactly) with her right index fingertip on the glass just under the word `total` on line 10 (`avg = (float) total / n;`), the one he forgot to rename to `sum` (the gold underline goes under it). A neat stack of 5.25 in floppy disks on the desk at left. Dad’s head is frame right, out of focus. One of the film’s three pointing-finger framings.' },
+    header: 'Verse 2b 2:18.3 INSIDE: POINTING FINGER (2 of 3): small finger on the glass under the word he missed', intent: 'From above and behind her left shoulder (r4 decisions: az 200 / el 55 / 0.6 m; the back of her head at the bottom of the frame, her RIGHT arm rising from her shoulder up to the glass): the DOS screen, the MS-DOS QBasic editor (c. 1990) with CHAT.BAS, the real-time chat program Dad is writing with his friend on a weekend (dark blue text on light grey, 80 x 25, menu bar, window frame, Immediate window, status line: the canonical screen texture, paint it exactly), her right index fingertip on the glass just under `txt$` on line 9 (`PRINT #1, txt$`), the one he forgot to rename to `outLine$` (the gold underline goes under it). Dad’s right hand on the keyboard’s arrow keys, his head frame right. A neat stack of 5.25 in floppy disks on the desk at left. One of the film’s three pointing-finger framings.' },
   // ---------------------------------------------------------------- 2:19.8-2:22.2 "Good catch!" (band stop 2:19.8, sung 2:20.0)
   { id: 'B4_doubletake', lens: 22, pos: [-1.80, 0.95, 1.22],   // 2026-11-26: was 24 mm at gp([-0.35, 0.92, 0.45]) = [-1.97, 0.92, 1.50], now under the stair: pulled 0.3 m in along its own line, clear of the stair's room-side stringer (z 1.28), 22 mm keeps the two-shot
     aim: [{ mid: ['dad:eyes', 'jade7:eyes'] }, 0.5, 0.42], figs: GC, chair: CHAIR_GC, focus: ['dad', 'jade7'], time: '2:19.8-2:21.4 "Good catch!" (drums stop)', position: 'outside (on Dad)',

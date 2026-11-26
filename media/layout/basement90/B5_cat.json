@@ -137,16 +137,16 @@
  "heads": {
   "dad": {
    "px": [
-    2194,
-    -197.5
+    2193.3,
+    -209.6
    ],
    "eyes": [
-    2020.7,
-    -184.2
+    2020,
+    -195.5
    ],
    "mouth": [
-    2050.9,
-    -52.5
+    2050.8,
+    -63.9
    ],
    "in_frame": false,
    "visible": false,
@@ -182,8 +182,8 @@
   },
   "dad.R": {
    "px": [
-    2039.8,
-    533.7
+    2040.9,
+    470.8
    ],
    "shape": "relax",
    "in_frame": false,
@@ -242,23 +242,23 @@
    "color": "#ffd9a0",
    "world": [
     -1.294,
-    1.97,
+    1.9675,
     0.6
    ],
    "px": [
-    2083.2,
-    -3905.3
+    2083,
+    -3894.7
    ],
    "in_front": true,
    "travel_dir_px": [
     -0.046,
     0.999
    ],
-   "toward_camera": -0.491
+   "toward_camera": -0.492
   }
  ],
  "warnings": [
-  "wrist: dad R hand turned 22 deg toward the forearm to keep the wrist in range (was flex 17.9, radial -54.2)",
+  "wrist: dad R hand turned 23 deg toward the forearm to keep the wrist in range (was flex 31.6, radial -55.4)",
   "wrist: jade7 R beyond the wrist range (flexion +91 deg, ulnar deviation +115 deg, pronation +57 deg; flex 150.6, radial -145.4, twist -137.3, after an elbow swivel of 0 deg)"
  ],
  "intent": "Close, level, from her front-right: her right forearm raised diagonally across in front of her, the loose fist drooping like a paw, her head bowed onto it: her CLOSED lips and her chin rest on the back of her wrist (r4, Jade 2026-11-26: mouth closed, tongue in, not visible; lips and chin contacting the wrist; replaces the r3 gap), head cocked, eyes half closed, entirely absorbed. She stands in the open in the screen light, not hiding.",
@@ -434,25 +434,25 @@
  "word": {
   "centre": {
    "world": [
-    -1.0852,
+    -1.0836,
     1.0997,
     -0.578
    ],
    "px": [
-    1878.7,
+    1880.8,
     172.3
    ]
   },
   "underline": [
    {
     "world": [
-     -1.0931,
+     -1.0899,
      1.096,
      -0.577
     ],
     "px": [
-     1868.3,
-     177.1
+     1872.5,
+     177
     ]
    },
    {
@@ -541,24 +541,24 @@
   "feet_stand_at": [
    {
     "world": [
-     -1.1939,
-     0.1019,
-     -0.1934
+     -1.2829,
+     0.0897,
+     -0.2581
     ],
     "px": [
-     1808.3,
-     1670.5
+     1650.2,
+     1620.6
     ]
    },
    {
     "world": [
-     -1.1939,
-     0.1019,
-     0.0534
+     -1.2829,
+     0.0897,
+     0.1181
     ],
     "px": [
-     1897.9,
-     1930.8
+     1738,
+     2016.9
     ]
    }
   ]
@@ -647,15 +647,15 @@
     ]
    },
    "head_deg": {
-    "yaw_left": 57.8,
-    "pitch_up": -11.7,
+    "yaw_left": 57.7,
+    "pitch_up": -12,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": -10.3,
+    "pitch_up": -10.5,
     "wanted_yaw": 0,
-    "wanted_pitch": -10.3,
+    "wanted_pitch": -10.5,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -664,8 +664,8 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    2020.7,
-    -184.2
+    2020,
+    -195.5
    ],
    "target_px": [
     912.1,
@@ -734,12 +734,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -79.5,
-    "elbow_flex_deg": 59.9,
+    "twist_deg": -79.6,
+    "elbow_flex_deg": 59.5,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -79.5
+     "twist_deg": -79.6
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -748,16 +748,16 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 6.5,
+    "flex_deg": 12.1,
     "radial_deg": -29.1,
-    "twist_deg": -60.7,
-    "elbow_flex_deg": 102.7,
+    "twist_deg": -64.2,
+    "elbow_flex_deg": 108,
     "before": {
-     "flex_deg": 17.9,
-     "radial_deg": -54.2,
-     "twist_deg": -68.8
+     "flex_deg": 31.6,
+     "radial_deg": -55.4,
+     "twist_deg": -77.6
     },
-    "hand_turned_deg": 22,
+    "hand_turned_deg": 23,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -788,7 +788,7 @@
  "holds": [],
  "figure_frame_fraction": {
   "jade7": 0.2829,
-  "dad": 0.0499
+  "dad": 0.0508
  },
  "colour_separation": [
   {
@@ -804,15 +804,15 @@
   "dad": {
    "legs": {
     "L": {
-     "reach": 0.74
+     "reach": 0.81
     },
     "R": {
-     "reach": 0.74
+     "reach": 0.81
     }
    },
    "arms": {
     "L": 0.87,
-    "R": 0.63
+    "R": 0.6
    },
    "headTurn": 58,
    "body": {
@@ -821,13 +821,13 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 51,
+     "elbow_bend_deg": 50,
      "upperarm_stretch": 1.13,
      "forearm_stretch": 0.99,
      "hand_scale": 0.94
     },
     "R": {
-     "elbow_bend_deg": 102,
+     "elbow_bend_deg": 106,
      "upperarm_stretch": 1.08,
      "forearm_stretch": 0.99,
      "hand_scale": 0.94

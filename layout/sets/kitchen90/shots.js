@@ -17,7 +17,7 @@ import { TABLE, SEAT, CHAIRS, OUTRO, PAPER, MOTE, GLASS, reflect, WINDOW } from 
 import { seatHip } from '../basement90/house.js';
 import { graspArms } from '../../engine/grasp.js';
 
-const TY = TABLE.h + 0.025;
+const TY = TABLE.h + 0.04;   // (r4 decisions) was + 0.025: her relaxed fingertips went 15 mm into the table top
 // ---------------------------------------------------------------- night: the question
 const jadeAtTable = (o = {}) => ({ at: [CHAIRS.jade[0], CHAIRS.jade[1] + 0.06], legs: 'seat', legOpts: { seatH: seatHip('jade7', SEAT), footFwd: 0.16 }, yaw: 0, spine: { bend: 6 }, head: { look: [-0.68, 0.9, 0.5] },
   R: { to: [-0.82, TY, 0.06], hand: 'relax', palm: 'down', fingers: [0.15, 0, 1] }, L: { to: [-0.58, TY, 0.04], hand: 'relax', palm: 'down' }, ...o });
@@ -26,11 +26,20 @@ const dadTalk = (o = {}) => ({ at: [-1.28, -0.8], legs: 'stand', yaw: 68, spine:
 const mamaTalk = (o = {}) => ({ at: [-0.12, -0.8], legs: 'stand', yaw: -68, spine: { bend: 3 }, head: { look: 'dad:eyes' }, R: { to: [-0.3, 1.12, -0.55], hand: 'relax', palm: 'in', fingers: [-1, 0.3, 0.2] }, L: 'side', ...o });
 // (r4, 2026-11-26, Jade: "have mom and dad closer, and dad is whispering into mom's ear") the parents stand close
 // together behind her chair: Mama turned a little toward Dad, listening, her eyes down on the child; Dad beside her
-// (screen left), bent in, his mouth at her right ear, his right hand (camera side) cupped beside his mouth, his left at the small of her back; her left hand rests on the
+// (screen left), bent in, his mouth at her right ear (r4 decisions: see DAD below); her hands rest on the
 // top of the child's chair back.
-const dadWhisper = (o = {}) => ({ at: [-0.83, -0.96], legs: 'stand', yaw: 62, spine: { bend: 14, side: 6 }, head: { look: 'mama90:earR' },
-  R: { to: 'dad:mouth', off: [0.035, -0.06, 0.06], hand: 'relax', palm: [0.5, 0, -0.6], fingers: [0.2, 1, 0.4] }, L: { to: 'mama90:shoulderC', off: [0, -0.2, -0.12], hand: 'relax', palm: [0.3, 0, 1] }, ...o });   // R = camera side (he faces +x)
-const mamaListen = (o = {}) => ({ at: [-0.5, -0.88], legs: 'stand', yaw: -18, spine: { bend: 4 }, head: { look: [-0.72, 0.8, -0.1], tilt: -6 }, R: 'side', L: { to: [-0.51, 0.9, -0.5], hand: 'relax', palm: 'down' }, ...o });   // left hand on the back of the child's chair
+// (r4 decisions, 2026-11-26: Jade's rule "no body passes through another body; eyes never crossed", measured with
+// basement90/check_bodies.mjs) Dad now stands behind her RIGHT SHOULDER (was beside her, facing her side: his face was in
+// her hair, his body through her hanging right arm, his left hand in her back: 1783 intersecting triangle pairs) and leans
+// in over it, his mouth 15 cm from her ear point (the hair between: clearance 8 mm). His eyes look down past her at her
+// hand on the child's chair (0.69 m; they had been on her ear 8.6 cm away = cross-eyed). His right hand hangs (the cupped
+// hand went through her shoulder from this side); his left at the small of her back, fingers along it. Mama's right hand
+// now joins her left on the chair back (it hung into Dad); both palms 1.5 cm higher (they were 6 mm into the rail).
+const DAD = { at: [-0.79, -1.13], yaw: 44, bend: 18, side: 0, look: [-0.51, 0.93, -0.5], turn: 0, nod: 0, Loff: [0, -0.2, -0.17], Lfing: [1, -0.2, 0], R: 'side' };
+const MAMA_R = { to: [-0.66, 0.915, -0.5], hand: 'relax', palm: 'down' };
+const dadWhisper = (o = {}) => ({ at: DAD.at, legs: 'stand', yaw: DAD.yaw, spine: { bend: DAD.bend, side: DAD.side }, head: { look: DAD.look, turn: DAD.turn, nod: DAD.nod },
+  R: DAD.R, L: { to: 'mama90:shoulderC', off: DAD.Loff, hand: 'relax', palm: [0.3, 0, 1], fingers: DAD.Lfing }, ...o });   // R = camera side
+const mamaListen = (o = {}) => ({ at: [-0.5, -0.88], legs: 'stand', yaw: -18, spine: { bend: 4 }, head: { look: [-0.72, 0.8, -0.1], tilt: -6 }, R: MAMA_R, L: { to: [-0.51, 0.915, -0.5], hand: 'relax', palm: 'down' }, ...o });   // left hand on the back of the child's chair
 const NIGHT = { jade7: jadeAtTable(), dad: dadWhisper(), mama90: mamaListen() };
 // she writes: right hand holds the pencil on the paper, left hand steadies the sheet, head down
 // (r4) K1: she is doing her homework (Jade): an open workbook, pencil in her right hand on the right-hand page, left hand
@@ -54,7 +63,10 @@ export const PAGE_TOP = TABLE.h + 0.003, SHEET_TOP = PAPER.c[1] + 0.0006;   // w
 // K1 (hold pass): her left hand holds the near edge of the left page, the heel of the hand and the wrist on the table in
 // front of the book (the mannequin's and the rigged mesh's wrist sit lower than the palm, so a palm flat in the middle of
 // the page put the wrist 5-9 mm into the book); bend 16 as in K4 (was 14)
-const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: pencilArm(PAGE_TOP), L: restL([PAPER.c[0] + 0.2, PAGE_TOP, PAPER.c[2] - 0.105], 'homework (open workbook)', [-1.4, 0, 1], L_ELBOW) }) };
+// (r4 decisions) her eyes on the next printed row, 10 cm beyond the pencil (0.31 m away): on the pencil tip they were 0.23 m
+// away, which reads cross-eyed in a guide
+const READ_AT = [PAPER.c[0], PAGE_TOP, PAPER.c[2] + 0.1];
+const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: READ_AT, pitchK: 0.8 }, R: pencilArm(PAGE_TOP), L: restL([PAPER.c[0] + 0.2, PAGE_TOP, PAPER.c[2] - 0.105], 'homework (open workbook)', [-1.4, 0, 1], L_ELBOW) }) };
 const WRITE = { jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: pencilArm(SHEET_TOP), L: restL([PAPER.c[0] + 0.075, SHEET_TOP + 0.003, PAPER.c[2] + 0.04], 'paper: “it was correct”', L_FING, L_ELBOW) }),
   dad: dadTalk({ head: { look: 'paper' }, R: 'side' }), mama90: mamaTalk({ head: { look: 'dad:eyes' }, R: 'side' }) };
 // ---------------------------------------------------------------- day: outro
@@ -62,12 +74,16 @@ const CH = OUTRO.child, MC = OUTRO.motherChair;
 const child = (o = {}) => ({ at: CH, legs: 'stand', yaw: 180, head: { look: 'mama90:eyes' }, L: 'side', R: 'side', ...o });
 // Mother sits in the pulled-out chair, knees apart, the child standing between them; thumbs on the child's cheeks
 const hipM = seatHip('mama90', SEAT);
-const mamaThumbs = (o = {}) => ({ at: [MC[0], MC[1] + 0.04], legs: 'seat', legOpts: { seatH: hipM, ankleL: [0.26, -hipM + 0.05, 0.4], ankleR: [0.26, -hipM + 0.05, 0.4] }, yaw: 0, spine: { bend: 20 }, head: { look: 'jade7:eyes' },
+// (r4 decisions) the thumbs: tips 1 cm off the cheek surface toward Mama (they were in it), the hands wrapped round under her
+// jaw with the fingers down and back toward her neck (fingers up along the sides of her face went 5 cm into her hair:
+// 1865 intersecting pairs); Mama's bend 20 -> 12 so the two faces are 0.31 m apart (0.26 m read cross-eyed)
+const TH = { bend: 12, x: 0.04, y: 0.016, z: -0.01, palm: [1, 0, 0.1], fing: [0.15, -0.55, 0.85] };
+const mamaThumbs = (o = {}) => ({ at: [MC[0], MC[1] + 0.04], legs: 'seat', legOpts: { seatH: hipM, ankleL: [0.26, -hipM + 0.08, 0.4], ankleR: [0.26, -hipM + 0.08, 0.4] }, yaw: 0, spine: { bend: TH.bend }, head: { look: 'jade7:eyes' },
   // (2026-11-25, articulated hands) the hands cup her face: palms against the sides of her face, fingers up toward her
   // ears, each THUMB TIP placed on a cheek beside the mouth corner (engine arm `tip`); the old palm targets put the
   // mitts' thumbs across her chin
-  R: { tip: { finger: 'thumb', at: 'jade7:mouth', off: [-0.036, 0.016, 0.0] }, hand: { shape: 'relax', curl: { all: [22, 26, 12] }, thumb: { opp: 0.3, sweep: 38, abd: 26, mcp: 8, ip: 10 } }, palm: [1, 0, 0.25], fingers: [-0.12, 0.95, 0.2] },
-  L: { tip: { finger: 'thumb', at: 'jade7:mouth', off: [0.036, 0.016, 0.0] }, hand: { shape: 'relax', curl: { all: [22, 26, 12] }, thumb: { opp: 0.3, sweep: 38, abd: 26, mcp: 8, ip: 10 } }, palm: [-1, 0, 0.25], fingers: [0.12, 0.95, 0.2] }, ...o });   // mirror of R (left hands honour directions since the engine fix)
+  R: { tip: { finger: 'thumb', at: 'jade7:mouth', off: [-TH.x, TH.y, TH.z] }, hand: { shape: 'relax', curl: { all: [22, 26, 12] }, thumb: { opp: 0.3, sweep: 38, abd: 26, mcp: 8, ip: 10 } }, palm: [TH.palm[0], TH.palm[1], TH.palm[2]], fingers: [-TH.fing[0], TH.fing[1], TH.fing[2]] },
+  L: { tip: { finger: 'thumb', at: 'jade7:mouth', off: [TH.x, TH.y, TH.z] }, hand: { shape: 'relax', curl: { all: [22, 26, 12] }, thumb: { opp: 0.3, sweep: 38, abd: 26, mcp: 8, ip: 10 } }, palm: [-TH.palm[0], TH.palm[1], TH.palm[2]], fingers: [TH.fing[0], TH.fing[1], TH.fing[2]] }, ...o });   // mirror of R (left hands honour directions since the engine fix)
 const THUMBS = { jade7: child(), mama90: mamaThumbs() };
 // Mother has turned and is walking to the hall doorway; she passes between the child and the front of the room
 const mamaAway = (at, o = {}) => ({ at, legs: 'stand', yaw: 52, spine: { bend: 2 }, head: { look: [1.9, 1.4, 1.6] }, L: 'side', R: 'side', ...o });

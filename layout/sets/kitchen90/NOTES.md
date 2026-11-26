@@ -145,3 +145,65 @@ object: K2 taps on the bare table, K5/K6 thumbs on her cheeks, Mama's hand on th
   pencil and workbook PASS in mannequin and mesh. K4 pencil passes in mannequin, but in mesh it slides 40 cm. K4 sheet FAILs, sliding 1.2-1.4 cm, only
   because the pencil, a static support in the check, shoves it. Without the pencil as a support it holds at 0.1 cm.
   Support prisms are extruded "away from the object centroid", which for the pencil tip points into the sheet.
+
+## 2026-11-26 round 4 — PROGRESS (checkpoint, written by the basement90+kitchen90 agent)
+- DONE: k_fittings confirmed by Jade: honey oak and almond, as built (no change).
+- IN PROGRESS (a delegated subagent): props phase 2 (kettle, rice cooker models), body-vs-body / eye checks with
+  layout/sets/basement90/check_bodies.mjs --set kitchen90, re-render, holdcheck, REPAINT_LIST kitchen90 section. Its own
+  dated section in this file records its measurements when done.
+
+## 2026-11-26: round-4 decisions
+
+Jade (k_fittings): "The Decatur kitchen: cabinets and fittings? Honey oak and almond, as built." CONFIRMED: the r4
+kitchen (honey-oak face-frame cabinets, almond laminate / tile / appliances, stainless sink, chrome faucet) is no longer
+an invention; no change to the fittings. The counter items are still invented (Jade did not rule on them).
+
+**Props phase 2 (kitchen.js).** The hand-built kettle and rice cooker are now the downloaded models (`loadProps` at the
+module top, `prop()`; the hand-built shapes stay as the fallback if a model fails to load):
+- `kettle` ("Teapot" by 19brian16, CC BY 4.0): 0.21 x 0.24 x 0.19 m, red enamel body (props.json default), black handle
+  and lid knob, on the back-left burner. Base measured from the GLB (origin = lowest vertex, the rubber foot ring at
+  y 0) and set on the coil tops (coil torus centre STOVE.h + 0.012, tube r 0.005 -> STOVE.h + 0.017): no float, no sinking.
+- `rice_cooker` ("Rice Cooker Lowpoly" by ononesupplies, CC BY 4.0): 0.24 x 0.26 x 0.25 m, white, switch toward the room,
+  base (y 0) on the counter top (COUNTER.h = laminate top). Clears the canisters (2.9 cm) and the drainboard (4.8 cm).
+- No hand holds or touches either, so no grip to re-stage. Kept hand-built (per work/props_audit.md): canisters, sink,
+  faucet, cabinets, dish rack and dishes. Credits: docs/credits_tools.md (both lines now say "In kitchen90").
+
+**Bodies and eyes** (`node layout/sets/basement90/check_bodies.mjs --set kitchen90`: three-mesh-bvh triangle pairs between
+figures, figure vs set objects, per-eye vergence). Before -> after:
+| shots | before | after |
+|---|---|---|
+| NIGHT (K0_wide_night, K1_question, K1_question_end, K1_question_wide, K2_taps, K3_understood): dad vs mama90 | 1783 intersecting pairs, deepest 119 mm (his face in her hair, his body through her hanging right arm, his left hand in her back) | 0, clearance 8 mm |
+| THUMBS (K0_plan, K0_wide_day, K5_thumbs, K6_mother): jade7 vs mama90 | 1865 pairs, deepest 33 mm (fingers up the sides of her face into her hair, thumbs into the cheeks) | 0, clearance 3 mm |
+| Dad's eyes (NIGHT) | 0.086 m (on her ear: cross-eyed) | 0.69 m (her hand on the chair back) |
+| Jade's eyes K1 / K1_end | 0.233 m (pencil tip) | 0.311 m (the next printed row) |
+| Jade + Mama eyes, THUMBS | 0.263 / 0.265 m | 0.313 / 0.316 m |
+| Mama's hand vs Jade's chair rail (NIGHT) | 134 pairs, 5.9 mm | 0 (1.8 mm clear) |
+| Mama's feet vs floor (THUMBS, seated) | 30 mm | 3.7 mm |
+All other eye targets were already 0.5-1.6 m; every eye pair meets its target (0 mm miss). K7-K10: 0 body pairs before and after.
+- **The whisper, re-staged (shots.js `DAD`, `MAMA_R`).** Dad stands behind her right shoulder (-0.79, -1.13), yaw 44, bend 18,
+  leaning in over the shoulder: his mouth is 15 cm from her ear POINT, i.e. at the surface of her hair (8 mm clear); a
+  closer mouth is inside her hair. His cupped right hand is gone (from behind her shoulder it went through it): it hangs.
+  His left hand is at the small of her back (on it, not in it). His eyes look down past her at her hands on the chair back.
+  Mama: both hands now on the child's chair back (her right hung into Dad). The cast agent's new perm may change her
+  hair volume: re-run the check after it lands.
+- **The thumbs, re-staged (`TH`).** Thumb tips 1 cm off the cheek toward Mama, palms toward the sides of her face, fingers
+  wrapped DOWN and back under her jaw toward her neck (they were up along her face into her hair). Mama's bend 20 -> 12
+  for the 0.31 m face-to-face distance. Looked at in K5 (lit): thumbs on the cheeks beside the mouth corners, face clear.
+- **Jade's eyes in K1:** now on the printed row 10 cm beyond the pencil (`READ_AT`), not the pencil tip.
+- Tapping hands (`TY`) 1.5 cm higher (fingertips were 15 mm into the table top).
+- NOT FIXED (flags): (1) her forearms still cross the table's front edge 15 mm below the top in every NIGHT shot and K1:
+  at a 0.74 m table on a 0.45 m seat a 7-year-old's elbows are 3 cm below the top. A 5 cm seat cushion was tried and
+  measured: elbows +4 cm but the forearm still grazes the edge (and it is an invented prop), so it was taken out. Needs a
+  higher seat (a booster / phone book / kneeling): question for Jade. (2) Feet vs floor: standing Jade 12 mm, seated Jade
+  26 mm, standing Mama 16 mm, Dad 4 mm into the linoleum: the mesh feet's soles (engine / bodies, not staging).
+  (3) Seated bodies rest 14-15 mm into the seat (soft tissue; within "may rest on a seat").
+  (4) K4_writes: check_bodies.mjs never finishes on this shot (killed after 3-20 min, 3 tries); its figures are the old
+  far-apart WRITE staging (parents 1.16 m apart), unchanged.
+- Flag: the `kettle` model's base reads a little like a cordless electric kettle's ring base (a stub at the back). The
+  painters should be told "stovetop kettle" (REPAINT_LIST says so).
+- Re-rendered 2026-11-26 (default modes + form/contour/light + beam masks); `layout/engine/holdcheck.mjs
+  media/layout/kitchen90`: all 6 holds pass (K1, K1_end, K4: pencil + workbook / sheet). Looked at: K1_question,
+  K1_question_end (form crop: the whisper reads, heads clear), K0_wide_night, K5_thumbs (face clear, thumbs on the
+  cheeks), K6_mother, K0_wide_day, K7-K10 (K10 has the kettle in frame, sitting on the coils).
+- CHECKPOINT UPDATE: the subagent finished (see its dated section above). LEFT: K4_writes is unmeasured
+  (check_bodies.mjs hangs on it, probably the ray-parity depth pass; its parents stand 1.16 m apart).

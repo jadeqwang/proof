@@ -1,0 +1,5827 @@
+[
+ {
+  "shot": "B0_plan",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 27.9,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "distance_m": 0.358,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -5,
+     "pitch_up": -5.6
+    },
+    "eye_r": {
+     "yaw_left": 5,
+     "pitch_up": -5.6
+    },
+    "vergence_deg": 9.94,
+    "vergence_expected_deg": 9.94,
+    "rays_meet_at_m": 0.358,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "distance_m": 0.457,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -3.6,
+     "pitch_up": 3.9
+    },
+    "eye_r": {
+     "yaw_left": 3.6,
+     "pitch_up": 3.9
+    },
+    "vergence_deg": 7.18,
+    "vergence_expected_deg": 7.18,
+    "rays_meet_at_m": 0.457,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 35.6,
+    "deepest_mm": 0
+   },
+   "dad vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 366.6,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 7.6,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 76.3,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 78.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 1.2,
+    "deepest_at": [
+     -1.085,
+     0.449,
+     -0.113
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 107.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 5,
+    "clearance_mm": 0,
+    "deepest_mm": 0.2,
+    "deepest_at": [
+     -1.424,
+     0.74,
+     -0.369
+    ]
+   },
+   "jade7 vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 69,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 91.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 15,
+    "clearance_mm": 0,
+    "deepest_mm": 0.3,
+    "deepest_at": [
+     -1.257,
+     0.092,
+     -0.245
+    ]
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 223.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 140,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 212.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 330,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 26.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 263.8,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     -0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     -0.07
+    ],
+    "chest": [
+     -0.986,
+     0.951,
+     -0.151
+    ],
+    "shoulderC": [
+     -0.968,
+     1.059,
+     -0.114
+    ],
+    "fwd": [
+     0,
+     0,
+     -1
+    ],
+    "left": [
+     -1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.985,
+     0.172,
+     -0.024
+    ],
+    "cy": [
+     0.174,
+     0.975,
+     -0.137
+    ],
+    "cz": [
+     0,
+     -0.139,
+     -0.99
+    ],
+    "right": [
+     1,
+     0,
+     0
+    ],
+    "kneeL": [
+     -1.13,
+     0.454,
+     -0.497
+    ],
+    "ankleL": [
+     -1.141,
+     0.054,
+     -0.54
+    ],
+    "footL": [
+     -1.141,
+     0.038,
+     -0.694
+    ],
+    "hipL": [
+     -1.12,
+     0.551,
+     -0.07
+    ],
+    "heelL": [
+     -1.141,
+     0.002,
+     -0.516
+    ],
+    "toeL": [
+     -1.141,
+     -0.002,
+     -0.742
+    ],
+    "kneeR": [
+     -0.918,
+     0.454,
+     -0.497
+    ],
+    "ankleR": [
+     -0.907,
+     0.054,
+     -0.54
+    ],
+    "footR": [
+     -0.907,
+     0.038,
+     -0.694
+    ],
+    "hipR": [
+     -0.928,
+     0.551,
+     -0.07
+    ],
+    "heelR": [
+     -0.907,
+     0.002,
+     -0.516
+    ],
+    "toeR": [
+     -0.907,
+     -0.002,
+     -0.742
+    ],
+    "knees": [
+     -1.024,
+     0.454,
+     -0.497
+    ],
+    "lap": [
+     -1.024,
+     0.601,
+     -0.305
+    ],
+    "lookAt": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "neck": [
+     -0.964,
+     1.083,
+     -0.118
+    ],
+    "head": [
+     -0.947,
+     1.192,
+     -0.15
+    ],
+    "headUp": [
+     0.162,
+     0.964,
+     -0.209
+    ],
+    "headFwd": [
+     -0.163,
+     -0.183,
+     -0.97
+    ],
+    "headX": [
+     -0.973,
+     0.191,
+     0.127
+    ],
+    "nose": [
+     -0.97,
+     1.155,
+     -0.271
+    ],
+    "mouth": [
+     -0.972,
+     1.12,
+     -0.234
+    ],
+    "chin": [
+     -0.974,
+     1.075,
+     -0.183
+    ],
+    "forehead": [
+     -0.954,
+     1.23,
+     -0.258
+    ],
+    "eyes": [
+     -0.962,
+     1.183,
+     -0.247
+    ],
+    "earL": [
+     -1.028,
+     1.208,
+     -0.139
+    ],
+    "earR": [
+     -0.866,
+     1.176,
+     -0.16
+    ],
+    "headTop": [
+     -0.928,
+     1.304,
+     -0.174
+    ],
+    "backOfHead": [
+     -0.926,
+     1.224,
+     -0.04
+    ],
+    "shoulderL": [
+     -1.162,
+     1.072,
+     -0.116
+    ],
+    "elbowL": [
+     -1.14,
+     0.753,
+     -0.101
+    ],
+    "wristL": [
+     -1.142,
+     0.864,
+     -0.327
+    ],
+    "handL": [
+     -1.135,
+     0.855,
+     -0.373
+    ],
+    "indexL": [
+     -1.095,
+     0.779,
+     -0.435
+    ],
+    "thumbL": [
+     -1.079,
+     0.781,
+     -0.378
+    ],
+    "middleL": [
+     -1.114,
+     0.775,
+     -0.451
+    ],
+    "ringL": [
+     -1.137,
+     0.777,
+     -0.437
+    ],
+    "littleL": [
+     -1.158,
+     0.793,
+     -0.423
+    ],
+    "knuckleL": [
+     -1.119,
+     0.845,
+     -0.418
+    ],
+    "forearmL": [
+     -1.141,
+     0.814,
+     -0.225
+    ],
+    "upperArmL": [
+     -1.151,
+     0.912,
+     -0.109
+    ],
+    "shoulderR": [
+     -0.782,
+     1.005,
+     -0.106
+    ],
+    "elbowR": [
+     -0.839,
+     0.694,
+     -0.154
+    ],
+    "wristR": [
+     -0.906,
+     0.864,
+     -0.327
+    ],
+    "handR": [
+     -0.913,
+     0.855,
+     -0.373
+    ],
+    "indexR": [
+     -0.953,
+     0.779,
+     -0.435
+    ],
+    "thumbR": [
+     -0.969,
+     0.781,
+     -0.378
+    ],
+    "middleR": [
+     -0.934,
+     0.775,
+     -0.451
+    ],
+    "ringR": [
+     -0.911,
+     0.777,
+     -0.437
+    ],
+    "littleR": [
+     -0.89,
+     0.793,
+     -0.423
+    ],
+    "knuckleR": [
+     -0.929,
+     0.845,
+     -0.418
+    ],
+    "forearmR": [
+     -0.876,
+     0.788,
+     -0.249
+    ],
+    "upperArmR": [
+     -0.811,
+     0.85,
+     -0.13
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.462,
+     0.598,
+     -0.045
+    ],
+    "waist": [
+     -1.462,
+     0.744,
+     -0.045
+    ],
+    "chest": [
+     -1.449,
+     0.878,
+     -0.148
+    ],
+    "shoulderC": [
+     -1.436,
+     0.958,
+     -0.146
+    ],
+    "fwd": [
+     0.242,
+     0,
+     -0.97
+    ],
+    "left": [
+     -0.97,
+     0,
+     -0.242
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.986,
+     0.15,
+     0.071
+    ],
+    "cy": [
+     0.106,
+     0.899,
+     -0.425
+    ],
+    "cz": [
+     -0.128,
+     -0.412,
+     -0.902
+    ],
+    "right": [
+     0.97,
+     0,
+     0.242
+    ],
+    "kneeL": [
+     -1.403,
+     0.362,
+     0.048
+    ],
+    "ankleL": [
+     -1.301,
+     0.151,
+     0.168
+    ],
+    "footL": [
+     -1.274,
+     0.151,
+     0.058
+    ],
+    "hipL": [
+     -1.524,
+     0.598,
+     -0.061
+    ],
+    "heelL": [
+     -1.305,
+     0.115,
+     0.181
+    ],
+    "toeL": [
+     -1.265,
+     0.129,
+     0.021
+    ],
+    "kneeR": [
+     -1.325,
+     0.402,
+     -0.225
+    ],
+    "ankleR": [
+     -1.297,
+     0.141,
+     -0.203
+    ],
+    "footR": [
+     -1.269,
+     0.141,
+     -0.313
+    ],
+    "hipR": [
+     -1.399,
+     0.598,
+     -0.029
+    ],
+    "heelR": [
+     -1.3,
+     0.106,
+     -0.19
+    ],
+    "toeR": [
+     -1.26,
+     0.119,
+     -0.35
+    ],
+    "knees": [
+     -1.364,
+     0.382,
+     -0.089
+    ],
+    "lap": [
+     -1.408,
+     0.552,
+     -0.069
+    ],
+    "lookAt": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "neck": [
+     -1.435,
+     0.975,
+     -0.153
+    ],
+    "head": [
+     -1.442,
+     1.065,
+     -0.177
+    ],
+    "headUp": [
+     -0.156,
+     0.973,
+     -0.169
+    ],
+    "headFwd": [
+     0.684,
+     -0.017,
+     -0.729
+    ],
+    "headX": [
+     -0.712,
+     -0.23,
+     -0.663
+    ],
+    "nose": [
+     -1.368,
+     1.052,
+     -0.252
+    ],
+    "mouth": [
+     -1.379,
+     1.019,
+     -0.229
+    ],
+    "chin": [
+     -1.395,
+     0.975,
+     -0.196
+    ],
+    "forehead": [
+     -1.394,
+     1.111,
+     -0.245
+    ],
+    "eyes": [
+     -1.388,
+     1.071,
+     -0.238
+    ],
+    "earL": [
+     -1.496,
+     1.048,
+     -0.227
+    ],
+    "earR": [
+     -1.389,
+     1.082,
+     -0.127
+    ],
+    "headTop": [
+     -1.457,
+     1.159,
+     -0.193
+    ],
+    "backOfHead": [
+     -1.51,
+     1.076,
+     -0.108
+    ],
+    "shoulderL": [
+     -1.575,
+     0.966,
+     -0.13
+    ],
+    "elbowL": [
+     -1.548,
+     0.782,
+     -0.238
+    ],
+    "wristL": [
+     -1.434,
+     0.767,
+     -0.367
+    ],
+    "handL": [
+     -1.424,
+     0.767,
+     -0.4
+    ],
+    "indexL": [
+     -1.378,
+     0.746,
+     -0.471
+    ],
+    "thumbL": [
+     -1.362,
+     0.77,
+     -0.414
+    ],
+    "middleL": [
+     -1.392,
+     0.745,
+     -0.481
+    ],
+    "ringL": [
+     -1.409,
+     0.746,
+     -0.481
+    ],
+    "littleL": [
+     -1.428,
+     0.75,
+     -0.471
+    ],
+    "knuckleL": [
+     -1.408,
+     0.767,
+     -0.43
+    ],
+    "forearmL": [
+     -1.485,
+     0.774,
+     -0.309
+    ],
+    "upperArmL": [
+     -1.561,
+     0.874,
+     -0.184
+    ],
+    "shoulderR": [
+     -1.301,
+     0.924,
+     -0.15
+    ],
+    "elbowR": [
+     -1.189,
+     0.978,
+     -0.325
+    ],
+    "wristR": [
+     -1.108,
+     1.041,
+     -0.465
+    ],
+    "handR": [
+     -1.096,
+     1.056,
+     -0.493
+    ],
+    "indexR": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "thumbR": [
+     -1.086,
+     1.03,
+     -0.531
+    ],
+    "middleR": [
+     -1.095,
+     1.049,
+     -0.511
+    ],
+    "ringR": [
+     -1.084,
+     1.05,
+     -0.504
+    ],
+    "littleR": [
+     -1.075,
+     1.052,
+     -0.497
+    ],
+    "knuckleR": [
+     -1.09,
+     1.07,
+     -0.523
+    ],
+    "forearmR": [
+     -1.144,
+     1.013,
+     -0.402
+    ],
+    "upperArmR": [
+     -1.245,
+     0.951,
+     -0.238
+    ]
+   }
+  },
+  "pass": true
+ },
+ {
+  "shot": "B0_wide",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 27.9,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "distance_m": 0.358,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -5,
+     "pitch_up": -5.6
+    },
+    "eye_r": {
+     "yaw_left": 5,
+     "pitch_up": -5.6
+    },
+    "vergence_deg": 9.94,
+    "vergence_expected_deg": 9.94,
+    "rays_meet_at_m": 0.358,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "distance_m": 0.457,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -3.6,
+     "pitch_up": 3.9
+    },
+    "eye_r": {
+     "yaw_left": 3.6,
+     "pitch_up": 3.9
+    },
+    "vergence_deg": 7.18,
+    "vergence_expected_deg": 7.18,
+    "rays_meet_at_m": 0.457,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 35.6,
+    "deepest_mm": 0
+   },
+   "dad vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 366.6,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 7.6,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 76.3,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 78.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 1.2,
+    "deepest_at": [
+     -1.085,
+     0.449,
+     -0.113
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 107.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 5,
+    "clearance_mm": 0,
+    "deepest_mm": 0.2,
+    "deepest_at": [
+     -1.424,
+     0.74,
+     -0.369
+    ]
+   },
+   "jade7 vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 69,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 91.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 15,
+    "clearance_mm": 0,
+    "deepest_mm": 0.3,
+    "deepest_at": [
+     -1.257,
+     0.092,
+     -0.245
+    ]
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 223.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 140,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 212.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 330,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 26.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 263.8,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     -0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     -0.07
+    ],
+    "chest": [
+     -0.986,
+     0.951,
+     -0.151
+    ],
+    "shoulderC": [
+     -0.968,
+     1.059,
+     -0.114
+    ],
+    "fwd": [
+     0,
+     0,
+     -1
+    ],
+    "left": [
+     -1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.985,
+     0.172,
+     -0.024
+    ],
+    "cy": [
+     0.174,
+     0.975,
+     -0.137
+    ],
+    "cz": [
+     0,
+     -0.139,
+     -0.99
+    ],
+    "right": [
+     1,
+     0,
+     0
+    ],
+    "kneeL": [
+     -1.13,
+     0.454,
+     -0.497
+    ],
+    "ankleL": [
+     -1.141,
+     0.054,
+     -0.54
+    ],
+    "footL": [
+     -1.141,
+     0.038,
+     -0.694
+    ],
+    "hipL": [
+     -1.12,
+     0.551,
+     -0.07
+    ],
+    "heelL": [
+     -1.141,
+     0.002,
+     -0.516
+    ],
+    "toeL": [
+     -1.141,
+     -0.002,
+     -0.742
+    ],
+    "kneeR": [
+     -0.918,
+     0.454,
+     -0.497
+    ],
+    "ankleR": [
+     -0.907,
+     0.054,
+     -0.54
+    ],
+    "footR": [
+     -0.907,
+     0.038,
+     -0.694
+    ],
+    "hipR": [
+     -0.928,
+     0.551,
+     -0.07
+    ],
+    "heelR": [
+     -0.907,
+     0.002,
+     -0.516
+    ],
+    "toeR": [
+     -0.907,
+     -0.002,
+     -0.742
+    ],
+    "knees": [
+     -1.024,
+     0.454,
+     -0.497
+    ],
+    "lap": [
+     -1.024,
+     0.601,
+     -0.305
+    ],
+    "lookAt": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "neck": [
+     -0.964,
+     1.083,
+     -0.118
+    ],
+    "head": [
+     -0.947,
+     1.192,
+     -0.15
+    ],
+    "headUp": [
+     0.162,
+     0.964,
+     -0.209
+    ],
+    "headFwd": [
+     -0.163,
+     -0.183,
+     -0.97
+    ],
+    "headX": [
+     -0.973,
+     0.191,
+     0.127
+    ],
+    "nose": [
+     -0.97,
+     1.155,
+     -0.271
+    ],
+    "mouth": [
+     -0.972,
+     1.12,
+     -0.234
+    ],
+    "chin": [
+     -0.974,
+     1.075,
+     -0.183
+    ],
+    "forehead": [
+     -0.954,
+     1.23,
+     -0.258
+    ],
+    "eyes": [
+     -0.962,
+     1.183,
+     -0.247
+    ],
+    "earL": [
+     -1.028,
+     1.208,
+     -0.139
+    ],
+    "earR": [
+     -0.866,
+     1.176,
+     -0.16
+    ],
+    "headTop": [
+     -0.928,
+     1.304,
+     -0.174
+    ],
+    "backOfHead": [
+     -0.926,
+     1.224,
+     -0.04
+    ],
+    "shoulderL": [
+     -1.162,
+     1.072,
+     -0.116
+    ],
+    "elbowL": [
+     -1.14,
+     0.753,
+     -0.101
+    ],
+    "wristL": [
+     -1.142,
+     0.864,
+     -0.327
+    ],
+    "handL": [
+     -1.135,
+     0.855,
+     -0.373
+    ],
+    "indexL": [
+     -1.095,
+     0.779,
+     -0.435
+    ],
+    "thumbL": [
+     -1.079,
+     0.781,
+     -0.378
+    ],
+    "middleL": [
+     -1.114,
+     0.775,
+     -0.451
+    ],
+    "ringL": [
+     -1.137,
+     0.777,
+     -0.437
+    ],
+    "littleL": [
+     -1.158,
+     0.793,
+     -0.423
+    ],
+    "knuckleL": [
+     -1.119,
+     0.845,
+     -0.418
+    ],
+    "forearmL": [
+     -1.141,
+     0.814,
+     -0.225
+    ],
+    "upperArmL": [
+     -1.151,
+     0.912,
+     -0.109
+    ],
+    "shoulderR": [
+     -0.782,
+     1.005,
+     -0.106
+    ],
+    "elbowR": [
+     -0.839,
+     0.694,
+     -0.154
+    ],
+    "wristR": [
+     -0.906,
+     0.864,
+     -0.327
+    ],
+    "handR": [
+     -0.913,
+     0.855,
+     -0.373
+    ],
+    "indexR": [
+     -0.953,
+     0.779,
+     -0.435
+    ],
+    "thumbR": [
+     -0.969,
+     0.781,
+     -0.378
+    ],
+    "middleR": [
+     -0.934,
+     0.775,
+     -0.451
+    ],
+    "ringR": [
+     -0.911,
+     0.777,
+     -0.437
+    ],
+    "littleR": [
+     -0.89,
+     0.793,
+     -0.423
+    ],
+    "knuckleR": [
+     -0.929,
+     0.845,
+     -0.418
+    ],
+    "forearmR": [
+     -0.876,
+     0.788,
+     -0.249
+    ],
+    "upperArmR": [
+     -0.811,
+     0.85,
+     -0.13
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.462,
+     0.598,
+     -0.045
+    ],
+    "waist": [
+     -1.462,
+     0.744,
+     -0.045
+    ],
+    "chest": [
+     -1.449,
+     0.878,
+     -0.148
+    ],
+    "shoulderC": [
+     -1.436,
+     0.958,
+     -0.146
+    ],
+    "fwd": [
+     0.242,
+     0,
+     -0.97
+    ],
+    "left": [
+     -0.97,
+     0,
+     -0.242
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.986,
+     0.15,
+     0.071
+    ],
+    "cy": [
+     0.106,
+     0.899,
+     -0.425
+    ],
+    "cz": [
+     -0.128,
+     -0.412,
+     -0.902
+    ],
+    "right": [
+     0.97,
+     0,
+     0.242
+    ],
+    "kneeL": [
+     -1.403,
+     0.362,
+     0.048
+    ],
+    "ankleL": [
+     -1.301,
+     0.151,
+     0.168
+    ],
+    "footL": [
+     -1.274,
+     0.151,
+     0.058
+    ],
+    "hipL": [
+     -1.524,
+     0.598,
+     -0.061
+    ],
+    "heelL": [
+     -1.305,
+     0.115,
+     0.181
+    ],
+    "toeL": [
+     -1.265,
+     0.129,
+     0.021
+    ],
+    "kneeR": [
+     -1.325,
+     0.402,
+     -0.225
+    ],
+    "ankleR": [
+     -1.297,
+     0.141,
+     -0.203
+    ],
+    "footR": [
+     -1.269,
+     0.141,
+     -0.313
+    ],
+    "hipR": [
+     -1.399,
+     0.598,
+     -0.029
+    ],
+    "heelR": [
+     -1.3,
+     0.106,
+     -0.19
+    ],
+    "toeR": [
+     -1.26,
+     0.119,
+     -0.35
+    ],
+    "knees": [
+     -1.364,
+     0.382,
+     -0.089
+    ],
+    "lap": [
+     -1.408,
+     0.552,
+     -0.069
+    ],
+    "lookAt": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "neck": [
+     -1.435,
+     0.975,
+     -0.153
+    ],
+    "head": [
+     -1.442,
+     1.065,
+     -0.177
+    ],
+    "headUp": [
+     -0.156,
+     0.973,
+     -0.169
+    ],
+    "headFwd": [
+     0.684,
+     -0.017,
+     -0.729
+    ],
+    "headX": [
+     -0.712,
+     -0.23,
+     -0.663
+    ],
+    "nose": [
+     -1.368,
+     1.052,
+     -0.252
+    ],
+    "mouth": [
+     -1.379,
+     1.019,
+     -0.229
+    ],
+    "chin": [
+     -1.395,
+     0.975,
+     -0.196
+    ],
+    "forehead": [
+     -1.394,
+     1.111,
+     -0.245
+    ],
+    "eyes": [
+     -1.388,
+     1.071,
+     -0.238
+    ],
+    "earL": [
+     -1.496,
+     1.048,
+     -0.227
+    ],
+    "earR": [
+     -1.389,
+     1.082,
+     -0.127
+    ],
+    "headTop": [
+     -1.457,
+     1.159,
+     -0.193
+    ],
+    "backOfHead": [
+     -1.51,
+     1.076,
+     -0.108
+    ],
+    "shoulderL": [
+     -1.575,
+     0.966,
+     -0.13
+    ],
+    "elbowL": [
+     -1.548,
+     0.782,
+     -0.238
+    ],
+    "wristL": [
+     -1.434,
+     0.767,
+     -0.367
+    ],
+    "handL": [
+     -1.424,
+     0.767,
+     -0.4
+    ],
+    "indexL": [
+     -1.378,
+     0.746,
+     -0.471
+    ],
+    "thumbL": [
+     -1.362,
+     0.77,
+     -0.414
+    ],
+    "middleL": [
+     -1.392,
+     0.745,
+     -0.481
+    ],
+    "ringL": [
+     -1.409,
+     0.746,
+     -0.481
+    ],
+    "littleL": [
+     -1.428,
+     0.75,
+     -0.471
+    ],
+    "knuckleL": [
+     -1.408,
+     0.767,
+     -0.43
+    ],
+    "forearmL": [
+     -1.485,
+     0.774,
+     -0.309
+    ],
+    "upperArmL": [
+     -1.561,
+     0.874,
+     -0.184
+    ],
+    "shoulderR": [
+     -1.301,
+     0.924,
+     -0.15
+    ],
+    "elbowR": [
+     -1.189,
+     0.978,
+     -0.325
+    ],
+    "wristR": [
+     -1.108,
+     1.041,
+     -0.465
+    ],
+    "handR": [
+     -1.096,
+     1.056,
+     -0.493
+    ],
+    "indexR": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "thumbR": [
+     -1.086,
+     1.03,
+     -0.531
+    ],
+    "middleR": [
+     -1.095,
+     1.049,
+     -0.511
+    ],
+    "ringR": [
+     -1.084,
+     1.05,
+     -0.504
+    ],
+    "littleR": [
+     -1.075,
+     1.052,
+     -0.497
+    ],
+    "knuckleR": [
+     -1.09,
+     1.07,
+     -0.523
+    ],
+    "forearmR": [
+     -1.144,
+     1.013,
+     -0.402
+    ],
+    "upperArmR": [
+     -1.245,
+     0.951,
+     -0.238
+    ]
+   }
+  },
+  "pass": true
+ },
+ {
+  "shot": "B1_feet",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 27.9,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "distance_m": 0.358,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -5,
+     "pitch_up": -5.6
+    },
+    "eye_r": {
+     "yaw_left": 5,
+     "pitch_up": -5.6
+    },
+    "vergence_deg": 9.94,
+    "vergence_expected_deg": 9.94,
+    "rays_meet_at_m": 0.358,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "distance_m": 0.457,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -3.6,
+     "pitch_up": 3.9
+    },
+    "eye_r": {
+     "yaw_left": 3.6,
+     "pitch_up": 3.9
+    },
+    "vergence_deg": 7.18,
+    "vergence_expected_deg": 7.18,
+    "rays_meet_at_m": 0.457,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 35.6,
+    "deepest_mm": 0
+   },
+   "dad vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 366.6,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 7.6,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 76.3,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 78.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 1.2,
+    "deepest_at": [
+     -1.085,
+     0.449,
+     -0.113
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 107.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 5,
+    "clearance_mm": 0,
+    "deepest_mm": 0.2,
+    "deepest_at": [
+     -1.424,
+     0.74,
+     -0.369
+    ]
+   },
+   "jade7 vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 69,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 91.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 15,
+    "clearance_mm": 0,
+    "deepest_mm": 0.3,
+    "deepest_at": [
+     -1.257,
+     0.092,
+     -0.245
+    ]
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 223.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 140,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 212.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 330,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 26.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 263.8,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     -0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     -0.07
+    ],
+    "chest": [
+     -0.986,
+     0.951,
+     -0.151
+    ],
+    "shoulderC": [
+     -0.968,
+     1.059,
+     -0.114
+    ],
+    "fwd": [
+     0,
+     0,
+     -1
+    ],
+    "left": [
+     -1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.985,
+     0.172,
+     -0.024
+    ],
+    "cy": [
+     0.174,
+     0.975,
+     -0.137
+    ],
+    "cz": [
+     0,
+     -0.139,
+     -0.99
+    ],
+    "right": [
+     1,
+     0,
+     0
+    ],
+    "kneeL": [
+     -1.13,
+     0.454,
+     -0.497
+    ],
+    "ankleL": [
+     -1.141,
+     0.054,
+     -0.54
+    ],
+    "footL": [
+     -1.141,
+     0.038,
+     -0.694
+    ],
+    "hipL": [
+     -1.12,
+     0.551,
+     -0.07
+    ],
+    "heelL": [
+     -1.141,
+     0.002,
+     -0.516
+    ],
+    "toeL": [
+     -1.141,
+     -0.002,
+     -0.742
+    ],
+    "kneeR": [
+     -0.918,
+     0.454,
+     -0.497
+    ],
+    "ankleR": [
+     -0.907,
+     0.054,
+     -0.54
+    ],
+    "footR": [
+     -0.907,
+     0.038,
+     -0.694
+    ],
+    "hipR": [
+     -0.928,
+     0.551,
+     -0.07
+    ],
+    "heelR": [
+     -0.907,
+     0.002,
+     -0.516
+    ],
+    "toeR": [
+     -0.907,
+     -0.002,
+     -0.742
+    ],
+    "knees": [
+     -1.024,
+     0.454,
+     -0.497
+    ],
+    "lap": [
+     -1.024,
+     0.601,
+     -0.305
+    ],
+    "lookAt": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "neck": [
+     -0.964,
+     1.083,
+     -0.118
+    ],
+    "head": [
+     -0.947,
+     1.192,
+     -0.15
+    ],
+    "headUp": [
+     0.162,
+     0.964,
+     -0.209
+    ],
+    "headFwd": [
+     -0.163,
+     -0.183,
+     -0.97
+    ],
+    "headX": [
+     -0.973,
+     0.191,
+     0.127
+    ],
+    "nose": [
+     -0.97,
+     1.155,
+     -0.271
+    ],
+    "mouth": [
+     -0.972,
+     1.12,
+     -0.234
+    ],
+    "chin": [
+     -0.974,
+     1.075,
+     -0.183
+    ],
+    "forehead": [
+     -0.954,
+     1.23,
+     -0.258
+    ],
+    "eyes": [
+     -0.962,
+     1.183,
+     -0.247
+    ],
+    "earL": [
+     -1.028,
+     1.208,
+     -0.139
+    ],
+    "earR": [
+     -0.866,
+     1.176,
+     -0.16
+    ],
+    "headTop": [
+     -0.928,
+     1.304,
+     -0.174
+    ],
+    "backOfHead": [
+     -0.926,
+     1.224,
+     -0.04
+    ],
+    "shoulderL": [
+     -1.162,
+     1.072,
+     -0.116
+    ],
+    "elbowL": [
+     -1.14,
+     0.753,
+     -0.101
+    ],
+    "wristL": [
+     -1.142,
+     0.864,
+     -0.327
+    ],
+    "handL": [
+     -1.135,
+     0.855,
+     -0.373
+    ],
+    "indexL": [
+     -1.095,
+     0.779,
+     -0.435
+    ],
+    "thumbL": [
+     -1.079,
+     0.781,
+     -0.378
+    ],
+    "middleL": [
+     -1.114,
+     0.775,
+     -0.451
+    ],
+    "ringL": [
+     -1.137,
+     0.777,
+     -0.437
+    ],
+    "littleL": [
+     -1.158,
+     0.793,
+     -0.423
+    ],
+    "knuckleL": [
+     -1.119,
+     0.845,
+     -0.418
+    ],
+    "forearmL": [
+     -1.141,
+     0.814,
+     -0.225
+    ],
+    "upperArmL": [
+     -1.151,
+     0.912,
+     -0.109
+    ],
+    "shoulderR": [
+     -0.782,
+     1.005,
+     -0.106
+    ],
+    "elbowR": [
+     -0.839,
+     0.694,
+     -0.154
+    ],
+    "wristR": [
+     -0.906,
+     0.864,
+     -0.327
+    ],
+    "handR": [
+     -0.913,
+     0.855,
+     -0.373
+    ],
+    "indexR": [
+     -0.953,
+     0.779,
+     -0.435
+    ],
+    "thumbR": [
+     -0.969,
+     0.781,
+     -0.378
+    ],
+    "middleR": [
+     -0.934,
+     0.775,
+     -0.451
+    ],
+    "ringR": [
+     -0.911,
+     0.777,
+     -0.437
+    ],
+    "littleR": [
+     -0.89,
+     0.793,
+     -0.423
+    ],
+    "knuckleR": [
+     -0.929,
+     0.845,
+     -0.418
+    ],
+    "forearmR": [
+     -0.876,
+     0.788,
+     -0.249
+    ],
+    "upperArmR": [
+     -0.811,
+     0.85,
+     -0.13
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.462,
+     0.598,
+     -0.045
+    ],
+    "waist": [
+     -1.462,
+     0.744,
+     -0.045
+    ],
+    "chest": [
+     -1.449,
+     0.878,
+     -0.148
+    ],
+    "shoulderC": [
+     -1.436,
+     0.958,
+     -0.146
+    ],
+    "fwd": [
+     0.242,
+     0,
+     -0.97
+    ],
+    "left": [
+     -0.97,
+     0,
+     -0.242
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.986,
+     0.15,
+     0.071
+    ],
+    "cy": [
+     0.106,
+     0.899,
+     -0.425
+    ],
+    "cz": [
+     -0.128,
+     -0.412,
+     -0.902
+    ],
+    "right": [
+     0.97,
+     0,
+     0.242
+    ],
+    "kneeL": [
+     -1.403,
+     0.362,
+     0.048
+    ],
+    "ankleL": [
+     -1.301,
+     0.151,
+     0.168
+    ],
+    "footL": [
+     -1.274,
+     0.151,
+     0.058
+    ],
+    "hipL": [
+     -1.524,
+     0.598,
+     -0.061
+    ],
+    "heelL": [
+     -1.305,
+     0.115,
+     0.181
+    ],
+    "toeL": [
+     -1.265,
+     0.129,
+     0.021
+    ],
+    "kneeR": [
+     -1.325,
+     0.402,
+     -0.225
+    ],
+    "ankleR": [
+     -1.297,
+     0.141,
+     -0.203
+    ],
+    "footR": [
+     -1.269,
+     0.141,
+     -0.313
+    ],
+    "hipR": [
+     -1.399,
+     0.598,
+     -0.029
+    ],
+    "heelR": [
+     -1.3,
+     0.106,
+     -0.19
+    ],
+    "toeR": [
+     -1.26,
+     0.119,
+     -0.35
+    ],
+    "knees": [
+     -1.364,
+     0.382,
+     -0.089
+    ],
+    "lap": [
+     -1.408,
+     0.552,
+     -0.069
+    ],
+    "lookAt": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "neck": [
+     -1.435,
+     0.975,
+     -0.153
+    ],
+    "head": [
+     -1.442,
+     1.065,
+     -0.177
+    ],
+    "headUp": [
+     -0.156,
+     0.973,
+     -0.169
+    ],
+    "headFwd": [
+     0.684,
+     -0.017,
+     -0.729
+    ],
+    "headX": [
+     -0.712,
+     -0.23,
+     -0.663
+    ],
+    "nose": [
+     -1.368,
+     1.052,
+     -0.252
+    ],
+    "mouth": [
+     -1.379,
+     1.019,
+     -0.229
+    ],
+    "chin": [
+     -1.395,
+     0.975,
+     -0.196
+    ],
+    "forehead": [
+     -1.394,
+     1.111,
+     -0.245
+    ],
+    "eyes": [
+     -1.388,
+     1.071,
+     -0.238
+    ],
+    "earL": [
+     -1.496,
+     1.048,
+     -0.227
+    ],
+    "earR": [
+     -1.389,
+     1.082,
+     -0.127
+    ],
+    "headTop": [
+     -1.457,
+     1.159,
+     -0.193
+    ],
+    "backOfHead": [
+     -1.51,
+     1.076,
+     -0.108
+    ],
+    "shoulderL": [
+     -1.575,
+     0.966,
+     -0.13
+    ],
+    "elbowL": [
+     -1.548,
+     0.782,
+     -0.238
+    ],
+    "wristL": [
+     -1.434,
+     0.767,
+     -0.367
+    ],
+    "handL": [
+     -1.424,
+     0.767,
+     -0.4
+    ],
+    "indexL": [
+     -1.378,
+     0.746,
+     -0.471
+    ],
+    "thumbL": [
+     -1.362,
+     0.77,
+     -0.414
+    ],
+    "middleL": [
+     -1.392,
+     0.745,
+     -0.481
+    ],
+    "ringL": [
+     -1.409,
+     0.746,
+     -0.481
+    ],
+    "littleL": [
+     -1.428,
+     0.75,
+     -0.471
+    ],
+    "knuckleL": [
+     -1.408,
+     0.767,
+     -0.43
+    ],
+    "forearmL": [
+     -1.485,
+     0.774,
+     -0.309
+    ],
+    "upperArmL": [
+     -1.561,
+     0.874,
+     -0.184
+    ],
+    "shoulderR": [
+     -1.301,
+     0.924,
+     -0.15
+    ],
+    "elbowR": [
+     -1.189,
+     0.978,
+     -0.325
+    ],
+    "wristR": [
+     -1.108,
+     1.041,
+     -0.465
+    ],
+    "handR": [
+     -1.096,
+     1.056,
+     -0.493
+    ],
+    "indexR": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "thumbR": [
+     -1.086,
+     1.03,
+     -0.531
+    ],
+    "middleR": [
+     -1.095,
+     1.049,
+     -0.511
+    ],
+    "ringR": [
+     -1.084,
+     1.05,
+     -0.504
+    ],
+    "littleR": [
+     -1.075,
+     1.052,
+     -0.497
+    ],
+    "knuckleR": [
+     -1.09,
+     1.07,
+     -0.523
+    ],
+    "forearmR": [
+     -1.144,
+     1.013,
+     -0.402
+    ],
+    "upperArmR": [
+     -1.245,
+     0.951,
+     -0.238
+    ]
+   }
+  },
+  "pass": true
+ },
+ {
+  "shot": "B2_face",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 27.9,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "distance_m": 0.358,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -5,
+     "pitch_up": -5.6
+    },
+    "eye_r": {
+     "yaw_left": 5,
+     "pitch_up": -5.6
+    },
+    "vergence_deg": 9.94,
+    "vergence_expected_deg": 9.94,
+    "rays_meet_at_m": 0.358,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "distance_m": 0.457,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -3.6,
+     "pitch_up": 3.9
+    },
+    "eye_r": {
+     "yaw_left": 3.6,
+     "pitch_up": 3.9
+    },
+    "vergence_deg": 7.18,
+    "vergence_expected_deg": 7.18,
+    "rays_meet_at_m": 0.457,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 35.6,
+    "deepest_mm": 0
+   },
+   "dad vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 366.6,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 7.6,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 76.3,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 78.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 1.2,
+    "deepest_at": [
+     -1.085,
+     0.449,
+     -0.113
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 107.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 5,
+    "clearance_mm": 0,
+    "deepest_mm": 0.2,
+    "deepest_at": [
+     -1.424,
+     0.74,
+     -0.369
+    ]
+   },
+   "jade7 vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 69,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 91.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 15,
+    "clearance_mm": 0,
+    "deepest_mm": 0.3,
+    "deepest_at": [
+     -1.257,
+     0.092,
+     -0.245
+    ]
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 223.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 140,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 212.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 330,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 26.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 263.8,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     -0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     -0.07
+    ],
+    "chest": [
+     -0.986,
+     0.951,
+     -0.151
+    ],
+    "shoulderC": [
+     -0.968,
+     1.059,
+     -0.114
+    ],
+    "fwd": [
+     0,
+     0,
+     -1
+    ],
+    "left": [
+     -1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.985,
+     0.172,
+     -0.024
+    ],
+    "cy": [
+     0.174,
+     0.975,
+     -0.137
+    ],
+    "cz": [
+     0,
+     -0.139,
+     -0.99
+    ],
+    "right": [
+     1,
+     0,
+     0
+    ],
+    "kneeL": [
+     -1.13,
+     0.454,
+     -0.497
+    ],
+    "ankleL": [
+     -1.141,
+     0.054,
+     -0.54
+    ],
+    "footL": [
+     -1.141,
+     0.038,
+     -0.694
+    ],
+    "hipL": [
+     -1.12,
+     0.551,
+     -0.07
+    ],
+    "heelL": [
+     -1.141,
+     0.002,
+     -0.516
+    ],
+    "toeL": [
+     -1.141,
+     -0.002,
+     -0.742
+    ],
+    "kneeR": [
+     -0.918,
+     0.454,
+     -0.497
+    ],
+    "ankleR": [
+     -0.907,
+     0.054,
+     -0.54
+    ],
+    "footR": [
+     -0.907,
+     0.038,
+     -0.694
+    ],
+    "hipR": [
+     -0.928,
+     0.551,
+     -0.07
+    ],
+    "heelR": [
+     -0.907,
+     0.002,
+     -0.516
+    ],
+    "toeR": [
+     -0.907,
+     -0.002,
+     -0.742
+    ],
+    "knees": [
+     -1.024,
+     0.454,
+     -0.497
+    ],
+    "lap": [
+     -1.024,
+     0.601,
+     -0.305
+    ],
+    "lookAt": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "neck": [
+     -0.964,
+     1.083,
+     -0.118
+    ],
+    "head": [
+     -0.947,
+     1.192,
+     -0.15
+    ],
+    "headUp": [
+     0.162,
+     0.964,
+     -0.209
+    ],
+    "headFwd": [
+     -0.163,
+     -0.183,
+     -0.97
+    ],
+    "headX": [
+     -0.973,
+     0.191,
+     0.127
+    ],
+    "nose": [
+     -0.97,
+     1.155,
+     -0.271
+    ],
+    "mouth": [
+     -0.972,
+     1.12,
+     -0.234
+    ],
+    "chin": [
+     -0.974,
+     1.075,
+     -0.183
+    ],
+    "forehead": [
+     -0.954,
+     1.23,
+     -0.258
+    ],
+    "eyes": [
+     -0.962,
+     1.183,
+     -0.247
+    ],
+    "earL": [
+     -1.028,
+     1.208,
+     -0.139
+    ],
+    "earR": [
+     -0.866,
+     1.176,
+     -0.16
+    ],
+    "headTop": [
+     -0.928,
+     1.304,
+     -0.174
+    ],
+    "backOfHead": [
+     -0.926,
+     1.224,
+     -0.04
+    ],
+    "shoulderL": [
+     -1.162,
+     1.072,
+     -0.116
+    ],
+    "elbowL": [
+     -1.14,
+     0.753,
+     -0.101
+    ],
+    "wristL": [
+     -1.142,
+     0.864,
+     -0.327
+    ],
+    "handL": [
+     -1.135,
+     0.855,
+     -0.373
+    ],
+    "indexL": [
+     -1.095,
+     0.779,
+     -0.435
+    ],
+    "thumbL": [
+     -1.079,
+     0.781,
+     -0.378
+    ],
+    "middleL": [
+     -1.114,
+     0.775,
+     -0.451
+    ],
+    "ringL": [
+     -1.137,
+     0.777,
+     -0.437
+    ],
+    "littleL": [
+     -1.158,
+     0.793,
+     -0.423
+    ],
+    "knuckleL": [
+     -1.119,
+     0.845,
+     -0.418
+    ],
+    "forearmL": [
+     -1.141,
+     0.814,
+     -0.225
+    ],
+    "upperArmL": [
+     -1.151,
+     0.912,
+     -0.109
+    ],
+    "shoulderR": [
+     -0.782,
+     1.005,
+     -0.106
+    ],
+    "elbowR": [
+     -0.839,
+     0.694,
+     -0.154
+    ],
+    "wristR": [
+     -0.906,
+     0.864,
+     -0.327
+    ],
+    "handR": [
+     -0.913,
+     0.855,
+     -0.373
+    ],
+    "indexR": [
+     -0.953,
+     0.779,
+     -0.435
+    ],
+    "thumbR": [
+     -0.969,
+     0.781,
+     -0.378
+    ],
+    "middleR": [
+     -0.934,
+     0.775,
+     -0.451
+    ],
+    "ringR": [
+     -0.911,
+     0.777,
+     -0.437
+    ],
+    "littleR": [
+     -0.89,
+     0.793,
+     -0.423
+    ],
+    "knuckleR": [
+     -0.929,
+     0.845,
+     -0.418
+    ],
+    "forearmR": [
+     -0.876,
+     0.788,
+     -0.249
+    ],
+    "upperArmR": [
+     -0.811,
+     0.85,
+     -0.13
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.462,
+     0.598,
+     -0.045
+    ],
+    "waist": [
+     -1.462,
+     0.744,
+     -0.045
+    ],
+    "chest": [
+     -1.449,
+     0.878,
+     -0.148
+    ],
+    "shoulderC": [
+     -1.436,
+     0.958,
+     -0.146
+    ],
+    "fwd": [
+     0.242,
+     0,
+     -0.97
+    ],
+    "left": [
+     -0.97,
+     0,
+     -0.242
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.986,
+     0.15,
+     0.071
+    ],
+    "cy": [
+     0.106,
+     0.899,
+     -0.425
+    ],
+    "cz": [
+     -0.128,
+     -0.412,
+     -0.902
+    ],
+    "right": [
+     0.97,
+     0,
+     0.242
+    ],
+    "kneeL": [
+     -1.403,
+     0.362,
+     0.048
+    ],
+    "ankleL": [
+     -1.301,
+     0.151,
+     0.168
+    ],
+    "footL": [
+     -1.274,
+     0.151,
+     0.058
+    ],
+    "hipL": [
+     -1.524,
+     0.598,
+     -0.061
+    ],
+    "heelL": [
+     -1.305,
+     0.115,
+     0.181
+    ],
+    "toeL": [
+     -1.265,
+     0.129,
+     0.021
+    ],
+    "kneeR": [
+     -1.325,
+     0.402,
+     -0.225
+    ],
+    "ankleR": [
+     -1.297,
+     0.141,
+     -0.203
+    ],
+    "footR": [
+     -1.269,
+     0.141,
+     -0.313
+    ],
+    "hipR": [
+     -1.399,
+     0.598,
+     -0.029
+    ],
+    "heelR": [
+     -1.3,
+     0.106,
+     -0.19
+    ],
+    "toeR": [
+     -1.26,
+     0.119,
+     -0.35
+    ],
+    "knees": [
+     -1.364,
+     0.382,
+     -0.089
+    ],
+    "lap": [
+     -1.408,
+     0.552,
+     -0.069
+    ],
+    "lookAt": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "neck": [
+     -1.435,
+     0.975,
+     -0.153
+    ],
+    "head": [
+     -1.442,
+     1.065,
+     -0.177
+    ],
+    "headUp": [
+     -0.156,
+     0.973,
+     -0.169
+    ],
+    "headFwd": [
+     0.684,
+     -0.017,
+     -0.729
+    ],
+    "headX": [
+     -0.712,
+     -0.23,
+     -0.663
+    ],
+    "nose": [
+     -1.368,
+     1.052,
+     -0.252
+    ],
+    "mouth": [
+     -1.379,
+     1.019,
+     -0.229
+    ],
+    "chin": [
+     -1.395,
+     0.975,
+     -0.196
+    ],
+    "forehead": [
+     -1.394,
+     1.111,
+     -0.245
+    ],
+    "eyes": [
+     -1.388,
+     1.071,
+     -0.238
+    ],
+    "earL": [
+     -1.496,
+     1.048,
+     -0.227
+    ],
+    "earR": [
+     -1.389,
+     1.082,
+     -0.127
+    ],
+    "headTop": [
+     -1.457,
+     1.159,
+     -0.193
+    ],
+    "backOfHead": [
+     -1.51,
+     1.076,
+     -0.108
+    ],
+    "shoulderL": [
+     -1.575,
+     0.966,
+     -0.13
+    ],
+    "elbowL": [
+     -1.548,
+     0.782,
+     -0.238
+    ],
+    "wristL": [
+     -1.434,
+     0.767,
+     -0.367
+    ],
+    "handL": [
+     -1.424,
+     0.767,
+     -0.4
+    ],
+    "indexL": [
+     -1.378,
+     0.746,
+     -0.471
+    ],
+    "thumbL": [
+     -1.362,
+     0.77,
+     -0.414
+    ],
+    "middleL": [
+     -1.392,
+     0.745,
+     -0.481
+    ],
+    "ringL": [
+     -1.409,
+     0.746,
+     -0.481
+    ],
+    "littleL": [
+     -1.428,
+     0.75,
+     -0.471
+    ],
+    "knuckleL": [
+     -1.408,
+     0.767,
+     -0.43
+    ],
+    "forearmL": [
+     -1.485,
+     0.774,
+     -0.309
+    ],
+    "upperArmL": [
+     -1.561,
+     0.874,
+     -0.184
+    ],
+    "shoulderR": [
+     -1.301,
+     0.924,
+     -0.15
+    ],
+    "elbowR": [
+     -1.189,
+     0.978,
+     -0.325
+    ],
+    "wristR": [
+     -1.108,
+     1.041,
+     -0.465
+    ],
+    "handR": [
+     -1.096,
+     1.056,
+     -0.493
+    ],
+    "indexR": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "thumbR": [
+     -1.086,
+     1.03,
+     -0.531
+    ],
+    "middleR": [
+     -1.095,
+     1.049,
+     -0.511
+    ],
+    "ringR": [
+     -1.084,
+     1.05,
+     -0.504
+    ],
+    "littleR": [
+     -1.075,
+     1.052,
+     -0.497
+    ],
+    "knuckleR": [
+     -1.09,
+     1.07,
+     -0.523
+    ],
+    "forearmR": [
+     -1.144,
+     1.013,
+     -0.402
+    ],
+    "upperArmR": [
+     -1.245,
+     0.951,
+     -0.238
+    ]
+   }
+  },
+  "pass": true
+ },
+ {
+  "shot": "B3_finger",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 27.9,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "distance_m": 0.358,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -5,
+     "pitch_up": -5.6
+    },
+    "eye_r": {
+     "yaw_left": 5,
+     "pitch_up": -5.6
+    },
+    "vergence_deg": 9.94,
+    "vergence_expected_deg": 9.94,
+    "rays_meet_at_m": 0.358,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "distance_m": 0.457,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -3.6,
+     "pitch_up": 3.9
+    },
+    "eye_r": {
+     "yaw_left": 3.6,
+     "pitch_up": 3.9
+    },
+    "vergence_deg": 7.18,
+    "vergence_expected_deg": 7.18,
+    "rays_meet_at_m": 0.457,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 35.6,
+    "deepest_mm": 0
+   },
+   "dad vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 366.6,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 7.6,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 76.3,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 78.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.3,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 1.2,
+    "deepest_at": [
+     -1.085,
+     0.449,
+     -0.113
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 107.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 5,
+    "clearance_mm": 0,
+    "deepest_mm": 0.2,
+    "deepest_at": [
+     -1.424,
+     0.74,
+     -0.369
+    ]
+   },
+   "jade7 vs desk legs (open side)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 69,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 91.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 15,
+    "clearance_mm": 0,
+    "deepest_mm": 0.3,
+    "deepest_at": [
+     -1.257,
+     0.092,
+     -0.245
+    ]
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 223.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 140,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 212.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 330,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 26.1,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 263.8,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     -0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     -0.07
+    ],
+    "chest": [
+     -0.986,
+     0.951,
+     -0.151
+    ],
+    "shoulderC": [
+     -0.968,
+     1.059,
+     -0.114
+    ],
+    "fwd": [
+     0,
+     0,
+     -1
+    ],
+    "left": [
+     -1,
+     0,
+     0
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.985,
+     0.172,
+     -0.024
+    ],
+    "cy": [
+     0.174,
+     0.975,
+     -0.137
+    ],
+    "cz": [
+     0,
+     -0.139,
+     -0.99
+    ],
+    "right": [
+     1,
+     0,
+     0
+    ],
+    "kneeL": [
+     -1.13,
+     0.454,
+     -0.497
+    ],
+    "ankleL": [
+     -1.141,
+     0.054,
+     -0.54
+    ],
+    "footL": [
+     -1.141,
+     0.038,
+     -0.694
+    ],
+    "hipL": [
+     -1.12,
+     0.551,
+     -0.07
+    ],
+    "heelL": [
+     -1.141,
+     0.002,
+     -0.516
+    ],
+    "toeL": [
+     -1.141,
+     -0.002,
+     -0.742
+    ],
+    "kneeR": [
+     -0.918,
+     0.454,
+     -0.497
+    ],
+    "ankleR": [
+     -0.907,
+     0.054,
+     -0.54
+    ],
+    "footR": [
+     -0.907,
+     0.038,
+     -0.694
+    ],
+    "hipR": [
+     -0.928,
+     0.551,
+     -0.07
+    ],
+    "heelR": [
+     -0.907,
+     0.002,
+     -0.516
+    ],
+    "toeR": [
+     -0.907,
+     -0.002,
+     -0.742
+    ],
+    "knees": [
+     -1.024,
+     0.454,
+     -0.497
+    ],
+    "lap": [
+     -1.024,
+     0.601,
+     -0.305
+    ],
+    "lookAt": [
+     -1.024,
+     1.085,
+     -0.578
+    ],
+    "neck": [
+     -0.964,
+     1.083,
+     -0.118
+    ],
+    "head": [
+     -0.947,
+     1.192,
+     -0.15
+    ],
+    "headUp": [
+     0.162,
+     0.964,
+     -0.209
+    ],
+    "headFwd": [
+     -0.163,
+     -0.183,
+     -0.97
+    ],
+    "headX": [
+     -0.973,
+     0.191,
+     0.127
+    ],
+    "nose": [
+     -0.97,
+     1.155,
+     -0.271
+    ],
+    "mouth": [
+     -0.972,
+     1.12,
+     -0.234
+    ],
+    "chin": [
+     -0.974,
+     1.075,
+     -0.183
+    ],
+    "forehead": [
+     -0.954,
+     1.23,
+     -0.258
+    ],
+    "eyes": [
+     -0.962,
+     1.183,
+     -0.247
+    ],
+    "earL": [
+     -1.028,
+     1.208,
+     -0.139
+    ],
+    "earR": [
+     -0.866,
+     1.176,
+     -0.16
+    ],
+    "headTop": [
+     -0.928,
+     1.304,
+     -0.174
+    ],
+    "backOfHead": [
+     -0.926,
+     1.224,
+     -0.04
+    ],
+    "shoulderL": [
+     -1.162,
+     1.072,
+     -0.116
+    ],
+    "elbowL": [
+     -1.14,
+     0.753,
+     -0.101
+    ],
+    "wristL": [
+     -1.142,
+     0.864,
+     -0.327
+    ],
+    "handL": [
+     -1.135,
+     0.855,
+     -0.373
+    ],
+    "indexL": [
+     -1.095,
+     0.779,
+     -0.435
+    ],
+    "thumbL": [
+     -1.079,
+     0.781,
+     -0.378
+    ],
+    "middleL": [
+     -1.114,
+     0.775,
+     -0.451
+    ],
+    "ringL": [
+     -1.137,
+     0.777,
+     -0.437
+    ],
+    "littleL": [
+     -1.158,
+     0.793,
+     -0.423
+    ],
+    "knuckleL": [
+     -1.119,
+     0.845,
+     -0.418
+    ],
+    "forearmL": [
+     -1.141,
+     0.814,
+     -0.225
+    ],
+    "upperArmL": [
+     -1.151,
+     0.912,
+     -0.109
+    ],
+    "shoulderR": [
+     -0.782,
+     1.005,
+     -0.106
+    ],
+    "elbowR": [
+     -0.839,
+     0.694,
+     -0.154
+    ],
+    "wristR": [
+     -0.906,
+     0.864,
+     -0.327
+    ],
+    "handR": [
+     -0.913,
+     0.855,
+     -0.373
+    ],
+    "indexR": [
+     -0.953,
+     0.779,
+     -0.435
+    ],
+    "thumbR": [
+     -0.969,
+     0.781,
+     -0.378
+    ],
+    "middleR": [
+     -0.934,
+     0.775,
+     -0.451
+    ],
+    "ringR": [
+     -0.911,
+     0.777,
+     -0.437
+    ],
+    "littleR": [
+     -0.89,
+     0.793,
+     -0.423
+    ],
+    "knuckleR": [
+     -0.929,
+     0.845,
+     -0.418
+    ],
+    "forearmR": [
+     -0.876,
+     0.788,
+     -0.249
+    ],
+    "upperArmR": [
+     -0.811,
+     0.85,
+     -0.13
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.462,
+     0.598,
+     -0.045
+    ],
+    "waist": [
+     -1.462,
+     0.744,
+     -0.045
+    ],
+    "chest": [
+     -1.449,
+     0.878,
+     -0.148
+    ],
+    "shoulderC": [
+     -1.436,
+     0.958,
+     -0.146
+    ],
+    "fwd": [
+     0.242,
+     0,
+     -0.97
+    ],
+    "left": [
+     -0.97,
+     0,
+     -0.242
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.986,
+     0.15,
+     0.071
+    ],
+    "cy": [
+     0.106,
+     0.899,
+     -0.425
+    ],
+    "cz": [
+     -0.128,
+     -0.412,
+     -0.902
+    ],
+    "right": [
+     0.97,
+     0,
+     0.242
+    ],
+    "kneeL": [
+     -1.403,
+     0.362,
+     0.048
+    ],
+    "ankleL": [
+     -1.301,
+     0.151,
+     0.168
+    ],
+    "footL": [
+     -1.274,
+     0.151,
+     0.058
+    ],
+    "hipL": [
+     -1.524,
+     0.598,
+     -0.061
+    ],
+    "heelL": [
+     -1.305,
+     0.115,
+     0.181
+    ],
+    "toeL": [
+     -1.265,
+     0.129,
+     0.021
+    ],
+    "kneeR": [
+     -1.325,
+     0.402,
+     -0.225
+    ],
+    "ankleR": [
+     -1.297,
+     0.141,
+     -0.203
+    ],
+    "footR": [
+     -1.269,
+     0.141,
+     -0.313
+    ],
+    "hipR": [
+     -1.399,
+     0.598,
+     -0.029
+    ],
+    "heelR": [
+     -1.3,
+     0.106,
+     -0.19
+    ],
+    "toeR": [
+     -1.26,
+     0.119,
+     -0.35
+    ],
+    "knees": [
+     -1.364,
+     0.382,
+     -0.089
+    ],
+    "lap": [
+     -1.408,
+     0.552,
+     -0.069
+    ],
+    "lookAt": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "neck": [
+     -1.435,
+     0.975,
+     -0.153
+    ],
+    "head": [
+     -1.442,
+     1.065,
+     -0.177
+    ],
+    "headUp": [
+     -0.156,
+     0.973,
+     -0.169
+    ],
+    "headFwd": [
+     0.684,
+     -0.017,
+     -0.729
+    ],
+    "headX": [
+     -0.712,
+     -0.23,
+     -0.663
+    ],
+    "nose": [
+     -1.368,
+     1.052,
+     -0.252
+    ],
+    "mouth": [
+     -1.379,
+     1.019,
+     -0.229
+    ],
+    "chin": [
+     -1.395,
+     0.975,
+     -0.196
+    ],
+    "forehead": [
+     -1.394,
+     1.111,
+     -0.245
+    ],
+    "eyes": [
+     -1.388,
+     1.071,
+     -0.238
+    ],
+    "earL": [
+     -1.496,
+     1.048,
+     -0.227
+    ],
+    "earR": [
+     -1.389,
+     1.082,
+     -0.127
+    ],
+    "headTop": [
+     -1.457,
+     1.159,
+     -0.193
+    ],
+    "backOfHead": [
+     -1.51,
+     1.076,
+     -0.108
+    ],
+    "shoulderL": [
+     -1.575,
+     0.966,
+     -0.13
+    ],
+    "elbowL": [
+     -1.548,
+     0.782,
+     -0.238
+    ],
+    "wristL": [
+     -1.434,
+     0.767,
+     -0.367
+    ],
+    "handL": [
+     -1.424,
+     0.767,
+     -0.4
+    ],
+    "indexL": [
+     -1.378,
+     0.746,
+     -0.471
+    ],
+    "thumbL": [
+     -1.362,
+     0.77,
+     -0.414
+    ],
+    "middleL": [
+     -1.392,
+     0.745,
+     -0.481
+    ],
+    "ringL": [
+     -1.409,
+     0.746,
+     -0.481
+    ],
+    "littleL": [
+     -1.428,
+     0.75,
+     -0.471
+    ],
+    "knuckleL": [
+     -1.408,
+     0.767,
+     -0.43
+    ],
+    "forearmL": [
+     -1.485,
+     0.774,
+     -0.309
+    ],
+    "upperArmL": [
+     -1.561,
+     0.874,
+     -0.184
+    ],
+    "shoulderR": [
+     -1.301,
+     0.924,
+     -0.15
+    ],
+    "elbowR": [
+     -1.189,
+     0.978,
+     -0.325
+    ],
+    "wristR": [
+     -1.108,
+     1.041,
+     -0.465
+    ],
+    "handR": [
+     -1.096,
+     1.056,
+     -0.493
+    ],
+    "indexR": [
+     -1.084,
+     1.093,
+     -0.572
+    ],
+    "thumbR": [
+     -1.086,
+     1.03,
+     -0.531
+    ],
+    "middleR": [
+     -1.095,
+     1.049,
+     -0.511
+    ],
+    "ringR": [
+     -1.084,
+     1.05,
+     -0.504
+    ],
+    "littleR": [
+     -1.075,
+     1.052,
+     -0.497
+    ],
+    "knuckleR": [
+     -1.09,
+     1.07,
+     -0.523
+    ],
+    "forearmR": [
+     -1.144,
+     1.013,
+     -0.402
+    ],
+    "upperArmR": [
+     -1.245,
+     0.951,
+     -0.238
+    ]
+   }
+  },
+  "pass": true
+ },
+ {
+  "shot": "B4_doubletake",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 396.6,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.658,
+     0.947,
+     0.334
+    ],
+    "distance_m": 0.605,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -3,
+     "pitch_up": -10.3
+    },
+    "eye_r": {
+     "yaw_left": 3,
+     "pitch_up": -10.3
+    },
+    "vergence_deg": 5.89,
+    "vergence_expected_deg": 5.89,
+    "rays_meet_at_m": 0.605,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.404,
+     0.62,
+     0.371
+    ],
+    "distance_m": 0.42,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -0.3,
+     "pitch_up": -3.1
+    },
+    "eye_r": {
+     "yaw_left": 7.5,
+     "pitch_up": -3.1
+    },
+    "vergence_deg": 7.79,
+    "vergence_expected_deg": 7.81,
+    "rays_meet_at_m": 0.42,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 38.1,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 27.4,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 73.1,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 79.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.5,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.4,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 0.5,
+    "deepest_at": [
+     -1.098,
+     0.449,
+     0.079
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 108.1,
+    "deepest_mm": 0
+   },
+   "dad vs backrest (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 122,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 363.9,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 609.8,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 435.9,
+    "deepest_mm": 0
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 697.8,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 578.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 643.2,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 775.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 428.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 738.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs backrest (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 599.7,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     0.07
+    ],
+    "chest": [
+     -1.077,
+     0.959,
+     0.03
+    ],
+    "shoulderC": [
+     -1.039,
+     1.066,
+     0.053
+    ],
+    "fwd": [
+     -0.669,
+     0,
+     -0.743
+    ],
+    "left": [
+     -0.743,
+     0,
+     0.669
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.56,
+     0.017,
+     0.829
+    ],
+    "cy": [
+     -0.047,
+     0.998,
+     -0.052
+    ],
+    "cz": [
+     -0.827,
+     -0.068,
+     -0.557
+    ],
+    "right": [
+     0.743,
+     0,
+     -0.669
+    ],
+    "kneeL": [
+     -1.389,
+     0.455,
+     -0.177
+    ],
+    "ankleL": [
+     -1.419,
+     0.054,
+     -0.194
+    ],
+    "footL": [
+     -1.522,
+     0.038,
+     -0.308
+    ],
+    "hipL": [
+     -1.096,
+     0.551,
+     0.134
+    ],
+    "heelL": [
+     -1.403,
+     0.002,
+     -0.176
+    ],
+    "toeL": [
+     -1.554,
+     -0.002,
+     -0.344
+    ],
+    "kneeR": [
+     -1.231,
+     0.455,
+     -0.318
+    ],
+    "ankleR": [
+     -1.245,
+     0.054,
+     -0.35
+    ],
+    "footR": [
+     -1.348,
+     0.038,
+     -0.465
+    ],
+    "hipR": [
+     -0.952,
+     0.551,
+     0.006
+    ],
+    "heelR": [
+     -1.229,
+     0.002,
+     -0.333
+    ],
+    "toeR": [
+     -1.38,
+     -0.002,
+     -0.5
+    ],
+    "knees": [
+     -1.31,
+     0.455,
+     -0.248
+    ],
+    "lap": [
+     -1.181,
+     0.601,
+     -0.105
+    ],
+    "lookAt": [
+     -1.658,
+     0.947,
+     0.334
+    ],
+    "neck": [
+     -1.041,
+     1.091,
+     0.053
+    ],
+    "head": [
+     -1.074,
+     1.2,
+     0.059
+    ],
+    "headUp": [
+     -0.236,
+     0.971,
+     0.033
+    ],
+    "headFwd": [
+     -0.885,
+     -0.229,
+     0.405
+    ],
+    "headX": [
+     0.401,
+     0.066,
+     0.914
+    ],
+    "nose": [
+     -1.184,
+     1.157,
+     0.11
+    ],
+    "mouth": [
+     -1.148,
+     1.124,
+     0.097
+    ],
+    "chin": [
+     -1.099,
+     1.08,
+     0.079
+    ],
+    "forehead": [
+     -1.175,
+     1.234,
+     0.101
+    ],
+    "eyes": [
+     -1.164,
+     1.187,
+     0.099
+    ],
+    "earL": [
+     -1.04,
+     1.206,
+     0.135
+    ],
+    "earR": [
+     -1.108,
+     1.195,
+     -0.017
+    ],
+    "headTop": [
+     -1.101,
+     1.313,
+     0.063
+    ],
+    "backOfHead": [
+     -0.974,
+     1.238,
+     0.012
+    ],
+    "shoulderL": [
+     -1.146,
+     1.048,
+     0.214
+    ],
+    "elbowL": [
+     -1.199,
+     0.844,
+     -0.026
+    ],
+    "wristL": [
+     -1.203,
+     0.925,
+     -0.264
+    ],
+    "handL": [
+     -1.204,
+     0.941,
+     -0.31
+    ],
+    "indexL": [
+     -1.172,
+     0.941,
+     -0.427
+    ],
+    "thumbL": [
+     -1.149,
+     0.884,
+     -0.358
+    ],
+    "middleL": [
+     -1.195,
+     0.926,
+     -0.429
+    ],
+    "ringL": [
+     -1.217,
+     0.918,
+     -0.416
+    ],
+    "littleL": [
+     -1.236,
+     0.918,
+     -0.391
+    ],
+    "knuckleL": [
+     -1.195,
+     0.956,
+     -0.355
+    ],
+    "forearmL": [
+     -1.201,
+     0.889,
+     -0.157
+    ],
+    "upperArmL": [
+     -1.173,
+     0.946,
+     0.094
+    ],
+    "shoulderR": [
+     -0.93,
+     1.042,
+     -0.105
+    ],
+    "elbowR": [
+     -0.798,
+     0.782,
+     -0.238
+    ],
+    "wristR": [
+     -0.987,
+     0.858,
+     -0.386
+    ],
+    "handR": [
+     -1.004,
+     0.865,
+     -0.43
+    ],
+    "indexR": [
+     -1.076,
+     0.843,
+     -0.525
+    ],
+    "thumbR": [
+     -1.068,
+     0.799,
+     -0.445
+    ],
+    "middleR": [
+     -1.054,
+     0.829,
+     -0.533
+    ],
+    "ringR": [
+     -1.029,
+     0.825,
+     -0.528
+    ],
+    "littleR": [
+     -1.002,
+     0.829,
+     -0.513
+    ],
+    "knuckleR": [
+     -1.03,
+     0.872,
+     -0.47
+    ],
+    "forearmR": [
+     -0.902,
+     0.824,
+     -0.319
+    ],
+    "upperArmR": [
+     -0.864,
+     0.912,
+     -0.171
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.874,
+     0.586,
+     0.2
+    ],
+    "waist": [
+     -1.874,
+     0.732,
+     0.2
+    ],
+    "chest": [
+     -1.775,
+     0.86,
+     0.248
+    ],
+    "shoulderC": [
+     -1.775,
+     0.941,
+     0.254
+    ],
+    "fwd": [
+     0.94,
+     0,
+     0.342
+    ],
+    "left": [
+     0.342,
+     0,
+     -0.94
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     0.372,
+     0.062,
+     -0.926
+    ],
+    "cy": [
+     0.416,
+     0.881,
+     0.226
+    ],
+    "cz": [
+     0.83,
+     -0.469,
+     0.302
+    ],
+    "right": [
+     -0.342,
+     0,
+     0.94
+    ],
+    "kneeL": [
+     -1.825,
+     0.3,
+     0.144
+    ],
+    "ankleL": [
+     -1.849,
+     0.038,
+     0.13
+    ],
+    "footL": [
+     -1.742,
+     0.038,
+     0.169
+    ],
+    "hipL": [
+     -1.852,
+     0.586,
+     0.139
+    ],
+    "heelL": [
+     -1.861,
+     0.003,
+     0.125
+    ],
+    "toeL": [
+     -1.706,
+     0.016,
+     0.182
+    ],
+    "kneeR": [
+     -1.872,
+     0.3,
+     0.275
+    ],
+    "ankleR": [
+     -1.899,
+     0.038,
+     0.27
+    ],
+    "footR": [
+     -1.793,
+     0.038,
+     0.309
+    ],
+    "hipR": [
+     -1.896,
+     0.586,
+     0.261
+    ],
+    "heelR": [
+     -1.912,
+     0.003,
+     0.265
+    ],
+    "toeR": [
+     -1.757,
+     0.016,
+     0.322
+    ],
+    "knees": [
+     -1.849,
+     0.3,
+     0.209
+    ],
+    "lap": [
+     -1.86,
+     0.502,
+     0.205
+    ],
+    "lookAt": [
+     -1.404,
+     0.62,
+     0.371
+    ],
+    "neck": [
+     -1.767,
+     0.957,
+     0.259
+    ],
+    "head": [
+     -1.712,
+     1.006,
+     0.315
+    ],
+    "headUp": [
+     0.546,
+     0.565,
+     0.618
+    ],
+    "headFwd": [
+     0.607,
+     -0.776,
+     0.173
+    ],
+    "headX": [
+     0.577,
+     0.281,
+     -0.767
+    ],
+    "nose": [
+     -1.654,
+     0.917,
+     0.326
+    ],
+    "mouth": [
+     -1.688,
+     0.916,
+     0.301
+    ],
+    "chin": [
+     -1.733,
+     0.917,
+     0.267
+    ],
+    "forehead": [
+     -1.636,
+     0.97,
+     0.359
+    ],
+    "eyes": [
+     -1.658,
+     0.947,
+     0.334
+    ],
+    "earL": [
+     -1.669,
+     1.027,
+     0.257
+    ],
+    "earR": [
+     -1.756,
+     0.985,
+     0.373
+    ],
+    "headTop": [
+     -1.66,
+     1.06,
+     0.375
+    ],
+    "backOfHead": [
+     -1.765,
+     1.086,
+     0.304
+    ],
+    "shoulderL": [
+     -1.729,
+     0.937,
+     0.122
+    ],
+    "elbowL": [
+     -1.781,
+     0.749,
+     0.032
+    ],
+    "wristL": [
+     -1.867,
+     0.599,
+     0.02
+    ],
+    "handL": [
+     -1.867,
+     0.565,
+     0.02
+    ],
+    "indexL": [
+     -1.855,
+     0.488,
+     0.054
+    ],
+    "thumbL": [
+     -1.849,
+     0.546,
+     0.08
+    ],
+    "middleL": [
+     -1.874,
+     0.489,
+     0.057
+    ],
+    "ringL": [
+     -1.889,
+     0.499,
+     0.053
+    ],
+    "littleL": [
+     -1.899,
+     0.516,
+     0.043
+    ],
+    "knuckleL": [
+     -1.861,
+     0.532,
+     0.023
+    ],
+    "forearmL": [
+     -1.828,
+     0.667,
+     0.025
+    ],
+    "upperArmL": [
+     -1.755,
+     0.843,
+     0.077
+    ],
+    "shoulderR": [
+     -1.833,
+     0.92,
+     0.379
+    ],
+    "elbowR": [
+     -1.667,
+     0.784,
+     0.36
+    ],
+    "wristR": [
+     -1.709,
+     0.925,
+     0.268
+    ],
+    "handR": [
+     -1.684,
+     0.902,
+     0.269
+    ],
+    "indexR": [
+     -1.687,
+     0.877,
+     0.249
+    ],
+    "thumbR": [
+     -1.687,
+     0.851,
+     0.262
+    ],
+    "middleR": [
+     -1.688,
+     0.878,
+     0.263
+    ],
+    "ringR": [
+     -1.688,
+     0.882,
+     0.275
+    ],
+    "littleR": [
+     -1.687,
+     0.887,
+     0.287
+    ],
+    "knuckleR": [
+     -1.659,
+     0.88,
+     0.265
+    ],
+    "forearmR": [
+     -1.69,
+     0.861,
+     0.309
+    ],
+    "upperArmR": [
+     -1.75,
+     0.852,
+     0.37
+    ]
+   }
+  },
+  "pass": true
+ },
+ {
+  "shot": "B5_cat",
+  "bodies": {
+   "dad vs jade7": {
+    "intersecting_triangle_pairs": 0,
+    "by_part": {},
+    "sample_points": [],
+    "clearance_mm": 396.6,
+    "deepest_A_in_B": {
+     "mm": 0,
+     "at": null
+    },
+    "deepest_B_in_A": {
+     "mm": 0,
+     "at": null
+    }
+   }
+  },
+  "eyes": {
+   "dad": {
+    "target": [
+     -1.658,
+     0.947,
+     0.334
+    ],
+    "distance_m": 0.605,
+    "ipd_mm": 62.2,
+    "eye_l": {
+     "yaw_left": -3,
+     "pitch_up": -10.3
+    },
+    "eye_r": {
+     "yaw_left": 3,
+     "pitch_up": -10.3
+    },
+    "vergence_deg": 5.89,
+    "vergence_expected_deg": 5.89,
+    "rays_meet_at_m": 0.605,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   },
+   "jade7": {
+    "target": [
+     -1.404,
+     0.62,
+     0.371
+    ],
+    "distance_m": 0.42,
+    "ipd_mm": 57.3,
+    "eye_l": {
+     "yaw_left": -0.3,
+     "pitch_up": -3.1
+    },
+    "eye_r": {
+     "yaw_left": 7.5,
+     "pitch_up": -3.1
+    },
+    "vergence_deg": 7.79,
+    "vergence_expected_deg": 7.81,
+    "rays_meet_at_m": 0.42,
+    "rays_miss_mm": 0,
+    "meet_off_target_mm": 0,
+    "diverge": false,
+    "crossed_reading": false,
+    "ok": true
+   }
+  },
+  "furniture": {
+   "dad vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 38.1,
+    "deepest_mm": 0
+   },
+   "dad vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 27.4,
+    "deepest_mm": 0
+   },
+   "dad vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 73.1,
+    "deepest_mm": 0
+   },
+   "dad vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 115.8,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 79.2,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 101.5,
+    "deepest_mm": 0
+   },
+   "dad vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 93.4,
+    "deepest_mm": 0
+   },
+   "dad vs seat (fabric)": {
+    "intersecting_triangle_pairs": 10,
+    "clearance_mm": 0,
+    "deepest_mm": 0.5,
+    "deepest_at": [
+     -1.098,
+     0.449,
+     0.079
+    ]
+   },
+   "dad vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 108.1,
+    "deepest_mm": 0
+   },
+   "dad vs backrest (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 122,
+    "deepest_mm": 0
+   },
+   "jade7 vs desk": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 363.9,
+    "deepest_mm": 0
+   },
+   "jade7 vs keyboard": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 609.8,
+    "deepest_mm": 0
+   },
+   "jade7 vs chair base (five-star, black nylon)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 435.9,
+    "deepest_mm": 0
+   },
+   "jade7 vs gas column (shroud, piston)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 697.8,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tilt plate)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 578.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (tension knob)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 643.2,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat mechanism (height lever)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 775.4,
+    "deepest_mm": 0
+   },
+   "jade7 vs seat (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 428.3,
+    "deepest_mm": 0
+   },
+   "jade7 vs back bar (steel)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 738.7,
+    "deepest_mm": 0
+   },
+   "jade7 vs backrest (fabric)": {
+    "intersecting_triangle_pairs": 0,
+    "clearance_mm": 599.7,
+    "deepest_mm": 0
+   }
+  },
+  "joints": {
+   "dad": {
+    "hip": [
+     -1.024,
+     0.551,
+     0.07
+    ],
+    "waist": [
+     -1.024,
+     0.747,
+     0.07
+    ],
+    "chest": [
+     -1.077,
+     0.959,
+     0.03
+    ],
+    "shoulderC": [
+     -1.039,
+     1.066,
+     0.053
+    ],
+    "fwd": [
+     -0.669,
+     0,
+     -0.743
+    ],
+    "left": [
+     -0.743,
+     0,
+     0.669
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     -0.56,
+     0.017,
+     0.829
+    ],
+    "cy": [
+     -0.047,
+     0.998,
+     -0.052
+    ],
+    "cz": [
+     -0.827,
+     -0.068,
+     -0.557
+    ],
+    "right": [
+     0.743,
+     0,
+     -0.669
+    ],
+    "kneeL": [
+     -1.389,
+     0.455,
+     -0.177
+    ],
+    "ankleL": [
+     -1.419,
+     0.054,
+     -0.194
+    ],
+    "footL": [
+     -1.522,
+     0.038,
+     -0.308
+    ],
+    "hipL": [
+     -1.096,
+     0.551,
+     0.134
+    ],
+    "heelL": [
+     -1.403,
+     0.002,
+     -0.176
+    ],
+    "toeL": [
+     -1.554,
+     -0.002,
+     -0.344
+    ],
+    "kneeR": [
+     -1.231,
+     0.455,
+     -0.318
+    ],
+    "ankleR": [
+     -1.245,
+     0.054,
+     -0.35
+    ],
+    "footR": [
+     -1.348,
+     0.038,
+     -0.465
+    ],
+    "hipR": [
+     -0.952,
+     0.551,
+     0.006
+    ],
+    "heelR": [
+     -1.229,
+     0.002,
+     -0.333
+    ],
+    "toeR": [
+     -1.38,
+     -0.002,
+     -0.5
+    ],
+    "knees": [
+     -1.31,
+     0.455,
+     -0.248
+    ],
+    "lap": [
+     -1.181,
+     0.601,
+     -0.105
+    ],
+    "lookAt": [
+     -1.658,
+     0.947,
+     0.334
+    ],
+    "neck": [
+     -1.041,
+     1.091,
+     0.053
+    ],
+    "head": [
+     -1.074,
+     1.2,
+     0.059
+    ],
+    "headUp": [
+     -0.236,
+     0.971,
+     0.033
+    ],
+    "headFwd": [
+     -0.885,
+     -0.229,
+     0.405
+    ],
+    "headX": [
+     0.401,
+     0.066,
+     0.914
+    ],
+    "nose": [
+     -1.184,
+     1.157,
+     0.11
+    ],
+    "mouth": [
+     -1.148,
+     1.124,
+     0.097
+    ],
+    "chin": [
+     -1.099,
+     1.08,
+     0.079
+    ],
+    "forehead": [
+     -1.175,
+     1.234,
+     0.101
+    ],
+    "eyes": [
+     -1.164,
+     1.187,
+     0.099
+    ],
+    "earL": [
+     -1.04,
+     1.206,
+     0.135
+    ],
+    "earR": [
+     -1.108,
+     1.195,
+     -0.017
+    ],
+    "headTop": [
+     -1.101,
+     1.313,
+     0.063
+    ],
+    "backOfHead": [
+     -0.974,
+     1.238,
+     0.012
+    ],
+    "shoulderL": [
+     -1.146,
+     1.048,
+     0.214
+    ],
+    "elbowL": [
+     -1.199,
+     0.844,
+     -0.026
+    ],
+    "wristL": [
+     -1.203,
+     0.925,
+     -0.264
+    ],
+    "handL": [
+     -1.204,
+     0.941,
+     -0.31
+    ],
+    "indexL": [
+     -1.172,
+     0.941,
+     -0.427
+    ],
+    "thumbL": [
+     -1.149,
+     0.884,
+     -0.358
+    ],
+    "middleL": [
+     -1.195,
+     0.926,
+     -0.429
+    ],
+    "ringL": [
+     -1.217,
+     0.918,
+     -0.416
+    ],
+    "littleL": [
+     -1.236,
+     0.918,
+     -0.391
+    ],
+    "knuckleL": [
+     -1.195,
+     0.956,
+     -0.355
+    ],
+    "forearmL": [
+     -1.201,
+     0.889,
+     -0.157
+    ],
+    "upperArmL": [
+     -1.173,
+     0.946,
+     0.094
+    ],
+    "shoulderR": [
+     -0.93,
+     1.042,
+     -0.105
+    ],
+    "elbowR": [
+     -0.798,
+     0.782,
+     -0.238
+    ],
+    "wristR": [
+     -0.987,
+     0.858,
+     -0.386
+    ],
+    "handR": [
+     -1.004,
+     0.865,
+     -0.43
+    ],
+    "indexR": [
+     -1.076,
+     0.843,
+     -0.525
+    ],
+    "thumbR": [
+     -1.068,
+     0.799,
+     -0.445
+    ],
+    "middleR": [
+     -1.054,
+     0.829,
+     -0.533
+    ],
+    "ringR": [
+     -1.029,
+     0.825,
+     -0.528
+    ],
+    "littleR": [
+     -1.002,
+     0.829,
+     -0.513
+    ],
+    "knuckleR": [
+     -1.03,
+     0.872,
+     -0.47
+    ],
+    "forearmR": [
+     -0.902,
+     0.824,
+     -0.319
+    ],
+    "upperArmR": [
+     -0.864,
+     0.912,
+     -0.171
+    ]
+   },
+   "jade7": {
+    "hip": [
+     -1.874,
+     0.586,
+     0.2
+    ],
+    "waist": [
+     -1.874,
+     0.732,
+     0.2
+    ],
+    "chest": [
+     -1.775,
+     0.86,
+     0.248
+    ],
+    "shoulderC": [
+     -1.775,
+     0.941,
+     0.254
+    ],
+    "fwd": [
+     0.94,
+     0,
+     0.342
+    ],
+    "left": [
+     0.342,
+     0,
+     -0.94
+    ],
+    "up": [
+     0,
+     1,
+     0
+    ],
+    "cx": [
+     0.372,
+     0.062,
+     -0.926
+    ],
+    "cy": [
+     0.416,
+     0.881,
+     0.226
+    ],
+    "cz": [
+     0.83,
+     -0.469,
+     0.302
+    ],
+    "right": [
+     -0.342,
+     0,
+     0.94
+    ],
+    "kneeL": [
+     -1.825,
+     0.3,
+     0.144
+    ],
+    "ankleL": [
+     -1.849,
+     0.038,
+     0.13
+    ],
+    "footL": [
+     -1.742,
+     0.038,
+     0.169
+    ],
+    "hipL": [
+     -1.852,
+     0.586,
+     0.139
+    ],
+    "heelL": [
+     -1.861,
+     0.003,
+     0.125
+    ],
+    "toeL": [
+     -1.706,
+     0.016,
+     0.182
+    ],
+    "kneeR": [
+     -1.872,
+     0.3,
+     0.275
+    ],
+    "ankleR": [
+     -1.899,
+     0.038,
+     0.27
+    ],
+    "footR": [
+     -1.793,
+     0.038,
+     0.309
+    ],
+    "hipR": [
+     -1.896,
+     0.586,
+     0.261
+    ],
+    "heelR": [
+     -1.912,
+     0.003,
+     0.265
+    ],
+    "toeR": [
+     -1.757,
+     0.016,
+     0.322
+    ],
+    "knees": [
+     -1.849,
+     0.3,
+     0.209
+    ],
+    "lap": [
+     -1.86,
+     0.502,
+     0.205
+    ],
+    "lookAt": [
+     -1.404,
+     0.62,
+     0.371
+    ],
+    "neck": [
+     -1.767,
+     0.957,
+     0.259
+    ],
+    "head": [
+     -1.712,
+     1.006,
+     0.315
+    ],
+    "headUp": [
+     0.546,
+     0.565,
+     0.618
+    ],
+    "headFwd": [
+     0.607,
+     -0.776,
+     0.173
+    ],
+    "headX": [
+     0.577,
+     0.281,
+     -0.767
+    ],
+    "nose": [
+     -1.654,
+     0.917,
+     0.326
+    ],
+    "mouth": [
+     -1.688,
+     0.916,
+     0.301
+    ],
+    "chin": [
+     -1.733,
+     0.917,
+     0.267
+    ],
+    "forehead": [
+     -1.636,
+     0.97,
+     0.359
+    ],
+    "eyes": [
+     -1.658,
+     0.947,
+     0.334
+    ],
+    "earL": [
+     -1.669,
+     1.027,
+     0.257
+    ],
+    "earR": [
+     -1.756,
+     0.985,
+     0.373
+    ],
+    "headTop": [
+     -1.66,
+     1.06,
+     0.375
+    ],
+    "backOfHead": [
+     -1.765,
+     1.086,
+     0.304
+    ],
+    "shoulderL": [
+     -1.729,
+     0.937,
+     0.122
+    ],
+    "elbowL": [
+     -1.781,
+     0.749,
+     0.032
+    ],
+    "wristL": [
+     -1.867,
+     0.599,
+     0.02
+    ],
+    "handL": [
+     -1.867,
+     0.565,
+     0.02
+    ],
+    "indexL": [
+     -1.855,
+     0.488,
+     0.054
+    ],
+    "thumbL": [
+     -1.849,
+     0.546,
+     0.08
+    ],
+    "middleL": [
+     -1.874,
+     0.489,
+     0.057
+    ],
+    "ringL": [
+     -1.889,
+     0.499,
+     0.053
+    ],
+    "littleL": [
+     -1.899,
+     0.516,
+     0.043
+    ],
+    "knuckleL": [
+     -1.861,
+     0.532,
+     0.023
+    ],
+    "forearmL": [
+     -1.828,
+     0.667,
+     0.025
+    ],
+    "upperArmL": [
+     -1.755,
+     0.843,
+     0.077
+    ],
+    "shoulderR": [
+     -1.833,
+     0.92,
+     0.379
+    ],
+    "elbowR": [
+     -1.667,
+     0.784,
+     0.36
+    ],
+    "wristR": [
+     -1.709,
+     0.925,
+     0.268
+    ],
+    "handR": [
+     -1.684,
+     0.902,
+     0.269
+    ],
+    "indexR": [
+     -1.687,
+     0.877,
+     0.249
+    ],
+    "thumbR": [
+     -1.687,
+     0.851,
+     0.262
+    ],
+    "middleR": [
+     -1.688,
+     0.878,
+     0.263
+    ],
+    "ringR": [
+     -1.688,
+     0.882,
+     0.275
+    ],
+    "littleR": [
+     -1.687,
+     0.887,
+     0.287
+    ],
+    "knuckleR": [
+     -1.659,
+     0.88,
+     0.265
+    ],
+    "forearmR": [
+     -1.69,
+     0.861,
+     0.309
+    ],
+    "upperArmR": [
+     -1.75,
+     0.852,
+     0.37
+    ]
+   }
+  },
+  "pass": true
+ }
+]

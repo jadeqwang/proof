@@ -340,3 +340,69 @@ Every hand that touches something is now checked (`--gaze` sidecar `holds`, engi
   the monitor, not a support it "sinks into"). All PASS in mannequin. In mesh, the desk FAILs on "sinks into little Jade (7)":
   none of her vertices is below the desk top. The engine's support prisms are extruded away from the desk's far centroid,
   so tilted underside triangles of her forearm get prisms pointing down into the desk.
+
+## 2026-11-26 (late): round-4 decisions (Jade: b_screen cool white, no crossed eyes, no clipping; b_program QBasic chat; b_chair / b_floppy as built; props phase 2)
+
+- **Bodies measured, not eyeballed.** New check `layout/sets/basement90/check_bodies.mjs` (`node ... [--set kitchen90]
+  [--shots ..] [--json out]`; set-local, no engine change). It builds each shot in the real page (mesh bodies + gaze), bakes
+  every visible figure mesh (and its footwear) to world triangles and, with **three-mesh-bvh** (installed in
+  /home/jade/Documents/layout-deps), counts intersecting triangle pairs body vs body and body vs every set object near it,
+  the clearance, and the deepest vertex inside the other surface (ray parity). Eyes: each eyeball centre to the look
+  target, both eye directions (clamped as engine/gaze.js), vergence, where the two eye rays meet. Last run:
+  `check_bodies.json` beside it.
+- **Before (r4 guides, B0-B3, the pointing pose): young Jade was INSIDE Dad.** 1125 intersecting triangle pairs; his
+  torso/arm through her torso (302 pairs), her hair through his torso and hair, her right leg through his left leg; deepest
+  161 mm. She also stood 28 mm into the seat (394 pairs) and 16 mm into the base; Dad's slippers were 6 mm into the casters
+  (608 pairs), his seat 7 mm into the cushion; in B4/B5 his right fingers were 15 mm into the keyboard.
+- **Re-staged (shots.js / layout.js):** her feet go out to the leg tips (`FEET_R` 0.21 -> 0.32 m from the hub, lateral 0.26
+  m, outside the 0.46 m seat); `jadeOnSpokes(yaw, out, back)`: pelvis 0.165 m further out to Dad's left than her feet (legs
+  lean in a little; her left hand on the desk takes weight), pelvis lowered (reach 0.97 -> 0.90) so both feet land;
+  `SOLE_GAP` 0.003 -> 0.016 (the mesh sock bulges 13 mm below the heel-toe line). Her spine bend 36 -> 26 (more upright,
+  head further from the glass), twist 10 -> 20; right elbow on the shoulder-to-fingertip line (`SH_R`, `JADE_ELBOW_R`), not
+  low under her chest (it hit his left hand). Dad leans a little to his right to make room (`spine.side` 0 -> 10), both
+  elbows tucked (`DAD_ELBOW_L/R`), typing fingers pointing a little inward (wrist warnings smaller: L pronation 20 -> 11
+  deg over, R ulnar 46 deg -> in range; R pronation still 26 deg over), feet 11 cm further forward (`footFwd` 0.36 -> 0.47;
+  B4/B5 0.38 -> 0.46) off the casters, seat bones 6 mm up (`DAD_SEAT_LIFT`). B4/B5: his hovering right hand 4.5 cm higher.
+  B3 camera az 180 / el 72 / 0.65 -> az 200 / el 55 / 0.6 (from above her left shoulder; her head now at the frame
+  bottom, she had moved out of the old frame).
+- **After (every shot): 0 intersecting triangle pairs Jade vs Dad**; clearance 27.9 mm in B0-B3 (she stands beside his left
+  upper arm), 397 mm in B4/B5. Furniture: her soles 0.3 mm on the base legs (contact), her left hand 0.2 mm on the desk;
+  Dad's seat 1.2 mm (foam), no other contacts. Holdcheck: 14 / 14 pass on media/layout/basement90.
+- **Eyes.** The engine aims each eyeball separately at the look target, so the eyes always converge exactly (rays meet
+  0 mm off target, every shot). What read as crossed was the DISTANCE: her target (her fingertip on the glass) was 0.344 m
+  from her eyes, vergence 9.5 deg. Now 0.457 m, vergence 7.2 deg (B0-B3); B4/B5 0.42 m, 7.8 deg. Dad: 0.358 m to the
+  screen centre, 9.9 deg (unchanged; a close CRT; flag); B4/B5 0.605 m to her eyes. Zoomed B2 form: both of her irises
+  turn the same way, parallel-looking, not crossed; Dad's too.
+- **THE SCREEN (Jade: "it wasn't c, this was qbasic era, and he wasn't a professor ... a weekend project with his friend,
+  a real time chat application that was two side by side wordperfect-like environments").** `build.js DOS_TEXT`: the
+  MS-DOS QBasic 1.1 editor, 80 x 25: menu bar, the CHAT.BAS window (box-drawn frame, scroll bar), the 2-line Immediate
+  window, status line `<Shift+F1=Help> <F6=Window> <F2=Subs> <F5=Run> <F8=Step>  00009:023`. The code (real QBasic syntax;
+  content ASSUMED, flag) is the main loop of a split-screen chat over the modem: `OPEN "COM1:2400,N,8,1,RS,CS0,DS0,CD0"
+  FOR RANDOM AS #1`, `INKEY$`, `PRINT #1`, `INPUT$(LOC(1), #1)`; the two panes are drawn by SUBs `DrawPanes` / `PutPane`
+  (declared, off screen). I chose the IDE over the running app because the lyric ("I point to one he missed") and Jade's
+  earlier "he was renaming a variable" both need source code. **The missed-rename beat survives:** he renamed `txt$` to
+  `outLine$` and missed the one in `PRINT #1, txt$` (line 9, screen row 10: it would send his friend an empty line); her
+  fingertip is under `txt$`. Colours stay Jade's dark blue on light grey (QBasic's Options > Display can set them; its
+  DEFAULT is the reverse, grey on blue, like WordPerfect 5.1: flag). Professor / class-average / C framing removed from
+  intents and notes. Readable when zoomed in the 1920 x 1080 guides (B3 lit: each line legible, `txt$_` with the cursor).
+- **Chair, floppies (Jade: as built):** black base, charcoal blue-grey tweed; 5.25 in disks. Confirmed, unchanged.
+- **Props phase 2:** keyboard = "Keyboard - Classic IBM Design" (matthew.leiher, CC BY 4.0), flat on the desk (its key tops
+  are already a wedge, 0.088 rise per metre toward the back; the old 6 deg tipped box and its fold-out feet are gone);
+  `KB_TOP` / `KB_UP` follow its key tops. Lampholder = Poly Haven "Pull Chain Light Socket" (CC0, with its own short chain;
+  the long code chain is gone); bulb = Poly Haven "Lightbulb 01" (CC0), screwed in upside down, the glass keeps the lit
+  emit look (`SOCKET`, `BULB_P` in layout.js). Dad's right hand now lands on the arrow-key cluster of the IBM layout (he is
+  moving the cursor; fine). Kept hand-built (audit): PC case, CRT (beam source), printer, chair, washer, melons.
+- **Not fixed, flag:** B4/B5 her paw wrist is still reported 91 deg beyond flexion (pre-existing, the drooping cat paw); a
+  less-drooped paw (tried) lifted the fist to her eyes and broke the lips-on-wrist contact, so it is left as before.
+
+## 2026-11-26 round 4 — PROGRESS (checkpoint)
+- DONE: everything in the round-4 decisions section above: re-staged (0 body-vs-body intersections in every shot, measured
+  with check_bodies.mjs), eyes converge at 0.46 m (B0-B3) / 0.42 m (B4/B5), QBasic CHAT.BAS screen, props phase 2
+  (keyboard, bulb, lampholder), all three render passes + masks + gallery, holdcheck 14/14 pass, credits, REPAINT_LIST.
+- LEFT: nothing for basement90 except the final re-render sweep after the cast/hair agent's body changes (re-run
+  `node layout/sets/basement90/check_bodies.mjs` after it: new bodies can re-open the 28 mm gap).
+- FLAGS: QBasic colours (Jade's blue-on-grey vs QBasic's default grey-on-blue); the program content is invented; Dad's eyes
+  0.36 m from the CRT; Dad's wrists still over the pronation limit (L 11 deg, R 26 deg); B4/B5 paw wrist 91 deg over flexion
+  (pre-existing).
+- QUESTION for Jade: "QBasic screen colours?" (a) dark blue text on light grey, as you remembered [rec, built] (b) QBasic's
+  default light grey on blue. Image: media/layout/basement90/B3_finger_lit.png

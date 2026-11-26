@@ -38,15 +38,18 @@ export const PC = { x: gx(0.6),
   case: { w: 0.42, h: 0.15, d: 0.40, zBack: gz(-2.03) },
   monitor: { w: 0.36, h: 0.33, d: 0.40, foot: 0.03 },
   screen: { w: 0.27, h: 0.20 },
-  keyboard: { w: 0.46, h: 0.03, d: 0.17, z: gz(-1.49), tilt: 6 },   // tilt: deg about x, the front (Dad's side) edge down
+  // props phase 2 (r4): the downloaded IBM-style keyboard ("Keyboard - Classic IBM Design", CC BY), 0.49 x 0.0324 x
+  // 0.1755 m, flat on the desk; its key tops slope down toward Dad (0.088 rise per metre of depth, ~5 deg): `slope`, and
+  // `top0` = the key-top height at its depth centre
+  keyboard: { w: 0.49, h: 0.0324, d: 0.1755, z: gz(-1.49), tilt: 5, slope: 0.088, top0: 0.0268 },
   printer: { x: gx(1.18), z: gz(-1.78), w: 0.38, h: 0.12, d: 0.3 },   // dot-matrix, fanfold paper feeding up from behind
 };
-// (hold pass 2026-11-26) the tipped keyboard rests on its lowest edge: centre height KB_Y; KB_TOP(dx, dz) = a point on
-// its top face (dx along x from its centre, dz toward Dad), KB_UP = the top face's normal (for fingertip taps, grasp tipOn)
-const KBT = PC.keyboard.tilt * Math.PI / 180;
-export const KB_Y = DESK.top + PC.keyboard.h / 2 * Math.cos(KBT) + PC.keyboard.d / 2 * Math.sin(KBT);
-export const KB_UP = [0, Math.cos(KBT), Math.sin(KBT)];
-export const KB_TOP = (dx, dz) => [PC.x + dx, KB_Y + PC.keyboard.h / 2 * Math.cos(KBT) - dz * Math.sin(KBT), PC.keyboard.z + PC.keyboard.h / 2 * Math.sin(KBT) + dz * Math.cos(KBT)];
+// (props phase 2, r4) the keyboard model lies flat on the desk (KB_Y = its bottom); KB_TOP(dx, dz) = a point on its key
+// tops (dx along x from its centre, dz toward Dad), KB_UP = the key tops' normal (for fingertip taps, grasp tipOn)
+export const KB_Y = DESK.top;
+const KBs = PC.keyboard.slope;
+export const KB_UP = [0, 1 / Math.hypot(1, KBs), KBs / Math.hypot(1, KBs)];
+export const KB_TOP = (dx, dz) => [PC.x + dx, KB_Y + PC.keyboard.top0 - KBs * dz, PC.keyboard.z + dz];
 // 5.25 in floppy disks (r4): a flat stack of n in paper sleeves on the desk's left, the top disk out of its sleeve
 export const FLOPPY = { x: gx(0.17), z: gz(-1.83), yaw: -12, n: 11, sleeve: 0.14, sleeveT: 0.0018, jacket: 0.133, jacketT: 0.0013 };
 const scrY = DESK.top + PC.case.h + PC.monitor.foot + PC.monitor.h / 2;
@@ -56,11 +59,12 @@ export const SCREEN = { c: [PC.x, scrY, scrZ], w: PC.screen.w, h: PC.screen.h, n
 export const screenPoint = (u, v, lift = 0) => [SCREEN.c[0] + (u - 0.5) * SCREEN.w, SCREEN.c[1] + (0.5 - v) * SCREEN.h, SCREEN.c[2] + lift];   // u right, v down, as read
 export const screenCorners = () => [screenPoint(0, 0), screenPoint(1, 0), screenPoint(1, 1), screenPoint(0, 1)];
 // THE SCREEN (r4, 2026-11-26, Jade: "make something of a code block, it would have been dark blue text on grey, and he
-// was renaming a variable. it was DOS era"): one canonical 80 x 25 DOS text screen (build.js dosScreen(), drawn in code),
-// dark blue text on light grey, the same in every shot that sees the glass. The program is C (ASSUMED, flag: Turbo C era,
-// could as well be BASIC): Dad has renamed `total` to `sum`; one `total` is left, on row 10: THE WORD she points at.
+// was renaming a variable. it was DOS era"; r4 decisions: "it wasn't c, this was qbasic era ... a weekend project with
+// his friend, a real time chat application"): one canonical 80 x 25 screen (build.js dosScreen(), drawn in code), the
+// MS-DOS QBasic editor with CHAT.BAS, dark blue text on light grey, the same in every shot that sees the glass. Dad has
+// renamed `txt$` to `outLine$`; one `txt$` is left, on row 10 (`PRINT #1, txt$`): THE WORD she points at.
 // The text area fills the glass less a black overscan border; cell (col, row) centre in glass u, v (0..1, as read):
-export const DOS = { cols: 80, rows: 25, u0: 0.035, u1: 0.965, v0: 0.04, v1: 0.96, wordRow: 10, wordCol: 18, word: 'total', was: 'total', now: 'sum' };
+export const DOS = { cols: 80, rows: 25, u0: 0.035, u1: 0.965, v0: 0.04, v1: 0.96, wordRow: 10, wordCol: 19, word: 'txt$', was: 'txt$', now: 'outLine$' };
 export const dosCell = (col, row) => [DOS.u0 + (col + 0.5) * (DOS.u1 - DOS.u0) / DOS.cols, DOS.v0 + (row + 0.5) * (DOS.v1 - DOS.v0) / DOS.rows];
 export const TEXT = { lines: DOS.rows, top: DOS.v0, pitch: (DOS.v1 - DOS.v0) / DOS.rows, left: DOS.u0 };
 // WORD: u0..u1 = the word's extent, v = its baseline (the gold underline sits on it); the word's body is one pitch above v
@@ -96,7 +100,11 @@ export const legWidth = (r) => { const L = CHAIR.leg, t = Math.min(1, Math.max(0
 export const spokePoint = (k, r = CHAIR.spokeR, at = CHAIR.at, spoke0 = CHAIR.spoke0) => { const a = spokeAngle(k, spoke0) * Math.PI / 180; return [at[0] + r * Math.cos(a), legTop(r), at[1] + r * Math.sin(a)]; };
 // where her socked feet put their weight (r4): the middle of each sole (between the heel and the ball) square on the top
 // of a leg, 0.21 m out from the hub, spoke 1 (front-left) and spoke 0 (back-left)
-export const FEET = { r: 0.21, front: spokePoint(1, 0.21), back: spokePoint(0, 0.21) };
+// r4 decisions (2026-11-26, Jade: "make sure her body doesn't clip thru her dad's body"): 0.21 -> 0.31 m, out near the
+// leg tips (lateral 0.25 m from the hub), so her shins pass OUTSIDE the seat's side (seat half-width 0.23 m) and her body
+// stands beside Dad's left arm instead of inside it (measured: layout/sets/basement90/check_bodies.mjs, NOTES.md)
+export const FEET_R = 0.32;
+export const FEET = { r: FEET_R, front: spokePoint(1, FEET_R), back: spokePoint(0, FEET_R) };
 
 // Jade's diagram draws nothing else: the steel shelf, the boxes, the water heater and the modern washer are gone
 // (2026-11-26; flagged). "oldfashioned washer (50's tech), no dryer": ASSUMED a 1950s round-tub wringer washer on legs
@@ -124,7 +132,10 @@ export function deskTerminator(y = 0) { const ez = DESK.z1, ey = DESK.top, top =
   return { umbra: +hit(top).toFixed(3), full: +hit(bot).toFixed(3) }; }
 
 // bulb centre: under the joist (bottom at h - joist depth), below its junction box and lampholder
-export const BULB_P = [ROOM.bulb.x, ROOM.h - ROOM.joist.d - ROOM.bulb.box - ROOM.bulb.holder - ROOM.bulb.r, ROOM.bulb.z];
+// props phase 2 (r4): the downloaded lampholder (0.165 m with its chain; the receptacle's mouth 0.055 m below its top) and
+// bulb (0.100 m; screwed in 0.025 m; glass centre 0.0625 m from its base end)
+export const SOCKET = { h: 0.1654, receptacle: 0.055, screwIn: 0.025, glassC: 0.0625 };
+export const BULB_P = [ROOM.bulb.x, ROOM.h - ROOM.joist.d - ROOM.bulb.box - SOCKET.receptacle + SOCKET.screwIn - SOCKET.glassC, ROOM.bulb.z];
 export const LIGHTS = {
   screen: { kind: 'CRT screen (blue, area source); the BEAM (the light that matters)', pos: [SCREEN.c[0], SCREEN.c[1], SCREEN.c[2] + 0.02], aim: [SCREEN.c[0], SCREEN.c[1] - 0.2, SCREEN.c[2] + 2.5], color: BEAM.color },
   ceiling: { kind: 'bare incandescent bulb in a porcelain pull-chain lampholder under a joist (Jade, 2026-11-26), warm, ON: the room ambient', pos: BULB_P, color: 0xffd9a0 },
@@ -134,11 +145,16 @@ export const LIGHTS = {
 // recurring figure geometry: Jade standing on the two spokes at Dad's left. r4: each foot's weight point (0.3 of the
 // foot length ahead of the ankle, between the heel and the ball) sits square on the top of its leg at FEET; the sole is
 // 3 mm (the sock) above that top. Her feet point the way she faces (yaw, deg), so each foot crosses its leg.
-export function jadeOnSpokes(yaw = 166) { const g = legOf('jade7'), FL = 0.155 * g.H, a = yaw * Math.PI / 180, fd = [Math.sin(a), 0, Math.cos(a)];
-  const ankleAt = (c) => [c[0] - fd[0] * 0.3 * FL, c[1] + g.ankleH + 0.003, c[2] - fd[2] * 0.3 * FL];
-  const front = ankleAt(FEET.front), back = ankleAt(FEET.back);
-  const pelvis = [(front[0] + back[0]) / 2 - 0.02, 0, (front[2] + back[2]) / 2 + 0.02];
-  const span = Math.hypot(front[0] - back[0], front[2] - back[2]) / 2;
-  const drop = Math.sqrt(Math.max(g.reach * g.reach * 0.97 - span * span - 0.02 * 0.02, 0.01));
-  pelvis[1] = Math.max(front[1], back[1]) + drop;
-  return { pelvis, ankles: { front, back }, FL, g }; }
+// out: the pelvis this far further out to Dad's left (-x) than the feet (r4: her legs lean in a little, feet on the leg
+// tips, hips clear of his arm)
+// SOLE_GAP: ankle height above the leg top beyond the body's ankleH (r4: 0.003 -> 0.016: the mesh sock's sole bulges 1.3 cm below
+// the heel-toe line under the arch; measured 12.7 mm into the leg at 0.003, check_bodies.mjs)
+const SOLE_GAP = 0.016;
+export function jadeOnSpokes(yaw = 166, out = 0.02, back = -0.02) { const g = legOf('jade7'), FL = 0.155 * g.H, a = yaw * Math.PI / 180, fd = [Math.sin(a), 0, Math.cos(a)];
+  const ankleAt = (c) => [c[0] - fd[0] * 0.3 * FL, c[1] + g.ankleH + SOLE_GAP, c[2] - fd[2] * 0.3 * FL];
+  const fr = ankleAt(FEET.front), bk = ankleAt(FEET.back);
+  const pelvis = [(fr[0] + bk[0]) / 2 - out, 0, (fr[2] + bk[2]) / 2 - back];
+  const span = Math.hypot(fr[0] - bk[0], fr[2] - bk[2]) / 2, lean = Math.hypot(out, back);
+  const drop = Math.sqrt(Math.max(g.reach * g.reach * 0.90 - span * span - lean * lean, 0.01));
+  pelvis[1] = Math.max(fr[1], bk[1]) + drop;
+  return { pelvis, ankles: { front: fr, back: bk }, FL, g }; }

@@ -5,8 +5,12 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, applyBeamMask } from '../_beam.js';
 import { artFromCanvas } from '../_art.js';
-import { HOUSE, ROOM, DESK, PC, KB_Y, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, DOS, FLOPPY, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
+import { HOUSE, ROOM, DESK, PC, KB_Y, SOCKET, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, DOS, FLOPPY, CHAIR, spokePoint, FEET, PROPS, GROUP, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
 import { wall, hexa, polyline, swivelChair, r3, hideLabels, footwear } from './kit.js';
+import { loadProps, prop } from '../_props.js';
+// props phase 2 (r4 decisions, 2026-11-26): downloaded models for the keyboard, the bulb and the pull-chain lampholder
+// (work/props_audit.md; credits in docs/credits_tools.md)
+await loadProps(['keyboard', 'bulb', 'pull_chain_socket']);
 import { FOOTWEAR } from './house.js';
 
 const CONC = { grey: 0.62, col: 0x77756f }, BLOCK = { grey: 0.7, col: 0x8a8880 }, WOOD = { grey: 0.5, col: 0x6b5236 }, WOOD_D = { grey: 0.36, col: 0x4a3826 };
@@ -58,45 +62,58 @@ function room(shot = {}) {
   // the ceiling light (Jade 2026-11-26: bare bulb, porcelain pull-chain holder): junction box under the joist, white porcelain pull-chain lampholder, bare bulb, chain
   const B = ROOM.bulb, jb = h - J.d, lampOn = shot.light?.ceiling !== false;
   g.add(tag(cyl(0.05, 0.05, B.box, { grey: 0.55, col: 0x7a7a78 }, [B.x, jb - B.box / 2, B.z], null, 8), 'ceiling light (porcelain lampholder)'));
-  g.add(tag(cyl(0.045, 0.03, B.holder, { grey: 0.95, col: 0xece8de }, [B.x, jb - B.box - B.holder / 2, B.z], null, 16), 'ceiling light (porcelain lampholder)'));
-  g.add(tag(ball(B.r, { grey: 0.9, col: 0xfff0d0, emit: lampOn ? LIGHTS.ceiling.color : undefined, emitI: 2.2, flatEmit: 0.97, noCast: true }, [BULB_P[0], BULB_P[1], BULB_P[2]], [1, 1.3, 1]), lampOn ? 'ceiling bulb (on)' : 'ceiling bulb (off)'));
-  g.add(tag(cyl(0.0025, 0.0025, 0.45, DARK, [B.x + 0.035, jb - B.box - 0.03 - 0.225, B.z], null, 6), 'pull chain'));
+  // props phase 2 (r4): the lampholder is Poly Haven "Pull Chain Light Socket" (CC0; its own short chain; porcelain disc
+  // on top, the receptacle 5.5 cm below its top), the bulb Poly Haven "Lightbulb 01" (CC0) screwed in upside down 2.5 cm
+  // deep. Both hang from the junction box; BULB_P (layout.js) is the glass's centre. Fallback: the old primitives.
+  const top = jb - B.box, holder = prop('pull_chain_socket', { at: [B.x, top - SOCKET.h, B.z], label: 'ceiling light (porcelain lampholder)' });
+  if (holder) g.add(holder); else g.add(tag(cyl(0.045, 0.03, B.holder, { grey: 0.95, col: 0xece8de }, [B.x, jb - B.box - B.holder / 2, B.z], null, 16), 'ceiling light (porcelain lampholder)'));
+  const glassLook = { grey: 0.9, col: 0xfff0d0, ...(lampOn ? { emit: LIGHTS.ceiling.color, emitI: 2.2, flatEmit: 0.97 } : {}), noCast: true };
+  const bulb = prop('bulb', { at: [B.x, top - SOCKET.receptacle + SOCKET.screwIn, B.z], rot: [180, 0, 0], label: lampOn ? 'ceiling bulb (on)' : 'ceiling bulb (off)', lookMat: { lightbulb_01_glass: glassLook } });
+  if (bulb) g.add(bulb); else g.add(tag(ball(B.r, { ...glassLook, emitI: 2.2 }, [BULB_P[0], BULB_P[1], BULB_P[2]], [1, 1.3, 1]), lampOn ? 'ceiling bulb (on)' : 'ceiling bulb (off)'));
   return g;
 }
 
-// THE CANONICAL SCREEN (r4, Jade 2026-11-26): an 80 x 25 DOS text screen, dark blue text on light grey (Jade), drawn in
-// code so every shot shows the same characters. The editor's top line names the file and the cursor position; the bottom
-// line is the key help. The C program (ASSUMED content, flag): the class average from a file of scores. Dad has renamed
-// the variable `total` to `sum` (declaration, initialiser, loop); he missed the one on row 10, `(float) total / n`:
-// THE WORD her finger is on (DOS.wordRow / wordCol in layout.js; checked against the text below at build time).
+// THE CANONICAL SCREEN (r4 decisions, Jade 2026-11-26: "it wasn't c, this was qbasic era, and he wasn't a professor. he
+// was working on a weekend project with his friend, a real time chat application that was two side by side
+// wordperfect-like environments"; earlier: "dark blue text on grey ... he was renaming a variable. it was DOS era"):
+// the MS-DOS QBasic 1.1 editor (c. 1990), 80 x 25, drawn in code so every shot shows the same characters. Menu bar (row
+// 0), the CHAT.BAS window with its border and scroll bar, the 2-line Immediate window, the status line with the cursor's
+// line:column. Colours: Jade's dark blue text on light grey (QBasic's Options > Display sets them; its default is the
+// reverse, grey on blue: flagged). The program (real QBasic 1.1 syntax; ASSUMED content, flag): the main loop of a
+// split-screen chat over the modem on COM1, his keystrokes in the left pane, the friend's in the right (the panes are
+// drawn by SUBs DrawPanes / PutPane, off screen). Dad has renamed `txt$` to `outLine$` (Search > Change, one by one) and
+// missed the one on row 10, `PRINT #1, txt$` (it would send his friend an empty line): THE WORD her finger is on
+// (DOS.wordRow / wordCol in layout.js; checked against the text below at build time). Rows are drawn exactly as given
+// (border and box characters included); null rows are the inverse bars.
 export const DOS_TEXT = [
-  null,   // row 0: the title bar (drawn inverse)
-  '/* GRADES.C -- average of the class scores */',
-  '#include <stdio.h>',
-  '',
-  'int readscores(int s[]);',
-  '',
-  'main()',
-  '{',
-  '    int score[40], n, i;  long sum = 0;  float avg;',
-  '    n = readscores(score);  for (i = 0; i < n; i++) sum += score[i];',
-  '    avg = (float) total / n;',
-  '    printf("Average: %.1f\\n", avg);',
-  '    return 0;',
-  '}',
-  '',
-  'int readscores(int s[])',
-  '{',
-  '    FILE *f = fopen("SCORES.DAT", "r");  int k = 0;',
-  '    while (k < 40 && fscanf(f, "%d", &s[k]) == 1) k++;',
-  '    fclose(f);',
-  '    return k;',
-  '}',
-  '',
-  '',
-  null,   // row 24: the key-help line (drawn inverse)
+  null,   // row 0: the menu bar (drawn inverse)
+  '┌────────────────────────────────── CHAT.BAS ──────────────────────────────────↑',
+  '│DECLARE SUB DrawPanes ()                                                      ░',
+  '│DECLARE SUB PutPane (pane%, t$)                                               ░',
+  '│\' CHAT.BAS - split-screen chat over the modem (COM1, 2400 baud)               ░',
+  '│OPEN "COM1:2400,N,8,1,RS,CS0,DS0,CD0" FOR RANDOM AS #1                        ░',
+  '│CLS : DrawPanes                                                               ░',
+  '│DO                                                                            ░',
+  '│    k$ = INKEY$                                                               ░',
+  '│    IF k$ = CHR$(13) THEN                                                     ░',
+  '│        PRINT #1, txt$                                                        ░',
+  '│        PutPane 1, outLine$: outLine$ = ""                                    ░',
+  '│    ELSEIF k$ = CHR$(27) THEN                                                 ░',
+  '│        EXIT DO                                                               ░',
+  '│    ELSEIF k$ <> "" THEN                                                      ░',
+  '│        outLine$ = outLine$ + k$                                              ░',
+  '│        LOCATE 23, 2: PRINT outLine$;                                         ░',
+  '│    END IF                                                                    ░',
+  '│    IF LOC(1) > 0 THEN PutPane 2, INPUT$(LOC(1), #1)                          ░',
+  '│LOOP                                                                          ░',
+  '│CLOSE #1: END                                                                 ░',
+  '├───────────────────────────────── Immediate ──────────────────────────────────┤',
+  '│                                                                              │',
+  '│                                                                              │',
+  null,   // row 24: the status line (drawn inverse)
 ];
-const DOS_BAR = ' C:\\WORK\\GRADES.C                                     Line 10  Col 24  Insert ', DOS_HELP = ' F1 Help  F2 Save  F3 Open  F9 Make  F10 Menu  Alt-X Exit';
+const DOS_BAR = '  File  Edit  View  Search  Run  Debug  Options                              Help ';
+const DOS_HELP = ' <Shift+F1=Help> <F6=Window> <F2=Subs> <F5=Run> <F8=Step>              00009:023 ';
 const DOS_GREY = '#aaaaaa', DOS_BLUE = '#0000aa';   // the VGA text palette's light grey (7) and blue (1)
 let _dos = null;
 function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, greys for flat / label / form, edges for line / contour
@@ -107,8 +124,18 @@ function dosScreen() {   // -> art texture set (sets/_art.js): colour for lit, g
   const x0 = DOS.u0 * W, y0 = DOS.v0 * Hh, cw = (DOS.u1 - DOS.u0) * W / DOS.cols, ch = (DOS.v1 - DOS.v0) * Hh / DOS.rows;
   g.fillStyle = DOS_GREY; g.fillRect(x0, y0, cw * DOS.cols, ch * DOS.rows);
   g.textBaseline = 'middle'; g.font = `bold ${Math.round(ch * 0.8)}px "DejaVu Sans Mono", "Liberation Mono", monospace`;
+  // the IDE's window frame: the box-drawing characters as full-cell strokes (they join up, as in VGA text mode); the
+  // scroll-bar track (light shade) as a dither
+  const lw = Math.max(2, ch * 0.09);
+  const boxChar = (t, x, y, fg) => { const mx = x + cw / 2, my = y + ch / 2; g.fillStyle = fg;
+    const H = (a, b) => g.fillRect(a, my - lw / 2, b - a, lw), Vv = (a, b) => g.fillRect(mx - lw / 2, a, lw, b - a);
+    switch (t) { case '─': H(x, x + cw); return true; case '│': Vv(y, y + ch); return true;
+      case '┌': H(mx - lw / 2, x + cw); Vv(my - lw / 2, y + ch); return true; case '┐': H(x, mx + lw / 2); Vv(my - lw / 2, y + ch); return true;
+      case '├': Vv(y, y + ch); H(mx, x + cw); return true; case '┤': Vv(y, y + ch); H(x, mx); return true;
+      case '░': for (let yy = 0; yy < 8; yy++) for (let xx = 0; xx < 4; xx++) if ((xx + yy) % 2 === 0) g.fillRect(x + (xx + 0.25) * cw / 4, y + yy * ch / 8, cw / 8, ch / 16); return true;
+      default: return false; } };
   const put = (row, text, fg, bg) => { if (bg) { g.fillStyle = bg; g.fillRect(x0, y0 + row * ch, cw * DOS.cols, ch); } g.fillStyle = fg;
-    for (let k = 0; k < Math.min(text.length, DOS.cols); k++) { const t = text[k]; if (t === ' ') continue; const m = g.measureText(t).width; g.save(); g.translate(x0 + k * cw + cw / 2, y0 + row * ch + ch * 0.54); g.scale(Math.min(1, cw * 0.92 / m), 1); g.fillText(t, -m / 2, 0); g.restore(); } };
+    for (let k = 0; k < Math.min(text.length, DOS.cols); k++) { const t = text[k]; if (t === ' ') continue; if (boxChar(t, x0 + k * cw, y0 + row * ch, fg)) continue; const m = g.measureText(t).width; g.save(); g.translate(x0 + k * cw + cw / 2, y0 + row * ch + ch * 0.54); g.scale(Math.min(1, cw * 0.92 / m), 1); g.fillText(t, -m / 2, 0); g.restore(); } };
   put(0, DOS_BAR.padEnd(DOS.cols), DOS_GREY, DOS_BLUE); put(DOS.rows - 1, DOS_HELP.padEnd(DOS.cols), DOS_GREY, DOS_BLUE);
   DOS_TEXT.forEach((t, r) => { if (t != null) put(r, t, DOS_BLUE); });
   // the text cursor (an underline block) just after THE WORD, where he stopped
@@ -155,11 +182,10 @@ function furniture(shot) {
   // the word is the texture's own characters
   { const a = screenPoint(WORD.u0, WORD.v - TEXT.pitch * 0.95, 0.0012), b = screenPoint(WORD.u1, WORD.v - TEXT.pitch * 0.05, 0.0012);
     g.add(tag(box(b[0] - a[0], a[1] - b[1], 0.0008, { grey: 1, col: 0xffffff, only: ['label'], noCast: true }, [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, a[2]]), 'THE WORD (the one he missed)')); }
-  // (hold pass 2026-11-26) the keyboard is tipped 6 deg toward Dad; its centre is raised so its lowest edge rests ON the
-  // desk (was centred at half its height: the tipped edges sank 9 mm into the top), and stands on its two fold-out feet
-  // at the back (one mesh with the body: a tipped box on one edge would rock flat). KB_Y in layout.js, shared with the taps.
-  { const KB = PC.keyboard, fh = KB.d * Math.sin(rad(KB.tilt)), fz = KB.z - KB.d / 2 * Math.cos(rad(KB.tilt)) + 0.012;
-    g.add(tag(mergeMeshes([box(KB.w, KB.h, KB.d, BEIGE, [x, KB_Y, KB.z], [KB.tilt, 0, 0]), ...[-1, 1].map((s) => box(0.03, fh, 0.016, BEIGE, [x + s * KB.w * 0.4, D.top + fh / 2, fz]))], BEIGE), 'keyboard')); }
+  // props phase 2 (r4): the keyboard is the downloaded IBM-style model (CC BY), flat on the desk, key tops sloping down
+  // toward Dad (its own wedge); KB_TOP / KB_UP in layout.js follow its key tops for the taps. Fallback: the old box.
+  { const KB = PC.keyboard, m = prop('keyboard', { at: [x, KB_Y, KB.z], label: 'keyboard' });
+    if (m) g.add(m); else g.add(tag(box(KB.w, KB.h, KB.d, BEIGE, [x, KB_Y + KB.h / 2, KB.z]), 'keyboard')); }
   const PR = PC.printer; g.add(tag(box(PR.w, PR.h, PR.d, BEIGE, [PR.x, D.top + PR.h / 2, PR.z]), 'dot-matrix printer'));
   g.add(tag(box(PR.w * 0.62, 0.3, 0.004, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, D.top + PR.h + 0.1, PR.z - 0.07], [-22, 0, 0]), 'fanfold paper'));
   g.add(tag(box(0.24, 0.05, 0.28, { grey: 0.95, col: 0xe8e4d8 }, [PR.x, 0.025, D.z1 + 0.25]), 'fanfold paper'));
