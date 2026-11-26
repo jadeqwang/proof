@@ -2,6 +2,73 @@
 
 **Read "2026-11-26: round-3 decisions" first (just below). It overrides every older section where they differ.**
 
+## 2026-11-26 (r4): Jade's r3 review of V1f and V1g (overrides the round-3 sections where they differ)
+
+Files: new `joinery.js` (hall-door leaves + hinges + architraves, bookcases, armchairs, slippers); `build.js` (narrow
+edits: imports, the hall-door leaves / bookcase / armchair calls, slippers after staging, jamb linings, suite colour);
+`shots.js` (V1f restaged, the CROWD staging, socks, four new REF shots). The bookcases wear the background-art agent's
+fixed spine textures (`art.js` `spineArt`) on every upright book; its old spine planes went with the old bookcase block.
+
+**Hinges (V1f: "the hinges look like a messed up notebook").** Two causes, both fixed. (1) The jamb frame boxes shared
+the plane of the wall's reveal; the z-fight drew a comb of pixel noise down both jambs in line/flat/lit (the painters
+copied it). The jamb and head linings now sit inside the opening, 2 cm proud of the reveal. (2) Each pair of leaves was
+two copies hinged at the same jamb 4.5 cm apart, glazing bars overlapping. Now each pair really folds: leaf A hangs on the
+jamb and stands open 90 deg into the hall; leaf B hangs on A's far edge and folds flat back against A's inner face (13 mm
+off it, the knuckle's diameter). Hinges: cast-brass loose-pin butt hinges, 100 x 75 mm, five knuckles, a ball-tipped pin,
+two plates mortised into the jamb lining / the leaf edges, three slotted screws per plate; three per leaf at the usual
+setting-out (top hinge 180 mm below the head, bottom 250 mm above the floor, the third halfway), six per pair. Leaves:
+teak-stained, 45 mm, stiles 95 mm, a raised bottom panel, a lock rail, a glazed sash of 5 x 2 lites with beads; the
+meeting leaf (B) carries a lever handle on a backplate, a keyhole and flush bolts. Architraves with a bead and plinth
+blocks on both faces, a teak threshold. Brass, the leaf construction and the hinge setting-out are standard 1930s
+practice, my choice (no photo of the actual doors). See REF_hinges, REF_hinge_close.
+
+**V1f restaged: over Mother's shoulder from the hall (Jade's suggestion).** Camera (2.9, 1.72, -7.05), 30 mm, aimed at her
+head. Sight lines: the west bookcase run ends at x 0.18, 0.07 m short of the west jamb, so from the hall only a point east
+of the line through her spot (-1.77, -3.89) and the bookcase's corner (0.18, -5.72) can see her; every adult stands east
+of it (clearance at the feet: Mother 0.81 m, uncle 0.29, grandmother 1.39, aunt 1.80). All four turn their bodies to her
+and look at her head (`head.look: 'jade3:head'`; eyes follow once the gaze module is on): the grandmother stooping on the
+threshold (1.97, -6.12), a hand at her mouth; the aunt at the left (2.39, -6.12), leaning in, a hand at her mouth;
+Mother nearest the camera (2.16, -6.81), frame right, the back of her head and her left shoulder; the uncle beyond
+Mother's right shoulder (1.58, -6.76), peering over. None is in the room (feet at z <= -6.10, the threshold line). The
+child, small in the sun at the couch group, stays absorbed in her paper (she looks up in V1g).
+- **Flag:** Mother has stepped back ~0.6 m into the hall and ~1.4 m east from her V1e spot at the west end of the doorway
+  (her hand on the jamb). From the west end nobody can be over her shoulder AND see the child (the bookcase end is in the
+  way). REF_plan / REF_wide now show this staging.
+
+**Slippers (Jade: "socks inside slippers, not shoes indoors").** Every adult in every shanghai shot (Mother, uncle,
+aunt, grandmother) wears winter cotton-padded mules (棉拖鞋) over socks, built on each figure's heel/toe/ankle points
+(`joinery.js slippers`): a thick pale sole, a padded dome over the toes and instep, the heel open so the sock shows.
+Uppers: Mother black corduroy, grandmother maroon velvet, aunt navy, uncle dark brown on a dark rubber sole. Socks via
+`costume.sock`: Mother grey-beige, grandmother dark brown wool, aunt pale mauve, uncle pale grey nylon (costume audit).
+Colours are my choice. **The painting prompts still say "black cotton cloth shoes"** (r3 `_prompts/make_prompts.py`,
+Mother; `cast/strangers/uncle/uncle_v1.txt`): r4 prompts must say socks in cotton-padded slippers. The toddler's feet are
+skin-coloured in the guides (the engine draws a 'daughter' with bare feet); the prompts give her thick knitted socks.
+
+**V1g: books vs shelving, armchairs.** Bookcases rebuilt (`joinery.js bookcases`), per unit: a set-back plinth, a
+two-door cupboard with raised panels, brass knobs and a keyhole to 0.84 m, a counter ledge with a rounded nosing
+(0.84-0.87), then a glazed two-door case to 2.0 m (slim frames, a glazing bar, knobs), a pale back inside, two shelf boards
+(1.245, 1.62) with pale front edges, pale upright edges, a cornice. Books: individual spines on three decks, 1980s sizes
+(32开 0.185, 大32开 0.203-0.21, 16开 0.26, small 0.15), mostly paper spines in cream / off-white / pale green / blue / grey /
+ochre / brick red, cloth-bound runs in navy / dark green / maroon / brown; horizontal stacks, gaps, a leaning book. No
+shelf ornaments (the background-art agent's). Armchairs (`joinery.js armchair`): a 1950s-80s Shanghai upholstered
+armchair: four tapered dark legs, a sprung base with a welt, a loose seat cushion with piping, a curved reclined back with
+a cushion and a top roll, rolled arms with piped scroll fronts, crocheted covers over the back and both arm rolls.
+- **Colour (my choice, flag):** the suite (couch and three armchairs) is now a muted olive-green wool (0x5c6a4e). The old
+  khaki was the plaster's value in the shade: in V1g the L armchair behind her read as wall, which is why the r3 painting
+  invented an armchair and moved the books. Jade has never said the colour: question below.
+- In V1g the frame behind her now holds the L armchair (green back, cushion, crocheted cover) and the bookcase's cupboard
+  doors and ledge; no books are in frame at her head's height.
+
+**References added:** REF_hinges, REF_hinge_close, REF_shelves, REF_armchairs (not shots).
+
+**Repaint in r4 (from these changes):** V1f (new camera and staging, hinges, slippers), V1g (armchair and bookcase), and,
+for the suite colour / bookcases / slippers, every shot that shows them: V1a, V1b, V1c, V1d_8_end, V1e, V1h (the corner of
+the L armchair, top left). PB1: not affected.
+
+**Questions for Jade (proposed):**
+- sh_suite_colour: what colour were the couch and armchairs? (a) muted olive-green wool [as built] (b) brown / rust
+  (c) khaki-beige with white covers (d) not sure. Img: shanghai86/REF_armchairs_lit.png
+
 ## 2026-11-26: round-3 decisions
 
 Jade's answers (`work/decisions/JADE_R3_DECISIONS.md`, verbatim) and what was built. Files: `layout.js`, `build.js`,
@@ -764,3 +831,12 @@ and measured hits. Times written elsewhere in this file before this section are 
   ("sat in"), V1d_2 41.43 ("ripped"), V1d_4 43.34 ("Ever tinier"), V1d_8 45.43 ("repeating"), V1e 48.14, V1f 50.52 ("The
   adults"), V1g 53.93 ("What's so funny?"), V1h 55.15 ("Nobody")-58.55; PB1 58.55-68.34 (break bars 1-4). The sun
   (21 Dec 09:30) is a clock time, not a song time: unchanged.
+
+## 2026-11-26: fixed background art and clothing decals (Jade: art and logos the same in every shot)
+- shanghai86/art.js: the framed painting = layout/assets/art/shanghai86/sh_painting.png (shan-shui landscape: SUBJECT
+  INVENTED; Jade said "one large framed traditional Chinese artwork"); the three scrolls drawn in code with real
+  public-domain texts (z -1.85 海内存知己, -1.3 宁静致远 signed 丙寅冬, -0.75 天涯若比邻: CHOICE INVENTED); the calendar
+  = December 1986 grid in code + sh_calendar_photo.png (West Lake; the calendar itself is an agent invention); the clock
+  face in code at 9:30. North-wall bookshelf spines: fixed greeked spine textures (no readable titles).
+- Only REF_wide sees the west-wall art; the spines show in V1a, V1c, V1e, V1f, V1g, V1d_8_end.
+- Not textured (questions): upholstery (paintings alternate floral / plain), lace antimacassars.

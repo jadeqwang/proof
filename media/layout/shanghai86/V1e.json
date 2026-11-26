@@ -205,7 +205,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   }
  },
  "lights": [
@@ -989,7 +989,7 @@
     "what": "laid on the table",
     "gen": 7,
     "size_cm": [
-     2.2,
+     2.3,
      1.4
     ],
     "world": [
@@ -1027,7 +1027,7 @@
      [
       "11",
       [
-       1,
+       0.9,
        0.5
       ]
      ]

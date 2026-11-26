@@ -326,7 +326,7 @@
   }
  ],
  "warnings": [],
- "intent": "Outside: frontal, level, locked off, across the coffee table from the window side. She sits cross-legged at the table's corner in the 08:30 light, holding up a TINY piece of 草纸 (~2 x 3 cm) between the fingertips of both hands, in the middle of ripping it in half again (r3, Jade); the big stack and the torn bits on the table, the stray bit in her hair; the north wall and the hall doors behind her.",
+ "intent": "Outside: frontal, level, locked off, across the coffee table from the window side. She sits cross-legged at the table's corner in the cheated 09:30 light, holding up a TINY piece of 草纸 (~2 x 3 cm) between the fingertips of both hands, in the middle of ripping it in half again (r3, Jade); the big stack and the torn bits on the table, the stray bit in her hair; the north wall and the hall doors behind her.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
   "travel_dir": [
@@ -998,7 +998,7 @@
     "what": "rip half",
     "gen": 7,
     "size_cm": [
-     2.3,
+     2.2,
      1.8
     ],
     "world": [
@@ -1012,7 +1012,7 @@
     "gen": 7,
     "size_cm": [
      2.2,
-     1.5
+     1.4
     ],
     "world": [
      -1.6717884595687447,

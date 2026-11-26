@@ -12,6 +12,8 @@
 // from Jade's 09:30 so her face is lit) from the SE (34.6 deg east of the facade normal), 17 deg high, slants in
 // north-west across the couch group: her face and hands, the table, the steam and the uncle's hands are lit.
 import { PLACES, DOOR, TABLE } from './layout.js';
+import { HINGE_Y } from './joinery.js';
+const HINGE_MID = HINGE_Y(DOOR.h - 0.01)[1];
 
 const deg = (r) => r * 180 / Math.PI;
 const yawTo = (from, to) => deg(Math.atan2(to[0] - from[0], to[1] - from[1]));   // yaw 0 faces +z (the windows), 90 faces +x
@@ -25,7 +27,7 @@ const BALL = [H[0], H[1] + 0.024, H[2]];
 // r3 (Jade: "watch face should be visible"; the face sits on the back of the wrist, opposite the palm): the hands are
 // swapped so the WATCH hand is the one palm-DOWN: his RIGHT hand cups palm-up, his LEFT (wristwatch) pinches from above,
 // so its back of the wrist and the watch face turn up toward her
-const uncleShape = (o = {}) => ({ at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.42 }, yaw: UYAW, spine: { bend: 40 }, head: { look: BALL },
+const uncleShape = (o = {}) => ({ costume: { sock: 0xb8bcc0 }, at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.42 }, yaw: UYAW, spine: { bend: 40 }, head: { look: BALL },
   R: { to: H, hand: { shape: 'cup', spread: 10, curl: { index: [20, 22, 10], middle: [24, 26, 12], ring: [28, 30, 14], little: [32, 34, 16] } }, palm: 'up', fingers: [UF[0], 0.05, UF[1]] },
   L: { tip: { finger: 'index', at: [BALL[0], BALL[1] + 0.013, BALL[2]] }, hand: { shape: 'pinch', spread: 14, curl: { middle: [40, 50, 25], ring: [55, 65, 32], little: [70, 80, 40] } }, palm: 'down', fingers: [UF[0], -0.35, UF[1]] }, ...o });
 // she sits CROSS-LEGGED at her spot (round 2 answers: cross-legged in BOTH scenes), watching his hands across the table
@@ -60,14 +62,27 @@ const V1H_MID = [HEAP[0], 0.43, HEAP[1] + 0.15];
 const DOORWAY_HEADS = [1.55, 1.3, -6.15];
 const M = PLACES.mother;
 const mother = (o = {}) => ({ at: M, legs: 'stand', yaw: yawTo(M, PLACES.jadeSit), spine: { bend: 3 }, head: { look: 'jade3:head' },
-  R: { to: [DOOR.x0 + 0.02, 1.12, DOOR.z - 0.04], hand: 'relax', palm: [-1, 0, 0], fingers: 'up' }, L: 'side', ...o });   // a hand on the west jamb
-// r3: all three in the hall, poking their heads in through the doorway (east of Mother), leaning in, laughing
-const GM = [1.75, -6.36], AU = [2.3, -6.42], UL = [2.05, -6.8];
-const grandma = { at: GM, legs: 'stand', yaw: yawTo(GM, PLACES.jadeSit), spine: { bend: 16, side: -8 }, head: { look: 'jade3:head', nod: -8 }, L: 'side', R: { to: 'self:mouth', off: [-0.05, -0.06, 0.04], hand: 'relax', palm: 'back' } };
-const aunt = { at: AU, legs: 'stand', yaw: yawTo(AU, PLACES.jadeSit), spine: { bend: 14, side: 14 }, head: { look: 'jade3:head', nod: -6 }, R: { to: 'self:mouth', off: [-0.07, -0.04, 0.02], hand: 'relax', palm: 'back' }, L: 'side' };
-const uncleLaugh = { at: UL, legs: 'stand', yaw: yawTo(UL, PLACES.jadeSit), spine: { bend: 12, side: 8 }, head: { nod: -14, look: 'jade3:head' }, L: 'side', R: 'side' };
+  R: { to: [DOOR.x0 + 0.02, 1.12, DOOR.z - 0.04], hand: 'relax', palm: [-1, 0, 0], fingers: 'up' }, L: 'side', costume: { sock: 0x8a8478 }, ...o });   // a hand on the west jamb
+// r4 (Jade, r3 review of V1f): "the adults should be peeking to look at where she currently sits, not just vaguely in the
+// room ... wearing socks inside slippers ... maybe the camera position should be over the shoulder shot of mom looking at
+// toddler into the room and we see the backs of their heads". They stay in the hall / on the threshold (r3: not in the
+// room). The west bookcase run ends 0.07 m from the west jamb, so only from the doorway's middle can anyone see her
+// spot (-1.77, -3.89) past the bookcase's end (corner (0.18, -5.72)): every adult stands east of that sight line (each
+// one's clearance is in NOTES), body turned to her and head looking at her head ('jade3:head'), leaning to peek.
+// Positions are set out from the V1f camera (V1F_CAM) along its line to her: Mother nearest the camera, right of the
+// line; the uncle beyond Mother's right shoulder, peering over; the grandmother stooping on the threshold left of the
+// line; the aunt at the left, leaning in. Mother has stepped back into the hall from her V1e spot (flag).
+const V1F_CAM = [2.9, 1.72, -7.05];
+const MV1F = [2.16, -6.81], GM = [1.97, -6.12], AU = [2.39, -6.12], UL = [1.58, -6.76];
+const JH = 'jade3:head';
+const SOCKS = { mama86: 0x8a8478, grandma: 0x4a3e36, aunt: 0xb8a89a, uncle: 0xb8bcc0 };   // winter cotton socks (my choice; uncle: pale grey nylon, costume audit)
+const sock = (who) => ({ costume: { sock: SOCKS[who] } });
+const motherPeek = { at: MV1F, legs: 'stand', yaw: yawTo(MV1F, PLACES.jadeSit), spine: { bend: 6 }, head: { look: JH }, L: 'side', R: 'side', ...sock('mama86') };
+const grandma = { at: GM, legs: 'stand', yaw: yawTo(GM, PLACES.jadeSit), spine: { bend: 24, side: -6 }, head: { look: JH }, L: 'side', R: { to: 'self:mouth', off: [-0.05, -0.06, 0.04], hand: 'relax', palm: 'back' }, ...sock('grandma') };
+const aunt = { at: AU, legs: 'stand', yaw: yawTo(AU, PLACES.jadeSit), spine: { bend: 14, side: 12 }, head: { look: JH }, R: { to: 'self:mouth', off: [-0.07, -0.04, 0.02], hand: 'relax', palm: 'back' }, L: 'side', ...sock('aunt') };
+const uncleLaugh = { at: UL, legs: 'stand', yaw: yawTo(UL, PLACES.jadeSit), spine: { bend: 10, side: 10 }, head: { look: JH }, L: 'side', R: 'side', ...sock('uncle') };
 const ALONE = (n, o) => ({ jade3: jadeSit(n, o), mama86: mother() });
-const CROWD = (n, o) => ({ jade3: jadeSit(n, o), mama86: mother(), aunt, uncle: uncleLaugh, grandma });
+const CROWD = (n, o) => ({ jade3: jadeSit(n, o), mama86: motherPeek, aunt, uncle: uncleLaugh, grandma });   // r4: the V1f staging
 const INSIDE = { hideParts: { jade3: ['head'] } };
 // the one inside camera over the paper: from her eyes down onto her hands and the clear patch at the table's corner
 const TC = [F[0] - 0.02, 0.45, F[2] - 0.03];
@@ -92,6 +107,19 @@ export const SHOTS = [
     intent: 'From inside, near the couch group, looking south-west out through bay 1: the white wicker chair at the west end of the balcony, the white-painted iron railing (handrail, square balusters, posts, on a low curb) along the front and returning at the end. Not a shot.' },
   { id: 'REF_beam', lens: 22, pos: [1.45, 1.35, -0.25], aim: [[-1.2, 0.5, -3.6], 0.5, 0.6], tissue: 8, figs: ALONE(8),
     header: 'REFERENCE: from the doors, along the light', intent: 'The light from beside the doors: the couch group, the table and the child in it, Mother in the doorway beyond it. Not a shot.' },
+
+  // r4 references (Jade's r3 review: real hinges on the hall doors, books vs shelving, the armchairs)
+  { id: 'REF_hinges', lens: 28, pos: [1.25, 1.35, -6.0], aim: [[0.3, 1.1, -6.75], 0.5, 0.5], tissue: 8, figs: {},
+    header: 'REFERENCE (r4): the west pair of hall doors folded back into the hall on brass butt hinges (jamb hinges + fold hinges), architraves',
+    intent: 'From the doorway looking north-west into the hall: leaf A on the west jamb (three loose-pin butt hinges: five knuckles, ball-tipped pin, plates, screws), leaf B folded flat back against it on three more at the far edge, its lever handle and flush bolts. Not a shot.' },
+  { id: 'REF_hinge_close', lens: 50, pos: [0.54, 1.18, -6.08], aim: [[0.28, HINGE_MID, -6.27], 0.5, 0.5], tissue: 8, figs: {},
+    header: 'REFERENCE (r4): one jamb hinge close up (100 x 75 mm brass butt hinge, five knuckles, ball-tipped pin, three screws per plate)', intent: 'Not a shot.' },
+  { id: 'REF_shelves', lens: 35, pos: [-1.35, 1.3, -3.2], aim: [[-1.35, 1.15, -6.1], 0.5, 0.5], tissue: 8, figs: ALONE(8),
+    header: 'REFERENCE (r4): the west bookcases, square on: plinth, panelled cupboards, ledge, glazed doors, shelf boards, books (individual spines)',
+    intent: 'Elevation of the west bookcase run behind her spot, with the L armchair in front of it. Not a shot.' },
+  { id: 'REF_armchairs', lens: 28, pos: [-0.2, 1.25, -2.1], aim: [[-1.75, 0.5, -3.6], 0.5, 0.5], tissue: 8, figs: ALONE(8),
+    header: 'REFERENCE (r4): the couch group: three upholstered armchairs (tapered legs, rolled arms, loose cushions, crocheted covers), couch, table',
+    intent: 'The couch group from the south-east: the L armchair north of the couch (behind her), the across armchair, the opposite armchair, the side table. Not a shot.' },
 
   // ---------------------------------------------------------------- verse 1, 0:29.7-0:58.6
   { id: 'V1a', t: [29.74, 31.58], lens: 50, state: 'A', orbit: { at: 'jade3:eyes', az: yawTo(PLACES.jadeStand, [H[0], H[2]]) + 70, el: 4, dist: 1.3 }, aim: ['jade3:eyes', 0.4, 0.42], focus: ['jade3'],
@@ -129,10 +157,9 @@ export const SHOTS = [
   { id: 'V1e', t: [48.14, 50.52], lens: 32, pos: [-0.5, 0.8, -0.25], aim: ['jade3:eyes', 0.3, 0.58], figs: ALONE(8), paper: AFTER,
     header: '0:48.1 "What on earth are you doing?": Mother in the doorway, beyond the reach of the beam',
     intent: 'Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, out of the light. Mother\'s face is drawn.' },
-  { id: 'V1f', t: [50.52, 53.93], lens: 40, pos: [JX + FWD[0] * 0.05, 0.56, JZ + FWD[1] * 0.1], aim: [[1.45, 1.2, -6.3], 0.5, 0.42], ...INSIDE,
-    figs: CROWD(8, { head: { look: ADULTS }, spine: { bend: 6, twist: 35 } }), paper: AFTER,
-    header: '0:50.5 INSIDE "The adults howl with laughter": heads poking in at the hall doorway (one gold ?)',
-    intent: 'Inside: from her eyes, low, across the room to the wide hall doorway: r3 (Jade: they were NOT in the room; it was a surprise to them): Mother at the doorway\'s west end, and beside her the grandmother, the aunt and the uncle poking their heads in from the hall, leaning in, laughing; faces left as paper. Out of the sun.' },
+  { id: 'V1f', t: [50.52, 53.93], lens: 30, pos: V1F_CAM, aim: ['jade3:head', 0.5, 0.6], figs: CROWD(8), paper: AFTER,
+    header: '0:50.5 "The adults howl with laughter": over Mother\'s shoulder from the hall, the backs of their heads, looking in at her',
+    intent: 'r4 (Jade): over-the-shoulder from the hall, just behind Mother (frame right, the back of her head and her left shoulder): the grown-ups crowd the wide doorway, NOT in the room, all turned to where the child sits and peeking past the end of the bookcase at her: the grandmother stooping on the threshold, a hand at her mouth, the aunt at the left leaning in, a hand at her mouth, the uncle beyond Mother\'s right shoulder peering over. We see the backs of their heads. Beyond them, down across the long room, the child small in the sun at the couch group, absorbed in her paper. Everyone in socks inside cotton-padded slippers. The folded-back hall doors on their brass hinges at the right edge.' },
   { id: 'V1g', t: [53.93, 55.15], lens: 85, orbit: { at: 'jade3:eyes', az: PLACES.jadeYaw, el: 0, dist: 1.6 }, aim: ['jade3:eyes', 0.5, 0.42], focus: ['jade3'],
     figs: ALONE(8, { head: { look: [JX + 1.2, 1.15, JZ + 0.7] } }), paper: AFTER,   // r3: a ~70 deg turn toward the doorway (frame right), the eyes do the rest
     header: '0:53.9 OUTSIDE "What\'s so funny?": her face, closer', intent: 'Outside: frontal, level, locked off, closer than V1c and shorter. Her eyes have come up off the paper toward the laughing adults at the hall doorway (behind her, to her left: frame right); nothing else moves in her face.' },

@@ -1,0 +1,17 @@
+canonical background art for layout/assets/art/shanghai86/sh_painting.png
+date: 2026-11-26 11:11
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1688x932, centre-cropped to aspect 1.806 (w/h), saved 1024x567
+refs: none
+assumed / invented: INVENTED: the painting's subject (a shan-shui landscape with a boat and pavilion) and its inscription; Jade said only "one large framed traditional Chinese artwork"
+
+prompt:
+IMPORTANT: make this image LANDSCAPE (not 16:9), roughly 1.81:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+A traditional Chinese painting (guohua) as it hung, mounted and framed, in a Shanghai flat in 1986: a horizontal
+shan-shui landscape in ink and light colour (pale ochre, soft blue-green) on xuan paper: misty mountain peaks rising
+on the left, a waterfall, pines on rocks in the foreground, a quiet river with one small fishing boat, a thatched
+pavilion; generous empty mist; a column of inscription in black running-script at the top right and one small red
+seal. The paper is mounted on a pale cream-beige silk border (narrow, even on all sides), the whole seen flat and
+straight on, edge to edge of the silk border. Slightly aged colours.
+post (2026-11-26): resized to 1024x567 max and saved as a 256-colour PNG to keep the public repo small

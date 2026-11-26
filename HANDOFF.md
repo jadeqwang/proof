@@ -836,3 +836,4 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   light grey, C program, missed rename `total` on line 10); B4/B5 mouth closed, lips and chin on the wrist. Glow now
   cool white (flagged). GOTCHA: the default render modes skip the painter guides; also run
   `--modes form,contour,light --nojson` after a default render.
+- **shanghai86 r4 agent done:** joinery.js (folding leaves really fold, brass butt hinges, jamb z-fight fixed), V1f over Mom's shoulder from the hall with all four adults looking at her; every adult in slippers over socks; V1g real glazed bookcases, individual spines, real armchairs; suite olive green (flagged).

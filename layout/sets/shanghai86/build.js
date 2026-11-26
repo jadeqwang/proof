@@ -5,6 +5,9 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { CAST } from '../../engine/mannequin.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam.js';
+import * as ART from './art.js';   // 2026-11-26: fixed wall art and spines
+import { artPlane } from '../_art.js';
+import { hallDoorLeaves, bookcases, armchair as armchairR4, slippers } from './joinery.js';   // r4: real hinges, bookcases, armchairs, slippers
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
   APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, BALCONY_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
@@ -98,23 +101,17 @@ function room() {
   // ---- hall doors: a 4.0 m glazed opening in the north wall (Jade: 2-3x the old pair, centred), transom (气窗) above;
   //      four leaves, folded back in pairs against each jamb, into the hall
   { const zw = D.z - wallP / 2, FR = { grey: 0.45, col: 0x6a4a30 }, xc = (D.x0 + D.x1) / 2, wd = D.x1 - D.x0;
-    g.add(tag(box(wd + 0.12, 0.06, wallP + 0.04, FR, [xc, D.h + 0.03, zw]), 'hall French doors (frame)'));
-    for (const x of [D.x0 - 0.03, D.x1 + 0.03]) g.add(tag(box(0.06, D.trans1 + 0.03, wallP + 0.04, FR, [x, (D.trans1 + 0.03) / 2, zw]), 'hall French doors (frame)'));
+    // r4: the jamb and head linings sit INSIDE the opening (proud of the reveal by 2 cm), not flush with it: the old frame
+    // boxes shared the reveal's plane, and that z-fight drew the comb ("messed up notebook") down the jamb in the guides
+    g.add(tag(box(wd, 0.025, wallP, FR, [xc, D.h - 0.0075, zw]), 'hall French doors (frame)'));
+    for (const [x, s] of [[D.x0, 1], [D.x1, -1]]) g.add(tag(box(0.025, D.h, wallP, FR, [x + s * 0.0075, D.h / 2, zw]), 'hall French doors (frame)'));
     g.add(tag(box(wd + 0.12, 0.05, wallP + 0.04, FR, [xc, D.trans1 + 0.025, zw]), 'transom (气窗)'));
     const nT = 3 * D.leaves; for (let k = 1; k < nT; k++) g.add(tag(box(k % 3 ? 0.025 : 0.05, D.trans1 - D.trans0, 0.03, FR, [D.x0 + (wd * k) / nT, (D.trans0 + D.trans1) / 2, zw]), 'transom (气窗)'));
     g.add(tag(box(wd, D.trans1 - D.trans0, 0.004, GLASS, [xc, (D.trans0 + D.trans1) / 2, zw]), 'glass'));
-    const lw = wd / D.leaves - 0.005;
-    // hinge at each jamb on the hall side; leaf 1 swings north into the hall, leaf 2 (hinged to its free edge) folds back
-    // flat against it: each pair stands as a 1 m stack square to the wall (sx: the direction toward the other jamb)
-    for (const [hx, sx] of [[D.x0, 1], [D.x1, -1]]) for (let j = 0; j < D.leaves / 2; j++) {
-      const leaf = new THREE.Group(); leaf.position.set(hx + sx * 0.045 * j, 0, D.z - wallP); leaf.rotation.y = sx * rad(D.openDeg);   // swings north, into the hall
-      const L = (w, hh, d, at) => leaf.add(box(w, hh, d, FR, at));
-      L(0.06, D.h - 0.01, 0.035, [sx * 0.03, D.h / 2, 0]); L(0.06, D.h - 0.01, 0.035, [sx * (lw - 0.03), D.h / 2, 0]);
-      L(lw, 0.07, 0.035, [sx * lw / 2, D.h - 0.04, 0]); L(lw, 0.2, 0.035, [sx * lw / 2, 0.1, 0]);
-      for (let k = 1; k < 5; k++) L(lw - 0.1, 0.015, 0.02, [sx * lw / 2, 0.2 + ((D.h - 0.27) * k) / 5, 0]);
-      leaf.add(box(lw - 0.1, D.h - 0.27, 0.004, GLASS, [sx * lw / 2, 0.2 + (D.h - 0.27) / 2, 0]));
-      g.add(tag(leaf, 'hall French doors (open into the hall)'));
-    }
+    // r4 (Jade, V1f: "the hinges of the door look like a messed up notebook"): the leaves were two copies hinged at the same
+    // jamb, 4.5 cm apart. Now each pair really folds (leaf A on the jamb, leaf B on A's far edge, flat back against it) on
+    // modelled brass butt hinges, with architraves and a threshold: joinery.js hallDoorLeaves
+    g.add(hallDoorLeaves());
     const DIM = { grey: 0.5, col: 0x8a8070 }, hcx = (HL.x0 + HL.x1) / 2, hw = HL.x1 - HL.x0, hzc = (HL.z0 + HL.z1) / 2, hzl = HL.z1 - HL.z0;
     g.add(tag(box(hw, 0.04, hzl, { grey: 0.4, col: 0x6a4a30 }, [hcx, -0.02, hzc]), 'hall floor'));
     g.add(tag(box(hw, 0.04, hzl, DIM, [hcx, h + 0.02, hzc]), 'hall ceiling'));
@@ -128,7 +125,9 @@ function room() {
 }
 
 // ---------------------------------------------------------------- furniture
-const UPH = CLOTH(0.6, 0x8a7a5a, { recvShadowLine: true }), UPH_C = CLOTH(0.66, 0x9a8a68, { recvShadowLine: true });
+// r4 (Jade, V1g: the painters lost the armchairs against the wall): the suite's wool is a muted olive green (my choice), not
+// the old khaki that matched the plaster in the shade; couch and armchairs alike (joinery.js FABRIC)
+const UPH = CLOTH(0.48, 0x5c6a4e, { recvShadowLine: true }), UPH_C = CLOTH(0.54, 0x6a785a, { recvShadowLine: true });
 function couch() {   // against the WEST wall, facing +x
   const C = COUCH, g = new THREE.Group(), len = C.z1 - C.z0, d = C.x1 - C.x0, cz = (C.z0 + C.z1) / 2, cx = (C.x0 + C.x1) / 2, iw = len - 2 * C.armW;
   g.add(box(d - 0.04, 0.2, len - 0.04, UPH, [cx, 0.2, cz]));                                                     // base
@@ -184,23 +183,15 @@ function furniture(shot) {
   g.add(couch());
   { const T = TABLE, t = tableRect(T.cx, T.cz, T.w, T.d, T.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'coffee table (茶几)' });
     t.add(box(T.w - 0.1, 0.02, T.d - 0.1, WOOD, [T.cx, 0.12, T.cz])); g.add(tag(t, 'coffee table (茶几)', true)); }
-  for (const a of ARMCHAIRS) g.add(armchair(a));   // round-3 decisions: the uncle sits in the 'beside' armchair at the couch's north end (no chair is moved in state A)
+  for (const a of ARMCHAIRS) g.add(armchairR4(a));   // r4 (Jade, V1g): real armchairs (joinery.js); the old box armchair() is unused   // round-3 decisions: the uncle sits in the 'beside' armchair at the couch's north end (no chair is moved in state A)
   { const S = SIDE_TABLE; g.add(tableRect(S.cx, S.cz, S.w, S.d, S.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'side table' }));
     const sh = box(S.w - 0.08, 0.02, S.d - 0.08, WOOD, [S.cx, 0.15, S.cz]); g.add(tag(sh, 'side table')); }
   g.add(lounger());
   g.add(wickerChair());
-  // bookshelf cabinets along the north wall on both sides of the doors: glass-fronted shelves of books above, doors below
-  { const S = SHELVES, z0 = ROOM.z0, zf = SHELF_FRONT, r = rng(253);
-    for (const [a0, a1] of S.runs) { const n = Math.max(1, Math.round((a1 - a0) / 0.9)), uw = (a1 - a0) / n;
-      for (let i = 0; i < n; i++) { const ux = a0 + uw * (i + 0.5), grp = new THREE.Group();
-        grp.add(box(uw - 0.01, S.h, S.d, WOOD, [ux, S.h / 2, z0 + S.d / 2]));
-        grp.add(box(uw - 0.06, 0.012, 0.01, WOOD_L, [ux, 0.86, zf + 0.005]));                                        // the line between the cupboards and the glazed shelves
-        for (const yy of [1.25, 1.65]) grp.add(box(uw - 0.06, 0.02, 0.01, WOOD_L, [ux, yy, zf + 0.005]));
-        grp.add(box(0.012, 0.8, 0.01, WOOD_L, [ux, 0.45, zf + 0.005]));
-        for (const [y0b, y1b] of [[0.9, 1.23], [1.29, 1.63], [1.69, 2.0]]) { let x = ux - uw / 2 + 0.05;   // book spines behind the glass
-          while (x < ux + uw / 2 - 0.08) { const bw = 0.025 + r() * 0.03, bh = (y1b - y0b) * (0.72 + r() * 0.25); grp.add(box(bw, bh, 0.012, { grey: 0.35 + r() * 0.3, col: [0x6a3a2a, 0x3a4a5a, 0x7a6a4a, 0x2a3a2a][Math.floor(r() * 4)] }, [x + bw / 2, y0b + bh / 2, zf + 0.008])); x += bw + 0.004; } }
-        grp.add(box(uw - 0.02, S.h - 0.9, 0.004, GLASS, [ux, 0.9 + (S.h - 0.9) / 2, zf + 0.02]));
-        g.add(tag(grp, 'bookshelf cabinets (north wall)')); } } }
+  // bookcases along the north wall on both sides of the doors. r4 (Jade, V1g: "confused about what elevation is books vs
+  // shelving"): real units (plinth, panelled cupboards, ledge, glazed doors, shelf boards, uprights, a pale back) with
+  // every book an individual spine, wearing art.js's fixed spine textures: joinery.js bookcases
+  g.add(bookcases());
   { const T = TV, cx = (T.x0 + T.x1) / 2, cz = (T.z0 + T.z1) / 2;   // east wall, facing west down the room
     g.add(tag(box(T.x1 - T.x0, T.h, T.z1 - T.z0, WOOD, [cx, T.h / 2, cz]), 'TV cabinet'));
     g.add(tag(box(0.34, 0.32, 0.42, { grey: 0.3, col: 0x3a3a38 }, [cx, T.h + 0.16, cz]), 'TV (14", under a cloth)'));
@@ -208,17 +199,21 @@ function furniture(shot) {
     g.add(tag(box(0.005, 0.24, 0.44, LACE, [cx - 0.175, T.h + 0.21, cz]), 'TV (14", under a cloth)'));
     for (const [dz, c] of [[0.33, 0xb03a2a], [-0.33, 0x3a7a5a]]) { const th = new THREE.Group(); th.add(cyl(0.055, 0.06, 0.3, { grey: 0.6, col: c }, [cx + 0.05, T.h + 0.15, cz + dz])); th.add(cyl(0.03, 0.045, 0.06, { grey: 0.8, col: 0xc8c8c8 }, [cx + 0.05, T.h + 0.33, cz + dz])); g.add(tag(th, 'thermos flasks')); } }
   { const R = RADIATOR; for (let k = 0; k < 12; k++) g.add(tag(box(0.12, R.h, 0.035, { grey: 0.7, col: 0xb8b0a0 }, [R.x - 0.02, 0.12 + R.h / 2, R.z0 + ((R.z1 - R.z0) * (k + 0.5)) / 12]), 'radiator (cold)')); }
-  { const C = CALENDAR; g.add(tag(box(0.01, C.h, C.w, { grey: 0.9, col: 0xe8dcc8 }, [ROOM.x1 - 0.006, C.y, C.z]), 'wall calendar (挂历)')); }
+  { const C = CALENDAR; g.add(tag(box(0.01, C.h, C.w, { grey: 0.9, col: 0xe8dcc8 }, [ROOM.x1 - 0.006, C.y, C.z]), 'wall calendar (挂历)'));
+    const p = artPlane(ART.calendarArt(), C.w, C.h); p.rotation.y = -Math.PI / 2; p.position.set(ROOM.x1 - 0.0115, C.y, C.z); g.add(tag(p, 'wall calendar (挂历)')); }
   // west wall: one large framed traditional Chinese painting over the couch, calligraphy hanging scrolls (挂轴) beside it
   { const Pn = PAINTING, x = ROOM.x0 + 0.02;
     g.add(tag(box(0.035, Pn.h + 0.1, Pn.w + 0.1, { grey: 0.3, col: 0x3a2a1a }, [x, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
     g.add(tag(box(0.01, Pn.h, Pn.w, { grey: 0.88, col: 0xe4dcc4, recvShadowLine: true }, [x + 0.02, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
+    if (ART.ART_TEX.painting) { const p = artPlane(ART.ART_TEX.painting, Pn.w, Pn.h); p.rotation.y = Math.PI / 2; p.position.set(x + 0.0255, Pn.y, Pn.z); g.add(tag(p, 'framed traditional Chinese painting (国画)')); }
     for (const S of SCROLLS) { const yc = S.top - S.h / 2, grp = new THREE.Group();
       grp.add(box(0.006, S.h, S.w, { grey: 0.9, col: 0xece4d0, recvShadowLine: true }, [ROOM.x0 + 0.006, yc, S.z]));
       for (const y of [S.top, S.top - S.h]) grp.add(cyl(0.012, 0.012, S.w + 0.06, { grey: 0.3, col: 0x3a2a1a }, [ROOM.x0 + 0.015, y, S.z], [90, 0, 0], 10));
       grp.add(cyl(0.001, 0.001, 0.25, { grey: 0.2, col: 0x222222 }, [ROOM.x0 + 0.006, S.top + 0.12, S.z], null, 4));
+      { const [t, sig] = ART.SCROLL_TEXT[String(S.z)] || ['', '']; const p = artPlane(ART.scrollArt(t, sig), S.w, S.h); p.rotation.y = Math.PI / 2; p.position.set(ROOM.x0 + 0.0095, yc, S.z); grp.add(p); }
       g.add(tag(grp, 'calligraphy hanging scrolls (书法挂轴)')); } }
   g.add(tag(cyl(0.11, 0.11, 0.05, { grey: 0.82, col: 0xe8e4d8 }, [ROOM.x1 - 0.03, CLOCK.y, CLOCK.z], [0, 0, 90]), 'wall clock'));
+  { const f = mk(new THREE.CircleGeometry(0.107, 48), { noCast: true, grey: 0.85, col: 0xeeeeee, ...(({ art, artGrey, artEdge }) => ({ art, artGrey, artEdge }))(ART.clockFace()) }); f.rotation.y = -Math.PI / 2; f.position.set(ROOM.x1 - 0.0555, CLOCK.y, CLOCK.z); g.add(tag(f, 'wall clock')); }
   g.add(tag(cyl(0.12, 0.09, 0.22, { grey: 0.5, col: 0x8a5a3a }, [PLANT[0], 0.11, PLANT[1]]), 'potted plant'));
   g.add(tag(ball(0.2, { grey: 0.45, col: 0x4a6a3a }, [PLANT[0], 0.4, PLANT[1]], [1, 0.9, 1]), 'potted plant'));
   for (const P of [PENDANT, PENDANT2]) { g.add(tag(cyl(0.004, 0.004, P.drop, { grey: 0.1, col: 0x111111 }, [P.x, ROOM.h - P.drop / 2, P.z], null, 6), 'ceiling lights (off)'));
@@ -422,6 +417,7 @@ export function build(shot, { makeCam }) {
   const extra = (t) => (NAMES[t] ? V(NAMES[t]) : null);
   const { figs } = stage(shot.figs, null, extra);
   for (const [who, f] of Object.entries(figs)) { if (CAST[who].undrawn) undraw(f); root.add(f); }
+  for (const [who, f] of Object.entries(figs)) { const sl = slippers(f, who); if (sl) root.add(sl); }   // r4 (Jade): every adult indoors in socks inside slippers
   const tea = teaAndSteam(shot); if (shot.state !== 'A') root.add(tea);   // the tea (and its steam) is a week-later detail: state A keeps the table bare
   let dr = null; const hero = [];
   let hb = null;

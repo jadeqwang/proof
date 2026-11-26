@@ -157,71 +157,72 @@
   },
   "mama86": {
    "px": [
-    739.6,
-    -3.6
+    939.3,
+    -93.2
    ],
    "eyes": [
-    730.3,
-    5.6
+    929,
+    -85
    ],
    "mouth": [
-    731.5,
-    4.4
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 90
-  },
-  "aunt": {
-   "px": [
-    944.7,
-    -49.5
-   ],
-   "eyes": [
-    933.7,
-    -42.5
-   ],
-   "mouth": [
-    935.6,
-    -41.2
+    930.1,
+    -85.9
    ],
    "in_frame": false,
    "visible": false,
    "facing_camera_deg": 81
   },
-  "uncle": {
+  "aunt": {
    "px": [
-    914.7,
-    -98.4
+    957.6,
+    -4.8
    ],
    "eyes": [
-    903.6,
-    -90
+    946.4,
+    1.8
    ],
    "mouth": [
-    904.2,
-    -88.8
+    948.9,
+    2.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 72
+   "facing_camera_deg": 88
+  },
+  "uncle": {
+   "px": [
+    843.9,
+    -92
+   ],
+   "eyes": [
+    833.6,
+    -82.6
+   ],
+   "mouth": [
+    836.2,
+    -82.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 85
   },
   "grandma": {
    "px": [
-    880.2,
-    -17.4
+    900.9,
+    19.3
    ],
    "eyes": [
-    870.4,
-    -9.9
+    890.6,
+    25.8
    ],
    "mouth": [
-    870.4,
-    -11.2
+    892.2,
+    23.9
    ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 82
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 94,
+   "blocked_by": "ceiling"
   }
  },
  "hands": {
@@ -245,17 +246,17 @@
   },
   "mama86.L": {
    "px": [
-    762.6,
-    13.8
+    964,
+    -76.1
    ],
    "shape": "relax",
-   "in_frame": true,
-   "visible": true
+   "in_frame": false,
+   "visible": false
   },
   "mama86.R": {
    "px": [
-    676.3,
-    -3
+    930,
+    -121.9
    ],
    "shape": "relax",
    "in_frame": false,
@@ -263,26 +264,26 @@
   },
   "aunt.L": {
    "px": [
-    989.6,
-    -13.6
+    1000.3,
+    29.6
    ],
    "shape": "relax",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   },
   "aunt.R": {
    "px": [
-    925.8,
-    -38.5
+    939.1,
+    5.1
    ],
    "shape": "relax",
-   "in_frame": false,
+   "in_frame": true,
    "visible": false
   },
   "uncle.L": {
    "px": [
-    955.9,
-    -71.4
+    889.7,
+    -65.1
    ],
    "shape": "relax",
    "in_frame": false,
@@ -290,8 +291,8 @@
   },
   "uncle.R": {
    "px": [
-    921.1,
-    -119.9
+    852.5,
+    -111.4
    ],
    "shape": "relax",
    "in_frame": false,
@@ -299,21 +300,21 @@
   },
   "grandma.L": {
    "px": [
-    906.5,
-    -21.1
+    942.2,
+    13.2
    ],
    "shape": "relax",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   },
   "grandma.R": {
    "px": [
-    863.3,
-    -5.7
+    885.1,
+    29.4
    ],
    "shape": "relax",
-   "in_frame": false,
-   "visible": false
+   "in_frame": true,
+   "visible": true
   }
  },
  "lights": [
@@ -1031,89 +1032,89 @@
    "mama86": {
     "head": {
      "in": false,
-     "margin_m": -1.89
+     "margin_m": -2.15
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.854
+     "margin_m": -2.121
     },
     "handL": {
      "in": false,
-     "margin_m": -1.063
+     "margin_m": -1.325
     },
     "handR": {
      "in": false,
-     "margin_m": -1.498
+     "margin_m": -1.458
     },
     "hip": {
      "in": false,
-     "margin_m": -1.227
+     "margin_m": -1.49
     }
    },
    "aunt": {
     "head": {
      "in": false,
-     "margin_m": -1.983
+     "margin_m": -1.857
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.968
+     "margin_m": -1.833
     },
     "handL": {
      "in": false,
-     "margin_m": -1.19
+     "margin_m": -1.056
     },
     "handR": {
      "in": false,
-     "margin_m": -1.858
+     "margin_m": -1.721
     },
     "hip": {
      "in": false,
-     "margin_m": -1.316
+     "margin_m": -1.191
     }
    },
    "uncle": {
     "head": {
      "in": false,
-     "margin_m": -2.256
+     "margin_m": -2.227
     },
     "eyes": {
      "in": false,
-     "margin_m": -2.245
+     "margin_m": -2.188
     },
     "handL": {
      "in": false,
-     "margin_m": -1.39
+     "margin_m": -1.38
     },
     "handR": {
      "in": false,
-     "margin_m": -1.475
+     "margin_m": -1.443
     },
     "hip": {
      "in": false,
-     "margin_m": -1.538
+     "margin_m": -1.521
     }
    },
    "grandma": {
     "head": {
      "in": false,
-     "margin_m": -1.821
+     "margin_m": -1.693
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.798
+     "margin_m": -1.658
     },
     "handL": {
      "in": false,
-     "margin_m": -1.099
+     "margin_m": -1.023
     },
     "handR": {
      "in": false,
-     "margin_m": -1.671
+     "margin_m": -1.534
     },
     "hip": {
      "in": false,
-     "margin_m": -1.25
+     "margin_m": -1.15
     }
    }
   },
@@ -1125,7 +1126,7 @@
   ],
   "focus_in_beam": true,
   "stack_in_beam": false,
-  "mother_margin_m": -1.063,
+  "mother_margin_m": -1.094,
   "floor_reach_m": 5.23,
   "north_wall_m": 6.1,
   "her_spot": {
@@ -1287,110 +1288,110 @@
   },
   "mama86": {
    "eyes": [
-    0.647,
-    1.501,
-    -6.08
+    2.033,
+    1.503,
+    -6.712
    ],
    "head": [
-    0.712,
+    2.106,
     1.51,
-    -6.144
+    -6.769
    ],
    "handL": [
-    0.872,
+    2.278,
     0.734,
-    -6.022
+    -6.65
    ],
    "handR": [
-    0.27,
-    1.12,
-    -6.14
+    2.041,
+    0.734,
+    -6.97
    ],
    "hip": [
-    0.75,
+    2.16,
     0.832,
-    -6.18
+    -6.81
    ]
   },
   "aunt": {
    "eyes": [
-    2.066,
-    1.467,
-    -6.415
+    2.155,
+    1.458,
+    -6.107
    ],
    "head": [
-    2.143,
-    1.468,
-    -6.464
+    2.233,
+    1.469,
+    -6.152
    ],
    "handL": [
-    2.456,
-    0.782,
-    -6.214
+    2.531,
+    0.773,
+    -5.912
    ],
    "handR": [
-    2.012,
-    1.369,
-    -6.388
+    2.104,
+    1.361,
+    -6.083
    ],
    "hip": [
-    2.3,
+    2.39,
     0.822,
-    -6.42
+    -6.12
    ]
   },
   "uncle": {
    "eyes": [
-    1.856,
-    1.607,
-    -6.747
+    1.368,
+    1.578,
+    -6.695
    ],
    "head": [
-    1.934,
-    1.596,
-    -6.806
+    1.44,
+    1.59,
+    -6.761
    ],
    "handL": [
-    2.221,
-    0.813,
-    -6.617
+    1.759,
+    0.821,
+    -6.573
    ],
    "handR": [
-    1.979,
-    0.756,
-    -6.956
+    1.5,
+    0.749,
+    -6.896
    ],
    "hip": [
-    2.05,
+    1.58,
     0.884,
-    -6.8
+    -6.76
    ]
   },
   "grandma": {
    "eyes": [
-    1.624,
-    1.4,
-    -6.188
+    1.766,
+    1.363,
+    -5.939
    ],
    "head": [
-    1.693,
-    1.401,
-    -6.24
+    1.838,
+    1.38,
+    -5.984
    ],
    "handL": [
-    1.877,
-    0.669,
-    -6.266
+    2.126,
+    0.683,
+    -6.027
    ],
    "handR": [
-    1.575,
-    1.285,
-    -6.159
+    1.727,
+    1.25,
+    -5.914
    ],
    "hip": [
-    1.75,
+    1.97,
     0.78,
-    -6.36
+    -6.12
    ]
   }
  },
@@ -1421,7 +1422,7 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.83
+    "R": 0.97
    },
    "headTurn": 2
   },
@@ -1436,9 +1437,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.5
+    "R": 0.51
    },
-   "headTurn": 4
+   "headTurn": 3
   },
   "uncle": {
    "legs": {
@@ -1466,9 +1467,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.52
+    "R": 0.53
    },
-   "headTurn": 1
+   "headTurn": 0
   }
  }
 }

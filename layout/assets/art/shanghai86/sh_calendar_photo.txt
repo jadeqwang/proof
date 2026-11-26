@@ -1,0 +1,15 @@
+canonical background art for layout/assets/art/shanghai86/sh_calendar_photo.png
+date: 2026-11-26 11:10
+route: codex image_gen (headless codex exec in tmux session proof-art; on plan, $0)
+raw: 1328x1184, centre-cropped to aspect 1.120 (w/h), saved 1024x914
+refs: none
+assumed / invented: INVENTED: the calendar and its photo (West Lake) are agent inventions (NOTES: the calendar is an invention)
+
+prompt:
+IMPORTANT: make this image SQUARE (not 16:9), roughly 1.12:1 width to height. It is a flat, straight-on, edge-to-edge scan of the artwork itself: no wall, no frame unless asked, no perspective, no shadow, no hands, nothing around it.
+
+The photograph printed on one month's page of a 1986 Chinese wall calendar (gua li): a glossy colour scenic photo of
+West Lake in Hangzhou in early winter: the Broken Bridge, willows, pale water and soft mist, a pagoda on a far hill,
+the slightly oversaturated, warm colour printing of mid-1980s Chinese calendars. Just the photograph, edge to edge,
+no text, no grid, no border.
+post (2026-11-26): resized to 1024x914 max and saved as a 256-colour PNG to keep the public repo small
