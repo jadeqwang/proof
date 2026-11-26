@@ -854,7 +854,7 @@
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "yard",
- "time": "2:57.0-2:59.2",
+ "time": "2:57.0-2:58.0",
  "section": "Before the party",
  "scene": {
   "date": "2010-10-02",
@@ -2006,6 +2006,14 @@
   795.7,
   1170.6
  ],
+ "timing": {
+  "timeline": "media/karaoke_v2/lyrics_timed.json (-2sm render), full-mix time (*_full); instrumental-track time = s/e",
+  "line": "Housewarming, lemonade from the yard",
+  "start_s": 177,
+  "end_s": 178.043,
+  "words": "\"(lemon)ade from the\"",
+  "was": "177.0-179.2 (V3b alone)"
+ },
  "figure_report": {
   "jade27": {
    "legs": {

@@ -838,21 +838,21 @@
   },
   "T1": {
    "px": [
-    940.1,
-    459.7
+    551.2,
+    434.9
    ],
    "eyes": [
-    945.3,
-    470.8
+    519.1,
+    448.7
    ],
    "mouth": [
-    943.8,
-    481.5
+    530.3,
+    468.6
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 139,
-   "blocked_by": "science-fiction paperbacks (shelved with truth)"
+   "facing_camera_deg": 97,
+   "blocked_by": "Tux (Linux penguin) figurine"
   },
   "G1": {
    "px": [
@@ -1213,17 +1213,17 @@
   },
   "T1.L": {
    "px": [
-    890.6,
-    629.7
+    490.1,
+    571
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": false
   },
   "T1.R": {
    "px": [
-    977.4,
-    570.4
+    409.3,
+    495.2
    ],
    "shape": "grip",
    "in_frame": true,
@@ -2856,10 +2856,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {

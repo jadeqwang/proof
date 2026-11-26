@@ -840,21 +840,21 @@
   },
   "T1": {
    "px": [
-    1108,
-    775.1
+    859.9,
+    700
    ],
    "eyes": [
-    1113.6,
-    776.7
+    859.5,
+    693.7
    ],
    "mouth": [
-    1110.9,
-    776.2
+    859.6,
+    695.9
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 134,
-   "blocked_by": "T1 guest T1, at the lemonade (face undrawn)"
+   "facing_camera_deg": 114,
+   "blocked_by": "T1 guest T1, at the punchbowl (face undrawn)"
   },
   "G1": {
    "px": [
@@ -1228,17 +1228,17 @@
   },
   "T1.L": {
    "px": [
-    1093.8,
-    759
+    853.2,
+    689.3
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": true
   },
   "T1.R": {
    "px": [
-    1136.5,
-    787.7
+    860.8,
+    671.3
    ],
    "shape": "grip",
    "in_frame": true,
@@ -3052,10 +3052,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {

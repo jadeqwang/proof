@@ -838,21 +838,21 @@
   },
   "T1": {
    "px": [
-    892.3,
-    427.7
+    436.3,
+    419
    ],
    "eyes": [
-    899,
-    441
+    400.5,
+    434.6
    ],
    "mouth": [
-    896.9,
-    454.3
+    413.1,
+    456.9
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 139,
-   "blocked_by": "jade27 Jade (27)"
+   "facing_camera_deg": 96,
+   "blocked_by": "IKEA Expedit 5x5 (espresso)"
   },
   "G1": {
    "px": [
@@ -1213,17 +1213,17 @@
   },
   "T1.L": {
    "px": [
-    831.1,
-    636
+    369.4,
+    571.7
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": false
   },
   "T1.R": {
    "px": [
-    939.8,
-    562.8
+    277.4,
+    486.5
    ],
    "shape": "grip",
    "in_frame": true,
@@ -2844,10 +2844,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {

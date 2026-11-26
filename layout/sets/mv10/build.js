@@ -7,8 +7,8 @@ import { aim } from '../../engine/aim.js';
 import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
 import { CAST } from '../_cast.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
-  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
-  TREE, GRAPEFRUIT, DRINKS, POI, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
+  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, HOOD, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
+  TREE, GRAPEFRUIT, POI, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
 
 // ---------------------------------------------------------------- cast (set-local, additive: engine/mannequin.js is not edited)
 // Guests are costume and posture only: their eyes, nose and mouth are removed after the figure is built.
@@ -21,7 +21,7 @@ const NEW_CAST = {
   C1: GUEST('guest C1 (face undrawn)', 1.7, 0xb07a4a, 0x3a3a44, 'bob'), C2: GUEST('guest C2 (face undrawn)', 1.84, 0x4a6a8a, 0x5a5a50, 'short', 'short'),
   C3: GUEST('guest C3 (face undrawn)', 1.58, 0xd8c8b0, 0x3a2c2c, 'long', 'short', { dress: true }),
   W1: GUEST('guest W1 (face undrawn)', 1.76, 0x6a6a3a, 0x2c2c34, 'short'), W2: GUEST('guest W2 (face undrawn)', 1.64, 0x9a4a5a, 0x34343c, 'bun', 'short'),
-  T1: GUEST('guest T1, at the lemonade (face undrawn)', 1.72, 0x5a8a8a, 0x44403a, 'bob'),
+  T1: GUEST('guest T1, at the punchbowl (face undrawn)', 1.72, 0x5a8a8a, 0x44403a, 'bob'),
   H1: GUEST('guest H1, the hug (face undrawn)', 1.7, 0x7a5a8a, 0x30343c, 'long'), G1: GUEST('guest G1, the greeting (face undrawn)', 1.8, 0xb8b06a, 0x3a3a44, 'short', 'short'),
   poi: GUEST('poi spinner (face undrawn)', 1.75, 0x2a2a2e, 0x2a2a2e, 'bun', 'short'),
   // the poi audience (Jade, 2026-11-25 late: along the side of the house by the wall, and on the deck). W1 W2 kept.
@@ -31,6 +31,13 @@ const NEW_CAST = {
   // late). Not in _cast.js (no adult figure there), so set-local. Height 1.73 and costume are OURS (ASSUMED); face
   // undrawn like first love (back, hands). Not the charcoal hoodie: Jade says that old artwork matches Z, not him.
   friend: GUEST('childhood friend (27; face undrawn, back and hands only)', 1.73, 0x9a7a52, 0x3a3e48, 'short', 'pushed'),
+  // the room crossing (Jade, 2026-11-25 round 2): the person she talks to in the kitchen (K1), the person at the shelf who
+  // says something (R1), the two guests she welcomes (N1, N2) and the next two at the second doorbell (N3, N4). Jade said
+  // "someone"; who they are, their looks and heights are OURS.
+  K1: GUEST('guest K1, talking with her in the kitchen (face undrawn)', 1.75, 0x6a7a8a, 0x2c2c34, 'short'),
+  R1: GUEST('guest R1, at the shelf: says something (face undrawn)', 1.66, 0xa0805a, 0x34343c, 'long'),
+  N1: GUEST('guest N1, arriving (1st doorbell) (face undrawn)', 1.79, 0x4a4a5a, 0x3a3a44, 'short'), N2: GUEST('guest N2, arriving (1st doorbell) (face undrawn)', 1.61, 0xc08a7a, 0x2c3140, 'bob'),
+  N3: GUEST('guest N3, arriving (2nd doorbell) (face undrawn)', 1.72, 0x7a9a6a, 0x44403a, 'bun'), N4: GUEST('guest N4, arriving (2nd doorbell) (face undrawn)', 1.83, 0x8a6a4a, 0x30343c, 'short'),
 };
 for (const [k, v] of Object.entries(NEW_CAST)) if (!CAST[k]) CAST[k] = v;
 // first love at the housewarming (Jade, 2026-11-25): forearm hair clearly visible, so his sleeves are rolled up here
@@ -100,7 +107,7 @@ function house(shot) {
       const along = o.wall === 'WNW' || o.wall === 'ESE' ? [o.s1 - o.s0, 0.05, T + 0.02] : [T + 0.02, 0.05, o.s1 - o.s0];
       g.add(tag(box(...along, F, [sill.x, o.y0 + 0.025, sill.z]), o.name + ' (sill)'));
       g.add(tag(box(...(o.wall === 'WNW' || o.wall === 'ESE' ? [0.04, o.y1 - o.y0, T + 0.02] : [T + 0.02, o.y1 - o.y0, 0.04]), F, [mid.x, (o.y0 + o.y1) / 2, mid.z]), o.name + ' (mullion)')); } }
-  { const o = OPENINGS.find((q) => q.name === 'front door'), w = o.s1 - o.s0, hg = new THREE.Group(); hg.position.set(o.s1 - 0.02, 0, T + 0.025); hg.rotation.y = rad(o.leaf.openDeg);
+  { const o = OPENINGS.find((q) => q.name === 'front door'), w = o.s1 - o.s0, hg = new THREE.Group(); hg.position.set(o.s1 - 0.02, 0, T + 0.025); hg.rotation.y = rad(shot.frontDoorDeg ?? o.leaf.openDeg);   // per-shot override (the crossing keys: closed, then wide open)
     hg.add(tag(box(w - 0.02, o.y1 - 0.01, 0.045, { grey: 0.55, col: 0x6a4a36 }, [-(w - 0.02) / 2, (o.y1 - 0.01) / 2, 0]), 'front door (leaf, open)')); g.add(hg);
     // front steps down to grade (OURS): four risers, a 0.3 m landing at the door then three treads WNW
     { const n = 4, rise = FLOOR_ABOVE_GRADE / n; for (let k = 0; k < n; k++) { const top = -k * rise, h = top - GRADE;
@@ -210,8 +217,174 @@ function expedit2() {
   return g;
 }
 
+// ---------------------------------------------------------------- the kitchen (2026-11-25 round 2: Jade's fridge, dishwasher, trash can,
+// upper cabinets, dark walnut doors, the giant punchbowl; party food or the lemonade prep). Numbers in layout.js.
+const STEEL = { grey: 0.72, col: 0xb4b6b8 }, PITH = { grey: 0.96, col: 0xf6f1dc }, LEMON = { grey: 0.95, col: 0xf2d21c }, FLESH = { grey: 0.9, col: 0xf4dc5c };
+const LEMONADE = { grey: 0.9, col: 0xf3e38a }, GLASSY = { grey: 0.9, col: 0xdde8e8 }, CERAMIC = { grey: 0.94, col: 0xf2efe6 };
+// a row of cabinet doors on one face. axis 'X': doors along X on the plane z = at; 'Z': along Z on x = at. out = +1 / -1 (the
+// way the face looks). skip: [[s0, s1]] spans with no door (appliances).
+function doorRow(g, { axis, s0, s1, at, out, y0, y1, skip = [], w = 0.5, lab, pullLow = false }) {
+  const free = []; let cur = s0;
+  for (const [a, b] of skip.slice().sort((p, q) => p[0] - q[0])) { if (a > cur + 0.02) free.push([cur, a]); cur = Math.max(cur, b); }
+  if (s1 > cur + 0.02) free.push([cur, s1]);
+  for (const [a, b] of free) { const n = Math.max(1, Math.round((b - a) / w)), dw = (b - a) / n, t = 0.018, hh = y1 - y0;
+    for (let k = 0; k < n; k++) { const c = a + dw * (k + 0.5), ww = dw - 0.006, py = pullLow ? y0 + 0.08 : y1 - 0.08, side = k % 2 ? -1 : 1, pc = c + side * (dw / 2 - 0.05);
+      g.add(tag(box(...(axis === 'X' ? [ww, hh, t] : [t, hh, ww]), WALNUT, axis === 'X' ? [c, (y0 + y1) / 2, at + out * t / 2] : [at + out * t / 2, (y0 + y1) / 2, c]), lab));
+      g.add(tag(box(...(axis === 'X' ? [0.012, 0.1, 0.02] : [0.02, 0.1, 0.012]), STEEL, axis === 'X' ? [pc, py, at + out * (t + 0.01)] : [at + out * (t + 0.01), py, pc]), lab + ' (pull)')); } }
+}
+const bowlMesh = (r, k, look) => { const m = mk(new THREE.SphereGeometry(r, 28, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), look); m.scale.set(1, k, 1); return m; };
+// a pomelo-sized lemon cut across, cut face up: rind dome below, the pith ring, ten segments, the core and a few seeds.
+// The botanical cross-section of V3b_prep: each segment is its own mesh, so the line render draws every membrane.
+function lemonHalf(g, [x, y, z], R = TREE.lemonR, rot = 0, lab = 'lemon half (cut face up)') {
+  const dome = bowlMesh(R, 1.22, LEMON); dome.position.set(x, y + 1.22 * R, z); g.add(tag(dome, lab + ' (rind)'));
+  const yc = y + 1.22 * R + 0.001, flat = (geo, look, dy, l) => { const m = mk(geo, look); m.rotation.x = -Math.PI / 2; m.position.set(x, yc + dy, z); m.rotation.z = rot; g.add(tag(m, l)); return m; };
+  flat(new THREE.RingGeometry(R * 0.93, R, 48), LEMON, 0, lab + ' (rind)');
+  flat(new THREE.RingGeometry(R * 0.80, R * 0.93, 48), PITH, 0, lab + ' (pith)');
+  const n = 10; for (let k = 0; k < n; k++) { const a0 = (k / n) * Math.PI * 2 + 0.03, al = Math.PI * 2 / n - 0.06;
+    flat(new THREE.CircleGeometry(R * 0.78, 6, a0, al), { ...FLESH, grey: k % 2 ? 0.9 : 0.88 }, 0.001, lab + ' (segment)'); }
+  flat(new THREE.CircleGeometry(R * 0.13, 16), PITH, 0.002, lab + ' (core)');
+  const RS = rng(Math.round(x * 1000 + z * 7)); for (let k = 0; k < 4; k++) { const a = Math.PI * 2 * (k * 2 + 0.5) / n + rot, rr = R * (0.35 + 0.15 * RS());
+    g.add(tag(ball(0.006, { grey: 0.85, col: 0xeee6c4 }, [x + Math.cos(a) * rr, yc + 0.003, z - Math.sin(a) * rr], [1.8, 0.6, 1]), lab + ' (seed)')); }
+}
+// a squeezed rind: an emptied half shell, cut side up, squashed, the white pith inside showing, a torn membrane
+function rind(g, [x, y, z], R, tilt, lab = 'squeezed rinds') {
+  const grp = new THREE.Group(); grp.position.set(x, y, z); grp.rotation.set(tilt[0], tilt[1], tilt[2]);
+  const out = mk(new THREE.SphereGeometry(R, 18, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), LEMON); out.scale.set(1, 0.55, 0.82); grp.add(tag(out, lab));
+  const inn = mk(new THREE.SphereGeometry(R * 0.86, 18, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), PITH); inn.scale.set(1, 0.5, 0.8); inn.position.y = 0.004; grp.add(tag(inn, lab + ' (pith)'));
+  for (let k = 0; k < 3; k++) { const a = k * 2.1 + tilt[1]; grp.add(tag(ball(R * 0.22, { ...FLESH, grey: 0.85 }, [Math.cos(a) * R * 0.3, -R * 0.2, Math.sin(a) * R * 0.25], [1.4, 0.4, 0.7]), lab + ' (torn pulp)')); }
+  g.add(grp);
+}
+function food(g, [shape, size, x, z, lab], y, R) {
+  const bowl = /bowl/.test(lab);
+  if (shape === 'round') { const r = size;
+    if (bowl) { const b = bowlMesh(r, 0.55, CERAMIC); b.position.set(x, y + 0.55 * r, z); g.add(tag(b, lab)); g.add(tag(cyl(r * 0.92, r * 0.92, 0.01, { grey: 0.7, col: 0xd8a860 }, [x, y + 0.5 * r, z], null, 24), lab)); return; }
+    g.add(tag(cyl(r, r * 0.92, 0.018, CERAMIC, [x, y + 0.009, z], null, 28), lab));
+    if (/plates|napkins/.test(lab)) { g.add(tag(cyl(r, r, 0.05, { grey: 0.97, col: 0xfafafa }, [x, y + 0.025, z], null, 24), lab)); return; }
+    const n = Math.round(r * 60); for (let k = 0; k < n; k++) { const a = R() * Math.PI * 2, rr = Math.sqrt(R()) * r * 0.78;
+      g.add(tag(ball(0.018 + R() * 0.01, { grey: 0.5 + R() * 0.4, col: [0xc85a3a, 0x6a9a4a, 0xe8d8a0, 0xa04a6a][k % 4] }, [x + Math.cos(a) * rr, y + 0.03, z + Math.sin(a) * rr], [1, 0.7, 1]), lab)); }
+    return; }
+  const [w, d] = size; g.add(tag(box(w, 0.02, d, /napkins/.test(lab) ? { grey: 0.95, col: 0xf0ece0 } : { grey: 0.6, col: 0xa07a50 }, [x, y + 0.01, z]), lab));
+  if (/napkins/.test(lab)) { g.add(tag(box(w, 0.04, d, { grey: 0.95, col: 0xf0ece0 }, [x, y + 0.03, z]), lab)); return; }
+  if (/bag/.test(lab)) { g.add(tag(box(w * 0.9, 0.08, d * 0.9, { grey: 0.55, col: 0xc8402a }, [x, y + 0.05, z]), lab)); return; }
+  for (let i = 0; i < Math.floor(w / 0.06); i++) for (let j = 0; j < Math.floor(d / 0.06); j++)
+    g.add(tag(box(0.04, 0.02, 0.04, { grey: 0.6 + 0.3 * R(), col: [0xe8c86a, 0xd8b070, 0xb07a4a][(i + j) % 3] }, [x - w / 2 + 0.03 + i * 0.06, y + 0.03, z - d / 2 + 0.03 + j * 0.06]), lab));
+}
+// the giant punchbowl (party: on the counter right of the stove, full, a ladle in it; prep: on the dining table, being
+// mixed, a long wooden spoon). Returns the top of the spoon / ladle handle (for a hand).
+function punchbowl(g, [x, z], y, { fill = 0.8, tool = 'ladle', lab = 'giant punchbowl of lemonade' } = {}) {
+  const P = PUNCHBOWL, k = P.h / P.r, yb = y + P.foot;
+  g.add(tag(cyl(0.09, 0.12, P.foot, GLASSY, [x, y + P.foot / 2, z], null, 28), lab + ' (foot)'));
+  const b = bowlMesh(P.r, k, GLASSY); b.position.set(x, yb + P.h, z); g.add(tag(b, lab));
+  const yl = yb + P.h * fill, rl = P.r * Math.sqrt(1 - (1 - fill) ** 2);
+  g.add(tag(cyl(rl, rl, 0.006, LEMONADE, [x, yl, z], null, 40), 'lemonade (in the punchbowl)'));
+  const RS = rng(5); for (let i = 0; i < 6; i++) { const a = RS() * Math.PI * 2, rr = RS() * rl * 0.7;
+    g.add(tag(cyl(0.035, 0.035, 0.006, { ...FLESH, grey: 0.93 }, [x + Math.cos(a) * rr, yl + 0.005, z + Math.sin(a) * rr], null, 16), 'lemon slices (floating)')); }
+  const lean = V(-0.35, 1, 0.25).normalize(), foot = V(x + 0.05, yl - 0.03, z - 0.04), L = tool === 'ladle' ? 0.40 : 0.42, top = foot.clone().addScaledVector(lean, L);
+  const h = cyl(tool === 'ladle' ? 0.008 : 0.011, tool === 'ladle' ? 0.008 : 0.011, L, tool === 'ladle' ? STEEL : WOOD, foot.clone().addScaledVector(lean, L / 2).toArray(), null, 8);
+  h.quaternion.setFromUnitVectors(V(0, 1, 0), lean); g.add(tag(h, tool === 'ladle' ? 'ladle' : 'long wooden spoon (stirring)'));
+  if (tool === 'ladle') { const c = bowlMesh(0.045, 0.8, STEEL); c.position.copy(foot).add(V(0, 0.02, 0)); g.add(tag(c, 'ladle')); }
+  return top;
+}
+function kitchen(g, dressing) {
+  const R = rng(23), CT = { grey: 0.55, col: 0x8a8478 };
+  // base cabinets (walnut carcass), the top, the toe kick, walnut doors on the run's front
+  COUNTERS.forEach((c, i) => { const cx = (c.x0 + c.x1) / 2, cz = (c.z0 + c.z1) / 2;
+    g.add(tag(box(c.x1 - c.x0 - 0.04, COUNTER_H - 0.1 - 0.035, c.z1 - c.z0 - 0.04, WALNUT, [cx, 0.1 + (COUNTER_H - 0.135) / 2, cz]), 'kitchen counters (base cabinets, dark walnut)'));
+    g.add(tag(box(c.x1 - c.x0, 0.035, c.z1 - c.z0, CT, [cx, COUNTER_H - 0.0175, cz]), 'kitchen counters (top)'));
+    g.add(tag(box(c.x1 - c.x0 - 0.1, 0.1, c.z1 - c.z0 - 0.1, DARK, [cx, 0.05, cz]), 'kitchen counters (toe kick)'));
+    const y0 = 0.11, y1 = COUNTER_H - 0.045, lab = 'cabinet doors (dark walnut)';
+    if (c.front === '+Z') doorRow(g, { axis: 'X', s0: c.x0 + 0.01, s1: COUNTERS[1].x0, at: c.z1 - 0.02, out: 1, y0, y1, lab });
+    if (c.front === '-Z') doorRow(g, { axis: 'X', s0: c.x0 + 0.01, s1: c.x1, at: c.z0 + 0.02, out: -1, y0, y1, lab, w: 0.35 });
+    if (c.front === '-X') doorRow(g, { axis: 'Z', s0: c.z0, s1: COUNTERS[2].z0, at: c.x0 + 0.02, out: -1, y0, y1, lab, skip: [[STOVE.z0, STOVE.z1], [DISHWASHER.z0, DISHWASHER.z1]] }); });
+  // the sink and tap (unchanged)
+  g.add(tag(box(SINK.x1 - SINK.x0, 0.01, 0.42, { grey: 0.3, col: 0x6a6a70 }, [(SINK.x0 + SINK.x1) / 2, COUNTER_H + 0.002, SINK.z]), 'sink'));
+  g.add(tag(cyl(0.012, 0.012, 0.3, { grey: 0.7, col: 0xb8b8bc }, [(SINK.x0 + SINK.x1) / 2, COUNTER_H + 0.15, SINK.z + 0.24], null, 10), 'sink (tap)'));
+  // the range: cooktop, burners, the oven door and the control panel on its front (-X)
+  { const S = STOVE, zc = (S.z0 + S.z1) / 2, w = S.z1 - S.z0, fx = COUNTERS[1].x0;
+    g.add(tag(box(0.6, 0.012, w, DARK, [S.x, COUNTER_H + 0.006, zc]), 'stove'));
+    for (const [dx, dz] of [[-0.14, -0.18], [0.14, -0.18], [-0.14, 0.18], [0.14, 0.18]]) g.add(tag(cyl(0.09, 0.09, 0.01, { grey: 0.25, col: 0x3a3a3a }, [S.x + dx, COUNTER_H + 0.017, zc + dz], null, 20), 'stove'));
+    g.add(tag(box(0.03, COUNTER_H - 0.12, w - 0.01, { grey: 0.3, col: 0x2e2e30 }, [fx - 0.005, 0.1 + (COUNTER_H - 0.12) / 2, zc]), 'stove (oven door)'));
+    g.add(tag(box(0.03, 0.025, w - 0.12, STEEL, [fx - 0.03, COUNTER_H - 0.12, zc]), 'stove (oven handle)'));
+    g.add(tag(box(0.6, 0.012, w, DARK, [S.x, COUNTER_H + 0.006, zc]), 'stove')); }
+  // the dishwasher right of the stove (Jade): a stainless front under the counter
+  { const D = DISHWASHER, zc = (D.z0 + D.z1) / 2, fx = COUNTERS[1].x0;
+    g.add(tag(box(0.025, COUNTER_H - 0.13, D.z1 - D.z0 - 0.006, STEEL, [fx + 0.005, 0.1 + (COUNTER_H - 0.13) / 2, zc]), 'dishwasher (Jade)'));
+    g.add(tag(box(0.03, 0.025, D.z1 - D.z0 - 0.12, { grey: 0.5, col: 0x8a8a8c }, [fx - 0.02, COUNTER_H - 0.09, zc]), 'dishwasher (handle)')); }
+  // the fridge near the 2x2 (Jade): back to the partition, doors facing ESE into the kitchen
+  { const F = FRIDGE, cx = (F.x0 + F.x1) / 2, W = { grey: 0.93, col: F.col };
+    g.add(tag(box(F.x1 - F.x0, F.h, F.z1 - F.z0 - 0.04, W, [cx, F.h / 2, (F.z0 + F.z1 - 0.04) / 2]), 'fridge (Jade: normal size, by the 2x2)'));
+    for (const [ya, yb] of [[0.02, F.freezerY - 0.01], [F.freezerY + 0.01, F.h - 0.01]]) {
+      g.add(tag(box(F.x1 - F.x0 - 0.01, yb - ya, 0.04, W, [cx, (ya + yb) / 2, F.z1 - 0.02]), 'fridge (door)'));
+      g.add(tag(box(0.025, Math.min(0.5, (yb - ya) * 0.6), 0.03, STEEL, [F.x1 - 0.07, ya + (yb - ya) * (ya < 0.5 ? 0.7 : 0.35), F.z1 + 0.02]), 'fridge (handle)')); } }
+  // the stainless step-lid trash can right of the sink (Jade)
+  { const T = TRASH, [x, z] = T.at;
+    g.add(tag(cyl(T.r, T.r * 0.95, T.h - 0.04, STEEL, [x, (T.h - 0.04) / 2, z], null, 28), 'stainless step-lid trash can (Jade)'));
+    g.add(tag(ball(T.r * 1.01, STEEL, [x, T.h - 0.04, z], [1, 0.28, 1]), 'stainless step-lid trash can (lid)'));
+    g.add(tag(box(0.1, 0.02, 0.07, { grey: 0.3, col: 0x333333 }, [x - T.r - 0.02, 0.03, z]), 'stainless step-lid trash can (pedal)')); }
+  // the upper cabinets and the range hood
+  for (const U of UPPERS) { g.add(tag(box(U.x1 - U.x0, U.y1 - U.y0, U.z1 - U.z0, WALNUT, [(U.x0 + U.x1) / 2, (U.y0 + U.y1) / 2, (U.z0 + U.z1) / 2]), 'upper cabinets (dark walnut)'));
+    const lab = 'upper cabinet doors (dark walnut)';
+    if (U.front === '+Z') doorRow(g, { axis: 'X', s0: U.x0, s1: U.x1, at: U.z1, out: 1, y0: U.y0 + 0.01, y1: U.y1 - 0.01, lab, w: 0.4, pullLow: true });
+    else doorRow(g, { axis: 'Z', s0: U.z0 + (U.z0 < 5.5 ? 0.33 : 0), s1: U.z1, at: U.x0, out: -1, y0: U.y0 + 0.01, y1: U.y1 - 0.01, lab, w: 0.4, pullLow: true }); }
+  g.add(tag(box(HOOD.x1 - HOOD.x0, HOOD.y1 - HOOD.y0, HOOD.z1 - HOOD.z0, STEEL, [(HOOD.x0 + HOOD.x1) / 2, (HOOD.y0 + HOOD.y1) / 2, (HOOD.z0 + HOOD.z1) / 2]), 'range hood'));
+  g.add(tag(box(0.25, 2.16 - HOOD.y1, 0.3, STEEL, [4.76, (2.16 + HOOD.y1) / 2, (HOOD.z0 + HOOD.z1) / 2]), 'range hood'));
+  // dressing
+  const yT = DINING.h;
+  if (dressing === 'party') {
+    punchbowl(g, PUNCHBOWL.at, COUNTER_H);
+    for (const [cx, cz] of PUNCHBOWL.cupsAt) { const n = PUNCHBOWL.cupsN / 2, h = 0.12 + n * 0.012;
+      g.add(tag(cyl(0.045, 0.034, h, { grey: 0.9, col: 0xd8303a }, [cx, COUNTER_H + h / 2, cz], null, 18), 'a stack of cups')); }
+    for (const f of PARTY_FOOD.table) food(g, f, yT, R);
+    for (const f of PARTY_FOOD.counters) food(g, f, COUNTER_H, R);
+  } else if (dressing === 'prep') {
+    const P = PREP, y = yT;
+    // cutting board, knife, two halves cut face up (one with the knife beside it)
+    g.add(tag(box(P.board.w, 0.022, P.board.d, { grey: 0.7, col: 0xc8a070 }, [P.board.at[0], y + 0.011, P.board.at[1]]), 'cutting board'));
+    P.halves.forEach(([x, z], i) => lemonHalf(g, [x, y + 0.022, z], TREE.lemonR, i * 0.4, 'lemon half (cut face up)'));
+    g.add(tag(box(0.2, 0.004, 0.035, STEEL, [P.knife.at[0] - 0.05, y + 0.024, P.knife.at[1] - 0.03], [0, 10, 0]), 'knife'));
+    g.add(tag(box(0.11, 0.018, 0.024, DARK, [P.knife.at[0] + 0.1, y + 0.031, P.knife.at[1] - 0.05], [0, 10, 0]), 'knife'));
+    // the glass reamer (juicer): a dish with a ribbed cone, juice in the dish, a half pressed on it (cut face down)
+    { const [x, z] = P.reamer.at, r = P.reamer.r;
+      g.add(tag(cyl(r, r * 0.85, 0.045, GLASSY, [x, y + 0.0225, z], null, 32), 'juicer (glass reamer)'));
+      g.add(tag(cyl(r * 0.85, r * 0.85, 0.004, LEMONADE, [x, y + 0.035, z], null, 32), 'juice (in the reamer)'));
+      g.add(tag(cyl(0.008, 0.045, 0.06, GLASSY, [x, y + 0.075, z], null, 10), 'juicer (ribbed cone)'));
+      const d = mk(new THREE.SphereGeometry(TREE.lemonR, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), LEMON); d.scale.set(1, 1.22, 1); d.position.set(x, y + 0.085, z); g.add(tag(d, 'lemon half (pressed on the juicer)'));
+      g.add(tag(box(0.08, 0.01, 0.03, GLASSY, [x + r + 0.03, y + 0.03, z]), 'juicer (handle)')); }
+    // the bowl of picked lemons (from V3b), two with leaves still on
+    { const [x, z] = P.lemonsBowl.at, r = P.lemonsBowl.r, b = bowlMesh(r, 0.6, CERAMIC); b.position.set(x, y + 0.6 * r, z); g.add(tag(b, 'bowl of picked lemons'));
+      [[-0.05, -0.04], [0.06, -0.03], [0.0, 0.06], [-0.07, 0.05]].forEach(([dx, dz], k) => { g.add(tag(ball(TREE.lemonR, LEMON, [x + dx, y + 0.08 + (k % 2) * 0.03, z + dz], [1, 0.85, 1.22]), 'lemons (picked, pomelo-sized)'));
+        if (k < 2) g.add(tag(ball(0.045, { grey: 0.4, col: 0x3a6a2a }, [x + dx + 0.08, y + 0.17, z + dz - 0.05], [1, 0.12, 0.45]), 'lemon leaf (still on the stem)')); }); }
+    // the rinds
+    { const [x, z] = P.rindsBowl.at, r = P.rindsBowl.r, b = bowlMesh(r, 0.5, CERAMIC); b.position.set(x, y + 0.5 * r, z); g.add(tag(b, 'bowl of squeezed rinds'));
+      for (let k = 0; k < P.rinds; k++) { const a = k * 1.05, rr = k ? 0.075 : 0; rind(g, [x + Math.cos(a) * rr, y + 0.075 + (k ? 0 : 0.03), z + Math.sin(a) * rr], TREE.lemonR * 0.9, [0.45 * Math.sin(k * 1.3) * (k ? 1 : 0), k * 0.9, 0.45 * Math.cos(k * 1.7) * (k ? 1 : 0)]); } }
+    // sugar, the water pitcher, the punchbowl being mixed (half full, the long spoon in it)
+    g.add(tag(box(0.12, 0.2, 0.08, { grey: 0.92, col: 0xece8dc }, [P.sugar.at[0], y + 0.1, P.sugar.at[1]]), 'bag of sugar'));
+    g.add(tag(cyl(P.pitcher.r, P.pitcher.r * 0.9, 0.24, GLASSY, [P.pitcher.at[0], y + 0.12, P.pitcher.at[1]], null, 24), 'pitcher of water'));
+    PREP.spoonTop = punchbowl(g, P.punch.at, y, { fill: 0.45, tool: 'spoon', lab: 'giant punchbowl (mixing the lemonade)' }).toArray();
+  }
+}
+// the room crossing's legs as arrows on the floor (diagnostic shots only: shot.legs), and a ring at each stop
+const LEG_COL = { L1: 0xd9a520, L2: 0x2aa7c9, L3: 0xc93a8a };
+function legArrows() {
+  const g = new THREE.Group(), y = 0.035;
+  for (const L of ROOM_CROSSING.legs) { const col = LEG_COL[L.id], look = { grey: 0.98, col, emit: col, emitI: 1.0, flatEmit: 0.99, noCast: true }, o = L.drawOffset || 0;
+    // drawn offset to the right of travel (L2 and L3 share a line in opposite directions, and L1's last stretch): drawing only
+    const pts = L.pts.map(([x, z], i) => { const a = L.pts[Math.max(0, i - 1)], b = L.pts[Math.min(L.pts.length - 1, i + 1)], dx = b[0] - a[0], dz = b[1] - a[1], n = Math.hypot(dx, dz) || 1;
+      return V(x - o * dz / n, y, z + o * dx / n); });   // right of travel = (-dZ, dX)
+    const end = pts[pts.length - 1], prev = pts[pts.length - 2], dir = end.clone().sub(prev).normalize(), head = 0.32;
+    const body = [...pts.slice(0, -1), end.clone().addScaledVector(dir, -head * 0.9)];
+    const lab = `${L.id}: ${L.what} (${L.length_m} m, ${L.dt_s} s real, ${L.slot_s[0]}-${L.slot_s[1]} s in the song)`;
+    for (let i = 0; i + 1 < body.length; i++) { const a = body[i], b = body[i + 1]; g.add(tag(slab(a, b, 0.07, 0.008, V(-(b.z - a.z), 0, b.x - a.x), look), lab)); }
+    const sh = new THREE.Shape(); sh.moveTo(0, 0); sh.lineTo(-head, head * 0.42); sh.lineTo(-head, -head * 0.42); sh.lineTo(0, 0);
+    const m = mk(new THREE.ExtrudeGeometry(sh, { depth: 0.01, bevelEnabled: false }), look); m.rotation.x = -Math.PI / 2;
+    const hg = new THREE.Group(); hg.add(m); hg.position.copy(end); hg.rotation.y = Math.atan2(-dir.z, dir.x); g.add(hg); m.userData.label = lab; tag(m, lab); }
+  for (const S of ROOM_CROSSING.stops) { const t = mk(new THREE.TorusGeometry(0.24, 0.025, 6, 40), { grey: 0.98, col: 0xf4f0e0, emit: 0xf4f0e0, emitI: 0.6, flatEmit: 0.99, noCast: true });
+    t.rotation.x = Math.PI / 2; t.position.set(S.at[0], y + 0.01, S.at[1]); g.add(tag(t, `${S.id}: ${S.what} (${S.slot_s[0]}-${S.slot_s[1]} s)`)); }
+  return g;
+}
+
 // ---------------------------------------------------------------- furniture
-function furniture(lt) {
+function furniture(lt, dressing) {
   const g = new THREE.Group();
   { const C = COUCH, W = { grey: 0.94, col: C.col }, add = (m) => g.add(tag(m, 'modern white couch (sectional)')), addc = (m) => g.add(tag(m, 'chaise (of the couch)')), cx = (C.x0 + C.x1) / 2;
     add(box(C.x1 - C.x0, C.seatH - 0.08, C.z1 - C.z0 - C.backD, W, [cx, 0.08 + (C.seatH - 0.08) / 2, C.z0 + C.backD + (C.z1 - C.z0 - C.backD) / 2]));
@@ -249,15 +422,7 @@ function furniture(lt) {
     apron.matrixAutoUpdate = false; apron.matrix.set(0, -1, 0, G.wallX - 0.005, 0, 0, 1, G.h - G.glass - 0.05, 1, 0, 0, G.zc, 0, 0, 0, 1); g.add(tag(apron, 'semicircular glass-top console table (apron)'));
     for (const t of [0.12, Math.PI / 2, Math.PI - 0.12]) { const lx = G.wallX - 0.005 - (b - 0.04) * Math.sin(t), lz = G.zc + (a - 0.04) * Math.cos(t);
       g.add(tag(cyl(0.012, 0.012, G.h - G.glass - 0.05, CH, [lx, (G.h - G.glass - 0.05) / 2, lz], null, 10), 'semicircular glass-top console table (leg)')); } }
-  // kitchen: counters (base cabinets + top), the sink, the stove
-  for (const c of COUNTERS) { const cx = (c.x0 + c.x1) / 2, cz = (c.z0 + c.z1) / 2;
-    g.add(tag(box(c.x1 - c.x0 - 0.04, COUNTER_H - 0.1 - 0.035, c.z1 - c.z0 - 0.04, { grey: 0.78, col: 0xd8d2c4 }, [cx, 0.1 + (COUNTER_H - 0.135) / 2, cz]), 'kitchen counters (base cabinets)'));
-    g.add(tag(box(c.x1 - c.x0, 0.035, c.z1 - c.z0, { grey: 0.55, col: 0x8a8478 }, [cx, COUNTER_H - 0.0175, cz]), 'kitchen counters (top)'));
-    g.add(tag(box(c.x1 - c.x0 - 0.1, 0.1, c.z1 - c.z0 - 0.1, DARK, [cx, 0.05, cz]), 'kitchen counters (toe kick)')); }
-  g.add(tag(box(SINK.x1 - SINK.x0, 0.01, 0.42, { grey: 0.3, col: 0x6a6a70 }, [(SINK.x0 + SINK.x1) / 2, COUNTER_H + 0.002, SINK.z]), 'sink'));
-  g.add(tag(cyl(0.012, 0.012, 0.3, { grey: 0.7, col: 0xb8b8bc }, [(SINK.x0 + SINK.x1) / 2, COUNTER_H + 0.15, SINK.z + 0.24], null, 10), 'sink (tap)'));
-  { const S = STOVE; g.add(tag(box(0.6, 0.012, S.z1 - S.z0, DARK, [S.x, COUNTER_H + 0.006, (S.z0 + S.z1) / 2]), 'stove'));
-    for (const [dx, dz] of [[-0.14, -0.18], [0.14, -0.18], [-0.14, 0.18], [0.14, 0.18]]) g.add(tag(cyl(0.09, 0.09, 0.01, { grey: 0.25, col: 0x3a3a3a }, [S.x + dx, COUNTER_H + 0.017, (S.z0 + S.z1) / 2 + dz], null, 20), 'stove')); }
+  kitchen(g, dressing);
   // the pale IKEA dining table, the pale benches tucked in
   { const D = DINING, P = { grey: 0.88, col: D.col }, cx = (D.x0 + D.x1) / 2, cz = (D.z0 + D.z1) / 2;
     g.add(tag(box(D.x1 - D.x0, 0.035, D.z1 - D.z0, P, [cx, D.h - 0.0175, cz]), 'pale IKEA dining table'));
@@ -343,14 +508,7 @@ function yard(shot, lt) {
     g.add(tag(ball(G.canopyR * 0.7, LEAF, [G.trunk[0] + 0.3, G.canopyY + 0.5, G.trunk[1] + 0.4], [1, 0.8, 1]), 'grapefruit tree (branches over the fence)'));
     const RG = rng(3); for (let k = 0; k < G.fruits; k++) { const a = Math.PI * 2 * k / G.fruits + RG() * 0.3, rho = 0.5 + RG() * 0.9, x = G.at[0] + Math.cos(a) * rho, z = G.at[1] + Math.sin(a) * rho;
       g.add(tag(ball(G.fruitR, { grey: 0.85, col: 0xf0b040 }, [x, G.canopyY - G.canopyR * G.canopyK * 0.7 - RG() * 0.2, z]), 'grapefruits')); } }
-  // the lemonade table on the deck
-  { const d = DRINKS, cx = (d.x0 + d.x1) / 2, czz = (d.z0 + d.z1) / 2, W = { grey: 0.85, col: 0xd8d4c8 }, y0 = d.y;
-    g.add(tag(box(d.x1 - d.x0, 0.03, d.z1 - d.z0, W, [cx, y0 + d.h - 0.015, czz]), 'lemonade table'));
-    for (const x of [d.x0 + 0.05, d.x1 - 0.05]) for (const z of [d.z0 + 0.05, d.z1 - 0.05]) g.add(tag(box(0.04, d.h - 0.03, 0.04, W, [x, y0 + (d.h - 0.03) / 2, z]), 'lemonade table'));
-    g.add(tag(cyl(0.075, 0.065, 0.24, { grey: 0.93, col: 0xf0e070 }, [cx - 0.2, y0 + d.h + 0.12, czz], null, 20), 'lemonade pitcher'));
-    for (let k = 0; k < 6; k++) g.add(tag(cyl(0.035, 0.028, 0.1, { grey: 0.9, col: 0xf0e8a0 }, [cx + 0.05 + (k % 3) * 0.1, y0 + d.h + 0.05, czz - 0.1 + Math.floor(k / 3) * 0.16], null, 12), 'cups'));
-    g.add(tag(ball(0.13, { grey: 0.8, col: 0xd0c8b0 }, [cx + 0.2, y0 + d.h + 0.05, czz + 0.18], [1, 0.45, 1]), 'bowl of lemons'));
-    for (let k = 0; k < 3; k++) g.add(tag(ball(TREE.lemonR, { grey: 0.95, col: 0xf2d21c }, [cx + 0.14 + k * 0.06, y0 + d.h + 0.13 + (k % 2) * 0.05, czz + 0.16 + k * 0.02], [1, 1.2, 1]), 'lemons (pomelo-sized)')); }
+  // (the lemonade table on the deck: REMOVED 2026-11-25 round 2; the lemonade is in the punchbowl in the kitchen)
   // fire poi: the two circles (trails) and the two flames at their current place
   if (lt.poi) { const FIRE = { grey: 0.97, col: 0xffb040, emit: 0xff7a20, emitI: 1.6, flatEmit: 0.97 };
     [1, -1].forEach((s, i) => { const c = poiCentre(s); const t = mk(new THREE.TorusGeometry(POI.r, 0.012, 6, 48), { ...FIRE, emitI: 0.8 });
@@ -379,8 +537,10 @@ export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   const section = SECTION_KEY[shot.section] || 'bridge', sun = SUN[section], SL = SECTION_LIGHT[section];
   const lt = { sun: SL.sun && sun.up, ceiling: SL.ceiling, poi: SL.poi, sky: SL.sky, ...(shot.light || {}) };
-  const { g: houseG, panes } = house(shot); root.add(houseG); root.add(shelf()); root.add(expedit2()); root.add(furniture(lt)); root.add(yard(shot, lt));
+  const dressing = shot.dressing || (section === 'prep' ? 'prep' : 'party');   // party food out from the bridge on; the prep before
+  const { g: houseG, panes } = house(shot); root.add(houseG); root.add(shelf()); root.add(expedit2()); root.add(furniture(lt, dressing)); root.add(yard(shot, lt));
   if (shot.path) root.add(pathRibbon());
+  if (shot.legs) root.add(legArrows());
   // V3b (before the party): the bowl the childhood friend holds, with the first picked lemons in it
   if (shot.bowl) { const [bx, by, bz] = shot.bowl, BW = { grey: 0.85, col: 0xd8d0c0 };
     root.add(tag(mk(new THREE.SphereGeometry(0.16, 24, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), BW).translateX(bx).translateY(by + 0.1).translateZ(bz), 'bowl of picked lemons'));
@@ -447,16 +607,14 @@ export function build(shot, { makeCam }) {
       eyeL_px: P(Pj.eyeL.clone()), eyeR_px: P(Pj.eyeR.clone()), eyes_mid_px: P(Pj.eyes.clone()), templeL_px: P(Pj.templeL.clone()), templeR_px: P(Pj.templeR.clone()),
       eyeL_world: Pj.eyeL.toArray().map((v) => +v.toFixed(4)), templeL_world: Pj.templeL.toArray().map((v) => +v.toFixed(4)), head_pose: shot.figs.jade27.head }; }
     if (figs.firstLove27) out.first_love_costume = FIRST_LOVE_COSTUME;
-    if (shot.crossing) { const C = CROSSING, px = (x, z, y = 0.02) => P(V(x, y, z)), cornersPx = (o) => [[o.x0, o.z0], [o.x0, o.z1], [o.x1, o.z1], [o.x1, o.z0]].map(([x, z]) => px(x, z, 0.75));
-      const people = Object.entries(figs).filter(([w]) => w !== 'jade27').map(([w, f]) => { const p = f.userData.P, pel = p.hip || p.waist || p.head;
-        return { who: w, label: CAST[w].name, floor_world: [+pel.x.toFixed(3), +pel.z.toFixed(3)], floor_px: px(pel.x, pel.z), head_px: P(p.head.clone()),
-          clearance_to_path_m: +Math.min(...C.segments.map((g) => { const [ax, az] = g.from, [bx, bz] = g.to, dx = bx - ax, dz = bz - az, t = Math.max(0, Math.min(1, ((pel.x - ax) * dx + (pel.z - az) * dz) / (dx * dx + dz * dz))); return Math.hypot(pel.x - ax - t * dx, pel.z - az - t * dz); })).toFixed(3) }; })
-        .filter((q) => q.floor_world[1] > 3 && q.floor_world[1] < 10.2);
-      out.crossing = { note: 'world metres: [X (NNE), Z (ESE)] on the floor; px = this camera’s pixels (floor level). Speeds and times are INVENTED (a plausible walk).', ...C,
-        points_px: C.points.map(([x, z]) => px(x, z)), stamps: C.stamps.map((q) => ({ ...q, px: px(...q.at) })), turns: C.turns.map((q) => ({ ...q, px: px(...q.at) })),
-        segments: C.segments.map((g) => ({ ...g, from_px: px(...g.from), to_px: px(...g.to) })), shortest_walkable_path_px: C.shortest_walkable_path.map(([x, z]) => px(x, z)),
-        obstacles: C.obstacles.map((o) => ({ ...o, corners_px_at_0_75m: cornersPx(o) })), people_near_the_route: people,
-        her_now: figs.jade27 ? { floor_world: [+figs.jade27.userData.P.hip.x.toFixed(3), +figs.jade27.userData.P.hip.z.toFixed(3)], head_px: P(figs.jade27.userData.P.head.clone()), t_s: +(C.total_s / 2).toFixed(2), note: 'posed at the time midpoint of the walk' } : null }; }
+    if (shot.crossing) { const R = ROOM_CROSSING, px = (x, z, y = 0.02) => P(V(x, y, z)), { legs, stops, ...rest } = R;
+      const people = Object.entries(figs).map(([w, f]) => { const p = f.userData.P, pel = p.hip || p.waist || p.head;
+        return { who: w, label: CAST[w].name, floor_world: [+pel.x.toFixed(3), +pel.z.toFixed(3)], floor_px: px(pel.x, pel.z), head_px: P(p.head.clone()) }; })
+        .filter((q) => q.floor_world[1] > -3 && q.floor_world[1] < 10.2 && q.floor_world[0] < 5);
+      out.crossing = { ...rest, key: shot.rcKey || null,
+        items: R.items.map((o) => (o.kind === 'leg' ? { ...o, pts_px: o.pts.map(([x, z]) => px(x, z)), arrow_px: [px(...o.pts[0]), px(...o.pts[o.pts.length - 1])] } : { ...o, px: px(...o.at) })),
+        people_in_the_rooms: people };
+      if (shot.legs) out.crossing.arrows = { colours: Object.fromEntries(Object.entries(LEG_COL).map(([k, c]) => [k, '#' + c.toString(16).padStart(6, '0')])), note: 'legs drawn as floor arrows (y 0.035), rings at the stops: diagnostic only' }; }
     if (shot.path) out.path = { note: 'her route, one line: shelf, the opening, round the dining table, the sliding door, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]', world: PATH.map(([x, z, y]) => [x, y, z]), px: PATH.map(([x, z, y]) => P(V(x, y + 0.02, z))) };
     return out;
   };

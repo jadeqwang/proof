@@ -1,5 +1,26 @@
 # basement90 — Decatur basement, 1990 (verse 2b 2:16, "Good catch!" 2:21)
 
+## Ceiling light, 2026-11-25 (round 2 answers; supersedes "the only light" / "bare bulb off" below)
+
+Jade: the B4 double-take image is too dark, she can't see what is going on; the basement had more ambient light from a
+CEILING LIGHT. The screen stays the beam (the masks are unchanged and screen-only); the bulb is the room's ambient.
+
+- **Fixture (ASSUMED type, flag to Jade):** a bare 60-75 W incandescent bulb in a white porcelain pull-chain lampholder
+  on a junction box nailed under a joist, the stock unfinished-basement light of the period. Alternative if she
+  remembers it differently: a two-tube 4 ft fluorescent shop light (cooler, flatter, buzzing). `ROOM.bulb` moved to the
+  joist at x 0.33, z -0.45 (in front of the desk, between the desk and the open floor), bulb centre 1.97 m (`BULB_P`);
+  ON in every shot. `shot.light.ceiling: false` turns it off (falls back to the old dark rig).
+- **Rig:** lit = warm point light 0xffd9a0 (same colour as kitchen90's pendant bulb), `CEIL_LIT` 3.2, soft shadows, plus
+  a warm bounce ambient 0x6a5a48 at `AMB_LIT` 0.7 (was a near-black trace 0x0a0c18). The screen spot is unchanged, so
+  the desk, the keyboard and the faces turned to the glass still go blue against a warm room. Flat = a white point
+  light at the bulb (0.8) with ambient 1.0, replacing the old directional fill. Sidecar `lights` lists both.
+  Per-shot overrides: `light.ceilLit`, `light.ambLit`, `light.ceilI`.
+- **Looked at** (lit): B4 now reads as a two-shot (Dad's face, her paw at her mouth, desk, joists); B0_wide shows the
+  fixture and the whole room; B1 feet readable (the desk still shadows the near foot); B5 her face and paw lit warm with
+  the blue screen edge; B2/B3 unchanged in feel (screen-dominated). B0_plan hides only the pull chain now (the fixture
+  shows as a dot). Beam masks re-rendered, unchanged.
+- **Painter note:** the keyframe B4 (round 2) was painted from the dark render; repaint from the new lit render.
+
 Beam: the CRT screen, the only light. `layout.js` holds every number; `house.js` holds what is shared with `kitchen90`
 (same plan coordinates; the kitchen is directly above x -1.8..1.8; the stair door in the kitchen's left wall opens onto
 this set's top landing). `kit.js` = set-local helpers used by both sets.

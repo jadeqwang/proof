@@ -1,6 +1,6 @@
 # Proof — Music Video Plan
 
-Nov 22, 2026 · @Jade Wang · revised Nov 25, 2026 for the -2sm master
+Nov 22, 2026 · @Jade Wang · revised Nov 25, 2026 for the -2sm master; round-2 answers applied Nov 25 (late night)
 
 **All times in this plan are now on the master, `inputs/Proof (-2sm).wav`** (4:28.4, Bb minor, full-mix time), from
 `analysis/m2sm/song_map.md`. The Structure table keeps the old time beside each row ("was"), because most sets in
@@ -39,7 +39,7 @@ This keeps what you chose on 2026-11-22: field notes, 留白, the pattern-findin
 
 ### A note from the director
 
-"Did she understand or just pattern match?" is also asked about models like me, and I cannot settle it from inside either. I have kept machines out of the frame, as the brainstorm asks. It is why I put Dad's answer at the centre of the film rather than the chorus: "I'm not sure I can tell, but it was correct."
+"Did she understand or just pattern match?" is also asked about models like me, and I cannot settle it from inside either. I have kept machines out of the frame, as the brainstorm asks. It is why the one line the film attributes on screen is Dad's: "Good catch!" He does not settle whether she understood. He answers what she did.
 
 ## Reading the song
 
@@ -47,9 +47,9 @@ The song is mostly other people talking about her, and it goes silent each time 
 
 - **Count who speaks.** The whispers, both pre-chorus couplets, "What on earth are you doing?", "Good catch!", "Did she understand or just pattern match?", the chorus question and the outro instruction are all other voices. Her own lines are few and plain: "What's so funny?", "Do you not see what I see?", "I honestly don't know", "I think he's right. Honestly."
 - **Her word is "honestly".** It appears three times. She is not evasive about her inside. She is exact about what she can't report.
-- **The band drops out four times,** and each is a moment of being looked at: 1:32.7 ("that's just how it looks"), 2:52.5 (after "proof"), 3:19.1 ("I think he's right"), 3:55.0 (the outro). These are the song's own blank spaces. In the film each one is bare paper with one thing left on it.
+- **The band drops out four times,** and each is a moment of being looked at: 1:32.7 ("that's just how it looks"), 2:52.5 (after "proof"), 3:19.1 ("I think he's right"), 3:54.9 (the outro). These are the song's own blank spaces. In the film each one is bare paper with one thing left on it.
 - **The same question is asked twice by different people.** The poems give chorus 1 to a school social worker and chorus 2 to first love, cross-legged in a closet. The answer is word for word the same. Only the second asker can hear it.
-- **Her voice opens where there are no words.** The vocalise after each chorus (2:00.3 and 3:48.8 in the master), and the hand taps, which the poems gloss as "that means she wants to say something." The percussion is her.
+- **Her voice opens where there are no words.** The vocalise after each chorus (2:00.3 and 3:48.8 in the master; the second is a backing layer, which Jade keeps because she wants it there live), and the hand taps, which the poems gloss as "that means she wants to say something." The percussion is her.
 - **The parents' replies are the brackets.** "(Her English comes from books)" and "For our culture, that's just how it looks" are a defence, and the second is sung over pads alone.
 - **The outro softens the poem.** The poem ends "Ugh, I'll never get to think in peace again." The song ends "And I can think again."
 
@@ -58,12 +58,12 @@ The song is mostly other people talking about her, and it goes silent each time 
 The plan was written on the v2 render, and the v3 render kept its timings to within a tenth of a second up to chorus 2. The -2sm master is the same arrangement sung two semitones lower, with these differences (details in `analysis/m2sm/song_map.md` section 0):
 
 - **The interlude after verse 2 is half as long.** Only its thinned half survives (bass out, sparse drums), 2:25.2 to 2:35.5, and the bridge's first line now starts over its last bar. The "full" half, where the bass came back under the loudest arpeggio (v3 2:36 to 2:44), is gone. So the row that lived there (the count completing, the bud opening, the romanesco) has to fit into the thinned half.
-- **Everything after it is about 10 s earlier.** Bridge 2:34.5, the hard stop 2:52.5, verse 3 2:54.7, "I think he's right" 3:19.5, chorus 2 3:23.4, the cliff 3:55.0, the coda 4:12.9. Before it, the master runs up to 0.9 s ahead of the old times.
-- **The vocalise after chorus 2 is back** (3:48.8 to 3:52.6), the same rising phrase as after chorus 1. v3 had lost it, which had left tail 2 and the sixth sung shot with nothing to sync to. They work again as written.
+- **Everything after it is about 10 s earlier.** Bridge 2:34.5, the hard stop 2:52.5, verse 3 2:54.7, "I think he's right" 3:19.5, chorus 2 3:23.4, the cliff 3:54.9, the coda 4:12.9. Before it, the master runs up to 0.9 s ahead of the old times.
+- **The vocalise after chorus 2 is back** (3:48.8 to 3:52.6), the same rising phrase as after chorus 1. Suno renders it as lead vocal, but Jade treats it as a BACKING layer (she wants it there live), so it is not a sung shot: tail 2 stays with the plates.
 - **The drum coda is four clean bars.** The pad swells at 4:12.9, one big hit at 4:14.3 with the bass entering on it, the groove at once, bars at 4:14.3, 4:16.8, 4:19.2 and 4:21.7, and the last hit on the next downbeat, 4:24.1. Then a loud low bass note rings and fades to the end of the file (4:28.4). The coda is no longer the loudest passage: tail 2 is.
-- **The outro's first line still starts over the band**, at 3:54.0, so the cliff at 3:55.0 falls mid-line, after "Keep the smile on" and before "so they don't know".
+- **The outro's first line still starts over the band**, at 3:54.0, so the cliff falls mid-line. Measured on the stems (2026-11-25): the bass is gone at 3:54.92 and the last drum hit is 3:54.945 (its tail rings to about 3:55.2), while "smile" is sung 3:54.66-3:55.24 (its held note from 3:54.83) and "on" 3:55.24-3:55.63. So the band drops inside "smile", about 0.3 s BEFORE "on"; "on" falls in the silence, and "so" follows at 3:55.66.
 - **Three lines are sung shorter:** "Basement, Dad's code, I watch", "I point to one he missed", "I nod, past hour reviewed".
-- **Heard more clearly by the machine passes:** "can think again" (can), "truth by reference", "shelved", "artichoke". Still "green and fresh", not "market-fresh". New doubt: "made flesh" is heard as "made fresh" on one pass.
+- **Heard more clearly by the machine passes:** "can think again" (can), "truth by reference", "shelved", "artichoke". Still "green and fresh", not "market-fresh". Jade confirmed by ear: "made FLESH" (one machine pass heard "fresh") and "SHELVED".
 - **Still no percussion break** after chorus 2.
 
 ## The poems
@@ -100,18 +100,18 @@ One hand, one rule: ink line and light wash on cream xuan paper, and in every sc
 | Place and year | The beam | In full depth | Field note | Set |
 | --- | --- | --- | --- | --- |
 | Attic, Netherlands, winter 1988 | Low sun through the four-pane window | Frost fern, one mote, the paper keyboard | A ring round the mote; a dotted line where it will re-enter | `attic88_day` |
-| Shanghai, 1986 | Winter-morning sun through the balcony's French windows (a staging choice; Jade does not remember the season) | The torn paper: a sheet of 草纸 halved again and again on the coffee table | Dots, no numerals: 1, 2, 4, 8. One "?" over the laughing adults | `shanghai86` (the real living room) |
+| Shanghai, 1986 | Winter-morning sun (21 Dec, 08:30: the honest sun reaches her face only 07:42-08:38) through the balcony's continuous run of latched glazed doors | The torn paper: a sheet of 草纸 halved again and again on the coffee table | Dots, no numerals: 1, 2, 4, 8. One "?" over the laughing adults | `shanghai86` (the real living room) |
 | School office, about 1991 | Fluorescent tube on yellow paper | The handout's short row | A circle round the gap | `office91` |
 | Inside the wall, 1988 | A crack | The mote, one eye | None. No header either | `wall88` |
 | Marketplace on Oakton, Skokie, 1993 | Rows of bare tubes | One artichoke, one romanesco | Numerals on the spiral arms, cut off | `market93` |
-| Basement, Decatur, 1990 | The blue screen | The one missed word | An underline | `basement90`, `kitchen90` |
-| Closet, about 2002 | A door left ajar | Four hands | None | `closet02` |
+| Basement, Decatur, 1990 | The blue screen (a warm bare ceiling bulb keeps the room readable) | The one missed word | An underline | `basement90`, `kitchen90` |
+| Closet, about 2002 | A sliding closet door half open; late sun from a bedroom window over his shoulder, a crisp wedge on her face | Four hands | None | `closet02` |
 | Morton Grove, grad school, about 2007 | Low sun through the picture window | The white sweatshirt with the IAS seal | None | `mortongrove07` |
 | Housewarming, Mountain View, fall 2010 | Late-afternoon daylight, dusk, then fire poi | Her, over-rendered | Hug count, pitch contour, path across the room: one per shot | `mv10` (the real house: living room, kitchen, deck and yard) |
 | Voyager frame, 1990 | A band of scattered sunlight | The dot | None | 2D plate |
 | Playground, Austin, 2023 | Low sun through glass | A mote; three reflections | The dotted line again, unfinished | `playground23` |
 
-The scientific plates (code-drawn, on one shared sheet, `media/footage/`) are cut in where a scene turns inward: frost (PLATE XIV), the artichoke's growth, the spiral counts (PLATE XVIII: artichoke, romanesco, spiral aloe), the spectrogram of her voice (PLATE XXI) and the neuron (PLATE IX).
+The scientific plates (code-drawn, on one shared sheet, `media/footage/`) are cut in where a scene turns inward: frost (PLATE XIV), the artichoke's growth, the spiral counts (PLATE XVIII: artichoke, romanesco; the spiral aloe plate is an alternate), the spectrogram of her voice (PLATE XXI) and the neuron (PLATE IX).
 
 The wall is the only scene with no mark of any kind. She is not taking notes there. She is holding still.
 
@@ -135,7 +135,7 @@ At the party, and only there, she is drawn at 115%: line a little heavier, wash 
 
 - Cream paper, ink greys, gold graphite, toner black. Frost and light are bare paper.
 - Colour is rationed: handout yellow, screen blue, the pale blue dot, lemons, fire.
-- On-screen text is the place-and-year headers from "First Principles", plus gold numerals. Lyrics go on a subtitle track, not in the picture.
+- On-screen text is the place-and-year headers from "First Principles", gold numerals, the toner labels, and two lyric exceptions: "Good catch!" as a toner label attributed to Dad, and the caption "artichoke" (2:11.9). Every other lyric goes on a subtitle track, not in the picture.
 
 ### Kept out
 
@@ -149,9 +149,9 @@ The film starts and ends on a mote in a beam, and in between it moves from looki
 | --- | --- | --- | --- |
 | 0:00-0:04.9 | 0:00-0:05 | Pad | Bare paper. Dark wash gathers on both sides and leaves a diagonal band unpainted. The beam is made by painting around it. |
 | 0:04.9-0:18.2 | 0:05-0:19 | Taps, whisper 1 at 0:08.8 | Attic, 1988. Inside: her hands unfold, like a map, a black and white printout of piano keys (sheets of ordinary printer paper taped end to end) and smooth it flat on the floorboards in the light, so it is plain from the first frame that she practises on paper. Her fingers tap on it. Outside shot of her face, eyes on one mote. It drifts out of the beam; her eyes keep travelling through the dark; it re-enters where she is looking. Gold ring. The whisper lands on that face. |
-| 0:18.2-0:19.0 | 0:18-0:19 | Whisper 2 | Two adult thumbs enter frame toward her cheeks. Cut before they touch. |
+| 0:18.2-0:19.0 | 0:18-0:19 | Whisper 2 | Cut on the whisper ("But not like that", 0:18.2; Jade: loud enough to cut on). Two adult thumbs enter frame toward her cheeks. Cut before they touch. |
 | 0:19.0-0:29.7 | 0:19-0:30 | Groove in | The yellow handout: a grid of labelled cartoon faces, one row short. The camera settles on the gap. Title: PROOF. |
-| 0:29.7-0:58.6 | 0:30-0:59 | Verse 1 | *1. Shanghai, 1986.* An uncle's hands shaping something small; his face is not drawn. Then the tissue drift in full depth, gold dots doubling: 1, 2, 4, 8. Mother in the doorway. Adults laughing, seen from below, out of the light. One gold "?". |
+| 0:29.7-0:58.6 | 0:30-0:59 | Verse 1 | *1. Shanghai, 1986.* She sits cross-legged in both scenes (with the uncle, and in the drift). The morning sun's angle is set so it reaches her face: the light moves, she does not. An uncle's hands shaping something small; his face is not drawn. Then the tissue drift in full depth, gold dots doubling: 1, 2, 4, 8. Mother in the doorway. Adults laughing, seen from below, out of the light. One gold "?". |
 | 0:58.6-1:17.2 | 0:59-1:18 | Piano break | Four bars down into the tissue: fibre, lattice, points. Four bars in the attic: the paper keys, her fingers playing the melody we hear. She looks up at the frost on the pane, and the frost plate (FORMS OF WATER, PLATE XIV) grows, sped up. |
 | 1:17.2-1:32.7 | 1:18-1:34 | Pre-chorus | School office. Outside shots: each sung line arrives as a toner label beside her face. Each bracketed reply is a parent's hand: Dad's open palm, Mom's thumb racing through the little red dictionary. Inside shots: her eye runs down the grid. |
 | 1:32.7-1:36.0 | 1:34-1:37 | Band out | She points at the last face in the row of six, where the row stops short. Gold circle round the gap beside it. The adult's finger lands on the same face and reads its label: ANXIOUS. |
@@ -159,18 +159,18 @@ The film starts and ends on a mote in a beam, and in between it moves from looki
 | 1:37.4 | 1:38 | Band hits | A hand closes on her forearm. Cut to black. The biggest value change in the film. |
 | 1:37.4-1:54.5 | 1:38-1:55 | Chorus 1 | "Inside?": dark. "I honestly don't know" (1:40.7): a blade of light, one mote, one eye following it. "My voice goes blind" (1:45.5): her mouth opens in the light, and closes. "Nowhere to go" (1:51.0): the mote drifts out of the crack-light. No header, no gold. |
 | 1:54.5-2:06.3 | 1:55-2:07 | Tail 1 | Pull back from the mote until the blade of light is the band across the Voyager frame and the mote is the dot. Hold through the vocalise (2:00.3-2:03.1). |
-| 2:06.3-2:16.1 | 2:07-2:16 | Verse 2a | *3. Skokie, 1993.* One outside shot with its label, then inside: gold numerals land on the artichoke's spiral arms. The gold count on the real artichoke becomes the spiral plate (PHYLLOTAXIS, PLATE XVIII, the artichoke): the count carries on, numeral by numeral, on the plate. A grandmother waits behind her, unlit. The count is one short when the hand takes her forearm (the plate's eight-family count stops at 7). |
+| 2:06.3-2:16.1 | 2:07-2:16 | Verse 2a | *3. Skokie, 1993.* One outside shot with its label, then inside: gold numerals land on the artichoke's spiral arms. The gold count on the real artichoke becomes the spiral plate (PHYLLOTAXIS, PLATE XVIII, the artichoke): the count carries on, numeral by numeral, on the plate. A grandmother waits behind her, unlit. The count is one short when the hand takes her forearm (the plate's eight-family count stops at 7). Caption (Jade): "artichoke" is captioned in the picture as it is sung (2:11.9-2:13.6). **[proposal, flag]** set as a specimen label in the plates' caption type, lowercase, small, low in frame beside the real artichoke (not on her), so it reads as a field label rather than a subtitle. |
 | 2:16.1-2:19.8 | 2:16-2:21 | Verse 2b | *2. Decatur, 1990.* Bare feet on chair spokes, blue light, a small finger on the glass. One word underlined in gold. |
-| 2:19.8-2:25.2 | 2:21-2:26 | "Good catch!" and the question | Drums stop (2:19.8): Dad's double take. She holds her right hand in a fist and pretends to lick her wrist, a cat cleaning itself; she stays where she is (she does not hide under the desk). Then the kitchen, parents talking fast over her head ("Did she understand or just pattern match?", 2:20.9). Her tapping stops for one beat. She understood the question. |
-| 2:25.2-2:34.5 | 2:26-2:45 | Interlude (thinned; now the whole interlude) | Dad's answer, the only words she ever writes: *it was correct.* Then the count resumes on the artichoke plate as she is walked away, one numeral per note (the "match" echoes), from 8, sped up. The completed count lands on the romanesco plate (PLATE XVIII, spiral within spiral) for the interlude's last bars, about 2:30-2:34; the bridge's first words enter over its end. **[judgment call]** The "full" half of the interlude, where this row used to continue (bass back, the growth plate's bud opening into the flower), is not in the master, so the two rows are merged and the bud opening is dropped for time. |
-| 2:34.5-2:52.5 | 2:45-3:03 | Bridge | Mountain View, 2010. She taps on first love's arm, grins, and sings "Do you not see what I see?" to lens. The guests' faces are undrawn: the blank stares are literal. On "Beauty on this side" (2:39.6): Morton Grove, grad school. She sits on a floral couch by the windows; over his shoulder (only his hair), he hands her a white sweatshirt with the IAS seal (Truth and Beauty) in dark blue. Cut to the shelf, two halves, shelf only (she is not in frame): through "truth by reference, science fiction shelved with truth" (2:42.0-2:46.8) the camera pans across the Expedit from the art and literature half toward the science half and lands on the seam between the two halves. It holds there, on the shelf, through "From inside, I can't tell the difference" (2:46.9-2:49.7). "And I can't give you proof" (2:49.7), sung. |
+| 2:19.8-2:25.2 | 2:21-2:26 | "Good catch!" and the question | Drums stop (2:19.8): Dad's double take. "Good catch!" (2:20.0-2:20.8) is attributed to Dad on screen. **[proposal, flag]** A toner label, set in the handout's type like the pre-chorus labels: `DAD: GOOD CATCH!` (speaker tag, colon, the line), printed beside Dad's head in the double take (never on a face), landing on the sung "Good" (2:20.0) and held through the cat close (to 2:22.2). It is the film's only toner label that is about something she did, not about her face, so it is the crispest copy (first generation, no misaligned row). The subtitle track leaves this line out. The basement has a warm ceiling bulb as ambient; the screen stays the blue beam. She holds her right hand in a fist and pretends to lick her wrist, a cat cleaning itself; she stays where she is (she does not hide under the desk). Then the kitchen, parents talking fast over her head ("Did she understand or just pattern match?", 2:20.9). Her tapping stops for one beat. She understood the question. |
+| 2:25.2-2:34.5 | 2:26-2:45 | Interlude (thinned; now the whole interlude) | No written note: Dad's reply is the "Good catch!" label at 2:20.0. The freed seconds go to the count: it resumes on the artichoke plate on the interlude's downbeat (2:25.2), straight out of the kitchen's "match" (2:24.5), one numeral per note (the "match" echoes), from 8, sped up, to about 2:29.5. The completed count lands on the romanesco plate (PLATE XVIII, spiral within spiral) for the last two bars, about 2:29.5-2:34.5, long enough to see it finish; the bridge's lead-in (2:33.5) and first words (2:34.5) enter over its end. The artichoke growth plate's bud opening is NOT in this row: Jade wants it placed elsewhere, not decided yet (open question). |
+| 2:34.5-2:52.5 | 2:45-3:03 | Bridge | Mountain View, 2010. She taps on first love's arm, grins, and sings "Do you not see what I see?" to lens. The guests' faces are undrawn: the blank stares are literal. On "Beauty on this side" (2:39.6): Morton Grove, grad school. She sits on a floral couch by the windows; over his shoulder (only his hair), she holds up the white sweatshirt he has just given her, unfolded, so the IAS seal (Truth and Beauty, dark blue) that covers almost its whole front reads in full. Cut to the shelf, two halves, shelf only (she is not in frame): on "truth by reference" (2:42.0) the camera pans across the Expedit from the art and literature half, over the seam, to the science half ("science fiction shelved with truth", 2:44.4-2:46.8, "shelved" 2:45.4), then comes back and lands on the seam between the two halves (Jade: cross to the science half and back). It holds there, on the shelf, through "From inside, I can't tell the difference" (2:46.9-2:49.7). "And I can't give you proof" (2:49.7), sung. |
 | 2:52.5-2:54.7 | 3:03-3:05 | Hard stop | Her face on bare paper. "Proof" (2:54.0) falls inside the silence. |
-| 2:54.7-3:19.1 | 3:05-3:29 | Verse 3 | The party at 115%. "Housewarming, lemonade from the yard": the lemonade was made before the party. Earlier that day she (a postdoc) and the childhood friend pick the lemons, the size of pomelos, from the big tree by the fence; first love, Z and the guests have not arrived yet. Then the party: the guests stand along the side of the house and on the deck, and in the yard the poi spinner performs toward them, at dusk. "He said I absolutely nailed it" (3:03.9): she stands by the shelf; first love stands close and whispers to her (his face never shown). We don't hear it. The review: a hug with gold ticks counting it, a greeting as one pitch contour, her path across the room as one line. Over the room, faint gold schematics, vectors and calculations overlap the scene: her interiority, drawn on top of the party. On "I nod, past hour reviewed" (3:09.1): the camera pushes in to her temple. On "Hug durations, pitch contours" (3:11.6): the spectrogram plate (PLATE XXI, the short version, first frame at 3:10.45) of that very line, drawing left to right as it is sung, her pitch contour traced in gold. On "Room crossing velocity" (3:14.6): a steep oblique overhead shot of her crossing the room (shelf, past the printer, the dining table, to the sliding glass door), overlaid with her path, velocity vectors, timings, equations and her calculations, the review in full. |
+| 2:54.7-3:19.1 | 3:05-3:29 | Verse 3 | The party at 115%. "Housewarming, lemonade from the yard" (2:54.9-2:59.2): the lemonade was made before the party. Earlier that day she (a postdoc) and the childhood friend pick the lemons, the size of pomelos, from the big tree by the fence, and then make the lemonade in the kitchen: halved lemons on the juicer, a heap of squeezed rinds, sugar stirred into the giant punchbowl; first love, Z and the guests have not arrived yet. **[proposal]** two beats, picking (2:57.0) then the kitchen seen from straight above (2:58.0-2:59.2, `V3b_prep`), each drawn a little like a botanical plate (Jade): the lemons, a cut half, leaves and rinds laid out in clear, specimen-like detail on bare paper, as the artichoke and the other plates are. Then the party: the guests stand along the side of the house and on the deck, and in the yard the poi spinner performs toward them, at dusk. "He said I absolutely nailed it" (3:03.9): she stands by the shelf; first love stands close and whispers to her (his face never shown). We don't hear it. The review: a hug with gold ticks counting it, a greeting as one pitch contour, her path across the room as one line. Over the room, faint gold schematics, vectors and calculations overlap the scene: her interiority, drawn on top of the party. On "I nod, past hour reviewed" (3:09.1, "nod" 3:09.2): still at the shelf, straight after the whisper, she nods, and the camera pushes in to her temple (Jade: the nod is at the shelf, never under the lemon tree). On "Hug durations, pitch contours" (3:11.6): the spectrogram plate (PLATE XXI, the short version, first frame at 3:10.45) of that very line, drawing left to right as it is sung, her pitch contour traced in gold. On "Room crossing velocity" (3:14.6-3:18.7): a steep oblique overhead shot, mostly the living room with the kitchen visible through the opening, of the crossings she made that evening, each leg one gold vector with its timing: (1) in conversation with someone in the kitchen (a dwell mark); she hears the doorbell and excuses herself; (2) kitchen to the front door; she opens it and welcomes two guests (dwell); (3) door back toward the kitchen, stopped short at the shelf when someone there speaks to her (dwell); the doorbell again; (4) shelf to the door again for more guests. Over it, velocity vectors, timings, equations and her calculations, the review in full. **[proposal]** the four legs are minutes apart, so the shot compresses them: she is drawn at each stop in turn as the vectors draw on, about one leg per second. |
 | 3:19.1-3:23.4 | 3:29-3:33 | Silence | "I think he's right. Honestly." (3:19.5). Close, sung, back at 100%. |
-| 3:23.4-3:34.2 | 3:33-3:43 | Chorus 2a | Drums alone (3:23.4-3:26.1): a closet door ajar, the same diagonal of light. Two people cross-legged, all four hands together. "I honestly don't know" (3:29.5), sung to him. The back of her hand against his chin. Here the answer is enough. |
+| 3:23.4-3:34.2 | 3:33-3:43 | Chorus 2a | Drums alone (3:23.4-3:26.1): the sliding closet door half open, the same diagonal of light. Two people cross-legged, all four hands together. "I honestly don't know" (3:29.5), sung to him. The back of her hand against his chin. Here the answer is enough. |
 | 3:34.2-3:43.0 | 3:43-3:53 | Chorus 2b | Back at the shelf. Her mouth opens and does not move with the vocal. Eyes bright. Her hand taps on his arm instead, and he looks down at it. |
-| 3:43.0-3:55.0 | 3:53-4:05 | Tail 2 | The frost fern from 1988 starts growing again (the frost plate) and becomes a neuron's branches (the neuron plate, PLATE IX, after Cajal; Jade: keep it). She sings the vocalise (3:48.8-3:52.6), the one place her mouth and the song agree without effort. The band plays on alone as the arbor widens, and the outro's first words ("Keep the smile on", 3:54.0) arrive over it, a second before the cliff. |
-| 3:55.0-4:03.6 | 4:05-4:14 | Outro 1 and 2 | Cliff to plain paper, mid-line ("...so they don't know", 3:55.7). The thumbs arrive on a child's cheeks and make the smile. Mother's face, drawn with care, is just as still. "This is how we fit in" (3:59.1). |
+| 3:43.0-3:54.9 | 3:53-4:05 | Tail 2 | The frost fern from 1988 starts growing again (the frost plate) and becomes a neuron's branches (the neuron plate, PLATE IX, after Cajal; Jade: keep it). The vocalise (3:48.8-3:52.6) is a backing layer (Jade wants it live), not a sung shot: no mouth on screen, no sync; it rises under the arbor as the branches reach out, the plates carry it. The band plays on alone as the arbor widens, and the outro's first words ("Keep the smile", 3:54.0) arrive over it, a second before the cliff. |
+| 3:54.9-4:03.6 | 4:05-4:14 | Outro 1 and 2 | Cliff to plain paper on the last drum hit (3:54.9, measured: bass out 3:54.92, hit 3:54.945), inside "smile"; "on" (3:55.2) and "...so they don't know" (3:55.7) fall in the silence. Whether to cut on the hit or on "on" is still open. The thumbs arrive on a child's cheeks and make the smile. Mother's face, drawn with care, is just as still. "This is how we fit in" (3:59.1). |
 | 4:03.6-4:08.6 | 4:14-4:19 | "She turns around, I let it go" | Mother turns. In passing glass her own face at rest. The smile goes. |
 | 4:08.6-4:12.9 | 4:19-4:24 | "And I can think again" | Not sung on screen. Her eyes return to a mote in the window light. |
 | 4:12.9-4:24.1 | 4:24-4:35 | Drum coda | Pad swell 4:12.9, then four bars from the big hit (4:14.3, 4:16.8, 4:19.2, 4:21.7). Inside shots only, one per bar: the ringed mote, the finished count, the fingers on the paper keys. Last bar (4:21.7): *4. Austin, 2023.* Playground glass, low sun, three resting faces in reflection as silhouettes. Her adult eyes follow a mote. |
@@ -179,7 +179,7 @@ The film starts and ends on a mote in a beam, and in between it moves from looki
 
 ### Sung shots
 
-Six, all by the Jade of that scene. There is no separate narrator space, and the child never sings.
+Five, all by the Jade of that scene. There is no separate narrator space, and the child never sings. (The tail-2 vocalise was a sixth; it is a backing layer, so it is not sung on screen.)
 
 | Time | Was | Line | Treatment |
 | --- | --- | --- | --- |
@@ -188,7 +188,6 @@ Six, all by the Jade of that scene. There is no separate narrator space, and the
 | 3:19.5 | 3:29 | "I think he's right. Honestly." | Synced, hushed. |
 | 3:29.5 | 3:40 | "I honestly don't know" | Synced, to him, age about 19. |
 | 3:34.2 | 3:43 | "I open my mouth, my voice goes blind" | The anti-sync shot. She is thinking it at him. |
-| 3:48.8 | 3:59 | Vocalise | Synced and free. (v3 had lost this vocalise; the master has it.) |
 
 Chorus 1 has no sung shot. In the wall her mouth opens once and nothing is attempted.
 
@@ -198,7 +197,7 @@ Every setting is built as a 3D set first, in the Chaos Monkey layout engine, and
 
 ### Order of work
 
-1. **Lock the song map** for the master. Done for -2sm (`analysis/m2sm/song_map.md`, 2026-11-25); the ear checks below are still open.
+1. **Lock the song map** for the master. Done for -2sm (`analysis/m2sm/song_map.md`, 2026-11-25); Jade's ear checks are in, except the cliff (below).
 2. **Build the sets** in `layout/sets/` (a copy of the Chaos Monkey layout engine). All exist (`attic88_day` is the daylight rig: sun bearing, frost on the four panes, a reading spot at the sill, the paper keyboard on the boards).
    - **Retime the sets to the master.** Each set's `shots.js` still carries v3 times except a few new mv10 shots. `analysis/m2sm/remap.py --file <shots.js>` shows the change as a dry run; `--write` applies it; `--snap` sends lyric-synced cuts to the sung onsets. Shots it flags (the dropped interlude half, the coda lead-in) are re-placed by hand: the market and kitchen interlude shots, and the spiral plates.
 3. **Animatic.** One camera per shot, line renders, cut to the master (`inputs/Proof (-2sm).wav`, full mix) at true timing. This is where the outside-to-inside ratio and the repeated framings get checked.
@@ -235,7 +234,8 @@ Shanghai room, school office, wall cavity, Marketplace produce aisle, Decatur ba
 - **Fingers on paper keys** need note-level timing. If it will not hold, shoot the hands wide and let the taps carry it.
 - **The unfolding has to fit before the taps.** It is about two seconds at the top of the taps section (0:04.9); if the taps start on the downbeat, the last fold opens over the pad's final second. The map-fold creases and the tape seams between sheets stay on the printout in every later keys shot (piano break, coda), which is what keeps it reading as paper. `attic88_day` has no camera for the unfolding yet.
 - **Three new ages of one child** is the biggest consistency load in the cast.
-- **The interlude is now crowded.** Dad's written answer, the count resuming on the artichoke plate and the completed count on the romanesco plate share 9.3 s (2:25.2-2:34.5). The romanesco clip is 20 s as rendered and needs re-timing to about 4 s, or it shows only its finished count. If it is too much, Dad's answer could move to the end of the "Good catch!" row.
+- **The interlude is two plates in 9.3 s** (2:25.2-2:34.5): the artichoke count resuming (about 4.3 s) and the romanesco completing (about 5 s). The romanesco clip is 20 s as rendered and needs re-timing to about 5 s, or it shows only its finished count. The bud opening is not placed yet.
+- **"Good catch!" is the one lyric printed in the picture beside a person.** If the toner label beside Dad reads as a comic speech balloon, drop the speaker tag and let the double take carry the attribution.
 - **Two clocks in the sets until they are retimed.** Most `shots.js` files use v3 times; a few newer mv10 shots (the shelf pan, the temple push-in, the room crossing, "nailed it") and the spectrogram plate already use the master. Retime with `remap.py` and read its dry run before `--write`.
 
 Generated sheets only go to outside services. No real photos, per the canon.
@@ -248,15 +248,22 @@ These are yours to decide or to remember. Each has my recommendation, and none b
 
 - [ ] **Undrawn faces on strangers.** This is the largest departure from the brainstorm. Does it include the uncle and the social worker? I recommend yes for both. The shots already support it: the uncle's face stays off screen while he explains, and little Jade's eyes stay on the social worker's sweatshirt and the table.
 - [x] **First love and Dad as drawn, designed faces.** Answered 2026-11-25: Dad is drawn from the likeness Jade approved; first love is a real person and his face is never shown (back of head, over the shoulder, hands). Chorus 2 has to carry him with hands, hair and the back of her hand against his chin.
-- [ ] **Dad's answer on screen.** "It was correct" is not in the lyrics. I recommend adding it as her one written note, because it is the film's thesis.
+- [x] **Dad's answer on screen.** Answered 2026-11-25 (round 2): no written "it was correct" anywhere. "Good catch!" is attributed to Dad on screen instead.
+- [ ] **How "Good catch!" is attributed to Dad.** Proposed: a toner label `DAD: GOOD CATCH!` beside his head in the double take, 2:20.0-2:22.2, first-generation (crisp), the subtitle track leaving the line out. Alternatives: the label without the speaker tag (placement alone attributes it); or the gold hand instead of toner (but gold is hers).
+- [ ] **The "artichoke" caption's style.** Proposed: a small lowercase specimen label in the plates' caption type beside the real artichoke, 2:11.9-2:13.6. Alternative: a plain burned-in subtitle for that one word.
 - [ ] **The wall cutaway.** I recommend leaving it out. The simple shot, with no header and no gold, already says inside.
 - [ ] **Half the piano break moves to the attic** for the paper keyboard, shortening the descent through the tissue to four bars.
 - [ ] **No end title and no *stet*.** The last thing on screen is an unfinished dotted line.
 - [ ] **The coda's family silhouettes** share one bar of the drum coda. Is one bar enough for you, or should the playground take the whole coda?
 - [x] **"Truth by reference"**. Answered by Jade's description of the real shelf: the truth half held science fiction, textbooks and popular science; the beauty half art and literature. Kept as remembered, including that it mirrors the IAS seal.
-- [ ] **The interlude merge.** With the interlude's full half gone, I merged its two rows and dropped the artichoke growth plate's bud opening into the flower. Keep it that way, or find the bud another place (for instance under the end of verse 2a)?
-- [ ] **The spiral aloe plate is unplaced.** The artichoke and romanesco plates have rows; the aloe (five ranks) has none. Options: the coda's "finished count" bar shows the aloe; it replaces the romanesco; or it stays out of the film.
-- [ ] **The shelf pan's end.** Jade: the pan lands on the seam between the halves and holds through "From inside, I can't tell the difference". I read that as the pan never reaching the science half square-on (both halves in frame at the end). Or should it cross to the science half and come back to the seam?
+- [ ] **Where the bud opening goes.** Jade (round 2): not in the interlude merge; another place, not decided yet. Candidates: under verse 2a's outside shot (2:06.3-2:08.7), before the count starts; one bar of the drum coda (in place of "the finished count", 4:16.8); or the tail-1 vocalise (2:00.3-2:03.1), cut into the Voyager pull-back. My pick: the coda bar, where the film already looks back at its own images.
+- [x] **The interlude merge.** Answered: the merge stands without the bud; Dad's note is gone, so the count and the romanesco share the interlude.
+- [x] **The spiral aloe plate.** Answered: an alternate for now (like the market's M7, M8, M8b).
+- [x] **The shelf pan's end.** Answered: it crosses to the science half and comes back to the seam (as the mv10 set has it).
+- [x] **Hug and spectrogram.** Answered: keep the hug on "Hug durations" and the spectrogram on "pitch contours".
+- [x] **The nod.** Answered: "I nod, past hour reviewed" is at the shelf, straight after the "nailed it" whisper; never under the lemon tree.
+- [x] **Shanghai, her face.** Answered: cross-legged in both scenes; the light's angle moves so her face is lit.
+- [ ] **The room crossing's compression.** The four legs happened minutes apart. Proposed: she is drawn at each stop in turn while the vectors draw on (about a leg a second). Alternatives: one continuous figure moving at sped-up time; or only the gold path, with her drawn once at the end.
 
 ### Things only you know
 
@@ -269,11 +276,11 @@ These are yours to decide or to remember. Each has my recommendation, and none b
 
 ### Ear checks on the audio
 
-Times are on the master. The machine passes on -2sm settle three of the old checks: "can think again" (can), "one he missed" (now sung without "the"), and "artichoke" (recognised).
+Times are on the master. The machine passes on -2sm settled "can think again" (can), "one he missed" (sung without "the") and "artichoke" (recognised); Jade answered the rest on 2026-11-25 (round 2).
 
-- [ ] Whether "artichoke" (2:11.9) is clear enough to leave uncaptioned.
-- [ ] "made flesh" or "made fresh", at 2:15.4.
-- [ ] "shelved" or "shoved", at 2:45.4.
-- [ ] The vocalise after chorus 2 (3:48.8-3:52.6): her lead voice, or a backing layer? The sixth sung shot depends on it.
-- [ ] Whether whisper 2 ("But not like that", 0:18.2) is audible enough to cut on.
-- [ ] Where the cliff falls in "Keep the smile on / so they don't know" (3:55.0): after "on", or inside it.
+- [x] "artichoke" (2:11.9): captioned in the picture (style above).
+- [x] "made FLESH", at 2:15.4.
+- [x] "SHELVED", at 2:45.4.
+- [x] The vocalise after chorus 2 (3:48.8-3:52.6): a BACKING layer (Suno labels it lead; Jade wants it there live). Not a sung shot; tail 2 stays with the plates.
+- [x] Whisper 2 ("But not like that", 0:18.2) is loud enough: cut on it.
+- [ ] **The cliff.** Jade could not tell whether it falls after "on" or inside it. Measured on the stems: neither. The bass stops at 3:54.92 and the last drum hit is 3:54.945, during the held note of "smile" (3:54.83-3:55.24); "on" is 3:55.24-3:55.63, in the silence. Sharper question: cut to plain paper on the drum hit (3:54.9, inside "smile", the band's own cut), or hold the picture to "on" (3:55.2), so the image cuts on a word? A half-speed clip: `media/decisions_audio/cliff_slow_mix.mp3` (3:54.3-3:55.9).

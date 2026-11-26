@@ -10,7 +10,11 @@ export const ROOM = { ...HOUSE.basement, wallT: 0.2,
   joist: { d: 0.19, w: 0.04, spacing: 0.406 },          // 2x8 joists at 16 in, running along z, under the kitchen floor
   hopper: { x: -0.95, y0: 1.72, y1: 2.06, w: 0.8 },     // small hopper window high in the back wall; night outside
   column: { x: -0.7, z: 0.35, r: 0.045 },               // steel lally column
-  bulb: { x: 0.2, z: -0.3, drop: 0.25 },                // bare bulb with a pull chain, OFF
+  // CEILING LIGHT (Jade 2026-11-25 round 2: the basement had more ambient light from a ceiling light). ASSUMED type: a
+  // bare 60-75 W incandescent bulb in a white porcelain pull-chain lampholder on a junction box nailed under a joist
+  // (the stock unfinished-basement fixture of the period; alternative: a two-tube 4 ft fluorescent shop light). ON.
+  // Sits under the joist at x 0.33, a little in front of the desk, so it lights both figures from front-above.
+  bulb: { x: 0.33, z: -0.45, box: 0.05, holder: 0.06, r: 0.03 },
 };
 
 // the desk: a plain table-desk against the back wall. Drawer pedestal on the right, two legs on the left, so the
@@ -67,9 +71,12 @@ export function deskTerminator(y = 0) { const ez = DESK.z1, ey = DESK.top, top =
   const hit = (sy) => ez + (ey - y) * (ez - sz) / (sy - ey);
   return { umbra: +hit(top).toFixed(3), full: +hit(bot).toFixed(3) }; }
 
+// bulb centre: under the joist (bottom at h - joist depth), below its junction box and lampholder
+export const BULB_P = [ROOM.bulb.x, ROOM.h - ROOM.joist.d - ROOM.bulb.box - ROOM.bulb.holder - ROOM.bulb.r, ROOM.bulb.z];
 export const LIGHTS = {
-  screen: { kind: 'CRT screen (blue, area source); the ONLY light', pos: [SCREEN.c[0], SCREEN.c[1], SCREEN.c[2] + 0.02], aim: [SCREEN.c[0], SCREEN.c[1] - 0.2, SCREEN.c[2] + 2.5], color: BEAM.color },
-  dark: { kind: 'ambient: none (a trace so the lit preview is readable)', color: 0x0a0c18 },
+  screen: { kind: 'CRT screen (blue, area source); the BEAM (the light that matters)', pos: [SCREEN.c[0], SCREEN.c[1], SCREEN.c[2] + 0.02], aim: [SCREEN.c[0], SCREEN.c[1] - 0.2, SCREEN.c[2] + 2.5], color: BEAM.color },
+  ceiling: { kind: 'bare incandescent bulb in a porcelain pull-chain lampholder under a joist (ASSUMED type), warm, ON: the room ambient', pos: BULB_P, color: 0xffd9a0 },
+  dark: { kind: 'ambient: warm bounce off the block walls and joists from the ceiling bulb', color: 0x6a5a48 },
 };
 
 // recurring figure geometry: Jade standing on the two spokes at Dad's left

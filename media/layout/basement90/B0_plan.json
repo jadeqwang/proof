@@ -214,7 +214,7 @@
  "lights": [
   {
    "name": "screen",
-   "kind": "CRT screen (blue, area source); the ONLY light",
+   "kind": "CRT screen (blue, area source); the BEAM (the light that matters)",
    "on": true,
    "color": "#3f6dff",
    "world": [
@@ -237,6 +237,27 @@
     0.885,
     0.872
    ]
+  },
+  {
+   "name": "ceiling",
+   "kind": "bare incandescent bulb in a porcelain pull-chain lampholder under a joist (ASSUMED type), warm, ON: the room ambient",
+   "on": true,
+   "color": "#ffd9a0",
+   "world": [
+    0.33,
+    1.97,
+    -0.45
+   ],
+   "px": [
+    1224,
+    405
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.17,
+    -0.986
+   ],
+   "toward_camera": -0.863
   }
  ],
  "warnings": [],

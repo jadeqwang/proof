@@ -838,20 +838,20 @@
   },
   "T1": {
    "px": [
-    1185.5,
-    459.7
+    959.8,
+    434.9
    ],
    "eyes": [
-    1188.5,
-    470.8
+    928.1,
+    448.7
    ],
    "mouth": [
-    1187.9,
-    481.5
+    939.1,
+    468.6
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 141,
+   "facing_camera_deg": 86,
    "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
   },
   "G1": {
@@ -1215,17 +1215,17 @@
   },
   "T1.L": {
    "px": [
-    1141,
-    629.7
+    905.4,
+    571
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": false
   },
   "T1.R": {
    "px": [
-    1211.6,
-    570.4
+    816.5,
+    495.2
    ],
    "shape": "grip",
    "in_frame": true,
@@ -2909,10 +2909,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {

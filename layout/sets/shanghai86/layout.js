@@ -19,10 +19,12 @@
 // ---------------------------------------------------------------- the switches
 // FLAT: 'east' (FACT, Jade). 'west' = the mirror flat: iron-railed balcony (the doors are centred, so they do not move).
 export const FLAT = 'east';
-// SCENE: date and time of the beam. JADE CHOSE IT (decision page, late 2026-11-25): 21 Dec 1986, about 9:30 am, from the
-// light study ("the 8:30 and 9:30 views at her eye level are really nice"). At 09:30 the light falls on the table's
-// south half and the armchairs, not on her face (NOTES "(5)"). The 08:31 sweep result is kept in NOTES "(3)".
-export const SCENE = { date: '1986-12-21', time: '09:30', tzHours: 8, lat: 31.2138, lon: 121.4390 };
+// SCENE: date and time of the beam. Jade chose 21 Dec 1986, about 9:30 am, from the light study (decision page), but at 09:30
+// her face is in shade. Round 2 answers: "move the angle of the light so she's lit" (not her). HONEST fix: the same day,
+// 08:30 (elev 17.1, az 132.2), which Jade also liked in the light study; on the continuous balcony doors it lights her face,
+// her hands, the uncle's hands, the steam and the whole coffee table (sweep2.mjs; NOTES "round 2 answers"). The 09:30
+// alternative (a cheat: the 09:30 azimuth with the sun lowered to ~19 deg) is in the light study.
+export const SCENE = { date: '1986-12-21', time: '08:30', tzHours: 8, lat: 31.2138, lon: 121.4390 };
 export const FACADE_BEARING = 166.8;   // compass bearing of the outward normal of the south (garden) facade
 export const FLOOR_ABOVE_GARDEN = 6.6; // 三楼 = two storeys up; only matters for what the windows see
 
@@ -54,15 +56,21 @@ export function sunPosition({ date, time, tzHours, lat, lon }) {
 
 // ---------------------------------------------------------------- the room
 export const MX = 1;   // kept for old imports: nothing mirrors any more (the doors are in the north wall)
-export const ROOM = { x0: -2.5, x1: 7.0, z0: -6.1, z1: 0, h: 3.05, storey: 3.25, wallS: 0.28, wallP: 0.15 };
+// Round 2 answers (2026-11-25): "the side walls might be wider than pictured": widened 0.5 m at each end, 9.5 -> 10.5 m
+// (2.1x the 1934 5.0 m living room, the top of Jade's earlier "1.5 or 2x"). Symmetric, so the north wall's centre (and the
+// hall doors centred on it) stays at x 2.25. How much is a guess: flag to Jade.
+export const ROOM = { x0: -3.0, x1: 7.5, z0: -6.1, z1: 0, h: 3.05, storey: 3.25, wallS: 0.28, wallP: 0.15 };
 // where the old living/dining partition stood (the 1934 living room was ~5.0 m wide): a subtle soffit at the ceiling
 export const JOIN = { x: 2.5, w: 0.24, drop: 0.1 };
-// French windows (steel, full height) onto the one continuous balcony: the six-leaf set ("六扇落地长窗", 3.6 m) in
-// the old living room, a four-leaf set in the old dining room (an ASSUMPTION: the text says both rooms opened onto the
-// balcony; their width and position are guesses). Glass plane `zg` inside the wall.
-const WIN_COMMON = { y0: 0.03, y1: 2.3, zg: 0.16, lites: 6, frame: 0.035, bar: 0.016 };
-export const WINDOWS = [{ id: 'six French windows (old living room)', x0: -1.8, x1: 1.8, leaves: 6, ...WIN_COMMON },
-  { id: 'four French windows (old dining room)', x0: 3.55, x1: 5.95, leaves: 4, ...WIN_COMMON }];
+// Round 2 answers (Jade, 2026-11-25): there is NO window wall. The whole south side is glazed French DOORS onto the one
+// continuous balcony, with latches. Built as four bays of four steel leaves (two latched pairs per bay) between narrow
+// structural piers (0.25 m at the ends, 0.30 m between bays: the piers, bay count and leaf width are guesses). Each bay is
+// one lit aperture for the beam code (`WINDOWS` keeps its old name). Glass plane `zg` inside the wall; head 2.3 m.
+const WIN_COMMON = { y0: 0.03, y1: 2.3, zg: 0.16, lites: 6, frame: 0.035, bar: 0.016, door: true };
+const PIER_END = 0.25, PIER = 0.30, BAYS = 4, LEAVES = 4;
+const BAY_W = (ROOM.x1 - ROOM.x0 - 2 * PIER_END - (BAYS - 1) * PIER) / BAYS;
+export const WINDOWS = Array.from({ length: BAYS }, (_, i) => { const x0 = ROOM.x0 + PIER_END + i * (BAY_W + PIER);
+  return { id: `balcony doors, bay ${i + 1} (from the west)`, x0: +x0.toFixed(3), x1: +(x0 + BAY_W).toFixed(3), leaves: LEAVES, ...WIN_COMMON }; });
 export const WINDOW = WINDOWS[0];
 // balcony, one step down, now along the whole room (both rooms opened onto it); solid parapet in the east flat
 export const BALCONY = { x0: ROOM.x0 - 0.25, x1: ROOM.x1 + 0.25, z0: ROOM.wallS, z1: ROOM.wallS + 1.25, floor: -0.05, parapet: 0.95, pT: 0.1, solid: FLAT === 'east', soffit: ROOM.storey - 0.05 - 0.12 };
@@ -74,7 +82,7 @@ export const DOOR = { wall: 'north', z: ROOM.z0, x0: DOOR_CX - DOOR_W / 2, x1: D
 export const HALL = { x0: DOOR.x0 - 0.5, x1: DOOR.x1 + 0.5, z0: ROOM.z0 - ROOM.wallP - 2.3, z1: ROOM.z0 - ROOM.wallP };   // beyond the doors
 // bookshelf cabinets along the north wall on both sides of the doors (Jade), glass-fronted above, doors below; the east
 // run still stops at the sideboard in the north-east corner
-export const SHELVES = { d: 0.38, h: 2.05, runs: [[ROOM.x0, DOOR.x0 - 0.07], [DOOR.x1 + 0.07, 6.02]] };
+export const SHELVES = { d: 0.38, h: 2.05, runs: [[ROOM.x0, DOOR.x0 - 0.07], [DOOR.x1 + 0.07, ROOM.x1 - 0.98]] };
 export const SHELF_FRONT = ROOM.z0 + SHELVES.d;
 
 // ---------------------------------------------------------------- THE BEAM (honest: overhang, parapet, reveals)
@@ -141,7 +149,7 @@ const BF = beamFor(SCENE);
 if (!BF.ok) console.warn('shanghai86: no direct sun on the south facade at', SCENE.date, SCENE.time);
 export const { SUN, SUN_DIR, SUN_SLOPES, APERTURE_GLASS, BEAM_SOURCE, SOURCES, APS, sunLand, beamFootprint, traceBack, inBeam, beamWindow, beamMargin } = BF;
 export const beamWestMargin = beamMargin;   // old name
-export const BEAM = { kind: 'low winter sun through the French windows (six + four leaves), under the balcony above and over the parapet (parallel light)',
+export const BEAM = { kind: 'low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)',
   source: BEAM_SOURCE, dir: SUN_DIR, shading: BF.HALF.map((h) => h[0]) };
 
 // ---------------------------------------------------------------- furniture (Jade 2026-11-25 (2), (3))
@@ -166,20 +174,28 @@ export const SIDE_TABLE = { cx: COUCH.x1 - 0.22, cz: COUCH.z1 + 0.265, w: 0.45, 
 // at the old partition line by the windows, the chair at the table facing the light
 export const CHILD_TABLE = { cx: 3.0, cz: -1.3, w: 0.6, d: 0.45, h: 0.48 };
 export const CHILD_CHAIR = { at: [3.0, -1.3 - 0.225 - 0.19], yaw: 0, seat: 0.27, w: 0.3, d: 0.29, back: 0.52 };
-export const LOUNGER = { at: [0.7, -1.2], yaw: -20, w: 0.6, l: 1.45 };   // wicker lounge chair (藤躺椅), moved WEST along the six windows (Jade, round 4): east of the couch group, feet to the light
+// wicker lounge chair (藤躺椅). Round 2 answers (Jade): it FACES THE TV. The TV is on the east wall (Jade, round 3b), ~6.5 m
+// from the lounger's round-4 spot by the west doors with the dining table and its chairs in the line of sight, so the
+// lounger moved to the room's east end, south of the dining table, its feet toward the TV ~2.1 m away (my choice: flag).
+// yaw: facing the TV screen (set below, once the TV is placed)
+export const LOUNGER = { at: [6.05, -1.05], yaw: 0, w: 0.6, l: 1.45 };
 // TV cabinet on the EAST wall (Jade, round 3b: where the sideboard stood, toward the clock), facing west down the room
 export const TV = { x0: ROOM.x1 - 0.48, x1: ROOM.x1, z0: -3.95, z1: -3.05, h: 0.72, wall: 'east' };
+LOUNGER.yaw = +(Math.atan2(TV.x0 - LOUNGER.at[0], (TV.z0 + TV.z1) / 2 - LOUNGER.at[1]) / D2R).toFixed(1);
+// a white wicker armchair (白藤椅) out on the balcony (Jade, round 2 answers); where along the balcony is my choice: in front
+// of bay 2, sideways along the balcony (facing east), so it reads in profile from the room
+export const BALCONY_CHAIR = { at: [0.95, 0.95], yaw: 70, w: 0.62, d: 0.6, seat: 0.4, back: 0.88 };
 // Jade, NOT SURE (round 4): a long rectangular table, 8 chairs. Decision page: turned 90 deg (long axis now NORTH-SOUTH, across
 // the room, axis 'z') and its centre moved "up" on the plan = north (toward the hall wall) by 0.4 m (was (4.6, -2.6))
 export const DINING_TABLE = { at: [4.6, -3.0], l: 1.9, w: 0.88, h: 0.76, axis: 'z' };
-export const SIDEBOARD = { x0: 6.07, x1: ROOM.x1, z0: ROOM.z0, z1: ROOM.z0 + 0.45, h: 0.9 };   // moved to the north-east corner, at the end of the bookshelves (my choice: flag)
+export const SIDEBOARD = { x0: ROOM.x1 - 0.93, x1: ROOM.x1, z0: ROOM.z0, z1: ROOM.z0 + 0.45, h: 0.9 };   // moved to the north-east corner, at the end of the bookshelves (my choice: flag)
 export const RADIATOR = { wall: 'east', x: ROOM.x1 - 0.06, z0: -1.05, z1: -0.4, h: 0.62 };   // the original cast-iron radiator (cold in 1986)
 export const CALENDAR = { wall: 'east', z: -4.4, y: 1.45, w: 0.36, h: 0.52 };
 // west wall (Jade: calligraphy hanging scrolls; one large framed traditional painting, wall not stated: placed here, over the couch)
 export const PAINTING = { wall: 'west', z: (COUCH.z0 + COUCH.z1) / 2, y: 1.72, w: 1.3, h: 0.72 };
 export const SCROLLS = [-0.75, -1.3, -1.85].map((z) => ({ wall: 'west', z, top: 2.5, w: 0.42, h: 1.5 }));
 export const CLOCK = { wall: 'east', z: -5.0, y: 2.25 };
-export const PLANT = [-2.22, -0.22];
+export const PLANT = [ROOM.x0 + 0.28, -0.22];
 export const PENDANT = { x: 0, z: -3.0, drop: 0.55 };
 export const PENDANT2 = { x: DINING_TABLE.at[0], z: DINING_TABLE.at[1], drop: 0.75 };
 
@@ -209,13 +225,15 @@ export const PLACES = {
   stack: [TABLE.cx - 0.12, TABLE.cz + 0.25],                                   // the stack of 草纸 she brought
   mugs: [[TABLE.cx + 0.17, TABLE.cz - 0.32], [TABLE.cx + 0.17, TABLE.cz - 0.06], [TABLE.cx + 0.19, TABLE.cz + 0.2]],   // green tea, steaming (east side of the table, beside her)
   drift: { at: [HX + 0.05, HZ + 0.12], seed: 1986 },
-  // state A: the uncle sits in the 'across' armchair (just outside the light's east edge), leaning in over the table,
-  // his hands low in the light; she kneels at her spot (the same place a week later), watching his hands
-  uncleSeat: [ARMCHAIRS_ACROSS_X() + 0.08, TABLE.cz], uncleHands: [TABLE.cx + 0.17, 0.6, TABLE.cz - 0.2], jadeStand: HER_SPOT.at,
+  // state A (round 2): she sits cross-legged at her spot (where she sits a week later). The uncle sits on the front edge of the
+  // couch's north seat, leaning toward her, his hands low (0.5 m, her eye height ~0.53) in the light between them, just
+  // west of the table's north-west corner. He used to sit in the 'across' armchair east of the table, but at 08:30 the sun
+  // stands south-east of her, so his body sat between her face and the sun and shaded it; on the couch he is west of her.
+  uncleSeat: [COUCH.x1 - 0.16, COUCH.z0 + 0.42], uncleHands: [COUCH.x1 + 0.36, 0.5, COUCH.z0 + 0.49], jadeStand: HER_SPOT.at,
   // everybody else, out of the light
   mother: [DOOR.x0 + 0.5, ROOM.z0 - 0.08],     // in the north doorway, its west end (nearest her daughter), a hand on the west jamb
   grandma: [ARMCHAIRS_ACROSS_X() + 0.08, TABLE.cz],   // in the 'across' armchair (state B), just outside the light
-  aunt: [1.3, -2.45], uncleLaugh: [0.8, -3.35],   // in the dark between the two shafts
+  aunt: [1.3, -2.45], uncleLaugh: [0.8, -3.35],   // east of the group (with doors all along the south wall there is no dark gap between shafts any more)
 };
 // one sheet of old-style Chinese toilet paper (草纸, coarse straw paper): Jade's size, a little over half-Letter
 export const PAPER = { w: 0.16, h: 0.23, t: 0.00035, stack: 34, col: 0xd9cdb0 };
@@ -226,6 +244,6 @@ export const DRIFT_COUNTS = { 1: 1, 2: 3, 3: 6, 4: 14, 5: 28, 6: 55, 7: 100, 8: 
 export const LIGHTS = {
   sun: { kind: BEAM.kind, color: SUN.color, dir: SUN_DIR },
   sky: { kind: 'soft skylight through the same windows', color: 0xcfd8e0 },
-  north: { kind: 'dim skylight through the four east windows', color: 0xc8d0d8 },
+  north: { kind: 'dim skylight through the east bays of doors', color: 0xc8d0d8 },
   amb: { kind: 'room bounce', color: 0x8a8478 },
 };

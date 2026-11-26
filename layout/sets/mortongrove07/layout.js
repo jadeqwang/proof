@@ -1,23 +1,31 @@
-// LIVING ROOM, 5748 CAPRI LANE, MORTON GROVE, IL, ABOUT 2007 ("Proof": bridge, "Beauty on this side", -2sm 159.62 s on).
+// THE MAIN FLOOR OF 5748 CAPRI LANE, MORTON GROVE, IL, ABOUT 2007 ("Proof": bridge, "Beauty on this side", -2sm 159.62 s on).
 // Single source of truth (metres, y up, floor at y = 0). Grad school: she commutes from this house to Northwestern.
-// First love hands her a folded white sweatshirt with the Institute for Advanced Study seal (TRUTH left, BEAUTY right)
-// in dark blue. He is a real person: never named, never face-on; every camera is behind him.
+// First love has just given her a white sweatshirt with the Institute for Advanced Study seal (TRUTH left, BEAUTY right)
+// in dark blue, the seal almost the whole front (Jade); she holds it UNFOLDED up against herself, the front toward him
+// (and the camera behind him). He is a real person: never named, never face-on; every camera is behind him.
 //
-// The house (inputs/refs_mortongrove/README.md, documented): a 1955 split-level, 1,296 sq ft, a plain rectangle
-// 11.1 m E-W x 11.8 m N-S, FRONT FACING SOUTH onto Capri Lane, back yard north. The living room (GUESSED from the type
-// and from 5837 Capri, 1957): 16 x 14 ft on the main level at the front, a picture window in the south wall.
-// From Jade: the three-seat floral couch stands against the FRONT (south) wall and its end stops just before the big
-// window begins: couch and window side by side on the same wall.
+// ROUND 2 (2026-11-25): the room is now fitted to JADE'S HAND-DRAWN FLOOR PLAN (inputs/refs_mortongrove/, private).
+// One open great room: the living room at the drawing's top, the piano / dining / entry part below it, wider by a jog
+// on the drawing's right where the front door is. ORIENTATION (reasoned, flagged): the drawing's TOP is SOUTH (the
+// street), so its RIGHT is WEST, LEFT is EAST, BOTTOM is NORTH:
+//   - the front door sits in the short jog wall that faces the drawing's top: it faces the street (south);
+//   - the couch is against the top wall with the window beside it on the same wall: Jade's earlier answer "the couch
+//     against the FRONT (south) wall, its end stopping just before the big picture window" (now with a small table);
+//   - the kitchen behind the sliding door at the bottom = the back (north), the stairs (bottom left) go east into the
+//     two-storey split-level wing; 6.3 m (great room) + about 4.5 m (wing) fills the 11.1 m footprint.
+//   The alternative (the drawing's right wall = the street side, because the front door is "on the right") puts the
+//   couch window on the EAST and no afternoon sun can reach her (see NOTES).
 //
 // Axes are the COMPASS (the house is about 1 degree off north; ignored):
-//   x: + = EAST.   0 = inner face of the living room's west wall (entry / stair hall beyond) ... 4.9 = east wall
-//   z: + = SOUTH.  0 = inner face of the south (front) wall: picture window + couch ... -4.3 = north wall (dining beyond)
-// The living room sits in the SE corner of the footprint in this model (GUESS): house frame (origin = SW corner of the
-// footprint, x east, y north) = (x + 6.0, 0.2 - z).
+//   x: + = EAST.   0 = inner face of the living room's west wall (the egg-carton window) ... 4.9 = east wall (mirror)
+//   z: + = SOUTH.  0 = inner face of the south (front) wall (couch + window) ... -7.2 = north wall (sliding door, kitchen)
+//   The part north of the jog (z < -2.0) reaches further west, to x = -1.4 (front door, closet, dining window).
+// House frame (origin = SW corner of the footprint, x east, y north) = (x + 1.6, 0.2 - z).
 const rad = (d) => (d * Math.PI) / 180, D2R = Math.PI / 180;
 const add = (a, b) => a.map((v, i) => v + b[i]), mul = (a, s) => a.map((v) => v * s);
 const norm = (a) => { const l = Math.hypot(...a); return a.map((v) => v / l); };
 const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 const comb = (p, ...terms) => terms.reduce((s, [v, k]) => add(s, mul(v, k)), p.slice());
 
 export const YEAR = 2007;   // ASSUMPTION: grad school was about 2005-2009
@@ -27,11 +35,15 @@ export const FILM = { t: [159.62, 161.96], line: [159.62, 164.36], time: '2:39.6
   map: 'analysis/m2sm/song_map.md (-2sm master, bridge line 159.62-164.36; was v3 169.4-173.5, retimed 2026-11-25)' };
 
 export const HOUSE = { address: '5748 Capri Lane, Morton Grove, IL', built: 1955, type: 'split-level', sqft: 1296, ew: 11.1, ns: 11.6, ns_note: 'README says 11.8; the OSM corners give 11.63', front: 'south (Capri Lane)',
-  lat: 42.0525, lon: -87.7709, livingRoomInHouse: { x0: 6.0, x1: 10.9, y0: 0.2, y1: 4.5, note: 'GUESS: SE corner of the footprint (house frame: origin SW corner, x east, y north)' } };
+  lat: 42.0525, lon: -87.7709,
+  plan: 'Jade\'s hand-drawn main floor (inputs/refs_mortongrove/Pasted image.png, private), drawing TOP = SOUTH (reasoned; see NOTES)',
+  greatRoomInHouse: { x0: 0.2, x1: 6.5, y0: 0.2, y1: 7.4, note: 'house frame (origin SW corner of the footprint, x east, y north); the living room is x 1.6-6.5, y 0.2-2.2 of it; a 1.4 x 2.0 m entry notch at the SW corner (front door in its north side) - the county footprint shows a plain rectangle (porch roof over it? GUESS)' },
+  eastWing: 'about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room\'s NE corner)' };
 
 // ---------------------------------------------------------------- the sun (NOAA solar calculator equations, as shanghai86)
 // SCENE: Jade remembers neither the date nor the hour: a STAGING CHOICE in the academic year (Oct-Apr), picked by sweep
-// (sweep.mjs) for a soft low afternoon sun through the picture window that lights her face and the sweatshirt beside it.
+// (sweep.mjs) for a soft low afternoon sun through the front window that reaches her face. Kept from round 1: the new
+// orientation keeps the front window west of the couch, so the same sun still works (re-checked, NOTES).
 export const SCENE = { date: '2007-11-05', time: '15:30', tzHours: -6, tzName: 'CST', lat: 42.0525, lon: -87.7709 };
 export function sunPosition({ date, time, tzHours, lat, lon }) {
   const [Y, M, Dd] = date.split('-').map(Number), [hh, mm] = time.split(':').map(Number);
@@ -58,90 +70,127 @@ export function sunPosition({ date, time, tzHours, lat, lon }) {
 // direction the light TRAVELS, in these axes (x east, y up, z south), from compass azimuth and elevation
 export const travelDir = ({ az, elev }) => { const a = az * D2R, e = elev * D2R; return [-Math.sin(a) * Math.cos(e), -Math.sin(e), Math.cos(a) * Math.cos(e)]; };
 
-export const ROOM = { x0: 0, x1: 4.9, z0: -4.3, z1: 0, h: 2.44, wallT: 0.2, wallInt: 0.12 };
-// THE CEILING IS VAULTED (Jade, decision page 2026-11-25). A cathedral ceiling under the roof of the main-level wing:
-// two plain drywall planes rising from the east and west walls (plate at ROOM.h = 8 ft) to a ridge running NORTH-SOUTH
-// along the room's centre line, so the south (picture-window) wall and the north (dining) wall are gable ends.
-// GUESS, flagged: the ridge direction. The footprint (11.1 m E-W x 11.6 m N-S) puts the main-level wing (living room at
-// the front, dining and kitchen behind) in a strip about 5.5 m wide E-W running the full N-S depth, so its roof most
-// plausibly spans the short E-W width with the ridge front-to-back (gable facing the street over the picture window),
-// as on most Chicago-area split-levels of the 1950s. Pitch 4 in 12 (a low 1950s roof) -> peak 0.82 m above the plate.
-export const VAULT = { ridge: 'north-south', x: (ROOM.x0 + ROOM.x1) / 2, pitch: 4 / 12, t: 0.06 };
-VAULT.peak = +(ROOM.h + (VAULT.x - ROOM.x0) * VAULT.pitch).toFixed(3);   // 3.257 m
-export const ceilY = (x) => VAULT.peak - Math.abs(x - VAULT.x) * VAULT.pitch;   // height of the ceiling surface over x
+// ---------------------------------------------------------------- the great room (Jade's drawing, scaled: couch = 2.1 m)
+// The drawing is a phone photo of a sketch (perspective, freehand): positions below are read off it at about 118 px/m
+// and then made to fit real furniture sizes. Living room 4.9 m wide as before (Jade: "room and light look right").
+export const ROOM = { x0: 0, x1: 4.9, z0: -7.2, z1: 0, h: 2.44, wallT: 0.2, wallInt: 0.12 };
+export const JOG = { z: -2.0, xW: -1.4 };   // north of z = -2.0 the room reaches west to x = -1.4 (the drawing's right-hand step)
+// THE CEILING IS VAULTED (Jade) and its ridge runs PARALLEL TO THE STREET (Jade, round 2): east-west. GUESS: the ridge
+// sits on the house's centre line (footprint 11.63 m N-S: z = -5.6), as a roof spanning the full depth would put it,
+// pitch 4 in 12 (a low 1950s roof). So the vault rises from 8 ft at the front wall to 4.31 m over the dining table and
+// falls again toward the kitchen wall (3.77 m). The east and west walls are the gable ends.
+export const VAULT = { ridge: 'east-west (parallel to Capri Lane)', z: -5.6, pitch: 4 / 12, t: 0.06 };
+VAULT.peak = +(ROOM.h + (ROOM.z1 - VAULT.z) * VAULT.pitch).toFixed(3);   // 4.307 m
+export const ceilY = (z) => VAULT.peak - Math.abs(z - VAULT.z) * VAULT.pitch;   // height of the ceiling surface over z
 
-// ---------------------------------------------------------------- the front (south) wall: picture window + couch
-// ASSUMPTION: a fixed picture window (big centre light, a narrow casement each side) in the WEST part of the south wall,
-// and the couch in the EAST part (Jade: the couch's end stops just before the window). West, because the afternoon
-// sun travels north-east: from a window west of the couch it falls on her; a window east of it would throw the
-// afternoon light away from the couch (it would need a morning sun).
-export const PICTURE = { x0: 0.35, x1: 2.70, sill: 0.50, head: 2.05, mullions: [0.85, 2.20], z: 0 };
-export const COUCH = { x0: 2.80, x1: 4.80, z1: -0.04, d: 0.9, seat: 0.44, back: 0.86, arm: 0.64, armW: 0.2, backD: 0.26, baseH: 0.22 };
+// ---------------------------------------------------------------- windows and doors (drawing; sizes GUESSED)
+// FRONT window, south wall, west part (drawing: top wall, right of the couch). Narrower than round 1's 2.35 m: the drawn
+// window is about 1.5 m, with the couch, a small table and the egg-carton table all along the same wall.
+export const PICTURE = { x0: 0.20, x1: 1.70, sill: 0.60, head: 2.05, mullions: [0.55, 1.35], z: 0 };
+// WEST windows (drawing: right wall): over the egg-carton table, and by the dining table
+export const WIN_W = { x: 0, z0: -1.70, z1: -0.30, sill: 0.75, head: 2.05, mullions: [-1.0] };
+export const WIN_D = { x: JOG.xW, z0: -6.10, z1: -4.60, sill: 0.80, head: 2.05, mullions: [-5.35] };
+// the front door: in the short jog wall (z = -2.0), facing the street; hinged at its west end, swings in (drawing)
+export const FRONT_DOOR = { z: JOG.z, x0: -1.30, x1: -0.40, h: 2.03 };
+// the sliding door to the kitchen: north wall (drawing: bottom, a little left of centre) -> x 1.25-2.45; one leaf slid open
+export const SLIDER = { z: ROOM.z0, x0: 1.25, x1: 2.45, h: 2.03 };
+export const KITCHEN = { depth: 3.8 };   // beyond the slider (not modelled beyond a floor and far wall)
+// the stairs: NE corner (drawing: bottom left), running EAST through the east wall into the split-level wing
+export const STAIR = { z0: -7.2, z1: -6.35, x0: 4.15, rise: 0.18, tread: 0.26, n: 7, label: 'stairs (half a level up to the bedrooms, east wing)' };
+
+// ---------------------------------------------------------------- the living room (drawing, top)
+export const COUCH = { x0: 1.85, x1: 3.95, z1: -0.04, d: 0.9, seat: 0.44, back: 0.86, arm: 0.64, armW: 0.2, backD: 0.26, baseH: 0.22 };
 COUCH.z0 = COUCH.z1 - COUCH.d;                       // front edge of the frame (-0.94); the couch faces north (-z)
 COUCH.seatZ1 = COUCH.z1 - COUCH.backD;               // front face of the back cushions
+export const END_TABLE_E = { x0: 4.15, x1: 4.60, z0: -0.52, z1: -0.08, h: 0.60, label: 'side table (lamp)' };   // drawing: "side table w/ lamp", couch's east end
+export const END_TABLE_W = { x0: 1.32, x1: 1.72, z0: -0.50, z1: -0.10, h: 0.52, label: 'small table' };          // drawing: "table", couch's west end, under the window's corner
+export const RUG = { x0: 1.85, x1: 4.15, z0: -2.15, z1: -0.94 };                                                 // drawing: red
+export const COFFEE_TABLE = { x0: 2.55, x1: 3.80, z0: -1.85, z1: -1.30, h: 0.42 };                              // on the rug (shortened at its west end so he can stand there)
+export const LOVESEAT = { x0: 4.10, x1: 4.88, z0: -2.15, z1: -0.95, label: 'loveseat (two cushions, facing west)' };   // drawing: the two-part block left of the rug (GUESS: a loveseat)
+export const ARMCHAIR = { at: [1.35, -1.20], yaw: 90, w: 0.78, d: 0.80, seat: 0.43, back: 0.88, arm: 0.6 };         // drawing: right of the rug, facing east
+export const PLANTS = { x0: 0.10, x1: 0.68, z0: -1.75, z1: -0.30, h: 0.42, cartons: { rows: 9, cols: 2, l: 0.28, w: 0.105, h: 0.065 },
+  label: 'coffee table: germinating plants in egg cartons, carefully labelled' };                                // drawing: along the west wall under the window
+export const PRINT = { x: 2.9, y: 1.55, z: -0.02, w: 0.7, h: 0.5 };   // framed print over the couch (invented, not in the drawing)
 
-// ---------------------------------------------------------------- openings (typical of the type; GUESSES)
-export const STAIR_OPENING = { x: 0, z0: -2.4, z1: -1.0, h: 2.03 };   // W wall: entry / stair hall (half up to bedrooms, half down to the rec room)
-export const STAIR = { hallX0: -1.3, risers: 4, rise: 0.18, tread: 0.25 };   // what shows through the opening: a landing, a half flight up (north half), down (south half)
-export const DINING_OPENING = { z: ROOM.z0, x0: 0.5, x1: 2.3, h: 2.1 };     // N wall: cased opening to the dining room
-export const DINING = { depth: 3.4, table: { c: [1.4, -5.9], w: 1.5, d: 0.9, h: 0.74 } };
-
-// ---------------------------------------------------------------- the rest of the room (invented, plausible)
-export const COFFEE_TABLE = { x0: 4.05, x1: 4.65, z0: -1.70, z1: -1.20, h: 0.42 };   // small, in front of the couch's east end
-export const ARMCHAIR = { at: [4.35, -2.8], yaw: -90, w: 0.82, d: 0.82, seat: 0.43, back: 0.88, arm: 0.6 };   // on the E wall, facing west
-export const SIDE_TABLE = { x0: 4.4, x1: 4.85, z0: -2.15, z1: -1.75, h: 0.58 };      // beside the armchair, lamp (off)
-export const TV = { x: 3.55, z: ROOM.z0, w: 1.1, d: 0.45, h: 0.55, set: { w: 0.62, h: 0.48, d: 0.5 } };   // N wall, facing the couch
-export const RUG = { x0: 1.3, x1: 4.6, z0: -3.4, z1: -1.0 };
-export const PRINT = { x: 3.8, y: 1.55, z: -0.02, w: 0.7, h: 0.5 };                   // framed print over the couch
+// ---------------------------------------------------------------- the rest of the great room (drawing)
+export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.25, y1: 2.20, label: 'giant mirror' };   // east wall
+// 7-ft grand (Jade: "7' concert grand"; a 7-ft grand is strictly a semi-concert / "B"-size grand: 2.13 x 1.50 m). As
+// drawn: straight side (spine) along the mirror, curved side to the west, keyboard at the NORTH end with the bench there
+// (the small box below it in the drawing), so the pianist faces south, toward the living room.
+export const PIANO = { spineX: 4.55, kbZ: -5.20, L: 2.13, W: 1.50, caseY0: 0.62, caseY1: 0.98, label: '7-ft grand piano' };
+export const BENCH = { x0: 3.40, x1: 4.15, z0: -5.78, z1: -5.42, h: 0.50, label: 'piano bench' };
+export const FLOOR_LAMP = { at: [4.62, -6.02], h: 1.62, label: 'floor lamp (off)' };
+export const CLOSET = { x0: JOG.xW, x1: -0.15, z0: -4.05, z1: -3.00, h: 2.20, label: 'coat closet' };   // drawing: by the front door; its door on the east face (GUESS)
+export const DINING = { table: { c: [0.15, -5.60], w: 1.90, d: 0.95, h: 0.74 }, label: 'dining table (long, six chairs)' };
 
 // ---------------------------------------------------------------- the people
-// her (jade27 standing in for about 24): on the couch's WEST cushion (next to the window), sitting forward, turned a
-// little toward him. him (firstLove27): standing in front of her, a little to her right (east, frame left in MG1),
-// leaning in, arms out. The window is on her left.
-export const HER = { at: [COUCH.x0 + COUCH.armW + (COUCH.x1 - COUCH.x0 - 2 * COUCH.armW) / 6, COUCH.z1 - (COUCH.d - 0.36)], yaw: 168 };
-export const HIM = { at: [HER.at[0] + 0.42, HER.at[1] - 1.02] };
-HIM.yaw = +(Math.atan2(HER.at[0] - HIM.at[0], HER.at[1] - HIM.at[1]) * 180 / Math.PI).toFixed(1);   // faces her (about -22)
+// her (jade27 standing in for about 24): on the couch's WEST cushion (next to the window), sitting a little forward,
+// turned toward him, holding the unfolded sweatshirt up against herself by its shoulders. him (firstLove27): standing at
+// the west end of the coffee table, in front of her and a little to her left (west), leaning in.
+const cushW = (COUCH.x1 - COUCH.x0 - 2 * COUCH.armW) / 3;
+export const HER = { at: [COUCH.x0 + COUCH.armW + cushW / 2, COUCH.z1 - (COUCH.d - 0.36)], yaw: 196 };
+export const HIM = { at: [1.95, -1.48] };
+HIM.yaw = +(Math.atan2(HER.at[0] - HIM.at[0], HER.at[1] - HIM.at[1]) * 180 / Math.PI).toFixed(1);   // faces her
 
-// ---------------------------------------------------------------- the sweatshirt (folded), between them
-// A folded stack 0.30 across x 0.34 long x 0.05 thick at y 0.88, 0.53 m from him toward her and 0.16 m to his right (so
-// the over-the-shoulder camera sees it past his arm), the seal on top. Frame:
-//   w = horizontal direction from him to her, tipped down `tilt` degrees (his edge a little higher: it leans toward her)
-//   u = his left (her right), n = up out of the seal
-// The seal reads upright for HER (its top toward him; TRUTH on her left = -u, BEAUTY on her right = +u).
-export const SHIRT = { across: 0.30, along: 0.34, thick: 0.05, tilt: 10, sealR: 0.07, color: 0xf4f2ec, seal: 0x1c2a5a, y: 0.88, fromHim: 0.53, toHisRight: 0.16 };
-{ const wh = norm([HER.at[0] - HIM.at[0], 0, HER.at[1] - HIM.at[1]]), t = rad(SHIRT.tilt);
-  SHIRT.w = norm([wh[0] * Math.cos(t), -Math.sin(t), wh[2] * Math.cos(t)]);
-  SHIRT.u = norm(cross([0, 1, 0], wh));
-  let n = norm(cross(SHIRT.w, SHIRT.u)); if (n[1] < 0) n = mul(n, -1); SHIRT.n = n;
-  SHIRT.c = comb([HIM.at[0], SHIRT.y, HIM.at[1]], [wh, SHIRT.fromHim], [SHIRT.u, -SHIRT.toHisRight]).map((v) => +v.toFixed(4)); }
-// the four grips: each hand closes on the stack's side edge (a cylinder of radius thick/2 along w), thumb on top
-const r = SHIRT.thick / 2, side = SHIRT.across / 2 - r, inset = 0.09;
-export const GRIP = {
-  hisL: comb(SHIRT.c, [SHIRT.u, side], [SHIRT.w, -inset]), hisR: comb(SHIRT.c, [SHIRT.u, -side], [SHIRT.w, -inset]),
-  herL: comb(SHIRT.c, [SHIRT.u, -side], [SHIRT.w, inset]), herR: comb(SHIRT.c, [SHIRT.u, side], [SHIRT.w, inset]),
-  r,
-};
-const top = comb(SHIRT.c, [SHIRT.n, SHIRT.thick / 2 + 0.002]);
-export const SEAL = { centre: top, top: comb(top, [SHIRT.w, -SHIRT.sealR]), bottom: comb(top, [SHIRT.w, SHIRT.sealR]),
-  truth: comb(top, [SHIRT.u, -SHIRT.sealR * 0.6]), beauty: comb(top, [SHIRT.u, SHIRT.sealR * 0.6]) };
+// ---------------------------------------------------------------- the sweatshirt, UNFOLDED, held up against her
+// Jade: the seal is HUGE (almost the whole front) and the sweatshirt must be unfolded to see it. She holds it by the
+// shoulder seams, its front toward him; the body hangs down in front of her and folds forward over her knees.
+// Frame: f = her facing (horizontal), r = the VIEWER'S RIGHT looking at the front (= her left), a = up the front's upper
+// panel, n = out of the front (toward him and the camera).
+export const SHIRT = { chest: 0.58, upper: 0.45, lower: 0.20, top: { fwd: 0.30, y: 1.06 }, knee: { fwd: 0.41, y: 0.585 }, drop: 0.07,
+  sleeve: { len: 0.60, w0: 0.16, w1: 0.11 }, thick: 0.012, sealR: 0.19, sealDown: 0.285, color: 0xf4f2ec, seal: 0x1c2a5a };
+{ const y = rad(HER.yaw), f = [Math.sin(y), 0, Math.cos(y)];
+  SHIRT.f = f; SHIRT.r = [Math.cos(y), 0, -Math.sin(y)];                          // her left = the viewer's right
+  const base = [HER.at[0], 0, HER.at[1]];
+  SHIRT.T = comb(base, [f, SHIRT.top.fwd], [[0, 1, 0], SHIRT.top.y]);             // top centre (collar)
+  SHIRT.K = comb(base, [f, SHIRT.knee.fwd], [[0, 1, 0], SHIRT.knee.y]);           // where it bends over her knees
+  SHIRT.a = norm(add(SHIRT.T, mul(SHIRT.K, -1)));
+  SHIRT.upper = +Math.hypot(...add(SHIRT.T, mul(SHIRT.K, -1))).toFixed(3);
+  let n = norm(cross(SHIRT.r, SHIRT.a)); if (dot(n, f) < 0) n = mul(n, -1); SHIRT.n = n;
+  // the lower part runs on over her knees, forward and down
+  SHIRT.b = norm(comb([0, 0, 0], [f, 0.85], [[0, 1, 0], -0.53]));                   // down-the-front direction past the knees
+  SHIRT.H = comb(SHIRT.K, [SHIRT.b, SHIRT.lower]);                                 // hem centre
+  SHIRT.c = comb(SHIRT.T, [SHIRT.a, -SHIRT.sealDown]).map((v) => +v.toFixed(4));   // the seal's centre (on the upper part)
+}
+// her two hands close on the shoulder seams (top corners): left hand at +r, right hand at -r
+const sh = SHIRT.chest / 2 - 0.04;
+export const GRIP = { herL: comb(SHIRT.T, [SHIRT.r, sh]), herR: comb(SHIRT.T, [SHIRT.r, -sh]), r: 0.012 };
+const front = comb(SHIRT.c, [SHIRT.n, SHIRT.thick / 2 + 0.002]);
+export const SEAL = { centre: front, top: comb(front, [SHIRT.a, SHIRT.sealR]), bottom: comb(front, [SHIRT.a, -SHIRT.sealR]),
+  truth: comb(front, [SHIRT.r, -SHIRT.sealR * 0.45]), beauty: comb(front, [SHIRT.r, SHIRT.sealR * 0.45]) };
 
-// ---------------------------------------------------------------- the beam
-// the sun travels north into the room when the sun is in the southern sky: dir[2] < 0
+// ---------------------------------------------------------------- the beams: three west/south openings
 export const SUN_POS = sunPosition(SCENE);
 export const SUN = { altitude: SUN_POS.elev, azimuth: SUN_POS.az, color: 0xfff0d8, ...SCENE };
 export const SUN_DIR = travelDir(SUN_POS);
-// the aperture on the inner plane: the outer opening (z = +wallT) slid along the light to z = 0 and intersected
-export const APERTURE = (() => { const W = PICTURE, T = ROOM.wallT, d = SUN_DIR; const s = d[2] < -1e-3 ? T / -d[2] : 0;
-  const dx = d[0] * s, dy = d[1] * s; const x0 = Math.max(W.x0, W.x0 + dx), x1 = Math.min(W.x1, W.x1 + dx), y0 = Math.max(W.sill, W.sill + dy), y1 = Math.min(W.head, W.head + dy);
-  return [[x1, y1, 0], [x0, y1, 0], [x0, y0, 0], [x1, y0, 0]]; })();     // TL, TR, BR, BL seen from inside looking out (south; east on the left)
-// is a room point in the direct sun (ignoring figures and furniture)? margin in metres on the window plane (> 0 inside)
-export function sunMargin(p) { const d = SUN_DIR; if (d[2] >= -1e-3) return -9; const t = p[2] / d[2]; if (t < 0) return -9;   // trace back to z = 0
-  const x = p[0] - d[0] * t, y = p[1] - d[1] * t; const [[x1, y1], [x0]] = APERTURE, y0 = APERTURE[2][1];
-  return +Math.min(x - x0, x1 - x, y - y0, y1 - y).toFixed(3); }
-export const BEAM = { name: 'picture window', kind: 'low afternoon sun through the picture window beside the couch (parallel)', dir: SUN_DIR, aperture: APERTURE,
-  clip: [{ name: 'floor', n: [0, -1, 0], d: 0.0 }, { name: 'west wall', n: [-1, 0, 0], d: -ROOM.x0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 }, { name: 'ceiling (plate height: the sun enters below the window head and only falls, so the vault never meets it)', n: [0, 1, 0], d: ROOM.h }] };
+const T = ROOM.wallT;
+// aperture on the inner plane of a south-wall window (z = W.z, outside is +z), narrowed by the reveal for this sun
+function apS(W) { const d = SUN_DIR; if (d[2] > -1e-3) return null; const s = T / -d[2]; const dx = d[0] * s, dy = d[1] * s;
+  const x0 = Math.max(W.x0, W.x0 + dx), x1 = Math.min(W.x1, W.x1 + dx), y0 = Math.max(W.sill, W.sill + dy), y1 = Math.min(W.head, W.head + dy);
+  return x1 > x0 && y1 > y0 ? [[x1, y1, W.z], [x0, y1, W.z], [x0, y0, W.z], [x1, y0, W.z]] : null; }
+// on a west-wall window (x = W.x, outside is -x)
+function apW(W) { const d = SUN_DIR; if (d[0] < 1e-3) return null; const s = T / d[0]; const dz = d[2] * s, dy = d[1] * s;
+  const z0 = Math.max(W.z0, W.z0 + dz), z1 = Math.min(W.z1, W.z1 + dz), y0 = Math.max(W.sill, W.sill + dy), y1 = Math.min(W.head, W.head + dy);
+  return z1 > z0 && y1 > y0 ? [[W.x, y1, z0], [W.x, y1, z1], [W.x, y0, z1], [W.x, y0, z0]] : null; }
+export const APERTURES = { front: apS(PICTURE), west: apW(WIN_W), dining: apW(WIN_D) };
+export const APERTURE = APERTURES.front;
+// is a room point in the direct sun through one window (ignoring figures and furniture)? margin in m on the window plane
+function marginS(p, A) { const d = SUN_DIR; if (!A) return -9; const t = (p[2] - A[0][2]) / d[2]; if (t < 0) return -9;
+  const x = p[0] - d[0] * t, y = p[1] - d[1] * t; const x1 = A[0][0], x0 = A[1][0], y1 = A[0][1], y0 = A[2][1];
+  return Math.min(x - x0, x1 - x, y - y0, y1 - y); }
+function marginW(p, A) { const d = SUN_DIR; if (!A) return -9; const t = (p[0] - A[0][0]) / d[0]; if (t < 0) return -9;
+  const z = p[2] - d[2] * t, y = p[1] - d[1] * t; const z0 = A[0][2], z1 = A[1][2], y1 = A[0][1], y0 = A[2][1];
+  return Math.min(z - z0, z1 - z, y - y0, y1 - y); }
+export function sunMargins(p) { return { front: +marginS(p, APERTURES.front).toFixed(3), west: +marginW(p, APERTURES.west).toFixed(3), dining: +marginW(p, APERTURES.dining).toFixed(3) }; }
+export function sunMargin(p) { return Math.max(...Object.values(sunMargins(p))); }
+// does a surface with outward normal nn face the sun? (cosine of the incidence; <= 0 = the sun is behind it)
+export const sunCos = (nn) => +(-dot(norm(nn), SUN_DIR)).toFixed(3);
+const CLIP = [{ name: 'floor', n: [0, -1, 0], d: 0.0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 },
+  { name: 'ceiling (plate height: the sun enters below the window heads and only falls, so the vault never meets it)', n: [0, 1, 0], d: ROOM.h }];
+export const BEAM = { name: 'front + west windows', kind: 'low afternoon sun through the front window beside the couch, the west (egg-carton) window and the dining window (parallel)', dir: SUN_DIR,
+  apertures: APERTURES, aperture: APERTURE, clip: CLIP };
 
 export const LIGHTS = {
-  sun: { kind: 'low soft afternoon sun through the picture window (the beam)', dir: SUN_DIR, color: SUN.color },
-  sky: { kind: 'diffuse skylight through the picture window (fill)', color: 0xdfe6f0 },
+  sun: { kind: 'low soft afternoon sun through the front and west windows (the beams)', dir: SUN_DIR, color: SUN.color },
+  sky: { kind: 'diffuse skylight through the front and west windows (fill)', color: 0xdfe6f0 },
 };

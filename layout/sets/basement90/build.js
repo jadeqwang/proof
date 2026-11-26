@@ -4,13 +4,13 @@ import { mk, box, cyl, ball, quad, slab, tag, V, rad } from '../../engine/core.j
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, applyBeamMask } from '../_beam.js';
-import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, CHAIR, spokePoint, FEET, PROPS, BEAM, beamFar, deskTerminator, LIGHTS } from './layout.js';
+import { HOUSE, ROOM, DESK, PC, SCREEN, screenPoint, screenCorners, TEXT, WORD, WORD_P, CHAIR, spokePoint, FEET, PROPS, BEAM, beamFar, deskTerminator, LIGHTS, BULB_P } from './layout.js';
 import { wall, hexa, polyline, swivelChair, r3, hideLabels } from './kit.js';
 
 const CONC = { grey: 0.62, col: 0x77756f }, BLOCK = { grey: 0.7, col: 0x8a8880 }, WOOD = { grey: 0.5, col: 0x6b5236 }, WOOD_D = { grey: 0.36, col: 0x4a3826 };
 const BEIGE = { grey: 0.8, col: 0xc9c2ad }, DARK = { grey: 0.2, col: 0x222226 }, CARD = { grey: 0.6, col: 0x9a7c55 };
 
-function room() {
+function room(shot = {}) {
   const g = new THREE.Group(); const { x0, x1, z0, z1, h } = ROOM, T = ROOM.wallT, K = HOUSE.kitchen, FTF = HOUSE.floorToFloor, TALL = FTF + 2.3;
   g.add(tag(box(x1 - x0 + 2 * T, 0.1, z1 - z0 + 2 * T, CONC, [(x0 + x1) / 2, -0.05, (z0 + z1) / 2]), 'concrete slab'));
   const W = ROOM.hopper;
@@ -35,12 +35,15 @@ function room() {
   for (const xs of [S.x0 + 0.02, S.x1 - 0.02]) g.add(tag(slab(V(xs, FTF - 0.13, S.zTop + 0.05), V(xs, -0.02, zEnd - 0.1), 0.24, 0.04, V(0, 0, 1).applyAxisAngle(V(1, 0, 0), 0), WOOD_D), 'stair stringers'));
   g.add(tag(slab(V(S.x1 - 0.02, FTF + 0.9, S.zTop), V(S.x1 - 0.02, 0.9 + S.rise, zEnd), 0.045, 0.045, V(1, 0, 0), WOOD), 'handrail'));
   for (const k of [0, 5, S.risers - 1]) g.add(tag(box(0.04, 0.9 + S.rise, 0.04, WOOD, [S.x1 - 0.02, FTF - k * S.rise + (0.9 - S.rise) / 2 + S.rise / 2, S.zTop - k * S.tread]), 'handrail'));
-  // lally column, bare bulb (off)
+  // lally column
   g.add(tag(cyl(ROOM.column.r, ROOM.column.r, h - 0.24, { grey: 0.4, col: 0x5a2f28 }, [ROOM.column.x, (h - 0.24) / 2, ROOM.column.z], null, 14), 'steel column'));
   g.add(tag(box(0.2, 0.24, z1 - z0, WOOD_D, [ROOM.column.x, h - 0.12, (z0 + z1) / 2]), 'main beam'));
-  const B = ROOM.bulb; g.add(tag(cyl(0.004, 0.004, B.drop, DARK, [B.x, h - J.d - B.drop / 2, B.z], null, 6), 'bare bulb (off)'));
-  g.add(tag(ball(0.032, { grey: 0.8, col: 0x8a8a80 }, [B.x, h - J.d - B.drop - 0.03, B.z], [1, 1.3, 1]), 'bare bulb (off)'));
-  g.add(tag(cyl(0.0025, 0.0025, 0.5, DARK, [B.x + 0.03, h - J.d - B.drop - 0.3, B.z], null, 6), 'bare bulb (off)'));
+  // the ceiling light (ASSUMED type): junction box under the joist, white porcelain pull-chain lampholder, bare bulb, chain
+  const B = ROOM.bulb, jb = h - J.d, lampOn = shot.light?.ceiling !== false;
+  g.add(tag(cyl(0.05, 0.05, B.box, { grey: 0.55, col: 0x7a7a78 }, [B.x, jb - B.box / 2, B.z], null, 8), 'ceiling light (porcelain lampholder)'));
+  g.add(tag(cyl(0.045, 0.03, B.holder, { grey: 0.95, col: 0xece8de }, [B.x, jb - B.box - B.holder / 2, B.z], null, 16), 'ceiling light (porcelain lampholder)'));
+  g.add(tag(ball(B.r, { grey: 0.9, col: 0xfff0d0, emit: lampOn ? LIGHTS.ceiling.color : undefined, emitI: 2.2, flatEmit: 0.97, noCast: true }, [BULB_P[0], BULB_P[1], BULB_P[2]], [1, 1.3, 1]), lampOn ? 'ceiling bulb (on)' : 'ceiling bulb (off)'));
+  g.add(tag(cyl(0.0025, 0.0025, 0.45, DARK, [B.x + 0.035, jb - B.box - 0.03 - 0.225, B.z], null, 6), 'pull chain'));
   return g;
 }
 
@@ -92,9 +95,10 @@ function furniture(shot) {
   return g;
 }
 
+const CEIL_LIT = 3.2, AMB_LIT = 0.7;   // lit-preview levels of the ceiling bulb and its bounce (tuned by eye on B0_wide / B4)
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
-  root.add(room()); root.add(furniture(shot));
+  root.add(room(shot)); root.add(furniture(shot));
   const chairSpec = { at: CHAIR.at, seatYaw: CHAIR.seatYaw, spoke0: CHAIR.spoke0, ...(shot.chair || {}) };
   root.add(swivelChair(CHAIR, chairSpec));
   const extra = (t) => (t === 'word' ? V(WORD_P) : t === 'screen' ? V(SCREEN.c) : null);
@@ -111,14 +115,19 @@ export function build(shot, { makeCam }) {
   hideParts(shot.hideParts, figs);
   const cam = makeCam(shot);
   const on = shot.light?.screen !== false, Lp = V(LIGHTS.screen.pos), La = V(LIGHTS.screen.aim);
-  const lights = [{ name: 'screen', kind: LIGHTS.screen.kind, pos: Lp, aim: La, color: '#' + BEAM.color.toString(16).padStart(6, '0'), on }];
+  const lampOn = shot.light?.ceiling !== false, Bp = V(BULB_P), hex = (c) => '#' + c.toString(16).padStart(6, '0');
+  const lights = [{ name: 'screen', kind: LIGHTS.screen.kind, pos: Lp, aim: La, color: hex(BEAM.color), on },
+    { name: 'ceiling', kind: LIGHTS.ceiling.kind, pos: Bp, color: hex(LIGHTS.ceiling.color), on: lampOn }];
   const rig = (mode) => { const L = []; if (mode === 'none' || shot.beamMask) return L; const white = mode !== 'lit';
     if (on) { const s = new THREE.SpotLight(white ? 0xffffff : BEAM.color, mode === 'lit' ? 5 : 2.0, 0, rad(BEAM.halfAngleDeg + 8), 0.45, mode === 'lit' ? 1.5 : 0);
       s.position.copy(Lp); s.target.position.copy(La); s.castShadow = true; s.shadow.camera.near = 0.03; s.shadow.camera.far = 8; s.shadow.radius = mode === 'lit' ? 6 : 2; L.push(s);
       if (mode === 'lit') { const p = new THREE.PointLight(BEAM.color, 0.35, 1.2, 1.6); p.position.copy(Lp).add(V(0, 0, 0.12)); L.push(p); } }
     if (mode === 'mask') return L;
-    L.push(new THREE.AmbientLight(white ? 0xffffff : LIGHTS.dark.color, white ? 1.25 : 1.2));
-    if (white) { const d = new THREE.DirectionalLight(0xffffff, 0.7); d.position.set(1, 3, 2.5); L.push(d); }
+    // the ceiling bulb: the room's ambient (warm, soft shadows); the screen stays the cold key at the desk
+    if (lampOn) { const p = new THREE.PointLight(white ? 0xffffff : LIGHTS.ceiling.color, white ? (shot.light?.ceilI ?? 0.8) : (shot.light?.ceilLit ?? CEIL_LIT), 9, 1.2);
+      p.position.copy(Bp); p.castShadow = true; p.shadow.camera.near = 0.05; p.shadow.camera.far = 8; p.shadow.radius = mode === 'lit' ? 8 : 3; L.push(p); }
+    L.push(new THREE.AmbientLight(white ? 0xffffff : (lampOn ? LIGHTS.dark.color : 0x0a0c18), white ? (lampOn ? 1.0 : 1.25) : (lampOn ? (shot.light?.ambLit ?? AMB_LIT) : 1.2)));
+    if (white && !lampOn) { const d = new THREE.DirectionalLight(0xffffff, 0.7); d.position.set(1, 3, 2.5); L.push(d); }
     return L; };
   const panes = { screen: screenCorners().map((p) => V(p)) };
   const extraOut = (c, P) => { const pt = (p) => ({ world: r3(p), px: P(V(p)) }); const J = figs.jade7?.userData.P;

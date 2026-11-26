@@ -57,7 +57,7 @@ const GC = { dad: dadDouble(), jade7: jadeGroom() };
 export const SHOTS = [
   // ---------------------------------------------------------------- set reference (not in the cut)
   { id: 'B0_plan', lens: 0, ortho: { w: 6.4 }, pos: [-0.55, 9, 0], target: [-0.55, 0, 0], up: [0, 0, -1], far: 12, near: 5, figs: POINT,
-    hide: ['subfloor', 'floor joists', 'main beam', 'beam at the stair', 'stairwell ceiling', 'kitchen wall above', 'stair landing', 'bare bulb', 'beam volume'],
+    hide: ['subfloor', 'floor joists', 'main beam', 'beam at the stair', 'stairwell ceiling', 'kitchen wall above', 'stair landing', 'pull chain', 'beam volume'],
     header: 'PLAN (ceiling off): back wall at top; desk, screen facing +z (down the page); stair strip at left', intent: 'Set reference: plan of the basement with the pointing blocking. Blue lines = where the desk stops cutting the screen light on the floor.' },
   { id: 'B0_wide', lens: 24, pos: [-1.35, 1.5, 1.8], aim: [SCREEN.c, 0.62, 0.52], figs: POINT, time: 'reference', position: 'reference',
     header: 'MASTER: the basement, the screen the only light; stair at left', intent: 'Set reference: the whole basement from the front-left corner. Everything outside the screen glow is paper.' },

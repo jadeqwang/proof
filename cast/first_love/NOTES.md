@@ -133,3 +133,48 @@ line Jade asked for makes the overhang read harder); the crown point is placed a
 part still reaches roughly halfway down the visible head; D study 4's hand at his chin reads as a curled fist, not
 clearly the back of HER hand (unchanged from D v3); the seal on G is still a generic emblem, not the IAS seal.
 Not done here: `media/decisions.html` fl_ cards still link the old file names (now in `_superseded/`).
+
+## 2026-11-25 round 2 (v4: stepped hair, big IAS seal)
+Jade on v3: hair reads as him, the part is good, but the change from top to bottom is too gradual: it is a top half
+over a lower part buzzed to stubble and grown out ~6 months. And the IAS seal must be WAY larger, almost the whole
+front, so the sweatshirt has to be unfolded to see all of it.
+- Prompts and generator in `_prompts/v4/` (`flgen.py`, tmux session `proof-fl4`; `inputs/` now refused as a ref
+  path, so no layout refs from inputs/ this round: the previous version of each sheet is the layout ref instead).
+  New blocks: `hair.txt` (top layer + even 1.5-3 cm grown-out buzz + step), `step.txt` (the correction), `seal.txt`.
+- IAS seal described from the seal itself (viewed, NOT passed to any model; it is a non-free logo): thin circle;
+  two classical women holding hands on a ground line before a leafy fruit tree; TRUTH on the LEFT, unclothed, raising
+  a hand mirror; BEAUTY on the RIGHT in a pleated chiton, arm curved over her head; TRUTH up the left rim, BEAUTY down
+  the right rim; "INSTITUTE FOR ADVANCED STUDY" in thin spaced sans caps below. All one navy ink.
+
+### progress log
+- B t1/t2 (v3 as ref): the step and even lower buzz are right, but the top layer turned into a bowl/mushroom with a
+  thick ruler-straight rim. B t3 launched with t1 (step) + v3 (slim top) as refs.
+- H t1 BLOCKED by output moderation ("sexual"): the real seal's Truth is unclothed. seal.txt now gives Truth a light
+  veil of drapery (a deliberate deviation from the real seal); H t2 launched.
+- B t3: slimmer straight-behind, but 3/4 views still a mushroom with a thick level rim. B t4 (t3 as draft; top hangs
+  straight, edge slopes down toward the back) ACCEPTED as `fl_B_backhead_neck_v4.jpg`: distinct glossy top layer over
+  an even matte grown-out buzz, abrupt change in length along one line, no taper; lost profiles only.
+- H t2 ACCEPTED as `fl_H_ias_sweatshirt_v1.jpg`: seal fills nearly the whole front (collar to near the waistband, near
+  seam to seam), TRUTH/BEAUTY on the rim, INSTITUTE FOR ADVANCED STUDY below; folded studies show only Beauty and
+  part of the tree. Truth drawn with a drape off one shoulder (one breast bare), not fully unclothed as on the real seal.
+- A t1, G t1 (B v4 as hair ref): faces hidden, but both drift back to a bowl/mushroom cut with a thick level rim.
+  New block `shape.txt` (not a bowl, top hangs straight, edge slopes down to the back); A t2, G t2 launched.
+- A t2 ACCEPTED as `fl_A_turnaround_back_v4.jpg` (near-identical to t1; slimmer in fig 1); G t2 ACCEPTED as
+  `fl_G_ots_hair_v3.jpg` (sweatshirt folded with a fragment of the big seal: Beauty, the tree, letters on the arc).
+  G t3 (no layout ref) rejected: the closet study turned into a view from the FRONT and above (face hidden by the
+  bowed head, but the wrong camera). Faces zoom-checked on every accepted sheet: cheek/jaw/ear only, no eye, nose or mouth.
+- Moved to `_superseded/`: B v3, A v3, G v2 (README.txt updated). tmux session `proof-fl4` closed. Images used: 13
+  Codex (1 moderation-blocked), $0; no plan limit hit, no gpt2 spend.
+
+### round 2 result
+| Sheet | File | Takes |
+|---|---|---|
+| B back of head and neck (hair anchor) | `fl_B_backhead_neck_v4.jpg` | 4 (t4) |
+| A turnaround from behind, 27 | `fl_A_turnaround_back_v4.jpg` | 2 (t2) |
+| G over-the-shoulder hair studies | `fl_G_ots_hair_v3.jpg` | 3 (t2) |
+| H IAS sweatshirt prop | `fl_H_ias_sweatshirt_v1.jpg` | 2 (t2) |
+
+Weak spots: the step is now right (glossy top layer abruptly over an even matte buzz), but the model pulls the top
+layer toward a BOWL / MUSHROOM cut with a thick, level rim, most in A and G (B v4 is the slimmest); E and D still
+show the v3 taper (not redone this round). Seal: Truth wears a drape off one shoulder (the real seal's unclothed
+Truth was moderation-blocked); the tree is a slim central tree rather than the broad crown behind both figures.

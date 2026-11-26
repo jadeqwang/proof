@@ -7,6 +7,113 @@ sh layout/sets/mv10/sheet.sh label line lit flat                       # contact
 python3 layout/gallery.py
 ```
 
+## 2026-11-25 (round 2 answers): kitchen dressing, the new room crossing, the nod at the shelf, the lemonade prep
+
+Supersedes the sections below where they differ. **Jade** = her answer; **ASSUMED** = our choice to make it buildable;
+**OPEN** = a question back to her. All times are -2sm full-mix times (`media/karaoke_v2/lyrics_timed.json`).
+
+**Kitchen (Jade: fridge, dishwasher, trash can, upper cabinets, dark walnut, punchbowl, food; wall stays 0.78 m)**
+- Her U fitted everything with one change. The fridge stands at the SSW end of the partition run, back to the partition,
+  right behind the 2x2 (X 2.30..3.06); that counter run now starts at X 3.10 (was 2.82, 0.28 m shorter). **ASSUMED**
+  reading of "on the side near the 2x2 Expedit". Fridge: 30" top-freezer, 1.72 m, white (**ASSUMED** model and colour).
+- "Right of" is read as your right hand while facing the appliance (**ASSUMED**).
+  - Facing the stove (on the core run, you face NNE), right is ESE. The dishwasher (24", stainless front) is at
+    Z 7.78..8.39, directly ESE of the 30" range. The punchbowl stands on the counter above the dishwasher.
+  - Facing the sink (on the ESE run, you face ESE), right is SSW. The stainless step-lid trash can (~30 L) stands on the
+    floor just past the end of that run, at (3.10, 9.55).
+- Upper cabinets: 0.33 m deep, from 1.40 to 2.16 m. They run along the partition and the core wall, with one over the
+  fridge, and none over the ESE window, which fills that run. **ASSUMED:** a stainless range hood over the stove, and the
+  range drawn as freestanding with an oven door.
+- Every cabinet door is dark walnut (**Jade**). The base and upper carcasses are walnut too (**ASSUMED**); the worktop stays
+  grey.
+- GIANT punchbowl (**Jade**): 0.50 m glass bowl on a foot, 80 % full, lemon slices floating, a steel ladle, and two stacks of
+  red cups (22 in all) beside it. Size, colours and slices are **ASSUMED**. T1 now stands at it, hand on the ladle.
+- Food (**Jade:** appetizers spread across the dining table, snacks around the counters). Eight platters on the table, six
+  snack bowls and a chip bag on the counters. **Which** foods: **ASSUMED**, generic. The party dressing shows from the
+  bridge on; the prep shot has none.
+- The lemonade table we had put on the deck is **REMOVED**: the lemonade is the punchbowl (**ASSUMED** from her answer;
+  confirm). V3a's intent no longer names it.
+
+**"Room crossing velocity" (V3_rcv_obl), rebuilt on Jade's sequence** (`layout.js` `RC_MARKS`, `ROOM_CROSSING`; sidecar `crossing`)
+- Sequence (**Jade**):
+  - S0: talking with K1 just inside the kitchen, by the fridge. Doorbell; she excuses herself.
+  - L1: through the opening past the 2x2 and its printer, then across the living room to the front door.
+  - S1: she welcomes N1 and N2.
+  - L2: heading back toward the opening.
+  - S2: R1, at the Expedit, says something; she stops and turns her head. Doorbell again.
+  - L3: back to the door.
+  - S3: N3 and N4.
+- **ASSUMED:** the marks, the route, the speeds (1.1-1.35 m/s), the dwell times, and K1, R1 and N1-N4 as generic set-local
+  guests ("someone"). Group A moved from the door's path to the glass console. First love is not in the shot (**OPEN**).
+- Numbers: 11.7 m walked. L1 6.50 m (bearing 320), L2 2.63 m (bearing 153), L3 2.61 m (bearing 330). About 19.3 s in real
+  time.
+- **Timing (flag):** the line is 4.13 s (194.59-198.72), so the shot plays the sequence ~4.7x fast (a uniform time-lapse).
+  Song times:
+
+  | item | song time (s) | what happens |
+  |---|---|---|
+  | S0 | 194.59-195.02 | talking with K1; bell at 194.85 |
+  | L1 | 195.02-196.09 | lands on "crossing" |
+  | S1 | 196.09-196.94 | welcomes N1 and N2 |
+  | L2 | 196.94-197.45 | starts on "velocity" (197.06) |
+  | S2 | 197.45-197.99 | R1 speaks; second bell at 197.88 |
+  | L3 | 197.99-198.40 | back to the door |
+  | S3 | 198.40-198.72 | N3 and N4 |
+
+  No other shot's time was changed. Played at 1x, it would need ~19 s.
+- Shots:
+  - **V3_rcv_obl** = middle key (S2). New start and end keys: **V3_rcv_obl_k0** (S0, door closed) and **V3_rcv_obl_k3**
+    (S3, door open 85 deg).
+  - **V3_rcv_obl_legs** = DIAGNOSTIC: L1 gold, L2 blue, L3 magenta, as floor arrows, with rings at the stops. L2 and L3 are
+    drawn 0.2 m to the right of travel so they don't sit on top of each other. It has no beam twins.
+  - **V3_rcv** (orthographic reference) now shows the new legs.
+- The camera keeps the steep oblique from above the SSW side (27 mm). It is recentred on the living room, with the kitchen
+  at frame right. The ceiling domes and the dining pendant are hidden in these shots; their light stays on.
+- The front door has a per-shot angle (`frontDoorDeg`).
+- The old route (shelf -> dining -> sliding door) and its `CROSSING` data are gone. **V3g** (its alternate) is RETIRED, with
+  its renders in `_retired/`. `PATH` and V3h are kept as the old plan reference only.
+
+**The nod at the shelf (Jade: straight after the whisper; never under the lemon tree)**
+- **V3_rev_temple_a / _b** (189.11-191.52, unchanged) are restaged at the shelf mark, in the same stance as V3_nailed,
+  mid-nod (14 deg), in verse-3 light.
+- The camera still pushes into her LEFT temple; behind her are the Expedit and first love.
+- **ASSUMED:** he has straightened after the whisper and turned back to the spines (at 3.22, 3.80, yaw 12). He faces
+  156-161 deg away from the lens, so only the back of his head shows.
+- Knock-on: V3e ("fifteen percent above amplitude", 186.03-189.06) was her point of view from under the tree. She is now at
+  the shelf from 3:03.8 to 3:11.5, so V3e is a **CUTAWAY** to the poi from the same camera, with her and first love removed
+  (**OPEN**).
+
+**V3b: the picking and the lemonade prep (Jade)**
+- The old slot (177.0-179.19) is split chronologically:
+  - **V3b** (picking, unchanged staging) runs 177.0-178.04 ("...ade from the").
+  - **V3b_prep** (new) runs 178.04-179.19 ("yard").
+  - Both are before the party, at 14:00.
+- V3b_prep camera: straight down, orthographic, 1.72 m wide, like the artichoke and romanesco plates.
+- The surface is the dining table (**ASSUMED**). Jade said "in the kitchen"; the table is in the kitchen and dining room,
+  and it is where the SSW window's 14:00 sun falls.
+- On the table:
+  - two pomelo-sized lemons cut across, each segment and seed modelled, so the line render draws the botanical
+    cross-section;
+  - a glass reamer with a half pressed under postdoc Jade's right hand (she is at the table's NNE end; only her hands
+    and forearms show);
+  - a bowl of picked lemons, two still with leaves;
+  - a bowl of squeezed rinds;
+  - sugar, a water pitcher, a knife and a board;
+  - the giant punchbowl, half full, which the childhood friend stirs with a long wooden spoon (his hands from the ESE
+    side; face never in frame).
+- No party food is out. Everything except the juicer, rinds, mixing and lemons is **ASSUMED**.
+- The paper-drum pendant is hidden in this shot (it hangs between the lens and the table).
+- The window's centre mullion throws a shadow band across the table. It is real for the assumed window; drop it if
+  unwanted.
+
+**Checked by eye** (round 2): the lit, line and label renders of V3_rcv_obl, _k0, _k3 and _legs, V3b_prep and V3_rev_temple_a/_b, and
+the contact sheets. Fixed along the way:
+- overlapping legs (now offset);
+- the rinds read as whole lemons (now hollow shells with pith);
+- the ceiling domes glaring over the kitchen in the oblique;
+- N3 and N4 hidden behind the WNW wall in the end key (now stepping in through the wide-open door);
+- first love too prominent behind her in the temple frame (moved along the shelf).
+
 ## 2026-11-25 (late): Jade's decision-page answers applied (supersedes the section below where they differ)
 
 Each change is marked **Jade** (her answer), **ASSUMED** (our choice to make it buildable; she has not confirmed it), or

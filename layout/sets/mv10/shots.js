@@ -9,9 +9,11 @@
 // yard), yaw 180 faces WNW (toward the front door and the couch), yaw 90 faces NNE, -90 SSW.
 // RETIRED 2026-11-25 (2): BR4a (square-on halves), BR4b (sci-fi beside the Feynman set) -> the pan BRpan_a / m1 / b;
 // BR5 (three lamps, three shadows) -> gone with the invented lamps (Jade: there were no paper lamps; drop the image).
+// RETIRED 2026-11-25 (round 2 answers): V3g (alternate of the old shelf -> sliding-door route, which is gone). NEW: V3b_prep
+// (the lemonade prep), V3_rcv_obl_k0 / _k3 (start / end keys of the new crossing), V3_rcv_obl_legs (diagnostic arrows).
 // RETIRED 2026-11-25 (late): V3d ("nailed it" under the lemons) -> V3_nailed at the Expedit; V3_rev_eye_a/b (Jade chose
 // the temple). V3_rcv is kept as REFERENCE ONLY (Jade chose the oblique V3_rcv_obl). New: BRpan_c (the pan's end, the seam).
-import { MARKS, MARK_FLOOR, POI, AUDIENCE_AT, SHELF, SHELF_W, TREE, GRADE, PATIO, DRINKS, SECTION_KEY, SECTION_LIGHT, SUN } from './layout.js';
+import { MARKS, MARK_FLOOR, POI, AUDIENCE_AT, SHELF, SHELF_W, TREE, GRADE, PATIO, SECTION_KEY, SECTION_LIGHT, SUN, RC_MARKS, ROOM_CROSSING, PUNCHBOWL, COUNTER_H, PREP, DINING } from './layout.js';
 
 const yawTo = (a, b) => +(Math.atan2(b[0] - a[0], b[1] - a[1]) * 180 / Math.PI).toFixed(1);
 const SHELF_MARK = MARKS.shelf;                       // [2.72, 3.30]: in front of the truth half, facing the room
@@ -21,7 +23,7 @@ const DECK = PATIO.top, Y = (y, f) => y + f;          // a world height above a 
 // ---------------------------------------------------------------- the guests (costume and posture; faces undrawn)
 // Living room: S1 and B2 on the couch (in the window's sun during the bridge), B1 by the SSW window, group A between the
 // glass table and the front door, E1 in the open front door. Kitchen: C group inside the counter U, clear of her route.
-// Deck: T1 at the lemonade, G1 (greeting) and H1 (hug). The poi audience (Jade, 2026-11-25 late): W1-W4 on the lawn along
+// Kitchen (2026-11-25 round 2): T1 at the giant punchbowl, hand on the ladle. Deck: G1 (greeting) and H1 (hug). The poi audience (Jade, 2026-11-25 late): W1-W4 on the lawn along
 // the house's ESE wall (NNE of the stairs), D1 and D2 at the deck's ESE railing; the spinner faces them (layout.js POI).
 const A = { A1: [3.55, 0.95], A2: [4.3, 1.05], A3: [3.95, 1.6] }, AC = [3.95, 1.2];
 const C = { C1: [3.55, 6.45], C2: [3.25, 7.35], C3: [3.95, 7.25] }, CC = [3.6, 7.0];
@@ -42,7 +44,7 @@ function crowd(o = {}) {
     C1: stand(C.C1, yawTo(C.C1, CC), { head: { look: [3.25, 1.6, 7.35] }, cup: 'R' }),
     C2: stand(C.C2, yawTo(C.C2, CC), { head: { look: [3.55, 1.6, 6.45] }, R: { to: 'self:chest', off: rel(yawTo(C.C2, CC), -0.2, 0.02, 0.28), hand: 'palmUp', palm: 'up' } }),
     C3: stand(C.C3, yawTo(C.C3, CC), { head: { look: [3.55, 1.6, 6.45] }, cup: 'L' }),
-    T1: onDeck([3.0, 11.5], 0, { spine: { bend: 12 }, head: { look: [2.8, DECK + 0.8, 12.2] }, R: { to: [2.8, DECK + DRINKS.h + 0.22, 12.2], hand: 'grip', palm: 'in' } }),
+    T1: stand([3.93, 8.12], 90, { spine: { bend: 8 }, head: { look: [PUNCHBOWL.at[0], COUNTER_H + 0.2, PUNCHBOWL.at[1]] }, R: { to: [4.47, 1.43, 8.13], hand: 'grip', palm: 'in' }, L: cupArm('L', 90) }),
     G1: onDeck([1.75, 11.0], yawTo([1.75, 11.0], [1.21, 9.62]), { head: { look: [1.21, 1.55, 9.62] }, cup: 'R' }),
     H1: onDeck([3.3, 11.2], yawTo([3.3, 11.2], [1.75, 11.0]), { head: { look: [1.75, DECK + 1.6, 11.0] } }),
     ...Object.fromEntries([['W1', [6.4, 10.45]], ['W2', [7.05, 10.6], 'R'], ['W3', [7.75, 10.4]], ['W4', [9.0, 10.5], 'L']].map(([k, at, cup]) =>
@@ -80,10 +82,32 @@ const heTree = (o = {}) => ({ at: HE_TREE, floor: GRADE, yaw: yawTo(HE_TREE, TRE
 
 const bridgeFigs = (j = {}, h = {}, c = {}) => ({ ...crowd({ noPoi: true, ...c }), jade27: jadeShelf(j), firstLove27: heShelf(h) });
 const partyFigs = (j, h, c = {}) => ({ ...crowd(c), jade27: j, firstLove27: h });
-// mid-crossing (the time midpoint of CROSSING): stepping from the opening into the dining area; he watches from the shelf
-const crossingFigs = () => partyFigs({ at: [MARKS.crossing[0], 0.83, MARKS.crossing[1]], yaw: 52, legs: 'stand', legOpts: { ankleL: [0.105, -0.775, 0.24], ankleR: [0.105, -0.775, -0.2] }, spine: { bend: 5 }, head: { look: [2.5, 1.5, 7.6] },
-    L: { to: 'self:waist', off: [-0.14, -0.1, -0.22], hand: 'relax' }, R: { to: 'self:waist', off: [0.2, 0.0, 0.2], hand: 'relax' } },
-  heShelf({ yaw: -150, head: { look: [MARKS.crossing[0], 1.5, MARKS.crossing[1]] }, L: 'side' }));
+// the room crossing (2026-11-25 round 2; layout.js ROOM_CROSSING): early in the party, guests still arriving. phase 0 =
+// start key (S0: talking with K1 in the kitchen), 2 = the middle (S2: stopped by the shelf, turned to R1; N1 and N2 just
+// in), 3 = end key (S3: at the front door again, N3 and N4 on the step). First love is not in it (OPEN: had he arrived?).
+const RC = RC_MARKS;
+function rcFigs(phase) {
+  const f = crowd({ noPoi: true, drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'G1', 'H1', 'E1'] });
+  // group A moves off the door's path to the glass console (they were between it and the front door)
+  const AC2 = [4.05, 3.05]; for (const [k, at] of [['A1', [3.8, 3.25]], ['A2', [4.32, 3.42]], ['A3', [4.3, 2.78]]]) f[k] = { ...f[k], at, yaw: yawTo(at, AC2), head: { look: [AC2[0], 1.55, AC2[1]] } };
+  const jy0 = yawTo(RC.kitchen, RC.K1);
+  f.jade27 = phase === 0 ? { at: RC.kitchen, yaw: jy0, legs: 'stand', head: { look: 'K1:eyes' }, L: 'side', R: cupArm('R', jy0) }
+    : phase === 2 ? { at: RC.stop, yaw: 2, legs: 'stand', head: { look: 'R1:eyes' }, L: 'side', R: cupArm('R', 2) }
+    : { at: RC.door2, yaw: 180, legs: 'stand', head: { look: 'N3:eyes' }, L: 'side', R: { to: [3.86, 1.32, 0.42], hand: 'flat', fingers: 'up', palm: [0, 0, -1], elbow: [-1, -0.6, 0] } };
+  f.K1 = stand(RC.K1, yawTo(RC.K1, RC.kitchen), { head: { look: phase === 0 ? 'jade27:eyes' : [3.55, 1.6, 6.45] }, cup: 'R' });
+  f.R1 = phase === 2 ? stand(RC.R1, -105, { head: { look: 'jade27:eyes' }, R: { to: 'self:chest', off: rel(-105, -0.2, 0.0, 0.26), hand: 'palmUp', palm: 'up' } })
+    : stand(RC.R1, 20, { head: { look: [SHELF_W.cube(3, 3)[0], 1.3, SHELF_W.front] } });
+  if (phase === 0) { f.N1 = onGrade([4.15, -1.5], 0, { head: { look: [4.3, 1.6, 0] } }); f.N2 = onGrade([4.62, -1.78], 0, { head: { look: [4.3, 1.6, 0] } }); }
+  if (phase === 2) { f.N1 = stand([3.75, 1.35], 20, { head: { look: [1.6, 1.2, 1.0] } }); f.N2 = stand([4.35, 1.55], -10, { head: { look: [2.2, 1.4, 3.5] } });
+    f.N3 = onGrade([4.1, -2.4], 0, { head: { look: [4.3, 1.6, 0] } }); f.N4 = onGrade([4.7, -2.7], 0, { head: { look: [4.3, 1.6, 0] } }); }
+  if (phase === 3) { f.N1 = stand([3.55, 2.55], 60, { head: { look: [4.05, 1.55, 3.05] }, cup: 'R' }); f.N2 = stand([4.05, 2.35], 30, { head: { look: [4.05, 1.55, 3.05] } });
+    f.N3 = stand([4.22, 0.3], -10, { head: { look: 'jade27:eyes' }, R: { to: [4.1, 1.3, 0.62], hand: 'flat', fingers: 'up', palm: [0, 0, 1] } }); f.N4 = stand([4.35, -0.15], -5, { head: { look: 'jade27:eyes' } }); }
+  return f;
+}
+const RC_HIDE = ['ceiling', 'roof', 'gable end', 'living room ceiling light (flush glass dome)', 'kitchen ceiling light (flush glass dome)', 'dining pendant (paper drum)', 'exterior wall (SSW)', 'living room window (SSW) (glass)', 'dining window (SSW) (glass)', 'living room window (SSW) (sill)', 'dining window (SSW) (sill)', 'living room window (SSW) (mullion)', 'dining window (SSW) (mullion)'];
+const RC_CAM = { lens: 27, pos: [-2.4, 8.6, 3.7], target: [2.6, 0.3, 3.95] };
+const rcShot = (id, phase, extra = {}) => ({ id, ...RC_CAM, space: 'room', time: '3:14.6-3:18.7', section: 'Verse 3', pos2: 'plan', amp: 115, crossing: true, rcKey: ROOM_CROSSING.keys[id] || extra.rcKey || null,
+  hide: RC_HIDE, near: 0.5, far: 40, light: { amb: 1.0, litAmb: 1.4 }, figs: rcFigs(phase), ...extra });
 
 // the pan across the Expedit (Jade, 2026-11-25): a lateral track, same lens, same height, level, spines filling the frame.
 // Timeline: the -2sm render (media/karaoke_v2/lyrics_timed.json, FULL-MIX times; the instrumental-track times are ~0.1 s
@@ -140,19 +164,41 @@ export const SHOTS = [
   { id: 'V3a', lens: 24, space: 'yard', time: '2:54.7-2:57.0', section: 'Verse 3', pos2: 'outside', amp: 115,
     pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.46], far: 60,
     header: 'Verse 3 2:54.7: "Housewarming, lemonade from the yard": the party at sundown, from the deck',
-    intent: 'Wide from the deck’s far corner, down the yard: the lemonade table, the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, the fire poi starting, and the giant lemon tree by the NNE fence with pomelo-sized lemons, she and first love under it. The house’s shadow covers the whole yard; only the top of the lemon canopy still has sun.',
+    intent: 'Wide from the deck’s far corner, down the yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, the fire poi starting, and the giant lemon tree by the NNE fence with pomelo-sized lemons, she and first love under it. The house’s shadow covers the whole yard; only the top of the lemon canopy still has sun.',
     figs: partyFigs(jadeTree(), heTree()) },
   // V3b RESTAGED 2026-11-25 (late): Jade: the lemonade was made BEFORE the party: she and the childhood friend picked the
   // lemons; first love, Z and the guests had not arrived. So this is the picking, in the early-afternoon sun (section
   // 'Before the party', 14:00, OUR clock): her hand up to a lemon, the friend beside her holding the bowl. No first love
   // (he stood beside her here before: the conflict), no guests, no poi. Same camera and t as before.
-  { id: 'V3b', lens: 24, space: 'yard', time: '2:57.0-2:59.2', section: 'Before the party', pos2: 'inside', amp: 115, hideParts: { jade27: ['head'] },
+  // 2026-11-25 (round 2): Jade: at "housewarming, lemonade from the yard" they pick the lemons AND prepare the lemonade
+  // in the kitchen (juicer, rinds, mixing), like a botanical illustration. Two shots inside V3b's old slot (177.0-179.19):
+  // V3b = the picking on "from the" (177.0-178.04), V3b_prep = the prep on "yard" (178.04-179.19), chronological.
+  { id: 'V3b', lens: 24, space: 'yard', time: '2:57.0-2:58.0', section: 'Before the party',
+    timing: { timeline: TL, line: 'Housewarming, lemonade from the yard', start_s: 177.0, end_s: 178.043, words: '"(lemon)ade from the"', was: '177.0-179.2 (V3b alone)' }, pos2: 'inside', amp: 115, hideParts: { jade27: ['head'] },
     pos: [9.85, Y(1.52, GRADE), 17.85], target: [10.3, Y(1.98, GRADE), 18.7], bowl: [10.51, Y(1.0, GRADE), 18.8],
-    header: 'Verse 3 2:57.0 (memory, before the party, 14:00): picking the lemons with the childhood friend; her hand comes up to one',
+    header: 'Verse 3 2:57.0 (memory, before the party, 14:00): picking the lemons with the childhood friend; her hand comes up to one (then V3b_prep)',
     intent: 'Inside: her view up into the tree, early afternoon, before anyone else has come. Pomelo-sized lemons in the sun; her hand rises into frame toward the nearest; just ahead of her the childhood friend (back to us, face never drawn) looks up into the tree, holding the bowl of the first lemons (below frame here; sidecar shows it). They will make the lemonade from these.',
     figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'cup', palm: 'up', fingers: 'fwd' }, L: 'side' }),
       friend: onGrade([10.35, 18.55], 33, { head: { look: [10.9, Y(2.35, GRADE), 19.3] },
         L: { to: [10.64, Y(1.06, GRADE), 18.72], hand: 'cup', palm: 'up', fingers: 'fwd' }, R: { to: [10.38, Y(1.06, GRADE), 18.88], hand: 'cup', palm: 'up', fingers: 'fwd' } }) } },
+  // the lemonade prep (2026-11-25 round 2): on the pale dining table in the 14:00 sun from the SSW dining window (OUR choice
+  // of surface; Jade said "in the kitchen"). Straight down, ORTHOGRAPHIC, like the plates (artichoke, romanesco): the cut
+  // lemons' segments, the ribbed juicer, the rinds, the bowl being stirred; only their hands and forearms enter. No party
+  // food is out yet. Postdoc Jade at the table's NNE end presses a half on the juicer; the childhood friend (face never
+  // drawn) stirs the giant punchbowl from the ESE side. The paper-drum pendant over the table is hidden (it would sit
+  // between the lens and the table).
+  { id: 'V3b_prep', lens: 0, ortho: { w: 1.72 }, space: 'room', time: '2:58.0-2:59.2', section: 'Before the party', pos2: 'plan', amp: 115, dressing: 'prep',
+    pos: [1.0, 2.36, 7.66], target: [1.0, 0, 7.66], up: [0, 0, -1], near: 0.05, far: 5, hide: ['dining pendant (paper drum)'], light: { amb: 0.7, litAmb: 1.3 },
+    subject: [1.3, DINING.h, 7.6],
+    timing: { timeline: TL, line: 'Housewarming, lemonade from the yard', start_s: 178.043, end_s: 179.19, words: '"yard" (held to the line end; V3c follows at 179.2)' },
+    header: 'Verse 3 2:58.0 (memory, before the party, 14:00): the lemonade prep, flat-lay from straight above (botanical plate)',
+    intent: 'Inside the memory, straight down on the dining table in the early-afternoon sun from the SSW window (frame left): a cutting board with two pomelo-sized lemons cut across (ten segments, pith, seeds: the botanical cross-section), the knife; the glass reamer with a half pressed on it under her hand; a bowl of picked lemons, two still with leaves; a bowl of squeezed rinds; sugar; a water pitcher; the giant punchbowl half full, the childhood friend stirring it with a long wooden spoon. Only hands and forearms in frame: hers from the right (NNE end), his from the bottom (ESE side). Paint it like the artichoke plate: engraved line, pale ground, one gold accent at most.',
+    figs: { jade27: { at: [2.22, 7.42], yaw: -90, legs: 'stand', spine: { bend: 24 }, head: { look: [PREP.reamer.at[0], 0.82, PREP.reamer.at[1]] },
+        R: { to: [PREP.reamer.at[0], 0.95, PREP.reamer.at[1] - 0.01], hand: 'cup', palm: 'down', fingers: 'fwd' },
+        L: { to: [PREP.reamer.at[0] + 0.02, 0.8, PREP.reamer.at[1] + 0.11], hand: 'flat', palm: 'down', fingers: 'fwd' } },
+      // his right hand on the top of the long spoon (build.js punchbowl(): the handle leans from the bowl at (-0.32, 0.92, 0.23))
+      friend: { at: [0.85, 8.56], yaw: 180, legs: 'stand', spine: { bend: 22 }, head: { look: [PREP.punch.at[0], 0.9, PREP.punch.at[1]] },
+        R: { to: [PREP.punch.at[0] - 0.085, 1.23, 7.9], hand: 'grip', palm: 'in', fingers: 'fwd' }, L: { to: [PREP.punch.at[0] - 0.2, 1.0, 8.04], hand: 'flat', palm: 'down', fingers: 'fwd' } } } },
   { id: 'V3c', lens: 50, space: 'yard', time: '2:59.2-3:03.8', section: 'Verse 3', pos2: 'outside', amp: 115,
     orbit: { at: 'jade27:eyes', az: -12, el: -2, dist: 3.0 }, aim: ['jade27:eyes', 0.56, 0.38], focus: ['jade27'],
     header: 'Verse 3 2:59.2: "Perky American girl / I play the part": the greeting in the sliding door (one pitch contour)',
@@ -170,29 +216,34 @@ export const SHOTS = [
     intent: 'Outside, over first love’s right shoulder (back of his head only, frame left, close to her ear). She stands by the Expedit, in front of its truth half, facing the room; he has stepped in close at her right and bends to whisper. We do not hear it; she listens at 115%, eyes to the room, the grin coming. Ceiling light, dusk in the front window behind the camera; guests at the couch and the glass table out of focus.',
     figs: { ...crowd({ drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'T1'] }), jade27: { at: SHELF_MARK, yaw: 195, legs: 'stand', head: { look: [3.6, 1.5, 0.9], tilt: 6 }, L: 'side', R: cupArm('R', 195) },
       firstLove27: { at: HE_NAIL, yaw: yawTo(HE_NAIL, SHELF_MARK), legs: 'stand', spine: { bend: 15, side: -8 }, head: { look: 'jade27:earR', tilt: -10 }, L: 'side', R: 'side' } } },
-  // Jade (2026-11-25): on "I nod, past hour reviewed" the camera PUSHES IN to her temple or her eye; spectrograms of her
-  // voice follow. Timeline -2sm full mix: line 189.11-191.52, "nod," 189.23-189.79. She is under the lemon tree, facing
-  // first love (he has just told her she nailed it), caught mid-nod (head 14 deg down). Same lens, dolly in; _a = start
+  // Jade (2026-11-25): on "I nod, past hour reviewed" the camera PUSHES IN to her temple; spectrograms of her voice follow.
+  // Timeline -2sm full mix: line 189.11-191.52, "nod," 189.23-189.79. MOVED 2026-11-25 (round 2): Jade: the nod is at the
+  // SHELF, straight after the "nailed it" whisper (it was never under the lemon tree). She stands on her shelf mark as in
+  // V3_nailed, caught mid-nod (head 14 deg down); first love has straightened and turned back to the Expedit (OUR
+  // staging, so that from her left he is back / three-quarter rear only). Same lens, dolly in; _a = start
   // (medium close-up), _b = end (extreme close-up). Sidecar `face_marks` gives the eye / temple px in each frame.
   // the eye variants are RETIRED 2026-11-25 (late): Jade chose the temple
   ...['temple'].flatMap((k) => { const at = k === 'temple' ? 'jade27:templeL' : 'jade27:eyeL', az = k === 'temple' ? 62 : 32, d1 = k === 'temple' ? 0.19 : 0.13;
-    const base = { lens: 50, space: 'yard', section: 'Verse 3', pos2: 'inside', amp: 115, faceMarks: true, focus: ['jade27'], near: 0.03, far: 60,
+    const base = { lens: 50, space: 'room', section: 'Verse 3', pos2: 'inside', amp: 115, faceMarks: true, focus: ['jade27'], near: 0.03, far: 60,
       timing: { timeline: TL, line: 'I nod, past hour reviewed', line_s: [189.11, 191.52], nod_word_s: [189.231, 189.79], push_in: [189.11, 191.52], instrumental_track_s: { line: [189.122, 191.537], nod: [189.243, 189.802] } },
-      figs: partyFigs(jadeTree({ head: { look: 'firstLove27:eyes', nod: 14 }, R: 'side' }), heTree()) };
+      figs: { ...crowd({ drop: ['W1', 'W2', 'W3', 'W4', 'D1', 'D2', 'T1'] }), jade27: { at: SHELF_MARK, yaw: 195, legs: 'stand', head: { look: [3.3, 1.45, 1.2], nod: 14, turn: -8 }, L: 'side', R: cupArm('R', 195) },
+        firstLove27: heShelf({ at: [3.22, 3.80], yaw: 12, head: { look: [SHELF_W.cube(2, 4)[0], 1.55, SHELF_W.front] }, L: 'side' }) } };
     const lab = k === 'temple' ? 'her left temple, three-quarter toward profile' : 'her left eye, three-quarter';
     return [
       { id: `V3_rev_${k}_a`, ...base, time: '3:09.1', orbit: { at, rel: 'jade27', az, el: 2, dist: 0.85 }, aim: [at, 0.5, 0.42],
         move: { to_shot: `V3_rev_${k}_b`, kind: 'dolly in along the same line, same 50 mm lens', start_s: 189.11, end_s: 191.52, timeline: '-2sm full mix' },
         header: `Verse 3 3:09.1: "I nod, past hour reviewed": push-in start, ${lab} (medium close-up)`,
-        intent: `Start of the push-in: her head and shoulders, ${lab}, mid-nod toward first love under the lemons; the party behind (the house with lit windows, guests, the fire poi) in the dusk shade.` },
+        intent: `Start of the push-in, at the shelf right after the whisper: her head and shoulders, ${lab}, mid-nod; behind her the Expedit under the ceiling light and first love back at the spines (back of his head only).` },
       { id: `V3_rev_${k}_b`, ...base, time: '3:11.5', orbit: { at, rel: 'jade27', az, el: 2, dist: d1 }, aim: [at, 0.5, 0.5],
         header: `Verse 3 3:11.5: "...reviewed": push-in end, extreme close-up on ${lab}`,
         intent: `End of the push-in: ${lab} fills the frame; the overlay (the review, then the spectrograms of her voice) begins here.` }]; }),
-  { id: 'V3e', lens: 40, space: 'yard', time: '3:06.0-3:09.1', section: 'Verse 3', pos2: 'inside', amp: 115,
+  // 2026-11-25 (round 2): with the whisper (3:03.8) and the nod (3:09.1) both at the shelf, she cannot be under the tree in
+  // between: V3e is now a CUTAWAY to the poi from the same place (no her, no first love), not her point of view. OPEN.
+  { id: 'V3e', lens: 40, space: 'yard', time: '3:06.0-3:09.1', section: 'Verse 3', pos2: 'outside', amp: 115,
     pos: [9.55, Y(1.5, GRADE), 17.75], aim: [[POI.at[0], POI.centreY, POI.at[1]], 0.55, 0.52], subject: [POI.at[0], POI.centreY, POI.at[1]],
-    header: 'Verse 3 3:06.0: "fifteen percent above amplitude": the fire poi, the second light (from behind the spinner, toward the audience)',
-    intent: 'Inside: what she is looking at. The poi spinner on the lawn, seen from behind and to the side, performing toward the audience lined along the house’s ESE wall and on the deck, two circles of fire lighting them. From here on the poi is the light source.',
-    figs: partyFigs(jadeTree({ head: { look: [POI.at[0], POI.centreY, POI.at[1]] } }), heTree({ at: [9.95, 17.25], yaw: yawTo([9.95, 17.25], POI.at), head: { look: [POI.at[0], POI.centreY, POI.at[1]] }, R: 'side' })) },   // he has turned to watch too, beside her (out of her eye-line to the poi, which moved)
+    header: 'Verse 3 3:06.0: "fifteen percent above amplitude": the fire poi, the second light (cutaway; she is at the shelf)',
+    intent: 'Cutaway (was her point of view from under the tree; she is now at the shelf from 3:03.8 to 3:11.5). The poi spinner on the lawn, seen from behind and to the side, performing toward the audience lined along the house’s ESE wall and on the deck, two circles of fire lighting them. From here on the poi is the light source.',
+    figs: crowd() },
   { id: 'V3f', lens: 50, space: 'yard', time: '3:11.6-3:12.8 ("Hug durations"; the spectrogram plate takes "pitch contours" 3:12.8-3:14.6, or intercut)', section: 'Verse 3', pos2: 'outside', amp: 115,
     orbit: { at: 'jade27:eyes', az: -30, el: 4, dist: 1.9 }, aim: ['jade27:eyes', 0.5, 0.4], focus: ['jade27'],
     header: 'Verse 3 3:11.6: "Hug durations": a hug on the deck, gold ticks counting it',
@@ -202,26 +253,31 @@ export const SHOTS = [
       onDeck([4.4, 10.6], 120, { head: { look: [7, GRADE + 1.4, 16] } }),
       { set: { H1: onDeck([2.75, 11.15], -165, { spine: { bend: 6 }, head: { look: [3.6, DECK + 1.5, 9.8] },
         L: { to: 'jade27:waist', off: [-0.1, 0.12, -0.17], hand: 'flat', palm: [0, 0, 1], fingers: [-1, 0, 0] }, R: { to: 'jade27:waist', off: [0.08, 0.2, -0.17], hand: 'flat', palm: [0, 0, 1], fingers: [1, 0, 0] } }) } }) },
-  { id: 'V3g', lens: 20, space: 'room', time: 'alternate to V3_rcv_obl (3:14.6-3:18.7), not in the -2sm cut as planned', section: 'Verse 3', pos2: 'plan', amp: 115, path: true,
-    pos: [4.35, 2.3, 9.45], aim: ['jade27:head', 0.5, 0.56], subject: [MARKS.crossing[0], 1.0, MARKS.crossing[1]],
-    header: 'Verse 3 alternate (was v3 3:24): "Room crossing velocity": high angle, she crosses into the dining area, her route one line',
-    intent: 'High from the kitchen’s back corner (over the counter U), looking back through the dining area to the opening and the living room beyond: guests in their groups, the dining table and benches, the open sliding door at left. She is mid-stride on the route (drawn on the floor); faint gold schematics and vectors go over this frame.',
-    figs: crossingFigs() },
-  // Jade (2026-11-25): an OVERHEAD shot of the crossing for "Room crossing velocity" (-2sm full mix 194.59-198.72 s), to be
-  // overlaid with diagrams, equations and her calculations. V3_rcv is a true orthographic top-down (the engine supports
-  // `ortho`); V3_rcv_obl is a steep oblique (~58 deg down) with the ceiling, roof and SSW wall cut away. Sidecar `crossing`.
-  { id: 'V3_rcv', lens: 0, ortho: { w: 12.6 }, space: 'room', time: '3:14.6-3:18.7', section: 'Verse 3', pos2: 'plan', amp: 115, path: true, crossing: true,
-    pos: [2.45, 14, 5.4], target: [2.45, 0, 5.4], up: [1, 0, 0], hide: ['ceiling', 'roof', 'gable end', 'living room ceiling light (flush glass dome)', 'kitchen ceiling light (flush glass dome)', 'dining pendant (paper drum)'], near: 0.5, far: 30,
+  // V3g (high angle from the kitchen corner on the OLD route) RETIRED 2026-11-25 (round 2): the route it showed is gone.
+  // Jade (2026-11-25): an overhead of the crossing for "Room crossing velocity" (-2sm full mix 194.59-198.72 s), overlaid with
+  // diagrams, equations and her calculations. REBUILT 2026-11-25 (round 2) on Jade's sequence (layout.js ROOM_CROSSING):
+  // kitchen talk -> doorbell -> front door, welcome 2 -> back toward the kitchen, stopped at the shelf by R1 -> doorbell ->
+  // front door again. Motion mostly in the living room, the kitchen at frame right. Sidecar `crossing` = legs, stops,
+  // real and song times, px. V3_rcv_obl (middle key, S2) is THE shot; _k0 / _k3 are its start and end keys; _legs draws
+  // the legs as arrows (diagnostic, not for the painter). V3_rcv: orthographic reference, true scale.
+  { id: 'V3_rcv', lens: 0, ortho: { w: 12.6 }, space: 'room', time: '3:14.6-3:18.7', section: 'Verse 3', pos2: 'plan', amp: 115, crossing: true, legs: true, rcKey: 'reference (S2, with the legs)',
+    pos: [2.45, 14, 4.2], target: [2.45, 0, 4.2], up: [1, 0, 0], hide: ['ceiling', 'roof', 'gable end', 'living room ceiling light (flush glass dome)', 'kitchen ceiling light (flush glass dome)', 'dining pendant (paper drum)'], near: 0.5, far: 30,
     light: { amb: 1.05, litAmb: 1.45 },
-    reference: true, header: 'REFERENCE ONLY (Jade chose the oblique V3_rcv_obl): "Room crossing velocity", orthographic overhead, shelf -> opening -> dining -> sliding door',
-    intent: 'Straight down, NNE up the frame, the front (WNW) at left and the sliding door at right. Kept as a true-scale reference for the overlay data, not as a shot. Her whole indoor route with a margin: the Expedit 5x5, the opening by the 2x2 and its printer, round the dining table and benches, to the open sliding door. She is mid-crossing (the time midpoint); guests in their places. The compositor draws gold vectors, labels and v = ds/dt from the sidecar `crossing`.',
-    figs: crossingFigs() },
-  { id: 'V3_rcv_obl', lens: 28, space: 'room', time: '3:14.6-3:18.7', section: 'Verse 3', pos2: 'plan', amp: 115, path: true, crossing: true,
-    pos: [-2.6, 8.6, 6.2], target: [2.3, 0.3, 6.0], hide: ['ceiling', 'roof', 'gable end', 'exterior wall (SSW)', 'living room window (SSW) (glass)', 'dining window (SSW) (glass)', 'living room window (SSW) (sill)', 'dining window (SSW) (sill)', 'living room window (SSW) (mullion)', 'dining window (SSW) (mullion)'], near: 0.5, far: 40,
-    light: { amb: 1.0, litAmb: 1.4 },
-    header: 'Verse 3 3:14.6: "Room crossing velocity": THE shot (Jade): steep oblique from above the SSW wall (cut away)',
-    intent: 'The same crossing from a steep high angle over the SSW side, the wall, ceiling and roof cut away like a doll’s house: more readable figures and furniture than the plan, at the cost of foreshortening. Same sidecar `crossing`.',
-    figs: crossingFigs() },
+    reference: true, header: 'REFERENCE ONLY: "Room crossing velocity", orthographic overhead with the three legs as arrows (true scale)',
+    intent: 'Straight down, NNE up the frame, the front (WNW) at left, the kitchen at right. A true-scale reference for the overlay data, not a shot: the three legs (L1 kitchen -> front door, L2 back toward the kitchen, stopped at the shelf, L3 back to the door) and the four stops. She is at S2.',
+    figs: rcFigs(2) },
+  rcShot('V3_rcv_obl', 2, { frontDoorDeg: 0,
+    header: 'Verse 3 3:14.6: "Room crossing velocity" (middle key): stopped by the shelf as R1 speaks; N1 and N2 just in the door',
+    intent: 'THE shot (Jade): steep oblique from above the SSW side, walls, ceiling and roof cut away like a doll’s house, the living room filling the frame, the kitchen at frame right (the punchbowl, the fridge by the 2x2, food on the dining table). Early in the party; guests are arriving. This middle key: she was heading back to the kitchen from the front door and has stopped by the Expedit, head turned to R1, who has said something; the two guests she just welcomed stand inside the door. The whole move (sidecar `crossing`): kitchen -> door -> stop -> door, ~4.7x time-lapse inside 4.13 s, gold vectors drawn by the compositor.' }),
+  rcShot('V3_rcv_obl_k0', 0, { frontDoorDeg: 0,
+    header: 'Verse 3 3:14.6: "Room crossing velocity" (start key): talking with K1 in the kitchen, before the doorbell',
+    intent: 'Same camera. Start: she stands just inside the kitchen by the opening, talking with K1 by the fridge; N1 and N2 are on the front walk outside (heads above the front wall). The doorbell rings at 194.85 s.' }),
+  rcShot('V3_rcv_obl_k3', 3, { frontDoorDeg: 85,
+    header: 'Verse 3 3:18.4: "Room crossing velocity" (end key): at the front door again (open wide), welcoming N3 and N4',
+    intent: 'Same camera. End: she is back at the front door, now open wide, stepping back with a hand up in welcome; N3 is stepping in, N4 on the threshold; N1 and N2 have joined the group by the glass console; R1 is back at the spines.' }),
+  rcShot('V3_rcv_obl_legs', 2, { frontDoorDeg: 0, legs: true, rcKey: 'diagnostic: the legs as arrows over the middle key',
+    header: 'DIAGNOSTIC: "Room crossing velocity", the three legs as arrows (L1 gold, L2 blue, L3 magenta) and the four stops (rings)',
+    intent: 'Not a shot: V3_rcv_obl with the legs drawn on the floor so the vectors read. L1 kitchen -> front door (doorbell), L2 front door -> toward the kitchen, stopped at the shelf (R1 speaks), L3 back to the front door (doorbell again). Rings: S0 kitchen, S1 door, S2 shelf stop, S3 door.' }),
   { id: 'V3h', lens: 0, ortho: { w: 27.5 }, space: 'plan', time: 'plan / overlay reference for 3:14.6-3:19.1 (was v3 3:24-3:29)', section: 'Verse 3', pos2: 'plan', amp: 115, path: true,
     pos: [6.35, 25, 9.55], target: [6.35, 0, 9.55], up: [1, 0, 0], hide: ['ceiling', 'roof', 'gable end'], near: 0.5, far: 40, light: { amb: 1.25, litAmb: 1.6 },
     header: 'Verse 3 3:14.6 (reference): top-down plan of 345B and the yard: her path as one line (shelf, opening, sliding door, deck, stairs, lemon tree)',
@@ -255,7 +311,7 @@ for (const s of SHOTS) if (s.same) { const o = SHOTS.find((x) => x.id === s.same
 // light with a shaft or a footprint: beam_<id>__sun (shafts through the openings, while the sun is up) and
 // beam_<id>__poi (verse 3 on). Ceiling fixtures are omni and have no mask. The old __lamps / __dusk twins are gone.
 import { maskTwins } from '../_beam.js';
-{ const base = SHOTS.slice(), twins = maskTwins(base, { surf: true });
+{ const base = SHOTS.filter((s) => !/_legs$/.test(s.id)), twins = maskTwins(base, { surf: true });
   const on = (s, k) => { const sec = SECTION_KEY[s.section] || 'bridge', L = SECTION_LIGHT[sec]; return k === 'sun' ? L.sun && SUN[sec].up : L[k]; };
   const per = base.flatMap((s) => ['sun', 'poi'].filter((k) => on(s, k)).map((k) => ({ ...s, id: `beam_${s.id}__${k}`, beamMask: true, beamOnly: k, header: `beam mask for ${s.id}: ${k} only` })));
   SHOTS.push(...twins, ...per); }

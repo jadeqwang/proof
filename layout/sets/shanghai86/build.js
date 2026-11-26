@@ -7,7 +7,7 @@ import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam.js';
 import { tearTree, tearOne, pieceMesh, centroid, area, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
-  APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
+  APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, BALCONY_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
   PAINTING, SCROLLS, PENDANT, PENDANT2, CLOCK, PLANT, HER_SPOT, LIGHTS } from './layout.js';
 
 // set-local extras only (heights in metres); little Jade (3) = `jade3` and Mama = `mama86` come from ../_cast.js. Faces the film leaves as paper are flagged `undrawn`.
@@ -41,14 +41,26 @@ function room() {
   // skirting (west, east, window-wall piers) and picture rail
   for (const [ax, at, a, b] of [['x', x0, z0, 0], ['x', x1, z0, 0]]) for (const [y, hh] of [[0.06, 0.12], [2.62, 0.03]]) g.add(tag(box(0.02, hh, b - a, WOOD, [at - Math.sign(at - cx) * 0.01, y, (a + b) / 2]), y < 1 ? 'skirting' : 'picture rail'));
   for (const [a, b] of [[x0, D.x0], [D.x1, x1]]) g.add(tag(box(b - a, 0.03, 0.02, WOOD, [(a + b) / 2, 2.62, z0 + 0.01]), 'picture rail'));
-  // ---- the steel French windows (six leaves + four leaves), closed; glass plane z = zg
-  for (const W of WINDOWS) { const zg = W.zg, f = W.frame, lw = (W.x1 - W.x0) / W.leaves, hh = W.y1 - W.y0, yc = (W.y0 + W.y1) / 2, wc = (W.x0 + W.x1) / 2, ww = W.x1 - W.x0, parts = [];
-    parts.push(box(ww, f, 0.05, STEEL, [wc, W.y1 - f / 2, zg]), box(ww, 0.03, 0.06, STEEL, [wc, W.y0 + 0.015, zg]));
-    for (let i = 0; i <= W.leaves; i++) parts.push(box(i % 2 ? 0.05 : f, hh, 0.045, STEEL, [W.x0 + i * lw, yc, zg]));            // stiles (meeting stiles doubled)
-    for (let k = 1; k < W.lites; k++) parts.push(box(ww, W.bar, 0.025, STEEL, [wc, W.y0 + (hh * k) / W.lites, zg]));        // glazing bars
-    for (let i = 0; i < W.leaves; i++) parts.push(box(0.012, 0.09, 0.02, { grey: 0.6, col: 0x9a8a5a }, [W.x0 + (i + (i % 2 ? 0.12 : 0.88)) * lw, 1.05, zg - 0.035]));
-    parts.forEach((m) => g.add(tag(m, W.id)));
-    g.add(tag(box(ww, hh, 0.004, GLASS, [wc, yc, zg]), 'glass'));
+  // ---- the steel French DOORS onto the balcony (round 2 answers: no window wall; the whole south side is doors, with
+  //      latches): four bays of four leaves, two latched pairs per bay, closed (a winter morning); glass plane z = zg
+  const LATCH = { grey: 0.62, col: 0xa08a50 };
+  for (const W of WINDOWS) { const zg = W.zg, f = W.frame, lw = (W.x1 - W.x0) / W.leaves, hh = W.y1 - W.y0, wc = (W.x0 + W.x1) / 2, ww = W.x1 - W.x0, parts = [], latch = [];
+    const KICK = 0.2, gy0 = W.y0 + KICK, gh = W.y1 - f - gy0;   // solid bottom rail (kick rail) of each door leaf; glass above it
+    parts.push(box(ww, f, 0.05, STEEL, [wc, W.y1 - f / 2, zg]), box(ww, 0.03, 0.07, STEEL, [wc, W.y0 + 0.015, zg]));             // head, threshold
+    for (let i = 0; i <= W.leaves; i++) parts.push(box(i % 2 ? 0.05 : f, hh, 0.045, STEEL, [W.x0 + i * lw, (W.y0 + W.y1) / 2, zg]));   // stiles (meeting stiles doubled)
+    for (let i = 0; i < W.leaves; i++) parts.push(box(lw - 0.03, KICK, 0.03, STEEL, [W.x0 + (i + 0.5) * lw, W.y0 + KICK / 2, zg]));      // kick rails
+    for (let k = 1; k < W.lites; k++) parts.push(box(ww, W.bar, 0.025, STEEL, [wc, gy0 + (gh * k) / W.lites, zg]));                  // glazing bars
+    for (let i = 1; i < W.leaves; i += 2) { const xm = W.x0 + i * lw, zr = zg - 0.03;   // one latch set per pair, on the room side of the meeting stiles
+      latch.push(box(0.014, hh - 0.12, 0.012, LATCH, [xm - 0.035, (W.y0 + W.y1) / 2, zr]));                                 // cremone (espagnolette) rod, full height
+      latch.push(box(0.05, 0.16, 0.014, LATCH, [xm - 0.035, 1.05, zr - 0.006]));                                              // backplate (gearbox)
+      const lever = box(0.022, 0.15, 0.022, LATCH, [xm - 0.035, 0.99, zr - 0.03]); lever.rotation.x = rad(-8); latch.push(lever);   // lever handle, hanging down (locked)
+      latch.push(box(0.022, 0.03, 0.04, LATCH, [xm - 0.035, 1.07, zr - 0.024]));                                              // handle boss
+      for (const y of [W.y1 - f - 0.02, W.y0 + 0.04]) latch.push(box(0.04, 0.025, 0.03, LATCH, [xm - 0.035, y, zr - 0.004])); // keepers at head and sill
+      for (const [y, h2] of [[W.y1 - 0.2, 0.12], [W.y0 + 0.16, 0.12]]) {                                                        // barrel bolts on the other (fixed) leaf
+        latch.push(box(0.022, h2, 0.016, LATCH, [xm + 0.04, y, zr])); latch.push(box(0.03, 0.012, 0.02, LATCH, [xm + 0.055, y, zr - 0.012])); } }
+    parts.forEach((m) => g.add(tag(m, 'balcony French doors (steel, closed)')));
+    latch.forEach((m) => g.add(tag(m, 'door latches (cremone bolt + lever, barrel bolts)')));
+    g.add(tag(box(ww, hh - KICK, 0.004, GLASS, [wc, gy0 + (hh - KICK) / 2, zg]), 'glass'));
     // no curtains (Jade, round 4)
   }
   // ---- balcony along the whole room, parapet (solid in the east flat, iron railing in the west), balcony above = overhang
@@ -142,6 +154,22 @@ function lounger() {
     for (const z of [-0.62, 0.1, 0.62]) g.add(box(0.035, z < 0 ? 0.62 : z > 0.5 ? 0.24 : 0.5, 0.035, RAT, [s * (w / 2 - 0.02), (z < 0 ? 0.62 : z > 0.5 ? 0.24 : 0.5) / 2, z])); }
   return tag(g, 'wicker lounge chair (藤躺椅)');
 }
+// a white wicker armchair (白藤椅) on the balcony (Jade, round 2 answers): round barrel back, rolled arms, woven skirt
+function wickerChair() {
+  const B = BALCONY_CHAIR, g = new THREE.Group(); g.position.set(B.at[0], BALCONY.floor, B.at[1]); g.rotation.y = rad(B.yaw);
+  const WK = { grey: 0.93, col: 0xf2eee2 }, WKd = { grey: 0.86, col: 0xe4decf }, { seat, back } = B, R = 0.29, ARM = seat + 0.24;
+  g.add(cyl(R - 0.02, R - 0.02, 0.07, WK, [0, seat - 0.035, 0], null, 24));                                   // round seat cushion
+  g.add(cyl(R - 0.03, R + 0.01, seat - 0.07, WKd, [0, (seat - 0.07) / 2, 0], null, 24));                     // woven tub base (skirt)
+  const T0 = -0.12 * Math.PI, T1 = 1.12 * Math.PI, N = 34;                                                  // the back wraps 245 deg, open at the front (+z)
+  for (let k = 0; k < N; k++) { const t = T0 + ((T1 - T0) * k) / (N - 1), top = ARM + (back - ARM) * Math.pow(Math.max(0, Math.sin(t)), 0.8);
+    g.add(box(0.04, top - seat + 0.04, 0.022, WK, [R * Math.cos(t), seat - 0.04 + (top - seat + 0.04) / 2, -R * Math.sin(t)], [0, (t + Math.PI / 2) / (Math.PI / 180), 0])); }
+  for (const [y, rr] of [[ARM, 0.024], [seat + 0.1, 0.012]]) {                                                // the rolled arm rim and a weave band
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(R, rr, 6, 32, T1 - T0), new THREE.MeshBasicMaterial());
+    ring.userData.look = WK; ring.castShadow = true; ring.receiveShadow = true; ring.rotation.set(-Math.PI / 2, 0, T0); ring.position.set(0, y, 0); g.add(ring); }
+  const top = new THREE.Mesh(new THREE.TorusGeometry(R, 0.022, 6, 24, 0.5 * Math.PI), new THREE.MeshBasicMaterial());   // the roll along the top of the back
+  top.userData.look = WK; top.castShadow = true; top.receiveShadow = true; top.rotation.set(-Math.PI / 2, 0, 0.25 * Math.PI); top.position.set(0, back - 0.02, 0); g.add(top);
+  return tag(g, 'white wicker chair (balcony)');
+}
 function furniture(shot) {
   const g = new THREE.Group();
   g.add(couch());
@@ -151,6 +179,7 @@ function furniture(shot) {
   { const S = SIDE_TABLE; g.add(tableRect(S.cx, S.cz, S.w, S.d, S.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'side table' }));
     const sh = box(S.w - 0.08, 0.02, S.d - 0.08, WOOD, [S.cx, 0.15, S.cz]); g.add(tag(sh, 'side table')); }
   g.add(lounger());
+  g.add(wickerChair());
   // bookshelf cabinets along the north wall on both sides of the doors: glass-fronted shelves of books above, doors below
   { const S = SHELVES, z0 = ROOM.z0, zf = SHELF_FRONT, r = rng(253);
     for (const [a0, a1] of S.runs) { const n = Math.max(1, Math.round((a1 - a0) / 0.9)), uw = (a1 - a0) / n;
@@ -364,7 +393,7 @@ export function build(shot, { makeCam }) {
     const foot = solid.caps.floor || [];
     return { beam: { kind: BEAM.kind, travel_dir: SUN_DIR.map((v) => +v.toFixed(4)), elevation_deg: SUN.elev,
       sun: { date: SCENE.date, time: SCENE.time + ' CST (UTC+8)', lat: SCENE.lat, lon: SCENE.lon, elevation_deg: SUN.elev, azimuth_deg: SUN.az, west_of_facade_normal_deg: SUN.rel, profile_angle_deg: SUN.profile_deg,
-        facade_bearing_deg: FACADE_BEARING, flat: FLAT, per_metre_into_room: SUN_SLOPES, status: 'date and time chosen by Jade from the light study (decision page, late 2026-11-25: 21 Dec, about 09:30); east flat and 三楼 are facts' },
+        facade_bearing_deg: FACADE_BEARING, flat: FLAT, per_metre_into_room: SUN_SLOPES, status: 'honest sun. 21 Dec (Jade); 08:30 chosen (round 2 answers) so her face and hands are lit, moving the light rather than her (Jade had picked about 09:30, which leaves her face in shade); east flat and 三楼 are facts' },
       source_world: BEAM_SOURCE, source_px: BEAM_SOURCE.map((p) => P(V(p))), aperture_glass_world: APERTURE_GLASS, shaded_by: BEAM.shading,
       sources_world: SOURCES, windows: APS.map((a, i) => ({ id: a.id, source_world: a.source, shaded_by: a.half, floor_world: solids[i]?.caps.floor ? solids[i].caps.floor.map(r3) : null, floor_px: solids[i]?.caps.floor ? solids[i].caps.floor.map((p) => P(p)) : null })),
       footprint_floor_world: foot.map(r3), footprint_floor_px: foot.map((p) => P(p)), footprint_east_wall: fp('east wall'), footprint_west_wall: fp('west wall'), footprint_north_wall: fp('north wall'),

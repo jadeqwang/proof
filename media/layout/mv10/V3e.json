@@ -835,21 +835,20 @@
   },
   "T1": {
    "px": [
-    1414.2,
-    175.6
+    2174.7,
+    190.2
    ],
    "eyes": [
-    1394.9,
-    188.1
+    2195.4,
+    197.8
    ],
    "mouth": [
-    1403.1,
-    201.2
+    2187.5,
+    211.1
    ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 67,
-   "blocked_by": "fire poi (circle swept by the flame)"
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 65
   },
   "G1": {
    "px": [
@@ -1006,40 +1005,6 @@
    "visible": true,
    "facing_camera_deg": 138,
    "blocked_by": "poi poi spinner (face undrawn)"
-  },
-  "jade27": {
-   "px": [
-    912.2,
-    706.1
-   ],
-   "eyes": [
-    870.2,
-    837.4
-   ],
-   "mouth": [
-    870.8,
-    387.4
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 7
-  },
-  "firstLove27": {
-   "px": [
-    -15819.1,
-    5266.9
-   ],
-   "eyes": [
-    63650,
-    -18399.6
-   ],
-   "mouth": [
-    64023.2,
-    -11660.3
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 77
   }
  },
  "hands": {
@@ -1225,21 +1190,21 @@
   },
   "T1.L": {
    "px": [
-    1487.7,
-    372.2
+    2217.3,
+    276
    ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
+   "shape": "grip",
+   "in_frame": false,
+   "visible": false
   },
   "T1.R": {
    "px": [
-    1305.4,
-    310.3
+    2266.3,
+    223.6
    ],
    "shape": "grip",
-   "in_frame": true,
-   "visible": true
+   "in_frame": false,
+   "visible": false
   },
   "G1.L": {
    "px": [
@@ -1402,42 +1367,6 @@
    "shape": "grip",
    "in_frame": true,
    "visible": true
-  },
-  "jade27.L": {
-   "px": [
-    2440.7,
-    -5658.5
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "jade27.R": {
-   "px": [
-    -1265.9,
-    -4025
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "firstLove27.L": {
-   "px": [
-    -31017.7,
-    -52463.8
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "firstLove27.R": {
-   "px": [
-    80736.6,
-    64509.8
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
   }
  },
  "lights": [
@@ -1553,7 +1482,7 @@
   }
  ],
  "warnings": [],
- "intent": "Inside: what she is looking at. The poi spinner on the lawn, seen from behind and to the side, performing toward the audience lined along the house’s ESE wall and on the deck, two circles of fire lighting them. From here on the poi is the light source.",
+ "intent": "Cutaway (was her point of view from under the tree; she is now at the shelf from 3:03.8 to 3:11.5). The poi spinner on the lawn, seen from behind and to the side, performing toward the audience lined along the house’s ESE wall and on the deck, two circles of fire lighting them. From here on the poi is the light source.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "yard",
@@ -1664,8 +1593,6 @@
   ]
  },
  "sun_tests": {
-  "her_head": "shaded by house",
-  "first_love_head": "shaded by house",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -2714,11 +2641,6 @@
   1975,
   338.9
  ],
- "first_love_costume": {
-  "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
-  "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
-  "height_m": 1.78
- },
  "figure_report": {
   "A1": {
    "legs": {
@@ -2880,10 +2802,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {
@@ -3017,36 +2939,6 @@
    "arms": {
     "L": 0.64,
     "R": 0.64
-   },
-   "headTurn": 0
-  },
-  "jade27": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.49
-   },
-   "headTurn": 12
-  },
-  "firstLove27": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
    },
    "headTurn": 0
   }

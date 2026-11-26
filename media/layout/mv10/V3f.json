@@ -696,7 +696,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 84,
-   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
+   "blocked_by": "upper cabinet doors (dark walnut)"
   },
   "A3": {
    "px": [
@@ -783,7 +783,7 @@
    "in_frame": true,
    "visible": false,
    "facing_camera_deg": 167,
-   "blocked_by": "thick partition wall (living room | kitchen; Jade: built-in / chimney / closet)"
+   "blocked_by": "fridge (Jade: normal size, by the 2x2)"
   },
   "C1": {
    "px": [
@@ -841,20 +841,21 @@
   },
   "T1": {
    "px": [
-    2214.6,
-    443.3
+    892.2,
+    295.2
    ],
    "eyes": [
-    2316.6,
-    550.3
+    931.9,
+    315.3
    ],
    "mouth": [
-    2254.4,
-    635
+    918.1,
+    345.1
    ],
-   "in_frame": false,
+   "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 54
+   "facing_camera_deg": 119,
+   "blocked_by": "jade27 Jade (27)"
   },
   "G1": {
    "px": [
@@ -1228,20 +1229,20 @@
   },
   "T1.L": {
    "px": [
-    2103,
-    1529.9
+    937.1,
+    488
    ],
-   "shape": "relax",
-   "in_frame": false,
+   "shape": "grip",
+   "in_frame": true,
    "visible": false
   },
   "T1.R": {
    "px": [
-    2745,
-    1795.1
+    1076.6,
+    380.3
    ],
    "shape": "grip",
-   "in_frame": false,
+   "in_frame": true,
    "visible": false
   },
   "G1.L": {
@@ -2883,10 +2884,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {

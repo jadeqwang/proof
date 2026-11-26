@@ -8,12 +8,12 @@
   "position": [
    2.45,
    14,
-   5.4
+   4.2
   ],
   "target": [
    2.45,
    0,
-   5.4
+   4.2
   ],
   "lens_mm": 0,
   "frame_width_mm": 36,
@@ -40,7 +40,7 @@
    0,
    2.45,
    14,
-   5.4,
+   4.2,
    1
   ],
   "viewMatrix": [
@@ -56,7 +56,7 @@
    0,
    0,
    0,
-   -5.4,
+   -4.2,
    -2.45,
    -14,
    1
@@ -90,19 +90,19 @@
   "front_door": {
    "px": [
     [
-     148.6,
+     331.4,
      326.7
     ],
     [
-     148.6,
+     331.4,
      189.5
     ],
     [
-     148.6,
+     331.4,
      189.5
     ],
     [
-     148.6,
+     331.4,
      326.7
     ]
    ],
@@ -138,19 +138,19 @@
   "living_room_window_wnw": {
    "px": [
     [
-     148.6,
+     331.4,
      821.9
     ],
     [
-     148.6,
+     331.4,
      562.9
     ],
     [
-     148.6,
+     331.4,
      562.9
     ],
     [
-     148.6,
+     331.4,
      821.9
     ]
    ],
@@ -186,19 +186,19 @@
   "living_room_window_ssw": {
    "px": [
     [
-     624.8,
+     807.6,
      901.9
     ],
     [
-     381,
+     563.8,
      901.9
     ],
     [
-     381,
+     563.8,
      901.9
     ],
     [
-     624.8,
+     807.6,
      901.9
     ]
    ],
@@ -234,19 +234,19 @@
   "sliding_glass_door_to_the_deck": {
    "px": [
     [
-     1642.5,
+     1825.4,
      527.8
     ],
     [
-     1642.5,
+     1825.4,
      806.7
     ],
     [
-     1642.5,
+     1825.4,
      806.7
     ],
     [
-     1642.5,
+     1825.4,
      527.8
     ]
    ],
@@ -282,19 +282,19 @@
   "kitchen_window_over_the_sink_ese": {
    "px": [
     [
-     1642.5,
+     1825.4,
      235.2
     ],
     [
-     1642.5,
+     1825.4,
      387.6
     ],
     [
-     1642.5,
+     1825.4,
      387.6
     ],
     [
-     1642.5,
+     1825.4,
      235.2
     ]
    ],
@@ -330,19 +330,19 @@
   "dining_window_ssw": {
    "px": [
     [
-     1401.9,
+     1584.8,
      901.9
     ],
     [
-     1203.8,
+     1386.7,
      901.9
     ],
     [
-     1203.8,
+     1386.7,
      901.9
     ],
     [
-     1401.9,
+     1584.8,
      901.9
     ]
    ],
@@ -378,19 +378,19 @@
   "tea_room_window_wnw": {
    "px": [
     [
-     148.6,
+     331.4,
      -336.2
     ],
     [
-     148.6,
+     331.4,
      -641
     ],
     [
-     148.6,
+     331.4,
      -641
     ],
     [
-     148.6,
+     331.4,
      -336.2
     ]
    ],
@@ -426,19 +426,19 @@
   "tea_room_window_nne": {
    "px": [
     [
-     320,
+     502.9,
      -890.9
     ],
     [
-     563.8,
+     746.7,
      -890.9
     ],
     [
-     563.8,
+     746.7,
      -890.9
     ],
     [
-     320,
+     502.9,
      -890.9
     ]
    ],
@@ -474,19 +474,19 @@
   "bathroom_window_wnw": {
    "px": [
     [
-     148.6,
+     331.4,
      60
     ],
     [
-     148.6,
+     331.4,
      -46.7
     ],
     [
-     148.6,
+     331.4,
      -46.7
     ],
     [
-     148.6,
+     331.4,
      60
     ]
    ],
@@ -522,19 +522,19 @@
   "bedroom_window_ese": {
    "px": [
     [
-     1642.5,
+     1825.4,
      -701.9
     ],
     [
-     1642.5,
+     1825.4,
      -397.1
     ],
     [
-     1642.5,
+     1825.4,
      -397.1
     ],
     [
-     1642.5,
+     1825.4,
      -701.9
     ]
    ],
@@ -570,19 +570,19 @@
   "bedroom_window_nne": {
    "px": [
     [
-     1234.3,
+     1417.1,
      -890.9
     ],
     [
-     1478.1,
+     1661,
      -890.9
     ],
     [
-     1478.1,
+     1661,
      -890.9
     ],
     [
-     1234.3,
+     1417.1,
      -890.9
     ]
    ],
@@ -618,19 +618,19 @@
   "bath_2_window_ese": {
    "px": [
     [
-     1642.5,
+     1825.4,
      -1
     ],
     [
-     1642.5,
+     1825.4,
      90.5
     ],
     [
-     1642.5,
+     1825.4,
      90.5
     ],
     [
-     1642.5,
+     1825.4,
      -1
     ]
    ],
@@ -667,386 +667,300 @@
  "heads": {
   "A1": {
    "px": [
-    282.4,
-    368.8
+    811.3,
+    329.3
    ],
    "eyes": [
-    284.5,
-    353.3
+    801.6,
+    317.3
    ],
    "mouth": [
-    284.3,
-    354.4
+    803.1,
+    319.2
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 112
+  },
+  "A2": {
+   "px": [
+    840.5,
+    255.5
+   ],
+   "eyes": [
+    829.1,
+    263.8
+   ],
+   "mouth": [
+    828.9,
+    264
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 86
+  },
+  "A3": {
+   "px": [
+    749.6,
+    263.6
+   ],
+   "eyes": [
+    761.3,
+    274.5
+   ],
+   "mouth": [
+    758.9,
+    272.2
    ],
    "in_frame": true,
    "visible": true,
    "facing_camera_deg": 98
   },
-  "A2": {
-   "px": [
-    297.1,
-    258.3
-   ],
-   "eyes": [
-    295.3,
-    272.3
-   ],
-   "mouth": [
-    295.2,
-    272.8
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 81
-  },
-  "A3": {
-   "px": [
-    376.7,
-    314.1
-   ],
-   "eyes": [
-    362.8,
-    322.6
-   ],
-   "mouth": [
-    364.3,
-    321.7
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 110
-  },
   "S1": {
    "px": [
-    229.7,
+    412.6,
     690.3
    ],
    "eyes": [
-    232.2,
+    415,
     675.8
    ],
    "mouth": [
-    233.1,
+    416,
     676.2
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 84
+  },
+  "B2": {
+   "px": [
+    415.3,
+    601.3
+   ],
+   "eyes": [
+    417.6,
+    615
+   ],
+   "mouth": [
+    418.3,
+    615.5
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 86
+  },
+  "B1": {
+   "px": [
+    704.7,
+    819.7
+   ],
+   "eyes": [
+    691.5,
+    812
+   ],
+   "mouth": [
+    692.8,
+    812.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 101
+  },
+  "C1": {
+   "px": [
+    1304.2,
+    372.8
+   ],
+   "eyes": [
+    1318.3,
+    377.5
+   ],
+   "mouth": [
+    1318.3,
+    377.5
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 98
+  },
+  "C2": {
+   "px": [
+    1436.8,
+    417
+   ],
+   "eyes": [
+    1421.4,
+    411.9
+   ],
+   "mouth": [
+    1422.3,
+    412.2
    ],
    "in_frame": true,
    "visible": true,
    "facing_camera_deg": 83
   },
-  "B2": {
+  "C3": {
    "px": [
-    232.5,
-    601.3
+    1424.8,
+    311.4
    ],
    "eyes": [
-    234.7,
-    615
+    1412.6,
+    317.5
    ],
    "mouth": [
-    235.4,
-    615.5
+    1412,
+    317.8
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 71
+  },
+  "T1": {
+   "px": [
+    1556.8,
+    294.9
+   ],
+   "eyes": [
+    1555.9,
+    281.1
+   ],
+   "mouth": [
+    1556.1,
+    285.9
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 123,
+   "blocked_by": "T1 guest T1, at the punchbowl (face undrawn)"
+  },
+  "jade27": {
+   "px": [
+    764.2,
+    524.1
+   ],
+   "eyes": [
+    775.1,
+    514.6
+   ],
+   "mouth": [
+    775.2,
+    514.6
    ],
    "in_frame": true,
    "visible": true,
    "facing_camera_deg": 85
   },
-  "B1": {
+  "K1": {
    "px": [
-    521.9,
-    819.7
+    1326.8,
+    539.4
    ],
    "eyes": [
-    508.7,
-    812
+    1312.2,
+    534.7
    ],
    "mouth": [
-    510,
-    812.7
+    1312.5,
+    534.8
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 105
+   "facing_camera_deg": 81
   },
-  "E1": {
+  "R1": {
    "px": [
-    199.2,
-    258.1
+    885.9,
+    418.9
    ],
    "eyes": [
-    183.3,
-    258.1
+    874.9,
+    428.4
    ],
    "mouth": [
-    183.5,
-    258.1
+    874.9,
+    428.5
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 113,
-   "blocked_by": "front door (leaf, open)"
+   "facing_camera_deg": 89
   },
-  "C1": {
+  "N1": {
    "px": [
-    1121.4,
-    372.8
+    527.9,
+    345.6
    ],
    "eyes": [
-    1135.5,
-    377.5
+    535.7,
+    359.2
    ],
    "mouth": [
-    1135.5,
-    377.5
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 93
-  },
-  "C2": {
-   "px": [
-    1253.9,
-    417
-   ],
-   "eyes": [
-    1238.6,
-    411.9
-   ],
-   "mouth": [
-    1239.5,
-    412.2
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 88
-  },
-  "C3": {
-   "px": [
-    1242,
-    311.4
-   ],
-   "eyes": [
-    1229.7,
-    317.5
-   ],
-   "mouth": [
-    1229.1,
-    317.8
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 75
-  },
-  "T1": {
-   "px": [
-    1915.3,
-    458.7
-   ],
-   "eyes": [
-    1927.7,
-    462.4
-   ],
-   "mouth": [
-    1921.8,
-    461.3
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 151,
-   "blocked_by": "T1 guest T1, at the lemonade (face undrawn)"
-  },
-  "G1": {
-   "px": [
-    1810.7,
-    647.7
-   ],
-   "eyes": [
-    1796,
-    653.4
-   ],
-   "mouth": [
-    1796.6,
-    653.2
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 72
-  },
-  "H1": {
-   "px": [
-    1843.6,
-    411.9
-   ],
-   "eyes": [
-    1841.7,
-    426.6
-   ],
-   "mouth": [
-    1841.7,
-    426.6
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 83
-  },
-  "W1": {
-   "px": [
-    1731.9,
-    -61.9
-   ],
-   "eyes": [
-    1747.3,
-    -61.6
-   ],
-   "mouth": [
-    1746.9,
-    -61.6
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 112
-  },
-  "W2": {
-   "px": [
-    1754.3,
-    -160.7
-   ],
-   "eyes": [
-    1768.5,
-    -158.5
-   ],
-   "mouth": [
-    1768.2,
-    -158.6
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 109
-  },
-  "W3": {
-   "px": [
-    1723.9,
-    -267.1
-   ],
-   "eyes": [
-    1738.2,
-    -263.1
-   ],
-   "mouth": [
-    1737.8,
-    -263.2
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 105
-  },
-  "W4": {
-   "px": [
-    1739.3,
-    -457
-   ],
-   "eyes": [
-    1753.3,
-    -449.5
-   ],
-   "mouth": [
-    1752.9,
-    -449.8
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 98
-  },
-  "D1": {
-   "px": [
-    2062.2,
-    575.3
-   ],
-   "eyes": [
-    2070.6,
-    563.7
-   ],
-   "mouth": [
-    2070,
-    564.6
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 112
-  },
-  "D2": {
-   "px": [
-    2069.2,
-    468.1
-   ],
-   "eyes": [
-    2079.3,
-    456.4
-   ],
-   "mouth": [
-    2078.4,
-    457.5
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 119
-  },
-  "poi": {
-   "px": [
-    2512.5,
-    -46.2
-   ],
-   "eyes": [
-    2497.6,
-    -42.5
-   ],
-   "mouth": [
-    2497.8,
-    -42.5
-   ],
-   "in_frame": false,
-   "visible": false,
-   "facing_camera_deg": 52
-  },
-  "jade27": {
-   "px": [
-    1117.2,
-    618.1
-   ],
-   "eyes": [
-    1130.2,
-    611.8
-   ],
-   "mouth": [
-    1130,
-    612.3
-   ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 96
-  },
-  "firstLove27": {
-   "px": [
-    699.4,
-    409.5
-   ],
-   "eyes": [
-    704.8,
-    424.2
-   ],
-   "mouth": [
-    704.6,
-    423.8
+    535,
+    358
    ],
    "in_frame": true,
    "visible": true,
    "facing_camera_deg": 86
+  },
+  "N2": {
+   "px": [
+    557.4,
+    251.8
+   ],
+   "eyes": [
+    566.9,
+    262.3
+   ],
+   "mouth": [
+    566.7,
+    262.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 77
+  },
+  "N3": {
+   "px": [
+    -47.7,
+    288.7
+   ],
+   "eyes": [
+    -33.2,
+    287.5
+   ],
+   "mouth": [
+    -31.5,
+    287.4
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 54
+  },
+  "N4": {
+   "px": [
+    -92.6,
+    197
+   ],
+   "eyes": [
+    -77.1,
+    199.3
+   ],
+   "mouth": [
+    -75.8,
+    199.5
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 54
   }
  },
  "hands": {
   "A1.L": {
    "px": [
-    256,
-    350.8
+    786.3,
+    351.6
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1054,8 +968,8 @@
   },
   "A1.R": {
    "px": [
-    315.3,
-    347.7
+    839.3,
+    310.1
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1063,8 +977,8 @@
   },
   "A2.L": {
    "px": [
-    326.9,
-    261.9
+    870.9,
+    258.8
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1072,8 +986,8 @@
   },
   "A2.R": {
    "px": [
-    270.7,
-    274.4
+    819.4,
+    232.9
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1081,8 +995,8 @@
   },
   "A3.L": {
    "px": [
-    342,
-    326.7
+    719.4,
+    279.1
    ],
    "shape": "grip",
    "in_frame": true,
@@ -1090,8 +1004,8 @@
   },
   "A3.R": {
    "px": [
-    376.4,
-    276.6
+    723.3,
+    286.7
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1099,7 +1013,7 @@
   },
   "S1.L": {
    "px": [
-    295.6,
+    478.4,
     675.5
    ],
    "shape": "relax",
@@ -1108,7 +1022,7 @@
   },
   "S1.R": {
    "px": [
-    295.6,
+    478.4,
     709.3
    ],
    "shape": "relax",
@@ -1117,7 +1031,7 @@
   },
   "B2.L": {
    "px": [
-    291.5,
+    474.3,
     584.6
    ],
    "shape": "relax",
@@ -1126,7 +1040,7 @@
   },
   "B2.R": {
    "px": [
-    273.3,
+    456.2,
     616.2
    ],
    "shape": "grip",
@@ -1135,7 +1049,7 @@
   },
   "B1.L": {
    "px": [
-    505.1,
+    687.9,
     847.7
    ],
    "shape": "relax",
@@ -1144,34 +1058,16 @@
   },
   "B1.R": {
    "px": [
-    500.4,
+    683.3,
     789.2
    ],
    "shape": "grip",
    "in_frame": true,
    "visible": true
   },
-  "E1.L": {
-   "px": [
-    162.3,
-    273.3
-   ],
-   "shape": "grip",
-   "in_frame": true,
-   "visible": true
-  },
-  "E1.R": {
-   "px": [
-    196.6,
-    224
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
-  },
   "C1.L": {
    "px": [
-    1121.6,
+    1304.5,
     340
    ],
    "shape": "relax",
@@ -1180,7 +1076,7 @@
   },
   "C1.R": {
    "px": [
-    1159.4,
+    1342.3,
     384
    ],
    "shape": "grip",
@@ -1189,7 +1085,7 @@
   },
   "C2.L": {
    "px": [
-    1229.6,
+    1412.4,
     439.2
    ],
    "shape": "relax",
@@ -1198,7 +1094,7 @@
   },
   "C2.R": {
    "px": [
-    1242.7,
+    1425.5,
     360.8
    ],
    "shape": "palmUp",
@@ -1207,7 +1103,7 @@
   },
   "C3.L": {
    "px": [
-    1232.4,
+    1415.2,
     351
    ],
    "shape": "grip",
@@ -1216,7 +1112,7 @@
   },
   "C3.R": {
    "px": [
-    1214.8,
+    1397.7,
     297.7
    ],
    "shape": "relax",
@@ -1225,188 +1121,26 @@
   },
   "T1.L": {
    "px": [
-    1884.5,
-    423.8
+    1542.1,
+    271.6
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": true
   },
   "T1.R": {
    "px": [
-    1977.6,
-    486.4
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "G1.L": {
-   "px": [
-    1821.4,
-    679.8
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
-  },
-  "G1.R": {
-   "px": [
-    1771.7,
-    646.6
+    1558.8,
+    232.3
    ],
    "shape": "grip",
    "in_frame": true,
    "visible": true
-  },
-  "H1.L": {
-   "px": [
-    1875,
-    419.1
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
-  },
-  "H1.R": {
-   "px": [
-    1811.4,
-    410.9
-   ],
-   "shape": "relax",
-   "in_frame": true,
-   "visible": true
-  },
-  "W1.L": {
-   "px": [
-    1734.7,
-    -94.9
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W1.R": {
-   "px": [
-    1733.5,
-    -28.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W2.L": {
-   "px": [
-    1761.5,
-    -191
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W2.R": {
-   "px": [
-    1787.7,
-    -140.3
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "W3.L": {
-   "px": [
-    1734.9,
-    -297.1
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W3.R": {
-   "px": [
-    1717.7,
-    -235.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "W4.L": {
-   "px": [
-    1778.6,
-    -453.5
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "W4.R": {
-   "px": [
-    1725.3,
-    -426
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "D1.L": {
-   "px": [
-    2037.9,
-    556.3
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "D1.R": {
-   "px": [
-    2094.7,
-    556.4
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "D2.L": {
-   "px": [
-    2044.1,
-    446.2
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "D2.R": {
-   "px": [
-    2094.4,
-    489.7
-   ],
-   "shape": "relax",
-   "in_frame": false,
-   "visible": false
-  },
-  "poi.L": {
-   "px": [
-    2500.2,
-    22.8
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
-  },
-  "poi.R": {
-   "px": [
-    2469.3,
-    -101.4
-   ],
-   "shape": "grip",
-   "in_frame": false,
-   "visible": false
   },
   "jade27.L": {
    "px": [
-    1079,
-    645.2
+    766.9,
+    493.4
    ],
    "shape": "relax",
    "in_frame": true,
@@ -1414,30 +1148,120 @@
   },
   "jade27.R": {
    "px": [
-    1142.8,
-    593.3
+    801.9,
+    538.7
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "K1.L": {
+   "px": [
+    1355.7,
+    559.4
    ],
    "shape": "relax",
    "in_frame": true,
    "visible": true
   },
-  "firstLove27.L": {
+  "K1.R": {
    "px": [
-    711.4,
-    438.7
+    1297.3,
+    566.9
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "R1.L": {
+   "px": [
+    916,
+    430.6
    ],
    "shape": "relax",
    "in_frame": true,
    "visible": true
   },
-  "firstLove27.R": {
+  "R1.R": {
    "px": [
-    678,
-    380.8
+    845.4,
+    455.5
+   ],
+   "shape": "palmUp",
+   "in_frame": true,
+   "visible": true
+  },
+  "N1.L": {
+   "px": [
+    518.5,
+    308.8
    ],
    "shape": "relax",
    "in_frame": true,
    "visible": true
+  },
+  "N1.R": {
+   "px": [
+    541.5,
+    371.9
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "N2.L": {
+   "px": [
+    566,
+    221.2
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "N2.R": {
+   "px": [
+    555.4,
+    281.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "N3.L": {
+   "px": [
+    -41.1,
+    256.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "N3.R": {
+   "px": [
+    -41.1,
+    321
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "N4.L": {
+   "px": [
+    -86.9,
+    162.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "N4.R": {
+   "px": [
+    -86.9,
+    231.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
   }
  },
  "lights": [
@@ -1452,15 +1276,15 @@
     -20.6048
    ],
    "px": [
-    -3002.6,
+    -2819.8,
     3049.4
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.861,
-    -0.509
+    0.82,
+    -0.573
    ],
-   "toward_camera": -0.098,
+   "toward_camera": 0.028,
    "aim_world": [
     3,
     0.8,
@@ -1478,15 +1302,15 @@
     2.55
    ],
    "px": [
-    525.7,
+    708.6,
     524.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.987,
-    0.16
+    0.999,
+    -0.032
    ],
-   "toward_camera": -0.296
+   "toward_camera": -0.866
   },
   {
    "name": "ceiling2",
@@ -1499,15 +1323,15 @@
     7.65
    ],
    "px": [
-    1302.9,
+    1485.7,
     753.3
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.805,
-    -0.594
+    -0.953,
+    -0.304
    ],
-   "toward_camera": 0.099
+   "toward_camera": -0.092
   },
   {
    "name": "ceiling3",
@@ -1520,15 +1344,15 @@
     7.45
    ],
    "px": [
-    1272.4,
+    1455.2,
     402.9
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.581,
-    0.814
+    -0.985,
+    0.175
    ],
-   "toward_camera": -0.423
+   "toward_camera": -0.272
   },
   {
    "name": "poi",
@@ -1541,19 +1365,19 @@
     15.6
    ],
    "px": [
-    2514.3,
+    2697.1,
     -46.7
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.9,
-    0.437
+    -0.96,
+    0.28
    ],
-   "toward_camera": 0.162
+   "toward_camera": -0.012
   }
  ],
  "warnings": [],
- "intent": "Straight down, NNE up the frame, the front (WNW) at left and the sliding door at right. Kept as a true-scale reference for the overlay data, not as a shot. Her whole indoor route with a margin: the Expedit 5x5, the opening by the 2x2 and its printer, round the dining table and benches, to the open sliding door. She is mid-crossing (the time midpoint); guests in their places. The compositor draws gold vectors, labels and v = ds/dt from the sidecar `crossing`.",
+ "intent": "Straight down, NNE up the frame, the front (WNW) at left, the kitchen at right. A true-scale reference for the overlay data, not a shot: the three legs (L1 kitchen -> front door, L2 back toward the kitchen, stopped at the shelf, L3 back to the door) and the four stops. She is at S2.",
  "layout_set": "mv10",
  "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
  "space": "room",
@@ -1664,8 +1488,7 @@
   ]
  },
  "sun_tests": {
-  "her_head": "shaded by exterior wall (SSW)",
-  "first_love_head": "shaded by 357 View St",
+  "her_head": "shaded by exterior wall (WNW)",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
@@ -1865,11 +1688,11 @@
   "seam_world_X": 3.595,
   "seam_px": [
    [
-    780.2,
+    963,
     365.5
    ],
    [
-    780.2,
+    963,
     365.5
    ]
   ],
@@ -1884,19 +1707,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       232.2
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       232.2
      ]
     ],
@@ -1914,19 +1737,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       286
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       286
      ]
     ],
@@ -1943,19 +1766,19 @@
     "half": "split",
     "px": [
      [
-      780.2,
+      963,
       339.8
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       339.8
      ]
     ],
@@ -1981,19 +1804,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       393.7
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       393.7
      ]
     ],
@@ -2010,19 +1833,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       447.5
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       447.5
      ]
     ],
@@ -2048,19 +1871,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       232.2
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       232.2
      ]
     ],
@@ -2076,19 +1899,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       286
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       286
      ]
     ],
@@ -2109,19 +1932,19 @@
     "half": "split",
     "px": [
      [
-      780.2,
+      963,
       339.8
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       339.8
      ]
     ],
@@ -2137,19 +1960,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       393.7
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       393.7
      ]
     ],
@@ -2177,19 +2000,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       447.5
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       447.5
      ]
     ],
@@ -2206,19 +2029,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       232.2
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       232.2
      ]
     ],
@@ -2237,19 +2060,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       286
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       286
      ]
     ],
@@ -2265,19 +2088,19 @@
     "half": "split",
     "px": [
      [
-      780.2,
+      963,
       339.8
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       339.8
      ]
     ],
@@ -2302,19 +2125,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       393.7
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       393.7
      ]
     ],
@@ -2332,19 +2155,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       447.5
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       447.5
      ]
     ],
@@ -2368,19 +2191,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       232.2
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       232.2
      ]
     ],
@@ -2397,19 +2220,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       286
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       286
      ]
     ],
@@ -2435,19 +2258,19 @@
     "half": "split",
     "px": [
      [
-      780.2,
+      963,
       339.8
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       339.8
      ]
     ],
@@ -2463,19 +2286,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       393.7
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       393.7
      ]
     ],
@@ -2496,19 +2319,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       447.5
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       447.5
      ]
     ],
@@ -2524,19 +2347,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       232.2
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       283.6
      ],
      [
-      780.2,
+      963,
       232.2
      ]
     ],
@@ -2559,19 +2382,19 @@
     "half": "beauty",
     "px": [
      [
-      780.2,
+      963,
       286
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       337.4
      ],
      [
-      780.2,
+      963,
       286
      ]
     ],
@@ -2587,19 +2410,19 @@
     "half": "split",
     "px": [
      [
-      780.2,
+      963,
       339.8
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       391.2
      ],
      [
-      780.2,
+      963,
       339.8
      ]
     ],
@@ -2625,19 +2448,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       393.7
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       445
      ],
      [
-      780.2,
+      963,
       393.7
      ]
     ],
@@ -2654,19 +2477,19 @@
     "half": "truth",
     "px": [
      [
-      780.2,
+      963,
       447.5
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       498.9
      ],
      [
-      780.2,
+      963,
       447.5
      ]
     ],
@@ -2698,627 +2521,337 @@
   },
   "printer_on_top": true,
   "px": [
-   899,
+   1081.9,
    591.8
   ]
  },
  "lemon_tree_px": [
-  3043,
+  3225.9,
   -730.9
  ],
  "poi_px": [
-  2514.3,
+  2697.1,
   -46.7
  ],
  "opening_px": [
-  899,
+  1081.9,
   756.4
  ],
- "first_love_costume": {
-  "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
-  "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
-  "height_m": 1.78
- },
  "crossing": {
-  "note": "world metres: [X (NNE), Z (ESE)] on the floor; px = this camera’s pixels (floor level). Speeds and times are INVENTED (a plausible walk).",
-  "points": [
-   [
-    2.72,
-    3.3
+  "note": "Jade’s sequence (2026-11-25 round 2); marks, route, speeds and dwells OURS. World [X (NNE), Z (ESE)] on the floor.",
+  "marks": {
+   "kitchen": [
+    1.75,
+    6.25
    ],
-   [
-    2,
-    4.15
+   "door": [
+    4.1,
+    0.78
    ],
-   [
-    1.15,
-    5
-   ],
-   [
-    1.55,
-    6.05
-   ],
-   [
-    2.45,
-    6.75
-   ],
-   [
+   "stop": [
     2.55,
-    7.65
+    2.91
    ],
-   [
-    2.4,
-    8.6
+   "door2": [
+    3.95,
+    0.7
    ],
-   [
-    1.55,
-    9.3
+   "K1": [
+    2.45,
+    6.62
    ],
-   [
-    1.21,
-    9.95
+   "R1": [
+    3.25,
+    3.72
    ]
-  ],
-  "segments": [
+  },
+  "items": [
    {
-    "i": 0,
-    "from": [
-     2.72,
-     3.3
+    "kind": "stop",
+    "id": "S0",
+    "at": [
+     1.75,
+     6.25
     ],
-    "to": [
-     2,
-     4.15
+    "dwell": 2,
+    "what": "in the kitchen, just inside the opening, talking with K1 (by the fridge)",
+    "events": [
+     {
+      "dt": 1.2,
+      "what": "the doorbell",
+      "slot_s": 194.846
+     },
+     {
+      "dt": 1.5,
+      "what": "she excuses herself",
+      "slot_s": 194.91
+     }
     ],
-    "length_m": 1.114,
-    "speed_mps": 1.15,
-    "dt_s": 0.969,
-    "heading_bearing_deg": 156.9,
-    "note": "leaving the shelf",
-    "from_px": [
-     640,
-     498.9
+    "t0_s": 0,
+    "t1_s": 2,
+    "slot_s": [
+     194.59,
+     195.017
     ],
-    "to_px": [
-     769.5,
-     608.6
+    "px": [
+     1272.4,
+     646.7
     ]
    },
    {
-    "i": 1,
-    "from": [
-     2,
-     4.15
+    "kind": "leg",
+    "id": "L1",
+    "pts": [
+     [
+      1.75,
+      6.25
+     ],
+     [
+      1.2,
+      5.2
+     ],
+     [
+      1.55,
+      4.25
+     ],
+     [
+      4.1,
+      0.78
+     ]
     ],
-    "to": [
-     1.15,
-     5
+    "speed": 1.3,
+    "what": "to the front door: out through the opening past the 2x2 and its printer, then diagonally across the living room, clear of the Noguchi table",
+    "t0_s": 2,
+    "length_m": 6.504,
+    "dt_s": 5.003,
+    "displacement_m": [
+     2.35,
+     -5.47
     ],
-    "length_m": 1.202,
-    "speed_mps": 0.85,
-    "dt_s": 1.414,
-    "heading_bearing_deg": 161.7,
-    "note": "slowing for the opening (2x2 Expedit and printer at her right)",
-    "from_px": [
-     769.5,
-     608.6
+    "displacement_len_m": 5.953,
+    "mean_velocity_mps": [
+     0.47,
+     -1.093
     ],
-    "to_px": [
-     899,
-     738.1
+    "mean_velocity_len_mps": 1.19,
+    "heading_bearing_deg": 319.9,
+    "t1_s": 7.003,
+    "slot_s": [
+     195.017,
+     196.086
+    ],
+    "pts_px": [
+     [
+      1272.4,
+      646.7
+     ],
+     [
+      1112.4,
+      730.5
+     ],
+     [
+      967.6,
+      677.1
+     ],
+     [
+      438.9,
+      288.6
+     ]
+    ],
+    "arrow_px": [
+     [
+      1272.4,
+      646.7
+     ],
+     [
+      438.9,
+      288.6
+     ]
     ]
    },
    {
-    "i": 2,
-    "from": [
-     1.15,
-     5
+    "kind": "stop",
+    "id": "S1",
+    "at": [
+     4.1,
+     0.78
     ],
-    "to": [
-     1.55,
-     6.05
+    "dwell": 4,
+    "what": "opens the front door, welcomes N1 and N2 in",
+    "t0_s": 7.003,
+    "t1_s": 11.003,
+    "slot_s": [
+     196.086,
+     196.94
     ],
-    "length_m": 1.124,
-    "speed_mps": 0.9,
-    "dt_s": 1.248,
-    "heading_bearing_deg": 95.8,
-    "note": "through the opening",
-    "from_px": [
-     899,
-     738.1
-    ],
-    "to_px": [
-     1059,
-     677.1
+    "px": [
+     438.9,
+     288.6
     ]
    },
    {
-    "i": 3,
-    "from": [
-     1.55,
-     6.05
+    "kind": "leg",
+    "id": "L2",
+    "pts": [
+     [
+      4.1,
+      0.78
+     ],
+     [
+      2.55,
+      2.91
+     ]
     ],
-    "to": [
-     2.45,
-     6.75
+    "speed": 1.1,
+    "drawOffset": 0.2,
+    "what": "heading back toward the kitchen (aimed at the opening)",
+    "t0_s": 11.003,
+    "length_m": 2.634,
+    "dt_s": 2.395,
+    "displacement_m": [
+     -1.55,
+     2.13
     ],
-    "length_m": 1.14,
-    "speed_mps": 1.2,
-    "dt_s": 0.95,
-    "heading_bearing_deg": 64.5,
-    "note": "into the dining area",
-    "from_px": [
-     1059,
-     677.1
+    "displacement_len_m": 2.634,
+    "mean_velocity_mps": [
+     -0.647,
+     0.889
     ],
-    "to_px": [
-     1165.7,
-     540
+    "mean_velocity_len_mps": 1.1,
+    "heading_bearing_deg": 152.7,
+    "t1_s": 13.398,
+    "slot_s": [
+     196.94,
+     197.452
+    ],
+    "pts_px": [
+     [
+      438.9,
+      288.6
+     ],
+     [
+      763.4,
+      524.8
+     ]
+    ],
+    "arrow_px": [
+     [
+      438.9,
+      288.6
+     ],
+     [
+      763.4,
+      524.8
+     ]
     ]
    },
    {
-    "i": 4,
-    "from": [
-     2.45,
-     6.75
-    ],
-    "to": [
+    "kind": "stop",
+    "id": "S2",
+    "at": [
      2.55,
-     7.65
+     2.91
     ],
-    "length_m": 0.906,
-    "speed_mps": 1.28,
-    "dt_s": 0.707,
-    "heading_bearing_deg": 110.3,
-    "note": "past the dining table’s NNE end",
-    "from_px": [
-     1165.7,
-     540
+    "dwell": 2.5,
+    "what": "R1, at the Expedit, says something; she stops and turns her head to R1",
+    "events": [
+     {
+      "dt": 2,
+      "what": "the doorbell again",
+      "slot_s": 197.879
+     }
     ],
-    "to_px": [
-     1302.9,
+    "t0_s": 13.398,
+    "t1_s": 15.898,
+    "slot_s": [
+     197.452,
+     197.986
+    ],
+    "px": [
+     763.4,
      524.8
     ]
    },
    {
-    "i": 5,
-    "from": [
-     2.55,
-     7.65
+    "kind": "leg",
+    "id": "L3",
+    "pts": [
+     [
+      2.55,
+      2.91
+     ],
+     [
+      3.95,
+      0.7
+     ]
     ],
-    "to": [
-     2.4,
-     8.6
+    "speed": 1.35,
+    "drawOffset": 0.2,
+    "what": "back to the front door",
+    "t0_s": 15.898,
+    "length_m": 2.616,
+    "dt_s": 1.938,
+    "displacement_m": [
+     1.4,
+     -2.21
     ],
-    "length_m": 0.962,
-    "speed_mps": 1.25,
-    "dt_s": 0.769,
-    "heading_bearing_deg": 125.6,
-    "note": "along the counter side",
-    "from_px": [
-     1302.9,
-     524.8
+    "displacement_len_m": 2.616,
+    "mean_velocity_mps": [
+     0.722,
+     -1.14
     ],
-    "to_px": [
-     1447.6,
-     547.6
+    "mean_velocity_len_mps": 1.35,
+    "heading_bearing_deg": 329,
+    "t1_s": 17.836,
+    "slot_s": [
+     197.986,
+     198.4
+    ],
+    "pts_px": [
+     [
+      763.4,
+      524.8
+     ],
+     [
+      426.7,
+      311.4
+     ]
+    ],
+    "arrow_px": [
+     [
+      763.4,
+      524.8
+     ],
+     [
+      426.7,
+      311.4
+     ]
     ]
    },
    {
-    "i": 6,
-    "from": [
-     2.4,
-     8.6
+    "kind": "stop",
+    "id": "S3",
+    "at": [
+     3.95,
+     0.7
     ],
-    "to": [
-     1.55,
-     9.3
+    "dwell": 1.5,
+    "what": "opens the door again: N3 and N4 on the step (end of the shot)",
+    "t0_s": 17.836,
+    "t1_s": 19.336,
+    "slot_s": [
+     198.4,
+     198.72
     ],
-    "length_m": 1.101,
-    "speed_mps": 1.1,
-    "dt_s": 1.001,
-    "heading_bearing_deg": 167.2,
-    "note": "turning toward the sliding door",
-    "from_px": [
-     1447.6,
-     547.6
-    ],
-    "to_px": [
-     1554.3,
-     677.1
-    ]
-   },
-   {
-    "i": 7,
-    "from": [
-     1.55,
-     9.3
-    ],
-    "to": [
-     1.21,
-     9.95
-    ],
-    "length_m": 0.734,
-    "speed_mps": 0.9,
-    "dt_s": 0.815,
-    "heading_bearing_deg": 144.3,
-    "note": "slowing at the sliding door",
-    "from_px": [
-     1554.3,
-     677.1
-    ],
-    "to_px": [
-     1653.3,
-     729
+    "px": [
+     426.7,
+     311.4
     ]
    }
   ],
-  "stamps": [
-   {
-    "i": 0,
-    "at": [
-     2.72,
-     3.3
-    ],
-    "t_s": 0,
-    "s_m": 0,
-    "px": [
-     640,
-     498.9
-    ]
-   },
-   {
-    "i": 1,
-    "at": [
-     2,
-     4.15
-    ],
-    "t_s": 0.969,
-    "s_m": 1.114,
-    "px": [
-     769.5,
-     608.6
-    ]
-   },
-   {
-    "i": 2,
-    "at": [
-     1.15,
-     5
-    ],
-    "t_s": 2.383,
-    "s_m": 2.316,
-    "px": [
-     899,
-     738.1
-    ]
-   },
-   {
-    "i": 3,
-    "at": [
-     1.55,
-     6.05
-    ],
-    "t_s": 3.631,
-    "s_m": 3.44,
-    "px": [
-     1059,
-     677.1
-    ]
-   },
-   {
-    "i": 4,
-    "at": [
-     2.45,
-     6.75
-    ],
-    "t_s": 4.581,
-    "s_m": 4.58,
-    "px": [
-     1165.7,
-     540
-    ]
-   },
-   {
-    "i": 5,
-    "at": [
-     2.55,
-     7.65
-    ],
-    "t_s": 5.289,
-    "s_m": 5.485,
-    "px": [
-     1302.9,
-     524.8
-    ]
-   },
-   {
-    "i": 6,
-    "at": [
-     2.4,
-     8.6
-    ],
-    "t_s": 6.058,
-    "s_m": 6.447,
-    "px": [
-     1447.6,
-     547.6
-    ]
-   },
-   {
-    "i": 7,
-    "at": [
-     1.55,
-     9.3
-    ],
-    "t_s": 7.059,
-    "s_m": 7.548,
-    "px": [
-     1554.3,
-     677.1
-    ]
-   },
-   {
-    "i": 8,
-    "at": [
-     1.21,
-     9.95
-    ],
-    "t_s": 7.874,
-    "s_m": 8.282,
-    "px": [
-     1653.3,
-     729
-    ]
-   }
-  ],
-  "turns": [
-   {
-    "at": [
-     2,
-     4.15
-    ],
-    "turn_deg": -4.7,
-    "side": "right",
-    "px": [
-     769.5,
-     608.6
-    ]
-   },
-   {
-    "at": [
-     1.15,
-     5
-    ],
-    "turn_deg": 65.9,
-    "side": "left",
-    "px": [
-     899,
-     738.1
-    ]
-   },
-   {
-    "at": [
-     1.55,
-     6.05
-    ],
-    "turn_deg": 31.3,
-    "side": "left",
-    "px": [
-     1059,
-     677.1
-    ]
-   },
-   {
-    "at": [
-     2.45,
-     6.75
-    ],
-    "turn_deg": -45.8,
-    "side": "right",
-    "px": [
-     1165.7,
-     540
-    ]
-   },
-   {
-    "at": [
-     2.55,
-     7.65
-    ],
-    "turn_deg": -15.3,
-    "side": "right",
-    "px": [
-     1302.9,
-     524.8
-    ]
-   },
-   {
-    "at": [
-     2.4,
-     8.6
-    ],
-    "turn_deg": -41.6,
-    "side": "right",
-    "px": [
-     1447.6,
-     547.6
-    ]
-   },
-   {
-    "at": [
-     1.55,
-     9.3
-    ],
-    "turn_deg": 22.9,
-    "side": "left",
-    "px": [
-     1554.3,
-     677.1
-    ]
-   }
-  ],
-  "total_m": 8.282,
-  "total_s": 7.874,
-  "mean_speed_mps": 1.052,
-  "straight_line_m": 6.819,
-  "shortest_walkable_m": 7.536,
-  "shortest_walkable_path": [
-   [
-    2.72,
-    3.3
-   ],
-   [
-    1.66,
-    4.355
-   ],
-   [
-    1.66,
-    5.645
-   ],
-   [
-    2.2,
-    6.73
-   ],
-   [
-    2.2,
-    8.57
-   ],
-   [
-    1.21,
-    9.95
-   ]
-  ],
-  "detour_ratio_vs_shortest": 1.099,
-  "clearance_m": 0.25,
-  "obstacles": [
-   {
-    "name": "Expedit 2x2 + printer",
-    "x0": 1.9099999999999997,
-    "x1": 2.3,
-    "z0": 4.605,
-    "z1": 5.395,
-    "corners_px_at_0_75m": [
-     [
-      838.9,
-      622.3
-     ],
-     [
-      959.2,
-      622.3
-     ],
-     [
-      959.2,
-      562.9
-     ],
-     [
-      838.9,
-      562.9
-     ]
-    ]
-   },
-   {
-    "name": "partition wall",
-    "x0": 2.3,
-    "x1": 4.95,
-    "z0": 4.61,
-    "z1": 5.39,
-    "corners_px_at_0_75m": [
-     [
-      839.6,
-      562.9
-     ],
-     [
-      958.5,
-      562.9
-     ],
-     [
-      958.5,
-      159
-     ],
-     [
-      839.6,
-      159
-     ]
-    ]
-   },
-   {
-    "name": "Expedit 5x5",
-    "x0": 2.67,
-    "x1": 4.5200000000000005,
-    "z0": 4.220000000000001,
-    "z1": 4.61,
-    "corners_px_at_0_75m": [
-     [
-      780.2,
-      506.5
-     ],
-     [
-      839.6,
-      506.5
-     ],
-     [
-      839.6,
-      224.6
-     ],
-     [
-      780.2,
-      224.6
-     ]
-    ]
-   },
-   {
-    "name": "counter along the partition",
-    "x0": 2.82,
-    "x1": 4.89,
-    "z0": 5.39,
-    "z1": 6.0249999999999995,
-    "corners_px_at_0_75m": [
-     [
-      958.5,
-      483.6
-     ],
-     [
-      1055.2,
-      483.6
-     ],
-     [
-      1055.2,
-      168.2
-     ],
-     [
-      958.5,
-      168.2
-     ]
-    ]
-   },
-   {
-    "name": "dining table and benches",
-    "x0": 0.15,
-    "x1": 1.95,
-    "z0": 6.98,
-    "z1": 8.32,
-    "corners_px_at_0_75m": [
-     [
-      1200.8,
-      890.5
-     ],
-     [
-      1405,
-      890.5
-     ],
-     [
-      1405,
-      616.2
-     ],
-     [
-      1200.8,
-      616.2
-     ]
-    ]
-   }
-  ],
-  "song": {
+  "real_total_s": 19.336,
+  "walked_m": 11.754,
+  "slot": {
    "lyric": "Room crossing velocity",
    "timeline": "media/karaoke_v2/lyrics_timed.json (-2sm), full mix",
    "start_s": 194.59,
@@ -3327,83 +2860,113 @@
     "Room": 194.59,
     "crossing": 195.175,
     "velocity": 197.056
-   },
-   "instrumental_track_s": [
-    194.619,
-    198.759
-   ],
-   "v3_song_map_s": [
-    203.8,
-    207.4
-   ]
+   }
   },
-  "fit_note": "the invented walk takes 7.9 s; the line lasts 4.13 s (194.59-198.72): to play the whole walk under it, run it 1.91x fast, or let the shot show its middle",
-  "invented": "speeds and timestamps are OURS (plausible pace), not Jade’s; the route is set by her drawing of the rooms and furniture",
-  "points_px": [
-   [
-    640,
-    498.9
-   ],
-   [
-    769.5,
-    608.6
-   ],
-   [
-    899,
-    738.1
-   ],
-   [
-    1059,
-    677.1
-   ],
-   [
-    1165.7,
-    540
-   ],
-   [
-    1302.9,
-    524.8
-   ],
-   [
-    1447.6,
-    547.6
-   ],
-   [
-    1554.3,
-    677.1
-   ],
-   [
-    1653.3,
-    729
-   ]
-  ],
-  "shortest_walkable_path_px": [
-   [
-    640,
-    498.9
-   ],
-   [
-    800.8,
-    660.4
-   ],
-   [
-    997.3,
-    660.4
-   ],
-   [
-    1162.7,
-    578.1
-   ],
-   [
-    1443,
-    578.1
-   ],
-   [
-    1653.3,
-    729
-   ]
-  ],
-  "people_near_the_route": [
+  "speedup": 4.68,
+  "fit_note": "the sequence takes ~19.3 s in real time; the line is 4.13 s, so the shot runs 4.7x fast (uniform). Alternative: hold the stops shorter (a beat each) and let the walks run ~3x.",
+  "keys": {
+   "V3_rcv_obl_k0": "start (S0: talking in the kitchen, before the bell)",
+   "V3_rcv_obl": "middle (S2: stopped by the shelf, turned to R1; N1 and N2 just inside)",
+   "V3_rcv_obl_k3": "end (S3: at the door again, N3 and N4 on the step)"
+  },
+  "key": "reference (S2, with the legs)",
+  "people_in_the_rooms": [
+   {
+    "who": "A1",
+    "label": "guest A1 (face undrawn)",
+    "floor_world": [
+     3.8,
+     3.25
+    ],
+    "floor_px": [
+     815.2,
+     334.3
+    ],
+    "head_px": [
+     811.3,
+     329.3
+    ]
+   },
+   {
+    "who": "A2",
+    "label": "guest A2 (face undrawn)",
+    "floor_world": [
+     4.32,
+     3.42
+    ],
+    "floor_px": [
+     841.1,
+     255
+    ],
+    "head_px": [
+     840.5,
+     255.5
+    ]
+   },
+   {
+    "who": "A3",
+    "label": "guest A3 (face undrawn)",
+    "floor_world": [
+     4.3,
+     2.78
+    ],
+    "floor_px": [
+     743.6,
+     258.1
+    ],
+    "head_px": [
+     749.6,
+     263.6
+    ]
+   },
+   {
+    "who": "S1",
+    "label": "guest S1, on the couch (face undrawn)",
+    "floor_world": [
+     1.45,
+     0.66
+    ],
+    "floor_px": [
+     420.6,
+     692.4
+    ],
+    "head_px": [
+     412.6,
+     690.3
+    ]
+   },
+   {
+    "who": "B2",
+    "label": "guest B2 (face undrawn)",
+    "floor_world": [
+     2.05,
+     0.66
+    ],
+    "floor_px": [
+     420.6,
+     601
+    ],
+    "head_px": [
+     415.3,
+     601.3
+    ]
+   },
+   {
+    "who": "B1",
+    "label": "guest B1 (face undrawn)",
+    "floor_world": [
+     0.6,
+     2.55
+    ],
+    "floor_px": [
+     708.6,
+     821.9
+    ],
+    "head_px": [
+     704.7,
+     819.7
+    ]
+   },
    {
     "who": "C1",
     "label": "guest C1 (face undrawn)",
@@ -3412,14 +2975,13 @@
      6.45
     ],
     "floor_px": [
-     1120,
+     1302.9,
      372.4
     ],
     "head_px": [
-     1121.4,
+     1304.2,
      372.8
-    ],
-    "clearance_to_path_m": 1.14
+    ]
    },
    {
     "who": "C2",
@@ -3429,14 +2991,13 @@
      7.35
     ],
     "floor_px": [
-     1257.1,
+     1440,
      418.1
     ],
     "head_px": [
-     1253.9,
+     1436.8,
      417
-    ],
-    "clearance_to_path_m": 0.729
+    ]
    },
    {
     "who": "C3",
@@ -3446,214 +3007,151 @@
      7.25
     ],
     "floor_px": [
-     1241.9,
+     1424.8,
      311.4
     ],
     "head_px": [
-     1242,
+     1424.8,
      311.4
-    ],
-    "clearance_to_path_m": 1.436
+    ]
    },
    {
-    "who": "firstLove27",
-    "label": "first love (27, never face-on)",
+    "who": "T1",
+    "label": "guest T1, at the punchbowl (face undrawn)",
     "floor_world": [
-     3.32,
-     3.685
+     3.93,
+     8.12
     ],
     "floor_px": [
-     698.7,
-     407.4
+     1557.3,
+     314.5
     ],
     "head_px": [
-     699.4,
-     409.5
+     1556.8,
+     294.9
+    ]
+   },
+   {
+    "who": "jade27",
+    "label": "Jade (27)",
+    "floor_world": [
+     2.55,
+     2.91
     ],
-    "clearance_to_path_m": 0.713
+    "floor_px": [
+     763.4,
+     524.8
+    ],
+    "head_px": [
+     764.2,
+     524.1
+    ]
+   },
+   {
+    "who": "K1",
+    "label": "guest K1, talking with her in the kitchen (face undrawn)",
+    "floor_world": [
+     2.45,
+     6.62
+    ],
+    "floor_px": [
+     1328.8,
+     540
+    ],
+    "head_px": [
+     1326.8,
+     539.4
+    ]
+   },
+   {
+    "who": "R1",
+    "label": "guest R1, at the shelf: says something (face undrawn)",
+    "floor_world": [
+     3.25,
+     3.72
+    ],
+    "floor_px": [
+     886.9,
+     418.1
+    ],
+    "head_px": [
+     885.9,
+     418.9
+    ]
+   },
+   {
+    "who": "N1",
+    "label": "guest N1, arriving (1st doorbell) (face undrawn)",
+    "floor_world": [
+     3.75,
+     1.35
+    ],
+    "floor_px": [
+     525.7,
+     341.9
+    ],
+    "head_px": [
+     527.9,
+     345.6
+    ]
+   },
+   {
+    "who": "N2",
+    "label": "guest N2, arriving (1st doorbell) (face undrawn)",
+    "floor_world": [
+     4.35,
+     1.55
+    ],
+    "floor_px": [
+     556.2,
+     250.5
+    ],
+    "head_px": [
+     557.4,
+     251.8
+    ]
+   },
+   {
+    "who": "N3",
+    "label": "guest N3, arriving (2nd doorbell) (face undrawn)",
+    "floor_world": [
+     4.1,
+     -2.4
+    ],
+    "floor_px": [
+     -45.7,
+     288.6
+    ],
+    "head_px": [
+     -47.7,
+     288.7
+    ]
+   },
+   {
+    "who": "N4",
+    "label": "guest N4, arriving (2nd doorbell) (face undrawn)",
+    "floor_world": [
+     4.7,
+     -2.7
+    ],
+    "floor_px": [
+     -91.4,
+     197.1
+    ],
+    "head_px": [
+     -92.6,
+     197
+    ]
    }
   ],
-  "her_now": {
-   "floor_world": [
-    1.9,
-    6.4
-   ],
-   "head_px": [
-    1117.2,
-    618.1
-   ],
-   "t_s": 3.94,
-   "note": "posed at the time midpoint of the walk"
+  "arrows": {
+   "colours": {
+    "L1": "#d9a520",
+    "L2": "#2aa7c9",
+    "L3": "#c93a8a"
+   },
+   "note": "legs drawn as floor arrows (y 0.035), rings at the stops: diagnostic only"
   }
- },
- "path": {
-  "note": "her route, one line: shelf, the opening, round the dining table, the sliding door, the deck, the stairs, the lawn, the lemon tree; floor points [X, y, Z]",
-  "world": [
-   [
-    2.72,
-    0,
-    3.3
-   ],
-   [
-    2,
-    0,
-    4.15
-   ],
-   [
-    1.15,
-    0,
-    5
-   ],
-   [
-    1.55,
-    0,
-    6.05
-   ],
-   [
-    2.45,
-    0,
-    6.75
-   ],
-   [
-    2.55,
-    0,
-    7.65
-   ],
-   [
-    2.4,
-    0,
-    8.6
-   ],
-   [
-    1.55,
-    0,
-    9.3
-   ],
-   [
-    1.21,
-    0,
-    9.95
-   ],
-   [
-    1.6,
-    0,
-    10.6
-   ],
-   [
-    2.6,
-    0,
-    10.85
-   ],
-   [
-    4,
-    0,
-    10.75
-   ],
-   [
-    4.87,
-    0,
-    11.1
-   ],
-   [
-    4.87,
-    -0.7,
-    12.9
-   ],
-   [
-    5.7,
-    -0.7,
-    13.6
-   ],
-   [
-    7.2,
-    -0.7,
-    15.5
-   ],
-   [
-    9,
-    -0.7,
-    17.2
-   ],
-   [
-    9.9,
-    -0.7,
-    17.95
-   ]
-  ],
-  "px": [
-   [
-    640,
-    498.9
-   ],
-   [
-    769.5,
-    608.6
-   ],
-   [
-    899,
-    738.1
-   ],
-   [
-    1059,
-    677.1
-   ],
-   [
-    1165.7,
-    540
-   ],
-   [
-    1302.9,
-    524.8
-   ],
-   [
-    1447.6,
-    547.6
-   ],
-   [
-    1554.3,
-    677.1
-   ],
-   [
-    1653.3,
-    729
-   ],
-   [
-    1752.4,
-    669.5
-   ],
-   [
-    1790.5,
-    517.1
-   ],
-   [
-    1775.2,
-    303.8
-   ],
-   [
-    1828.6,
-    171.2
-   ],
-   [
-    2102.9,
-    171.2
-   ],
-   [
-    2209.5,
-    44.8
-   ],
-   [
-    2499,
-    -183.8
-   ],
-   [
-    2758.1,
-    -458.1
-   ],
-   [
-    2872.4,
-    -595.2
-   ]
-  ]
  },
  "figure_report": {
   "A1": {
@@ -3667,9 +3165,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.48
+    "R": 0.29
    },
-   "headTurn": 24
+   "headTurn": 0
   },
   "A2": {
    "legs": {
@@ -3681,10 +3179,10 @@
     }
    },
    "arms": {
-    "L": 0.49,
+    "L": 0.52,
     "R": 0.97
    },
-   "headTurn": -31
+   "headTurn": 0
   },
   "A3": {
    "legs": {
@@ -3696,10 +3194,10 @@
     }
    },
    "arms": {
-    "L": 0.46,
+    "L": 0.74,
     "R": 0.97
    },
-   "headTurn": 32
+   "headTurn": 0
   },
   "S1": {
    "legs": {
@@ -3745,21 +3243,6 @@
     "R": 0.48
    },
    "headTurn": 1
-  },
-  "E1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.47,
-    "R": 0.97
-   },
-   "headTurn": 0
   },
   "C1": {
    "legs": {
@@ -3816,162 +3299,57 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
-   },
-   "headTurn": -15
-  },
-  "G1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.47
-   },
-   "headTurn": 0
-  },
-  "H1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "W1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "W2": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.5
-   },
-   "headTurn": 0
-  },
-  "W3": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "W4": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
     "L": 0.47,
-    "R": 0.97
+    "R": 0.86
    },
-   "headTurn": 0
-  },
-  "D1": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.5
-   },
-   "headTurn": 0
-  },
-  "D2": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.97,
-    "R": 0.97
-   },
-   "headTurn": 0
-  },
-  "poi": {
-   "legs": {
-    "L": {
-     "reach": 1
-    },
-    "R": {
-     "reach": 1
-    }
-   },
-   "arms": {
-    "L": 0.64,
-    "R": 0.64
-   },
-   "headTurn": 0
+   "headTurn": 4
   },
   "jade27": {
    "legs": {
     "L": {
-     "reach": 1.01
+     "reach": 1
     },
     "R": {
-     "reach": 0.99
+     "reach": 1
     }
    },
    "arms": {
-    "L": 0.81,
-    "R": 0.69
+    "L": 0.97,
+    "R": 0.49
    },
-   "headTurn": -26
+   "headTurn": 39
   },
-  "firstLove27": {
+  "K1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": -80
+  },
+  "R1": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.54
+   },
+   "headTurn": -34
+  },
+  "N1": {
    "legs": {
     "L": {
      "reach": 1
@@ -3984,7 +3362,52 @@
     "L": 0.97,
     "R": 0.97
    },
-   "headTurn": 80
+   "headTurn": -80
+  },
+  "N2": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": -38
+  },
+  "N3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 5
+  },
+  "N4": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": -8
   }
  }
 }

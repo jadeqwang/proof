@@ -7,9 +7,10 @@
 // hideParts, edgeNT (line-mode crease threshold, default 0.25), header, intent, move.
 // Geometry (layout.js, Jade's corrections (2), (3)): x = building east, z = out of the windows (SSE). One long room
 // (~9.5 m); couch group at the west end, couch on the WEST wall, its L armchair ~0.7 m from the bookshelves; hall doors
-// in the NORTH wall, a 4.0 m opening centred on it (Mother, decision page). Winter-morning sun (21 Dec 1986, 09:30, Jade's
-// choice) from the SE (23 deg east of the facade normal) slants in north-west; it lights the table's south half and the
-// armchairs, not her face, and stops well short of the north wall (NOTES "(5)").
+// in the NORTH wall, a 4.0 m opening centred on it (Mother, decision page). Round 2 answers: the whole south wall is glazed
+// French doors onto the continuous balcony; the room is 10.5 m. Winter-morning sun (21 Dec 1986, 08:30, honest: moved
+// from Jade's 09:30 so her face is lit) from the SE (34.6 deg east of the facade normal), 17 deg high, slants in
+// north-west across the couch group: her face and hands, the table, the steam and the uncle's hands are lit.
 import { PLACES, DOOR } from './layout.js';
 
 const deg = (r) => r * 180 / Math.PI;
@@ -17,16 +18,16 @@ const yawTo = (from, to) => deg(Math.atan2(to[0] - from[0], to[1] - from[1]));  
 const [JX, JZ] = PLACES.jadeSit, JY = PLACES.jadeYaw * Math.PI / 180, FWD = [Math.sin(JY), Math.cos(JY)], LEFT = [Math.cos(JY), -Math.sin(JY)];
 const H = PLACES.uncleHands, F = PLACES.focus;
 // ---------------------------------------------------------------- poses
-// state A: the uncle on the lounger's west edge, just outside the light; his left hand cupped palm-up in the light with
+// state A: the uncle on the front edge of the couch's north seat, west of her; his left hand cupped palm-up in the light with
 // the small thing in it, his right thumb and index pinching it from above (two hands that read apart from above)
 const UYAW = yawTo(PLACES.uncleSeat, [H[0], H[2]]), UF = [Math.sin(UYAW * Math.PI / 180), Math.cos(UYAW * Math.PI / 180)];
 const BALL = [H[0], H[1] + 0.024, H[2]];
-const uncleShape = (o = {}) => ({ at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.45 }, yaw: UYAW, spine: { bend: 24 }, head: { look: BALL },
+const uncleShape = (o = {}) => ({ at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.42 }, yaw: UYAW, spine: { bend: 30 }, head: { look: BALL },
   L: { to: H, hand: { shape: 'cup', spread: 10, curl: { index: [20, 22, 10], middle: [24, 26, 12], ring: [28, 30, 14], little: [32, 34, 16] } }, palm: 'up', fingers: [UF[0], 0.05, UF[1]] },
   R: { tip: { finger: 'index', at: [BALL[0], BALL[1] + 0.013, BALL[2]] }, hand: { shape: 'pinch', spread: 14, curl: { middle: [40, 50, 25], ring: [55, 65, 32], little: [70, 80, 40] } }, palm: 'down', fingers: [UF[0], -0.35, UF[1]] }, ...o });
-// she kneels at her spot (where she will sit, cross-legged, a week later), watching his hands across the table corner. KEPT
-// kneeling: Jade's "cross-legged, not kneeling" is read as the drift scene; kneeling up keeps her eyes above his hands
-const jadeWatch = (o = {}) => ({ at: PLACES.jadeStand, legs: 'kneel', yaw: yawTo(PLACES.jadeStand, [H[0], H[2]]), spine: { bend: 12 }, head: { look: BALL }, L: 'lap', R: 'lap', ...o });
+// she sits CROSS-LEGGED at her spot (round 2 answers: cross-legged in BOTH scenes), watching his hands across the table
+// corner; his hands are held low (8 cm over the table top) so she looks a little down into them
+const jadeWatch = (o = {}) => ({ at: PLACES.jadeStand, legs: 'cross', yaw: yawTo(PLACES.jadeStand, [H[0], H[2]]), spine: { bend: 8 }, head: { look: BALL }, L: 'lap', R: 'lap', ...o });
 // state B: she sits CROSS-LEGGED (Jade, decision page) facing the table and the windows (south), working on the table's
 // north-west corner
 const C = [JX + FWD[0] * 0.36, JZ + FWD[1] * 0.36];   // in front of her, over the table's north edge
@@ -50,26 +51,32 @@ const ADULTS = [0.75, 1.2, -2.85];
 
 export const SHOTS = [
   // ---------------------------------------------------------------- reference (not in the cut)
-  { id: 'REF_plan', lens: 0, ortho: { w: 12.4 }, pos: [2.25, 9, -2.85], target: [2.25, 0, -2.85], up: [0, 0, -1], near: 6.14, far: 12, tissue: 8, figs: CROWD(8), beamLine: false,
-    header: 'PLAN (reference): north up: hall doors + bookshelves top, windows + balcony bottom, couch left (west); yellow = sun', intent: 'Top view of the living room, state B with everyone in it. Not a shot.' },
+  { id: 'REF_plan', lens: 0, ortho: { w: 13.4 }, pos: [2.25, 9, -2.35], target: [2.25, 0, -2.35], up: [0, 0, -1], near: 6.14, far: 12, tissue: 8, figs: CROWD(8), beamLine: false,
+    header: 'PLAN (reference): north up: hall doors + bookshelves top, balcony doors + balcony bottom, couch left (west); yellow = sun', intent: 'Top view of the living room, state B with everyone in it. Not a shot.' },
   { id: 'REF_wide', lens: 20, pos: [6.55, 1.9, -4.95], aim: [[-1.0, 0.5, -2.6], 0.5, 0.62], tissue: 8, figs: CROWD(8),
-    header: 'MASTER (reference): the long room from its east (old dining) end: windows left, hall doors + bookshelves right, couch group far end',
-    intent: 'The whole joined room: both sets of French windows, the 09:30 beams slanting in from the left onto the couch group\'s table and the dining end, the child at the light\'s north edge, Mother in the wide hall doorway, the adults in the dark between the shafts. Not a shot.' },
+    header: 'MASTER (reference): the long room from its east (old dining) end: balcony doors all along the left, hall doors + bookshelves right, couch group far end',
+    intent: 'The whole joined room: glazed French doors along the whole south wall onto the balcony, the 08:30 sun slanting in from the left across the room in bands (the piers between the bays throw the dark stripes), the child lit at the couch group, Mother in the wide hall doorway in shadow. Not a shot.' },
+  { id: 'REF_doors', lens: 24, pos: [2.25, 1.35, -4.6], aim: [[1.3, 1.0, 0.3], 0.5, 0.5], tissue: 8, figs: ALONE(8),
+    header: 'REFERENCE (round 2): the south side: glazed French doors all along onto the continuous balcony; latches; white wicker chair outside',
+    intent: 'From the hall doorway looking south: four bays of steel French doors (two latched pairs per bay: cremone rod, lever handle, barrel bolts) along the whole wall, the balcony and its parapet beyond, the white wicker chair on the balcony, the 08:30 sun coming in from the left. Not a shot.' },
+  { id: 'REF_latch', lens: 28, pos: [1.9, 1.25, -2.0], aim: [[0.75, 0.95, 0.35], 0.5, 0.5], tissue: 8, figs: ALONE(8),
+    header: 'REFERENCE (round 2): a door latch close up (cremone bolt with lever handle; barrel bolts on the fixed leaf); the wicker chair beyond the glass',
+    intent: 'Close on the meeting stiles of one pair of balcony doors. Not a shot.' },
   { id: 'REF_beam', lens: 22, pos: [1.45, 1.35, -0.25], aim: [[-1.2, 0.5, -3.6], 0.5, 0.6], tissue: 8, figs: ALONE(8),
-    header: 'REFERENCE: from the windows\' east end, along the light', intent: 'The beam from beside the windows: the table\'s south half, the armchairs and the couch\'s south end in the light, the child at its north edge, Mother in the doorway far beyond its end. Not a shot.' },
+    header: 'REFERENCE: from the doors, along the light', intent: 'The light from beside the doors: the couch group, the table and the child in it, Mother in the doorway beyond it. Not a shot.' },
 
   // ---------------------------------------------------------------- verse 1, 0:29.7-0:58.6
-  { id: 'V1a', t: [29.74, 31.58], lens: 65, state: 'A', orbit: { at: 'jade3:eyes', az: yawTo(PLACES.jadeStand, [H[0], H[2]]), el: 0, dist: 1.8 }, aim: ['jade3:eyes', 0.42, 0.42], focus: ['jade3'],
+  { id: 'V1a', t: [29.74, 31.58], lens: 50, state: 'A', orbit: { at: 'jade3:eyes', az: yawTo(PLACES.jadeStand, [H[0], H[2]]) + 38, el: 4, dist: 1.7 }, aim: ['jade3:eyes', 0.56, 0.4], focus: ['jade3'],
     figs: { jade3: jadeWatch(), uncle: uncleShape() },
     header: '0:29.7 OUTSIDE "Three years old, uncle explains atoms" (header 1. Shanghai, 1986)',
-    intent: 'Outside: frontal, level, locked off on her face, lit from the windows behind the camera. She kneels up at the table corner (state A keeps the kneel: she watches, a week before she sits cross-legged), eyes down on the uncle\'s hands; he sits in the armchair across the table, his hands reaching in over the table just north of the light (09:30); he is out of frame right, only his hands in.' },
-  { id: 'V1b', t: [31.58, 34.52], lens: 40, state: 'A', orbit: { at: 'ball', az: yawTo([BALL[0], BALL[2]], PLACES.jadeStand), el: 36, dist: 0.6 }, aim: ['ball', 0.5, 0.5], edgeNT: 0.12, ...INSIDE,
+    intent: 'Outside: frontal, level, locked off on her face, lit from the balcony doors behind the camera. She sits cross-legged at the table corner (as she will a week later), eyes on the uncle\'s hands; he sits on the near end of the couch (frame left), leaning in, his hands low in the light between them (08:30); his head is out of frame, only his arms and hands come in.' },
+  { id: 'V1b', t: [31.58, 34.52], lens: 40, state: 'A', orbit: { at: 'ball', az: yawTo([BALL[0], BALL[2]], PLACES.jadeStand), el: 22, dist: 0.5 }, aim: ['ball', 0.5, 0.5], edgeNT: 0.12, ...INSIDE,
     figs: { jade3: jadeWatch(), uncle: uncleShape() },
     header: '0:31.6 INSIDE the uncle\'s hands shaping something small; his face is not in frame',
-    intent: 'Inside: her eye-line down onto his two hands in the light: the left cupped palm-up holding something small, the right thumb and index pinching it from above, the other fingers fanned. Forearms and knees, no face.' },
+    intent: 'Inside: her eye-line onto his two hands in the light (camera ~0.1 m above her cross-legged eye height, as if she sits up tall, so the cupped palm reads): the left cupped palm-up holding something small, the right thumb and index pinching it from above, the other fingers fanned. Forearms and knees, no face.' },
   { id: 'V1c', t: [34.52, 37.85], lens: 55, tissue: 1, orbit: { at: 'jade3:eyes', az: PLACES.jadeYaw, el: 0, dist: 1.9 }, aim: ['jade3:eyes', 0.5, 0.42], focus: ['jade3'], figs: ALONE(1),
     header: '0:34.5 OUTSIDE "A week later my mother finds me": she sits in the drift, at the edge of the light',
-    intent: 'Outside: frontal, level, locked off, across the coffee table from the window side. She sits cross-legged at the table\'s corner between the couch and the armchair, just north of the light (09:30: it falls on the table\'s south half), a whole sheet of 草纸 in her hands, a stray bit in her hair; the stack and the torn pieces on the table; the north wall and the hall doors dark behind her.' },
+    intent: 'Outside: frontal, level, locked off, across the coffee table from the window side. She sits cross-legged at the table\'s corner between the couch and the armchair, in the light (08:30: face, hands and table lit), a whole sheet of 草纸 in her hands, a stray bit in her hair; the stack and the torn pieces on the table; the north wall and the hall doors dark behind her.' },
   { id: 'V1d_1', t: [37.85, 41.43], tissue: 1, ...TISSUE_CAM, figs: ALONE(1),
     header: '0:37.9 INSIDE "sat in a snow drift of paper": 1 sheet (gold dot x1)', intent: 'Inside, the tissue camera: her eye-line onto her own hands over the table corner. One whole sheet (16 x 23 cm) held low over the table (cross-legged, her eyes are only ~10 cm above its top).' },
   { id: 'V1d_2', t: [41.43, 43.34], tissue: 2, ...TISSUE_CAM, figs: ALONE(2),
@@ -80,7 +87,7 @@ export const SHOTS = [
     header: '0:45.4 INSIDE "repeating what uncle said": 8 eighths (gold dots x8)', intent: 'Same camera. Eight eighths. Round them, the drift: sixteenths down to fingertip confetti. This is the thing drawn in full depth.' },
   { id: 'V1e', t: [48.14, 50.52], lens: 32, tissue: 8, pos: [-0.5, 0.8, -0.25], aim: ['jade3:eyes', 0.3, 0.58], figs: ALONE(8),
     header: '0:48.1 "What on earth are you doing?": Mother in the doorway, beyond the reach of the beam',
-    intent: 'Low, from the windows, looking into the room: the child frame left at the edge of the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, in the dark, far beyond the reach of the light. Mother\'s face is drawn.' },
+    intent: 'Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, in the dark, far beyond the reach of the light. Mother\'s face is drawn.' },
   { id: 'V1f', t: [50.52, 53.93], lens: 20, tissue: 8, pos: [JX + FWD[0] * 0.06, 0.6, JZ + FWD[1] * 0.12], aim: [ADULTS, 0.55, 0.38], ...INSIDE,
     figs: CROWD(8, { head: { look: ADULTS } }),
     header: '0:50.5 INSIDE "The adults howl with laughter": seen from below, out of the light (one gold ?)',

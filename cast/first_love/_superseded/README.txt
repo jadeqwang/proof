@@ -12,3 +12,9 @@ bracelet he does not wear; the slate-blue shirt drawn as a henley (it is a plain
 slate-blue profile figure (A v2 fig 5 has a raised forearm with no upper arm, E v2 fig 6 a raised fist that reads as
 the wrong hand); some views showed an eye, nose or lips. Replaced by fl_A_turnaround_back_v3, fl_B_backhead_neck_v3,
 fl_E_costume_19_27_v3, fl_D_hands_forearms_v4 and fl_G_ots_hair_v2. Do not pass these as hair or costume references.
+
+Superseded 2026-11-25 (round 2). B v3, A v3 and G v2: Jade: the hair reads as him and the centre part is right, but
+the change from the long top to the short lower hair is too gradual; it is really a top half over a lower part buzzed
+and grown out ~6 months (an even short buzz with a visible step, not a taper). G v2's sweatshirt seal was also a small
+generic emblem; the IAS seal is huge, nearly the whole front. Replaced by fl_B_backhead_neck_v4 (hair anchor),
+fl_A_turnaround_back_v4, fl_G_ots_hair_v3, plus the new prop sheet fl_H_ias_sweatshirt_v1. Do not pass these as hair refs.

@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   3.3,
-   2.25,
-   -4.15
+   2.6,
+   2.15,
+   -5.3
   ],
   "target": [
-   3.3236,
-   1.6397,
-   -2.2455
+   2.4353,
+   1.7891,
+   -3.3397
   ],
   "lens_mm": 20,
   "frame_width_mm": 36,
@@ -24,39 +24,39 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   -0.9999,
+   -0.9965,
    0,
-   0.0124,
+   -0.0837,
    0,
-   0.0038,
-   0.9523,
-   0.3051,
+   -0.0151,
+   0.9836,
+   0.1798,
    0,
-   -0.0118,
-   0.3051,
-   -0.9522,
+   0.0823,
+   0.1804,
+   -0.9801,
    0,
-   3.3,
-   2.25,
-   -4.15,
+   2.6,
+   2.15,
+   -5.3,
    1
   ],
   "viewMatrix": [
-   -0.9999,
-   0.0038,
-   -0.0118,
+   -0.9965,
+   -0.0151,
+   0.0823,
    0,
    0,
-   0.9523,
-   0.3051,
+   0.9836,
+   0.1804,
    0,
-   0.0124,
-   0.3051,
-   -0.9522,
+   -0.0837,
+   0.1798,
+   -0.9801,
    0,
-   3.3512,
-   -0.8889,
-   -4.5994,
+   2.1471,
+   -1.1224,
+   -5.7968,
    1
   ],
   "projectionMatrix": [
@@ -85,45 +85,93 @@
  ],
  "book": null,
  "panes": {
-  "picture_window": {
+  "front_window": {
    "px": [
     [
-     1133.5,
-     254.1
+     1051.4,
+     364.8
     ],
     [
-     1764.7,
-     254.5
+     1344,
+     364.4
     ],
     [
-     1679.2,
-     638.6
+     1326.3,
+     640.7
     ],
     [
-     1115.1,
-     635.9
+     1047.1,
+     647.3
     ]
    ],
    "world": [
     [
-     2.7,
+     1.7,
      2.05,
      0
     ],
     [
-     0.35,
+     0.2,
      2.05,
      0
     ],
     [
-     0.35,
-     0.5,
+     0.2,
+     0.6,
      0
     ],
     [
-     2.7,
-     0.5,
+     1.7,
+     0.6,
      0
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "west_window": {
+   "px": [
+    [
+     1411.4,
+     365.4
+    ],
+    [
+     1609.4,
+     373.1
+    ],
+    [
+     1571.3,
+     724.3
+    ],
+    [
+     1391.7,
+     627.2
+    ]
+   ],
+   "world": [
+    [
+     0,
+     2.05,
+     -0.3
+    ],
+    [
+     0,
+     2.05,
+     -1.7
+    ],
+    [
+     0,
+     0.75,
+     -1.7
+    ],
+    [
+     0,
+     0.75,
+     -0.3
     ]
    ],
    "behind_camera": [
@@ -136,42 +184,42 @@
   "seal_square": {
    "px": [
     [
-     973.2,
-     669.9
+     914.9,
+     629.4
     ],
     [
-     930.3,
-     662.2
+     998.1,
+     621.2
     ],
     [
-     948.7,
-     652.6
+     1005.2,
+     708.9
     ],
     [
-     990.3,
-     659.8
+     922,
+     719.7
     ]
    ],
    "world": [
     [
-     3.2966,
-     0.9187,
-     -1.2569
+     2.4252,
+     0.9692,
+     -0.9489
     ],
     [
-     3.4261,
-     0.9187,
-     -1.2036
+     2.0599,
+     0.9692,
+     -0.8441
     ],
     [
-     3.3736,
-     0.8944,
-     -1.0761
+     2.0363,
+     0.599,
+     -0.9265
     ],
     [
-     3.2441,
-     0.8944,
-     -1.1294
+     2.4016,
+     0.599,
+     -1.0313
     ]
    ],
    "behind_camera": [
@@ -185,54 +233,54 @@
  "heads": {
   "jade27": {
    "px": [
-    981.4,
-    514.7
+    931.9,
+    553.1
    ],
    "eyes": [
-    970.3,
-    512.6
+    941.1,
+    548.5
    ],
    "mouth": [
-    967.3,
-    531
+    943.3,
+    562.5
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 24
+   "facing_camera_deg": 27
   },
   "firstLove27": {
    "px": [
-    864.6,
-    444.8
+    1026.4,
+    476.8
    ],
    "eyes": [
-    882.2,
-    451.5
+    1012.9,
+    482.1
    ],
    "mouth": [
-    877.5,
-    475.1
+    1016.3,
+    498.8
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 148,
+   "facing_camera_deg": 145,
    "blocked_by": "firstLove27 first love (27, never face-on)"
   }
  },
  "hands": {
   "jade27.L": {
    "px": [
-    1020.4,
-    664.7
+    1009.8,
+    592.6
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "jade27.R": {
    "px": [
-    924.6,
-    648.1
+    896.9,
+    602.4
    ],
    "shape": "grip",
    "in_frame": true,
@@ -240,19 +288,19 @@
   },
   "firstLove27.L": {
    "px": [
-    899.8,
-    660.2
+    1002.5,
+    714
    ],
-   "shape": "grip",
+   "shape": "relax",
    "in_frame": true,
    "visible": true
   },
   "firstLove27.R": {
    "px": [
-    999.7,
-    678.2
+    1101.3,
+    695.8
    ],
-   "shape": "grip",
+   "shape": "relax",
    "in_frame": true,
    "visible": true
   }
@@ -260,59 +308,59 @@
  "lights": [
   {
    "name": "sun",
-   "kind": "low soft afternoon sun through the picture window (the beam)",
+   "kind": "low soft afternoon sun through the front and west windows (the beams)",
    "on": true,
    "color": "#fff0d8",
    "world": [
-    -3.4151,
-    2.4096,
-    3.2106
+    -7.2835,
+    3.216,
+    5.351
    ],
    "px": [
-    2015,
-    172.2
+    1823.8,
+    239.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.903,
-    0.429
+    -0.896,
+    0.443
    ],
-   "toward_camera": 0.399,
+   "toward_camera": 0.516,
    "aim_world": [
-    3.3369,
-    0.88,
-    -1.1708
+    2.2329,
+    0.7823,
+    -0.9302
    ]
   },
   {
    "name": "sky",
-   "kind": "diffuse skylight through the picture window (fill)",
+   "kind": "diffuse skylight through the front and west windows (fill)",
    "on": true,
    "color": "#dfe6f0",
    "world": [
-    1.525,
-    1.275,
+    0.95,
+    1.325,
     1
    ],
    "px": [
-    1338.6,
-    409
+    1144.4,
+    482.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.826,
-    0.564
+    -0.701,
+    0.713
    ],
-   "toward_camera": 0.626,
+   "toward_camera": 0.747,
    "aim_world": [
-    3.2667,
+    2.3333,
     1,
     -0.58
    ]
   }
  ],
  "warnings": [],
- "intent": "The room as the two shots see it: the floral couch against the front (south) wall at frame left, the picture window beside it at frame right throwing the low November-afternoon sun across her and onto the floor; the entry / stair hall opening at the far right, coffee table and armchair at frame left. He stands back to camera; she sits forward taking the sweatshirt. Not a shot.",
+ "intent": "The living room as the two shots see it: the floral couch against the front (south) wall, the front window beside it throwing the low November-afternoon sun across her and onto the rug; the west window over the egg-carton seedlings and the front door's jog at frame right; the loveseat and the piano at frame left. He stands back to camera; she holds the sweatshirt up. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",
  "section": "Bridge",
@@ -346,165 +394,154 @@
   "front": "south (Capri Lane)",
   "lat": 42.0525,
   "lon": -87.7709,
-  "livingRoomInHouse": {
-   "x0": 6,
-   "x1": 10.9,
+  "plan": "Jade's hand-drawn main floor (inputs/refs_mortongrove/Pasted image.png, private), drawing TOP = SOUTH (reasoned; see NOTES)",
+  "greatRoomInHouse": {
+   "x0": 0.2,
+   "x1": 6.5,
    "y0": 0.2,
-   "y1": 4.5,
-   "note": "GUESS: SE corner of the footprint (house frame: origin SW corner, x east, y north)"
+   "y1": 7.4,
+   "note": "house frame (origin SW corner of the footprint, x east, y north); the living room is x 1.6-6.5, y 0.2-2.2 of it; a 1.4 x 2.0 m entry notch at the SW corner (front door in its north side) - the county footprint shows a plain rectangle (porch roof over it? GUESS)"
   },
+  "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
   "ceiling": {
    "kind": "vaulted (cathedral), Jade",
-   "ridge": "north-south at x 2.45 (GUESS: the main-level wing spans E-W, gable to the street)",
+   "ridge": "east-west (parallel to Capri Lane) at z -5.6 (Jade: parallel to the street; its position on the house centre line is a GUESS)",
    "plate_m": 2.44,
-   "peak_m": 3.257,
+   "peak_m": 4.307,
    "pitch": "4 in 12"
   },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
-  "living_room_m": [
-   4.9,
-   4.3,
-   2.44
-  ],
-  "living_room_peak_m": 3.257,
-  "couch": "against the FRONT (south) wall, its west end just short of the picture window (Jade); which end is nearer the window is a GUESS (the west end: the afternoon sun then reaches her)"
+  "great_room_m": {
+   "x": [
+    -1.4,
+    4.9
+   ],
+   "z": [
+    -7.2,
+    0
+   ],
+   "jog_z": -2
+  },
+  "orientation": "Jade's drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)",
+  "couch": "against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)"
  },
  "sweatshirt": {
   "colour": "white",
-  "folded_size_m": [
-   0.3,
-   0.34,
-   0.05
-  ],
-  "centre": {
+  "state": "UNFOLDED, held up against her by the shoulder seams, the front toward him (Jade: the seal is huge and only reads unfolded)",
+  "chest_m": 0.58,
+  "length_m": 0.69,
+  "collar": {
    "world": [
-    3.3369,
-    0.88,
-    -1.1708
+    2.2506,
+    1.06,
+    -0.8684
    ],
    "px": [
-    960,
-    669.6
+    954.7,
+    603
    ]
   },
   "seal": {
    "label": "IAS seal (Truth, Beauty)",
-   "what": "Institute for Advanced Study seal, DARK BLUE on a WHITE sweatshirt: round, two standing figures labelled TRUTH (left) and BEAUTY (right)",
-   "radius_m": 0.07,
+   "what": "Institute for Advanced Study seal, DARK BLUE line print on a WHITE sweatshirt, HUGE: almost the whole front (diameter 0.38 m on a 0.58 m chest): round, two standing figures labelled TRUTH (left) and BEAUTY (right)",
+   "radius_m": 0.19,
    "centre": {
     "world": [
-     3.3351,
-     0.9066,
-     -1.1665
+     2.2308,
+     0.7841,
+     -0.9377
     ],
     "px": [
      960.6,
-     661
+     669.7
     ]
    },
-   "top_as_she_reads_it": {
+   "top": {
     "world": [
-     3.3614,
-     0.9187,
-     -1.2302
+     2.2426,
+     0.9692,
+     -0.8965
     ],
     "px": [
-     951.6,
-     666
+     957.1,
+     625.2
     ]
    },
    "bottom": {
     "world": [
-     3.3089,
-     0.8944,
-     -1.1027
+     2.2189,
+     0.599,
+     -0.9789
     ],
     "px": [
-     969.3,
-     656.2
+     964.2,
+     714.3
     ]
    },
    "truth_side": {
     "world": [
-     3.2963,
-     0.9066,
-     -1.1825
+     2.3129,
+     0.7841,
+     -0.9613
     ],
     "px": [
-     973.3,
-     663.3
+     941.8,
+     671.8
     ]
    },
    "beauty_side": {
     "world": [
-     3.374,
-     0.9066,
-     -1.1505
+     2.1486,
+     0.7841,
+     -0.9141
     ],
     "px": [
-     948,
-     658.8
+     979.2,
+     667.6
     ]
    },
-   "corner_order": "panes.seal_square = TL, TR, BR, BL as she reads it (a painted seal maps straight on)",
-   "facing": "up and tipped 10 degrees toward her: upright for her, upside down for a camera behind him",
-   "normal_to_camera_deg": 75
+   "corner_order": "panes.seal_square = TL, TR, BR, BL as one faces the front (a painted seal maps straight on)",
+   "facing": "out of the front of the sweatshirt she holds up against herself: toward him and the cameras behind him; upright",
+   "normal_to_camera_deg": 21,
+   "reads_upright_on_screen": true,
+   "sun_on_front": {
+    "cos_incidence": -0.237,
+    "note": "negative = the sun is BEHIND the front: the seal is in the windows' skylight; the sun lights the back of the sweatshirt and rims its edges"
+   }
   },
   "grips": {
-   "hisL": {
-    "world": [
-     3.4862,
-     0.8956,
-     -1.2052
-    ],
-    "px": [
-     910.4,
-     669.4
-    ]
-   },
-   "hisR": {
-    "world": [
-     3.2551,
-     0.8956,
-     -1.3004
-    ],
-    "px": [
-     987.4,
-     683.5
-    ]
-   },
    "herL": {
     "world": [
-     3.1876,
-     0.8644,
-     -1.1364
+     2.0103,
+     1.06,
+     -0.7995
     ],
     "px": [
-     1008.5,
-     669.8
+     1008.3,
+     598.2
     ]
    },
    "herR": {
     "world": [
-     3.4187,
-     0.8644,
-     -1.0412
+     2.491,
+     1.06,
+     -0.9373
     ],
     "px": [
-     934.7,
-     656.8
+     898.9,
+     608.1
     ]
    }
   },
-  "note": "four hands on it: his two at the side edges on his half, hers at the side edges on her half, every thumb on top and fingers under (engine hold, cylinder r = half the thickness)"
+  "note": "her two hands close on the shoulder seams (thumbs behind, fingers over the top); the body hangs in front of her and folds forward over her knees; sleeves hang beside it"
  },
  "first_love": {
   "who": "first love (a real person: never named, never face-on)",
   "face_shown": false,
-  "facing_camera_deg": 148,
-  "hair": "dark brown, relatively straight (unchanged over the years)",
+  "facing_camera_deg": 145,
+  "hair": "dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)",
   "feet": "Birkenstock-type cork sandals (Naot), bare feet",
-  "forearms": "sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE (paint it in the hand insert)",
+  "forearms": "sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE",
   "hands": "same absolute size as hers (18.3 cm); feet 24.8 cm (cast kind adultFirstLove)"
  },
  "jade": {
@@ -528,14 +565,32 @@
   ],
   "note": "computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)",
   "in_sun_margin_m": {
-   "her_eyes": 0.466,
-   "seal": 0.661,
-   "his_head": -0.126
-  }
+   "her_eyes": {
+    "front": 0.463,
+    "west": -1.234,
+    "dining": -6.444
+   },
+   "her_head": {
+    "front": 0.303,
+    "west": -1.338,
+    "dining": -6.547
+   },
+   "seal": {
+    "front": 0.28,
+    "west": -0.942,
+    "dining": -6.152
+   },
+   "his_head": {
+    "front": -0.539,
+    "west": -0.41,
+    "dining": -5.62
+   }
+  },
+  "seal_front_cos": -0.237
  },
  "beam": {
-  "name": "picture window",
-  "kind": "low afternoon sun through the picture window beside the couch (parallel)",
+  "name": "front + west windows",
+  "kind": "low afternoon sun through the front window beside the couch, the west (egg-carton) window and the dining window (parallel)",
   "model": "parallel (sunlight)",
   "source_world": null,
   "direction_of_travel": [
@@ -545,84 +600,84 @@
   ],
   "aperture_world": [
    [
-    2.7,
+    1.7,
     1.9793,
     0
    ],
    [
-    0.6577,
+    0.5077,
     1.9793,
     0
    ],
    [
-    0.6577,
-    0.5,
+    0.5077,
+    0.6,
     0
    ],
    [
-    2.7,
-    0.5,
+    1.7,
+    0.6,
     0
    ]
   ],
   "aperture_px": [
    [
-    1132.5,
-    273.5
+    1051.2,
+    379.2
    ],
    [
-    1677.7,
-    273.9
+    1284.3,
+    378.6
    ],
    [
-    1605,
-    638.2
+    1270,
+    642
    ],
    [
-    1115.1,
-    635.9
+    1047.1,
+    647.3
    ]
   ],
   "footprints": {
    "floor": {
     "world": [
      [
-      2.8348,
+      3.1202,
       0,
-      -1.4149
+      -1.6979
      ],
      [
-      8.0679,
+      9.126,
       0,
-      -4.8159
+      -5.6011
      ],
      [
-      10.1102,
+      10.3183,
       0,
-      -4.8159
+      -5.6011
      ],
      [
-      4.8771,
+      4.3125,
       0,
-      -1.4149
+      -1.6979
      ]
     ],
     "px": [
      [
-      1122,
-      965.3
+      734.3,
+      945.9
      ],
      [
-      -45887.6,
-      23374.7
+      16503.7,
+      -4900.7
      ],
      [
-      -53786.7,
-      19170.2
+      16026.9,
+      -3951.8
      ],
      [
-      462.7,
-      959.7
+      393,
+      961.5
      ]
     ]
    },
@@ -631,48 +686,48 @@
      [
       4.9,
       0,
-      -1.4298
+      -2.0797
      ],
      [
       4.9,
       0,
-      -2.7571
+      -2.8545
      ],
      [
       4.9,
-      1.005,
-      -2.7571
+      0.9706,
+      -2.8545
      ],
      [
       4.9,
-      1.4741,
-      -1.4298
+      1.2444,
+      -2.0797
      ]
     ],
     "px": [
      [
-      453.1,
-      962.9
+      145.6,
+      1039.3
      ],
      [
-      129.2,
-      1438.6
+      -66.1,
+      1242.7
      ],
      [
-      -18.5,
-      1006.5
+      -140.3,
+      872.8
      ],
      [
-      373,
-      503.6
+      87.2,
+      658
      ]
     ]
    }
   },
   "anchor_world": [
-   3.3369,
-   0.88,
-   -1.1708
+   2.2329,
+   0.7823,
+   -0.9302
   ],
   "anchor_px": [
    960,
@@ -680,14 +735,14 @@
   ],
   "on_screen": {
    "from_px": [
-    986.8,
-    656.9
+    977.9,
+    661.2
    ],
    "to_px": [
-    932.4,
-    682.7
+    941.6,
+    678.2
    ],
-   "angle_deg": 25.4,
+   "angle_deg": 25.1,
    "travel": "right-to-left"
   },
   "rhyme": {
@@ -700,87 +755,112 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": -14.6,
+   "angle_error_deg": -14.9,
    "travel_ok": true
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
   "sun_altitude_deg": 10.9,
   "sun_azimuth_deg": 236.98,
-  "note": "the picture window opening, narrowed by the wall reveal for this sun, swept along the light; eaves not modelled (a low sun passes under them)"
+  "solids": [
+   "front",
+   "west",
+   "dining"
+  ],
+  "note": "solid[0] = the front window (the others: west, dining), each narrowed by its wall reveal for this sun; eaves not modelled (a low sun passes under them)"
  },
  "points_world": {
   "jade27": {
    "eyes": [
-    3.3081,
-    1.2525,
-    -0.7382
+    2.2963,
+    1.264,
+    -0.6885
    ],
    "head": [
-    3.2702,
-    1.2215,
-    -0.6567
+    2.3321,
+    1.2282,
+    -0.608
    ],
    "chin": [
-    3.31,
-    1.1321,
-    -0.7254
+    2.2958,
+    1.143,
+    -0.6836
    ],
    "handL": [
-    3.1519,
-    0.8865,
-    -1.1469
+    2.0058,
+    1.0884,
+    -0.8153
    ],
    "handR": [
-    3.4514,
-    0.8865,
-    -1.0236
+    2.4985,
+    1.0783,
+    -0.9111
    ],
    "hip": [
-    3.2667,
+    2.3333,
     0.5308,
     -0.58
    ],
    "shoulderC": [
-    3.2821,
-    1.0166,
-    -0.6526
+    2.3216,
+    1.0228,
+    -0.6211
+   ],
+   "kneeL": [
+    2.1226,
+    0.4373,
+    -0.9459
+   ],
+   "kneeR": [
+    2.3182,
+    0.4373,
+    -1.002
    ]
   },
   "firstLove27": {
    "eyes": [
-    3.5503,
-    1.5849,
-    -1.2773
+    2.0539,
+    1.6267,
+    -1.2399
    ],
    "head": [
-    3.5891,
-    1.6231,
-    -1.3642
+    2.0146,
+    1.658,
+    -1.3293
    ],
    "chin": [
-    3.5872,
-    1.4941,
-    -1.3638
+    2.0191,
+    1.5294,
+    -1.3199
    ],
    "handL": [
-    3.5189,
-    0.9177,
-    -1.1875
+    2.1339,
+    0.8216,
+    -1.608
    ],
    "handR": [
-    3.2194,
-    0.9177,
-    -1.3108
+    1.7303,
+    0.8216,
+    -1.4359
    ],
    "hip": [
-    3.6867,
+    1.95,
     0.9256,
-    -1.6
+    -1.48
    ],
    "shoulderC": [
-    3.6314,
-    1.4261,
-    -1.4658
+    1.9814,
+    1.4498,
+    -1.4063
+   ],
+   "kneeL": [
+    2.0653,
+    0.4741,
+    -1.4826
+   ],
+   "kneeR": [
+    1.8683,
+    0.4741,
+    -1.3986
    ]
   }
  },
@@ -788,17 +868,17 @@
   "jade27": {
    "legs": {
     "L": {
-     "reach": 0.79
+     "reach": 0.77
     },
     "R": {
-     "reach": 0.79
+     "reach": 0.77
     }
    },
    "arms": {
-    "L": 0.84,
-    "R": 0.75
+    "L": 0.63,
+    "R": 0.38
    },
-   "headTurn": -15
+   "headTurn": 9
   },
   "firstLove27": {
    "legs": {
@@ -810,10 +890,10 @@
     }
    },
    "arms": {
-    "L": 0.98,
-    "R": 0.94
+    "L": 0.97,
+    "R": 0.97
    },
-   "headTurn": -2
+   "headTurn": 1
   }
  }
 }

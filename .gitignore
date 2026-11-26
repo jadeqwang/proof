@@ -26,3 +26,6 @@ media/keyframes/
 
 # demucs stems for -2sm: large and regenerable (analysis/m2sm/*.py)
 analysis/m2sm/stems/
+
+# Jade's hand drawing of the closet (2026-11-25), private like the other refs
+inputs/refs_closet.png

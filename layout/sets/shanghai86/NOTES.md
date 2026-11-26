@@ -1,6 +1,115 @@
 # shanghai86 — notes and assumptions
 
-**Read the 2026-11-25 sections at the bottom first. Each later one overrides the earlier ones where they differ; "(5)" is current.**
+**Read "2026-11-25 (round 2 answers)" first (just below). It overrides every older section where they differ.**
+
+## 2026-11-25 (round 2 answers)
+
+Jade's directions (decision page, round 2) and what was built. Files: `layout.js`, `build.js`, `shots.js`, `lightstudy/`,
+new `sweep2.mjs` (a one-day, minute-by-minute sun sweep for the new geometry).
+
+### 1. The light: moved, honestly, so she is lit (she was NOT moved)
+- **Jade**: "move the angle of the light so she's lit" (at 09:30 her face was in shade).
+- **New sun: 1986-12-21 08:30 CST. Honest (not a cheat).** Elevation **17.1 deg**, azimuth **132.2 deg** (34.6 deg east of
+  the facade normal), profile 20.5 deg. The same day Jade chose, one hour earlier; she also liked 08:30 in the first
+  light study.
+- **Why 08:30 and not later.** With her cross-legged (eyes 0.53 m up, 3.9 m into the room), the light only reaches her
+  face when the profile angle is about 21 deg or less. On 21 Dec, `sweep2.mjs` lights her face and hands (≥ 5 cm
+  inside) from 07:42 to 08:38 only. 08:30 is the latest time with a margin; 08:40 leaves 3 cm.
+- **What is lit at 08:30** (sidecars):
+  - her eyes 0.25-0.34 m inside the light, her hands 0.40-0.62 m inside, in both scenes;
+  - the steam: 65 of 66 samples; all three mugs, the stack, the clear patch and the hero pieces; the whole coffee table;
+  - state A: the uncle's hands 0.30-0.41 m inside; his head is just outside (-0.14).
+- **Mother is not lit.** Her nearest point is 0.79 m outside the light; the nearest lit floor is 0.23 m from the hall
+  opening (on the boards west of it).
+- **The cheat, for comparison** (light study row 3, not used): keep the 09:30 azimuth (143.8) and lower the sun from
+  25.7 to 19 deg. Her face is then only ~4 cm inside, because a pier between two bays shades her at that azimuth.
+  Not worth it, since the honest 08:30 does better.
+- **Side effects, honest, flag to Jade:**
+  - with doors along the whole wall there is no longer "a shaft" but a broad sheet of light in bands: the piers and
+    stiles throw the dark stripes. One stile shadow falls across her cheek in V1a/V1c (it moves fast; a minute either
+    way shifts it).
+  - The laughing adults are no longer in the dark: their heads are out of the light (aunt -0.23, uncle -0.70) but
+    their bodies and hands are lit, and grandmother's eyes are right at the edge (0.00).
+  - V1b is backlit: she faces the sun, so she sees the shaded side of his hands, with a rim of light.
+
+### 2. The south side: continuous balcony doors with latches (Jade: there is NO window wall)
+- The six- and four-leaf French windows are gone. The whole south wall is **glazed steel French doors** onto the one
+  continuous balcony (10.5 m + 0.25 m each end).
+- **Layout** (`WINDOWS` in layout.js; old name kept for the beam code):
+  - four bays of four leaves, each bay 2.275 m, leaves 0.57 m, head 2.3 m;
+  - between them, structural piers 0.25 m at the ends and 0.30 m between bays;
+  - each leaf has a 0.2 m solid kick rail with six lites above it; the doors are closed (winter).
+  - **Guesses:** bay count, pier widths and leaf width. Jade said only "continuous doors".
+- **Latches** (one set per pair, on the room side of the meeting stiles):
+  - a cremone (espagnolette) rod running the full height, with keepers at the head and the sill;
+  - a gearbox backplate with a lever handle hanging down (locked);
+  - two barrel bolts (top and bottom) on the fixed leaf.
+  - Reference views: `REF_doors` and `REF_latch`. The hardware type is my guess for 1930s steel doors.
+- The balcony parapet stays solid (east flat). The balcony shades the parapet side, so the chair out there is in shade.
+
+### 3. The room widened (Jade: "the side walls might be wider than pictured")
+- **Widened 0.5 m at each end: 9.5 -> 10.5 m** along the facade. That is 2.1x the 1934 drawing's 5.0 m living room,
+  the top of Jade's earlier "1.5 or 2x".
+- Symmetric, so the north wall's centre stays at x 2.25, and the 4.0 m hall doors stay centred on it (item 6: no move).
+- **What moved:** the couch group, the scrolls, the painting and her spot all moved 0.5 m west with the west wall; her
+  equidistant spot is now (-1.77, -3.89), with the same gaps. The TV, sideboard, radiator, clock and calendar followed
+  the east wall (+0.5). The dining table and her small table stay where they were.
+- **Flag (reading):** "side walls wider" might instead mean the side walls are LONGER, i.e. the room is deeper than
+  6.1 m. That would put her further from the doors and make lighting her harder still. Asked on the decision page.
+
+### 4. White wicker chair on the balcony (Jade)
+- `BALCONY_CHAIR`: a round-backed tub armchair (白藤椅), 0.62 m wide, back 0.88 m.
+- It stands at (0.95, 0.95), in front of bay 2 by the parapet, turned sideways (facing east along the balcony).
+- **Where along the balcony, and which way it faces, are my choice.**
+
+### 5. The wicker lounger faces the TV (Jade)
+- **The TV exists:** a 14" set under a cloth, on the TV cabinet on the EAST wall (Jade, round 3b).
+- From the lounger's round-4 spot (by the west doors) the TV was ~6.5 m away, with the dining table and its chairs in
+  the line of sight. So **the lounger moved to the room's east end**, at (6.05, -1.05), south of the dining table, with its
+  feet toward the TV ~2.1 m away. The yaw is computed from the TV's position.
+- **My choice: flag.** The alternatives (lounger back west and turned toward a far TV, or the TV moved west) are asked
+  on the decision page.
+
+### 6. Hall doorway: unchanged
+- Still centred on the whole north wall at x 2.25, 4.0 m wide. The symmetric widening did not move the wall's centre.
+
+### 7. Cross-legged in both scenes (Jade)
+- **State A** (`jadeWatch`) uses `legs: 'cross'`, like state B.
+- **His hands** were lowered to 0.50 m, about her eye height, so she looks at them nearly level.
+- **The uncle moved, from the 'across' armchair to the front edge of the couch's north seat.** At 08:30 the sun stands
+  south-east of her, and from the armchair (east of the table) his body stood between her face and the sun and
+  shaded it. On the couch he is west of her.
+  - His arms reach without over-reach (figure report 0.94 / 0.72).
+  - His hands are in the light between them, just west of the table's north-west corner.
+- **Cameras:**
+  - V1a: 50 mm, 38 deg off her eye-line on the window side. Her face is lit and three-quarter to camera; his arms and
+    hands come in frame left; his head is out of frame.
+  - V1b: el 22, 0.5 m. The camera is ~0.1 m above her cross-legged eye height (as if she sits up tall), so the
+    cupped palm reads.
+- **State B is unchanged** apart from the 0.5 m shift west.
+
+### Light study (re-rendered; sheets `media/layout/_sheets/shanghai86_lightstudy{,_flat}.jpg`)
+- **Rows:**
+  1. 08:30, honest (the set default);
+  2. 09:30, Jade's earlier pick (her face in shade);
+  3. CHEAT: the 09:30 azimuth with the sun at 19 deg;
+  4. 08:00, honest;
+  5. 15:00, honest.
+- The EYE column is now at her cross-legged eye height (0.53).
+
+### Renders
+- All shots in five modes, plus the beam twins, the sheets and the gallery. New reference views: `REF_doors`, `REF_latch`.
+  The REF_plan frame was widened to show the balcony and the chair.
+- **Not fixed:**
+  - the V1g fringe plank (engine, `mannequin.js`);
+  - V1g's framing: her head sits frame-left with a mug filling the right third, as before this round.
+
+### Open (ask Jade)
+- 08:30 instead of 09:30 (honest), or keep 09:30 with the sun cheated lower?
+- Is "side walls wider" the room's length along the balcony (built: +1.0 m) or its depth?
+- The lounger at the east end by the TV: right?
+- Where the wicker chair sits on the balcony.
+- The uncle on the couch end in state A (he moved so he does not shade her face).
 
 Set for verse 1 (0:30-0:59) and bars 1-4 of the piano break (0:59-1:09). Numbers live in `layout.js`.
 

@@ -544,3 +544,93 @@ Jade pasted the decision-page answers. Logged verbatim in substance; being appli
   countable arms, V3_rcv_obl has her glance up at the lens, handout grids a little off the layout (place comp faces from
   each pick). First love: every frame zoom-checked by the painters and the picks again by the lead; face turned away
   in all.
+
+## Session of 2026-11-25 (late night): decision-page round 2 answers
+
+Jade pasted the round-2 answers (22 cards). Logged here as they came; being applied by subagents. Also: Jade added
+`inputs/refs_closet.png` "for the closet scene" (gitignored now, like the other refs) and a hand-drawn Morton Grove
+floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LIMIT_HIT` deleted (reset is long past).
+
+- **Interlude merge:** something else. Find the bud opening another place; NOT decided yet (keep as an open question).
+- **Dad's written answer:** neither placement. No written "it was correct"; instead "Good catch!" is ATTRIBUTED TO
+  DAD ON SCREEN. B4 (double take) image is too dark: the basement has more ambient light from a CEILING LIGHT.
+- **Hug/pitch:** keep current (hug on "Hug durations", spectrogram on "pitch contours").
+- **mv10 wall:** 0.78 m as built; room looks good. Kitchen: appetizers spread across the dining table, snacks around
+  the counters; a GIANT PUNCHBOWL of lemonade to the RIGHT OF THE STOVE with a ladle and a stack of cups. Normal-size
+  FRIDGE on the side near the 2x2 Expedit; STAINLESS STEP-LID TRASH CAN in the space to the right of the sink;
+  DISHWASHER under the counter to the right of the stove. UPPER CABINETS; all cabinet doors DARK WALNUT.
+- **mv10 room crossing:** velocity mostly in the LIVING ROOM with the kitchen visible. Sequence, each a vector: Jade in
+  conversation with someone in the kitchen -> hears doorbell, excuses herself -> opens the door, welcomes 2 new
+  guests -> heading back to the kitchen, someone at the shelf says something, she stops -> doorbell again -> crosses
+  to the door again to welcome more guests.
+- **mv10 nod:** move the nod ("past hour reviewed", 3:09.1) to the SHELF, straight after the whisper; the nod was never
+  under the lemon tree in the original.
+- **mv10 V3b:** the picking (current). At "housewarming, lemonade from the yard" they pick the lemons AND prepare the
+  lemonade in the kitchen (juicer, rinds, mixing). The image should feel a bit like a BOTANICAL ILLUSTRATION, like the
+  artichoke and other plates.
+- **mv10 pan:** cross to the science half and come back to the seam (current). Room-crossing facing: fine.
+- **shanghai86 face:** move the angle of the light so she is lit (rather than moving her).
+- **shanghai86 doors:** centred on the whole north wall is correct. There is NO window wall: it is all a continuous
+  balcony (doors), with LATCHES on the doors. The side walls might be wider than pictured. A WHITE WICKER CHAIR on
+  the balcony. The living room's wicker LOUNGE chair faces the TV.
+- **shanghai86:** cross-legged in BOTH scenes (uncle scene too).
+- **mortongrove07:** ridge PARALLEL TO THE STREET. There is another window. Jade's hand-drawn floor plan is in
+  `inputs/refs_mortongrove/Pasted image.png` (couch on the top wall under a window with side table + lamp, coffee
+  table on a red rug, armchair, a long table of germinating plants in egg cartons "carefully labelled" by the
+  right-hand window, front door on the right, closet, dining table with 6 chairs by another right-hand window, a
+  7-ft concert grand and a giant mirror on the left wall, floor lamp, stairs bottom-left, sliding door to the kitchen
+  at the bottom).
+- **First love hair v3:** reads as him, almost right; the part is good. The fade is too gradual: really a top half,
+  and the lower part buzzed to stubble then grown out ~6 months (a distinct step, not a taper).
+- **First love weak spots:** the IAS seal should be WAY larger, almost the whole front of the sweatshirt; the
+  sweatshirt has to be UNFOLDED to see the whole thing.
+- **Aloe plate:** keep as an alternate for now. Market M7/M8/M8b: alternates (current).
+- **Ear checks:** tail-2 vocalise = BACKING layer (Suno calls it lead; Jade wants it there live). "Made FLESH".
+  "SHELVED". Caption "artichoke". Whisper 2 is loud enough: cut on it. Cliff at 3:55.0: Jade can't tell.
+- **In flight (subagents, started ~22:15):** mv10 (kitchen dressing, crossing vectors, nod at shelf, V3b prep);
+  shanghai86 (continuous balcony doors w/ latches, wider room, wicker chairs, light angle, cross-legged x2);
+  mortongrove07 (rebuild from Jade's floor plan, ridge parallel to street, unfolded sweatshirt); closet02 (rebuild
+  from refs_closet.png); basement90 ceiling light + ALL plan/song-map text edits (only that agent edits the plan);
+  first love v4 hair + big IAS seal sheet (Codex tmux `proof-fl4`). After they report: rebuild
+  `media/decisions.html` (remove answered cards, add their new questions), gallery, commit (not refs), push.
+- **Done: basement90 + plan.** Bare bulb in a porcelain pull-chain holder (assumed) at 1.97 m, warm ambient; B4 now
+  readable (checked). Plan: "it was correct" removed; "Good catch!" = toner label `DAD: GOOD CATCH!` beside his head
+  2:20.0-2:22.2 (proposal); interlude = artichoke count 2:25.2-2:29.5, romanesco completes 2:29.5-2:34.5; bud open;
+  nod at shelf; V3b pick + make lemonade; crossing 4 legs; tail-2 vocalise backing (no sync); "artichoke" caption
+  2:11.9-2:13.6. **Cliff measured:** band drops at 3:54.92 inside "smile"; "on" 3:55.24-3:55.63 sung in silence;
+  plan cliff now 3:54.9. New clip `media/decisions_audio/cliff_slow_mix.mp3`. New questions for the page: bud place
+  (rec: coda bar 4:16.8), Good-catch treatment, caption style, cliff (rec: cut on drum hit 3:54.9), crossing
+  compression (rec: drawn at each stop), ceiling fixture type. B4 keyframe needs a repaint.
+- **Done: shanghai86.** Honest sun moved to 08:30 (elev 17.1, az 132.2): lights her face/hands in both scenes (09:30
+  can't, she's 3.9 m in; light reaches her only 07:42-08:38). Four bays x four glazed steel doors with bolt-rod
+  latches (REF_doors, REF_latch); room 9.5 -> 10.5 m along the balcony; white wicker tub chair on the balcony;
+  lounger moved to the east end facing the TV; uncle moved to the couch end (in the armchair he shaded her);
+  cross-legged both scenes. Plan still says "about 9:30" for Shanghai: fix to 08:30 when finalising. New questions:
+  08:30 vs 09:30 cheat; wider = longer or deeper; lounger position; uncle seat; doors/chair as built.
+- **Done: closet02** rebuilt from refs_closet.png as a 6 ft reach-in with two bypass sliders slid left (assumed size;
+  shelf 1.72, rod 1.60, hems ~0.9-1.0 m, 3 long coats, duvet under her, cross-legged). He sits outside on the carpet;
+  late-afternoon sun from a bedroom window behind him lights her whole face in a crisp wedge. New `CL_elev` (compare:
+  `work/closet02_compare.jpg`, private). Plan's "door left ajar" -> sliding door half open (fix when finalising).
+  Closet keyframes need repainting. New questions: closet size; his position; light source; open on head-in-hands?
+- **Done: first love v4** (Codex, 13 images, $0): `fl_B_backhead_neck_v4` (new anchor), `fl_A_turnaround_back_v4`,
+  `fl_G_ots_hair_v3`, `fl_H_ias_sweatshirt_v1` (seal collar-to-hem, unfolded/held/folded). Hair now has a hard step
+  over an even grown-out buzz, but the top reads as a bowl/mushroom with a level rim (checked: B v4 bottom row is the
+  worst). No face visible (checked). Seal: Truth drawn draped off one shoulder, one breast bare (full nude blocked by
+  moderation); tree slimmer than the real seal. E v3 and D v4 still have the old taper. decisions.html fl_ cards
+  point at files now in `_superseded/`. Questions: bowl or right? Truth OK as drawn? (Public repo: ask before
+  pushing fl_H if Jade has any doubt.)
+- **Done: mortongrove07** refit to Jade's floor plan (REF_plan_label is south-up to lay beside the drawing; matches
+  layout, checked). Read the drawing's TOP as the street (south): front door in the short jog wall facing up; great
+  room now in the WEST half. Ridge E-W on the house centre line (z -5.6), 4-in-12, 2.44 -> 4.31 m. She holds the
+  sweatshirt up unfolded against herself, seated; seal (0.38 m, placeholder glyph in renders) faces him/camera, in
+  window daylight not sun; sun still rims her at 15:30 Nov 5. TV removed (not drawn). Face check: MG1 back of his
+  head only. Questions: which side is the street; front window 1.5 m vs big picture window; ridge height position;
+  how the sweatshirt is held; loveseat vs two chairs; mirror reflections. Plan 2:39.6 row: held up, not handed over.
+- **Plan touched up by lead:** Shanghai 08:30 (row 103), closet sliding door half open + light (108, 170), Morton Grove: she holds the sweatshirt up unfolded (166).
+- **Done: mv10** (kitchen dressed, fridge behind the 2x2, walnut uppers; crossing rebuilt as 3 legs ~19 s real in 4.13 s; nod at shelf; V3b split into picking 2:57.0 + V3b_prep 2:58.0 overhead; V3g retired). All 30 new questions are in `work/round3_questions.md` (gitignored).
+- **Decision page rebuilt:** `media/decisions.html` now holds the 30 round-3 cards (storage key v3); round 2 answers
+  in the collapsed list. **Committed and pushed** except: `cast/first_love/fl_H_ias_sweatshirt_v1.*` (wait for the
+  fl_truth answer), `cast/first_love/_prompts/v4/takes/*.jpg` (rejected takes not face-checked: keep local), and
+  `inputs/ref_artichoke.png` (new from Jade at 22:36, not yet mentioned by her: ask what it's for).
+- **Next:** Jade answers round 3 + the keyframes r2 review; repaint keyframes for the changed sets (basement B4,
+  shanghai, closet, mortongrove, mv10 kitchen/crossing/V3b_prep/nod) once those settle.

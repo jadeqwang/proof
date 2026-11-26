@@ -1,52 +1,101 @@
 // CLOSET, ABOUT 2002 ("Proof": chorus 2a, 3:23.4-3:34.2, -2sm). Single source of truth (metres, y up, floor at y = 0).
-// A walk-in bedroom closet with the door left ajar. Two people sit cross-legged on the floor facing each other, all
-// four hands together between them; one shaft of sun from the bedroom comes through the door gap and lands on the hands.
-//   x: -0.80 = the end behind Jade ... +1.20 = the end behind first love (the cameras are at this end)
-//   z: -0.65 = the DOOR wall (bedroom beyond, at -z) ... +0.65 = back wall (hanging rail)
-// The cameras look toward -x, so the door wall is frame-RIGHT and the light crosses from upper right to lower left.
+// Rebuilt 2026-11-25 from Jade's drawing (inputs/refs_closet.png, private): a REACH-IN bedroom closet with two
+// bypass sliding doors. Both panels are slid to the LEFT, so the left half is covered and the right half is open.
+// Inside the open half: a shelf (textbooks, shoeboxes), a rod below it with clothes hanging to about two-thirds of the
+// way down (the lower third is open), a few long coats down the left edge of the open half, and Jade sitting
+// cross-legged on a folded duvet cover, low and right of centre. First love sits cross-legged on the bedroom carpet in
+// front of her, outside the closet, his back to the bedroom and its window; the light comes over his right shoulder.
+//   x: left -> right as seen from the bedroom (the drawing's viewpoint). The opening is centred on x = 0.
+//   z: + = the bedroom; z = 0 is the bedroom face of the closet wall; the back wall of the closet is at z = -0.73.
+// A camera in the bedroom looking into the closet (toward -z) has +x on frame-RIGHT, as in the drawing.
 const rad = (d) => (d * Math.PI) / 180;
-export const ROOM = { x0: -0.80, x1: 1.20, z0: -0.65, z1: 0.65, h: 2.4, wall: 0.1 };
-// the people: pelvis positions and facings; where the four hands meet
-export const SEATS = { jade19: { at: [-0.45, 0.0], yaw: 90 }, firstLove: { at: [0.45, 0.0], yaw: -90 } };
-export const HANDS = [0.0, 0.30, 0.0];
 
-// ---------------------------------------------------------------- the door, ajar
-// 0.76 m leaf in the door wall, hinged on its outer face at x = hinge, opening OUTWARD into the bedroom by `ajar`
-// degrees. The latch-side jamb is at x = hinge + w. Straight-through gap = w (1 - cos ajar).
-export const DOOR = { w: 0.76, h: 2.03, t: 0.035, ajar: 32, hinge: -0.702 };
-DOOR.jamb = DOOR.hinge + DOOR.w;                                      // 0.058
-DOOR.edge = [DOOR.hinge + DOOR.w * Math.cos(rad(DOOR.ajar)), ROOM.z0 - ROOM.wall - DOOR.w * Math.sin(rad(DOOR.ajar))];   // the leaf's free edge in plan (x, z)
+// ---------------------------------------------------------------- the closet
+// ASSUMPTION: a 6 ft (1.80 m) bypass closet, two 0.90 m panels, 2.03 m (80 in) opening, 0.61 m (24 in) deep inside,
+// 0.12 m wall, interior returns of 7 cm each side, 2.44 m ceiling (the interior above the 2.03 m header is hidden).
+// The drawing's outline is 1 : 1.13 (w : h); 1.80 x 2.03 is 1 : 1.13.
+export const WALL = { t: 0.12, h: 2.44 };
+export const OPEN = { x0: -0.88, x1: 0.88, h: 2.03 };                       // the rough opening in the wall
+export const ROOM = { x0: -0.95, x1: 0.95, z0: -0.73, z1: -WALL.t, h: WALL.h };   // the closet interior
+// the two panels, both stacked over the left half (front track and rear track); the open half is x = DOORS.edge .. OPEN.x1
+export const DOORS = { w: 0.90, h: 2.01, t: 0.032, zFront: -0.030, zRear: -0.075 };
+DOORS.edge = OPEN.x0 + DOORS.w;                                            // +0.02: the free edge of the stack (nearly the centre, as drawn)
 
-// ---------------------------------------------------------------- the beam
-// ASSUMPTION: afternoon sun through the bedroom window, square on to the door wall, 49 degrees high. The shaft is a
-// thin vertical slab seen side-on by cameras that look along the closet, so its slope on screen follows its physical
-// slope; 49 degrees is what gives the rhyme angle (40) in CL_wide, which looks down on it from the door side.
-// It passes the gap between the leaf's free edge and the jamb. Its upper edge is the shadow of the bedroom window's
-// head; its lower edge is the shadow of whatever stands under that window. The bedroom itself is not modelled: two
-// stand-in blockers outside the door cast those two edges.
-export const SUN = { altitude: 49, color: 0xffe6b8 };
-export const SUN_DIR = [0, -Math.sin(rad(SUN.altitude)), Math.cos(rad(SUN.altitude))];
-const t = Math.tan(rad(SUN.altitude));
-const yMid = HANDS[1] + (HANDS[2] - ROOM.z0) * t;                     // height of the shaft's centre at the door wall's inner face
-export const SHAFT = { x0: DOOR.edge[0], x1: DOOR.jamb, y0: yMid - 0.145, y1: yMid + 0.145 };
-export const BEAM = {
-  name: 'door', kind: 'afternoon sun from the bedroom through the gap of the door left ajar (parallel)',
-  dir: SUN_DIR,
-  aperture: [[SHAFT.x1, SHAFT.y1, ROOM.z0], [SHAFT.x0, SHAFT.y1, ROOM.z0], [SHAFT.x0, SHAFT.y0, ROOM.z0], [SHAFT.x1, SHAFT.y0, ROOM.z0]],   // TL, TR, BR, BL seen from inside
-  centre: [(SHAFT.x0 + SHAFT.x1) / 2, yMid, ROOM.z0],
-  clip: [{ name: 'floor', n: [0, -1, 0], d: 0 }, { name: 'back wall', n: [0, 0, 1], d: ROOM.z1 }],
+// the bedroom: only its floor and the closet wall are built (cameras look into the closet)
+export const BEDROOM = { x0: -1.8, x1: 2.2, z1: 3.2 };
+
+// ---------------------------------------------------------------- what is in the closet (from the drawing)
+// Drawing heights scaled to the 2.03 m opening: shelf ~1.63, rod ~1.48, clothes' hems ~0.94, coats ~0.40. A real
+// closet has the shelf at ~1.73 and the rod at ~1.68; ASSUMPTION: between the two (shelf 1.72, rod 1.60) so that
+// the hems still land at about two-thirds of the way down, as drawn.
+export const SHELF = { y: 1.72, d: 0.30, t: 0.02 };                        // top surface y; depth from the back wall
+export const RAIL = { y: 1.60, z: ROOM.z0 + 0.30 };                        // rod centre, 30 cm off the back wall
+// hanging clothes: simple masses along the whole rod (the left ones are behind the closed panels)
+export const CLOTHES = { from: -0.90, to: 0.92, step: 0.055, w: 0.44, hem: [0.94, 0.88, 1.00, 0.92, 0.97, 0.86, 1.04, 0.93] };
+// a few long coats down the LEFT edge of the open half (drawing: from the panel's edge to ~15 cm right of it)
+export const COATS = { xs: [0.07, 0.12, 0.17], hem: [0.40, 0.46, 0.42], w: 0.50, t: 0.07 };
+// the folded duvet cover she sits on (drawing: a low block under her, a little narrower than her knees)
+export const DUVET = { at: [0.55, -0.40], w: 0.58, d: 0.58, h: 0.09 };
+
+// ---------------------------------------------------------------- the people
+// Jade: drawing's triangle centred 56 % across the open half (x ~ 0.50), seated on the duvet, head below the hems.
+// First love: on the carpet in front of her, a little to HIS left (-x) so the light passes his right shoulder.
+export const SEATS = {
+  jade19: { at: [0.55, 0.139 + DUVET.h, -0.42], yaw: 0 },                 // pelvis lifted by the duvet
+  firstLove: { at: [0.33, 0.40], yaw: 180 },
 };
-export const beamAxis = (s) => BEAM.centre.map((c, i) => c + SUN_DIR[i] * s);
-// the stand-in blockers: slabs square to the light, `back` metres outside the inner face of the door wall
-export const BLOCKERS = { back: 0.75, lowerTop: SHAFT.y0 + 0.75 * t, upperBottom: SHAFT.y1 + 0.75 * t, w: 1.6 };
+export const HANDS = [0.44, 0.40, -0.02];                                    // where the four hands meet: at the door line
+export const FACE = [0.55, 0.80, -0.26];                                     // about where her face is (for the light)
 
-// ---------------------------------------------------------------- what is in the closet
-export const RAIL = { y: 1.68, z: 0.42, x0: ROOM.x0, x1: ROOM.x1, garments: { from: -0.72, to: 1.12, step: 0.115, w: 0.40, drop: [0.72, 0.95, 0.80, 1.05, 0.76, 0.9] } };
-export const SHELF = { y: 1.80, d: 0.42 };
-export const FLOOR_THINGS = { shoes: [[-0.62, 0.50], [-0.40, 0.52], [0.86, 0.52]], box: { at: [1.02, 0.44], w: 0.3, h: 0.24, d: 0.36 } };
+// ---------------------------------------------------------------- the light
+// ASSUMPTION: late-afternoon sun through the bedroom window behind him and to his right, 34 degrees high, travelling
+// 30 degrees off square (toward -x) into the closet. It passes his right shoulder and lands on her FACE and the four
+// hands (KEYFRAMES 6.2: the one scene where her whole face is in the light; he opened the door, the light comes over
+// his shoulder onto her). Its edges are all crisp (parallel light):
+//   left   the free edge of the slid-open panels (the "door" edge of the wedge)
+//   right  the right jamb of the opening
+//   top    the window head in the bedroom (not modelled: the stand-in WINDOW below casts it), set to clear her head
+//   bottom the floor
+export const SUN = { altitude: 34, azimuth: 30, color: 0xffe2b0 };
+const ca = Math.cos(rad(SUN.altitude)), sa = Math.sin(rad(SUN.altitude)), tA = Math.tan(rad(SUN.altitude));
+export const SUN_DIR = [-Math.sin(rad(SUN.azimuth)) * ca, -sa, -Math.cos(rad(SUN.azimuth)) * ca];
+const H = [-Math.sin(rad(SUN.azimuth)), 0, -Math.cos(rad(SUN.azimuth))];   // horizontal direction of travel
+export const SUN_H = H;
+// the band's top plane: passes TOP_Y over her face point and drops toward -H at the sun's slope
+export const TOP_Y = 1.06;
+export const topAt = (x, z) => TOP_Y - ((x - FACE[0]) * H[0] + (z - FACE[2]) * H[2]) * tA;
+// the two side edges (vertical lines in plan): the panel stack's back corner and the jamb's bedroom-side corner
+export const EDGES = { left: [DOORS.edge, DOORS.zRear - DOORS.t / 2], right: [OPEN.x1, 0] };
+// the aperture: a vertical plane in the bedroom just in front of the closet (z = APZ), the edges projected back to it
+// along the light, so the solid holds the hands and her knees (which come out past the door line)
+export const APZ = 0.22;
+const back = (e) => e[0] + (APZ - e[1]) * (H[0] / H[2]);                  // x where the edge's ray crosses z = APZ
+const ax0 = back(EDGES.left), ax1 = back(EDGES.right);
+export const BEAM = {
+  name: 'door', kind: 'late-afternoon sun from the bedroom window, over his shoulder, through the open half of the sliding door (parallel)',
+  dir: SUN_DIR,
+  // TL, TR, BR, BL seen from the bedroom
+  aperture: [[ax0, topAt(ax0, APZ), APZ], [ax1, topAt(ax1, APZ), APZ], [ax1, -0.05, APZ], [ax0, -0.05, APZ]],
+  clip: [{ name: 'floor', n: [0, -1, 0], d: 0 }, { name: 'back wall', n: [0, 0, -1], d: -ROOM.z0 }],
+};
+BEAM.centre = [(ax0 + ax1) / 2, topAt((ax0 + ax1) / 2, APZ) / 2, APZ];
+export const beamAt = (p, s) => p.map((c, i) => c + SUN_DIR[i] * s);
+// the window behind him (the bedroom is not modelled): one stand-in wall square to the light, WINDOW.back metres back
+// along the light from the aperture (far, so that no camera is beyond it; only the hole's projection matters), with a
+// hole in it. Its head is on the band's top plane (the light's top edge,
+// above her head); its jambs and sill are set so the patch of sun on the closet wall runs WINDOW.spill metres past the
+// open half on each side and its lower edge lands on the carpet WINDOW.sillAt metres in front of the closet.
+export const WINDOW = { back: 8.0, spill: 0.30, sillAt: 0.75, w: 7.0 };
+{ const W = WINDOW, c = [(ax0 + ax1) / 2 - H[0] * W.back, 0, APZ - H[2] * W.back]; W.at = c;
+  const e = [H[2], 0, -H[0]];                                               // the wall's horizontal axis (= its local +x in build.js)
+  const hit = (p) => { const s = ((p[0] - c[0]) * H[0] + (p[2] - c[2]) * H[2]) / (SUN_DIR[0] * H[0] + SUN_DIR[2] * H[2]);
+    const q = [p[0] - s * SUN_DIR[0], p[1] - s * SUN_DIR[1], p[2] - s * SUN_DIR[2]]; return { u: (q[0] - c[0]) * e[0] + (q[2] - c[2]) * e[2], y: q[1] }; };
+  const a = hit([DOORS.edge - W.spill, 0, 0]), b = hit([OPEN.x1 + W.spill, 0, 0]);
+  W.u0 = Math.min(a.u, b.u); W.u1 = Math.max(a.u, b.u);
+  W.head = topAt(c[0], c[2]); W.sill = hit([(ax0 + ax1) / 2, 0, W.sillAt]).y; W.h = W.head + 3.0; }
 
-export const MOTE = { seed: 2002, count: 80 };   // dust in the shaft; no hero mote in this scene
+export const MOTE = { seed: 2002, count: 80 };   // dust in the light; no hero mote in this scene
 export const LIGHTS = {
-  door: { kind: 'afternoon sun through the door gap (parallel)', dir: SUN_DIR, color: SUN.color },
+  door: { kind: 'late-afternoon sun from the bedroom window behind him (parallel)', dir: SUN_DIR, color: SUN.color },
   // nothing else: the closet has no light of its own
 };

@@ -51,7 +51,7 @@
   <button class="primary" onclick="exportAnswers()">Copy my answers</button>
 </header>
 <main>
-  <p class="note">Rebuilt 2026-11-25 (late), after your answers were applied (they are listed at the bottom). Each card is one open decision. Choose an option or write a note; nothing is required, and anything you leave blank keeps the current choice (marked <span style="color:var(--gold)">current / suggested</span>). Your answers are saved in this browser as you go. When you're done, press <b>Copy my answers</b> and paste the text into the chat. Click any picture to enlarge it. Renders are blockouts (mannequins, flat colour): judge layout and light, not looks. The ear-check cards have short excerpts of the -2sm master to play.</p>
+  <p class="note">Rebuilt 2026-11-25 (night) for round 3, after your round-2 answers were applied (all answers so far are listed at the bottom). Each card is one open decision. Choose an option or write a note; nothing is required, and anything you leave blank keeps the current choice (marked <span style="color:var(--gold)">current / suggested</span>). Your answers are saved in this browser as you go. When you're done, press <b>Copy my answers</b> and paste the text into the chat. Click any picture to enlarge it. Renders are blockouts (mannequins, flat colour): judge layout and light, not looks. The cliff card has short excerpts of the -2sm master to play.</p>
   <p class="note"><b>Keyframes:</b> the new round painted from these renders is reviewed on its own page, <a href="keyframes/r2/index.html">keyframes/r2/index.html</a>. It is local only (keyframes stay out of the public repo), so the link works only on your computer, and only once that round is finished.</p>
   <div id="cards"></div>
   <details class="done" id="done"></details>
@@ -65,121 +65,180 @@ const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const D = [
  // ---------------------------------------------------------------- song & plan
- { sec:"Song and plan", id:"interlude", title:"The interlude merge (2:25.2-2:34.5)",
-   ctx:"On -2sm the interlude's loud second half (v3 2:36-2:45) is gone, so there is no 2:36-2:45 for the romanesco any more. The plan now packs the interlude's 9.3 s with Dad's written answer, the count resuming on the artichoke plate, and the completed count landing on the romanesco plate at about 2:30-2:34 (the bridge's first words come in over its end). To make room, the growth plate's bud opening into the flower was dropped. Keep it that way, or find the bud another place?",
-   imgs:[["footage/spirals/stills/romanesco_t19.90.png","Romanesco plate, count complete (now ~2:30-2:34)"],["footage/spirals/stills/artichoke_t16.90.png","Artichoke plate (the count resumes on it)"]],
-   opts:["Keep the merge; the bud opening stays out of the film","Keep the merge; put the bud opening under the end of verse 2a","Keep the merge; put the bud opening somewhere else (below)","Something else (below)"], rec:0 },
- { sec:"Song and plan", id:"dad_answer", title:"Dad's written answer: interlude or the end of “Good catch!”?",
-   ctx:"“It was correct”, the one note she writes, opens the crowded interlude (above). If the interlude is too full once it's cut, it could move to the end of the “Good catch!” row (2:19.8-2:25.2: Dad's double take, the cat wrist-lick, the parents in the kitchen). May it move if needed?",
-   imgs:[[L("basement90/B4_doubletake_lit.png"),"“Good catch!”: Dad's double take"]],
-   opts:["Keep it at the start of the interlude","Yes, move it to the end of “Good catch!” if the interlude is crowded","Move it there now","Somewhere else (below)"], rec:1 },
- { sec:"Song and plan", id:"hug_pitch", title:"“Hug durations, pitch contours”: hug on the first half only?",
-   ctx:"With the retime, the hug on the deck (V3f) has only “Hug durations” (3:11.6-3:12.8), and the spectrogram plate takes “pitch contours” (3:12.8-3:14.6). That gives each a little over a second. Alternatives: intercut them, or let the hug carry the whole line and the spectrogram follow.",
-   imgs:[[L("mv10/V3f_lit.png"),"V3f, the hug on the deck"],["footage/spectrogram/stills/spectrogram_short_195.45.png","The spectrogram plate (short version)"]],
-   opts:["Hug on “Hug durations”, spectrogram on “pitch contours” (current)","Intercut the two across the whole line","Hug on the whole line, spectrogram after it","Something else (below)"], rec:0 },
+ { sec:"Song and plan", id:"bud", title:"Where does the bud opening go?",
+   ctx:"You wanted the artichoke's bud opening into its purple flower kept, just not in the crowded interlude. Three places it could fit, or leave it out. The coda bar is my pick: by then the film is already looking back at its own pictures.",
+   imgs:[["footage/artichoke/stages/s12.png","Growth plate: the closed bud"],["footage/artichoke/stages/s16.png","Growth plate: full bloom"]],
+   opts:["One coda bar at 4:16.8, in place of “the finished count”","Under verse 2a's outside shot (2:06.3-2:08.7), before the count starts","In the tail-1 vocalise (2:00.3-2:03.1), cut into the Voyager pull-back","Leave it out of the film","Something else (below)"], rec:0 },
+ { sec:"Song and plan", id:"goodcatch", title:"How do we show that “Good catch!” is Dad's line?",
+   ctx:"You said “Good catch!” should be clearly Dad's on screen. Proposal: a small photocopy-toner label reading DAD: GOOD CATCH! beside his head during his double take (2:20.0-2:22.2). The basement now has its ceiling light, so the shot is readable.",
+   imgs:[[L("basement90/B4_doubletake_lit.png"),"The double take, now with the ceiling light"]],
+   opts:["Toner label “DAD: GOOD CATCH!” beside his head","The same label without “DAD:” (where it sits says whose it is)","A subtitle with his name","Something else (below)"], rec:0 },
+ { sec:"Song and plan", id:"caption", title:"What should the “artichoke” caption look like (2:11.9-2:13.6)?",
+   ctx:"You chose to caption “artichoke”. It could look like the plates' own labels, a small lowercase specimen tag beside the real artichoke, or like an ordinary subtitle.",
+   imgs:[["footage/spirals/stills/artichoke_t16.90.png","The artichoke plate, with its caption type"]],
+   opts:["Small lowercase specimen label in the plates' caption type, beside it","A plain burned-in subtitle","Something else (below)"], rec:0 },
+ { sec:"Song and plan", id:"cliff", title:"The cliff: cut on the drum hit or on “on”?",
+   ctx:"You couldn't tell where the band drops out, and it turns out to be neither place: the band stops at 3:54.9, in the middle of the held “smile”, and “on” (3:55.2) is sung into the silence. So: cut to blank paper with the band, or hold the picture until “on”? The first clip is half speed.",
+   audio:[[A("cliff_slow_mix.mp3"),"Half speed, around the drop"],[A("cliff_mix.mp3"),"Full mix, 3:53.4-3:57.8"]],
+   opts:["Cut on the drum hit (3:54.9)","Cut on “on” (3:55.2)","Either is fine"], rec:0 },
+ { sec:"Song and plan", id:"fixture", title:"What was the basement ceiling light?",
+   ctx:"You said the basement had more light from a ceiling light. I guessed a bare bulb in a porcelain pull-chain holder, giving a warm, even glow.",
+   imgs:[[L("basement90/B0_wide_lit.png"),"Basement wide, with the bulb"]],
+   opts:["Bare bulb in a porcelain pull-chain holder","A two-tube fluorescent shop light","Something else (below)"], rec:0 },
 
  // ---------------------------------------------------------------- Mountain View
- { sec:"Mountain View 2010", id:"mv_wall2", title:"The thick wall: 0.78 m, or 0.39 m with the 2x2 turned?",
-   ctx:"You said the wall was as thick as the 2x2 Expedit is deep, so the 2x2 sits almost flush. It's built 0.78 m thick: the 2x2 stands at the wall's end facing the opening as you drew it, and its 79 cm side spans the wall. If you meant the Expedit's real 39 cm depth, the wall becomes 0.39 m and the 2x2 turns 90 degrees to sit flush (facing the living room or the kitchen). Both your drawings show a band about 0.7-0.8 m wide.",
-   imgs:[[L("mv10/V3h_label.png"),"Plan from above (labelled)"],[L("mv10/V3_rcv_obl_lit.png"),"Steep oblique: the thick wall and the 2x2 with the printer"]],
-   opts:["0.78 m, as built","0.39 m, the 2x2 turned to face the living room","0.39 m, the 2x2 turned to face the kitchen","Don't know"], rec:0 },
- { sec:"Mountain View 2010", id:"mv_nod", title:"“I nod, past hour reviewed” (3:09.1): still under the lemon tree?",
-   ctx:"New shot: on “he said I absolutely nailed it” (3:03.9-3:06.0) you stand by the shelf and he bends to your right ear (back of his head only). Three seconds later the temple push-in for the nod is still outside under the lemon tree, facing him. Move the nod to the shelf, right after the whisper?",
-   imgs:[[L("mv10/V3_nailed_lit.png"),"“Nailed it”: the whisper at the shelf"],[L("mv10/V3_rev_temple_a_lit.png"),"The nod push-in, start (under the lemon tree)"]],
-   opts:["Keep the nod under the lemon tree","Move the nod to the shelf, straight after the whisper","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"mv_v3b", title:"V3b “lemons the size of pomelos”: the picking, or a party moment?",
-   ctx:"You said the lemons were picked before the party, by you and the childhood friend, before he and the guests arrived. V3b used to show him beside you at the tree, so it was restaged as the picking at 14:00 (the friend is a stand-in figure). The other way: keep V3b as a party moment and add the picking as a separate shot.",
-   imgs:[[L("mv10/V3b_lit.png"),"V3b now: the picking, 14:00"]],
-   opts:["V3b is the picking (current)","Keep V3b at the party and add the picking as its own shot","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"mv_seam", title:"The shelf pan: reach the seam twice, or only at the end?",
-   ctx:"The pan starts on “truth by reference” (2:42.0) on the beauty half, passes the seam on its way to the Feynman and science-fiction cube (“shelved with truth”), then comes back and holds on the seam through “From inside, I can't tell the difference” (to 2:49.7). So it crosses the seam once and comes back to it. The alternative: the pan doesn't pass the seam on the way, and reaches it only once, at the end.",
-   imgs:[[L("mv10/BRpan_m1_lit.png"),"Passing the seam on the way"],[L("mv10/BRpan_c_lit.png"),"The end: held on the seam"]],
-   opts:["Cross to the science half and come back to the seam (current)","Reach the seam only once, at the end","Stop at the seam without ever reaching the science half square-on"], rec:0 },
- { sec:"Mountain View 2010", id:"mv_rcvface", title:"Room crossing: he faces 49 degrees away from the camera",
-   ctx:"In the steep oblique (“room crossing velocity”), first love is a small figure seen from above, turned 49 degrees away from the lens. His face isn't visible at this size and angle, but he isn't turned fully away either. Fine, or turn him further?",
-   imgs:[[L("mv10/V3_rcv_obl_lit.png"),"V3_rcv_obl, the shot"]],
-   opts:["Fine as it is","Turn him fully away from the camera"], rec:0 },
+ { sec:"Mountain View 2010", id:"rcv_time", title:"Room crossing: how to squeeze about 19 seconds into 4",
+   ctx:"Your four legs (kitchen, door, shelf, door again) take about 19 seconds of walking, but the line “room crossing velocity” lasts 4.1 seconds. One more idea from the plan: show you at each stop in turn while the gold vectors draw on, about a leg a second.",
+   imgs:[[L("mv10/V3_rcv_obl_legs_lit.png"),"The four legs, from above"]],
+   opts:["An even time-lapse, about 4.7x","Stops held as single beats, walking about 3x","Borrow about 1.8 s from the spectrogram plate","Drop the second doorbell","Draw you at each stop as the vectors draw on","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"rcv_who", title:"Who were you talking with in the kitchen, and who spoke to you at the shelf?",
+   ctx:"Right now both are unnamed guests. If you remember who they were, tell me.",
+   imgs:[[L("mv10/V3_rcv_obl_label.png"),"The crossing, labelled"]],
+   opts:["Unnamed guests","First love was the one at the shelf","The childhood friend was in the kitchen","Z","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"rcv_fl", title:"Was first love there during the arrivals?",
+   ctx:"He isn't in the crossing shot at the moment.",
+   imgs:[[L("mv10/V3_rcv_obl_lit.png"),"The crossing, lit"]],
+   opts:["Not there","In the living room","At the shelf","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"v3b_split", title:"“Lemonade from the yard”: picking and making, in one line",
+   ctx:"The line now holds both: picking the lemons (2:57.0), then the lemonade being made, seen straight down like a botanical plate (2:58.0). Or show only the making, dissolving from the tree, or split the frame.",
+   imgs:[[L("mv10/V3b_prep_line.png"),"The making, from straight above (line)"]],
+   opts:["Picking at 2:57.0, then the making from straight above at 2:58.0","Only the making, dissolving in from the tree","Split frame","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"v3b_where", title:"Where did you make the lemonade?",
+   ctx:"Built at the dining table in the window sun. And the window's mullion shadows fall across it: keep them? (Say in the note.)",
+   imgs:[[L("mv10/V3b_prep_lit.png"),"The making, lit"]],
+   opts:["The dining table, in the window sun","The counter by the sink","The counter by the stove","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"fridge", title:"Where is the fridge, and what colour?",
+   ctx:"You said a normal-size fridge on the side near the 2x2 Expedit. It's built against the wall behind the 2x2: a white 30-inch with the freezer on top. White or stainless? (Say in the note.)",
+   imgs:[[L("mv10/V3_rcv_obl_k0_lit.png"),"The kitchen from above"]],
+   opts:["Against the wall behind the 2x2","On the dining side, by the opening","At the far end of the counters","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"v3e", title:"“Fifteen percent above amplitude”: what's on screen?",
+   ctx:"Now that you're at the shelf from 3:03.8 to 3:11.5 (the whisper, then the nod), this line needs a new picture.",
+   imgs:[[L("mv10/V3e_lit.png"),"V3e, the poi spinner"]],
+   opts:["Cut away to the poi spinner","A shot at the shelf","Put the whisper and nod outside instead","Something else (below)"], rec:0 },
+ { sec:"Mountain View 2010", id:"tree_fl", title:"Was first love ever under the lemon tree?",
+   ctx:"You said the nod was never under the tree. He's still standing there in two shots: V3a (2:54.7) and SI1, “I think he's right” (3:19.1).",
+   imgs:[[L("mv10/SI1_lit.png"),"SI1, under the tree"]],
+   opts:["Keep him there","Take him away from the tree","Move SI1 indoors","Something else (below)"] },
+ { sec:"Mountain View 2010", id:"decktable", title:"The deck's lemonade table",
+   ctx:"Now that the lemonade is in the giant punchbowl by the stove, the drinks table on the deck is gone.",
+   imgs:[[L("mv10/V3a_lit.png"),"V3a, the deck"]],
+   opts:["Punchbowl only; no table on the deck","Bring back a drinks table on the deck","Something else (below)"], rec:0 },
 
  // ---------------------------------------------------------------- Shanghai
- { sec:"Shanghai 1986", id:"sh_face", title:"At 9:30 your face is in shade. Keep it, or move you toward the windows?",
-   ctx:"Set to 21 Dec, 9:30 am as you chose. The sun now lights your lap, the couch's south half and most of the coffee table, but not your face or hands (they are 25-33 cm outside the light), and not the uncle's hands in his scene. The 9:30 study frames already showed you at the light's edge. To light your face you'd move about 0.35 m south toward the windows, which breaks the even spacing between couch, armchair and table.",
-   imgs:[[L("shanghai86/V1c_lit.png"),"V1c, 9:30: lap in the sun, face in shade"],[L("shanghai86/REF_plan_label.png"),"Plan from above: the two sun pools"]],
-   opts:["Keep it: face in shade, at the light's edge","Move her ~0.35 m toward the windows so her face is lit","Something else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_doors2", title:"The wide hall doorway: centred on the whole wall, or opposite the six windows?",
-   ctx:"The hall doors are now 4.0 m wide (2.5 times the old opening), four leaves folding into the hall. “Centred on that wall” was built as centred on the WHOLE north wall, which moves the doors east, toward the dining half. The other reading: centred opposite the six windows of the old living room.",
-   imgs:[[L("shanghai86/REF_plan_label.png"),"Plan (north at the top: hall doors top right)"],[L("shanghai86/REF_wide_lit.png"),"From the dining end: the doors on the right"]],
-   opts:["Centred on the whole north wall (current)","Centred opposite the six windows","Somewhere else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_kneel", title:"Cross-legged in the uncle scene too?",
-   ctx:"You sit cross-legged in the paper-tearing scene now. A week earlier, watching the uncle's hands, you are still kneeling up: his hands are above a cross-legged three-year-old's eye line. Keep kneeling there, or cross-legged in both?",
-   imgs:[[L("shanghai86/V1a_lit.png"),"V1a, the uncle scene: kneeling"]],
-   opts:["Kneel in the uncle scene (current)","Cross-legged in both scenes"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_sun", title:"What time is it? The sun reaches your face only at about 8:30",
+   ctx:"You asked for the light to move so you're lit. At 9:30 the real sun can't reach that far into the room (you're 3.9 m from the doors); it reaches you only between about 7:40 and 8:40. So: the true sun at 8:30, or keep 9:30 and cheat the sun lower.",
+   imgs:[[L("_sheets/shanghai86_lightstudy.jpg"),"Light study through the morning"]],
+   opts:["8:30, the true sun","9:30 with a cheated, lower sun (only just reaches you)","8:00","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_wider", title:"The room is wider: longer along the balcony, or deeper?",
+   ctx:"You said the side walls might be further apart. I made the room 1 m longer along the balcony (now 10.5 m).",
+   imgs:[[L("shanghai86/REF_plan_label.png"),"Plan from above"]],
+   opts:["As built: 1 m longer along the balcony","Deeper instead","Both","Keep it at 9.5 m","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_lounger", title:"The wicker lounger, facing the TV",
+   ctx:"To face the TV, the lounger moved to the east end, about 2 m from it.",
+   imgs:[[L("shanghai86/REF_plan_label.png"),"Plan from above"]],
+   opts:["As built, at the east end","Back west, turned toward the far TV","Move the TV west instead","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_uncle", title:"Where does the uncle sit?",
+   ctx:"In the armchair his body blocked the sun from you, so he moved to the end of the couch.",
+   imgs:[[L("shanghai86/V1a_lit.png"),"V1a, the uncle scene"]],
+   opts:["The end of the couch","The armchair, with your face in his shadow","A low stool south of the table","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_doors", title:"The balcony doors and the wicker chair",
+   ctx:"The whole balcony side is now doors: four bays of four glazed steel doors, with bolt-rod latches, separated by piers. The white wicker chair sits outside bay 2.",
+   imgs:[[L("shanghai86/REF_doors_lit.png"),"The balcony doors"],[L("shanghai86/REF_latch_lit.png"),"A latch, close up"]],
+   opts:["Right as built","Fewer or wider bays, or no piers","The chair goes somewhere else","Something else (below)"], rec:0 },
 
  // ---------------------------------------------------------------- Morton Grove
- { sec:"Morton Grove 2007", id:"mg_ridge", title:"The vaulted ceiling: which way does the ridge run?",
-   ctx:"Built as a low cathedral ceiling (4-in-12), ridge running front-to-back, so the front wall over the picture window is a gable (peak 3.26 m). That was a guess. The alternative: the ridge runs parallel to the street, the side walls are the gables, and the front wall stays at 8 ft. Light unchanged either way.",
-   imgs:[[L("mortongrove07/MG_wide_lit.png"),"Wide, with the vault"],[L("mortongrove07/MG1_lit.png"),"Over his shoulder"]],
-   opts:["Ridge front-to-back, gable over the picture window (current)","Ridge parallel to the street","Don't remember"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_street", title:"Which side of your floor plan faces the street?",
+   ctx:"I read the top of your drawing as the street side. That way the afternoon sun still reaches you. If it's the right-hand wall, there's no afternoon sun on you.",
+   imgs:[[L("mortongrove07/REF_plan_label.png"),"Plan, laid out like your drawing"]],
+   opts:["The top","The right-hand wall","Something else (below)"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_window", title:"How big is the front window?",
+   ctx:"Built 1.5 m wide, as you drew it.",
+   imgs:[[L("mortongrove07/MG_wide_lit.png"),"Wide"]],
+   opts:["1.5 m, as drawn","A bigger picture window","Something else (below)"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_ridge", title:"Where was the ceiling highest?",
+   ctx:"With the ridge parallel to the street, the high point sits on the house's centre line (about 4.3 m), over the dining table and the piano keyboard. Or was it highest over the middle of the great room (about 3.6 m)?",
+   imgs:[[L("mortongrove07/REF_north_lit.png"),"Looking north"]],
+   opts:["Over the dining table and piano, about 4.3 m","Over the middle of the great room, about 3.6 m","Not sure"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_hold", title:"How do you show him the sweatshirt?",
+   ctx:"So the whole seal is visible, you hold the sweatshirt up unfolded against yourself, sitting down.",
+   imgs:[[L("mortongrove07/MG1_lit.png"),"Over his shoulder"],[L("mortongrove07/MG2_lit.png"),"MG2"]],
+   opts:["Held up against myself, sitting","Standing","Handed over folded, then a beat with it unfolded","Something else (below)"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_block", title:"The two-part shape left of the rug",
+   ctx:"Your drawing has a two-part block to the left of the rug. I built it as a loveseat.",
+   imgs:[[L("mortongrove07/REF_plan_label.png"),"Plan from above"]],
+   opts:["A loveseat","Two chairs or ottomans","Something else (below)"], rec:0 },
+
+ // ---------------------------------------------------------------- Closet
+ { sec:"Closet", id:"cl_size", title:"How wide was the closet?",
+   ctx:"Rebuilt from your reference as a reach-in with two sliding doors, 6 ft wide, shelf at 1.72 m. The size is a guess.",
+   imgs:[[L("closet02/CL_elev_label.png"),"Front view, labelled"]],
+   opts:["6 ft","5 ft","8 ft","Something else (below)"], rec:0 },
+ { sec:"Closet", id:"cl_him", title:"Where is he?",
+   ctx:"He sits outside on the carpet, and your hands meet at the door line.",
+   imgs:[[L("closet02/CL_wide_lit.png"),"Wide"]],
+   opts:["Sitting outside on the carpet, hands meeting at the door line","Kneeling at the threshold","Half inside, with me","Something else (below)"], rec:0 },
+ { sec:"Closet", id:"cl_light", title:"Where does the light come from?",
+   ctx:"Late-afternoon sun from the bedroom window behind him lights your face in a crisp wedge.",
+   imgs:[[L("closet02/CL_ots_lit.png"),"Over his shoulder"]],
+   opts:["Window sun over his shoulder (crisp wedge)","The ceiling light (soft)","A bedside lamp","Something else (below)"], rec:0 },
+ { sec:"Closet", id:"cl_open", title:"How does the closet scene open?",
+   ctx:"Now it opens on your joined hands. Another way: open wide on you with your head in your hands, and you look up as he sits down. That's my pick if its 4.6 seconds hold up.",
+   imgs:[[L("closet02/CL_elev_lit.png"),"Front view, lit"]],
+   opts:["On the joined hands (current)","Wide, my head in my hands; I look up as he sits","Something else (below)"], rec:1 },
 
  // ---------------------------------------------------------------- Cast
- { sec:"Cast", id:"fl_hair3", title:"First love's hair, v3: does it read as him now?",
-   ctx:"Redrawn from your notes: less round, a centre part leading to a quiet crown point at the top of the head, a crisp line running back from the curtain fringe, narrower from behind. No eye, nose or mouth anywhere.",
-   imgs:[["../cast/first_love/fl_B_backhead_neck_v3.jpg","Back of the head at 27 and 19 (the hair anchor)"],["../cast/first_love/fl_A_turnaround_back_v3.jpg","Turnaround from behind, 27"]],
-   opts:["Reads as him","Close: adjust (describe below)","Wrong"], rec:0 },
- { sec:"Cast", id:"fl_weak", title:"First love: the remaining weak spots",
-   ctx:"(1) In three-quarter views the top layer still overhangs the short sides a little, a slight mushroom bulge. (2) In bowed and top views the centre part reaches about halfway down the visible head. (3) On the hands sheet, his hand at the chin reads as a curled fist, not clearly the back of your hand against his chin. (4) The sweatshirt seal on the over-the-shoulder sheet is a generic emblem, not the IAS seal. Also redone: costumes (fl_E_costume_19_27_v3: plain crew-neck long-sleeve at 27, no bracelet).",
-   imgs:[["../cast/first_love/fl_G_ots_hair_v2.jpg","Over-the-shoulder hair studies"],["../cast/first_love/fl_D_hands_forearms_v4.jpg","Hands and forearms"]],
-   opts:["Good enough as a painter's guide","Fix them all","Fix some (list below)"], rec:0 },
-
- // ---------------------------------------------------------------- Plates
- { sec:"Plates", id:"aloe", title:"Where does the spiral aloe plate go?",
-   ctx:"The artichoke and romanesco plates have places; the spiral aloe (five ranks) has none.",
-   imgs:[["footage/spirals/stills/aloe_t12.90.png","Spiral aloe, five ranks"]],
-   opts:["The coda's “finished count” bar shows the aloe","It replaces the romanesco","It stays out of the film","Somewhere else (below)"] },
- { sec:"Plates", id:"market_alt", title:"The market's close-ups M7, M8, M8b have no slot",
-   ctx:"These close shots of the live artichoke and romanesco in the market served v3's lost interlude half. On -2sm the plates take that content, so they're kept as alternates, not in the cut.",
-   imgs:[[L("market93/M7_lit.png"),"M7: the artichoke on its heap"],[L("market93/M8_lit.png"),"M8: the romanesco"]],
-   opts:["Keep them as alternates (current)","Find them a place (below)","Drop them"], rec:0 },
-
- // ---------------------------------------------------------------- Ear checks
- { sec:"Ear checks (-2sm)", id:"ear_vocalise", title:"Tail 2's vocalise (3:48.8-3:52.6): your lead, or a backing layer?",
-   ctx:"The wordless rising vocalise after chorus 2 is back in -2sm. The machine thinks it's the lead (it shadows tail 1's), but nobody has listened. A sung-to-lens shot depends on it. The third clip is from the “no lead vocals” render: if you hear the vocalise there, it's backing.",
-   audio:[[A("tail2_vocalise_mix.mp3"),"Full mix, 3:47.0-3:53.8"],[A("tail2_vocalise_leadstem.mp3"),"Separated vocal stem, same span"],[A("tail2_vocalise_nolead.mp3"),"“No lead vocals” render, same span"]],
-   opts:["Lead: it's me singing","Backing layer","Can't tell"] },
- { sec:"Ear checks (-2sm)", id:"ear_flesh", title:"“Made flesh” or “made fresh” (2:15.4)?",
-   ctx:"“Sacred geometry made flesh”: the machine hears “made fresh”.",
-   audio:[[A("made_flesh_mix.mp3"),"Full mix, 2:13.2-2:16.6"],[A("made_flesh_leadstem.mp3"),"Vocal stem"]],
-   opts:["Flesh","Fresh","Can't tell"] },
- { sec:"Ear checks (-2sm)", id:"ear_shelved", title:"“Shelved” or “shoved” (2:45.4)?",
-   ctx:"“Science fiction shelved with truth”. The -2sm mix leans “shelved”; v3 sounded like “shoved”.",
-   audio:[[A("shelved_mix.mp3"),"Full mix, 2:44.0-2:47.2"],[A("shelved_leadstem.mp3"),"Vocal stem"]],
-   opts:["Shelved","Shoved","Can't tell"] },
- { sec:"Ear checks (-2sm)", id:"ear_artichoke", title:"Is “artichoke” (2:11.9) clear without a caption?",
-   ctx:"“Enthralled by an artichoke, green and fresh”. The machine recognises it on -2sm.",
-   audio:[[A("artichoke_mix.mp3"),"Full mix, 2:10.6-2:13.8"]],
-   opts:["Clear: no caption","Caption it"], rec:0 },
- { sec:"Ear checks (-2sm)", id:"ear_whisper2", title:"Is whisper 2 (“But not like that”, 0:18.2) loud enough to cut on?",
-   ctx:"It's barely there in the lead stem. Whisper 1 is included for comparison.",
-   audio:[[A("whisper2_mix.mp3"),"Whisper 2, full mix, 0:16.8-0:20.6"],[A("whisper1_mix.mp3"),"Whisper 1, full mix, 0:08.3-0:11.1"]],
-   opts:["Yes, cut on it","Too faint: cut on the beat instead","Can't hear it"] },
- { sec:"Ear checks (-2sm)", id:"ear_cliff", title:"The cliff at 3:55.0: after “on”, or inside it?",
-   ctx:"“Keep the smile on / so they don't know”: the band drops out at 3:55.0. Does the drop land after “on”, or in the middle of it?",
-   audio:[[A("cliff_mix.mp3"),"Full mix, 3:53.4-3:57.8"]],
-   opts:["After “on”","Inside “on”","Can't tell"] },
+ { sec:"Cast", id:"fl_hair4", title:"First love's hair, v4: the step is in, but is the top a bowl?",
+   ctx:"Now there's a hard step over an even, grown-out buzz, as you described. But the top layer reads a bit like a bowl or mushroom with a level rim. No face anywhere. The third picture is v3, for comparison.",
+   imgs:[["../cast/first_love/fl_B_backhead_neck_v4.jpg","Back of the head, v4"],["../cast/first_love/fl_G_ots_hair_v3.jpg","Over-the-shoulder hair, v3"],["../cast/first_love/_superseded/fl_B_backhead_neck_v3.jpg","Back of the head, v3 (before)"]],
+   opts:["Accept the back-of-head v4 and carry it into the other sheets","One more pass to flatten and thin the top edge","Accept v4 for the back of the head, one more pass on the turnaround and over-the-shoulder","I'll sketch the overhang"], rec:2 },
+ { sec:"Cast", id:"fl_truth", title:"The IAS seal: Truth, as drawn",
+   ctx:"On the real seal, Truth is nude. The image model wouldn't draw that, so she's draped off one shoulder with one breast bare, and the tree is slimmer than on the real seal. This sheet stays out of the public repo until you answer.",
+   imgs:[["../cast/first_love/fl_H_ias_sweatshirt_v1.jpg","The sweatshirt, unfolded, held and folded"]],
+   opts:["Keep it as drawn","Drape her fully","Frame it so Truth falls in the folds","Something else (below)"] },
 ];
 
-// What was taken in from the last round (shown collapsed at the bottom; not part of the copy-out).
-const DONE_DATE = "2026-11-25";
+// What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
+const DONE_DATE = "2026-11-25 (rounds 1 and 2)";
 const DONE = [
- ["Song and plan", [
+ ["Round 2 · Song and plan", [
+  "Interlude merge: keep it; find the bud opening another place (see the new card).",
+  "Dad's written answer: neither; no written “it was correct”. “Good catch!” is attributed to Dad on screen instead, and the basement gets a ceiling light (B4 was too dark).",
+  "“Hug durations, pitch contours”: hug on “Hug durations”, spectrogram on “pitch contours” (current)."]],
+ ["Round 2 · Mountain View 2010", [
+  "The thick wall: 0.78 m as built; the room looks good. Kitchen: appetizers on the dining table, snacks on the counters, a giant punchbowl of lemonade right of the stove with ladle and cups, fridge near the 2x2, step-lid trash can right of the sink, dishwasher right of the stove, dark walnut upper and lower cabinets.",
+  "“I nod, past hour reviewed”: at the shelf, straight after the whisper (it was never under the lemon tree).",
+  "V3b: the picking, plus making the lemonade in the kitchen, drawn a little like a botanical plate.",
+  "Shelf pan: cross to the science half and come back to the seam (current).",
+  "Room crossing facing: fine. The crossing itself: mostly the living room; kitchen chat, doorbell, two guests, stopped at the shelf, doorbell again, more guests."]],
+ ["Round 2 · Shanghai 1986", [
+  "Your face at 9:30: move the light, not you.",
+  "Hall doorway: centred on the whole north wall. No window wall: a continuous balcony of doors with latches; side walls maybe wider; a white wicker chair on the balcony; the wicker lounger faces the TV.",
+  "Cross-legged in both scenes."]],
+ ["Round 2 · Morton Grove 2007", [
+  "Ridge: parallel to the street. There is another window; the room is rebuilt from your floor plan."]],
+ ["Round 2 · Cast", [
+  "First love's hair v3: reads as him, almost; the part is good, but the fade was too gradual: a top half over a buzz grown out ~6 months, a distinct step (redrawn as v4).",
+  "Weak spots: the IAS seal much larger, nearly the whole front, with the sweatshirt unfolded to show it."]],
+ ["Round 2 · Plates", [
+  "Spiral aloe: an alternate for now.",
+  "Market close-ups M7, M8, M8b: alternates (current)."]],
+ ["Round 2 · Ear checks", [
+  "Tail-2 vocalise: a backing layer (wanted there live).",
+  "“Made flesh”.",
+  "“Shelved”.",
+  "“Artichoke”: caption it (see the new card on style).",
+  "Whisper 2: loud enough; cut on it.",
+  "The cliff at 3:55.0: couldn't tell (measured; see the new card)."]],
+ ["Round 1 · Song and plan", [
   "Which recording: Proof (-2sm) is the master; the plan and all sets are retimed to it.",
   "Revise the plan: yes, here; done (every row on -2sm times, with a “was” column).",
   "“From inside, I can't tell the difference”: hold on the shelf; the pan lands on the seam.",
   "Push to GitHub: commit and push everything except the private folders (done).",
   "Repaint keyframes: wait until the sets settle; then a full round on a local review page (under way)."]],
- ["Mountain View 2010", [
+ ["Round 1 · Mountain View 2010", [
   "Date: 2 Oct 2010 is fine.",
   "Digitised house: looks right.",
-  "Wall: really thick, as thick as the 2x2 is deep, the 2x2 almost flush (built 0.78 m; see the new card).",
+  "Wall: really thick, as thick as the 2x2 is deep, the 2x2 almost flush (built 0.78 m).",
   "Windows: one in the front wall and one along the side wall (“I think”).",
   "Glass-top table: a semicircle, flat side to the wall, about 3 ft wide and 1 ft deep.",
   "Patio: deck level with the floor, sliding glass door, wood stairs and railing, at least 3-4 steps down.",
@@ -188,31 +247,31 @@ const DONE = [
   "“I nod, past hour reviewed”: push into the temple.",
   "Party: lemons picked and lemonade made before the party with the childhood friend; “nailed it” whispered close by the shelf; guests along the side of the house and on the patio, poi spinner in the yard facing them; Noguchi table base looked up and rebuilt.",
   "IAS seal mirrored: hadn't noticed; keep the shelf as remembered."]],
- ["Shanghai 1986", [
+ ["Round 1 · Shanghai 1986", [
   "Time: 21 Dec, about 9:30 am.",
   "The room: cross-legged; more paper, messier, one bit in her hair; dining table turned 90 degrees and moved north; hall doorway two to three times wider, centred on that wall.",
   "Third armchair: the two armchairs face each other across the table.",
   "Sideboard and invented details: keep.",
   "Hall doors: open into the hall.",
   "Uncle's hands (V1b): good enough as a guide."]],
- ["Decatur 1990", [
+ ["Round 1 · Decatur 1990", [
   "“Already a cat under the desk” replaced: she holds her right fist up and pretends to lick her wrist, a cat cleaning itself; she does not hide."]],
- ["Morton Grove 2007", [
+ ["Round 1 · Morton Grove 2007", [
   "Room and light: right. Date: about right. Ceiling: vaulted. His ear showing: fine."]],
- ["Cast", [
+ ["Round 1 · Cast", [
   "First love's hair: less round, centre part to a crown point at the top, a clean line back from the fringe (redrawn as v3).",
   "First love's details: no bracelet; the slate-blue shirt is a plain long-sleeve, not a henley; one profile had the wrong hand (replaced).",
   "Dad's sheets: good.",
   "Older open items (little Jade's clothes, Jade at 19, attic sign, kitchen outro): leave as the agents guessed."]],
- ["Plates", [
+ ["Round 1 · Plates", [
   "Neuron (Plate IX): love it.",
   "Spectrogram (Plate XXI): short version, drawing left to right.",
-  "Spirals: the artichoke count becomes the plate at 2:07-2:16; the completed count lands on the romanesco (moved to ~2:30-2:34: see the new card)."]],
- ["Other", [
+  "Spirals: the artichoke count becomes the plate at 2:07-2:16; the completed count lands on the romanesco (~2:30-2:34)."]],
+ ["Round 1 · Other", [
   "Airbnb listing: skip; the drawing is enough."]],
 ];
 
-const KEY = 'proof-decisions-v2';
+const KEY = 'proof-decisions-v3';
 const state = JSON.parse(localStorage.getItem(KEY) || '{}');
 const save = () => { localStorage.setItem(KEY, JSON.stringify(state)); count(); };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));

@@ -63,8 +63,8 @@ Measured downbeats to cut on (the hits): 19.00 groove, 58.55 break, 97.40 chorus
 | 12 | Verse 3 | 174.70 (2:54.7) | 199.05 (3:19.1) | 24.4 s, 10 bars | **Full band slams in at 174.70** with "Housewarming" [M] | 184.9-209.0 |
 | 13 | Full stop | 199.05 (3:19.1) | 203.35 (3:23.4) | 4.3 s | Everything cuts at 199.05; "I think he's right. Honestly." 199.45-203.20, hushed, over near silence (mix -36 dB) [M] | 209.0-213.38 |
 | 14 | Chorus 2 | 203.35 (3:23.4) | 223.0 (3:43.0) | 19.6 s | **Drums alone 203.35**, vocal 204.75, **bass + full band 206.10** [M] | 213.38-232.96 |
-| 15 | Post-chorus tail 2 | 223.0 (3:43.0) | 235.0 (3:55.0) | 12.0 s | Full band, the loudest stretch (-15.6). Held "go" to ~227.2; **vocalise 228.8-232.6 (NEW: not in v3)**; band alone 232.6-234.0; **outro line 1 enters over the band at 234.00** [M] | 232.96-245.0 |
-| 16 | Outro | 235.0 (3:55.0) | 252.85 (4:12.9) | 17.9 s | **Cliff at 235.0** (bass gone 235.0, last drum onset 234.95, drums gone by ~235.3), at the end of "Keep the smile on" and before "so they don't know" (235.65) [M; G which side of "on"]. Near a cappella. Silences 237.4-239.1 and 247.5-248.6 [M] | 245.0-263.4 |
+| 15 | Post-chorus tail 2 | 223.0 (3:43.0) | 235.0 (3:55.0) | 12.0 s | Full band, the loudest stretch (-15.6). Held "go" to ~227.2; **vocalise 228.8-232.6 (NEW: not in v3; a backing layer per Jade)**; band alone 232.6-234.0; **outro line 1 enters over the band at 234.00** [M] | 232.96-245.0 |
+| 16 | Outro | 235.0 (3:55.0) | 252.85 (4:12.9) | 17.9 s | **Cliff at 234.92-234.95** (bass gone 234.92, last drum hit 234.945, its tail below -40 dB by 235.19), INSIDE "smile" (held note 234.83-235.24), ~0.3 s before "on" (235.24-235.63) and "so" (235.66) [M, 2026-11-25 fine measurement; see section 6]. Near a cappella. Silences 237.4-239.1 and 247.5-248.6 [M] | 245.0-263.4 |
 | 17 | Drum coda | 252.85 (4:12.9) | 264.06 (4:24.1) | 11.2 s | Pad swells in 252.85 as the last word fades (~253.2). **One big low hit at 254.30 with the bass entering on it**; the groove follows at once; bars at ~254.4 / 256.8 / 259.2 / 261.7; **last hit 264.06 on the next downbeat** (ring to ~264.7). The last bar is the loudest moment of the coda (-13 dB at 264) [M] | 263.26-275.3 |
 | 18 | Final tone | 264.06 (4:24.1) | 268.40 (4:28.4) | 4.3 s | Drums stopped; **a loud low bass note + pad** hold (bass stem -19 dB to ~266.3), then fade: mix -22 at 266.5, -35 at 267.5, -41 at 268.0, file ends 268.40 [M] | 275.3-278.4 |
 
@@ -141,21 +141,25 @@ sit 0.3-1.0 s before the sung onset, so a v3 start pushed through the audio map 
 | 209.45 | 213.60 | I honestly don't know | 220.0 | |
 | 214.18 | 219.27 | I open my mouth, my voice goes blind | 223.16 | |
 | 219.58 | 222.96 | The words have nowhere to go | 228.95 | "go" held to ~227.2 |
-| 228.80 | 232.60 | (wordless vocalise) | — | **new in -2sm**; not in the lyrics file; G#4 -> G5/F#5 [M pyin] |
+| 228.80 | 232.60 | (wordless vocalise) | — | **new in -2sm**; not in the lyrics file; G#4 -> G5/F#5 [M pyin]; Jade: a BACKING layer, not sung on screen |
 | **Outro** | | | | |
-| 234.00 | 237.35 | Keep the smile on so they don't know | 243.52 | starts over the band; cliff 235.0 before "so" (235.65) |
+| 234.00 | 237.35 | Keep the smile on so they don't know | 243.52 | starts over the band; cliff 234.95 inside "smile", before "on" (235.24) |
 | 239.10 | 242.24 | This is how we fit in | 249.05 | |
 | 243.56 | 247.49 | She turns around, I let it go | 252.95 | "I let it go" 245.46 |
 | 248.57 | 252.67 | And I can think again | 259.3 | "can" 249.09; fades by ~253.2 |
 
-### Contested words, as heard by whisper on -2sm (`work/karaoke_v2/whisper_*.json`) [M probabilities; G verdicts]
+### Contested words: resolved (Jade by ear, 2026-11-25 round 2, unless marked) [whisper probabilities from `work/karaoke_v2/whisper_*.json`]
 
 - "can think again": "can" (p 1.00 on both passes). As written.
 - "truth by reference": "truth" (p 0.95-0.96 on both). As written; v3 split truth/choose.
-- "shelved": mix pass "shelved" (p 0.71); lead pass "shelf" (p 0.02). Leans as written; v3 heard "shoved".
-- "artichoke": recognised (p 0.94, mix). Better than v3.
+- "shelved" (165.39): **SHELVED** (Jade). Whisper: mix "shelved" p 0.71, lead "shelf"; v3 had heard "shoved".
+- "artichoke" (131.91): as written (p 0.94, mix). Jade: it gets an in-picture CAPTION.
 - "green and fresh": still "green and fresh", as in v3 (the prompt says "market-fresh"; the karaoke text uses "green and fresh").
-- "made flesh": the mix pass hears "made fresh" (p 0.91). Worth an ear.
+- "made flesh" (133.63-136.00): **made FLESH** (Jade). The mix pass had heard "made fresh" (p 0.91).
+- Whisper 2 "But not like that" (18.23): faint in the lead stem, but Jade: loud enough to cut on.
+- Tail-2 vocalise (228.8-232.6): Suno labels it lead vocal; Jade treats it as a **BACKING** layer (she wants it there
+  live). Not a sung-on-screen moment.
+- Cliff vs "Keep the smile on" (still OPEN: Jade can't tell by ear; see the measurement under section 6).
 - "Dad's code": mix pass "coat" (p 0.77), as in v3's stem pass.
 - "Keep the smile on": as written (p 0.55 on "Keep").
 - Chorus 2 line 1: the lead pass hears "How do you see inside?"; the mix pass "feel". As written.
@@ -183,9 +187,25 @@ and the coda hit (254.30).
   `downbeats.json`
 - Run everything from `analysis/m2sm/` with `../../.venv/bin/python -I <script>`.
 
-## 6. Not verified [G]
+## 6. Not verified [G], and the cliff measurement
 
-No listening was done. Wants an ear: whether 228.8-232.6 is the lead singing a vocalise or a doubled/backing layer
-(pyin is clean and it shadows tail 1's, so probably lead); which side of the cliff "on" falls (235.0-235.3); "made
-flesh" vs "made fresh"; whether whisper 2 is audible enough to carry a cut (the lead stem barely has it); the exact
-end of the drum ring (264.06-264.7) and whether the file's last half-second is a fade or a cut.
+Jade's ear (2026-11-25 round 2) settled: tail-2 vocalise = backing layer; "made flesh"; "shelved"; whisper 2 audible
+enough to cut on. Still unheard: the exact end of the drum ring (264.06-264.7) and whether the file's last
+half-second is a fade or a cut.
+
+**The cliff, measured 2026-11-25 (Jade could not tell "after 'on'" from "inside 'on'" by ear).** Stems (5-10 ms RMS,
+onsets, pyin on the vocal stem; script kept outside the repo):
+
+| Word | Vocal stem | Alignment (`lyrics_timed.json`) | Note |
+|---|---|---|---|
+| Keep | 233.98-~234.19 | 234.00-234.28 | closure dip 234.20-234.26 |
+| the | ~234.28-~234.58 | 234.28-234.52 | gap 234.60-234.64 |
+| smile | 234.66-~235.24 | 234.52-235.32 | ~374 Hz, then held G#4 (415 Hz) 234.83-235.15, falling to F4 by 235.26 |
+| on | ~235.24-235.63 | 235.32-235.65 | F4 (351 Hz) held 235.26-235.62; ends in a dip at 235.64. Onset from the pitch step, +/-30 ms |
+| so | 235.66 | 235.65-236.10 | |
+
+Band: bass's last note ends 234.91, below -40 dB at 234.92; drums' last onset 234.945 (a loud hit), 20 dB down by
+235.18, below -60 dB by ~235.4; "other" stem stays ~-33 dB (no cliff). Mix peaks -9 dB at 234.95, -25 dB by 235.25.
+No drum bleed in the vocal stem at the hit. **Verdict: the band stops inside "smile" (about 0.1 s into its held note,
+0.3 s before "on"); "on" is sung entirely in the silence, and it is not held across the drop.** So the question for
+the cut is no longer which side of "on", but whether the picture cuts on the band's hit (234.95) or on "on" (235.24).

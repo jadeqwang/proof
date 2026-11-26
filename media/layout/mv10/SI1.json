@@ -835,20 +835,20 @@
   },
   "T1": {
    "px": [
-    1584.9,
-    151.7
+    2898.6,
+    172.1
    ],
    "eyes": [
-    1552.1,
-    173
+    2931.6,
+    185.7
    ],
    "mouth": [
-    1566.5,
-    195.3
+    2920,
+    208.2
    ],
-   "in_frame": true,
-   "visible": true,
-   "facing_camera_deg": 69
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 62
   },
   "G1": {
    "px": [
@@ -1227,20 +1227,20 @@
   },
   "T1.L": {
    "px": [
-    1713.8,
-    487.3
+    2973.4,
+    319.4
    ],
-   "shape": "relax",
-   "in_frame": true,
+   "shape": "grip",
+   "in_frame": false,
    "visible": false
   },
   "T1.R": {
    "px": [
-    1401.5,
-    381.2
+    3042,
+    231.9
    ],
    "shape": "grip",
-   "in_frame": true,
+   "in_frame": false,
    "visible": false
   },
   "G1.L": {
@@ -2802,10 +2802,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {

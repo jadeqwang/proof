@@ -6,14 +6,14 @@
  "desc": "",
  "camera": {
   "position": [
-   -0.244,
-   0.8481,
-   0
+   0.5142,
+   0.9749,
+   -0.2401
   ],
   "target": [
-   0.5694,
-   -0.979,
-   0
+   0.2749,
+   -0.8795,
+   0.4699
   ],
   "lens_mm": 35,
   "frame_width_mm": 36,
@@ -24,39 +24,39 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
+   -0.9476,
    0,
+   -0.3194,
    0,
-   1,
+   -0.2961,
+   0.3746,
+   0.8786,
    0,
-   0.9136,
-   0.4067,
+   0.1196,
+   0.9272,
+   -0.355,
    0,
-   0,
-   -0.4067,
-   0.9136,
-   0,
-   0,
-   -0.244,
-   0.8481,
-   0,
+   0.5142,
+   0.9749,
+   -0.2401,
    1
   ],
   "viewMatrix": [
-   0,
-   0.9136,
-   -0.4067,
-   0,
-   0,
-   0.4067,
-   0.9136,
-   0,
-   1,
+   -0.9476,
+   -0.2961,
+   0.1196,
    0,
    0,
+   0.3746,
+   0.9272,
    0,
+   -0.3194,
+   0.8786,
+   -0.355,
    0,
-   -0.122,
-   -0.874,
+   0.4106,
+   -0.002,
+   -1.0507,
    1
   ],
   "projectionMatrix": [
@@ -88,44 +88,44 @@
  "heads": {
   "jade19": {
    "px": [
-    960,
-    1704.2
+    607.8,
+    1388.1
    ],
    "eyes": [
-    960,
-    414.6
+    764.2,
+    457.9
    ],
    "mouth": [
-    960,
-    1073.8
+    841.9,
+    988.5
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 124
+   "facing_camera_deg": 129
   },
   "firstLove19": {
    "px": [
-    960,
-    -3644.6
+    1091.8,
+    -1930.3
    ],
    "eyes": [
-    960,
-    -2285.5
+    1082.5,
+    -1125.7
    ],
    "mouth": [
-    960,
-    -1820.9
+    1029.9,
+    -964.4
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 45
+   "facing_camera_deg": 58
   }
  },
  "hands": {
   "meet_world": [
-   0,
-   0.3,
-   0
+   0.44,
+   0.4,
+   -0.02
   ],
   "meet_px": [
    960,
@@ -133,53 +133,53 @@
   ],
   "each_px": {
    "jade19.L": [
-    803.6,
-    655.3
+    845.2,
+    678.7
    ],
    "jade19.R": [
-    1116.4,
-    655.3
+    1129.8,
+    587.8
    ],
    "firstLove19.L": [
-    1114.7,
-    426
+    1072.8,
+    403.8
    ],
    "firstLove19.R": [
-    805.3,
-    426
+    786.8,
+    491.2
    ]
   }
  },
  "lights": [
   {
    "name": "door",
-   "kind": "afternoon sun through the door gap (parallel)",
+   "kind": "late-afternoon sun from the bedroom window behind him (parallel)",
    "on": true,
-   "color": "#ffe6b8",
+   "color": "#ffe2b0",
    "world": [
-    0.0003,
-    3.3119,
-    -2.6182
+    1.7936,
+    2.4776,
+    1.8939
    ],
    "px": [
-    3231.6,
-    1603
+    5442.1,
+    5412.8
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.906,
-    0.424
+    0.677,
+    0.736
    ],
-   "toward_camera": -0.689,
+   "toward_camera": -0.45,
    "aim_world": [
-    0,
-    0.3,
-    0
+    0.55,
+    0.8,
+    -0.26
    ]
   }
  ],
  "warnings": [],
- "intent": "Her own view down (her head hidden for the POV): her two hands palm-up, his two on them, the shaft crossing them from the door side. In full depth: four hands. No field note.",
+ "intent": "Her own view down (her head hidden for the POV): her two hands palm-up, his two on them, at the door line, the sun on them from the bedroom; his knees and the carpet beyond. Four hands. No field note.",
  "film": {
   "time": "3:28.0-3:29.4",
   "section": "Chorus 2a",
@@ -187,102 +187,144 @@
  },
  "beam": {
   "name": "door",
-  "kind": "afternoon sun from the bedroom through the gap of the door left ajar (parallel)",
+  "kind": "late-afternoon sun from the bedroom window, over his shoulder, through the open half of the sliding door (parallel)",
   "model": "parallel (sunlight)",
   "source_world": null,
   "direction_of_travel": [
-   0,
-   -0.7547,
-   0.6561
+   -0.4145,
+   -0.5592,
+   -0.718
   ],
   "aperture_world": [
    [
-    0.058,
-    1.1927,
-    -0.65
+    0.1996,
+    1.2222,
+    0.22
    ],
    [
-    -0.0575,
-    1.1927,
-    -0.65
+    1.007,
+    1.4945,
+    0.22
    ],
    [
-    -0.0575,
-    0.9027,
-    -0.65
+    1.007,
+    -0.05,
+    0.22
    ],
    [
-    0.058,
-    0.9027,
-    -0.65
+    0.1996,
+    -0.05,
+    0.22
    ]
   ],
   "aperture_px": [
    [
-    7278.7,
-    4584.5
+    -9009.6,
+    39443.7
    ],
    [
-    6036.9,
-    2965.7
+    3996.6,
+    2780.4
    ],
    [
-    -45813.4,
-    -13320.5
+    -126.7,
+    762.4
    ],
    [
-    -15681.9,
-    -7092.7
+    1205.2,
+    356
    ]
   ],
   "footprints": {
    "floor": {
     "world": [
      [
-      0.058,
+      -0.1008,
       0,
-      0.3868
+      -1.6989
      ],
      [
-      -0.0575,
+      1.007,
       0,
-      0.3868
+      0.22
      ],
      [
-      -0.0575,
+      0.1996,
       0,
-      0.1347
+      0.22
      ],
      [
-      0.058,
+      -0.7064,
       0,
-      0.1347
+      -1.3492
      ]
     ],
     "px": [
      [
-      1764.5,
-      683.6
+      5219,
+      6488.6
      ],
      [
-      1808.9,
-      923
+      -176.6,
+      737.9
      ],
      [
-      1255.7,
-      923
+      1215.5,
+      316.6
      ],
      [
-      1240.2,
-      683.6
+      5258,
+      3322.7
+     ]
+    ]
+   },
+   "back wall": {
+    "world": [
+     [
+      -0.3489,
+      0,
+      -0.73
+     ],
+     [
+      -0.3489,
+      0.4823,
+      -0.73
+     ],
+     [
+      0.4585,
+      0.7546,
+      -0.73
+     ],
+     [
+      0.4585,
+      0,
+      -0.73
+     ]
+    ],
+    "px": [
+     [
+      3142.8,
+      1749.8
+     ],
+     [
+      5670.8,
+      2277.5
+     ],
+     [
+      11514.8,
+      25586.4
+     ],
+     [
+      1490.2,
+      2514.4
      ]
     ]
    }
   },
   "anchor_world": [
-   0,
-   0.3,
-   0
+   0.44,
+   0.4,
+   -0.02
   ],
   "anchor_px": [
    960,
@@ -290,14 +332,14 @@
   ],
   "on_screen": {
    "from_px": [
-    729.4,
-    432.1
+    762.8,
+    312.5
    ],
    "to_px": [
-    1143.1,
-    625.7
+    1138.3,
+    745.7
    ],
-   "angle_deg": 25.1,
+   "angle_deg": 49.1,
    "travel": "left-to-right"
   },
   "rhyme": {
@@ -310,14 +352,15 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": -14.9,
+   "angle_error_deg": 9.1,
    "travel_ok": false
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
-  "sun_altitude_deg": 49,
-  "door_ajar_deg": 32,
-  "gap_m": 0.115,
-  "note": "upper and lower edges of the shaft come from the unmodelled bedroom (stand-in blockers); the gap gives its width"
+  "sun_altitude_deg": 34,
+  "sun_azimuth_deg": 30,
+  "opening_m": 0.86,
+  "band_top_at_face_m": 1.06,
+  "note": "left edge: the slid-open panels; right edge: the jamb; top edge: the bedroom window head (stand-in slab); bottom: the floor"
  },
  "motes": {
   "seed": 2002,
@@ -326,76 +369,76 @@
  "points_world": {
   "jade19": {
    "eyes": [
-    -0.1785,
-    0.724,
-    0
+    0.5085,
+    0.8189,
+    -0.1669
    ],
    "head": [
-    -0.2534,
-    0.7806,
-    0
+    0.5318,
+    0.875,
+    -0.2386
    ],
    "chin": [
-    -0.2834,
-    0.6664,
-    0
+    0.5323,
+    0.7608,
+    -0.2688
    ],
    "handL": [
-    -0.035,
-    0.288,
+    0.49,
+    0.388,
     -0.05
    ],
    "handR": [
-    -0.035,
-    0.288,
-    0.05
+    0.39,
+    0.388,
+    -0.05
    ],
    "hip": [
-    -0.45,
-    0.1386,
-    0
+    0.55,
+    0.229,
+    -0.42
    ],
    "shoulderC": [
-    -0.3664,
-    0.6158,
-    0
+    0.55,
+    0.709,
+    -0.3467
    ]
   },
   "firstLove19": {
    "eyes": [
-    0.1522,
-    0.7821,
-    0
+    0.3749,
+    0.7898,
+    0.109
    ],
    "head": [
-    0.231,
-    0.8477,
-    0
+    0.3491,
+    0.8518,
+    0.1865
    ],
    "chin": [
-    0.2696,
-    0.7246,
-    0
+    0.3494,
+    0.7275,
+    0.2211
    ],
    "handL": [
-    0.035,
-    0.312,
-    0.05
+    0.39,
+    0.412,
+    0.01
    ],
    "handR": [
-    0.035,
-    0.312,
-    -0.05
+    0.49,
+    0.412,
+    0.01
    ],
    "hip": [
-    0.45,
+    0.33,
     0.1513,
-    0
+    0.4
    ],
    "shoulderC": [
-    0.3587,
+    0.33,
     0.6725,
-    0
+    0.3087
    ]
   }
  },
@@ -410,10 +453,10 @@
     }
    },
    "arms": {
-    "L": 0.8,
-    "R": 0.8
+    "L": 0.84,
+    "R": 0.71
    },
-   "headTurn": 0
+   "headTurn": -16
   },
   "firstLove19": {
    "legs": {
@@ -425,10 +468,10 @@
     }
    },
    "arms": {
-    "L": 0.77,
-    "R": 0.77
+    "L": 0.73,
+    "R": 0.58
    },
-   "headTurn": 0
+   "headTurn": -16
   }
  }
 }

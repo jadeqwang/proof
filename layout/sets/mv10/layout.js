@@ -343,16 +343,57 @@ export const NOGUCHI = { at: [1.72, 1.98], W: 1.27, D: 0.914, h: 0.40, glass: 0.
 // chrome legs on a thin metal apron: OURS (ASSUMED).
 export const GLASS_TABLE = { wallX: 4.89, zc: 2.35, W: 0.91, D: 0.30, h: 0.76, glass: 0.012, shape: 'half-ellipse (demilune)' };
 
-// ---------------------------------------------------------------- kitchen and dining (Jade, page 2)
+// ---------------------------------------------------------------- kitchen and dining (Jade, page 2; dressed 2026-11-25 (round 2 answers))
 // "kitchen counters": a U along the partition, the core wall and the ESE wall (OUR depth 0.635, height 0.91).
+// Jade (2026-11-25, round 2): a normal-size FRIDGE "on the side near the 2x2 Expedit"; a stainless STEP-LID TRASH CAN in
+// the space to the right of the sink; a DISHWASHER under the counter to the right of the stove; UPPER CABINETS; ALL cabinet
+// doors DARK WALNUT. Her U fits these with one change (ASSUMED, flagged): the fridge stands at the SSW end of the partition
+// run, back to the partition, right behind the 2x2 (X 2.30..3.06), so that run now starts at X 3.10 (was 2.82: 0.28 m
+// shorter). "Right of" = right hand as you face the appliance: facing the stove (NNE) that is ESE, toward the sink corner;
+// facing the sink (ESE) it is SSW, the open floor past the end of the ESE run. `front` = the way each run's doors face.
 export const COUNTERS = [
-  { name: 'counter along the partition', x0: 2.82, x1: 4.89, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.635 },
-  { name: 'counter along the core wall', x0: 4.89 - 0.635, x1: 4.89, z0: KITCHEN.z0 + 0.635, z1: KITCHEN.z1 },
-  { name: 'counter along the ESE wall', x0: 3.30, x1: 4.89 - 0.635, z0: KITCHEN.z1 - 0.635, z1: KITCHEN.z1 },
+  { name: 'counter along the partition', x0: 3.10, x1: 4.89, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.635, front: '+Z' },
+  { name: 'counter along the core wall', x0: 4.89 - 0.635, x1: 4.89, z0: KITCHEN.z0 + 0.635, z1: KITCHEN.z1, front: '-X' },
+  { name: 'counter along the ESE wall', x0: 3.30, x1: 4.89 - 0.635, z0: KITCHEN.z1 - 0.635, z1: KITCHEN.z1, front: '-Z' },
 ];
 export const COUNTER_H = 0.91;
 export const SINK = { x0: 3.45, x1: 4.15, z: KITCHEN.z1 - 0.32 };        // under the ESE window (OURS)
-export const STOVE = { x: 4.89 - 0.32, z0: 7.0, z1: 7.76 };               // on the core run (OURS); no fridge drawn, none modelled
+// the stove: a freestanding 30" range on the core run (place OURS, unchanged); oven door on its SSW-facing (-X) front
+export const STOVE = { x: 4.89 - 0.32, z0: 7.0, z1: 7.76, kind: '30-inch freestanding range (OURS: type)' };
+// Jade: dishwasher under the counter to the right of the stove (24", next to it, ESE side)
+export const DISHWASHER = { run: 1, z0: 7.78, z1: 8.39, kind: '24-inch dishwasher, stainless front (finish OURS)' };
+// Jade: normal-size fridge near the 2x2 (30" top-freezer, 1.72 m: OUR model; white: OUR colour, a 2010 rental)
+export const FRIDGE = { x0: 2.30, x1: 3.06, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.74, h: 1.72, freezerY: 1.22, col: 0xf0efe9, kind: '30-inch top-freezer fridge, white (model and colour OURS)' };
+// Jade: a stainless step-lid trash can in the space to the right of the sink (on the floor past the ESE run's SSW end)
+export const TRASH = { at: [3.10, 9.55], r: 0.15, h: 0.66, kind: 'stainless-steel step-lid trash can (~30 L; size OURS)' };
+// Jade: upper cabinets; every cabinet door dark walnut. Uppers 0.33 deep, 1.40..2.16 m (OUR sizes); none over the
+// ESE window (it fills that run); a range hood over the stove (OURS); a short cabinet over the fridge.
+export const WALNUT = { col: 0x3b2618, grey: 0.2, kind: 'dark walnut (all cabinet doors: Jade)' };
+export const UPPERS = [
+  { name: 'upper cabinets (partition)', x0: 3.10, x1: 4.56, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.33, y0: 1.40, y1: 2.16, front: '+Z' },
+  { name: 'upper cabinets (core wall)', x0: 4.56, x1: 4.89, z0: KITCHEN.z0, z1: STOVE.z0, y0: 1.40, y1: 2.16, front: '-X' },
+  { name: 'upper cabinets (core wall)', x0: 4.56, x1: 4.89, z0: STOVE.z1, z1: KITCHEN.z1, y0: 1.40, y1: 2.16, front: '-X' },
+  { name: 'upper cabinet (over the fridge)', x0: 2.30, x1: 3.06, z0: KITCHEN.z0, z1: KITCHEN.z0 + 0.33, y0: 1.80, y1: 2.16, front: '+Z' },
+];
+export const HOOD = { x0: 4.40, x1: 4.89, z0: STOVE.z0, z1: STOVE.z1, y0: 1.60, y1: 1.76, kind: 'range hood (OURS)' };
+// Jade: a GIANT punchbowl of lemonade to the right of the stove (on the counter over the dishwasher), with a ladle and a
+// stack of cups. Size OURS: 0.50 m across, 0.20 deep, on a short foot (a big glass punchbowl).
+export const PUNCHBOWL = { at: [4.57, 8.08], r: 0.25, h: 0.20, foot: 0.06, cupsAt: [[4.62, 8.55], [4.48, 8.62]], cupsN: 22, kind: 'giant glass punchbowl of lemonade (Jade); size OURS' };
+// the party food (Jade: appetizers spread across the dining table, snacks around the counters). WHICH foods: OURS, generic.
+// [kind, shape ('round' r | 'rect' w d), x, z, label]
+export const PARTY_FOOD = {
+  table: [['round', 0.17, 0.45, 7.45, 'appetizers (vegetable platter)'], ['rect', [0.36, 0.22], 0.92, 7.86, 'appetizers (cheese and crackers)'], ['round', 0.075, 0.93, 7.44, 'appetizers (bowl of dip)'],
+    ['rect', [0.30, 0.18], 1.40, 7.45, 'appetizers (tray of skewers)'], ['round', 0.13, 1.62, 7.88, 'appetizers (plate of cookies)'], ['round', 0.15, 0.40, 7.90, 'appetizers (fruit platter)'],
+    ['round', 0.10, 1.84, 7.38, 'paper plates (stack)'], ['rect', [0.16, 0.16], 1.30, 7.92, 'napkins']],
+  counters: [['round', 0.12, 3.42, 5.73, 'snacks (bowl of chips)'], ['round', 0.11, 3.88, 5.73, 'snacks (bowl of pretzels)'], ['round', 0.12, 4.57, 6.40, 'snacks (bowl of popcorn)'],
+    ['rect', [0.22, 0.30], 4.57, 6.78, 'snacks (bag of tortilla chips)'], ['round', 0.10, 4.60, 9.05, 'snacks (bowl of nuts)'], ['round', 0.10, 4.30, 5.73, 'snacks (bowl of salsa)']],
+};
+// the lemonade prep BEFORE the party (Jade 2026-11-25 round 2: "they pick the lemons AND prepare the lemonade in the
+// kitchen (juicer, rinds, mixing)"): on the dining table, where the SSW window's 14:00 sun falls (our choice of surface:
+// the counters are in shade and crowded; ASSUMED). Everything here is OURS except juicer, rinds, mixing and the lemons.
+export const PREP = { board: { at: [1.00, 7.42], w: 0.45, d: 0.30 }, knife: { at: [1.00, 7.62] }, reamer: { at: [1.62, 7.42], r: 0.09 },
+  lemonsBowl: { at: [0.40, 7.46], r: 0.16 }, rindsBowl: { at: [0.60, 7.88], r: 0.14 }, punch: { at: [1.05, 7.84] }, sugar: { at: [0.27, 7.95] }, pitcher: { at: [1.84, 7.90], r: 0.07 },
+  halves: [[0.92, 7.40, 'up'], [1.10, 7.46, 'up']], rinds: 6 };
 // "pale IKEA dinner table" with "pale benches, tucked in": end-on to the SSW wall (Jade). 1.8 x 0.9 m: OURS.
 export const DINING = { x0: T, x1: T + 1.8, z0: 7.2, z1: 8.1, h: 0.74, col: 0xe2cfa6,
   benches: [{ x0: 0.3, x1: 1.8, z0: 6.98, z1: 7.30 }, { x0: 0.3, x1: 1.8, z0: 8.0, z1: 8.32 }], benchH: 0.45 };
@@ -388,8 +429,8 @@ export const TREE = { at: [10.79, 19.07], trunkH: 1.75, trunkR: 0.14, canopyR: 2
 // the neighbour's grapefruit tree; its branches spill over the NNE fence (Jade). Trunk beyond the fence: OURS.
 export const GRAPEFRUIT = { trunk: [14.3, 12.85], at: [13.45, 12.85], canopyR: 1.55, canopyY: GRADE + 3.0, canopyK: 0.75, fruitR: 0.06, fruits: 14 };
 // the lemonade: Jade (2026-11-25 late) made it BEFORE the party with the childhood friend, from lemons they picked off
-// the tree; first love, Z and the guests had not arrived. During the party it stands on this table on the deck (OURS).
-export const DRINKS = { x0: 2.55, x1: 3.45, z0: 11.9, z1: 12.5, h: 0.74, y: PATIO.top, kind: 'lemonade table on the deck (OURS); the lemonade was made before the party (Jade)' };
+// the tree. During the party it is in the GIANT PUNCHBOWL on the kitchen counter right of the stove (Jade, round 2:
+// PUNCHBOWL above). The lemonade table we had put on the deck is REMOVED (2026-11-25 round 2).
 // the fire-poi spinner (Jade, 2026-11-25 late): in the yard, performing TOWARD the audience, who stand along the house's
 // ESE wall and on the deck. Mark: the open lawn 5 m out from the wall, between the mint barrel and the clothesline,
 // facing the audience's middle (AUDIENCE_AT): OUR pick. Two burning heads, each sweeping a circle beside the body.
@@ -485,47 +526,41 @@ export const FOOTPRINTS = {
   ceiling: { note: 'omni fixtures: no shaft and no mask; they fill the room they hang in' },
 };
 
-// ---------------------------------------------------------------- the room crossing, as data (V3_rcv; "Room crossing velocity")
-// Timeline: the -2sm render, media/karaoke_v2/lyrics_timed.json, full mix: "Room crossing velocity" 194.59-198.72 s
-// ("Room" 194.59, "crossing" 195.18, "velocity" 197.06). The older v3 song map had 203.8-207.4 (tail ~208.9). The walk: shelf -> the opening by the 2x2
-// and the printer -> round the dining table's NNE end -> the sliding door = PATH[0..8]. Speeds per segment are INVENTED
-// (a plausible party walk, 1.1-1.3 m/s, slowing for the opening and at the doors), for the compositor's v = ds/dt.
-export const CROSSING = (() => {
-  const pts = PATH.slice(0, 9).map(([x, z]) => [x, z]);
-  const speeds = [1.15, 0.85, 0.9, 1.2, 1.28, 1.25, 1.1, 0.9];
-  const notes = ['leaving the shelf', 'slowing for the opening (2x2 Expedit and printer at her right)', 'through the opening', 'into the dining area',
-    'past the dining table’s NNE end', 'along the counter side', 'turning toward the sliding door', 'slowing at the sliding door'];
-  const len = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
-  let t = 0, s = 0; const segs = [], stamps = [{ i: 0, at: pts[0], t_s: 0, s_m: 0 }];
-  for (let i = 0; i + 1 < pts.length; i++) { const L = len(pts[i], pts[i + 1]), dt = L / speeds[i]; t += dt; s += L;
-    segs.push({ i, from: pts[i], to: pts[i + 1], length_m: +L.toFixed(3), speed_mps: speeds[i], dt_s: +dt.toFixed(3), heading_bearing_deg: +(((Math.atan2(pts[i + 1][1] - pts[i][1], pts[i + 1][0] - pts[i][0]) * 180 / Math.PI) + BEARING.X + 360) % 360).toFixed(1), note: notes[i] });
-    stamps.push({ i: i + 1, at: pts[i + 1], t_s: +t.toFixed(3), s_m: +s.toFixed(3) }); }
-  // turn at each inner vertex: signed degrees, + = to her left (counter-clockwise seen from above with NNE up, ESE right)
-  const turns = []; for (let i = 1; i + 1 < pts.length; i++) { const a = [pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]], b = [pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]];
-    const ang = Math.atan2(a[1] * b[0] - a[0] * b[1], a[0] * b[0] + a[1] * b[1]) * 180 / Math.PI; turns.push({ at: pts[i], turn_deg: +ang.toFixed(1), side: ang > 0 ? 'left' : 'right' }); }
-  // the shortest walkable path: a visibility graph on the obstacles inflated by her half-width + clearance (0.25 m)
-  const r = 0.25, OB = [
-    { name: 'Expedit 2x2 + printer', x0: EXPEDIT2.X0, x1: EXPEDIT2.X1, z0: EXPEDIT2.Zc - EXPEDIT2.W / 2, z1: EXPEDIT2.Zc + EXPEDIT2.W / 2 },
-    { name: 'partition wall', x0: PARTITION.x0, x1: 4.95, z0: PARTITION.z0, z1: PARTITION.z1 },
-    { name: 'Expedit 5x5', x0: SHELF_W.X_ssw, x1: SHELF_W.X_nne, z0: SHELF_W.front, z1: SHELF_W.back },
-    { name: 'counter along the partition', x0: COUNTERS[0].x0, x1: COUNTERS[0].x1, z0: COUNTERS[0].z0, z1: COUNTERS[0].z1 },
-    { name: 'dining table and benches', x0: DINING.x0, x1: DINING.x1, z0: DINING.benches[0].z0, z1: DINING.benches[1].z1 },
+// ---------------------------------------------------------------- the room crossing, as data (V3_rcv_obl; "Room crossing velocity")
+// REBUILT 2026-11-25 (round 2 answers). Jade: the motion is mostly in the LIVING ROOM with the kitchen visible; each leg is
+// a vector ("the velocity of the lyric"). Her sequence: talking with someone in the kitchen -> hears the doorbell, excuses
+// herself, crosses to the front door -> opens it, welcomes 2 new guests -> heading back toward the kitchen, someone at the
+// shelf says something, she stops -> the doorbell again -> crosses to the door again to welcome more guests.
+// The marks, the route through the opening, the speeds and the dwell times are OURS (a plausible party walk); the
+// sequence is Jade's. Who she talks to (K1), who speaks at the shelf (R1) and the guests (N1..N4) are set-local figures.
+// Real time (invented) is ~20 s; the -2sm line lasts 4.13 s (194.59-198.72), so the shot plays it ~4.8x fast (a
+// uniform time-lapse: `slot` times below). The old route (shelf -> dining -> sliding door) is gone with it.
+export const RC_MARKS = { kitchen: [1.75, 6.25], door: [4.10, 0.78], stop: [2.55, 2.91], door2: [3.95, 0.70], K1: [2.45, 6.62], R1: [3.25, 3.72] };
+export const ROOM_CROSSING = (() => {
+  const M = RC_MARKS, len = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
+  const slot = { lyric: 'Room crossing velocity', timeline: 'media/karaoke_v2/lyrics_timed.json (-2sm), full mix', start_s: 194.59, end_s: 198.72, words_s: { Room: 194.59, crossing: 195.175, velocity: 197.056 } };
+  const plan = [
+    { kind: 'stop', id: 'S0', at: M.kitchen, dwell: 2.0, what: 'in the kitchen, just inside the opening, talking with K1 (by the fridge)', events: [{ dt: 1.2, what: 'the doorbell' }, { dt: 1.5, what: 'she excuses herself' }] },
+    { kind: 'leg', id: 'L1', pts: [M.kitchen, [1.20, 5.20], [1.55, 4.25], M.door], speed: 1.30, what: 'to the front door: out through the opening past the 2x2 and its printer, then diagonally across the living room, clear of the Noguchi table' },
+    { kind: 'stop', id: 'S1', at: M.door, dwell: 4.0, what: 'opens the front door, welcomes N1 and N2 in' },
+    { kind: 'leg', id: 'L2', pts: [M.door, M.stop], speed: 1.10, drawOffset: 0.2, what: 'heading back toward the kitchen (aimed at the opening)' },
+    { kind: 'stop', id: 'S2', at: M.stop, dwell: 2.5, what: 'R1, at the Expedit, says something; she stops and turns her head to R1', events: [{ dt: 2.0, what: 'the doorbell again' }] },
+    { kind: 'leg', id: 'L3', pts: [M.stop, M.door2], speed: 1.35, drawOffset: 0.2, what: 'back to the front door' },
+    { kind: 'stop', id: 'S3', at: M.door2, dwell: 1.5, what: 'opens the door again: N3 and N4 on the step (end of the shot)' },
   ];
-  const inf = OB.map((o) => ({ x0: o.x0 - r, x1: o.x1 + r, z0: o.z0 - r, z1: o.z1 + r })), wallX = LIVING.x0 + r;
-  const segHits = (a, b) => { if (a[0] < wallX - 1e-6 || b[0] < wallX - 1e-6) return true;
-    for (const o of inf) { let t0 = 0, t1 = 1; const d = [b[0] - a[0], b[1] - a[1]];
-      for (const [p, q, lo, hi] of [[a[0], d[0], o.x0 + 1e-6, o.x1 - 1e-6], [a[1], d[1], o.z0 + 1e-6, o.z1 - 1e-6]]) {
-        if (Math.abs(q) < 1e-12) { if (p <= lo || p >= hi) { t0 = 2; break; } continue; }
-        let u0 = (lo - p) / q, u1 = (hi - p) / q; if (u0 > u1) [u0, u1] = [u1, u0]; t0 = Math.max(t0, u0); t1 = Math.min(t1, u1); }
-      if (t0 < t1) return true; } return false; };
-  const A = pts[0], B = pts[pts.length - 1], nodes = [A, B, ...inf.flatMap((o) => [[o.x0, o.z0], [o.x0, o.z1], [o.x1, o.z0], [o.x1, o.z1]])].filter((p) => p[0] >= wallX - 1e-6);
-  const dist = nodes.map(() => Infinity), prev = nodes.map(() => -1), done = nodes.map(() => false); dist[0] = 0;
-  for (;;) { let k = -1; for (let i = 0; i < nodes.length; i++) if (!done[i] && (k < 0 || dist[i] < dist[k])) k = i; if (k < 0 || dist[k] === Infinity) break; done[k] = true; if (k === 1) break;
-    for (let j = 0; j < nodes.length; j++) if (!done[j] && !segHits(nodes[k], nodes[j])) { const dd = dist[k] + len(nodes[k], nodes[j]); if (dd < dist[j]) { dist[j] = dd; prev[j] = k; } } }
-  const sp = []; for (let k = 1; k >= 0; k = prev[k]) sp.unshift(nodes[k].map((v) => +v.toFixed(3)));
-  return { points: pts, segments: segs, stamps, turns, total_m: +s.toFixed(3), total_s: +t.toFixed(3), mean_speed_mps: +(s / t).toFixed(3),
-    straight_line_m: +len(A, B).toFixed(3), shortest_walkable_m: +dist[1].toFixed(3), shortest_walkable_path: sp, detour_ratio_vs_shortest: +(s / dist[1]).toFixed(3),
-    clearance_m: r, obstacles: OB, song: { lyric: 'Room crossing velocity', timeline: 'media/karaoke_v2/lyrics_timed.json (-2sm), full mix', start_s: 194.59, end_s: 198.72, words_s: { Room: 194.59, crossing: 195.175, velocity: 197.056 }, instrumental_track_s: [194.619, 198.759], v3_song_map_s: [203.8, 207.4] },
-    fit_note: `the invented walk takes ${t.toFixed(1)} s; the line lasts 4.13 s (194.59-198.72): to play the whole walk under it, run it ${(t / 4.13).toFixed(2)}x fast, or let the shot show its middle`,
-    invented: 'speeds and timestamps are OURS (plausible pace), not Jade’s; the route is set by her drawing of the rooms and furniture' };
+  let t = 0; const items = plan.map((p) => { const o = { ...p, t0_s: +t.toFixed(3) };
+    if (p.kind === 'leg') { const L = p.pts.slice(1).reduce((acc, q, i) => acc + len(p.pts[i], q), 0), dt = L / p.speed, A = p.pts[0], B = p.pts[p.pts.length - 1], D = [B[0] - A[0], B[1] - A[1]], dl = len(A, B);
+      Object.assign(o, { length_m: +L.toFixed(3), dt_s: +dt.toFixed(3), displacement_m: D.map((v) => +v.toFixed(3)), displacement_len_m: +dl.toFixed(3),
+        mean_velocity_mps: [D[0] / dt, D[1] / dt].map((v) => +v.toFixed(3)), mean_velocity_len_mps: +(dl / dt).toFixed(3),
+        heading_bearing_deg: +(((Math.atan2(D[1], D[0]) * 180 / Math.PI) + BEARING.X + 360) % 360).toFixed(1) }); t += dt; }
+    else t += p.dwell;
+    o.t1_s = +t.toFixed(3); return o; });
+  const k = (slot.end_s - slot.start_s) / t;
+  for (const o of items) { o.slot_s = [+(slot.start_s + o.t0_s * k).toFixed(3), +(slot.start_s + o.t1_s * k).toFixed(3)];
+    for (const e of o.events || []) e.slot_s = +(slot.start_s + (o.t0_s + e.dt) * k).toFixed(3); }
+  const legs = items.filter((o) => o.kind === 'leg'), walked = legs.reduce((a, o) => a + o.length_m, 0);
+  return { note: 'Jade’s sequence (2026-11-25 round 2); marks, route, speeds and dwells OURS. World [X (NNE), Z (ESE)] on the floor.', marks: M, items, legs, stops: items.filter((o) => o.kind === 'stop'),
+    real_total_s: +t.toFixed(3), walked_m: +walked.toFixed(3), slot, speedup: +(1 / k).toFixed(2),
+    fit_note: `the sequence takes ~${t.toFixed(1)} s in real time; the line is 4.13 s, so the shot runs ${(1 / k).toFixed(1)}x fast (uniform). Alternative: hold the stops shorter (a beat each) and let the walks run ~3x.`,
+    keys: { V3_rcv_obl_k0: 'start (S0: talking in the kitchen, before the bell)', V3_rcv_obl: 'middle (S2: stopped by the shelf, turned to R1; N1 and N2 just inside)', V3_rcv_obl_k3: 'end (S3: at the door again, N3 and N4 on the step)' } };
 })();

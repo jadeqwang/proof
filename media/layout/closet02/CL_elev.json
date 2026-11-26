@@ -1,0 +1,400 @@
+{
+ "shot": "CL_elev",
+ "set": "closet02",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0,
+   1.1,
+   6
+  ],
+  "target": [
+   0,
+   1.1,
+   -0.3
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 10,
+  "matrixWorld": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   1.1,
+   6,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   -1.1,
+   -6,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0101,
+   -1,
+   0,
+   0,
+   -0.1005,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "jade19": {
+   "px": [
+    1202,
+    695.5
+   ],
+   "eyes": [
+    1203.4,
+    734.9
+   ],
+   "mouth": [
+    1201.1,
+    740.9
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 76
+  }
+ },
+ "hands": {
+  "meet_world": [
+   0.44,
+   0.4,
+   -0.02
+  ],
+  "meet_px": [
+   1154.9,
+   850.1
+  ],
+  "each_px": {
+   "jade19.L": [
+    1221.9,
+    741.7
+   ],
+   "jade19.R": [
+    1190.6,
+    741.7
+   ]
+  }
+ },
+ "lights": [
+  {
+   "name": "door",
+   "kind": "late-afternoon sun from the bedroom window behind him (parallel)",
+   "on": true,
+   "color": "#ffe2b0",
+   "world": [
+    1.7936,
+    2.4776,
+    1.8939
+   ],
+   "px": [
+    2124.8,
+    -354.7
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.673,
+    0.74
+   ],
+   "toward_camera": -0.705,
+   "aim_world": [
+    0.55,
+    0.8,
+    -0.26
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "The closet from the bedroom, square on, nearly orthographic: sliding panels over the left half; shelf with textbooks and shoeboxes, rod and clothes to two-thirds down, long coats at the left edge of the open half; Jade low right of centre on the folded duvet, head in her hands.",
+ "film": {
+  "time": null,
+  "section": "reference elevation (not in the film)",
+  "position": "reference"
+ },
+ "beam": {
+  "name": "door",
+  "kind": "late-afternoon sun from the bedroom window, over his shoulder, through the open half of the sliding door (parallel)",
+  "model": "parallel (sunlight)",
+  "source_world": null,
+  "direction_of_travel": [
+   -0.4145,
+   -0.5592,
+   -0.718
+  ],
+  "aperture_world": [
+   [
+    0.1996,
+    1.2222,
+    0.22
+   ],
+   [
+    1.007,
+    1.4945,
+    0.22
+   ],
+   [
+    1.007,
+    -0.05,
+    0.22
+   ],
+   [
+    0.1996,
+    -0.05,
+    0.22
+   ]
+  ],
+  "aperture_px": [
+   [
+    1052.1,
+    483.6
+   ],
+   [
+    1424.6,
+    358
+   ],
+   [
+    1424.6,
+    1070.6
+   ],
+   [
+    1052.1,
+    1070.6
+   ]
+  ],
+  "footprints": {
+   "floor": {
+    "world": [
+     [
+      -0.1008,
+      0,
+      -1.6989
+     ],
+     [
+      1.007,
+      0,
+      0.22
+     ],
+     [
+      0.1996,
+      0,
+      0.22
+     ],
+     [
+      -0.7064,
+      0,
+      -1.3492
+     ]
+    ],
+    "px": [
+     [
+      925.1,
+      921
+     ],
+     [
+      1424.6,
+      1047.5
+     ],
+     [
+      1052.1,
+      1047.5
+     ],
+     [
+      703.7,
+      939.1
+     ]
+    ]
+   },
+   "back wall": {
+    "world": [
+     [
+      -0.3489,
+      0,
+      -0.73
+     ],
+     [
+      -0.3489,
+      0.4823,
+      -0.73
+     ],
+     [
+      0.4585,
+      0.7546,
+      -0.73
+     ],
+     [
+      0.4585,
+      0,
+      -0.73
+     ]
+    ],
+    "px": [
+     [
+      821.7,
+      975.9
+     ],
+     [
+      821.7,
+      784.8
+     ],
+     [
+      1141.7,
+      676.9
+     ],
+     [
+      1141.7,
+      975.9
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   0.55,
+   0.8,
+   -0.26
+  ],
+  "anchor_px": [
+   1194.3,
+   667.8
+  ],
+  "on_screen": {
+   "from_px": [
+    1214.9,
+    645.2
+   ],
+   "to_px": [
+    1174.2,
+    689.9
+   ],
+   "angle_deg": 47.7,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": 7.7,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "sun_altitude_deg": 34,
+  "sun_azimuth_deg": 30,
+  "opening_m": 0.86,
+  "band_top_at_face_m": 1.06,
+  "note": "left edge: the slid-open panels; right edge: the jamb; top edge: the bedroom window head (stand-in slab); bottom: the floor"
+ },
+ "motes": {
+  "seed": 2002,
+  "count": 80
+ },
+ "points_world": {
+  "jade19": {
+   "eyes": [
+    0.55,
+    0.6596,
+    -0.0256
+   ],
+   "head": [
+    0.55,
+    0.7465,
+    -0.0613
+   ],
+   "chin": [
+    0.55,
+    0.6633,
+    -0.1452
+   ],
+   "handL": [
+    0.585,
+    0.6496,
+    0.0444
+   ],
+   "handR": [
+    0.515,
+    0.6496,
+    0.0444
+   ],
+   "hip": [
+    0.55,
+    0.229,
+    -0.42
+   ],
+   "shoulderC": [
+    0.55,
+    0.6537,
+    -0.2333
+   ]
+  }
+ },
+ "figure_report": {
+  "jade19": {
+   "legs": {
+    "L": {
+     "reach": 0.56
+    },
+    "R": {
+     "reach": 0.56
+    }
+   },
+   "arms": {
+    "L": 0.6,
+    "R": 0.6
+   },
+   "headTurn": 0
+  }
+ }
+}

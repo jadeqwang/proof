@@ -1,0 +1,7 @@
+FAIL no image /home/jade/Documents/proof/cast/first_love/_prompts/v4/takes/fl_H_ias_sweatshirt_v1_t1.jpg: at help.openai.com and include the request ID 22a1ab5b-a381-4b45-8562-a6ec0d441546. safety_violations=[sexual].\",\n    \"type\": \"image_generation_user_error\",\n    \"param\": null,\n    \"code\": \"moderation_blocked\",\n    \"moderation_details\": {\n      \"moderation_stage\": \"output\",\n      \"categories\": [\n        \"sexual\"\n      ]\n    }\n  }\n}")
+codex
+The image tool rejected the request with a sexual-content safety flag. No image was generated or saved.
+tokens used
+10,734
+The image tool rejected the request with a sexual-content safety flag. No image was generated or saved.
+

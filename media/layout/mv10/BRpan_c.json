@@ -838,21 +838,21 @@
   },
   "T1": {
    "px": [
-    1088.4,
-    459.7
+    798.1,
+    434.9
    ],
    "eyes": [
-    1092.3,
-    470.8
+    766.2,
+    448.7
    ],
    "mouth": [
-    1091.3,
-    481.5
+    777.4,
+    468.6
    ],
    "in_frame": true,
    "visible": false,
-   "facing_camera_deg": 140,
-   "blocked_by": "science-fiction paperbacks (shelved with truth)"
+   "facing_camera_deg": 90,
+   "blocked_by": "literature (beauty)"
   },
   "G1": {
    "px": [
@@ -1214,17 +1214,17 @@
   },
   "T1.L": {
    "px": [
-    1041.9,
-    629.7
+    741.1,
+    571
    ],
-   "shape": "relax",
+   "shape": "grip",
    "in_frame": true,
    "visible": false
   },
   "T1.R": {
    "px": [
-    1119,
-    570.4
+    655.4,
+    495.2
    ],
    "shape": "grip",
    "in_frame": true,
@@ -2854,10 +2854,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 1.26
+    "L": 0.47,
+    "R": 0.86
    },
-   "headTurn": -15
+   "headTurn": 4
   },
   "G1": {
    "legs": {
