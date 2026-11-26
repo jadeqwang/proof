@@ -25,3 +25,6 @@ the front's width, not a navy line seal over almost the whole front. Its Truth a
 seal's Truth is unclothed). Do not pass it as a garment or seal reference.
 G v3 (same date): its folded garment is the old white crew-neck sweatshirt with the huge navy seal; replaced by
 fl_G_ots_hair_v4 (same hair and layout, the gift now a folded white hoodie with the blue chest print).
+A v4 (2026-11-26, round 4): figure 1 showed the part as a line down the back; then B v5 / G v5 ("a little too perfect"),
+B v6 / G v6 / A v5 (finger-combed, lived-in) the same evening, all replaced by v7 (Jade: her reference's hair colour and
+degree of messiness: tousled, rich warm dark brown): fl_B_backhead_neck_v7, fl_G_ots_hair_v7, fl_A_turnaround_back_v7.

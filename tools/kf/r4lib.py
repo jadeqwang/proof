@@ -61,16 +61,18 @@ RULES = ("Not anime, not cel shading, not a photograph, not a 3D or digital rend
          "holds something supports it (fingers round it or the palm under it), nothing floats.")
 
 # ------------------------------------------------------------------------------------------------- shared wording
-FIRST_LOVE_HAIR = ("His hair is 60-70% dark chocolate brown: a warm, rich dark brown, clearly brown in the light, never "
-                   "black, not auburn or red. The cut is exactly as on his hair sheets: a top layer with a distinct step "
-                   "over a lower part buzzed and grown out about six months; the top is flat-ish and slightly tousled, "
-                   "thin at its edge, with no level rim: not a bowl, not a mushroom.")
+FIRST_LOVE_HAIR = ("His hair is a rich dark brown with warm undertones (warm chestnut glints where the light hits it, deep "
+                   "warm brown in shadow), clearly brown, never black, not medium brown, not auburn or red. The cut is exactly "
+                   "as on his hair sheets: a top layer with a distinct step over a lower part buzzed and grown out about six "
+                   "months; the part shows from behind only as a short notch at the very top. The top is clearly TOUSLED, "
+                   "as if he never combs it and only rakes it with his fingers: loose, slightly wavy, uneven pieces, a few "
+                   "lifting or crossing, wispy irregular ends; not a bowl, not a mushroom, not neat.")
 FIRST_LOVE_FACE = ("He is seen from behind: the back of his head and his hair only; his face is turned fully away and is "
                    "never shown: no eye, no nose, no mouth, no cheek in profile.")
 FIRST_LOVE_REFS = {
-    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v6.png", "his back-of-head sheet, the hair anchor (cut and step; "
-                "the colour is the 60-70% dark chocolate brown in the prompt)"),
-    "fl_ots": ("cast/first_love/fl_G_ots_hair_v6.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
+    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v7.png", "his back-of-head sheet, the hair anchor (cut, step, "
+                "tousled texture and warm dark-brown colour)"),
+    "fl_ots": ("cast/first_love/fl_G_ots_hair_v7.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
                "and the side; face never shown)"),
     "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (the current one; hands only)"),
 }
@@ -96,7 +98,7 @@ NAMED = [  # (name, hex): plain painter's names, nearest in CIE Lab wins
     ("olive", "6a6a3a"), ("mustard", "c8a030"), ("pale yellow", "efe2a0"), ("yellow", "f2c84a"), ("orange", "e8792c"),
     ("rust", "a8542c"), ("terracotta", "b06a50"), ("brick red", "8a3a3a"), ("maroon", "6e3a33"), ("red", "c03030"),
     ("dusty rose", "c8909a"), ("pink", "e8a8b8"), ("mauve", "8a5a6a"), ("plum", "5a3048"), ("lavender-grey", "a8a4b8"),
-    ("dark brown", "4a3226"), ("chocolate brown", "352219"), ("mid brown", "7a5438"), ("skin", "d9ab88"),
+    ("dark brown", "4a3226"), ("chocolate brown", "352219"), ("rich warm dark brown", "3d2819"), ("mid brown", "7a5438"), ("skin", "d9ab88"),
 ]
 
 

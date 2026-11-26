@@ -223,3 +223,39 @@ this reading (the bottom row's 5 and 6 are not a pair: 5 is fine).
 "make first love's hair color a little bit more like 60-70% dark chocolate." The 3D bodies use 0x352219 (was 0x2a2018,
 near-black). Painter prompts: "60-70% dark chocolate brown: a warm, rich dark brown, clearly brown in light, never
 black, not auburn or red". The v5 sheets are a touch lighter/glossier; prefer this wording over the sheet's tone.
+
+## 2026-11-26: round-4 decisions (lived-in texture: B v6, G v6, A v5)
+Jade on B/G v5 (fl_part5): "Yes, the part is correct. it feels freshly combed and a little too perfect. Give it a little
+bit of lived-in feeling or intrinsic texture to the hair, like he doesn't brush it every day, just runs his hand through it
+and gets going." On A v4 figure 1 (fl_A_fig1): redraw notch-only.
+- `fl_B_backhead_neck_v6.png` (take B_t4 of 4): whole sheet redrawn from v5 (image 1); same cut, notch part, step,
+  buzz and layout; the top layer now falls in loose finger-combed pieces with broken highlights and a few strays,
+  warm dark-chocolate brown. B_t1/t2 (a softer prompt) changed almost nothing; `B2.txt` names the change concretely.
+- `fl_G_ots_hair_v6.png` (G_t2 of 2): from G v5 + B v6; settings, hoodie print and framing kept.
+- `fl_A_turnaround_back_v5.jpg` (A_t1 of 2): from B v6 + A v4; figure 1's part is now only the notch at the top.
+- Prompts `_prompts/v6/` (hair.txt and style.txt replace the "smooth, glossy, NO shag" wording; flgen.py, session
+  `proof-cast`). A v4 moved to `_superseded/`; B v5 and G v5 stay here until `tools/kf/r4lib.py` and the r4 painter
+  brief point at v6 (they still name v5).
+- Faces zoom-checked on every accepted take: backs and lost profiles only (ear, jaw line, stubble); no eye, nose or mouth.
+- Still the mild bowl tendency of v4/v5 in G's bottom row (not asked about).
+- 3D body (`layout/assets/bodies/make_bodies.py`, firstlove19/27): finger-combed pieces in the mesh, uneven ends, a
+  squarer, less domed top; see the bodies README.
+- Spend: 8 Codex images, $0; no plan limit.
+
+## 2026-11-26 late: v7 (Jade's hair reference: tousled, rich warm dark brown)
+Jade, verbatim: "instead of going back and forth, let me give you a reference. the actor who plays gaius baltar from
+battlestar galactica -- it's that color hair, similar degree of messiness." (The actor is James Callis, as Gaius Baltar,
+2004-09.) Used only as a hair reference: no photo of him was looked up or passed to any model, and neither name is in any
+image prompt; the colour and the mess are described in words.
+- Colour: a rich dark brown with warm undertones, not black, not medium brown, not auburn: **0x3d2819** (was 0x352219),
+  set in `layout/sets/_cast.js` (`FL_HAIR`, both ages; the body GLBs carry no materials). Painter wording in
+  `tools/kf/r4lib.py` FIRST_LOVE_HAIR and `media/keyframes/r4/_brief_r4.md`.
+- Messiness: clearly tousled, never combed, only finger-raked: loose, slightly wavy, uneven pieces, a few lifting or
+  crossing, wispy ends. Cut unchanged (notch part, step, the buzz grown out ~6 months).
+- `fl_B_backhead_neck_v7.png` (B_t1 of 2; t2 was redder and wavier), `fl_G_ots_hair_v7.png` (G_t1 of 2),
+  `fl_A_turnaround_back_v7.jpg` (A_t1 of 2; figure 1 notch only). Prompts `_prompts/v7/`. B/G v5, v6 and A v5 moved to
+  `_superseded/`; the painter refs now name v7.
+- Flag: the sheets' brown leans a little chestnut in highlights; if Jade finds it too red, darken in the next pass.
+- Faces zoom-checked on every accepted take: backs and lost profiles only; no eye, nose or mouth.
+- Mesh: more irregular piece widths and depths, a slight wave down each piece, a few pieces lifting toward their ends.
+- Spend: 6 Codex images, $0.

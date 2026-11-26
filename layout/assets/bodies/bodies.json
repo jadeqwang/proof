@@ -1,12 +1,11 @@
 {
- "_note": "Body specs for make_bodies.py (MPFB2 / MakeHuman CC0 assets). h = standing height in metres (matches layout/sets/_cast.js); age in years; weight / muscle are MPFB macros 0..1 (0.5 = average); race weights asian / caucasian / african; face: drawn (eyeballs + brows), blank (eyes and mouth smoothed over, nose kept: strangers whose faces the film leaves undrawn), none (whole face smoothed, no eyes: first love, never face-on). hair: hairStyle names (engine) to export. Ages that are not in the cast sheets are marked guess. hairBuild: procedural hair from the scalp (make_bodies.py build_hair): trim = cut MakeHuman long hair to chin / shoulders / blades / midback; fringe = parted strands well above the brows; cap = close hair for a bun (the bun itself is added by the engine); stepped = first love's cut. skirt: also export a skirt garment (dress costumes).",
+ "_note": "Body specs for make_bodies.py (MPFB2 / MakeHuman CC0 assets). h = standing height in metres (matches layout/sets/_cast.js); age in years; weight / muscle are MPFB macros 0..1 (0.5 = average); race weights asian / caucasian / african; face: drawn (eyeballs + brows), blank (eyes and mouth smoothed over, nose kept: strangers whose faces the film leaves undrawn), none (whole face smoothed, no eyes: first love, never face-on). hair: hairStyle names (engine) to export. Ages that are not in the cast sheets are marked guess. hairBuild: procedural hair from the scalp (make_bodies.py build_hair): trim = cut MakeHuman long hair to chin / shoulders / blades / midback; fringe = parted strands well above the brows; cap = close pulled-back hair, knot = the bun itself (a knot at the back of the head, 'low' or 'mid'); perm = Mama's jaw-length side-parted perm; stepped = first love's cut. skirt: also export a skirt garment (dress costumes).",
  "hairAssets": {
   "kidbob": "long01",
   "bob": "bob02",
   "long": "long01",
   "short": "short02",
-  "pigtails": "braid01",
-  "bun": "long01"
+  "pigtails": "braid01"
  },
  "bodies": [
   {
@@ -159,15 +158,15 @@
    "race": "asian",
    "face": "drawn",
    "hair": [
-    "bun",
-    "bob"
+    "perm"
    ],
    "_age": "cast sheet: mid to late thirties",
    "hairBuild": {
-    "bun": {
-     "trim": "nape"
+    "perm": {
+     "perm": 1
     }
-   }
+   },
+   "_hair": "Jade 2026-11-26: the jaw-length side-parted perm throughout (every age); cast/mama/mama_R"
   },
   {
    "id": "dad",
@@ -266,7 +265,8 @@
    "_age": "guess",
    "hairBuild": {
     "bun": {
-     "trim": "nape"
+     "cap": 1,
+     "knot": "low"
     }
    }
   },
@@ -285,7 +285,8 @@
    "_age": "guess (Shanghai grandmother 1.50; market93 stranger 1.52 uses it too)",
    "hairBuild": {
     "bun": {
-     "trim": "nape"
+     "cap": 1,
+     "knot": "low"
     }
    }
   },
@@ -361,7 +362,8 @@
    ],
    "hairBuild": {
     "bun": {
-     "trim": "nape"
+     "cap": 1,
+     "knot": "mid"
     }
    },
    "skirt": true

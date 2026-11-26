@@ -24,6 +24,12 @@ Object.assign(PROP, CHILD_PROP);
 const JADE_HAND = 0.187, JADE_FOOT = 0.251;
 const adultWith = (h) => ({ ...PROP.adult, hand: +(JADE_HAND / h).toFixed(4), foot: +(JADE_FOOT / h).toFixed(4) });
 
+// Mama's hair (Jade 2026-11-26: "The jaw-length perm throughout"): a jaw-length, side-parted perm at every age
+// (cast/mama/mama_R_rest_heads_v1; mama.glb hair_perm), never a bun or a straight bob.
+CAST.mama.hairStyle = 'perm';
+// first love's hair colour (Jade 2026-11-26, v7: "that color hair" of her reference): a rich dark brown with warm
+// undertones, not black, not medium brown (was 0x352219). The body GLBs carry no materials: this is the only place.
+const FL_HAIR = 0x3d2819;
 const MAMA_H = CAST.mama.h, FIRST_LOVE_H = 1.78;   // first love: about 5'10", lean (Jade)
 PROP.adultJade19 = adultWith(1.63); PROP.adultJade27 = adultWith(1.65); PROP.adultFirstLove = adultWith(FIRST_LOVE_H);
 const JADE_KID = { skin: 0xe6b996, hair: 0x14110f, legs: 0x4b5a7a, hairStyle: 'bob' };
@@ -37,14 +43,14 @@ export const SHARED_CAST = {
   jade19: { name: 'Jade (about 19)', h: 1.63, kind: 'adultJade19', skin: 0xe3b692, hair: 0x0e0d0f, top: 0x8a94a8, legs: 0x2c3140, hairStyle: 'long', sleeves: 'long' },
   jade27: { name: 'Jade (27)', h: 1.65, kind: 'adultJade27', skin: 0xe3b692, hair: 0x0e0d0f, top: 0xd9543a, legs: 0x2c3140, hairStyle: 'long', sleeves: 'short' },
   // ---- Mama: one person, one height (the engine's `mama`, restaurant apron, 1988); costume variants by year
-  mama86: mamaAs({ name: 'Mama (1986, Shanghai)', top: 0x6f7f9a, hairStyle: 'bob', sleeves: 'short' }),
-  mama90: mamaAs({ name: 'Mama (1990, Decatur)', top: 0x8a5a52, hairStyle: 'bun', sleeves: 'pushed' }),
-  mama91: mamaAs({ name: 'Mama (1991, school office)', top: 0x8a5a6a, hairStyle: 'bob', sleeves: 'long' }),
+  mama86: mamaAs({ name: 'Mama (1986, Shanghai)', top: 0x6f7f9a, hairStyle: 'perm', sleeves: 'short' }),
+  mama90: mamaAs({ name: 'Mama (1990, Decatur)', top: 0x8a5a52, hairStyle: 'perm', sleeves: 'pushed' }),
+  mama91: mamaAs({ name: 'Mama (1991, school office)', top: 0x8a5a6a, hairStyle: 'perm', sleeves: 'long' }),
   // ---- Dad
   dad: { name: 'Dad', h: 1.72, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0xc8ccd0, legs: 0x3a3e48, hairStyle: 'short', sleeves: 'long' },
   // ---- first love: one height, two costumes (never shot face-on)
-  firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: 0x352219, top: 0x5a6a58, legs: 0x3a3c44, hairStyle: 'short', sleeves: 'long' },
-  firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: 0x352219, top: 0x4a5a6a, legs: 0x2a2a30, hairStyle: 'short', sleeves: 'long' },
+  firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x5a6a58, legs: 0x3a3c44, hairStyle: 'short', sleeves: 'long' },
+  firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x4a5a6a, legs: 0x2a2a30, hairStyle: 'short', sleeves: 'long' },
 };
 Object.assign(CAST, SHARED_CAST);          // authoritative: overwrites anything registered under these keys
 

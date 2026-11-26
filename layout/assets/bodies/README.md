@@ -32,7 +32,7 @@ weights, face, hair styles. Ages and builds come from the cast sheets' sidecars 
 |---|---|---|---|---|---|---|
 | jade03, jade04h, jade05, jade07, jade10 | jade3, jade4h, littleJade, jade7, jade10 | f | 3, 4.5, 5, 7, 10 | 0.95 - 1.38 | drawn | hair: long01 cut to length + fringe (below) |
 | jade19, jade27, jade40 | jade19, jade27, jade (adult, playground23 / bed26 / car26) | f | 19, 27, 40 (guess) | 1.63, 1.65, 1.65 | drawn | |
-| mama | mama, mama86, mama90, mama91 | f | 36 (sheet: mid to late thirties) | 1.60 | drawn | bun = long01 cut at the nape + a bun ball; bob = bob02 |
+| mama | mama, mama86, mama90, mama91 | f | 36 (sheet: mid to late thirties) | 1.60 | drawn | perm only (Jade 2026-11-26: "the jaw-length perm throughout"): `hair_perm` |
 | dad | dad | m | 37 | 1.72 | drawn | slim, narrow shoulders (sheet) |
 | firstlove19, firstlove27 | firstLove19, firstLove27 | m | 19, 27 | 1.78 | **none** | no eyes, nose or mouth: the front of the head is faired smooth (safeguard; his face is never shown) |
 | friend | friend (mv10) | m | 27 | 1.85 | blank | slight build (sheet); Ukrainian, caucasian weights (Jade 2026-11-26); hair colour unknown, sheet colour kept |
@@ -53,11 +53,25 @@ Hair (`hairBuild` in bodies.json; `build_hair` in the script) is grown from the 
 fits the cast sheets, with edges cut along smooth lines (`isocut`):
 - first love (`hair_fl`): a long top layer with a centre part over an even short buzz (`hair_fl__buzz`), a visible step
   (solidified rim) from the fringe tip on the forehead back above the ear and round the back at mid-ear height, the
-  layer hanging straight at the back (cast/first_love/fl_B_backhead_neck_v5).
+  layer hanging straight at the back (cast/first_love/fl_B_backhead_neck_v7).
 - the children (`hair_kidbob` + `__fringe`): MakeHuman long01 cut to the sheet's length (3: chin; 4.5 and 5: shoulders;
   7: shoulder blades; 10: mid-back) and a light fringe parted in the middle, its edge well above the brows; the engine
   adds the small half-ponytail high at the back.
-- bun (Mama, aunt, grandmother, women guests): long01 cut at the nape; the engine adds the bun.
+- bun (aunt, grandmother, women guests; 2026-11-26): close pulled-back hair over the scalp to the hairline (`cap`,
+  no longer long01 cut at the nape, which read as a bob under the bun) and the bun itself as `hair_bun__knot`
+  (`bun_knot`: a flattened, slightly twisted knot sunk ~40% into the hair at the occiput, rigid with the head; the
+  engine's own floating ball is skipped when the GLB has a knot).
+- Mama's perm (`perm`, 2026-11-26; cast/mama/mama_R): the head inflated (fuller toward the ends, swept from a side part
+  over her right eye), its convex hull (a soft bell that hangs clear of the neck), the face cut out (an oval prism, and a
+  sloping cut so in profile the hair's front edge runs from the top of the forehead back to in front of the ear),
+  voxel-remeshed, opened at the jaw along a scalloped line, a part groove, then Voronoi curl lumps along the normals.
+  Rigid with the head (vertex group `head`).
+- first love's texture (2026-11-26, Jade: "like he doesn't brush it every day, just runs his hand through it"): the
+  top layer is subdivided twice and carries finger-combed pieces (ridges across the hair's flow, s = arc length round
+  the part, so constant along each strand; deeper toward the ends, eased off at the step so the solidified rim does not
+  fold), a slightly irregular part, uneven point-cut ends, and a squarer outline (thinner on the flat top, fuller at the
+  upper corners of the head) against the domed cap look. v7 (Jade's tousled reference): uneven piece widths and depths,
+  a slight wave down each piece, a few pieces lifting toward their ends; colour 0x3d2819 (`_cast.js` FL_HAIR).
 Strangers' faces are now as featureless as first love's (cast/strangers sheets: no mark inside the face).
 
 Rig: MPFB `game_engine` skeleton (pelvis, spine_01-03, neck_01, head, clavicles, arms, hands with three bones per

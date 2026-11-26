@@ -4,7 +4,7 @@
 # user data. Writes layout/assets/bodies/<id>.glb and meta.json (per body: height, bones, hair nodes, eye centres).
 # Everything here is CC0 MakeHuman data; nothing is fetched (MPFB online access stays off).
 import bpy, bmesh, sys, os, json, math
-from mathutils import Vector
+from mathutils import Vector, Matrix
 import addon_utils
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -196,10 +196,11 @@ def isocut(bm, field):
     bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
 
 
-def shell(base, rig, pick, offset, name, thick=0.0, field=None):
+def shell(base, rig, pick, offset, name, thick=0.0, field=None, subdiv=0):
     """A hair shell grown from the body's own surface: the picked faces of the (face-edited) body, cut along field = 0
-    (if given), pushed out along their normals by offset(co, n), optionally solidified (a visible rim: the step of a
-    cut), skinned like the skin under it."""
+    (if given), optionally subdivided (subdiv cuts per edge, smoothed: a finer surface for strand texture), pushed out
+    along their normals by offset(co, n), optionally solidified (a visible rim: the step of a cut), skinned like the
+    skin under it."""
     obj = base.copy(); obj.data = base.data.copy(); obj.name = name; bpy.context.scene.collection.objects.link(obj)
     for m in list(obj.modifiers): obj.modifiers.remove(m)
     bm = bmesh.new(); bm.from_mesh(obj.data); bm.faces.ensure_lookup_table()
@@ -207,6 +208,9 @@ def shell(base, rig, pick, offset, name, thick=0.0, field=None):
     keep = {f for f in bm.faces if all(v[dl].get(bg, 0) > 0.5 for v in f.verts) and pick(f.calc_center_median(), f.normal, f, dl)}
     bmesh.ops.delete(bm, geom=[f for f in bm.faces if f not in keep], context="FACES")
     bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
+    if subdiv:   # deform weights are interpolated onto the new vertices; before the cut, so a finely uneven edge is sampled
+        bmesh.ops.subdivide_edges(bm, edges=list(bm.edges), cuts=subdiv, use_grid_fill=True, smooth=1.0)
+        bmesh.ops.triangulate(bm, faces=list(bm.faces))
     if field: isocut(bm, field)
     bm.normal_update()
     for v in bm.verts: v.co = v.co + v.normal * offset(v.co, v.normal)
@@ -229,6 +233,7 @@ def build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth):
     """Hair to the cast sheets (bodies.json "hairBuild"): kids' long hair trimmed to length + a light parted fringe of
     strands; first love's stepped cut (a long top layer with a centre part over an even short buzz, a visible step);
     close pulled-back hair under a bun."""
+    from mathutils import noise
     hb = spec.get("hairBuild", {}); ipd = (eyeL - eyeR).length; eC = (eyeL + eyeR) / 2
     bones = rig.data.bones
     hg = basemesh.vertex_groups["head"].index; eg = basemesh.vertex_groups["ears"].index
@@ -255,22 +260,197 @@ def build_hair(spec, basemesh, rig, parts, eyeL, eyeR, mouth):
                 return min(c.z - (eC.z + ipd * (0.66 + lift + 0.1 * math.exp(-(ax / 0.14) ** 2) - 0.2 * min(1.0, ax / 0.95))), 1.05 * ipd - abs(c.x))
             def pick(c, n, f, dl): return head(f, dl) and c.y < eC.y + 0.2 * ipd and c.z > eC.z + 0.3 * ipd
             parts[key + "__fringe"] = shell(basemesh, rig, pick, lambda co, n: 0.0045, key + "__fringe", thick=0.003, field=fringe)
-        if how.get("cap"):   # close hair over the whole scalp (pulled back under a bun)
-            parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.005, key, field=hairline)
+        if how.get("cap"):   # close hair over the whole scalp, pulled back (under a bun: "knot" adds the bun itself)
+            parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.005, key, field=hairline, subdiv=1)
+            if how.get("knot"): parts[key + "__knot"] = bun_knot(basemesh, rig, key + "__knot", eC, ipd, how["knot"])
+        if how.get("perm"):   # Mama: a jaw-length, side-parted perm of loose springy curls (cast/mama/mama_R)
+            parts[key] = perm(basemesh, rig, key, eC, ipd, mouth, hc)
         if how.get("stepped"):
             # the step: from the fringe tip on the forehead back above the ear, round the back at ear-top level
-            STEP = [(0, 0.45), (35, 0.4), (62, 0.32), (88, 0.24), (112, 0.0), (140, -0.3), (180, -0.42)]   # over the ear tops, down to mid-ear height at the back   # the step at mid-ear height round the back (cast/first_love/fl_B_backhead_neck_v5)
-            def step(c): return c.z - (eC.z + ipd * interp(ang(c), STEP))
+            STEP = [(0, 0.45), (35, 0.4), (62, 0.32), (88, 0.24), (112, 0.0), (140, -0.3), (180, -0.42)]   # over the ear tops, down to mid-ear height at the back (cast/first_love/fl_B_backhead_neck_v5)
+            # 2026-11-26 (Jade: "a little too perfect ... like he doesn't brush it every day, just runs his hand through it"):
+            # finger-combed pieces. s = where a strand sits across the flow (strands fall from the part / crown: s is the
+            # arc length round a stadium around the part, constant along each strand); the pieces are ridges in s with
+            # sharp grooves between them, deeper toward the ends, and the point-cut ends are uneven per piece.
+            yF, yC, R0 = eC.y + 0.35 * ipd, hc.y + 0.35 * ipd, ipd
+            L = yC - yF; PER = 2 * (math.pi * R0 + L)
+            def flow_s(co):
+                if co.y < yF: return R0 * math.atan2(co.x, yF - co.y)
+                if co.y <= yC: return math.copysign(R0 * math.pi / 2 + (co.y - yF), co.x if co.x else 1.0)
+                th = math.atan2(abs(co.x), co.y - yC)   # 0 straight back, pi/2 at the side
+                return math.copysign(R0 * math.pi / 2 + L + R0 * (math.pi / 2 - th), co.x if co.x else 1.0)
+            def ridge(u, n, ph): return math.sqrt(abs(math.sin(n * u / 2 + ph))) - 0.64
+            def pieces(co):   # -0.6 .. +0.4: rounded pieces, sharp gaps between them
+                u = 2 * math.pi * flow_s(co) / PER
+                return 0.55 * ridge(u, 46, 0.3) + 0.3 * ridge(u, 71, 1.7) + 0.15 * ridge(u, 23, 2.9)
+            def ends(c):   # the ends: uneven per piece, in broader steps than the surface pieces
+                u = 2 * math.pi * flow_s(c) / PER
+                return 0.6 * math.sin(13 * u + 0.9) + 0.4 * math.sin(21 * u + 2.2)   # smooth (a cusped edge folds the solidified rim)
+            def step(c): return c.z - (eC.z + ipd * (interp(ang(c), STEP) + 0.06 * ends(c)))   # point-cut, uneven per piece
             NAPE = [(0, 1.0), (40, 0.95), (62, 0.45), (75, 0.2), (100, 0.0), (118, -0.75), (140, -1.15), (180, -1.3)]   # his buzz ends higher on the neck (fl_B)
             def nape(c): return c.z - (eC.z + ipd * interp(ang(c), NAPE))
-            parts[key + "__buzz"] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.0035, key + "__buzz", field=nape)
+            parts[key + "__buzz"] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), lambda co, n: 0.0035, key + "__buzz", field=nape, subdiv=1)
+            ztop = eC.z + 1.9 * ipd
             def top_off(co, n):
-                part = min(1.0, abs(co.x) / (0.12 * ipd)) if co.z > eC.z + 1.2 * ipd else 1.0   # the centre part: the layer dips along the midline on top
+                # the part: a slightly irregular, finger-made dip on the midline, top of the head only
+                px = 0.05 * ipd * math.sin(co.y / ipd * 4.1)
+                part = min(1.0, abs(co.x - px) / (0.12 * ipd)) if co.z > eC.z + 1.2 * ipd and co.y < yC + 0.2 * ipd else 1.0
                 a = ang(co); back = max(0.0, min(1.0, (a - 55) / 50))
                 hang = 0.16 * max(0.0, eC.z + 0.7 * ipd - co.z) * back   # below the crown the layer hangs straight, off the skull
-                return 0.008 + 0.009 * (0.5 + 0.5 * part) + hang
-            parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), top_off, key, thick=0.008, field=lambda c: min(hairline(c) + 0.3 * ipd, step(c)))
+                # less dome: thinner on the flat top, fuller at the upper corners of the head, so the outline is squarer
+                up = max(-1.0, min(1.0, n.z)); corner = 1.0 - (2 * up * up - 1) ** 2   # 0 on top and at the sides, 1 at 45 degrees
+                along = max(0.0, min(1.0, (ztop - co.z) / (1.6 * ipd)))   # 0 at the roots on top, 1 at the ends
+                # 2026-11-26 v7 (Jade: tousled, "never combs it"): uneven piece widths and depths (noise along s), a slight
+                # wave down each piece, and a few pieces lifting off toward their ends
+                sv = flow_s(co) / ipd; ease = max(0.0, min(1.0, step(co) / (0.2 * ipd)))   # eased off at the ends (a folded rim speckles)
+                irr = 0.6 + 0.8 * (0.5 + 0.5 * noise.noise(Vector((sv * 2.3, 0.7, 0.1))))
+                wave = 1.0 + 0.35 * math.sin(co.z / ipd * 7.0 + sv * 3.1)
+                tex = (0.0015 + 0.0042 * along) * pieces(co) / 0.4 * part * ease * irr * wave
+                lift = 0.0045 * along * along * max(0.0, noise.noise(Vector((sv * 1.6, 3.3, 0.5))) - 0.15) * ease
+                return 0.0065 + 0.006 * corner + 0.006 * (0.5 + 0.5 * part) + hang + tex + lift
+            parts[key] = shell(basemesh, rig, lambda c, n, f, dl: head(f, dl), top_off, key, thick=0.008, field=lambda c: min(hairline(c) + 0.3 * ipd, step(c)), subdiv=2)
     return parts
+
+
+def rigid_to_head(obj, rig):
+    """Skin every vertex of obj fully to the head bone (a bun or a perm moves with the head as one piece)."""
+    for g in list(obj.vertex_groups): obj.vertex_groups.remove(g)
+    obj.vertex_groups.new(name="head").add([v.index for v in obj.data.vertices], 1.0, "REPLACE")
+    for m in list(obj.modifiers): obj.modifiers.remove(m)
+    md = obj.modifiers.new("Armature", "ARMATURE"); md.object = rig
+
+
+def new_like(base, name, bm):
+    """A new object with base's parent (the rig) and transform, holding bm's mesh."""
+    obj = base.copy(); obj.data = bpy.data.meshes.new(name); obj.name = name
+    bm.to_mesh(obj.data); bm.free(); obj.data.update(); bpy.context.scene.collection.objects.link(obj)
+    for m in list(obj.modifiers): obj.modifiers.remove(m)
+    for g in list(obj.vertex_groups): obj.vertex_groups.remove(g)
+    return obj
+
+
+def bun_knot(base, rig, name, eC, ipd, where):
+    """A bun pinned at the back of the head, half sunk into the close hair (it used to be an engine ball floating behind
+    the skull, over a bob-length shell): a flattened, slightly twisted knot, rigid with the head. where = 'low'
+    (aunt, grandmother: at the occiput) or 'mid'."""
+    bg = base.vertex_groups["body"].index; hg = base.vertex_groups["head"].index
+    hc = eC + Vector((0, 1.4 * ipd, 0))
+    elev = math.radians(5 if where == "low" else 22)
+    d = Vector((0, math.cos(elev), math.sin(elev)))   # back (+y) and up
+    best, bp = -1e9, None
+    for v in base.data.vertices:   # the skull's surface point furthest along d
+        if any(ge.group == hg and ge.weight > 0.5 for ge in v.groups) and any(ge.group == bg and ge.weight > 0.5 for ge in v.groups):
+            r = v.co - hc
+            if r.length and r.normalized().dot(d) > 0.985 and r.dot(d) > best: best, bp = r.dot(d), v.co.copy()
+    if bp is None: bp = hc + d * 1.45 * ipd
+    R = 0.62 * ipd
+    bm = bmesh.new(); bmesh.ops.create_uvsphere(bm, u_segments=32, v_segments=20, radius=R)
+    for v in bm.verts:   # a knot of hair wound round: flattened along d, spiral grooves of the twist
+        p = v.co / R; ang_ = math.atan2(p.x, p.z); r = math.hypot(p.x, p.z)
+        g = 1.0 + 0.06 * math.sin(3 * ang_ + 9 * r) * min(1.0, 3 * r)
+        v.co = Vector((p.x * g, p.y * 0.62, p.z * g)) * R
+    # local frame: y along d (out from the skull), z up
+    yax = d; xax = Vector((1, 0, 0)); zax = xax.cross(yax).normalized()
+    M = [xax, yax, zax]
+    ctr = bp + d * (0.32 * R)   # sunk about 40% of its depth into the hair
+    for v in bm.verts: v.co = ctr + M[0] * v.co.x + M[1] * v.co.y + M[2] * v.co.z
+    obj = new_like(base, name, bm)
+    rigid_to_head(obj, rig)
+    return obj
+
+
+def perm(base, rig, name, eC, ipd, mouth, hc):
+    """Mama's perm (cast/mama/mama_R_rest_heads_v1): soft late-1980s perm of loose springy curls, side-parted (on her
+    right), ending at the jaw, the face open. Built as a volume: the head inflated (fuller toward the ends, a little
+    swept toward her left from the part), voxel-remeshed into one closed surface, the face cut out (an elliptic prism, so
+    the hair has a visible thickness where it frames the face), open at the bottom, curls displaced on the surface
+    (Voronoi lumps, a little longer than wide), then rigid with the head."""
+    import numpy as np
+    from mathutils import noise
+    bg = base.vertex_groups["body"].index
+    zb = mouth.z - 0.6 * ipd   # the ends: at the jaw (never longer); a little higher at the back (ztilt)
+    xp = -0.55 * ipd            # the side part, over her right eye (-x = her right)
+    bm = bmesh.new(); bm.from_mesh(base.data); dl = bm.verts.layers.deform.active
+    hg = base.vertex_groups["head"].index
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if v[dl].get(bg, 0) < 0.5 or v.co.z < zb - 0.3 * ipd or v[dl].get(hg, 0) < 0.3], context="VERTS")
+    bm.normal_update()
+    ztop = eC.z + 2.0 * ipd
+    pts = []
+    for v in bm.verts:
+        c = v.co; n_ = v.normal; down = max(0.0, min(1.0, (ztop - c.z) / (ztop - zb)))   # 0 at the crown, 1 at the ends
+        if c.z < eC.z + 0.4 * ipd and c.y < eC.y + 0.9 * ipd and abs(c.x) < 1.0 * ipd: continue   # the face itself does not shape the hair
+        sweep = 0.12 * ipd * max(0.0, min(1.0, (c.x - xp) / ipd)) * max(0.0, 1 - down * 1.5)   # volume swept over from the part
+        t = (0.24 * ipd + 0.55 * ipd * down ** 1.6 + sweep) * (1 - 0.55 * max(0.0, -n_.y) * (1 - down))   # thin over the forehead
+        pts.append(c + n_ * t)
+    bm.free(); bm = bmesh.new()
+    for p_ in pts: bm.verts.new(p_)
+    # the hull: a perm stands off the head as one soft mass, widest at the ends (a bell), hanging clear of the neck
+    bmesh.ops.convex_hull(bm, input=list(bm.verts))
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
+    bmesh.ops.triangulate(bm, faces=list(bm.faces))
+    obj = new_like(base, name, bm)
+    bpy.ops.object.select_all(action="DESELECT"); bpy.context.view_layer.objects.active = obj; obj.select_set(True)
+    # the face cut: an elliptic prism along y from the front of the face to just in front of the ears; the oval's top
+    # is the hairline, its sides just outside the cheeks, open downward
+    fa, ftop, fz = 1.12 * ipd, eC.z + 1.05 * ipd, eC.z - 0.2 * ipd
+    yb = eC.y + 0.95 * ipd
+    cb = bmesh.new(); ring = []
+    for i in range(48):
+        th = math.pi * i / 47   # the upper half-ellipse, then straight sides down
+        ring.append((fa * math.cos(th), fz + (ftop - fz) * math.sin(th)))
+    prof = [(fa, zb - 1.5 * ipd)] + ring + [(-fa, zb - 1.5 * ipd)]
+    front = [cb.verts.new((x, eC.y - 2.5 * ipd, z)) for x, z in prof]
+    back = [cb.verts.new((x, yb, z)) for x, z in prof]
+    n = len(prof)
+    for i in range(n):
+        j = (i + 1) % n
+        cb.faces.new((front[i], front[j], back[j], back[i]))
+    cb.faces.new(front[::-1]); cb.faces.new(back)
+    bmesh.ops.recalc_face_normals(cb, faces=list(cb.faces))
+    # and the sides of the face: in profile the hair's front edge runs from the top of the forehead down and back to in
+    # front of the ear (behind the cheekbone): everything in front of that sloping line goes (a prism along x)
+    ys, zs_ = eC.y + 0.62 * ipd, eC.z + 0.35 * ipd
+    yt, zt = eC.y - 3 * ipd, zs_ + (eC.y - 3 * ipd - ys) * ((1.25 - 0.35) / (-0.45 - 0.62))
+    prof2 = [(eC.y - 3 * ipd, zb - 3 * ipd), (ys, zb - 3 * ipd), (ys, zs_), (yt, zt)]
+    cb2 = bmesh.new()
+    L_ = [cb2.verts.new((-3 * ipd, y, z)) for y, z in prof2]; R_ = [cb2.verts.new((3 * ipd, y, z)) for y, z in prof2]
+    for i in range(4):
+        j = (i + 1) % 4; cb2.faces.new((L_[i], L_[j], R_[j], R_[i]))
+    cb2.faces.new(L_[::-1]); cb2.faces.new(R_)
+    bmesh.ops.recalc_face_normals(cb2, faces=list(cb2.faces))
+    for cbm in (cb, cb2):
+        cut = new_like(base, name + "_cut", cbm); cut.parent = None
+        cut.matrix_world = obj.matrix_world
+        md = obj.modifiers.new("face", "BOOLEAN"); md.operation = "DIFFERENCE"; md.object = cut; md.solver = "EXACT"
+        bpy.ops.object.modifier_apply(modifier=md.name)
+        bpy.data.objects.remove(cut, do_unlink=True)
+    # one even surface (the cut faces too, so the curls show where the hair frames the face)
+    bpy.ops.object.select_all(action="DESELECT"); bpy.context.view_layer.objects.active = obj; obj.select_set(True)
+    obj.data.remesh_voxel_size = 0.045 * ipd; obj.data.use_remesh_fix_poles = True
+    bpy.ops.object.voxel_remesh()
+    # open at the bottom along a soft, curl-scalloped line at the jaw
+    bm = bmesh.new(); bm.from_mesh(obj.data)
+    isocut(bm, lambda c: c.z - (zb + 0.25 * ipd * max(0.0, min(1.0, (c.y - eC.y) / (2.2 * ipd))) + 0.07 * ipd * math.sin(9 * math.atan2(c.x, c.y - hc.y)) + 0.1 * ipd * noise.noise(Vector((c.x, c.y, 0)) * (3.0 / ipd))))
+    # curls: rounded lumps (1 - F1 of a Voronoi field, cells ~0.3 ipd, a little stretched downward), along the normals
+    bm.normal_update()
+    sc = Vector((1 / (0.34 * ipd), 1 / (0.34 * ipd), 1 / (0.55 * ipd)))
+    disp = []
+    for v in bm.verts:
+        c = v.co; q = Vector((c.x * sc.x, c.y * sc.y, c.z * sc.z))
+        f1 = noise.voronoi(q, distance_metric="DISTANCE")[0][0]
+        lump = max(0.0, 1.0 - f1 / 0.9) ** 0.7 - 0.45
+        down = max(0.0, min(1.0, (ztop - c.z) / (ztop - zb)))
+        amp = 0.12 * ipd * (0.3 + 0.7 * down)   # flatter at the roots, springier toward the ends
+        groove = 0.0
+        if c.z > eC.z + 1.0 * ipd and c.y < hc.y + 0.2 * ipd:   # the side part: a narrow line where the hair lies flat to the scalp
+            w = abs(c.x - xp) / (0.22 * ipd)
+            if w < 1: amp *= 0.3 + 0.7 * w; groove = -0.22 * ipd * (1 - w * w) ** 2 * min(1.0, (hc.y + 0.2 * ipd - c.y) / (0.6 * ipd))
+        disp.append(v.normal * (amp * lump + groove))
+    for v, dd in zip(bm.verts, disp): v.co += dd
+    bm.to_mesh(obj.data); bm.free(); obj.data.update()
+    for p_ in obj.data.polygons: p_.use_smooth = True
+    rigid_to_head(obj, rig)
+    return obj
 
 
 def build(spec):

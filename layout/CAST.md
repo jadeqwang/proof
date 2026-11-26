@@ -12,14 +12,18 @@ entries). Every set imports `_cast.js`; none registers a recurring person itself
 | `jade19` | Jade, about 19 | 1.63 | adult | closet02 | closet02 local `jade19` |
 | `jade27` | Jade, 27 | 1.65 | adult | mv10, mortongrove07 (standing in for about 24) | mv10 local `jade27` |
 | `jade` | Jade, adult | 1.65 | adult (engine) | playground23 (and bed26 / car26) | engine, unchanged |
-| `mama` | Mama, 1988, restaurant apron (`noApron: true` drops it) | 1.60 | adult (engine) | attic88, attic88_day, market93 | engine, unchanged |
-| `mama86` | Mama, Shanghai 1986: blue-grey short-sleeved top, bob | 1.60 | adult | shanghai86 | local `mother` |
-| `mama90` | Mama, Decatur 1990: no apron, sleeves pushed, bun | 1.60 | adult | kitchen90 (basement90's house.js) | local `mama90` |
-| `mama91` | Mama, school office 1991: long sleeves, bob | 1.60 | adult | office91 | local `mom` |
+| `mama` | Mama, 1988, restaurant apron (`noApron: true` drops it); jaw-length side-parted perm | 1.60 | adult (engine) | attic88, attic88_day, market93 | engine, unchanged |
+| `mama86` | Mama, Shanghai 1986: blue-grey short-sleeved top, perm | 1.60 | adult | shanghai86 | local `mother` |
+| `mama90` | Mama, Decatur 1990: no apron, sleeves pushed, perm | 1.60 | adult | kitchen90 (basement90's house.js) | local `mama90` |
+| `mama91` | Mama, school office 1991: long sleeves, perm | 1.60 | adult | office91 | local `mom` |
 | `dad` | Dad | **1.72** | adult | office91, basement90, kitchen90 | 1.72 in office91, 1.75 in basement90/kitchen90 |
 | `firstLove19` | first love at 19 | 1.78 | adultFirstLove (hands, feet = Jade's) | closet02 | closet02 local `firstLove` |
 | `firstLove27` | first love at 27 (never face-on) | 1.78 | adultFirstLove (hands, feet = Jade's) | mv10, mortongrove07 | mv10 local `firstLove` |
 | `daughter` | the daughter | 1.02 | `child4` (engine) | bed26 / car26 | engine, unchanged |
+
+Mama's hair (Jade 2026-11-26: "The jaw-length perm throughout"): the jaw-length, side-parted perm of
+`cast/mama/mama_R_rest_heads_v1` at every age and in every set (`hairStyle: 'perm'`, mesh `hair_perm`); never a bun or a
+straight bob.
 
 Rules
 - One person, one height. Mama's three variants are built from the engine's `mama` (`mamaAs()` in `_cast.js`), so her
