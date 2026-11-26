@@ -1,5 +1,54 @@
 # mortongrove07: notes and assumptions
 
+## 2026-11-26: round-3 decisions
+
+Jade's answers (work/decisions/JADE_R3_DECISIONS.md). r3 review page snapshot taken first
+(media/keyframes/r3/_layout_snapshot/mortongrove07/, LAYOUT_SNAPSHOT in tools/kf/r3_page.py).
+
+- **Street side: the drawing's TOP (Jade).** Confirms round 2's reading (top = south, Capri Lane); nothing moves.
+- **Grand piano: a real grand's outline** (`grandOutline()` in build.js, Steinway B proportions 211 x 148 cm): straight
+  spine (bass side) along the mirror, straight front, a short straight treble side (0.40 m), the bentside concave then
+  convex round the tail, a rounded tail-spine corner (two tangent-continuous Beziers). Rim from the fallboard back
+  (case 0.62-0.95 m), lid closed with its front flap folded back, music desk up, keys between two cheek blocks,
+  fallboard, three tapered legs on casters (two under the keyboard ends, one under the tail), the lyre (two posts,
+  pedal box, three brass pedals toward the bench). Checked in REF_plan: reads as a grand from above. **Size kept at 7 ft**
+  (the brief suggested 1.5-1.8 m unless the plan says otherwise; Jade's drawing says "7' concert grand"). Flagged.
+- **Front window 1.5 m as drawn** (unchanged).
+- **Framed picture "4x larger": read as 4x the AREA** (2x each side): 0.7 x 0.5 -> **1.4 x 1.0 m**, centre 1.64 m over the
+  couch (1.14-2.14). 4x each side (2.8 x 2.0 m) cannot fit between the couch back (0.86) and the 2.44 m front wall.
+  Flagged. Its subject is unknown (plain panel in a dark frame).
+- **Mirror hangs higher:** y 0.95-2.90 (was 0.25-2.20), same 2.8 m width; its bottom about level with the piano lid.
+- **Ceiling (Jade: highest over the middle of the great room, about 3.6 m; piano side and mirror wall very tall; the
+  dining room the short side):** ridge still east-west (round 2), now at **z -3.6 (the great room's N-S middle), 3.6 m**,
+  pitch 0.322 (about 3.9 in 12), down to the 2.44 m plate at the front and north walls. The **east wall is the full
+  gable** (mirror, piano): its top line is the roof angle. **READING (flagged): "the dining room is the short side" =
+  a flat 8-ft ceiling over the dining part** (`DROP`: x < 1.6, north of the jog), with a soffit facing the piano
+  (x 1.6, from 2.44 m up to the vault) and a short one at the jog line facing the living room; the west (dining) wall
+  and the entry wall are flat-topped at 2.44. The alternative (no drop; the vault symmetric over the whole room, dining
+  under about 2.95 m) is one question. The stair opening in the east wall is now 2.38 m tall (the vault meets the north
+  wall at 2.44).
+- **MG_wide moved** to show the tall east wall and the roof angle: from (2.6, 1.6, -7.0) by the piano bench, 18 mm,
+  looking SSE: east wall at frame left with the mirror high on it and its top rising from the front corner to the
+  ridge; the ridge line across the top; the dining soffit at top right; couch, big picture, front window, egg cartons;
+  the grand in the foreground. His facing angle 141 deg (back of head).
+- **Loveseat** (Jade): confirmed; label no longer a guess.
+- **Sweatshirt (Jade: he hands it as pictured; she turns it round so it faces her).** NOT modelled here: the cloth
+  module `sweatshirt.js` is a separate agent's. Done here: `TURN` (layout.js): after MG2 she holds it by the shoulder
+  seams, hands **0.50 m apart at y 1.14**, 0.44 m in front of her hips, the front leaning 10 deg back toward her, front
+  (seal) facing HER. **New shot `MG2_end`** (same camera axis, 24% along, 42 mm): her hands on `TURN.grip`, head
+  looking down at the seal; label mode draws the garment's front outline and seal circle (blue; label mode only), the
+  other modes show no garment. **The hook:** `GARMENT[state]` in layout.js (`folded` / `unfolding` / `turned`: collar
+  `origin`, `right` / `up` / `out` frame, `grips`), a commented swap-in block in build.js `build()`, and the sidecar
+  `hoodie.anchor`. The old placeholder props (folded stack, unfolding front) stay until sweatshirt.js lands.
+- Face check (sidecars, his facing angle from the lens): MG1 139, MG1_end 137, MG2 134, MG2_end 132, MG_wide 141,
+  REF_plan 132 (from above); REF_north has no figures. Never his face.
+- Re-rendered: all modes (line, flat, depth, label, lit, form, contour, light), beam masks (`beam_MG2_end*` new),
+  gallery, sheets.
+- **Proposed questions for Jade:** (1) mg_dining_ceiling: the dining part under a flat 8-ft ceiling with a soffit [rec,
+  as built] / the vault runs over the dining too (lower there, about 2.95 m); img MG_wide_lit.png + REF_north_lit.png.
+  (2) mg_piano_size: 7-ft grand as drawn [rec] / a smaller 5'7" parlour grand; img REF_plan_form.png. (3) mg_picture:
+  1.4 x 1.0 m [rec] / bigger still; img MG_wide_lit.png.
+
 ## 2026-11-25 night (r3, from Jade's r2 keyframe review): ONE continuous camera, folded -> unfolding
 
 Jade on r2 (overrides tonight's "held up unfolded against herself"): MG1 = he hands it FOLDED, the fold cutting off part
@@ -179,7 +228,8 @@ before this one (no time in 2.3 s).
 |---|---|---|---|
 | `MG1` | over his left shoulder, behind and above (35 mm), looking south-west | 133 deg: back of head and ear | her face (30 deg to lens), the whole chest print upright (40 deg off its normal), her hands on the shoulders, window top right |
 | `MG2` | close insert past his left side at her chest height (35 mm) | head out of frame (89 deg, not visible) | the hoodie front fills the frame, the chest print upright at centre; her hands; her chin/face above; window backlight at frame right |
-| `MG_wide` | reference wide from the dining table behind him (20 mm), looking south | 145 deg | couch, window, egg-carton table, armchair, loveseat |
+| `MG2_end` | r3: same axis, 24% along (42 mm): she has turned it round, front toward her | 132 deg | garment from the cloth module; label mode: its outline |
+| `MG_wide` | r3: from by the piano bench (18 mm), looking SSE | 141 deg | the tall east wall (gable, roof angle), mirror, grand, couch, picture, window |
 | `REF_north` | reference toward the piano, mirror, dining, closet, kitchen slider (18 mm) | no figures | the vault rising to its E-W ridge |
 | `REF_plan` | plan, SOUTH UP as Jade drew it | from above | compare with her drawing; white outlines = the three sun shafts |
 

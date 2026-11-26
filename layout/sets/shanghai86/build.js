@@ -8,7 +8,7 @@ import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
   APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, BALCONY_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
-  PAINTING, SCROLLS, PENDANT, PENDANT2, CLOCK, PLANT, HER_SPOT, LIGHTS, UNCLE_CHAIR } from './layout.js';
+  PAINTING, SCROLLS, PENDANT, PENDANT2, CLOCK, PLANT, HER_SPOT, LIGHTS, UNCLE_CHAIR, REAL_SUN } from './layout.js';
 
 // set-local extras only (heights in metres); little Jade (3) = `jade3` and Mama = `mama86` come from ../_cast.js. Faces the film leaves as paper are flagged `undrawn`.
 addCast({
@@ -63,7 +63,7 @@ function room() {
     g.add(tag(box(ww, hh - KICK, 0.004, GLASS, [wc, gy0 + (hh - KICK) / 2, zg]), 'glass'));
     // no curtains (Jade, round 4)
   }
-  // ---- balcony along the whole room, parapet (solid in the east flat, iron railing in the west), balcony above = overhang
+  // ---- balcony along the whole room, parapet (solid) or iron railing (round-3 decisions: white-painted iron), balcony above = overhang
   { const bz = (Bc.z0 + Bc.z1) / 2, bl = Bc.z1 - Bc.z0, bw = Bc.x1 - Bc.x0, bc = (Bc.x0 + Bc.x1) / 2, pt = Bc.floor + Bc.parapet;
     g.add(tag(box(bw, 0.12, bl, RENDER, [bc, Bc.floor - 0.06, bz]), 'balcony'));
     g.add(tag(box(bw, 0.12, bl, RENDER, [bc, Bc.soffit + 0.06, bz]), 'balcony above (overhang)'));
@@ -72,8 +72,17 @@ function room() {
       for (const x of [Bc.x0 + Bc.pT / 2, Bc.x1 - Bc.pT / 2]) g.add(tag(box(Bc.pT, pt - Bc.floor, bl - Bc.pT, RENDER, [x, (pt + Bc.floor) / 2, Bc.z0 + (bl - Bc.pT) / 2]), 'balcony parapet (solid)'));
       g.add(tag(box(bw, 0.95, Bc.pT, RENDER, [bc, Bc.soffit + 0.12 + 0.475, Bc.z1 - Bc.pT / 2]), 'balcony above: parapet'));
     } else {
-      const IRON = { grey: 0.2, col: 0x2a2a2a }; g.add(tag(box(bw, 0.04, 0.04, IRON, [bc, pt, Bc.z1 - 0.03]), 'balcony railing (iron)'));
-      for (let x = Bc.x0 + 0.06; x < Bc.x1; x += 0.12) g.add(tag(box(0.016, pt - Bc.floor, 0.016, IRON, [x, (pt + Bc.floor) / 2, Bc.z1 - 0.03]), 'balcony railing (iron)'));
+      // round-3 decisions (Jade): iron railings painted white, on a low concrete curb; front run + a return at each end.
+      // Flat-bar handrail and bottom rail, square balusters every 0.11 m, a heavier post every ~1.5 m (proportions: my guess)
+      const IRON = { grey: 0.9, col: 0xeeede6 }, LB = 'balcony railing (iron, painted white)', cb = Bc.curb || 0, y0 = Bc.floor + cb, zr = Bc.z1 - 0.05;
+      const run = (a, b, along, fixed) => { const L = b - a, mid = (a + b) / 2, P = (u, y) => along === 'x' ? [u, y, fixed] : [fixed, y, u], S = (l, h, t) => along === 'x' ? [l, h, t] : [t, h, l];
+        if (cb) g.add(tag(box(...S(L + 0.12, cb, 0.12), RENDER, P(mid, Bc.floor + cb / 2)), 'balcony curb (concrete)'));
+        g.add(tag(box(...S(L, 0.035, 0.055), IRON, P(mid, pt - 0.018)), LB));            // handrail
+        g.add(tag(box(...S(L, 0.025, 0.02), IRON, P(mid, y0 + 0.07)), LB));              // bottom rail
+        const nP = Math.max(1, Math.round(L / 1.5)); for (let k = 0; k <= nP; k++) g.add(tag(box(0.035, pt - y0, 0.035, IRON, P(a + (L * k) / nP, (pt + y0) / 2)), LB));
+        for (let u = a + 0.055; u < b - 0.03; u += 0.11) g.add(tag(box(0.016, pt - y0 - 0.035, 0.016, IRON, P(u, (pt - 0.035 + y0) / 2)), LB)); };
+      run(Bc.x0 + 0.05, Bc.x1 - 0.05, 'x', zr);
+      for (const x of [Bc.x0 + 0.05, Bc.x1 - 0.05]) run(Bc.z0 + 0.02, zr, 'z', x);
     }
   }
   // ---- outside, for the views through the windows: garden 6.6 m down, Residences A and B, hazy winter sky (no shadows)
@@ -175,7 +184,7 @@ function furniture(shot) {
   g.add(couch());
   { const T = TABLE, t = tableRect(T.cx, T.cz, T.w, T.d, T.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'coffee table (茶几)' });
     t.add(box(T.w - 0.1, 0.02, T.d - 0.1, WOOD, [T.cx, 0.12, T.cz])); g.add(tag(t, 'coffee table (茶几)', true)); }
-  for (const a of ARMCHAIRS) g.add(armchair(shot.state === 'A' && a.id === 'across' ? UNCLE_CHAIR : a));   // r3: state A, the uncle's armchair pulled up east of her
+  for (const a of ARMCHAIRS) g.add(armchair(a));   // round-3 decisions: the uncle sits in the 'beside' armchair at the couch's north end (no chair is moved in state A)
   { const S = SIDE_TABLE; g.add(tableRect(S.cx, S.cz, S.w, S.d, S.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'side table' }));
     const sh = box(S.w - 0.08, 0.02, S.d - 0.08, WOOD, [S.cx, 0.15, S.cz]); g.add(tag(sh, 'side table')); }
   g.add(lounger());
@@ -367,7 +376,7 @@ function hairBit(fig) {
   const m = pieceMesh(q, map); return { mesh: tag(m, '草纸: a stray bit in her hair'), world: at.toArray().map((v) => +v.toFixed(3)) };
 }
 // porcelain tea mugs with green tea, and the steam rising through the beam
-function teaAndSteam() {
+function teaAndSteam(shot = {}) {
   const g = new THREE.Group(), PORC = { grey: 0.9, col: 0xf0ede4 }, steamPts = []; const r = rng(7);
   PLACES.mugs.forEach(([x, z], i) => {
     const y0 = TABLE.h; g.add(tag(cyl(0.038, 0.034, 0.095, PORC, [x, y0 + 0.0475, z]), 'mugs of green tea'));
@@ -375,13 +384,22 @@ function teaAndSteam() {
     const hd = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.006, 6, 14, Math.PI), new THREE.MeshBasicMaterial()); hd.userData.look = PORC; hd.castShadow = true; hd.receiveShadow = true;
     hd.position.set(x + 0.038, y0 + 0.05, z); hd.rotation.set(0, 0, -Math.PI / 2); g.add(tag(hd, 'mugs of green tea'));
     if (i === 0) g.add(tag(cyl(0.042, 0.042, 0.008, PORC, [x - 0.07, y0 + 0.004, z - 0.06]), 'mug lid (off)'));
-    for (let w = 0; w < 2; w++) {   // two wisps per mug
-      const pts = []; const ph = r() * 6.28, sx = (r() - 0.5) * 0.06, sz = (r() - 0.5) * 0.06;
-      for (let k = 0; k <= 10; k++) { const t = k / 10; pts.push(V(x + sx * t + 0.018 * Math.sin(ph + t * 7.5) * t, y0 + 0.1 + 0.42 * t, z + sz * t + 0.018 * Math.cos(ph + t * 6) * t)); }
-      const curve = new THREE.CatmullRomCurve3(pts); steamPts.push(...pts.map((p) => p.toArray()));
-      const tube = (look) => { const m = mk(new THREE.TubeGeometry(curve, 30, 0.0022 + 0.0012 * w, 5, false), look); m.castShadow = false; m.receiveShadow = false; return m; };
-      g.add(tag(tube({ grey: 0.97, col: 0xffffff, only: ['label', 'line'], noCast: true, noRecv: true }), 'steam (green tea)'));
-      g.add(tag(tube({ glass: true, col: 0xfff6e0, opacity: 0.22, noCast: true, noRecv: true }), 'steam (green tea)'));
+    // r3 open issue (V1h guides: "a stick in a mug"): was two straight 0.42 m tubes from the mug's centre. Now three thin wisps
+    // per mug, each starting at a different point of the rim, drifting off to one side as it rises (~0.2-0.26 m), the curl
+    // growing with height, and BROKEN into fading dashes, so in line/form guides they read as curling vapour, not a rod
+    for (let w = 0; w < 3; w++) {
+      const pts = []; const ph = r() * 6.28, a0 = r() * 6.28, rr = 0.012 + 0.012 * r(), drift = 0.05 + 0.05 * r(), da = r() * 6.28, H = 0.2 + 0.06 * r();
+      const bx = x + rr * Math.cos(a0), bz = z + rr * Math.sin(a0);
+      for (let k = 0; k <= 24; k++) { const t = k / 24, amp = 0.004 + 0.03 * t * t;
+        pts.push(V(bx + drift * t * t * Math.cos(da) + amp * Math.sin(ph + t * 11), y0 + 0.098 + H * t, bz + drift * t * t * Math.sin(da) + amp * Math.cos(ph + t * 9))); }
+      const curve = new THREE.CatmullRomCurve3(pts); steamPts.push(...pts.filter((_, k) => k % 2 === 0).map((p) => p.toArray()));
+      const segs = [[0.0, 0.34], [0.42, 0.62], [0.7, 0.82], [0.89, 0.95]];
+      for (const [s0, s1] of segs) { const sp = []; for (let k = 0; k <= 8; k++) sp.push(curve.getPoint(s0 + (s1 - s0) * k / 8)); const c2 = new THREE.CatmullRomCurve3(sp);
+        const rad0 = 0.0016 * (1 - 0.45 * s0);
+        const tube = (look) => { const m = mk(new THREE.TubeGeometry(c2, 12, rad0, 5, false), look); m.castShadow = false; m.receiveShadow = false; return m; };
+        // shot.steam === 'soft': no opaque line tubes (top-down POVs, where a rising wisp foreshortens into a rod), only the faint volume
+        if (shot.steam !== 'soft') g.add(tag(tube({ grey: 0.97, col: 0xffffff, only: ['label', 'line'], noCast: true, noRecv: true }), 'steam (green tea)'));
+        g.add(tag(tube({ glass: true, col: 0xfff6e0, opacity: 0.22 * (1 - 0.6 * s0), noCast: true, noRecv: true }), 'steam (green tea)')); }
     }
   });
   g.userData.steamPts = steamPts;
@@ -397,14 +415,14 @@ const r3 = (v) => (v.toArray ? v.toArray() : v).map((x) => +x.toFixed(3));
 export function build(shot, { makeCam }) {
   // the sun: the set's SCENE, or a per-shot override (shot.scene: { date, time } or { cheat: { elev, rel } }; the light study)
   const DEFB = { SUN, SUN_DIR, SUN_SLOPES, BEAM_SOURCE, SOURCES, APS, APERTURE_GLASS, inBeam, beamWindow, beamMargin };
-  const BX = shot.scene ? beamFor({ ...SCENE, ...shot.scene }) : DEFB;
+  const BX = shot.scene ? beamFor({ ...SCENE, cheat: undefined, ...shot.scene }) : DEFB;
   { const { SUN, SUN_DIR, SUN_SLOPES, BEAM_SOURCE, SOURCES, APS, APERTURE_GLASS, inBeam, beamWindow, beamMargin } = BX;
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   const { g: roomG, panes } = room(); root.add(roomG); root.add(furniture(shot));
   const extra = (t) => (NAMES[t] ? V(NAMES[t]) : null);
   const { figs } = stage(shot.figs, null, extra);
   for (const [who, f] of Object.entries(figs)) { if (CAST[who].undrawn) undraw(f); root.add(f); }
-  const tea = teaAndSteam(); if (shot.state !== 'A') root.add(tea);   // the tea (and its steam) is a week-later detail: state A keeps the table bare
+  const tea = teaAndSteam(shot); if (shot.state !== 'A') root.add(tea);   // the tea (and its steam) is a week-later detail: state A keeps the table bare
   let dr = null; const hero = [];
   let hb = null;
   if (shot.state !== 'A') { root.add(stack()); dr = drift(shot, figs); root.add(dr); root.add(shot.paper ? paperProps(shot.paper, figs, hero) : heroPieces(shot.tissue ?? 8, figs, hero));
@@ -465,7 +483,7 @@ export function build(shot, { makeCam }) {
     const foot = solid.caps.floor || [];
     return { beam: { kind: BEAM.kind, travel_dir: SUN_DIR.map((v) => +v.toFixed(4)), elevation_deg: SUN.elev,
       sun: { date: SCENE.date, time: SCENE.time + ' CST (UTC+8)', lat: SCENE.lat, lon: SCENE.lon, elevation_deg: SUN.elev, azimuth_deg: SUN.az, west_of_facade_normal_deg: SUN.rel, profile_angle_deg: SUN.profile_deg,
-        facade_bearing_deg: FACADE_BEARING, flat: FLAT, per_metre_into_room: SUN_SLOPES, status: 'honest sun. 21 Dec (Jade); 08:30 chosen (round 2 answers) so her face and hands are lit, moving the light rather than her (Jade had picked about 09:30, which leaves her face in shade); east flat and 三楼 are facts' },
+        facade_bearing_deg: FACADE_BEARING, flat: FLAT, per_metre_into_room: SUN_SLOPES, status: SCENE.cheat ? `CHEATED sun (round-3 decisions, Jade): 21 Dec 09:30; real 09:30 sun elev ${REAL_SUN.elev} az ${REAL_SUN.az}; the azimuth is kept, the elevation lowered by hand to ${SCENE.cheat.elev} so the light only just reaches her face; east flat and 三楼 are facts` : 'honest sun', real_sun_at_this_time: REAL_SUN },
       source_world: BEAM_SOURCE, source_px: BEAM_SOURCE.map((p) => P(V(p))), aperture_glass_world: APERTURE_GLASS, shaded_by: BEAM.shading,
       sources_world: SOURCES, windows: APS.map((a, i) => ({ id: a.id, source_world: a.source, shaded_by: a.half, floor_world: solids[i]?.caps.floor ? solids[i].caps.floor.map(r3) : null, floor_px: solids[i]?.caps.floor ? solids[i].caps.floor.map((p) => P(p)) : null })),
       footprint_floor_world: foot.map(r3), footprint_floor_px: foot.map((p) => P(p)), footprint_east_wall: fp('east wall'), footprint_west_wall: fp('west wall'), footprint_north_wall: fp('north wall'),

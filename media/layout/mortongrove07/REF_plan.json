@@ -407,10 +407,12 @@
   "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
   "ceiling": {
    "kind": "vaulted (cathedral), Jade",
-   "ridge": "east-west (parallel to Capri Lane) at z -5.6 (Jade: parallel to the street; its position on the house centre line is a GUESS)",
+   "ridge": "east-west (parallel to Capri Lane), over the middle of the great room at z -3.6 (Jade r3: highest over the middle of the great room, about 3.6 m)",
    "plate_m": 2.44,
-   "peak_m": 4.307,
-   "pitch": "4 in 12"
+   "peak_m": 3.6,
+   "pitch": "0.3222 (about 3.9 in 12)",
+   "east_wall": "the full gable (mirror, piano): its top shows the roof angle",
+   "dining": "flat 8-ft ceiling over the dining part (x < 1.6, north of the jog), READING of Jade's \"the dining room is the short side\" (flagged)"
   },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
   "great_room_m": {
@@ -561,6 +563,30 @@
      216.2
     ]
    }
+  },
+  "anchor": {
+   "state": "folded",
+   "origin": [
+    2.334,
+    0.8949,
+    -0.8846
+   ],
+   "right": [
+    -0.92,
+    0,
+    0.3919
+   ],
+   "up": [
+    0.388,
+    -0.1392,
+    0.9111
+   ],
+   "out": [
+    0.0545,
+    0.9903,
+    0.128
+   ],
+   "note": "GARMENT[state] in layout.js: the hook for the cloth module sweatshirt.js"
   },
   "note": "each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers"
  },

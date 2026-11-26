@@ -88,40 +88,40 @@
  "heads": {
   "jade19": {
    "px": [
-    1202,
-    695.5
+    1194.6,
+    633.4
    ],
    "eyes": [
-    1203.4,
-    734.9
+    1197.5,
+    657.7
    ],
    "mouth": [
-    1201.1,
-    740.9
+    1196,
+    677.2
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 76
+   "facing_camera_deg": 42
   }
  },
  "hands": {
   "meet_world": [
-   0.44,
-   0.4,
+   0.55,
+   0.41,
    -0.02
   ],
   "meet_px": [
-   1154.9,
-   850.1
+   1203.6,
+   845.6
   ],
   "each_px": {
    "jade19.L": [
-    1221.9,
-    741.7
+    1254,
+    685
    ],
    "jade19.R": [
-    1190.6,
-    741.7
+    1140.8,
+    685
    ]
   }
  },
@@ -154,7 +154,7 @@
   }
  ],
  "warnings": [],
- "intent": "The closet from the bedroom, square on, nearly orthographic: sliding panels over the left half; shelf with textbooks and shoeboxes, rod and clothes to two-thirds down, long coats at the left edge of the open half; Jade low right of centre on the folded duvet, head in her hands.",
+ "intent": "The closet from the bedroom, square on, nearly orthographic: sliding panels over the left half; shelf with textbooks and shoeboxes, rod and clothes to two-thirds down, long coats at the left edge of the open half; Jade low right of centre on the folded duvet, looking down, fingertips to her temples (round 3: the opening pose, not head in hands); the futon at frame-right.",
  "film": {
   "time": null,
   "section": "reference elevation (not in the film)",
@@ -341,32 +341,33 @@
   "seed": 2002,
   "count": 80
  },
+ "mask": null,
  "points_world": {
   "jade19": {
    "eyes": [
     0.55,
-    0.6596,
-    -0.0256
+    0.8274,
+    -0.1758
    ],
    "head": [
     0.55,
-    0.7465,
-    -0.0613
+    0.881,
+    -0.2529
    ],
    "chin": [
     0.55,
-    0.6633,
-    -0.1452
+    0.7657,
+    -0.2784
    ],
    "handL": [
-    0.585,
-    0.6496,
-    0.0444
+    0.6811,
+    0.764,
+    -0.1776
    ],
    "handR": [
-    0.515,
-    0.6496,
-    0.0444
+    0.4189,
+    0.764,
+    -0.1776
    ],
    "hip": [
     0.55,
@@ -375,8 +376,8 @@
    ],
    "shoulderC": [
     0.55,
-    0.6537,
-    -0.2333
+    0.7114,
+    -0.357
    ]
   }
  },
@@ -391,8 +392,8 @@
     }
    },
    "arms": {
-    "L": 0.6,
-    "R": 0.6
+    "L": 0.35,
+    "R": 0.35
    },
    "headTurn": 0
   }

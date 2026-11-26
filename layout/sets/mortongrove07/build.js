@@ -11,9 +11,9 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_beam.js';
 import { wall, hexa, kitchenChair, r3, hideLabels } from '../basement90/kit.js';
-import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilY, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
+import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilY, DROP, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
   KITCHEN, STAIR, COUCH, END_TABLE_E, END_TABLE_W, RUG, COFFEE_TABLE, LOVESEAT, ARMCHAIR, PLANTS, PRINT, MIRROR, PIANO, BENCH, FLOOR_LAMP, CLOSET, DINING,
-  HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, LIGHTS } from './layout.js';
+  HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, TURN, GARMENT, LIGHTS } from './layout.js';
 
 // cast: `jade27` (kind adultJade27; stands in for Jade at about 24) and `firstLove27` (kind adultFirstLove, 1.78 m), both from ../_cast.js
 void CAST;
@@ -27,9 +27,10 @@ const OUTSIDE = { grey: 0.97, col: SUN.color, emit: SUN.color, emitI: 1.25, flat
 
 // a wall whose top follows the vault. axis 'z': in the plane z = at, along x (top = ceilY(at), flat); axis 'x': in the
 // plane x = at, along z (a gable end: the top rises to the ridge at VAULT.z)
-function vwall({ axis, at, a0, a1, t, out, holes = [], look, label }) {
-  const top = (a) => (axis === 'x' ? ceilY(a) : ceilY(at)) + VAULT.t;
-  const pts = [[a0, 0], [a1, 0], [a1, top(a1)]]; if (axis === 'x' && VAULT.z > Math.min(a0, a1) && VAULT.z < Math.max(a0, a1)) pts.push([VAULT.z, top(VAULT.z)]); pts.push([a0, top(a0)]);
+// `flat` = under the dining part's flat 8-ft ceiling (DROP); `y0` = the bottom edge (a soffit hangs from y0 up to the vault)
+function vwall({ axis, at, a0, a1, t, out, holes = [], look, label, flat = false, y0 = 0 }) {
+  const top = (a) => (flat ? DROP.y : axis === 'x' ? ceilY(a) : ceilY(at)) + VAULT.t;
+  const pts = [[a0, y0], [a1, y0], [a1, top(a1)]]; if (!flat && axis === 'x' && VAULT.z > Math.min(a0, a1) && VAULT.z < Math.max(a0, a1)) pts.push([VAULT.z, top(VAULT.z)]); pts.push([a0, top(a0)]);
   const sh = new THREE.Shape(); sh.moveTo(...pts[0]); for (const p of pts.slice(1)) sh.lineTo(...p); sh.lineTo(...pts[0]);
   for (const h of holes) { const p = new THREE.Path(), e = h.y0 <= 0 ? 1e-3 : h.y0; p.moveTo(h.a0, e); p.lineTo(h.a0, h.y1); p.lineTo(h.a1, h.y1); p.lineTo(h.a1, e); p.lineTo(h.a0, e); sh.holes.push(p); }
   const m = mk(new THREE.ExtrudeGeometry(sh, { depth: t, bevelEnabled: false }), look);
@@ -67,15 +68,20 @@ function room() {
   g.add(tag(box(x1 - x0 + T, 0.06, z1 - zJ + T, CARPET, [(x0 + x1 + T) / 2, -0.03, (z1 + zJ + T) / 2]), 'floor (wall-to-wall carpet)'));
   g.add(tag(box(x1 - xW + 2 * T, 0.06, zJ - z0 + 2 * T, CARPET, [(xW + x1) / 2, -0.03, (zJ + z0) / 2]), 'floor (wall-to-wall carpet)'));
   const CEIL = { grey: 0.86, col: 0xe6e0d0 };
-  vault(x0 - T, x1 + T, zJ, z1 + T, CEIL, g); vault(xW - T, x1 + T, z0 - Ti, zJ, CEIL, g);
+  // round 3: the vault (ridge at z -3.6, 3.6 m) over the living room and the piano / mirror side; the dining part under a
+  // flat 8-ft ceiling (DROP) with two soffits where the vault rises from it (facing east to the piano, south to the couch)
+  vault(x0 - T, x1 + T, zJ, z1 + T, CEIL, g); vault(DROP.x1, x1 + T, z0 - Ti, zJ, CEIL, g);
+  g.add(tag(box(DROP.x1 - xW + T, VAULT.t, zJ - z0 + Ti, CEIL, [(xW - T + DROP.x1) / 2, DROP.y + VAULT.t / 2, (zJ + z0 - Ti) / 2]), DROP.label));
+  g.add(vwall({ axis: 'x', at: DROP.x1, a0: z0 - Ti, a1: zJ, t: 0.08, out: -1, y0: DROP.y, look: PLASTER, label: 'soffit: the dining ceiling drops to 8 ft (facing the piano)' }));
+  g.add(vwall({ axis: 'z', at: zJ, a0: x0, a1: DROP.x1, t: 0.08, out: -1, y0: DROP.y, look: PLASTER, label: 'soffit: the dining ceiling drops to 8 ft (facing the living room)' }));
   // walls
   const P = PICTURE, Ww = WIN_W, Wd = WIN_D, D = FRONT_DOOR, S = SLIDER, St = STAIR;
   g.add(vwall({ axis: 'z', at: z1, a0: x0 - T, a1: x1 + T, t: T, out: 1, holes: [{ a0: P.x0, a1: P.x1, y0: P.sill, y1: P.head }], look: PLASTER, label: 'front wall (south, Capri Lane)' }));
   g.add(vwall({ axis: 'x', at: x0, a0: zJ, a1: z1, t: T, out: -1, holes: [{ a0: Ww.z0, a1: Ww.z1, y0: Ww.sill, y1: Ww.head }], look: PLASTER, label: 'west wall of the living room (egg-carton window)' }));
-  g.add(vwall({ axis: 'z', at: zJ, a0: xW - T, a1: x0, t: T, out: 1, holes: [{ a0: D.x0, a1: D.x1, y0: 0, y1: D.h }], look: PLASTER, label: 'entry wall (front door, faces the street)' }));
-  g.add(vwall({ axis: 'x', at: xW, a0: z0 - Ti, a1: zJ, t: T, out: -1, holes: [{ a0: Wd.z0, a1: Wd.z1, y0: Wd.sill, y1: Wd.head }], look: PLASTER, label: 'west wall (gable end; dining window)' }));
+  g.add(vwall({ axis: 'z', at: zJ, a0: xW - T, a1: x0, t: T, out: 1, holes: [{ a0: D.x0, a1: D.x1, y0: 0, y1: D.h }], look: PLASTER, flat: true, label: 'entry wall (front door, faces the street)' }));
+  g.add(vwall({ axis: 'x', at: xW, a0: z0 - Ti, a1: zJ, t: T, out: -1, holes: [{ a0: Wd.z0, a1: Wd.z1, y0: Wd.sill, y1: Wd.head }], look: PLASTER, flat: true, label: 'west wall (dining window; under the flat dining ceiling)' }));
   g.add(vwall({ axis: 'z', at: z0, a0: xW - T, a1: x1 + T, t: Ti, out: -1, holes: [{ a0: S.x0, a1: S.x1, y0: 0, y1: S.h }], look: PLASTER, label: 'north wall (sliding door to the kitchen)' }));
-  g.add(vwall({ axis: 'x', at: x1, a0: z0 - Ti, a1: z1 + T, t: Ti, out: 1, holes: [{ a0: St.z0, a1: St.z1, y0: 0, y1: 2.6 }], look: PLASTER, label: 'east wall (gable end; split-level wing beyond)' }));
+  g.add(vwall({ axis: 'x', at: x1, a0: z0 - Ti, a1: z1 + T, t: Ti, out: 1, holes: [{ a0: St.z0, a1: St.z1, y0: 0, y1: ROOM.h - 0.06 }], look: PLASTER, label: 'east wall (the full gable: mirror, piano; split-level wing beyond)' }));
   // baseboards (front and east walls)
   g.add(tag(box(x1 - x0, 0.1, 0.015, TRIM, [(x0 + x1) / 2, 0.05, z1 - 0.008]), 'baseboard'));
   g.add(tag(box(0.015, 0.1, St.z1 - z1, TRIM, [x1 - 0.008, 0.05, (St.z1 + z1) / 2]), 'baseboard'));
@@ -131,27 +137,55 @@ function upholstered(at, yaw, w, d, o = {}) {
   return a;
 }
 
-// a grand piano: the case outline in (u, v) (u = across from the straight spine toward the treble side, v = from the
-// keyboard toward the tail), extruded between caseY0 and caseY1, lid closed; three legs, keyboard, music desk, lyre
+// A GRAND PIANO WITH A REAL GRAND'S OUTLINE (round 3, Jade: "the correct shape of an actual grand piano"), modelled on a
+// Steinway B (211 x 148 cm). Plan coordinates (u, v): u across from the bass side (the straight SPINE, u = 0) to the
+// treble side (u = W); v from the front of the keyboard (v = 0) back to the tail (v = L). The rim: the straight spine;
+// the front (keyboard) edge; a short straight treble side; the BENTSIDE, first concave (curving in toward the spine),
+// then convex round the TAIL, which meets the spine at a rounded corner. Two cubic Beziers, tangent-continuous.
+export function grandOutline(W, L) {
+  const bz = (p0, p1, p2, p3, n) => Array.from({ length: n }, (_, i) => { const t = (i + 1) / n, s = 1 - t;
+    return [0, 1].map((k) => s * s * s * p0[k] + 3 * s * s * t * p1[k] + 3 * s * t * t * p2[k] + t * t * t * p3[k]); });
+  const kx = W / 1.48, ky = L / 2.11, P = (u, v) => [u * kx, v * ky];
+  const pts = [P(0, 0), P(1.48, 0), P(1.48, 0.40)];                                                   // front edge, treble straight
+  pts.push(...bz(P(1.48, 0.40), P(1.48, 0.98), P(1.02, 1.18), P(0.82, 1.47), 16));                      // bentside, concave
+  pts.push(...bz(P(0.82, 1.47), P(0.62, 1.77), P(0.50, 2.11), P(0.16, 2.11), 14));                      // tail, convex
+  pts.push(P(0.06, 2.095), P(0.01, 2.06), P(0, 2.00));                                                  // rounded tail-spine corner
+  return pts;                                                                                         // closes back to (0, 0) along the spine
+}
+// world: spine at x = spineX, u runs WEST (-x); keyboard front at z = kbZ, v runs SOUTH (+z). The case (rim) from the
+// fallboard line (v = kbDepth) back, between caseY0 and caseY1; the lid closed on it with its front flap folded back and
+// the music desk up; in front of the fallboard the keys between two cheek blocks; three legs; the lyre with three pedals.
 function piano() {
-  const g = new THREE.Group(); const P = PIANO, W = P.W, L = P.L;
-  // outline in (u, v): u from the spine (0) to the treble cheek (W); v from the keyboard end (0) to the tail (L)
-  const pts = [[0, 0], [W, 0], [W, 0.45]];
-  for (let i = 1; i <= 12; i++) { const t = i / 12; const u = W - (W - 0.42) * (1 - Math.cos(t * Math.PI / 2)) ** 0.9, v = 0.45 + (L - 0.6 - 0.45) * t; pts.push([u, v]); }
-  for (let i = 1; i <= 8; i++) { const a = (i / 8) * Math.PI / 2; pts.push([0.42 * Math.cos(a), L - 0.6 + 0.6 * Math.sin(a) * 1.0]); }
-  pts.push([0, L - 0.1]);
-  // world: spine at x = spineX, u runs WEST (-x); keyboard at z = kbZ, v runs SOUTH (+z)
+  const g = new THREE.Group(); const P = PIANO, W = P.W, L = P.L, kd = P.kbDepth;
   const toW = ([u, v]) => [P.spineX - u, P.kbZ + v];
-  const sh = new THREE.Shape(); const w0 = toW(pts[0]); sh.moveTo(w0[0], -w0[1]); for (const p of pts.slice(1)) { const w = toW(p); sh.lineTo(w[0], -w[1]); }
-  const m = mk(new THREE.ExtrudeGeometry(sh, { depth: P.caseY1 - P.caseY0, bevelEnabled: false }), EBONY);
-  m.rotation.x = -Math.PI / 2; m.position.y = P.caseY0;   // shape (x, -z) -> world (x, z), extruded up
-  g.add(tag(m, P.label));
-  // keyboard and key slip at the north end, music desk
-  g.add(tag(box(W - 0.1, 0.05, 0.16, { grey: 0.9, col: 0xf0ece0 }, [P.spineX - W / 2, 0.72, P.kbZ - 0.07]), 'piano keyboard'));
-  g.add(tag(box(W, 0.12, 0.2, EBONY, [P.spineX - W / 2, 0.66, P.kbZ - 0.08]), P.label));
-  g.add(tag(box(W - 0.4, 0.3, 0.03, EBONY, [P.spineX - W / 2, P.caseY1 + 0.15, P.kbZ + 0.28], [-12, 0, 0]), 'music desk'));
-  for (const [u, v] of [[0.12, 0.25], [W - 0.12, 0.25], [0.3, L - 0.35]]) { const [x, z] = toW([u, v]); g.add(tag(cyl(0.05, 0.035, P.caseY0, EBONY, [x, P.caseY0 / 2, z], null, 12), 'piano leg')); }
-  { const [x, z] = toW([W * 0.5, 0.35]); g.add(tag(box(0.3, 0.05, 0.12, EBONY, [x, 0.12, z]), 'piano pedal lyre')); g.add(tag(box(0.06, 0.5, 0.06, EBONY, [x, 0.37, z]), 'piano pedal lyre')); }
+  const extrude = (pts, y0, y1, look, label) => { const sh = new THREE.Shape(); pts.forEach((p, i) => { const [x, z] = toW(p); i ? sh.lineTo(x, -z) : sh.moveTo(x, -z); });
+    const m = mk(new THREE.ExtrudeGeometry(sh, { depth: y1 - y0, bevelEnabled: false, curveSegments: 1 }), look); m.rotation.x = -Math.PI / 2; m.position.y = y0; return g.add(tag(m, label)), m; };
+  const out = grandOutline(W, L);
+  const rim = out.map(([u, v]) => [u, Math.max(v, kd)]);                                               // the case behind the fallboard
+  extrude(rim, P.caseY0, P.caseY1, EBONY, P.label + ' (rim)');
+  // the lid (closed), a touch proud of the rim; its front flap folded back on top of it (hinged at v = kd + 0.33)
+  const lidOut = out.map(([u, v]) => [u, Math.max(v, kd + 0.33)]);
+  extrude(lidOut, P.caseY1, P.caseY1 + 0.025, { grey: 0.16, col: 0x1c1c22 }, 'piano lid (closed)');
+  extrude([[0.02, kd + 0.33], [W - 0.02, kd + 0.33], [W - 0.02, kd + 0.60], [0.02, kd + 0.60]], P.caseY1 + 0.025, P.caseY1 + 0.045, { grey: 0.18, col: 0x202026 }, 'piano lid: front flap folded back');
+  // music desk, up, leaning back, standing on the front of the case
+  { const [x, z] = toW([W / 2, kd + 0.16]); g.add(tag(box(W * 0.62, 0.32, 0.025, EBONY, [x, P.caseY1 + 0.19, z], [-14, 0, 0]), 'piano music desk')); }
+  // keybed and keys (v 0..kd) between the two cheek blocks (the bass and treble arms)
+  const cheek = 0.075; { const [x, z] = toW([W / 2, kd / 2]);
+    g.add(tag(box(W, 0.07, kd, EBONY, [x, 0.655, z]), 'piano keybed / key slip'));
+    g.add(tag(box(W - 2 * cheek, 0.025, kd - 0.06, { grey: 0.92, col: 0xf2eee2 }, [x, 0.705, z - 0.03]), 'piano keys'));
+    g.add(tag(box(W - 2 * cheek, 0.012, kd * 0.5 - 0.06, { grey: 0.1, col: 0x101010 }, [x, 0.722, z + 0.02]), 'piano keys (sharps)'));
+    g.add(tag(box(W - 2 * cheek, P.caseY1 - 0.73, 0.03, EBONY, [x, (P.caseY1 + 0.73) / 2, P.kbZ + kd - 0.015]), 'piano fallboard / nameboard')); }
+  for (const u of [cheek / 2, W - cheek / 2]) { const [x, z] = toW([u, kd / 2]); g.add(tag(box(cheek, 0.17, kd, EBONY, [x, 0.705, z]), 'piano cheek block')); }
+  // three legs: two under the keyboard's ends, one under the tail; tapered, on casters
+  for (const [u, v] of [[0.14, 0.24], [W - 0.14, 0.24], [0.42, L - 0.30]]) { const [x, z] = toW([u, v]);
+    g.add(tag(cyl(0.06, 0.04, P.caseY0 - 0.05, EBONY, [x, (P.caseY0 + 0.05) / 2, z], null, 14), 'piano leg'));
+    g.add(tag(cyl(0.03, 0.03, 0.05, { grey: 0.6, col: 0xb09040 }, [x, 0.025, z], null, 10), 'piano caster')); }
+  // the lyre: two posts from the case bottom to a pedal box, three pedals pointing toward the bench (north, -v)
+  { const v = kd + 0.30, [x, z] = toW([W * 0.5, v]);
+    for (const s of [-1, 1]) g.add(tag(box(0.035, P.caseY0 - 0.12, 0.035, EBONY, [x + s * 0.09, (P.caseY0 + 0.12) / 2, z]), 'piano lyre'));
+    g.add(tag(box(0.30, 0.09, 0.10, EBONY, [x, 0.075, z]), 'piano lyre (pedal box)'));
+    for (const s of [-1, 0, 1]) g.add(tag(box(0.035, 0.012, 0.11, { grey: 0.65, col: 0xc0a050 }, [x + s * 0.07, 0.07, z - 0.10]), 'piano pedal'));
+    g.add(tag(cyl(0.012, 0.012, 0.12, EBONY, [x, 0.06, z + 0.05], [0, 0, 0], 8), 'piano lyre brace')); }
   return g;
 }
 
@@ -192,7 +226,9 @@ function furniture() {
   { const L = LOVESEAT; g.add(tag(upholstered([(L.x0 + L.x1) / 2, (L.z0 + L.z1) / 2], -90, L.z1 - L.z0, L.x1 - L.x0, { cushions: 2 }), L.label)); }
   { const A = ARMCHAIR; g.add(tag(upholstered(A.at, A.yaw, A.w, A.d, { seat: A.seat, back: A.back, arm: A.arm }), 'armchair')); }
   plants(g);
-  g.add(tag(box(PRINT.w, PRINT.h, 0.03, { grey: 0.4, col: 0x6a6050 }, [PRINT.x, PRINT.y, PRINT.z]), 'framed print (invented)'));
+  // the framed picture over the couch (round 3: 4x larger, 1.4 x 1.0 m; its subject is not known: a plain panel in a frame)
+  g.add(tag(box(PRINT.w, PRINT.h, 0.035, { grey: 0.3, col: 0x4a3e30 }, [PRINT.x, PRINT.y, PRINT.z]), 'framed picture (frame)'));
+  g.add(tag(box(PRINT.w - 0.12, PRINT.h - 0.12, 0.01, { grey: 0.55, col: 0x8a8270 }, [PRINT.x, PRINT.y, PRINT.z - 0.02]), 'framed picture (subject unknown)'));
   // the far part: mirror, piano + bench, floor lamp, dining table + six chairs
   { const M = MIRROR; g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0x9aa4a8 }, [M.x - 0.02, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror (not reflecting in these renders)'));
     g.add(tag(box(0.045, M.y1 - M.y0 + 0.08, M.z1 - M.z0 + 0.08, { grey: 0.4, col: 0x6a5a40 }, [M.x - 0.01, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror frame')); }
@@ -306,6 +342,19 @@ function hoodieUnfolding() {
 }
 const comb3 = (p, v, k) => p.map((c, i) => c + v[i] * k);
 
+// TURNED (MG2_end): no garment geometry here (the cloth module draws it). LABEL MODE ONLY: an outline of where the hoodie
+// hangs (the front's 0.58 x 0.69 m rectangle from the collar, its seal circle), so the guide shows the anchor.
+function garmentOutline(G) {
+  const g = new THREE.Group(), LOOK = { grey: 1, col: 0x2f62a8, emit: 0x2f62a8, flatEmit: 1, only: ['label'] }, hw = SHIRT.chest / 2, len = TURN.length;
+  const P = (dr, da) => comb3(comb3(G.origin, G.right, dr), G.up, da);
+  const c = [P(-hw, 0), P(hw, 0), P(hw, -len), P(-hw, -len)];
+  for (let i = 0; i < 4; i++) g.add(tag(slab(V(c[i]), V(c[(i + 1) % 4]), 0.008, 0.008, V(G.out), LOOK), 'hoodie (cloth module): outline of the front, turned toward her', true));
+  const ring = mk(new THREE.RingGeometry(TURN.sealR - 0.006, TURN.sealR, 40), LOOK); ring.userData.double = true;
+  ring.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(V(G.right), V(G.up), V(G.out))); ring.position.copy(V(TURN.seal.centre));
+  g.add(tag(ring, 'hoodie (cloth module): the seal, facing her', true));
+  return g;
+}
+
 // plain cork sandals (Naot-type) under his bare feet
 function sandals(fig) {
   const g = new THREE.Group(); const P = fig.userData.P;
@@ -317,14 +366,26 @@ function sandals(fig) {
 }
 
 export const NAMED = { shirt: SHIRT.c, seal: SEAL.centre, collar: SHIRT.T, ...GRIP,
-  stack: FOLD.c, fseal: FSEAL.centre, neck: FOLD.neck, fHisL: FOLD.grip.hisL, fHisR: FOLD.grip.hisR, fHerL: FOLD.grip.herL, fHerR: FOLD.grip.herR };
+  stack: FOLD.c, fseal: FSEAL.centre, neck: FOLD.neck, fHisL: FOLD.grip.hisL, fHisR: FOLD.grip.hisR, fHerL: FOLD.grip.herL, fHerR: FOLD.grip.herR,
+  tcollar: TURN.T, tseal: TURN.seal.centre, tHerL: TURN.grip.herL, tHerR: TURN.grip.herR };
 delete NAMED.r;
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && p.mid ? { mid: p.mid.map(fix) } : p);
 
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   const state = shot.hoodie || 'unfolding';
-  root.add(room()); root.add(couch()); root.add(furniture()); root.add(state === 'folded' ? hoodieFolded() : hoodieUnfolding());
+  root.add(room()); root.add(couch()); root.add(furniture());
+  // ---- GARMENT HOOK (round 3). The cloth-simulated hoodie is a separate module, layout/sets/mortongrove07/sweatshirt.js
+  // (the cloth agent's; not written here). Its anchor per state is GARMENT[state] in layout.js: `origin` = collar centre,
+  // `right` / `up` / `out` = the garment's frame (right as one faces the FRONT, up the front, out of the front), `grips` =
+  // the hand points to pin the cloth to (FOLD.grip / GRIP / TURN.grip; the figures' hands are posed onto these same points
+  // in shots.js). To swap it in, replace the placeholder line below with something like:
+  //   import { sweatshirt } from './sweatshirt.js';   (top of file)
+  //   root.add(sweatshirt({ state, anchor: GARMENT[state], t: shot.clothT ?? 1, seal: { r: SHIRT.sealR, down: SHIRT.sealDown } }));
+  // States: 'folded' (MG1, MG1_end: he hands it over), 'unfolding' (MG2: lifted by the shoulders, front toward him),
+  // 'turned' (MG2_end: she has turned it round so the front faces her; hands TURN.grip, 0.50 m apart at y 1.14).
+  const G = GARMENT[state] || GARMENT.unfolding;
+  root.add(state === 'folded' ? hoodieFolded() : state === 'turned' ? garmentOutline(G) : hoodieUnfolding());   // placeholder props until sweatshirt.js lands
   const solids = [], sunk = [];
   for (const A of Object.values(APERTURES)) if (A) { solids.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12 })); sunk.push(beamSolid({ aperture: A, dir: BEAM.dir, clip: BEAM.clip, length: 12, sink: 0.01 })); }
   if (!shot.beamMask) {
@@ -359,19 +420,19 @@ export function build(shot, { makeCam }) {
   const W = PICTURE, Pq = (x, y) => V(x, y, W.z), Ww = WIN_W, Wq = (z, y) => V(Ww.x, y, z);
   const panes = { front_window: [Pq(W.x1, W.head), Pq(W.x0, W.head), Pq(W.x0, W.sill), Pq(W.x1, W.sill)],   // TL,TR,BR,BL seen from inside (looking south)
     west_window: [Wq(Ww.z1, Ww.head), Wq(Ww.z0, Ww.head), Wq(Ww.z0, Ww.sill), Wq(Ww.z1, Ww.sill)] };          // seen from inside (looking west)
-  const FS = state === 'folded', SL_ = FS ? FSEAL : SEAL, SN = FS ? FOLD.n : SHIRT.n;
-  const sc = V(SL_.centre), sr = FS ? V(FOLD.u).multiplyScalar(-1) : V(SHIRT.r), sa = FS ? V(FOLD.w) : V(SHIRT.a), R = SHIRT.sealR;
+  const FS = state === 'folded', TS = state === 'turned', SL_ = FS ? FSEAL : TS ? TURN.seal : SEAL, SN = G.out;
+  const sc = V(SL_.centre), sr = V(G.right), sa = V(G.up), R = SHIRT.sealR;
   panes.seal_square = [sc.clone().addScaledVector(sr, -R).addScaledVector(sa, R), sc.clone().addScaledVector(sr, R).addScaledVector(sa, R), sc.clone().addScaledVector(sr, R).addScaledVector(sa, -R), sc.clone().addScaledVector(sr, -R).addScaledVector(sa, -R)];
 
-  const anchor = V(fix(shot.beamAnchor || 'shirt'));
+  const anchor = V(fix(shot.beamAnchor || (state === 'turned' ? 'tseal' : 'shirt')));
   const extraOut = (c, P) => {
     const pt = (p) => ({ world: r3(V(p)), px: P(V(p)) });
     const toCam = c.position.clone().sub(sc).normalize();
     const seal = { label: 'IAS seal (Truth, Beauty)', what: 'Institute for Advanced Study seal printed in BLUE on a WHITE HOODIE, CHEST-SIZED (diameter ' + (2 * R).toFixed(2) + ' m on a ' + SHIRT.chest + ' m front, about 40% of its width, centred on the chest below the drawstrings; Jade 2026-11-25, NOT the whole front; on the FOLDED stack it spans about 60% of the folded width): a SOLID filled blue disc with the design in white reverse: two standing classical women hand in hand before a leafy tree, TRUTH (left, raising a hand mirror) and BEAUTY (right, pleated gown); INSTITUTE FOR ADVANCED STUDY round the rim, FOUNDED 1930 at the bottom (see cast/first_love/fl_H_ias_hoodie_v2.jpg)',
       radius_m: R, centre: pt(SL_.centre), top: pt(SL_.top), bottom: pt(SL_.bottom), truth_side: pt(SL_.truth), beauty_side: pt(SL_.beauty),
-      hidden_by_fold: FS ? { share_of_height: FOLD.sealHidden, how: 'the lower body folded up over the front from his end: its ribbed waistband edge lies across the seal\'s lower part' } : { share_of_height: SHIRT.sealHidden, how: 'the bottom sliver curves round the remaining fold line; the rest is revealed' },
+      hidden_by_fold: TS ? { share_of_height: null, how: 'cloth module (sweatshirt.js): Jade wants Truth to fall in the folds as she turns it' } : FS ? { share_of_height: FOLD.sealHidden, how: 'the lower body folded up over the front from his end: its ribbed waistband edge lies across the seal\'s lower part' } : { share_of_height: SHIRT.sealHidden, how: 'the bottom sliver curves round the remaining fold line; the rest is revealed' },
       corner_order: 'panes.seal_square = TL, TR, BR, BL as one faces the front (a painted seal maps straight on)',
-      facing: FS ? 'up, on top of the folded stack between them; upright for him and the camera behind him (its top toward her)' : 'out of the hanging front of the hoodie she has just lifted: toward him and the camera behind him; upright',
+      facing: TS ? 'toward HER (she has turned it round to look at it); the camera behind him sees its back' : FS ? 'up, on top of the folded stack between them; upright for him and the camera behind him (its top toward her)' : 'out of the hanging front of the hoodie she has just lifted: toward him and the camera behind him; upright',
       normal_to_camera_deg: +(Math.acos(Math.max(-1, Math.min(1, V(SN).dot(toCam)))) * 180 / Math.PI).toFixed(0),
       reads_upright_on_screen: (() => { const a = P(V(SL_.bottom)), b = P(V(SL_.top)); return a && b ? b[1] < a[1] : null; })(),
       sun_on_front: { cos_incidence: sunCos(SN), note: 'negative = the sun is BEHIND the print; positive = it can fall on it (subject to the shafts and shadows)' } };
@@ -379,14 +440,15 @@ export function build(shot, { makeCam }) {
     return {
       time: FILM.time, plan_time: FILM.time, section: FILM.section, position: shot.position || null,
       film: { ...FILM, year: YEAR, place: 'Morton Grove, IL: the house she commuted from to Northwestern (Evanston); he had transferred from Harvard to Princeton' },
-      house: { ...HOUSE, ceiling: { kind: 'vaulted (cathedral), Jade', ridge: VAULT.ridge + ' at z ' + VAULT.z + ' (Jade: parallel to the street; its position on the house centre line is a GUESS)', plate_m: ROOM.h, peak_m: VAULT.peak, pitch: '4 in 12' },
+      house: { ...HOUSE, ceiling: { kind: 'vaulted (cathedral), Jade', ridge: VAULT.ridge + ' at z ' + VAULT.z + ' (Jade r3: highest over the middle of the great room, about 3.6 m)', plate_m: ROOM.h, peak_m: VAULT.peak, pitch: VAULT.pitch + ' (about 3.9 in 12)', east_wall: 'the full gable (mirror, piano): its top shows the roof angle', dining: 'flat 8-ft ceiling over the dining part (x < ' + DROP.x1 + ', north of the jog), READING of Jade\'s "the dining room is the short side" (flagged)' },
         axes: 'x = east, z = south, y up; origin = inner SW corner of the living room', great_room_m: { x: [JOG.xW, ROOM.x1], z: [ROOM.z0, ROOM.z1], jog_z: JOG.z },
         orientation: 'Jade\'s drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)',
         couch: 'against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)' },
-      hoodie: { colour: 'white', kind: 'pullover hoodie: hood (hanging behind the neckline), two flat drawstrings, kangaroo pouch pocket, ribbed cuffs and waistband', state: FS ? 'FOLDED: a stack ' + FOLD.across + ' x ' + FOLD.along + ' m, front up, neckline at her end; the waistband end folded up over the front from his end, hiding the lower part of the seal; he hands it over, both hold it' : 'UNFOLDING: she has lifted it by the shoulder seams; the front hangs from her hands toward him, the seal revealed; the lower part, still folded, swings down and out (half open)',
+      hoodie: { colour: 'white', kind: 'pullover hoodie: hood (hanging behind the neckline), two flat drawstrings, kangaroo pouch pocket, ribbed cuffs and waistband', state: TS ? 'TURNED: she holds it by the shoulder seams, a little further out and higher, and has turned it round so the front (the seal) faces her; the garment is the cloth module (sweatshirt.js)' : FS ? 'FOLDED: a stack ' + FOLD.across + ' x ' + FOLD.along + ' m, front up, neckline at her end; the waistband end folded up over the front from his end, hiding the lower part of the seal; he hands it over, both hold it' : 'UNFOLDING: she has lifted it by the shoulder seams; the front hangs from her hands toward him, the seal revealed; the lower part, still folded, swings down and out (half open)',
         chest_m: SHIRT.chest, length_m: 0.69,
-        collar: pt(FS ? FOLD.neck : SHIRT.T), seal, grips: FS ? Object.fromEntries(Object.entries(FOLD.grip).filter(([k]) => k !== 'r').map(([k, v]) => [k, pt(v)])) : Object.fromEntries(['herL', 'herR'].map((k) => [k, pt(GRIP[k])])),
-        note: FS ? 'each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers' : 'her two hands close on the shoulder seams (thumbs behind, fingers over the top); sleeves hang beside the front; the pocket is on the swinging part\'s underside' },
+        collar: pt(G.origin), seal, grips: Object.fromEntries(Object.entries(G.grips).map(([k, v]) => [k, pt(v)])),
+        anchor: { state, origin: r3(V(G.origin)), right: G.right.map((v) => +v.toFixed(4)), up: G.up.map((v) => +v.toFixed(4)), out: G.out.map((v) => +v.toFixed(4)), note: 'GARMENT[state] in layout.js: the hook for the cloth module sweatshirt.js' },
+        note: TS ? 'her two hands close on the shoulder seams, 0.50 m apart, the front toward her' : FS ? 'each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers' : 'her two hands close on the shoulder seams (thumbs behind, fingers over the top); sleeves hang beside the front; the pocket is on the swinging part\'s underside' },
       first_love: { who: 'first love (a real person: never named, never face-on)', face_shown: false,
         facing_camera_deg: he ? +(Math.acos(Math.max(-1, Math.min(1, he.headFwd.dot(c.position.clone().sub(he.head).normalize())))) * 180 / Math.PI).toFixed(0) : null,
         hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', feet: 'Birkenstock-type cork sandals (Naot), bare feet', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',

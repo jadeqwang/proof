@@ -64,142 +64,51 @@
 const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const D = [
- // ---------------------------------------------------------------- song & plan
- { sec:"Song and plan", id:"bud", title:"Where does the bud opening go?",
-   ctx:"You wanted the artichoke's bud opening into its purple flower kept, just not in the crowded interlude. Three places it could fit, or leave it out. The coda bar is my pick: by then the film is already looking back at its own pictures.",
-   imgs:[["footage/artichoke/stages/s12.png","Growth plate: the closed bud"],["footage/artichoke/stages/s16.png","Growth plate: full bloom"]],
-   opts:["One coda bar at 4:16.8, in place of “the finished count”","Under verse 2a's outside shot (2:06.3-2:08.7), before the count starts","In the tail-1 vocalise (2:00.3-2:03.1), cut into the Voyager pull-back","Leave it out of the film","Something else (below)"], rec:0 },
- { sec:"Song and plan", id:"goodcatch", title:"How do we show that “Good catch!” is Dad's line?",
-   ctx:"You said “Good catch!” should be clearly Dad's on screen. Proposal: a small photocopy-toner label reading DAD: GOOD CATCH! beside his head during his double take (2:20.0-2:22.2). The basement now has its ceiling light, so the shot is readable.",
-   imgs:[[L("basement90/B4_doubletake_lit.png"),"The double take, now with the ceiling light"]],
-   opts:["Toner label “DAD: GOOD CATCH!” beside his head","The same label without “DAD:” (where it sits says whose it is)","A subtitle with his name","Something else (below)"], rec:0 },
- { sec:"Song and plan", id:"caption", title:"What should the “artichoke” caption look like (2:11.9-2:13.6)?",
-   ctx:"You chose to caption “artichoke”. It could look like the plates' own labels, a small lowercase specimen tag beside the real artichoke, or like an ordinary subtitle.",
-   imgs:[["footage/spirals/stills/artichoke_t16.90.png","The artichoke plate, with its caption type"]],
-   opts:["Small lowercase specimen label in the plates' caption type, beside it","A plain burned-in subtitle","Something else (below)"], rec:0 },
+ // ---------------------------------------------------------------- still open from round 3
  { sec:"Song and plan", id:"cliff", title:"The cliff: cut on the drum hit or on “on”?",
    ctx:"You couldn't tell where the band drops out, and it turns out to be neither place: the band stops at 3:54.9, in the middle of the held “smile”, and “on” (3:55.2) is sung into the silence. So: cut to blank paper with the band, or hold the picture until “on”? The first clip is half speed.",
    audio:[[A("cliff_slow_mix.mp3"),"Half speed, around the drop"],[A("cliff_mix.mp3"),"Full mix, 3:53.4-3:57.8"]],
    opts:["Cut on the drum hit (3:54.9)","Cut on “on” (3:55.2)","Either is fine"], rec:0 },
- { sec:"Song and plan", id:"fixture", title:"What was the basement ceiling light?",
-   ctx:"You said the basement had more light from a ceiling light. I guessed a bare bulb in a porcelain pull-chain holder, giving a warm, even glow.",
-   imgs:[[L("basement90/B0_wide_lit.png"),"Basement wide, with the bulb"]],
-   opts:["Bare bulb in a porcelain pull-chain holder","A two-tube fluorescent shop light","Something else (below)"], rec:0 },
-
- // ---------------------------------------------------------------- Mountain View
- { sec:"Mountain View 2010", id:"rcv_time", title:"Room crossing: how to squeeze about 19 seconds into 4",
-   ctx:"Your four legs (kitchen, door, shelf, door again) take about 19 seconds of walking, but the line “room crossing velocity” lasts 4.1 seconds. One more idea from the plan: show you at each stop in turn while the gold vectors draw on, about a leg a second.",
-   imgs:[[L("mv10/V3_rcv_obl_legs_lit.png"),"The four legs, from above"]],
-   opts:["An even time-lapse, about 4.7x","Stops held as single beats, walking about 3x","Borrow about 1.8 s from the spectrogram plate","Drop the second doorbell","Draw you at each stop as the vectors draw on","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"rcv_who", title:"Who were you talking with in the kitchen, and who spoke to you at the shelf?",
-   ctx:"Right now both are unnamed guests. If you remember who they were, tell me.",
-   imgs:[[L("mv10/V3_rcv_obl_label.png"),"The crossing, labelled"]],
-   opts:["Unnamed guests","First love was the one at the shelf","The childhood friend was in the kitchen","Z","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"rcv_fl", title:"Was first love there during the arrivals?",
-   ctx:"He isn't in the crossing shot at the moment.",
-   imgs:[[L("mv10/V3_rcv_obl_lit.png"),"The crossing, lit"]],
-   opts:["Not there","In the living room","At the shelf","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"v3b_split", title:"“Lemonade from the yard”: picking and making, in one line",
-   ctx:"The line now holds both: picking the lemons (2:57.0), then the lemonade being made, seen straight down like a botanical plate (2:58.0). Or show only the making, dissolving from the tree, or split the frame.",
-   imgs:[[L("mv10/V3b_prep_line.png"),"The making, from straight above (line)"]],
-   opts:["Picking at 2:57.0, then the making from straight above at 2:58.0","Only the making, dissolving in from the tree","Split frame","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"v3b_where", title:"Where did you make the lemonade?",
-   ctx:"Built at the dining table in the window sun. And the window's mullion shadows fall across it: keep them? (Say in the note.)",
-   imgs:[[L("mv10/V3b_prep_lit.png"),"The making, lit"]],
-   opts:["The dining table, in the window sun","The counter by the sink","The counter by the stove","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"fridge", title:"Where is the fridge, and what colour?",
-   ctx:"You said a normal-size fridge on the side near the 2x2 Expedit. It's built against the wall behind the 2x2: a white 30-inch with the freezer on top. White or stainless? (Say in the note.)",
-   imgs:[[L("mv10/V3_rcv_obl_k0_lit.png"),"The kitchen from above"]],
-   opts:["Against the wall behind the 2x2","On the dining side, by the opening","At the far end of the counters","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"v3e", title:"“Fifteen percent above amplitude”: what's on screen?",
-   ctx:"Now that you're at the shelf from 3:03.8 to 3:11.5 (the whisper, then the nod), this line needs a new picture.",
-   imgs:[[L("mv10/V3e_lit.png"),"V3e, the poi spinner"]],
-   opts:["Cut away to the poi spinner","A shot at the shelf","Put the whisper and nod outside instead","Something else (below)"], rec:0 },
- { sec:"Mountain View 2010", id:"tree_fl", title:"Was first love ever under the lemon tree?",
-   ctx:"You said the nod was never under the tree. He's still standing there in two shots: V3a (2:54.7) and SI1, “I think he's right” (3:19.1).",
-   imgs:[[L("mv10/SI1_lit.png"),"SI1, under the tree"]],
-   opts:["Keep him there","Take him away from the tree","Move SI1 indoors","Something else (below)"] },
- { sec:"Mountain View 2010", id:"decktable", title:"The deck's lemonade table",
-   ctx:"Now that the lemonade is in the giant punchbowl by the stove, the drinks table on the deck is gone.",
-   imgs:[[L("mv10/V3a_lit.png"),"V3a, the deck"]],
-   opts:["Punchbowl only; no table on the deck","Bring back a drinks table on the deck","Something else (below)"], rec:0 },
-
- // ---------------------------------------------------------------- Shanghai
- { sec:"Shanghai 1986", id:"sh_sun", title:"What time is it? The sun reaches your face only at about 8:30",
-   ctx:"You asked for the light to move so you're lit. At 9:30 the real sun can't reach that far into the room (you're 3.9 m from the doors); it reaches you only between about 7:40 and 8:40. So: the true sun at 8:30, or keep 9:30 and cheat the sun lower.",
-   imgs:[[L("_sheets/shanghai86_lightstudy.jpg"),"Light study through the morning"]],
-   opts:["8:30, the true sun","9:30 with a cheated, lower sun (only just reaches you)","8:00","Something else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_wider", title:"The room is wider: longer along the balcony, or deeper?",
-   ctx:"You said the side walls might be further apart. I made the room 1 m longer along the balcony (now 10.5 m).",
-   imgs:[[L("shanghai86/REF_plan_label.png"),"Plan from above"]],
-   opts:["As built: 1 m longer along the balcony","Deeper instead","Both","Keep it at 9.5 m","Something else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_lounger", title:"The wicker lounger, facing the TV",
-   ctx:"To face the TV, the lounger moved to the east end, about 2 m from it.",
-   imgs:[[L("shanghai86/REF_plan_label.png"),"Plan from above"]],
-   opts:["As built, at the east end","Back west, turned toward the far TV","Move the TV west instead","Something else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_uncle", title:"Where does the uncle sit?",
-   ctx:"In the armchair his body blocked the sun from you, so he moved to the end of the couch.",
-   imgs:[[L("shanghai86/V1a_lit.png"),"V1a, the uncle scene"]],
-   opts:["The end of the couch","The armchair, with your face in his shadow","A low stool south of the table","Something else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_doors", title:"The balcony doors and the wicker chair",
-   ctx:"The whole balcony side is now doors: four bays of four glazed steel doors, with bolt-rod latches, separated by piers. The white wicker chair sits outside bay 2.",
-   imgs:[[L("shanghai86/REF_doors_lit.png"),"The balcony doors"],[L("shanghai86/REF_latch_lit.png"),"A latch, close up"]],
-   opts:["Right as built","Fewer or wider bays, or no piers","The chair goes somewhere else","Something else (below)"], rec:0 },
-
- // ---------------------------------------------------------------- Morton Grove
- { sec:"Morton Grove 2007", id:"mg_street", title:"Which side of your floor plan faces the street?",
-   ctx:"I read the top of your drawing as the street side. That way the afternoon sun still reaches you. If it's the right-hand wall, there's no afternoon sun on you.",
-   imgs:[[L("mortongrove07/REF_plan_label.png"),"Plan, laid out like your drawing"]],
-   opts:["The top","The right-hand wall","Something else (below)"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_window", title:"How big is the front window?",
-   ctx:"Built 1.5 m wide, as you drew it.",
-   imgs:[[L("mortongrove07/MG_wide_lit.png"),"Wide"]],
-   opts:["1.5 m, as drawn","A bigger picture window","Something else (below)"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_ridge", title:"Where was the ceiling highest?",
-   ctx:"With the ridge parallel to the street, the high point sits on the house's centre line (about 4.3 m), over the dining table and the piano keyboard. Or was it highest over the middle of the great room (about 3.6 m)?",
-   imgs:[[L("mortongrove07/REF_north_lit.png"),"Looking north"]],
-   opts:["Over the dining table and piano, about 4.3 m","Over the middle of the great room, about 3.6 m","Not sure"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_hold", title:"How do you show him the sweatshirt?",
-   ctx:"So the whole seal is visible, you hold the sweatshirt up unfolded against yourself, sitting down.",
-   imgs:[[L("mortongrove07/MG1_lit.png"),"Over his shoulder"],[L("mortongrove07/MG2_lit.png"),"MG2"]],
-   opts:["Held up against myself, sitting","Standing","Handed over folded, then a beat with it unfolded","Something else (below)"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_block", title:"The two-part shape left of the rug",
-   ctx:"Your drawing has a two-part block to the left of the rug. I built it as a loveseat.",
-   imgs:[[L("mortongrove07/REF_plan_label.png"),"Plan from above"]],
-   opts:["A loveseat","Two chairs or ottomans","Something else (below)"], rec:0 },
-
- // ---------------------------------------------------------------- Closet
- { sec:"Closet", id:"cl_size", title:"How wide was the closet?",
-   ctx:"Rebuilt from your reference as a reach-in with two sliding doors, 6 ft wide, shelf at 1.72 m. The size is a guess.",
-   imgs:[[L("closet02/CL_elev_label.png"),"Front view, labelled"]],
-   opts:["6 ft","5 ft","8 ft","Something else (below)"], rec:0 },
- { sec:"Closet", id:"cl_him", title:"Where is he?",
-   ctx:"He sits outside on the carpet, and your hands meet at the door line.",
-   imgs:[[L("closet02/CL_wide_lit.png"),"Wide"]],
-   opts:["Sitting outside on the carpet, hands meeting at the door line","Kneeling at the threshold","Half inside, with me","Something else (below)"], rec:0 },
  { sec:"Closet", id:"cl_light", title:"Where does the light come from?",
    ctx:"Late-afternoon sun from the bedroom window behind him lights your face in a crisp wedge.",
    imgs:[[L("closet02/CL_ots_lit.png"),"Over his shoulder"]],
    opts:["Window sun over his shoulder (crisp wedge)","The ceiling light (soft)","A bedside lamp","Something else (below)"], rec:0 },
- { sec:"Closet", id:"cl_open", title:"How does the closet scene open?",
-   ctx:"Now it opens on your joined hands. Another way: open wide on you with your head in your hands, and you look up as he sits down. That's my pick if its 4.6 seconds hold up.",
-   imgs:[[L("closet02/CL_elev_lit.png"),"Front view, lit"]],
-   opts:["On the joined hands (current)","Wide, my head in my hands; I look up as he sits","Something else (below)"], rec:1 },
-
- // ---------------------------------------------------------------- Cast
- { sec:"Cast", id:"fl_hair4", title:"First love's hair, v4: the step is in, but is the top a bowl?",
-   ctx:"Now there's a hard step over an even, grown-out buzz, as you described. But the top layer reads a bit like a bowl or mushroom with a level rim. No face anywhere. The third picture is v3, for comparison.",
-   imgs:[["../cast/first_love/fl_B_backhead_neck_v4.jpg","Back of the head, v4"],["../cast/first_love/fl_G_ots_hair_v3.jpg","Over-the-shoulder hair, v3"],["../cast/first_love/_superseded/fl_B_backhead_neck_v3.jpg","Back of the head, v3 (before)"]],
-   opts:["Accept the back-of-head v4 and carry it into the other sheets","One more pass to flatten and thin the top edge","Accept v4 for the back of the head, one more pass on the turnaround and over-the-shoulder","I'll sketch the overhang"], rec:2 },
- { sec:"Cast", id:"fl_truth", title:"The IAS seal: Truth, as drawn",
-   ctx:"On the real seal, Truth is nude. The image model wouldn't draw that, so she's draped off one shoulder with one breast bare, and the tree is slimmer than on the real seal. This sheet stays out of the public repo until you answer.",
-   imgs:[["../cast/first_love/fl_H_ias_sweatshirt_v1.jpg","The sweatshirt, unfolded, held and folded"]],
-   opts:["Keep it as drawn","Drape her fully","Frame it so Truth falls in the folds","Something else (below)"] },
+ // ---------------------------------------------------------------- NEW_R4
 ];
 
 // What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
-const DONE_DATE = "2026-11-25 (rounds 1 and 2)";
+const DONE_DATE = "2026-11-26 (rounds 1, 2 and 3)";
 const DONE = [
+ ["Round 3 · Song and plan", [
+  "Bud opening: one coda bar at 4:16.8, in place of “the finished count”.",
+  "“Good catch!”: toner label “DAD: GOOD CATCH!” beside his head.",
+  "“Artichoke” caption: a small lowercase specimen label in the plates' caption type, beside it.",
+  "Basement ceiling light: a bare bulb in a porcelain pull-chain holder."]],
+ ["Round 3 · Mountain View 2010", [
+  "Room crossing: an even time-lapse, about 4.7x.",
+  "Kitchen and shelf: unnamed guests; the childhood friend was helping.",
+  "First love during the arrivals: at the shelf briefly, then off talking to an unnamed guest elsewhere.",
+  "Lemonade: picking at 2:57.0, then the making from straight above at 2:58.0, with the hand holding the ladle realistically in the model.",
+  "Where: the counter by the sink. Fridge: against the wall behind the 2x2, dark beige.",
+  "“Fifteen percent above amplitude”: cut away to the poi spinner; the stairs descend beside the house wall.",
+  "Lemon tree: first love never under it; SI1 moves indoors. Deck: punchbowl only, no table."]],
+ ["Round 3 · Shanghai 1986", [
+  "Time: 9:30 with a cheated, lower sun that only just reaches you.",
+  "Room: as built, 1 m longer along the balcony.",
+  "Wicker lounger: west of the small wooden table and chair, facing the TV. Uncle: the end of the couch.",
+  "Wicker chair: at the west end of the balcony; the balcony has white-painted iron railings."]],
+ ["Round 3 · Morton Grove 2007", [
+  "The top of your plan faces the street; the piano is a real grand piano shape.",
+  "Front window 1.5 m; the framed picture 4x larger, the mirror higher, the whole east wall tall so the angle of the house shows.",
+  "Ceiling highest over the middle of the great room (~3.6 m); piano side and mirror wall very tall; dining room the short side.",
+  "Sweatshirt: he hands it to you as pictured, and you turn it round to face you. Left of the rug: a loveseat."]],
+ ["Round 3 · Closet", [
+  "6 ft wide; a futon to the right in bed mode that just reaches the closet, matte black frame, navy plaid blanket.",
+  "He sits outside on the carpet, directly in line with you and matching you; realistic torsos for both.",
+  "Opening: you look down, fingers to temples, thinking; caption “I don't want to apply to medical school.”"]],
+ ["Round 3 · Cast", [
+  "First love's hair v4: the left four studies are good; the right two don't match (the part is in the wrong place).",
+  "IAS seal: frame it so Truth falls in the folds; the soft sweatshirt moves as you hold and turn it (modelled in three.js)."]],
  ["Round 2 · Song and plan", [
   "Interlude merge: keep it; find the bud opening another place (see the new card).",
   "Dad's written answer: neither; no written “it was correct”. “Good catch!” is attributed to Dad on screen instead, and the basement gets a ceiling light (B4 was too dark).",
@@ -271,7 +180,7 @@ const DONE = [
   "Airbnb listing: skip; the drawing is enough."]],
 ];
 
-const KEY = 'proof-decisions-v3';
+const KEY = 'proof-decisions-v4';
 const state = JSON.parse(localStorage.getItem(KEY) || '{}');
 const save = () => { localStorage.setItem(KEY, JSON.stringify(state)); count(); };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));

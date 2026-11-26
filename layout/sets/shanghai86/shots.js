@@ -8,7 +8,7 @@
 // Geometry (layout.js, Jade's corrections (2), (3)): x = building east, z = out of the windows (SSE). One long room
 // (~9.5 m); couch group at the west end, couch on the WEST wall, its L armchair ~0.7 m from the bookshelves; hall doors
 // in the NORTH wall, a 4.0 m opening centred on it (Mother, decision page). Round 2 answers: the whole south wall is glazed
-// French doors onto the continuous balcony; the room is 10.5 m. Winter-morning sun (21 Dec 1986, 08:30, honest: moved
+// French doors onto the continuous balcony; the room is 10.5 m. Winter-morning sun (21 Dec 1986, 09:30, CHEATED lower (round-3 decisions; was 08:30 honest, moved
 // from Jade's 09:30 so her face is lit) from the SE (34.6 deg east of the facade normal), 17 deg high, slants in
 // north-west across the couch group: her face and hands, the table, the steam and the uncle's hands are lit.
 import { PLACES, DOOR, TABLE } from './layout.js';
@@ -25,7 +25,7 @@ const BALL = [H[0], H[1] + 0.024, H[2]];
 // r3 (Jade: "watch face should be visible"; the face sits on the back of the wrist, opposite the palm): the hands are
 // swapped so the WATCH hand is the one palm-DOWN: his RIGHT hand cups palm-up, his LEFT (wristwatch) pinches from above,
 // so its back of the wrist and the watch face turn up toward her
-const uncleShape = (o = {}) => ({ at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.42 }, yaw: UYAW, spine: { bend: 30 }, head: { look: BALL },
+const uncleShape = (o = {}) => ({ at: PLACES.uncleSeat, legs: 'seat', legOpts: { seatH: 0.42 }, yaw: UYAW, spine: { bend: 40 }, head: { look: BALL },
   R: { to: H, hand: { shape: 'cup', spread: 10, curl: { index: [20, 22, 10], middle: [24, 26, 12], ring: [28, 30, 14], little: [32, 34, 16] } }, palm: 'up', fingers: [UF[0], 0.05, UF[1]] },
   L: { tip: { finger: 'index', at: [BALL[0], BALL[1] + 0.013, BALL[2]] }, hand: { shape: 'pinch', spread: 14, curl: { middle: [40, 50, 25], ring: [55, 65, 32], little: [70, 80, 40] } }, palm: 'down', fingers: [UF[0], -0.35, UF[1]] }, ...o });
 // she sits CROSS-LEGGED at her spot (round 2 answers: cross-legged in BOTH scenes), watching his hands across the table
@@ -80,21 +80,24 @@ export const SHOTS = [
     header: 'PLAN (reference): north up: hall doors + bookshelves top, balcony doors + balcony bottom, couch left (west); yellow = sun', intent: 'Top view of the living room, state B with everyone in it. Not a shot.' },
   { id: 'REF_wide', lens: 20, pos: [6.55, 1.9, -4.95], aim: [[-1.0, 0.5, -2.6], 0.5, 0.62], tissue: 8, figs: CROWD(8),
     header: 'MASTER (reference): the long room from its east (old dining) end: balcony doors all along the left, hall doors + bookshelves right, couch group far end',
-    intent: 'The whole joined room: glazed French doors along the whole south wall onto the balcony, the 08:30 sun slanting in from the left across the room in bands (the piers between the bays throw the dark stripes), the child lit at the couch group, Mother in the wide hall doorway in shadow. Not a shot.' },
+    intent: 'The whole joined room: glazed French doors along the whole south wall onto the balcony, the cheated 09:30 sun slanting in from the left across the room in bands (the piers between the bays throw the dark stripes), the child lit at the couch group, Mother in the wide hall doorway in shadow. Not a shot.' },
   { id: 'REF_doors', lens: 24, pos: [2.25, 1.35, -4.6], aim: [[1.3, 1.0, 0.3], 0.5, 0.5], tissue: 8, figs: ALONE(8),
-    header: 'REFERENCE (round 2): the south side: glazed French doors all along onto the continuous balcony; latches; white wicker chair outside',
-    intent: 'From the hall doorway looking south: four bays of steel French doors (two latched pairs per bay: cremone rod, lever handle, barrel bolts) along the whole wall, the balcony and its parapet beyond, the white wicker chair on the balcony, the 08:30 sun coming in from the left. Not a shot.' },
+    header: 'REFERENCE: the south side: glazed French doors all along onto the continuous balcony; latches; white-painted iron railings (round-3 decisions)',
+    intent: 'From the hall doorway looking south: four bays of steel French doors (two latched pairs per bay: cremone rod, lever handle, barrel bolts) along the whole wall, the balcony and its parapet beyond, the white wicker chair on the balcony, the cheated 09:30 sun coming in from the left. Not a shot.' },
   { id: 'REF_latch', lens: 28, pos: [1.9, 1.25, -2.0], aim: [[0.75, 0.95, 0.35], 0.5, 0.5], tissue: 8, figs: ALONE(8),
-    header: 'REFERENCE (round 2): a door latch close up (cremone bolt with lever handle; barrel bolts on the fixed leaf); the wicker chair beyond the glass',
+    header: 'REFERENCE (round 2): a door latch close up (cremone bolt with lever handle; barrel bolts on the fixed leaf); the white railing beyond the glass',
     intent: 'Close on the meeting stiles of one pair of balcony doors. Not a shot.' },
+  { id: 'REF_balcony', lens: 24, pos: [-0.55, 1.45, -1.5], aim: [[-2.55, 0.75, 0.95], 0.5, 0.5], tissue: 8, figs: ALONE(8),
+    header: 'REFERENCE (round-3 decisions): the balcony\'s west end: white wicker chair there, white-painted iron railings',
+    intent: 'From inside, near the couch group, looking south-west out through bay 1: the white wicker chair at the west end of the balcony, the white-painted iron railing (handrail, square balusters, posts, on a low curb) along the front and returning at the end. Not a shot.' },
   { id: 'REF_beam', lens: 22, pos: [1.45, 1.35, -0.25], aim: [[-1.2, 0.5, -3.6], 0.5, 0.6], tissue: 8, figs: ALONE(8),
     header: 'REFERENCE: from the doors, along the light', intent: 'The light from beside the doors: the couch group, the table and the child in it, Mother in the doorway beyond it. Not a shot.' },
 
   // ---------------------------------------------------------------- verse 1, 0:29.7-0:58.6
-  { id: 'V1a', t: [29.74, 31.58], lens: 50, state: 'A', orbit: { at: 'jade3:eyes', az: yawTo(PLACES.jadeStand, [H[0], H[2]]) - 62, el: 4, dist: 1.7 }, aim: ['jade3:eyes', 0.4, 0.42], focus: ['jade3'],
+  { id: 'V1a', t: [29.74, 31.58], lens: 50, state: 'A', orbit: { at: 'jade3:eyes', az: yawTo(PLACES.jadeStand, [H[0], H[2]]) + 70, el: 4, dist: 1.3 }, aim: ['jade3:eyes', 0.4, 0.42], focus: ['jade3'],
     figs: { jade3: jadeWatch(), uncle: uncleShape() },
     header: '0:29.7 OUTSIDE "Three years old, uncle explains atoms" (header 1. Shanghai, 1986)',
-    intent: 'Outside: frontal, level, locked off on her face, lit by the 08:30 sun from the balcony doors behind the camera. She sits cross-legged at the table\'s north-west corner (as she will a week later), eyes on the uncle\'s hands; r3 (Jade: "seated on an armchair"): he sits in an ARMCHAIR pulled up at the table\'s north end, east of her (frame right), leaning in, his hands low in the light between them; his head is out of frame, only his arms and hands come in. The armchair stands north-east of her, so it never comes between her face and the sun.' },
+    intent: 'Outside: frontal, level, locked off on her face, lit by the cheated 09:30 sun from the balcony doors behind the camera. She sits cross-legged at the table\'s north-west corner (as she will a week later), eyes on the uncle\'s hands; round-3 decisions (Jade: "the end of the couch"): he sits ON the couch, perched on its north end seat (the end nearest her), west of her, leaning in, his hands held out low beside her face in the last of the light; camera from her east-north-east; his head is out of frame, only his knees, arms and hands come in. He is west of her, so he cannot shade her face; the light only just reaches her face (its top edge crosses her head between brow and crown).' },
   { id: 'V1b', t: [31.58, 34.52], lens: 40, state: 'A', orbit: { at: 'ball', az: yawTo([BALL[0], BALL[2]], PLACES.jadeStand), el: 22, dist: 0.62 }, aim: ['ball', 0.5, 0.66], edgeNT: 0.12, ...INSIDE,
     figs: { jade3: jadeWatch(), uncle: uncleShape() },
     header: '0:31.6 INSIDE the uncle\'s hands shaping something small; his face is not in frame; his WATCH FACE visible',
@@ -103,7 +106,7 @@ export const SHOTS = [
     figs: { jade3: { ...jadeSit(1), spine: { bend: 14 }, head: { look: [JX + FWD[0] * 0.3, 0.44, JZ + FWD[1] * 0.3] }, ...pinchPair(0.3, 0.44, 0.016) }, mama86: mother() },
     paper: { rip: { ...P0, open: 12, tilt: 35 } },
     header: '0:34.5 OUTSIDE "A week later my mother finds me": a TINY piece, mid-rip',
-    intent: 'Outside: frontal, level, locked off, across the coffee table from the window side. She sits cross-legged at the table\'s corner in the 08:30 light, holding up a TINY piece of 草纸 (~2 x 3 cm) between the fingertips of both hands, in the middle of ripping it in half again (r3, Jade); the big stack and the torn bits on the table, the stray bit in her hair; the north wall and the hall doors behind her.' },
+    intent: 'Outside: frontal, level, locked off, across the coffee table from the window side. She sits cross-legged at the table\'s corner in the cheated 09:30 light, holding up a TINY piece of 草纸 (~2 x 3 cm) between the fingertips of both hands, in the middle of ripping it in half again (r3, Jade); the big stack and the torn bits on the table, the stray bit in her hair; the north wall and the hall doors behind her.' },
   { id: 'V1d_1', t: [37.85, 41.43], lens: 35, orbit: { at: RIP_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [RIP_C, 0.5, 0.62], ...INSIDE,
     figs: { jade3: ripSit(0.016), mama86: mother() }, paper: { rip: { ...P0, open: 5, tilt: 25 } },
     header: '0:37.9 INSIDE "sat in a snow drift of paper": a tiny piece, ripping it (gold dot x1)', intent: 'Inside (POV): her eye-line onto her own hands just off the table\'s north-west corner: a tiny piece (~2 x 3 cm) pinched between both thumbs and index fingers, the tear just starting between them. The table corner, its edges and the big stack beyond.' },
@@ -133,7 +136,7 @@ export const SHOTS = [
   { id: 'V1g', t: [53.93, 55.15], lens: 85, orbit: { at: 'jade3:eyes', az: PLACES.jadeYaw, el: 0, dist: 1.6 }, aim: ['jade3:eyes', 0.5, 0.42], focus: ['jade3'],
     figs: ALONE(8, { head: { look: [JX + 1.2, 1.15, JZ + 0.7] } }), paper: AFTER,   // r3: a ~70 deg turn toward the doorway (frame right), the eyes do the rest
     header: '0:53.9 OUTSIDE "What\'s so funny?": her face, closer', intent: 'Outside: frontal, level, locked off, closer than V1c and shorter. Her eyes have come up off the paper toward the laughing adults at the hall doorway (behind her, to her left: frame right); nothing else moves in her face.' },
-  { id: 'V1h', t: [55.15, 58.55], lens: 28, orbit: { at: V1H_MID, az: yawTo([V1H_MID[0], V1H_MID[2]], [JX, JZ]), el: 50, dist: 0.64 }, aim: [V1H_MID, 0.5, 0.5], ...INSIDE,
+  { id: 'V1h', t: [55.15, 58.55], lens: 28, orbit: { at: V1H_MID, az: yawTo([V1H_MID[0], V1H_MID[2]], [JX, JZ]), el: 50, dist: 0.64 }, aim: [V1H_MID, 0.5, 0.5], ...INSIDE, steam: 'soft',   // round-3: the steam was reading as a stick in a mug in the top-down guides
     figs: ALONE(8), paper: AFTER,
     header: '0:55.2 INSIDE "Nobody tells me after": the tiniest bits, the big stack beside them',
     intent: 'Inside (POV): back down to the table: on the clear patch, a little heap of the freshly torn bits, each a few millimetres (extra tiny), the put-down half beside them; just beyond, the LARGE stack of uncut sheets (r3, Jade). The descent starts from here.' },

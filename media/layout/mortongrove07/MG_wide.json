@@ -7,65 +7,65 @@
  "camera": {
   "position": [
    2.6,
-   2.15,
-   -5.3
+   1.6,
+   -7
   ],
   "target": [
-   2.4445,
-   1.8316,
-   -3.3316
+   3.64,
+   2.04,
+   -2.11
   ],
-  "lens_mm": 20,
+  "lens_mm": 18,
   "frame_width_mm": 36,
-  "hfov_deg": 83.974,
-  "vfov_deg": 53.702,
+  "hfov_deg": 90,
+  "vfov_deg": 58.716,
   "ortho": null,
   "roll_deg": 0,
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   -0.9969,
+   -0.9781,
    0,
-   -0.0788,
+   0.208,
    0,
-   -0.0125,
-   0.9872,
-   0.1587,
+   -0.0182,
+   0.9961,
+   -0.0858,
    0,
-   0.0777,
-   0.1592,
-   -0.9842,
+   -0.2072,
+   -0.0877,
+   -0.9744,
    0,
    2.6,
-   2.15,
-   -5.3,
+   1.6,
+   -7,
    1
   ],
   "viewMatrix": [
-   -0.9969,
-   -0.0125,
-   0.0777,
+   -0.9781,
+   -0.0182,
+   -0.2072,
    0,
    0,
-   0.9872,
-   0.1592,
+   0.9961,
+   -0.0877,
    0,
-   -0.0788,
-   0.1587,
-   -0.9842,
+   0.208,
+   -0.0858,
+   -0.9744,
    0,
-   2.1745,
-   -1.2489,
-   -5.7606,
+   3.9993,
+   -2.1467,
+   -6.1414,
    1
   ],
   "projectionMatrix": [
-   1.1111,
+   1,
    0,
    0,
    0,
    0,
-   1.9753,
+   1.7778,
    0,
    0,
    0,
@@ -88,20 +88,20 @@
   "front_window": {
    "px": [
     [
-     1056.5,
-     388.4
+     1296.1,
+     559.5
     ],
     [
-     1348.8,
-     387.9
+     1533.9,
+     556.3
     ],
     [
-     1332.9,
-     664.4
+     1545.6,
+     779
     ],
     [
-     1052.5,
-     670.7
+     1302.6,
+     771.7
     ]
    ],
    "world": [
@@ -136,20 +136,20 @@
   "west_window": {
    "px": [
     [
-     1416.3,
-     389
+     1586.9,
+     552.6
     ],
     [
-     1614.7,
-     396.7
+     1710.3,
+     531.5
     ],
     [
-     1580.5,
-     749.2
+     1729.1,
+     804.5
     ],
     [
-     1398.6,
-     650.9
+     1599,
+     763
     ]
    ],
    "world": [
@@ -184,20 +184,20 @@
   "seal_square": {
    "px": [
     [
-     920.4,
-     662
+     1196.9,
+     735.6
     ],
     [
-     968.8,
-     655.3
+     1232.3,
+     734.8
     ],
     [
-     995,
-     660.8
+     1250.4,
+     733.6
     ],
     [
-     944.9,
-     668
+     1213.8,
+     734.5
     ]
    ],
    "world": [
@@ -233,45 +233,45 @@
  "heads": {
   "jade27": {
    "px": [
-    939.5,
-    579.6
+    1210.5,
+    684.5
    ],
    "eyes": [
-    949.1,
-    575
+    1217.1,
+    679.6
    ],
    "mouth": [
-    951.7,
-    589.1
+    1219.1,
+    689.4
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 28
+   "facing_camera_deg": 30
   },
   "firstLove27": {
    "px": [
-    1026.8,
-    501.9
+    1267.9,
+    616.3
    ],
    "eyes": [
-    1013.5,
-    508.6
+    1259.3,
+    622.8
    ],
    "mouth": [
-    1017.3,
-    524.9
+    1262.2,
+    633.4
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 144,
+   "facing_camera_deg": 141,
    "blocked_by": "firstLove27 first love (27, never face-on)"
   }
  },
  "hands": {
   "jade27.L": {
    "px": [
-    990.6,
-    655.8
+    1248.4,
+    735.9
    ],
    "shape": "grip",
    "in_frame": true,
@@ -279,8 +279,8 @@
   },
   "jade27.R": {
    "px": [
-    905.1,
-    667.9
+    1185.9,
+    737.4
    ],
    "shape": "grip",
    "in_frame": true,
@@ -288,8 +288,8 @@
   },
   "firstLove27.L": {
    "px": [
-    954.9,
-    673.3
+    1220.6,
+    735.7
    ],
    "shape": "grip",
    "in_frame": true,
@@ -297,8 +297,8 @@
   },
   "firstLove27.R": {
    "px": [
-    1008,
-    665.5
+    1259.5,
+    734.8
    ],
    "shape": "grip",
    "in_frame": true,
@@ -317,15 +317,15 @@
     5.351
    ],
    "px": [
-    1827.7,
-    264.1
+    2119.9,
+    470.7
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.906,
-    0.423
+    -0.959,
+    0.282
    ],
-   "toward_camera": 0.53,
+   "toward_camera": 0.563,
    "aim_world": [
     2.2642,
     0.92,
@@ -343,15 +343,15 @@
     1
    ],
    "px": [
-    1149.7,
-    506
+    1383.6,
+    660.2
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.765,
-    0.644
+    -0.89,
+    0.455
    ],
-   "toward_camera": 0.783,
+   "toward_camera": 0.827,
    "aim_world": [
     2.3333,
     1,
@@ -360,7 +360,7 @@
   }
  ],
  "warnings": [],
- "intent": "The living room as the two shots see it: the floral couch against the front (south) wall, the front window beside it throwing the low November-afternoon sun across her and onto the rug; the west window over the egg-carton seedlings and the front door's jog at frame right; the loveseat and the piano at frame left. He stands back to camera handing her the folded hoodie. Not a shot.",
+ "intent": "The living room as the two shots see it, and the house's angle (Jade r3): the whole EAST wall is tall, a gable whose top rises from the 8-ft front corner to the 3.6 m ridge over the middle of the great room, the giant mirror hung high on it above the 7-ft grand; the floral couch against the front (south) wall under the large framed picture (1.4 x 1.0 m), the 1.5 m front window beside it throwing the low November-afternoon sun across her and onto the rug; the loveseat left of the rug, the armchair right. He stands back to camera handing her the folded hoodie. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",
  "section": "Bridge",
@@ -405,10 +405,12 @@
   "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
   "ceiling": {
    "kind": "vaulted (cathedral), Jade",
-   "ridge": "east-west (parallel to Capri Lane) at z -5.6 (Jade: parallel to the street; its position on the house centre line is a GUESS)",
+   "ridge": "east-west (parallel to Capri Lane), over the middle of the great room at z -3.6 (Jade r3: highest over the middle of the great room, about 3.6 m)",
    "plate_m": 2.44,
-   "peak_m": 4.307,
-   "pitch": "4 in 12"
+   "peak_m": 3.6,
+   "pitch": "0.3222 (about 3.9 in 12)",
+   "east_wall": "the full gable (mirror, piano): its top shows the roof angle",
+   "dining": "flat 8-ft ceiling over the dining part (x < 1.6, north of the jog), READING of Jade's \"the dining room is the short side\" (flagged)"
   },
   "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
   "great_room_m": {
@@ -438,8 +440,8 @@
     -0.8846
    ],
    "px": [
-    940.7,
-    665
+    1211.8,
+    740.8
    ]
   },
   "seal": {
@@ -453,8 +455,8 @@
      -1.0263
     ],
     "px": [
-     957.3,
-     661.4
+     1223.2,
+     734.7
     ]
    },
    "top": {
@@ -464,8 +466,8 @@
      -0.9215
     ],
     "px": [
-     944.9,
-     658.6
+     1214.6,
+     735.2
     ]
    },
    "bottom": {
@@ -475,8 +477,8 @@
      -1.1311
     ],
     "px": [
-     970.2,
-     664.4
+     1232.2,
+     734.1
     ]
    },
    "truth_side": {
@@ -486,8 +488,8 @@
      -1.0466
     ],
     "px": [
-     946.1,
-     663
+     1215.1,
+     734.8
     ]
    },
    "beauty_side": {
@@ -497,8 +499,8 @@
      -1.006
     ],
     "px": [
-     968.3,
-     659.9
+     1231.3,
+     734.5
     ]
    },
    "hidden_by_fold": {
@@ -507,8 +509,8 @@
    },
    "corner_order": "panes.seal_square = TL, TR, BR, BL as one faces the front (a painted seal maps straight on)",
    "facing": "up, on top of the folded stack between them; upright for him and the camera behind him (its top toward her)",
-   "normal_to_camera_deg": 81,
-   "reads_upright_on_screen": true,
+   "normal_to_camera_deg": 91,
+   "reads_upright_on_screen": false,
    "sun_on_front": {
     "cos_incidence": 0.211,
     "note": "negative = the sun is BEHIND the print; positive = it can fall on it (subject to the shafts and shadows)"
@@ -522,8 +524,8 @@
      -1.2323
     ],
     "px": [
-     950.5,
-     677.7
+     1217.7,
+     739.9
     ]
    },
    "hisR": {
@@ -533,8 +535,8 @@
      -1.1382
     ],
     "px": [
-     1003.2,
-     669.9
+     1256.3,
+     739
     ]
    },
    "herL": {
@@ -544,8 +546,8 @@
      -0.8948
     ],
     "px": [
-     982.4,
-     662.2
+     1242.3,
+     739.9
     ]
    },
    "herR": {
@@ -555,17 +557,41 @@
      -1.0202
     ],
     "px": [
-     914.7,
-     671.9
+     1192.8,
+     741.1
     ]
    }
+  },
+  "anchor": {
+   "state": "folded",
+   "origin": [
+    2.334,
+    0.8949,
+    -0.8846
+   ],
+   "right": [
+    -0.92,
+    0,
+    0.3919
+   ],
+   "up": [
+    0.388,
+    -0.1392,
+    0.9111
+   ],
+   "out": [
+    0.0545,
+    0.9903,
+    0.128
+   ],
+   "note": "GARMENT[state] in layout.js: the hook for the cloth module sweatshirt.js"
   },
   "note": "each hand closes on a side edge of the stack, thumb on top, fingers under: his two near his end, hers near hers"
  },
  "first_love": {
   "who": "first love (a real person: never named, never face-on)",
   "face_shown": false,
-  "facing_camera_deg": 144,
+  "facing_camera_deg": 141,
   "hair": "dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)",
   "feet": "Birkenstock-type cork sandals (Naot), bare feet",
   "forearms": "sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE",
@@ -649,20 +675,20 @@
   ],
   "aperture_px": [
    [
-    1056.3,
-    402.7
+    1296.4,
+    569.7
    ],
    [
-    1289.2,
-    402.1
+    1483.7,
+    567.6
    ],
    [
-    1276.3,
-    665.7
+    1493.8,
+    777.5
    ],
    [
-    1052.5,
-    670.7
+    1302.6,
+    771.7
    ]
   ],
   "footprints": {
@@ -691,20 +717,20 @@
     ],
     "px": [
      [
-      737.5,
-      971.8
+      1071.1,
+      924.8
      ],
      [
-      15944.5,
-      -4666.3
+      -1311.2,
+      1223.3
      ],
      [
-      15725.7,
-      -3824.2
+      -1509,
+      1170.8
      ],
      [
-      394.4,
-      986.7
+      857.9,
+      911.1
      ]
     ]
    },
@@ -733,20 +759,20 @@
     ],
     "px": [
      [
-      145,
-      1065
+      730.6,
+      925
      ],
      [
-      -71.5,
-      1271.8
+      655.6,
+      976.9
      ],
      [
-      -137.5,
-      895.5
+      661.4,
+      760.5
      ],
      [
-      93.5,
-      680.1
+      735.3,
+      689.9
      ]
     ]
    }
@@ -757,19 +783,19 @@
    -0.9339
   ],
   "anchor_px": [
-   965.5,
-   663.7
+   1229.7,
+   739.3
   ],
   "on_screen": {
    "from_px": [
-    983.5,
-    655.6
+    1243.1,
+    735.4
    ],
    "to_px": [
-    946.9,
-    672
+    1216.1,
+    743.2
    ],
-   "angle_deg": 24.1,
+   "angle_deg": 16.1,
    "travel": "right-to-left"
   },
   "rhyme": {
@@ -782,7 +808,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": -15.9,
+   "angle_error_deg": -23.9,
    "travel_ok": true
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",

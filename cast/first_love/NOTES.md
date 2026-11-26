@@ -200,3 +200,21 @@ front". Design = the official seal (`inputs/refs_ias/Pasted image.png`).
   worse). Faces zoom-checked: studies 1, 2, 4, 5 are lost profiles (ear, cheek, stubbled jaw; no eye, nose or mouth);
   3 and 6 from above/behind. G v3 moved to `_superseded/`.
 - Spend: 3 Codex images (2 moderation-blocked), $0; no plan limit, no gpt2.
+
+## 2026-11-26: round-3 decisions (part placement, B and G v5)
+Jade on B v4: "the left 4 images of v4 are good. the right 2 of v4 do not match the left 4 (b/c that's not where the
+part is)." Read as the right COLUMN (studies 3 and 6): in both, the part showed as a long line of scalp running down the
+back of the head (6 also drifting off-centre), while 1 and 4 show only a short notch at the top. The image supports
+this reading (the bottom row's 5 and 6 are not a pair: 5 is fine).
+- Assumption (flag): "where the part is" = on top of the head only, forehead to crown, so from behind it is at most a
+  short notch at the top; nothing on the back of the head. Bowed top-down views (B_part t1/t2, G_part t1/t2) still read
+  as a part down the back, so 3 and 6 are now drawn from only slightly above. Cost: B study 3 is now close to study 1
+  (a near-duplicate angle), and G's closet angle (3, 6) is lower than the film's "high behind" framing. If the closet
+  shot keeps its high camera, the part question for that view needs Jade's eye.
+- `fl_B_backhead_neck_v5.png`, `fl_G_ots_hair_v5.png`: left two columns pixel-identical to v4 (PNG, not re-encoded);
+  right column from a Codex take, spliced over bare paper (`_prompts/v5/splice.py`). Prompts `_prompts/v5/B_part2.txt`,
+  `G_part2.txt`; `flgen.py` now takes `FL_SESSION` (used `proof-flpart`). v4s moved to `_superseded/`.
+- A v4 has the same fault mildly: figure 1 (straight behind) shows a part line about a third of the way down the back
+  of the head; figures 2-5 are fine. Not fixed (not in brief).
+- Faces zoom-checked on the new studies: ear, jaw line from behind only; no eye, nose or mouth.
+- Spend: 8 Codex images, $0; plan limit not hit (CODEX_LIMIT_HIT flag removed).

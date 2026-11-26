@@ -324,20 +324,20 @@
    "on": true,
    "color": "#fff1d0",
    "world": [
-    9.8434,
-    5.3119,
-    7.6196
+    7.3653,
+    6.2172,
+    8.6275
    ],
    "px": [
-    -33241.8,
-    -8521.2
+    -3708.5,
+    -1046.4
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.965,
-    0.262
+    0.931,
+    0.366
    ],
-   "toward_camera": -0.503,
+   "toward_camera": -0.361,
    "aim_world": [
     2.25,
     1.2,
@@ -435,91 +435,97 @@
   }
  ],
  "warnings": [],
- "intent": "The whole joined room: glazed French doors along the whole south wall onto the balcony, the 08:30 sun slanting in from the left across the room in bands (the piers between the bays throw the dark stripes), the child lit at the couch group, Mother in the wide hall doorway in shadow. Not a shot.",
+ "intent": "The whole joined room: glazed French doors along the whole south wall onto the balcony, the cheated 09:30 sun slanting in from the left across the room in bands (the piers between the bays throw the dark stripes), the child lit at the couch group, Mother in the wide hall doorway in shadow. Not a shot.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
   "travel_dir": [
-   -0.5424,
-   -0.2937,
-   -0.7871
+   -0.3654,
+   -0.3584,
+   -0.8591
   ],
-  "elevation_deg": 17.08,
+  "elevation_deg": 21,
   "sun": {
    "date": "1986-12-21",
-   "time": "08:30 CST (UTC+8)",
+   "time": "09:30 CST (UTC+8)",
    "lat": 31.2138,
    "lon": 121.439,
-   "elevation_deg": 17.08,
-   "azimuth_deg": 132.23,
-   "west_of_facade_normal_deg": -34.57,
-   "profile_angle_deg": 20.46,
+   "elevation_deg": 21,
+   "azimuth_deg": 143.76000000000002,
+   "west_of_facade_normal_deg": -23.04,
+   "profile_angle_deg": 22.64,
    "facade_bearing_deg": 166.8,
    "flat": "east",
    "per_metre_into_room": {
-    "east_per_m_in": -0.689,
-    "down_per_m_in": 0.373
+    "east_per_m_in": -0.425,
+    "down_per_m_in": 0.417
    },
-   "status": "honest sun. 21 Dec (Jade); 08:30 chosen (round 2 answers) so her face and hands are lit, moving the light rather than her (Jade had picked about 09:30, which leaves her face in shade); east flat and 三楼 are facts"
+   "status": "CHEATED sun (round-3 decisions, Jade): 21 Dec 09:30; real 09:30 sun elev 25.67 az 143.76; the azimuth is kept, the elevation lowered by hand to 21 so the light only just reaches her face; east flat and 三楼 are facts",
+   "real_sun_at_this_time": {
+    "elev": 25.67,
+    "az": 143.76,
+    "decl": -23.44,
+    "solar_time_min": 578
+   }
   },
   "source_world": [
    [
-    -0.6679,
-    2.1955,
+    -0.5941,
+    2.1832,
     0
    ],
    [
     -2.75,
-    2.1955,
+    2.1832,
     0
    ],
    [
     -2.75,
-    0.3664,
+    0.002,
     0
    ],
    [
-    -0.6679,
-    0.3664,
+    -0.5941,
+    0.002,
     0
    ]
   ],
   "source_px": [
    [
-    629.6,
-    444.1
+    624,
+    445.4
    ],
    [
     757.2,
-    451.4
+    452.7
    ],
    [
-    759.1,
-    639.2
-   ],
-   [
-    633.5,
+    759.5,
     676.2
+   ],
+   [
+    628.8,
+    723.8
    ]
   ],
   "aperture_glass_world": [
    [
-    -0.5577,
-    0.4261,
+    -2.75,
+    0.03,
     0.16
    ],
    [
-    -0.5577,
-    2.2552,
+    -0.526,
+    0.03,
+    0.16
+   ],
+   [
+    -0.526,
+    2.2499,
     0.16
    ],
    [
     -2.75,
-    2.2552,
-    0.16
-   ],
-   [
-    -2.75,
-    0.4261,
+    2.2499,
     0.16
    ]
   ],
@@ -527,100 +533,94 @@
    "outer reveal, east jamb",
    "outer reveal, head",
    "overhang (balcony above)",
-   "front parapet",
-   "east parapet end"
+   "railing curb"
   ],
   "sources_world": [
    [
     [
-     -0.6679,
-     2.1955,
+     -0.5941,
+     2.1832,
      0
     ],
     [
      -2.75,
-     2.1955,
+     2.1832,
      0
     ],
     [
      -2.75,
-     0.3664,
+     0.002,
      0
     ],
     [
-     -0.6679,
-     0.3664,
+     -0.5941,
+     0.002,
      0
     ]
    ],
    [
     [
-     1.9071,
-     2.1955,
+     1.9809,
+     2.1832,
      0
     ],
     [
      -0.175,
-     2.1955,
+     2.1832,
      0
     ],
     [
      -0.175,
-     0.3664,
+     0.002,
      0
     ],
     [
-     1.9071,
-     0.3664,
+     1.9809,
+     0.002,
      0
     ]
    ],
    [
     [
-     4.4821,
-     2.1955,
+     4.5559,
+     2.1832,
      0
     ],
     [
      2.4,
-     2.1955,
+     2.1832,
      0
     ],
     [
      2.4,
-     0.3664,
+     0.002,
      0
     ],
     [
-     4.4821,
-     0.3664,
+     4.5559,
+     0.002,
      0
     ]
    ],
    [
     [
-     7.0571,
-     2.1955,
+     7.1309,
+     2.1832,
      0
     ],
     [
      4.975,
-     2.1955,
+     2.1832,
      0
     ],
     [
      4.975,
-     0.3664,
+     0.002,
      0
     ],
     [
-     6.6646,
-     0.3664,
-     0
-    ],
-    [
-     7.0571,
-     0.5789,
+     7.1309,
+     0.002,
      0
     ]
    ]
@@ -630,23 +630,23 @@
     "id": "balcony doors, bay 1 (from the west)",
     "source_world": [
      [
-      -0.6679,
-      2.1955,
+      -0.5941,
+      2.1832,
       0
      ],
      [
       -2.75,
-      2.1955,
+      2.1832,
       0
      ],
      [
       -2.75,
-      0.3664,
+      0.002,
       0
      ],
      [
-      -0.6679,
-      0.3664,
+      -0.5941,
+      0.002,
       0
      ]
     ],
@@ -654,38 +654,55 @@
      "outer reveal, east jamb",
      "outer reveal, head",
      "overhang (balcony above)",
-     "front parapet",
-     "east parapet end"
+     "railing curb"
     ],
     "floor_world": [
      [
-      -1.345,
+      -0.596,
       0,
-      -0.982
+      -0.005
+     ],
+     [
+      -2.752,
+      0,
+      -0.005
      ],
      [
       -3,
       0,
-      -0.982
+      -0.588
      ],
      [
       -3,
       0,
-      -3.384
+      -5.234
+     ],
+     [
+      -2.82,
+      0,
+      -5.234
      ]
     ],
     "floor_px": [
      [
-      785.3,
-      712.4
+      629.5,
+      724.1
      ],
      [
-      862.4,
-      677.4
+      760,
+      676.4
      ],
      [
-      1108.1,
-      691.8
+      825.2,
+      675.2
+     ],
+     [
+      1323.5,
+      704.4
+     ],
+     [
+      1324.1,
+      708.7
      ]
     ]
    },
@@ -693,23 +710,23 @@
     "id": "balcony doors, bay 2 (from the west)",
     "source_world": [
      [
-      1.9071,
-      2.1955,
+      1.9809,
+      2.1832,
       0
      ],
      [
       -0.175,
-      2.1955,
+      2.1832,
       0
      ],
      [
       -0.175,
-      0.3664,
+      0.002,
       0
      ],
      [
-      1.9071,
-      0.3664,
+      1.9809,
+      0.002,
       0
      ]
     ],
@@ -717,56 +734,46 @@
      "outer reveal, east jamb",
      "outer reveal, head",
      "overhang (balcony above)",
-     "front parapet",
-     "east parapet end"
+     "railing curb"
     ],
     "floor_world": [
      [
-      1.23,
+      1.979,
       0,
-      -0.982
+      -0.005
      ],
      [
-      -0.852,
+      -0.177,
       0,
-      -0.982
+      -0.005
      ],
      [
-      -3,
+      -2.401,
       0,
-      -4.1
+      -5.234
      ],
      [
-      -3,
+      -0.245,
       0,
-      -5.884
-     ],
-     [
-      -2.147,
-      0,
-      -5.884
+      -5.234
      ]
     ],
     "floor_px": [
      [
-      589.3,
-      801.5
+      354.9,
+      824.3
      ],
      [
-      756.7,
-      725.4
+      596.3,
+      736.2
      ],
      [
-      1188.5,
-      696.5
+      1325.5,
+      719.3
      ],
      [
-      1405.5,
-      709.3
-     ],
-     [
-      1416.8,
-      732
+      1336,
+      794.4
      ]
     ]
    },
@@ -774,23 +781,23 @@
     "id": "balcony doors, bay 3 (from the west)",
     "source_world": [
      [
-      4.4821,
-      2.1955,
+      4.5559,
+      2.1832,
       0
      ],
      [
       2.4,
-      2.1955,
+      2.1832,
       0
      ],
      [
       2.4,
-      0.3664,
+      0.002,
       0
      ],
      [
-      4.4821,
-      0.3664,
+      4.5559,
+      0.002,
       0
      ]
     ],
@@ -798,47 +805,46 @@
      "outer reveal, east jamb",
      "outer reveal, head",
      "overhang (balcony above)",
-     "front parapet",
-     "east parapet end"
+     "railing curb"
     ],
     "floor_world": [
      [
-      3.805,
+      4.554,
       0,
-      -0.982
+      -0.005
      ],
      [
-      1.723,
+      2.398,
       0,
-      -0.982
+      -0.005
      ],
      [
-      -1.654,
+      0.174,
       0,
-      -5.884
+      -5.234
      ],
      [
-      0.428,
+      2.33,
       0,
-      -5.884
+      -5.234
      ]
     ],
     "floor_px": [
      [
-      146.3,
-      1002.8
+      -307.7,
+      1066.3
      ],
      [
-      533.1,
-      827
+      287.2,
+      849.1
      ],
      [
-      1424.4,
-      747.4
+      1338.9,
+      814.8
      ],
      [
-      1470.6,
-      840.4
+      1362.4,
+      984.1
      ]
     ]
    },
@@ -846,28 +852,23 @@
     "id": "balcony doors, bay 4 (from the west)",
     "source_world": [
      [
-      7.0571,
-      2.1955,
+      7.1309,
+      2.1832,
       0
      ],
      [
       4.975,
-      2.1955,
+      2.1832,
       0
      ],
      [
       4.975,
-      0.3664,
+      0.002,
       0
      ],
      [
-      6.6646,
-      0.3664,
-      0
-     ],
-     [
-      7.0571,
-      0.5789,
+      7.1309,
+      0.002,
       0
      ]
     ],
@@ -875,89 +876,97 @@
      "outer reveal, east jamb",
      "outer reveal, head",
      "overhang (balcony above)",
-     "front parapet",
-     "east parapet end"
+     "railing curb"
     ],
     "floor_world": [
      [
-      5.988,
+      4.973,
       0,
-      -0.982
+      -0.005
      ],
      [
-      4.298,
+      2.749,
       0,
-      -0.982
+      -5.234
      ],
      [
-      0.921,
+      4.905,
       0,
-      -5.884
+      -5.234
      ],
      [
-      3.003,
+      7.129,
       0,
-      -5.884
-     ],
-     [
-      5.988,
-      0,
-      -1.551
+      -0.005
      ]
     ],
     "floor_px": [
      [
-      -1166.7,
-      1599.3
+      -515.7,
+      1142.2
      ],
      [
-      -10.9,
-      1074.2
+      1370.1,
+      1039.2
      ],
      [
-      1486.8,
-      872.8
+      1470.6,
+      1760.7
      ],
      [
-      1607,
-      1114.7
-     ],
-     [
-      -1032.9,
-      1714
+      -4163.8,
+      2474.2
      ]
     ]
    }
   ],
   "footprint_floor_world": [
    [
-    -1.345,
+    -0.596,
     0,
-    -0.982
+    -0.005
+   ],
+   [
+    -2.752,
+    0,
+    -0.005
    ],
    [
     -3,
     0,
-    -0.982
+    -0.588
    ],
    [
     -3,
     0,
-    -3.384
+    -5.234
+   ],
+   [
+    -2.82,
+    0,
+    -5.234
    ]
   ],
   "footprint_floor_px": [
    [
-    785.3,
-    712.4
+    629.5,
+    724.1
    ],
    [
-    862.4,
-    677.4
+    760,
+    676.4
    ],
    [
-    1108.1,
-    691.8
+    825.2,
+    675.2
+   ],
+   [
+    1323.5,
+    704.4
+   ],
+   [
+    1324.1,
+    708.7
    ]
   ],
   "footprint_east_wall": null,
@@ -966,49 +975,31 @@
     [
      -3,
      0,
-     -0.982
+     -0.588
     ],
     [
      -3,
-     0.231,
-     -0.363
-    ],
-    [
-     -3,
-     2.06,
-     -0.363
-    ],
-    [
-     -3,
-     0.933,
-     -3.384
+     1.938,
+     -0.588
     ],
     [
      -3,
      0,
-     -3.384
+     -5.234
     ]
    ],
    "px": [
     [
-     862.4,
-     677.4
+     825.2,
+     675.2
     ],
     [
-     804.2,
-     650.9
+     823.9,
+     478.1
     ],
     [
-     802.7,
-     465.6
-    ],
-    [
-     1108.9,
-     589.4
-    ],
-    [
-     1108.1,
-     691.8
+     1323.5,
+     704.4
     ]
    ]
   },
@@ -1019,124 +1010,124 @@
    "jade3": {
     "head": {
      "in": true,
-     "margin_m": 0.299
+     "margin_m": 0.051
     },
     "eyes": {
      "in": true,
-     "margin_m": 0.343
+     "margin_m": 0.052
     },
     "handL": {
      "in": true,
-     "margin_m": 0.452
+     "margin_m": 0.176
     },
     "handR": {
      "in": true,
-     "margin_m": 0.442
+     "margin_m": 0.018
     },
     "hip": {
      "in": true,
-     "margin_m": 0.662
+     "margin_m": 0.061
     }
    },
    "mama86": {
     "head": {
      "in": false,
-     "margin_m": -1.608
+     "margin_m": -1.89
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.58
+     "margin_m": -1.854
     },
     "handL": {
      "in": false,
-     "margin_m": -0.786
+     "margin_m": -1.063
     },
     "handR": {
      "in": false,
-     "margin_m": -1.216
+     "margin_m": -1.498
     },
     "hip": {
      "in": false,
-     "margin_m": -0.943
+     "margin_m": -1.227
     }
    },
    "aunt": {
     "head": {
      "in": false,
-     "margin_m": -1.685
+     "margin_m": -1.983
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.665
+     "margin_m": -1.968
     },
     "handL": {
      "in": false,
-     "margin_m": -0.905
+     "margin_m": -1.19
     },
     "handR": {
      "in": false,
-     "margin_m": -1.557
+     "margin_m": -1.858
     },
     "hip": {
      "in": false,
-     "margin_m": -1.022
+     "margin_m": -1.316
     }
    },
    "uncle": {
     "head": {
      "in": false,
-     "margin_m": -1.94
+     "margin_m": -2.256
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.929
+     "margin_m": -2.245
     },
     "handL": {
      "in": false,
-     "margin_m": -1.087
+     "margin_m": -1.39
     },
     "handR": {
      "in": false,
-     "margin_m": -1.156
+     "margin_m": -1.475
     },
     "hip": {
      "in": false,
-     "margin_m": -1.226
+     "margin_m": -1.538
     }
    },
    "grandma": {
     "head": {
      "in": false,
-     "margin_m": -1.534
+     "margin_m": -1.821
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.514
+     "margin_m": -1.798
     },
     "handL": {
      "in": false,
-     "margin_m": -0.811
+     "margin_m": -1.099
     },
     "handR": {
      "in": false,
-     "margin_m": -1.387
+     "margin_m": -1.671
     },
     "hip": {
      "in": false,
-     "margin_m": -0.958
+     "margin_m": -1.25
     }
    }
   },
-  "steam_points_in_beam": "65 of 66",
+  "steam_points_in_beam": "117 of 117",
   "mugs_in_beam": [
    true,
    true,
    true
   ],
   "focus_in_beam": true,
-  "stack_in_beam": true,
-  "mother_margin_m": -0.786,
-  "floor_reach_m": 3.38,
+  "stack_in_beam": false,
+  "mother_margin_m": -1.063,
+  "floor_reach_m": 5.23,
   "north_wall_m": 6.1,
   "her_spot": {
    "at": [
@@ -1151,7 +1142,7 @@
   },
   "couch_to_corner_m": 2.14,
   "shelf_clearance_m": 0.68,
-  "door_gap_m": 0.23
+  "door_gap_m": 0.88
  },
  "tissue": {
   "generation_pieces": 8,

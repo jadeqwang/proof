@@ -76,13 +76,19 @@ export const travelDir = ({ az, elev }) => { const a = az * D2R, e = elev * D2R;
 // and then made to fit real furniture sizes. Living room 4.9 m wide as before (Jade: "room and light look right").
 export const ROOM = { x0: 0, x1: 4.9, z0: -7.2, z1: 0, h: 2.44, wallT: 0.2, wallInt: 0.12 };
 export const JOG = { z: -2.0, xW: -1.4 };   // north of z = -2.0 the room reaches west to x = -1.4 (the drawing's right-hand step)
-// THE CEILING IS VAULTED (Jade) and its ridge runs PARALLEL TO THE STREET (Jade, round 2): east-west. GUESS: the ridge
-// sits on the house's centre line (footprint 11.63 m N-S: z = -5.6), as a roof spanning the full depth would put it,
-// pitch 4 in 12 (a low 1950s roof). So the vault rises from 8 ft at the front wall to 4.31 m over the dining table and
-// falls again toward the kitchen wall (3.77 m). The east and west walls are the gable ends.
-export const VAULT = { ridge: 'east-west (parallel to Capri Lane)', z: -5.6, pitch: 4 / 12, t: 0.06 };
-VAULT.peak = +(ROOM.h + (ROOM.z1 - VAULT.z) * VAULT.pitch).toFixed(3);   // 4.307 m
-export const ceilY = (z) => VAULT.peak - Math.abs(z - VAULT.z) * VAULT.pitch;   // height of the ceiling surface over z
+// THE CEILING IS VAULTED (Jade) and its ridge runs PARALLEL TO THE STREET (Jade, round 2): east-west. ROUND 3 (Jade,
+// 2026-11-26): "highest over the middle of the great room, about 3.6 m; the piano side and the mirror wall are all very
+// tall; the dining room is the short side". So the ridge is over the great room's own N-S middle (z -3.6), 3.6 m, and the
+// vault falls to the 8-ft plate at the front (south) and north walls (pitch 1.16 m in 3.6 m, about 3.9 in 12). The
+// EAST wall (mirror, piano) is a full gable: "the entire east wall is tall" and its top line shows the angle of the
+// roof. READING (flagged): "the dining room is the short side" = the dining part (west, north of the jog) is under a
+// FLAT 8-ft ceiling (DROP), with a dropped soffit at x DROP.x1 facing the piano and a short one at the jog line facing
+// the living room; the vault covers the living room and the piano / mirror side.
+export const VAULT = { ridge: 'east-west (parallel to Capri Lane), over the middle of the great room', z: -3.6, peak: 3.6, t: 0.06 };
+VAULT.pitch = +((VAULT.peak - ROOM.h) / (ROOM.z1 - VAULT.z)).toFixed(4);   // 0.3222 (about 3.9 in 12)
+export const ceilY = (z) => Math.max(ROOM.h, VAULT.peak - Math.abs(z - VAULT.z) * VAULT.pitch);   // vault surface over z
+export const DROP = { x0: JOG.xW, x1: 1.6, z0: ROOM.z0, z1: JOG.z, y: ROOM.h, label: 'flat 8-ft ceiling over the dining part ("the dining room is the short side")' };
+export const ceilAt = (x, z) => (x < DROP.x1 && z < DROP.z1 ? DROP.y : ceilY(z));
 
 // ---------------------------------------------------------------- windows and doors (drawing; sizes GUESSED)
 // FRONT window, south wall, west part (drawing: top wall, right of the couch). Narrower than round 1's 2.35 m: the drawn
@@ -107,18 +113,22 @@ export const END_TABLE_E = { x0: 4.15, x1: 4.60, z0: -0.52, z1: -0.08, h: 0.60, 
 export const END_TABLE_W = { x0: 1.32, x1: 1.72, z0: -0.50, z1: -0.10, h: 0.52, label: 'small table' };          // drawing: "table", couch's west end, under the window's corner
 export const RUG = { x0: 1.85, x1: 4.15, z0: -2.15, z1: -0.94 };                                                 // drawing: red
 export const COFFEE_TABLE = { x0: 2.55, x1: 3.80, z0: -1.85, z1: -1.30, h: 0.42 };                              // on the rug (shortened at its west end so he can stand there)
-export const LOVESEAT = { x0: 4.10, x1: 4.88, z0: -2.15, z1: -0.95, label: 'loveseat (two cushions, facing west)' };   // drawing: the two-part block left of the rug (GUESS: a loveseat)
+export const LOVESEAT = { x0: 4.10, x1: 4.88, z0: -2.15, z1: -0.95, label: 'loveseat (two cushions, facing west)' };   // drawing: the two-part block left of the rug (Jade r3: a loveseat)
 export const ARMCHAIR = { at: [1.35, -1.20], yaw: 90, w: 0.78, d: 0.80, seat: 0.43, back: 0.88, arm: 0.6 };         // drawing: right of the rug, facing east
 export const PLANTS = { x0: 0.10, x1: 0.68, z0: -1.75, z1: -0.30, h: 0.42, cartons: { rows: 9, cols: 2, l: 0.28, w: 0.105, h: 0.065 },
   label: 'coffee table: germinating plants in egg cartons, carefully labelled' };                                // drawing: along the west wall under the window
-export const PRINT = { x: 2.9, y: 1.55, z: -0.02, w: 0.7, h: 0.5 };   // framed print over the couch (invented, not in the drawing)
+// framed picture over the couch (round 3, Jade: "the framed picture is 4x larger": read as 4x the AREA, 2x each side,
+// 0.7 x 0.5 -> 1.4 x 1.0 m; 4x each side, 2.8 x 2.0 m, would not fit between the couch back and the 2.44 m front wall)
+export const PRINT = { x: 2.9, y: 1.64, z: -0.025, w: 1.4, h: 1.0 };
 
 // ---------------------------------------------------------------- the rest of the great room (drawing)
-export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.25, y1: 2.20, label: 'giant mirror' };   // east wall
-// 7-ft grand (Jade: "7' concert grand"; a 7-ft grand is strictly a semi-concert / "B"-size grand: 2.13 x 1.50 m). As
-// drawn: straight side (spine) along the mirror, curved side to the west, keyboard at the NORTH end with the bench there
-// (the small box below it in the drawing), so the pianist faces south, toward the living room.
-export const PIANO = { spineX: 4.55, kbZ: -5.20, L: 2.13, W: 1.50, caseY0: 0.62, caseY1: 0.98, label: '7-ft grand piano' };
+export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.95, y1: 2.90, label: 'giant mirror' };   // east wall; round 3 (Jade): hangs HIGHER (was 0.25-2.20), its top now 2.90 on the tall gable wall
+// 7-ft grand (Jade's drawing: "7' concert grand"; a 7-ft grand is strictly a semi-concert "B"-size grand, Steinway B
+// 211 x 148 cm: kept at that size because the drawing says 7'). Round 3 (Jade): "the correct shape of an actual grand":
+// PIANO.outline is a real grand's plan (straight spine on the bass side, a short straight treble side at the keyboard,
+// the concave bentside, the convex tail); see build.js piano(). As drawn: spine along the mirror (east), bentside to the
+// west, keyboard at the NORTH end with the bench there, so the pianist faces south toward the living room.
+export const PIANO = { spineX: 4.55, kbZ: -5.20, L: 2.11, W: 1.48, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, label: '7-ft grand piano' };
 export const BENCH = { x0: 3.40, x1: 4.15, z0: -5.78, z1: -5.42, h: 0.50, label: 'piano bench' };
 export const FLOOR_LAMP = { at: [4.62, -6.02], h: 1.62, label: 'floor lamp (off)' };
 export const CLOSET = { x0: JOG.xW, x1: -0.15, z0: -4.05, z1: -3.00, h: 2.20, label: 'coat closet' };   // drawing: by the front door; its door on the east face (GUESS)
@@ -201,6 +211,36 @@ export const SEAL = { centre: front, top: comb(front, [SHIRT.a, SHIRT.sealR]), b
 // the same for the folded state (on the stack's top; up = toward her = -... w points to her, so the seal's top is +w)
 export const FSEAL = { centre: FOLD.sealC, top: comb(FOLD.sealC, [FOLD.w, SEAL_R]), bottom: comb(FOLD.sealC, [FOLD.w, -SEAL_R]),
   truth: comb(FOLD.sealC, [FOLD.u, SEAL_R * 0.45]), beauty: comb(FOLD.sealC, [FOLD.u, -SEAL_R * 0.45]) };
+
+// ---------------------------------------------------------------- TURNED (round 3, Jade): she turns it round to look at it
+// Jade (2026-11-26): "he hands it to me like pictured, and I turn it around in order to look at it so it faces me". After
+// MG2 (lifted by the shoulders, front toward him) she turns it about the vertical so the FRONT (the seal) faces HER: held
+// out a little further and a little higher by the shoulder seams, hands 0.50 m apart (a 0.58 m chest, grips 4 cm in from
+// each shoulder point), her eyes on the seal. The garment itself (cloth, folds, the turn) is the cloth agent's module
+// (sweatshirt.js, NOT in this file); this is only the anchor its hands and the camera need.
+// Frame: f = her facing, r = the right of someone LOOKING AT THE FRONT (here: her own right = -SHIRT.r), a = up the front,
+// n = out of the front (toward her = -f).
+export const TURN = { chest: SHIRT.chest, length: 0.69, top: { fwd: 0.44, y: 1.14 }, lean: 10, sealDown: SEAL_DOWN, sealR: SEAL_R };
+{ const f = SHIRT.f, base = [HER.at[0], 0, HER.at[1]], l = rad(TURN.lean);
+  TURN.T = comb(base, [f, TURN.top.fwd], [[0, 1, 0], TURN.top.y]);
+  TURN.r = mul(SHIRT.r, -1);
+  TURN.a = norm(comb([0, 0, 0], [[0, 1, 0], Math.cos(l)], [f, -Math.sin(l)]));   // the front leans back toward her a little at the top
+  TURN.n = norm(cross(TURN.r, TURN.a)); if (dot(TURN.n, f) > 0) TURN.n = mul(TURN.n, -1);
+  const shs = TURN.chest / 2 - 0.04;
+  TURN.grip = { herL: comb(TURN.T, [SHIRT.r, shs]), herR: comb(TURN.T, [SHIRT.r, -shs]) };   // her left hand on her left
+  const c = comb(TURN.T, [TURN.a, -TURN.sealDown], [TURN.n, 0.008]);
+  TURN.seal = { centre: c, top: comb(c, [TURN.a, SEAL_R]), bottom: comb(c, [TURN.a, -SEAL_R]), truth: comb(c, [TURN.r, -SEAL_R * 0.45]), beauty: comb(c, [TURN.r, SEAL_R * 0.45]) }; }
+
+// HOOK FOR THE CLOTH MODULE (layout/sets/mortongrove07/sweatshirt.js, built by a separate agent): one anchor per state.
+// `origin` = the collar centre (the neckline's middle, where a hoodie hangs from); `right`, `up`, `out` = the garment's
+// own frame (right as one faces the FRONT, up the front, out of the front); `grips` = where the hands close (pin the cloth
+// there). folded: the stack between his hands and hers (MG1, MG1_end); unfolding: lifted by her, front toward him (MG2);
+// turned: front toward her (MG2_end).
+export const GARMENT = {
+  folded: { origin: FOLD.neck, right: mul(FOLD.u, -1), up: FOLD.w, out: FOLD.n, grips: { hisL: FOLD.grip.hisL, hisR: FOLD.grip.hisR, herL: FOLD.grip.herL, herR: FOLD.grip.herR } },
+  unfolding: { origin: SHIRT.T, right: SHIRT.r, up: SHIRT.a, out: SHIRT.n, grips: { herL: GRIP.herL, herR: GRIP.herR } },
+  turned: { origin: TURN.T, right: TURN.r, up: TURN.a, out: TURN.n, grips: TURN.grip },
+};
 
 // ---------------------------------------------------------------- the beams: three west/south openings
 export const SUN_POS = sunPosition(SCENE);

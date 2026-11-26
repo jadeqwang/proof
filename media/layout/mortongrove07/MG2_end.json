@@ -1,0 +1,929 @@
+{
+ "shot": "MG2_end",
+ "set": "mortongrove07",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   2.5025,
+   2.0677,
+   -2.2468
+  ],
+  "target": [
+   2.3047,
+   1.1611,
+   -1.0281
+  ],
+  "lens_mm": 42,
+  "frame_width_mm": 36,
+  "hfov_deg": 46.397,
+  "vfov_deg": 27.108,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.9871,
+   0,
+   -0.1602,
+   0,
+   -0.0948,
+   0.806,
+   0.5842,
+   0,
+   0.1291,
+   0.5919,
+   -0.7956,
+   0,
+   2.5025,
+   2.0677,
+   -2.2468,
+   1
+  ],
+  "viewMatrix": [
+   -0.9871,
+   -0.0948,
+   0.1291,
+   0,
+   0,
+   0.806,
+   0.5919,
+   0,
+   -0.1602,
+   0.5842,
+   -0.7956,
+   0,
+   2.1102,
+   -0.1167,
+   -3.3346,
+   1
+  ],
+  "projectionMatrix": [
+   2.3333,
+   0,
+   0,
+   0,
+   0,
+   4.1481,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "front_window": {
+   "px": [
+    [
+     1469.1,
+     -1079
+    ],
+    [
+     3004.8,
+     -1081.4
+    ],
+    [
+     2410.7,
+     276.1
+    ],
+    [
+     1310.8,
+     373
+    ]
+   ],
+   "world": [
+    [
+     1.7,
+     2.05,
+     0
+    ],
+    [
+     0.2,
+     2.05,
+     0
+    ],
+    [
+     0.2,
+     0.6,
+     0
+    ],
+    [
+     1.7,
+     0.6,
+     0
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "west_window": {
+   "px": [
+    [
+     3528.1,
+     -1078.7
+    ],
+    [
+     7903.1,
+     -1040.8
+    ],
+    [
+     4429.8,
+     1276
+    ],
+    [
+     2783,
+     276
+    ]
+   ],
+   "world": [
+    [
+     0,
+     2.05,
+     -0.3
+    ],
+    [
+     0,
+     2.05,
+     -1.7
+    ],
+    [
+     0,
+     0.75,
+     -1.7
+    ],
+    [
+     0,
+     0.75,
+     -0.3
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "seal_square": {
+   "px": [
+    [
+     1221.9,
+     577.8
+    ],
+    [
+     939.5,
+     662
+    ],
+    [
+     963.5,
+     926
+    ],
+    [
+     1227.9,
+     834.9
+    ]
+   ],
+   "world": [
+    [
+     2.1001,
+     1.0648,
+     -0.9762
+    ],
+    [
+     2.3212,
+     1.0648,
+     -1.0396
+    ],
+    [
+     2.3102,
+     0.8382,
+     -1.078
+    ],
+    [
+     2.0891,
+     0.8382,
+     -1.0146
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "jade27": {
+   "px": [
+    886.9,
+    221.5
+   ],
+   "eyes": [
+    934.8,
+    305.8
+   ],
+   "mouth": [
+    922.3,
+    354.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 56
+  },
+  "firstLove27": {
+   "px": [
+    1665.6,
+    -0.8
+   ],
+   "eyes": [
+    1506,
+    10
+   ],
+   "mouth": [
+    1532.5,
+    140.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 132
+  }
+ },
+ "hands": {
+  "jade27.L": {
+   "px": [
+    1365.7,
+    406.6
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade27.R": {
+   "px": [
+    759,
+    607.5
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.L": {
+   "px": [
+    1412.9,
+    1572.7
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "firstLove27.R": {
+   "px": [
+    1915.4,
+    1231.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "sun",
+   "kind": "low soft afternoon sun through the front and west windows (the beams)",
+   "on": true,
+   "color": "#fff0d8",
+   "world": [
+    -7.2835,
+    3.216,
+    5.351
+   ],
+   "px": [
+    3812.7,
+    -1586.2
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.758,
+    0.652
+   ],
+   "toward_camera": 0.412,
+   "aim_world": [
+    2.2319,
+    0.9121,
+    -0.9339
+   ]
+  },
+  {
+   "name": "sky",
+   "kind": "diffuse skylight through the front and west windows (fill)",
+   "on": true,
+   "color": "#dfe6f0",
+   "world": [
+    0.95,
+    1.325,
+    1
+   ],
+   "px": [
+    1663.5,
+    -464.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.426,
+    0.905
+   ],
+   "toward_camera": 0.599,
+   "aim_world": [
+    2.3333,
+    1,
+    -0.58
+   ]
+  }
+ ],
+ "warnings": [],
+ "intent": "END of the continuous move, just before the cut to the Expedit pan: the same camera past his left shoulder. She holds the white hoodie up by its shoulder seams, hands about half a metre apart at chin height, arms a little forward, and has turned it round so the FRONT (the blue IAS seal) faces HER: we see the plain white back of the hoodie, soft folds, the hood hanging on our side, and her face just above it, looking down at the seal. Truth falls in the folds as it turns (Jade). Cloth from the cloth module.",
+ "time": "2:39.6-2:42.0",
+ "plan_time": "2:39.6-2:42.0",
+ "section": "Bridge",
+ "position": "outside",
+ "film": {
+  "t": [
+   159.62,
+   161.96
+  ],
+  "line": [
+   159.62,
+   164.36
+  ],
+  "time": "2:39.6-2:42.0",
+  "section": "Bridge",
+  "lyric": "Beauty on this side, truth by reference",
+  "sung_here": "Beauty on this side",
+  "next": "cut to the pan across the Expedit (mv10 bridge) on \"truth by reference\" (161.96 s, \"truth\" sung); the line itself ends 164.36 s",
+  "map": "analysis/m2sm/song_map.md (-2sm master, bridge line 159.62-164.36; was v3 169.4-173.5, retimed 2026-11-25)",
+  "year": 2007,
+  "place": "Morton Grove, IL: the house she commuted from to Northwestern (Evanston); he had transferred from Harvard to Princeton"
+ },
+ "house": {
+  "address": "5748 Capri Lane, Morton Grove, IL",
+  "built": 1955,
+  "type": "split-level",
+  "sqft": 1296,
+  "ew": 11.1,
+  "ns": 11.6,
+  "ns_note": "README says 11.8; the OSM corners give 11.63",
+  "front": "south (Capri Lane)",
+  "lat": 42.0525,
+  "lon": -87.7709,
+  "plan": "Jade's hand-drawn main floor (inputs/refs_mortongrove/Pasted image.png, private), drawing TOP = SOUTH (reasoned; see NOTES)",
+  "greatRoomInHouse": {
+   "x0": 0.2,
+   "x1": 6.5,
+   "y0": 0.2,
+   "y1": 7.4,
+   "note": "house frame (origin SW corner of the footprint, x east, y north); the living room is x 1.6-6.5, y 0.2-2.2 of it; a 1.4 x 2.0 m entry notch at the SW corner (front door in its north side) - the county footprint shows a plain rectangle (porch roof over it? GUESS)"
+  },
+  "eastWing": "about 4.5 m wide: bedrooms half a level up, rec room half a level down (the stairs at the great room's NE corner)",
+  "ceiling": {
+   "kind": "vaulted (cathedral), Jade",
+   "ridge": "east-west (parallel to Capri Lane), over the middle of the great room at z -3.6 (Jade r3: highest over the middle of the great room, about 3.6 m)",
+   "plate_m": 2.44,
+   "peak_m": 3.6,
+   "pitch": "0.3222 (about 3.9 in 12)",
+   "east_wall": "the full gable (mirror, piano): its top shows the roof angle",
+   "dining": "flat 8-ft ceiling over the dining part (x < 1.6, north of the jog), READING of Jade's \"the dining room is the short side\" (flagged)"
+  },
+  "axes": "x = east, z = south, y up; origin = inner SW corner of the living room",
+  "great_room_m": {
+   "x": [
+    -1.4,
+    4.9
+   ],
+   "z": [
+    -7.2,
+    0
+   ],
+   "jog_z": -2
+  },
+  "orientation": "Jade's drawing: TOP = SOUTH (street), RIGHT = WEST, LEFT = EAST, BOTTOM = NORTH (reasoned: the front door in the jog faces the top; the couch and window share the top wall as Jade described the front wall)",
+  "couch": "against the FRONT (south) wall, its west end just short of the front window (Jade, and the drawing)"
+ },
+ "hoodie": {
+  "colour": "white",
+  "kind": "pullover hoodie: hood (hanging behind the neckline), two flat drawstrings, kangaroo pouch pocket, ribbed cuffs and waistband",
+  "state": "TURNED: she holds it by the shoulder seams, a little further out and higher, and has turned it round so the front (the seal) faces her; the garment is the cloth module (sweatshirt.js)",
+  "chest_m": 0.58,
+  "length_m": 0.69,
+  "collar": {
+   "world": [
+    2.2121,
+    1.14,
+    -1.003
+   ],
+   "px": [
+    1084.2,
+    530.8
+   ]
+  },
+  "seal": {
+   "label": "IAS seal (Truth, Beauty)",
+   "what": "Institute for Advanced Study seal printed in BLUE on a WHITE HOODIE, CHEST-SIZED (diameter 0.23 m on a 0.58 m front, about 40% of its width, centred on the chest below the drawstrings; Jade 2026-11-25, NOT the whole front; on the FOLDED stack it spans about 60% of the folded width): a SOLID filled blue disc with the design in white reverse: two standing classical women hand in hand before a leafy tree, TRUTH (left, raising a hand mirror) and BEAUTY (right, pleated gown); INSTITUTE FOR ADVANCED STUDY round the rim, FOUNDED 1930 at the bottom (see cast/first_love/fl_H_ias_hoodie_v2.jpg)",
+   "radius_m": 0.115,
+   "centre": {
+    "world": [
+     2.2051,
+     0.9515,
+     -1.0271
+    ],
+    "px": [
+     1091.7,
+     753.2
+    ]
+   },
+   "top": {
+    "world": [
+     2.2106,
+     1.0648,
+     -1.0079
+    ],
+    "px": [
+     1084.1,
+     618.9
+    ]
+   },
+   "bottom": {
+    "world": [
+     2.1996,
+     0.8382,
+     -1.0463
+    ],
+    "px": [
+     1098.7,
+     879.4
+    ]
+   },
+   "truth_side": {
+    "world": [
+     2.1554,
+     0.9515,
+     -1.0128
+    ],
+    "px": [
+     1152.4,
+     733.7
+    ]
+   },
+   "beauty_side": {
+    "world": [
+     2.2549,
+     0.9515,
+     -1.0414
+    ],
+    "px": [
+     1029.6,
+     773.2
+    ]
+   },
+   "hidden_by_fold": {
+    "share_of_height": null,
+    "how": "cloth module (sweatshirt.js): Jade wants Truth to fall in the folds as she turns it"
+   },
+   "corner_order": "panes.seal_square = TL, TR, BR, BL as one faces the front (a painted seal maps straight on)",
+   "facing": "toward HER (she has turned it round to look at it); the camera behind him sees its back",
+   "normal_to_camera_deg": 139,
+   "reads_upright_on_screen": true,
+   "sun_on_front": {
+    "cos_incidence": 0.25,
+    "note": "negative = the sun is BEHIND the print; positive = it can fall on it (subject to the shafts and shadows)"
+   }
+  },
+  "grips": {
+   "herL": {
+    "world": [
+     1.9717,
+     1.14,
+     -0.934
+    ],
+    "px": [
+     1382.6,
+     446.3
+    ]
+   },
+   "herR": {
+    "world": [
+     2.4524,
+     1.14,
+     -1.0719
+    ],
+    "px": [
+     751.5,
+     625
+    ]
+   }
+  },
+  "anchor": {
+   "state": "turned",
+   "origin": [
+    2.2121,
+    1.14,
+    -1.003
+   ],
+   "right": [
+    0.9613,
+    0,
+    -0.2756
+   ],
+   "up": [
+    0.0479,
+    0.9848,
+    0.1669
+   ],
+   "out": [
+    0.2714,
+    -0.1736,
+    0.9467
+   ],
+   "note": "GARMENT[state] in layout.js: the hook for the cloth module sweatshirt.js"
+  },
+  "note": "her two hands close on the shoulder seams, 0.50 m apart, the front toward her"
+ },
+ "first_love": {
+  "who": "first love (a real person: never named, never face-on)",
+  "face_shown": false,
+  "facing_camera_deg": 132,
+  "hair": "dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)",
+  "feet": "Birkenstock-type cork sandals (Naot), bare feet",
+  "forearms": "sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE",
+  "hands": "same absolute size as hers (18.3 cm); feet 24.8 cm (cast kind adultFirstLove)"
+ },
+ "jade": {
+  "cast": "jade27 (kind adultJade27) standing in for Jade at about 24; no closer age in the cast table"
+ },
+ "sun": {
+  "scene": {
+   "date": "2007-11-05",
+   "time": "15:30",
+   "tzHours": -6,
+   "tzName": "CST",
+   "lat": 42.0525,
+   "lon": -87.7709
+  },
+  "elevation_deg": 10.9,
+  "azimuth_deg": 236.98,
+  "travel_dir": [
+   0.8234,
+   -0.1891,
+   -0.5351
+  ],
+  "note": "computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)",
+  "in_sun_margin_m": {
+   "her_eyes": {
+    "front": 0.52,
+    "west": -1.151,
+    "dining": -6.361
+   },
+   "her_head": {
+    "front": 0.432,
+    "west": -1.254,
+    "dining": -6.464
+   },
+   "seal": {
+    "front": 0.117,
+    "west": -0.836,
+    "dining": -6.046
+   },
+   "his_head": {
+    "front": -0.522,
+    "west": -0.421,
+    "dining": -5.631
+   }
+  },
+  "seal_front_cos": 0.25
+ },
+ "beam": {
+  "name": "front + west windows",
+  "kind": "low afternoon sun through the front window beside the couch, the west (egg-carton) window and the dining window (parallel)",
+  "model": "parallel (sunlight)",
+  "source_world": null,
+  "direction_of_travel": [
+   0.8234,
+   -0.1891,
+   -0.5351
+  ],
+  "aperture_world": [
+   [
+    1.7,
+    1.9793,
+    0
+   ],
+   [
+    0.5077,
+    1.9793,
+    0
+   ],
+   [
+    0.5077,
+    0.6,
+    0
+   ],
+   [
+    1.7,
+    0.6,
+    0
+   ]
+  ],
+  "aperture_px": [
+   [
+    1458.1,
+    -978.5
+   ],
+   [
+    2678.4,
+    -987.7
+   ],
+   [
+    2196.9,
+    295
+   ],
+   [
+    1310.8,
+    373
+   ]
+  ],
+  "footprints": {
+   "floor": {
+    "world": [
+     [
+      3.1202,
+      0,
+      -1.6979
+     ],
+     [
+      9.126,
+      0,
+      -5.6011
+     ],
+     [
+      10.3183,
+      0,
+      -5.6011
+     ],
+     [
+      4.3125,
+      0,
+      -1.6979
+     ]
+    ],
+    "px": [
+     [
+      -28.7,
+      2530.2
+     ],
+     [
+      6803.5,
+      -3602.9
+     ],
+     [
+      7511,
+      -3446.2
+     ],
+     [
+      -1982.9,
+      2922.5
+     ]
+    ]
+   },
+   "east wall": {
+    "world": [
+     [
+      4.9,
+      0,
+      -2.0797
+     ],
+     [
+      4.9,
+      0,
+      -2.8545
+     ],
+     [
+      4.9,
+      0.9706,
+      -2.8545
+     ],
+     [
+      4.9,
+      1.2444,
+      -2.0797
+     ]
+    ],
+    "px": [
+     [
+      -4159.5,
+      4382.6
+     ],
+     [
+      -10842.3,
+      12237.6
+     ],
+     [
+      36312.4,
+      -22310.7
+     ],
+     [
+      -16297.5,
+      6260.4
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   2.2051,
+   0.9515,
+   -1.0271
+  ],
+  "anchor_px": [
+   1091.7,
+   753.2
+  ],
+  "on_screen": {
+   "from_px": [
+    1183.6,
+    676.9
+   ],
+   "to_px": [
+    995,
+    833.5
+   ],
+   "angle_deg": 39.7,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": -0.3,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "sun_altitude_deg": 10.9,
+  "sun_azimuth_deg": 236.98,
+  "solids": [
+   "front",
+   "west",
+   "dining"
+  ],
+  "note": "solid[0] = the front window (the others: west, dining), each narrowed by its wall reveal for this sun; eaves not modelled (a low sun passes under them)"
+ },
+ "points_world": {
+  "jade27": {
+   "eyes": [
+    2.2812,
+    1.1897,
+    -0.7618
+   ],
+   "head": [
+    2.3061,
+    1.2189,
+    -0.6748
+   ],
+   "chin": [
+    2.3036,
+    1.0997,
+    -0.6838
+   ],
+   "handL": [
+    1.979,
+    1.1597,
+    -0.9088
+   ],
+   "handR": [
+    2.4474,
+    1.1675,
+    -1.0891
+   ],
+   "hip": [
+    2.3333,
+    0.5308,
+    -0.58
+   ],
+   "shoulderC": [
+    2.3245,
+    1.0241,
+    -0.6108
+   ],
+   "kneeL": [
+    2.1226,
+    0.4373,
+    -0.9459
+   ],
+   "kneeR": [
+    2.3182,
+    0.4373,
+    -1.002
+   ]
+  },
+  "firstLove27": {
+   "eyes": [
+    2.0591,
+    1.6142,
+    -1.2352
+   ],
+   "head": [
+    2.019,
+    1.6528,
+    -1.3213
+   ],
+   "chin": [
+    2.0201,
+    1.5239,
+    -1.3212
+   ],
+   "handL": [
+    2.1339,
+    0.8216,
+    -1.608
+   ],
+   "handR": [
+    1.7303,
+    0.8216,
+    -1.4359
+   ],
+   "hip": [
+    1.95,
+    0.9256,
+    -1.48
+   ],
+   "shoulderC": [
+    1.9814,
+    1.4498,
+    -1.4063
+   ],
+   "kneeL": [
+    2.0653,
+    0.4741,
+    -1.4826
+   ],
+   "kneeR": [
+    1.8683,
+    0.4741,
+    -1.3986
+   ]
+  }
+ },
+ "figure_report": {
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 0.77
+    },
+    "R": {
+     "reach": 0.77
+    }
+   },
+   "arms": {
+    "L": 0.68,
+    "R": 0.93
+   },
+   "headTurn": 0
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 2
+  }
+ }
+}

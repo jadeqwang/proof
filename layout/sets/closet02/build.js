@@ -7,7 +7,7 @@ import { box, cyl, tag, V } from '../../engine/core.js';
 import { CAST } from '../_cast.js';   // registers the cast
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
-import { WALL, OPEN, ROOM, DOORS, BEDROOM, SHELF, RAIL, CLOTHES, COATS, DUVET, HANDS, FACE, SUN, SUN_DIR, BEAM, beamAt, WINDOW, SUN_H, MOTE, LIGHTS, TOP_Y } from './layout.js';
+import { WALL, OPEN, ROOM, DOORS, BEDROOM, SHELF, RAIL, CLOTHES, COATS, DUVET, FUTON, HANDS, FACE, SUN, SUN_DIR, BEAM, beamAt, WINDOW, SUN_H, MOTE, LIGHTS, TOP_Y } from './layout.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from './beam.js';
 
 // cast: `jade19` and `firstLove19` come from ../_cast.js (one table for every set)
@@ -71,6 +71,24 @@ function closet() {
   { const D = DUVET, L = { grey: 0.84, col: 0xe8e0d0, recvShadowLine: true };
     g.add(tag(box(D.w, D.h, D.d, L, [D.at[0], D.h / 2, D.at[1]]), 'folded duvet cover'));
     g.add(tag(box(D.w - 0.03, 0.018, 0.03, { grey: 0.7, col: 0xcfc6b6 }, [D.at[0], D.h * 0.55, D.at[1] + D.d / 2 + 0.005]), 'folded duvet cover')); }   // the fold
+  // the futon in its down (bed) mode, right of the closet (Jade, round 3): matte black tube frame, mattress under a navy
+  // plaid blanket that hangs a little over the edge on the closet side and the far end
+  { const F = FUTON, G = new THREE.Group(), BLK = { grey: 0.1, col: 0x1b1b1d }, r = F.tube, xm = (F.x0 + F.x1) / 2, zm = (F.z0 + F.z1) / 2;
+    const tubeX = (x0, x1, y, z) => cyl(r, r, x1 - x0, BLK, [(x0 + x1) / 2, y, z], [0, 0, 90], 10);
+    const tubeZ = (z0, z1, y, x) => cyl(r, r, z1 - z0, BLK, [x, y, (z0 + z1) / 2], [90, 0, 0], 10);
+    const post = (x, z, h) => cyl(r, r, h, BLK, [x, h / 2, z], null, 10);
+    const ax0 = F.x1 - F.armD;
+    for (const z of [F.z0 - 0.02, F.z1 + 0.02]) {   // the two arm frames (stay up in bed mode), at the two ends of the length
+      G.add(post(ax0, z, F.arm), post(F.x1 - 0.03, z, F.arm), tubeX(ax0, F.x1 - 0.03, F.arm, z), tubeX(ax0, F.x1 - 0.03, F.deck - 0.03, z), tubeX(ax0, F.x1 - 0.03, 0.03, z)); }
+    for (const x of [F.x0 + 0.04, ax0, F.x1 - 0.05]) G.add(tubeZ(F.z0 - 0.02, F.z1 + 0.02, F.deck - 0.03, x));   // deck rails along the length
+    for (const z of [F.z0 + 0.04, F.z1 - 0.04]) G.add(post(F.x0 + 0.04, z, F.deck - 0.03));                     // the folded-down half's legs
+    g.add(tag(G, 'futon frame (matte black metal, bed mode)'));
+    g.add(tag(box(F.w, F.mat, F.len, { grey: 0.78, col: 0xe6e0d4 }, [xm, F.deck + F.mat / 2, zm]), 'futon mattress'));
+    const NAVY = { grey: 0.24, col: 0x1f2a48, recvShadowLine: true }, bt = 0.012, B = new THREE.Group();
+    B.add(box(F.w + 2 * bt, bt, F.len + 2 * bt, NAVY, [xm, F.top + bt / 2, zm]));                                         // over the top
+    B.add(box(bt, F.mat + F.drape - 0.03, F.len + 2 * bt, NAVY, [F.x0 - bt / 2, F.top - (F.mat + F.drape - 0.03) / 2, zm])); // down the closet side
+    B.add(box(F.w + 2 * bt, F.mat + 0.04, bt, NAVY, [xm, F.top - (F.mat + 0.04) / 2, F.z1 + bt / 2]));                     // the far end
+    g.add(tag(B, 'navy plaid blanket (on the futon)')); }
   // the window behind him (stand-in, never in frame): a wall square to the light with a hole; it gives the light its
   // top edge (above her head) and keeps the rest of the bedroom out of the sun
   { const W = WINDOW, S = new THREE.Group(), L = { grey: 0.3, col: 0x2a2622 }, u = (a, b) => [(a + b) / 2, b - a];
@@ -95,7 +113,13 @@ export function build(shot, { makeCam }) {
     root.add(tag(beamMesh(sunk, { glass: true, col: SUN.color, opacity: 0.10 }), 'sunlight (volume)'));
   }
 
-  const { figs } = stage(shot.figs || {}, null, (t) => (NAMED[t] ? V(NAMED[t]) : null));
+  // '<who>:templeL' / ':templeR': the temple (between the eye and the ear, a little up), from the previous staging pass
+  const temple = (t, figs) => { const m = /^(\w+):temple([LR])$/.exec(t); const f = m && figs[m[1]]; if (!f) return null; const P = f.userData.P;
+    const s = m[2] === 'L' ? 1 : -1, w = P['ear' + m[2]].clone().sub(P.head), up = P.headUp.clone().normalize();
+    const fwd = P.eyes.clone().sub(P.head); fwd.addScaledVector(up, -fwd.dot(up)).normalize(); const R = P.headH / 2;
+    // on the skull's side, above and in front of the ear, 1 cm out (the fingertip pad rests on it)
+    return P.head.clone().addScaledVector(w, 0.86).addScaledVector(up, 0.32 * R).addScaledVector(fwd, 0.5 * R).addScaledVector(w.normalize(), 0.01); };
+  const { figs } = stage(shot.figs || {}, null, (t, figs) => (NAMED[t] ? V(NAMED[t]) : temple(t, figs)));
   for (const f of Object.values(figs)) { root.add(f); f.traverse((o) => { if (o.isMesh && o.userData.look) o.userData.look = { ...o.userData.look, recvShadowLine: true }; }); }
   const cs = { ...shot, orbit: shot.orbit ? { ...shot.orbit, at: fix(shot.orbit.at) } : undefined, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   Object.assign(shot, solveCamera(cs, figs, null, aim));

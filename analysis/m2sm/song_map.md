@@ -153,7 +153,7 @@ sit 0.3-1.0 s before the sung onset, so a v3 start pushed through the audio map 
 - "can think again": "can" (p 1.00 on both passes). As written.
 - "truth by reference": "truth" (p 0.95-0.96 on both). As written; v3 split truth/choose.
 - "shelved" (165.39): **SHELVED** (Jade). Whisper: mix "shelved" p 0.71, lead "shelf"; v3 had heard "shoved".
-- "artichoke" (131.91): as written (p 0.94, mix). Jade: it gets an in-picture CAPTION.
+- "artichoke" (131.91): as written (p 0.94, mix). Jade: it gets an in-picture CAPTION. Style (Jade, 2026-11-26): a small lowercase specimen label in the plates' caption type, beside the artichoke, 2:11.9-2:13.6.
 - "green and fresh": still "green and fresh", as in v3 (the prompt says "market-fresh"; the karaoke text uses "green and fresh").
 - "made flesh" (133.63-136.00): **made FLESH** (Jade). The mix pass had heard "made fresh" (p 0.91).
 - Whisper 2 "But not like that" (18.23): faint in the lead stem, but Jade: loud enough to cut on.

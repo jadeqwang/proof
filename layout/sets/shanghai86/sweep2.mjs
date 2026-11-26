@@ -13,7 +13,7 @@ const floor = []; for (let x = ROOM.x0 + 0.05; x <= ROOM.x1 - 0.05; x += 0.05) f
 const mother = [[PLACES.mother[0], 0.05, ROOM.z0 + 0.03], [PLACES.mother[0], 0.8, ROOM.z0 + 0.03], [PLACES.mother[0], 1.5, ROOM.z0 + 0.03]];
 const rows = [];
 for (let m = 7 * 60 + 30; m <= 11 * 60; m++) { const time = `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-  const b = beamFor({ ...SCENE, date, time }); if (!b.ok) continue;
+  const b = beamFor({ ...SCENE, cheat: undefined, date, time }); if (!b.ok) continue;
   const lit = floor.filter(b.inBeam); const segD = (p) => Math.hypot(Math.max(DOOR.x0 - p[0], 0, p[0] - DOOR.x1), p[2] - ROOM.z0);
   rows.push({ time, elev: b.SUN.elev, az: b.SUN.az, profile: b.SUN.profile_deg, face_min: Math.min(...face.map(b.beamMargin)), hands_min: Math.min(...hands.map(b.beamMargin)),
     uncle_hands: Math.min(...uncle.map(b.beamMargin)), steam: steam.filter(b.inBeam).length + '/' + steam.length, table: +(table.filter(b.inBeam).length / table.length).toFixed(2),

@@ -22,7 +22,16 @@ export const DOORS = { w: 0.90, h: 2.01, t: 0.032, zFront: -0.030, zRear: -0.075
 DOORS.edge = OPEN.x0 + DOORS.w;                                            // +0.02: the free edge of the stack (nearly the centre, as drawn)
 
 // the bedroom: only its floor and the closet wall are built (cameras look into the closet)
-export const BEDROOM = { x0: -1.8, x1: 2.2, z1: 3.2 };
+export const BEDROOM = { x0: -1.8, x1: 2.6, z1: 3.2 };
+// the futon (Jade, round 3, 2026-11-26): to the RIGHT of the closet, not blocking the entrance, in its down (bed) mode
+// because they slept on it; down, it "just barely reaches the closet". Matte black metal frame, navy plaid blanket.
+// ASSUMPTION (flagged): a full-size bi-fold metal futon, mattress 1.37 x 1.91 m (54 x 75 in), 0.15 m thick on a deck at
+// 0.30 m. Read as: its back is against the bedroom's right-hand wall (x = x1, not built), its length runs out from the
+// closet wall into the room (one arm frame against the closet wall), and folded down it reaches toward the closet so its
+// left edge stops just short of the right jamb's casing (x0 = OPEN.x1 + 0.03). The arms stay up (0.66 m) and only
+// span the sofa-mode depth (0.88 m) from the wall; the folded-down half sticks out past them toward the closet.
+export const FUTON = { x0: 0.91, w: 1.37, z0: 0.03, len: 1.91, deck: 0.30, mat: 0.15, arm: 0.66, armD: 0.88, tube: 0.019, drape: 0.14 };
+FUTON.x1 = FUTON.x0 + FUTON.w; FUTON.z1 = FUTON.z0 + FUTON.len; FUTON.top = FUTON.deck + FUTON.mat;
 
 // ---------------------------------------------------------------- what is in the closet (from the drawing)
 // Drawing heights scaled to the 2.03 m opening: shelf ~1.63, rod ~1.48, clothes' hems ~0.94, coats ~0.40. A real
@@ -39,12 +48,14 @@ export const DUVET = { at: [0.55, -0.40], w: 0.58, d: 0.58, h: 0.09 };
 
 // ---------------------------------------------------------------- the people
 // Jade: drawing's triangle centred 56 % across the open half (x ~ 0.50), seated on the duvet, head below the hems.
-// First love: on the carpet in front of her, a little to HIS left (-x) so the light passes his right shoulder.
+// First love (round 3, Jade: "more directly in line to her, matching her"): on the carpet squarely in front of her,
+// on her centre line (same x), facing her, mirroring her cross-legged pose; the four hands meet at the door line,
+// halfway between them. The light still clears his right shoulder (it comes from +x, 0.35 m right of his head).
 export const SEATS = {
   jade19: { at: [0.55, 0.139 + DUVET.h, -0.42], yaw: 0 },                 // pelvis lifted by the duvet
-  firstLove: { at: [0.33, 0.40], yaw: 180 },
+  firstLove: { at: [0.55, 0.38], yaw: 180 },
 };
-export const HANDS = [0.44, 0.40, -0.02];                                    // where the four hands meet: at the door line
+export const HANDS = [0.55, 0.41, -0.02];                                    // where the four hands meet: at the door line, on the shared centre line
 export const FACE = [0.55, 0.80, -0.26];                                     // about where her face is (for the light)
 
 // ---------------------------------------------------------------- the light

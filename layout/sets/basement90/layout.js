@@ -14,9 +14,9 @@ export const ROOM = { ...HOUSE.basement, wallT: 0.2,
   joist: { d: 0.19, w: 0.04, spacing: 0.406 },          // 2x8 joists at 16 in, running along z, under the kitchen floor
   hopper: { x: -0.95, y0: 1.72, y1: 2.06, w: 0.8 },     // small hopper window high in the back wall; night outside
   column: { x: -0.09, z: -1.13, r: 0.045 },             // steel lally column ("post"): just beyond the desk's back-right corner; the main beam runs along x over it
-  // CEILING LIGHT (Jade 2026-11-25 round 2: the basement had more ambient light from a ceiling light). ASSUMED type: a
-  // bare 60-75 W incandescent bulb in a white porcelain pull-chain lampholder on a junction box nailed under a joist
-  // (the stock unfinished-basement fixture of the period; alternative: a two-tube 4 ft fluorescent shop light). ON.
+  // CEILING LIGHT (Jade 2026-11-25 round 2: the basement had more ambient light from a ceiling light). Type (Jade
+  // 2026-11-26 round 3): a bare bulb in a porcelain pull-chain holder. Modelled as a bare 60-75 W incandescent bulb in a
+  // white porcelain pull-chain lampholder on a junction box nailed under a joist. ON.
   // Sits under a joist in front of Dad (moved with the desk group, 2026-11-26), so it lights both figures from
   // front-above; it is now also the stair light (15 cm short of the stairwell opening).
   bulb: { x: 0.33 + -1.624, z: -0.45 + 1.05, box: 0.05, holder: 0.06, r: 0.03 },
@@ -89,7 +89,7 @@ export function deskTerminator(y = 0) { const ez = DESK.z1, ey = DESK.top, top =
 export const BULB_P = [ROOM.bulb.x, ROOM.h - ROOM.joist.d - ROOM.bulb.box - ROOM.bulb.holder - ROOM.bulb.r, ROOM.bulb.z];
 export const LIGHTS = {
   screen: { kind: 'CRT screen (blue, area source); the BEAM (the light that matters)', pos: [SCREEN.c[0], SCREEN.c[1], SCREEN.c[2] + 0.02], aim: [SCREEN.c[0], SCREEN.c[1] - 0.2, SCREEN.c[2] + 2.5], color: BEAM.color },
-  ceiling: { kind: 'bare incandescent bulb in a porcelain pull-chain lampholder under a joist (ASSUMED type), warm, ON: the room ambient', pos: BULB_P, color: 0xffd9a0 },
+  ceiling: { kind: 'bare incandescent bulb in a porcelain pull-chain lampholder under a joist (Jade, 2026-11-26), warm, ON: the room ambient', pos: BULB_P, color: 0xffd9a0 },
   dark: { kind: 'ambient: warm bounce off the block walls and joists from the ceiling bulb', color: 0x6a5a48 },
 };
 

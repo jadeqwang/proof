@@ -12,7 +12,7 @@ const out = [];
 const days = []; for (let t = Date.UTC(1986, 10, 1); t <= Date.UTC(1987, 1, 28); t += 5 * 86400000) days.push(new Date(t).toISOString().slice(0, 10));
 for (const date of days) for (let m = 7 * 60 + 30; m <= 15 * 60; m += 10) {
   const time = `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-  const b = beamFor({ ...SCENE, date, time }); if (!b.ok) continue;
+  const b = beamFor({ ...SCENE, cheat: undefined, date, time }); if (!b.ok) continue;
   const fm = Math.min(...face.map(b.beamMargin)), st = steam.filter(b.inBeam).length / steam.length, tl = table.filter(b.inBeam).length / table.length;
   const lit = floor.filter((p) => b.beamWindow(p) === 0); if (!lit.length) continue;   // the six windows' pool (the one aimed at the doors)
   // how far the lit floor (any window) stays from the doorway (plan distance to the opening's segment) and from the shelf fronts

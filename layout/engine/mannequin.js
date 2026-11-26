@@ -11,6 +11,9 @@
 //           legOpts: { ankleL / ankleR: [x,y,z] body-local override, spread, upLeg: 'L'|'R' }
 //   spine   { bend: deg forward, side: deg toward own right, twist: deg toward own left }
 //   head    { look: target, turn: deg toward own left, nod: deg down, tilt: deg toward own right }
+//   torso   'real' (opt-in, with sex 'f' | 'm'): a clothed torso with waist, hips, bust / pectorals, shoulder blades
+//           (engine/torso.js). Default: the swept capsule.
+//   fringe  'none' (opt-in): no fringe plank on 'bob' / 'long' hair; a thin hairline shell over the forehead instead.
 //   costume { top, legs, sock, sleeves, hairStyle, ... }: per-shot look over the CAST entry (height and kind are fixed)
 //   L / R   arm: { to: target (palm centre), hand: shape name, palm: dir, fingers: dir, elbow: dir }
 //           or a shortcut string: 'side' | 'lap' | 'kneeL' | 'kneeR'
@@ -21,6 +24,7 @@ import * as THREE from 'three';
 import { mk, limb, ball, slab, V, rad, UP, ik, basisQ, tag } from './core.js';
 import { taperGeo, chainGeos, ellipsoidGeo, sweptGeo, sweptPoint, partMesh } from './anatomy.js';
 import { buildHand, ageOf, tipLocal } from './hand.js';
+import { realTorso, REAL_PELVIS } from './torso.js';
 
 let BUILD_ID = 0;   // line-mode id groups are per built figure
 // limb girth factor by age: 1 for adults, rounder for small children
@@ -108,7 +112,9 @@ export function buildFigure(spec, ctx) {
   const CF = { x: cx, y: cy, z: cz };
   const SH = { L: shC.clone().addScaledVector(cx, pr.shW * H).addScaledVector(cy, -0.012 * H), R: shC.clone().addScaledVector(cx, -pr.shW * H).addScaledVector(cy, -0.012 * H) };
   // pelvis (stays children[0]: engine/body.js reads its quaternion)
-  const pelvis = add(ball(1, spec.who === 'daughter' ? LK.top : LK.legs, hip.clone().addScaledVector(by, 0.02 * H).addScaledVector(bz, -0.006 * H).toArray(), [0.1 * H, 0.072 * H, 0.07 * H])); pelvis.quaternion.copy(qB); pelvis.userData.idGroup = uid + 'pelvis';
+  const realT = spec.torso === 'real';   // opt-in clothed torso (engine/torso.js); needs spec.sex 'f' | 'm'
+  const pR = realT ? REAL_PELVIS[spec.sex] : [0.1, 0.072, 0.07]; if (!pR) throw new Error("torso: 'real' needs sex 'f' or 'm'");
+  const pelvis = add(ball(1, spec.who === 'daughter' ? LK.top : LK.legs, hip.clone().addScaledVector(by, 0.02 * H).addScaledVector(bz, -0.006 * H).toArray(), [pR[0] * H, pR[1] * H, pR[2] * H])); pelvis.quaternion.copy(qB); pelvis.userData.idGroup = uid + 'pelvis';
   let torsoFrame, torsoProf;
   { const T = [];
     // one torso surface swept along the spine (pelvis frame at the bottom, chest frame at the top), widest at the armpits
@@ -118,8 +124,10 @@ export function buildFigure(spec, ctx) {
     const kw = pr.chestW / 0.19 * H, kd = pr.chestD / 0.125 * H;
     torsoFrame = (t) => { const k = THREE.MathUtils.smoothstep(t, 0.15, 0.75); qT.copy(qB).slerp(qC, k);
       return { o: p0.clone().multiplyScalar((1 - t) ** 2).addScaledVector(pc, 2 * t * (1 - t)).addScaledVector(p2, t * t), x: ex.set(1, 0, 0).applyQuaternion(qT).clone(), z: ez.set(0, 0, 1).applyQuaternion(qT).clone() }; };
+    if (realT) { const R = realTorso(torsoFrame, { sex: spec.sex, H, kw, kd }); torsoProf = R.prof; T.push(R.geo); }
+    else {
     torsoProf = [[0, 0.084 * kw, 0.058 * kd], [0.2, 0.081 * kw, 0.056 * kd], [0.35, 0.075 * kw, 0.055 * kd], [0.62, 0.088 * kw, 0.06 * kd], [0.8, 0.095 * kw, 0.0625 * kd], [1, 0.092 * kw, 0.055 * kd]];
-    T.push(sweptGeo(torsoFrame, torsoProf, { nu: 30, nv: 36 }));
+    T.push(sweptGeo(torsoFrame, torsoProf, { nu: 30, nv: 36 })); }
     for (const s of [1, -1]) {
       const S = SH[s > 0 ? 'L' : 'R'], out = cx.clone().multiplyScalar(s);
       T.push(taperGeo(shC.clone().addScaledVector(cy, 0.022 * H).addScaledVector(cz, -0.014 * H), S.clone().addScaledVector(cy, 0.01 * H).addScaledVector(cz, -0.004 * H), 0.024 * H * kg, 0.019 * H * kg));   // trapezius
@@ -208,7 +216,10 @@ export function buildFigure(spec, ctx) {
     if (st === 'bob' || st === 'long') { // a shell over the back and sides down to the jaw, open at the face; a fringe
       const sh = mk(new THREE.SphereGeometry(R * 1.1, 28, 18, Math.PI * 0.84, Math.PI * 1.32, 0, Math.PI * 0.74), LK.hair); sh.userData.double = true;
       sh.position.copy(HL(0, 0.04, -0.06)); sh.quaternion.copy(qH); sh.scale.set(pr.wk * 1.04, 1.0, 1.0); add(sh);
-      add(slab(HL(0, 0.78, 0.55), HL(0, 0.36, 0.9), R * 1.2, R * 0.12, hx, LK.hair));
+      if (spec.fringe === 'none') { // opt-in: no fringe plank; a soft hairline that hugs the forehead instead (reads as hair from above)
+        const fr = mk(new THREE.SphereGeometry(R * 1.07, 24, 12, Math.PI * 0.12, Math.PI * 0.76, Math.PI * 0.08, Math.PI * 0.26), LK.hair); fr.userData.double = true;
+        fr.position.copy(head); fr.quaternion.copy(qH); fr.scale.set(pr.wk * 1.02, 1.04, 0.98); add(fr); }
+      else add(slab(HL(0, 0.78, 0.55), HL(0, 0.36, 0.9), R * 1.2, R * 0.12, hx, LK.hair));
     }
     if (st === 'long') { // straight hair hanging with gravity down the back to the shoulder blades
       const a = HL(0, -0.3, -0.85), b = a.clone().add(new THREE.Vector3(0, -0.24 * H, 0)).addScaledVector(cz, -0.02);

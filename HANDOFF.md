@@ -719,3 +719,32 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   (at the drawn depth, the B4/B5 cameras end up under the stair); B4 lens 24 -> 22 mm. kitchen90 changed visibly only
   in K0_plan, K0_wide_night and K8_glass (door edge in the reflection). Repaint B1-B5 in r4. Lead checked
   B0_plan_line against the diagram: matches.
+
+## Session of 2026-11-26 (late morning): Jade's round-3 decision answers
+
+- Jade pasted her answers to the round-3 decision page; saved verbatim in `work/decisions/JADE_R3_DECISIONS.md`.
+  Unanswered and kept open: `cliff`, `cl_light`. Agents got `work/decisions/AGENT_BRIEF.md` plus a per-set brief.
+- Checkpoint commit a1b791a-ish holds the earlier basement/mv10-table work. `inputs/diagram_basement.png` and
+  `inputs/refs_semicircletable/` are now gitignored (Jade's own drawings and photos stay out of the public repo).
+- Dispatched: mv10, shanghai86, mortongrove07, closet02, sweatshirt cloth (IAS seal in folds), first love hair
+  (panels 5-6 of fl_B v4 have the wrong part), plan/song (bud, Good catch label, artichoke caption, closet caption,
+  basement bulb).
+- **Plan agent done:** plan rows updated for all round-3 answers (marked "(Jade, 2026-11-26)"); basement bulb was already
+  a porcelain pull-chain holder (wording only). New questions collected in `work/decisions/NEW_QUESTIONS_R4.md`.
+- **Hair agent done:** `fl_B_backhead_neck_v5.png` and `fl_G_ots_hair_v5.png` (PNG so the kept left columns stay
+  pixel-identical); right column redrawn with the part as a short midline notch. v4s in `_superseded/`. The A
+  turnaround's figure 1 has the same fault, not fixed. Codex works again; `CODEX_LIMIT_HIT` removed. Repointed
+  `media/keyframes/r3/mv10/_prompts/_make.py` at v5.
+- **Morton Grove agent done:** real 7-ft grand outline, picture 1.4 x 1.0 m (4x area), mirror 0.95-2.90 m, ridge
+  3.6 m over the great room's middle with a tall east gable, flat 8-ft dining ceiling with a soffit, loveseat. MG_wide
+  re-cammed (18 mm by the piano bench) to show the east wall and roof angle. Garment hook `GARMENT.*` + `TURN` in
+  layout.js; new shot MG2_end. Snapshotted for r3. Repaint MG_wide, MG2_end in r4.
+- **Shanghai agent done:** 09:30 sun at true azimuth, elevation cheated 25.67 -> 21.0 deg (eyes 5-8 cm inside the
+  light; `sweep_cheat.mjs`); lounger west of her table facing the TV; wicker chair at the balcony's west end; white
+  iron railings (new REF_balcony); steam as wisps. Snapshotted for r3. Repaint every shanghai shot in r4. Lead sent
+  it back: the uncle goes ON the couch end (it had used an armchair at the couch end, against her pick).
+- **Closet agent done:** futon (full, bed mode, black arms, navy blanket; plaid not modelled, say it in prompts) right
+  of the opening; he mirrors her on her centre line, four hands meet at the door line (his on hers). New opt-in engine
+  option `torso:'real', sex:'f'|'m'` (`layout/engine/torso.js`; default off, office91 BO1 pixel-identical). CL_wide
+  is the opening: fingers to temples, camera high right, bottom fifth clear for the caption. Repaint all four CL shots.
+  Lead sent it back: a block across her bowed forehead (fringe plank) reads as binoculars.

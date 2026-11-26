@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(HERE))))
 sys.path.insert(0, os.path.join(ROOT, "tools", "kf"))
 import kf
-kf.SESSION = "proof-fl5"
+kf.SESSION = os.environ.get("FL_SESSION", "proof-fl5")
 FORBIDDEN = ("inputs/", "source_refs", "character sheets", "family_photos", "Pasted image")
 V4 = os.path.join(os.path.dirname(HERE), "v4")
 BLOCKS = {k: open(os.path.join(HERE if os.path.exists(os.path.join(HERE, k + ".txt")) else V4, k + ".txt")).read().strip() for k in ("hair", "d27", "d19", "d24", "never", "style", "hands", "round", "step", "seal", "shape", "hoodie")}

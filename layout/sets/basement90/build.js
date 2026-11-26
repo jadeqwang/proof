@@ -54,7 +54,7 @@ function room(shot = {}) {
   g.add(tag(cyl(ROOM.column.r, ROOM.column.r, h - 0.24, { grey: 0.4, col: 0x5a2f28 }, [ROOM.column.x, (h - 0.24) / 2, ROOM.column.z], null, 14), 'steel column (post)'));
   g.add(tag(box(0.2, 0.012, 0.2, { grey: 0.4, col: 0x5a2f28 }, [ROOM.column.x, 0.006, ROOM.column.z]), 'steel column (post)'));
   g.add(tag(box(x1 - x0, 0.24, 0.2, WOOD_D, [(x0 + x1) / 2, h - 0.12, ROOM.column.z]), 'main beam'));
-  // the ceiling light (ASSUMED type): junction box under the joist, white porcelain pull-chain lampholder, bare bulb, chain
+  // the ceiling light (Jade 2026-11-26: bare bulb, porcelain pull-chain holder): junction box under the joist, white porcelain pull-chain lampholder, bare bulb, chain
   const B = ROOM.bulb, jb = h - J.d, lampOn = shot.light?.ceiling !== false;
   g.add(tag(cyl(0.05, 0.05, B.box, { grey: 0.55, col: 0x7a7a78 }, [B.x, jb - B.box / 2, B.z], null, 8), 'ceiling light (porcelain lampholder)'));
   g.add(tag(cyl(0.045, 0.03, B.holder, { grey: 0.95, col: 0xece8de }, [B.x, jb - B.box - B.holder / 2, B.z], null, 16), 'ceiling light (porcelain lampholder)'));

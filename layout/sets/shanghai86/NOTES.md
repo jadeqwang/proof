@@ -1,6 +1,102 @@
 # shanghai86 — notes and assumptions
 
-**Read "2026-11-25 (round 2 answers)" first (just below). It overrides every older section where they differ.**
+**Read "2026-11-26: round-3 decisions" first (just below). It overrides every older section where they differ.**
+
+## 2026-11-26: round-3 decisions
+
+Jade's answers (`work/decisions/JADE_R3_DECISIONS.md`, verbatim) and what was built. Files: `layout.js`, `build.js`,
+`shots.js`, `sweep.mjs`/`sweep2.mjs` (now ignore the cheat), new `sweep_cheat.mjs`. The pre-change renders are snapshotted
+for the r3 review page at `media/keyframes/r3/_layout_snapshot/shanghai86/`.
+
+### 1. The sun: 09:30, CHEATED lower (Jade: "9:30 with a cheated, lower sun (only just reaches you)")
+| | elevation | azimuth | rel. to facade normal | profile angle |
+|---|---|---|---|---|
+| REAL sun, 1986-12-21 09:30 CST (NOAA) | 25.67 deg | 143.76 deg | 23.0 deg east | 27.4 deg |
+| CHEATED sun used in the set (`SCENE.cheat`) | **21.0 deg** | 143.76 deg (kept) | 23.0 deg east | 22.6 deg |
+| (round 2, for comparison: real 08:30) | 17.1 | 132.2 | 34.6 east | 20.5 |
+
+- Only the elevation is cheated (4.7 deg lower); the azimuth is the real 09:30 one. `layout.js`: `CHEAT_ELEV`,
+  `REAL_SUN`, `SCENE = { ..., time: '09:30', cheat: { elev, rel } }`; the sidecars' `beam.sun.status` says CHEATED and
+  carry `real_sun_at_this_time`.
+- How 21.0 was picked: `node layout/sets/shanghai86/sweep_cheat.mjs` lowers the 09:30 sun in 0.5 deg steps and prints the
+  margin to the light's edge at her eyes, crown and chin. 21.0 is the highest sun at which her eyes are still lit in
+  every shot of hers; 21.5 puts her eyes in shade in V1a.
+- **What "only just reaches her face" looks like** (margins in m, > 0 inside the light, from the new sidecars):
+
+  | shot | eyes | crown (head + 9 cm) | chin |
+  |---|---|---|---|
+  | V1a (state A) | +0.05 | -0.06 | +0.12 |
+  | V1c | +0.05 | -0.02 | +0.05 |
+  | V1e | +0.05 | +0.03 | +0.05 |
+  | V1g | +0.08 | +0.01 | +0.08 |
+  | (the real 09:30 sun, for comparison) | -0.30 to -0.39 | | |
+
+  In V1a the top edge of the light (the balcony overhang's shadow) crosses her head between brow and crown. In state B
+  the edge is at her crown, and a pier's shadow edge runs down the back of her head (V1g: a clean vertical line, face
+  lit, back of the head dark). Her hands in the tearing shots are right at the edge too (V1c right hand -0.001).
+- The uncle's hands (state A): ~0.13 m inside at the held object; his head and body are in shade.
+- Light study (`lightstudy/`) not re-rendered: it is the round-2 comparison and its row 3 is the same kind of cheat (19 deg).
+
+### 2. Room: as built (10.5 m along the balcony). Unchanged.
+
+### 3. Wicker lounge chair: WEST of her small wooden table and chair, facing the TV
+- `LOUNGER.at` (1.75, -1.45), yaw 111 (computed to face the TV on the east wall); its foot end ~0.3 m clear of her table's
+  west edge (table x 2.7-3.3). See REF_plan, REF_wide, REF_doors.
+- **Flag:** the TV is ~5.5 m away and the dining table (with its chairs) stands partly in the line of sight. Jade asked for
+  this spot, so it stays; if it bothers her, the dining table could shift north.
+
+### 4. The uncle: ON the couch, at its end nearest her (Jade's card: "The end of the couch")
+- Jade chose "The end of the couch" over the separate option "The armchair, with your face in his shadow", so he sits ON
+  the couch: perched on the front edge of its NORTH end seat (the end nearest her), pelvis (-2.19, -3.53), leaning in
+  (spine bend 40). No chair was added for him; the r3 pulled-up 'across' armchair is gone and every armchair stands where
+  the round-4 room had it, in both states (`UNCLE_CHAIR` is now null).
+- He is west-south-west of her; the sun comes from the SSE, so he cannot come between her face and the light.
+- His hands: low (0.49 m) on her side, just in front of her and a little east (`uncleHands` (HX+0.17, 0.49, HZ+0.13)),
+  ~0.12 m inside the light. Further west they would fall into a pier's shadow, which runs just west of her at this sun.
+  Arm reach is at its limit (IK reach fraction 1.0).
+- **V1a camera** re-aimed: orbit about her eyes, az = her eye-line to his hands + 70 deg, 1.3 m, el 4 (from the east-north-
+  east). She is three-quarter, looking at his hands beside her face; his knees, forearms, watch and hands fill frame
+  left, his head out of frame. Her eyes are +0.06 m inside the light (crown at the edge). Her near cheek is on her shade
+  side from this angle (the lit side faces the doors): the light reads on her far cheek, her shoulder and his hands.
+- V1b (from just behind her eyes onto his hands): now from her side, his left wrist and watch face turned up to her, the
+  object in his cupped right hand; the armchair and the balcony doors beyond.
+
+### 5. Balcony: white wicker chair at the WEST END; white-painted iron railings
+- `BALCONY_CHAIR.at` (-2.8, 0.95), 0.45 m from the balcony's west end, by the front railing, facing east along the
+  balcony (facing is my choice). New reference camera **REF_balcony** (inside, near the couch group, looking out at it).
+- `BALCONY.solid = false`, `railing: 'iron, painted white'`: flat-bar handrail at 0.95 m, a bottom rail, 16 mm square
+  balusters every 0.11 m, a heavier post every ~1.5 m, on an 8 cm concrete curb, along the front and returning at both
+  ends. **Proportions, curb and pattern are my guesses** (plain verticals; a 1930s railing might have had a deco motif).
+- **Flag (facts):** the 1934 drawings (`inputs/refs_shanghai/README.md`) show SOLID parapets on the east unit and iron
+  railings on the WEST unit. Jade's memory wins. Either the parapet was replaced, or the flat is the west one; worth a
+  question (below).
+- Beam: the parapet no longer trims the light; only the curb does (`apertureFor`, 'railing curb'). The balusters' shadows
+  come from the lit-mode shadow maps (stripes on the balcony floor and just inside the doors); the analytic beam masks
+  (`beam_*`) do not include them.
+
+### Open issue fixed: V1h steam "a stick in a mug"
+- The steam was two straight 0.42 m tubes per mug from the mug's centre. Now three thin wisps per mug, starting at
+  different points of the rim, drifting sideways as they rise (0.20-0.26 m), the curl growing with height, broken into
+  four fading dashes (`teaAndSteam` in build.js). In V1h (top-down POV, where any rising wisp foreshortens into a rod)
+  the shot sets `steam: 'soft'`: no opaque line tubes, only the faint volume, so the guides show no sticks.
+
+### Not fixed (engine, not mine to edit)
+- V1g: her fringe stands off her forehead (a box hovering in front of the brow, also visible in V1c's light guide). It
+  lives in `layout/engine/mannequin.js`.
+- Note: another agent was editing `layout/engine/mannequin.js` / `torso.js` during this pass (a syntax error there broke
+  all renders for ~2 minutes, then was fixed). The figures in these renders use whatever torso that engine has now.
+
+### Repaint in r4
+All the lit shots changed light (09:30 cheat, railings): V1a (uncle on the couch end + new camera), V1b (new hands, new camera
+position), V1c, V1d_1/2/4/8, V1d_8_end, V1e, V1f, V1g, V1h, PB1. Reference: REF_plan, REF_wide, REF_doors, REF_latch,
+REF_beam, new REF_balcony.
+
+### Questions for Jade (proposed)
+- **sh_railing_flat**: the 1934 drawings show white iron railings only on the WEST flat's balconies; the east flat had a
+  solid parapet. (a) the railings were in our (east) flat anyway [rec: keep as built] (b) we were in the west flat
+  (c) not sure. Img: shanghai86/REF_balcony_lit.png
+
+
 
 ## 2026-11-26 (round 3: Jade's r2 keyframe review)
 

@@ -24,11 +24,18 @@ export const FLAT = 'east';
 // 08:30 (elev 17.1, az 132.2), which Jade also liked in the light study; on the continuous balcony doors it lights her face,
 // her hands, the uncle's hands, the steam and the whole coffee table (sweep2.mjs; NOTES "round 2 answers"). The 09:30
 // alternative (a cheat: the 09:30 azimuth with the sun lowered to ~19 deg) is in the light study.
-export const SCENE = { date: '1986-12-21', time: '08:30', tzHours: 8, lat: 31.2138, lon: 121.4390 };
+// Round 3 decisions (Jade, 2026-11-26): "9:30 with a cheated, lower sun (only just reaches you)". The time is 09:30 and the
+// sun keeps the REAL 09:30 azimuth (143.76, 23.0 deg east of the facade normal), but its elevation is lowered by hand from
+// the real 25.67 to CHEAT_ELEV, so the top edge of the light (the balcony overhang's shadow) lands right at her face:
+// eyes just inside, crown in shade (sweep_cheat.mjs; NOTES "2026-11-26: round-3 decisions"). A CHEAT, not a real sun.
+const D2R = Math.PI / 180;
+export const CHEAT_ELEV = 21.0;
+const SCENE_BASE = { date: '1986-12-21', time: '09:30', tzHours: 8, lat: 31.2138, lon: 121.4390 };
 export const FACADE_BEARING = 166.8;   // compass bearing of the outward normal of the south (garden) facade
+export const REAL_SUN = sunPosition(SCENE_BASE);
+export const SCENE = { ...SCENE_BASE, cheat: { elev: CHEAT_ELEV, rel: +(REAL_SUN.az - FACADE_BEARING).toFixed(2) } };
 export const FLOOR_ABOVE_GARDEN = 6.6; // 三楼 = two storeys up; only matters for what the windows see
 
-const D2R = Math.PI / 180;
 // ---------------------------------------------------------------- sun position (NOAA solar calculator equations)
 // returns { elev (deg, with refraction), az (deg compass, from north, clockwise) }
 export function sunPosition({ date, time, tzHours, lat, lon }) {
@@ -73,7 +80,10 @@ export const WINDOWS = Array.from({ length: BAYS }, (_, i) => { const x0 = ROOM.
   return { id: `balcony doors, bay ${i + 1} (from the west)`, x0: +x0.toFixed(3), x1: +(x0 + BAY_W).toFixed(3), leaves: LEAVES, ...WIN_COMMON }; });
 export const WINDOW = WINDOWS[0];
 // balcony, one step down, now along the whole room (both rooms opened onto it); solid parapet in the east flat
-export const BALCONY = { x0: ROOM.x0 - 0.25, x1: ROOM.x1 + 0.25, z0: ROOM.wallS, z1: ROOM.wallS + 1.25, floor: -0.05, parapet: 0.95, pT: 0.1, solid: FLAT === 'east', soffit: ROOM.storey - 0.05 - 0.12 };
+// Round 3 decisions (Jade): "the balcony has iron railings painted white". The 1934 drawings show solid parapets on the east
+// unit and iron railings on the west unit; Jade's memory wins (flag): white-painted iron railings on a low concrete curb
+// (curb height is my guess), so only the curb (not a 0.95 m parapet) trims the bottom of the light.
+export const BALCONY = { x0: ROOM.x0 - 0.25, x1: ROOM.x1 + 0.25, z0: ROOM.wallS, z1: ROOM.wallS + 1.25, floor: -0.05, parapet: 0.95, pT: 0.1, solid: false, railing: 'iron, painted white', curb: 0.08, soffit: ROOM.storey - 0.05 - 0.12 };
 // hall doors (Jade): in the NORTH wall, glazed, transom (气窗) above, opening INTO THE HALL. Decision page: the opening is
 // "double or triple" the old 1.6 m and centred on that wall: built 2.5x = 4.0 m, centred on the north wall (x 2.25),
 // four leaves of 1.0 m folding back in pairs against each jamb (a pair of 2 m leaves would not be a real door).
@@ -106,6 +116,7 @@ function apertureFor(W, TX, TY, ok) {
     ['outer reveal, head', 0, 1, W.y1 - TY * outerD],
     ['overhang (balcony above)', 0, 1, B.soffit - TY * ovD],
   ];
+  if (!B.solid && B.curb) HALF.push(['railing curb', 0, -1, -(B.floor + B.curb - TY * parD)]);   // the railing's balusters are left to the shadow maps
   if (B.solid) { HALF.push(['front parapet', 0, -1, -(PTOP - TY * parD)]);
     // the parapet's end on the sun's side (inner face x = XS): the ray reaches it after (x - XS) / TX metres and must
     // then be above its top: y + k (x - XS) >= PTOP, k = TY / TX. Where the ray meets the front first, this is inactive.
@@ -174,17 +185,19 @@ export const SIDE_TABLE = { cx: COUCH.x1 - 0.22, cz: COUCH.z1 + 0.265, w: 0.45, 
 // at the old partition line by the windows, the chair at the table facing the light
 export const CHILD_TABLE = { cx: 3.0, cz: -1.3, w: 0.6, d: 0.45, h: 0.48 };
 export const CHILD_CHAIR = { at: [3.0, -1.3 - 0.225 - 0.19], yaw: 0, seat: 0.27, w: 0.3, d: 0.29, back: 0.52 };
-// wicker lounge chair (藤躺椅). Round 2 answers (Jade): it FACES THE TV. The TV is on the east wall (Jade, round 3b), ~6.5 m
-// from the lounger's round-4 spot by the west doors with the dining table and its chairs in the line of sight, so the
-// lounger moved to the room's east end, south of the dining table, its feet toward the TV ~2.1 m away (my choice: flag).
+// wicker lounge chair (藤躺椅). Round 2 answers (Jade): it FACES THE TV (on the east wall, Jade round 3b).
 // yaw: facing the TV screen (set below, once the TV is placed)
-export const LOUNGER = { at: [6.05, -1.05], yaw: 0, w: 0.6, l: 1.45 };
+// Round 3 decisions (Jade): "wicker lounge chair should be located WEST of the small wooden table and chair, positioned to
+// face the TV". Its foot end is 0.3 m clear of her table's west edge, beside the pair, turned to the TV on the east wall
+// (~5.5 m away; the dining table stands partly in that line: flag).
+export const LOUNGER = { at: [1.75, -1.45], yaw: 0, w: 0.6, l: 1.45 };
 // TV cabinet on the EAST wall (Jade, round 3b: where the sideboard stood, toward the clock), facing west down the room
 export const TV = { x0: ROOM.x1 - 0.48, x1: ROOM.x1, z0: -3.95, z1: -3.05, h: 0.72, wall: 'east' };
 LOUNGER.yaw = +(Math.atan2(TV.x0 - LOUNGER.at[0], (TV.z0 + TV.z1) / 2 - LOUNGER.at[1]) / D2R).toFixed(1);
-// a white wicker armchair (白藤椅) out on the balcony (Jade, round 2 answers); where along the balcony is my choice: in front
-// of bay 2, sideways along the balcony (facing east), so it reads in profile from the room
-export const BALCONY_CHAIR = { at: [0.95, 0.95], yaw: 70, w: 0.62, d: 0.6, seat: 0.4, back: 0.88 };
+// a white wicker armchair (白藤椅) out on the balcony (Jade, round 2 answers). Round 3 decisions (Jade): "the chair should be
+// at the WEST END of the balcony": 0.45 m from the west end railing, by the front railing, facing east along the balcony
+// (which way it faces is my choice)
+export const BALCONY_CHAIR = { at: [BALCONY.x0 + 0.45, 0.95], yaw: 70, w: 0.62, d: 0.6, seat: 0.4, back: 0.88 };
 // Jade, NOT SURE (round 4): a long rectangular table, 8 chairs. Decision page: turned 90 deg (long axis now NORTH-SOUTH, across
 // the room, axis 'z') and its centre moved "up" on the plan = north (toward the hall wall) by 0.4 m (was (4.6, -2.6))
 export const DINING_TABLE = { at: [4.6, -3.0], l: 1.9, w: 0.88, h: 0.76, axis: 'z' };
@@ -217,9 +230,11 @@ export const HER_SPOT = equidistant();
 
 // ---------------------------------------------------------------- places
 const [HX, HZ] = HER_SPOT.at;
-// state A only (r3): the 'across' armchair pulled up beside the table's north end, east of her, turned to face her
-const UC_AT = [HX + 0.99, HZ - 0.085];
-export const UNCLE_CHAIR = { id: 'across (pulled up, state A)', at: UC_AT, yaw: +(Math.atan2(HX - UC_AT[0], HZ - UC_AT[1]) / D2R).toFixed(1), w: AW, d: AD }; const ARMCHAIRS_ACROSS_X = () => ARMCHAIRS[1].at[0];
+// state A. Round-3 decisions (Jade, decision card): "Where does the uncle sit? The end of the couch" (chosen over "the
+// armchair, with your face in his shadow"). He sits ON the couch, on its north end seat (the end nearest her), on the front
+// of the cushion. He is west-south-west of her; the sun comes from the SSE, so he cannot come between her face and it.
+// No furniture moves between states A and B. (UNCLE_CHAIR kept as a name for old imports: null.)
+export const UNCLE_CHAIR = null; const ARMCHAIRS_ACROSS_X = () => ARMCHAIRS[1].at[0];
 export const PLACES = {
   // state B: she sits CROSS-LEGGED (Jade, decision page) at the equidistant spot, facing the table and the windows
   // (south), working on the table's north end
@@ -236,8 +251,10 @@ export const PLACES = {
   // NORTH end, EAST of her, facing her (UNCLE_CHAIR). The sun comes from the SE (yaw ~35 deg from her), so anything due
   // east or north of her cannot shade her face: his body is ~1.2 m north of her face's ray to the sun. In state B the
   // armchair is back across the table. (My choice: flag. The couch-end seat of round 2 is no longer used.)
-  uncleSeat: [UNCLE_CHAIR.at[0] + 0.12 * Math.sin(UNCLE_CHAIR.yaw * D2R), UNCLE_CHAIR.at[1] + 0.12 * Math.cos(UNCLE_CHAIR.yaw * D2R)],   // pelvis on the front of the seat
-  uncleHands: [HX + 0.42, 0.5, HZ + 0.02], jadeStand: HER_SPOT.at,
+  uncleSeat: [COUCH.x1 - 0.05, COUCH.z0 + 0.16 + 0.25],   // pelvis perched on the front edge of the couch's north end seat (inside the 0.16 m arm), leaning in
+  // round-3 decisions: he leans forward from the couch's end seat and holds his hands out low on her side, just in front of
+  // her and a little east (the light's pier-shadow edge runs just west of her: further west his hands would be in shade)
+  uncleHands: [HX + 0.17, 0.49, HZ + 0.13], jadeStand: HER_SPOT.at,
   // everybody else, out of the light
   mother: [DOOR.x0 + 0.5, ROOM.z0 - 0.08],     // in the north doorway, its west end (nearest her daughter), a hand on the west jamb
   grandma: [ARMCHAIRS_ACROSS_X() + 0.08, TABLE.cz],   // in the 'across' armchair (state B), just outside the light

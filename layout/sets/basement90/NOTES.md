@@ -206,3 +206,14 @@ Source: `inputs/diagram_basement.png` (plan, top = back wall). Room unchanged, 4
   there (page rebuilt, 0 missing images, localStorage key unchanged).
 - **Repaint:** every basement keyframe B1-B5 (the room behind them changed: stair, post, washer, no shelf / heater;
   B4's camera moved). Kitchen: K8_glass only if the reflected door edge matters.
+
+## 2026-11-26: round-3 decisions (plan agent)
+
+- **Ceiling light type, decided (Jade, round 3):** "a bare bulb in a porcelain pull-chain holder". The set already models
+  exactly this (`build.js`: grey junction box under the joist, white porcelain lampholder, bare bulb, pull chain), so
+  nothing moved and nothing was re-rendered. Only the "ASSUMED type" wording in `layout.js`/`build.js` comments and the
+  `LIGHTS.ceiling.kind` string changed; the render sidecars (`media/layout/basement90/*.json`) keep the old string until
+  the next render (B1-B5 are re-rendered for r4 anyway).
+- Small, not changed: the bulb is an ellipsoid 60 x 78 mm (an A19 is about 60 x 110 mm, with a neck), and the chain is
+  0.45 m. In B0_wide only the chain shows (top edge); the other B shots were not checked frame by frame, but the bulb sits
+  above and in front of Dad, mostly out of their frames. If a shot ever frames it, make the bulb A19-shaped and the chain ~0.3 m.

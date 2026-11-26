@@ -57,6 +57,15 @@ never in the default `--modes`; render them with `--modes form,contour,light --n
 
 Code: `engine/render.js` `_guide()`, `_formMat()`, `_classify()`, `guideMat` (composite shader).
 
+### Opt-in clothed torso: `torso: 'real'` (2026-11-26)
+
+A figure spec may carry `torso: 'real', sex: 'f' | 'm'` (engine/mannequin.js, geometry in `engine/torso.js`). The
+torso is then a clothed body instead of the swept capsule: separate front and back depths per height, a waist, hips
+(wider for 'f', with a slightly larger pelvis), a bust under a sweater with the cloth tenting below it ('f') or a flat
+pectoral shelf and lats ('m'), shoulder blades and a spine groove; the surface runs a little past the shoulder line so
+the shoulders slope. Same spine frame, arms, clavicles and armpit folds. Default off: figures without the flag build
+exactly as before (checked pixel-identical on office91 BO1). First used by closet02 (round 3).
+
 ## Files
 
 ```
