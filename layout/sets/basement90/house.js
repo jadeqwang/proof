@@ -27,7 +27,7 @@ HOUSE.stair.footX = HOUSE.stair.x0 + (HOUSE.stair.risers - 1) * HOUSE.stair.trea
 // The basement's summer look is a per-shot costume, not a second cast entry. Footwear (Jade 2026-11-25): Jade (7-8) in
 // socks, no shoes; Dad in socks and house slippers, in every basement shot. Colours / slipper style ASSUMED (flagged):
 // her socks plain white cotton; his socks mid grey, slippers plain brown felt slip-on scuffs (open heel), thin sole.
-export const JADE_BASEMENT = { top: 0xe9e2d2, sock: 0xeeeae0, sleeves: 'short' };
+export const JADE_BASEMENT = { top: 0x9a968e, sock: 0xeeeae0, sleeves: 'long' };   // long-sleeved grey sweater (Jade, 2026-11-26)
 export const DAD_BASEMENT = { sock: 0x74767c };
 // set-local footwear (kit.js footwear(), the engine has a sock colour only)
 export const FOOTWEAR = {

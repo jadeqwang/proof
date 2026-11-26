@@ -796,3 +796,6 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - **Basement arms agent done:** B2 new 35 mm camera past the screen's right edge, her arm crosses her own chest to the
   word; B5 natural cat paw (elbow low, wrist ~75 deg, 4.5 cm gap); B4 unchanged pose. Child upper arms are 35-45% too
   thick in the engine (`work/arm_engine_notes.md`); body meshes will replace that. Repaint B2, B4, B5.
+- **Jade, 2026-11-26:** basement top is the long-sleeved grey sweater (`JADE_BASEMENT` in basement90/house.js:
+  0x9a968e, sleeves long). Re-render of basement90 PENDING: the engine was mid-edit (syntax error in the engine
+  agent's file) when tried. Jade approved retrying the Blender/MPFB install; the body-mesh agent is now running.
