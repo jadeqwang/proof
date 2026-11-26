@@ -7,6 +7,7 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, coneSolid, splitAtTop, applyBeamMask } from '../_beam.js';
 import { ROOM, WINDOW, COUNTER, STOVE, FRIDGE, STAIR_DOOR, HALL, CABINET, GLASS, glassCorners, TABLE, SEAT, CHAIRS, OUTRO, PAPER, PENDANT, BEAM_NIGHT, BEAM_DAY, SUN, windowCorners, sunHit, shaftAt, inShaft, MOTE, LIGHTS } from './layout.js';
+import { kitchen } from './kitchen.js';
 import { wall, hexa, polyline, kitchenChair, r3, hideLabels, mirrorMatrix, pointInQuad } from '../basement90/kit.js';
 
 const PLASTER = { grey: 0.78, col: 0xcfc6ae }, LINO = { grey: 0.6, col: 0x9a8f78 }, WOOD = { grey: 0.5, col: 0x8a6a44 }, WOOD_D = { grey: 0.38, col: 0x5e4630 };
@@ -40,15 +41,8 @@ function room(shot) {
 
 function furniture(shot) {
   const g = new THREE.Group(); const { z0 } = ROOM, C = COUNTER, day = shot.light === 'day';
-  // counter run with sink, upper cabinets, stove, fridge
-  g.add(tag(box(C.x1 - C.x0, C.h - 0.04, C.d - 0.03, WHITE, [(C.x0 + C.x1) / 2, (C.h - 0.04) / 2, z0 + (C.d - 0.03) / 2]), 'base cabinets'));
-  g.add(tag(box(C.x1 - C.x0, 0.04, C.d, { grey: 0.66, col: 0xa8a090 }, [(C.x0 + C.x1) / 2, C.h - 0.02, z0 + C.d / 2]), 'counter'));
-  g.add(tag(box(C.sink.w, 0.012, C.sink.d, STEEL, [C.sink.x, C.h + 0.002, z0 + C.d / 2 + 0.02]), 'sink')); g.add(tag(cyl(0.012, 0.012, 0.22, STEEL, [C.sink.x, C.h + 0.11, z0 + 0.1], null, 8), 'tap')); g.add(tag(cyl(0.01, 0.01, 0.16, STEEL, [C.sink.x, C.h + 0.215, z0 + 0.17], [90, 0, 0], 8), 'tap'));
-  for (const [a, b] of C.uppers) g.add(tag(box(b - a, C.upperY1 - C.upperY0, C.upperD, WHITE, [(a + b) / 2, (C.upperY0 + C.upperY1) / 2, z0 + C.upperD / 2]), 'upper cabinets'));
-  const S = STOVE; g.add(tag(box(S.x1 - S.x0 - 0.01, S.h, S.d, WHITE, [(S.x0 + S.x1) / 2, S.h / 2, z0 + S.d / 2]), 'stove')); g.add(tag(box(S.x1 - S.x0 - 0.01, 0.14, 0.05, WHITE, [(S.x0 + S.x1) / 2, S.h + 0.07, z0 + 0.03]), 'stove'));
-  for (const [dx, dz] of [[-0.18, 0.2], [0.18, 0.2], [-0.18, 0.46], [0.18, 0.46]]) g.add(tag(cyl(0.085, 0.085, 0.01, DARK, [(S.x0 + S.x1) / 2 + dx, S.h + 0.005, z0 + dz], null, 16), 'stove'));
-  g.add(tag(box(0.5, 0.3, 0.008, DARK, [(S.x0 + S.x1) / 2, 0.5, z0 + S.d + 0.004]), 'oven door'));
-  const F = FRIDGE; g.add(tag(box(F.x1 - F.x0, F.h, F.d, WHITE, [(F.x0 + F.x1) / 2, F.h / 2, z0 + F.d / 2]), 'refrigerator')); g.add(tag(box(F.x1 - F.x0, 0.012, 0.012, DARK, [(F.x0 + F.x1) / 2, F.h * 0.7, z0 + F.d + 0.006]), 'refrigerator')); g.add(tag(box(0.025, 0.3, 0.03, STEEL, [F.x0 + 0.06, F.h * 0.55, z0 + F.d + 0.02]), 'refrigerator'));
+  // counter run, sink, backsplash, upper cabinets, range, refrigerator and the counter items: all fixed (kitchen.js, r4)
+  g.add(kitchen());
   // china cabinet: base cupboard, carcass, shelves with dishes, glazed doors (one glass quad = the reflection pane)
   const K = CABINET, kd = K.x1 - K.x0, kc = (K.z0 + K.z1) / 2, kw = K.z1 - K.z0, G = K.glass;
   g.add(tag(box(kd, K.baseH, kw, WOOD_D, [(K.x0 + K.x1) / 2, K.baseH / 2, kc]), 'china cabinet'));
@@ -73,6 +67,13 @@ function furniture(shot) {
   g.add(tag(ball(0.035, { grey: 0.9, col: 0xfff0d0, emit: on ? 0xffd9a0 : undefined, emitI: 2.5, flatEmit: 0.97 }, [P.x, P.bulbY, P.z]), on ? 'pendant bulb (the beam source)' : 'pendant bulb (off)'));
   // the paper she writes on (night scene)
   if (shot.paper) { const m = box(PAPER.w, 0.0012, PAPER.h, { grey: 0.97, col: 0xf2efe4 }, PAPER.c); m.rotation.y = rad(PAPER.yaw); g.add(tag(m, 'paper: “it was correct”')); }
+  // (r4) K1: her homework (Jade), an open workbook (INVENTED: a softcover math workbook, blue cover, printed rows);
+  // the right-hand page as she sits is centred on PAPER.c, where her pencil hand goes
+  if (shot.homework) { const pw = 0.2, ph = 0.27, cx = PAPER.c[0] + pw / 2, cz = PAPER.c[2], y = TABLE.h;
+    g.add(tag(box(2 * pw + 0.012, 0.004, ph + 0.01, { grey: 0.42, col: 0x3d5f8f }, [cx, y + 0.002, cz]), 'homework (open workbook)'));
+    for (const s of [-1, 1]) { const m = box(pw, 0.004, ph, { grey: 0.96, col: 0xf4f1e6 }, [cx + s * pw / 2, y + 0.006, cz]); m.rotation.z = s * 0.03; g.add(tag(m, 'homework (open workbook)'));
+      for (let k = 0; k < 7; k++) g.add(tag(box(pw * 0.72, 0.0006, 0.004, { grey: 0.55, col: 0x8a8a8a }, [cx + s * pw / 2, y + 0.0085 + (s < 0 ? 0 : 0) + Math.abs(s * pw / 2) * 0.03 * 0, cz + ph / 2 - 0.035 - k * 0.032]), 'homework (printed rows)')); }
+    g.add(tag(box(0.05, 0.012, 0.022, { grey: 0.85, col: 0xe8a8a8 }, [cx + pw + 0.06, y + 0.006, cz - 0.08]), 'eraser (pink)')); }
   return g;
 }
 const paperCorners = () => { const a = rad(PAPER.yaw), c = Math.cos(a), s = Math.sin(a), P = (dx, dz) => V(PAPER.c[0] + dx * c + dz * s, PAPER.c[1] + 0.001, PAPER.c[2] - dx * s + dz * c);
@@ -141,6 +142,8 @@ export function build(shot, { makeCam }) {
         : { name: BEAM_NIGHT.name, model: 'cone straight down from the bulb, cut off by the shade rim', color: '#ffc98a', apex: pt(BEAM_NIGHT.apex), axis: BEAM_NIGHT.axis, half_angle_deg: BEAM_NIGHT.halfAngleDeg,
           cutoff_plane_y: PENDANT.shadeBottom, radius_on_table_m: +BEAM_NIGHT.radiusAt(TABLE.h).toFixed(2), radius_on_floor_m: +BEAM_NIGHT.radiusAt(0).toFixed(2), note: BEAM_NIGHT.note,
           heads_in_cone: Object.fromEntries(Object.entries(figs).map(([w, f]) => { const e = f.userData.P.eyes; return [w, e.y < PENDANT.shadeBottom && Math.hypot(e.x - PENDANT.x, e.z - PENDANT.z) < BEAM_NIGHT.radiusAt(e.y)]; })) } };
+    if (!day && figs.dad && figs.mama90) { const m = figs.dad.userData.P.mouth, e = figs.mama90.userData.P.earR;   // (r4) the whisper: Dad's mouth at Mama's right ear
+      out.whisper = { dad_mouth: pt(m), mama_earR: pt(e), gap_m: +m.distanceTo(e).toFixed(3) }; }
     return out; };
   // the mask twin (beam_<id>): white = the lit volume of the scene's one light, everything else black.
   //   day:   the window opening swept along SUN.dir to the floor / front wall / right wall

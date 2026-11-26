@@ -81,3 +81,36 @@ understand or just pattern match?'"
 `HOUSE.stairDoor` z 1.05..1.85 -> 0.5..1.25 (0.75 m): the basement stair now runs along the front wall, so the door
 opens onto a landing behind the flight. Re-rendered; visibly changed: K0_plan, K0_wide_night, K8_glass (reflected door
 edge behind Mama). Not modelled: the stairwell opening under this room's front-left corner (x -1.8..-0.6, z 1.3..2.1).
+
+## 2026-11-26: r4 set fixes (Jade's r3 notes on K1)
+
+Jade: K1_question "have mom and dad closer, and dad is whispering into mom's ear, camera pans up from her doing homework
+to them talking; also stage all the kitchen counter items and cabinetry explicitly so they don't hop around between
+clips"; K1_question_end "have dad whispering into her ear, also stage all the kitchen counter items explicitly".
+
+- **The whisper (`NIGHT`, shots.js `dadWhisper` / `mamaListen`).** The parents stand close together behind her chair
+  (pelvises 0.33 m apart; were 1.16 m apart, facing each other). Mama at (-0.5, -0.88), turned 18 deg toward Dad, head
+  tilted a little toward him, eyes down on the child: listening. Her left hand rests on the child's chair back. Dad at
+  (-0.83, -0.96) on her right (screen left), bent 14 deg, his mouth 5.8 cm from her right ear (sidecar `whisper`,
+  `gap_m`), his right hand (camera side) cupped beside his mouth, his left at the small of her back. `NIGHT` is used by
+  K0_wide_night, K1_question_wide, K2_taps, K3_understood, so those guides show the whisper too.
+- **Homework (`HOMEWORK`, K1 only).** She writes in an open workbook, pencil in her right hand on the right-hand page
+  (centred on `PAPER.c`), left hand flat on the other page, head down. Workbook (blue softcover, printed rows) and a pink
+  eraser are INVENTED (Jade said only "homework"). K1_question_end aim moved from Mama's eyes at u 0.68 to 0.62, so both
+  heads sit in the frame; still a pure pan/tilt from the same position and lens.
+- **The kitchen, modelled explicitly (`kitchen.js`, new).** All INVENTED, a c.1990 Decatur builder kitchen (propose as a
+  question): honey-oak face-frame cabinets with raised-panel doors, antique-brass wire pulls, visible hinges, dark toe
+  kick; almond laminate counter with a 4 in lip; almond 4 1/4 in tile backsplash (grout lines modelled) to the uppers,
+  under the window to the sill, behind the range to the hood; stainless double-bowl sink (0.84 m, under the window) with
+  a single-lever chrome faucet and side spray; almond electric range (coil burners on chrome drip pans, backguard with
+  clock and 4 knobs, oven window, handle, storage drawer) with an almond hood and a short cabinet above; almond
+  top-freezer refrigerator (handles left, hinges right, toe grille) with a cabinet above. Base bays left to right:
+  4-drawer bank, drawer-over-door, sink base (2 false fronts, 2 doors), filler. Uppers: 2 doors left of the window,
+  2 over the range (was a full-height box at 0.46 m over the burners), 2 over the fridge.
+- **Counter items, fixed (`ITEMS`), all INVENTED:** three brown stoneware canisters with oak lids (left corner); a
+  white rice cooker; a white wire dish rack on an almond drainboard with three plates, an upturned rice bowl and two
+  glasses (left of the sink); paper towels on an oak holder under the left upper cabinet; a green dish-soap bottle and a
+  yellow sponge right of the sink; a red enamel kettle on the back-left burner. The window sill is empty on purpose.
+  Not here: anything on the walls or fridge door (clock, calendar, phone, magnets): the background-art agent's.
+- Sources: general knowledge of 1985-92 US builder kitchens (no web images used).
+- `house.js` not touched.

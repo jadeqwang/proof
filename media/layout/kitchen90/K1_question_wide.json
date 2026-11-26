@@ -250,37 +250,37 @@
   },
   "dad": {
    "px": [
-    674.5,
-    423
+    953.6,
+    444
    ],
    "eyes": [
-    726.5,
-    422.1
+    999.8,
+    458.2
    ],
    "mouth": [
-    723.2,
-    455.5
+    987.6,
+    489.7
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 78
+   "facing_camera_deg": 69
   },
   "mama90": {
    "px": [
-    1252.8,
-    481.1
+    1056.3,
+    491
    ],
    "eyes": [
-    1204.7,
-    473.9
+    1047.3,
+    502.1
    ],
    "mouth": [
-    1203.5,
-    505.4
+    1047.6,
+    533
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 79
+   "facing_camera_deg": 21
   }
  },
  "hands": {
@@ -304,39 +304,39 @@
   },
   "dad.L": {
    "px": [
-    709.8,
-    863.1
+    1055.2,
+    697.2
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "dad.R": {
    "px": [
-    787.3,
-    628.3
+    1006.9,
+    515.6
    ],
-   "shape": "palmUp",
+   "shape": "relax",
    "in_frame": true,
    "visible": true
   },
   "mama90.L": {
    "px": [
-    1333.6,
-    912.1
+    1073.1,
+    815.7
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "mama90.R": {
    "px": [
-    1193.1,
-    683.5
+    961.8,
+    894.8
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": true
+   "visible": false
   }
  },
  "lights": [
@@ -429,6 +429,31 @@
    "mama90": false
   }
  },
+ "whisper": {
+  "dad_mouth": {
+   "world": [
+    -0.6433,
+    1.5043,
+    -0.8274
+   ],
+   "px": [
+    987.6,
+    489.7
+   ]
+  },
+  "mama_earR": {
+   "world": [
+    -0.5891,
+    1.5021,
+    -0.8071
+   ],
+   "px": [
+    1016.2,
+    489
+   ]
+  },
+  "gap_m": 0.058
+ },
  "figure_report": {
   "jade7": {
    "legs": {
@@ -455,10 +480,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.59
+    "L": 0.57,
+    "R": 0.47
    },
-   "headTurn": 22
+   "headTurn": 9
   },
   "mama90": {
    "legs": {
@@ -470,10 +495,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.84
+    "L": 0.92,
+    "R": 0.97
    },
-   "headTurn": -22
+   "headTurn": 2
   }
  }
 }

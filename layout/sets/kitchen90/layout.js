@@ -11,7 +11,7 @@ export { HOUSE };
 
 export const ROOM = { ...HOUSE.kitchen, wallT: 0.12 };
 export const WINDOW = { x: -0.3, z: ROOM.z0, sill: 1.07, w: 1.1, h: 1.0, frame: 0.05, depth: 0.14 };       // double-hung over the sink
-export const COUNTER = { x0: -1.8, x1: 0.25, d: 0.62, h: 0.91, sink: { x: -0.3, w: 0.56, d: 0.4 }, uppers: [[-1.8, -0.93], [0.25, 1.01]], upperY0: 1.37, upperY1: 2.13, upperD: 0.32 };
+export const COUNTER = { x0: -1.8, x1: 0.25, d: 0.62, h: 0.91, sink: { x: -0.3, w: 0.84, d: 0.48 }, upperY0: 1.37, upperY1: 2.13, upperD: 0.32 };   // cabinet bays, sink, items: kitchen.js
 export const STOVE = { x0: 0.25, x1: 1.01, d: 0.66, h: 0.91 };
 export const FRIDGE = { x0: 1.04, x1: 1.78, d: 0.74, h: 1.68 };
 export const STAIR_DOOR = HOUSE.stairDoor;                                  // left wall, closed

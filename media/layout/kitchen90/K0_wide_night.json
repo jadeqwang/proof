@@ -250,37 +250,38 @@
   },
   "dad": {
    "px": [
-    769.6,
-    345.4
+    907.2,
+    352.6
    ],
    "eyes": [
-    791.6,
-    344.2
+    924.3,
+    363.5
    ],
    "mouth": [
-    791.1,
-    364.9
+    922,
+    383.6
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 44
+   "facing_camera_deg": 40,
+   "blocked_by": "mama90 Mama (1990, Decatur)"
   },
   "mama90": {
    "px": [
-    1059.9,
-    379.6
+    949,
+    386.8
    ],
    "eyes": [
-    1031.4,
-    374.6
+    925,
+    399.4
    ],
    "mouth": [
-    1030.5,
-    397
+    931.9,
+    418.1
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 122
+   "facing_camera_deg": 58
   }
  },
  "hands": {
@@ -304,26 +305,26 @@
   },
   "dad.L": {
    "px": [
-    829.1,
-    594.5
+    989,
+    513.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    918.5,
+    404.4
    ],
    "shape": "relax",
    "in_frame": true,
    "visible": true
   },
-  "dad.R": {
-   "px": [
-    787.6,
-    478.3
-   ],
-   "shape": "palmUp",
-   "in_frame": true,
-   "visible": true
-  },
   "mama90.L": {
    "px": [
-    1045.8,
-    682.4
+    885.7,
+    606.2
    ],
    "shape": "relax",
    "in_frame": true,
@@ -331,8 +332,8 @@
   },
   "mama90.R": {
    "px": [
-    958.1,
-    530.5
+    931.5,
+    631.3
    ],
    "shape": "relax",
    "in_frame": true,
@@ -429,6 +430,31 @@
    "mama90": false
   }
  },
+ "whisper": {
+  "dad_mouth": {
+   "world": [
+    -0.6433,
+    1.5043,
+    -0.8274
+   ],
+   "px": [
+    922,
+    383.6
+   ]
+  },
+  "mama_earR": {
+   "world": [
+    -0.5891,
+    1.5021,
+    -0.8071
+   ],
+   "px": [
+    932.1,
+    384.4
+   ]
+  },
+  "gap_m": 0.058
+ },
  "figure_report": {
   "jade7": {
    "legs": {
@@ -455,10 +481,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.59
+    "L": 0.57,
+    "R": 0.47
    },
-   "headTurn": 22
+   "headTurn": 9
   },
   "mama90": {
    "legs": {
@@ -470,10 +496,10 @@
     }
    },
    "arms": {
-    "L": 0.97,
-    "R": 0.84
+    "L": 0.92,
+    "R": 0.97
    },
-   "headTurn": -22
+   "headTurn": 2
   }
  }
 }

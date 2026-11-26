@@ -23,8 +23,18 @@ const jadeAtTable = (o = {}) => ({ at: [CHAIRS.jade[0], CHAIRS.jade[1] + 0.06], 
 // the parents stand behind her, either side, facing each other across the top of her head
 const dadTalk = (o = {}) => ({ at: [-1.28, -0.8], legs: 'stand', yaw: 68, spine: { bend: 3 }, head: { look: 'mama90:eyes' }, R: { to: [-1.0, 1.22, -0.62], hand: 'palmUp', palm: 'up', fingers: [1, 0.1, 0.2] }, L: 'side', ...o });
 const mamaTalk = (o = {}) => ({ at: [-0.12, -0.8], legs: 'stand', yaw: -68, spine: { bend: 3 }, head: { look: 'dad:eyes' }, R: { to: [-0.3, 1.12, -0.55], hand: 'relax', palm: 'in', fingers: [-1, 0.3, 0.2] }, L: 'side', ...o });
-const NIGHT = { jade7: jadeAtTable(), dad: dadTalk(), mama90: mamaTalk() };
+// (r4, 2026-11-26, Jade: "have mom and dad closer, and dad is whispering into mom's ear") the parents stand close
+// together behind her chair: Mama turned a little toward Dad, listening, her eyes down on the child; Dad beside her
+// (screen left), bent in, his mouth at her right ear, his right hand (camera side) cupped beside his mouth, his left at the small of her back; her left hand rests on the
+// top of the child's chair back.
+const dadWhisper = (o = {}) => ({ at: [-0.83, -0.96], legs: 'stand', yaw: 62, spine: { bend: 14, side: 6 }, head: { look: 'mama90:earR' },
+  R: { to: 'dad:mouth', off: [0.035, -0.06, 0.06], hand: 'relax', palm: [0.5, 0, -0.6], fingers: [0.2, 1, 0.4] }, L: { to: 'mama90:shoulderC', off: [0, -0.2, -0.12], hand: 'relax', palm: [0.3, 0, 1] }, ...o });   // R = camera side (he faces +x)
+const mamaListen = (o = {}) => ({ at: [-0.5, -0.88], legs: 'stand', yaw: -18, spine: { bend: 4 }, head: { look: [-0.72, 0.8, -0.1], tilt: -6 }, R: 'side', L: { to: [-0.51, 0.9, -0.5], hand: 'relax', palm: 'down' }, ...o });   // left hand on the back of the child's chair
+const NIGHT = { jade7: jadeAtTable(), dad: dadWhisper(), mama90: mamaListen() };
 // she writes: right hand holds the pencil on the paper, left hand steadies the sheet, head down
+// (r4) K1: she is doing her homework (Jade): an open workbook, pencil in her right hand on the right-hand page, left hand
+// flat on the other page, head down; the parents whisper over her head (NIGHT)
+const HOMEWORK = { ...NIGHT, jade7: jadeAtTable({ spine: { bend: 14 }, head: { look: 'paper', pitchK: 0.8 }, R: { to: 'paper', off: [-0.035, 0.035, -0.02], hand: 'pinch', palm: 'down', fingers: [0.3, -0.3, 1] }, L: { to: 'paper', off: [0.2, 0.0, 0.0], hand: 'flat', palm: 'down' } }) };
 const WRITE = { jade7: jadeAtTable({ spine: { bend: 16 }, head: { look: 'paper', pitchK: 0.8 }, R: { to: 'paper', off: [-0.035, 0.035, -0.02], hand: 'pinch', palm: 'down', fingers: [0.3, -0.3, 1] }, L: { to: 'paper', off: [0.13, 0.02, 0.0], hand: 'flat', palm: 'down' } }),
   dad: dadTalk({ head: { look: 'paper' }, R: 'side' }), mama90: mamaTalk({ head: { look: 'dad:eyes' }, R: 'side' }) };
 // ---------------------------------------------------------------- day: outro
@@ -57,9 +67,9 @@ export const SHOTS = [
   // rises until the frame is mostly the parents, ending on Mama's face (K1_question_end). The end frame is painted as a
   // science-textbook figure; its caption "Did she understand or just pattern match?" is laid on in code, not painted.
   // The old locked-off frontal wide (lens 28, her eyes at v 0.66) is kept as K1_question_wide for reference.
-  { id: 'K1_question', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.42], light: 'night', figs: NIGHT, focus: ['jade7'], time: '2:22.2-2:23.7 the question (tilt START)', position: 'outside',
+  { id: 'K1_question', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.42], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', focus: ['jade7'], time: '2:22.2-2:23.7 the question (tilt START)', position: 'outside',
     header: 'the question 2:22.2 OUTSIDE, tilt START: on her face at the table; the parents’ torsos at the edges', intent: 'Start of a slow tilt up from one fixed camera across the table: Jade small in the lamp’s cone, fingers tapping; Dad and Mama standing behind her either side, only their bodies and talking hands in frame, their heads above the top edge.' },
-  { id: 'K1_question_end', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['mama90:eyes', 0.68, 0.36], light: 'night', figs: NIGHT, focus: ['mama90'], time: '2:22.2-2:23.7 the question (tilt END)', position: 'outside',
+  { id: 'K1_question_end', lens: 60, pos: [-0.7, 1.0, 2.0], aim: ['mama90:eyes', 0.62, 0.36], light: 'night', figs: HOMEWORK, homework: true, pencil: 'jade7', focus: ['mama90'], time: '2:22.2-2:23.7 the question (tilt END)', position: 'outside',
     header: 'the question 2:23.7 OUTSIDE, tilt END: mostly the parents, ending on Mama; science-textbook figure', intent: 'End of the tilt up (same camera as K1_question): the frame is mostly the two parents talking over her head, settling on Mama’s face; only the top of the child’s head at the bottom edge. Painted as a science-textbook illustration with a caption band (caption laid on in code).' },
   { id: 'K1_question_wide', lens: 28, pos: [-0.7, 1.0, 2.0], aim: ['jade7:eyes', 0.5, 0.66], light: 'night', figs: NIGHT, focus: ['jade7'], time: 'reference (r2 K1 frame)', position: 'reference',
     header: 'r2 K1 frame (superseded by the tilt): frontal on her at the table; parents talk over her head', intent: 'Frontal, level, locked off, across the table: Jade small in the lamp’s cone; Dad and Mama standing behind her either side, talking across the top of her head. Kept for reference only.' },
