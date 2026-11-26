@@ -141,8 +141,8 @@
  "hands": {
   "jade10.L": {
    "px": [
-    1081.7,
-    890.9
+    1059.4,
+    914.1
    ],
    "shape": "cup",
    "in_frame": true,
@@ -150,8 +150,8 @@
   },
   "jade10.R": {
    "px": [
-    914.7,
-    890.3
+    936.9,
+    913.6
    ],
    "shape": "cup",
    "in_frame": true,
@@ -419,104 +419,6 @@
   },
   "plate_count": [
    {
-    "F": 5,
-    "winding_on_plate": "anticlockwise",
-    "numerals": [
-     {
-      "numeral": 1,
-      "arm": 1,
-      "bracts": [
-       6,
-       11,
-       16,
-       21,
-       26,
-       31
-      ],
-      "numeral_bract": 31,
-      "numeral_bract_px": [
-       1047.1,
-       915.3
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": null
-     },
-     {
-      "numeral": 2,
-      "arm": 4,
-      "bracts": [
-       9,
-       14,
-       19,
-       24,
-       29
-      ],
-      "numeral_bract": 29,
-      "numeral_bract_px": [
-       1046,
-       871.6
-      ],
-      "numeral_bract_faces_camera": true,
-      "last_facing_bract": 29
-     },
-     {
-      "numeral": 3,
-      "arm": 2,
-      "bracts": [
-       7,
-       12,
-       17,
-       22,
-       27
-      ],
-      "numeral_bract": 27,
-      "numeral_bract_px": [
-       947.3,
-       854
-      ],
-      "numeral_bract_faces_camera": true,
-      "last_facing_bract": 27
-     },
-     {
-      "numeral": 4,
-      "arm": 0,
-      "bracts": [
-       5,
-       10,
-       15,
-       20,
-       25,
-       30
-      ],
-      "numeral_bract": 30,
-      "numeral_bract_px": [
-       929.8,
-       895.6
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": null
-     },
-     {
-      "numeral": 5,
-      "arm": 3,
-      "bracts": [
-       8,
-       13,
-       18,
-       23,
-       28
-      ],
-      "numeral_bract": 28,
-      "numeral_bract_px": [
-       995.2,
-       905.2
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": null
-     }
-    ]
-   },
-   {
     "F": 8,
     "winding_on_plate": "clockwise",
     "numerals": [
@@ -650,6 +552,104 @@
       ],
       "numeral_bract_faces_camera": true,
       "last_facing_bract": 24
+     }
+    ]
+   },
+   {
+    "F": 5,
+    "winding_on_plate": "anticlockwise",
+    "numerals": [
+     {
+      "numeral": 1,
+      "arm": 1,
+      "bracts": [
+       6,
+       11,
+       16,
+       21,
+       26,
+       31
+      ],
+      "numeral_bract": 31,
+      "numeral_bract_px": [
+       1047.1,
+       915.3
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": null
+     },
+     {
+      "numeral": 2,
+      "arm": 4,
+      "bracts": [
+       9,
+       14,
+       19,
+       24,
+       29
+      ],
+      "numeral_bract": 29,
+      "numeral_bract_px": [
+       1046,
+       871.6
+      ],
+      "numeral_bract_faces_camera": true,
+      "last_facing_bract": 29
+     },
+     {
+      "numeral": 3,
+      "arm": 2,
+      "bracts": [
+       7,
+       12,
+       17,
+       22,
+       27
+      ],
+      "numeral_bract": 27,
+      "numeral_bract_px": [
+       947.3,
+       854
+      ],
+      "numeral_bract_faces_camera": true,
+      "last_facing_bract": 27
+     },
+     {
+      "numeral": 4,
+      "arm": 0,
+      "bracts": [
+       5,
+       10,
+       15,
+       20,
+       25,
+       30
+      ],
+      "numeral_bract": 30,
+      "numeral_bract_px": [
+       929.8,
+       895.6
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": null
+     },
+     {
+      "numeral": 5,
+      "arm": 3,
+      "bracts": [
+       8,
+       13,
+       18,
+       23,
+       28
+      ],
+      "numeral_bract": 28,
+      "numeral_bract_px": [
+       995.2,
+       905.2
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": null
      }
     ]
    }
@@ -1105,8 +1105,8 @@
      0.9337,
      0.7246
     ],
-    "plate_numeral5": 3,
-    "plate_numeral8": 1
+    "plate_numeral8": 1,
+    "plate_numeral5": 3
    },
    {
     "n": 28,
@@ -1123,8 +1123,8 @@
      0.8842,
      0.6506
     ],
-    "plate_numeral5": 5,
-    "plate_numeral8": 4
+    "plate_numeral8": 4,
+    "plate_numeral5": 5
    },
    {
     "n": 29,
@@ -1141,8 +1141,8 @@
      0.9234,
      0.7082
     ],
-    "plate_numeral5": 2,
-    "plate_numeral8": 7
+    "plate_numeral8": 7,
+    "plate_numeral5": 2
    },
    {
     "n": 30,
@@ -1159,8 +1159,8 @@
      0.8999,
      0.7043
     ],
-    "plate_numeral5": 4,
-    "plate_numeral8": 2
+    "plate_numeral8": 2,
+    "plate_numeral5": 4
    },
    {
     "n": 31,
@@ -1177,8 +1177,8 @@
      0.883,
      0.662
     ],
-    "plate_numeral5": 1,
-    "plate_numeral8": 5
+    "plate_numeral8": 5,
+    "plate_numeral5": 1
    }
   ]
  },
@@ -3525,8 +3525,8 @@
     }
    },
    "arms": {
-    "L": 0.7,
-    "R": 0.7
+    "L": 0.78,
+    "R": 0.79
    },
    "headTurn": 0
   },

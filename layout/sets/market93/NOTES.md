@@ -1,5 +1,92 @@
 # market93: produce aisle, Marketplace on Oakton, Skokie, 1993
 
+## 2026-11-26: round-4 set fixes (Jade's r3 review: M2, M3, M4 hands; M4b child's arm; new M4c)
+
+Jade: M2 "the hands look so weird! ... image search for what it should look like when 2 hands are holding artichokes";
+M3 "hands look super weird and unrealistic"; M4 "three.js hand model is messed up, hands don't move that way"; M4b
+"mom's hand is correct but kid Jade's arm is incorrectly proportioned ... a version of this shot at 2:14.2-2:15.2 ...
+have mom pick her up and yoink her out of the way and gesture to old lady to pass". M1, M5, M6: Good.
+
+### Grip specs from reference photos
+
+Sources (looked at for modelling only; never copied into the repo, never sent to an image model): pixel-shot.com stock
+previews i-2404949-0 (man, two hands cradling one artichoke at the waist, front view), i-2404930-0 and i-2404931-0
+(woman, the same hold, stem hanging), i-2404945-0 (two artichokes in two hands), i-1739791-0 / i-1739793-0 (hands
+pulling a halved artichoke apart: thumbs on the cut face, fingers on the bracts); parenting / clinical-hold pages for
+the lift and the forearm grip (romper.com "how to properly pick up your toddler", bambiweb.org "Within Arm's Reach",
+CDC "How to hold your child during vaccination", Minnesota Dept of Health comfort-hold sheets). Search: Claude Code
+WebSearch.
+
+- **Two-hand cradle (M1, M2, M3, M4, M4c).** The artichoke sits in a bowl made by both palms, NOT held from the sides with
+  the fingers over the crown. Palms up under the lower flank, each about 50 deg round from the base toward its own side;
+  the little-finger edges 3-4 cm apart (touching or overlapping in the adult photos) under the base, the cut stem hanging
+  between them. Fingers point forward (away from her) under the base and a little across toward the other hand, slightly
+  spread over the bracts (~10 deg), curled to follow the globe (MCP ~35, PIP ~42, DIP ~24): the fingertips come up the far
+  flank to about a third of its height. Thumbs lie along the outer flanks toward the equator, pointing forward/up, never over
+  the crown. Wrists supinated (palm up), neutral to a little extended; forearms enter from below at ~30-45 deg to each other,
+  elbows soft at her sides. From her own eyes (M2/M3) only the two thumbs and the outer edges of the hands show at the sides
+  of the globe, the fingertips peeking round the far rim; from the front (M1) the curled fingers of both hands cover the
+  lower front of the globe and meet under it.
+- **One-hand clutch (M4b, left hand).** Palm under the base and the near-lower flank (30 deg round from the base), fingers
+  spread up the far flank, thumb up the near flank, the artichoke pressed against her stomach.
+- **Adult hand on a child's forearm (M4, M4b).** Palm on top of the forearm (tilted toward the child), four fingers over
+  the top and round the far side, thumb round the near side under it, at mid-forearm (clear of the wrist). The wrist is
+  straight: the hand continues the line of the adult's forearm, which comes in nearly level and square to the child's
+  forearm (adult bent at the waist, elbow dropped); the hand never hangs off the wrist at 90 deg (the r3 M4 guide's fault).
+- **One-arm lift of a 10-year-old (M4c).** The arm goes round the child's back and under the far armpit, the hand spread on
+  the front of her ribs (the torso is gripped, not the arms: pulling by the arms is the nursemaid's-elbow injury the
+  clinical pages warn about); the child is clamped against the adult's hip, lifted a hand's breadth, feet dangling; the
+  adult leans away from the load (spine side ~8 deg) on a wide stance.
+- **"Go ahead" gesture (M4c).** Arm low and forward toward the person, elbow soft, palm up and open, fingers extended along
+  the way they should go; eyes on the person.
+
+The grips are written as world palm-centre targets, palm normals and finger directions (`cradle()` / `artFrame()` in
+shots.js) so they carry over when the engine's grasp module and rigged body meshes land; nothing in layout/engine/ was
+edited. The current mannequin hands show the intent but stay blocky: the hands are where repaint quality depends on the
+body meshes.
+
+### Per shot
+
+- **M1, M2, M3 (and M4, M4c): the cradle.** `jadeStudy` hands were `palm: 'in'` on the sides, fingers 'fwd': from her
+  eyes the fingers reached over the crown and the r3 painting drew palms facing her. Now `cradle(ART_HELD, 'L'|'R')`.
+  M1 changed visibly in the guide (the hands now meet under the artichoke); Jade passed M1's painting, so it need not be
+  repainted unless the lead wants the guide and painting to match.
+- **M2 / M3 numerals re-synced** to the regenerated `artichoke_plate_count.json` (not regenerated here; clip 0 = 2:09.2):
+  1 2:09.55-2:10.07, 2 2:10.19-2:10.68, 3 2:10.80-2:11.25, 4 2:11.37-2:11.79, 5 2:11.91-2:12.29 (straddles the M2/M3 cut at
+  2:12.2), 6 2:12.41-2:12.77, 7 2:12.89-2:13.22, 8 2:13.34-2:13.65. So M2 carries 1-4 plus arm 5 drawing; M3 finishes 5 and
+  writes 6, 7 and 8. **The count now completes (8 of 8) before the hand at 2:14.2** (Jade's plate note "finish at 8"); the
+  plan's "the count is one short when the hand takes her forearm" no longer holds (flagged for the lead).
+- **M4 (the grab)**: Mama bent at the waist (bend 24), elbow dropped (`elbowAt`), palm tilted toward the girl, grip at
+  mid-forearm: wrist straight. Now an ALTERNATE (its slot goes to M4c, below).
+- **M4b (pull)**: the child's arm. Cause was staging, not the body: the pulled right arm was folded ~90 deg with the forearm
+  pointing at the lens, so the upper arm disappeared in M1's camera and the painter stretched one long forearm. Now drawn
+  out sideways toward Mama across the picture plane (elbow soft, `elbowAt`), upper arm / elbow / forearm each at true
+  length; Mama stepped back to (-0.22, 0.72) to make room; Mama's hand unchanged. The artichoke now sits in her LEFT hand
+  against her stomach (`art` frame `PULL_ART`; it used to float where both hands held it). The engine's child upper arms are
+  still 35-45 % too thick (work/arm_engine_notes.md): body-mesh item, not staging.
+- **M4c (NEW, 2:14.2-2:15.2, M1's camera)**: blocking `LIFT`. Mama at the girl's right, turned to face the grandmother
+  (back three-quarters to camera), right arm round the girl's back, hand on the front of her left ribs; the girl lifted
+  10 cm (`floor: 0.10`), feet dangling, artichoke cradled at her stomach, eyes on it; Mama's left arm out low toward the
+  grandmother, palm up, "go ahead"; Mama looks at her. Facing Mama toward the camera was tried and rejected: the
+  grandmother is straight behind her (beyond head + eye turn), and the girl hid her. Mama's head is cut at the top edge
+  (as in M4b). The feet are below the frame edge: the lift reads from the arm round her and the intent text.
+- **build.js**: `shot.art` may now be a frame `{ at, axis, left }` (held somewhere other than ART_HELD); `art:L/R` use it.
+
+### Lead's decision (later the same day; supersedes the M4b and M4c lines above)
+
+- **M4c (2:14.2-2:15.2)** keeps the LIFT blocking; camera = M1 / r3-M4b's camera line, dollied back into the cross aisle and
+  moved over the aisle (pos [0.86, 1.30, 3.05], 32 mm, aimed lower) so her dangling feet (10 cm up), Mama's open-palm
+  gesture (left arm now out wider) and the grandmother are all in frame. Header marks the lift "(Jade, 2026-11-26)".
+- **M4b (2:15.2-2:16.1) = THE LANDING** (blocking `LAND`): set down at the island's edge facing the produce, artichoke in her
+  left hand at her stomach, her right arm hanging; Mama (at her right, facing her and the island) holds that forearm with
+  her LEFT hand from the side: hand level, thumb up toward the elbow, palm on the forearm, fingers round the far side,
+  wrist straight. The grandmother's cart has moved up (`GRANDMA_START`, nose level with the pallet's end) into the 0.6 m lane.
+  Camera = the grab framing (50 mm, 0.92 m from the forearm), from over the island in front of her, az 75 and el 40 (31
+  put the melons over the hands). The cart shows as a frame behind the forearm; Mama's body fills frame left. The grab
+  framing looks down, so the cart cannot read more than that without breaking the rhyme.
+- **M4b_pull**: the r3 mid-pull (PULL, M1's camera, arm fix above) kept as an alternate. M4 stays an alternate.
+- **Plan row 2:06.3-2:16.1 reworded** (count reaches 8 by 2:13.65; M2 = 1-4, M3 = 5-8; then the lift, then the landing).
+
 ## 2026-11-25 night, keyframes r3 (Jade's r2 review: M4 hands, M4b mid-pull)
 
 - **M4 hands.** Mama's grip (`mamaGrab`, also used by M4b) had its `hold.axis` pointing to the girl's elbow (`:0.1`), which

@@ -180,7 +180,9 @@ export function build(shot, { makeCam, W = 1920, H = 1080 }) {
   root.add(room(shot));
   // the two hero vegetables
   // art: 'held' (in her hands) | 'island' (back on its heap) | 'upright' (reference views: on the heap's spot, axis vertical)
-  const held = (shot.art ?? 'held') === 'held', AP = held ? ART_HELD : shot.art === 'upright' ? ART_UPRIGHT : ART_ISLAND;
+  // (r4) art may also be a frame { at, axis, left } (held somewhere else than ART_HELD: M4b one-handed, M4c lifted)
+  const artObj = shot.art && typeof shot.art === 'object';
+  const held = artObj || (shot.art ?? 'held') === 'held', AP = artObj ? shot.art : held ? ART_HELD : shot.art === 'upright' ? ART_UPRIGHT : ART_ISLAND;
   const art = place(artichoke(), AP.at, AP.axis), rom = place(romanesco(), ROM_ISLAND.at, ROM_ISLAND.axis); root.add(art, rom);
   const artC = V(AP.at), artAxis = V(AP.axis).normalize(), romC = V(ROM_ISLAND.at), romAxis = V(ROM_ISLAND.axis).normalize();
   const cartG = shot.cart ? cart(shot.cart) : null; if (cartG) root.add(cartG);
@@ -190,7 +192,7 @@ export function build(shot, { makeCam, W = 1920, H = 1080 }) {
     if (typeof t !== 'string') return null;
     if (t === 'art') return artC.clone();
     if (t === 'art:tip') return artC.clone().addScaledVector(artAxis, ARTICHOKE.R * ARTICHOKE.stretch);
-    if (t === 'art:L' || t === 'art:R') { const l = V(ART_HELD.left); return artC.clone().addScaledVector(l, (t === 'art:L' ? 1 : -1) * (ARTICHOKE.R + 0.012)).add(V(0, -0.018, 0)); }
+    if (t === 'art:L' || t === 'art:R') { const l = V(AP.left || ART_HELD.left); return artC.clone().addScaledVector(l, (t === 'art:L' ? 1 : -1) * (ARTICHOKE.R + 0.012)).add(V(0, -0.018, 0)); }
     if (t === 'rom') return romC.clone();
     if (t === 'rom:tip') return romC.clone().addScaledVector(romAxis, ROMANESCO.R * ROMANESCO.stretch);
     if (t.startsWith('cart:')) return cartG ? cartG.userData.pt(t.slice(5)) : null;

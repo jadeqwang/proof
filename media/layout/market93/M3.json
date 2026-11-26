@@ -141,21 +141,21 @@
  "hands": {
   "jade10.L": {
    "px": [
-    178.5,
-    484.8
+    421.2,
+    321.7
    ],
    "shape": "cup",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "jade10.R": {
    "px": [
-    1742.1,
-    487.4
+    1500.1,
+    323.3
    ],
    "shape": "cup",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "grandma.L": {
    "px": [
@@ -286,7 +286,7 @@
   }
  ],
  "warnings": [],
- "intent": "Same eye-line, tighter: the spiral fills the frame. Numerals 1 to 7 on seven arms; the eighth arm is bare when the cut comes.",
+ "intent": "Same eye-line, tighter: the spiral fills the frame. Opens on 1-4 written and arm 5 drawing (its numeral done 2:12.29); 6 at 2:12.41-2:12.77, 7 2:12.89-2:13.22, 8 2:13.34-2:13.65; all eight arms numbered and held to the cut at 2:14.2 (plate json, clip 0 = 2:09.2).",
  "beam": {
   "source": {
    "x": 0.6,
@@ -418,104 +418,6 @@
    "note": "the film counts the 8 arms; bract n is on arm n % 8 (and n % 5 the other way); seen from the tip the 8-arms wind clockwise outward"
   },
   "plate_count": [
-   {
-    "F": 5,
-    "winding_on_plate": "anticlockwise",
-    "numerals": [
-     {
-      "numeral": 1,
-      "arm": 1,
-      "bracts": [
-       6,
-       11,
-       16,
-       21,
-       26,
-       31
-      ],
-      "numeral_bract": 31,
-      "numeral_bract_px": [
-       518.5,
-       677.9
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 26
-     },
-     {
-      "numeral": 2,
-      "arm": 4,
-      "bracts": [
-       9,
-       14,
-       19,
-       24,
-       29
-      ],
-      "numeral_bract": 29,
-      "numeral_bract_px": [
-       515.1,
-       -136.9
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 24
-     },
-     {
-      "numeral": 3,
-      "arm": 2,
-      "bracts": [
-       7,
-       12,
-       17,
-       22,
-       27
-      ],
-      "numeral_bract": 27,
-      "numeral_bract_px": [
-       1455.6,
-       -118.7
-      ],
-      "numeral_bract_faces_camera": true,
-      "last_facing_bract": 27
-     },
-     {
-      "numeral": 4,
-      "arm": 0,
-      "bracts": [
-       5,
-       10,
-       15,
-       20,
-       25,
-       30
-      ],
-      "numeral_bract": 30,
-      "numeral_bract_px": [
-       1589.9,
-       409.3
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 25
-     },
-     {
-      "numeral": 5,
-      "arm": 3,
-      "bracts": [
-       8,
-       13,
-       18,
-       23,
-       28
-      ],
-      "numeral_bract": 28,
-      "numeral_bract_px": [
-       987.2,
-       999.4
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 23
-     }
-    ]
-   },
    {
     "F": 8,
     "winding_on_plate": "clockwise",
@@ -650,6 +552,104 @@
       ],
       "numeral_bract_faces_camera": true,
       "last_facing_bract": 24
+     }
+    ]
+   },
+   {
+    "F": 5,
+    "winding_on_plate": "anticlockwise",
+    "numerals": [
+     {
+      "numeral": 1,
+      "arm": 1,
+      "bracts": [
+       6,
+       11,
+       16,
+       21,
+       26,
+       31
+      ],
+      "numeral_bract": 31,
+      "numeral_bract_px": [
+       518.5,
+       677.9
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 26
+     },
+     {
+      "numeral": 2,
+      "arm": 4,
+      "bracts": [
+       9,
+       14,
+       19,
+       24,
+       29
+      ],
+      "numeral_bract": 29,
+      "numeral_bract_px": [
+       515.1,
+       -136.9
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 24
+     },
+     {
+      "numeral": 3,
+      "arm": 2,
+      "bracts": [
+       7,
+       12,
+       17,
+       22,
+       27
+      ],
+      "numeral_bract": 27,
+      "numeral_bract_px": [
+       1455.6,
+       -118.7
+      ],
+      "numeral_bract_faces_camera": true,
+      "last_facing_bract": 27
+     },
+     {
+      "numeral": 4,
+      "arm": 0,
+      "bracts": [
+       5,
+       10,
+       15,
+       20,
+       25,
+       30
+      ],
+      "numeral_bract": 30,
+      "numeral_bract_px": [
+       1589.9,
+       409.3
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 25
+     },
+     {
+      "numeral": 5,
+      "arm": 3,
+      "bracts": [
+       8,
+       13,
+       18,
+       23,
+       28
+      ],
+      "numeral_bract": 28,
+      "numeral_bract_px": [
+       987.2,
+       999.4
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 23
      }
     ]
    }
@@ -1105,8 +1105,8 @@
      0.9337,
      0.7246
     ],
-    "plate_numeral5": 3,
-    "plate_numeral8": 1
+    "plate_numeral8": 1,
+    "plate_numeral5": 3
    },
    {
     "n": 28,
@@ -1123,8 +1123,8 @@
      0.8842,
      0.6506
     ],
-    "plate_numeral5": 5,
-    "plate_numeral8": 4
+    "plate_numeral8": 4,
+    "plate_numeral5": 5
    },
    {
     "n": 29,
@@ -1141,8 +1141,8 @@
      0.9234,
      0.7082
     ],
-    "plate_numeral5": 2,
-    "plate_numeral8": 7
+    "plate_numeral8": 7,
+    "plate_numeral5": 2
    },
    {
     "n": 30,
@@ -1159,8 +1159,8 @@
      0.8999,
      0.7043
     ],
-    "plate_numeral5": 4,
-    "plate_numeral8": 2
+    "plate_numeral8": 2,
+    "plate_numeral5": 4
    },
    {
     "n": 31,
@@ -1177,8 +1177,8 @@
      0.883,
      0.662
     ],
-    "plate_numeral5": 1,
-    "plate_numeral8": 5
+    "plate_numeral8": 5,
+    "plate_numeral5": 1
    }
   ]
  },
@@ -3525,8 +3525,8 @@
     }
    },
    "arms": {
-    "L": 0.7,
-    "R": 0.7
+    "L": 0.78,
+    "R": 0.79
    },
    "headTurn": 0
   },

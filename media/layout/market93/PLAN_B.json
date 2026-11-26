@@ -422,104 +422,6 @@
   },
   "plate_count": [
    {
-    "F": 5,
-    "winding_on_plate": "anticlockwise",
-    "numerals": [
-     {
-      "numeral": 1,
-      "arm": 1,
-      "bracts": [
-       6,
-       11,
-       16,
-       21,
-       26,
-       31
-      ],
-      "numeral_bract": 31,
-      "numeral_bract_px": [
-       694.4,
-       449.6
-      ],
-      "numeral_bract_faces_camera": true,
-      "last_facing_bract": 31
-     },
-     {
-      "numeral": 2,
-      "arm": 4,
-      "bracts": [
-       9,
-       14,
-       19,
-       24,
-       29
-      ],
-      "numeral_bract": 29,
-      "numeral_bract_px": [
-       706.2,
-       445.4
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 24
-     },
-     {
-      "numeral": 3,
-      "arm": 2,
-      "bracts": [
-       7,
-       12,
-       17,
-       22,
-       27
-      ],
-      "numeral_bract": 27,
-      "numeral_bract_px": [
-       711.2,
-       458.6
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 22
-     },
-     {
-      "numeral": 4,
-      "arm": 0,
-      "bracts": [
-       5,
-       10,
-       15,
-       20,
-       25,
-       30
-      ],
-      "numeral_bract": 30,
-      "numeral_bract_px": [
-       703.4,
-       463.9
-      ],
-      "numeral_bract_faces_camera": false,
-      "last_facing_bract": 25
-     },
-     {
-      "numeral": 5,
-      "arm": 3,
-      "bracts": [
-       8,
-       13,
-       18,
-       23,
-       28
-      ],
-      "numeral_bract": 28,
-      "numeral_bract_px": [
-       694.5,
-       458.5
-      ],
-      "numeral_bract_faces_camera": true,
-      "last_facing_bract": 28
-     }
-    ]
-   },
-   {
     "F": 8,
     "winding_on_plate": "clockwise",
     "numerals": [
@@ -653,6 +555,104 @@
       ],
       "numeral_bract_faces_camera": true,
       "last_facing_bract": 24
+     }
+    ]
+   },
+   {
+    "F": 5,
+    "winding_on_plate": "anticlockwise",
+    "numerals": [
+     {
+      "numeral": 1,
+      "arm": 1,
+      "bracts": [
+       6,
+       11,
+       16,
+       21,
+       26,
+       31
+      ],
+      "numeral_bract": 31,
+      "numeral_bract_px": [
+       694.4,
+       449.6
+      ],
+      "numeral_bract_faces_camera": true,
+      "last_facing_bract": 31
+     },
+     {
+      "numeral": 2,
+      "arm": 4,
+      "bracts": [
+       9,
+       14,
+       19,
+       24,
+       29
+      ],
+      "numeral_bract": 29,
+      "numeral_bract_px": [
+       706.2,
+       445.4
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 24
+     },
+     {
+      "numeral": 3,
+      "arm": 2,
+      "bracts": [
+       7,
+       12,
+       17,
+       22,
+       27
+      ],
+      "numeral_bract": 27,
+      "numeral_bract_px": [
+       711.2,
+       458.6
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 22
+     },
+     {
+      "numeral": 4,
+      "arm": 0,
+      "bracts": [
+       5,
+       10,
+       15,
+       20,
+       25,
+       30
+      ],
+      "numeral_bract": 30,
+      "numeral_bract_px": [
+       703.4,
+       463.9
+      ],
+      "numeral_bract_faces_camera": false,
+      "last_facing_bract": 25
+     },
+     {
+      "numeral": 5,
+      "arm": 3,
+      "bracts": [
+       8,
+       13,
+       18,
+       23,
+       28
+      ],
+      "numeral_bract": 28,
+      "numeral_bract_px": [
+       694.5,
+       458.5
+      ],
+      "numeral_bract_faces_camera": true,
+      "last_facing_bract": 28
      }
     ]
    }
@@ -1108,8 +1108,8 @@
      0.9412,
      0.4338
     ],
-    "plate_numeral5": 3,
-    "plate_numeral8": 1
+    "plate_numeral8": 1,
+    "plate_numeral5": 3
    },
    {
     "n": 28,
@@ -1126,8 +1126,8 @@
      0.9844,
      0.3556
     ],
-    "plate_numeral5": 5,
-    "plate_numeral8": 4
+    "plate_numeral8": 4,
+    "plate_numeral5": 5
    },
    {
     "n": 29,
@@ -1144,8 +1144,8 @@
      0.9482,
      0.4101
     ],
-    "plate_numeral5": 2,
-    "plate_numeral8": 7
+    "plate_numeral8": 7,
+    "plate_numeral5": 2
    },
    {
     "n": 30,
@@ -1162,8 +1162,8 @@
      0.945,
      0.397
     ],
-    "plate_numeral5": 4,
-    "plate_numeral8": 2
+    "plate_numeral8": 2,
+    "plate_numeral5": 4
    },
    {
     "n": 31,
@@ -1180,8 +1180,8 @@
      0.9717,
      0.3551
     ],
-    "plate_numeral5": 1,
-    "plate_numeral8": 5
+    "plate_numeral8": 5,
+    "plate_numeral5": 1
    }
   ]
  },
