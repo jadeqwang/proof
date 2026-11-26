@@ -779,3 +779,71 @@ Questions for Jade (proposed for the decision page):
   first love's? Recorded for the paint prompts once confirmed.
 
 ## 2026-11-26 evening (Jade): the childhood friend's arm hair is dark blond. (Settles the flag above.)
+
+## 2026-11-26 late: round-4 decisions + props phase 2
+
+Jade's answers (verbatim in `work/decisions/JADE_R4_DECISIONS.md`) applied. Supersedes anything above that contradicts it.
+
+1. **v3b_grip: "Fist, thumb on top".** The hand-built ladle (round rod, hemisphere bowl, tab) is replaced by the real
+   model (`props/ladle`, "Ladle" by Lightningx, CC BY 4.0). Measured on its glb (ladleGrip.js `LADLE_M`): a 6.2 cm bowl,
+   2.5 cm deep; the handle a flat steel strip 11 x 3.3 mm (props.json says ~10 x 5) rising almost straight to a hook.
+   ladleGrip.js re-solved: the fingers wrap the strip's half width, the thumb lies up the handle on its TOP flat face
+   (the bowl's open side), and the ladle is turned so that face is the thumb's face and placed so its grip point is the
+   fist's centre; the bowl sits in the lemonade (centre 6 mm under the surface). The handle's rise / yaw and the elbow were
+   swept against the hold check and the engine's wrist warning: rise 80 deg (nearly upright, the bowl near level), yaw
+   -50, elbow [3.90, 1.10, 8.65] (`PREP.ladle`). Hold check: **pass** (clamped; contact -2.5 mm, middle3). Remaining
+   engine warning: radial deviation ~12 deg past the wrist range (the r3 grip had the same +12). Thumb face "up" is ~0
+   (the handle is nearly vertical, so "on top" = the thumb lies up the handle at the top of the fist, as the references
+   show). The handle is split in three meshes (lower / grip / hook, one label) so the hold check hulls only the grip.
+   References: `T0_ladlegrip_a/_b/_top`.
+   - Party ladle (crowd T1, every party shot that sees the punchbowl): the same real model (`partyLadlePose`, the old lean,
+     top face up), T1's engine power grip r 0.010 m on the strip (0.0075-0.0095 put the thumb 3-10 mm in). **pass**.
+     New reference `T0_partyladle`.
+   - The friend is 1.85 m with dark blond forearm hair: in the V3a / V3b_prep intents (the layout draws no arm hair).
+2. **si1_where: "At the Expedit, no poi".** SI1 restaged at the shelf: she on her shelf mark in front of the truth half
+   (yaw 196), looking into the lens; 85 mm at 1.5 m, level; the Expedit behind her, the yard and poi behind the partition
+   (out of frame; the trail stays off). Intent kept: close, frontal, locked off, synced, hushed, 115 -> 100 %, she has
+   turned from him to us. **First love:** back three-quarter to the lens at her right (frame left), turned back to the
+   spines (3.10, 3.66, yaw 14; OUR staging, as in V3_rev): in the 16:9 guide his back of head and shoulder fill the left
+   edge; in the 4:5 safe area he is mostly OUT (only an edge of his shoulder / hair). Never face-on. Light: the living-room
+   ceiling light (night). The r3 "inside the open sliding door" staging is retired; `MARKS.silence` is no longer used by SI1.
+3. **art_books: "Leave the rest blank".** spines.js: only Jade's six titles carry lettering; every other spine is plain
+   colour (no greeked bars, no publisher mark). The sidecar's shelf contents list them as "(blank spine, untitled book)"
+   and `shelf.spines_note` tells the painter to paint no words. The placeholder titles stay in layout.js only to size
+   the books (never in the sidecar now).
+4. **art_345b: "Bare walls".** Checked: the set hangs no art anywhere in 345B (no picture, poster, calendar or clock in
+   build.js); nothing to remove. The Expedit's objects are shelf objects, not hung art.
+5. **art_meatball: "With the white lettering".** Already built (layout/assets/art/logos/nasa_meatball.png is the 1959
+   insignia with its white NASA lettering; the decal is on her jacket in every shot). The costume text now says confirmed.
+
+**Props phase 2** (models in `layout/assets/props/`, credits in docs/credits_tools.md; work/props_audit.md):
+- Party: the ladle (above); each stack of red cups = 11 real `red_cup` models nested 12 mm apart (2 stacks).
+- Prep (V3b_prep): `cutting_board` (real 45 x 25 cm, rotated along the run; the two halves now sit on its top),
+  `knife` (flat on the counter, handle toward the core wall), `juicer` (18 cm across), `pitcher` (GLASSY look), two
+  `bowl`s (30 cm lemons, 22 cm rinds), `lemon` at pomelo size (x 2.17: 21 cm long, 15 cm across).
+- Loose things are SETTLED with Rapier, not placed by hand: `settle.mjs` (run `node layout/sets/mv10/settle.mjs`) drops
+  the lemons / rinds into a trimesh of the bowl model and writes `settled.js`. Two pomelo lemons do not fit side by side
+  on an 18-21 cm bowl floor (one lodged on the rim), so the second rests on the first; a third rolled out, so two per
+  bowl (the prep bowl's intent said "two with leaves": both keep a leaf). Rinds: 4 (was 5).
+- The pressed half on the real juicer: a pomelo half balanced on the model's 6 mm cone tip rolls off in the check, so
+  the half is pushed DOWN OVER the cone (cut face 12 mm above the rim, as when juicing) and juicer + half are ONE held
+  object (holdWhole). Her right palm presses near the top (prepPress 15 deg, lift 4 mm, wrist raised 22 deg, fingers
+  curled 15/15/10). Her LEFT hand no longer holds the rim (the half covers it; a palm on the dish's 3 cm side put her
+  wrist into it): it rests flat on the counter beside the juicer. **pass**.
+- The friend's bowl (V3a / V3b): a real 36 cm `bowl` with two settled lemons, ONE held object (holdWhole). His palms
+  cradle its lower wall from either side (1.5 cm up, 45 deg, 3 cm back toward him, thumbs along the index); the bowl
+  0.38 m in front of him; he stands 8 cm further from the tree (the bowl reached the trunk), V3b's pose now bends 12 like
+  V3a's. **pass** (V3a, V3b, `T0_friendbowl`).
+- Kept hand-built (audit): punchbowl (no usable model), the cut halves and the rinds (cut faces), sugar bag, the guests'
+  cups of lemonade (engine-held cylinders: swapping them is an engine change, not made), stove / fridge / etc.
+- Mug grip warning from the Shanghai agent (props.json mug grips mirrored): mv10 uses no mug; I measured every grip
+  I use (ladle, juicer, bowl, lemon) on the models themselves, not from props.json.
+- New set references (no beam twins): `T0_partyladle`, `T0_juicer`, `T0_friendbowl`.
+
+## 2026-11-26 round 4 — PROGRESS (checkpoint): DONE
+- All of the section above is done. Full re-render into media/layout/mv10 (default modes + sidecars, form/contour/light,
+  beam_ masks; no failures), contact sheets (label, line, lit, flat, form, beam), gallery rebuilt.
+- Hold check on media/layout/mv10: 308 / 308 pass (the ladle, the party ladle, the friend's bowl, the juicer + half).
+- Gaze: no warnings for her, first love or the friend in SI1, V3b_prep, V3a.
+- Changed shots (diffed against HEAD's guides) and prompt notes: work/r4/REPAINT_LIST.md, mv10 section.
+- Not committed (the lead commits).

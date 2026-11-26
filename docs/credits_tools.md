@@ -36,11 +36,15 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
 - **Jolt Physics** (jolt-physics 1.1.2, WASM; Jorrit Rouwe, MIT): soft-body cloth for the IAS hoodie in Morton Grove
   (`layout/sets/mortongrove07/sweatshirt_jolt.js`, vendored at `layout/vendor/jolt-physics/`).
 - **Blender** 4.5 LTS (headless) + **MPFB2** 2.0.18 (MakeHuman for Blender; the MakeHuman system assets, CC0): the rigged
-  human body meshes for every figure (`layout/assets/bodies/`, `layout/engine/humanMesh.js`, 2026-11-26).
+  human body meshes for every figure (`layout/assets/bodies/`, `layout/engine/humanMesh.js`, 2026-11-26). Hair built in Blender
+  from the scalp: Mama's perm (convex hull, exact boolean, OpenVDB voxel remesh, Voronoi curls), the aunt's and
+  grandmother's bun, first love's finger-combed pieces.
 - **Downloaded 3D props** (2026-11-26; `layout/assets/props/`, loader `layout/sets/_props.js`, audit `work/props_audit.md`;
   each model has SOURCE.txt + LICENSE.txt). Found through **Poly Haven** (CC0) and **Objaverse 1.0** (Allen AI; its
   per-model Sketchfab licence checked, only CC BY 4.0 / CC0 used), processed in Blender (joined, scaled, decimated).
   Phase 1: in the test set `propstest` only; swapped into the film sets in phase 2.
+  Phase 2, mv10 (2026-11-26 late): `ladle` (V3b_prep, the party punchbowl), `red_cup`, `juicer`, `pitcher`, `bowl`, `knife`,
+  `lemon`, `cutting_board` are in the set (not `ladle_b`).
   - CC BY 4.0, attribution REQUIRED in the credits (models from Sketchfab, via the Objaverse mirror):
     - `ladle`: "Ladle" by Lightningx (https://sketchfab.com/3d-models/3c1fe2f2c77b4d258c3d1a08de55eb1a), CC BY 4.0
     - `ladle_b`: "Spoon" by libbycox (https://sketchfab.com/3d-models/e6823583dbca4d219ac303e96cd797fa), CC BY 4.0
@@ -49,24 +53,27 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
     - `pitcher`: "POLYCARBONATE MUG" by fancyikzero (https://sketchfab.com/3d-models/5ee4647f7994413d80652e10090d380d), CC BY 4.0
     - `bowl`: "Plate" by rbhbkkn.kmrjd (https://sketchfab.com/3d-models/0f2f0e489ab445108c939820a00d4888), CC BY 4.0
     - `knife`: "test knife" by Fellm (https://sketchfab.com/3d-models/f93d05bc2db144f7a50374794ef5cf8d), CC BY 4.0
-    - `kettle`: "Teapot" by 19brian16 (https://sketchfab.com/3d-models/46617e30864a45eba268c756cf53c52f), CC BY 4.0
-    - `rice_cooker`: "Rice Cooker Lowpoly" by ononesupplies (https://sketchfab.com/3d-models/6afda632eac6459cb99e73deccb97a98), CC BY 4.0
-    - `telephone`: "PTish Phone" by schmoldt.art (https://sketchfab.com/3d-models/eaa0a0cbce964b2099b955f5ea241eee), CC BY 4.0
-    - `typewriter`: "IBM Selectric II Typewriter" by maxdragon (https://sketchfab.com/3d-models/bef0f699a5374ca1a8fe8e27fb77788a), CC BY 4.0
-    - `thermos`: "a thermos kettle" by downpink97 (https://sketchfab.com/3d-models/99f750217a8e47df8445cb63bbaa66ec), CC BY 4.0
-    - `mug`: "Cup" by saleviim (https://sketchfab.com/3d-models/12652c6e0aaf44dda32aab816f433baf), CC BY 4.0
-    - `tissue_box`: "Tissue Box Low Poly" by anand9556 (https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09), CC BY 4.0
-    - `pencil_cup`: "Pens with Pencil holder - desk props" by janexx (https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae), CC BY 4.0
-    - `keyboard`: "Keyboard - Classic IBM Design" by matthew.leiher (https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f), CC BY 4.0
+    - `kettle`: "Teapot" by 19brian16 (https://sketchfab.com/3d-models/46617e30864a45eba268c756cf53c52f), CC BY 4.0. In kitchen90 (the red enamel kettle on the stove)
+    - `rice_cooker`: "Rice Cooker Lowpoly" by ononesupplies (https://sketchfab.com/3d-models/6afda632eac6459cb99e73deccb97a98), CC BY 4.0. In kitchen90 (the white rice cooker on the counter)
+    - `telephone`: "PTish Phone" by schmoldt.art (https://sketchfab.com/3d-models/eaa0a0cbce964b2099b955f5ea241eee), CC BY 4.0. In office91
+    - `typewriter`: "IBM Selectric II Typewriter" by maxdragon (https://sketchfab.com/3d-models/bef0f699a5374ca1a8fe8e27fb77788a), CC BY 4.0. In office91
+    - `thermos`: "a thermos kettle" by downpink97 (https://sketchfab.com/3d-models/99f750217a8e47df8445cb63bbaa66ec), CC BY 4.0. In shanghai86 (the two hot-water flasks)
+    - `mug`: "Cup" by saleviim (https://sketchfab.com/3d-models/12652c6e0aaf44dda32aab816f433baf), CC BY 4.0. In shanghai86 (the tea mugs) and mortongrove07 (the coffee-table mug)
+    - `grand_piano`: "Grand Piano" by thanhthanh (https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b), CC BY 4.0. In mortongrove07 (the 7'1" grand; bench removed, scaled to 2.16 m)
+    - `tissue_box`: "Tissue Box Low Poly" by anand9556 (https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09), CC BY 4.0. In office91
+    - `pencil_cup`: "Pens with Pencil holder - desk props" by janexx (https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae), CC BY 4.0. In office91
+    - `keyboard`: "Keyboard - Classic IBM Design" by matthew.leiher (https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f), CC BY 4.0. In basement90 (the PC keyboard)
   - CC0 (Poly Haven; credit as courtesy):
-    - `tv_small`: "Television 02" by Benny Weimer, Poly Haven (CC0)
-    - `bulb`: "Lightbulb 01" by Josh Dean, Poly Haven (CC0)
-    - `pull_chain_socket`: "Pull Chain Light Socket" by Josh Dean, Poly Haven (CC0)
-    - `potted_plant`: "Potted Plant 02" by Rico Cilliers, Poly Haven (CC0)
+    - `tv_small`: "Television 02" by Benny Weimer, Poly Haven (CC0). In attic88_day (the small TV on the crate)
+    - `bulb`: "Lightbulb 01" by Josh Dean, Poly Haven (CC0). In basement90 (the ceiling bulb) and attic88_day (the bare bulb, off)
+    - `pull_chain_socket`: "Pull Chain Light Socket" by Josh Dean, Poly Haven (CC0). In basement90 (the lampholder)
+    - `potted_plant`: "Potted Plant 02" by Rico Cilliers, Poly Haven (CC0). In shanghai86
     - `lemon`: "Lemon" by Kuutti Siitonen, Poly Haven (CC0)
     - `cutting_board`: "Wooden Cutting Board" by Kuutti Siitonen, Poly Haven (CC0)
-    - `cardboard_box`: "Cardboard Box 01" by Rahul Chaudhary, Poly Haven (CC0)
+    - `cardboard_box`: "Cardboard Box 01" by Rahul Chaudhary, Poly Haven (CC0). In attic88_day (the storage boxes)
 - **Playwright** + **Chrome** (SwiftShader): headless rendering of the sets.
+- **three-mesh-bvh** (0.8, Garrett Johnson, MIT): triangle-intersection and clearance checks between body meshes and
+  furniture (`layout/sets/basement90/check_bodies.mjs`, 2026-11-26: no body passes through another; eye convergence).
 - **Pillow**, **OpenCV**, **NumPy**: compositing, toner labels, gold pencil, contact sheets (`tools/kf/`, `tools/ink/`).
 - **ImageMagick**: crops and montages for review.
 - **SciPy** (ndimage): cutting the alphabet-card pictures and the clothing prints out of their sheets (`tools/kf/alphabet_cards.py`).
@@ -78,6 +85,10 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
 
 ## Planned / in progress (move up once used)
 - **Rapier** (`@dimforge/rapier3d-compat`): physics check that every held or resting object is supported.
+  Also the clip check (`layout/engine/clipcheck.mjs`, 2026-11-26): no baked body passes through another body, a wall, a
+  Also settles the loose lemons and rinds in the mv10 bowls (`layout/sets/mv10/settle.mjs`, 2026-11-26 late).
+  window or furniture, joints within their limits, palms on walls; drives the IK pose and camera searches for AD_grab and
+  WL_in (`layout/sets/attic88_day/grab_search.mjs`, `grab_camera.mjs`, `layout/sets/wall88/wl_search.mjs`).
 - **BiRefNet** / **SAM 2**: matting options already written into `tools/ink/video.py`; not run yet.
 - Video models for the motion step (plan steps 6-8): none chosen yet.
 

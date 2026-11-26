@@ -428,8 +428,16 @@ export const PARTY_FOOD = {
 export const PREP = { surface: 'counter by the sink', y: COUNTER_H, board: { at: [4.50, 9.04], w: 0.34, d: 0.28 }, knife: { at: [4.40, 9.24] }, reamer: { at: [4.41, 9.45], r: 0.09 },
   lemonsBowl: { at: [4.73, 9.56], r: 0.15 }, rindsBowl: { at: [4.775, 9.06], r: 0.11 }, punch: { at: [4.57, 8.45] }, punchFill: 0.55, sugar: { at: [4.80, 8.80] }, pitcher: { at: [4.225, 9.63], r: 0.065 },
   halves: [[4.43, 9.02, 'up'], [4.58, 9.07, 'up']], rinds: 5,
-  ladle: { bowlAt: [4.45, 8.50], bowlR: 0.045, len: 0.24, rise: 60, yawDeg: -30, handleR: 0.0085, hook: 0.07, y0: 0.40, lift: 0.03 },
+  // r4 (2026-11-26 late): the REAL ladle (props/ladle; ladleGrip.js LADLE_M): bowlAt = its bowl's centre, `lift` = that centre
+  // above the lemonade's surface (its rim just under it); the handle is the model's flat strip, so no handleR / len / hook
+  ladle: { bowlAt: [4.45, 8.50], rise: 80, yawDeg: -50, y0: 0.40, lift: -0.006, wrapPad: 0.0015, thumbPress: 0.001, elbow: [3.90, 1.10, 8.65] },
   friendAt: [3.84, 8.44], jadeAt: [4.06, 9.10] };   // jadeAt: 11 cm nearer the corner (hold pass 2026-11-26: her arms could not reach the reamer)
+// r4 props phase 2: the downloaded juicer scaled to 18 cm across: its dish rim and cone tip heights (measured on the model:
+// rim 0.027, tip 0.0687 at 17 cm) for the pressed half and her hands (shots.js prepFigs reads PREP_JUICER)
+// halfY: the pressed half's cut face, 12 mm over the rim: the half is pushed DOWN OVER the cone (the cone inside the fruit,
+// as when juicing); the hold check takes juicer + half as ONE object (build.js holdWhole): a pomelo half balanced on the
+// 6 mm cone tip rolled off in the Rapier check
+export const PREP_JUICER = { w: 0.18, rimY: 0.027 * 0.18 / 0.17, tipY: 0.0687 * 0.18 / 0.17, halfY: 0.027 * 0.18 / 0.17 + 0.012 };
 // "pale IKEA dinner table" with "pale benches, tucked in": end-on to the SSW wall (Jade). 1.8 x 0.9 m: OURS.
 export const DINING = { x0: T, x1: T + 1.8, z0: 7.2, z1: 8.1, h: 0.74, col: 0xe2cfa6,
   benches: [{ x0: 0.3, x1: 1.8, z0: 6.98, z1: 7.30 }, { x0: 0.3, x1: 1.8, z0: 8.0, z1: 8.32 }], benchH: 0.45 };

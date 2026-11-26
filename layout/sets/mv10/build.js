@@ -6,13 +6,17 @@ import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
 import { CAST, PROP } from '../_cast.js';
-import { ladleGrip, buildLadle } from './ladleGrip.js';
+import { ladleGrip, buildLadle, ladleProp, partyLadlePose } from './ladleGrip.js';
+import { loadProps, prop } from '../_props.js';
+import { SETTLED } from './settled.js';   // props phase 2 (2026-11-26 late): real downloaded models (work/props_audit.md)
+await loadProps(['ladle', 'red_cup', 'juicer', 'pitcher', 'bowl', 'knife', 'lemon', 'cutting_board']);
 import { glassTable } from './glassTable.js';
-import { spineArt } from './spines.js';
+import { spineArt, NAMED } from './spines.js';
+const bookName = (b) => (NAMED.test(b.t) ? b.t : `(blank spine, untitled ${b.lay === 'flat' ? 'book lying flat' : 'book'})`);   // r4: placeholder titles never reach the painter
 import { artPlane, decalMesh } from '../_art.js';
 import { LOGOS, MEATBALL as MB, SR71 } from './art.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
-  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
+  COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, PREP_JUICER, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
   TREE, GRAPEFRUIT, POI, punchLadle, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
 
 // ---------------------------------------------------------------- cast (set-local, additive: engine/mannequin.js is not edited)
@@ -67,7 +71,7 @@ function sandals(fig) {
 // a meatball marker disc, and the boot-cut flare (a cone from the knee to a hem just off the floor, over the foot).
 // ASSUMED (flagged): zip-front jacket worn unzipped, fronts nearly closed (tee sliver ~4 cm); hip-length; meatball ~8 cm;
 // socks plain mid-grey; hem 1.2 cm off the floor, ~44 cm round at the hem.
-export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (disc about 8 cm) on its LEFT chest, EXACTLY the decal layout/assets/art/logos/nasa_meatball.png (pass it as a reference): the real 1959 meatball, blue disc, white stars, white orbit ring, red chevron and its small white NASA lettering, the same in every shot (2026-11-26, Jade: one version of the logo; the earlier no-lettering note is superseded, flagged)',
+export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (disc about 8 cm) on its LEFT chest, EXACTLY the decal layout/assets/art/logos/nasa_meatball.png (pass it as a reference): the real 1959 meatball, blue disc, white stars, white orbit ring, red chevron and its small white NASA lettering, the same in every shot (2026-11-26, Jade: one version of the logo; r4 decision art_meatball: WITH the white lettering, confirmed)',
   tee: 'fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts', pants: 'boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)',
   feet: 'socks, no shoes (Jade); colour plain mid-grey ASSUMED', before_party: 'same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)', sheet: 'cast/jade_27/j27_costume_housewarming_v1.jpg' };
 function housewarming(fig) {
@@ -310,7 +314,7 @@ function lemonHalf(g, [x, y, z], R = TREE.lemonR, rot = 0, lab = 'lemon half (cu
 }
 // a squeezed rind: an emptied half shell, cut side up, squashed, the white pith inside showing, a torn membrane
 function rind(g, [x, y, z], R, tilt, lab = 'squeezed rinds') {
-  const grp = new THREE.Group(); grp.position.set(x, y, z); grp.rotation.set(tilt[0], tilt[1], tilt[2]);
+  const grp = new THREE.Group(); grp.position.set(x, y, z); if (tilt.isQuaternion) grp.quaternion.copy(tilt); else grp.rotation.set(tilt[0], tilt[1], tilt[2]);
   const out = mk(new THREE.SphereGeometry(R, 18, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), LEMON); out.scale.set(1, 0.55, 0.82); grp.add(tag(out, lab));
   const inn = mk(new THREE.SphereGeometry(R * 0.86, 18, 8, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), PITH); inn.scale.set(1, 0.5, 0.8); inn.position.y = 0.004; grp.add(tag(inn, lab + ' (pith)'));
   for (let k = 0; k < 3; k++) { const a = k * 2.1 + tilt[1]; grp.add(tag(ball(R * 0.22, { ...FLESH, grey: 0.85 }, [Math.cos(a) * R * 0.3, -R * 0.2, Math.sin(a) * R * 0.25], [1.4, 0.4, 0.7]), lab + ' (torn pulp)')); }
@@ -345,12 +349,27 @@ function punchbowl(g, [x, z], y, { fill = 0.8, tool = 'ladle', lab = 'giant punc
   const RS = rng(5); for (let i = 0; i < 6; i++) { const a = RS() * Math.PI * 2, rr = RS() * rl * 0.7;
     g.add(tag(cyl(0.035, 0.035, 0.006, { ...FLESH, grey: 0.93 }, [x + Math.cos(a) * rr, yl + 0.005, z + Math.sin(a) * rr], null, 16), 'lemon slices (floating)')); }
   if (tool === 'none') return null;   // V3b_prep: the ladle is built with the hand that holds it (ladleGrip.js)
+  // r4 props phase 2: the party ladle is the REAL ladle (props/ladle via ladleGrip.js partyLadlePose; T1's fist on its grip)
+  if (tool === 'ladle') { const PL = partyLadlePose(punchLadle(y, fill)), p = ladleProp(PL.q, PL.at); if (p) { g.add(p); return V(PL.grip); } }
   const lean = V(-0.35, 1, 0.25).normalize(), foot = V(x + 0.05, yl - 0.03, z - 0.04), L = tool === 'ladle' ? 0.40 : 0.42, top = foot.clone().addScaledVector(lean, L);
   const t0 = tool === 'ladle' ? punchLadle(y, fill).t0 : 0;   // the ladle's handle starts just above the lemonade (layout.js punchLadle)
   const h = cyl(tool === 'ladle' ? 0.008 : 0.011, tool === 'ladle' ? 0.008 : 0.011, L - t0, tool === 'ladle' ? STEEL : WOOD, foot.clone().addScaledVector(lean, (L + t0) / 2).toArray(), null, 8);
   h.quaternion.setFromUnitVectors(V(0, 1, 0), lean); g.add(tag(h, tool === 'ladle' ? 'ladle' : 'long wooden spoon (stirring)'));
   if (tool === 'ladle') { const c = bowlMesh(0.045, 0.8, STEEL); c.position.copy(foot).add(V(0, 0.02, 0)); g.add(tag(c, 'ladle')); }
   return top;
+}
+// a real bowl with its settled contents (settled.js, from settle.mjs / Rapier), bottom centre at [x, y, z]; returns the group
+function settledBowl(g, [x, y, z], S, bowlLab, o = {}) {
+  const grp = new THREE.Group(); grp.position.set(x, y, z); grp.userData.holdWhole = !!o.holdWhole;
+  const b = prop('bowl', { at: [0, 0, 0], size: { w: S.w }, label: bowlLab }); if (b) grp.add(b);
+  let nLeaf = o.leaves || 0;
+  for (const it of S.items) { const q = new THREE.Quaternion(...it.quat);
+    if (it.kind === 'lemon') { const l = prop('lemon', { at: it.at, rot: q, scale: SETTLED.LEMON_K, label: o.label || bowlLab, look: { grey: 0.9, col: 0xf2d21c } }); if (!l) continue; grp.add(l);   // lemon yellow (the scan's texture reads olive in lit)
+      if (nLeaf-- > 0) { const stem = new THREE.Vector3(0, 0.0954 * SETTLED.LEMON_K, 0).applyQuaternion(q).add(V(it.at)), out = new THREE.Vector3(stem.x, 0, stem.z).normalize();
+        const lf = ball(0.045, { grey: 0.4, col: 0x3a6a2a }, stem.clone().addScaledVector(out, 0.04).add(V(0, 0.004, 0)).toArray(), [1, 0.12, 0.45]); lf.rotation.y = Math.atan2(-out.z, out.x);
+        grp.add(tag(lf, 'lemon leaf (still on the stem)')); } }
+    else rind(grp, it.at, S.rindR, q); }
+  g.add(grp); return grp;
 }
 function kitchen(g, dressing) {
   const R = rng(23), CT = { grey: 0.55, col: 0x8a8478 };
@@ -415,39 +434,36 @@ function kitchen(g, dressing) {
   const yT = DINING.h;
   if (dressing === 'party') {
     punchbowl(g, PUNCHBOWL.at, COUNTER_H);
-    for (const [cx, cz] of PUNCHBOWL.cupsAt) { const n = PUNCHBOWL.cupsN / 2, h = 0.12 + n * 0.012;
-      g.add(tag(cyl(0.045, 0.034, h, { grey: 0.9, col: 0xd8303a }, [cx, COUNTER_H + h / 2, cz], null, 18), 'a stack of cups')); }
+    // r4 props phase 2: each stack = n real red cups (props/red_cup, "Solo Cup", CC BY 4.0) nested 12 mm apart
+    for (const [cx, cz] of PUNCHBOWL.cupsAt) { const n = PUNCHBOWL.cupsN / 2;
+      for (let k = 0; k < n; k++) { const c = prop('red_cup', { at: [cx, COUNTER_H + k * 0.012, cz], rot: [0, k * 17, 0], label: 'a stack of cups' }); if (c) g.add(c); } }
     for (const f of PARTY_FOOD.table) food(g, f, yT, R);
     for (const f of PARTY_FOOD.counters) food(g, f, COUNTER_H, R);
   } else if (dressing === 'prep') {
     // the prep on the counter by the sink (Jade r3, 2026-11-26; layout.js PREP): the core-wall run's ESE end and the corner
     const P = PREP, y = COUNTER_H;
-    // cutting board, knife, two halves cut face up
-    g.add(tag(box(P.board.w, 0.022, P.board.d, { grey: 0.7, col: 0xc8a070 }, [P.board.at[0], y + 0.011, P.board.at[1]]), 'cutting board'));
-    P.halves.forEach(([x, z], i) => lemonHalf(g, [x, y + 0.022, z], TREE.lemonR, i * 0.4, 'lemon half (cut face up)'));
-    g.add(tag(box(0.2, 0.004, 0.035, STEEL, [P.knife.at[0] - 0.05, y + 0.003, P.knife.at[1] - 0.03], [0, 10, 0]), 'knife'));
-    g.add(tag(box(0.11, 0.018, 0.024, DARK, [P.knife.at[0] + 0.1, y + 0.01, P.knife.at[1] - 0.05], [0, 10, 0]), 'knife'));
-    // the glass reamer (juicer): a dish with a ribbed cone, juice in the dish, a half pressed on it (cut face down)
-    { const [x, z] = P.reamer.at, r = P.reamer.r;
-      g.add(tag(cyl(r, r * 0.85, 0.045, GLASSY, [x, y + 0.0225, z], null, 32), 'juicer (glass reamer)'));
-      // hold pass (2026-11-26): the juice, the cone and the handle carry the dish's label: ONE object for the hold check (the
-      // juice lay inside the dish's hull, the handle overlapped its wall; parts with other labels count as its supports)
-      g.add(tag(cyl(r * 0.85, r * 0.85, 0.004, LEMONADE, [x, y + 0.035, z], null, 32), 'juicer (glass reamer)'));
-      g.add(tag(cyl(0.008, 0.045, 0.06, GLASSY, [x, y + 0.075, z], null, 10), 'juicer (glass reamer)'));
-      const d = mk(new THREE.SphereGeometry(TREE.lemonR, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), LEMON); d.scale.set(1, 1.22, 1); d.position.set(x, y + PREP_HALF_Y, z); g.add(tag(d, 'lemon half (pressed on the juicer)'));
-      // hold pass (2026-11-26): the half's cut face now sits ON the cone's tip (it was 2 cm down over it); her left hand
-      // rests on the dish's rim (shots.js prepFigs)
-      g.add(tag(box(0.03, 0.01, 0.08, GLASSY, [x, y + 0.03, z - r - 0.03]), 'juicer (glass reamer)')); }
-    // the bowl of picked lemons (from V3b), two with leaves still on
-    { const [x, z] = P.lemonsBowl.at, r = P.lemonsBowl.r, b = bowlMesh(r, 0.6, CERAMIC); b.position.set(x, y + 0.6 * r, z); g.add(tag(b, 'bowl of picked lemons'));
-      [[-0.05, -0.04], [0.05, -0.03], [0.0, 0.06], [-0.06, 0.05]].forEach(([dx, dz], k) => { g.add(tag(ball(TREE.lemonR, LEMON, [x + dx, y + 0.08 + (k % 2) * 0.03, z + dz], [1, 0.85, 1.22]), 'lemons (picked, pomelo-sized)'));
-        if (k < 2) g.add(tag(ball(0.045, { grey: 0.4, col: 0x3a6a2a }, [x + dx - 0.07, y + 0.17, z + dz - 0.05], [1, 0.12, 0.45]), 'lemon leaf (still on the stem)')); }); }
-    // the rinds
-    { const [x, z] = P.rindsBowl.at, r = P.rindsBowl.r, b = bowlMesh(r, 0.5, CERAMIC); b.position.set(x, y + 0.5 * r, z); g.add(tag(b, 'bowl of squeezed rinds'));
-      for (let k = 0; k < P.rinds; k++) { const a = k * 1.25, rr = k ? 0.05 : 0; rind(g, [x + Math.cos(a) * rr, y + 0.06 + (k ? 0 : 0.03), z + Math.sin(a) * rr], TREE.lemonR * 0.75, [0.45 * Math.sin(k * 1.3) * (k ? 1 : 0), k * 0.9, 0.45 * Math.cos(k * 1.7) * (k ? 1 : 0)]); } }
-    // sugar on the counter, the water pitcher standing in the sink, the punchbowl being mixed (the ladle: ladleGrip.js)
+    // r4 props phase 2 (2026-11-26 late): the real downloaded models (work/props_audit.md, credits in docs/credits_tools.md):
+    // cutting board, knife, juicer, the two bowls, the pitcher, the picked lemons. The cut halves and the rinds stay code
+    // (cut faces / emptied shells: no model has them). Loose things in the bowls are SETTLED with Rapier (settle.mjs).
+    // cutting board (Poly Haven, real size kept: 45 x 25 cm), knife, two halves cut face up ON the board
+    const board = prop('cutting_board', { at: [P.board.at[0], y, P.board.at[1]], rot: [0, 90, 0] }), boardTop = y + 0.0413;
+    if (board) g.add(board); else g.add(tag(box(P.board.w, 0.022, P.board.d, { grey: 0.7, col: 0xc8a070 }, [P.board.at[0], y + 0.011, P.board.at[1]]), 'cutting board'));
+    P.halves.forEach(([x, z], i) => lemonHalf(g, [x, board ? boardTop : y + 0.022, z], TREE.lemonR, i * 0.4, 'lemon half (cut face up)'));
+    { const kn = prop('knife', { at: [P.knife.at[0] + 0.02, y, P.knife.at[1] - 0.04], rot: [0, -80, 0] }); if (kn) g.add(kn); }   // flat on the counter, handle toward the core wall (+X)
+    // the glass reamer (juicer, the real model, scaled to 18 cm across): a dish with a ribbed cone, the juice in the dish, a
+    // half pressed on it (cut face down). Its rim and tip heights (PREP_JUICER) drive her two hands (shots.js prepFigs).
+    { const [x, z] = P.reamer.at, J = PREP_JUICER, JG = new THREE.Group(); JG.userData.holdWhole = true;   // juicer + pressed half: one held object
+      const jp = prop('juicer', { at: [x, y, z], size: { w: J.w }, look: GLASSY }); if (jp) JG.add(jp);
+      const d = mk(new THREE.SphereGeometry(TREE.lemonR, 24, 10, 0, Math.PI * 2, 0, Math.PI / 2), LEMON); d.scale.set(1, 1.22, 1); d.position.set(x, y + J.halfY, z); JG.add(tag(d, 'lemon half (pressed on the juicer)'));
+      g.add(JG); }
+    // the bowl of picked lemons (from V3b), two still with a leaf: bowl and lemons are real models, the lemons settled in it
+    { const [x, z] = P.lemonsBowl.at; settledBowl(g, [x, y, z], SETTLED.lemonsBowl, 'bowl of picked lemons', { label: 'lemons (picked, pomelo-sized)', leaves: 2 }); }
+    // the rinds: the real bowl (22 cm), the code shells settled in it
+    { const [x, z] = P.rindsBowl.at; settledBowl(g, [x, y, z], SETTLED.rindsBowl, 'bowl of squeezed rinds'); }
+    // sugar on the counter, the water pitcher beside the sink, the punchbowl being mixed (the ladle: ladleGrip.js)
     g.add(tag(box(0.12, 0.2, 0.08, { grey: 0.92, col: 0xece8dc }, [P.sugar.at[0], y + 0.1, P.sugar.at[1]]), 'bag of sugar'));
-    { const py = P.pitcher.inSink ? y - 0.17 : y; g.add(tag(cyl(P.pitcher.r, P.pitcher.r * 0.9, 0.24, GLASSY, [P.pitcher.at[0], py + 0.12, P.pitcher.at[1]], null, 24), 'pitcher of water (by the sink)')); }
+    { const py = P.pitcher.inSink ? y - 0.17 : y, pt = prop('pitcher', { at: [P.pitcher.at[0], py, P.pitcher.at[1]], rot: [0, 0, 0], look: GLASSY, label: 'pitcher of water (by the sink)' });
+      if (pt) g.add(pt); else g.add(tag(cyl(P.pitcher.r, P.pitcher.r * 0.9, 0.24, GLASSY, [P.pitcher.at[0], py + 0.12, P.pitcher.at[1]], null, 24), 'pitcher of water (by the sink)')); }
     punchbowl(g, P.punch.at, y, { fill: P.punchFill, tool: 'none', lab: 'giant punchbowl (mixing the lemonade)' });
   }
 }
@@ -633,19 +649,19 @@ export function build(shot, { makeCam }) {
   if (shot.path) root.add(pathRibbon());
   if (shot.legs) root.add(legArrows());
   // V3b (before the party): the bowl the childhood friend holds, with the first picked lemons in it
-  if (shot.bowl) { const [bx, by, bz] = shot.bowl, BW = { grey: 0.85, col: 0xd8d0c0 };
-    root.add(tag(mk(new THREE.SphereGeometry(0.16, 24, 10, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), BW).translateX(bx).translateY(by + 0.1).translateZ(bz), 'bowl of picked lemons'));
-    for (const [dx, dz] of [[0.05, 0.02], [-0.06, -0.03], [0.0, -0.07]]) root.add(tag(ball(TREE.lemonR, { grey: 0.95, col: 0xf2d21c }, [bx + dx, by + 0.03, bz + dz], [1, 1.2, 1]), 'bowl of picked lemons')); }   // one label for the bowl and its lemons (hold pass 2026-11-26: one object)
+  // r4 props phase 2: the real bowl (36 cm), two pomelo-sized lemons settled in it, one on the other (settled.js); bowl and lemons are ONE held
+  // object (holdWhole); its bottom where the old half sphere's was (shot.bowl y - 0.06). The friend's palms: shots.js bowlHands
+  if (shot.bowl) { const [bx, by, bz] = shot.bowl; settledBowl(root, [bx, by - 0.06, bz], SETTLED.friendBowl, 'bowl of picked lemons', { holdWhole: true }); }
   const extra = (t) => { if (t === 'poiL') return V(poiCentre(1)); if (t === 'poiR') return V(poiCentre(-1)); if (t.startsWith('mark:')) { const m = MARKS[t.slice(5)]; return V(m[0], 1.5, m[1]); } return null; };
   // V3b_prep (Jade r3): the friend's right hand holds the ladle in a real grip; the arm, the hand pose and the ladle are
   // solved together (ladleGrip.js) from where the ladle's bowl sits in the lemonade
   let grip = null;
   if (shot.ladle && shot.figs?.[shot.ladle.who]) { const L = PREP.ladle, who = shot.ladle.who, c = CAST[who], Lh = (PROP[c.kind] || PROP.adult).hand * c.h;
     const yl = PREP.y + PUNCHBOWL.foot + PUNCHBOWL.h * PREP.punchFill;
-    grip = ladleGrip({ bowlC: [L.bowlAt[0], yl + (L.lift ?? 0), L.bowlAt[1]], L, Lh, medial: shot.ladle.medial, elbow: shot.ladle.elbow, kind: c.kind });
+    grip = ladleGrip({ bowlC: [L.bowlAt[0], yl + (L.lift ?? 0), L.bowlAt[1]], L, Lh, medial: shot.ladle.medial, elbow: shot.ladle.elbow, kind: c.kind });   // r4: the real ladle's bowl centre (its rim just under the surface)
     shot.figs[who] = { ...shot.figs[who], R: grip.arm }; }
   const { figs } = stage(shot.figs, null, extra);
-  if (grip) { buildLadle(root, grip, PREP.ladle, STEEL, LEMONADE); shot.ladleGrip = { note: 'the friend\u2019s right hand round the ladle (ladleGrip.js)', hand_len_m: +grip.Lh.toFixed(4), curl: grip.curl, thumb: grip.thumb,
+  if (grip) { const LB = buildLadle(root, grip); shot.ladleGrip = { note: 'the friend\u2019s right hand round the real ladle (ladleGrip.js; props/ladle, a flat 11 x 3.3 mm steel strip handle): a fist, thumb on the top face (Jade r4)', ladle_bowl_world: LB.bowlC.toArray().map((v) => +v.toFixed(3)), hook_world: LB.hook.toArray().map((v) => +v.toFixed(3)), hand_len_m: +grip.Lh.toFixed(4), curl: grip.curl, thumb: grip.thumb,
     fist_centre_world: grip.G.toArray().map((v) => +v.toFixed(3)), handle_up_dir: grip.up.toArray().map((v) => +v.toFixed(3)), thumb_tip_world: figs[shot.ladle.who].userData.P.thumbR.toArray().map((v) => +v.toFixed(3)), thumb_goal_world: grip.thumbGoalWorld.toArray().map((v) => +v.toFixed(3)), search: grip.search }; }
   // extra face anchors for the push-ins (V3_rev_*): each eye (half the 6.2 cm interpupillary distance off the eyes' midpoint)
   // and each temple (68 % of the way from the ear to the eyes, 2.2 cm up: forward of the mannequin's hair shell). headX points to the figure's own LEFT.
@@ -699,7 +715,8 @@ export function build(shot, { makeCam }) {
         seam_world_X: SHELF_W.seam, seam_px: [P(V(SHELF_W.seam, 0, SHELF_W.front)), P(V(SHELF_W.seam, SHELF.h, SHELF_W.front))],
         beauty_half: 'LEFT as you face it = NNE (art and literature)', truth_half: 'RIGHT as you face it = SSW (science fiction, textbooks, popular science)',
         cubes: SHELF.cubes.map((cu) => ({ cube: cu.key, col: cu.col, row: cu.row, kind: cu.kind, half: cu.half, px: cubePx(cu),
-          contents: cu.kind === 'books' ? (Array.isArray(cu.books) ? cu.books.map((b) => b.t) : { left: cu.books.left.map((b) => b.t), right: cu.books.right.map((b) => b.t) }) : cu.objects.map((o) => o.k) })),
+          contents: cu.kind === 'books' ? (Array.isArray(cu.books) ? cu.books.map(bookName) : { left: cu.books.left.map(bookName), right: cu.books.right.map(bookName) }) : cu.objects.map((o) => o.k) })),
+        spines_note: 'Only Jade\u2019s six titles carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: "Leave the rest blank"). Paint no words on them.',
         warnings: SHELF_WARN.length ? [...new Set(SHELF_WARN)] : undefined },
       expedit_2x2: { world: { X: [EXPEDIT2.X0, EXPEDIT2.X1], Z: [EXPEDIT2.Zc - EXPEDIT2.W / 2, EXPEDIT2.Zc + EXPEDIT2.W / 2], faces: 'SSW (-X)' }, printer_on_top: true, px: P(V(EXPEDIT2.X0 + 0.2, EXPEDIT2.H + 0.1, EXPEDIT2.Zc)) },
       lemon_tree_px: P(V(TREE.at[0], TREE.canopyY, TREE.at[1])), poi_px: P(poiP), opening_px: P(V((OPENING.x0 + OPENING.x1) / 2, 1.0, OPENING.z)) };
