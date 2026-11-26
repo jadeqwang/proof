@@ -1314,3 +1314,19 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Dark lit guides (<35 mean) in wall88, market93, kitchen90 and mv10; AD_fern is blown out.
   - The legacy attic88 renders (259 MB, untracked) were deleted.
 - **Post-sweep fix agent running:** those clip failures, the brightness pass, and the closet hair light.
+- **Post-sweep fixes done:**
+  - The closet foot is off the wall, and the closet-lit hair is dark cool brown (#2f2620).
+  - mv10: Jade is off the counter, N3 is clear of her, holds 308/308.
+  - Lit guides lifted to >=40 mean in wall88, market93, kitchen90 and mv10 (WL_top 35.8: its black void is intended).
+    AD_fern has 0% pure white.
+  - Lead looked at mv10 V3b_prep_lit and SI1_lit: fine.
+  - Pre-existing clips are still open: closet knees/wall/carpet; mv10 32 of 33 shots (couches, sandals, snacks, ladle
+    7.6 mm); kitchen day shots (Mama's wrists, chair).
+
+## NEXT SESSION START HERE (end of 2026-11-26 night)
+- Round 5 is applied and every set is re-rendered on the r5 engine. Nothing has been painted for r4/r5.
+- Jade answers the round-6 page (media/decisions.html, 13 cards, key proof-decisions-v7). Save the paste to
+  work/decisions/JADE_R6_DECISIONS.md.
+- Then paint: work/r4/REPAINT_LIST.md (r4 + r5 sections). Free Codex, most-corrected sets first.
+- Optional engine work first: holdcheck's hand is thinner than the mesh hand (6-17 mm); seated thighs ~14 mm into
+  chairs (raise seated hips ~5 mm); the MG2 pinch hands (~15 mm into the fold).
