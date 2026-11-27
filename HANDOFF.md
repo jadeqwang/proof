@@ -1399,3 +1399,10 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
 - Stubble: shorter, "more like a 5 o'clock shadow" (v10). The v9 chin-stubble technique is "not a bad direction for forearm hair" (v10 + D v5).
 - G sheet closet panel: the left foot is not natural for a cross-legged sit; the hands there are weird too (v10).
 - Codex plan limit hit 22:57 (resets 03:41) after ~75 images. Jade APPROVED paid gpt-image-2 via Cloudflare for tonight's remainder ("we have plenty of credits").
+- Accepted: first love B v10 (B_t1) and G v10 (G_t3); r4lib points at them, with a 5 o'clock-shadow clause (c9718bf).
+  A and D wait for 3D guides (new rule: model image-model weak spots, such as bare feet, toes and held hands, in
+  the engine, cast sheets included).
+- Jade: first love wears plain black slacks in every scene, at every age ("it feels more like him"). The costume
+  agent is changing the sets and prompts; the cast sheets that show his trousers need edits.
+- V1d_2: she moved 10 cm forward, her elbow is bent and her wrist near straight; the table is at her chin when she sits
+  cross-legged. Recommended: accept as is (awaiting Jade). Shanghai is re-rendered after the engine's cross-legged pose fix.
