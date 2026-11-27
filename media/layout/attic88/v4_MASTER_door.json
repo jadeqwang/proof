@@ -1,0 +1,1395 @@
+{
+ "shot": "v4_MASTER_door",
+ "set": "attic88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   2.9,
+   1.25,
+   -0.4
+  ],
+  "target": [
+   -3.5,
+   1,
+   -0.4
+  ],
+  "lens_mm": 24,
+  "frame_width_mm": 36,
+  "hfov_deg": 73.74,
+  "vfov_deg": 45.747,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0,
+   0,
+   -1,
+   0,
+   -0.039,
+   0.9992,
+   0,
+   0,
+   0.9992,
+   0.039,
+   0,
+   0,
+   2.9,
+   1.25,
+   -0.4,
+   1
+  ],
+  "viewMatrix": [
+   0,
+   -0.039,
+   0.9992,
+   0,
+   0,
+   0.9992,
+   0.039,
+   0,
+   -1,
+   0,
+   0,
+   0,
+   -0.4,
+   -1.1359,
+   -2.9466,
+   1
+  ],
+  "projectionMatrix": [
+   1.3333,
+   0,
+   0,
+   0,
+   0,
+   2.3704,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": {
+  "state": "closed",
+  "cover": [
+   [
+    1119.7,
+    3767.2
+   ],
+   [
+    628.7,
+    3404
+   ],
+   [
+    864.9,
+    2442.3
+   ],
+   [
+    1199.8,
+    2598.9
+   ]
+  ],
+  "corner_order": "TL,TR,BR,BL as the cover is read"
+ },
+ "panes": {
+  "window_TL": {
+   "px": [
+    [
+     -776.9,
+     490
+    ],
+    [
+     91.5,
+     490
+    ],
+    [
+     67.9,
+     -402.8
+    ],
+    [
+     -824.2,
+     -402.8
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -1.2
+    ],
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_TR": {
+   "px": [
+    [
+     91.5,
+     490
+    ],
+    [
+     960,
+     490
+    ],
+    [
+     960,
+     -402.8
+    ],
+    [
+     67.9,
+     -402.8
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     1.25,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_BL": {
+   "px": [
+    [
+     -824.2,
+     -402.8
+    ],
+    [
+     67.9,
+     -402.8
+    ],
+    [
+     43,
+     -1345.5
+    ],
+    [
+     -874.1,
+     -1345.5
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -1.2
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_BR": {
+   "px": [
+    [
+     67.9,
+     -402.8
+    ],
+    [
+     960,
+     -402.8
+    ],
+    [
+     960,
+     -1345.5
+    ],
+    [
+     43,
+     -1345.5
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "heads": {},
+ "hands": {},
+ "lights": [
+  {
+   "name": "neon",
+   "kind": "blade sign through the window (effective point = centroid of the part of the blade the subject sees)",
+   "on": true,
+   "color": "#ff2a14",
+   "world": [
+    4.1621,
+    0.9649,
+    -0.92
+   ],
+   "px": [
+    427.5,
+    197.8
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.19,
+    -0.982
+   ],
+   "toward_camera": -0.775,
+   "aim_world": [
+    1,
+    0.3,
+    -0.6
+   ]
+  },
+  {
+   "name": "stair_door",
+   "kind": "spot (tungsten through door)",
+   "on": true,
+   "color": "#ffb468",
+   "world": [
+    -4.15,
+    2.05,
+    0
+   ],
+   "px": [
+    887,
+    343.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.028,
+    1
+   ],
+   "toward_camera": 0.14,
+   "aim_world": [
+    0.5,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "floor_cracks",
+   "kind": "lines of tungsten from below",
+   "on": true,
+   "color": "#ffa24a",
+   "world": [
+    0.25,
+    0,
+    0.625
+   ],
+   "px": [
+    473.5,
+    1083.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.251,
+    0.968
+   ],
+   "toward_camera": 0.388
+  }
+ ],
+ "warnings": [],
+ "intent": "Empty room toward the stair door: door ajar (a warm slot), the hook rail with apron and towel, boxes, sacks, the mat feet.",
+ "layout_version": 4,
+ "sign": {
+  "model": "vertical blade sign on brackets, perpendicular to the facade, lettering on both faces",
+  "plane_z": -1,
+  "x_from_wall": [
+   0.18,
+   0.88
+  ],
+  "x": [
+   3.8,
+   4.5
+  ],
+  "y": [
+   -1.1,
+   1.5
+  ],
+  "thickness": 0.12,
+  "camera_sees": "face_plus_z",
+  "state": "red",
+  "corner_order": "TL,TR,BR,BL as that face is read from its own side (map the lettering straight on; it is NOT mirror-reversed)",
+  "faces": {
+   "face_plus_z": {
+    "px": [
+     [
+      203.9,
+      842.3
+     ],
+     [
+      532.7,
+      689.1
+     ],
+     [
+      503.9,
+      -1507.5
+     ],
+     [
+      108.9,
+      -3237.5
+     ]
+    ],
+    "world": [
+     [
+      3.8,
+      1.5,
+      -0.937
+     ],
+     [
+      4.5,
+      1.5,
+      -0.937
+     ],
+     [
+      4.5,
+      -1.1,
+      -0.937
+     ],
+     [
+      3.8,
+      -1.1,
+      -0.937
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "face_minus_z": {
+    "px": [
+     [
+      432.4,
+      689.1
+     ],
+     [
+      26.5,
+      842.3
+     ],
+     [
+      -90.8,
+      -3237.5
+     ],
+     [
+      396.9,
+      -1507.5
+     ]
+    ],
+    "world": [
+     [
+      4.5,
+      1.5,
+      -1.063
+     ],
+     [
+      3.8,
+      1.5,
+      -1.063
+     ],
+     [
+      3.8,
+      -1.1,
+      -1.063
+     ],
+     [
+      4.5,
+      -1.1,
+      -1.063
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   }
+  },
+  "letter_blocks": [
+   {
+    "text": "酒",
+    "face": "face_plus_z",
+    "px": [
+     [
+      279.5,
+      719.1
+     ],
+     [
+      505.3,
+      643.1
+     ],
+     [
+      499.3,
+      214.2
+     ],
+     [
+      266,
+      74.6
+     ]
+    ],
+    "world": [
+     [
+      3.9,
+      1.43,
+      -0.935
+     ],
+     [
+      4.4,
+      1.43,
+      -0.935
+     ],
+     [
+      4.4,
+      0.93,
+      -0.935
+     ],
+     [
+      3.9,
+      0.93,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "家",
+    "face": "face_plus_z",
+    "px": [
+     [
+      264.6,
+      8.7
+     ],
+     [
+      498.7,
+      170.7
+     ],
+     [
+      492.5,
+      -270.8
+     ],
+     [
+      250.6,
+      -664.5
+     ]
+    ],
+    "world": [
+     [
+      3.9,
+      0.88,
+      -0.935
+     ],
+     [
+      4.4,
+      0.88,
+      -0.935
+     ],
+     [
+      4.4,
+      0.38,
+      -0.935
+     ],
+     [
+      3.9,
+      0.38,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "CHIN.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      208.6,
+      -873.3
+     ],
+     [
+      506.8,
+      -332.4
+     ],
+     [
+      504.4,
+      -507.1
+     ],
+     [
+      202.1,
+      -1168.6
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      0.28,
+      -0.935
+     ],
+     [
+      4.45,
+      0.28,
+      -0.935
+     ],
+     [
+      4.45,
+      0.08,
+      -0.935
+     ],
+     [
+      3.85,
+      0.08,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "IND.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      199.9,
+      -1273.2
+     ],
+     [
+      503.6,
+      -568.6
+     ],
+     [
+      501.2,
+      -745.8
+     ],
+     [
+      193.2,
+      -1575.5
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      0.01,
+      -0.935
+     ],
+     [
+      4.45,
+      0.01,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.19,
+      -0.935
+     ],
+     [
+      3.85,
+      -0.19,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "SPEC.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      190.9,
+      -1682.5
+     ],
+     [
+      500.4,
+      -808.3
+     ],
+     [
+      497.9,
+      -988
+     ],
+     [
+      184,
+      -1992
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      -0.26,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.26,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.46,
+      -0.935
+     ],
+     [
+      3.85,
+      -0.46,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "REST.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      181.6,
+      -2101.7
+     ],
+     [
+      497.1,
+      -1051.3
+     ],
+     [
+      494.6,
+      -1233.6
+     ],
+     [
+      174.7,
+      -2418.7
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      -0.53,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.53,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.73,
+      -0.935
+     ],
+     [
+      3.85,
+      -0.73,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   }
+  ],
+  "light": {
+   "effective_point_world": [
+    4.162,
+    0.965,
+    -0.92
+   ],
+   "effective_point_px": [
+    427.5,
+    197.8
+   ],
+   "visible_fraction_of_face": 0.359,
+   "visible_extent": {
+    "x": [
+     3.8,
+     4.5
+    ],
+    "y": [
+     0.49249999999999994,
+     1.5
+    ]
+   },
+   "aimed_at_world": [
+    1,
+    0.3,
+    -0.6
+   ]
+  }
+ },
+ "hooks": {
+  "state": "hung",
+  "px": [
+   [
+    1008.7,
+    453.4
+   ],
+   [
+    1037.1,
+    453.4
+   ],
+   [
+    1065.5,
+    453.4
+   ],
+   [
+    1093.9,
+    453.4
+   ]
+  ],
+  "world": [
+   [
+    -3.42,
+    1.43,
+    -0.64
+   ],
+   [
+    -3.42,
+    1.43,
+    -0.78
+   ],
+   [
+    -3.42,
+    1.43,
+    -0.92
+   ],
+   [
+    -3.42,
+    1.43,
+    -1.06
+   ]
+  ],
+  "note": "hook 1 = apron, hook 2 = towel (after A3)"
+ },
+ "objects": [
+  {
+   "label": "floorboards",
+   "figure": null,
+   "frame_fraction": 0.24002,
+   "bbox_px": [
+    0,
+    740,
+    1870,
+    1080
+   ],
+   "centroid_px": [
+    877,
+    924
+   ],
+   "world_box": [
+    [
+     -3.498,
+     -0.022,
+     -2.8
+    ],
+    [
+     3.498,
+     0,
+     2.794
+    ]
+   ]
+  },
+  {
+   "label": "rafters",
+   "figure": null,
+   "frame_fraction": 0.21098,
+   "bbox_px": [
+    0,
+    0,
+    1920,
+    678
+   ],
+   "centroid_px": [
+    1013,
+    300
+   ],
+   "world_box": [
+    [
+     -3.235,
+     0.76,
+     -2.89
+    ],
+    [
+     2.835,
+     3,
+     2.89
+    ]
+   ]
+  },
+  {
+   "label": "left gable wall",
+   "figure": null,
+   "frame_fraction": 0.14548,
+   "bbox_px": [
+    322,
+    154,
+    1440,
+    740
+   ],
+   "centroid_px": [
+    861,
+    527
+   ],
+   "world_box": [
+    [
+     -3.62,
+     0,
+     -2.8
+    ],
+    [
+     -3.5,
+     3,
+     2.8
+    ]
+   ]
+  },
+  {
+   "label": "sloped ceiling (roof boards)",
+   "figure": null,
+   "frame_fraction": 0.14008,
+   "bbox_px": [
+    0,
+    0,
+    1920,
+    618
+   ],
+   "centroid_px": [
+    946,
+    243
+   ],
+   "world_box": [
+    [
+     -3.5,
+     0.902,
+     -2.806
+    ],
+    [
+     3.5,
+     3.018,
+     2.806
+    ]
+   ]
+  },
+  {
+   "label": "knee wall",
+   "figure": null,
+   "frame_fraction": 0.0624,
+   "bbox_px": [
+    0,
+    564,
+    1920,
+    888
+   ],
+   "centroid_px": [
+    1098,
+    694
+   ],
+   "world_box": [
+    [
+     -3.5,
+     0,
+     -2.83
+    ],
+    [
+     3.5,
+     0.9,
+     2.83
+    ]
+   ]
+  },
+  {
+   "label": "purlin",
+   "figure": null,
+   "frame_fraction": 0.0486,
+   "bbox_px": [
+    0,
+    0,
+    1920,
+    396
+   ],
+   "centroid_px": [
+    1150,
+    199
+   ],
+   "world_box": [
+    [
+     -3.5,
+     1.72,
+     -1.45
+    ],
+    [
+     3.5,
+     1.84,
+     1.45
+    ]
+   ]
+  },
+  {
+   "label": "collar ties",
+   "figure": null,
+   "frame_fraction": 0.03528,
+   "bbox_px": [
+    408,
+    42,
+    1176,
+    270
+   ],
+   "centroid_px": [
+    816,
+    133
+   ],
+   "world_box": [
+    [
+     -2.625,
+     2.19,
+     -1.05
+    ],
+    [
+     2.225,
+     2.31,
+     1.05
+    ]
+   ]
+  },
+  {
+   "label": "small TV (off) on a crate",
+   "figure": null,
+   "frame_fraction": 0.03135,
+   "bbox_px": [
+    1680,
+    660,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    1811,
+    922
+   ],
+   "world_box": [
+    [
+     0.025,
+     0,
+     -2.461
+    ],
+    [
+     0.535,
+     0.901,
+     -1.973
+    ]
+   ]
+  },
+  {
+   "label": "stair door",
+   "figure": null,
+   "frame_fraction": 0.03051,
+   "bbox_px": [
+    790,
+    346,
+    968,
+    742
+   ],
+   "centroid_px": [
+    874,
+    541
+   ],
+   "world_box": [
+    [
+     -3.89,
+     0,
+     -0.44
+    ],
+    [
+     -3.43,
+     1.96,
+     0.44
+    ]
+   ]
+  },
+  {
+   "label": "storage boxes",
+   "figure": null,
+   "frame_fraction": 0.02938,
+   "bbox_px": [
+    0,
+    606,
+    1538,
+    926
+   ],
+   "centroid_px": [
+    782,
+    773
+   ],
+   "world_box": [
+    [
+     -3.027,
+     0,
+     -2.648
+    ],
+    [
+     -0.71,
+     0.72,
+     2.594
+    ]
+   ]
+  },
+  {
+   "label": "rice sacks",
+   "figure": null,
+   "frame_fraction": 0.01107,
+   "bbox_px": [
+    244,
+    656,
+    582,
+    796
+   ],
+   "centroid_px": [
+    404,
+    724
+   ],
+   "world_box": [
+    [
+     -3.237,
+     -0.004,
+     1.299
+    ],
+    [
+     -2.052,
+     0.48,
+     2.626
+    ]
+   ]
+  },
+  {
+   "label": "light through floorboard cracks",
+   "figure": null,
+   "frame_fraction": 0.00456,
+   "bbox_px": [
+    50,
+    790,
+    902,
+    1080
+   ],
+   "centroid_px": [
+    562,
+    947
+   ],
+   "world_box": [
+    [
+     -2.4,
+     -0.022,
+     -0.152
+    ],
+    [
+     2.9,
+     -0.003,
+     1.539
+    ]
+   ]
+  },
+  {
+   "label": "apron (on the hook)",
+   "figure": null,
+   "frame_fraction": 0.00334,
+   "bbox_px": [
+    1000,
+    450,
+    1072,
+    606
+   ],
+   "centroid_px": [
+    1031,
+    541
+   ],
+   "world_box": [
+    [
+     -3.471,
+     0.68,
+     -0.968
+    ],
+    [
+     -3.444,
+     1.45,
+     -0.592
+    ]
+   ]
+  },
+  {
+   "label": "stairwell (lit)",
+   "figure": null,
+   "frame_fraction": 0.00212,
+   "bbox_px": [
+    806,
+    362,
+    956,
+    712
+   ],
+   "centroid_px": [
+    942,
+    508
+   ],
+   "world_box": [
+    [
+     -5.61,
+     -1.6,
+     -0.56
+    ],
+    [
+     -3.57,
+     2.46,
+     0.56
+    ]
+   ]
+  },
+  {
+   "label": "towel (on the hook)",
+   "figure": null,
+   "frame_fraction": 0.00183,
+   "bbox_px": [
+    1046,
+    454,
+    1086,
+    554
+   ],
+   "centroid_px": [
+    1065,
+    505
+   ],
+   "world_box": [
+    [
+     -3.47,
+     0.94,
+     -1.02
+    ],
+    [
+     -3.432,
+     1.435,
+     -0.82
+    ]
+   ]
+  },
+  {
+   "label": "ridge beam",
+   "figure": null,
+   "frame_fraction": 0.00136,
+   "bbox_px": [
+    824,
+    0,
+    888,
+    170
+   ],
+   "centroid_px": [
+    858,
+    81
+   ],
+   "world_box": [
+    [
+     -3.5,
+     2.82,
+     -0.04
+    ],
+    [
+     3.5,
+     3,
+     0.04
+    ]
+   ]
+  },
+  {
+   "label": "hook rail",
+   "figure": null,
+   "frame_fraction": 0.00046,
+   "bbox_px": [
+    994,
+    450,
+    1108,
+    464
+   ],
+   "centroid_px": [
+    1051,
+    455
+   ],
+   "world_box": [
+    [
+     -3.5,
+     1.385,
+     -1.13
+    ],
+    [
+     -3.478,
+     1.455,
+     -0.57
+    ]
+   ]
+  },
+  {
+   "label": "stair landing",
+   "figure": null,
+   "frame_fraction": 0.00031,
+   "bbox_px": [
+    856,
+    712,
+    956,
+    742
+   ],
+   "centroid_px": [
+    924,
+    728
+   ],
+   "world_box": [
+    [
+     -4.3,
+     -0.03,
+     -0.55
+    ],
+    [
+     -3.57,
+     0,
+     0.55
+    ]
+   ]
+  },
+  {
+   "label": "hooks",
+   "figure": null,
+   "frame_fraction": 0.00005,
+   "bbox_px": [
+    1008,
+    450,
+    1096,
+    458
+   ],
+   "centroid_px": [
+    1057,
+    453
+   ],
+   "world_box": [
+    [
+     -3.48,
+     1.408,
+     -1.067
+    ],
+    [
+     -3.418,
+     1.446,
+     -0.633
+    ]
+   ]
+  }
+ ],
+ "joints": {},
+ "gaze": {},
+ "costume": {},
+ "holds": [],
+ "figure_frame_fraction": {},
+ "colour_separation": [],
+ "figure_report": {}
+}

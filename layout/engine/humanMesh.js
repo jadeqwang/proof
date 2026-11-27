@@ -91,16 +91,33 @@ function restSkeleton(B, k) {
   return bones;
 }
 
-// 2026-11-26: the eyeball's own centre (bounding-box centre of that eye's rest vertices), not the eye bone's head: the bone
-// head sits off the ball, so irises classified round the bone head sat nasally and turned eyes read cross- / wall-eyed
-// (wall88 WL_eye). Used as the iris axis origin and the rotation pivot.
-function eyeBall(B, s, k) {
+// 2026-11-26: the eyeball's own centre, not the eye bone's head: the bone head sits off the ball, so irises classified round
+// the bone head sat nasally and turned eyes read cross- / wall-eyed (wall88 WL_eye).
+// r6 (2026-11-26, wall88 WL_eye still read cross-eyed): the MPFB eyeball is a sphere with its back cut off, so its bounding-box
+// centre (used until r6) sits ~4 mm IN FRONT of the sphere's centre; turning about it slid the ball sideways in the socket.
+// Now the sphere centre (x, y of the box; z = the front of the ball minus its radius, half its width) is the pivot and the
+// iris axis origin. sphere = false gives the old box centre (kept for reference only).
+function eyeBall(B, s, k, sphere = true) {
   const ms = B.meshes.eyes; if (!ms) return null;
   const c = (B._eyeBall ||= {}); if (!c[s]) { const lo = [1e9, 1e9, 1e9], hi = [-1e9, -1e9, -1e9];
     for (let i = 0; i < ms.pos.length; i += 3) { if ((ms.pos[i] > 0) !== (s === 'l')) continue; for (let j = 0; j < 3; j++) { lo[j] = Math.min(lo[j], ms.pos[i + j]); hi[j] = Math.max(hi[j], ms.pos[i + j]); } }
-    c[s] = new THREE.Vector3((lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, (lo[2] + hi[2]) / 2); }
-  return c[s].clone().multiplyScalar(k);
+    const box = new THREE.Vector3((lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, (lo[2] + hi[2]) / 2);
+    c[s] = { box, sphere: new THREE.Vector3(box.x, box.y, hi[2] - (hi[0] - lo[0]) / 2) }; }
+  return (sphere ? c[s].sphere : c[s].box).clone().multiplyScalar(k);
 }
+// r6 eye drawing constants (wall88 WL_eye, measured on lit renders with the iris / sclera coded in pure colours):
+//   IRIS / PUPIL: half-angles (rad) about the sphere centre. The old 0.6 / 0.27 rad about the box centre made the iris 64 % of
+//     the eye opening's width (a real child's is ~45-50 %), so any sideways look jammed the turning-in eye's iris into the
+//     nasal corner while the other still read centred: crossed. Now 48 %, pupil 45 % of the iris (as before).
+//   KAPPA: the iris axis is turned this many degrees outward (temporal) from the ball's rest forward axis. The MPFB lid
+//     opening sits slightly temporal of the ball, so at rest both irises sat 11 % of the opening nasal of centre (a slight
+//     squint inward); at 8 deg they sit centred (nasal fraction 0.51-0.52) looking straight ahead.
+//   TRAVEL: the MPFB eyeball is ~1.4x a real one against its lid opening (jade05: radius 16.4 mm), so a true turn about its
+//     centre slides the iris ~1.4x too far across the opening (22 deg put the iris edge in the corner). The drawn turn is
+//     asin(sin(turn) * TRAVEL) about the sphere centre, so the iris crosses the opening as a real eye's does. The gaze
+//     report (engine/gaze.js) keeps the true eye angles; only the drawn ball turns less.
+const EYE_IRIS = 0.342, EYE_PUPIL = 0.153, EYE_KAPPA = 8, EYE_TRAVEL = 0.72;
+function irisAxis(s) { const a = EYE_KAPPA * Math.PI / 180; return new THREE.Vector3((s === 'l' ? 1 : -1) * Math.sin(a), 0, Math.cos(a)); }
 
 // ---------------------------------------------------------------- pose: one matrix (and optional twist) per bone
 function solvePose(B, bones, P, spec, c, k) {
@@ -152,7 +169,10 @@ function solvePose(B, bones, P, spec, c, k) {
     const e0 = eyeBall(B, s, k) || hd(n), e1 = e0.clone().applyMatrix4(M.head);
     let R = RH.clone();
     if (P.lookAt) { const d = P.lookAt.clone().sub(e1).normalize(); const e = eyeAim(d, { hx, hy, hdir: hz });
-      R = new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(hz, e.dir)).multiply(RH); }
+      // r6: drawn turn = asin(sin(turn) * EYE_TRAVEL), yaw and pitch (see EYE_TRAVEL)
+      const yw = Math.asin(Math.sin(e.yaw) * EYE_TRAVEL), pt = Math.asin(Math.sin(e.pitch) * EYE_TRAVEL);
+      const dir = hz.clone().multiplyScalar(Math.cos(yw) * Math.cos(pt)).addScaledVector(hx, Math.sin(yw) * Math.cos(pt)).addScaledVector(hy, Math.sin(pt)).normalize();
+      R = new THREE.Matrix4().makeRotationFromQuaternion(new THREE.Quaternion().setFromUnitVectors(hz, dir)).multiply(RH); }
     M[n] = rigidMatrix(e0, I3, e1, R); (P.eyeCentres ||= {})[s] = e1;
     // 2026-11-26: the ball 5 % smaller about its centre, so a turned eye's corneal bulge stays behind the lids (mv10 C2a: a
     // white patch of sclera through the outer corner of the far eye)
@@ -549,17 +569,18 @@ function earsUnderHair(hms, g, P, h) {
   }
 }
 
-// eyeballs: sclera / iris / pupil by angle from each eye bone's forward axis (rest +z)
+// eyeballs: sclera / iris / pupil by angle from each eye's iris axis (r6: rest +z turned EYE_KAPPA outward) about the sphere centre
 function eyes(g, B, k, M, TW, uid) {
   const ms = B.meshes.eyes, n = ms.pos.length / 3, pos = bake(ms, B.jointNames, k, M, TW);
-  const ctr = {}; for (const s of ['l', 'r']) ctr[s] = eyeBall(B, s, k);
+  const ctr = {}, ax = {}; for (const s of ['l', 'r']) { ctr[s] = eyeBall(B, s, k); ax[s] = irisAxis(s); }
+  const zone = (a) => (a < EYE_PUPIL ? 'pupil' : a < EYE_IRIS ? 'iris' : 'sclera');
   const cls = new Array(n);
   for (let i = 0; i < n; i++) { const x = ms.pos[i * 3] * k, y = ms.pos[i * 3 + 1] * k, z = ms.pos[i * 3 + 2] * k; const c = x > 0 ? ctr.l : ctr.r;
-    const d = new THREE.Vector3(x - c.x, y - c.y, z - c.z).normalize(); const a = Math.acos(THREE.MathUtils.clamp(d.z, -1, 1));
-    cls[i] = a < 0.27 ? 'pupil' : a < 0.6 ? 'iris' : 'sclera'; }
+    const d = new THREE.Vector3(x - c.x, y - c.y, z - c.z).normalize();
+    cls[i] = zone(Math.acos(THREE.MathUtils.clamp(d.dot(ax[x > 0 ? 'l' : 'r']), -1, 1))); }
   // the iris and pupil borders cut through the triangles (round, not a triangle staircase)
   const P0 = [], W0 = []; for (let i = 0; i < n; i++) P0.push(new THREE.Vector3(ms.pos[i * 3] * k, ms.pos[i * 3 + 1] * k, ms.pos[i * 3 + 2] * k));
-  const labAt = (p) => { const c = p.x > 0 ? ctr.l : ctr.r; const d = p.clone().sub(c).normalize(); const a = Math.acos(THREE.MathUtils.clamp(d.z, -1, 1)); return a < 0.27 ? 'pupil' : a < 0.6 ? 'iris' : 'sclera'; };
+  const labAt = (p) => { const s2 = p.x > 0 ? 'l' : 'r', d = p.clone().sub(ctr[s2]).normalize(); return zone(Math.acos(THREE.MathUtils.clamp(d.dot(ax[s2]), -1, 1))); };
   const lab = P0.map(labAt), idx2 = [], tri = [], cut = new Map(), I = ms.idx, src = [];
   const crossing = (a, b) => { const key = a < b ? a + ':' + b : b + ':' + a; if (cut.has(key)) return cut.get(key); let lo = 0, hi = 1;
     for (let it = 0; it < 12; it++) { const t = (lo + hi) / 2; if (labAt(P0[a].clone().lerp(P0[b], t)) === lab[a]) lo = t; else hi = t; }

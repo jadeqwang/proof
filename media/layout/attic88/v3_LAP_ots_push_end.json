@@ -1,0 +1,1324 @@
+{
+ "shot": "v3_LAP_ots_push_end",
+ "set": "attic88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   2.573,
+   0.6607,
+   -1.2636
+  ],
+  "target": [
+   2.4579,
+   0.3484,
+   -1.0625
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 14.57,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.9403,
+   0.1499,
+   -0.3054,
+   0,
+   -0.1678,
+   0.5767,
+   0.7996,
+   0,
+   0.296,
+   0.8031,
+   -0.5171,
+   0,
+   2.573,
+   0.6607,
+   -1.2636,
+   1
+  ],
+  "viewMatrix": [
+   -0.9403,
+   -0.1678,
+   0.296,
+   0,
+   0.1499,
+   0.5767,
+   0.8031,
+   0,
+   -0.3054,
+   0.7996,
+   -0.5171,
+   0,
+   1.9345,
+   1.061,
+   -1.9456,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": {
+  "state": "open",
+  "spread": [
+   [
+    -64,
+    -142.8
+   ],
+   [
+    1984.7,
+    -142.9
+   ],
+   [
+    1984.6,
+    1222.9
+   ],
+   [
+    -63.9,
+    1222.8
+   ]
+  ],
+  "left": [
+   [
+    -64,
+    -142.8
+   ],
+   [
+    960.2,
+    -117.6
+   ],
+   [
+    960.2,
+    1197.6
+   ],
+   [
+    -63.9,
+    1222.8
+   ]
+  ],
+  "right": [
+   [
+    960.2,
+    -117.6
+   ],
+   [
+    1984.7,
+    -142.9
+   ],
+   [
+    1984.6,
+    1222.9
+   ],
+   [
+    960.2,
+    1197.6
+   ]
+  ],
+  "corner_order": "TL,TR,BR,BL as the page is read",
+  "spread_world": [
+   [
+    2.6324,
+    0.4081,
+    -0.8976
+   ],
+   [
+    2.2459,
+    0.4698,
+    -1.0232
+   ],
+   [
+    2.2919,
+    0.3118,
+    -1.2423
+   ],
+   [
+    2.6783,
+    0.2501,
+    -1.1167
+   ]
+  ],
+  "behind_camera": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ "panes": {
+  "window_TL": {
+   "px": [
+    [
+     3040.6,
+     1161.1
+    ],
+    [
+     4344.7,
+     2597.9
+    ],
+    [
+     10872.8,
+     3852.6
+    ],
+    [
+     5038.6,
+     569.5
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -1.2
+    ],
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "window_TR": {
+   "px": [
+    [
+     4344.7,
+     2597.9
+    ],
+    [
+     7458.5,
+     6028.8
+    ],
+    [
+     -87525.8,
+     -51519.7
+    ],
+    [
+     10872.8,
+     3852.6
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     1.25,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    false,
+    true
+   ]
+  },
+  "window_BL": {
+   "px": [
+    [
+     5038.6,
+     569.5
+    ],
+    [
+     10872.8,
+     3852.6
+    ],
+    [
+     -13093.4,
+     -753.6
+    ],
+    [
+     25554.9,
+     -5505.8
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -1.2
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    false,
+    true
+   ]
+  },
+  "window_BR": {
+   "px": [
+    [
+     10872.8,
+     3852.6
+    ],
+    [
+     -87525.8,
+     -51519.7
+    ],
+    [
+     -5314.6,
+     -1710.1
+    ],
+    [
+     -13093.4,
+     -753.6
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    true,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "mama": {
+   "px": [
+    668.9,
+    167.9
+   ],
+   "eyes": [
+    468.5,
+    766.2
+   ],
+   "mouth": [
+    191.7,
+    -1064.9
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 11
+  },
+  "littleJade": {
+   "px": [
+    4062,
+    2070.2
+   ],
+   "eyes": [
+    2103.5,
+    576.2
+   ],
+   "mouth": [
+    1886.6,
+    1148.2
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 89
+  }
+ },
+ "hands": {
+  "mama.L": {
+   "px": [
+    -40.6,
+    1110.1
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama.R": {
+   "px": [
+    1851,
+    1110.1
+   ],
+   "shape": "palmUp",
+   "in_frame": false,
+   "visible": false
+  },
+  "littleJade.L": {
+   "px": [
+    454.3,
+    1181.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "littleJade.R": {
+   "px": [
+    1497.3,
+    1182.6
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "neon",
+   "kind": "blade sign through the window (effective point = centroid of the part of the blade the subject sees)",
+   "on": true,
+   "color": "#ff2a14",
+   "world": [
+    4.1507,
+    1.0064,
+    -1.08
+   ],
+   "px": [
+    5234.9,
+    774.1
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.999,
+    0.055
+   ],
+   "toward_camera": -0.572,
+   "aim_world": [
+    2.4579,
+    0.3484,
+    -1.0625
+   ]
+  },
+  {
+   "name": "stair_door",
+   "kind": "spot (tungsten through door)",
+   "on": true,
+   "color": "#ffb468",
+   "world": [
+    -4.15,
+    2.05,
+    0
+   ],
+   "px": [
+    8467.9,
+    -3051.8
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.902,
+    0.432
+   ],
+   "toward_camera": 0.165,
+   "aim_world": [
+    0.5,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "floor_cracks",
+   "kind": "lines of tungsten from below",
+   "on": true,
+   "color": "#ffa24a",
+   "world": [
+    0.25,
+    0,
+    0.625
+   ],
+   "px": [
+    2243,
+    -751.7
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.705,
+    0.71
+   ],
+   "toward_camera": 0.645
+  }
+ ],
+ "warnings": [
+  "wrist: mama L beyond the wrist range (supination +5 deg; flex 0, radial 0, twist 90, after an elbow swivel of 0 deg)",
+  "wrist: mama R beyond the wrist range (supination +5 deg; flex 0, radial 0, twist 90, after an elbow swivel of 0 deg)"
+ ],
+ "intent": "Same line as v3_LAP_ots, pushed in until the spread fills the frame; the cut to the painting happens here.",
+ "layout_version": 3,
+ "sign": {
+  "model": "vertical blade sign on brackets, perpendicular to the facade, lettering on both faces",
+  "plane_z": -1,
+  "x_from_wall": [
+   0.18,
+   0.88
+  ],
+  "x": [
+   3.8,
+   4.5
+  ],
+  "y": [
+   -1.1,
+   1.5
+  ],
+  "thickness": 0.12,
+  "camera_sees": "face_minus_z",
+  "state": "red",
+  "corner_order": "TL,TR,BR,BL as that face is read from its own side (map the lettering straight on; it is NOT mirror-reversed)",
+  "faces": {
+   "face_plus_z": {
+    "px": [
+     [
+      3384.4,
+      1699.4
+     ],
+     [
+      4059.8,
+      1272.2
+     ],
+     [
+      -3051,
+      2526.5
+     ],
+     [
+      -1362.3,
+      2009.3
+     ]
+    ],
+    "world": [
+     [
+      3.8,
+      1.5,
+      -0.937
+     ],
+     [
+      4.5,
+      1.5,
+      -0.937
+     ],
+     [
+      4.5,
+      -1.1,
+      -0.937
+     ],
+     [
+      3.8,
+      -1.1,
+      -0.937
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     false,
+     false
+    ]
+   },
+   "face_minus_z": {
+    "px": [
+     [
+      3819.7,
+      1065.5
+     ],
+     [
+      3138.2,
+      1417
+     ],
+     [
+      -1431.2,
+      2255.1
+     ],
+     [
+      -3251.1,
+      2861.6
+     ]
+    ],
+    "world": [
+     [
+      4.5,
+      1.5,
+      -1.063
+     ],
+     [
+      3.8,
+      1.5,
+      -1.063
+     ],
+     [
+      3.8,
+      -1.1,
+      -1.063
+     ],
+     [
+      4.5,
+      -1.1,
+      -1.063
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     false,
+     false
+    ]
+   }
+  },
+  "letter_blocks": [
+   {
+    "text": "酒",
+    "face": "face_minus_z",
+    "px": [
+     [
+      3900.6,
+      1063.1
+     ],
+     [
+      3413.2,
+      1320.9
+     ],
+     [
+      5635,
+      877.2
+     ],
+     [
+      5919,
+      561.6
+     ]
+    ],
+    "world": [
+     [
+      4.4,
+      1.43,
+      -1.065
+     ],
+     [
+      3.9,
+      1.43,
+      -1.065
+     ],
+     [
+      3.9,
+      0.93,
+      -1.065
+     ],
+     [
+      4.4,
+      0.93,
+      -1.065
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "家",
+    "face": "face_minus_z",
+    "px": [
+     [
+      6266,
+      475.4
+     ],
+     [
+      6067.7,
+      790.8
+     ],
+     [
+      39961.5,
+      -5978.3
+     ],
+     [
+      16944,
+      -2178
+     ]
+    ],
+    "world": [
+     [
+      4.4,
+      0.88,
+      -1.065
+     ],
+     [
+      3.9,
+      0.88,
+      -1.065
+     ],
+     [
+      3.9,
+      0.38,
+      -1.065
+     ],
+     [
+      4.4,
+      0.38,
+      -1.065
+     ]
+    ],
+    "behind_camera": [
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   {
+    "text": "CHIN.",
+    "face": "face_minus_z",
+    "px": [
+     [
+      24848,
+      -4226.3
+     ],
+     [
+      -79820.6,
+      17387.9
+     ],
+     [
+      -12213.2,
+      4353.1
+     ],
+     [
+      -263585.5,
+      68449.3
+     ]
+    ],
+    "world": [
+     [
+      4.45,
+      0.28,
+      -1.065
+     ],
+     [
+      3.85,
+      0.28,
+      -1.065
+     ],
+     [
+      3.85,
+      0.08,
+      -1.065
+     ],
+     [
+      4.45,
+      0.08,
+      -1.065
+     ]
+    ],
+    "behind_camera": [
+     true,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "IND.",
+    "face": "face_minus_z",
+    "px": [
+     [
+      -50536.9,
+      14768.2
+     ],
+     [
+      -9297.9,
+      3791
+     ],
+     [
+      -5396.1,
+      3038.7
+     ],
+     [
+      -14869.2,
+      5781.1
+     ]
+    ],
+    "world": [
+     [
+      4.45,
+      0.01,
+      -1.065
+     ],
+     [
+      3.85,
+      0.01,
+      -1.065
+     ],
+     [
+      3.85,
+      -0.19,
+      -1.065
+     ],
+     [
+      4.45,
+      -0.19,
+      -1.065
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "SPEC.",
+    "face": "face_minus_z",
+    "px": [
+     [
+      -11832.1,
+      5015.8
+     ],
+     [
+      -4668.4,
+      2898.4
+     ],
+     [
+      -3311,
+      2636.7
+     ],
+     [
+      -7362.4,
+      3889.6
+     ]
+    ],
+    "world": [
+     [
+      4.45,
+      -0.26,
+      -1.065
+     ],
+     [
+      3.85,
+      -0.26,
+      -1.065
+     ],
+     [
+      3.85,
+      -0.46,
+      -1.065
+     ],
+     [
+      4.45,
+      -0.46,
+      -1.065
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "REST.",
+    "face": "face_minus_z",
+    "px": [
+     [
+      -6471.9,
+      3665.2
+     ],
+     [
+      -2987.2,
+      2574.3
+     ],
+     [
+      -2300.3,
+      2441.8
+     ],
+     [
+      -4758.4,
+      3233.5
+     ]
+    ],
+    "world": [
+     [
+      4.45,
+      -0.53,
+      -1.065
+     ],
+     [
+      3.85,
+      -0.53,
+      -1.065
+     ],
+     [
+      3.85,
+      -0.73,
+      -1.065
+     ],
+     [
+      4.45,
+      -0.73,
+      -1.065
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  ],
+  "light": {
+   "effective_point_world": [
+    4.151,
+    1.006,
+    -1.08
+   ],
+   "effective_point_px": [
+    5234.9,
+    774.1
+   ],
+   "visible_fraction_of_face": 0.375,
+   "visible_extent": {
+    "x": [
+     3.8,
+     4.5
+    ],
+    "y": [
+     0.49249999999999994,
+     1.5
+    ]
+   },
+   "aimed_at_world": [
+    2.458,
+    0.348,
+    -1.063
+   ]
+  }
+ },
+ "hooks": {
+  "state": "hung",
+  "px": [
+   [
+    7980.1,
+    -1919
+   ],
+   [
+    8398.3,
+    -1897.1
+   ],
+   [
+    8862,
+    -1872.7
+   ],
+   [
+    9378.8,
+    -1845.5
+   ]
+  ],
+  "world": [
+   [
+    -3.42,
+    1.43,
+    -0.64
+   ],
+   [
+    -3.42,
+    1.43,
+    -0.78
+   ],
+   [
+    -3.42,
+    1.43,
+    -0.92
+   ],
+   [
+    -3.42,
+    1.43,
+    -1.06
+   ]
+  ],
+  "note": "hook 1 = apron, hook 2 = towel (after A3)"
+ },
+ "push": {
+  "start_position": [
+   2.8885,
+   1.076,
+   -1.3231
+  ],
+  "start_target": [
+   1.8431,
+   -0.5435,
+   -0.7896
+  ],
+  "start_distance_to_gutter_m": 0.885,
+  "end_distance_to_gutter_m": 0.389,
+  "swing_onto_page_normal_deg": 16.9,
+  "note": "end of the push that starts at v3_LAP_ots: same line toward the gutter; book.spread px here is the target of the move"
+ },
+ "serves": [
+  "B3 (end of the push)",
+  "C5b"
+ ],
+ "gaze": {
+  "mama": {
+   "face": "drawn",
+   "look_target": {
+    "name": "book:G",
+    "world": [
+     2.458,
+     0.348,
+     -1.063
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -0.4,
+    "pitch_up": -24.4,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0.9,
+    "pitch_up": -21.9,
+    "wanted_yaw": 0.9,
+    "wanted_pitch": -21.9,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "book:LOB",
+     "shape": "palmUp",
+     "world": [
+      2.678,
+      0.231,
+      -1.086
+     ],
+     "look_off_deg": 26.8
+    },
+    {
+     "arm": "R",
+     "target": "book:ROB",
+     "shape": "palmUp",
+     "world": [
+      2.292,
+      0.293,
+      -1.212
+     ],
+     "look_off_deg": 25.8
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    464.3,
+    726.9
+   ],
+   "target_px": [
+    960.2,
+    540
+   ],
+   "target_in_front": true
+  },
+  "littleJade": {
+   "face": "drawn",
+   "look_target": {
+    "name": "book:G",
+    "world": [
+     2.458,
+     0.348,
+     -1.063
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 14.9,
+    "pitch_up": -28.1,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -28.9,
+    "wanted_yaw": 0,
+    "wanted_pitch": -28.9,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "book:LB",
+     "shape": "relax",
+     "world": [
+      2.579,
+      0.279,
+      -1.144
+     ],
+     "look_off_deg": 29.8
+    },
+    {
+     "arm": "R",
+     "target": "book:RB",
+     "shape": "relax",
+     "world": [
+      2.387,
+      0.31,
+      -1.207
+     ],
+     "look_off_deg": 34.6
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    2103.5,
+    576.2
+   ],
+   "target_px": [
+    960.2,
+    540
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "mama": {
+   "top": "#6e3a33",
+   "legs": "#3a3632",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "littleJade": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "mama": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 0,
+    "radial_deg": 0,
+    "twist_deg": 90,
+    "elbow_flex_deg": 51.8,
+    "before": {
+     "flex_deg": 0,
+     "radial_deg": 0,
+     "twist_deg": 90
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "supination +5 deg"
+    ],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 0,
+    "radial_deg": 0,
+    "twist_deg": 90,
+    "elbow_flex_deg": 63.7,
+    "before": {
+     "flex_deg": 0,
+     "radial_deg": 0,
+     "twist_deg": 90
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "supination +5 deg"
+    ],
+    "grip_reversed": false
+   }
+  },
+  "littleJade": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 0,
+    "radial_deg": 0,
+    "twist_deg": -64,
+    "elbow_flex_deg": 84.8,
+    "before": {
+     "flex_deg": 0,
+     "radial_deg": 0,
+     "twist_deg": -64
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 0,
+    "radial_deg": 0,
+    "twist_deg": -75.2,
+    "elbow_flex_deg": 91.6,
+    "before": {
+     "flex_deg": 0,
+     "radial_deg": 0,
+     "twist_deg": -75.2
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "littleJade": 0.0071
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "mama": {
+   "legs": {
+    "L": {
+     "reach": 0.97
+    },
+    "R": {
+     "reach": 0.97
+    }
+   },
+   "arms": {
+    "L": 0.9,
+    "R": 0.85
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "mama",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0.002,
+    "L": {
+     "elbow_bend_deg": 52,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 63,
+     "upperarm_stretch": 1.03,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0738
+   }
+  },
+  "littleJade": {
+   "legs": {
+    "L": {
+     "reach": 0.99
+    },
+    "R": {
+     "reach": 0.99
+    }
+   },
+   "arms": {
+    "L": 0.74,
+    "R": 0.7
+   },
+   "headTurn": 15,
+   "body": {
+    "mesh": "jade05",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 94,
+     "upperarm_stretch": 1.02,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 101,
+     "upperarm_stretch": 0.95,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 14.7,
+    "sole_shift_mm_R": 14.7,
+    "sole_lowest_y_m": 0.0867
+   }
+  }
+ }
+}

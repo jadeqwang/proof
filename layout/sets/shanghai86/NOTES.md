@@ -951,3 +951,33 @@ Jade (r6, sh_jamb): "Mama's hand on the door jamb (V1e) — is her hand clipping
 - V1e now has `clip.touch` mama86.handR on the jamb lining (pass). clipcheck: mama86 clear in every shot (the remaining
   V1e fails are jade3 into the paper drift, pre-existing). check_bodies V1e / V1d_8_end PASS; holdcheck no fails.
 - Changed guides: V1e, V1d_8_end (her arm, behind the bookcase end), REF_beam. Rendered three passes.
+
+### r6b (2026-11-26, Jade on REF_beam: "mom's wrist and little Jade's wrists are in kinda unnatural positions")
+New standing rule (Jade): match everyday actions to real photos; low-energy bodies (limbs supported or hanging, shoulders
+down, wrists near neutral). References: 5 doorway photos + 5 child-on-the-floor photos from Pexels, saved look-only in
+the session scratchpad (shanghai_refs/; not in the repo, never sent to any model). What they show: a hand on a door
+frame sits at chest-shoulder height, elbow down by the body, wrist nearly straight; small children handle small things
+low in the lap or close in front of the chest, elbows bent and down.
+- **Mama (mother(), every shot she is in):** the r6a palm was flat with straight fingers up, the wrist bent back, the
+  elbow out. Now (MAT = PLACES.mother + (-0.13, +0.12), yaw -50, on the threshold): right hand on the west jamb lining at
+  shoulder height (palm centre y 1.18), softly bent fingers (SOFT_FLAT) pointing up and back toward the hall, elbow
+  down in front of her hip. (A right palm on the WEST jamb is only thumb-up-neutral when the forearm points toward the
+  hall; every fingers-into-the-room variant was 20-90 deg past pronation/supination.) Left arm: { to: 'side', hand:
+  'relax' } (was splayed). Contact -0.5 mm, no clips, every joint in range. motherPeek (V1f): both hands 'relax'.
+- **Little Jade after-pose (jadeSit(8): REF_*, V1e, V1f, V1g, V1h, PB1):** was reaching for the table 0.4 m away (left
+  arm past its reach, 1.44; wrists flexed ~60 deg; lean 40). Now LAP: both hands resting palm-down on her crossed legs,
+  fingers along the forearm, lean 15. V1d_8_end uses LAP too. V1h and PB1 render pixel-identical (her hands are not in those
+  frames).
+- **Rips (ripSit: V1d_1, V1d_2, V1d_4, V1d_8):** were held at arm's length (0.36 m out, 0.47 up, elbows 10 deg). Now
+  RIP_H 0.26 out, 0.32 up, over her crossed legs, lean 8: elbows ~73 deg, wrists ext 16 / radial 11. The POV cameras keep
+  their positions (orbit at RIP_C) and aim at RIP_H; the frames now look down past the hands to the drift on the floor
+  rather than at the table edge. Gaze RIP_LOOK just beyond the pinches (eyes 33 cm; at the hands themselves, 18 cm,
+  check_bodies flags crossed eyes).
+- **V1c:** the piece still held up over the table edge (intent) but close in: pinchPair(0.28, 0.47, PY 0.9), lean 8,
+  elbows 64, wrists ext 15 / dev 3.
+- **V1d_2:** the left (kept half) hand close in, fingers more upright (ulnar was +7 past). The right hand putting the half
+  down at PD still cannot reach (1.08, as before r6): PD on the table is 0.4 m out; fixing it means moving PD (and the
+  laid half in every after shot) or her spot. FLAGGED.
+- Checks: clipcheck: no new fails (remaining: the drift under her, the held piece's pinch numbers, V1a/V1b uncle, V1d_2
+  reach: all as before); check_bodies PASS V1c, V1d_1, V1d_2, V1d_8_end, V1e, REF_beam; holdcheck no fails. Rendered
+  three passes. Compare sheet: scratchpad shanghai_r6b_compare.jpg.

@@ -1,0 +1,509 @@
+{
+ "shot": "A2",
+ "set": "attic88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   2.65,
+   0.42,
+   0.55
+  ],
+  "target": [
+   2.0718,
+   0.3276,
+   -1.3624
+  ],
+  "lens_mm": 28,
+  "frame_width_mm": 36,
+  "hfov_deg": 65.47,
+  "vfov_deg": 39.761,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0.9572,
+   0,
+   -0.2894,
+   0,
+   -0.0134,
+   0.9989,
+   -0.0442,
+   0,
+   0.2891,
+   0.0462,
+   0.9562,
+   0,
+   2.65,
+   0.42,
+   0.55,
+   1
+  ],
+  "viewMatrix": [
+   0.9572,
+   -0.0134,
+   0.2891,
+   0,
+   0,
+   0.9989,
+   0.0462,
+   0,
+   -0.2894,
+   -0.0442,
+   0.9562,
+   0,
+   -2.3774,
+   -0.3598,
+   -1.3114,
+   1
+  ],
+  "projectionMatrix": [
+   1.5556,
+   0,
+   0,
+   0,
+   0,
+   2.7654,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": {
+  "state": "closed",
+  "cover": [
+   [
+    917.7,
+    597.5
+   ],
+   [
+    810.1,
+    593.4
+   ],
+   [
+    829.7,
+    578.9
+   ],
+   [
+    927.9,
+    582.6
+   ]
+  ],
+  "corner_order": "TL,TR,BR,BL as the cover is read"
+ },
+ "panes": {
+  "window_TL": {
+   "px": [
+    [
+     2365.8,
+     -420.3
+    ],
+    [
+     2727.1,
+     -758
+    ],
+    [
+     2695.3,
+     -154.3
+    ],
+    [
+     2347.4,
+     15.2
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -1.2
+    ],
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "window_TR": {
+   "px": [
+    [
+     2727.1,
+     -758
+    ],
+    [
+     3529.1,
+     -1507.4
+    ],
+    [
+     3455.5,
+     -524.7
+    ],
+    [
+     2695.3,
+     -154.3
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     1.25,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "window_BL": {
+   "px": [
+    [
+     2347.4,
+     15.2
+    ],
+    [
+     2695.3,
+     -154.3
+    ],
+    [
+     2664.7,
+     428.1
+    ],
+    [
+     2329.4,
+     439.6
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -1.2
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "window_BR": {
+   "px": [
+    [
+     2695.3,
+     -154.3
+    ],
+    [
+     3455.5,
+     -524.7
+    ],
+    [
+     3386.1,
+     403.4
+    ],
+    [
+     2664.7,
+     428.1
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "littleJade": {
+   "px": [
+    1352.9,
+    593.8
+   ],
+   "eyes": [
+    1372.9,
+    553.8
+   ],
+   "mouth": [
+    1372.1,
+    561.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 74
+  }
+ },
+ "hands": {
+  "littleJade.L": {
+   "px": [
+    1437.9,
+    671.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "littleJade.R": {
+   "px": [
+    1243.2,
+    664
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "neon",
+   "kind": "spot (sign through window)",
+   "on": true,
+   "color": "#ff2a14",
+   "world": [
+    4.67,
+    1.5,
+    -0.2
+   ],
+   "px": [
+    39528,
+    -18917.9
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.893,
+    0.45
+   ],
+   "toward_camera": -0.793,
+   "aim_world": [
+    1.6,
+    0.25,
+    -1
+   ]
+  },
+  {
+   "name": "stair_door",
+   "kind": "spot (tungsten through door)",
+   "on": false,
+   "color": "#ffb468",
+   "world": [
+    -4.15,
+    2.05,
+    0
+   ],
+   "px": [
+    -2964.1,
+    -537.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.959,
+    0.282
+   ],
+   "toward_camera": -0.05,
+   "aim_world": [
+    0.5,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "floor_cracks",
+   "kind": "lines of tungsten from below",
+   "on": true,
+   "color": "#ffa24a",
+   "world": [
+    0.25,
+    0,
+    0.625
+   ],
+   "px": [
+    -4438.2,
+    1449.7
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.987,
+    -0.162
+   ],
+   "toward_camera": -0.699
+  }
+ ],
+ "warnings": [],
+ "camera_move": {
+  "end_pos": [
+   1.6,
+   0.42,
+   0.55
+  ],
+  "end_target_note": "keep the same heading; ~1 m left over the shot",
+  "note": "the shot moves from camera.position/target to these over its length; the guide shows the start"
+ },
+ "intent": "Low across the floorboards: piano printout nearest, then mats, textbooks, the book on the pillow, the TV; warm lines between boards.",
+ "gaze": {
+  "littleJade": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 25,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1372.9,
+    553.8
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "littleJade": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "littleJade": 0.0023
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "littleJade": {
+   "legs": {
+    "L": {
+     "reach": 0.99
+    },
+    "R": {
+     "reach": 0.99
+    }
+   },
+   "arms": {
+    "L": 1.05,
+    "R": 1.05
+   },
+   "headTurn": 25,
+   "body": {
+    "mesh": "jade05",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 12,
+     "upperarm_stretch": 0.91,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 12,
+     "upperarm_stretch": 0.91,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 14.7,
+    "sole_shift_mm_R": 14.7,
+    "sole_lowest_y_m": 0.0234
+   }
+  }
+ }
+}

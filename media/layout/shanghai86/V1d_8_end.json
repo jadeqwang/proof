@@ -154,16 +154,16 @@
   },
   "mama86": {
    "px": [
-    982.8,
-    260.5
+    957.5,
+    240.6
    ],
    "eyes": [
-    981.9,
-    252.3
+    956.7,
+    231.8
    ],
    "mouth": [
-    982.1,
-    286.2
+    956.9,
+    267.2
    ],
    "in_frame": true,
    "visible": true,
@@ -182,8 +182,8 @@
   },
   "jade3.R": {
    "px": [
-    344.5,
-    -7586.4
+    352.5,
+    -7539.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -191,8 +191,8 @@
   },
   "mama86.L": {
    "px": [
-    1093.3,
-    643.4
+    1072.1,
+    638.8
    ],
    "shape": "relax",
    "in_frame": true,
@@ -200,8 +200,8 @@
   },
   "mama86.R": {
    "px": [
-    782,
-    329.8
+    780.4,
+    382.4
    ],
    "shape": "flat",
    "in_frame": true,
@@ -325,7 +325,10 @@
    "toward_camera": 0.154
   }
  ],
- "warnings": [],
+ "warnings": [
+  "wrist: jade3 L hand turned 13.8 deg toward the forearm to keep the wrist in range (was flex -26.3, radial -42.5)",
+  "wrist: jade3 R hand turned 61.6 deg toward the forearm to keep the wrist in range (was flex -93.9, radial -92.4)"
+ ],
  "intent": "Inside (POV, the end of the pan): from her eyes, low (cross-legged on the floor), across the room to Mother standing in the wide hall doorway, a hand on the jamb, out of the sun.",
  "beam": {
   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
@@ -913,7 +916,7 @@
     },
     "handR": {
      "in": true,
-     "margin_m": 0.003
+     "margin_m": 0.002
     },
     "hip": {
      "in": true,
@@ -923,23 +926,23 @@
    "mama86": {
     "head": {
      "in": false,
-     "margin_m": -1.815
+     "margin_m": -1.79
     },
     "eyes": {
      "in": false,
-     "margin_m": -1.78
+     "margin_m": -1.754
     },
     "handL": {
      "in": false,
-     "margin_m": -1.056
+     "margin_m": -1.029
     },
     "handR": {
      "in": false,
-     "margin_m": -1.658
+     "margin_m": -1.571
     },
     "hip": {
      "in": false,
-     "margin_m": -1.22
+     "margin_m": -1.195
     }
    }
   },
@@ -951,7 +954,7 @@
   ],
   "focus_in_beam": true,
   "stack_in_beam": false,
-  "mother_margin_m": -1.056,
+  "mother_margin_m": -1.029,
   "floor_reach_m": 5.23,
   "north_wall_m": 6.1,
   "her_spot": {
@@ -1091,7 +1094,7 @@
    ],
    "handR": [
     -1.766,
-    0.16,
+    0.159,
     -3.747
    ],
    "hip": [
@@ -1102,29 +1105,29 @@
   },
   "mama86": {
    "eyes": [
-    0.648,
-    1.449,
-    -6.029
+    0.518,
+    1.448,
+    -5.968
    ],
    "head": [
-    0.716,
+    0.586,
     1.458,
-    -6.09
+    -6.03
    ],
    "handL": [
-    0.87,
+    0.736,
     0.752,
-    -5.961
+    -5.898
    ],
    "handR": [
-    0.295,
-    1.27,
-    -6.165
+    0.297,
+    1.18,
+    -6.17
    ],
    "hip": [
-    0.75,
+    0.62,
     0.85,
-    -6.12
+    -6.06
    ]
   }
  },
@@ -1149,7 +1152,7 @@
     "pitch_up": 4.7,
     "wanted_yaw": 0,
     "wanted_pitch": 4.7,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -1177,16 +1180,16 @@
     ]
    },
    "head_deg": {
-    "yaw_left": 0.5,
-    "pitch_up": -8.1,
+    "yaw_left": 2.7,
+    "pitch_up": -8.5,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": -5.4,
+    "pitch_up": -5.7,
     "wanted_yaw": 0,
-    "wanted_pitch": -5.4,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "wanted_pitch": -5.7,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -1194,8 +1197,8 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    981.9,
-    252.3
+    956.7,
+    231.8
    ],
    "target_px": [
     -2596.4,
@@ -1225,32 +1228,32 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -32.5,
-    "radial_deg": -21.6,
-    "twist_deg": -76.3,
-    "elbow_flex_deg": 64.2,
+    "flex_deg": -14.8,
+    "radial_deg": -28,
+    "twist_deg": -69.6,
+    "elbow_flex_deg": 68.8,
     "before": {
-     "flex_deg": -32.5,
-     "radial_deg": -21.6,
-     "twist_deg": -76.3
+     "flex_deg": -26.3,
+     "radial_deg": -42.5,
+     "twist_deg": -63.6
     },
-    "hand_turned_deg": null,
+    "hand_turned_deg": 13.8,
     "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": 0,
-    "radial_deg": 0,
-    "twist_deg": -73.9,
-    "elbow_flex_deg": 86.9,
+    "flex_deg": -13.5,
+    "radial_deg": -22,
+    "twist_deg": -30.9,
+    "elbow_flex_deg": 87.6,
     "before": {
-     "flex_deg": 0,
-     "radial_deg": 0,
-     "twist_deg": -73.9
+     "flex_deg": -93.9,
+     "radial_deg": -92.4,
+     "twist_deg": 27.4
     },
-    "hand_turned_deg": null,
+    "hand_turned_deg": 61.6,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -1259,14 +1262,14 @@
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -49.6,
-    "radial_deg": -25.8,
-    "twist_deg": -79.5,
-    "elbow_flex_deg": 99.4,
+    "flex_deg": -55.6,
+    "radial_deg": -15.2,
+    "twist_deg": -64.9,
+    "elbow_flex_deg": 123.5,
     "before": {
-     "flex_deg": -49.6,
-     "radial_deg": -25.8,
-     "twist_deg": -79.5
+     "flex_deg": -55.6,
+     "radial_deg": -15.2,
+     "twist_deg": -64.9
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -1276,7 +1279,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama86": 0.0521
+  "mama86": 0.0459
  },
  "colour_separation": [],
  "figure_report": {
@@ -1290,7 +1293,7 @@
     }
    },
    "arms": {
-    "L": 0.85,
+    "L": 0.83,
     "R": 0.73
    },
    "headTurn": 79,
@@ -1300,13 +1303,13 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0.007,
     "L": {
-     "elbow_bend_deg": 72,
+     "elbow_bend_deg": 77,
      "upperarm_stretch": 0.85,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
     },
     "R": {
-     "elbow_bend_deg": 101,
+     "elbow_bend_deg": 102,
      "upperarm_stretch": 1,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
@@ -1327,9 +1330,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.65
+    "R": 0.48
    },
-   "headTurn": 0,
+   "headTurn": 3,
    "body": {
     "mesh": "mama",
     "scale": 1,
@@ -1342,8 +1345,8 @@
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 92,
-     "upperarm_stretch": 1.07,
+     "elbow_bend_deg": 123,
+     "upperarm_stretch": 1.01,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },

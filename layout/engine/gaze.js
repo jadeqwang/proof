@@ -16,7 +16,7 @@
 import * as THREE from 'three';
 import { rad } from './core.js';
 
-export const EYE_YAW = 35, EYE_PITCH = 30, EYE_PITCH_DOWN = 45;   // degrees of eye travel in the socket: yaw, up, down (lead 2026-11-26: down raised to 45; the audit found 58 looks beyond 30 down)
+export const EYE_YAW = 30, EYE_PITCH = 30, EYE_PITCH_DOWN = 45;   // degrees of eye travel in the socket: yaw, up, down (lead 2026-11-26: down raised to 45; the audit found 58 looks beyond 30 down; r6: yaw 35 -> 30, the natural sideways range: beyond it the look reads strained, turn the head)
 const dg = (r) => +(r * 180 / Math.PI).toFixed(1);
 const angBetween = (a, b) => Math.acos(THREE.MathUtils.clamp(a.clone().normalize().dot(b.clone().normalize()), -1, 1));
 

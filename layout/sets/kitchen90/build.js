@@ -96,7 +96,7 @@ export function build(shot, { makeCam }) {
     // (hold pass 2026-11-26) shot.pencilFit { el, az, s, s2 } (shots.js PENCIL_FIT): the pencil leans el deg up toward
     // azimuth az (0 = +z, 270 = -x) and crosses the pinch s m along index-thumb and s2 m across, so the fingertips carry it
     // (fitted with engine/holdcheck.mjs); its tip (a 3.5 mm capsule end) touches the top of the page / sheet
-    const F = shot.pencilFit; if (F) { const e = rad(F.el), a = rad(F.az); d.set(Math.cos(e) * Math.sin(a), Math.sin(e), Math.cos(e) * Math.cos(a));
+    const F = shot.pencilFit; if (F) { if (F.az != null) { const e = rad(F.el), a = rad(F.az); d.set(Math.cos(e) * Math.sin(a), Math.sin(e), Math.cos(e) * Math.cos(a)); }   // (r6) az null: keep the hand-frame lean (back over the web of the thumb)
       const it = P.indexR.clone().sub(P.thumbR).normalize(), w2 = it.clone().cross(d).normalize();
       if (F.pads) { // hold pass 2: the axis runs through the middle between the two pad SURFACES (the pinch opens to the pencil's
         // gap less the squeeze), square to the thumb-index line, so both pads press it

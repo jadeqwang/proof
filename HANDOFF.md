@@ -29,6 +29,19 @@ Round 6, what changed:
 - Checks: holds pass (market 35/35, kitchen 8/8, mv10 308/308); clipcheck shows only failures already listed
   (mv10 32, kitchen day shots: Mama's wrists and clothes, closet).
 
+Round 6b (Jade's follow-up notes on the same night, all applied):
+- **kitchen90 arms:** jade7's forearms rest on the table and her elbows hang relaxed (from Pexels photos of kids doing
+  homework). The writing hand rests on its little-finger side; she leans from the hips (12 deg at rest, 23-24 deg writing).
+- **shanghai86:** Mama's hand rests on the jamb lining at shoulder height with the elbow down and the other hand softly
+  curled. Little Jade's hands rest in her lap after tearing, and stay close in with bent elbows while tearing (from
+  reference photos). Still off, and older than r6: in V1d_2 her right arm reaches 0.4 m straight out to the put-down spot.
+  Fixing it means moving that spot (and the laid half in later shots) or moving her.
+- **Eyes, engine-wide** (WL_eye looked cross-eyed): the irises were too big (64% of the eye opening) and sat
+  off-centre toward the nose, and the eyeball pivot was 4 mm too far forward. In humanMesh.js eyeBall the pivot is now the
+  true ball centre; the iris is 0.342 rad and the pupil 0.153; the iris axis is turned 8 deg outward; the drawn turn is
+  scaled 0.72. In gaze.js EYE_YAW is 35 -> 30. Every set with faces is re-rendered.
+- New rule (in memory and in work/decisions/AGENT_BRIEF.md): pose every everyday action from real reference photos.
+
 **1. Paint r4 + r5 + r6.** The list is work/r4/REPAINT_LIST.md (r4, r5 and r6 sections; r6 adds the shots above).
 Free Codex in tmux only, most-corrected sets first; the method is in "START HERE (updated the evening of
 2026-11-26)" below. Re-comp CAP_X_sw after the X_sw repaint. Watch the Codex image limit (~100 images per 40

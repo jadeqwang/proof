@@ -282,3 +282,18 @@ looks like when a person sits with a foot under their butt and fix it until it r
   the edge, 0.4-1.7 mm). Lean 26 -> 12 deg for homework, 18 while writing (16 put the pencil wrist 1 deg past radial
   deviation). Re-checked: check_bodies PASS on all shots (Jade vs chair/table 0 pairs); clipcheck night shots pass,
   the day FAILs are still the old Mama ones; holdcheck 8/8; no Jade wrist warnings.
+- (r6 arms, Jade: "her elbow is in an unnatural position for doing homework ... the elbow rests on the table, or her
+  wrist rests on the table and the elbow hangs naturally in a low energy position") references: four Pexels photos of
+  children doing homework at a table (look-only, session scratchpad sitfoot/hw/). What they show: both forearms lie on
+  the table, the elbows at or just past the edge, shoulders down, upper arms nearly vertical; the writing hand rests on
+  its little-finger side, the pencil leaning back toward the shoulder; the other hand flat on the page holding it.
+  Before: the elbows were flared up and out (the left arm's pole pointed UP and out), the forearms 2-4.5 cm above the
+  table. Now (shots.js ARM): elbow poles down and a little out; both forearms on the table top (gap -0.8..+3.6 mm, by
+  a scratch mesh measurement); night hands palm down-in, fingers a little raised so the tips stay out of the wood
+  (they were 12 mm in); writing hand rolled onto its little-finger side (penPalm), its index tip 4 cm over the page
+  (2.4 cm put the little finger 5-12 mm into the page / table), ring and little fingers less curled so the pencil
+  clears them. Lean from the hips: 12 deg at rest (night; was 6), 23 writing homework (K0_seat_side, K1, K1_end),
+  24 writing the sheet (K4): at 15 the writing forearm floated 1-3 cm. build.js: PENCIL_FIT az null keeps the
+  hand-frame pencil lean (back over the web of the thumb); the fixed az 310 made it point away from her once the
+  hand rolled. Checks: check_bodies PASS (Jade vs table: sleeve contact 0-0.8 mm, skin 0), holdcheck 8/8, no Jade
+  wrist warnings.

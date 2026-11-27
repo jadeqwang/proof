@@ -3267,7 +3267,7 @@
     "pitch_up": -9.5,
     "wanted_yaw": 0,
     "wanted_pitch": -9.5,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3304,7 +3304,7 @@
     "pitch_up": 3.2,
     "wanted_yaw": 0,
     "wanted_pitch": 3.2,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3341,7 +3341,7 @@
     "pitch_up": -14.6,
     "wanted_yaw": 0,
     "wanted_pitch": -14.6,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3378,7 +3378,7 @@
     "pitch_up": 0.1,
     "wanted_yaw": 6.2,
     "wanted_pitch": 0.1,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3415,7 +3415,7 @@
     "pitch_up": 3.6,
     "wanted_yaw": -7.3,
     "wanted_pitch": 3.6,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3452,7 +3452,7 @@
     "pitch_up": 0.5,
     "wanted_yaw": 0,
     "wanted_pitch": 0.5,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3489,7 +3489,7 @@
     "pitch_up": 0.8,
     "wanted_yaw": 0,
     "wanted_pitch": 0.8,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3526,7 +3526,7 @@
     "pitch_up": -2.4,
     "wanted_yaw": 0,
     "wanted_pitch": -2.4,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3563,7 +3563,7 @@
     "pitch_up": 3.8,
     "wanted_yaw": 0,
     "wanted_pitch": 3.8,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3600,7 +3600,7 @@
     "pitch_up": -15.4,
     "wanted_yaw": 0,
     "wanted_pitch": -15.4,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3637,7 +3637,7 @@
     "pitch_up": -0.3,
     "wanted_yaw": 0,
     "wanted_pitch": -0.3,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3674,7 +3674,7 @@
     "pitch_up": -0.2,
     "wanted_yaw": 0,
     "wanted_pitch": -0.2,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3711,7 +3711,7 @@
     "pitch_up": -0.8,
     "wanted_yaw": 0,
     "wanted_pitch": -0.8,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3748,7 +3748,7 @@
     "pitch_up": -22.4,
     "wanted_yaw": 0,
     "wanted_pitch": -22.4,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3785,7 +3785,7 @@
     "pitch_up": -2.7,
     "wanted_yaw": 0,
     "wanted_pitch": -2.7,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3822,7 +3822,7 @@
     "pitch_up": -4.7,
     "wanted_yaw": 0,
     "wanted_pitch": -4.7,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3859,7 +3859,7 @@
     "pitch_up": 6.5,
     "wanted_yaw": 0,
     "wanted_pitch": 6.5,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,
@@ -3896,7 +3896,7 @@
     "pitch_up": 5,
     "wanted_yaw": 0,
     "wanted_pitch": 5,
-    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
    "beyond_eye_range": false,

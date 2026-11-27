@@ -215,3 +215,17 @@ Per-shot lit-pass lift (office91's mechanism): `shot.light = { key, amb, bg }` s
 the lit background (build.js rig). WL_top `{ key: 7, amb: 2.3 }`: lit mean 16.0 -> 35.8 (the cutaway's built darkness
 outside the cavity, ~55 % of the frame, stays black; the blade on the floor is still the brightest thing, #fbfacc against
 the pale shirts' #b4c0d8). WL_plan (reference) `{ amb: 2.4, bg: 0x2a2b2f }`: 14.8 -> 54.9. Other passes unchanged.
+
+## 2026-11-26: round-6 decisions (gaze agent: WL_eye cross-eyed)
+Jade: "in wall88 · WL_eye, she looks a little bit cross-eyed." No set change (STAND.turn -20 kept); the fix is in the engine.
+- Measured (lit renders with sclera / iris coded pure green / blue, face-on test shots, since removed): at rest the two eyes
+  are symmetric, but both irises sat 11 % of the eye opening NASAL of centre and filled 64 % of its width (a child's ~45-50 %).
+  Both eyes did turn about the same (+24 / +30 px for a 20 deg look: conjugate), but the turning-in eye (picture left) ran
+  its oversized iris into the nasal corner while the other still read centred: crossed. The ball also pivoted about its
+  bounding-box centre, ~4 mm in front of the sphere centre (the MPFB ball has its back cut off), so it slid in the socket.
+- Engine (layout/engine/humanMesh.js, gaze.js), every drawn face: pivot and iris origin = sphere centre; iris 0.342 /
+  pupil 0.153 rad; iris axis turned 8 deg outward (centred at rest: nasal fraction 0.51); drawn eye turn
+  asin(sin(turn) * 0.72) (the MPFB ball is ~1.4x real, its true turn overshoots the opening); EYE_YAW 35 -> 30.
+- WL_eye now (look 22.6 deg yaw): near eye nasal fraction 0.73 with a sliver of white in the corner, far eye 0.35: both to
+  picture right. Before/after crops: scratchpad wl_eye_out_before_after.png (session). All 3 passes re-rendered; clipcheck
+  pass (only the known 4 mm cloth-in-brick), check_bodies eyes meet target (vergence 4.25 vs 4.59 expected).

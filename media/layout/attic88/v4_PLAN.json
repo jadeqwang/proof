@@ -1,0 +1,2443 @@
+{
+ "shot": "v4_PLAN",
+ "set": "attic88",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0,
+   9,
+   0
+  ],
+  "target": [
+   0,
+   0,
+   0
+  ],
+  "lens_mm": "ortho",
+  "frame_width_mm": 36,
+  "hfov_deg": null,
+  "vfov_deg": null,
+  "ortho": {
+   "w": 10.2
+  },
+  "roll_deg": 0,
+  "near": 1,
+  "far": 14,
+  "matrixWorld": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   -1,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   9,
+   0,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   -1,
+   0,
+   0,
+   0,
+   0,
+   -9,
+   1
+  ],
+  "projectionMatrix": [
+   0.1961,
+   0,
+   0,
+   0,
+   0,
+   0.3486,
+   0,
+   0,
+   0,
+   0,
+   -0.1538,
+   0,
+   0,
+   0,
+   -1.1538,
+   1
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": {
+  "state": "closed",
+  "cover": [
+   [
+    1423.9,
+    453.3
+   ],
+   [
+    1412.5,
+    491.2
+   ],
+   [
+    1362,
+    476.1
+   ],
+   [
+    1373.4,
+    438.2
+   ]
+  ],
+  "corner_order": "TL,TR,BR,BL as the cover is read"
+ },
+ "panes": {
+  "window_TL": {
+   "px": [
+    [
+     1616.9,
+     314.1
+    ],
+    [
+     1616.9,
+     389.4
+    ],
+    [
+     1616.9,
+     389.4
+    ],
+    [
+     1616.9,
+     314.1
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -1.2
+    ],
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "window_TR": {
+   "px": [
+    [
+     1616.9,
+     389.4
+    ],
+    [
+     1616.9,
+     464.7
+    ],
+    [
+     1616.9,
+     464.7
+    ],
+    [
+     1616.9,
+     389.4
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     1.25,
+     -0.8
+    ],
+    [
+     3.49,
+     1.25,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "window_BL": {
+   "px": [
+    [
+     1616.9,
+     314.1
+    ],
+    [
+     1616.9,
+     389.4
+    ],
+    [
+     1616.9,
+     389.4
+    ],
+    [
+     1616.9,
+     314.1
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -1.2
+    ],
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ],
+    [
+     3.49,
+     0.45,
+     -1.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "window_BR": {
+   "px": [
+    [
+     1616.9,
+     389.4
+    ],
+    [
+     1616.9,
+     464.7
+    ],
+    [
+     1616.9,
+     464.7
+    ],
+    [
+     1616.9,
+     389.4
+    ]
+   ],
+   "world": [
+    [
+     3.49,
+     0.85,
+     -0.8
+    ],
+    [
+     3.49,
+     0.85,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.4
+    ],
+    [
+     3.49,
+     0.45,
+     -0.8
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {
+  "littleJade": {
+   "px": [
+    1446.1,
+    361.2
+   ],
+   "eyes": [
+    1445.9,
+    361.2
+   ],
+   "mouth": [
+    1436.2,
+    361.2
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 12
+  },
+  "mama": {
+   "px": [
+    1455.2,
+    192.5
+   ],
+   "eyes": [
+    1455.7,
+    200.6
+   ],
+   "mouth": [
+    1444.4,
+    200.6
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 20
+  }
+ },
+ "hands": {
+  "littleJade.L": {
+   "px": [
+    1357.6,
+    387.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "littleJade.R": {
+   "px": [
+    1357.6,
+    334.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "mama.L": {
+   "px": [
+    1321.8,
+    229.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "mama.R": {
+   "px": [
+    1321.8,
+    154.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "neon",
+   "kind": "blade sign through the window (effective point = centroid of the part of the blade the subject sees)",
+   "on": true,
+   "color": "#ff2a14",
+   "world": [
+    3.8295,
+    0.9422,
+    -1.08
+   ],
+   "px": [
+    1680.8,
+    336.7
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.915,
+    0.403
+   ],
+   "toward_camera": -0.262,
+   "aim_world": [
+    2.3,
+    0.001,
+    -0.4
+   ]
+  },
+  {
+   "name": "stair_door",
+   "kind": "spot (tungsten through door)",
+   "on": true,
+   "color": "#ffb468",
+   "world": [
+    -4.15,
+    2.05,
+    0
+   ],
+   "px": [
+    178.8,
+    540
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.998,
+    -0.055
+   ],
+   "toward_camera": -0.53,
+   "aim_world": [
+    0.5,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "floor_cracks",
+   "kind": "lines of tungsten from below",
+   "on": true,
+   "color": "#ffa24a",
+   "world": [
+    0.25,
+    0,
+    0.625
+   ],
+   "px": [
+    1007.1,
+    657.6
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.897,
+    -0.443
+   ],
+   "toward_camera": -0.24
+  }
+ ],
+ "warnings": [],
+ "layout_version": 4,
+ "sign": {
+  "model": "vertical blade sign on brackets, perpendicular to the facade, lettering on both faces",
+  "plane_z": -1,
+  "x_from_wall": [
+   0.18,
+   0.88
+  ],
+  "x": [
+   3.8,
+   4.5
+  ],
+  "y": [
+   -1.1,
+   1.5
+  ],
+  "thickness": 0.12,
+  "camera_sees": "face_plus_z",
+  "state": "red",
+  "corner_order": "TL,TR,BR,BL as that face is read from its own side (map the lettering straight on; it is NOT mirror-reversed)",
+  "faces": {
+   "face_plus_z": {
+    "px": [
+     [
+      1675.3,
+      363.6
+     ],
+     [
+      1807.1,
+      363.6
+     ],
+     [
+      1807.1,
+      363.6
+     ],
+     [
+      1675.3,
+      363.6
+     ]
+    ],
+    "world": [
+     [
+      3.8,
+      1.5,
+      -0.937
+     ],
+     [
+      4.5,
+      1.5,
+      -0.937
+     ],
+     [
+      4.5,
+      -1.1,
+      -0.937
+     ],
+     [
+      3.8,
+      -1.1,
+      -0.937
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   "face_minus_z": {
+    "px": [
+     [
+      1807.1,
+      339.9
+     ],
+     [
+      1675.3,
+      339.9
+     ],
+     [
+      1675.3,
+      339.9
+     ],
+     [
+      1807.1,
+      339.9
+     ]
+    ],
+    "world": [
+     [
+      4.5,
+      1.5,
+      -1.063
+     ],
+     [
+      3.8,
+      1.5,
+      -1.063
+     ],
+     [
+      3.8,
+      -1.1,
+      -1.063
+     ],
+     [
+      4.5,
+      -1.1,
+      -1.063
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  "letter_blocks": [
+   {
+    "text": "酒",
+    "face": "face_plus_z",
+    "px": [
+     [
+      1694.1,
+      364
+     ],
+     [
+      1788.2,
+      364
+     ],
+     [
+      1788.2,
+      364
+     ],
+     [
+      1694.1,
+      364
+     ]
+    ],
+    "world": [
+     [
+      3.9,
+      1.43,
+      -0.935
+     ],
+     [
+      4.4,
+      1.43,
+      -0.935
+     ],
+     [
+      4.4,
+      0.93,
+      -0.935
+     ],
+     [
+      3.9,
+      0.93,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "家",
+    "face": "face_plus_z",
+    "px": [
+     [
+      1694.1,
+      364
+     ],
+     [
+      1788.2,
+      364
+     ],
+     [
+      1788.2,
+      364
+     ],
+     [
+      1694.1,
+      364
+     ]
+    ],
+    "world": [
+     [
+      3.9,
+      0.88,
+      -0.935
+     ],
+     [
+      4.4,
+      0.88,
+      -0.935
+     ],
+     [
+      4.4,
+      0.38,
+      -0.935
+     ],
+     [
+      3.9,
+      0.38,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "CHIN.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      1684.7,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1684.7,
+      364
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      0.28,
+      -0.935
+     ],
+     [
+      4.45,
+      0.28,
+      -0.935
+     ],
+     [
+      4.45,
+      0.08,
+      -0.935
+     ],
+     [
+      3.85,
+      0.08,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "IND.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      1684.7,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1684.7,
+      364
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      0.01,
+      -0.935
+     ],
+     [
+      4.45,
+      0.01,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.19,
+      -0.935
+     ],
+     [
+      3.85,
+      -0.19,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "SPEC.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      1684.7,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1684.7,
+      364
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      -0.26,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.26,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.46,
+      -0.935
+     ],
+     [
+      3.85,
+      -0.46,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   },
+   {
+    "text": "REST.",
+    "face": "face_plus_z",
+    "px": [
+     [
+      1684.7,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1797.6,
+      364
+     ],
+     [
+      1684.7,
+      364
+     ]
+    ],
+    "world": [
+     [
+      3.85,
+      -0.53,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.53,
+      -0.935
+     ],
+     [
+      4.45,
+      -0.73,
+      -0.935
+     ],
+     [
+      3.85,
+      -0.73,
+      -0.935
+     ]
+    ],
+    "behind_camera": [
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  ],
+  "light": {
+   "effective_point_world": [
+    3.83,
+    0.942,
+    -1.08
+   ],
+   "effective_point_px": [
+    1680.8,
+    336.7
+   ],
+   "visible_fraction_of_face": 0.042,
+   "visible_extent": {
+    "x": [
+     3.8,
+     3.8583333333333334
+    ],
+    "y": [
+     0.49249999999999994,
+     1.4025000000000003
+    ]
+   },
+   "aimed_at_world": [
+    2.3,
+    0.001,
+    -0.4
+   ]
+  }
+ },
+ "hooks": {
+  "state": "hung",
+  "px": [
+   [
+    316.2,
+    419.5
+   ],
+   [
+    316.2,
+    393.2
+   ],
+   [
+    316.2,
+    366.8
+   ],
+   [
+    316.2,
+    340.5
+   ]
+  ],
+  "world": [
+   [
+    -3.42,
+    1.43,
+    -0.64
+   ],
+   [
+    -3.42,
+    1.43,
+    -0.78
+   ],
+   [
+    -3.42,
+    1.43,
+    -0.92
+   ],
+   [
+    -3.42,
+    1.43,
+    -1.06
+   ]
+  ],
+  "note": "hook 1 = apron, hook 2 = towel (after A3)"
+ },
+ "objects": [
+  {
+   "label": "floorboards",
+   "figure": null,
+   "frame_fraction": 0.55393,
+   "bbox_px": [
+    302,
+    14,
+    1618,
+    1066
+   ],
+   "centroid_px": [
+    934,
+    563
+   ],
+   "world_box": [
+    [
+     -3.498,
+     -0.022,
+     -2.8
+    ],
+    [
+     3.498,
+     0,
+     2.794
+    ]
+   ]
+  },
+  {
+   "label": "stairwell (lit)",
+   "figure": null,
+   "frame_fraction": 0.02836,
+   "bbox_px": [
+    0,
+    436,
+    280,
+    646
+   ],
+   "centroid_px": [
+    139,
+    540
+   ],
+   "world_box": [
+    [
+     -5.61,
+     -1.6,
+     -0.56
+    ],
+    [
+     -3.57,
+     2.46,
+     0.56
+    ]
+   ]
+  },
+  {
+   "label": "sleeping mat (little Jade)",
+   "figure": null,
+   "frame_fraction": 0.01236,
+   "bbox_px": [
+    1168,
+    286,
+    1496,
+    438
+   ],
+   "centroid_px": [
+    1305,
+    361
+   ],
+   "world_box": [
+    [
+     1.1,
+     0,
+     -1.35
+    ],
+    [
+     2.85,
+     0.06,
+     -0.55
+    ]
+   ]
+  },
+  {
+   "label": "sleeping mat (Mama)",
+   "figure": null,
+   "frame_fraction": 0.01194,
+   "bbox_px": [
+    1140,
+    108,
+    1506,
+    278
+   ],
+   "centroid_px": [
+    1326,
+    193
+   ],
+   "world_box": [
+    [
+     0.95,
+     0,
+     -2.3
+    ],
+    [
+     2.9,
+     0.06,
+     -1.4
+    ]
+   ]
+  },
+  {
+   "label": "quilt (Mama's, beige)",
+   "figure": null,
+   "frame_fraction": 0.01149,
+   "bbox_px": [
+    1154,
+    128,
+    1382,
+    256
+   ],
+   "centroid_px": [
+    1267,
+    191
+   ],
+   "world_box": [
+    [
+     1.026,
+     -0.132,
+     -2.19
+    ],
+    [
+     2.249,
+     0.255,
+     -1.51
+    ]
+   ]
+  },
+  {
+   "label": "left gable wall",
+   "figure": null,
+   "frame_fraction": 0.01118,
+   "bbox_px": [
+    280,
+    14,
+    302,
+    1068
+   ],
+   "centroid_px": [
+    290,
+    540
+   ],
+   "world_box": [
+    [
+     -3.62,
+     0,
+     -2.8
+    ],
+    [
+     -3.5,
+     3,
+     2.8
+    ]
+   ]
+  },
+  {
+   "label": "right gable wall",
+   "figure": null,
+   "frame_fraction": 0.01118,
+   "bbox_px": [
+    1620,
+    14,
+    1642,
+    1068
+   ],
+   "centroid_px": [
+    1630,
+    540
+   ],
+   "world_box": [
+    [
+     3.5,
+     0,
+     -2.8
+    ],
+    [
+     3.62,
+     3,
+     2.8
+    ]
+   ]
+  },
+  {
+   "label": "storage boxes",
+   "figure": null,
+   "frame_fraction": 0.01058,
+   "bbox_px": [
+    390,
+    42,
+    826,
+    1028
+   ],
+   "centroid_px": [
+    599,
+    450
+   ],
+   "world_box": [
+    [
+     -3.027,
+     0,
+     -2.648
+    ],
+    [
+     -0.71,
+     0.72,
+     2.594
+    ]
+   ]
+  },
+  {
+   "label": "quilt (little Jade's, navy floral)",
+   "figure": null,
+   "frame_fraction": 0.00785,
+   "bbox_px": [
+    1234,
+    306,
+    1396,
+    418
+   ],
+   "centroid_px": [
+    1317,
+    361
+   ],
+   "world_box": [
+    [
+     1.448,
+     -0.108,
+     -1.25
+    ],
+    [
+     2.317,
+     0.231,
+     -0.65
+    ]
+   ]
+  },
+  {
+   "label": "knee wall",
+   "figure": null,
+   "frame_fraction": 0.00763,
+   "bbox_px": [
+    302,
+    8,
+    1620,
+    1074
+   ],
+   "centroid_px": [
+    960,
+    540
+   ],
+   "world_box": [
+    [
+     -3.5,
+     0,
+     -2.83
+    ],
+    [
+     3.5,
+     0.9,
+     2.83
+    ]
+   ]
+  },
+  {
+   "label": "rice sacks",
+   "figure": null,
+   "frame_fraction": 0.00687,
+   "bbox_px": [
+    362,
+    796,
+    560,
+    1020
+   ],
+   "centroid_px": [
+    448,
+    916
+   ],
+   "world_box": [
+    [
+     -3.237,
+     -0.004,
+     1.299
+    ],
+    [
+     -2.052,
+     0.48,
+     2.626
+    ]
+   ]
+  },
+  {
+   "label": "light through floorboard cracks",
+   "figure": null,
+   "frame_fraction": 0.00669,
+   "bbox_px": [
+    508,
+    512,
+    1506,
+    830
+   ],
+   "centroid_px": [
+    1004,
+    671
+   ],
+   "world_box": [
+    [
+     -2.4,
+     -0.022,
+     -0.152
+    ],
+    [
+     2.9,
+     -0.003,
+     1.539
+    ]
+   ]
+  },
+  {
+   "label": "Mama",
+   "figure": "mama",
+   "frame_fraction": 0.00447,
+   "bbox_px": [
+    1254,
+    142,
+    1478,
+    242
+   ],
+   "centroid_px": [
+    1382,
+    191
+   ]
+  },
+  {
+   "label": "small TV (off) on a crate",
+   "figure": null,
+   "frame_fraction": 0.00258,
+   "bbox_px": [
+    966,
+    78,
+    1060,
+    168
+   ],
+   "centroid_px": [
+    1011,
+    122
+   ],
+   "world_box": [
+    [
+     0.025,
+     0,
+     -2.461
+    ],
+    [
+     0.535,
+     0.901,
+     -1.973
+    ]
+   ]
+  },
+  {
+   "label": "window",
+   "figure": null,
+   "frame_fraction": 0.00243,
+   "bbox_px": [
+    1592,
+    300,
+    1620,
+    480
+   ],
+   "centroid_px": [
+    1605,
+    389
+   ],
+   "world_box": [
+    [
+     3.35,
+     0.37,
+     -1.28
+    ],
+    [
+     3.58,
+     1.3,
+     -0.32
+    ]
+   ]
+  },
+  {
+   "label": "pillow (little Jade)",
+   "figure": null,
+   "frame_fraction": 0.00223,
+   "bbox_px": [
+    1426,
+    312,
+    1494,
+    412
+   ],
+   "centroid_px": [
+    1461,
+    360
+   ],
+   "world_box": [
+    [
+     2.469,
+     0.06,
+     -1.213
+    ],
+    [
+     2.831,
+     0.17,
+     -0.687
+    ]
+   ]
+  },
+  {
+   "label": "paper piano keys (printout)",
+   "figure": null,
+   "frame_fraction": 0.00213,
+   "bbox_px": [
+    1062,
+    570,
+    1178,
+    624
+   ],
+   "centroid_px": [
+    1119,
+    596
+   ],
+   "world_box": [
+    [
+     0.541,
+     0.001,
+     0.155
+    ],
+    [
+     1.159,
+     0.002,
+     0.445
+    ]
+   ]
+  },
+  {
+   "label": "pillow (Mama)",
+   "figure": null,
+   "frame_fraction": 0.00211,
+   "bbox_px": [
+    1436,
+    144,
+    1502,
+    242
+   ],
+   "centroid_px": [
+    1472,
+    192
+   ],
+   "world_box": [
+    [
+     2.523,
+     0.06,
+     -2.111
+    ],
+    [
+     2.877,
+     0.17,
+     -1.589
+    ]
+   ]
+  },
+  {
+   "label": "little Jade",
+   "figure": "littleJade",
+   "frame_fraction": 0.00161,
+   "bbox_px": [
+    1370,
+    326,
+    1466,
+    396
+   ],
+   "centroid_px": [
+    1420,
+    361
+   ]
+  },
+  {
+   "label": "neon blade sign (perpendicular to the wall)",
+   "figure": null,
+   "frame_fraction": 0.0014,
+   "bbox_px": [
+    1676,
+    342,
+    1808,
+    364
+   ],
+   "centroid_px": [
+    1741,
+    352
+   ],
+   "world_box": [
+    [
+     3.8,
+     -1.1,
+     -1.06
+    ],
+    [
+     4.5,
+     1.5,
+     -0.94
+    ]
+   ]
+  },
+  {
+   "label": "stack of textbooks",
+   "figure": null,
+   "frame_fraction": 0.00137,
+   "bbox_px": [
+    1482,
+    454,
+    1538,
+    516
+   ],
+   "centroid_px": [
+    1509,
+    482
+   ],
+   "world_box": [
+    [
+     2.772,
+     0,
+     -0.462
+    ],
+    [
+     3.076,
+     0.342,
+     -0.13
+    ]
+   ]
+  },
+  {
+   "label": "storybook (closed)",
+   "figure": null,
+   "frame_fraction": 0.00101,
+   "bbox_px": [
+    1362,
+    440,
+    1424,
+    492
+   ],
+   "centroid_px": [
+    1392,
+    464
+   ],
+   "world_box": [
+    [
+     2.136,
+     0.001,
+     -0.541
+    ],
+    [
+     2.464,
+     0.012,
+     -0.259
+    ]
+   ]
+  },
+  {
+   "label": "stair door",
+   "figure": null,
+   "frame_fraction": 0.00096,
+   "bbox_px": [
+    302,
+    458,
+    314,
+    624
+   ],
+   "centroid_px": [
+    307,
+    540
+   ],
+   "world_box": [
+    [
+     -4.138,
+     0,
+     -0.44
+    ],
+    [
+     -3.43,
+     1.96,
+     0.44
+    ]
+   ]
+  },
+  {
+   "label": "hook rail",
+   "figure": null,
+   "frame_fraction": 0.0002,
+   "bbox_px": [
+    302,
+    328,
+    306,
+    434
+   ],
+   "centroid_px": [
+    303,
+    380
+   ],
+   "world_box": [
+    [
+     -3.5,
+     1.385,
+     -1.13
+    ],
+    [
+     -3.478,
+     1.455,
+     -0.57
+    ]
+   ]
+  },
+  {
+   "label": "sign bracket",
+   "figure": null,
+   "frame_fraction": 0.00013,
+   "bbox_px": [
+    1642,
+    348,
+    1676,
+    356
+   ],
+   "centroid_px": [
+    1658,
+    351
+   ],
+   "world_box": [
+    [
+     3.61,
+     -1.02,
+     -1.02
+    ],
+    [
+     3.81,
+     1.42,
+     -0.98
+    ]
+   ]
+  },
+  {
+   "label": "apron (on the hook)",
+   "figure": null,
+   "frame_fraction": 0.00008,
+   "bbox_px": [
+    308,
+    382,
+    312,
+    430
+   ],
+   "centroid_px": [
+    309,
+    402
+   ],
+   "world_box": [
+    [
+     -3.471,
+     0.68,
+     -0.968
+    ],
+    [
+     -3.444,
+     1.45,
+     -0.592
+    ]
+   ]
+  },
+  {
+   "label": "towel (on the hook)",
+   "figure": null,
+   "frame_fraction": 0.00008,
+   "bbox_px": [
+    308,
+    348,
+    314,
+    382
+   ],
+   "centroid_px": [
+    309,
+    364
+   ],
+   "world_box": [
+    [
+     -3.47,
+     0.94,
+     -1.02
+    ],
+    [
+     -3.432,
+     1.435,
+     -0.82
+    ]
+   ]
+  },
+  {
+   "label": "hooks",
+   "figure": null,
+   "frame_fraction": 0.00006,
+   "bbox_px": [
+    306,
+    340,
+    318,
+    422
+   ],
+   "centroid_px": [
+    311,
+    390
+   ],
+   "world_box": [
+    [
+     -3.48,
+     1.408,
+     -1.067
+    ],
+    [
+     -3.418,
+     1.446,
+     -0.633
+    ]
+   ]
+  }
+ ],
+ "joints": {
+  "littleJade": {
+   "head": {
+    "px": [
+     1446.1,
+     361.2
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5823,
+     0.171,
+     -0.95
+    ]
+   },
+   "eyes": {
+    "px": [
+     1445.9,
+     361.2
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5814,
+     0.2503,
+     -0.95
+    ]
+   },
+   "mouth": {
+    "px": [
+     1436.2,
+     361.2
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5297,
+     0.2448,
+     -0.95
+    ]
+   },
+   "chin": {
+    "px": [
+     1428.6,
+     361.2
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.4897,
+     0.208,
+     -0.95
+    ]
+   },
+   "neck": {
+    "px": [
+     1432.3,
+     361.2
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5091,
+     0.1526,
+     -0.95
+    ]
+   },
+   "shoulderL": {
+    "px": [
+     1424.4,
+     383.9
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.4669,
+     0.1514,
+     -0.829
+    ]
+   },
+   "shoulderR": {
+    "px": [
+     1424.4,
+     338.4
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.4669,
+     0.1514,
+     -1.071
+    ]
+   },
+   "elbowL": {
+    "px": [
+     1390.6,
+     390.1
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.2876,
+     0.1154,
+     -0.7966
+    ]
+   },
+   "elbowR": {
+    "px": [
+     1390.6,
+     332.3
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.2876,
+     0.1154,
+     -1.1034
+    ]
+   },
+   "wristL": {
+    "px": [
+     1363,
+     389.8
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.1409,
+     0.1419,
+     -0.7981
+    ]
+   },
+   "wristR": {
+    "px": [
+     1363,
+     332.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.1409,
+     0.1419,
+     -1.1019
+    ]
+   },
+   "handL": {
+    "px": [
+     1357.6,
+     387.7
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.1122,
+     0.1443,
+     -0.809
+    ]
+   },
+   "handR": {
+    "px": [
+     1357.6,
+     334.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.1122,
+     0.1443,
+     -1.091
+    ]
+   },
+   "indexL": {
+    "px": [
+     1347.2,
+     378.8
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.0568,
+     0.1703,
+     -0.8566
+    ]
+   },
+   "indexR": {
+    "px": [
+     1347.2,
+     343.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.0568,
+     0.1703,
+     -1.0434
+    ]
+   },
+   "hip": {
+    "px": [
+     1360.9,
+     361.2
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.13,
+     0.13,
+     -0.95
+    ]
+   },
+   "hipL": {
+    "px": [
+     1360.9,
+     371.7
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.13,
+     0.13,
+     -0.8938
+    ]
+   },
+   "hipR": {
+    "px": [
+     1360.9,
+     350.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.13,
+     0.13,
+     -1.0062
+    ]
+   },
+   "kneeL": {
+    "px": [
+     1315.5,
+     371.7
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.8888,
+     0.1629,
+     -0.8938
+    ]
+   },
+   "kneeR": {
+    "px": [
+     1315.5,
+     350.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.8888,
+     0.1629,
+     -1.0062
+    ]
+   },
+   "ankleL": {
+    "px": [
+     1273.9,
+     371.7
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.6677,
+     0.13,
+     -0.8938
+    ]
+   },
+   "ankleR": {
+    "px": [
+     1273.9,
+     350.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.6677,
+     0.13,
+     -1.0062
+    ]
+   },
+   "footL": {
+    "px": [
+     1277.6,
+     371.7
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.6874,
+     0.0315,
+     -0.8938
+    ]
+   },
+   "footR": {
+    "px": [
+     1277.6,
+     350.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.6874,
+     0.0315,
+     -1.0062
+    ]
+   }
+  },
+  "mama": {
+   "head": {
+    "px": [
+     1455.2,
+     192.5
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.6305,
+     0.1776,
+     -1.8459
+    ]
+   },
+   "eyes": {
+    "px": [
+     1455.7,
+     200.6
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.6335,
+     0.259,
+     -1.8028
+    ]
+   },
+   "mouth": {
+    "px": [
+     1444.4,
+     200.6
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5731,
+     0.2548,
+     -1.8028
+    ]
+   },
+   "chin": {
+    "px": [
+     1435.3,
+     197.3
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5248,
+     0.218,
+     -1.8206
+    ]
+   },
+   "neck": {
+    "px": [
+     1438.1,
+     191.4
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.5398,
+     0.1602,
+     -1.8518
+    ]
+   },
+   "shoulderL": {
+    "px": [
+     1426.8,
+     225.5
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.4801,
+     0.1594,
+     -1.6708
+    ]
+   },
+   "shoulderR": {
+    "px": [
+     1426.8,
+     158
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.4801,
+     0.1594,
+     -2.0292
+    ]
+   },
+   "elbowL": {
+    "px": [
+     1372.7,
+     234.2
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.1927,
+     0.0976,
+     -1.6245
+    ]
+   },
+   "elbowR": {
+    "px": [
+     1372.7,
+     149.3
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.1927,
+     0.0976,
+     -2.0755
+    ]
+   },
+   "wristL": {
+    "px": [
+     1329.7,
+     232.1
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.9641,
+     0.1444,
+     -1.6358
+    ]
+   },
+   "wristR": {
+    "px": [
+     1329.7,
+     151.4
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.9641,
+     0.1444,
+     -2.0642
+    ]
+   },
+   "handL": {
+    "px": [
+     1321.8,
+     229.3
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.9222,
+     0.1505,
+     -1.6508
+    ]
+   },
+   "handR": {
+    "px": [
+     1321.8,
+     154.3
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.9222,
+     0.1505,
+     -2.0492
+    ]
+   },
+   "indexL": {
+    "px": [
+     1306.9,
+     216.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.8428,
+     0.1934,
+     -1.7182
+    ]
+   },
+   "indexR": {
+    "px": [
+     1306.9,
+     167
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.8428,
+     0.1934,
+     -1.9818
+    ]
+   },
+   "hip": {
+    "px": [
+     1340.2,
+     191.8
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     2.02,
+     0.14,
+     -1.85
+    ]
+   },
+   "hipL": {
+    "px": [
+     1340.2,
+     208.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.02,
+     0.14,
+     -1.7604
+    ]
+   },
+   "hipR": {
+    "px": [
+     1340.2,
+     174.9
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     2.02,
+     0.14,
+     -1.9396
+    ]
+   },
+   "kneeL": {
+    "px": [
+     1264.2,
+     208.6
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     1.6161,
+     0.1951,
+     -1.7604
+    ]
+   },
+   "kneeR": {
+    "px": [
+     1264.2,
+     174.9
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     1.6161,
+     0.1951,
+     -1.9396
+    ]
+   },
+   "ankleL": {
+    "px": [
+     1194.5,
+     208.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.2457,
+     0.14,
+     -1.7604
+    ]
+   },
+   "ankleR": {
+    "px": [
+     1194.5,
+     174.9
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.2457,
+     0.14,
+     -1.9396
+    ]
+   },
+   "footL": {
+    "px": [
+     1199.8,
+     208.6
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.274,
+     -0.0012,
+     -1.7604
+    ]
+   },
+   "footR": {
+    "px": [
+     1199.8,
+     174.9
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     1.274,
+     -0.0012,
+     -1.9396
+    ]
+   }
+  }
+ },
+ "gaze": {
+  "littleJade": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1445.6,
+    361.2
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "mama": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 28,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1455.3,
+    200.6
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "littleJade": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  },
+  "mama": {
+   "top": "#6e3a33",
+   "legs": "#3a3632",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "mama": 0.0043,
+  "littleJade": 0.0017
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "littleJade": {
+   "legs": {
+    "L": {
+     "reach": 0.99
+    },
+    "R": {
+     "reach": 0.99
+    }
+   },
+   "arms": {
+    "L": 0.98,
+    "R": 0.98
+   },
+   "headTurn": 0,
+   "body": "v4 jointed (engine/body.js)",
+   "joints_deg": {
+    "elbowL": 24,
+    "wristL": 21,
+    "elbowR": 24,
+    "wristR": 21,
+    "kneeL": 16,
+    "kneeR": 16
+   },
+   "violations": []
+  },
+  "mama": {
+   "legs": {
+    "L": {
+     "reach": 0.99
+    },
+    "R": {
+     "reach": 0.99
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 28,
+   "body": "v4 jointed (engine/body.js)",
+   "joints_deg": {
+    "elbowL": 26,
+    "humeralRotL": 26,
+    "wristL": 17,
+    "elbowR": 26,
+    "humeralRotR": -26,
+    "wristR": 17,
+    "kneeL": 16,
+    "kneeR": 16
+   },
+   "violations": []
+  }
+ }
+}
