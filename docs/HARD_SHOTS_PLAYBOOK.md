@@ -1,5 +1,7 @@
 # Hard shots playbook
 
+_A copy of this playbook is installed as the user-level Claude skill `hard-shots` (~/.claude/skills/hard-shots/), so other projects can use it. If you edit this file, re-sync the copy._
+
 **What this is:** a method for making shots that AI image and video models usually get wrong, so filmmakers cut around them. Examples are hands touching or holding things, two bodies in contact, and anything partly hidden behind something else.
 
 **Where it comes from:** one shot made on 2026-11-27, a close-up of two people's hands. She lays her hand across his, their fingers fold into a clasp, and he covers both with his other hand.
