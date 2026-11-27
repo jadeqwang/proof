@@ -1,42 +1,53 @@
 # Proof — handoff for the next session
 
-## NEXT SESSION START HERE (end of 2026-11-26)
+## NEXT SESSION START HERE (end of 2026-11-26 night)
 
-**State:** every round-4 answer is applied and committed. Nothing has been painted for r4 yet.
-- Jade said a round of fixes comes FIRST, then the r4 repaint (she reviews r4 instead of the rest of r3).
-- The log for tonight is "Session of 2026-11-26 (late evening)" at the end of this file.
+**State:** every round-5 answer is applied, every set is re-rendered on the r5 engine, and all of it is committed
+locally (last commits 081f5bb, 8159192). Nothing is pushed. Nothing has been painted for r4 or r5.
+- Tonight's log is "Session of 2026-11-26 (night)" near the end of this file. Jade's r5 paste is saved verbatim in
+  work/decisions/JADE_R5_DECISIONS.md, and the agent brief/ownership map is work/decisions/R5_BRIEF.md.
+- The working tree is clean apart from media/layout/mortongrove07/SW_t100_cam.png, a stray test render that no shot
+  uses. Restore it with `git checkout` or ignore it; don't commit it.
 
-**First thing: Jade pastes her round-5 answers.**
-- The page is media/decisions.html: 16 cards, key proof-decisions-v6, source work/decisions/NEW_QUESTIONS_R5.md.
-  The round-4 page is backed up at work/decisions/decisions_r4_page_backup.html.
-- Save the paste verbatim to work/decisions/JADE_R5_DECISIONS.md and apply it.
+**1. Jade answers the round-6 page.**
+- The page is media/decisions.html: 13 cards, key proof-decisions-v7, source work/decisions/NEW_QUESTIONS_R6.md.
+  The r5 page is backed up at work/decisions/decisions_r5_page_backup.html.
+- Save her paste verbatim to work/decisions/JADE_R6_DECISIONS.md, then apply it.
+- Most cards confirm r5 fixes. The ones with a real choice:
+  - mg_ceiling_high: built at 5.10 m (~23 deg). The street-view 30 deg pitch would give 6.0 m, which rises above the
+    two-storey wing's ridge.
+  - b_glow: the screen glow now that QBasic is grey on blue.
+  - k_fold_side: which foot jade7 sits on (built: on the folded left, right leg dangling).
+  - sh_jamb: Mama's stiff arm on the Shanghai door jamb (V1e).
+  - pg_shoes_jade: socks or sneakers at the playground (she wears the Rare Earth outfit).
 
-**The round of fixes:** every item is in tonight's log; the sets' NOTES.md hold the details.
-1. MG2/MG2_end: fingers 13-20 mm into the hoodie. Needs a cloth pinch grasp plus engine/hand.js wrapPose (thumb
-   palm-side). Keep Truth at 0 (sweatshirt_test.mjs, cloth_contact.mjs).
-2. kitchen90 K1: restore the whisper. The gap is now 14.9 cm (was 5.8) and the heads are above the frame.
-3. playground23:
-   - make the hands read as offering a hand, with the kids mid-climb;
-   - fix the pale shapes beside the boy's head;
-   - move the kid and Dad-67 bodies from the set's bodies/ into layout/assets/bodies;
-   - fix the engine bug where dress figures have no bare legs.
-4. wall88 WL_in_form: a stray hand by Mama's ear at the stud.
-5. attic AD_trace: the hand reads as a thumbs-up, not a tracing finger.
-6. Body/engine:
-   - the shoulder-seam notch (humanMesh prep, clavicle vs upper-arm group);
-   - the dark blob on the social worker's back (REF_sw_back);
-   - mesh soles ~13 mm under the floor;
-   - wrists past their limits (Dad pronation in basement90, the B4/B5 cat paw, jade3/mama86 R in shanghai86).
-7. Mirrored mug grips in props.json (handle on +x).
-8. Brightness pass on every painter guide. MG_wide_lit and WL_in_lit are nearly black.
-9. First love's hair colour: v7 reads chestnut (decision card).
-10. CAP_X_sw comp still has the old tree sweatshirt: re-comp it after the X_sw repaint.
+**2. Optional engine work (before painting, if Jade wants it).**
+- holdcheck's hand is thinner than the mesh hand (proximal 6-15 mm, palm 10-17 mm), so fingers can sit ~1 cm inside
+  an object and still pass. Widen the hand.js capsules, or check against the mesh hand.
+- Seated thighs are ~14 mm into chairs engine-wide: raise seated hip heights ~5 mm.
+- MG2/MG2_end: the pinch hands are ~15 mm into the hoodie fold. Every fix tried exposed the Truth print; the
+  fallback is to tell the painter to draw the hands on the cloth. Keep Truth at 0 (sweatshirt_test.mjs,
+  cloth_contact.mjs).
+- Pre-existing clips are still open: closet knees/wall/carpet; mv10 32 of 33 shots (couches, sandals, snacks, ladle
+  7.6 mm); kitchen day shots (Mama's thumb wrists 63 deg past, thighs into the chair).
+- Small: a speck of the praying worker remains in WL_in. tools/kf/handout.py has the r5 gap point (middle of the
+  missing slot) but has not been re-run.
 
-**Then:**
-1. The re-render sweep of all sets (3 passes each).
-2. Re-run clipcheck.mjs, check_bodies.mjs and holdcheck.
-3. python3 layout/gallery.py, and commit.
-4. Paint r4 per the old START HERE below: free Codex, most-corrected sets first.
+**3. Paint r4 + r5.**
+- The list is work/r4/REPAINT_LIST.md (r4 and r5 sections). Free Codex in tmux only, most-corrected sets first; the
+  method is in "START HERE (updated the evening of 2026-11-26)" below.
+- Re-comp CAP_X_sw after the X_sw repaint (it still has the old tree sweatshirt).
+- Watch the Codex image limit (~100 images per 40 min). Don't fall back to paid generation without asking Jade.
+
+**Render and check recipe (per set S):**
+1. `node layout/render.mjs --set S --exclude beam_`
+2. `node layout/render.mjs --set S --exclude beam_ --modes form,contour,light --nojson`
+3. `node layout/render.mjs --set S --prefix beam_ --modes flat --nojson`
+4. clipcheck.mjs, holdcheck, check_bodies.mjs, then `python3 layout/gallery.py`, and commit (lead only, no push).
+
+**Standing rules:** the repo is public and work/ stays private. Never name first love or show his face. Never write a
+real street address. Real photos in inputs/ never go to image models (inputs/catchair_shuttle.png is gitignored and
+look-only). Agents don't commit.
 
 ## START HERE (updated the evening of 2026-11-26)
 
@@ -1323,10 +1334,3 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Pre-existing clips are still open: closet knees/wall/carpet; mv10 32 of 33 shots (couches, sandals, snacks, ladle
     7.6 mm); kitchen day shots (Mama's wrists, chair).
 
-## NEXT SESSION START HERE (end of 2026-11-26 night)
-- Round 5 is applied and every set is re-rendered on the r5 engine. Nothing has been painted for r4/r5.
-- Jade answers the round-6 page (media/decisions.html, 13 cards, key proof-decisions-v7). Save the paste to
-  work/decisions/JADE_R6_DECISIONS.md.
-- Then paint: work/r4/REPAINT_LIST.md (r4 + r5 sections). Free Codex, most-corrected sets first.
-- Optional engine work first: holdcheck's hand is thinner than the mesh hand (6-17 mm); seated thighs ~14 mm into
-  chairs (raise seated hips ~5 mm); the MG2 pinch hands (~15 mm into the fold).
