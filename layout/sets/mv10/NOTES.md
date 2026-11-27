@@ -864,3 +864,80 @@ Jade's answers (verbatim in `work/decisions/JADE_R4_DECISIONS.md`) applied. Supe
 
 ## 2026-11-26: round-6 decisions
 - Hair re-render (r6 final, lead): target = the hair shade Jade asked for (measured reference), ~#3f342e (dark, slightly warm brown, a little cool grey, no red). FL_HAIR 0x2b2420 (v8 0x1f1915; ~1.37x lighter, calibrated in normal light, NOT on dim scenes). closet02 lit-only FL_HAIR_LIT 0x1a181b: CL_ots hair samples #40342d. mv10 is a dim set (C2b hair #0e0a08 -> #130e0c). No geometry change. Painter refs: the v8 sheets are darker than the target; next paint session tell the painter #3f342e (or redo the sheet as v9).
+
+## 2026-11-26: first love in black slacks
+- Jade: "let's put first love in black pants in every scene, it feels more like him. (normal black slacks)". His legs are
+  now plain black dress trousers at both ages: `FL_SLACKS` 0x1c1c1e in `../_cast.js` (firstLove19 / firstLove27), a touch
+  off pure black so the folds read. Tops, socks and sandals unchanged. The engine has one trouser garment (the MakeHuman
+  jeans mesh) and no slacks-vs-jeans shape option, so the guide changes colour only; painter prompts carry
+  `r4lib.FL_SLACKS` ("plain black slacks (dress trousers) ... NOT jeans").
+- Re-rendered (all modes + beam_ masks) and re-checked; prompts regenerated (r4 _make.py).
+
+## 2026-11-27: real-size feet / hands (engine agent)
+- The engine now scales every mesh foot to the cast length (first love 251 mm, was ~217). His sandals (build.js
+  sandals()) scale with the foot: cork sole longer by the stretch (20 % behind, 80 % ahead of the solver heel / toe)
+  and wider by sqrt(k); straps 0.047 x k radius (k = footLen / solver heel-toe span, ~1.15). Labels are now
+  '<who>: sandal (...)' and engine/clipdump.js treats sandals as the figure's footwear (like socks / slippers), so the
+  clip check no longer reports the half-ring straps (open meshes: their "inside" was spurious) or the cork sole.
+- V3c: Jade 2 cm back from MARKS.greeting (her toes were 12 mm into the sliding door track); her waving hand target 2 cm back with her.
+
+## 2026-11-27: textbook spines matched to the real editions
+- Jade: "for all the textbooks, can you image search for them and match their spines to the real textbooks? (we're not
+  reproducing the textbooks, just showing what it looks like)". spines.js now draws each lettered spine as a LIKENESS of
+  its real edition's spine: ground colour, colour bands, lettering colour, font class, the order, orientation and
+  placement of title / author / edition / publisher, and the publisher mark's position as a plain circle / triangle /
+  box (never the real logo). No cover art, logos, barcodes or ISBNs. build.js bookLook() gives each of these books its
+  real cover colour; layout.js has their real sizes. Unnamed placeholder books are still blank, in our colours.
+- Newly lettered: Theoretical Neuroscience, Spikes, Molecular Biology of the Cell. They are textbooks in cube 3,3 and
+  were blank before. Their titles now reach the painter, and the sidecar `spines_note` says so.
+- The Feynman set stays RED (Jade). The red-orange cloth of the classic hardcover is 0xae3322, a little brighter and
+  oranger than our old 0x9a2a22.
+- Fonts: system URW base-35 / Liberation faces, chosen as the nearest free class to each real face:
+  P052 ~ Palatino, C059 ~ Century, Z003 for the Feynman script, Nimbus / Liberation Sans Narrow for condensed sans,
+  and Nimbus Roman condensed in code for the Sagan title. They are listed in docs/credits_tools.md.
+- Edge guide: the lettering and marks are drawn grey on white, colour bands (Strogatz's red head band) as a faint tint,
+  and textures (the Kandel mottle) are left out.
+- New set references (not film shots): `T0_spines_33` (textbooks), `T0_spines_44` (Feynman + SF) and `T0_spines_42`
+  (Sagan, Bryson). These are square-on 50 mm views, 0.95 m from the frame front, lit exposure 1.3.
+- Sizes: every book still fits. The cube is 337 mm inside. Cube 3,3's run is now 222 mm (was 270), and the tallest book is
+  Kandel at 292 mm (279 mm since the 2026-11-27 height check; Fundamental, 286 mm, is now the tallest), so no SHELF_WARN. Books are placed edge to edge by placeBooks(), so they cannot overlap.
+- Side effect: his pinch target in BR1/BR2 (`heShelf`, x = cube centre + 5 cm) used to sit on the Fundamental /
+  Theoretical boundary. With the new widths it lands mid-spine on Theoretical Neuroscience (2.2 cm thick paperback,
+  top at 1.364 m vs the pinch height of 1.36 m).
+- Real spine vs ours: `/tmp/claude-1000/-home-jade-Documents-proof/e8f8751e-a04d-4efb-8fc6-6214cbaf79ff/scratchpad/spines_compare.jpg` (session scratchpad; look-only refs, never committed, never sent
+  to an image model).
+
+| Book (edition) | Spine as drawn | Size h x d x w (cm) | Seen / inferred | Sources |
+|---|---|---|---|---|
+| Feynman Lectures on Physics I-III (Addison-Wesley red cloth hardcover, 1963-65 and reprints) | red-orange cloth #ae3322; head: FEYNMAN / LEIGHTON / SANDS stacked across, cream condensed sans; "The Feynman" gold script along; LECTURES ON PHYSICS cream condensed sans caps along; gold rule; VOLUME / I-III across in gold; foot: triangle mark + ADDISON / WESLEY across | 28.5 x 22.2 x 2.4 / 2.4 / 2.1 | SEEN (photo of the 3 spines) | abebooks.com listing 31328699370 (photo 3); cover: covers.openlibrary.org ISBN 0201021161 |
+| Principles of Neural Science, 4th ed. (McGraw-Hill 2000) | blue-black #1d2338 with blue mottle #34467e; Kandel / Schwartz / Jessell stacked across at the head, cream serif; PRINCIPLES OF / NEURAL SCIENCE two lines along, light serif caps; Fourth / Edition across; round mark at the foot | 27.9 x 22.2 x 5.3 (was 29.2; see the book-heights note below) | SEEN (Amazon spine photo) | amazon.com/dp/0838577016 (image 1); Amazon dims 8.5 x 2.1 x 11.5 in; library records 29 cm; Open Library 10.9 x 9 x 2.3 in |
+| Fundamental Neuroscience, 3rd ed. (Academic Press 2008) | indigo #2b2768 (the cover's title band); "Fundamental Neuroscience" white Century-class serif along; "Third Edition" yellow; Squire, Berg, Bloom, du Lac, Ghosh, Spitzer small; round mark at the foot | 28.6 x 22.9 x 5.1 | INFERRED from the cover (no spine photo found) | amazon.com/dp/0123740193; covers.openlibrary.org ISBN 9780123740199; Amazon dims 9 x 2 x 11.25 in |
+| Theoretical Neuroscience (Dayan & Abbott, MIT Press pb 2005) | black; THEORETICAL NEUROSCIENCE gold serif caps along; "Dayan and Abbott" white serif; box mark at the foot | 25.4 x 19.7 x 2.2 | INFERRED from the cover | amazon.com/dp/0262541858; Amazon dims 7.76 x 0.87 x 10 in |
+| Nonlinear Dynamics and Chaos (Strogatz, Westview / Perseus pb) | pale yellow #efe4a2, red head band #c62a2c; STROGATZ navy serif caps; NONLINEAR DYNAMICS / AND CHAOS navy small caps, 2 lines; foot: red rule, round mark, "Westview" | 23.4 x 15.2 x 2.5 | SEEN (spine photo) | abebooks.com listing 32276177461; amazon.com/dp/0738204536 (dims 6 x 1 x 9.2 in) |
+| Spikes: Exploring the Neural Code (MIT Press pb 1999) | black; S P I K E S white wide-spaced bold sans with the I green; EXPLORING THE NEURAL CODE small spaced caps; Rieke, Warland, de Ruyter van Steveninck, Bialek; box mark | 22.9 x 17.8 x 2.0 | INFERRED from the cover | amazon.com/dp/0262681080; Amazon dims 7 x 0.8 x 9.02 in |
+| Molecular Biology of the Cell, 5th ed. (Garland 2008) | crimson #d22a45; "Molecular Biology of" / THE CELL along, pale pink condensed sans (THE CELL large); six authors stacked across in small caps; round mark + "Garland Science"; "Fifth Edition" gold bold | 27.9 x 22.2 x 5.1 | SEEN (Amazon spine photo) | amazon.com/dp/0815341059 (image 5); Amazon dims 8.75 x 2 x 11 in |
+| The Dragons of Eden (Ballantine mass-market, the red cover in print 1980s-2000s) | red #e2221c; round mark at the head; THE DRAGONS OF EDEN yellow condensed serif caps; CARL SAGAN yellow | 17.1 x 10.6 x 1.9 | INFERRED from the cover. The older Ballantine printings seen (cream spine, dark or teal condensed title) are a different cover | amazon.com/dp/0345346297 (dims 4.17 x 0.75 x 6.73 in); older spines: abebooks listings 32266488157, 32382686710 |
+| A Short History of Nearly Everything (Broadway Books trade pb 2004) | blue-violet #2c2c68; BILL BRYSON white wide-spaced serif caps; yellow asterisk + "A Short History of Nearly Everything" white serif; box mark | 20.3 x 13.3 x 3.2 (kept) | INFERRED from the cover | amazon.com/dp/076790818X; covers.openlibrary.org ISBN 076790818X |
+
+- Flags: for the five INFERRED spines no photo of the real spine turned up (AbeBooks seller photos, Amazon images; eBay
+  and Biblio refuse scripted fetches). Their ground and lettering follow the cover, as publishers do, but the exact
+  layout is a guess. For Dragons of Eden we picked the red cover, which matches the era; if Jade's copy was an older
+  cream-spined printing, it is an easy swap.
+
+## 2026-11-27: book heights checked against the Expedit cube
+- Expedit interior: IKEA lists only the outside (185 x 185 x 39 cm for the 5x5); the cube opening is quoted as 13 x 13 in
+  (33 x 33 cm), 15 in deep, the same as Kallax (interiorinsider.com "IKEA Expedit vs Kallax dimensions"; ikeahackers.net
+  ?p=1038 "the cube openings are the same size (33cm)", and its 45 mm timber filling the outer panel's hollow agrees with
+  the ~5 cm frame). IKEA's 33 x 33 cm Kallax inserts fit the cube, so the opening is at least ~33.2 cm. Ours (measured in
+  the built scene, frame boxes): 33.72 x 33.72 cm, 39 cm deep, frame 5 cm, dividers 1.6 cm (still our estimate). That is
+  2.2 % over the rounded 33 cm and consistent with the outside size, so the shelf is unchanged.
+- Measured every book's world box (scratchpad dump.mjs). Lettered books, real height / model / ratio to the 33.72 cm cube:
+  Feynman I-III 28.5 / 28.5 / 0.845; Kandel 27.9 / 27.9 / 0.827 (WAS 29.2: Amazon's 11.5 in; library records give 29 cm,
+  AACR2 rounds up, Open Library 10.9 x 9 x 2.3 in, so 27.9 x 22.2 now); Fundamental 28.6 / 0.848; Theoretical 25.4 /
+  0.753; Strogatz 23.4 / 0.694; Spikes 22.9 / 0.679; Alberts 27.9 / 0.827 (sellers: 27.9 x 21.6 x 4.7); Dragons 17.1 /
+  0.507 (Open Library 6.9 in = 17.5, within 2.3 %); Bryson 20.3 / 0.602. All others within 0 % of the table above.
+- Fillers: every placeholder trade paperback was 20 x 13 and every mass-market 17.5 x 10.6. Each now takes one real format
+  by a fixed title hash (layout.js, after BOOKS): trade 20.3 x 13.2 / 19.8 x 12.9 / 20.3 x 13.5 / 21.0 x 13.8 / 20.0 x 13.3,
+  mass-market 17.5 x 10.6 / 17.1 x 10.6 / 17.4 x 10.7 / 17.8 x 11.0. Thicknesses unchanged, so the runs are as wide.
+- Spine textures are drawn at the book's own height (spines.js, 2600 px/m), so Kandel's shorter spine is redrawn, not
+  squashed. T0_spines_33/44/42 checked in form and lit (scratchpad bookheights/). mv10 NOT re-rendered into media/layout.

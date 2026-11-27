@@ -8,8 +8,12 @@ import { drawGazeOverlay } from './gaze.js';
 const q = new URLSearchParams(location.search);
 const W = Number(q.get('w') || 1920), H = Number(q.get('h') || 1080), SET = q.get('set') || 'attic88';
 FIG2.on = q.get('gaze') !== '0'; FIG2.body = q.get('body2') === '1';   // gaze + wrists: ON by default since 2026-11-26 (gaze=0 / PROOF_GAZE=0 = off) / mannequin body v2 (--body2)
-import { HUMAN, loadBodies } from './humanMesh.js';
+import { HUMAN, HANDMARK, loadBodies } from './humanMesh.js';
 if ((q.get('body') || 'mesh') === 'mesh') { HUMAN.on = true; await loadBodies(); }   // rigged human meshes: DEFAULT since 2026-11-26; body=mannequin (PROOF_BODY=mannequin) = the old mannequins
+if (q.get('handmark') === 'web') HANDMARK.debugWeb = true;
+if (q.get('websmooth')) HANDMARK.webSmooth = Number(q.get('websmooth'));   // thumb-web smoothing passes (comparison renders)
+if (q.get('handmark') === '0') { HANDMARK.on = false; HANDMARK.webSmooth = 0; HANDMARK.thenarSmooth = 0; }   // hand marks (nails, creases, palm tint, finger lines, thumb-web smoothing; 2026-11-27): handmark=0 (render.mjs --handmark 0) = off, for comparisons
+HUMAN.handFit = q.get('handfit') !== '0'; HUMAN.thumbFit = !['0', 'palm'].includes(q.get('handfit'));   // palm fitted to the solver's knuckles (fit B, 2026-11-27); handfit=0 (render.mjs --handfit 0) = the old rigid hand and thumb, handfit=palm = palm fit without the thumb fit; for comparison renders
 const R = new ModeRenderer(W, H);
 const { build, buildV3 } = await import(`../sets/${SET}/build.js`);
 const { SHOTS: SHOTS_V1 } = await import(`../sets/${SET}/shots.js`);

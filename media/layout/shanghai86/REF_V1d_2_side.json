@@ -2137,17 +2137,17 @@
  ],
  "figure_frame_fraction": {
   "mama86": 0.028,
-  "jade3": 0.0574
+  "jade3": 0.0608
  },
  "colour_separation": [],
  "figure_report": {
   "jade3": {
    "legs": {
     "L": {
-     "reach": 0.58
+     "reach": 0.34
     },
     "R": {
-     "reach": 0.58
+     "reach": 0.71
     }
    },
    "arms": {
@@ -2172,9 +2172,9 @@
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.8,
-    "sole_shift_mm_R": 14.8,
-    "sole_lowest_y_m": -0.0097
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": -0.0021
    }
   },
   "mama86": {
@@ -2208,8 +2208,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
     "sole_lowest_y_m": 0.0219
    }
   }

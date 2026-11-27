@@ -1732,10 +1732,10 @@
     "contents": [
      "Principles of Neural Science (4th ed.)",
      "Fundamental Neuroscience (3rd ed.)",
-     "(blank spine, untitled book)",
+     "Theoretical Neuroscience",
      "Nonlinear Dynamics and Chaos",
-     "(blank spine, untitled book)",
-     "(blank spine, untitled book)"
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
     ]
    },
    {
@@ -1933,7 +1933,7 @@
     ]
    }
   ],
-  "spines_note": "Only Jade’s six titles carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
+  "spines_note": "Only the lettered spines (Jade’s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition’s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
  },
  "expedit_2x2": {
   "world": {
@@ -24590,7 +24590,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "friend": 0.3671
+  "friend": 0.3684
  },
  "colour_separation": [],
  "figure_report": {
@@ -24625,8 +24625,8 @@
      "forearm_stretch": 0.98,
      "hand_scale": 0.93
     },
-    "sole_shift_mm_L": 8.9,
-    "sole_shift_mm_R": 8.9,
+    "sole_shift_mm_L": 18.8,
+    "sole_shift_mm_R": 18.8,
     "sole_lowest_y_m": -0.6955
    }
   }

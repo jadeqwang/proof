@@ -39,7 +39,7 @@ const uncleHold = (o = {}) => { const U = uncleShape(o);
     L: { ...U.L, tip: { finger: 'index', at: [BALL[0], BALL[1] + BALL_R + 0.045 * UNCLE_LH - 0.0012, BALL[2]] }, grasp: 'tipOn', object: 'something small' } }; };
 // she sits CROSS-LEGGED at her spot (round 2 answers: cross-legged in BOTH scenes), watching his hands across the table
 // corner; his hands are held low (8 cm over the table top) so she looks a little down into them
-const jadeWatch = (o = {}) => ({ at: PLACES.jadeStand, legs: 'cross', yaw: yawTo(PLACES.jadeStand, [H[0], H[2]]), spine: { bend: 8 }, head: { look: BALL }, L: 'lap', R: 'lap', ...o });
+const jadeWatch = (o = {}) => ({ at: PLACES.jadeStand, legs: 'cross', legOpts: { front: 'R' }, yaw: yawTo(PLACES.jadeStand, [H[0], H[2]]), spine: { bend: 8 }, head: { look: BALL }, L: 'lap', R: 'lap', ...o });
 // state B: she sits CROSS-LEGGED (Jade, decision page) facing the table and the windows (south), working on the table's
 // north-west corner
 const C = [JX + FWD[0] * 0.36, JZ + FWD[1] * 0.36];   // in front of her, over the table's north edge
@@ -62,7 +62,10 @@ const lay = { L: { to: [F[0] + 0.1, 0.445, F[2] - 0.06], hand: 'relax', palm: 'd
   // r5 wrists (engine-body): the fingers point forward AND in toward her left (0.6 LEFT) and less steeply down (-0.3): was
   // straight forward at -0.6, flexion +4 / ulnar +14 deg past the range; now flex 52, radial 0, pronation 36 deg
   R: { ...graspArms('tipOn', { centre: LAY_TIP, at: LAY_TIP, up: [0, 1, 0], axis: [FWD[0] + 0.5 * LEFT[0], 0, FWD[1] + 0.5 * LEFT[1]], fingers: [FWD[0] + 0.5 * LEFT[0], -0.6, FWD[1] + 0.5 * LEFT[1]], palm: [-0.6 * (FWD[0] + 0.5 * LEFT[0]), -1, -0.6 * (FWD[1] + 0.5 * LEFT[1])], label: '草纸' }, { Lh: 0.112 * 0.95, side: 'R' }).R } };
-const jadeSit = (n = 8, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', yaw: PLACES.jadeYaw, spine: { bend: n <= 2 ? 14 : 15 }, head: { look: n <= 2 ? [C[0], 0.5, C[1] + 0.06] : 'focus' }, ...(n === 1 ? hold(0.1) : n === 2 ? hold(0.15) : LAP), ...o });   // r6b: after-pose = LAP (was lay, bend 40)
+// 2026-11-27 (engine cross-legged pose from reference photos): her RIGHT shin in front, so the crossed feet clear the
+// coffee table and the paper drift on her left (V1d_2); every shot at her spot keeps the same leg on top (jadeWatch too)
+const X_SIT = { front: 'R' };
+const jadeSit = (n = 8, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', legOpts: X_SIT, yaw: PLACES.jadeYaw, spine: { bend: n <= 2 ? 14 : 15 }, head: { look: n <= 2 ? [C[0], 0.5, C[1] + 0.06] : 'focus' }, ...(n === 1 ? hold(0.1) : n === 2 ? hold(0.15) : LAP), ...o });   // r6b: after-pose = LAP (was lay, bend 40)
 // ---------------------------------------------------------------- r3: tiny pieces (Jade's r2 review)
 // She tears ONE TINY piece in half again and again (tiny ~1-3 cm, the tiniest ~5 mm), thumbs on top, index fingers under,
 // the two pinches side by side a finger's width apart. One piece, followed through the shots (build.js paperProps):
@@ -90,7 +93,7 @@ const RIP_H = [JX + FWD[0] * 0.26, 0.32, JZ + FWD[1] * 0.26];   // low, over her
 // her gaze passes through the pinches to a point just beyond them (the eyes ~18 cm from the hands would converge 16 deg,
 // read as crossed in a guide; check_bodies MIN_LOOK 25 cm)
 const RIP_LOOK = [JX + FWD[0] * 0.37, 0.21, JZ + FWD[1] * 0.37];
-const ripSit = (gap, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', yaw: PLACES.jadeYaw, spine: { bend: 8 }, head: { look: RIP_LOOK }, ...pinchPair(0.26, 0.32, gap), ...o });
+const ripSit = (gap, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', legOpts: X_SIT, yaw: PLACES.jadeYaw, spine: { bend: 8 }, head: { look: RIP_LOOK }, ...pinchPair(0.26, 0.32, gap), ...o });
 // r6c (Jade on V1d_2: "the wrist is weird"): the right arm reached ~0.4 m nearly straight (elbow 5 deg, past its reach 1.08),
 // the upper arm raised 134 deg, the wrist flexed 51 / radial 16 deg. Decision (Jade via the lead): MOVE HER, not PD (PD and
 // the laid half stay put for V1d_4 on). In V1d_2 only, she has shuffled 10 cm forward and 2 cm to her left (V1D2_D) up to

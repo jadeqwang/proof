@@ -235,3 +235,28 @@ touching. Tried and reverted (shots.js unchanged); asked the hold agent for an e
 longer painted. Its shot code stays (harmless) but is out of the paint list. Its 1.7 s need covering in the edit:
 OPEN, probably by holding CL_hands or CL_ots longer. Its wrist failure (right wrist out of range) is moot.
 The hands sheet D drops its matching study 4 (her hand at his chin) at the next retake.
+
+## 2026-11-27: engine cross-legged pose + real-size feet / hands (engine agent)
+- The engine's legs 'cross' was redone from reference photos (feet on their outer edges under / just in front of the
+  opposite shins, soles up and in, toes sideways; knees low and wide). Her new knees were 40 mm into the right jamb
+  wall and his crossed feet 45 mm into her duvet: SEATS moved: jade19 x 0.55 -> 0.50; firstLove [0.52, 0.38] ->
+  [0.50, 0.48] (10 cm back); HANDS and FACE x 0.55 -> 0.50 with them; temples look x 0.50. His shins are a little
+  shorter in front (HIS_CROSS legOpts: outer ankle 0.48 L, inner 0.24 L; self-checked, no foot into the other leg).
+- Clip check: CL_wide / CL_hands / CL_ots now fail only on the pre-existing hanging clothes at her head (was also: her
+  13 mm into the bedroom wall, body vs body 26 / 32 mm skin). Body vs body now 10 / 13 mm (the hands meeting).
+- CL_chin (dropped): her right-hand fingers [0.1, 1, 0] (was [-0.3, 1, 0]); her right wrist is now in range.
+- Feet: the engine now scales every mesh foot to the cast length (both 251 mm) and hands to 187 mm (were ~217 / ~181).
+
+## 2026-11-27: hand "fit B" + thumb fit in the engine; closet02 re-rendered (engine agent)
+- Jade approved "fit the palm to the fingers". engine/humanMesh.js now fits the mesh palm onto the solver's knuckle row:
+  it rotates and scales the palm uniformly so the wrist-to-knuckle-centroid line and the index-to-little line match.
+  The palm is about 6 % shorter and the knuckle row reads clean. The thumb fit is also on: the mesh thumb joints sit at the
+  mesh's own proportions along the solver's thumb, CMC to tip. Before, the metacarpal was stretched x1.5 and the phalanges
+  shrunk x0.77/x0.72, which made the thumb stubby. Fingertips and solver joints are unchanged.
+  Opt-out for comparison renders: `render.mjs --handfit 0` (both fits off) or `--handfit palm` (palm only).
+- Re-rendered every shot in every mode (CL_wide, CL_hands, CL_ots, CL_chin, CL_elev; contour, depth, flat, form, label,
+  light, line, lit + sidecars) at the existing 1920x1080, plus the beam_ flat masks. Before/after sheet:
+  scratchpad fitB_compare.jpg (session e8f8751e).
+- Checks: holdcheck CL_hands / CL_ots pass (contact -0.7 mm, ring3 0.7 mm). Clipcheck is unchanged from before the fit:
+  fails only on the known hanging clothes (20.7 mm) and body vs body 10.3 / 13.3 mm skin. The grip reads skin 1 mm,
+  cloth 6.2 mm. Joints are in range.

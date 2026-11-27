@@ -492,7 +492,7 @@ export function build(shot, { makeCam }) {
       cloth_grips: clothGrips || undefined,
       first_love: { who: 'first love (a real person: never named, never face-on)', face_shown: false,
         facing_camera_deg: he ? +(Math.acos(Math.max(-1, Math.min(1, he.headFwd.dot(c.position.clone().sub(he.head).normalize())))) * 180 / Math.PI).toFixed(0) : null,
-        hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', feet: 'Birkenstock-type cork sandals (Naot), bare feet', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',
+        hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', trousers: 'plain black slacks (dress trousers: straight leg, belt loops, a slight crease), not jeans (Jade 2026-11-26; CAST FL_SLACKS)', feet: 'Birkenstock-type cork sandals (Naot), bare feet', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',
         hands: 'same absolute size as hers (18.3 cm); feet 24.8 cm (cast kind adultFirstLove)' },
       jade: { cast: 'jade27 (kind adultJade27) standing in for Jade at about 24; no closer age in the cast table' },
       sun: { scene: SCENE, elevation_deg: SUN.altitude, azimuth_deg: SUN.azimuth, travel_dir: SUN_DIR.map((v) => +v.toFixed(4)), note: 'computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)',

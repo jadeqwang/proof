@@ -1095,17 +1095,17 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade4h": 0.1608
+  "jade4h": 0.1651
  },
  "colour_separation": [],
  "figure_report": {
   "jade4h": {
    "legs": {
     "L": {
-     "reach": 0.57
+     "reach": 0.7
     },
     "R": {
-     "reach": 0.57
+     "reach": 0.34
     }
    },
    "arms": {
@@ -1130,9 +1130,9 @@
      "forearm_stretch": 0.93,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.5,
-    "sole_shift_mm_R": 14.5,
-    "sole_lowest_y_m": -0.0097
+    "sole_shift_mm_L": 20.8,
+    "sole_shift_mm_R": 20.8,
+    "sole_lowest_y_m": -0.0012
    }
   }
  }

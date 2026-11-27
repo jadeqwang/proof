@@ -32278,9 +32278,9 @@
   }
  ],
  "figure_frame_fraction": {
-  "mama": 0.108,
-  "grandma": 0.0339,
-  "jade10": 0.1396
+  "mama": 0.1079,
+  "grandma": 0.0341,
+  "jade10": 0.1399
  },
  "colour_separation": [
   {
@@ -32324,8 +32324,8 @@
      "forearm_stretch": 1.01,
      "hand_scale": 0.97
     },
-    "sole_shift_mm_L": 14.1,
-    "sole_shift_mm_R": 14.1,
+    "sole_shift_mm_L": 22.6,
+    "sole_shift_mm_R": 22.6,
     "sole_lowest_y_m": 0.0286
    }
   },
@@ -32360,8 +32360,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 23,
-    "sole_shift_mm_R": 23,
+    "sole_shift_mm_L": 33.4,
+    "sole_shift_mm_R": 33.4,
     "sole_lowest_y_m": 0.0037
    }
   },
@@ -32396,8 +32396,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
     "sole_lowest_y_m": 0.0421
    }
   }

@@ -2360,10 +2360,10 @@
     "contents": [
      "Principles of Neural Science (4th ed.)",
      "Fundamental Neuroscience (3rd ed.)",
-     "(blank spine, untitled book)",
+     "Theoretical Neuroscience",
      "Nonlinear Dynamics and Chaos",
-     "(blank spine, untitled book)",
-     "(blank spine, untitled book)"
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
     ]
    },
    {
@@ -2561,7 +2561,7 @@
     ]
    }
   ],
-  "spines_note": "Only Jade’s six titles carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
+  "spines_note": "Only the lettered spines (Jade’s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition’s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
  },
  "expedit_2x2": {
   "world": {
@@ -2594,6 +2594,7 @@
   756.4
  ],
  "first_love_costume": {
+  "trousers": "plain black slacks (dress trousers: straight leg, belt loops, a slight crease), not jeans (Jade 2026-11-26: \"normal black slacks\"; CAST FL_SLACKS)",
   "sandals": "Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps",
   "forearms": "forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)",
   "height_m": 1.78
@@ -4013,7 +4014,7 @@
   },
   "firstLove27": {
    "top": "#4a5a6a",
-   "legs": "#2a2a30",
+   "legs": "#1c1c1e",
    "sleeves": "short",
    "sock": "#6a6a70",
    "torso": "capsule"
@@ -12700,7 +12701,7 @@
        "a": [
         2.463,
         1.2087,
-        3.2028
+        3.2029
        ],
        "b": [
         2.4968,
@@ -12742,12 +12743,12 @@
        "a": [
         2.4539,
         1.191,
-        3.1152
+        3.1151
        ],
        "b": [
         2.463,
         1.2087,
-        3.2028
+        3.2029
        ],
        "r": 0.0101
       },
@@ -12812,40 +12813,40 @@
        "a": [
         2.4634,
         1.1707,
-        3.2079
+        3.208
        ],
        "b": [
-        2.4988,
+        2.4989,
         1.1725,
-        3.2211
+        3.2207
        ],
        "r": 0.0094
       },
       {
        "part": "ring2",
        "a": [
-        2.4988,
+        2.4989,
         1.1725,
-        3.2211
+        3.2207
        ],
        "b": [
-        2.5224,
+        2.5226,
         1.1721,
-        3.216
+        3.2159
        ],
        "r": 0.0085
       },
       {
        "part": "ring3",
        "a": [
-        2.5224,
+        2.5226,
         1.1721,
-        3.216
+        3.2159
        ],
        "b": [
-        2.5358,
+        2.536,
         1.1707,
-        3.2034
+        3.2033
        ],
        "r": 0.0077
       },
@@ -12859,7 +12860,7 @@
        "b": [
         2.4634,
         1.1707,
-        3.2079
+        3.208
        ],
        "r": 0.0101
       },
@@ -12885,7 +12886,7 @@
         3.2185
        ],
        "b": [
-        2.5082,
+        2.5083,
         1.1539,
         3.2207
        ],
@@ -12894,7 +12895,7 @@
       {
        "part": "little3",
        "a": [
-        2.5082,
+        2.5083,
         1.1539,
         3.2207
        ],
@@ -12931,7 +12932,7 @@
         1.1971,
         3.1344
        ],
-       "r": 0.015
+       "r": 0.0151
       },
       {
        "part": "thumb1",
@@ -12942,8 +12943,8 @@
        ],
        "b": [
         2.5328,
-        1.2067,
-        3.1374
+        1.2066,
+        3.1375
        ],
        "r": 0.0116
       },
@@ -12951,12 +12952,12 @@
        "part": "thumb2",
        "a": [
         2.5328,
-        1.2067,
-        3.1374
+        1.2066,
+        3.1375
        ],
        "b": [
         2.5487,
-        1.2198,
+        1.2197,
         3.1378
        ],
        "r": 0.0101
@@ -13021,7 +13022,7 @@
      3.1384
     ],
     [
-     2.4913,
+     2.4914,
      1.2338,
      3.14
     ],
@@ -13143,7 +13144,7 @@
     [
      2.4753,
      1.1377,
-     3.1765
+     3.1766
     ],
     [
      2.4739,
@@ -13153,7 +13154,7 @@
     [
      2.4753,
      1.1401,
-     3.1942
+     3.1943
     ],
     [
      2.4794,
@@ -13331,7 +13332,7 @@
      3.1384
     ],
     [
-     2.4913,
+     2.4914,
      1.2338,
      3.14
     ],
@@ -13553,7 +13554,7 @@
     [
      2.4753,
      1.1377,
-     3.1765
+     3.1766
     ],
     [
      2.4739,
@@ -13563,7 +13564,7 @@
     [
      2.4753,
      1.1401,
-     3.1942
+     3.1943
     ],
     [
      2.4794,
@@ -17004,7 +17005,7 @@
        "b": [
         1.1515,
         1.3135,
-        3.3381
+        3.3382
        ],
        "r": 0.0089
       },
@@ -17013,14 +17014,14 @@
        "a": [
         1.1515,
         1.3135,
-        3.3381
+        3.3382
        ],
        "b": [
         1.1406,
         1.3114,
         3.3239
        ],
-       "r": 0.008
+       "r": 0.0079
       },
       {
        "part": "palm:index",
@@ -17040,13 +17041,13 @@
        "part": "middle1",
        "a": [
         1.1478,
-        1.292,
+        1.2919,
         3.3948
        ],
        "b": [
         1.1592,
         1.2949,
-        3.3565
+        3.3566
        ],
        "r": 0.0102
       },
@@ -17055,7 +17056,7 @@
        "a": [
         1.1592,
         1.2949,
-        3.3565
+        3.3566
        ],
        "b": [
         1.1519,
@@ -17072,7 +17073,7 @@
         3.3321
        ],
        "b": [
-        1.1375,
+        1.1376,
         1.2907,
         3.3192
        ],
@@ -17087,7 +17088,7 @@
        ],
        "b": [
         1.1478,
-        1.292,
+        1.2919,
         3.3948
        ],
        "r": 0.0101
@@ -17172,7 +17173,7 @@
        "b": [
         1.1625,
         1.2574,
-        3.3498
+        3.3499
        ],
        "r": 0.0075
       },
@@ -17181,12 +17182,12 @@
        "a": [
         1.1625,
         1.2574,
-        3.3498
+        3.3499
        ],
        "b": [
         1.1573,
         1.2567,
-        3.3359
+        3.336
        ],
        "r": 0.0068
       },
@@ -17213,8 +17214,8 @@
        ],
        "b": [
         1.0731,
-        1.2942,
-        3.3525
+        1.2936,
+        3.3524
        ],
        "r": 0.0151
       },
@@ -17222,27 +17223,27 @@
        "part": "thumb1",
        "a": [
         1.0731,
-        1.2942,
-        3.3525
+        1.2936,
+        3.3524
        ],
        "b": [
-        1.075,
-        1.3044,
-        3.3264
+        1.0752,
+        1.3034,
+        3.3262
        ],
        "r": 0.0116
       },
       {
        "part": "thumb2",
        "a": [
-        1.075,
-        1.3044,
-        3.3264
+        1.0752,
+        1.3034,
+        3.3262
        ],
        "b": [
-        1.0742,
-        1.3177,
-        3.3107
+        1.0744,
+        1.3165,
+        3.3103
        ],
        "r": 0.0101
       }
@@ -17266,7 +17267,7 @@
      3.3844
     ],
     [
-     1.1345,
+     1.1344,
      1.3432,
      3.3769
     ],
@@ -17313,7 +17314,7 @@
     [
      1.088,
      1.3338,
-     3.3293
+     3.3294
     ],
     [
      1.0806,
@@ -17333,7 +17334,7 @@
     [
      1.0759,
      1.3307,
-     3.3673
+     3.3674
     ],
     [
      1.0807,
@@ -17356,7 +17357,7 @@
      3.3909
     ],
     [
-     1.1286,
+     1.1285,
      1.2395,
      3.3846
     ],
@@ -17367,7 +17368,7 @@
     ],
     [
      1.1452,
-     1.2432,
+     1.2431,
      3.3791
     ],
     [
@@ -17411,7 +17412,7 @@
      3.3268
     ],
     [
-     1.1198,
+     1.1197,
      1.2383,
      3.3282
     ],
@@ -17448,7 +17449,7 @@
     [
      1.1119,
      1.236,
-     3.379
+     3.3791
     ],
     [
      1.1198,
@@ -17456,7 +17457,7 @@
      3.3832
     ],
     [
-     1.1286,
+     1.1285,
      1.2395,
      3.3846
     ],
@@ -17576,7 +17577,7 @@
      3.3844
     ],
     [
-     1.1345,
+     1.1344,
      1.3432,
      3.3769
     ],
@@ -17623,7 +17624,7 @@
     [
      1.088,
      1.3338,
-     3.3293
+     3.3294
     ],
     [
      1.0806,
@@ -17643,7 +17644,7 @@
     [
      1.0759,
      1.3307,
-     3.3673
+     3.3674
     ],
     [
      1.0807,
@@ -17766,7 +17767,7 @@
      3.3557
     ],
     [
-     1.1286,
+     1.1285,
      1.2395,
      3.3846
     ],
@@ -17777,7 +17778,7 @@
     ],
     [
      1.1452,
-     1.2432,
+     1.2431,
      3.3791
     ],
     [
@@ -17821,7 +17822,7 @@
      3.3268
     ],
     [
-     1.1198,
+     1.1197,
      1.2383,
      3.3282
     ],
@@ -17858,7 +17859,7 @@
     [
      1.1119,
      1.236,
-     3.379
+     3.3791
     ],
     [
      1.1198,
@@ -17866,7 +17867,7 @@
      3.3832
     ],
     [
-     1.1286,
+     1.1285,
      1.2395,
      3.3846
     ]
@@ -17880,20 +17881,20 @@
   }
  ],
  "figure_frame_fraction": {
-  "A2": 0.0015,
+  "A2": 0.0016,
   "friend": 0.0022,
   "T1": 0.002,
   "A3": 0.0016,
-  "C3": 0.0011,
+  "C3": 0.0012,
   "A1": 0.0015,
-  "N1": 0.0014,
-  "C1": 0.0014,
-  "C2": 0.0018,
-  "R1": 0.0016,
+  "N1": 0.0015,
+  "C1": 0.0015,
+  "C2": 0.0019,
+  "R1": 0.0017,
   "jade27": 0.0014,
-  "K1": 0.0014,
-  "B2": 0.0022,
-  "S1": 0.0025,
+  "K1": 0.0015,
+  "B2": 0.0023,
+  "S1": 0.0026,
   "B1": 0.0017,
   "firstLove27": 0.0014
  },
@@ -17930,8 +17931,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.4,
-    "sole_shift_mm_R": 8.4,
+    "sole_shift_mm_L": 17.8,
+    "sole_shift_mm_R": 17.8,
     "sole_lowest_y_m": 0.0044
    }
   },
@@ -17966,8 +17967,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19,
-    "sole_shift_mm_R": 19,
+    "sole_shift_mm_L": 29.3,
+    "sole_shift_mm_R": 29.3,
     "sole_lowest_y_m": 0.004
    }
   },
@@ -18002,8 +18003,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.7,
-    "sole_shift_mm_R": 8.7,
+    "sole_shift_mm_L": 18.6,
+    "sole_shift_mm_R": 18.6,
     "sole_lowest_y_m": 0.0045
    }
   },
@@ -18038,8 +18039,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
+    "sole_shift_mm_L": 30.4,
+    "sole_shift_mm_R": 30.4,
     "sole_lowest_y_m": 0
    }
   },
@@ -18074,8 +18075,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 18.8,
-    "sole_shift_mm_R": 18.8,
+    "sole_shift_mm_L": 29,
+    "sole_shift_mm_R": 29,
     "sole_lowest_y_m": 0
    }
   },
@@ -18110,8 +18111,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.2,
-    "sole_shift_mm_R": 8.2,
+    "sole_shift_mm_L": 17.4,
+    "sole_shift_mm_R": 17.4,
     "sole_lowest_y_m": 0.0043
    }
   },
@@ -18146,8 +18147,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 20,
-    "sole_shift_mm_R": 20,
+    "sole_shift_mm_L": 30.8,
+    "sole_shift_mm_R": 30.8,
     "sole_lowest_y_m": 0.0042
    }
   },
@@ -18182,8 +18183,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.6,
-    "sole_shift_mm_R": 8.6,
+    "sole_shift_mm_L": 18.4,
+    "sole_shift_mm_R": 18.4,
     "sole_lowest_y_m": 0.0045
    }
   },
@@ -18218,8 +18219,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 18.6,
-    "sole_shift_mm_R": 18.6,
+    "sole_shift_mm_L": 28.6,
+    "sole_shift_mm_R": 28.6,
     "sole_lowest_y_m": 0.0039
    }
   },
@@ -18254,8 +18255,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 20.2,
-    "sole_shift_mm_R": 20.2,
+    "sole_shift_mm_L": 31.1,
+    "sole_shift_mm_R": 31.1,
     "sole_lowest_y_m": 0.0042
    }
   },
@@ -18290,8 +18291,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
     },
-    "sole_shift_mm_L": 20.1,
-    "sole_shift_mm_R": 20.1,
+    "sole_shift_mm_L": 30.6,
+    "sole_shift_mm_R": 30.6,
     "sole_lowest_y_m": 0.004
    }
   },
@@ -18326,8 +18327,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.2,
-    "sole_shift_mm_R": 8.2,
+    "sole_shift_mm_L": 17.5,
+    "sole_shift_mm_R": 17.5,
     "sole_lowest_y_m": 0.0043
    }
   },
@@ -18362,8 +18363,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.5,
-    "sole_shift_mm_R": 19.5,
+    "sole_shift_mm_L": 30.1,
+    "sole_shift_mm_R": 30.1,
     "sole_lowest_y_m": 0.0041
    }
   },
@@ -18398,8 +18399,8 @@
      "forearm_stretch": 0.98,
      "hand_scale": 0.93
     },
-    "sole_shift_mm_L": 8.9,
-    "sole_shift_mm_R": 8.9,
+    "sole_shift_mm_L": 18.8,
+    "sole_shift_mm_R": 18.8,
     "sole_lowest_y_m": 0.0045
    }
   },
@@ -18434,8 +18435,8 @@
      "forearm_stretch": 0.98,
      "hand_scale": 0.9
     },
-    "sole_shift_mm_L": 4.2,
-    "sole_shift_mm_R": 4.2,
+    "sole_shift_mm_L": 13.7,
+    "sole_shift_mm_R": 13.7,
     "sole_lowest_y_m": 0.0044
    }
   },
@@ -18470,8 +18471,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.4,
-    "sole_shift_mm_R": 8.4,
+    "sole_shift_mm_L": 17.9,
+    "sole_shift_mm_R": 17.9,
     "sole_lowest_y_m": 0.0044
    }
   },
@@ -18506,8 +18507,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 20.2,
-    "sole_shift_mm_R": 20.2,
+    "sole_shift_mm_L": 31.1,
+    "sole_shift_mm_R": 31.1,
     "sole_lowest_y_m": -0.6958
    }
   },
@@ -18542,8 +18543,8 @@
      "forearm_stretch": 0.96,
      "hand_scale": 0.94
     },
-    "sole_shift_mm_L": 8.6,
-    "sole_shift_mm_R": 8.6,
+    "sole_shift_mm_L": 18.3,
+    "sole_shift_mm_R": 18.3,
     "sole_lowest_y_m": -0.6955
    }
   }

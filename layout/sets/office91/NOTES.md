@@ -268,3 +268,8 @@ Jade on X_sw: "the social worker's shoulders are weirdly misshapen".
 - clipcheck office91 after: the 755 mm "into the meeting table" sheet false positives are gone (clipcheck sheet band).
   Still failing, pre-existing staging (office-market's): sw L forearm 13.8 mm into the table top, sw cloth into the
   table / clipboard (34-80 mm), sw / mama91 14 mm into their chairs, FE_thumbs mama91 vs jade10.
+
+## 2026-11-27: real-size feet / hands (engine agent)
+- Dad stands 4 cm further back (SEATS dad z -1.04 -> -1.08): his 258 mm feet were 14 mm into Mom's chair. His right
+  hand on her shoulder 1 cm higher (off y 0.035 -> 0.045): the fingertips (skin now out to the tip pad) were 14 mm
+  into her cardigan.

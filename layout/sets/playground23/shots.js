@@ -22,7 +22,7 @@ const KID_CURL = { shape: 'relax', curl: { all: [10, 10, 6] } };
 const family = (o = {}) => ({
   // the girl: halfway up the panelled ramp on the balls of her feet (left foot higher), leaning in, left hand on the
   // body's top edge, right hand back in Jade's
-  girl: { at: [PEOPLE.girl[0], 0.66, PEOPLE.girl[1]], yaw: 180, legs: 'stand', legOpts: { ankleL: [0.09, -0.152, 0.10], ankleR: [0.05, -0.31, -0.18], poleL: [-0.6, 0.3, -0.7] },
+  girl: { at: [PEOPLE.girl[0], 0.66, PEOPLE.girl[1]], yaw: 180, legs: 'stand', legOpts: { ankleL: [0.09, -0.152, 0.10], ankleR: [0.05, -0.302, -0.18], poleL: [-0.6, 0.3, -0.7] },   // 2026-11-27 ankleR y -0.31 -> -0.302: the real-size foot's toes were 8 mm into the ramp
     spine: { bend: 75, twist: -8 }, head: { look: 'girlLook' },
     L: { to: 'girlHandOn', hand: 'flat', palm: 'down', fingers: [0, -0.3, -1] },
     R: { to: HANDS_MEET.jade_girl, hand: KID_CURL, palm: KID_HAND.girl.palm, fingers: KID_HAND.girl.fingers, elbow: 'out' }, ...(o.girl || {}) },

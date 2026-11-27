@@ -11,7 +11,7 @@ import { loadProps, prop } from '../_props.js';
 import { SETTLED } from './settled.js';   // props phase 2 (2026-11-26 late): real downloaded models (work/props_audit.md)
 await loadProps(['ladle', 'red_cup', 'juicer', 'pitcher', 'bowl', 'knife', 'lemon', 'cutting_board']);
 import { glassTable } from './glassTable.js';
-import { spineArt, NAMED } from './spines.js';
+import { spineArt, spineSpec, NAMED } from './spines.js';
 const bookName = (b) => (NAMED.test(b.t) ? b.t : `(blank spine, untitled ${b.lay === 'flat' ? 'book lying flat' : 'book'})`);   // r4: placeholder titles never reach the painter
 import { artPlane, decalMesh } from '../_art.js';
 import { LOGOS, MEATBALL as MB, SR71 } from './art.js';
@@ -53,14 +53,17 @@ for (const [k, v] of Object.entries(NEW_CAST)) if (!CAST[k]) CAST[k] = v;
 // first love at the housewarming (Jade, 2026-11-25): forearm hair clearly visible, so his sleeves are rolled up here
 // (set-local copy; _cast.js keeps 'long'), and Naot cork sandals (Birkenstock type), modelled below as plain sandals.
 if (CAST.firstLove27) CAST.firstLove27 = { ...CAST.firstLove27, sleeves: 'short' };
-const FIRST_LOVE_COSTUME = { sandals: 'Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps', forearms: 'forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)', height_m: CAST.firstLove27?.h };
+const FIRST_LOVE_COSTUME = { trousers: 'plain black slacks (dress trousers: straight leg, belt loops, a slight crease), not jeans (Jade 2026-11-26: "normal black slacks"; CAST FL_SLACKS)', sandals: 'Birkenstock-type cork sandals made by Naot (Jade); modelled as plain cork-soled sandals with two straps', forearms: 'forearm hair clearly visible (Jade): sleeves rolled up; draw the hair in the arm-tap shots (BR1, BR2, C2a, C2b)', height_m: CAST.firstLove27?.h };
 function sandals(fig) {
   const g = new THREE.Group(), P = fig.userData.P, CORK = { grey: 0.62, col: 0xb08a5a }, STRAP = { grey: 0.25, col: 0x3a2a1e };
-  for (const n of ['L', 'R']) { const h = P['heel' + n], t = P['toe' + n]; if (!h || !t) continue; const a = h.clone(), b = t.clone(); a.y -= 0.004; b.y -= 0.004;
+  for (const n of ['L', 'R']) { const h = P['heel' + n], t = P['toe' + n]; if (!h || !t) continue;
+    // 2026-11-27: the mesh foot is now its real length (P.footLen, 251 mm), scaled about the ankle from the solver's
+    // heel-toe span: the sole and straps scale with it (ks), or the toes overhang the cork and the straps cut the foot
+    const ks = P['footLen' + n] ? P['footLen' + n] / h.distanceTo(t) : 1, a = h.clone(), b = t.clone(); a.y -= 0.004; b.y -= 0.004;
     const d = b.clone().sub(a), side = V(-d.z, 0, d.x).normalize();
-    g.add(tag(slab(a.clone().addScaledVector(d, -0.03), b.clone().addScaledVector(d, 0.05), 0.1, 0.028, side, CORK), 'sandal (cork sole, Naot)'));
-    for (const k of [0.42, 0.68]) { const c = a.clone().addScaledVector(d, k); const t2 = mk(new THREE.TorusGeometry(0.047, 0.009, 6, 16, Math.PI), STRAP);
-      t2.position.copy(c).add(V(0, 0.012, 0)); t2.lookAt(c.clone().add(d)); g.add(tag(t2, 'sandal (strap)')); } }
+    g.add(tag(slab(a.clone().addScaledVector(d, -0.03 - 0.2 * (ks - 1)), b.clone().addScaledVector(d, 0.05 + 0.8 * (ks - 1)), 0.1 * Math.sqrt(ks), 0.028, side, CORK), `${fig.name}: sandal (cork sole, Naot)`));
+    for (const k of [0.42, 0.68]) { const c = a.clone().addScaledVector(d, k); const t2 = mk(new THREE.TorusGeometry(0.047 * ks, 0.009, 6, 16, Math.PI), STRAP);
+      t2.position.copy(c).add(V(0, 0.012 * ks, 0)); t2.lookAt(c.clone().add(d)); g.add(tag(t2, `${fig.name}: sandal (strap)`)); } }
   return g;
 }
 
@@ -188,8 +191,12 @@ function house(shot) {
 const hash = (s) => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0) / 4294967296; };
 const BOOK_COLS = { art: [0xd8d0c0, 0xc8553a, 0xe0c060, 0x2a2a30, 0xe8e2d2, 0x7a9a5a, 0xb0a890], lit: [0x3a6a8a, 0xd8c8a8, 0x8a4a7a, 0xc8553a, 0x4a5a3a, 0xe0d8c8, 0x2a3a5a],
   sf: [0xe0b030, 0x3a7ad0, 0xd0503a, 0x40a080, 0xb060c0, 0x1a1a22, 0xe07a20], sci: [0x22304a, 0xe8e4da, 0x1f3a2a, 0x4a3a22, 0x5a1f1f, 0x3a5a8a, 0xd0c060] };
+// 2026-11-27: the lettered books (spines.js SPEC: the textbooks and the two named popular books) take the REAL
+// edition's cover colour (image-searched; sources in NOTES.md 2026-11-27), the Feynman set its red cloth. Every other
+// book's colour is still OUR pick from BOOK_COLS (blank placeholder spines).
+const lum01 = (c) => (0.299 * ((c >> 16) & 255) + 0.587 * ((c >> 8) & 255) + 0.114 * (c & 255)) / 255;
 function bookLook(b) {
-  if (/Feynman Lectures/.test(b.t)) return { grey: 0.36, col: 0x9a2a22 };
+  const S = spineSpec(b); if (S) return { grey: +lum01(S.box).toFixed(3), col: S.box };
   const fam = /sf /.test(b.kind) ? 'sf' : /art|sketch/.test(b.kind) ? 'art' : /literature/.test(b.kind) ? 'lit' : 'sci', P = BOOK_COLS[fam], r = hash(b.t);
   return { grey: +(0.25 + 0.65 * hash(b.t + '#')).toFixed(3), col: P[Math.floor(r * P.length)] };
 }
@@ -719,7 +726,7 @@ export function build(shot, { makeCam }) {
         beauty_half: 'LEFT as you face it = NNE (art and literature)', truth_half: 'RIGHT as you face it = SSW (science fiction, textbooks, popular science)',
         cubes: SHELF.cubes.map((cu) => ({ cube: cu.key, col: cu.col, row: cu.row, kind: cu.kind, half: cu.half, px: cubePx(cu),
           contents: cu.kind === 'books' ? (Array.isArray(cu.books) ? cu.books.map(bookName) : { left: cu.books.left.map(bookName), right: cu.books.right.map(bookName) }) : cu.objects.map((o) => o.k) })),
-        spines_note: 'Only Jade\u2019s six titles carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: "Leave the rest blank"). Paint no words on them.',
+        spines_note: 'Only the lettered spines (Jade\u2019s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition\u2019s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: "Leave the rest blank"). Paint no words on them.',
         warnings: SHELF_WARN.length ? [...new Set(SHELF_WARN)] : undefined },
       expedit_2x2: { world: { X: [EXPEDIT2.X0, EXPEDIT2.X1], Z: [EXPEDIT2.Zc - EXPEDIT2.W / 2, EXPEDIT2.Zc + EXPEDIT2.W / 2], faces: 'SSW (-X)' }, printer_on_top: true, px: P(V(EXPEDIT2.X0 + 0.2, EXPEDIT2.H + 0.1, EXPEDIT2.Zc)) },
       lemon_tree_px: P(V(TREE.at[0], TREE.canopyY, TREE.at[1])), poi_px: P(poiP), opening_px: P(V((OPENING.x0 + OPENING.x1) / 2, 1.0, OPENING.z)) };

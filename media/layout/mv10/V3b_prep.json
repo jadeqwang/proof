@@ -1770,10 +1770,10 @@
     "contents": [
      "Principles of Neural Science (4th ed.)",
      "Fundamental Neuroscience (3rd ed.)",
-     "(blank spine, untitled book)",
+     "Theoretical Neuroscience",
      "Nonlinear Dynamics and Chaos",
-     "(blank spine, untitled book)",
-     "(blank spine, untitled book)"
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
     ]
    },
    {
@@ -1971,7 +1971,7 @@
     ]
    }
   ],
-  "spines_note": "Only Jade’s six titles carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
+  "spines_note": "Only the lettered spines (Jade’s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition’s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
  },
  "expedit_2x2": {
   "world": {
@@ -2311,7 +2311,7 @@
        ],
        "b": [
         4.4995,
-        0.9633,
+        0.9632,
         9.4968
        ],
        "r": 0.0079
@@ -2334,12 +2334,12 @@
        "part": "middle1",
        "a": [
         4.4635,
-        1.0317,
+        1.0316,
         9.4903
        ],
        "b": [
         4.4798,
-        0.9989,
+        0.9988,
         9.5063
        ],
        "r": 0.0102
@@ -2348,13 +2348,13 @@
        "part": "middle2",
        "a": [
         4.4798,
-        0.9989,
+        0.9988,
         9.5063
        ],
        "b": [
         4.486,
-        0.9749,
-        9.5123
+        0.9748,
+        9.5124
        ],
        "r": 0.0092
       },
@@ -2362,11 +2362,11 @@
        "part": "middle3",
        "a": [
         4.486,
-        0.9749,
-        9.5123
+        0.9748,
+        9.5124
        ],
        "b": [
-        4.4884,
+        4.4885,
         0.9556,
         9.5147
        ],
@@ -2381,7 +2381,7 @@
        ],
        "b": [
         4.4635,
-        1.0317,
+        1.0316,
         9.4903
        ],
        "r": 0.0101
@@ -2396,7 +2396,7 @@
        "b": [
         4.4634,
         1.0025,
-        9.5178
+        9.5179
        ],
        "r": 0.0094
       },
@@ -2405,7 +2405,7 @@
        "a": [
         4.4634,
         1.0025,
-        9.5178
+        9.5179
        ],
        "b": [
         4.4689,
@@ -2466,7 +2466,7 @@
        "b": [
         4.4467,
         0.9951,
-        9.5299
+        9.53
        ],
        "r": 0.0075
       },
@@ -2475,7 +2475,7 @@
        "a": [
         4.4467,
         0.9951,
-        9.5299
+        9.53
        ],
        "b": [
         4.4478,
@@ -2502,7 +2502,7 @@
        "part": "thumb0",
        "a": [
         4.4274,
-        1.0791,
+        1.0792,
         9.4343
        ],
        "b": [
@@ -2510,7 +2510,7 @@
         1.0492,
         9.4424
        ],
-       "r": 0.015
+       "r": 0.0151
       },
       {
        "part": "thumb1",
@@ -23157,11 +23157,11 @@
      "pos": [
       4.3446,
       1.0785,
-      9.3999,
+      9.3998,
       4.3703,
       1.0742,
       9.4161,
-      4.3639,
+      4.3638,
       1.0711,
       9.4278,
       4.3375,
@@ -23170,7 +23170,7 @@
       4.377,
       1.0813,
       9.4067,
-      4.3321,
+      4.332,
       1.0763,
       9.4237,
       4.3599,
@@ -23185,7 +23185,7 @@
       4.3824,
       1.069,
       9.4382,
-      4.3785,
+      4.3784,
       1.0799,
       9.4602,
       4.4051,
@@ -23206,7 +23206,7 @@
       4.3897,
       1.0716,
       9.427,
-      4.3964,
+      4.3963,
       1.0777,
       9.4169,
       4.419,
@@ -23220,7 +23220,7 @@
       9.4343,
       4.4275,
       1.0553,
-      9.4338,
+      9.4337,
       4.4457,
       1.0805,
       9.421,
@@ -23230,12 +23230,12 @@
       4.413,
       1.0993,
       9.4115,
-      4.4078,
+      4.4077,
       1.0923,
       9.4108,
       4.4278,
       1.0558,
-      9.4334,
+      9.4333,
       4.401,
       1.0851,
       9.4113,
@@ -23253,7 +23253,7 @@
       9.4894,
       4.4075,
       1.0693,
-      9.48,
+      9.4799,
       4.4128,
       1.0826,
       9.4843,
@@ -23267,7 +23267,7 @@
       1.0575,
       9.4324,
       4.4312,
-      1.0596,
+      1.0597,
       9.434,
       4.4443,
       1.0807,
@@ -25773,10 +25773,19 @@
   }
  ],
  "figure_frame_fraction": {
-  "jade27": 0.0947,
-  "friend": 0.0394
+  "jade27": 0.0948,
+  "friend": 0.0412
  },
- "colour_separation": [],
+ "colour_separation": [
+  {
+   "a": "jade27",
+   "b": "friend",
+   "top_a": "#1b1b1e",
+   "top_b": "#9a7a52",
+   "deltaE_top": 52.5,
+   "close": false
+  }
+ ],
  "figure_report": {
   "jade27": {
    "legs": {
@@ -25809,8 +25818,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.08
     },
-    "sole_shift_mm_L": 20.1,
-    "sole_shift_mm_R": 20.1,
+    "sole_shift_mm_L": 30.6,
+    "sole_shift_mm_R": 30.6,
     "sole_lowest_y_m": 0.004
    }
   },
@@ -25845,8 +25854,8 @@
      "forearm_stretch": 0.98,
      "hand_scale": 0.93
     },
-    "sole_shift_mm_L": 8.9,
-    "sole_shift_mm_R": 8.9,
+    "sole_shift_mm_L": 18.8,
+    "sole_shift_mm_R": 18.8,
     "sole_lowest_y_m": 0.0045
    }
   }

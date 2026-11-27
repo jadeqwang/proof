@@ -173,8 +173,8 @@
  "hands": {
   "jade3.L": {
    "px": [
-    602.2,
-    766.7
+    603.2,
+    764.8
    ],
    "shape": "relax",
    "in_frame": true,
@@ -182,8 +182,8 @@
   },
   "jade3.R": {
    "px": [
-    548,
-    768.9
+    549.2,
+    766.9
    ],
    "shape": "relax",
    "in_frame": true,
@@ -326,8 +326,8 @@
   }
  ],
  "warnings": [
-  "wrist: jade3 L hand turned 45.7 deg toward the forearm to keep the wrist in range (was flex -60.4, radial -74.8)",
-  "wrist: jade3 R hand turned 45.7 deg toward the forearm to keep the wrist in range (was flex -60.4, radial -74.8)"
+  "wrist: jade3 L hand turned 47.8 deg toward the forearm to keep the wrist in range (was flex -67.4, radial -78.5)",
+  "wrist: jade3 R hand turned 48.2 deg toward the forearm to keep the wrist in range (was flex -68.4, radial -79.3)"
  ],
  "intent": "Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, out of the light. Mother's face is drawn.",
  "beam": {
@@ -912,11 +912,11 @@
     },
     "handL": {
      "in": true,
-     "margin_m": 0.117
+     "margin_m": 0.12
     },
     "handR": {
      "in": false,
-     "margin_m": -0.007
+     "margin_m": -0.003
     },
     "hip": {
      "in": true,
@@ -993,7 +993,7 @@
     "gen": 7,
     "size_cm": [
      2.2,
-     1.5
+     1.4
     ],
     "world": [
      -1.61,
@@ -1023,7 +1023,7 @@
      [
       "10",
       [
-       0.9,
+       1,
        1.2
       ]
      ],
@@ -1088,14 +1088,14 @@
     -3.824
    ],
    "handL": [
-    -1.68,
-    0.163,
-    -3.813
+    -1.682,
+    0.165,
+    -3.826
    ],
    "handR": [
-    -1.787,
-    0.163,
-    -3.774
+    -1.789,
+    0.165,
+    -3.787
    ],
    "hip": [
     -1.77,
@@ -1228,32 +1228,32 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -11.3,
-    "radial_deg": -24.2,
-    "twist_deg": -54.5,
-    "elbow_flex_deg": 86.5,
+    "flex_deg": -12.4,
+    "radial_deg": -25,
+    "twist_deg": -54.2,
+    "elbow_flex_deg": 89.3,
     "before": {
-     "flex_deg": -60.4,
-     "radial_deg": -74.8,
-     "twist_deg": -19.5
+     "flex_deg": -67.4,
+     "radial_deg": -78.5,
+     "twist_deg": -14
     },
-    "hand_turned_deg": 45.7,
+    "hand_turned_deg": 47.8,
     "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -11.3,
-    "radial_deg": -24.2,
-    "twist_deg": -54.5,
-    "elbow_flex_deg": 86.5,
+    "flex_deg": -12.2,
+    "radial_deg": -25.6,
+    "twist_deg": -54.8,
+    "elbow_flex_deg": 88.7,
     "before": {
-     "flex_deg": -60.4,
-     "radial_deg": -74.8,
-     "twist_deg": -19.5
+     "flex_deg": -68.4,
+     "radial_deg": -79.3,
+     "twist_deg": -13.2
     },
-    "hand_turned_deg": 45.7,
+    "hand_turned_deg": 48.2,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -1279,23 +1279,23 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama86": 0.0123,
-  "jade3": 0.0041
+  "mama86": 0.0124,
+  "jade3": 0.0044
  },
  "colour_separation": [],
  "figure_report": {
   "jade3": {
    "legs": {
     "L": {
-     "reach": 0.58
+     "reach": 0.34
     },
     "R": {
-     "reach": 0.58
+     "reach": 0.71
     }
    },
    "arms": {
-    "L": 0.73,
-    "R": 0.73
+    "L": 0.72,
+    "R": 0.72
    },
    "headTurn": 3,
    "body": {
@@ -1304,20 +1304,20 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0.007,
     "L": {
-     "elbow_bend_deg": 99,
-     "upperarm_stretch": 0.92,
+     "elbow_bend_deg": 103,
+     "upperarm_stretch": 0.94,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
     },
     "R": {
-     "elbow_bend_deg": 99,
-     "upperarm_stretch": 0.92,
+     "elbow_bend_deg": 102,
+     "upperarm_stretch": 0.93,
      "forearm_stretch": 0.89,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.8,
-    "sole_shift_mm_R": 14.8,
-    "sole_lowest_y_m": -0.0097
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": -0.0021
    }
   },
   "mama86": {
@@ -1351,8 +1351,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
     "sole_lowest_y_m": 0.0219
    }
   }

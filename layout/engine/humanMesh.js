@@ -20,8 +20,9 @@
 import * as THREE from 'three';
 import { mk } from './core.js';
 import { eyeAim, faceKind } from './gaze.js';
+import { limbWeights, limbMask } from './paint.js';
 
-export const HUMAN = { on: false, base: '/assets/bodies/', bodies: null };
+export const HUMAN = { on: false, base: '/assets/bodies/', bodies: null, handFit: true, thumbFit: true };   // handFit: the palm fitted to the solver's knuckles (fit B, 2026-11-27); thumbFit: mesh thumb joints at the mesh's own proportions along the solver's thumb (2026-11-27); false = the old hand
 
 // who -> body id (bodies.json); anything else: adult_f / adult_m by sex (children: the nearest Jade body by height)
 const BODY_OF = { jade3: 'jade03', jade4h: 'jade04h', littleJade: 'jade05', jade7: 'jade07', jade10: 'jade10', jade19: 'jade19', jade27: 'jade27', jade: 'jade40',
@@ -218,15 +219,46 @@ function solvePose(B, bones, P, spec, c, k) {
       M['lowerarm_' + s] = aimMatrix(h0, fa0, nrmz(perp(nb0, fa0)), E1, a1, rStart, W1.distanceTo(E1) / t0_.distanceTo(h0));
       TW['lowerarm_' + s] = { axis: a1, pivot: E1, angle: signedAngle(rStart, rEnd, a1), h0, a0: fa0, len0: t0_.distanceTo(h0) }; }
     // hand: rigid on the solver's hand frame, scaled to the solver's hand length
-    const Lh0 = tl('middle_03_' + s).distanceTo(wr0), sH = hp.Lh / Lh0;
+    const Lh0 = tl('middle_03_' + s).distanceTo(wr0), sH = hp.Lh / Lh0;   // (the middle_03 tail is the fingertip skin: B.handLen, measured 2026-11-27, agrees to 0.1 mm)
     M['hand_' + s] = rigidMatrix(wr0, basis(t0, n0, f0), W1, basis(t1, n1, f1), sH);
+    // 2026-11-27 "fit B" (Jade: "fit the palm to the fingers"): the mesh's knuckle row sits ~6.5 % farther from the wrist
+    // than the solver's (engine/hand.js HAND_GEOM.mcp) and its span is wider (0.354 vs 0.299 hand lengths), so the
+    // fingers (placed on the solver's knuckles below) started inside the palm skin and the palm read long. The palm is
+    // instead rotated and scaled uniformly so the wrist -> knuckle-centroid line and the index -> little line meet the
+    // solver's (scale = centroid distance ratio). Fingertips and the solver are untouched: grips and contacts stay.
+    // Opt-out for comparison renders: render.mjs --handfit 0 (page ?handfit=0) = the old rigid hand scaled by sH.
+    if (HUMAN.handFit !== false && hp.joints?.middle) {
+      const kn = ['index', 'middle', 'ring', 'little'], km = ['index', 'middle', 'ring', 'pinky'];
+      const c0 = new THREE.Vector3(), c1 = new THREE.Vector3();
+      km.forEach((m) => c0.add(hd(`${m}_01_${s}`))); kn.forEach((f) => c1.add(hp.joints[f][0])); c0.multiplyScalar(0.25); c1.multiplyScalar(0.25);
+      const fa0 = nrmz(c0.clone().sub(wr0)), fa1 = nrmz(c1.clone().sub(W1));
+      const ta0 = nrmz(perp(hd(`index_01_${s}`).clone().sub(hd(`pinky_01_${s}`)), fa0)), ta1 = nrmz(perp(hp.joints.index[0].clone().sub(hp.joints.little[0]), fa1));
+      const na0 = n === 'R' ? new THREE.Vector3().crossVectors(ta0, fa0) : new THREE.Vector3().crossVectors(fa0, ta0);
+      const na1 = n === 'R' ? new THREE.Vector3().crossVectors(ta1, fa1) : new THREE.Vector3().crossVectors(fa1, ta1);
+      M['hand_' + s] = rigidMatrix(wr0, basis(ta0, na0, fa0), W1, basis(ta1, na1, fa1), c1.distanceTo(W1) / c0.distanceTo(wr0));
+    }
     // fingers: on the solver's own joints (knuckle, PIP, DIP, tip; thumb CMC, MCP, IP, tip)
     const FN = { index: 'index', middle: 'middle', ring: 'ring', little: 'pinky', thumb: 'thumb' };
     for (const [fs, fm] of Object.entries(FN)) {
       const w = hp.joints?.[fs]; if (!w) continue;
-      let h1 = w[0].clone();   // the solver's knuckle: fingertips land exactly where the pose solver (and the hold check) put them
+      // the solver's knuckle .. tip: fingertips land exactly where the pose solver (and the hold check) put them
+      const pts = w.map((p) => p.clone());
+      // 2026-11-27: the mesh's distal bone ends at the skin of the fingertip; the solver's tip point is the centre of its
+      // tip capsule's end. The distal phalanx reaches on by that radius, so the skin hand is as long as the solver's
+      // hand (PROP.hand x H, wrist to middle fingertip) and its capsules (was ~3.5 % short: 180 of 187 mm)
+      if (spec?.[n]?.tip?.finger !== fs) { const cap = hp.capsules?.find((c) => c.part === fs + '3'); if (cap) pts[3].addScaledVector(nrmz(w[3].clone().sub(w[2])), 0.8 * cap.r); }   // 0.8: measured, adults' flat hands land on 187.0 mm. Not on a finger with a `tip` target: there the solver's tip point IS the contact (the skin touches the target, as before)
+      // 2026-11-27 thumb fit: the solver's thumb (HAND_GEOM tlen 0.25 / 0.15 / 0.11) and the mesh's (0.17 / 0.20 / 0.15
+      // hand lengths) are equally long CMC to tip, but jointed at different places, so the mesh metacarpal was stretched
+      // x1.5 and its phalanges squashed to x0.77 / x0.72 (a stubby thumb). The mesh joints now go on the solver's thumb
+      // polyline at the mesh's own proportions of its length (CMC and tip unchanged); each bone is the chord between them.
+      if (fs === 'thumb' && HUMAN.thumbFit !== false) {
+        const seg = [0, 1, 2].map((k) => pts[k + 1].distanceTo(pts[k])), T = seg[0] + seg[1] + seg[2];
+        const lm = [0, 1, 2].map((k) => tl(`${fm}_0${k + 1}_${s}`).distanceTo(hd(`${fm}_0${k + 1}_${s}`))), Lm = lm[0] + lm[1] + lm[2];
+        const at = (d) => { let k = 0; while (k < 2 && d > seg[k]) { d -= seg[k]; k++; } return pts[k].clone().lerp(pts[k + 1], Math.min(1, d / seg[k])); };
+        const q1 = at(T * lm[0] / Lm), q2 = at(T * (lm[0] + lm[1]) / Lm); pts[1] = q1; pts[2] = q2; }
+      let h1 = pts[0].clone();
       for (let kk = 0; kk < 3; kk++) { const bn = `${fm}_0${kk + 1}_${s}`, h0 = hd(bn), t0b = tl(bn), a0 = t0b.clone().sub(h0).normalize();
-        const a1 = w[kk + 1].clone().sub(w[kk]); const L1 = a1.length(); a1.normalize();
+        const a1 = pts[kk + 1].clone().sub(pts[kk]); const L1 = a1.length(); a1.normalize();
         const ref0 = fs === 'thumb' ? n0 : t0, ref1 = fs === 'thumb' ? n1 : t1;
         M[bn] = aimMatrix(h0, a0, nrmz(perp(ref0, a0)), h1, a1, nrmz(perp(ref1, a1)), L1 / t0b.distanceTo(h0));
         h1 = h1.clone().addScaledVector(a1, L1); }
@@ -242,7 +274,10 @@ function solvePose(B, bones, P, spec, c, k) {
     // mesh ankle on the solver's ankle. The MakeHuman ankle joint sits higher above the sole than the solver's ankleH
     // (0.06 leg length), so every mesh sole was ~13 mm under the floor. The mesh ankle goes to the sole plane + the mesh's
     // own (foot-scaled) ankle height; the calf takes up the few mm.
-    const FL1 = P['toe' + n].clone().sub(P['heel' + n]).dot(fd), FL0 = B.footLen * k, fS = THREE.MathUtils.clamp(FL1 / FL0, 0.8, 1.25);
+    // 2026-11-27 (Jade: first love's foot = hers, 251 mm; they shared shoes): the mesh foot is scaled to the cast's foot
+    // length (P.footLen = PROP.foot x H, heel to longest toe). It was scaled to the solver's toe - heel distance along the
+    // foot, which leaves out the heel's back radius (0.62 ankle heights): every mesh foot came out ~13 % short (217 mm).
+    const FL1 = P['footLen' + n] ?? P['toe' + n].clone().sub(P['heel' + n]).dot(fd), FL0 = B.footLen * k, fS = THREE.MathUtils.clamp(FL1 / FL0, 0.8, 1.25);
     const ahSolver = A0.clone().sub(P['heel' + n]).dot(upF), ahMesh = hd('foot_' + s).y * fS;   // rest soles at y = 0
     const A = A0.clone().addScaledVector(upF, ahMesh - ahSolver);
     report['sole_shift_mm_' + n] = +((ahMesh - ahSolver) * 1000).toFixed(1);
@@ -284,12 +319,14 @@ function bake(mesh, jointNames, k, M, TW) {
   return out;
 }
 // a sub-mesh of the triangles whose region is r (vertices compacted), normals from the whole surface
-function subGeo(pos, nrm, idx, triKeep) {
-  const map = new Int32Array(pos.length / 3).fill(-1), P = [], N = [], I = [];
+function subGeo(pos, nrm, idx, triKeep, extra = []) {   // extra: [[name, array, itemSize]] per-vertex attributes carried along (hand colours / finger channels)
+  const map = new Int32Array(pos.length / 3).fill(-1), P = [], N = [], I = [], X = extra.map(() => []);
   for (let f = 0; f < idx.length / 3; f++) { if (!triKeep(f)) continue;
-    for (let c = 0; c < 3; c++) { const a = idx[f * 3 + c]; if (map[a] < 0) { map[a] = P.length / 3; P.push(pos[a * 3], pos[a * 3 + 1], pos[a * 3 + 2]); N.push(nrm[a * 3], nrm[a * 3 + 1], nrm[a * 3 + 2]); } I.push(map[a]); } }
+    for (let c = 0; c < 3; c++) { const a = idx[f * 3 + c]; if (map[a] < 0) { map[a] = P.length / 3; P.push(pos[a * 3], pos[a * 3 + 1], pos[a * 3 + 2]); N.push(nrm[a * 3], nrm[a * 3 + 1], nrm[a * 3 + 2]);
+      extra.forEach(([, arr, sz], e) => { for (let j = 0; j < sz; j++) X[e].push(arr[a * sz + j]); }); } I.push(map[a]); } }
   if (!I.length) return null;
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setAttribute('normal', new THREE.Float32BufferAttribute(N, 3)); g.setIndex(I);
+  extra.forEach(([nm, , sz], e) => g.setAttribute(nm, new THREE.Float32BufferAttribute(X[e], sz)));
   return g;
 }
 function normalsOf(pos, idx) { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeVertexNormals(); return g.getAttribute('normal').array; }
@@ -308,6 +345,10 @@ function prep(B) {
   // foot length along the rest foot (heel to toe)
   let lo = 1e9, hi = -1e9; for (let i = 0; i < n; i++) if (dom[i] === 'footl') { const z = body.pos[i * 3 + 2]; lo = Math.min(lo, z); hi = Math.max(hi, z); }
   B.footLen = hi - lo;
+  // hand length on the skin: from the hand bone's head along the hand (to the middle fingertip bone) to the farthest hand vertex
+  { const bs = B.meta.bones_blender_zup, h = zup(bs.hand_l.head), a = zup(bs.middle_03_l.tail).sub(h).normalize(); let m = 0;
+    for (let i = 0; i < n; i++) if (dom[i] === 'handl') m = Math.max(m, (body.pos[i * 3] - h.x) * a.x + (body.pos[i * 3 + 1] - h.y) * a.y + (body.pos[i * 3 + 2] - h.z) * a.z);
+    B.handLen = m; }
   // vertex parameter along its limb bone (0 at the bone's head, 1 at its tail), for sleeve / sock lengths
   const along = new Float32Array(n);
   const segOf = { ual: 'upperarm_l', uar: 'upperarm_r', fal: 'lowerarm_l', far: 'lowerarm_r', thl: 'thigh_l', thr: 'thigh_r', calfl: 'calf_l', calfr: 'calf_r' };
@@ -316,6 +357,157 @@ function prep(B) {
   const H0 = bones.thigh_l.head.clone().add(bones.thigh_r.head).multiplyScalar(0.5), C0 = bones.neck_01.head.clone();
   B.prep = { dom, along, H0, C0, bones, jg };
   return B.prep;
+}
+
+// ---------------------------------------------------------------- hand marks (2026-11-27, fl_hands H3b/H2b: "he looks like
+// an amputee"): the painters could not tell which way a hand faced, where one finger ended and the next began, or that four
+// stubs under her hand were fingertips. Every mesh hand (all bodies, kids included: everything is in rest-bone fractions
+// and hand lengths, so it scales with the hand) now carries, from the REST bone frames (no per-shot painting; the MakeHuman
+// GLBs carry no UVs or nail geometry, checked 2026-11-27):
+//   nails    a nail plate on the back of each distal phalanx (fingers and thumb): the distal ~half of the segment, ~100 deg
+//            of its circumference, with a curved cuticle. Its own region / mesh (cut exactly through the triangles by
+//            refine, so the geometry is unchanged): its own colour (lighter, pinker) and an outline in
+//            contour / line / form (an id edge).
+//   creases  thin bands at the real joint creases only: palm side of the DIP and PIP joints and the finger base
+//            (palmodigital crease), short knuckle wrinkles on the back of the PIP and DIP, the thumb's IP joint (palm and
+//            back). Nothing in the thumb web or on the palm. Darker skin; drawn as a line in contour / form.
+//   tint     vertex colours: palm and finger pads a little lighter and warmer than the back of the hand (faded out
+//            toward the wrist, so the forearm skin meets the hand without a seam).
+//   aFeat    per-vertex finger channels (index / ring: r, middle / little: g, thumb: b, any hand: a) for the guide passes
+//            (render.js 'feat'): a line where two different fingers of one hand touch on screen, stronger occlusion and
+//            overlap outlines on hands.
+// The palmar direction of each finger comes from the rest pose's own bend (proximal -> distal phalanx), blended with the
+// palm normal for the fingers; the thumb uses its IP joint's bend (16-20 deg at rest) alone.
+export const HANDMARK = { on: true, webSmooth: 30, webMode: 'pos', webPalmKeep: 0.5, thenarSmooth: 60, nail: { u0: 0.47, u0Thumb: 0.43, cusp: 0.11, uEnd: 0.97, half: 54 }, crease: { w: 0.0021 } };
+function handMarks(B) {
+  if (B._hm) return B._hm;
+  prep(B);
+  const bs = B.meta.bones_blender_zup, hd = (n) => zup(bs[n].head), tl = (n) => zup(bs[n].tail);
+  const out = { Lh: B.handLen };
+  for (const [s, S] of [['l', 'L'], ['r', 'R']]) {
+    const wr = hd('hand_' + s), f0 = nrmz(hd('middle_01_' + s).sub(wr)), t0 = nrmz(perp(hd('index_01_' + s).sub(hd('pinky_01_' + s)), f0));
+    const n0 = S === 'R' ? new THREE.Vector3().crossVectors(t0, f0) : new THREE.Vector3().crossVectors(f0, t0);   // palm normal (out of the palm)
+    const fingers = ['index', 'middle', 'ring', 'pinky', 'thumb'].map((fm, fi) => {
+      const segs = [1, 2, 3].map((k) => { const h = hd(`${fm}_0${k}_${s}`), t = tl(`${fm}_0${k}_${s}`), a = t.clone().sub(h); const L = a.length(); return { h, a: a.divideScalar(L), L }; });
+      const bend = nrmz(perp(segs[2].a.clone(), segs[0].a));
+      // the thumb: its IP flexion alone (proximal -> distal phalanx); metacarpal -> distal also holds the CMC's abduction
+      // (36 deg off: the nail came out on the thumb's side)
+      const pal = fm === 'thumb' ? nrmz(perp(segs[2].a.clone(), segs[1].a)) : nrmz(bend.clone().add(n0));
+      for (const g of segs) g.p = nrmz(perp(pal.clone(), g.a));
+      return { fm, fi, thumb: fm === 'thumb', segs };
+    });
+    const tt = S === 'R' ? new THREE.Vector3().crossVectors(f0, n0) : new THREE.Vector3().crossVectors(n0, f0);   // thumb side, in the palm plane
+    out[S] = { wr, f0, n0, t0: nrmz(tt), fingers };
+  }
+  return (B._hm = out);
+}
+// what a rest point on hand side S is: { kind: 'hand' | 'nail' | 'crease', f (finger), k (segment), u, cp (cos to the
+// segment's palmar direction) }
+function handMarkAt(B, S, p) {
+  const HM = handMarks(B), H = HM[S], Lh = HM.Lh, NL = HANDMARK.nail, CW = HANDMARK.crease.w;
+  let best = null, bd = Infinity; const v = new THREE.Vector3();
+  for (const F of H.fingers) for (let k = 0; k < 3; k++) { const g = F.segs[k]; v.copy(p).sub(g.h); const u = v.dot(g.a) / g.L, uc = THREE.MathUtils.clamp(u, 0, 1);
+    const d = v.clone().addScaledVector(g.a, -uc * g.L).length(); if (d < bd) { bd = d; best = { F, k, u }; } }
+  const { F, k, u } = best, g = F.segs[k];
+  const r = p.clone().sub(g.h); r.addScaledVector(g.a, -r.dot(g.a)); const rl = r.length(); const cp = rl > 1e-9 ? r.dot(g.p) / rl : 0;
+  const res = { kind: 'hand', F, k, u, cp, d: bd };
+  if (!HANDMARK.on) return res;
+  // nail: back of the distal segment
+  if (k === 2 && u < NL.uEnd && rl > 0.002 * Lh) {
+    const th = Math.acos(THREE.MathUtils.clamp(-cp, -1, 1)) * 180 / Math.PI, half = NL.half * (F.thumb ? 1.08 : 1);
+    if (th < half && u > (F.thumb ? NL.u0Thumb : NL.u0) + NL.cusp * (th / half) ** 2) { res.kind = 'nail'; return res; } }
+  // creases at the joints: signed distance from the joint plane (normal = the two segments' mean axis), in hand lengths
+  const joints = F.thumb ? [[2, 1]] : [[1, 1], [2, 1], [0, 0.4]];   // [segment whose head is the joint, ...]; [0, 0.4] = 40 % along the proximal phalanx (palmodigital crease, palm side only)
+  for (const [jk, tag] of joints) {
+    if (tag === 0.4 ? k !== 0 : !(k === jk || k === jk - 1)) continue;
+    const S1 = F.segs[jk], J = tag === 0.4 ? S1.h.clone().addScaledVector(S1.a, 0.4 * S1.L) : S1.h, nj = tag === 0.4 ? S1.a : nrmz(S1.a.clone().add(F.segs[jk - 1].a));
+    const s = p.clone().sub(J).dot(nj) / Lh;
+    const ax = tag === 0.4 ? S1 : F.segs[k], rr = p.clone().sub(J); rr.addScaledVector(nj, -rr.dot(nj)); const rrl = rr.length(); const c = rrl > 1e-9 ? rr.dot(ax.p) / rrl : 0;
+    const palmSide = c > -0.12 && Math.abs(s - (tag === 0.4 ? 0 : -0.0025)) < CW;   // the palm crease sits a little proximal of the joint
+    const backSide = tag !== 0.4 && c < -(jk === 2 ? 0.78 : 0.72) && Math.abs(s) < CW * 0.8;   // a short wrinkle over the knuckle
+    if (palmSide || backSide) { res.kind = 'crease'; return res; }
+  }
+  return res;
+}
+// per refined rest vertex: colour multiplier (palm / back) and finger channels; computed once per refined body
+const PALM_MUL = [1.075, 1.035, 1.0], BACK_MUL = [0.965, 0.955, 0.95];
+// palm skin texture (2026-11-27, Jade: "paint the palm of his hand with the texture of the real palm ... the way you can tell a
+// brick wall is receding when there's a brick pattern"): opt-in per hand, spec.skinTex ['L' | 'R']. The pattern is
+// procedural, evaluated per fragment in REST space (render.js SKINTEX: aRest / aRestN attributes carry each vertex's rest
+// position and normal, so it rides on the skin exactly as a texture would and foreshortens round the curled fingers):
+// the three palm creases (distal, proximal, thenar), doubled PIP and finger-base creases, fine transverse lines on the
+// finger pads, ridge whorls on the fingertip pads, and a fine reticulated skin network over the palm. Palm side only.
+// These are the rest-space frames it needs, per body and side.
+function skinTexU(B, S) {
+  const HM = handMarks(B), H = HM[S];
+  const segH = [], segA = [], segP = [], segL = [];
+  for (const F of H.fingers) for (const g of F.segs) { segH.push(g.h.clone()); segA.push(g.a.clone()); segP.push(g.p.clone()); segL.push(g.L); }
+  return { wr: H.wr.clone(), f: H.f0.clone(), t: H.t0.clone(), n: H.n0.clone(), Lh: HM.Lh, segH, segA, segP, segL };
+}
+function handAttrs(B, R) {
+  if (R.handAttr) return R.handAttr;
+  const n = R.pos.length / 3, col = new Float32Array(n * 3).fill(1), feat = new Float32Array(n * 4), hs = new Float32Array(n), nrm = normalsOf(R.pos, R.idx);
+  const HM = handMarks(B), Lh = HM.Lh, p = new THREE.Vector3(), nn = new THREE.Vector3();
+  const used = new Uint8Array(n); R.tri.forEach((t, f) => { if (/^(hand|nail|crease)[LR]$/.test(t)) for (let c = 0; c < 3; c++) used[R.idx[f * 3 + c]] = 1; });
+  for (let i = 0; i < n; i++) { if (!used[i]) continue;
+    p.set(R.pos[i * 3], R.pos[i * 3 + 1], R.pos[i * 3 + 2]); nn.set(nrm[i * 3], nrm[i * 3 + 1], nrm[i * 3 + 2]).normalize();
+    const S = p.x > 0 ? 'L' : 'R', H = HM[S], m = handMarkAt(B, S, p), g = m.F.segs[m.k];
+    // the palmar direction: the finger's (past its base) or the palm's
+    const wf = m.k > 0 ? 1 : smooth(m.u, -0.1, 0.35), dir = nrmz(H.n0.clone().multiplyScalar(1 - wf).addScaledVector(g.p, wf));
+    const q = smooth(nn.dot(dir), -0.3, 0.45), fade = smooth(p.clone().sub(H.wr).dot(H.f0) / Lh, 0.04, 0.2);
+    hs[i] = fade;   // the hand's stronger form shading fades in past the wrist (no tone step where the forearm skin meets the hand)
+    for (let c = 0; c < 3; c++) col[i * 3 + c] = 1 + fade * ((BACK_MUL[c] + (PALM_MUL[c] - BACK_MUL[c]) * q) - 1);
+    if (HANDMARK.debugWeb && R.web) { col[i * 3 + 1] = col[i * 3 + 2] = 1 - R.web.m[i]; }
+    const onFinger = m.F.thumb ? m.k > 0 : (m.k > 0 || m.u > 0.3);
+    if (onFinger) feat[i * 4 + (m.F.thumb ? 2 : m.F.fi % 2)] = 1;
+    feat[i * 4 + 3] = 1; }
+  return (R.handAttr = { col, feat, hs });
+}
+
+// 2026-11-27 (Jade: "some weird wrinkle texture in the thumb webbing area" in lit): linear blend skinning folds the web
+// skin between the thumb and the index (hand bone vs thumb_01 weights) into sharp creases and facets once the thumb
+// turns. After baking, the vertices that blend hand and thumb weights (mask 4 w (1 - w), w = thumb_01 + thumb_02
+// weight, hand skin only) are relaxed toward their neighbours (Taubin lambda / mu, so the web does not shrink): a few mm
+// at most; the fingertips do not move. webMode 'pos' (default) moves the vertices (also clears the speckled self-overlap
+// line in the web); 'normals' only shades from the relaxed surface (geometry unchanged). In fl_hands H3b/H2b 'pos' changed
+// the grip of his palm-up hand on her from 1.5 to 0.2 mm skin depth (still touching; clip and hold checks pass).
+function smoothThumbWeb(B, R, pos, passes = HANDMARK.webSmooth) {
+  if (!R.web) { const n = R.pos.length / 3, J = B.jointNames, th = new Set(J.map((nm, i) => (/^thumb_01_/.test(nm) ? i : -1)).filter((i) => i >= 0));
+    const bs = B.meta.bones_blender_zup, Lh = (prep(B), B.handLen);
+    const webC = ['l', 'r'].map((s) => zup(bs['thumb_02_' + s].head).lerp(zup(bs['index_01_' + s].head), 0.5));   // the web's centre, each side
+    const HM = handMarks(B), rn = normalsOf(R.pos, R.idx);
+    const hb = new Set(J.map((nm, i) => (/^(hand_|thumb_|index_|middle_|ring_|pinky_)/.test(nm) ? i : -1)).filter((i) => i >= 0));
+    const m = new Float32Array(n); for (let i = 0; i < n; i++) { let wt = 0, wh = 0; for (let j = 0; j < 4; j++) { const w = R.wgt[i * 4 + j], b = R.jnt[i * 4 + j]; if (th.has(b)) wt += w; if (hb.has(b)) wh += w; }
+      const px = R.pos[i * 3], py = R.pos[i * 3 + 1], pz = R.pos[i * 3 + 2], C = webC[px > 0 ? 0 : 1], dd = Math.hypot(px - C.x, py - C.y, pz - C.z) / Lh;
+      m[i] = wh > 0.95 ? Math.min(1, Math.max(4 * wt * (1 - wt) * 1.3, 1 - smooth(dd, 0.07, 0.17))) : 0;
+      // the palm side of the web is left alone (it is what rests on things: H3b her hand on his); the back and the web's edge relax
+      if (m[i]) { const n0 = HM[px > 0 ? 'L' : 'R'].n0, pal = rn[i * 3] * n0.x + rn[i * 3 + 1] * n0.y + rn[i * 3 + 2] * n0.z; m[i] *= 1 - HANDMARK.webPalmKeep * smooth(pal, 0.15, 0.6); } }
+    const nb = Array.from({ length: n }, () => new Set()); for (let f = 0; f < R.idx.length; f += 3) for (let c = 0; c < 3; c++) { const a = R.idx[f + c], b = R.idx[f + (c + 1) % 3]; if (m[a] || m[b]) { nb[a].add(b); nb[b].add(a); } }
+    const list = []; for (let i = 0; i < n; i++) if (m[i] > 0.02) list.push(i);
+    R.web = { m, nb: nb.map((x) => [...x]), list }; }
+  const { m, nb, list } = R.web, tmp = new Float32Array(list.length * 3);
+  const step = (lam) => { list.forEach((i, q) => { const N = nb[i]; if (!N.length) { for (let c = 0; c < 3; c++) tmp[q * 3 + c] = pos[i * 3 + c]; return; }
+      for (let c = 0; c < 3; c++) { let a = 0; for (const j of N) a += pos[j * 3 + c]; a /= N.length; tmp[q * 3 + c] = pos[i * 3 + c] + lam * m[i] * (a - pos[i * 3 + c]); } });
+    list.forEach((i, q) => { for (let c = 0; c < 3; c++) pos[i * 3 + c] = tmp[q * 3 + c]; }); };
+  for (let it = 0; it < passes; it++) { step(0.5); step(-0.53); }
+}
+
+// the thenar region: hand skin within ~0.15 hand lengths of the thumb's metacarpal (thumb_01 bone), both sides
+function smoothThenar(B, R, pos, passes) {
+  if (!R.thenar) { const n = R.pos.length / 3, J = B.jointNames, bs = B.meta.bones_blender_zup, Lh = (prep(B), B.handLen);
+    const hb = new Set(J.map((nm, i) => (/^(hand_|thumb_|index_|middle_|ring_|pinky_)/.test(nm) ? i : -1)).filter((i) => i >= 0));
+    const segs = ['l', 'r'].map((s) => [zup(bs['thumb_01_' + s].head), zup(bs['thumb_01_' + s].tail)]);
+    const m = new Float32Array(n), p = new THREE.Vector3();
+    for (let i = 0; i < n; i++) { let wh = 0; for (let j = 0; j < 4; j++) if (hb.has(R.jnt[i * 4 + j])) wh += R.wgt[i * 4 + j]; if (wh < 0.9) continue;
+      p.set(R.pos[i * 3], R.pos[i * 3 + 1], R.pos[i * 3 + 2]); const [a, b] = segs[p.x > 0 ? 0 : 1], ab = b.clone().sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / ab.lengthSq(), 0, 1);
+      const d = p.distanceTo(a.clone().addScaledVector(ab, t)) / Lh; m[i] = 1 - smooth(d, 0.13, 0.22); }
+    const nb = Array.from({ length: n }, () => new Set()); for (let f = 0; f < R.idx.length; f += 3) for (let c = 0; c < 3; c++) { const a = R.idx[f + c], b = R.idx[f + (c + 1) % 3]; if (m[a] || m[b]) { nb[a].add(b); nb[b].add(a); } }
+    const list = []; for (let i = 0; i < n; i++) if (m[i] > 0.02) list.push(i);
+    R.thenar = { m, nb: nb.map((x) => [...x]), list }; }
+  const { m, nb, list } = R.thenar, tmp = new Float32Array(list.length * 3);
+  const step = (lam) => { list.forEach((i, q) => { const N = nb[i]; for (let c = 0; c < 3; c++) { let a = 0; for (const j of N) a += pos[j * 3 + c]; a /= Math.max(1, N.length); tmp[q * 3 + c] = pos[i * 3 + c] + lam * m[i] * (a - pos[i * 3 + c]); } });
+    list.forEach((i, q) => { for (let c = 0; c < 3; c++) pos[i * 3 + c] = tmp[q * 3 + c]; }); };
+  for (let it = 0; it < passes; it++) { step(0.5); step(-0.53); }
 }
 
 const clothes = (lk) => { const col = new THREE.Color(lk.col ?? 0x808080); return { ...lk, formTint: [col.r, col.g, col.b], flatCol: lk.col, costumeCol: lk.col }; };
@@ -348,7 +540,7 @@ function labeller(B, c, spec, opt = {}) {
     else if (d.startsWith('th')) r = dress && t < 0.5 && !(B.meshes.garment_skirt && !c.tights) ? 'top' : dress && !c.tights ? 'skin' : 'legs';
     else if (d.startsWith('calf')) r = t > 0.9 ? 'sock' : dress && !c.tights ? 'skin' : 'legs';
     else if (d.startsWith('foot')) r = 'sock';
-    if (d.startsWith('hand')) return 'hand' + side;
+    if (d.startsWith('hand')) { const mk2 = HANDMARK.on && !opt.garment ? handMarkAt(B, side, p).kind : 'hand'; return mk2 + side; }   // hand marks: nail / crease regions (2026-11-27)
     if (bandY != null && r === 'top' && d === 'torso' && Math.abs(y - bandY) < bandH) r = 'band';
     if (apron && (d === 'torso' || d.startsWith('th')) && z > H0.z + 0.035 * h0 && Math.abs(x) < 0.062 * h0 && y < H0.y + 0.5 * T && y > H0.y - 0.16 * h0) r = 'apron';
     if (r === 'legs' || r === 'sock') { if (legsSkin) return 'skin'; return r + (side === 'L' || side === 'R' ? side : (x > 0 ? 'L' : 'R')); }
@@ -358,7 +550,7 @@ function labeller(B, c, spec, opt = {}) {
 }
 // cut the rest body along the costume's region borders: returns { pos, jnt, wgt, idx, tri (label per triangle) }
 function refine(B, c, spec, part = 'body', opt = {}) {
-  const key = [part, c.sleeves, !!c.dress, !!c.tights, c.band ? 1 : 0, c.apron && !spec.noApron ? 1 : 0, spec.who === 'daughter', JSON.stringify(opt)].join('|');
+  const key = [part, HANDMARK.on ? 'hm' : '', c.sleeves, !!c.dress, !!c.tights, c.band ? 1 : 0, c.apron && !spec.noApron ? 1 : 0, spec.who === 'daughter', JSON.stringify(opt)].join('|');
   (B.refined ||= {}); if (B.refined[key]) return B.refined[key];
   const L = labeller(B, c, spec, opt), body = B.meshes[part], n0 = body.pos.length / 3;
   const pos = [], W = [];
@@ -458,9 +650,24 @@ export function dressFigure(g, spec, c, P, uid) {
   const LK = { skin, skinHead: skin, skinNeck: skin, handL: skin, handR: skin, top: look('top', c.top), legsL: look('legs', c.legs), legsR: look('legs', c.legs),
     sockL: { grey: 0.5, col: c.sock ?? 0x6a6a70 }, sockR: { grey: 0.5, col: c.sock ?? 0x6a6a70 }, band: look('band', c.band), apron: look('apron', c.apron) };
   for (const r of ['top', 'legsL', 'legsR', 'sockL', 'sockR', 'band', 'apron']) LK[r] = clothes(LK[r]);
-  const GROUP = { skin: 'skin', skinHead: 'skin', skinNeck: 'skin', handL: 'skin', handR: 'skin', top: 'torso', band: 'band', apron: 'torso', legsL: 'legL', legsR: 'legR', sockL: 'footL', sockR: 'footR' };   // 'torso': sets find the chest by this id (mv10 decal raycast)
+  // hand marks (2026-11-27): the hand skin carries the palm / back vertex colours and the stronger hand shading in form;
+  // nails lighter and pinker (Lambert in lit: a Phong nail read blue-grey in shade); joint creases darker skin
+  { const hs = HANDMARK.on ? { ...skin, vcol: true, hand: true } : skin; LK.handL = LK.handR = hs;
+    const mixC = (a, b, t) => new THREE.Color(a).lerp(new THREE.Color(b), t);
+    const nc = mixC(c.skin ?? 0xe0b090, 0xf0bfb0, 0.3), nt = [0, 1, 2].map((i) => Math.min(1, [skinTint.r, skinTint.g, skinTint.b][i] * [1.05, 0.985, 0.985][i] + 0.07));
+    LK.nailL = LK.nailR = { grey: 0.86, col: nc.getHex(), flatCol: nc.getHex(), formTint: nt, hand: true };
+    const cc = mixC(c.skin ?? 0xe0b090, 0x5a3a30, 0.2), ct = [skinTint.r * 0.74, skinTint.g * 0.7, skinTint.b * 0.7];
+    LK.creaseL = LK.creaseR = { grey: 0.55, col: cc.getHex(), flatCol: cc.getHex(), formTint: ct, hand: true }; }
+  const GROUP = { skin: 'skin', skinHead: 'skin', skinNeck: 'skin', handL: 'skin', handR: 'skin', nailL: 'nail', nailR: 'nail', creaseL: 'crease', creaseR: 'crease', top: 'torso', band: 'band', apron: 'torso', legsL: 'legL', legsR: 'legR', sockL: 'footL', sockR: 'footR' };   // 'torso': sets find the chest by this id (mv10 decal raycast)
   // body
-  const body = refine(B, c, spec), pos = bake(body, B.jointNames, k, M, TW), nrm = normalsOf(pos, body.idx), idx = body.idx, tr = body.tri;
+  const body = refine(B, c, spec), pos = bake(body, B.jointNames, k, M, TW);
+  const wsN = HANDMARK.webSmooth ? (spec.webSmooth ?? HANDMARK.webSmooth) : 0;   // spec.webSmooth: per-figure pass count (a hand whose web is in a contact)
+  let nrmPos = pos; if (wsN) { nrmPos = pos.slice(); smoothThumbWeb(B, body, nrmPos, wsN); if (HANDMARK.webMode === 'pos') nrmPos = pos.set(nrmPos) || pos; }
+  // 2026-11-27 (Jade: "the fleshy part of the palm near the thumb should also be smoother in the form, because the paint
+  // does something weird to that artifact"): the thenar eminence and the thumb's base shade from a relaxed copy of the
+  // surface (normals only: no vertex moves), so the ball of the thumb reads as one soft mound, with no facet or crease line
+  if (HANDMARK.thenarSmooth) { if (nrmPos === pos) nrmPos = pos.slice(); smoothThenar(B, body, nrmPos, HANDMARK.thenarSmooth); }
+  const nrm = normalsOf(nrmPos, body.idx), idx = body.idx, tr = body.tri;
   const gkey = c.sleeves === 'short' && B.meshes.garment_short ? 'garment_short' : 'garment_long';
   const garments = [[gkey, {}]]; if (c.dress && B.meshes.garment_skirt) garments.push(['garment_skirt', { skirt: true }]);
   const CLOTHED = new Set(['top', 'band', 'apron', 'legsL', 'legsR']);
@@ -469,20 +676,34 @@ export function dressFigure(g, spec, c, P, uid) {
   const dbg = spec.debugBody;   // bodytest only: 'nude' = the body alone, nothing hidden; 'garment' = the garments alone
   const hidden = (f) => dbg === 'nude' ? false : dbg === 'garment' ? true : CLOTHED.has(tr[f]) && cov[idx[f * 3]] && cov[idx[f * 3 + 1]] && cov[idx[f * 3 + 2]];
   for (const r of new Set(tr)) {
-    const geo = subGeo(pos, nrm, idx, (f) => tr[f] === r && !hidden(f)); if (!geo) continue;
-    const m = mk(geo, LK[r] || skin); m.userData.idGroup = uid + GROUP[r]; m.userData.bodyRegion = r;
-    if (r === 'handL' || r === 'handR') P.hands[r.slice(-1)].group.add(m); else g.add(m);
+    const isHand = /^(hand|nail|crease)[LR]$/.test(r), ha = isHand && HANDMARK.on ? handAttrs(B, body) : null;
+    const st = isHand && HANDMARK.on && spec.skinTex?.includes(r.slice(-1));   // palm skin texture on this hand
+    const PT = spec.paint, ptHand = PT && isHand && (PT.hands || []).includes(r.slice(-1)), ptLimb = PT && PT.limbs && (r === 'skin' || r === 'top');   // projected paint (engine/paint.js)
+    const limbX = ptLimb ? [['aLimb', (body.limbW ||= limbWeights(B.jointNames, body.jnt, body.wgt)), 4]] : [];
+    const geo = subGeo(pos, nrm, idx, (f) => tr[f] === r && !hidden(f), ha ? [['color', ha.col, 3], ['aFeat', ha.feat, 4], ['aHS', ha.hs, 1], ...(st ? [['aRest', body.pos, 3], ['aRestN', (body.restN ||= normalsOf(body.pos, body.idx)), 3]] : [])] : limbX); if (!geo) continue;
+    // nails / creases keep bodyRegion handL / handR (clip / hold checks see one hand); userData.handMark says which
+    const m = mk(geo, LK[r] || skin); m.userData.idGroup = uid + GROUP[r]; m.userData.bodyRegion = isHand ? 'hand' + r.slice(-1) : r; if (isHand) m.userData.handMark = r.slice(0, -1);
+    // spec.soloLight ['L' | 'R']: that hand is modelled by the light as if nothing lay on it (fl_hands H3b/H2b, Jade
+    // 2026-11-27: his palm-up hand sat in the shadow of hers and read as a stump). It receives no cast shadows (lit /
+    // flat) and, in form, only its own fingers darken it (render.js: feat alpha 0.75, occlusion from other meshes ignored).
+    if (isHand && spec.soloLight?.includes(r.slice(-1))) { m.userData.soloLight = true; m.receiveShadow = false; }
+    if (st) m.userData.skinTex = skinTexU(B, r.slice(-1));
+    if (ptHand) m.userData.paint = { url: PT.url, all: true };
+    else if (ptLimb) m.userData.paint = { url: PT.url, mask: limbMask(PT.limbs) };
+    if (isHand) P.hands[r.slice(-1)].group.add(m); else g.add(m);
   }
   // garments (MakeHuman CC0 clothes, fitted to this body in Blender): the long-sleeved top + jeans, or the tee + jeans for
   // short sleeves; trimmed to the costume's sleeve / trouser length (cut exactly along the region border) and coloured;
   // a dress = the top + the skirt. The body's clothed regions share the garment's line id (no seam where skin pokes).
-  const GTRIM = new Set(['skin', 'skinHead', 'skinNeck', 'handL', 'handR', 'sockL', 'sockR']);
+  const GTRIM = new Set(['skin', 'skinHead', 'skinNeck', 'handL', 'handR', 'nailL', 'nailR', 'creaseL', 'creaseR', 'sockL', 'sockR']);
   for (const [gk, o] of garments) {
     if (!B.meshes[gk] || dbg === 'nude') continue;
     const G = refine(B, c, spec, gk, { garment: true, noApron: true }), gp = bake(G, B.jointNames, k, M, TW), gn = normalsOf(gp, G.idx);
     for (const r of new Set(G.tri)) { if (!o.skirt && (GTRIM.has(r) || (c.dress && r.startsWith('legs')))) continue;   // a skirt is kept whole (its lower edge is the hem)
-      const geo = subGeo(gp, gn, G.idx, (f) => G.tri[f] === r); if (!geo) continue;
-      const m = mk(geo, o.skirt ? LK.top : LK[r] || LK.top); m.userData.idGroup = uid + (o.skirt ? 'skirt' : GROUP[r]); m.userData.garment = gk; m.userData.double = true; g.add(m); }
+      const ptG = spec.paint?.limbs && r === 'top' && !o.skirt;   // projected paint on the sleeve
+      const geo = subGeo(gp, gn, G.idx, (f) => G.tri[f] === r, ptG ? [['aLimb', (G.limbW ||= limbWeights(B.jointNames, G.jnt, G.wgt)), 4]] : []); if (!geo) continue;
+      const m = mk(geo, o.skirt ? LK.top : LK[r] || LK.top); m.userData.idGroup = uid + (o.skirt ? 'skirt' : GROUP[r]); m.userData.garment = gk; m.userData.double = true; g.add(m);
+      if (ptG) m.userData.paint = { url: spec.paint.url, mask: limbMask(spec.paint.limbs) }; }
     // the apron: the garment's front panel lifted 6 mm, its own mesh (an edge in line mode)
     if (c.apron && !spec.noApron && !o.skirt) { const A = refine(B, c, spec, gk, { garment: true }), ap = bake(A, B.jointNames, k, M, TW), an = normalsOf(ap, A.idx);
       for (let i = 0; i < ap.length; i++) ap[i] += an[i] * 0.006;

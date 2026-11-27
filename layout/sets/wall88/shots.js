@@ -33,9 +33,11 @@ const jadeStand = (o = {}) => ({ at: standAt(STAND.at[0], STAND.at[1], 1.08, CHI
 // the workers: backs to the brick, facing the boards (-x), holding their breath (see layout.js WORKERS)
 // r4b: pelvis 13.5 cm off the brick (was 10.5): measured on the mesh bodies (clipcheck), the backs of the clothes stood
 // 2-3 cm INSIDE the brick at 10.5; at 13.5 the back of the clothes is ~1 mm off the brick and the toes ~6 mm short of the boards
-const W_X = CAVITY.x1 - 0.135;
+const W_X = CAVITY.x1 - 0.122;   // 2026-11-27: was x1 - 0.135 (1.3 cm nearer the brick for the real-size feet)
+// 2026-11-27: real-size feet (engine) reached 6-10 mm into the boards: toes turned out 25 deg (the natural stance in a tight space) and the file 1.3 cm back
+const SPLAY = { footL: [0.47, 0, 1], footR: [0.47, 0, 1] };
 function worker(w) {
-  const base = { at: standAt(W_X, w.z, w.h), yaw: -90, legs: 'stand' };
+  const base = { at: standAt(W_X, w.z, w.h), yaw: -90, legs: 'stand', legOpts: SPLAY };
   switch (w.pose) {
     case 'mouth': return { ...base, head: { nod: 4, turn: 12 }, R: { to: 'self:mouth', off: [-0.028, -0.01, 0], hand: 'flat', palm: 'back', fingers: 'left', elbow: 'down' },
       L: { to: 'self:hipL', off: [-0.075, -0.07, -0.02], hand: 'fist', palm: 'in', fingers: 'down' } };   // r4b: fist against the front of his thigh (hanging at his side it stood 3.8 cm into w3)
@@ -70,7 +72,7 @@ function worker(w) {
 // NOTES. p: palm centre offsets from the brick face (rx, lx, m), heights (ry, ly), along the wall from her pelvis (rz, lz),
 // the right fingers' rise (rfy), head turn, spine side bend.
 export const MAMA_Z = 0.405;
-export const mamaShield = (p) => ({ at: standAt(W_X, MAMA_Z, 1.60), yaw: -90, legs: 'stand', spine: { side: p.side || 0 }, head: { look: 'daughter', turn: p.turn || 0 },
+export const mamaShield = (p) => ({ at: standAt(W_X, MAMA_Z, 1.60), yaw: -90, legs: 'stand', legOpts: SPLAY, spine: { side: p.side || 0 }, head: { look: 'daughter', turn: p.turn || 0 },
   R: { to: [+(CAVITY.x1 - p.rx).toFixed(4), p.ry, +(MAMA_Z + p.rz).toFixed(4)], hand: 'flat', palm: [1, 0, 0], fingers: [0, p.rfy, -1] },
   L: { to: [+(CAVITY.x1 - p.lx).toFixed(4), p.ly, +(MAMA_Z + p.lz).toFixed(4)], hand: 'flat', palm: [1, 0, 0], fingers: 'down' } });
 // solved: wl_search.mjs run 2 (60 candidates round a hand-reasoned seed); palms 0.5-0.6 mm off the brick, flat to 1 deg, no

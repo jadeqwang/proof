@@ -11,9 +11,9 @@
    1.9
   ],
   "target": [
-   0.7683,
-   0.8448,
-   0.3745
+   0.7355,
+   0.8504,
+   0.3832
   ],
   "lens_mm": 28,
   "frame_width_mm": 36,
@@ -24,17 +24,17 @@
   "near": 0.05,
   "far": 200,
   "matrixWorld": [
-   0.9344,
+   0.9268,
    0,
-   -0.3563,
+   -0.3755,
    0,
-   -0.2058,
-   0.8163,
-   -0.5397,
+   -0.2158,
+   0.8183,
+   -0.5327,
    0,
-   0.2908,
-   0.5776,
-   0.7627,
+   0.3073,
+   0.5748,
+   0.7584,
    0,
    1.35,
    2,
@@ -42,21 +42,21 @@
    1
   ],
   "viewMatrix": [
-   0.9344,
-   -0.2058,
-   0.2908,
+   0.9268,
+   -0.2158,
+   0.3073,
    0,
    0,
-   0.8163,
-   0.5776,
+   0.8183,
+   0.5748,
    0,
-   -0.3563,
-   -0.5397,
-   0.7627,
+   -0.3755,
+   -0.5327,
+   0.7584,
    0,
-   -0.5844,
-   -0.3294,
-   -2.9971,
+   -0.5378,
+   -0.333,
+   -3.0054,
    1
   ],
   "projectionMatrix": [
@@ -88,16 +88,16 @@
  "heads": {
   "jade19": {
    "px": [
-    976.3,
-    320.3
+    977.1,
+    320.9
    ],
    "eyes": [
     960,
     367.2
    ],
    "mouth": [
-    967.8,
-    381.8
+    968.2,
+    381.9
    ],
    "in_frame": true,
    "visible": true,
@@ -105,49 +105,49 @@
   },
   "firstLove19": {
    "px": [
-    826.9,
-    480.6
+    809.3,
+    517.5
    ],
    "eyes": [
-    859.8,
-    449.8
+    841.2,
+    483.4
    ],
    "mouth": [
-    859.2,
-    490.1
+    840.5,
+    524.2
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 142,
+   "facing_camera_deg": 143,
    "blocked_by": "firstLove19 first love (19)"
   }
  },
  "hands": {
   "meet_world": [
-   0.55,
+   0.5,
    0.41,
    -0.02
   ],
   "meet_px": [
-   923.8,
-   595.4
+   922,
+   593.8
   ],
   "each_px": {
    "jade19.L": [
-    1032.6,
-    412.7
+    1031.6,
+    413.1
    ],
    "jade19.R": [
-    890.8,
-    385.6
+    891.9,
+    385
    ],
    "firstLove19.L": [
-    812.1,
-    625.1
+    703.6,
+    663.5
    ],
    "firstLove19.R": [
-    1028.3,
-    678.2
+    1083,
+    768.4
    ]
   }
  },
@@ -158,22 +158,22 @@
    "on": true,
    "color": "#ffe2b0",
    "world": [
-    1.7936,
+    1.7436,
     2.4776,
     1.8939
    ],
    "px": [
-    -594.6,
-    1666.4
+    -442.5,
+    1721.1
    ],
    "in_front": false,
    "travel_dir_px": [
-    -0.762,
-    0.648
+    -0.717,
+    0.697
    ],
-   "toward_camera": -0.983,
+   "toward_camera": -0.985,
    "aim_world": [
-    0.55,
+    0.5,
     0.8,
     -0.26
    ]
@@ -189,13 +189,13 @@
     1.85
    ],
    "px": [
-    -8936165.1,
-    -7422794.6
+    -73725.3,
+    -63017.9
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.769,
-    0.639
+    0.764,
+    0.645
    ],
    "toward_camera": -0.964,
    "aim_world": [
@@ -225,12 +225,12 @@
   "aperture_world": [
    [
     0.1996,
-    1.2222,
+    1.2391,
     0.22
    ],
    [
     1.007,
-    1.4945,
+    1.5114,
     0.22
    ],
    [
@@ -246,29 +246,29 @@
   ],
   "aperture_px": [
    [
-    615.6,
-    172.3
+    645.1,
+    163.5
    ],
    [
-    1208.2,
-    36
+    1241.4,
+    28.1
    ],
    [
-    1121.9,
-    945.3
+    1142.7,
+    953.6
    ],
    [
-    705.9,
-    822.7
+    728.3,
+    824.3
    ]
   ],
   "footprints": {
    "floor": {
     "world": [
      [
-      -0.1008,
+      -0.1133,
       0,
-      -1.6989
+      -1.7205
      ],
      [
       1.007,
@@ -281,27 +281,27 @@
       0.22
      ],
      [
-      -0.7064,
+      -0.7189,
       0,
-      -1.3492
+      -1.3709
      ]
     ],
     "px": [
      [
-      934.6,
-      329.9
+      961.1,
+      331
      ],
      [
-      1123.7,
-      925.9
+      1144.8,
+      934.1
      ],
      [
-      703.3,
-      803.6
+      725.9,
+      805.2
      ],
      [
-      690.5,
-      348
+      718.7,
+      346.6
      ]
     ]
    },
@@ -314,12 +314,12 @@
      ],
      [
       -0.3489,
-      0.4823,
+      0.4991,
       -0.73
      ],
      [
       0.4585,
-      0.7546,
+      0.7715,
       -0.73
      ],
      [
@@ -330,43 +330,43 @@
     ],
     "px": [
      [
-      694.3,
-      484.3
+      720.9,
+      486.5
      ],
      [
-      672.4,
-      305.6
+      700.6,
+      301.5
      ],
      [
-      1012.1,
-      246.7
+      1041,
+      244.7
      ],
      [
-      1005.4,
-      553
+      1030.5,
+      558.8
      ]
     ]
    }
   },
   "anchor_world": [
-   0.55,
+   0.5,
    0.8,
    -0.26
   ],
   "anchor_px": [
-   972.8,
-   336.4
+   973.4,
+   336.8
   ],
   "on_screen": {
    "from_px": [
-    981.3,
-    329.3
+    980.8,
+    329.6
    ],
    "to_px": [
-    965,
-    343.1
+    966.5,
+    343.5
    ],
-   "angle_deg": 40.3,
+   "angle_deg": 44.2,
    "travel": "right-to-left"
   },
   "rhyme": {
@@ -379,7 +379,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": 0.3,
+   "angle_error_deg": 4.2,
    "travel_ok": true
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
@@ -396,87 +396,87 @@
  "mask": null,
  "futon_clearance": {
   "jade19": {
-   "min_gap_to_frame_m": 0.088,
+   "min_gap_to_frame_m": 0.12,
    "verts_inside_mattress": 0
   },
   "firstLove19": {
-   "min_gap_to_frame_m": 0.109,
+   "min_gap_to_frame_m": 0.085,
    "verts_inside_mattress": 0
   }
  },
  "points_world": {
   "jade19": {
    "eyes": [
-    0.55,
+    0.5,
     0.7717,
     -0.198
    ],
    "head": [
-    0.55,
+    0.5,
     0.8228,
     -0.2768
    ],
    "chin": [
-    0.55,
+    0.5,
     0.7067,
     -0.2986
    ],
    "handL": [
-    0.6811,
+    0.6311,
     0.7079,
     -0.2012
    ],
    "handR": [
-    0.4189,
+    0.3689,
     0.7079,
     -0.2012
    ],
    "hip": [
-    0.55,
+    0.5,
     0.229,
     -0.42
    ],
    "shoulderC": [
-    0.55,
+    0.5,
     0.7114,
     -0.357
    ]
   },
   "firstLove19": {
    "eyes": [
-    0.5265,
-    0.8112,
-    0.164
+    0.5,
+    0.8124,
+    0.2648
    ],
    "head": [
-    0.5199,
-    0.8164,
-    0.2662
+    0.5,
+    0.8167,
+    0.3673
    ],
    "chin": [
-    0.5245,
-    0.6948,
-    0.2235
+    0.5,
+    0.6954,
+    0.3232
    ],
    "handL": [
-    0.3052,
-    0.2456,
-    -0.0585
+    0.1225,
+    0.2419,
+    0.1217
    ],
    "handR": [
-    0.7348,
-    0.2456,
-    -0.0585
+    0.8466,
+    0.2198,
+    0.0998
    ],
    "hip": [
-    0.52,
+    0.5,
     0.1513,
-    0.38
+    0.48
    ],
    "shoulderC": [
-    0.52,
+    0.5,
     0.6755,
-    0.2999
+    0.3999
    ]
   }
  },
@@ -486,7 +486,7 @@
    "look_target": {
     "name": null,
     "world": [
-     0.55,
+     0.5,
      0.1,
      0.2
     ]
@@ -510,11 +510,11 @@
    "warnings": [],
    "eyes_px": [
     960.4,
-    367.7
+    367.8
    ],
    "target_px": [
-    879.4,
-    806.6
+    875.5,
+    803.1
    ],
    "target_in_front": true
   },
@@ -523,21 +523,21 @@
    "look_target": {
     "name": "jade19:eyes",
     "world": [
-     0.55,
+     0.5,
      0.772,
      -0.198
     ]
    },
    "head_deg": {
-    "yaw_left": -3.7,
-    "pitch_up": 5.7,
+    "yaw_left": 0,
+    "pitch_up": 6.2,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": 2.1,
+    "pitch_up": 2.8,
     "wanted_yaw": 0,
-    "wanted_pitch": 2.1,
+    "wanted_pitch": 2.8,
     "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -546,8 +546,8 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    859.8,
-    449.8
+    841.2,
+    483.4
    ],
    "target_px": [
     960,
@@ -566,7 +566,7 @@
   },
   "firstLove19": {
    "top": "#5a6a58",
-   "legs": "#3a3c44",
+   "legs": "#1c1c1e",
    "sleeves": "long",
    "sock": "#6a6a70",
    "torso": "real m"
@@ -613,12 +613,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -63.3,
-    "elbow_flex_deg": 62.3,
+    "twist_deg": -55.6,
+    "elbow_flex_deg": 67.7,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -63.3
+     "twist_deg": -55.6
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -629,12 +629,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -63.3,
-    "elbow_flex_deg": 62.3,
+    "twist_deg": -56.6,
+    "elbow_flex_deg": 60.9,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -63.3
+     "twist_deg": -56.6
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -644,18 +644,27 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade19": 0.0339,
-  "firstLove19": 0.0581
+  "jade19": 0.0426,
+  "firstLove19": 0.0669
  },
- "colour_separation": [],
+ "colour_separation": [
+  {
+   "a": "jade19",
+   "b": "firstLove19",
+   "top_a": "#8c1515",
+   "top_b": "#5a6a58",
+   "deltaE_top": 64.2,
+   "close": false
+  }
+ ],
  "figure_report": {
   "jade19": {
    "legs": {
     "L": {
-     "reach": 0.56
+     "reach": 0.61
     },
     "R": {
-     "reach": 0.56
+     "reach": 0.33
     }
    },
    "arms": {
@@ -672,40 +681,40 @@
      "elbow_bend_deg": 145,
      "upperarm_stretch": 1.15,
      "forearm_stretch": 1.08,
-     "hand_scale": 1.07
+     "hand_scale": 1.08
     },
     "R": {
      "elbow_bend_deg": 145,
      "upperarm_stretch": 1.15,
      "forearm_stretch": 1.08,
-     "hand_scale": 1.07
+     "hand_scale": 1.08
     },
-    "sole_shift_mm_L": 18.9,
-    "sole_shift_mm_R": 18.9,
-    "sole_lowest_y_m": 0.0793
+    "sole_shift_mm_L": 28.9,
+    "sole_shift_mm_R": 28.9,
+    "sole_lowest_y_m": 0.0886
    }
   },
   "firstLove19": {
    "legs": {
     "L": {
-     "reach": 0.56
+     "reach": 0.54
     },
     "R": {
-     "reach": 0.56
+     "reach": 0.31
     }
    },
    "arms": {
-    "L": 0.86,
+    "L": 0.83,
     "R": 0.86
    },
-   "headTurn": -4,
+   "headTurn": 0,
    "body": {
     "mesh": "firstlove19",
     "scale": 1,
     "face": "none",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 60,
+     "elbow_bend_deg": 67,
      "upperarm_stretch": 1.08,
      "forearm_stretch": 1,
      "hand_scale": 0.93
@@ -716,9 +725,9 @@
      "forearm_stretch": 1,
      "hand_scale": 0.93
     },
-    "sole_shift_mm_L": 4.3,
-    "sole_shift_mm_R": 4.3,
-    "sole_lowest_y_m": -0.0103
+    "sole_shift_mm_L": 13.8,
+    "sole_shift_mm_R": 13.8,
+    "sole_lowest_y_m": 0.0007
    }
   }
  }

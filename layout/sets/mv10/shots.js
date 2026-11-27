@@ -299,7 +299,7 @@ export const SHOTS = [
     orbit: { at: 'jade27:eyes', az: -12, el: -2, dist: 3.0 }, aim: ['jade27:eyes', 0.56, 0.38], focus: ['jade27'],
     header: 'Verse 3 2:59.2: "Perky American girl / I play the part": the greeting in the sliding door (one pitch contour)',
     intent: 'Outside, frontal on her from the deck, past the greeting guest’s back. She stands in the open sliding glass door, the kitchen and the dining table behind her: wave a little too big and a few frames early. The house shades the deck; she is lit by the sky and the kitchen behind. The gold pitch contour is drawn over the greeting.',
-    figs: partyFigs({ at: MARKS.greeting, yaw: 0, legs: 'stand', head: { look: 'G1:head' }, L: 'side', R: { to: [0.92, 1.86, 9.86], hand: 'flat', fingers: 'up', palm: [0, 0, 1], elbow: [-1, -0.6, 0] } },
+    figs: partyFigs({ at: [MARKS.greeting[0], MARKS.greeting[1] - 0.02], /* 2026-11-27: 2 cm back, her real-size toes were 12 mm into the door track */ yaw: 0, legs: 'stand', head: { look: 'G1:head' }, L: 'side', R: { to: [0.92, 1.86, 9.84], hand: 'flat', fingers: 'up', palm: [0, 0, 1], elbow: [-1, -0.6, 0] } },
       stand([2.6, 7.0], -150, { head: { look: [1.2, 1.5, 9.4] } }),   // (re-render pass 2026-11-26: kept at -150 although his look is 6 deg past eye travel: at -125 his face turns toward the V3c camera)
       { set: { G1: onDeck([1.9, 10.7], yawTo([1.9, 10.7], MARKS.greeting), { head: { look: 'jade27:eyes' }, L: { to: [1.95, DECK + 1.9, 10.35], hand: 'flat', fingers: 'up', palm: [0, 0, -1] } }) } }) },
   // V3d (under the lemons, over his shoulder) RETIRED 2026-11-25 (late) -> V3_nailed: Jade: at "He said I absolutely
@@ -421,6 +421,14 @@ export const SHOTS = [
   // photo-3 test angles are retired; the side-by-side is media/layout/mv10/T0_glasstable_compare.png.
   { id: 'T0_glasstable', lens: 28, pos: [4.34, 1.15, 3.1], target: [4.74, 0.35, 2.25], near: 0.05, far: 20, space: 'room', section: 'Bridge', time: 'reference', position: 'reference', figs: {},
     header: 'reference: the glass console from its SSW end (photo 2)', intent: 'Set reference for the glass-top console (layout.js GLASS_TABLE), from about the angle of Jade\u2019s photo 2.' },
+  // the book spines (2026-11-27, Jade: match the textbooks' spines to the real editions): three set references, not film
+  // shots, square on to a book cube 0.95 m from the frame front: 3,3 the textbooks, 4,4 the Feynman set, 4,2 the named
+  // popular books. Crops of their lit renders make the real-vs-ours sheet (NOTES.md 2026-11-27).
+  ...[[3, 3, 'the textbooks'], [4, 4, 'the Feynman Lectures and the SF paperbacks'], [4, 2, 'The Dragons of Eden, A Short History and the popular science']].map(([c, r, what]) => {
+    const [x, y, z] = SHELF_W.cube(c, r);
+    return { id: `T0_spines_${c}${r}`, lens: 50, pos: [x, y + 0.01, z - 0.95], target: [x, y - 0.01, z], near: 0.05, far: 10, space: 'room', section: 'Bridge', time: 'reference', position: 'reference', figs: {},
+      light: { exposure: 1.3 },
+      header: `reference: the Expedit cube ${c},${r} square on (${what})`, intent: `Set reference for the book spines in cube ${c},${r} (spines.js, real editions' spine designs).` }; }),
   // the ladle grip (Jade r3: a REALISTIC grip, zoom-checked): two set references, not film shots. _a: perspective close-up
   // from his right, above (the fist, the thumb along the top of the handle, the ladle's bowl in the lemonade); _top: the
   // V3b_prep camera zoomed to the hand (orthographic, straight down, 0.42 m across).

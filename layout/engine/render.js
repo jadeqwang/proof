@@ -14,9 +14,113 @@
 //             light pale grey, shade 50 % grey; the form and contours faintly underneath
 // A built shot (from a set's build.js) is { scene, cam, rig(mode) -> [lights], near, far, header, mirror?, shadowLine? }
 import * as THREE from 'three';
-import { FIG2 } from './figure2.js';   // figure guides v2 (costume wash, figure-against-figure outlines); off = unchanged
+import { FIG2 } from './figure2.js';
+import { PAINT_TEX } from './paint.js';   // projected paint (figure spec paint)   // figure guides v2 (costume wash, figure-against-figure outlines); off = unchanged
 const GLASS_VOLUME = /beam|shaft|volume|sunlight|steam|blade|cone|light/i;   // glass-look meshes that are light, not glass
 
+
+// ---- palm skin texture (humanMesh spec.skinTex; 2026-11-27): procedural, in REST space (vRest / vRestN), palm side only.
+// skinTex(major) -> tone multiplier; major = mask of the major creases (palm creases, finger joint creases) for line modes.
+export const SKINTEX_GLSL = `
+uniform vec3 uWr, uF, uT, uN; uniform float uLh;
+uniform vec3 uSH[15]; uniform vec3 uSA[15]; uniform vec3 uSP[15]; uniform float uSL[15];
+varying vec3 vRest; varying vec3 vRestN;
+float stHash(vec3 p){ p = fract(p*0.3183099 + vec3(0.71, 0.113, 0.419)); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+float stCell(vec3 x){ vec3 i = floor(x), f = fract(x); float d1 = 8., d2 = 8.;
+  for (int a=-1;a<=1;a++) for (int b=-1;b<=1;b++) for (int c=-1;c<=1;c++){ vec3 g = vec3(float(a),float(b),float(c));
+    vec3 o = vec3(stHash(i+g), stHash(i+g+19.1), stHash(i+g+47.3)); vec3 r = g + o - f; float d = dot(r,r);
+    if (d < d1){ d2 = d1; d1 = d; } else if (d < d2) d2 = d; }
+  return sqrt(d2) - sqrt(d1); }
+float stBez(vec2 q, vec2 a, vec2 b, vec2 c, out float tt){ float m = 1e9; vec2 prev = a; tt = 0.;
+  for (int i=1;i<=20;i++){ float t = float(i)/20.; vec2 pt = mix(mix(a,b,t), mix(b,c,t), t); vec2 e = pt - prev;
+    float h = clamp(dot(q-prev, e)/dot(e,e), 0., 1.); float d = length(q - prev - e*h); if (d < m){ m = d; tt = t - (1.-h)/20.; } prev = pt; }
+  return m; }
+float stLine(float d, float w){ float aa = fwidth(d); return 1. - smoothstep(w, w + 1.5*aa + 1e-7, d); }
+// fine periodic pattern, faded out where it would alias (period under ~3 px)
+float stWave(float x, float per){ float k = clamp(3.0 - fwidth(x)/per*6.0, 0., 1.); return k * (0.5 + 0.5*cos(6.2831853*x/per)); }
+float skinTex(out float major){
+  vec3 p = vRest; vec3 nr = normalize(vRestN); major = 0.; float L = uLh;
+  float bd = 1e9, bu = 0., bL = 1.; int bi = 0; vec3 bH = vec3(0.), bA = vec3(0.,1.,0.), bP = vec3(1.,0.,0.);
+  for (int i=0;i<15;i++){ vec3 v = p - uSH[i]; float u = dot(v, uSA[i])/uSL[i]; float d = length(v - uSA[i]*clamp(u,0.,1.)*uSL[i]);
+    if (d < bd){ bd = d; bu = u; bi = i; bH = uSH[i]; bA = uSA[i]; bP = uSP[i]; bL = uSL[i]; } }
+  int seg = bi - (bi/3)*3; bool thumb = bi >= 12;
+  bool onFinger = thumb ? seg > 0 : (seg > 0 || bu > 0.18);
+  float tone = 1.;
+  if (onFinger){
+    vec3 r = p - bH; r -= bA*dot(r, bA); float rl = length(r); vec3 rn = r/max(rl, 1e-6);
+    float cp = dot(rn, bP); float wP = smoothstep(-0.15, 0.45, cp);
+    if (wP <= 0.) return 1.;
+    float sAlong = bu*bL/L;                                         // along the segment, hand lengths
+    // fingertip pad: ridge whorl round the pad centre
+    if (seg == 2){
+      vec3 sd = cross(bA, bP); float ang = atan(dot(rn, sd), cp);
+      vec2 w = vec2((bu - 0.58)*bL/L*1.25, ang*rl/L*0.95);
+      float rr = length(w);
+      tone *= 1. - 0.16*wP*stWave(rr, 0.0042)*(1. - smoothstep(0.03, 0.05, rr));
+      tone *= 1. - 0.05*wP*stWave(sAlong + 0.002*stHash(floor(p/(0.01*L))), 0.0055)*smoothstep(0.02, 0.05, rr);
+    } else {
+      float jit = 0.0025*(stCell(p/(0.012*L)) - 0.3);                // irregular, so they read as skin lines, not ribbing
+      tone *= 1. - 0.055*wP*stWave(sAlong + jit, 0.0065);         // fine transverse lines across the pads
+    }
+    // doubled creases: the PIP crease's second line, and the finger-base crease's second line
+    if (!thumb){
+      float m = 0.;
+      if (seg == 1) m = max(m, stLine(abs(bu*bL/L - 0.0065), 0.0017));
+      if (seg == 0) m = max(m, stLine(abs((bu - 0.4)*bL/L - 0.012), 0.0017));
+      m *= wP; major = max(major, m); tone *= 1. - 0.30*m;
+    }
+    return tone;
+  }
+  // palm
+  float wP = smoothstep(-0.1, 0.4, dot(nr, uN));
+  if (wP <= 0.) return 1.;
+  vec2 q = vec2(dot(p - uWr, uT), dot(p - uWr, uF))/L;
+  float t1, t2, t3;
+  float dH = stBez(q, vec2(-0.30, 0.385), vec2(-0.06, 0.42), vec2(0.075, 0.535), t1);   // distal (heart line)
+  float dP = stBez(q, vec2(0.205, 0.415), vec2(0.0, 0.36), vec2(-0.20, 0.29), t2);   // proximal (head line)
+  float dT = stBez(q, vec2(0.20, 0.41), vec2(-0.03, 0.30), vec2(0.02, 0.04), t3);     // thenar (life line)
+  float taper1 = smoothstep(0.0, 0.08, t1)*smoothstep(1.0, 0.85, t1), taper2 = smoothstep(0.0, 0.05, t2)*smoothstep(1.0, 0.8, t2), taper3 = smoothstep(0.0, 0.05, t3)*smoothstep(1.0, 0.75, t3);
+  float m = max(max(stLine(dH, 0.0026)*taper1, stLine(dP, 0.0024)*taper2), stLine(dT, 0.0026)*taper3) * wP;
+  major = m;
+  float net = stCell(p/(0.0068*L));                                // fine reticulated skin
+  float k = clamp(3.0 - fwidth(net)*3.0, 0., 1.);
+  tone *= 1. - 0.13*wP*k*(1. - smoothstep(0.0, 0.09, net));
+  tone *= 1. - 0.34*m;
+  return tone;
+}`;
+
+// projected paint (engine/paint.js): uv from the shot camera's view-projection; weight 1 on whole hands, else the limb mask
+const PAINT_VS_PARS = `
+#ifdef PAINT
+  uniform mat4 uPV; varying vec4 vPClip;
+  #ifdef PAINT_LIMB
+    attribute vec4 aLimb; varying vec4 vLimb;
+  #endif
+#endif`;
+const PAINT_VS = `
+#ifdef PAINT
+  vPClip = uPV * modelMatrix * vec4(position, 1.);
+  #ifdef PAINT_LIMB
+    vLimb = aLimb;
+  #endif
+#endif`;
+const PAINT_FS_PARS = `
+#ifdef PAINT
+  uniform sampler2D uPaint; uniform vec4 uMask; varying vec4 vPClip;
+  #ifdef PAINT_LIMB
+    varying vec4 vLimb;
+  #endif
+  float paintW(){
+  #ifdef PAINT_LIMB
+    return smoothstep(0.35, 0.65, dot(vLimb, uMask));
+  #else
+    return 1.;
+  #endif
+  }
+  vec3 paintCol(out float w){ vec2 uv = vPClip.xy / vPClip.w * 0.5 + 0.5; w = paintW();
+    if (uv.x < 0. || uv.x > 1. || uv.y < 0. || uv.y > 1.) w = 0.;
+    return texture2D(uPaint, uv).rgb; }
+#endif`;
 export class ModeRenderer {
   constructor(W, H) {
     this.W = W; this.H = H;
@@ -29,6 +133,8 @@ export class ModeRenderer {
     this.gbuf = new THREE.WebGLRenderTarget(W, H, { type: THREE.FloatType, minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter });
     this.idT = new THREE.WebGLRenderTarget(W, H, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter });
     this.maskT = new THREE.WebGLRenderTarget(W, H, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter });
+    this.featT = new THREE.WebGLRenderTarget(W, H, { minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter });
+    this.stT = new THREE.WebGLRenderTarget(W, H, { samples: 4 });   // palm skin texture: major crease mask (line / contour / form)   // hand marks: finger channels (humanMesh aFeat)
     this.out = document.createElement('canvas'); this.out.width = W; this.out.height = H;
     this.gbufMat = new THREE.ShaderMaterial({
       side: THREE.DoubleSide, clipping: true,
@@ -62,13 +168,31 @@ export class ModeRenderer {
     this.edgeMat = new THREE.ShaderMaterial({
       depthTest: false, depthWrite: false,
       uniforms: { tG: { value: this.gbuf.texture }, tI: { value: this.idT.texture }, tM: { value: this.maskT.texture }, uPx: { value: new THREE.Vector2(1 / W, 1 / H) },
-        uNT: { value: 0.25 }, uDT: { value: 0.035 }, uMask: { value: 0 }, uFill: { value: 0.84 } },
+        uNT: { value: 0.25 }, uDT: { value: 0.035 }, uMask: { value: 0 }, uFill: { value: 0.84 }, tFt: { value: this.featT.texture }, uFeat: { value: 0 }, uHW: { value: Math.max(1, W / 2048) }, tST: { value: this.stT.texture }, uST: { value: 0 } },
       vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }',
       fragmentShader: `
-        uniform sampler2D tG, tI, tM; uniform vec2 uPx; uniform float uNT, uDT, uMask, uFill; varying vec2 vUv;
+        uniform sampler2D tG, tI, tM, tFt, tST; uniform vec2 uPx; uniform float uNT, uDT, uMask, uFill, uFeat, uHW, uST; varying vec2 vUv;
         vec4 G(vec2 o){ return texture2D(tG, vUv + o*uPx); }
         vec4 I(vec2 o){ return texture2D(tI, vUv + o*uPx); }
         vec4 M(vec2 o){ return texture2D(tM, vUv + o*uPx); }
+        // hand marks (2026-11-27): tFt = finger channels (r: index / ring, g: middle / little, b: thumb, a: hand). A line
+        // where two different fingers of one hand meet on screen (never at a finger's base: the palm has no channel);
+        // hand pixels also look 2 px out for id / depth edges (overlaps of hands drawn bolder).
+        float fch(vec4 f){ return f.a < 0.5 ? 0. : f.r > 0.8 ? 1. : f.g > 0.8 ? 2. : f.b > 0.8 ? 3. : 0.; }
+        bool painted(){ return uFeat > 0.5 && abs(texture2D(tFt, vUv).a - 0.3) < 0.08; }   // projected paint: only its outline is drawn
+        float handEdge(){
+          if (uFeat < 0.5) return 0.;
+          vec4 f0 = texture2D(tFt, vUv); if (f0.a < 0.2) return 0.;
+          float c0 = fch(f0), e = 0.; vec4 i0 = texture2D(tI, vUv); float d0 = texture2D(tG, vUv).a;
+          for (int k=0;k<8;k++){ float a = float(k)*0.7854; vec2 o = vec2(cos(a), sin(a));
+            for (int r=1;r<=2;r++){ vec2 off = o*float(r)*uHW*uPx;
+              vec4 fa = texture2D(tFt, vUv + off); float ca = fch(fa);
+              if (c0 > 0. && ca > 0. && ca != c0 && r == 1) e = max(e, 0.9);
+              vec4 ia = texture2D(tI, vUv + off); float da = texture2D(tG, vUv + off).a;
+              if (distance(i0, ia) > 0.002 && (da <= 0. || da < d0*0.995)) e = max(e, 1.);   // something nearer (or the background) beside a hand pixel: its outline, bolder
+            } }
+          return e;
+        }
         void main(){
           vec4 c = G(vec2(0.)); vec3 n0 = c.rgb*2.-1.; float d0 = c.a; vec4 i0 = I(vec2(0.)); float e = 0.;
           vec2 offs[4]; offs[0]=vec2(1.,0.); offs[1]=vec2(0.,1.); offs[2]=vec2(1.,1.); offs[3]=vec2(1.,-1.);
@@ -82,6 +206,8 @@ export class ModeRenderer {
             vec4 ia = I(offs[k]), ib = I(-offs[k]);
             e = max(e, step(0.002, distance(i0, ia))); e = max(e, step(0.002, distance(i0, ib)));
           }
+          if (painted()) e = handEdge(); else e = max(e, handEdge());
+          if (uST > 0.5) e = max(e, 0.85*smoothstep(0.25, 0.75, texture2D(tST, vUv).r));   // palm skin texture: its major creases as lines
           float g = 1.;
           if (uMask > 0.5) {
             vec4 m0 = M(vec2(0.));
@@ -103,12 +229,31 @@ export class ModeRenderer {
       depthTest: false, depthWrite: false,
       uniforms: { tG: { value: this.gbuf.texture }, tI: { value: this.idT.texture }, tF: { value: this.formT.texture }, tL: { value: this.irrT.texture },
         uPx: { value: new THREE.Vector2(1 / W, 1 / H) }, uNT: { value: 0.25 }, uDT: { value: 0.035 }, uMode: { value: 0 },
-        uLine: { value: 0.62 }, uAO: { value: 0.32 }, uLo: { value: 0.05 }, uHi: { value: 0.42 }, uShade: { value: 0.5 }, uMid: { value: 0.76 }, uUnder: { value: 0.22 }, uUnderLine: { value: 0.28 } },
+        uLine: { value: 0.62 }, uAO: { value: 0.32 }, uLo: { value: 0.05 }, uHi: { value: 0.42 }, uShade: { value: 0.5 }, uMid: { value: 0.76 }, uUnder: { value: 0.22 }, uUnderLine: { value: 0.28 },
+        tFt: { value: this.featT.texture }, uFeat: { value: 0 }, uHW: { value: Math.max(1, W / 2048) }, uHandAO: { value: 0.45 }, tST: { value: this.stT.texture }, uST: { value: 0 } },
       vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }',
       fragmentShader: `
-        uniform sampler2D tG, tI, tF, tL; uniform vec2 uPx; uniform float uNT, uDT, uMode, uLine, uAO, uLo, uHi, uShade, uMid, uUnder, uUnderLine; varying vec2 vUv;
+        uniform sampler2D tG, tI, tF, tL, tFt, tST; uniform vec2 uPx; uniform float uNT, uDT, uMode, uLine, uAO, uLo, uHi, uShade, uMid, uUnder, uUnderLine, uFeat, uHW, uHandAO, uST; varying vec2 vUv;
         vec4 G(vec2 o){ return texture2D(tG, vUv + o*uPx); }
         vec4 I(vec2 o){ return texture2D(tI, vUv + o*uPx); }
+        // hand marks (2026-11-27): tFt = finger channels (r: index / ring, g: middle / little, b: thumb, a: hand). A line
+        // where two different fingers of one hand meet on screen (never at a finger's base: the palm has no channel);
+        // hand pixels also look 2 px out for id / depth edges (overlaps of hands drawn bolder).
+        float fch(vec4 f){ return f.a < 0.5 ? 0. : f.r > 0.8 ? 1. : f.g > 0.8 ? 2. : f.b > 0.8 ? 3. : 0.; }
+        bool painted(){ return uFeat > 0.5 && abs(texture2D(tFt, vUv).a - 0.3) < 0.08; }   // projected paint: only its outline is drawn
+        float handEdge(){
+          if (uFeat < 0.5) return 0.;
+          vec4 f0 = texture2D(tFt, vUv); if (f0.a < 0.2) return 0.;
+          float c0 = fch(f0), e = 0.; vec4 i0 = texture2D(tI, vUv); float d0 = texture2D(tG, vUv).a;
+          for (int k=0;k<8;k++){ float a = float(k)*0.7854; vec2 o = vec2(cos(a), sin(a));
+            for (int r=1;r<=2;r++){ vec2 off = o*float(r)*uHW*uPx;
+              vec4 fa = texture2D(tFt, vUv + off); float ca = fch(fa);
+              if (c0 > 0. && ca > 0. && ca != c0 && r == 1) e = max(e, 0.9);
+              vec4 ia = texture2D(tI, vUv + off); float da = texture2D(tG, vUv + off).a;
+              if (distance(i0, ia) > 0.002 && (da <= 0. || da < d0*0.995)) e = max(e, 1.);   // something nearer (or the background) beside a hand pixel: its outline, bolder
+            } }
+          return e;
+        }
         float edge(){
           vec4 c = G(vec2(0.)); vec3 n0 = c.rgb*2.-1.; float d0 = c.a; vec4 i0 = I(vec2(0.)); float e = 0.;
           vec2 offs[4]; offs[0]=vec2(1.,0.); offs[1]=vec2(0.,1.); offs[2]=vec2(1.,1.); offs[3]=vec2(1.,-1.);
@@ -128,19 +273,22 @@ export class ModeRenderer {
         float occl(){
           float d0 = G(vec2(0.)).a; if (d0 <= 0.) return 0.;
           float o = 0., n = 0.;
+          float fa0 = uFeat > 0.5 ? texture2D(tFt, vUv).a : 0.; bool solo = fa0 > 0.6 && fa0 < 0.9;   // a solo-lit hand: only its own pixels occlude it
           for (int r=0;r<2;r++){ float rad = r==0 ? 7. : 19.;
             for (int k=0;k<8;k++){ float a = float(k)*0.7854 + float(r)*0.39; vec2 off = vec2(cos(a), sin(a))*rad;
               float dn = G(off).a; n += 1.;
               if (dn <= 0.) continue;
+              if (solo) { float fa = texture2D(tFt, vUv + off*uPx).a; if (fa < 0.6 || fa > 0.9) continue; }
               float dd = (d0 - dn) / d0;           // + : the neighbour is nearer
               o += smoothstep(0.004, 0.05, dd) * (1. - smoothstep(0.10, 0.25, dd)); } }
           return o / n;
         }
         void main(){
-          float e = edge();
+          float hand = uFeat > 0.5 ? step(0.5, texture2D(tFt, vUv).a) : 0.;
+          float e = painted() ? handEdge() : max(edge(), handEdge());
           vec3 f = texture2D(tF, vUv).rgb; float bg = step(G(vec2(0.)).a, 0.);
-          float ao = occl();
-          vec3 form = f * (1. - uAO*ao);
+          float ao = painted() ? 0. : occl();
+          vec3 form = f * (1. - mix(uAO, uHandAO, hand)*ao);   // hands: deeper occlusion where one lies over another
           if (uMode < 0.5) {                                   // form
             gl_FragColor = vec4(mix(form, vec3(0.08), e*uLine), 1.);
           } else {                                             // light
@@ -164,6 +312,8 @@ export class ModeRenderer {
   // figure crossed the near face (office91 REF_sw_back: the social worker's upper back). Now anything in front of the far
   // wall is unveiled evenly; the room behind keeps the same veil.
   // --- material switching -------------------------------------------------------------------------
+  _paintOf(m) { const P = m.userData.paint; if (!P || !P.PV) return null; const tex = PAINT_TEX[P.url]; return tex ? { tex, PV: P.PV, mask: P.mask || null, all: !!P.all } : null; }
+  _paintU(p) { return { uPaint: { value: p.tex }, uPV: { value: p.PV }, uMask: { value: p.mask || new THREE.Vector4() } }; }
   _mat(m, pass, ids) {
     const L = m.userData.look || {}; const ud = m.userData; ud.mats = ud.mats || {};
     if (pass === 'gbuf') return this.gbufMat;
@@ -177,7 +327,7 @@ export class ModeRenderer {
       const gv = L.flatGrey ?? L.grey ?? 0.6;
       if (L.emit) mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(L.flatEmit ?? 0.97, L.flatEmit ?? 0.97, L.flatEmit ?? 0.97), side: THREE.DoubleSide });
       else if (L.art) mat = new THREE.MeshLambertMaterial({ map: L.artGrey || L.art, side: THREE.DoubleSide });   // fixed background art (sets/_art.js): its greys
-      else if (L.flatCol != null) mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(L.flatCol), side: THREE.DoubleSide });   // v2: clothing / eyes in their colour
+      else if (L.flatCol != null) mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(L.flatCol), side: THREE.DoubleSide, vertexColors: !!L.vcol });   // v2: clothing / eyes in their colour (vcol: hand palm / back tint)
       else if (L.map && pass === 'label') mat = new THREE.MeshBasicMaterial({ map: L.map, transparent: true, side: THREE.DoubleSide });
       else mat = new THREE.MeshLambertMaterial({ color: new THREE.Color(gv, gv, gv), side: THREE.DoubleSide });
     } else if (pass === 'lit') {
@@ -185,7 +335,9 @@ export class ModeRenderer {
       else if (L.emit && hazeSide(m) != null) mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: hazeSide(m), map: L.litMap, transparent: true, opacity: 2, depthWrite: false });
       else if (L.emit) { const c = new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1); mat = new THREE.MeshBasicMaterial({ color: c, side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap }); }
       else if (L.art) mat = new THREE.MeshLambertMaterial({ map: L.art, side: THREE.DoubleSide });   // fixed background art in colour
-      else mat = new THREE.MeshLambertMaterial({ color: L.col ?? 0x808080, side: THREE.DoubleSide });
+      else if (this._paintOf(m)) mat = this._paintLambert(L, this._paintOf(m));
+      else if (ud.skinTex) mat = this._stLambert(L, ud.skinTex);
+      else mat = new THREE.MeshLambertMaterial({ color: L.col ?? 0x808080, side: THREE.DoubleSide, vertexColors: !!L.vcol });
     } else if (pass === 'glow') {
       mat = L.emit && hazeSide(m) != null ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: hazeSide(m), map: L.litMap, transparent: true, opacity: 2, depthWrite: false })
         : L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(L.emit).multiplyScalar(L.emitI ?? 1), side: THREE.DoubleSide, map: L.litMap || null, transparent: !!L.litMap })
@@ -193,7 +345,13 @@ export class ModeRenderer {
     } else if (pass === 'form') {
       mat = L.glass ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.62, 0.74, 0.80), transparent: true, opacity: 0.3, depthWrite: false, side: THREE.DoubleSide })
         : L.emit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(0.97, 0.97, 0.97), side: THREE.DoubleSide })
-        : L.art ? this._formArtMat(ud.formTint || [0.8, 0.8, 0.8], L.artGrey || L.art) : this._formMat(ud.formTint || [0.8, 0.8, 0.8]);
+        : L.art ? this._formArtMat(ud.formTint || [0.8, 0.8, 0.8], L.artGrey || L.art) : this._formMat(ud.formTint || [0.8, 0.8, 0.8], { vcol: !!L.vcol, hand: !!L.hand, solo: !!ud.soloLight, skin: ud.skinTex || null, paint: this._paintOf(m) });
+    } else if (pass === 'stline') {   // palm skin texture: major creases (white) on black
+      mat = ud.skinTex ? this._stLineMat(ud.skinTex) : (this._stNone ||= new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide }));
+    } else if (pass === 'feat') {   // hand marks (humanMesh): finger channels + hand flag; everything else (0, 0, 0, 0)
+      const pp = this._paintOf(m);
+      if (pp) mat = this._featPaint(pp);
+      else mat = !m.geometry?.getAttribute?.('aFeat') ? (this._featNone ||= this._featShader(false)) : m.userData.soloLight ? (this._featSolo ||= this._featShader(true, 0.75)) : (this._featMat ||= this._featShader(true));
     } else if (pass === 'artline') {   // fixed background art: its edge map, white elsewhere (multiplied over line / contour)
       mat = new THREE.MeshBasicMaterial({ color: 0xffffff, map: L.art ? (L.artEdge || null) : null, side: THREE.DoubleSide });
     } else if (pass === 'irr') {   // irradiance of the shot's real lights on white (light mode)
@@ -276,6 +434,7 @@ export class ModeRenderer {
       this._prep(scene, 'gbuf', 'line'); this._lights(scene, built, 'none');
       this._render(scene, cam, this.gbuf, 0x000000, 0);
       const { ids } = this._prep(scene, 'id', 'line'); this._render(scene, cam, this.idT, 0x000000, 1);
+      this._featPass(built, cam, this.edgeMat);
       let useMask = 0;
       if (built.shadowLine) { this._prep(scene, 'mask', 'line'); const rig = this._lights(scene, built, 'mask'); useMask = rig.children.length ? 1 : 0; this._render(scene, cam, this.maskT, 0x000000, 1); }
       // receivers in green: render again with receivers flagged (g channel) — encode by a second tiny trick: Lambert white
@@ -308,22 +467,125 @@ export class ModeRenderer {
       if (built.litPost) built.litPost(g, this);
       return base;
     }
+    if (mode === 'feat') { this._prep(scene, 'feat', 'line'); this._lights(scene, built, 'none'); this._render(scene, cam, null, 0x000000, 1); return this._toCanvas(); }   // debug: the hand-mark finger channels
     if (mode === 'form' || mode === 'contour' || mode === 'light') return this._guide(built, mode, cam);
     throw new Error('unknown mode ' + mode);
   }
-  // --- guide modes ------------------------------------------------------------------------------
-  _formMat(tint) {
-    return new THREE.ShaderMaterial({
-      side: THREE.DoubleSide, clipping: true, uniforms: { uTint: { value: new THREE.Vector3(...tint) } },
+  // hand marks: render the finger channels when any visible mesh carries them (else uFeat 0: every shader as before)
+  _featPass(built, cam, mat) {
+    const { scene } = built; let any = false, st = false;
+    const { meshes } = this._prep(scene, 'feat', 'line'); for (const m of meshes) { if (m.geometry?.getAttribute?.('aFeat') || m.userData.paint) any = true; if (m.userData.skinTex) st = true; }
+    mat.uniforms.uFeat.value = any ? 1 : 0; mat.uniforms.uST.value = st ? 1 : 0; if (!any) return;
+    this._lights(scene, built, 'none'); this._render(scene, cam, this.featT, 0x000000, 0);
+    if (st) { this._prep(scene, 'stline', 'line'); this._render(scene, cam, this.stT, 0x000000, 1); }
+  }
+  _featPaint(p) {   // painted surfaces: alpha 0.3 (render as the painting: no 3D creases, no extra occlusion)
+    return new THREE.ShaderMaterial({ side: THREE.DoubleSide, clipping: true, defines: { PAINT: 1, ...(p.all ? {} : { PAINT_LIMB: 1 }) }, uniforms: this._paintU(p),
       vertexShader: `#include <common>
         #include <clipping_planes_pars_vertex>
-        varying vec3 vN; varying vec3 vW;
-        void main(){ vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix * normal); vW = (modelMatrix*vec4(position,1.)).xyz; gl_Position = projectionMatrix * mv;
+        ${PAINT_VS_PARS}
+        void main(){ gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);
+        ${PAINT_VS}
         #include <clipping_planes_vertex>
         }`,
       fragmentShader: `#include <common>
         #include <clipping_planes_pars_fragment>
-        uniform vec3 uTint; varying vec3 vN; varying vec3 vW;
+        ${PAINT_FS_PARS}
+        void main(){
+        #include <clipping_planes_fragment>
+        float w; paintCol(w); gl_FragColor = w > 0.5 ? vec4(0., 0., 0., 0.3) : vec4(0.); }` });
+  }
+  _featShader(on, alpha = 0) {   // alpha: written instead of the hand flag (0.75 = a solo-lit hand, humanMesh spec.soloLight)
+    return new THREE.ShaderMaterial({ side: THREE.DoubleSide, clipping: true,
+      vertexShader: `#include <common>
+        #include <clipping_planes_pars_vertex>
+        ${on ? 'attribute vec4 aFeat; varying vec4 vF;' : ''}
+        void main(){ ${on ? 'vF = aFeat;' : ''} gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);
+        #include <clipping_planes_vertex>
+        }`,
+      fragmentShader: `#include <common>
+        #include <clipping_planes_pars_fragment>
+        ${on ? 'varying vec4 vF;' : ''}
+        void main(){
+        #include <clipping_planes_fragment>
+        gl_FragColor = ${on ? (alpha ? `vec4(vF.rgb, ${alpha.toFixed(2)})` : 'vF') : 'vec4(0.)'}; }` });
+  }
+  // palm skin texture: the uniforms of one mesh's rest frames (humanMesh skinTexU)
+  _stUniforms(U) {
+    return { uWr: { value: U.wr }, uF: { value: U.f }, uT: { value: U.t }, uN: { value: U.n }, uLh: { value: U.Lh },
+      uSH: { value: U.segH }, uSA: { value: U.segA }, uSP: { value: U.segP }, uSL: { value: U.segL } };
+  }
+  _stLambert(L, U) {   // lit: a Lambert whose diffuse colour is multiplied by the skin texture
+    const m = new THREE.MeshLambertMaterial({ color: L.col ?? 0x808080, side: THREE.DoubleSide, vertexColors: !!L.vcol });
+    m.onBeforeCompile = (sh) => { Object.assign(sh.uniforms, this._stUniforms(U));
+      sh.vertexShader = 'attribute vec3 aRest; attribute vec3 aRestN; varying vec3 vRest; varying vec3 vRestN;\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n vRest = aRest; vRestN = aRestN;');
+      sh.fragmentShader = SKINTEX_GLSL + '\n' + sh.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\n { float mj; diffuseColor.rgb *= skinTex(mj); }'); };
+    m.customProgramCacheKey = () => 'skintex';
+    return m;
+  }
+  _paintLambert(L, p) {   // lit: the painted colour (unlit: the painting has its own light) where the paint weight is 1
+    const m = new THREE.MeshLambertMaterial({ color: L.col ?? 0x808080, side: THREE.DoubleSide, vertexColors: !!L.vcol });
+    m.defines = { PAINT: 1, ...(p.all ? {} : { PAINT_LIMB: 1 }) };
+    m.onBeforeCompile = (sh) => { Object.assign(sh.uniforms, this._paintU(p));
+      sh.vertexShader = PAINT_VS_PARS + '\n' + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n' + PAINT_VS);
+      sh.fragmentShader = PAINT_FS_PARS + '\n' + sh.fragmentShader.replace('#include <opaque_fragment>', '#include <opaque_fragment>\n { float pw; vec3 pc = paintCol(pw); gl_FragColor.rgb = mix(gl_FragColor.rgb, pc, pw); }'); };
+    m.customProgramCacheKey = () => 'paint' + (p.all ? 'A' : 'L');
+    return m;
+  }
+  _stLineMat(U) {   // the 'stline' pass: the major creases as a mask
+    return new THREE.ShaderMaterial({ side: THREE.DoubleSide, clipping: true, uniforms: this._stUniforms(U),
+      vertexShader: `#include <common>
+        #include <clipping_planes_pars_vertex>
+        attribute vec3 aRest; attribute vec3 aRestN; varying vec3 vRest; varying vec3 vRestN;
+        void main(){ vRest = aRest; vRestN = aRestN; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.);
+        #include <clipping_planes_vertex>
+        }`,
+      fragmentShader: `#include <common>
+        #include <clipping_planes_pars_fragment>
+        ${SKINTEX_GLSL}
+        void main(){
+        #include <clipping_planes_fragment>
+        float mj; skinTex(mj); gl_FragColor = vec4(vec3(mj), 1.); }` });
+  }
+  // --- guide modes ------------------------------------------------------------------------------
+  // opts.vcol: multiply by the vertex colours (hand palm / back tint); opts.hand: hands shade with more contrast between the
+  // lit and the turned-away sides of the fingers (2026-11-27: the painters missed the hands' form in the even clay)
+  _formMat(tint, opts = {}) {
+    return new THREE.ShaderMaterial({
+      side: THREE.DoubleSide, clipping: true, vertexColors: !!opts.vcol, defines: { ...(opts.vcol ? { VCOL: 1 } : {}), ...(opts.hand ? { HANDSHADE: 1 } : {}), ...(opts.solo ? { SOLO: 1 } : {}), ...(opts.skin ? { SKINTEX: 1 } : {}), ...(opts.paint ? { PAINT: 1, ...(opts.paint.all ? {} : { PAINT_LIMB: 1 }) } : {}) },
+      uniforms: { uTint: { value: new THREE.Vector3(...tint) }, ...(opts.skin ? this._stUniforms(opts.skin) : {}), ...(opts.paint ? this._paintU(opts.paint) : {}) },
+      vertexShader: `#include <common>
+        #include <clipping_planes_pars_vertex>
+        varying vec3 vN; varying vec3 vW; varying vec3 vC; varying float vHS;
+        #ifdef HANDSHADE
+          attribute float aHS;
+        #endif
+        #ifdef SKINTEX
+          attribute vec3 aRest; attribute vec3 aRestN; varying vec3 vRest; varying vec3 vRestN;
+        #endif
+        ${PAINT_VS_PARS}
+        void main(){ vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix * normal); vW = (modelMatrix*vec4(position,1.)).xyz; gl_Position = projectionMatrix * mv;
+        #ifdef SKINTEX
+          vRest = aRest; vRestN = aRestN;
+        #endif
+        ${PAINT_VS}
+        #ifdef HANDSHADE
+          vHS = aHS;
+        #else
+          vHS = 0.;
+        #endif
+        #ifdef VCOL
+          vC = color;
+        #else
+          vC = vec3(1.);
+        #endif
+        #include <clipping_planes_vertex>
+        }`,
+      fragmentShader: `#include <common>
+        #include <clipping_planes_pars_fragment>
+        uniform vec3 uTint; varying vec3 vN; varying vec3 vW; varying vec3 vC; varying float vHS;
+        ${opts.skin ? SKINTEX_GLSL : ''}
+        ${PAINT_FS_PARS}
         void main(){
         #include <clipping_planes_fragment>
           vec3 n = normalize(vN); if (!gl_FrontFacing) n = -n;
@@ -332,7 +594,23 @@ export class ModeRenderer {
           float k = max(dot(n, key), 0.);
           float hemi = 0.5 + 0.5*wn.y;                                     // sky above, ground below
           float v = 0.58 + 0.27*k + 0.15*hemi;
-          gl_FragColor = vec4(uTint * v / 0.8 * 0.92, 1.); }`,
+        #ifdef HANDSHADE
+          float vh = 0.47 + 0.40*k + 0.13*hemi - 0.08*pow(1. - abs(n.z), 2.);   // stronger key, and sides turning away from the lens darken (fingers read round)
+        #ifdef SOLO
+          float kw = max(dot(wn, normalize(vec3(-0.25, 1.0, 0.15))), 0.);       // a solo-lit hand: an overhead key in WORLD space, so the tops of
+          vh = 0.28 + 0.56*kw + 0.18*k - 0.06*pow(1. - abs(n.z), 1.5);          // curled fingers light up and their undersides fall dark
+        #endif
+          v = mix(v, vh, vHS);                                             // faded in past the wrist (aHS)
+        #endif
+          float stT = 1.;
+        #ifdef SKINTEX
+          { float mj; stT = skinTex(mj); }
+        #endif
+          gl_FragColor = vec4(uTint * vC * v * stT / 0.8 * 0.92, 1.);
+        #ifdef PAINT
+          { float pw; vec3 pc = paintCol(pw); gl_FragColor.rgb = mix(gl_FragColor.rgb, pc, pw); }
+        #endif
+          }`,
     });
   }
   // fixed background art (opt-in: look.art, sets/_art.js): the form shading modulated by the picture's greys
@@ -397,6 +675,7 @@ export class ModeRenderer {
     this._render(scene, cam, this.gbuf, 0x000000, 0);
     this._prep(scene, 'id', 'line'); this._render(scene, cam, this.idT, 0x000000, 1);
     this.guideMat.uniforms.uNT.value = built.edgeNT ?? 0.25;
+    this._featPass(built, cam, this.edgeMat); this.guideMat.uniforms.uFeat.value = this.edgeMat.uniforms.uFeat.value; this.guideMat.uniforms.uST.value = this.edgeMat.uniforms.uST.value;
     if (mode === 'contour') {
       this.edgeMat.uniforms.uMask.value = 0; this.edgeMat.uniforms.uNT.value = built.edgeNT ?? 0.25;
       this.r.setRenderTarget(null); this.r.setClearColor(0xffffff, 1); this.r.clear(); this.r.render(this.quadScene, this.quadCam);

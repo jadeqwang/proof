@@ -70,6 +70,7 @@ export function casterMeshes(name, figs) {
   const [who, part] = name.split('.'); const f = figs[who]; if (!f) return [];
   const P = f.userData.P;
   if (part === 'handL' || part === 'handR') return P.hands[part.slice(-1)].group.children.slice();
+  if (part === 'all') { const out = []; f.traverse((o) => { if (o.isMesh) out.push(o); }); return out; }   // the whole figure (fl_hands stage-1 paint: his hand alone)
   // mesh bodies (engine/humanMesh.js, 2026-11-26): exactly the head and neck skin, hair (+ tufts, buns), brows and eyes;
   // the bounding-box test below also took a crouched child's bare arms (their mesh centre is near the head) and missed long hair
   if (part === 'head' && P.bodyMesh) { const out = []; f.traverse((o) => { if (!o.isMesh) return; const r = o.userData.bodyRegion, id = o.userData.idGroup || '';

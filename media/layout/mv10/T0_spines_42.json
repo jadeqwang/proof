@@ -1,0 +1,1940 @@
+{
+ "shot": "T0_spines_42",
+ "set": "mv10",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   2.8886,
+   0.935,
+   3.27
+  ],
+  "target": [
+   2.8886,
+   0.915,
+   4.22
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 10,
+  "matrixWorld": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.9998,
+   0.021,
+   0,
+   0,
+   0.021,
+   -0.9998,
+   0,
+   2.8886,
+   0.935,
+   3.27,
+   1
+  ],
+  "viewMatrix": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.9998,
+   0.021,
+   0,
+   0,
+   0.021,
+   -0.9998,
+   0,
+   2.8886,
+   -1.0036,
+   3.2496,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0101,
+   -1,
+   0,
+   0,
+   -0.1005,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "front_door": {
+   "px": [
+    [
+     1756.8,
+     1391.6
+    ],
+    [
+     2502.8,
+     1391.6
+    ],
+    [
+     2523.6,
+     -301.7
+    ],
+    [
+     1767.6,
+     -301.7
+    ]
+   ],
+   "world": [
+    [
+     3.85,
+     2.03,
+     0.075
+    ],
+    [
+     4.75,
+     2.03,
+     0.075
+    ],
+    [
+     4.75,
+     0,
+     0.075
+    ],
+    [
+     3.85,
+     0,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "living_room_window_wnw": {
+   "px": [
+    [
+     -936.6,
+     1408.1
+    ],
+    [
+     472.2,
+     1408.1
+    ],
+    [
+     468.5,
+     454.6
+    ],
+    [
+     -951,
+     454.6
+    ]
+   ],
+   "world": [
+    [
+     0.6,
+     2.05,
+     0.075
+    ],
+    [
+     2.3,
+     2.05,
+     0.075
+    ],
+    [
+     2.3,
+     0.9,
+     0.075
+    ],
+    [
+     0.6,
+     0.9,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "living_room_window_ssw": {
+   "px": [
+    [
+     -79325.7,
+     32307.3
+    ],
+    [
+     -3471.5,
+     2240.4
+    ],
+    [
+     -3535.8,
+     427.9
+    ],
+    [
+     -107389,
+     -864.3
+    ]
+   ],
+   "world": [
+    [
+     0.075,
+     2.05,
+     3.2
+    ],
+    [
+     0.075,
+     2.05,
+     1.6
+    ],
+    [
+     0.075,
+     0.9,
+     1.6
+    ],
+    [
+     0.075,
+     0.9,
+     3.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "sliding_glass_door_to_the_deck": {
+   "px": [
+    [
+     1105.2,
+     40.3
+    ],
+    [
+     1846.4,
+     40.3
+    ],
+    [
+     1840.7,
+     860.2
+    ],
+    [
+     1104.3,
+     860.2
+    ]
+   ],
+   "world": [
+    [
+     2.53,
+     2.03,
+     9.879
+    ],
+    [
+     0.7,
+     2.03,
+     9.879
+    ],
+    [
+     0.7,
+     0,
+     9.879
+    ],
+    [
+     2.53,
+     0,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "kitchen_window_over_the_sink_ese": {
+   "px": [
+    [
+     327.6,
+     32.2
+    ],
+    [
+     732.6,
+     32.2
+    ],
+    [
+     733.3,
+     437.4
+    ],
+    [
+     329.6,
+     437.4
+    ]
+   ],
+   "world": [
+    [
+     4.45,
+     2.05,
+     9.879
+    ],
+    [
+     3.45,
+     2.05,
+     9.879
+    ],
+    [
+     3.45,
+     1.05,
+     9.879
+    ],
+    [
+     4.45,
+     1.05,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "dining_window_ssw": {
+   "px": [
+    [
+     2459,
+     -110.3
+    ],
+    [
+     2984.7,
+     -318.7
+    ],
+    [
+     2972.1,
+     473.1
+    ],
+    [
+     2452.1,
+     475.9
+    ]
+   ],
+   "world": [
+    [
+     0.075,
+     2.05,
+     8.3
+    ],
+    [
+     0.075,
+     2.05,
+     7
+    ],
+    [
+     0.075,
+     0.95,
+     7
+    ],
+    [
+     0.075,
+     0.95,
+     8.3
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "tea_room_window_wnw": {
+   "px": [
+    [
+     5361.7,
+     1408.1
+    ],
+    [
+     7019.2,
+     1408.1
+    ],
+    [
+     7065.1,
+     454.6
+    ],
+    [
+     5395.1,
+     454.6
+    ]
+   ],
+   "world": [
+    [
+     8.2,
+     2.05,
+     0.075
+    ],
+    [
+     10.2,
+     2.05,
+     0.075
+    ],
+    [
+     10.2,
+     0.9,
+     0.075
+    ],
+    [
+     8.2,
+     0.9,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "tea_room_window_nne": {
+   "px": [
+    [
+     12364.8,
+     1904.8
+    ],
+    [
+     49342.9,
+     6511.8
+    ],
+    [
+     51839.1,
+     284.9
+    ],
+    [
+     12498.3,
+     438.7
+    ]
+   ],
+   "world": [
+    [
+     11.84,
+     2.05,
+     1.2
+    ],
+    [
+     11.84,
+     2.05,
+     2.8
+    ],
+    [
+     11.84,
+     0.9,
+     2.8
+    ],
+    [
+     11.84,
+     0.9,
+     1.2
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "bathroom_window_wnw": {
+   "px": [
+    [
+     3208.5,
+     1325.8
+    ],
+    [
+     3789,
+     1325.8
+    ],
+    [
+     3801.1,
+     787.9
+    ],
+    [
+     3218.1,
+     787.9
+    ]
+   ],
+   "world": [
+    [
+     5.6,
+     1.95,
+     0.075
+    ],
+    [
+     6.3,
+     1.95,
+     0.075
+    ],
+    [
+     6.3,
+     1.3,
+     0.075
+    ],
+    [
+     5.6,
+     1.3,
+     0.075
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  },
+  "bedroom_window_ese": {
+   "px": [
+    [
+     -2163.3,
+     32.2
+    ],
+    [
+     -1353.2,
+     32.2
+    ],
+    [
+     -1344.7,
+     498
+    ],
+    [
+     -2151.8,
+     498
+    ]
+   ],
+   "world": [
+    [
+     10.6,
+     2.05,
+     9.879
+    ],
+    [
+     8.6,
+     2.05,
+     9.879
+    ],
+    [
+     8.6,
+     0.9,
+     9.879
+    ],
+    [
+     10.6,
+     0.9,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "bedroom_window_nne": {
+   "px": [
+    [
+     -5151.7,
+     -277.6
+    ],
+    [
+     -3375.9,
+     -56.3
+    ],
+    [
+     -3356.9,
+     500.7
+    ],
+    [
+     -5114.1,
+     507.6
+    ]
+   ],
+   "world": [
+    [
+     11.84,
+     2.05,
+     7.2
+    ],
+    [
+     11.84,
+     2.05,
+     8.8
+    ],
+    [
+     11.84,
+     0.9,
+     8.8
+    ],
+    [
+     11.84,
+     0.9,
+     7.2
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  },
+  "bath_2_window_ese": {
+   "px": [
+    [
+     -299.8,
+     72.8
+    ],
+    [
+     -56.8,
+     72.8
+    ],
+    [
+     -54.7,
+     336.3
+    ],
+    [
+     -297.2,
+     336.3
+    ]
+   ],
+   "world": [
+    [
+     6,
+     1.95,
+     9.879
+    ],
+    [
+     5.4,
+     1.95,
+     9.879
+    ],
+    [
+     5.4,
+     1.3,
+     9.879
+    ],
+    [
+     6,
+     1.3,
+     9.879
+    ]
+   ],
+   "behind_camera": [
+    false,
+    false,
+    false,
+    false
+   ]
+  }
+ },
+ "heads": {},
+ "hands": {},
+ "lights": [
+  {
+   "name": "sun",
+   "kind": "the sun, 2010-10-02 16:30 PDT: elev 25.84 az 242.43 (pos: a point 30 m up the beam)",
+   "on": true,
+   "color": "#ffe2b0",
+   "world": [
+    -18.9046,
+    13.8758,
+    -11.7865
+   ],
+   "px": [
+    -2832.1,
+    2736.1
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.912,
+    0.41
+   ],
+   "toward_camera": 0.458,
+   "aim_world": [
+    3,
+    0.8,
+    4
+   ]
+  },
+  {
+   "name": "ceiling1",
+   "kind": "living room ceiling light (flush glass dome) (ASSUMED type and place)",
+   "on": false,
+   "color": "#ffd6a0",
+   "world": [
+    2.55,
+    2.38,
+    2.55
+   ],
+   "px": [
+    -243.5,
+    5621
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    0.955,
+    -0.296
+   ],
+   "toward_camera": 0.821
+  },
+  {
+   "name": "ceiling2",
+   "kind": "dining pendant (paper drum) (ASSUMED type and place)",
+   "on": false,
+   "color": "#ffd6a0",
+   "world": [
+    1.05,
+    1.52,
+    7.65
+   ],
+   "px": [
+    2082.8,
+    126.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.013,
+    -1
+   ],
+   "toward_camera": -0.512
+  },
+  {
+   "name": "ceiling3",
+   "kind": "kitchen ceiling light (flush glass dome) (ASSUMED type and place)",
+   "on": false,
+   "color": "#ffd6a0",
+   "world": [
+    3.35,
+    2.38,
+    7.45
+   ],
+   "px": [
+    663.4,
+    -445.2
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.246,
+    -0.969
+   ],
+   "toward_camera": -0.282
+  },
+  {
+   "name": "poi",
+   "kind": "fire poi (two moving flames; effective point between the circles)",
+   "on": false,
+   "color": "#ff7a20",
+   "world": [
+    6.3,
+    0.45,
+    15.6
+   ],
+   "px": [
+    222.6,
+    588.7
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.384,
+    -0.923
+   ],
+   "toward_camera": -0.485
+  }
+ ],
+ "warnings": [],
+ "intent": "Set reference for the book spines in cube 4,2 (spines.js, real editions' spine designs).",
+ "layout_set": "mv10",
+ "house": "345B View St, Mountain View (rebuilt from Jade’s drawings, 2026-11-25 (2))",
+ "space": "room",
+ "time": "reference",
+ "section": "Bridge",
+ "scene": {
+  "date": "2010-10-02",
+  "clock": "16:30",
+  "tz": "PDT",
+  "sun_elev_deg": 25.84,
+  "sun_az_deg": 242.43,
+  "sun_up": true,
+  "sunset": {
+   "time": "18:52",
+   "az": 266.09
+  },
+  "civil_dusk_end": {
+   "time": "19:17",
+   "az": 269.87
+  },
+  "date_note": "housewarming date unknown (\"likely fall 2010\", Jade): 2 Oct 2010 is OUR pick"
+ },
+ "light_state": {
+  "sun": true,
+  "ceiling": false,
+  "poi": false,
+  "sky": 1
+ },
+ "amplitude_pct": 100,
+ "sun_through_openings": {
+  "section": "bridge",
+  "time": "16:30",
+  "elev": 25.84,
+  "az": 242.43,
+  "openings": [
+   {
+    "name": "front door",
+    "frac": 1,
+    "by": {}
+   },
+   {
+    "name": "living room window (WNW)",
+    "frac": 0.91,
+    "by": {
+     "357 View St": 3
+    }
+   },
+   {
+    "name": "living room window (SSW)",
+    "frac": 0.2,
+    "by": {
+     "357 View St": 28
+    }
+   },
+   {
+    "name": "sliding glass door to the deck",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "kitchen window over the sink (ESE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "dining window (SSW)",
+    "frac": 0.71,
+    "by": {
+     "357 View St": 10
+    }
+   },
+   {
+    "name": "tea room window (WNW)",
+    "frac": 1,
+    "by": {}
+   },
+   {
+    "name": "tea room window (NNE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "bathroom window (WNW)",
+    "frac": 1,
+    "by": {}
+   },
+   {
+    "name": "bedroom window (ESE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "bedroom window (NNE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   },
+   {
+    "name": "bath 2 window (ESE)",
+    "frac": 0,
+    "by": "the sun is behind this wall"
+   }
+  ]
+ },
+ "sun_tests": {
+  "lemon_canopy_top": "sunlit",
+  "lemon_canopy_side_toward_house": "sunlit",
+  "expedit_top_centre": "shaded by ceiling",
+  "lawn_mid": "sunlit"
+ },
+ "footprints_world": {
+  "sun_rooms": {
+   "note": "sunlit shafts through each opening that sees the sun (fraction of the aperture lit, what blocks the rest); the shaft volumes are clipped by the room box and drawn in the beam masks",
+   "per_section": {
+    "bridge": {
+     "section": "bridge",
+     "time": "16:30",
+     "elev": 25.84,
+     "az": 242.43,
+     "openings": [
+      {
+       "name": "front door",
+       "frac": 1,
+       "by": {}
+      },
+      {
+       "name": "living room window (WNW)",
+       "frac": 0.91,
+       "by": {
+        "357 View St": 3
+       }
+      },
+      {
+       "name": "living room window (SSW)",
+       "frac": 0.2,
+       "by": {
+        "357 View St": 28
+       }
+      },
+      {
+       "name": "sliding glass door to the deck",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "kitchen window over the sink (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "dining window (SSW)",
+       "frac": 0.71,
+       "by": {
+        "357 View St": 10
+       }
+      },
+      {
+       "name": "tea room window (WNW)",
+       "frac": 1,
+       "by": {}
+      },
+      {
+       "name": "tea room window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bathroom window (WNW)",
+       "frac": 1,
+       "by": {}
+      },
+      {
+       "name": "bedroom window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bedroom window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bath 2 window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      }
+     ]
+    },
+    "verse3": {
+     "section": "verse3",
+     "time": "18:25",
+     "elev": 4.27,
+     "az": 261.98,
+     "openings": [
+      {
+       "name": "front door",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "living room window (WNW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "living room window (SSW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "sliding glass door to the deck",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "kitchen window over the sink (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "dining window (SSW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "tea room window (WNW)",
+       "frac": 0,
+       "by": {
+        "345A View St": 35
+       }
+      },
+      {
+       "name": "tea room window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bathroom window (WNW)",
+       "frac": 0,
+       "by": {
+        "357 View St": 35
+       }
+      },
+      {
+       "name": "bedroom window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bedroom window (NNE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      },
+      {
+       "name": "bath 2 window (ESE)",
+       "frac": 0,
+       "by": "the sun is behind this wall"
+      }
+     ]
+    }
+   }
+  },
+  "sun_yard": {
+   "note": "NOT masked: in the yard the sun is the shadow-mapped directional light in flat / lit; the analytic test (sunlit) gives the numbers in NOTES"
+  },
+  "poi_ground": {
+   "centre": [
+    6.3,
+    -0.7,
+    15.6
+   ],
+   "radius": 4.5,
+   "note": "falls off with distance; the light source of the silence and of the yard after sunset"
+  },
+  "ceiling": {
+   "note": "omni fixtures: no shaft and no mask; they fill the room they hang in"
+  }
+ },
+ "shelf": {
+  "model": "IKEA Expedit 5x5 (2010), espresso / black-brown",
+  "world": {
+   "centre_X": 3.595,
+   "front_Z": 4.220000000000001,
+   "spines_Z": 4.235,
+   "back_Z": 4.61,
+   "faces": "WNW (-Z)"
+  },
+  "outer_m": [
+   1.85,
+   1.85,
+   0.39
+  ],
+  "cube_m": 0.3372,
+  "seam_world_X": 3.595,
+  "seam_px": [
+   [
+    -983.1,
+    3056.3
+   ],
+   [
+    -1064.4,
+    -2138.9
+   ]
+  ],
+  "beauty_half": "LEFT as you face it = NNE (art and literature)",
+  "truth_half": "RIGHT as you face it = SSW (science fiction, textbooks, popular science)",
+  "cubes": [
+   {
+    "cube": "0,0",
+    "col": 0,
+    "row": 0,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      -3426.7,
+      2003.8
+     ],
+     [
+      -2491.4,
+      2003.8
+     ],
+     [
+      -2466.1,
+      2921.4
+     ],
+     [
+      -3394.6,
+      2921.4
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book lying flat)",
+     "(blank spine, untitled book lying flat)",
+     "(blank spine, untitled book lying flat)"
+    ]
+   },
+   {
+    "cube": "1,0",
+    "col": 1,
+    "row": 0,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      -2447,
+      2003.8
+     ],
+     [
+      -1511.6,
+      2003.8
+     ],
+     [
+      -1493.5,
+      2921.4
+     ],
+     [
+      -2422,
+      2921.4
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "2,0",
+    "col": 2,
+    "row": 0,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      -1467.2,
+      2003.8
+     ],
+     [
+      -531.8,
+      2003.8
+     ],
+     [
+      -520.9,
+      2921.4
+     ],
+     [
+      -1449.4,
+      2921.4
+     ]
+    ],
+    "contents": {
+     "left": [
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book lying flat)"
+     ],
+     "right": [
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)"
+     ]
+    }
+   },
+   {
+    "cube": "3,0",
+    "col": 3,
+    "row": 0,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      -487.5,
+      2003.8
+     ],
+     [
+      447.9,
+      2003.8
+     ],
+     [
+      451.7,
+      2921.4
+     ],
+     [
+      -476.8,
+      2921.4
+     ]
+    ],
+    "contents": [
+     "Firefox fox figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,0",
+    "col": 4,
+    "row": 0,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      492.3,
+      2003.8
+     ],
+     [
+      1427.7,
+      2003.8
+     ],
+     [
+      1424.3,
+      2921.4
+     ],
+     [
+      495.7,
+      2921.4
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book lying flat)",
+     "(blank spine, untitled book lying flat)"
+    ]
+   },
+   {
+    "cube": "0,1",
+    "col": 0,
+    "row": 1,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      -3460.9,
+      1028
+     ],
+     [
+      -2518.3,
+      1028
+     ],
+     [
+      -2492.6,
+      1959.9
+     ],
+     [
+      -3428.3,
+      1959.9
+     ]
+    ],
+    "contents": [
+     "PostgreSQL elephant (Slonik) figurine"
+    ]
+   },
+   {
+    "cube": "1,1",
+    "col": 1,
+    "row": 1,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      -2473.5,
+      1028
+     ],
+     [
+      -1530.9,
+      1028
+     ],
+     [
+      -1512.5,
+      1959.9
+     ],
+     [
+      -2448.2,
+      1959.9
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)"
+    ]
+   },
+   {
+    "cube": "2,1",
+    "col": 2,
+    "row": 1,
+    "kind": "objects",
+    "half": "split",
+    "px": [
+     [
+      -1486.1,
+      1028
+     ],
+     [
+      -543.5,
+      1028
+     ],
+     [
+      -532.4,
+      1959.9
+     ],
+     [
+      -1468.1,
+      1959.9
+     ]
+    ],
+    "contents": [
+     "candle"
+    ]
+   },
+   {
+    "cube": "3,1",
+    "col": 3,
+    "row": 1,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      -498.7,
+      1028
+     ],
+     [
+      443.9,
+      1028
+     ],
+     [
+      447.7,
+      1959.9
+     ],
+     [
+      -488,
+      1959.9
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)"
+    ]
+   },
+   {
+    "cube": "4,1",
+    "col": 4,
+    "row": 1,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      488.7,
+      1028
+     ],
+     [
+      1431.3,
+      1028
+     ],
+     [
+      1427.9,
+      1959.9
+     ],
+     [
+      492.1,
+      1959.9
+     ]
+    ],
+    "contents": [
+     "Tux (Linux penguin) figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "0,2",
+    "col": 0,
+    "row": 2,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      -3495.7,
+      36.9
+     ],
+     [
+      -2545.6,
+      36.9
+     ],
+     [
+      -2519.5,
+      983.4
+     ],
+     [
+      -3462.5,
+      983.4
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book lying flat)",
+     "(blank spine, untitled book lying flat)",
+     "(blank spine, untitled book lying flat)",
+     "(blank spine, untitled book lying flat)"
+    ]
+   },
+   {
+    "cube": "1,2",
+    "col": 1,
+    "row": 2,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      -2500.5,
+      36.9
+     ],
+     [
+      -1550.4,
+      36.9
+     ],
+     [
+      -1531.7,
+      983.4
+     ],
+     [
+      -2474.7,
+      983.4
+     ]
+    ],
+    "contents": [
+     "Firefox fox figurine"
+    ]
+   },
+   {
+    "cube": "2,2",
+    "col": 2,
+    "row": 2,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      -1505.3,
+      36.9
+     ],
+     [
+      -555.3,
+      36.9
+     ],
+     [
+      -544,
+      983.4
+     ],
+     [
+      -1487,
+      983.4
+     ]
+    ],
+    "contents": {
+     "left": [
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)"
+     ],
+     "right": [
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)"
+     ]
+    }
+   },
+   {
+    "cube": "3,2",
+    "col": 3,
+    "row": 2,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      -510.2,
+      36.9
+     ],
+     [
+      439.9,
+      36.9
+     ],
+     [
+      443.8,
+      983.4
+     ],
+     [
+      -499.3,
+      983.4
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,2",
+    "col": 4,
+    "row": 2,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      485,
+      36.9
+     ],
+     [
+      1435,
+      36.9
+     ],
+     [
+      1431.5,
+      983.4
+     ],
+     [
+      488.5,
+      983.4
+     ]
+    ],
+    "contents": [
+     "The Dragons of Eden",
+     "A Short History of Nearly Everything",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)"
+    ]
+   },
+   {
+    "cube": "0,3",
+    "col": 0,
+    "row": 3,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      -3530.9,
+      -969.9
+     ],
+     [
+      -2573.3,
+      -969.9
+     ],
+     [
+      -2546.8,
+      -8.4
+     ],
+     [
+      -3497.2,
+      -8.4
+     ]
+    ],
+    "contents": [
+     "candle",
+     "candle"
+    ]
+   },
+   {
+    "cube": "1,3",
+    "col": 1,
+    "row": 3,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      -2527.9,
+      -969.9
+     ],
+     [
+      -1570.3,
+      -969.9
+     ],
+     [
+      -1551.3,
+      -8.4
+     ],
+     [
+      -2501.7,
+      -8.4
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)"
+    ]
+   },
+   {
+    "cube": "2,3",
+    "col": 2,
+    "row": 3,
+    "kind": "objects",
+    "half": "split",
+    "px": [
+     [
+      -1524.9,
+      -969.9
+     ],
+     [
+      -567.3,
+      -969.9
+     ],
+     [
+      -555.8,
+      -8.4
+     ],
+     [
+      -1506.2,
+      -8.4
+     ]
+    ],
+    "contents": [
+     "BSD daemon figurine"
+    ]
+   },
+   {
+    "cube": "3,3",
+    "col": 3,
+    "row": 3,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      -521.8,
+      -969.9
+     ],
+     [
+      435.8,
+      -969.9
+     ],
+     [
+      439.7,
+      -8.4
+     ],
+     [
+      -510.7,
+      -8.4
+     ]
+    ],
+    "contents": [
+     "Principles of Neural Science (4th ed.)",
+     "Fundamental Neuroscience (3rd ed.)",
+     "Theoretical Neuroscience",
+     "Nonlinear Dynamics and Chaos",
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
+    ]
+   },
+   {
+    "cube": "4,3",
+    "col": 4,
+    "row": 3,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      481.2,
+      -969.9
+     ],
+     [
+      1438.8,
+      -969.9
+     ],
+     [
+      1435.2,
+      -8.4
+     ],
+     [
+      484.8,
+      -8.4
+     ]
+    ],
+    "contents": [
+     "GNU figurine"
+    ]
+   },
+   {
+    "cube": "0,4",
+    "col": 0,
+    "row": 4,
+    "kind": "books",
+    "half": "beauty",
+    "px": [
+     [
+      -3566.8,
+      -1992.8
+     ],
+     [
+      -2601.5,
+      -1992.8
+     ],
+     [
+      -2574.6,
+      -1015.9
+     ],
+     [
+      -3532.5,
+      -1015.9
+     ]
+    ],
+    "contents": [
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)"
+    ]
+   },
+   {
+    "cube": "1,4",
+    "col": 1,
+    "row": 4,
+    "kind": "objects",
+    "half": "beauty",
+    "px": [
+     [
+      -2555.7,
+      -1992.8
+     ],
+     [
+      -1590.5,
+      -1992.8
+     ],
+     [
+      -1571.2,
+      -1015.9
+     ],
+     [
+      -2529.2,
+      -1015.9
+     ]
+    ],
+    "contents": [
+     "ceramic polar bear"
+    ]
+   },
+   {
+    "cube": "2,4",
+    "col": 2,
+    "row": 4,
+    "kind": "books",
+    "half": "split",
+    "px": [
+     [
+      -1544.7,
+      -1992.8
+     ],
+     [
+      -579.5,
+      -1992.8
+     ],
+     [
+      -567.8,
+      -1015.9
+     ],
+     [
+      -1525.8,
+      -1015.9
+     ]
+    ],
+    "contents": {
+     "left": [
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)"
+     ],
+     "right": [
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)",
+      "(blank spine, untitled book)"
+     ]
+    }
+   },
+   {
+    "cube": "3,4",
+    "col": 3,
+    "row": 4,
+    "kind": "objects",
+    "half": "truth",
+    "px": [
+     [
+      -533.7,
+      -1992.8
+     ],
+     [
+      431.6,
+      -1992.8
+     ],
+     [
+      435.6,
+      -1015.9
+     ],
+     [
+      -522.4,
+      -1015.9
+     ]
+    ],
+    "contents": [
+     "Tux (Linux penguin) figurine",
+     "candle"
+    ]
+   },
+   {
+    "cube": "4,4",
+    "col": 4,
+    "row": 4,
+    "kind": "books",
+    "half": "truth",
+    "px": [
+     [
+      477.4,
+      -1992.8
+     ],
+     [
+      1442.6,
+      -1992.8
+     ],
+     [
+      1439,
+      -1015.9
+     ],
+     [
+      481,
+      -1015.9
+     ]
+    ],
+    "contents": [
+     "The Feynman Lectures on Physics, Vol. I",
+     "The Feynman Lectures on Physics, Vol. II",
+     "The Feynman Lectures on Physics, Vol. III",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)",
+     "(blank spine, untitled book)"
+    ]
+   }
+  ],
+  "spines_note": "Only the lettered spines (Jade’s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition’s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
+ },
+ "expedit_2x2": {
+  "world": {
+   "X": [
+    1.9099999999999997,
+    2.3
+   ],
+   "Z": [
+    4.605,
+    5.395
+   ],
+   "faces": "SSW (-X)"
+  },
+  "printer_on_top": true,
+  "px": [
+   2159.8,
+   553.2
+  ]
+ },
+ "lemon_tree_px": [
+  -377.1,
+  176.7
+ ],
+ "poi_px": [
+  222.6,
+  588.7
+ ],
+ "opening_px": [
+  3827.8,
+  383.5
+ ],
+ "gaze": {},
+ "costume": {},
+ "holds": [],
+ "figure_frame_fraction": {},
+ "colour_separation": [],
+ "figure_report": {}
+}

@@ -1698,10 +1698,10 @@
     "contents": [
      "Principles of Neural Science (4th ed.)",
      "Fundamental Neuroscience (3rd ed.)",
-     "(blank spine, untitled book)",
+     "Theoretical Neuroscience",
      "Nonlinear Dynamics and Chaos",
-     "(blank spine, untitled book)",
-     "(blank spine, untitled book)"
+     "Spikes: Exploring the Neural Code",
+     "Molecular Biology of the Cell"
     ]
    },
    {
@@ -1899,7 +1899,7 @@
     ]
    }
   ],
-  "spines_note": "Only Jade’s six titles carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
+  "spines_note": "Only the lettered spines (Jade’s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition’s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: \"Leave the rest blank\"). Paint no words on them."
  },
  "expedit_2x2": {
   "world": {

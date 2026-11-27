@@ -158,8 +158,8 @@
  "hands": {
   "girl.L": {
    "px": [
-    -1884,
-    7887.7
+    -1869.5,
+    7802.9
    ],
    "shape": "flat",
    "in_frame": false,
@@ -284,7 +284,7 @@
   }
  ],
  "warnings": [
-  "wrist: girl L hand turned 12 deg toward the forearm to keep the wrist in range (was flex -56.7, radial -38.4)",
+  "wrist: girl L hand turned 17.8 deg toward the forearm to keep the wrist in range (was flex -55.2, radial -41.5)",
   "wrist: girl R hand turned 16 deg toward the forearm to keep the wrist in range (was flex -26.9, radial 33.9)",
   "wrist: boy L hand turned 31.3 deg toward the forearm to keep the wrist in range (was flex -13.4, radial 51.7)",
   "wrist: dad R hand turned 16.3 deg toward the forearm to keep the wrist in range (was flex 1.9, radial 40.7)"
@@ -1313,10 +1313,10 @@
      "shape": "flat",
      "world": [
       0,
-      0.52,
+      0.527,
       -0.95
      ],
-     "look_off_deg": 73.7
+     "look_off_deg": 73.9
     }
    ],
    "warnings": [],
@@ -1514,16 +1514,16 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -42.6,
-    "radial_deg": -28.2,
-    "twist_deg": -22.4,
-    "elbow_flex_deg": 47.9,
+    "flex_deg": -34.4,
+    "radial_deg": -25.7,
+    "twist_deg": -26.4,
+    "elbow_flex_deg": 54.8,
     "before": {
-     "flex_deg": -56.7,
-     "radial_deg": -38.4,
-     "twist_deg": -16.8
+     "flex_deg": -55.2,
+     "radial_deg": -41.5,
+     "twist_deg": -17.5
     },
-    "hand_turned_deg": 12,
+    "hand_turned_deg": 17.8,
     "out_of_range": [],
     "grip_reversed": false
    },
@@ -2188,11 +2188,11 @@
      "reach": 0.4
     },
     "R": {
-     "reach": 0.78
+     "reach": 0.76
     }
    },
    "arms": {
-    "L": 0.92,
+    "L": 0.89,
     "R": 0.86
    },
    "headTurn": 22,
@@ -2202,7 +2202,7 @@
     "face": "blank",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 50,
+     "elbow_bend_deg": 56,
      "upperarm_stretch": 1.17,
      "forearm_stretch": 0.92,
      "hand_scale": 0.96
@@ -2213,9 +2213,9 @@
      "forearm_stretch": 0.92,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 16.9,
-    "sole_shift_mm_R": 16.9,
-    "sole_lowest_y_m": 0.3206
+    "sole_shift_mm_L": 23.5,
+    "sole_shift_mm_R": 23.5,
+    "sole_lowest_y_m": 0.3286
    }
   },
   "boy": {
@@ -2249,8 +2249,8 @@
      "forearm_stretch": 1.02,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 11.5,
-    "sole_shift_mm_R": 11.5,
+    "sole_shift_mm_L": 18,
+    "sole_shift_mm_R": 18,
     "sole_lowest_y_m": -0.001
    }
   },
@@ -2285,8 +2285,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 20.9,
-    "sole_shift_mm_R": 20.9,
+    "sole_shift_mm_L": 31.6,
+    "sole_shift_mm_R": 31.6,
     "sole_lowest_y_m": 0.016
    }
   },
@@ -2321,8 +2321,8 @@
      "forearm_stretch": 1.05,
      "hand_scale": 1
     },
-    "sole_shift_mm_L": 6.7,
-    "sole_shift_mm_R": 6.7,
+    "sole_shift_mm_L": 15.6,
+    "sole_shift_mm_R": 15.6,
     "sole_lowest_y_m": 0.0042
    }
   }

@@ -1020,3 +1020,9 @@ low in the lap or close in front of the chest, elbows bent and down.
   check_bodies: V1d_1, V1d_2, V1d_4, V1d_8, REF_V1d_2_side PASS (hair bit 5.3 mm into the hair in REF, as in V1c / V1e).
 - Rendered: all three passes for the set; only V1d_2, beam_V1d_2 and REF_V1d_2_side files kept (the other shots'
   images differed only by anti-aliasing noise on the drift and were restored from git). Needs repaint: V1d_2.
+
+## 2026-11-27: engine cross-legged pose (engine agent)
+- legs 'cross' redone engine-wide from reference photos. jade3 at her sitting spot now has her RIGHT shin in front
+  (shots.js X_SIT = { front: 'R' }, jadeSit and ripSit): with the default (left in front) her crossed foot was 23 mm
+  into the coffee table in V1d_2 / REF_V1d_2_side. Paper drift contact went 21.9 -> 4.4 mm.
+- Pre-existing, slightly deeper: V1a / V1b jade3 vs uncle body overlap (skin 15.5 -> 23 mm). Feet are real size now.

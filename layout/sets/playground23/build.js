@@ -360,7 +360,7 @@ export const NAMED = { mote: MOTE.hero, moteExit: MOTE.exit, moteAfter: MOTE.aft
   meetJade: HANDS_MEET.jade_girl, meetDad: HANDS_MEET.dad_boy,
   // r5 climb targets: the children's look points (up the ramp / along the top), the free hands on the body's top corner
   girlLook: [0.05, 0.7, -1.35], boyLook: [-0.7, 0.68, -1.5],
-  girlHandOn: [0.0, 0.52, -0.95], boyHandOn: [-0.62, 0.546, -1.09] };   // palm centres ~1.5 cm over the ramp / (r6) the cabin's rim
+  girlHandOn: [0.0, 0.527, -0.95],   /* 2026-11-27 y 0.52 -> 0.527: the fingertips (skin now to the tip pad) were 7 mm into the rim */ boyHandOn: [-0.62, 0.546, -1.09] };   // palm centres ~1.5 cm over the ramp / (r6) the cabin's rim
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p);
 
 let PATCH = null;

@@ -30,6 +30,12 @@ First love's hair colour (Jade 2026-11-26 round 5: "Darker ... match the color o
 (`cast/first_love/fl_B_backhead_neck_v8`). The base is tuned on the render (lit pass under neutral light hue ~20, sat
 0.30, like the sheet); warm lamps still warm it, so painters follow the sheet, not the guide.
 
+First love's trousers (Jade 2026-11-26: "let's put first love in black pants in every scene, it feels more like him.
+(normal black slacks)"): plain black slacks (dress trousers: straight leg, belt loops, a slight crease) at both ages and
+in every set, `FL_SLACKS` 0x1c1c1e in `_cast.js` (a touch off pure black so folds read). They replace the old jeans
+(dark indigo at 27, light-blue loose frayed jeans at 19). Tops, sandals and socks are unchanged. The engine has one
+trouser garment (the jeans mesh), so the guide changes colour only; the painter prompts carry the "slacks" wording.
+
 Rules
 - One person, one height. Mama's three variants are built from the engine's `mama` (`mamaAs()` in `_cast.js`), so her
   height exists once; the two first-love keys share `FIRST_LOVE_H`.

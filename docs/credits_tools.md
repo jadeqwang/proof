@@ -83,7 +83,9 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
 - **NASA insignia** ("meatball", 1959, James Modarelli; public domain, US government work), from Wikimedia Commons
   `File:NASA_logo.svg`: the canonical decal on Jade's jacket (`layout/assets/art/logos/nasa_meatball.png`, 2026-11-26).
 - **Fonts**: DejaVu Sans, Liberation Sans/Serif (book spines, alphabet letters, clock faces), Droid Sans Fallback
-  (Shanghai calligraphy scrolls and calendar), drawn in code on canvases.
+  (Shanghai calligraphy scrolls and calendar), drawn in code on canvases. The mv10 textbook spines (2026-11-27) also use
+  the URW base-35 fonts (URW++ / Artifex, AGPL with font exception) P052, C059, Z003, Nimbus Sans, Nimbus Sans Narrow and
+  Nimbus Roman, and Liberation Sans Narrow, as the system has them.
 - **FFmpeg**: frame grabs from Jade's earlier film *Moongazing* for reference (the Sagan ring, 2026-11-26).
 
 ## Planned / in progress (move up once used)

@@ -2619,8 +2619,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 20.5,
-    "sole_shift_mm_R": 20.5,
+    "sole_shift_mm_L": 31.2,
+    "sole_shift_mm_R": 31.2,
     "sole_lowest_y_m": 0
    }
   }

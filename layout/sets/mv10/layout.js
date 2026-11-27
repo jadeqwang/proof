@@ -177,7 +177,8 @@ const SH_CX = 0;   // the shelf's own frame (centre 0); its place in the room is
 // fiction shelved with truth"): science fiction, textbooks, popular science. The middle column (col 2) straddles the
 // seam: its three book cubes are split, art / literature from the left wall, science from the right wall.
 // Book entries: t title, a author, w thickness (spine width), h height, d depth (front-back), lay 'stand' | 'flat'.
-// Real sizes where known (Kandel's Principles ~28 x 22 x 6 cm, Jade's number); others are typical for the format:
+// Real sizes where known: the textbooks and the two named popular books are their real editions' sizes (2026-11-27,
+//   publisher / Amazon listings: NOTES.md 2026-11-27; Kandel 4th ed. 27.9 x 22.2 x 5.3 cm (2026-11-27, was 29.2), near Jade's ~28 x 22 x 6); others are typical for the format:
 //   mass-market paperback 17.5 x 10.6 cm, trade paperback ~21 x 14, hardcover novel ~24 x 16, large art book ~31 x 25.
 // Titles Jade named: Fundamental Neuroscience; Principles of Neural Science; Nonlinear Dynamics and Chaos; The Feynman
 // Lectures on Physics I-III; The Dragons of Eden; A Short History of Nearly Everything. Every OTHER title is a
@@ -219,19 +220,19 @@ const BOOKS = {
       { t: 'Chaos: Making a New Science', a: 'James Gleick', w: 0.03, h: 0.2, d: 0.13, kind: 'popular science' }, { t: 'The Blind Watchmaker', a: 'Richard Dawkins', w: 0.025, h: 0.2, d: 0.13, kind: 'popular science' }] },
   // ---- TRUTH (right half): science fiction, textbooks, popular science
   // eye height (row 4): the Feynman set, a matched run of three, with science-fiction paperbacks beside it
-  '4,4': [{ t: 'The Feynman Lectures on Physics, Vol. I', a: 'Feynman, Leighton, Sands', w: 0.035, h: 0.28, d: 0.215, kind: 'textbook (matched set of three)' },
-    { t: 'The Feynman Lectures on Physics, Vol. II', a: 'Feynman, Leighton, Sands', w: 0.035, h: 0.28, d: 0.215, kind: 'textbook (matched set of three)' },
-    { t: 'The Feynman Lectures on Physics, Vol. III', a: 'Feynman, Leighton, Sands', w: 0.035, h: 0.28, d: 0.215, kind: 'textbook (matched set of three)' },
+  '4,4': [{ t: 'The Feynman Lectures on Physics, Vol. I', a: 'Feynman, Leighton, Sands', w: 0.024, h: 0.285, d: 0.222, kind: 'textbook (matched set of three)' },
+    { t: 'The Feynman Lectures on Physics, Vol. II', a: 'Feynman, Leighton, Sands', w: 0.024, h: 0.285, d: 0.222, kind: 'textbook (matched set of three)' },
+    { t: 'The Feynman Lectures on Physics, Vol. III', a: 'Feynman, Leighton, Sands', w: 0.021, h: 0.285, d: 0.222, kind: 'textbook (matched set of three)' },
     mm('Ender’s Game', 'Orson Scott Card', 0.022), mm('Hyperion', 'Dan Simmons', 0.03), mm('Do Androids Dream of Electric Sheep?', 'Philip K. Dick', 0.016),
     mm('Solaris', 'Stanisław Lem', 0.018), mm('Rendezvous with Rama', 'Arthur C. Clarke', 0.02), mm('The Dispossessed', 'Ursula K. Le Guin', 0.022)],
-  '3,3': [{ t: 'Principles of Neural Science (4th ed.)', a: 'Kandel, Schwartz, Jessell', w: 0.06, h: 0.28, d: 0.22, kind: 'textbook' },
-    { t: 'Fundamental Neuroscience (3rd ed.)', a: 'Squire et al.', w: 0.055, h: 0.28, d: 0.22, kind: 'textbook' },
-    { t: 'Theoretical Neuroscience', a: 'Dayan & Abbott', w: 0.035, h: 0.255, d: 0.205, kind: 'textbook' },
-    { t: 'Nonlinear Dynamics and Chaos', a: 'Steven H. Strogatz', w: 0.03, h: 0.235, d: 0.155, kind: 'textbook' },
-    { t: 'Spikes: Exploring the Neural Code', a: 'Rieke et al.', w: 0.025, h: 0.235, d: 0.155, kind: 'textbook' },
-    { t: 'Molecular Biology of the Cell', a: 'Alberts et al.', w: 0.065, h: 0.28, d: 0.22, kind: 'textbook' }],
-  '4,2': [{ t: 'The Dragons of Eden', a: 'Carl Sagan', w: 0.02, h: 0.175, d: 0.106, kind: 'popular science (mass-market)' },
-    { t: 'A Short History of Nearly Everything', a: 'Bill Bryson', w: 0.035, h: 0.203, d: 0.133, kind: 'popular science' },
+  '3,3': [{ t: 'Principles of Neural Science (4th ed.)', a: 'Kandel, Schwartz, Jessell', w: 0.053, h: 0.279, d: 0.222, kind: 'textbook' },   // 2026-11-27: 27.9 cm (was 29.2, Amazon's 11.5 in): library records give 29 cm (AACR2 rounds UP), Open Library 10.9 x 9 in
+    { t: 'Fundamental Neuroscience (3rd ed.)', a: 'Squire et al.', w: 0.051, h: 0.286, d: 0.229, kind: 'textbook' },
+    { t: 'Theoretical Neuroscience', a: 'Dayan & Abbott', w: 0.022, h: 0.254, d: 0.197, kind: 'textbook' },
+    { t: 'Nonlinear Dynamics and Chaos', a: 'Steven H. Strogatz', w: 0.025, h: 0.234, d: 0.152, kind: 'textbook' },
+    { t: 'Spikes: Exploring the Neural Code', a: 'Rieke et al.', w: 0.02, h: 0.229, d: 0.178, kind: 'textbook' },
+    { t: 'Molecular Biology of the Cell', a: 'Alberts et al.', w: 0.051, h: 0.279, d: 0.222, kind: 'textbook' }],
+  '4,2': [{ t: 'The Dragons of Eden', a: 'Carl Sagan', w: 0.019, h: 0.171, d: 0.106, kind: 'popular science (mass-market)' },
+    { t: 'A Short History of Nearly Everything', a: 'Bill Bryson', w: 0.032, h: 0.203, d: 0.133, kind: 'popular science' },
     { t: 'Surely You’re Joking, Mr. Feynman!', a: 'Richard P. Feynman', w: 0.025, h: 0.2, d: 0.13, kind: 'popular science' },
     { t: 'The Elegant Universe', a: 'Brian Greene', w: 0.03, h: 0.2, d: 0.13, kind: 'popular science' },
     { t: 'A Brief History of Time', a: 'Stephen Hawking', w: 0.018, h: 0.2, d: 0.13, kind: 'popular science' },
@@ -248,6 +249,19 @@ const BOOKS = {
     mm('Accelerando', 'Charles Stross', 0.026), mm('Permutation City', 'Greg Egan', 0.022), mm('Contact', 'Carl Sagan', 0.026),
     { ...mm('Dune (a second, battered copy)', 'Frank Herbert', 0.035), lay: 'flat' }, { ...mm('The Foundation Trilogy', 'Isaac Asimov', 0.04), lay: 'flat' }],
 };
+// 2026-11-27 (book heights vs the cube): the untitled fillers were two uniform blocks (every trade paperback 20 x 13 cm,
+// every mass-market 17.5 x 10.6). Each now takes one real format, picked by a fixed hash of its title (so it never
+// changes between builds). Trade paperbacks: Vintage / Anchor 20.3 x 13.2, Penguin 19.8 x 12.9, Harper Perennial
+// 20.3 x 13.5, Picador / Scribner 21.0 x 13.8, Bantam / Dell trade 20.0 x 13.3 cm. Mass-market: Bantam / Ace 17.5 x 10.6,
+// Tor 17.1 x 10.6, Del Rey / Ballantine 17.4 x 10.7, Penguin / Pan (UK) 17.8 x 11.0 cm. Typical trade dimensions, not
+// measured editions (these titles are our placeholders). Thicknesses (w) unchanged, so every run is as wide as before.
+const fnv = (s) => { let h = 2166136261; for (const ch of s) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return (h >>> 0) / 4294967296; };
+const TRADE = [[0.203, 0.132], [0.198, 0.129], [0.203, 0.135], [0.21, 0.138], [0.2, 0.133]];
+const MASS = [[0.175, 0.106], [0.171, 0.106], [0.174, 0.107], [0.178, 0.11]];
+for (const v of Object.values(BOOKS)) for (const b of (Array.isArray(v) ? v : [...v.left, ...v.right])) {
+  const F = b.h === 0.2 && b.d === 0.13 ? TRADE : b.h === 0.175 && b.d === 0.106 ? MASS : null;
+  if (F) [b.h, b.d] = F[Math.floor(fnv(b.t) * F.length)];
+}
 // OBJECTS in the twelve other cubes (Jade: candles, a ceramic polar bear, figurines of open-source mascots). One to
 // three small things per cube, the back wall and the cube's sides visible round them. The candles are UNLIT (Jade).
 // Which mascots, how many candles and which cube holds what are OUR picks.

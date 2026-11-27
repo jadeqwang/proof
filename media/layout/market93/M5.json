@@ -7511,8 +7511,8 @@
      "forearm_stretch": 1.01,
      "hand_scale": 0.97
     },
-    "sole_shift_mm_L": 14.1,
-    "sole_shift_mm_R": 14.1,
+    "sole_shift_mm_L": 22.6,
+    "sole_shift_mm_R": 22.6,
     "sole_lowest_y_m": 0.0186
    }
   },
@@ -7547,8 +7547,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
     "sole_lowest_y_m": 0.0321
    }
   },
@@ -7583,8 +7583,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 23,
-    "sole_shift_mm_R": 23,
+    "sole_shift_mm_L": 33.4,
+    "sole_shift_mm_R": 33.4,
     "sole_lowest_y_m": 0.028
    }
   }

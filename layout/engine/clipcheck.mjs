@@ -123,7 +123,7 @@ export function checkDump(D) {
       if (!ok) res.fails.push(`${a} into ${b}: skin ${hh.max_mm} mm / cloth ${hs.max_mm} mm`); }
     if (grip.length) { const gd = depthInBody(B, grip), gh = gd.skin, gs = gd.cloth, g0 = B.allCol ? gap(B.allCol, grip) : null;
       const ok = gh.max_mm <= HARD_MM && gs.max_mm <= SOFT_MM && g0 != null && g0 <= 0.003;
-      res.grips.push({ hand: `${a}.${gripArms.join('')}`, on: b, contact_gap_mm: g0 == null ? null : +(g0 * 1000).toFixed(1), into_skin_mm: gh.max_mm, into_cloth_mm: gs.max_mm, pass: ok });
+      res.grips.push({ hand: `${a}.${gripArms.join('')}`, on: b, contact_gap_mm: g0 == null ? null : +(g0 * 1000).toFixed(1), into_skin_mm: gh.max_mm, into_cloth_mm: gs.max_mm, skin_at: gh.at, pass: ok });
       if (!ok) res.fails.push(`grip ${a} on ${b}: gap ${g0 == null ? '?' : (g0 * 1000).toFixed(1)} mm, skin ${gh.max_mm}, cloth ${gs.max_mm}`); } }
   // ---- touches asked for by the shot
   for (const [hand, label] of clip.touch || []) { const [who, part] = hand.split('.'); const f = F[who]; if (!f) continue; const n = part.slice(-1), pts = f.handPts[n] || [];
@@ -144,7 +144,7 @@ export async function openClipPage(set, body = 'mesh') {
   const server = await serve(0), port = server.address().port;   // port 0: the OS picks a free one (searches run side by side)
   const browser = await chromium.launch({ executablePath: process.env.CHROME || '/opt/google/chrome/chrome', args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--disable-gpu-sandbox'] });
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } }); page.on('pageerror', (e) => console.error('[pageerror]', e.message));
-  await page.goto(`http://127.0.0.1:${port}/index.html?set=${set}&w=1920&h=1080&gaze=1&body=${body === 'mesh' ? 'mesh' : 'mannequin'}`);
+  await page.goto(`http://127.0.0.1:${port}/index.html?set=${set}&w=1920&h=1080&gaze=1&body=${body === 'mesh' ? 'mesh' : 'mannequin'}${process.env.PROOF_HANDMARK ? '&handmark=' + process.env.PROOF_HANDMARK : ''}`);   // PROOF_HANDMARK=0: hand marks off (comparison)
   await page.waitForFunction(() => window.__ready !== undefined || window.__error, null, { timeout: 120000 });
   const err = await page.evaluate(async () => { try { await window.__ready; return window.__error || null; } catch (e) { return window.__error || String(e); } }); if (err) { await browser.close(); server.close(); throw new Error(err); }
   return { page, close: async () => { await browser.close(); server.close(); } };

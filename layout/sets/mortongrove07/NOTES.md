@@ -524,3 +524,11 @@ open wall space." Ceiling unchanged (5.10 m, one plane from 2.44 m at the dining
 - MG1 / MG1_end / MG2 / MG2_end do not see the mirror (they face south): pixel-identical to HEAD (ImageMagick AE 0).
 - Checks: clipcheck / holdcheck on MG_wide, REF_east, REF_north: the same pre-existing items as r5 (couch 84 mm cloth,
   rug 6 mm, folded hoodie, MG2 pinch); nothing new. Rendered three passes.
+
+## 2026-11-26: first love in black slacks
+- Jade: "let's put first love in black pants in every scene, it feels more like him. (normal black slacks)". His legs are
+  now plain black dress trousers at both ages: `FL_SLACKS` 0x1c1c1e in `../_cast.js` (firstLove19 / firstLove27), a touch
+  off pure black so the folds read. Tops, socks and sandals unchanged. The engine has one trouser garment (the MakeHuman
+  jeans mesh) and no slacks-vs-jeans shape option, so the guide changes colour only; painter prompts carry
+  `r4lib.FL_SLACKS` ("plain black slacks (dress trousers) ... NOT jeans").
+- Re-rendered (all modes + beam_ masks) and re-checked; prompts regenerated (r4 _make.py).

@@ -32,7 +32,7 @@ try {
   const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   page.on('console', (m) => { if (['error', 'warning'].includes(m.type()) && !/GPU stall|swiftshader|WebGL/i.test(m.text())) console.error('[page]', m.text()); });
   page.on('pageerror', (e) => console.error('[pageerror]', e.message));
-  await page.goto(`http://127.0.0.1:${port}/index.html?set=${SET}&w=${W}&h=${H}&gaze=${GAZE ? 1 : 0}${BODY2 ? '&body2=1' : ''}&body=${BODY === 'mesh' ? 'mesh' : 'mannequin'}`);
+  await page.goto(`http://127.0.0.1:${port}/index.html?set=${SET}&w=${W}&h=${H}&gaze=${GAZE ? 1 : 0}${BODY2 ? '&body2=1' : ''}&body=${BODY === 'mesh' ? 'mesh' : 'mannequin'}${args.handfit !== undefined ? '&handfit=' + args.handfit : ''}${args.handmark !== undefined ? '&handmark=' + args.handmark : ''}${args.websmooth !== undefined ? '&websmooth=' + args.websmooth : ''}`);
   await page.waitForFunction(() => window.__ready !== undefined || window.__error, null, { timeout: 120000 });
   const err = await page.evaluate(async () => { try { await window.__ready; return window.__error || null; } catch (e) { return window.__error || String(e); } });
   if (err) throw new Error(err);

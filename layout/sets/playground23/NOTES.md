@@ -293,3 +293,7 @@ and have seats the way it does in the photo"; "You in socks or sneakers? Socks".
   PG2_plate and REF_cabin "no object at the hand" because the figures are hidden (as before). check_bodies: eyes all
   OK; the only body-body overlaps are the two clasps and Dad vs his worn backpack (as before). Pre-existing, not fixed:
   the girl's left toes ~19 mm into the ramp's black padded frame (foam; clipcheck treats the ramp as a sheet).
+
+## 2026-11-27: real-size feet / hands (engine agent)
+- girl: ankleR y -0.31 -> -0.302 (her longer foot's toes were 8 mm into the ramp); girlHandOn y 0.52 -> 0.527 (the
+  fingertips, skin now out to the tip pad, were 7 mm into the rim). Clip check: all shots pass.

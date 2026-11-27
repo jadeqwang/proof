@@ -8,7 +8,7 @@
 //   pitch   deg; whole-body pitch forward (90 = lying face down, -90 = on the back)
 //   roll    deg; whole-body roll (90 = lying on the left side)
 //   legs    'stand' | 'kneel' | 'cross' | 'long' | 'knees' | 'seat' | 'oneLegUp' | 'side' | 'kick'
-//           legOpts: { ankleL / ankleR: [x,y,z] body-local override, footL / footR: [x,y,z] body-local foot direction (r5), poleL / poleR (world), spread, upLeg: 'L'|'R' }
+//           legOpts: { ankleL / ankleR: [x,y,z] body-local override, footL / footR: [x,y,z] body-local foot direction (r5), upL / upR: [x,y,z] body-local dorsum direction (foot roll), poleL / poleR (world), spread, upLeg: 'L'|'R' }
 //   spine   { bend: deg forward, side: deg toward own right, twist: deg toward own left }
 //   head    { look: target, turn: deg toward own left, nod: deg down, tilt: deg toward own right }
 //   torso   'real' (opt-in, with sex 'f' | 'm'): a clothed torso with waist, hips, bust / pectorals, shoulder blades
@@ -52,13 +52,38 @@ const GREY = { skin: 0.78, hair: 0.12, top: 0.62, legs: 0.42, apron: 0.72, band:
 export { HANDS, handFrame, resolveHand, buildHand } from './hand.js';
 
 // ---------------------------------------------------------------- legs
+// The foot placed by ankle angles on the shin's own frame (2026-11-27, cross-legged sit from reference photos): neutral
+// = toes along the shin's front (the knee hinge's anterior), dorsum toward the knee, then tibial rotation `rot` (deg,
+// + toes outward), plantar flexion `pf` (deg, toes toward the sole) and inversion `inv` (deg, sole turned in, outer edge
+// down). The angles are the anatomical ones, so they stay in range whatever the hip does. Needs a bent knee.
+export const SETTLE_K = 0;   // measured 2026-11-27: the mesh feet land within +-2 mm of the floor with the foot spheres below (ball / toes 2.4 x wide); first love: CAST footSettle
+export function footOnShin(hj, K, A, s, { pf = 0, inv = 0, rot = 0 }) {
+  const su = K.clone().sub(A).normalize(), th = K.clone().sub(hj).normalize();
+  const h = new THREE.Vector3().crossVectors(th, su.clone().negate()).normalize();   // knee hinge, +x for a standing figure
+  let fd = new THREE.Vector3().crossVectors(h, su).normalize(), lat = h.clone().multiplyScalar(s), up = su.clone();
+  const q = new THREE.Quaternion();
+  q.setFromAxisAngle(su, s * rad(rot)); fd.applyQuaternion(q); lat.applyQuaternion(q);
+  const ml = new THREE.Vector3().crossVectors(up, fd).normalize();   // pf about the foot's transverse axis: toes toward the sole
+  q.setFromAxisAngle(ml, rad(pf)); fd.applyQuaternion(q); up.applyQuaternion(q); lat.applyQuaternion(q);
+  q.setFromAxisAngle(fd, -s * rad(inv)); up.applyQuaternion(q); lat.applyQuaternion(q);
+  return { fd: fd.normalize(), up: up.normalize(), lat: lat.normalize() };
+}
+
 function legPreset(name, s, D, o = {}) {
   const { thigh, shin, ankleH, H, hipW, L } = D;
   const sx = (x) => s * x;
   switch (name) {
     case 'stand': return { py: thigh + shin + ankleH, ankle: [sx(hipW + 0.008 * H), -(thigh + shin) * 0.995, 0], pole: [0, 0, 1], foot: [0, 0, 1] };
     case 'kneel': { const py = 0.17 * H; return { py, ankle: [sx(hipW * 1.15), -py + ankleH * 1.2, -0.03 * H], pole: [0, -0.35, 1], foot: [0, -0.15, -1] }; }
-    case 'cross': { const py = 0.085 * H; return { py, ankle: [sx(-0.2 * L), -py + ankleH * 1.1, 0.42 * L], pole: [s, 0.25, 0.35], foot: [-s, -0.1, 0.3] }; }
+    // cross-legged on the floor (2026-11-27, from reference photos of adults sitting cross-legged; was: both feet flat on
+    // their soles outside the knees, toes out). Knees dropped outward to about hip height, thighs turned out; the shins
+    // cross in front of the pelvis, the front shin (legOpts.front, default 'L') over the other foot; each foot lies under
+    // or just in front of the opposite shin / knee on its outer edge, sole turned up and in toward the body, toes
+    // sideways. The foot is set by ankle angles on its own shin (footOnShin): plantar flexion 45, inversion 22 deg.
+    // Searched on the mesh bodies of every cast age (feet on the floor, no foot into the other leg): ankle heights go with the foot
+    // length, the outer shin crosses 0.55 L in front of the hips (more for children's rounder legs, kg), the inner 0.27 L.
+    case 'cross': { const py = 0.085 * H, outer = (o.front || 'L') === (s > 0 ? 'L' : 'R'), kg = D.kg || 1, hA = 0.27 * D.FL * (1 + 0.1 * (kg - 1));   // the ankle over the floor: the foot on its edge
+      return { py, ankle: outer ? [sx(-0.02 * L), -py + hA, 0.55 * L * kg] : [sx(-0.035 * L), -py + hA + 0.025 * D.FL, 0.27 * L], pole: [s, 0.1, 0.8], foot: [-s, 0, 0.3], ff: { pf: 45, inv: 22, rot: 0 } }; }
     case 'side': { const py = 0.085 * H; const k = s > 0 ? 0.05 : -0.02; // both feet tucked to the figure's right
       return { py, ankle: [-0.42 * L + k * L, -py + ankleH, (s > 0 ? 0.1 : -0.12) * L], pole: [-0.3, 0.1, 1], foot: [-1, -0.1, -0.3] }; }
     case 'long': { const py = 0.08 * H; return { py, ankle: [sx(hipW + 0.02 * H), -py + ankleH + 0.02 * H, (thigh + shin) * 0.985], pole: [0, 1, 0], foot: [0, 1, 0.25] }; }
@@ -85,7 +110,7 @@ export function buildFigure(spec, ctx) {
   if (FIG2.body) for (const k of ['top', 'legs', 'apron', 'band', 'sock']) LK[k] = costumeLook(LK[k]);   // v2: clothing in its real colour in form / flat
   const add = (m) => { g.add(m); return m; };
 
-  const legLen = pr.hip * H, D = { thigh: 0.49 * legLen, shin: 0.45 * legLen, ankleH: 0.06 * legLen, H, hipW: pr.hipW * H, L: legLen };
+  const legLen = pr.hip * H, D = { thigh: 0.49 * legLen, shin: 0.45 * legLen, ankleH: 0.06 * legLen, H, hipW: pr.hipW * H, L: legLen, kg: girthK(c.kind), FL: pr.foot * H };
   const torsoLen = (pr.sh - pr.hip) * H, headH = pr.head * H, neckLen = (1 - pr.sh - pr.head) * H + 0.02 * H + (HUMAN.on ? neckDelta(spec.who, c, pr) : 0);   // mesh mode: the neck of the body that will be worn
   const legs = spec.legs || 'stand';
   const preL = legPreset(legs, 1, D, spec.legOpts || {}), preR = legPreset(legs, -1, D, spec.legOpts || {});
@@ -162,19 +187,38 @@ export function buildFigure(spec, ctx) {
     const anc = ov ? B([s * ov[0], ov[1], ov[2]]).add(hip) : B(pre.ankle).add(hip);
     const pv = spec.legOpts?.['pole' + n];   // v9: optional world-space pole (knee direction) override
     const pole = pv ? new THREE.Vector3(...pv) : B(pre.pole);
-    const r = ik(hj, anc, D.thigh, D.shin, pole);
-    const K = r.mid, A = r.end, shinDir = A.clone().sub(K).normalize();
+    const fo = spec.legOpts?.['foot' + n];   // r5: optional per-leg foot direction, body-local like ankleL / ankleR (x mirrored for R)
+    const ffo = spec.legOpts?.['ff' + n] || (!fo && pre.ff);   // ankle angles on the shin's own frame (cross-legged, 2026-11-27)
+    const FL = pr.foot * H, ah = D.ankleH, rH = 0.62 * ah * kg, rB = 0.42 * ah * kg, rT = 0.34 * ah * kg;
+    const solveLeg = () => {
+      const r = ik(hj, anc, D.thigh, D.shin, pole);
+      const K = r.mid, A = r.end, shinDir = A.clone().sub(K).normalize();
+      const fdA = ffo ? footOnShin(hj, K, A, s, ffo) : null;
+      const fd = fdA ? fdA.fd : B(fo ? [s * fo[0], fo[1], fo[2]] : pre.foot).normalize();
+      const uo = spec.legOpts?.['up' + n], uv = uo ? [s * uo[0], uo[1], uo[2]] : pre.up;   // optional foot roll: the dorsum's direction, body-local (x mirrored for R)
+      let w = bx.clone().addScaledVector(fd, -bx.dot(fd)), up;
+      if (fdA) { up = fdA.up; w = new THREE.Vector3().crossVectors(up, fd); }
+      else if (uv) { up = B(uv); up.addScaledVector(fd, -up.dot(fd)).normalize(); w = new THREE.Vector3().crossVectors(up, fd); }
+      else if (w.lengthSq() > 0.09) { w.normalize(); up = new THREE.Vector3().crossVectors(fd, w); }
+      else { up = K.clone().sub(A); up.addScaledVector(fd, -up.dot(fd)).normalize(); w = new THREE.Vector3().crossVectors(up, fd); }
+      // lowest point of the foot (heel, ball, toe ellipsoids; the ball and toes are wider across the foot)
+      const lowOf = (c, rr, sxw) => c.y - Math.hypot(rr * up.y, rr * fd.y, rr * sxw * w.y);
+      const low = Math.min(lowOf(A.clone().addScaledVector(up, -(ah - rH)).addScaledVector(fd, -(0.2 * FL - rH)), rH, 1),
+        lowOf(A.clone().addScaledVector(up, -(ah - rB)).addScaledVector(fd, 0.6 * FL), rB, 2.4), lowOf(A.clone().addScaledVector(up, -(ah - rT)).addScaledVector(fd, 0.8 * FL - rT), rT, 2.4));
+      return { r, K, A, shinDir, fd, up, w, low };
+    };
+    let L1 = solveLeg();
+    // feet set by ankle angles (cross-legged) are settled onto the floor: the ankle moves up / down until the foot's lowest
+    // point sits on the floor under the hips (hip - preset height), then the knee is re-solved (legOpts.settle: false = off)
+    if (ffo && spec.legOpts?.settle !== false) { const floorY = hip.y - pre.py + SETTLE_K * FL + (c.footSettle || 0);   // c.footSettle: per-body mesh correction (m)
+      for (let it = 0; it < 4 && Math.abs(L1.low - floorY) > 5e-4; it++) { anc.y += floorY - L1.low; L1 = solveLeg(); } }
+    P['footLow' + n] = (L1.low - (hip.y - pre.py)) / FL;
+    const { r, K, A, shinDir, fd, up } = L1; let { w } = L1;
     const front = pole.clone().addScaledVector(shinDir, -pole.dot(shinDir)); if (front.lengthSq() < 1e-6) front.copy(bz); front.normalize();
     const calf = K.clone().lerp(A, 0.3).addScaledVector(front, -0.006 * H);
     const rK = 0.034 * H * kg, rA = 0.019 * H * kg;
     part([taperGeo(hj, K, 0.058 * H * kg, rK, { radial: 18 }), taperGeo(K, calf, rK, 0.036 * H * kg, { radial: 16 }), taperGeo(calf, A, 0.036 * H * kg, rA, { radial: 16 })], legLook, 'leg' + n);
     // foot: heel, sole to the ball, toe box, instep (P.foot as before: 0.6 of the foot length along the foot)
-    const fo = spec.legOpts?.['foot' + n];   // r5: optional per-leg foot direction, body-local like ankleL / ankleR (x mirrored for R)
-    const fd = B(fo ? [s * fo[0], fo[1], fo[2]] : pre.foot).normalize(), FL = pr.foot * H, ah = D.ankleH;
-    let w = bx.clone().addScaledVector(fd, -bx.dot(fd)), up;
-    if (w.lengthSq() > 0.09) { w.normalize(); up = new THREE.Vector3().crossVectors(fd, w); }
-    else { up = K.clone().sub(A); up.addScaledVector(fd, -up.dot(fd)).normalize(); w = new THREE.Vector3().crossVectors(up, fd); }
-    const rH = 0.62 * ah * kg, rB = 0.42 * ah * kg, rT = 0.34 * ah * kg;
     const heel = A.clone().addScaledVector(up, -(ah - rH)).addScaledVector(fd, -(0.2 * FL - rH));
     const ballP = A.clone().addScaledVector(up, -(ah - rB)).addScaledVector(fd, 0.6 * FL);
     const toe = A.clone().addScaledVector(up, -(ah - rT)).addScaledVector(fd, 0.8 * FL - rT);
@@ -182,6 +226,8 @@ export function buildFigure(spec, ctx) {
     part([ellipsoidGeo(heel, [rH, rH, rH * 1.1], FF), taperGeo(heel, ballP, rH * 0.78, rB, { side: w, sx: 1.5 }), taperGeo(ballP, toe, rB, rT, { side: w, sx: 1.7 }),
       taperGeo(A, ballP.clone().addScaledVector(up, rB * 0.45), rA * 0.98, rB * 0.85, { side: w, sx: 1.35 })], footLook, 'foot' + n);
     P['knee' + n] = K; P['ankle' + n] = A; P['foot' + n] = A.clone().addScaledVector(fd, pr.foot * H * 0.6); P['hip' + n] = hj;
+    P['footLen' + n] = FL;   // heel to longest toe (PROP.foot x H): the mesh foot is scaled to exactly this
+    P['sole' + n] = up.clone().negate(); P['toeDir' + n] = fd.clone();   // directions (the sole's outward normal, the toes)
     P['heel' + n] = heel.clone().addScaledVector(up, -rH); P['toe' + n] = toe.clone().addScaledVector(fd, rT);
     legInfo[n] = { reach: +r.reach.toFixed(2) };
   }

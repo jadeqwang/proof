@@ -40,3 +40,8 @@ inputs/refs_semicircletable/
 
 # Jade's photo of the play centre (2026-11-26): look-only reference, real business interior
 inputs/catchair_shuttle.png
+# first-love paint-back takes, the paintings projected into the 3D guides, and the guides that carry them (2026-11-27): same rule as takes/
+cast/first_love/_prompts/*/takes_*/
+cast/first_love/_prompts/v10/guide_pb/
+cast/first_love/_prompts/v10/guide_v[0-9]*/
+layout/assets/paint/fl_hands/

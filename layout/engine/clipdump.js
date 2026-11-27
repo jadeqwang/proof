@@ -77,12 +77,12 @@ export function clipDump(b, shot = {}) {
       const soft = !o.userData.bodyRegion || !!o.userData.garment || /hair|apron|skirt|brows/.test(region);
       fbox.expandByObject(o); parts.push({ region, soft, ...tris(o) }); });
     const hands = {}; for (const n of ['L', 'R']) { const h = P.hands?.[n]; if (h) hands[n] = { palm: P['hand' + n]?.toArray(), normal: h.n?.toArray(), fingers: h.f?.toArray(), shape: h.shape }; }
-    const pts = {}; for (const k of ['head', 'eyes', 'shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'wristL', 'wristR', 'handL', 'handR', 'hip', 'kneeL', 'kneeR', 'ankleL', 'ankleR', 'footL', 'footR']) if (P[k]) pts[k] = P[k].toArray();
+    const pts = {}; for (const k of ['head', 'eyes', 'shoulderL', 'shoulderR', 'elbowL', 'elbowR', 'wristL', 'wristR', 'handL', 'handR', 'hip', 'kneeL', 'kneeR', 'ankleL', 'ankleR', 'footL', 'footR', 'soleL', 'soleR', 'toeDirL', 'toeDirR']) if (P[k]) pts[k] = P[k].toArray();
     figs[who] = { parts, hands, points: pts, joints: jointReport(P, spec, P.H < 1.3 ? 'child5' : 'adult'), spec: { legs: spec.legs || 'stand', at: spec.at, yaw: spec.yaw, spine: spec.spine,
       L: typeof spec.L === 'object' ? { object: spec.L.object } : spec.L, R: typeof spec.R === 'object' ? { object: spec.R.object } : spec.R } };
   }
   const near = fbox.clone().expandByScalar(0.05), world = [];
-  if (!fbox.isEmpty()) b.scene.traverse((o) => { if (!o.isMesh || o.userData.who || !shownSolid(o) || /: (sock|shoe|slipper)/.test(o.userData.label || '')) return;   // set-made footwear is the figure's clothing let hiddenUp = false; for (let q = o; q; q = q.parent) if (q.userData?.who) hiddenUp = true; if (hiddenUp) return;
+  if (!fbox.isEmpty()) b.scene.traverse((o) => { if (!o.isMesh || o.userData.who || !shownSolid(o) || /: (sock|shoe|slipper|sandal)/.test(o.userData.label || '')) return;   // set-made footwear is the figure's clothing (sandal: 2026-11-27, mv10's half-ring straps are open meshes) let hiddenUp = false; for (let q = o; q; q = q.parent) if (q.userData?.who) hiddenUp = true; if (hiddenUp) return;
     const bb = new THREE.Box3().setFromObject(o); if (bb.isEmpty() || !bb.intersectsBox(near)) return;
     const sz = bb.getSize(new THREE.Vector3()), t = tris(o, near); if (!t.idx.length) return;
     world.push({ label: o.userData.label || o.geometry.type, sheet: isGlass(o) || Math.min(sz.x, sz.y, sz.z) < 0.003 || !!o.userData.double, ...t }); });

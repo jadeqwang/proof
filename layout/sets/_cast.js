@@ -22,7 +22,7 @@ Object.assign(PROP, CHILD_PROP);
 // (Brannock foot length about 25.1 cm). First love's hands and feet are the same size as hers, much smaller than
 // typical for a man of 1.78 m (hand ~19.2, foot ~26.7). Each kind is the engine's adult proportions with only hand/foot changed.
 const JADE_HAND = 0.187, JADE_FOOT = 0.251;
-const adultWith = (h) => ({ ...PROP.adult, hand: +(JADE_HAND / h).toFixed(4), foot: +(JADE_FOOT / h).toFixed(4) });
+const adultWith = (h) => ({ ...PROP.adult, hand: JADE_HAND / h, foot: JADE_FOOT / h });   // exact (2026-11-27): hand x h = 187 mm, foot x h = 251 mm
 
 // Mama's hair (Jade 2026-11-26: "The jaw-length perm throughout"): a jaw-length, side-parted perm at every age
 // (cast/mama/mama_R_rest_heads_v1; mama.glb hair_perm), never a bun or a straight bob.
@@ -32,6 +32,11 @@ CAST.mama.hairStyle = 'perm';
 // #2e2420). Base tuned on the RENDER: lit pass hue ~20, sat 0.30 under neutral light (was 0x3d2819: sat 0.6-0.7, orange in
 // mv10 SI1 / closet02). The body GLBs carry no materials: this is the only place.
 const FL_HAIR = 0x2b2420;   // r6 (2026-11-26): Jade: "a smidge lighter" than v8 0x1f1915. Target ~#3f342e in normally lit renders (measured hair shade). Do NOT tune on dim scenes (BR1 renders ~0.4x).
+// first love's trousers (Jade 2026-11-26: "let's put first love in black pants in every scene, it feels more like him.
+// (normal black slacks)"): plain black dress trousers at every age and in every scene (was dark jeans / light-blue jeans).
+// Slightly lifted off pure black so folds read in the lit / form passes. The engine has one trouser garment (MakeHuman
+// jeans mesh): no slacks-vs-jeans shape option, so only the colour changes; the painter prompts say "slacks".
+const FL_SLACKS = 0x1c1c1e;
 const MAMA_H = CAST.mama.h, FIRST_LOVE_H = 1.78;   // first love: about 5'10", lean (Jade)
 PROP.adultJade19 = adultWith(1.63); PROP.adultJade27 = adultWith(1.65); PROP.adultFirstLove = adultWith(FIRST_LOVE_H);
 const JADE_KID = { skin: 0xe6b996, hair: 0x14110f, legs: 0x4b5a7a, hairStyle: 'bob' };
@@ -51,8 +56,8 @@ export const SHARED_CAST = {
   // ---- Dad
   dad: { name: 'Dad', h: 1.72, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0xc8ccd0, legs: 0x3a3e48, hairStyle: 'short', sleeves: 'long' },
   // ---- first love: one height, two costumes (never shot face-on)
-  firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x5a6a58, legs: 0x3a3c44, hairStyle: 'short', sleeves: 'long' },
-  firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x4a5a6a, legs: 0x2a2a30, hairStyle: 'short', sleeves: 'long' },
+  firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x5a6a58, legs: FL_SLACKS, hairStyle: 'short', sleeves: 'long', footSettle: -0.010 },
+  firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x4a5a6a, legs: FL_SLACKS, hairStyle: 'short', sleeves: 'long', footSettle: -0.010 },
 };
 Object.assign(CAST, SHARED_CAST);          // authoritative: overwrites anything registered under these keys
 

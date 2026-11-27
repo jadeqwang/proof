@@ -55,7 +55,7 @@ const momListen = (o = {}) => mom({ head: { look: 'sw:head' }, L: { to: [0.5, TO
 // left wrist with its face on the BACK of the wrist (opposite the palm): turned down, out of sight; the strap's buckle
 // side shows on the palm side.
 const dad = (o = {}) => ({ at: SEATS.dad, legs: 'stand', yaw: -6, spine: { bend: 6 }, head: { look: 'sw:head' },
-  R: { to: 'mama91:shoulderL', off: [0.0, 0.035, 0.0], hand: 'relax', palm: 'down', fingers: [-0.15, -0.3, 1] },
+  R: { to: 'mama91:shoulderL', off: [0.0, 0.045, 0.0], hand: 'relax', palm: 'down', fingers: [-0.15, -0.3, 1] },
   L: { to: [1.0, 1.08, -0.6], hand: 'palmUp', palm: 'up', fingers: [-0.2, 0.15, 1], elbow: 'down' }, ...o });
 // ---------------------------------------------------------------- r3: the corridor (age 10, a later visit)
 const kid10 = (o = {}) => ({ at: HALL_KID, legs: 'stand', yaw: -90, spine: { bend: -3 }, head: { look: [-3.2, 1.22, 0.75] }, L: 'side', R: 'side', ...o });

@@ -300,8 +300,8 @@
  "hands": {
   "littleJade.L": {
    "px": [
-    221828.1,
-    -732533.7
+    14076.2,
+    -27034.1
    ],
    "shape": "relax",
    "in_frame": false,
@@ -309,8 +309,8 @@
   },
   "littleJade.R": {
    "px": [
-    -5658.3,
-    -24455.1
+    -3113.1,
+    -8622.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -943,12 +943,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -61.6,
-    "elbow_flex_deg": 32.5,
+    "twist_deg": -56.2,
+    "elbow_flex_deg": 43.9,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -61.6
+     "twist_deg": -56.2
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -959,12 +959,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -61.6,
-    "elbow_flex_deg": 32.5,
+    "twist_deg": -54.6,
+    "elbow_flex_deg": 43.2,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -61.6
+     "twist_deg": -54.6
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -985,24 +985,24 @@
     0.5159
    ],
    "handL": [
-    0.5673,
-    0.1388,
-    0.3101
+    0.503,
+    0.1414,
+    0.2767
    ],
    "handR": [
-    0.7148,
-    0.1388,
-    0.486
+    0.7382,
+    0.139,
+    0.5673
    ],
    "elbowR": [
-    0.638,
-    0.2574,
-    0.5974
+    0.6369,
+    0.2591,
+    0.6549
    ],
    "wristR": [
-    0.7017,
-    0.1592,
-    0.5051
+    0.7208,
+    0.1596,
+    0.5823
    ],
    "shoulderR": [
     0.565,
@@ -1077,15 +1077,15 @@
   "littleJade": {
    "legs": {
     "L": {
-     "reach": 0.57
+     "reach": 0.69
     },
     "R": {
-     "reach": 0.57
+     "reach": 0.34
     }
    },
    "arms": {
-    "L": 0.96,
-    "R": 0.96
+    "L": 0.93,
+    "R": 0.93
    },
    "headTurn": -15,
    "body": {
@@ -1094,20 +1094,20 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 35,
-     "upperarm_stretch": 0.96,
+     "elbow_bend_deg": 48,
+     "upperarm_stretch": 0.99,
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
     "R": {
-     "elbow_bend_deg": 35,
-     "upperarm_stretch": 0.96,
+     "elbow_bend_deg": 48,
+     "upperarm_stretch": 0.99,
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.7,
-    "sole_shift_mm_R": 14.7,
-    "sole_lowest_y_m": -0.0097
+    "sole_shift_mm_L": 21.2,
+    "sole_shift_mm_R": 21.2,
+    "sole_lowest_y_m": -0.0012
    }
   }
  }

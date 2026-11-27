@@ -74,7 +74,7 @@ export const SEATS = {
   jade: [-0.3, -0.6],            // facing +z (the cameras)
   socialWorker: [0.2, 0.55],     // across the table, diagonally, facing -z: the frontal camera looks past her right shoulder
   mom: [0.42, -0.66],            // beside little Jade (her left), facing +z
-  dad: [0.76, -1.04],            // r3 (Jade): STANDING behind Mom's chair (to her left), facing +z, his right hand on her left shoulder
+  dad: [0.76, -1.08],            // 2026-11-27 z -1.04 -> -1.08: his real-size feet (258 mm) reached 14 mm into Mom's chair. r3 (Jade): STANDING behind Mom's chair (to her left), facing +z, his right hand on her left shoulder
 };
 export const CHAIR = { seat: 0.44, hipAdult: 0.52, hipChild: 0.53 };
 export const DICT = { at: [0.5, 0.82, -0.36], w: 0.075, h: 0.105, t: 0.024, tilt: 40, color: 0xb0201a };   // tilt: deg from flat, toward her (hold pass 2026-11-26: 40, was 50: steeper than atan 0.9 it slid off her palms)   // the little red dictionary, in Mom's hands

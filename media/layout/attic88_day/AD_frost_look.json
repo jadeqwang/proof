@@ -1102,10 +1102,10 @@
   "littleJade": {
    "legs": {
     "L": {
-     "reach": 0.57
+     "reach": 0.69
     },
     "R": {
-     "reach": 0.57
+     "reach": 0.34
     }
    },
    "arms": {
@@ -1130,9 +1130,9 @@
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.7,
-    "sole_shift_mm_R": 14.7,
-    "sole_lowest_y_m": -0.0097
+    "sole_shift_mm_L": 21.2,
+    "sole_shift_mm_R": 21.2,
+    "sole_lowest_y_m": -0.0012
    }
   }
  }

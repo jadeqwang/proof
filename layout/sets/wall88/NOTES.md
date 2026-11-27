@@ -229,3 +229,8 @@ Jade: "in wall88 · WL_eye, she looks a little bit cross-eyed." No set change (S
 - WL_eye now (look 22.6 deg yaw): near eye nasal fraction 0.73 with a sliver of white in the corner, far eye 0.35: both to
   picture right. Before/after crops: scratchpad wl_eye_out_before_after.png (session). All 3 passes re-rendered; clipcheck
   pass (only the known 4 mm cloth-in-brick), check_bodies eyes meet target (vergence 4.25 vs 4.59 expected).
+
+## 2026-11-27: real-size feet (engine agent)
+- The engine now scales feet to the cast length (+13 %): the file's toes were 6-10 mm into the boards. Workers and
+  Mama stand 1.3 cm nearer the brick (W_X = x1 - 0.122, was - 0.135) with toes turned out 25 deg (SPLAY legOpts);
+  2.1 cm put their backs into the brick, 35 deg put the men's feet into the studs. Clip check: all shots pass.
