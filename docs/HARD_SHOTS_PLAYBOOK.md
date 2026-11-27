@@ -118,6 +118,29 @@ Example video prompt, the one that was chosen:
 | Two people hugging | The arm across the far back (paint each body alone, then combine) | Over the shoulder of the person whose arms read most clearly | Fabric compresses where an arm presses in; hands spread on the back |
 | Feet in a shot | Toes (or put socks on, unless bare feet are the point: image models garble toes) | Low enough to see the big toe separate from the rest | Weight shown as a flattened sole and spread toes |
 
+## Starting in a new project
+
+The method needs four pieces of tooling. Set them up before the first shot:
+1. **A 3D scene with rigged human bodies.** Two options:
+   - Reuse this project's three.js engine (`/home/jade/Documents/proof/layout/`; read `layout/engine/` and one set such as `layout/sets/fl_hands/`). It's fine to copy it.
+   - Or use Blender with MakeHuman/MPFB rigs.
+   Get props from CC0 libraries (Poly Haven, Kenney, Sketchfab CC0), scaled to real size.
+2. **Guide renders:** form (flat shading), contour (Freestyle in Blender, or an edge pass), and lit.
+3. **Camera projection** of a painting back onto chosen meshes: in Blender, the UV Project modifier from the shot camera; in three.js, a projective-texture material (see `layout/engine/paint.js`).
+4. **A painter and a video model:** gpt-image via Codex (see the user's global CLAUDE.md, "Codex via tmux"), and a start-frame video model.
+   Paid generation needs the user's explicit OK.
+
+Until the 3D tooling exists, you can already start on the gesture, the reference photos and the camera plan.
+
+## Props, liquids and things that move between keyframes
+
+These are untested suggestions; prove them on the first shot that needs them.
+- **Held objects:** layer order follows what hides what, from the back forward. Paint the hand alone (the object hidden), project it, then add the object and paint again. Fingers that wrap behind the object are the hidden part. A handle grip (teapot, mug) is a hand-alone layer first.
+- **Liquids, steam and glass:** model a simple stand-in (a stream mesh, a liquid surface inside the cup) so the painter knows where they are. Paint them last, since they rarely go wrong in shape and they hide detail. Let the video model animate flow and steam rather than painting every state.
+- **A new keyframe with new poses** needs its own layered paint-back. Projections don't carry over to new poses.
+- **Children's hands:** proportionally shorter fingers, a fuller palm, and no visible tendons or knuckle wrinkles. Use the engine's child body proportions; don't scale an adult hand down.
+- **Faces out of frame:** still name each person by costume colour and screen side in every prompt.
+
 ## Hand checklist
 
 1. Find stock photos of the gesture, and pick the 3 poses that best fit the scene emotionally. Use them for reference only.
