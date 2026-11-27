@@ -1406,3 +1406,7 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   agent is changing the sets and prompts; the cast sheets that show his trousers need edits.
 - V1d_2: she moved 10 cm forward, her elbow is bent and her wrist near straight; the table is at her chin when she sits
   cross-legged. Recommended: accept as is (awaiting Jade). Shanghai is re-rendered after the engine's cross-legged pose fix.
+- Jade: first love's foot is EXACTLY the same size as hers (251 mm; "we often shared shoes"). The engine renders it
+  at 217 mm, so PROP.foot isn't applied; the engine agent is fixing it for every figure and checking hands too.
+- G v11 accepted (G_t4: tidier tousle at the A_t2 level, black slacks); the hair wording is toned down at the source (cbc81ab).
+- Jade simplified the D hand hold: he takes one of her hands in both of his. 3D guides in cast/first_love/_prompts/v10/guide/.
