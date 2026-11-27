@@ -1,0 +1,2217 @@
+{
+ "shot": "REF_V1d_2_side",
+ "set": "shanghai86",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -1.9,
+   0.56,
+   -2
+  ],
+  "target": [
+   -1.7,
+   0.36,
+   -3.66
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0.9928,
+   0,
+   0.1196,
+   0,
+   0.0142,
+   0.9929,
+   -0.1179,
+   0,
+   -0.1188,
+   0.1188,
+   0.9858,
+   0,
+   -1.9,
+   0.56,
+   -2,
+   1
+  ],
+  "viewMatrix": [
+   0.9928,
+   0.0142,
+   -0.1188,
+   0,
+   0,
+   0.9929,
+   0.1188,
+   0,
+   0.1196,
+   -0.1179,
+   0.9858,
+   0,
+   2.1256,
+   -0.7649,
+   1.6794,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {
+  "windows": {
+   "px": [
+    [
+     -481.4,
+     1826.4
+    ],
+    [
+     1408.5,
+     1659
+    ],
+    [
+     1464.3,
+     -143
+    ],
+    [
+     -686.3,
+     -208.5
+    ]
+   ],
+   "world": [
+    [
+     -0.475,
+     2.3,
+     0.16
+    ],
+    [
+     -2.75,
+     2.3,
+     0.16
+    ],
+    [
+     -2.75,
+     0.03,
+     0.16
+    ],
+    [
+     -0.475,
+     0.03,
+     0.16
+    ]
+   ],
+   "behind_camera": [
+    true,
+    true,
+    true,
+    true
+   ]
+  }
+ },
+ "heads": {
+  "jade3": {
+   "px": [
+    964.2,
+    407.3
+   ],
+   "eyes": [
+    1003.6,
+    426.9
+   ],
+   "mouth": [
+    996.1,
+    482.2
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 32
+  },
+  "mama86": {
+   "px": [
+    1851.3,
+    -89
+   ],
+   "eyes": [
+    1841.1,
+    -91.5
+   ],
+   "mouth": [
+    1841,
+    -62.7
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 13
+  }
+ },
+ "hands": {
+  "jade3.L": {
+   "px": [
+    1105.8,
+    620.9
+   ],
+   "shape": "pinch",
+   "in_frame": true,
+   "visible": false
+  },
+  "jade3.R": {
+   "px": [
+    1012.5,
+    466.1
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": true
+  },
+  "mama86.L": {
+   "px": [
+    1931.7,
+    229.2
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama86.R": {
+   "px": [
+    1690.7,
+    45.5
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "sun_through_windows",
+   "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
+   "on": true,
+   "color": "#fff1d0",
+   "world": [
+    7.3653,
+    6.2172,
+    8.6275
+   ],
+   "px": [
+    -985.1,
+    1375.2
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.999,
+    -0.05
+   ],
+   "toward_camera": 0.006,
+   "aim_world": [
+    2.25,
+    1.2,
+    -3.4
+   ]
+  },
+  {
+   "name": "sky",
+   "kind": "soft skylight through the same windows",
+   "on": true,
+   "color": "#cfd8e0",
+   "world": [
+    0,
+    1.4,
+    -0.4
+   ],
+   "px": [
+    -1712.3,
+    1404.8
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.999,
+    -0.038
+   ],
+   "toward_camera": -0.322
+  },
+  {
+   "name": "north",
+   "kind": "dim skylight through the east bays of doors",
+   "on": true,
+   "color": "#c8d0d8",
+   "world": [
+    4.75,
+    1.5,
+    -0.6
+   ],
+   "px": [
+    -17042.9,
+    2834.3
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.998,
+    0.059
+   ],
+   "toward_camera": 0.541
+  },
+  {
+   "name": "sky_fill",
+   "kind": "shadowless sky fill through the whole run of balcony doors (round 2b)",
+   "on": true,
+   "color": "#dfe6ee",
+   "world": [
+    1.5,
+    1.6,
+    4
+   ],
+   "px": [
+    -396.1,
+    663.7
+   ],
+   "in_front": false,
+   "travel_dir_px": [
+    -0.975,
+    -0.222
+   ],
+   "toward_camera": -0.195,
+   "aim_world": [
+    2.25,
+    0.6,
+    -3
+   ]
+  },
+  {
+   "name": "room_bounce",
+   "kind": "pale walls and ceiling bounce: sky/ceiling above, warm floorboards below (round 2b)",
+   "on": true,
+   "color": "#e6e8ea",
+   "world": [
+    2.25,
+    3,
+    -3
+   ],
+   "px": [
+    7241.3,
+    -3541.6
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.559,
+    0.829
+   ],
+   "toward_camera": 0.354
+  }
+ ],
+ "warnings": [],
+ "intent": "Third-person check of V1d_2: her right hand setting its half down flat at the table corner, her left hand holding its half close in. Not a shot.",
+ "beam": {
+  "kind": "low winter sun through the balcony French doors (four bays along the whole south wall), under the balcony above and over the parapet (parallel light)",
+  "travel_dir": [
+   -0.3654,
+   -0.3584,
+   -0.8591
+  ],
+  "elevation_deg": 21,
+  "sun": {
+   "date": "1986-12-21",
+   "time": "09:30 CST (UTC+8)",
+   "lat": 31.2138,
+   "lon": 121.439,
+   "elevation_deg": 21,
+   "azimuth_deg": 143.76000000000002,
+   "west_of_facade_normal_deg": -23.04,
+   "profile_angle_deg": 22.64,
+   "facade_bearing_deg": 166.8,
+   "flat": "east",
+   "per_metre_into_room": {
+    "east_per_m_in": -0.425,
+    "down_per_m_in": 0.417
+   },
+   "status": "CHEATED sun (round-3 decisions, Jade): 21 Dec 09:30; real 09:30 sun elev 25.67 az 143.76; the azimuth is kept, the elevation lowered by hand to 21 so the light only just reaches her face; east flat and 三楼 are facts",
+   "real_sun_at_this_time": {
+    "elev": 25.67,
+    "az": 143.76,
+    "decl": -23.44,
+    "solar_time_min": 578
+   }
+  },
+  "source_world": [
+   [
+    -0.5941,
+    2.1832,
+    0
+   ],
+   [
+    -2.75,
+    2.1832,
+    0
+   ],
+   [
+    -2.75,
+    0.002,
+    0
+   ],
+   [
+    -0.5941,
+    0.002,
+    0
+   ]
+  ],
+  "source_px": [
+   [
+    -466.8,
+    1835.5
+   ],
+   [
+    1458.3,
+    1663.8
+   ],
+   [
+    1522.6,
+    -206.2
+   ],
+   [
+    -677.9,
+    -282.7
+   ]
+  ],
+  "aperture_glass_world": [
+   [
+    -2.75,
+    0.03,
+    0.16
+   ],
+   [
+    -0.526,
+    0.03,
+    0.16
+   ],
+   [
+    -0.526,
+    2.2499,
+    0.16
+   ],
+   [
+    -2.75,
+    2.2499,
+    0.16
+   ]
+  ],
+  "shaded_by": [
+   "outer reveal, east jamb",
+   "outer reveal, head",
+   "overhang (balcony above)",
+   "railing curb"
+  ],
+  "sources_world": [
+   [
+    [
+     -0.5941,
+     2.1832,
+     0
+    ],
+    [
+     -2.75,
+     2.1832,
+     0
+    ],
+    [
+     -2.75,
+     0.002,
+     0
+    ],
+    [
+     -0.5941,
+     0.002,
+     0
+    ]
+   ],
+   [
+    [
+     1.9809,
+     2.1832,
+     0
+    ],
+    [
+     -0.175,
+     2.1832,
+     0
+    ],
+    [
+     -0.175,
+     0.002,
+     0
+    ],
+    [
+     1.9809,
+     0.002,
+     0
+    ]
+   ],
+   [
+    [
+     4.5559,
+     2.1832,
+     0
+    ],
+    [
+     2.4,
+     2.1832,
+     0
+    ],
+    [
+     2.4,
+     0.002,
+     0
+    ],
+    [
+     4.5559,
+     0.002,
+     0
+    ]
+   ],
+   [
+    [
+     7.1309,
+     2.1832,
+     0
+    ],
+    [
+     4.975,
+     2.1832,
+     0
+    ],
+    [
+     4.975,
+     0.002,
+     0
+    ],
+    [
+     7.1309,
+     0.002,
+     0
+    ]
+   ]
+  ],
+  "windows": [
+   {
+    "id": "balcony doors, bay 1 (from the west)",
+    "source_world": [
+     [
+      -0.5941,
+      2.1832,
+      0
+     ],
+     [
+      -2.75,
+      2.1832,
+      0
+     ],
+     [
+      -2.75,
+      0.002,
+      0
+     ],
+     [
+      -0.5941,
+      0.002,
+      0
+     ]
+    ],
+    "shaded_by": [
+     "outer reveal, east jamb",
+     "outer reveal, head",
+     "overhang (balcony above)",
+     "railing curb"
+    ],
+    "floor_world": [
+     [
+      -0.596,
+      0,
+      -0.005
+     ],
+     [
+      -2.752,
+      0,
+      -0.005
+     ],
+     [
+      -3,
+      0,
+      -0.588
+     ],
+     [
+      -3,
+      0,
+      -5.234
+     ],
+     [
+      -2.82,
+      0,
+      -5.234
+     ]
+    ],
+    "floor_px": [
+     [
+      -679.6,
+      -286.4
+     ],
+     [
+      1526.3,
+      -209.3
+     ],
+     [
+      2143.4,
+      -406.2
+     ],
+     [
+      76.2,
+      653.7
+     ],
+     [
+      188.3,
+      651.5
+     ]
+    ]
+   },
+   {
+    "id": "balcony doors, bay 2 (from the west)",
+    "source_world": [
+     [
+      1.9809,
+      2.1832,
+      0
+     ],
+     [
+      -0.175,
+      2.1832,
+      0
+     ],
+     [
+      -0.175,
+      0.002,
+      0
+     ],
+     [
+      1.9809,
+      0.002,
+      0
+     ]
+    ],
+    "shaded_by": [
+     "outer reveal, east jamb",
+     "outer reveal, head",
+     "overhang (balcony above)",
+     "railing curb"
+    ],
+    "floor_world": [
+     [
+      1.979,
+      0,
+      -0.005
+     ],
+     [
+      -0.177,
+      0,
+      -0.005
+     ],
+     [
+      -2.401,
+      0,
+      -5.234
+     ],
+     [
+      -0.245,
+      0,
+      -5.234
+     ]
+    ],
+    "floor_px": [
+     [
+      -4342.7,
+      -414.6
+     ],
+     [
+      -1185.8,
+      -304.1
+     ],
+     [
+      443.4,
+      646.2
+     ],
+     [
+      1639.6,
+      621.8
+     ]
+    ]
+   },
+   {
+    "id": "balcony doors, bay 3 (from the west)",
+    "source_world": [
+     [
+      4.5559,
+      2.1832,
+      0
+     ],
+     [
+      2.4,
+      2.1832,
+      0
+     ],
+     [
+      2.4,
+      0.002,
+      0
+     ],
+     [
+      4.5559,
+      0.002,
+      0
+     ]
+    ],
+    "shaded_by": [
+     "outer reveal, east jamb",
+     "outer reveal, head",
+     "overhang (balcony above)",
+     "railing curb"
+    ],
+    "floor_world": [
+     [
+      4.554,
+      0,
+      -0.005
+     ],
+     [
+      2.398,
+      0,
+      -0.005
+     ],
+     [
+      0.174,
+      0,
+      -5.234
+     ],
+     [
+      2.33,
+      0,
+      -5.234
+     ]
+    ],
+    "floor_px": [
+     [
+      -9981.9,
+      -611.8
+     ],
+     [
+      -5091.4,
+      -440.8
+     ],
+     [
+      1851.8,
+      617.5
+     ],
+     [
+      2854.5,
+      597
+     ]
+    ]
+   },
+   {
+    "id": "balcony doors, bay 4 (from the west)",
+    "source_world": [
+     [
+      7.1309,
+      2.1832,
+      0
+     ],
+     [
+      4.975,
+      2.1832,
+      0
+     ],
+     [
+      4.975,
+      0.002,
+      0
+     ],
+     [
+      7.1309,
+      0.002,
+      0
+     ]
+    ],
+    "shaded_by": [
+     "outer reveal, east jamb",
+     "outer reveal, head",
+     "overhang (balcony above)",
+     "railing curb"
+    ],
+    "floor_world": [
+     [
+      4.973,
+      0,
+      -0.005
+     ],
+     [
+      2.749,
+      0,
+      -5.234
+     ],
+     [
+      4.905,
+      0,
+      -5.234
+     ],
+     [
+      7.129,
+      0,
+      -0.005
+     ]
+    ],
+    "floor_px": [
+     [
+      -11200.9,
+      -654.4
+     ],
+     [
+      3033.8,
+      593.3
+     ],
+     [
+      3886.6,
+      575.9
+     ],
+     [
+      -19787.1,
+      -954.8
+     ]
+    ]
+   }
+  ],
+  "footprint_floor_world": [
+   [
+    -0.596,
+    0,
+    -0.005
+   ],
+   [
+    -2.752,
+    0,
+    -0.005
+   ],
+   [
+    -3,
+    0,
+    -0.588
+   ],
+   [
+    -3,
+    0,
+    -5.234
+   ],
+   [
+    -2.82,
+    0,
+    -5.234
+   ]
+  ],
+  "footprint_floor_px": [
+   [
+    -679.6,
+    -286.4
+   ],
+   [
+    1526.3,
+    -209.3
+   ],
+   [
+    2143.4,
+    -406.2
+   ],
+   [
+    76.2,
+    653.7
+   ],
+   [
+    188.3,
+    651.5
+   ]
+  ],
+  "footprint_east_wall": null,
+  "footprint_west_wall": {
+   "world": [
+    [
+     -3,
+     0,
+     -0.588
+    ],
+    [
+     -3,
+     1.938,
+     -0.588
+    ],
+    [
+     -3,
+     0,
+     -5.234
+    ]
+   ],
+   "px": [
+    [
+     2143.4,
+     -406.2
+    ],
+    [
+     1981.8,
+     1852.9
+    ],
+    [
+     76.2,
+     653.7
+    ]
+   ]
+  },
+  "footprint_north_wall": null,
+  "corner_order": "source: the lit opening on the inner face of the window wall, a convex polygon starting top-east (TL as seen from inside), then top-west, down the west side, along the bottom; footprints: the clipped caps of the beam solid on each plane",
+  "note": "the lit volume is the aperture swept along travel_dir and clipped by the room; render the mask twin beam_<id> (furniture and figures occlude it); cast shadows are in flat / lit",
+  "in_beam": {
+   "jade3": {
+    "head": {
+     "in": true,
+     "margin_m": 0.072
+    },
+    "eyes": {
+     "in": true,
+     "margin_m": 0.067
+    },
+    "handL": {
+     "in": true,
+     "margin_m": 0.118
+    },
+    "handR": {
+     "in": false,
+     "margin_m": -0.008
+    },
+    "hip": {
+     "in": true,
+     "margin_m": 0.077
+    }
+   },
+   "mama86": {
+    "head": {
+     "in": false,
+     "margin_m": -1.79
+    },
+    "eyes": {
+     "in": false,
+     "margin_m": -1.753
+    },
+    "handL": {
+     "in": false,
+     "margin_m": -1.029
+    },
+    "handR": {
+     "in": false,
+     "margin_m": -1.571
+    },
+    "hip": {
+     "in": false,
+     "margin_m": -1.195
+    }
+   }
+  },
+  "steam_points_in_beam": "117 of 117",
+  "mugs_in_beam": [
+   true,
+   true,
+   true
+  ],
+  "focus_in_beam": true,
+  "stack_in_beam": false,
+  "mother_margin_m": -1.029,
+  "floor_reach_m": 5.23,
+  "north_wall_m": 6.1,
+  "her_spot": {
+   "at": [
+    -1.77,
+    -3.894
+   ],
+   "gaps": {
+    "couch": 0.37,
+    "armchair": 0.389,
+    "table": 0.386
+   }
+  },
+  "couch_to_corner_m": 2.14,
+  "shelf_clearance_m": 0.68,
+  "door_gap_m": 0.88
+ },
+ "tissue": {
+  "generation_pieces": 8,
+  "gold_dot_px": [
+   [
+    1069.2,
+    603.8
+   ],
+   [
+    1092,
+    487.8
+   ]
+  ],
+  "gold_dot_world": [
+   [
+    -1.617,
+    0.315,
+    -3.565
+   ],
+   [
+    -1.61,
+    0.421,
+    -3.502
+   ]
+  ],
+  "paper_r3": [
+   {
+    "what": "held, L hand",
+    "gen": 7,
+    "size_cm": [
+     2.2,
+     1.8
+    ],
+    "world": [
+     -1.6167825145987882,
+     0.31481683213614275,
+     -3.5651732674209122
+    ]
+   },
+   {
+    "what": "laid on the table",
+    "gen": 7,
+    "size_cm": [
+     2.2,
+     1.3
+    ],
+    "world": [
+     -1.61,
+     0.4206,
+     -3.501818957780646
+    ]
+   }
+  ],
+  "sheet_cm": [
+   16,
+   23
+  ],
+  "stack_sheets": 200,
+  "drift": {
+   "table": 128,
+   "floor": 468,
+   "couch": 31,
+   "by_gen": {
+    "1": 1,
+    "2": 3,
+    "3": 6,
+    "4": 14,
+    "5": 21,
+    "6": 45,
+    "7": 88,
+    "8": 145,
+    "9": 170,
+    "10": 134
+   }
+  },
+  "hair_bit_world": [
+   -1.608,
+   0.524,
+   -3.668
+  ],
+  "hair_bit_px": [
+   1060.2,
+   356.9
+  ]
+ },
+ "state": "B: a week later, the drift",
+ "tissue_pieces": 0,
+ "times": null,
+ "points_world": {
+  "jade3": {
+   "eyes": [
+    -1.662,
+    0.462,
+    -3.652
+   ],
+   "head": [
+    -1.688,
+    0.476,
+    -3.727
+   ],
+   "handL": [
+    -1.581,
+    0.296,
+    -3.583
+   ],
+   "handR": [
+    -1.675,
+    0.439,
+    -3.508
+   ],
+   "hip": [
+    -1.717,
+    0.081,
+    -3.807
+   ]
+  },
+  "mama86": {
+   "eyes": [
+    0.522,
+    1.448,
+    -5.964
+   ],
+   "head": [
+    0.586,
+    1.458,
+    -6.029
+   ],
+   "handL": [
+    0.736,
+    0.752,
+    -5.898
+   ],
+   "handR": [
+    0.297,
+    1.18,
+    -6.17
+   ],
+   "hip": [
+    0.62,
+    0.85,
+    -6.06
+   ]
+  }
+ },
+ "gaze": {
+  "jade3": {
+   "face": "drawn",
+   "look_target": {
+    "name": null,
+    "world": [
+     -1.556,
+     0.372,
+     -3.355
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -0.5,
+    "pitch_up": 0.5,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -1.6,
+    "wanted_yaw": 0,
+    "wanted_pitch": -1.6,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1005.3,
+    420.2
+   ],
+   "target_px": [
+    1199.1,
+    569.3
+   ],
+   "target_in_front": true
+  },
+  "mama86": {
+   "face": "drawn",
+   "look_target": {
+    "name": "jade3:head",
+    "world": [
+     -1.688,
+     0.476,
+     -3.727
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 5.3,
+    "pitch_up": -8.5,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -5.7,
+    "wanted_yaw": 0,
+    "wanted_pitch": -5.7,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1841.1,
+    -91.5
+   ],
+   "target_px": [
+    964.2,
+    407.3
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "jade3": {
+   "top": "#e9dcc0",
+   "legs": "#5a6a8a",
+   "sleeves": "short",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "mama86": {
+   "top": "#6f7f9a",
+   "legs": "#3a3632",
+   "sleeves": "short",
+   "sock": "#8a8478",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "jade3": {
+   "L": {
+    "hold": true,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -23,
+    "radial_deg": 17.6,
+    "twist_deg": 3.8,
+    "elbow_flex_deg": 82.9,
+    "before": {
+     "flex_deg": -23,
+     "radial_deg": 17.6,
+     "twist_deg": 3.8
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 10.3,
+    "radial_deg": -5,
+    "twist_deg": -7.4,
+    "elbow_flex_deg": 70.5,
+    "before": {
+     "flex_deg": 10.3,
+     "radial_deg": -5,
+     "twist_deg": -7.4
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  },
+  "mama86": {
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -55.6,
+    "radial_deg": -15.2,
+    "twist_deg": -64.9,
+    "elbow_flex_deg": 123.5,
+    "before": {
+     "flex_deg": -55.6,
+     "radial_deg": -15.2,
+     "twist_deg": -64.9
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [
+  {
+   "object": "草纸: the tiny pieces (in her hands / just torn)",
+   "hands": [
+    {
+     "who": "jade3",
+     "arm": "L",
+     "shape": "pinch",
+     "grasp": "pinch",
+     "engine_held": false,
+     "capsules": [
+      {
+       "part": "index1",
+       "a": [
+        -1.5835,
+        0.3248,
+        -3.5723
+       ],
+       "b": [
+        -1.6001,
+        0.33,
+        -3.5606
+       ],
+       "r": 0.0064
+      },
+      {
+       "part": "index2",
+       "a": [
+        -1.6001,
+        0.33,
+        -3.5606
+       ],
+       "b": [
+        -1.6127,
+        0.3255,
+        -3.5616
+       ],
+       "r": 0.0058
+      },
+      {
+       "part": "index3",
+       "a": [
+        -1.6127,
+        0.3255,
+        -3.5616
+       ],
+       "b": [
+        -1.6206,
+        0.32,
+        -3.5653
+       ],
+       "r": 0.0052
+      },
+      {
+       "part": "palm:index",
+       "a": [
+        -1.5851,
+        0.2911,
+        -3.6109
+       ],
+       "b": [
+        -1.5835,
+        0.3248,
+        -3.5723
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "middle1",
+       "a": [
+        -1.581,
+        0.317,
+        -3.5645
+       ],
+       "b": [
+        -1.5913,
+        0.3277,
+        -3.5473
+       ],
+       "r": 0.0066
+      },
+      {
+       "part": "middle2",
+       "a": [
+        -1.5913,
+        0.3277,
+        -3.5473
+       ],
+       "b": [
+        -1.6044,
+        0.3288,
+        -3.5411
+       ],
+       "r": 0.0059
+      },
+      {
+       "part": "middle3",
+       "a": [
+        -1.6044,
+        0.3288,
+        -3.5411
+       ],
+       "b": [
+        -1.6153,
+        0.3273,
+        -3.5393
+       ],
+       "r": 0.0053
+      },
+      {
+       "part": "palm:middle",
+       "a": [
+        -1.5832,
+        0.2841,
+        -3.6056
+       ],
+       "b": [
+        -1.581,
+        0.317,
+        -3.5645
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "ring1",
+       "a": [
+        -1.5788,
+        0.3077,
+        -3.5595
+       ],
+       "b": [
+        -1.5914,
+        0.3152,
+        -3.5438
+       ],
+       "r": 0.0061
+      },
+      {
+       "part": "ring2",
+       "a": [
+        -1.5914,
+        0.3152,
+        -3.5438
+       ],
+       "b": [
+        -1.6048,
+        0.3133,
+        -3.5415
+       ],
+       "r": 0.0055
+      },
+      {
+       "part": "ring3",
+       "a": [
+        -1.6048,
+        0.3133,
+        -3.5415
+       ],
+       "b": [
+        -1.6143,
+        0.3094,
+        -3.5436
+       ],
+       "r": 0.005
+      },
+      {
+       "part": "palm:ring",
+       "a": [
+        -1.5814,
+        0.2775,
+        -3.6006
+       ],
+       "b": [
+        -1.5788,
+        0.3077,
+        -3.5595
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "little1",
+       "a": [
+        -1.5769,
+        0.2976,
+        -3.557
+       ],
+       "b": [
+        -1.589,
+        0.3012,
+        -3.5452
+       ],
+       "r": 0.0054
+      },
+      {
+       "part": "little2",
+       "a": [
+        -1.589,
+        0.3012,
+        -3.5452
+       ],
+       "b": [
+        -1.5994,
+        0.2979,
+        -3.5467
+       ],
+       "r": 0.0049
+      },
+      {
+       "part": "little3",
+       "a": [
+        -1.5994,
+        0.2979,
+        -3.5467
+       ],
+       "b": [
+        -1.6051,
+        0.2939,
+        -3.5514
+       ],
+       "r": 0.0044
+      },
+      {
+       "part": "palm:little",
+       "a": [
+        -1.5797,
+        0.2714,
+        -3.596
+       ],
+       "b": [
+        -1.5769,
+        0.2976,
+        -3.557
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "thumb0",
+       "a": [
+        -1.5879,
+        0.295,
+        -3.6049
+       ],
+       "b": [
+        -1.5981,
+        0.3161,
+        -3.5924
+       ],
+       "r": 0.0095
+      },
+      {
+       "part": "thumb1",
+       "a": [
+        -1.5981,
+        0.3161,
+        -3.5924
+       ],
+       "b": [
+        -1.6078,
+        0.3203,
+        -3.5804
+       ],
+       "r": 0.0075
+      },
+      {
+       "part": "thumb2",
+       "a": [
+        -1.6078,
+        0.3203,
+        -3.5804
+       ],
+       "b": [
+        -1.6145,
+        0.3158,
+        -3.572
+       ],
+       "r": 0.0065
+      }
+     ]
+    }
+   ],
+   "hull": [
+    [
+     -1.6065,
+     0.3143,
+     -3.5557
+    ],
+    [
+     -1.6085,
+     0.3135,
+     -3.5569
+    ],
+    [
+     -1.6104,
+     0.3123,
+     -3.5579
+    ],
+    [
+     -1.612,
+     0.3104,
+     -3.5582
+    ],
+    [
+     -1.614,
+     0.3097,
+     -3.5596
+    ],
+    [
+     -1.6159,
+     0.3085,
+     -3.5605
+    ],
+    [
+     -1.6179,
+     0.3078,
+     -3.5619
+    ],
+    [
+     -1.6197,
+     0.3064,
+     -3.5626
+    ],
+    [
+     -1.6214,
+     0.3046,
+     -3.5631
+    ],
+    [
+     -1.6232,
+     0.3032,
+     -3.5638
+    ],
+    [
+     -1.6229,
+     0.3055,
+     -3.5649
+    ],
+    [
+     -1.6238,
+     0.307,
+     -3.5666
+    ],
+    [
+     -1.6249,
+     0.3082,
+     -3.5684
+    ],
+    [
+     -1.6254,
+     0.3099,
+     -3.5699
+    ],
+    [
+     -1.6253,
+     0.3121,
+     -3.5711
+    ],
+    [
+     -1.6268,
+     0.3131,
+     -3.5731
+    ],
+    [
+     -1.6268,
+     0.3152,
+     -3.5744
+    ],
+    [
+     -1.6248,
+     0.316,
+     -3.5731
+    ],
+    [
+     -1.6231,
+     0.3174,
+     -3.5724
+    ],
+    [
+     -1.6211,
+     0.318,
+     -3.571
+    ],
+    [
+     -1.6194,
+     0.3197,
+     -3.5705
+    ],
+    [
+     -1.6174,
+     0.32,
+     -3.5689
+    ],
+    [
+     -1.6158,
+     0.3221,
+     -3.5688
+    ],
+    [
+     -1.6139,
+     0.3231,
+     -3.5677
+    ],
+    [
+     -1.6124,
+     0.3253,
+     -3.5677
+    ],
+    [
+     -1.6106,
+     0.3265,
+     -3.5669
+    ]
+   ],
+   "size_m": [
+    0.0203,
+    0.0233,
+    0.0187
+   ],
+   "supports": []
+  },
+  {
+   "object": "草纸: the tiny pieces (in her hands / just torn)",
+   "hands": [
+    {
+     "who": "jade3",
+     "arm": "R",
+     "shape": "flat",
+     "grasp": "tipOn",
+     "engine_held": false,
+     "capsules": [
+      {
+       "part": "index1",
+       "a": [
+        -1.6453,
+        0.4442,
+        -3.5106
+       ],
+       "b": [
+        -1.6265,
+        0.4415,
+        -3.5017
+       ],
+       "r": 0.0064
+      },
+      {
+       "part": "index2",
+       "a": [
+        -1.6265,
+        0.4415,
+        -3.5017
+       ],
+       "b": [
+        -1.6163,
+        0.4343,
+        -3.4968
+       ],
+       "r": 0.0058
+      },
+      {
+       "part": "index3",
+       "a": [
+        -1.6163,
+        0.4343,
+        -3.4968
+       ],
+       "b": [
+        -1.61,
+        0.4267,
+        -3.4938
+       ],
+       "r": 0.0052
+      },
+      {
+       "part": "palm:index",
+       "a": [
+        -1.6909,
+        0.4331,
+        -3.5311
+       ],
+       "b": [
+        -1.6453,
+        0.4442,
+        -3.5106
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "middle1",
+       "a": [
+        -1.6492,
+        0.4445,
+        -3.5
+       ],
+       "b": [
+        -1.629,
+        0.4455,
+        -3.4896
+       ],
+       "r": 0.0066
+      },
+      {
+       "part": "middle2",
+       "a": [
+        -1.629,
+        0.4455,
+        -3.4896
+       ],
+       "b": [
+        -1.6162,
+        0.4432,
+        -3.4831
+       ],
+       "r": 0.0059
+      },
+      {
+       "part": "middle3",
+       "a": [
+        -1.6162,
+        0.4432,
+        -3.4831
+       ],
+       "b": [
+        -1.6067,
+        0.4402,
+        -3.4782
+       ],
+       "r": 0.0053
+      },
+      {
+       "part": "palm:middle",
+       "a": [
+        -1.6951,
+        0.4331,
+        -3.5232
+       ],
+       "b": [
+        -1.6492,
+        0.4445,
+        -3.5
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "ring1",
+       "a": [
+        -1.6556,
+        0.4442,
+        -3.4913
+       ],
+       "b": [
+        -1.6369,
+        0.4444,
+        -3.4806
+       ],
+       "r": 0.0061
+      },
+      {
+       "part": "ring2",
+       "a": [
+        -1.6369,
+        0.4444,
+        -3.4806
+       ],
+       "b": [
+        -1.6254,
+        0.4412,
+        -3.4739
+       ],
+       "r": 0.0055
+      },
+      {
+       "part": "ring3",
+       "a": [
+        -1.6254,
+        0.4412,
+        -3.4739
+       ],
+       "b": [
+        -1.6168,
+        0.4375,
+        -3.469
+       ],
+       "r": 0.005
+      },
+      {
+       "part": "palm:ring",
+       "a": [
+        -1.6991,
+        0.4331,
+        -3.5157
+       ],
+       "b": [
+        -1.6556,
+        0.4442,
+        -3.4913
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "little1",
+       "a": [
+        -1.6636,
+        0.4433,
+        -3.4845
+       ],
+       "b": [
+        -1.6495,
+        0.4428,
+        -3.4747
+       ],
+       "r": 0.0054
+      },
+      {
+       "part": "little2",
+       "a": [
+        -1.6495,
+        0.4428,
+        -3.4747
+       ],
+       "b": [
+        -1.6408,
+        0.4395,
+        -3.4688
+       ],
+       "r": 0.0049
+      },
+      {
+       "part": "little3",
+       "a": [
+        -1.6408,
+        0.4395,
+        -3.4688
+       ],
+       "b": [
+        -1.6345,
+        0.4359,
+        -3.4645
+       ],
+       "r": 0.0044
+      },
+      {
+       "part": "palm:little",
+       "a": [
+        -1.7027,
+        0.4331,
+        -3.5088
+       ],
+       "b": [
+        -1.6636,
+        0.4433,
+        -3.4845
+       ],
+       "r": 0.0062
+      },
+      {
+       "part": "thumb0",
+       "a": [
+        -1.6843,
+        0.4314,
+        -3.5277
+       ],
+       "b": [
+        -1.6579,
+        0.4349,
+        -3.5259
+       ],
+       "r": 0.0095
+      },
+      {
+       "part": "thumb1",
+       "a": [
+        -1.6579,
+        0.4349,
+        -3.5259
+       ],
+       "b": [
+        -1.6422,
+        0.4368,
+        -3.5243
+       ],
+       "r": 0.0075
+      },
+      {
+       "part": "thumb2",
+       "a": [
+        -1.6422,
+        0.4368,
+        -3.5243
+       ],
+       "b": [
+        -1.6306,
+        0.4382,
+        -3.5232
+       ],
+       "r": 0.0065
+      }
+     ]
+    }
+   ],
+   "hull": [
+    [
+     -1.622,
+     0.4206,
+     -3.5008
+    ],
+    [
+     -1.6201,
+     0.4206,
+     -3.4991
+    ],
+    [
+     -1.6178,
+     0.4206,
+     -3.4981
+    ],
+    [
+     -1.6153,
+     0.4206,
+     -3.4978
+    ],
+    [
+     -1.6129,
+     0.4206,
+     -3.4972
+    ],
+    [
+     -1.611,
+     0.4206,
+     -3.4953
+    ],
+    [
+     -1.6088,
+     0.4206,
+     -3.4943
+    ],
+    [
+     -1.6062,
+     0.4206,
+     -3.494
+    ],
+    [
+     -1.6038,
+     0.4206,
+     -3.4935
+    ],
+    [
+     -1.6017,
+     0.4206,
+     -3.492
+    ],
+    [
+     -1.601,
+     0.4206,
+     -3.494
+    ],
+    [
+     -1.6013,
+     0.4206,
+     -3.4964
+    ],
+    [
+     -1.6001,
+     0.4206,
+     -3.4982
+    ],
+    [
+     -1.5998,
+     0.4206,
+     -3.5003
+    ],
+    [
+     -1.5994,
+     0.4206,
+     -3.5025
+    ],
+    [
+     -1.5977,
+     0.4206,
+     -3.5042
+    ],
+    [
+     -1.6001,
+     0.4206,
+     -3.5046
+    ],
+    [
+     -1.6023,
+     0.4206,
+     -3.5059
+    ],
+    [
+     -1.6046,
+     0.4206,
+     -3.5066
+    ],
+    [
+     -1.6069,
+     0.4206,
+     -3.5071
+    ],
+    [
+     -1.6092,
+     0.4206,
+     -3.5078
+    ],
+    [
+     -1.6115,
+     0.4206,
+     -3.5085
+    ],
+    [
+     -1.6139,
+     0.4206,
+     -3.5091
+    ],
+    [
+     -1.6161,
+     0.4206,
+     -3.51
+    ],
+    [
+     -1.6185,
+     0.4206,
+     -3.5103
+    ]
+   ],
+   "size_m": [
+    0.0242,
+    0,
+    0.0183
+   ],
+   "supports": [
+    {
+     "label": "coffee table (茶几)",
+     "pos": [
+      -1.7,
+      0.42,
+      -3.5138,
+      -1.7,
+      0.42,
+      -2.5638,
+      -1.15,
+      0.42,
+      -3.5138,
+      -1.15,
+      0.42,
+      -2.5638,
+      -1.15,
+      0.42,
+      -3.5138,
+      -1.15,
+      0.385,
+      -3.5138,
+      -1.7,
+      0.42,
+      -3.5138,
+      -1.7,
+      0.385,
+      -3.5138
+     ],
+     "idx": [
+      0,
+      1,
+      2,
+      1,
+      3,
+      2,
+      4,
+      5,
+      6,
+      5,
+      7,
+      6
+     ]
+    }
+   ]
+  }
+ ],
+ "figure_frame_fraction": {
+  "mama86": 0.028,
+  "jade3": 0.0574
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "jade3": {
+   "legs": {
+    "L": {
+     "reach": 0.58
+    },
+    "R": {
+     "reach": 0.58
+    }
+   },
+   "arms": {
+    "L": 0.75,
+    "R": 0.82
+   },
+   "headTurn": -1,
+   "body": {
+    "mesh": "jade03",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0.007,
+    "L": {
+     "elbow_bend_deg": 79,
+     "upperarm_stretch": 0.98,
+     "forearm_stretch": 0.89,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 70,
+     "upperarm_stretch": 1.18,
+     "forearm_stretch": 0.89,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 14.8,
+    "sole_shift_mm_R": 14.8,
+    "sole_lowest_y_m": -0.0097
+   }
+  },
+  "mama86": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.48
+   },
+   "headTurn": 5,
+   "body": {
+    "mesh": "mama",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.1,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 123,
+     "upperarm_stretch": 1.01,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 19.7,
+    "sole_shift_mm_R": 19.7,
+    "sole_lowest_y_m": 0.0219
+   }
+  }
+ }
+}

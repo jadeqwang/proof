@@ -981,3 +981,42 @@ low in the lap or close in front of the chest, elbows bent and down.
 - Checks: clipcheck: no new fails (remaining: the drift under her, the held piece's pinch numbers, V1a/V1b uncle, V1d_2
   reach: all as before); check_bodies PASS V1c, V1d_1, V1d_2, V1d_8_end, V1e, REF_beam; holdcheck no fails. Rendered
   three passes. Compare sheet: scratchpad shanghai_r6b_compare.jpg.
+
+## 2026-11-26: round-3 decisions — r6c, V1d_2 wrist (Jade: "the wrist is weird"; decision: MOVE HER, not PD)
+- **Was:** at her shared spot (PLACES.jadeSit) her right index reached PD 0.42 m in front of her: arm nearly straight
+  (elbow 5.2 deg, "cannot reach", reach 1.08), upper arm raised 134 deg, wrist flex 51.4 / radial 16.3. Look RIP_LOOK
+  (55.8 deg off her pointing hand). Third-person view of it: scratchpad V1d_2_before_side.png.
+- **Moved (V1d_2 ONLY):** `V1D2_D` = 10 cm forward + 2 cm to her left (world dx +0.053, dz +0.087): at (-1.717, -3.807),
+  same yaw 20, cross-legged; lean 16 (was 26). PLACES.jadeSit is shared by every state-B shot, so it is NOT changed: the
+  move is a per-shot `at` override in V1D2_JADE. PD, LAY_TIP and the laid half are unchanged (V1d_4 / V1d_8 / after
+  shots identical: re-rendered sidecars have the same wrists, warnings and camera as in git).
+- **Right arm:** soft, nearly flat hand (index curled a little more than the others so its pad is the lowest point),
+  fingers FWD + 0.9 LEFT and 0.3 up, coming over the table's north edge toward the corner; index pad on the half at PD
+  (graspArms tipOn, as before); elbowAt below/behind the hand. Now elbow 70.5, wrist flex 10.3 / radial -5.0 (ulnar 5) /
+  twist -7.4; no warnings. ~300 variants scanned with clipcheck (scratchpad scan*.txt). A 'relax' hand put the curled
+  fingers 5-6 mm into the table top; a 'point' hand 9-17 mm.
+- **Left hand (kept half):** the same close-in pinch, carried with her by V1D2_D (elbow 83, wrist ext 23 / radial 18).
+- **Gaze:** at the put-down spot / her right hand (the intent and notes give no reason to watch the held half): the look
+  point lies on her eye line through LAY_TIP, 30 cm out, 6 cm lower (her eyes are only ~15 cm from PD; check_bodies
+  MIN_LOOK). Exactly on the line, the head pitch re-oriented the held half (laid from the left pinch) so that it cut
+  80 mm through her left hand in clipcheck; 6 cm lower it is the usual 7.9 mm. Gaze warning gone.
+- **POV camera (V1d_2 only):** moves with her (orbit at RIP_C + V1D2_D, aim RIP_H + V1D2_D; same az / el / dist /
+  lens 35). FLAG: V1d_1 / V1d_2 / V1d_4 were "same camera"; V1d_2's is now 10 cm further forward, as her eyes are.
+- **FLAG (anatomy, not fixable by moving her):** cross-legged, her shoulders are at 0.38 m and her eyes at 0.41 m: the
+  coffee-table top (0.42) is at her chin, and PD is 12 mm from the near edge, so no forearm support is possible. The
+  low-energy reference pose (forearm resting on the table, elbow down) needs the hand well inside the table. The upper
+  arm is therefore raised to about shoulder height (shoulder elevation ~105 deg) and the forearm runs across in front
+  of her mouth in the side view. Kneeling (`legs: 'kneel'`, +8 cm) was tried: shoulders 0.46, but the left pinch went
+  35-50 deg past radial and Jade's r2 answer was cross-legged in both scenes, so not used. Possible decision question:
+  "V1d_2: up on her knees to put the half down?" (options: stay cross-legged as now / kneel up for this shot; my rec:
+  stay, a toddler at a table that high does reach up like this).
+- **Reference photos** (look-only, Pexels, scratchpad refs/: 7296791, 6623807 and 10 others): small children at a table
+  at chest-chin height handle small things close to the body, hands hooked over the edge, wrist straight.
+  Compare sheet: scratchpad V1d_2_compare.jpg.
+- **New reference shot** `REF_V1d_2_side` (and its beam twins): V1d_2's pose from her front-right at table height
+  (camera (-1.9, 0.56, -2.0)); the left hand is behind the table's corner leg from there. Not for painting.
+- **Checks:** clipcheck V1d_2: armR reach fail gone; drift 24.8 -> 21.9 mm, table 1.1 mm (tol 3), held half 7.9 mm (both
+  pre-existing kinds); V1d_1 / V1d_4 / V1d_8 unchanged. holdcheck: all pass (R index on the half 0.8 mm, on the table).
+  check_bodies: V1d_1, V1d_2, V1d_4, V1d_8, REF_V1d_2_side PASS (hair bit 5.3 mm into the hair in REF, as in V1c / V1e).
+- Rendered: all three passes for the set; only V1d_2, beam_V1d_2 and REF_V1d_2_side files kept (the other shots'
+  images differed only by anti-aliasing noise on the drift and were restored from git). Needs repaint: V1d_2.

@@ -91,6 +91,36 @@ const RIP_H = [JX + FWD[0] * 0.26, 0.32, JZ + FWD[1] * 0.26];   // low, over her
 // read as crossed in a guide; check_bodies MIN_LOOK 25 cm)
 const RIP_LOOK = [JX + FWD[0] * 0.37, 0.21, JZ + FWD[1] * 0.37];
 const ripSit = (gap, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', yaw: PLACES.jadeYaw, spine: { bend: 8 }, head: { look: RIP_LOOK }, ...pinchPair(0.26, 0.32, gap), ...o });
+// r6c (Jade on V1d_2: "the wrist is weird"): the right arm reached ~0.4 m nearly straight (elbow 5 deg, past its reach 1.08),
+// the upper arm raised 134 deg, the wrist flexed 51 / radial 16 deg. Decision (Jade via the lead): MOVE HER, not PD (PD and
+// the laid half stay put for V1d_4 on). In V1d_2 only, she has shuffled 10 cm forward and 2 cm to her left (V1D2_D) up to
+// the table corner, sitting more upright (lean 16, was 26). Look-only reference photos (toddlers at a table at chest-chin
+// height putting small things down, scratchpad refs/): close in to the table, elbow bent and low, the hand hooked over the
+// edge, wrist near straight. Right hand: soft, nearly flat fingers coming over the table's north edge toward the corner (fingers
+// FWD + 0.9 LEFT, a little up: the curled index lands on the half), elbow bent ~72 deg below the table top (elbowAt);
+// scanned ~300 variants with clipcheck (scratchpad scan*.txt). The table top (0.42) is at her chin when she sits
+// cross-legged, so the upper arm is raised to about shoulder height (no support possible: PD is 12 mm from the edge).
+// Left hand (the kept half): the same close-in pinch, carried with her. Gaze: at the put-down spot (her eyes are only
+// ~12 cm from it, so the look point lies 30 cm out along the same line, as RIP_LOOK does).
+const V1D2_D = [FWD[0] * 0.10 + LEFT[0] * 0.02, FWD[1] * 0.10 + LEFT[1] * 0.02];
+const V1D2_AT = [JX + V1D2_D[0], JZ + V1D2_D[1]];
+const shiftTip = (a, d) => ({ ...a, tip: { ...a.tip, at: [a.tip.at[0] + d[0], a.tip.at[1], a.tip.at[2] + d[1]] } });
+const V1D2_RF = [FWD[0] + 0.9 * LEFT[0], 0.3, FWD[1] + 0.9 * LEFT[1]];
+// the index curls down a little more than the other fingers, so its pad is the lowest point (a 'relax' hand put the curled
+// middle/ring 5-6 mm into the table top)
+const V1D2_RH = { shape: 'flat', spread: 3, curl: { index: [20, 25, 15], middle: [10, 12, 6], ring: [12, 14, 7], little: [14, 16, 8] } };
+const V1D2_C = [RIP_C[0] + V1D2_D[0], RIP_C[1], RIP_C[2] + V1D2_D[1]], V1D2_H = [RIP_H[0] + V1D2_D[0], RIP_H[1], RIP_H[2] + V1D2_D[1]];
+// gaze: from her eyes (measured in this pose: V1D2_EYE) toward the put-down spot (LAY_TIP, her index pad on the half), 30 cm out
+// and 6 cm lower (~11 deg down: onto her hand on the table edge). Exactly on the line, the head pitches up enough that the
+// held half (laid from her left pinch) cuts 80 mm through her left hand in clipcheck; 6 cm lower it is the usual 7.9 mm
+const V1D2_EYE = [-1.664, 0.414, -3.634];
+const V1D2_LOOK = (() => { const d = [LAY_TIP[0] - V1D2_EYE[0], LAY_TIP[1] - V1D2_EYE[1], LAY_TIP[2] - V1D2_EYE[2]], n = Math.hypot(...d); return d.map((v, i) => V1D2_EYE[i] + v / n * 0.3 - (i === 1 ? 0.06 : 0)); })();
+const V1D2_JADE = ripSit(0.016, { at: V1D2_AT,
+  L: shiftTip({ ...pinchPair(0.26, 0.32, 0.016).L, fingers: [FWD[0] - LEFT[0] * 0.3, 0.8, FWD[1] - LEFT[1] * 0.3] }, V1D2_D),
+  R: { ...graspArms('tipOn', { centre: LAY_TIP, at: LAY_TIP, up: [0, 1, 0], hand: V1D2_RH, palm: [0, -1, 0], fingers: V1D2_RF, label: '草纸' }, { Lh: 0.112 * 0.95, side: 'R' }).R, object: '草纸: the tiny pieces',
+    elbowAt: [LAY_TIP[0] - 0.17 * V1D2_RF[0] - 0.05 * LEFT[0], 0.36, LAY_TIP[2] - 0.17 * V1D2_RF[2] - 0.05 * LEFT[1]] },
+  spine: { bend: 16 }, head: { look: V1D2_LOOK } });
+// r6b had (before r6c): at PLACES.jadeSit, R: lay.R (fingers FWD + 0.5 LEFT, -0.6), spine bend 26, look RIP_LOOK
 const HEAP = [F[0] + 0.03, F[2] + 0.05];
 const AFTER = { laid: [{ half: [P0.gen, P0.seed, 1], at: PD, yaw: 20 }], bits: { at: HEAP, r: 0.03, gens: { 9: 4, 10: 10, 11: 22 } } };
 const V1H_MID = [HEAP[0], 0.43, HEAP[1] + 0.15];
@@ -173,6 +203,11 @@ export const SHOTS = [
   { id: 'REF_armchairs', lens: 28, pos: [-0.2, 1.25, -2.1], aim: [[-1.75, 0.5, -3.6], 0.5, 0.5], tissue: 8, figs: ALONE(8),
     header: 'REFERENCE (r4): the couch group: three upholstered armchairs (tapered legs, rolled arms, loose cushions, crocheted covers), couch, table',
     intent: 'The couch group from the south-east: the L armchair north of the couch (behind her), the across armchair, the opposite armchair, the side table. Not a shot.' },
+  // r6c (V1d_2 wrist): a third-person view of V1d_2's pose for Jade to judge the arm and wrist (not for painting)
+  { id: 'REF_V1d_2_side', lens: 35, pos: [-1.9, 0.56, -2.0], target: [-1.7, 0.36, -3.66], figs: { jade3: V1D2_JADE, mama86: mother() },
+    paper: { held: { L: { half: [P0.gen, P0.seed, 0], tilt: 25 } }, laid: [{ half: [P0.gen, P0.seed, 1], at: PD, yaw: 20 }] },
+    header: 'REFERENCE (r6c): V1d_2 from her front-right at table height: both arms, the table corner, PD',
+    intent: 'Third-person check of V1d_2: her right hand setting its half down flat at the table corner, her left hand holding its half close in. Not a shot.' },
 
   // ---------------------------------------------------------------- verse 1, 0:29.7-0:58.6
   { id: 'V1a', t: [29.74, 31.58], lens: 50, state: 'A', orbit: { at: 'jade3:eyes', az: yawTo(PLACES.jadeStand, [H[0], H[2]]) + 70, el: 4, dist: 1.3 }, aim: ['jade3:eyes', 0.4, 0.42], focus: ['jade3'],
@@ -192,8 +227,9 @@ export const SHOTS = [
   { id: 'V1d_1', t: [37.85, 41.43], lens: 35, orbit: { at: RIP_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [RIP_H, 0.5, 0.62], ...INSIDE,
     figs: { jade3: ripSit(0.016), mama86: mother() }, paper: { rip: { ...P0, open: 5, tilt: 25 } },
     header: '0:37.9 INSIDE "sat in a snow drift of paper": a tiny piece, ripping it (gold dot x1)', intent: 'Inside (POV): her eye-line onto her own hands just off the table\'s north-west corner: a tiny piece (~2 x 3 cm) pinched between both thumbs and index fingers, the tear just starting between them. The table corner, its edges and the big stack beyond.' },
-  { id: 'V1d_2', t: [41.43, 43.34], lens: 35, orbit: { at: RIP_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [RIP_H, 0.5, 0.62], ...INSIDE,
-    figs: { jade3: ripSit(0.016, { L: { ...pinchPair(0.26, 0.32, 0.016).L, fingers: [FWD[0] - LEFT[0] * 0.3, 0.8, FWD[1] - LEFT[1] * 0.3] }, R: { ...lay.R, object: '草纸: the tiny pieces' }, spine: { bend: 26 } }), mama86: mother() },   // r6b: the kept half's hand close in, fingers more upright (ulnar was +7 past)   // r5 wrists: leans 26 deg (ripSit 18) so the turned-in right hand still reaches PD; hold pass: her right index pad holds its half down on the table at PD (lay.R; build.js lays the half from the fingertip)
+  // r6c: she has moved 10 cm forward / 2 cm left in this shot (V1D2_D), so her POV camera moves with her (same az / el / dist / lens)
+  { id: 'V1d_2', t: [41.43, 43.34], lens: 35, orbit: { at: V1D2_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [V1D2_H, 0.5, 0.62], ...INSIDE,
+    figs: { jade3: V1D2_JADE, mama86: mother() },   // r6b: the kept half's hand close in, fingers more upright (ulnar was +7 past)   // r5 wrists: leans 26 deg (ripSit 18) so the turned-in right hand still reaches PD; hold pass: her right index pad holds its half down on the table at PD (lay.R; build.js lays the half from the fingertip)
     paper: { held: { L: { half: [P0.gen, P0.seed, 0], tilt: 25 } }, laid: [{ half: [P0.gen, P0.seed, 1], at: PD, yaw: 20 }] },   // hold pass: the right half lies at PD under her right index pad (as in V1d_4 on), not laid from the fingertip
     header: '0:41.4 INSIDE "ripped to shreds": the two halves; she puts one down (gold dots x2)', intent: 'Same camera. The tiny piece torn in two (~1.5 x 2 cm each): her left hand still holds its half up, her right hand is setting its half down flat on the table corner.' },
   { id: 'V1d_4', t: [43.34, 45.43], lens: 35, orbit: { at: RIP_C, az: yawTo([RIP_C[0], RIP_C[2]], [JX, JZ]), el: 50, dist: 0.4 }, aim: [RIP_H, 0.5, 0.62], ...INSIDE,
