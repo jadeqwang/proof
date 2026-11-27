@@ -12,17 +12,15 @@ Round 6, what changed:
   navel height, wrists in range. Shots: M1, M4b_pull, M5, M4c, WIDE.
 - **attic88_day:** AD_trace's other fingers are in a moderate curl (`grabpose.js` TRACE_R); AD_grab shares the hand.
 - **kitchen90:** jade7 now sits ON her folded left foot (sole up, knee forward), with the right leg hanging, as in
-  reference photos. Chair and family are 5 cm closer to the table, lean 12-18 deg. All 8 night shots. She still
-  looks down at the page with a rounded back in side views; it reads as a 7-year-old doing homework.
+  reference photos. Chair and family are 5 cm closer to the table. All 8 night shots. (Arms: see 6b.)
 - **mortongrove07:** the mirror is raised to glass 2.08-4.03 m, centred between the piano lid (~1.0 m) and the
-  5.10 m wall top. MG_wide was re-framed (16 mm, tilted up; the keyboard is cut off at the bottom). New reference
+  5.10 m wall top. MG_wide was re-framed (16 mm, tilted up; the keyboard is cut off at the bottom; Jade: fine). New reference
   view REF_east.
 - **shanghai86 V1e:** Mama's hand WAS clipping (22 mm into the jamb, forearm through the folded door leaves). She
-  now stands on the threshold with her palm flat on the jamb face. V1e and V1d_8_end.
-- **playground23:** the shuttle's middle is an open, padded cabin with two black bucket seats. The photo shows
-  one seat; the second, behind it, is a guess (tell Jade). Jade is in socks. New reference view REF_cabin (do not paint).
-- **First love's hair:** at Jade's request it was matched to his real hair shade, measured from public photos
-  (photos stayed in the session scratchpad and are deleted with it): ~#3f342e, a dark, slightly warm brown with no
+  now stands on the threshold (hand pose revised in 6b).
+- **playground23:** the shuttle's middle is an open, padded cabin with two black bucket seats in tandem (Jade: fine). Jade is in socks. New reference view REF_cabin (do not paint).
+- **First love's hair:** matched to the reference shade Jade asked for (the private details are in the lead's memory,
+  not here): ~#3f342e, a dark, slightly warm brown with no
   red. FL_HAIR 0x2b2420 (v8 was 0x1f1915); closet02 lit-only FL_HAIR_LIT 0x1a181b (CL_ots samples #40342d).
   closet02, mv10 and mortongrove07 are re-rendered. **The v8 painter sheets in cast/first_love are darker than
   this:** at paint time, say "#3f342e dark, slightly warm brown" in the prompt, or make a v9 sheet first.
@@ -41,6 +39,15 @@ Round 6b (Jade's follow-up notes on the same night, all applied):
   true ball centre; the iris is 0.342 rad and the pupil 0.153; the iris axis is turned 8 deg outward; the drawn turn is
   scaled 0.72. In gaze.js EYE_YAW is 35 -> 30. Every set with faces is re-rendered.
 - New rule (in memory and in work/decisions/AGENT_BRIEF.md): pose every everyday action from real reference photos.
+
+**Open question for Jade (ask before painting shanghai86):** V1d_2, where little Jade reaches 0.4 m to the put-down
+spot. Move her, or move the spot and the laid half in later shots?
+
+**Paint notes for r6:** the eye fix changed every face guide, so paint from the current renders only. Prompt notes
+per shot are in the r6 sections of work/r4/REPAINT_LIST.md (kitchen arms, the shuttle cabin, the mirror, Mama's hand).
+Nothing was spent this session (free routes only). The working tree is clean apart from the stray
+media/layout/mortongrove07/SW_t100_cam.png (don't commit it). The render and check recipe is in the superseded
+section below, and it is still current.
 
 **1. Paint r4 + r5 + r6.** The list is work/r4/REPAINT_LIST.md (r4, r5 and r6 sections; r6 adds the shots above).
 Free Codex in tmux only, most-corrected sets first; the method is in "START HERE (updated the evening of
