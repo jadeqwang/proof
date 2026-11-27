@@ -1410,3 +1410,9 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   at 217 mm, so PROP.foot isn't applied; the engine agent is fixing it for every figure and checking hands too.
 - G v11 accepted (G_t4: tidier tousle at the A_t2 level, black slacks); the hair wording is toned down at the source (cbc81ab).
 - Jade simplified the D hand hold: he takes one of her hands in both of his. 3D guides in cast/first_love/_prompts/v10/guide/.
+- Jade: closet uses the same hold as the D sheet (the gesture is still being chosen: an agent is curating stock
+  hand-hold photos, look-only, in the scratchpad handrefs/). Then: pose it in 3D for D and CL_hands.
+- Jade: CL_chin DROPPED (him rubbing her hand along his stubble). It's out of the closet _make.py; D drops study 4.
+  Its 1.7 s (3:32.5-3:34.2) needs covering in the edit (open).
+- Engine: mesh feet were ~13% short and hands ~3.5% short for EVERY figure; now exact (Jade and first love 251 mm).
+  All sets are being re-rendered; a list of already-painted shots where it shows is coming.

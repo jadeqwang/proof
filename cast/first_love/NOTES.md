@@ -357,3 +357,5 @@ colour must stay at v9's values (B #43352d, G #463830, A #463830).
   hand holds (D). Per Jade's new rule they get 3D guides from the engine first (cast/first_love/_prompts/v10/guide/).
   Until then fl_hands stays D v4.
 - G v11 = takes/G_t4 (Jade: "t4 is good"): tidier tousle (the A_t2 level), black slacks in the closet study. r4lib fl_ots -> G v11. The hair wording is toned down at the source (v9/hair.txt, r4lib FIRST_LOVE_HAIR).
+- E v3 (costume sheet) RETIRED as a painter reference (lead, 2026-11-26 night): old bowl hair, jeans, and figure 6 lost profile shows a nose tip. closet02 now uses G v11 study 3 for the age-19 costume. E4.txt/run6.sh (a slacks-only edit) were left unrun.
+- A v10 = takes/A_t3 (Jade: accept, hair as is). Painted from the 3D guide; toes fixed, black slacks.

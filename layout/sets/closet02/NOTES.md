@@ -204,3 +204,34 @@ touching. Tried and reverted (shots.js unchanged); asked the hold agent for an e
 
 ## 2026-11-26: round-6 decisions
 - Hair re-render (r6 final, lead): target = the hair shade Jade asked for (measured reference), ~#3f342e (dark, slightly warm brown, a little cool grey, no red). FL_HAIR 0x2b2420 (v8 0x1f1915; ~1.37x lighter, calibrated in normal light, NOT on dim scenes). closet02 lit-only FL_HAIR_LIT 0x1a181b: CL_ots hair samples #40342d. mv10 is a dim set (C2b hair #0e0a08 -> #130e0c). No geometry change. Painter refs: the v8 sheets are darker than the target; next paint session tell the painter #3f342e (or redo the sheet as v9).
+
+## 2026-11-26: first love in black slacks
+- Jade: "let's put first love in black pants in every scene, it feels more like him. (normal black slacks)". His legs are
+  now plain black dress trousers at both ages: `FL_SLACKS` 0x1c1c1e in `../_cast.js` (firstLove19 / firstLove27), a touch
+  off pure black so the folds read. Tops, socks and sandals unchanged. The engine has one trouser garment (the MakeHuman
+  jeans mesh) and no slacks-vs-jeans shape option, so the guide changes colour only; painter prompts carry
+  `r4lib.FL_SLACKS` ("plain black slacks (dress trousers) ... NOT jeans").
+- Costume edited only: NOT re-rendered yet (another agent is changing the engine's cross-legged pose and re-rendering closet02; the lead sequences it). Until then the closet02 guides still show the old grey-blue legs; the prompts already say slacks and tell the painter to ignore the jeans on fl_E_costume_19_27_v3.
+
+## 2026-11-26 (late): the cradle hold (Jade: "he should have both palms up and my hand is on top"; "yes the closet should use that hold")
+- shots.js jade()/him() defaults (so CL_hands and CL_ots): his two hands side by side, palm-up (tilted 14 deg toward
+  each other), fingers toward her; her RIGHT hand palm-down resting on his two palms, fingers gently curved, thumb in the
+  palm plane; her LEFT hand relaxed on her lap. Offsets from `hands` (CRADLE in shots.js) ported from
+  layout/sets/fl_hands (the D hands-sheet guide), where they were found by clip-check sweeps. Replaces the four-hand
+  stack (her two palm-up under his two palm-down).
+- CL_chin: unchanged in intent (he brings her right hand to his chin); its text now says his left hand stays palm-up in
+  the light and her left rests on her lap; his left hand's grip tags are off there (nothing in it).
+- CL_wide (temples / hands on his knees): no hands together, unchanged.
+- Checks (scratch render only, no media/ re-render; the engine agent re-renders closet02 after the cross-legged / foot
+  work): holdcheck CL_hands pass (contact 0, penetration 0); clipcheck CL_hands / CL_ots: grip contact 0.9 mm skin
+  (6.5 mm into her cuff cloth), hand joints in range. The same clip check FAILS on the legs and seat, which this edit
+  does not touch: crossed feet / knees of the two bodies overlapping near the door line (53.8 mm at y 0.08), the duvet,
+  carpet, bedroom wall, and her head in the hanging clothes. All from the in-progress cross-legged pose; re-check after
+  the engine agent's pass. CL_chin: her right wrist out of range (flexion +17, radial +55, supination +41 deg): this
+  was not changed here and needs its own fix.
+
+## CL_chin DROPPED (Jade, 2026-11-26 night)
+"we can also skip him rubbing her hand to his stubble shot, to simplify things a bit." CL_chin (3:32.5-3:34.2) is no
+longer painted. Its shot code stays (harmless) but is out of the paint list. Its 1.7 s need covering in the edit:
+OPEN, probably by holding CL_hands or CL_ots longer. Its wrist failure (right wrist out of range) is moot.
+The hands sheet D drops its matching study 4 (her hand at his chin) at the next retake.
