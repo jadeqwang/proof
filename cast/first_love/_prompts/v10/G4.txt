@@ -1,0 +1,18 @@
+An over-the-shoulder study sheet for ONE young man who is only ever seen from behind: six studies of his head, neck and shoulders, in two rows of three, well separated, each floating on bare paper with soft vignetted edges, no panel, no box, no hard rectangular edges. TOP ROW, three shots as framed in the film with a pale washed hint of the setting: (1) grad school, aged about 24, from behind his right shoulder, holding a folded white hoodie with a blue round print by a floral couch; (2) aged 27, from behind and to his left at a dark cube bookshelf, head bowed to his right; (3) aged 19, from behind and a little above, sitting cross-legged on the floor of a dim closet, head bowed toward his hands in his lap, a narrow shaft of light from a door gap beyond him. BOTTOM ROW, the same three angles in the same order, cropped tight on the head and neck alone, no setting: (4) the grad-school angle; (5) the bookshelf angle; (6) the closet angle, a sliver of the nape and the green hoodie collar at the bottom.
+
+{hair}
+
+{d24} {d27} {d19}
+
+{never}
+
+Image 1 is the current version of THIS sheet (approved except for two changes). Image 2 is the HAIR-TEXTURE REFERENCE: a strip of his heads from his turnaround sheet, the director's approved level of messiness; use it only for how tousled the hair is, not for layout. Change ONLY these TWO things and keep everything else exactly as in image 1, pixel for pixel where possible:
+(a) HIS HAIR, in all six studies, is TOO MESSY in image 1: too many flyaways, loose wisps and stray strands standing off the head, the pieces too separated. Make it tousled ONLY AS MUCH AS IN IMAGE 2: the same finger-raked, slightly wavy, uneven pieces, but the pieces lying closer together and more cohesive, with FEWER flyaways and loose wisps, a cleaner outline. (This takes priority over the TEXTURE paragraph in the hair description above: casual and finger-raked, but no more unkempt than image 2.) Keep EXACTLY the same cut, length, part notch, crisp step over the even short buzz, silhouette and the same HAIR COLOUR (#3f342e, a dark, slightly warm brown, no red, not black).
+(b) HIS TROUSERS: he never wears jeans. In study 3 (aged 19, sitting cross-legged on the closet floor) replace the light-blue jeans with plain black slacks (dress trousers: ordinary black trousers, straight leg, belt loops, a slight crease; NOT jeans, no denim, no visible stitching or rivets), the hems resting at the sandals; keep the cross-legged pose, the folds of the legs and their position exactly. Anywhere else on the sheet where his jeans show, likewise make them the same plain black slacks.
+Keep EVERYTHING ELSE exactly as in image 1: the layout and framing, the settings and light, the folded white hoodie and its blue round print, the tops he wears, the soft grey 5 o'clock tint along his jaw, his soft dark forearm hair, study 3's feet (tucked under the opposite shins, the upturned cork sole showing) and his hands resting on his knees, the skin and the paper. No face: no eye, no nose, no mouth in any study.
+
+{forearm2}
+
+{toes}
+
+{style}

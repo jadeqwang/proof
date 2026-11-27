@@ -356,3 +356,4 @@ colour must stay at v9's values (B #43352d, G #463830, A #463830).
 - A (turnaround) and D (hands) are NOT accepted: prompt-only retakes kept drawing ridge toes (A) and mitten / tangled
   hand holds (D). Per Jade's new rule they get 3D guides from the engine first (cast/first_love/_prompts/v10/guide/).
   Until then fl_hands stays D v4.
+- G v11 = takes/G_t4 (Jade: "t4 is good"): tidier tousle (the A_t2 level), black slacks in the closet study. r4lib fl_ots -> G v11. The hair wording is toned down at the source (v9/hair.txt, r4lib FIRST_LOVE_HAIR).

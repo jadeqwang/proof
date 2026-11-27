@@ -65,16 +65,17 @@ FIRST_LOVE_HAIR = ("His hair colour is #3f342e, a dark, slightly warm brown, exa
                    "not black; no red, no chestnut, no auburn, no orange, no golden glints, not medium brown; a little "
                    "darker in shadow, a soft neutral-brown sheen where the light catches it. The cut is exactly "
                    "as on his hair sheets: a top layer with a distinct step over a lower part buzzed and grown out about six "
-                   "months; the part shows from behind only as a short notch at the very top. The top is clearly TOUSLED, "
-                   "as if he never combs it and only rakes it with his fingers: loose, slightly wavy, uneven pieces, a few "
-                   "lifting or crossing, wispy irregular ends; not a bowl, not a mushroom, not neat.")
+                   "months; the part shows from behind only as a short notch at the very top. The top is casually tousled, "
+                   "exactly as much as on his hair sheets: finger-raked, slightly wavy pieces lying fairly close together, a "
+                   "few ends lifting, a clean overall outline; not messy, not many flyaways or loose wisps; not a bowl, not a "
+                   "mushroom, not slick.")
 FIRST_LOVE_FACE = ("He is seen from behind: the back of his head and his hair only; his face is turned fully away and is "
                    "never shown: no eye, no nose, no mouth, no cheek in profile. Where the line of his jaw shows from behind, it carries "
                    "only a faint, even 5 o'clock shadow, a soft grey tint with almost no individual hairs: no grown stubble, no beard.")
 FIRST_LOVE_REFS = {
     "fl_hair": ("cast/first_love/fl_B_backhead_neck_v10.png", "his back-of-head sheet, the hair anchor (cut, step, "
                 "tousled texture and dark, slightly warm brown colour)"),
-    "fl_ots": ("cast/first_love/fl_G_ots_hair_v10.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
+    "fl_ots": ("cast/first_love/fl_G_ots_hair_v11.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
                "and the side; face never shown)"),
     "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (the current one; hands only)"),
 }
@@ -127,6 +128,13 @@ def colour_name(h):
 
 
 # --------------------------------------------------------------------------------------------------------- people
+# first love's trousers at every age and in every scene (Jade 2026-11-26: "let's put first love in black pants in every
+# scene, it feels more like him. (normal black slacks)"). No {c}: the guide's FL_SLACKS 0x1c1c1e names as "near-black".
+FL_SLACKS = ("plain black slacks (dress trousers: ordinary black trousers, straight leg, belt loops, a slight crease; "
+             "NOT jeans, no denim; the black is soft ink wash with the folds readable, never a flat black hole)")
+FL_SLACKS_HEX = "#1c1c1e"
+
+
 class Person:
     """name: how the prompt calls them ('little Jade (age 7)'); pron: 'she'/'he'; face: True (drawn), False (never:
     first love), 'unreached' (strangers); wear: {slot: template with {c} = colour name from the sidecar costume}, slots
