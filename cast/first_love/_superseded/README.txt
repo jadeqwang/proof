@@ -33,3 +33,9 @@ degree of messiness: tousled, rich warm dark brown): fl_B_backhead_neck_v7, fl_G
 fl_A_turnaround_back_v8 (same cut and tousle; the hair colour of the character Gaius Baltar, per Jade: deep cool-to-neutral
 dark brown). The v7 files stay in cast/first_love/ for now only because media/decisions.html shows B v7; move them here
 once that page no longer links them. Do not pass v7 as a hair-colour reference.
+
+2026-11-26 night (v9): v8 (B, G, A) hair is too dark (near-black, #2c221d-#362c27). Replaced by fl_B_backhead_neck_v9,
+fl_G_ots_hair_v9, fl_A_turnaround_back_v9 (same cut, texture, layout; hair in the matched shade #3f342e, a dark,
+slightly warm brown, no red). The v8 files stay in cast/first_love/ for now because tools/kf/r4lib.py, layout/CAST.md,
+media/decisions.html and a few code comments still name them; move them here once those point at v9. Do not pass v8 as
+a hair-colour reference.

@@ -61,10 +61,9 @@ RULES = ("Not anime, not cel shading, not a photograph, not a 3D or digital rend
          "holds something supports it (fingers round it or the palm under it), nothing floats.")
 
 # ------------------------------------------------------------------------------------------------- shared wording
-FIRST_LOVE_HAIR = ("His hair colour matches the hair colour of the character Gaius Baltar from Battlestar Galactica "
-                   "(2004) (the director asked for this): a deep, cool-to-neutral dark brown, nearly black in shadow, a muted "
-                   "neutral-brown sheen where the light catches it; no red, no chestnut, no auburn, no orange, no golden "
-                   "glints, not medium brown; still brown, not flat jet-black. The cut is exactly "
+FIRST_LOVE_HAIR = ("His hair colour is #3f342e, a dark, slightly warm brown, exactly as on his hair sheets: still brown, "
+                   "not black; no red, no chestnut, no auburn, no orange, no golden glints, not medium brown; a little "
+                   "darker in shadow, a soft neutral-brown sheen where the light catches it. The cut is exactly "
                    "as on his hair sheets: a top layer with a distinct step over a lower part buzzed and grown out about six "
                    "months; the part shows from behind only as a short notch at the very top. The top is clearly TOUSLED, "
                    "as if he never combs it and only rakes it with his fingers: loose, slightly wavy, uneven pieces, a few "
@@ -72,9 +71,9 @@ FIRST_LOVE_HAIR = ("His hair colour matches the hair colour of the character Gai
 FIRST_LOVE_FACE = ("He is seen from behind: the back of his head and his hair only; his face is turned fully away and is "
                    "never shown: no eye, no nose, no mouth, no cheek in profile.")
 FIRST_LOVE_REFS = {
-    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v8.png", "his back-of-head sheet, the hair anchor (cut, step, "
-                "tousled texture and very dark cool-brown colour)"),
-    "fl_ots": ("cast/first_love/fl_G_ots_hair_v8.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
+    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v9.png", "his back-of-head sheet, the hair anchor (cut, step, "
+                "tousled texture and dark, slightly warm brown colour)"),
+    "fl_ots": ("cast/first_love/fl_G_ots_hair_v9.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
                "and the side; face never shown)"),
     "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (the current one; hands only)"),
 }

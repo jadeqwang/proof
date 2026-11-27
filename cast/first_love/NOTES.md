@@ -290,3 +290,28 @@ Battlestar Galactica (2004)": a deep cool-to-neutral dark brown, about #2a211c, 
 - Not touched (other owners): layout/assets/bodies/README.md line 74 still says colour 0x3d2819 (engine-body);
   bodytest/shots.js header names B v7; existing set guides keep the old orange until each set's owner re-renders.
 - Spend: 3 Codex images (+1 refused at the plan limit), $0; no paid generation.
+
+## 2026-11-26 night: v9 (hair in the matched shade #3f342e)
+The hair colour was matched (lead, several rounds; private details in the lead's memory, not here) to ~#3f342e: a dark,
+slightly warm brown with NO red, not black. Engine FL_HAIR 0x2b2420 (closet02 lit sample #40342d). The v8 sheets were
+darker than this (near-black). v9 changes ONLY the hair colour; cut, length, tousle, part notch, step, poses, clothes and
+framing are v8's. The prompts no longer name any actor or character: the colour is described directly ("#3f342e, a dark,
+slightly warm brown (dark cocoa), no red, not black").
+- Prompts `_prompts/v9/` (hair.txt, style.txt recoloured; B/G/A and the follow-up takes B3, G2, A3; flgen.py, tmux
+  session `proof-cast9`, now closed). Refs: generated sheets only (v8 sheets, v9 takes, B v9).
+- The model overshoots "a little lighter" to a medium brown (~#4b382e-#523f34) and barely moves on a second "darker"
+  nudge; what worked was darkening from the overshoot (B, G) or asking for "only a 10-15% lift" from v8 (A).
+- Measured (eroded hair mask, 25-75% luminance band; script in the agent's scratchpad, not kept):
+  | sheet | v8 | v9 | target |
+  | B (accepted B_t3 of 4) | #2c221d | #43352d (top layer #493931) | #3f342e |
+  | G (accepted G_t2 of 2) | #2e2520 | #463830-#473830 | #3f342e |
+  | A (accepted A_t3 of 3) | #362c27 | #463830 | #3f342e |
+  Hue matches (21-22 vs 21); v9 is ~4-8 levels lighter and a little more saturated (0.31-0.33 vs 0.27). Rejected takes,
+  too light: B_t1 #4b382e, B_t2 #4e3b30, B_t4 #4b3c33 (no better than t3), G_t1 #523f34, A_t1/A_t2 #4f3f36.
+- Faces zoom-checked on all three: backs and lost profiles only (ear, jaw line, stubble); no eye, nose or mouth.
+- A: the forearm hair still reads partly as swirly vein/tattoo-like strokes, as in v8 (not touched).
+- v8 stays in this folder (like v7) because `tools/kf/r4lib.py` FIRST_LOVE_REFS/HAIR, `layout/CAST.md`,
+  `media/decisions.html` and code comments in `_cast.js`, `closet02/build.js`, bodies README still name v8 (other
+  owners). Repoint those to v9 (and drop the "very dark cool brown" wording in r4lib) and then move v8 (and v7) to
+  `_superseded/` (README updated).
+- Spend: 9 Codex images, $0; no plan limit hit, no paid route.
