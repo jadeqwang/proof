@@ -1392,3 +1392,10 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   - Pre-existing clips are still open: closet knees/wall/carpet; mv10 32 of 33 shots (couches, sandals, snacks, ladle
     7.6 mm); kitchen day shots (Mama's wrists, chair).
 
+
+## Session of 2026-11-26 (late night, painting) — Jade's directions as given
+- V1d_2: her right wrist looked weird (flex 51 deg, radial 16, elbow 5 deg straight); lead chose to move her, not PD (agent running).
+- First love's hair: v8 too dark; v9 sheets made (#43352d-#463830 vs #3f342e), committed a106ccc, r4lib points at v9.
+- Stubble: shorter, "more like a 5 o'clock shadow" (v10). The v9 chin-stubble technique is "not a bad direction for forearm hair" (v10 + D v5).
+- G sheet closet panel: the left foot is not natural for a cross-legged sit; the hands there are weird too (v10).
+- Codex plan limit hit 22:57 (resets 03:41) after ~75 images. Jade APPROVED paid gpt-image-2 via Cloudflare for tonight's remainder ("we have plenty of credits").
