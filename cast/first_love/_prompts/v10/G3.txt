@@ -1,0 +1,19 @@
+An over-the-shoulder study sheet for ONE young man who is only ever seen from behind: six studies of his head, neck and shoulders, in two rows of three, well separated, each floating on bare paper with soft vignetted edges, no panel, no box, no hard rectangular edges. TOP ROW, three shots as framed in the film with a pale washed hint of the setting: (1) grad school, aged about 24, from behind his right shoulder, holding a folded white hoodie with a blue round print by a floral couch; (2) aged 27, from behind and to his left at a dark cube bookshelf, head bowed to his right; (3) aged 19, from behind and a little above, sitting cross-legged on the floor of a dim closet, head bowed toward his hands in his lap, a narrow shaft of light from a door gap beyond him. BOTTOM ROW, the same three angles in the same order, cropped tight on the head and neck alone, no setting: (4) the grad-school angle; (5) the bookshelf angle; (6) the closet angle, a sliver of the nape and the green hoodie collar at the bottom.
+
+{hair}
+
+{d24} {d27} {d19}
+
+{never}
+
+Image 1 is the current version of THIS sheet (approved except for three refinements). Change ONLY these THREE things and keep everything else exactly as in image 1, pixel for pixel where possible:
+(a) JAW AT 24 (studies 1 and 4, the charcoal sweater): image 1 draws a grain of little flecks that reads as stubble. Make it a SOFT GREY TINT along the jaw line and under the chin: a light, even, slightly grey-brown darkening of the skin, ALMOST NO individual flecks, matching the faint shadow at 27 in study 5. Not clean-shaven, not stubble.
+(b) HIS FOREARM HAIR in studies 1 and 2: in study 2 it is still curved and swirly; in study 1 it is a little bristly. Redraw both as described below under HIS FOREARM HAIR: a little longer, finer and softer, lying flat along the arm from wrist to elbow, STRAIGHT or barely curved, never curly; still dark and clearly visible. Study 3's hand on his knee likewise.
+(c) Keep study 3's feet EXACTLY as in image 1 (tucked under the opposite shins, the upturned cork sole showing); if any toe is visible, follow HIS FEET AND TOES below. Keep his hands resting on his knees.
+Keep EVERYTHING ELSE exactly as in image 1: the layout, the settings, the folded white hoodie and its blue round print, the clothes, the skin, the paper, and above all the HAIR on his head: the same cut, tousled texture, part notch, step, buzz AND THE SAME HAIR COLOUR (#3f342e, a dark, slightly warm brown, no red). No face: no eye, no nose, no mouth in any study.
+
+{forearm2}
+
+{toes}
+
+{style}

@@ -315,3 +315,44 @@ slightly warm brown (dark cocoa), no red, not black").
   owners). Repoint those to v9 (and drop the "very dark cool brown" wording in r4lib) and then move v8 (and v7) to
   `_superseded/` (README updated).
 - Spend: 9 Codex images, $0; no plan limit hit, no paid route.
+
+## 2026-11-26 night: v10 (5 o'clock shadow) — PREPARED, NOT GENERATED
+Jade: his stubble shorter, "more like a 5 o'clock shadow". v10 = the v9 sheets with ONLY the stubble changed: at 27 (and 24
+on G) a faint, even, very short shadow along the jaw and chin, a slight darkening of the skin with no visible hairs; not
+a beard, not scruff. At 19 the sparse chin stubble stays (softened only if it reads as more than a faint shadow). Hair
+colour must stay at v9's values (B #43352d, G #463830, A #463830).
+- Prompts ready in `_prompts/v10/`: `d27.txt` / `d24.txt` ("a fine short stubble along the jaw" / "a light stubble"
+  -> 5 o'clock shadow wording; `d19.txt` unchanged), `B.txt`, `G.txt`, `A.txt` (image 1 = the v9 sheet, change only the
+  stubble, keep the hair colour exactly), `flgen.py` (session `proof-cast10`; blocks from v10, then v9, v6, v5, v4).
+- BLOCKED: the Codex plan limit was hit on the first attempt (3 parallel calls, 22:57 CST; no image made, $0). The reset is
+  2026-11-27 03:41. Then run `cast/first_love/_prompts/v10/run.sh` from the repo root, re-measure the hair, zoom-check
+  the faces, save as fl_{A_turnaround_back,B_backhead_neck,G_ots_hair}_v10 and point `tools/kf/r4lib.py` FIRST_LOVE_REFS
+  at v10, adding the 5 o'clock shadow clause to FIRST_LOVE_FACE. Not done yet.
+- `work/kf_logs/CODEX_LIMIT_HIT` is set (kf.py's `--route auto` falls back to PAID gpt2 while it exists). Remove it after
+  the reset; do not run --route auto before then.
+- Added to the same pass (Jade: "the technique with which the previous chin stubble was drawn is not a bad direction for
+  forearm hair"): on A and G (and a new D v5) his forearm hair is to be redrawn as fine, short, individual DARK flecks laid
+  wrist-to-elbow, dense on the outer forearm, thinning to the wrist and inner arm, replacing the swirly vein/tattoo-like
+  strokes (A v9, G v9 study 1). D v4 has a related fault: pale herringbone/leaf-like strokes, not dark flecks, so D v5 is
+  in the pass (forearm hair only; study 4's older smooth hair left as is). Block `_prompts/v10/forearm.txt`; style ref
+  `_prompts/v10/refs/stubble_style_from_B_v9.png` (a crop of B v9's jaw stubble, generated) passed as image 2 to A, G, D.
+  `run.sh` launches all four. After acceptance: FIRST_LOVE_REFS fl_hair/fl_ots -> v10, fl_hands -> D v5.
+- Added for G study 3 (closet, 19, cross-legged; Jade: "not a natural position for a left foot", "the hands in that one
+  are also weird"): (c) feet as in a relaxed cross-legged sit: each foot tucked under/just in front of the opposite
+  shin, lying on its outer edge, sole turned up and inward, toes pointing sideways, sandals on; (d) hands as in the
+  film (closet02 `waiting`: hands on knees): forearms resting on the thighs, hands loosely on/inside the knees, palms
+  down, fingers softly curled, holding nothing (G v9 had both forearms raised, fingers pinching something at chest
+  height). Look-only reference: a stock photo of a man sitting cross-legged on a floor cushion, three-quarter behind and
+  above (visie.io); not kept in the repo, never sent to a model.
+- closet02's 3D pose (engine `legs: 'cross'`, mannequin.js: foot [-s, -0.1, 0.3]) puts BOTH figures' feet flat on their
+  soles OUTSIDE the knees, toes pointing out and forward (clear on jade19 in CL_elev; his feet barely show in CL_hands /
+  CL_wide). Same unnatural foot as G v9. Set not changed (reported to the lead).
+- `flgen.py` now takes `FL_ROUTE=gpt2` (PAID, logged to docs/spend_ledger.jsonl via tools/gen/cf.py); default codex.
+  Not run on gpt2 by this agent: the approval came relayed through the lead, not from Jade directly.
+
+### v10 accepted (2026-11-26 night, Jade)
+- B v10 = takes/B_t1, G v10 = takes/G_t3 (gpt-image-2 via Cloudflare, Jade approved the paid route). Painter refs
+  (tools/kf/r4lib.py) now point at B v10 and G v10; FIRST_LOVE_FACE carries the 5 o'clock shadow clause.
+- A (turnaround) and D (hands) are NOT accepted: prompt-only retakes kept drawing ridge toes (A) and mitten / tangled
+  hand holds (D). Per Jade's new rule they get 3D guides from the engine first (cast/first_love/_prompts/v10/guide/).
+  Until then fl_hands stays D v4.

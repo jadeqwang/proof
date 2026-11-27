@@ -1,0 +1,11 @@
+A continuity sheet of the BACK OF THE HEAD, neck and shoulders of ONE young man at two ages, on bare paper: six large studies from the shoulder blades up, in two rows of three, all the same scale, each floating on bare paper. Top row, aged 27 (slate-blue plain crew-neck shirt): (1) straight from behind, eye level; (2) three-quarter back from his left, a LOST profile (head turned well away, no eye, no nose, no mouth); (3) from behind and slightly above, his head upright. Bottom row, the same man aged 19 (green hoodie over grey T-shirt): (4) straight from behind; (5) three-quarter back from his right, a lost profile; (6) three-quarter back from his right and slightly above, a lost profile.
+
+{hair}
+
+{d27} {d19}
+
+{never}
+
+Image 1 is the APPROVED current version of THIS sheet. Change ONLY the STUBBLE on his jaw and chin. Top row (aged 27): where image 1 shows grown stubble (visible little hairs, dots and strokes along the jaw and chin, most clearly in study 2), replace it with a faint 5 o'clock shadow: a very short, even shadow along the jaw and chin that reads only as a slight greyish darkening of the skin, with NO visible individual hairs, NO dots or strokes, no texture of grown stubble; not a beard, not scruff. Bottom row (aged 19): he has at most a few very faint, sparse fine hairs on the chin, no more than a faint shadow; where image 1 shows more (dots or strokes along the jaw, as in study 5), soften it to that. Keep EVERYTHING ELSE exactly as in image 1, pixel for pixel where possible: the layout, poses, angles, scale, clothes, ears, necks, skin tone, paper, and above all the HAIR: the same cut, tousled texture, part notch, step, buzz AND THE SAME HAIR COLOUR (#3f342e, a dark, slightly warm brown, no red; do not make it lighter, darker, redder or more saturated). No face: no eye, no nose, no mouth in any study.
+
+{style}

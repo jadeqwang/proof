@@ -69,11 +69,12 @@ FIRST_LOVE_HAIR = ("His hair colour is #3f342e, a dark, slightly warm brown, exa
                    "as if he never combs it and only rakes it with his fingers: loose, slightly wavy, uneven pieces, a few "
                    "lifting or crossing, wispy irregular ends; not a bowl, not a mushroom, not neat.")
 FIRST_LOVE_FACE = ("He is seen from behind: the back of his head and his hair only; his face is turned fully away and is "
-                   "never shown: no eye, no nose, no mouth, no cheek in profile.")
+                   "never shown: no eye, no nose, no mouth, no cheek in profile. Where the line of his jaw shows from behind, it carries "
+                   "only a faint, even 5 o'clock shadow, a soft grey tint with almost no individual hairs: no grown stubble, no beard.")
 FIRST_LOVE_REFS = {
-    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v9.png", "his back-of-head sheet, the hair anchor (cut, step, "
+    "fl_hair": ("cast/first_love/fl_B_backhead_neck_v10.png", "his back-of-head sheet, the hair anchor (cut, step, "
                 "tousled texture and dark, slightly warm brown colour)"),
-    "fl_ots": ("cast/first_love/fl_G_ots_hair_v9.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
+    "fl_ots": ("cast/first_love/fl_G_ots_hair_v10.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
                "and the side; face never shown)"),
     "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (the current one; hands only)"),
 }
