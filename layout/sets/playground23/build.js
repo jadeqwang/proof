@@ -10,7 +10,7 @@ import { aim } from '../../engine/aim.js';
 import { CAST, PROP, addCast } from '../_cast.js';
 import { artPlane, artLook, decalMesh } from '../_art.js';
 import { coneSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from '../_beam.js';
-import { HALL, SHUTTLE, RAMP, STEP, ROCKET, ASTRONAUT, PEOPLE, HANDS_MEET, SPOT, SPOT_DIR, MOTE, FIXTURES, LIGHTS, STRUCT, PLANETS, rad } from './layout.js';
+import { HALL, SHUTTLE, SEATS, RAMP, STEP, ROCKET, ASTRONAUT, PEOPLE, HANDS_MEET, SPOT, SPOT_DIR, MOTE, FIXTURES, LIGHTS, STRUCT, PLANETS, rad } from './layout.js';
 import { floorArt, FLOOR_M, muralArt, planetArt, sweaterArt, SWEATER_M, chestArt, dressArt, DRESS_M, bodyArt, bodyU, dadHairArt, pixelBottleArt, catBottleArt, jadeOutfitArt, JADE_CHART, sleevePatchArt } from './art.js';
 import { loadProps, prop } from '../_props.js';
 await loadProps(['backpack', 'kids_bottle']);
@@ -102,16 +102,61 @@ function section(half, y0, y1, n = 72) {
 // the body + nose as one loft along x: constant section from x0 to x1, then the nose narrows, its chin lifts and its
 // top drops to a rounded point. UV: u along x (BODY_U), v = angle round the section centre (0 bottom, 0.25 the +z
 // side, 0.5 top), so the skin (art.js bodyArt) can paint the windscreen band and the black belly.
+// r6: the loft starts at the cabin's front wall (cabin.x1): the closed nose cowl, its back face capped flat (the cabin's
+// front wall); the open cabin behind it is cabinGeo()
 function bodyGeo() {
-  const st = []; const nB = 20, nN = 28;
-  for (let i = 0; i <= nB; i++) st.push({ x: H.x0 + (H.x1 - H.x0) * i / nB, half: H.half, y0: 0, y1: H.top });
+  const st = []; const nB = 8, nN = 28, xs = H.cabin.x1;
+  for (let i = 0; i <= nB; i++) st.push({ x: xs + (H.x1 - xs) * i / nB, half: H.half, y0: 0, y1: H.top });
   for (let i = 1; i <= nN; i++) { const t = i / nN, yb = 0.16 * t * t, yt = H.top - (H.top - 0.46) * Math.pow(t, 1.4), m = (yb + yt) / 2, hh = (yt - yb) / 2 * Math.sqrt(Math.max(0, 1 - Math.pow(t, 6)));
     st.push({ x: H.x1 + H.nose * t, half: Math.max(0.0005, H.half * Math.sqrt(Math.max(0, 1 - Math.pow(t, 2.5)))), y0: m - Math.max(hh, 0.0005), y1: m + Math.max(hh, 0.0005) }); }
   const N = 72, pos = [], uv = [], idx = [];
   for (const S of st) { const sec = section(S.half, S.y0, S.y1, N), cy = (S.y0 + S.y1) / 2;
     sec.forEach(([dz, y], j) => { pos.push(S.x, y, H.z + dz); let a = Math.atan2(dz, -(y - cy)) / (2 * Math.PI); if (a < 0) a += 1; if (j === N) a = 1; if (j === 0) a = 0; uv.push(bodyU(S.x), a); }); }
   for (let i = 0; i < st.length - 1; i++) for (let j = 0; j < N; j++) { const a = i * (N + 1) + j, b = a + N + 1; idx.push(a, a + 1, b, a + 1, b + 1, b); }
+  orient(pos, idx, 0, idx.length, [0, -1, 0]);   // the first triangle is on the belly: its normal points down
+  // the flat back cap (a fan round the section's centre): normal -x, into the cabin
+  { const c = pos.length / 3, S = st[0]; pos.push(S.x, (S.y0 + S.y1) / 2, H.z); uv.push(bodyU(S.x), 0.3); const i0 = idx.length;
+    for (let j = 0; j < N; j++) idx.push(c, j, j + 1); orient(pos, idx, i0, idx.length, [-1, 0, 0]); }
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+// flip triangles [i0, i1) if the first one's normal does not point along `out` (all of them wound alike)
+function orient(pos, idx, i0, i1, out) {
+  const P = (k) => V(pos[3 * k], pos[3 * k + 1], pos[3 * k + 2]), a = P(idx[i0]), b = P(idx[i0 + 1]), c = P(idx[i0 + 2]);
+  const n = new THREE.Vector3().crossVectors(b.clone().sub(a), c.clone().sub(a)); if (n.dot(V(out)) >= 0) return;
+  for (let t = i0; t < i1; t += 3) { const k = idx[t + 1]; idx[t + 1] = idx[t + 2]; idx[t + 2] = k; }
+}
+// r6 the open-topped cabin (Jade: "hollowed out ... the way it does in the photo"): ONE closed solid (so clipcheck reads
+// it as a solid), the body's own outer section below the rim, a flat rim, the inner wall = the section inset by the wall
+// thickness, the padded floor; from just inside the rear section to just inside the nose cowl. UVs: the outer skin as
+// bodyGeo (the belly band continues), the inner walls and rim white, the floor black (bodyArt's belly band).
+function cabinGeo() {
+  const C = H.cabin, t = C.wall, x0 = C.x0 - 0.02, x1 = C.x1 + 0.01;
+  // the section's two sides below the rim, each from the bottom centre up to the rim (interpolated exactly)
+  const sides = (sec, rim) => { const up = (arr) => { const out = [arr[0]]; for (let i = 1; i < arr.length; i++) { const p = arr[i], q = arr[i - 1];
+      if (p[1] <= rim) { out.push(p); continue; } const k = (rim - q[1]) / (p[1] - q[1]); out.push([q[0] + (p[0] - q[0]) * k, rim]); break; } return out; };
+    return [up(sec), up(sec.slice().reverse())]; };
+  const [oP, oM] = sides(section(H.half, 0, H.top, 144), C.rim), [iP, iM] = sides(section(H.half - t, C.floor, H.top - t, 144), C.rim);
+  const outer = oP.slice().reverse().concat(oM.slice(1)), inner = iM.slice().reverse().concat(iP.slice(1));   // +z rim -> belly -> -z rim; -z rim -> floor -> +z rim
+  const pos = [], uv = [], idx = [], cy = H.top / 2;
+  const uvOuter = ([dz, y]) => { let a = Math.atan2(dz, -(y - cy)) / (2 * Math.PI); if (a < 0) a += 1; return a; };
+  const uvInner = ([dz, y]) => (y < C.floor + 0.004 && Math.abs(dz) < H.half - t - 0.04 ? 0.02 : 0.3);
+  const strip = (chain, vf) => { const b = pos.length / 3; for (const x of [x0, x1]) for (const p of chain) { pos.push(x, p[1], H.z + p[0]); uv.push(bodyU(x), vf(p)); }
+    const m = chain.length; for (let i = 0; i < m - 1; i++) { const a0 = b + i, a1 = a0 + 1, b0 = a0 + m, b1 = b0 + 1; idx.push(a0, a1, b1, a0, b1, b0); } };
+  const s0 = idx.length; strip(outer, uvOuter); strip([outer[outer.length - 1], inner[0]], () => 0.3); strip(inner, uvInner); strip([inner[inner.length - 1], outer[0]], () => 0.3);
+  orient(pos, idx, s0, idx.length, [0, 0, 1]);   // the outer strip's first quad is on the +z side just under the rim: its normal points +z
+  // the end caps (the U-shaped profile, triangulated)
+  const poly = outer.concat(inner), tri = THREE.ShapeUtils.triangulateShape(poly.map(([z, y]) => new THREE.Vector2(z, y)), []);
+  for (const [x, out] of [[x0, -1], [x1, 1]]) { const b = pos.length / 3, i0 = idx.length; for (const p of poly) { pos.push(x, p[1], H.z + p[0]); uv.push(bodyU(x), 0.3); }
+    for (const f of tri) idx.push(b + f[0], b + f[1], b + f[2]); orient(pos, idx, i0, idx.length, [out, 0, 0]); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+// r6 a black padded bucket seat (as the photo's): a cushion and a tall back with a rounded top, one side profile in x-y
+// extruded across the seat's width (bevelled: soft padded edges); faces the nose (+x)
+function seatGeo(seat) {
+  const S = SEATS, b = 0.02, f = H.cabin.floor + b, bx = seat.x, bt = S.t, cx1 = seat.x1, ct = S.cushionTop, top = S.top, r = bt / 2 - b, s = new THREE.Shape();
+  s.moveTo(bx + b, f); s.lineTo(cx1 - b, f); s.lineTo(cx1 - b, ct - b - 0.04); s.quadraticCurveTo(cx1 - b, ct - b, cx1 - b - 0.04, ct - b); s.lineTo(bx + bt - b, ct - b);
+  s.lineTo(bx + bt - b, top - b - r); s.absarc(bx + bt / 2, top - b - r, r, 0, Math.PI, false); s.lineTo(bx + b, f);
+  return new THREE.ExtrudeGeometry(s, { depth: S.w - 2 * b, bevelEnabled: true, bevelSize: b, bevelThickness: b, bevelSegments: 3, curveSegments: 16 });
 }
 // a panelled wing: a padded black wedge (top face from the body edge down to the outer edge), three white panels inset
 // in black frames on its top face, running down the slope (the photo's black-and-white panelled ramp)
@@ -135,7 +180,10 @@ function wing(sg, W, name) {
 function shuttle(g) {
   const sg = new THREE.Group(); g.add(sg);
   const WHITE = { grey: 0.88, col: 0xf2f2ee };
-  { const m = mk(bodyGeo(), artLook(bodyArt(), WHITE)); m.userData.double = true; sg.add(tag(m, 'play shuttle body')); }
+  // r6: the nose cowl (closed) + the open-topped cabin + two black bucket seats (solids: no `double`, outward winding)
+  sg.add(tag(mk(bodyGeo(), artLook(bodyArt(), WHITE)), 'play shuttle nose cowl (closed, windscreen band)'));
+  sg.add(tag(mk(cabinGeo(), artLook(bodyArt(), WHITE)), 'play shuttle cabin (open-topped padded tub: walls, rim, black padded base)'));
+  SEATS.list.forEach((st, k) => { const m = mk(seatGeo(st), PAD(0x18181c)); m.position.z = H.z + st.dz - (SEATS.w - 0.04) / 2; sg.add(tag(m, `cabin seat ${k + 1} (black padded bucket seat)`)); });
   // the rear section: taller, a crawl-through arch across it (z), black slanted stripes on its rounded top
   { const R = H.rear, A = R.arch, s = new THREE.Shape(), rc = 0.3;
     s.moveTo(R.x0, 0); s.lineTo(R.x1, 0); s.lineTo(R.x1, R.top - rc); s.absarc(R.x1 - rc, R.top - rc, rc, 0, Math.PI / 2, false); s.lineTo(R.x0 + rc, R.top); s.absarc(R.x0 + rc, R.top - rc, rc, Math.PI / 2, Math.PI, false); s.lineTo(R.x0, 0);
@@ -267,7 +315,7 @@ function sleevePatch(fig) {
   fig.add(tag(m, 'Jade: sleeve patch (round, blank, black ring)'));
   return { centre: c0, outward: O };
 }
-// r5 (Jade): the rare earth outfit's colours (the chart paints the details); white sneakers (adults keep shoes beside the
+// r5 (Jade): the rare earth outfit's colours (the chart paints the details); r6 (Jade): "Socks": white socks, confirmed (was: sneakers, adults keeping shoes on beside the
 // shuttle: FLAGGED), long black hair as built
 export const JADE23 = { top: 0xf2f0ea, band: 0xf2f0ea, legs: 0x232a52, sock: 0xf0f0ec };
 // the polo: a soft folded collar round the neck base, open at the front over a short placket (white, as the shirt)
@@ -312,7 +360,7 @@ export const NAMED = { mote: MOTE.hero, moteExit: MOTE.exit, moteAfter: MOTE.aft
   meetJade: HANDS_MEET.jade_girl, meetDad: HANDS_MEET.dad_boy,
   // r5 climb targets: the children's look points (up the ramp / along the top), the free hands on the body's top corner
   girlLook: [0.05, 0.7, -1.35], boyLook: [-0.7, 0.68, -1.5],
-  girlHandOn: [0.0, 0.52, -0.95], boyHandOn: [-0.6, 0.575, -1.08] };   // palm centres ~1.5 cm over the ramp / the body's top
+  girlHandOn: [0.0, 0.52, -0.95], boyHandOn: [-0.62, 0.546, -1.09] };   // palm centres ~1.5 cm over the ramp / (r6) the cabin's rim
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p);
 
 let PATCH = null;

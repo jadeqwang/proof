@@ -286,3 +286,22 @@ and measured hits. Times written elsewhere in this file before this section are 
 Per-shot lit lift (shots.js `LIT_LIFT`, build.js: `light.key` now scales the key strip; `light.amb` the fill as before).
 Lit mean before -> after: PLAN 16.0 -> 45.2, WIDE 24.4 -> 46.8, M4c 28.5 -> 46.1, PLAN_B 28.9 -> 47.6, M6 30.8 -> 44.6,
 M4b_pull 33.6 -> 45.3, M1 34.4 -> 46.6 (pure white <= 0.7 %). The key strip's pool is still the brightest thing. Hold 35/35.
+
+## 2026-11-26: round-6 decisions (work/decisions/JADE_R6_DECISIONS.md; R6 brief) — market-attic agent
+- **The grandmother's arm on the cart** (Jade: "cart is right, the arm is weird / unnatural"). Cart unchanged. Measured
+  (sidecar `wrists`, close debug views from her front 3/4, right side and back): she stood 0.21 m pelvis-to-grip, so her
+  elbows were bent 121-129 deg and flared outward (the engine's default elbow pole), and her wrists sat 18 deg past full
+  pronation with 30 deg ulnar deviation (twist -98 deg): hands hooked over the bar at chest height, elbows out.
+- Fix (shots.js `grandma` / `cartGrip`, all her shots: WAIT, GRAB, PULL, LIFT, LAND, LED): she stands `GM_BACK` = 0.20 m
+  further back along the cart's axis (0.43 m pelvis-to-grip; the cart does not move), an elbow pole `GM_ELBOW` (down, a
+  little out and back) keeps her elbows by her sides, and the palms face down and a little toward each other (`GM_PALM`,
+  ~70 deg pronation). Result: elbow bend ~82 deg, forearms near level, wrist flex -9 / ulnar 13 / twist -69 deg, nothing
+  out of range; shoulders down, power grip round the red grip. Variants tried: back 0.12 (elbow 103, pronation +13 past),
+  0.16 (elbow 94, +11 past with palms flat down), 0.16 + palm tilt (in range, elbow 92), 0.20 + palm tilt (chosen).
+- The handle is 0.96 m (real cart), so on a 1.52 m stooped woman her hands are at about navel / low-rib height, not hip.
+- Hold r grip + 4 -> + 8 mm (`GM_HOLD`): with the tilted palm + 4 pinched the thumb 5 mm in, + 10 lifted off.
+- Checks after re-render (all three passes): hold check 35/35 pass (grip 0.9 mm off); clipcheck mesh fingers 10.2 mm into
+  the grip (r5: 10.6; the known capsule-vs-mesh hand mismatch); "grandma in the grandmother's cart 45-53 mm" is the same
+  open-wire-mesh false positive as r5 (point at the grip's end, no solid there). check_bodies: grandma clears every body;
+  the remaining FAILs are pre-existing (Jade's hands into the artichoke, Mama into the shelf stock / Jade in M4-M8).
+- Changed guides: M1, M4b_pull, M5, M4c, WIDE, PLAN, PLAN_B (M4 a few px). M4b unchanged (she is out of frame there).

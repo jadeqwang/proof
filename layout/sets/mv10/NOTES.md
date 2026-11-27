@@ -861,3 +861,6 @@ Jade's answers (verbatim in `work/decisions/JADE_R4_DECISIONS.md`) applied. Supe
 - **Lit brightness:** build.js rig takes `light: { exposure }` (lit pass only, scales sun / ceiling / poi / ambient
   together, as office91 r5). C2b 2.4, C2a 1.9, SI1 1.7, V3_rev_temple_a/b 1.6 (REV_EX), V3f 1.2. Means: C2b 19.5 -> 40.4,
   C2a 21.0 -> 40.2, SI1 24.4 -> 42.1, temple_a 25.3 -> 41.1, temple_b 26.2 -> 43.0, V3f 34.4 -> 40.5; 0 % white; still night.
+
+## 2026-11-26: round-6 decisions
+- Hair re-render (r6 final, lead): target = his real hair shade measured from public photos, ~#3f342e (dark, slightly warm brown, a little cool grey, no red). FL_HAIR 0x2b2420 (v8 0x1f1915; ~1.37x lighter, calibrated in normal light, NOT on dim scenes). closet02 lit-only FL_HAIR_LIT 0x1a181b: CL_ots hair samples #40342d. mv10 is a dim set (C2b hair #0e0a08 -> #130e0c). No geometry change. Painter refs: the v8 sheets are darker than the target; next paint session tell the painter #3f342e (or redo the sheet as v9).

@@ -11,9 +11,9 @@
    2
   ],
   "target": [
-   -0.7475,
-   1.1938,
-   0.01
+   -0.7457,
+   1.199,
+   0.0105
   ],
   "lens_mm": 60,
   "frame_width_mm": 36,
@@ -26,15 +26,15 @@
   "matrixWorld": [
    0.9997,
    0,
-   -0.0239,
+   -0.023,
    0,
    0.0023,
-   0.9953,
-   0.0969,
-   0,
-   0.0238,
-   -0.0969,
    0.995,
+   0.0995,
+   0,
+   0.0229,
+   -0.0995,
+   0.9948,
    0,
    -0.7,
    1,
@@ -44,19 +44,19 @@
   "viewMatrix": [
    0.9997,
    0.0023,
-   0.0238,
+   0.0229,
    0,
    0,
-   0.9953,
-   -0.0969,
-   0,
-   -0.0239,
-   0.0969,
    0.995,
+   -0.0995,
    0,
-   0.7475,
-   -1.1874,
-   -1.8765,
+   -0.023,
+   0.0995,
+   0.9948,
+   0,
+   0.7457,
+   -1.1924,
+   -1.8741,
    1
   ],
   "projectionMatrix": [
@@ -88,20 +88,20 @@
   "window_upper": {
    "px": [
     [
-     920.2,
-     29.9
+     917.4,
+     38.4
     ],
     [
-     1765.7,
-     24.7
+     1762.4,
+     33.5
     ],
     [
-     1775.2,
-     405.9
+     1772.1,
+     414.4
     ],
     [
-     919.7,
-     408.7
+     916.9,
+     417.1
     ]
    ],
    "world": [
@@ -136,20 +136,20 @@
   "window_lower": {
    "px": [
     [
-     919.7,
-     408.7
+     916.9,
+     417.1
     ],
     [
-     1775.2,
-     405.9
+     1772.1,
+     414.4
     ],
     [
-     1784.9,
-     796.2
+     1782,
+     804.6
     ],
     [
-     919.2,
-     796.5
+     916.3,
+     804.9
     ]
    ],
    "world": [
@@ -184,20 +184,20 @@
   "cabinet_glass": {
    "px": [
     [
-     5957.2,
-     -1127.2
+     5940.8,
+     -1113.9
     ],
     [
-     3981.9,
-     -332.8
+     3974.4,
+     -322.9
     ],
     [
-     4113.2,
-     1057.5
+     4108.9,
+     1065.9
     ],
     [
-     6330.9,
-     1206
+     6322.9,
+     1214.2
     ]
    ],
    "world": [
@@ -233,32 +233,32 @@
  "heads": {
   "jade7": {
    "px": [
-    1023,
-    733.6
+    1047.2,
+    722.9
    ],
    "eyes": [
-    998.7,
-    805.9
+    1021.2,
+    788.8
    ],
    "mouth": [
-    1006.5,
-    870.1
+    1027,
+    854.7
    ],
    "in_frame": true,
    "visible": true,
-   "facing_camera_deg": 41
+   "facing_camera_deg": 39
   },
   "dad": {
    "px": [
-    987.7,
-    303.6
+    984,
+    302.6
    ],
    "eyes": [
-    1093,
-    300
+    1091.1,
+    298.8
    ],
    "mouth": [
-    1082.6,
+    1080.5,
     366.3
    ],
    "in_frame": true,
@@ -267,16 +267,16 @@
   },
   "mama90": {
    "px": [
-    1214.1,
-    365.9
+    1214.4,
+    365.7
    ],
    "eyes": [
     1190.4,
-    388.9
+    388.8
    ],
    "mouth": [
-    1212,
-    453.2
+    1212.3,
+    454.4
    ],
    "in_frame": true,
    "visible": true,
@@ -286,8 +286,8 @@
  "hands": {
   "jade7.L": {
    "px": [
-    1230.7,
-    1227.8
+    1227.9,
+    1236.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -295,8 +295,8 @@
   },
   "jade7.R": {
    "px": [
-    827.4,
-    1183.3
+    824.4,
+    1192
    ],
    "shape": "pinch",
    "in_frame": false,
@@ -304,8 +304,8 @@
   },
   "dad.L": {
    "px": [
-    1241.6,
-    733.1
+    1242.1,
+    739.6
    ],
    "shape": "relax",
    "in_frame": true,
@@ -313,8 +313,8 @@
   },
   "dad.R": {
    "px": [
-    554.2,
-    1064.1
+    542.4,
+    1076.5
    ],
    "shape": "relax",
    "in_frame": true,
@@ -322,8 +322,8 @@
   },
   "mama90.L": {
    "px": [
-    1282.2,
-    961.2
+    1284.5,
+    971.9
    ],
    "shape": "relax",
    "in_frame": true,
@@ -331,8 +331,8 @@
   },
   "mama90.R": {
    "px": [
-    1088.9,
-    961.5
+    1087.1,
+    972.2
    ],
    "shape": "relax",
    "in_frame": true,
@@ -351,8 +351,8 @@
     0.3
    ],
    "px": [
-    1034.2,
-    -251
+    1031.4,
+    -242.1
    ],
    "in_front": true,
    "travel_dir_px": [
@@ -377,13 +377,13 @@
     -6.5215
    ],
    "px": [
-    662.9,
-    -41.4
+    660.2,
+    -32.9
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.335,
-    0.942
+    0.338,
+    0.941
    ],
    "toward_camera": 0.902,
    "aim_world": [
@@ -412,8 +412,8 @@
     0.3
    ],
    "px": [
-    1034.2,
-    -251
+    1031.4,
+    -242.1
    ]
   },
   "axis": [
@@ -437,10 +437,10 @@
    "world": [
     -0.6575,
     1.4376,
-    -0.8727
+    -0.8227
    ],
    "px": [
-    1082.6,
+    1080.5,
     366.3
    ]
   },
@@ -448,11 +448,11 @@
    "world": [
     -0.613,
     1.414,
-    -0.8419
+    -0.7919
    ],
    "px": [
-    1132.9,
-    387.1
+    1131.7,
+    387.3
    ]
   },
   "gap_m": 0.059
@@ -469,15 +469,15 @@
     ]
    },
    "head_deg": {
-    "yaw_left": -11.3,
-    "pitch_up": -25.5,
+    "yaw_left": -11.5,
+    "pitch_up": -27.3,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": -11.7,
+    "pitch_up": -12.1,
     "wanted_yaw": 0,
-    "wanted_pitch": -11.7,
+    "wanted_pitch": -12.1,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -486,12 +486,12 @@
    "reaches": [],
    "warnings": [],
    "eyes_px": [
-    998.7,
-    805.9
+    1021.2,
+    788.8
    ],
    "target_px": [
-    894.6,
-    1313.7
+    891.6,
+    1322.6
    ],
    "target_in_front": true
   },
@@ -502,7 +502,7 @@
     "world": [
      0,
      1.38,
-     -0.68
+     -0.63
     ]
    },
    "head_deg": {
@@ -528,18 +528,18 @@
      "world": [
       -0.506,
       1.111,
-      -1.03
+      -0.98
      ],
      "look_off_deg": 69
     }
    ],
    "warnings": [],
    "eyes_px": [
-    1093,
-    300
+    1091.1,
+    298.8
    ],
    "target_px": [
-    1869.6,
+    1882.1,
     396.8
    ],
    "target_in_front": true
@@ -551,7 +551,7 @@
     "world": [
      -0.72,
      0.8,
-     -0.1
+     -0.05
     ]
    },
    "head_deg": {
@@ -573,11 +573,11 @@
    "warnings": [],
    "eyes_px": [
     1190.9,
-    390.5
+    390.4
    ],
    "target_px": [
-    1006.5,
-    1162.1
+    1002.9,
+    1178.4
    ],
    "target_in_front": true
   }
@@ -610,14 +610,14 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -30.7,
-    "radial_deg": -15.2,
-    "twist_deg": -42.2,
-    "elbow_flex_deg": 102.3,
+    "flex_deg": -31.7,
+    "radial_deg": -14.5,
+    "twist_deg": -36.8,
+    "elbow_flex_deg": 95.3,
     "before": {
-     "flex_deg": -30.7,
-     "radial_deg": -15.2,
-     "twist_deg": -42.2
+     "flex_deg": -31.7,
+     "radial_deg": -14.5,
+     "twist_deg": -36.8
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -625,14 +625,14 @@
    },
    "R": {
     "hold": true,
-    "elbow_swivel_deg": 0,
-    "flex_deg": 36.5,
-    "radial_deg": 13.9,
-    "twist_deg": -34.5,
-    "elbow_flex_deg": 87.2,
+    "elbow_swivel_deg": -10,
+    "flex_deg": 26.9,
+    "radial_deg": 19,
+    "twist_deg": -28.8,
+    "elbow_flex_deg": 72.8,
     "before": {
-     "flex_deg": 36.5,
-     "radial_deg": 13.9,
+     "flex_deg": 32.8,
+     "radial_deg": 24,
      "twist_deg": -34.5
     },
     "hand_turned_deg": null,
@@ -4173,9 +4173,9 @@
   }
  ],
  "figure_frame_fraction": {
-  "dad": 0.11,
-  "mama90": 0.1,
-  "jade7": 0.1038
+  "dad": 0.1158,
+  "mama90": 0.0977,
+  "jade7": 0.1052
  },
  "colour_separation": [
   {
@@ -4207,37 +4207,37 @@
   "jade7": {
    "legs": {
     "L": {
-     "reach": 0.18
+     "reach": 0.21
     },
     "R": {
-     "reach": 0.63
+     "reach": 0.81
     }
    },
    "arms": {
-    "L": 0.63,
-    "R": 0.73
+    "L": 0.68,
+    "R": 0.81
    },
-   "headTurn": -11,
+   "headTurn": -12,
    "body": {
     "mesh": "jade07",
     "scale": 1,
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 111,
-     "upperarm_stretch": 1.19,
+     "elbow_bend_deg": 104,
+     "upperarm_stretch": 1.18,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
     },
     "R": {
-     "elbow_bend_deg": 86,
-     "upperarm_stretch": 1.08,
+     "elbow_bend_deg": 74,
+     "upperarm_stretch": 1.1,
      "forearm_stretch": 0.99,
      "hand_scale": 0.95
     },
     "sole_shift_mm_L": 15.1,
     "sole_shift_mm_R": 15.1,
-    "sole_lowest_y_m": 0.2717
+    "sole_lowest_y_m": 0.167
    }
   },
   "dad": {

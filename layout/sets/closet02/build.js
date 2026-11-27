@@ -22,7 +22,7 @@ const GARB = [0x4a5468, 0x8a5a4a, 0x34343a, 0xa09a88, 0x6a7a62, 0xb8a890, 0x5a4a
 // ---- matte black rounded-square tube (Jade, round 4: "the railing should be a rounded square"): a rounded-square profile
 // swept along a polyline (corners rounded by arcs); the profile's second axis is the path plane's normal `nrm`
 const BLK = { grey: 0.1, col: 0x1b1b1d, formTint: [0.24, 0.24, 0.25], flatCol: 0x1b1b1d };   // dark in form too (not pale clay)
-const FL_HAIR_LIT = 0x141214;   // first love's hair, lit pass only (see the figure loop below): FL_HAIR pre-compensated for the warm key
+const FL_HAIR_LIT = 0x1a181b;   // first love's hair, lit pass only (see the figure loop below): FL_HAIR pre-compensated for the warm key
 function rsProfile(a, rc, seg = 3) {   // rounded square, half-size a, corner radius rc, CCW
   const pts = [], k = a - rc;
   for (const [cx, cy, a0] of [[k, k, 0], [-k, k, 90], [-k, -k, 180], [k, -k, 270]])
@@ -283,7 +283,7 @@ export function build(shot, { makeCam }) {
     return P.head.clone().addScaledVector(w, 0.86).addScaledVector(up, 0.32 * R).addScaledVector(fwd, 0.5 * R).addScaledVector(w.normalize(), 0.01); };
   const { figs } = stage(shot.figs || {}, null, (t, figs) => (NAMED[t] ? V(NAMED[t]) : temple(t, figs)));
   for (const f of Object.values(figs)) { root.add(f); f.traverse((o) => { if (o.isMesh && o.userData.look) o.userData.look = { ...o.userData.look, recvShadowLine: true }; }); }
-  // 2026-11-26 post-sweep (closet-only): under the warm sun + ceiling light, FL_HAIR 0x1f1915 rendered warm chestnut in
+  // 2026-11-26 post-sweep (closet-only): under the warm sun + ceiling light, FL_HAIR (v8 0x1f1915, r6 0x262019) rendered warm chestnut in
   // lit (#4a3422 on CL_ots). The v8 sheet (fl_B_backhead_neck_v8) reads dark cool brown (~#2e2420), so his hair's LIT
   // colour here is pre-compensated for the warm key (cooler, darker). Other passes and _cast.js FL_HAIR are untouched.
   if (figs.firstLove19) figs.firstLove19.traverse((o) => { if (o.isMesh && /hair$/.test(o.userData.idGroup || '') && o.userData.look) o.userData.look = { ...o.userData.look, col: FL_HAIR_LIT }; });

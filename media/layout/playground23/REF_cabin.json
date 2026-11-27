@@ -1,0 +1,2333 @@
+{
+ "shot": "REF_cabin",
+ "set": "playground23",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   1.7,
+   2.5,
+   1
+  ],
+  "target": [
+   -0.2,
+   0.35,
+   -1.55
+  ],
+  "lens_mm": 28,
+  "frame_width_mm": 36,
+  "hfov_deg": 65.47,
+  "vfov_deg": 39.761,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0.8019,
+   0,
+   -0.5975,
+   0,
+   -0.3346,
+   0.8284,
+   -0.4491,
+   0,
+   0.495,
+   0.5601,
+   0.6643,
+   0,
+   1.7,
+   2.5,
+   1,
+   1
+  ],
+  "viewMatrix": [
+   0.8019,
+   -0.3346,
+   0.495,
+   0,
+   0,
+   0.8284,
+   0.5601,
+   0,
+   -0.5975,
+   -0.4491,
+   0.6643,
+   0,
+   -0.7657,
+   -1.053,
+   -2.906,
+   1
+  ],
+  "projectionMatrix": [
+   1.5556,
+   0,
+   0,
+   0,
+   0,
+   2.7654,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "girl": {
+   "px": [
+    916.3,
+    492.6
+   ],
+   "eyes": [
+    929.5,
+    497.9
+   ],
+   "mouth": [
+    915.2,
+    521
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 160,
+   "blocked_by": "jade Jade"
+  },
+  "boy": {
+   "px": [
+    567.2,
+    390.8
+   ],
+   "eyes": [
+    604.7,
+    397.5
+   ],
+   "mouth": [
+    595.1,
+    427.2
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 130,
+   "blocked_by": "boy the boy (7)"
+  },
+  "jade": {
+   "px": [
+    973.1,
+    432.6
+   ],
+   "eyes": [
+    966.5,
+    428.6
+   ],
+   "mouth": [
+    960.8,
+    470.7
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 173,
+   "blocked_by": "jade Jade"
+  },
+  "dad": {
+   "px": [
+    215.5,
+    155.7
+   ],
+   "eyes": [
+    268.6,
+    177.3
+   ],
+   "mouth": [
+    254.4,
+    205.7
+   ],
+   "in_frame": true,
+   "visible": false,
+   "facing_camera_deg": 88
+  }
+ },
+ "hands": {
+  "girl.L": {
+   "px": [
+    868.9,
+    630
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": false
+  },
+  "girl.R": {
+   "px": [
+    874.6,
+    678.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "boy.L": {
+   "px": [
+    313.4,
+    515.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "boy.R": {
+   "px": [
+    708.5,
+    500.4
+   ],
+   "shape": "flat",
+   "in_frame": true,
+   "visible": false
+  },
+  "jade.L": {
+   "px": [
+    839.4,
+    659.6
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  },
+  "jade.R": {
+   "px": [
+    1037.6,
+    950
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "dad.L": {
+   "px": [
+    127.9,
+    454.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    323.2,
+    525.1
+   ],
+   "shape": "grip",
+   "in_frame": true,
+   "visible": false
+  }
+ },
+ "lights": [
+  {
+   "name": "spot",
+   "kind": "theatrical LED accent spot on a drop pipe from a joist, aimed at the play shuttle",
+   "on": true,
+   "color": "#fff1d8",
+   "world": [
+    3.25,
+    4.2,
+    -2.5
+   ],
+   "px": [
+    9180.3,
+    -5529.1
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    -0.823,
+    0.567
+   ],
+   "toward_camera": -0.367,
+   "aim_world": [
+    -1.1468,
+    0.7802,
+    -1.5229
+   ]
+  },
+  {
+   "name": "high-bays",
+   "kind": "round LED high-bay fixtures (UFO type), cool white, on a 3 m grid under the joists; the room light",
+   "on": true,
+   "color": "#f2f6ff",
+   "world": [
+    0,
+    4.65,
+    -1.5
+   ],
+   "px": [
+    1110.1,
+    -3455.5
+   ],
+   "in_front": true,
+   "travel_dir_px": [
+    0.012,
+    1
+   ],
+   "toward_camera": -0.296,
+   "aim_world": [
+    0,
+    0,
+    -1.5
+   ]
+  }
+ ],
+ "warnings": [
+  "wrist: girl L hand turned 12 deg toward the forearm to keep the wrist in range (was flex -56.7, radial -38.4)",
+  "wrist: girl R hand turned 16 deg toward the forearm to keep the wrist in range (was flex -26.9, radial 33.9)",
+  "wrist: boy L hand turned 31.3 deg toward the forearm to keep the wrist in range (was flex -13.4, radial 51.7)",
+  "wrist: dad R hand turned 16.3 deg toward the forearm to keep the wrist in range (was flex 1.9, radial 40.7)"
+ ],
+ "intent": "Reference only: the play shuttle from front-left and above, the open cabin between the arched rear section and the nose cowl, two black bucket seats behind the cowl.",
+ "film": {
+  "time": null,
+  "section": null,
+  "position": "reference"
+ },
+ "beam": {
+  "name": "spot",
+  "kind": "theatrical LED accent spot on a drop pipe from a joist, aimed at the play shuttle",
+  "model": "diverging from a point source",
+  "source_world": [
+   3.25,
+   4.2,
+   -2.5
+  ],
+  "direction_of_travel": [
+   -0.7775,
+   -0.6047,
+   0.1728
+  ],
+  "aperture_world": [
+   [
+    3.2264,
+    4.1819,
+    -2.4961
+   ],
+   [
+    3.2265,
+    4.1817,
+    -2.4961
+   ],
+   [
+    3.2266,
+    4.1815,
+    -2.4961
+   ],
+   [
+    3.2268,
+    4.1814,
+    -2.496
+   ],
+   [
+    3.2269,
+    4.1812,
+    -2.496
+   ],
+   [
+    3.227,
+    4.1811,
+    -2.4958
+   ],
+   [
+    3.2271,
+    4.181,
+    -2.4957
+   ],
+   [
+    3.2272,
+    4.1809,
+    -2.4956
+   ],
+   [
+    3.2273,
+    4.1809,
+    -2.4954
+   ],
+   [
+    3.2274,
+    4.1808,
+    -2.4952
+   ],
+   [
+    3.2274,
+    4.1808,
+    -2.495
+   ],
+   [
+    3.2275,
+    4.1808,
+    -2.4948
+   ],
+   [
+    3.2275,
+    4.1809,
+    -2.4946
+   ],
+   [
+    3.2275,
+    4.1809,
+    -2.4944
+   ],
+   [
+    3.2275,
+    4.181,
+    -2.4942
+   ],
+   [
+    3.2274,
+    4.1811,
+    -2.494
+   ],
+   [
+    3.2274,
+    4.1812,
+    -2.4939
+   ],
+   [
+    3.2273,
+    4.1814,
+    -2.4938
+   ],
+   [
+    3.2272,
+    4.1815,
+    -2.4937
+   ],
+   [
+    3.2271,
+    4.1817,
+    -2.4936
+   ],
+   [
+    3.227,
+    4.1819,
+    -2.4935
+   ],
+   [
+    3.2268,
+    4.182,
+    -2.4935
+   ],
+   [
+    3.2267,
+    4.1822,
+    -2.4935
+   ],
+   [
+    3.2266,
+    4.1823,
+    -2.4936
+   ],
+   [
+    3.2265,
+    4.1825,
+    -2.4937
+   ],
+   [
+    3.2263,
+    4.1826,
+    -2.4938
+   ],
+   [
+    3.2262,
+    4.1827,
+    -2.4939
+   ],
+   [
+    3.2261,
+    4.1828,
+    -2.4941
+   ],
+   [
+    3.226,
+    4.1829,
+    -2.4943
+   ],
+   [
+    3.226,
+    4.1829,
+    -2.4944
+   ],
+   [
+    3.2259,
+    4.1829,
+    -2.4946
+   ],
+   [
+    3.2259,
+    4.1829,
+    -2.4948
+   ],
+   [
+    3.2259,
+    4.1829,
+    -2.495
+   ],
+   [
+    3.2259,
+    4.1828,
+    -2.4952
+   ],
+   [
+    3.2259,
+    4.1827,
+    -2.4954
+   ],
+   [
+    3.2259,
+    4.1826,
+    -2.4956
+   ],
+   [
+    3.226,
+    4.1825,
+    -2.4958
+   ],
+   [
+    3.2261,
+    4.1823,
+    -2.4959
+   ],
+   [
+    3.2262,
+    4.1822,
+    -2.496
+   ],
+   [
+    3.2263,
+    4.182,
+    -2.4961
+   ]
+  ],
+  "aperture_px": [
+   [
+    8876.2,
+    -5320.9
+   ],
+   [
+    8876,
+    -5320.1
+   ],
+   [
+    8876.1,
+    -5319.6
+   ],
+   [
+    8876.4,
+    -5319.3
+   ],
+   [
+    8877.1,
+    -5319.2
+   ],
+   [
+    8877.9,
+    -5319.3
+   ],
+   [
+    8879.1,
+    -5319.6
+   ],
+   [
+    8880.4,
+    -5320.2
+   ],
+   [
+    8881.9,
+    -5321
+   ],
+   [
+    8883.5,
+    -5322
+   ],
+   [
+    8885.2,
+    -5323.1
+   ],
+   [
+    8887,
+    -5324.4
+   ],
+   [
+    8888.8,
+    -5325.8
+   ],
+   [
+    8890.6,
+    -5327.2
+   ],
+   [
+    8892.3,
+    -5328.7
+   ],
+   [
+    8893.9,
+    -5330.2
+   ],
+   [
+    8895.3,
+    -5331.6
+   ],
+   [
+    8896.6,
+    -5333
+   ],
+   [
+    8897.6,
+    -5334.2
+   ],
+   [
+    8898.3,
+    -5335.4
+   ],
+   [
+    8898.8,
+    -5336.3
+   ],
+   [
+    8899.1,
+    -5337.1
+   ],
+   [
+    8899,
+    -5337.6
+   ],
+   [
+    8898.6,
+    -5338
+   ],
+   [
+    8898,
+    -5338.1
+   ],
+   [
+    8897.1,
+    -5337.9
+   ],
+   [
+    8896,
+    -5337.6
+   ],
+   [
+    8894.7,
+    -5337
+   ],
+   [
+    8893.2,
+    -5336.2
+   ],
+   [
+    8891.5,
+    -5335.2
+   ],
+   [
+    8889.8,
+    -5334.1
+   ],
+   [
+    8888,
+    -5332.8
+   ],
+   [
+    8886.2,
+    -5331.4
+   ],
+   [
+    8884.4,
+    -5330
+   ],
+   [
+    8882.7,
+    -5328.5
+   ],
+   [
+    8881.2,
+    -5327
+   ],
+   [
+    8879.7,
+    -5325.6
+   ],
+   [
+    8878.5,
+    -5324.2
+   ],
+   [
+    8877.5,
+    -5323
+   ],
+   [
+    8876.7,
+    -5321.8
+   ]
+  ],
+  "footprints": {
+   "floor": {
+    "world": [
+     [
+      -1.7067,
+      0,
+      -1.2644
+     ],
+     [
+      -1.7346,
+      0,
+      -1.2178
+     ],
+     [
+      -1.7727,
+      0,
+      -1.1728
+     ],
+     [
+      -1.7778,
+      0,
+      -1.1682
+     ],
+     [
+      -1.8686,
+      0,
+      -1.577
+     ],
+     [
+      -1.8621,
+      0,
+      -1.5751
+     ],
+     [
+      -1.8085,
+      0,
+      -1.5504
+     ],
+     [
+      -1.7635,
+      0,
+      -1.52
+     ],
+     [
+      -1.7278,
+      0,
+      -1.4848
+     ],
+     [
+      -1.7022,
+      0,
+      -1.4455
+     ],
+     [
+      -1.6871,
+      0,
+      -1.4029
+     ],
+     [
+      -1.6827,
+      0,
+      -1.3579
+     ],
+     [
+      -1.6893,
+      0,
+      -1.3114
+     ]
+    ],
+    "px": [
+     [
+      511.5,
+      512
+     ],
+     [
+      493.4,
+      515.7
+     ],
+     [
+      473.5,
+      518.1
+     ],
+     [
+      471.2,
+      518.2
+     ],
+     [
+      555.4,
+      454.1
+     ],
+     [
+      556.2,
+      455
+     ],
+     [
+      561.4,
+      463.2
+     ],
+     [
+      563.4,
+      471.5
+     ],
+     [
+      562.4,
+      479.6
+     ],
+     [
+      558.2,
+      487.4
+     ],
+     [
+      550.8,
+      494.7
+     ],
+     [
+      540.5,
+      501.4
+     ],
+     [
+      527.3,
+      507.2
+     ]
+    ]
+   },
+   "shuttle (lit patch)": {
+    "world": [
+     [
+      -1.1553,
+      0.781,
+      -1.269
+     ],
+     [
+      -1.1798,
+      0.8113,
+      -1.2729
+     ],
+     [
+      -1.2043,
+      0.8401,
+      -1.2828
+     ],
+     [
+      -1.2284,
+      0.8666,
+      -1.2984
+     ],
+     [
+      -1.2515,
+      0.8903,
+      -1.3192
+     ],
+     [
+      -1.2729,
+      0.9105,
+      -1.3449
+     ],
+     [
+      -1.2922,
+      0.9268,
+      -1.3748
+     ],
+     [
+      -1.3089,
+      0.9387,
+      -1.4081
+     ],
+     [
+      -1.3225,
+      0.946,
+      -1.444
+     ],
+     [
+      -1.3327,
+      0.9484,
+      -1.4816
+     ],
+     [
+      -1.3394,
+      0.946,
+      -1.5201
+     ],
+     [
+      -1.3422,
+      0.9387,
+      -1.5584
+     ],
+     [
+      -1.3413,
+      0.9268,
+      -1.5956
+     ],
+     [
+      -1.3364,
+      0.9105,
+      -1.6308
+     ],
+     [
+      -1.3279,
+      0.8903,
+      -1.6631
+     ],
+     [
+      -1.3159,
+      0.8666,
+      -1.6918
+     ],
+     [
+      -1.3006,
+      0.8401,
+      -1.7161
+     ],
+     [
+      -1.2825,
+      0.8113,
+      -1.7355
+     ],
+     [
+      -1.2621,
+      0.781,
+      -1.7493
+     ],
+     [
+      -1.2397,
+      0.75,
+      -1.7575
+     ],
+     [
+      -1.2161,
+      0.719,
+      -1.7596
+     ],
+     [
+      -1.1917,
+      0.6887,
+      -1.7556
+     ],
+     [
+      -1.1671,
+      0.6599,
+      -1.7458
+     ],
+     [
+      -1.143,
+      0.6334,
+      -1.7302
+     ],
+     [
+      -1.1199,
+      0.6097,
+      -1.7093
+     ],
+     [
+      -1.0985,
+      0.5895,
+      -1.6837
+     ],
+     [
+      -1.0792,
+      0.5732,
+      -1.6538
+     ],
+     [
+      -1.0626,
+      0.5613,
+      -1.6205
+     ],
+     [
+      -1.0489,
+      0.5541,
+      -1.5846
+     ],
+     [
+      -1.0387,
+      0.5516,
+      -1.547
+     ],
+     [
+      -1.032,
+      0.5541,
+      -1.5085
+     ],
+     [
+      -1.0292,
+      0.5613,
+      -1.4702
+     ],
+     [
+      -1.0302,
+      0.5732,
+      -1.433
+     ],
+     [
+      -1.035,
+      0.5895,
+      -1.3978
+     ],
+     [
+      -1.0435,
+      0.6097,
+      -1.3655
+     ],
+     [
+      -1.0556,
+      0.6334,
+      -1.3368
+     ],
+     [
+      -1.0708,
+      0.6599,
+      -1.3125
+     ],
+     [
+      -1.0889,
+      0.6887,
+      -1.2931
+     ],
+     [
+      -1.1093,
+      0.719,
+      -1.2792
+     ],
+     [
+      -1.1317,
+      0.75,
+      -1.2711
+     ]
+    ],
+    "px": [
+     [
+      600.9,
+      328.3
+     ],
+     [
+      594,
+      314.7
+     ],
+     [
+      589,
+      300.8
+     ],
+     [
+      585.8,
+      287
+     ],
+     [
+      584.7,
+      273.8
+     ],
+     [
+      585.5,
+      261.4
+     ],
+     [
+      588.4,
+      250.2
+     ],
+     [
+      593,
+      240.5
+     ],
+     [
+      599.4,
+      232.5
+     ],
+     [
+      607.3,
+      226.3
+     ],
+     [
+      616.4,
+      222.2
+     ],
+     [
+      626.6,
+      220.2
+     ],
+     [
+      637.4,
+      220.2
+     ],
+     [
+      648.8,
+      222.3
+     ],
+     [
+      660.3,
+      226.3
+     ],
+     [
+      671.7,
+      232.1
+     ],
+     [
+      682.8,
+      239.5
+     ],
+     [
+      693.2,
+      248.4
+     ],
+     [
+      702.9,
+      258.5
+     ],
+     [
+      711.6,
+      269.6
+     ],
+     [
+      719.1,
+      281.5
+     ],
+     [
+      725.2,
+      293.9
+     ],
+     [
+      729.9,
+      306.5
+     ],
+     [
+      733,
+      319
+     ],
+     [
+      734.5,
+      331.3
+     ],
+     [
+      734.3,
+      343
+     ],
+     [
+      732.3,
+      353.8
+     ],
+     [
+      728.7,
+      363.6
+     ],
+     [
+      723.5,
+      372.1
+     ],
+     [
+      716.7,
+      379
+     ],
+     [
+      708.5,
+      384.1
+     ],
+     [
+      699,
+      387.4
+     ],
+     [
+      688.6,
+      388.6
+     ],
+     [
+      677.3,
+      387.8
+     ],
+     [
+      665.4,
+      384.8
+     ],
+     [
+      653.4,
+      379.7
+     ],
+     [
+      641.4,
+      372.6
+     ],
+     [
+      629.9,
+      363.7
+     ],
+     [
+      619,
+      353.1
+     ],
+     [
+      609.3,
+      341.2
+     ]
+    ]
+   }
+  },
+  "anchor_world": [
+   0.1,
+   1.75,
+   -1.8
+  ],
+  "anchor_px": [
+   1149.5,
+   -29.6
+  ],
+  "on_screen": {
+   "from_px": [
+    1189.4,
+    -56.9
+   ],
+   "to_px": [
+    1111.2,
+    -3.3
+   ],
+   "angle_deg": 34.4,
+   "travel": "right-to-left"
+  },
+  "rhyme": {
+   "wanted": {
+    "angle": 40,
+    "travel": "right-to-left",
+    "through": [
+     0.5,
+     0.5
+    ],
+    "tolerance_deg": 3
+   },
+   "angle_error_deg": -5.6,
+   "travel_ok": true
+  },
+  "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
+  "half_angle_deg": 2.5,
+  "lands_on": "play shuttle rear section (crawl-through arch)",
+  "lands_at": [
+   -1.147,
+   0.78,
+   -1.523
+  ]
+ },
+ "mote": {
+  "seed": 2023,
+  "count": 400,
+  "hero_world": [
+   0.1,
+   1.75,
+   -1.8
+  ],
+  "hero_px": [
+   1149.5,
+   -29.6
+  ],
+  "path_px": [
+   [
+    1149.5,
+    -29.6
+   ],
+   [
+    1175.4,
+    -195.7
+   ],
+   [
+    1215.3,
+    -313.7
+   ]
+  ],
+  "note": "hero -> exit (drifts up out of the shaft at the last hit) -> after (where the gold dotted line stops)"
+ },
+ "hands_meet": {
+  "jade_girl": {
+   "world": [
+    0.34,
+    0.8,
+    -0.57
+   ],
+   "px": [
+    874.6,
+    678.8
+   ]
+  },
+  "dad_boy": {
+   "world": [
+    -1.03,
+    0.74,
+    -0.33
+   ],
+   "px": [
+    313.4,
+    515.5
+   ]
+  }
+ },
+ "bodies": {
+  "girl": "girl4 (assets/bodies)",
+  "boy": "boy7 (assets/bodies)",
+  "dad": "dad23 (assets/bodies)"
+ },
+ "sleeve_patch": {
+  "world": [
+   0.4,
+   1.212,
+   -0.355
+  ],
+  "px": [
+   806.4,
+   555.7
+  ],
+  "outward": [
+   -0.862,
+   0.362,
+   0.354
+  ]
+ },
+ "gaze": {
+  "girl": {
+   "face": "blank",
+   "look_target": {
+    "name": "girlLook",
+    "world": [
+     0.05,
+     0.7,
+     -1.35
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 22.4,
+    "pitch_up": 29.9,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 17.3,
+    "wanted_yaw": 0,
+    "wanted_pitch": 17.3,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "girlHandOn",
+     "shape": "flat",
+     "world": [
+      0,
+      0.52,
+      -0.95
+     ],
+     "look_off_deg": 73.7
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    929.5,
+    497.9
+   ],
+   "target_px": [
+    995.7,
+    488.6
+   ],
+   "target_in_front": true
+  },
+  "boy": {
+   "face": "blank",
+   "look_target": {
+    "name": "boyLook",
+    "world": [
+     -0.7,
+     0.68,
+     -1.5
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -13.2,
+    "pitch_up": 30.9,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 18.2,
+    "wanted_yaw": 0,
+    "wanted_pitch": 18.2,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "R",
+     "target": "boyHandOn",
+     "shape": "flat",
+     "world": [
+      -0.62,
+      0.546,
+      -1.09
+     ],
+     "look_off_deg": 45.4
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    604.7,
+    397.5
+   ],
+   "target_px": [
+    793.7,
+    378.5
+   ],
+   "target_in_front": true
+  },
+  "jade": {
+   "face": "drawn",
+   "look_target": {
+    "name": "girl:head",
+    "world": [
+     0.129,
+     0.915,
+     -0.962
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 23.8,
+    "pitch_up": -9,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -7.4,
+    "wanted_yaw": 0,
+    "wanted_pitch": -7.4,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "L",
+     "target": "girl:handR",
+     "shape": "grip",
+     "world": [
+      0.273,
+      0.823,
+      -0.553
+     ],
+     "look_off_deg": 34.6
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    966.5,
+    428.6
+   ],
+   "target_px": [
+    916.3,
+    492.6
+   ],
+   "target_in_front": true
+  },
+  "dad": {
+   "face": "drawn",
+   "look_target": {
+    "name": "boy:head",
+    "world": [
+     -0.744,
+     0.922,
+     -0.825
+    ]
+   },
+   "head_deg": {
+    "yaw_left": -18.4,
+    "pitch_up": -12.3,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -10.2,
+    "wanted_yaw": 0,
+    "wanted_pitch": -10.2,
+    "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [
+    {
+     "arm": "R",
+     "target": "boy:handL",
+     "shape": "grip",
+     "world": [
+      -0.951,
+      0.759,
+      -0.306
+     ],
+     "look_off_deg": 47.7
+    }
+   ],
+   "warnings": [],
+   "eyes_px": [
+    268.6,
+    177.3
+   ],
+   "target_px": [
+    567.2,
+    390.8
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "girl": {
+   "top": "#f4b8c0",
+   "legs": "#f0c8a8",
+   "sleeves": "short",
+   "sock": "#f4f2ee",
+   "torso": "capsule"
+  },
+  "boy": {
+   "top": "#1f4a9a",
+   "legs": "#1c2444",
+   "sleeves": "long",
+   "sock": "#dcdcd6",
+   "torso": "capsule"
+  },
+  "jade": {
+   "top": "#f2f0ea",
+   "legs": "#232a52",
+   "sleeves": "long",
+   "sock": "#f0f0ec",
+   "band": "#f2f0ea",
+   "torso": "capsule"
+  },
+  "dad": {
+   "top": "#f4f4f0",
+   "legs": "#18181a",
+   "sleeves": "short",
+   "sock": "#1c1c1e",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "girl": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -42.6,
+    "radial_deg": -28.2,
+    "twist_deg": -22.4,
+    "elbow_flex_deg": 47.9,
+    "before": {
+     "flex_deg": -56.7,
+     "radial_deg": -38.4,
+     "twist_deg": -16.8
+    },
+    "hand_turned_deg": 12,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -14.5,
+    "radial_deg": 18.1,
+    "twist_deg": 70.5,
+    "elbow_flex_deg": 62.6,
+    "before": {
+     "flex_deg": -26.9,
+     "radial_deg": 33.9,
+     "twist_deg": 65
+    },
+    "hand_turned_deg": 16,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  },
+  "boy": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -8.1,
+    "radial_deg": 17.2,
+    "twist_deg": 75.7,
+    "elbow_flex_deg": 43,
+    "before": {
+     "flex_deg": -13.4,
+     "radial_deg": 51.7,
+     "twist_deg": 71.3
+    },
+    "hand_turned_deg": 31.3,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -27.3,
+    "radial_deg": -12.2,
+    "twist_deg": null,
+    "elbow_flex_deg": 17.2,
+    "before": {
+     "flex_deg": -27.3,
+     "radial_deg": -12.2,
+     "twist_deg": null
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  },
+  "jade": {
+   "L": {
+    "hold": true,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 10.7,
+    "radial_deg": 10.6,
+    "twist_deg": 24.1,
+    "elbow_flex_deg": 25.7,
+    "before": {
+     "flex_deg": 10.7,
+     "radial_deg": 10.6,
+     "twist_deg": 24.1
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  },
+  "dad": {
+   "R": {
+    "hold": true,
+    "elbow_swivel_deg": 0,
+    "flex_deg": -4.2,
+    "radial_deg": 18.4,
+    "twist_deg": null,
+    "elbow_flex_deg": 17.4,
+    "before": {
+     "flex_deg": 1.9,
+     "radial_deg": 40.7,
+     "twist_deg": null
+    },
+    "hand_turned_deg": 16.3,
+    "out_of_range": [],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [
+  {
+   "object": null,
+   "note": "no object within 3 cm of the hand",
+   "hands": [
+    {
+     "who": "jade",
+     "arm": "L",
+     "shape": "grip",
+     "grasp": "power",
+     "engine_held": false,
+     "capsules": [
+      {
+       "part": "index1",
+       "a": [
+        0.2706,
+        0.812,
+        -0.6029
+       ],
+       "b": [
+        0.2906,
+        0.7906,
+        -0.6224
+       ],
+       "r": 0.0094
+      },
+      {
+       "part": "index2",
+       "a": [
+        0.2906,
+        0.7906,
+        -0.6224
+       ],
+       "b": [
+        0.3078,
+        0.7796,
+        -0.6318
+       ],
+       "r": 0.0085
+      },
+      {
+       "part": "index3",
+       "a": [
+        0.3078,
+        0.7796,
+        -0.6318
+       ],
+       "b": [
+        0.3237,
+        0.7743,
+        -0.6357
+       ],
+       "r": 0.0076
+      },
+      {
+       "part": "palm:index",
+       "a": [
+        0.2786,
+        0.8684,
+        -0.5388
+       ],
+       "b": [
+        0.2706,
+        0.812,
+        -0.6029
+       ],
+       "r": 0.0096
+      },
+      {
+       "part": "middle1",
+       "a": [
+        0.2693,
+        0.797,
+        -0.5915
+       ],
+       "b": [
+        0.2924,
+        0.7745,
+        -0.6118
+       ],
+       "r": 0.0097
+      },
+      {
+       "part": "middle2",
+       "a": [
+        0.2924,
+        0.7745,
+        -0.6118
+       ],
+       "b": [
+        0.3123,
+        0.7638,
+        -0.6207
+       ],
+       "r": 0.0087
+      },
+      {
+       "part": "middle3",
+       "a": [
+        0.3123,
+        0.7638,
+        -0.6207
+       ],
+       "b": [
+        0.3302,
+        0.7594,
+        -0.6235
+       ],
+       "r": 0.0078
+      },
+      {
+       "part": "palm:middle",
+       "a": [
+        0.2777,
+        0.8579,
+        -0.5281
+       ],
+       "b": [
+        0.2693,
+        0.797,
+        -0.5915
+       ],
+       "r": 0.0096
+      },
+      {
+       "part": "ring1",
+       "a": [
+        0.2684,
+        0.7864,
+        -0.577
+       ],
+       "b": [
+        0.2891,
+        0.7642,
+        -0.5964
+       ],
+       "r": 0.009
+      },
+      {
+       "part": "ring2",
+       "a": [
+        0.2891,
+        0.7642,
+        -0.5964
+       ],
+       "b": [
+        0.307,
+        0.7531,
+        -0.6056
+       ],
+       "r": 0.0081
+      },
+      {
+       "part": "ring3",
+       "a": [
+        0.307,
+        0.7531,
+        -0.6056
+       ],
+       "b": [
+        0.3235,
+        0.7479,
+        -0.6092
+       ],
+       "r": 0.0073
+      },
+      {
+       "part": "palm:ring",
+       "a": [
+        0.2768,
+        0.8479,
+        -0.518
+       ],
+       "b": [
+        0.2684,
+        0.7864,
+        -0.577
+       ],
+       "r": 0.0096
+      },
+      {
+       "part": "little1",
+       "a": [
+        0.2681,
+        0.7797,
+        -0.5606
+       ],
+       "b": [
+        0.2817,
+        0.7599,
+        -0.5766
+       ],
+       "r": 0.0079
+      },
+      {
+       "part": "little2",
+       "a": [
+        0.2817,
+        0.7599,
+        -0.5766
+       ],
+       "b": [
+        0.2932,
+        0.7485,
+        -0.5855
+       ],
+       "r": 0.0071
+      },
+      {
+       "part": "little3",
+       "a": [
+        0.2932,
+        0.7485,
+        -0.5855
+       ],
+       "b": [
+        0.3045,
+        0.7417,
+        -0.5906
+       ],
+       "r": 0.0065
+      },
+      {
+       "part": "palm:little",
+       "a": [
+        0.276,
+        0.8387,
+        -0.5087
+       ],
+       "b": [
+        0.2681,
+        0.7797,
+        -0.5606
+       ],
+       "r": 0.0096
+      },
+      {
+       "part": "thumb0",
+       "a": [
+        0.2828,
+        0.8597,
+        -0.5472
+       ],
+       "b": [
+        0.3273,
+        0.8576,
+        -0.5457
+       ],
+       "r": 0.0143
+      },
+      {
+       "part": "thumb1",
+       "a": [
+        0.3273,
+        0.8576,
+        -0.5457
+       ],
+       "b": [
+        0.3534,
+        0.8629,
+        -0.547
+       ],
+       "r": 0.011
+      },
+      {
+       "part": "thumb2",
+       "a": [
+        0.3534,
+        0.8629,
+        -0.547
+       ],
+       "b": [
+        0.373,
+        0.862,
+        -0.5463
+       ],
+       "r": 0.0096
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "object": null,
+   "note": "no object within 3 cm of the hand",
+   "hands": [
+    {
+     "who": "dad",
+     "arm": "R",
+     "shape": "grip",
+     "grasp": "power",
+     "engine_held": false,
+     "capsules": [
+      {
+       "part": "index1",
+       "a": [
+        -0.9446,
+        0.734,
+        -0.3524
+       ],
+       "b": [
+        -0.9632,
+        0.707,
+        -0.3689
+       ],
+       "r": 0.0098
+      },
+      {
+       "part": "index2",
+       "a": [
+        -0.9632,
+        0.707,
+        -0.3689
+       ],
+       "b": [
+        -0.9793,
+        0.6928,
+        -0.3781
+       ],
+       "r": 0.0088
+      },
+      {
+       "part": "index3",
+       "a": [
+        -0.9793,
+        0.6928,
+        -0.3781
+       ],
+       "b": [
+        -0.9948,
+        0.6853,
+        -0.3835
+       ],
+       "r": 0.0079
+      },
+      {
+       "part": "palm:index",
+       "a": [
+        -0.9534,
+        0.8091,
+        -0.3049
+       ],
+       "b": [
+        -0.9446,
+        0.734,
+        -0.3524
+       ],
+       "r": 0.01
+      },
+      {
+       "part": "middle1",
+       "a": [
+        -0.9457,
+        0.7221,
+        -0.3367
+       ],
+       "b": [
+        -0.9672,
+        0.6937,
+        -0.3543
+       ],
+       "r": 0.0101
+      },
+      {
+       "part": "middle2",
+       "a": [
+        -0.9672,
+        0.6937,
+        -0.3543
+       ],
+       "b": [
+        -0.9862,
+        0.6797,
+        -0.3636
+       ],
+       "r": 0.0091
+      },
+      {
+       "part": "middle3",
+       "a": [
+        -0.9862,
+        0.6797,
+        -0.3636
+       ],
+       "b": [
+        -1.0038,
+        0.6731,
+        -0.3686
+       ],
+       "r": 0.0081
+      },
+      {
+       "part": "palm:middle",
+       "a": [
+        -0.9545,
+        0.8015,
+        -0.2913
+       ],
+       "b": [
+        -0.9457,
+        0.7221,
+        -0.3367
+       ],
+       "r": 0.01
+      },
+      {
+       "part": "ring1",
+       "a": [
+        -0.9473,
+        0.7155,
+        -0.3192
+       ],
+       "b": [
+        -0.9667,
+        0.6879,
+        -0.3355
+       ],
+       "r": 0.0094
+      },
+      {
+       "part": "ring2",
+       "a": [
+        -0.9667,
+        0.6879,
+        -0.3355
+       ],
+       "b": [
+        -0.9835,
+        0.6734,
+        -0.3446
+       ],
+       "r": 0.0085
+      },
+      {
+       "part": "ring3",
+       "a": [
+        -0.9835,
+        0.6734,
+        -0.3446
+       ],
+       "b": [
+        -0.9995,
+        0.6661,
+        -0.3498
+       ],
+       "r": 0.0076
+      },
+      {
+       "part": "palm:ring",
+       "a": [
+        -0.9556,
+        0.7944,
+        -0.2783
+       ],
+       "b": [
+        -0.9473,
+        0.7155,
+        -0.3192
+       ],
+       "r": 0.01
+      },
+      {
+       "part": "little1",
+       "a": [
+        -0.9491,
+        0.7134,
+        -0.3009
+       ],
+       "b": [
+        -0.9622,
+        0.6893,
+        -0.3133
+       ],
+       "r": 0.0083
+      },
+      {
+       "part": "little2",
+       "a": [
+        -0.9622,
+        0.6893,
+        -0.3133
+       ],
+       "b": [
+        -0.9729,
+        0.6752,
+        -0.3208
+       ],
+       "r": 0.0074
+      },
+      {
+       "part": "little3",
+       "a": [
+        -0.9729,
+        0.6752,
+        -0.3208
+       ],
+       "b": [
+        -0.9836,
+        0.6664,
+        -0.3258
+       ],
+       "r": 0.0068
+      },
+      {
+       "part": "palm:little",
+       "a": [
+        -0.9565,
+        0.7877,
+        -0.2664
+       ],
+       "b": [
+        -0.9491,
+        0.7134,
+        -0.3009
+       ],
+       "r": 0.01
+      },
+      {
+       "part": "thumb0",
+       "a": [
+        -0.9578,
+        0.7984,
+        -0.3114
+       ],
+       "b": [
+        -1.0041,
+        0.7996,
+        -0.3144
+       ],
+       "r": 0.015
+      },
+      {
+       "part": "thumb1",
+       "a": [
+        -1.0041,
+        0.7996,
+        -0.3144
+       ],
+       "b": [
+        -1.0305,
+        0.8063,
+        -0.3202
+       ],
+       "r": 0.0115
+      },
+      {
+       "part": "thumb2",
+       "a": [
+        -1.0305,
+        0.8063,
+        -0.3202
+       ],
+       "b": [
+        -1.0509,
+        0.8074,
+        -0.3219
+       ],
+       "r": 0.01
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "figure_frame_fraction": {},
+ "colour_separation": [],
+ "figure_report": {
+  "girl": {
+   "legs": {
+    "L": {
+     "reach": 0.4
+    },
+    "R": {
+     "reach": 0.78
+    }
+   },
+   "arms": {
+    "L": 0.92,
+    "R": 0.86
+   },
+   "headTurn": 22,
+   "body": {
+    "mesh": "girl4",
+    "scale": 1,
+    "face": "blank",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 50,
+     "upperarm_stretch": 1.17,
+     "forearm_stretch": 0.92,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 77,
+     "upperarm_stretch": 1.11,
+     "forearm_stretch": 0.92,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 16.9,
+    "sole_shift_mm_R": 16.9,
+    "sole_lowest_y_m": 0.3206
+   }
+  },
+  "boy": {
+   "legs": {
+    "L": {
+     "reach": 0.94
+    },
+    "R": {
+     "reach": 0.66
+    }
+   },
+   "arms": {
+    "L": 0.93,
+    "R": 0.99
+   },
+   "headTurn": -13,
+   "body": {
+    "mesh": "boy7",
+    "scale": 1,
+    "face": "blank",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 57,
+     "upperarm_stretch": 1.15,
+     "forearm_stretch": 1.02,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 16,
+     "upperarm_stretch": 1.34,
+     "forearm_stretch": 1.02,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 11.5,
+    "sole_shift_mm_R": 11.5,
+    "sole_lowest_y_m": -0.001
+   }
+  },
+  "jade": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.98,
+    "R": 0.97
+   },
+   "headTurn": 24,
+   "body": {
+    "mesh": "jade40",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 28,
+     "upperarm_stretch": 1.14,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 35,
+     "upperarm_stretch": 1.09,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 20.9,
+    "sole_shift_mm_R": 20.9,
+    "sole_lowest_y_m": 0.016
+   }
+  },
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.99
+   },
+   "headTurn": -18,
+   "body": {
+    "mesh": "dad23",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 33,
+     "upperarm_stretch": 1.03,
+     "forearm_stretch": 1.05,
+     "hand_scale": 1
+    },
+    "R": {
+     "elbow_bend_deg": 20,
+     "upperarm_stretch": 1.06,
+     "forearm_stretch": 1.05,
+     "hand_scale": 1
+    },
+    "sole_shift_mm_L": 6.7,
+    "sole_shift_mm_R": 6.7,
+    "sole_lowest_y_m": 0.0042
+   }
+  }
+ }
+}

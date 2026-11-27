@@ -31,7 +31,7 @@ CAST.mama.hairStyle = 'perm';
 // cool-to-neutral dark brown, nearly black in shadow, no red/chestnut (cast/first_love/fl_B_backhead_neck_v8, hair median
 // #2e2420). Base tuned on the RENDER: lit pass hue ~20, sat 0.30 under neutral light (was 0x3d2819: sat 0.6-0.7, orange in
 // mv10 SI1 / closet02). The body GLBs carry no materials: this is the only place.
-const FL_HAIR = 0x1f1915;
+const FL_HAIR = 0x2b2420;   // r6 (2026-11-26): Jade: "a smidge lighter" than v8 0x1f1915. Target ~#3f342e in normally lit renders (measured hair shade). Do NOT tune on dim scenes (BR1 renders ~0.4x).
 const MAMA_H = CAST.mama.h, FIRST_LOVE_H = 1.78;   // first love: about 5'10", lean (Jade)
 PROP.adultJade19 = adultWith(1.63); PROP.adultJade27 = adultWith(1.65); PROP.adultFirstLove = adultWith(FIRST_LOVE_H);
 const JADE_KID = { skin: 0xe6b996, hair: 0x14110f, legs: 0x4b5a7a, hairStyle: 'bob' };

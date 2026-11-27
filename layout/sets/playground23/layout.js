@@ -32,7 +32,20 @@ export const HALL = { x0: -8, x1: 8, z0: -9, z1: 6, joistY: 5.0, deckY: 5.8, joi
 // Scale from the photo (bar stools, the 4-year-old-sized arch): nose ~0.75 m, rear section ~0.95 m, ~4.3 m long.
 // Pieces along x (nose to +x), the body centred on z = SHUTTLE.z, its camera-side face at z = -1.0:
 export const SHUTTLE = { z: -1.55, half: 0.55, top: 0.62, x0: -1.15, x1: 0.75, nose: 1.3, tipY: 0.3,
-  rear: { x0: -2.3, x1: -1.15, top: 0.95, arch: { cx: -1.72, w: 0.58, h: 0.62 } } };
+  rear: { x0: -2.3, x1: -1.15, top: 0.95, arch: { cx: -1.72, w: 0.58, h: 0.62 } },
+  // r6 (Jade: "the inside of the space shuttle should be hollowed out and have seats the way it does in the photo"):
+  // read from the photo, the body between the arched rear section and the nose cowl is an OPEN-TOPPED cabin (a padded
+  // tub): the outer shape and size are unchanged, the top is open between the rear section's face and the cowl, the
+  // side walls are 7 cm foam with a flat rim where the rounded top corner begins, a black padded floor inside; the nose
+  // cowl (windscreen band) stays closed and its back face is the cabin's front wall. The photo shows one black
+  // high-backed bucket seat right behind the cowl, its back standing well above the rim, facing the nose. Built as TWO
+  // black padded bucket seats one behind the other on the centre line (pilot behind the cowl, as the photo; a second
+  // seat mid-cabin, which is also the one PG1 can see between the children). FLAGGED: the second seat and the tandem
+  // (not side-by-side) layout are read, not seen; the photo shows one seat.
+  cabin: { x0: -1.15, x1: 0.62, wall: 0.07, rim: 0.52, floor: 0.1 } };
+// the cabin seats: black padded bucket seats (a cushion and a tall rounded back), facing the nose (+x); x = the back's
+// rear face, x1 = the cushion's front, dz across the cabin from its axis
+export const SEATS = { w: 0.42, t: 0.12, top: 0.82, cushionTop: 0.3, list: [{ x: 0.14, x1: 0.55, dz: 0 }, { x: -0.56, x1: -0.16, dz: 0 }] };
 // the camera-side wing = the panelled ramp: top edge on the body side at z = -1.0 (y 0.52), outer edge on the floor
 export const RAMP = { x0: -0.35, x1: 0.62, xOut0: -0.2, xOut1: 0.4, zTop: -1.0, yTop: 0.52, zOut: -0.1, yOut: 0.06, panels: 3 };
 export const rampY = (z) => RAMP.yOut + (RAMP.yTop - RAMP.yOut) * (RAMP.zOut - z) / (RAMP.zOut - RAMP.zTop);   // the ramp's top surface

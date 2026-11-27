@@ -28,8 +28,8 @@ const family = (o = {}) => ({
     R: { to: HANDS_MEET.jade_girl, hand: KID_CURL, palm: KID_HAND.girl.palm, fingers: KID_HAND.girl.fingers, elbow: 'out' }, ...(o.girl || {}) },
   // the boy: right foot up on the black block, right hand on the top corner of the body, left hand back in Dad's
   boy: { at: [PEOPLE.boy[0], 0.574, PEOPLE.boy[1]], yaw: 180, legs: 'stand', legOpts: { ankleR: [0.06, -0.217, 0.33], ankleL: [0.06, -0.537, -0.15] },
-    spine: { bend: 60, twist: 8 }, head: { look: 'boyLook' },
-    R: { to: 'boyHandOn', hand: 'flat', palm: 'down', fingers: [0, -0.3, -1] },
+    spine: { bend: 67, twist: 8 }, head: { look: 'boyLook' },
+    R: { to: 'boyHandOn', hand: 'flat', palm: 'down', fingers: [0, -0.08, -1] },
     L: { to: HANDS_MEET.dad_boy, hand: KID_CURL, palm: KID_HAND.boy.palm, fingers: KID_HAND.boy.fingers, elbow: 'out' }, ...(o.boy || {}) },
   jade: { at: PEOPLE.jade, floor: 0.012, yaw: 196, legs: 'stand', spine: { bend: 25 }, head: { look: 'girl:head' },
     L: { to: 'girl:handR', hand: { shape: 'grip' }, palm: KID_HAND.girl.adultPalm, hold: { r: HOLD_R.girl, prop: false, centre: true, axis: KID_HAND.girl.width }, grasp: 'power', object: 'figure:girl:hand' }, R: 'side', ...(o.jade || {}) },
@@ -51,4 +51,12 @@ const BASE = [
     intent: 'PG2’s exact camera with the figures not drawn: the clean plate for the beam mask, the mote’s exit and the unfinished gold dotted line.',
     figs: family({ jade: { head: { look: 'mote' } } }) },
 ];
-export const SHOTS = BASE.concat(maskTwins(BASE));
+// r6 reference (not a film shot): the hollow cabin and its seats seen from front-left and above, roughly as Jade's photo
+// of the real shuttle; nobody drawn (the figures are built and hidden, as the plate). For checking the build only.
+const REF = [
+  { id: 'REF_cabin', lens: 28, pos: [1.7, 2.5, 1.0], target: [-0.2, 0.35, -1.55], position: 'reference', hideFigs: true,
+    header: 'r6 reference: the open-topped shuttle cabin and its two seats (nobody drawn)',
+    intent: 'Reference only: the play shuttle from front-left and above, the open cabin between the arched rear section and the nose cowl, two black bucket seats behind the cowl.',
+    figs: family() },
+];
+export const SHOTS = BASE.concat(maskTwins(BASE), REF);

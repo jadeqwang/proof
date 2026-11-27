@@ -1,6 +1,44 @@
 # Proof — handoff for the next session
 
-## NEXT SESSION START HERE (end of 2026-11-26 night)
+## NEXT SESSION START HERE (2026-11-26, after round 6)
+
+**State:** every round-6 answer is applied and committed. Jade's paste is saved verbatim in
+work/decisions/JADE_R6_DECISIONS.md, and the brief is work/decisions/R6_BRIEF.md. Nothing is pushed. Jade's
+plan: **paint next session** (r4 + r5 + r6 together). There is no new decision page; media/decisions.html still
+holds round 6 (all answered).
+
+Round 6, what changed:
+- **market93:** the grandmother stands 20 cm further back from the cart, elbows by her sides, power grip at
+  navel height, wrists in range. Shots: M1, M4b_pull, M5, M4c, WIDE.
+- **attic88_day:** AD_trace's other fingers are in a moderate curl (`grabpose.js` TRACE_R); AD_grab shares the hand.
+- **kitchen90:** jade7 now sits ON her folded left foot (sole up, knee forward), with the right leg hanging, as in
+  reference photos. Chair and family are 5 cm closer to the table, lean 12-18 deg. All 8 night shots. She still
+  looks down at the page with a rounded back in side views; it reads as a 7-year-old doing homework.
+- **mortongrove07:** the mirror is raised to glass 2.08-4.03 m, centred between the piano lid (~1.0 m) and the
+  5.10 m wall top. MG_wide was re-framed (16 mm, tilted up; the keyboard is cut off at the bottom). New reference
+  view REF_east.
+- **shanghai86 V1e:** Mama's hand WAS clipping (22 mm into the jamb, forearm through the folded door leaves). She
+  now stands on the threshold with her palm flat on the jamb face. V1e and V1d_8_end.
+- **playground23:** the shuttle's middle is an open, padded cabin with two black bucket seats. The photo shows
+  one seat; the second, behind it, is a guess (tell Jade). Jade is in socks. New reference view REF_cabin (do not paint).
+- **First love's hair:** at Jade's request it was matched to his real hair shade, measured from public photos
+  (photos stayed in the session scratchpad and are deleted with it): ~#3f342e, a dark, slightly warm brown with no
+  red. FL_HAIR 0x2b2420 (v8 was 0x1f1915); closet02 lit-only FL_HAIR_LIT 0x1a181b (CL_ots samples #40342d).
+  closet02, mv10 and mortongrove07 are re-rendered. **The v8 painter sheets in cast/first_love are darker than
+  this:** at paint time, say "#3f342e dark, slightly warm brown" in the prompt, or make a v9 sheet first.
+- Checks: holds pass (market 35/35, kitchen 8/8, mv10 308/308); clipcheck shows only failures already listed
+  (mv10 32, kitchen day shots: Mama's wrists and clothes, closet).
+
+**1. Paint r4 + r5 + r6.** The list is work/r4/REPAINT_LIST.md (r4, r5 and r6 sections; r6 adds the shots above).
+Free Codex in tmux only, most-corrected sets first; the method is in "START HERE (updated the evening of
+2026-11-26)" below. Re-comp CAP_X_sw after the X_sw repaint. Watch the Codex image limit (~100 images per 40
+min). Don't fall back to paid generation without asking Jade.
+
+**2. Optional engine work** (unchanged from the round-5 list below): widen the holdcheck hand, seated hips +5 mm,
+the MG2 pinch, the pre-existing clips.
+
+## (superseded) round-6 page notes, end of 2026-11-26 night
+
 
 **State:** every round-5 answer is applied, every set is re-rendered on the r5 engine, and all of it is committed
 locally (last commits 081f5bb, 8159192). Nothing is pushed. Nothing has been painted for r4 or r5.

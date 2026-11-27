@@ -508,3 +508,19 @@ with the picture window, the two-storey split-level wing is to its east, image-r
 - Final three-pass re-render of every shot after the art; MG_wide_lit mean luminance 49.6 -> 75.4 (median 36 -> 63),
   the mirror's area 45 -> 98; MG2/MG2_end lit 49 -> 64, MG1 68 -> 82, REF_north 70.5 -> 91.8.
 - Question for Jade (proposed card): the ceiling's high side 5.1 m (built) vs 6.0 m vs 5.2 m with a flat dining jog.
+
+## 2026-11-26: round-6 decisions
+Jade (r6, mg_ceiling_high): "good ceiling is correct height. move the mirror up until it's aesthetically centered in the
+open wall space." Ceiling unchanged (5.10 m, one plane from 2.44 m at the dining wall).
+- **Mirror raised** (layout.js MIRROR): y 0.95-2.90 -> **2.075-4.025** (frame 2.035-4.065). The east wall's top is level
+  at 5.10 m (the slope runs east-west, so the wall above the mirror is not sloped); below it the closed piano lid tops
+  out at ~1.00 m. Free wall 1.00 -> 5.10, centre 3.05: ~1.04 m of plaster above the lid and ~1.04 m below the ceiling.
+  Horizontally unchanged (centre z -3.50): above the 2.38 m stair opening the east wall runs z -7.2 -> 0 (centre -3.60),
+  so it is already centred on the open upper wall (10 cm off; not worth moving off the piano). Size unchanged (2.8 x 1.95).
+- **New reference REF_east** (shots.js): the east wall square on, ceiling to piano lid, to judge the centring. Not a shot.
+- **MG_wide camera** (reference): the raised mirror ran out of the top of frame. 18 -> 16 mm, pos z -7.0 -> -7.08,
+  x 2.6 -> 2.5, target y 2.04 -> 2.64: the whole mirror is in frame; tradeoff: the piano keyboard is now cut at the
+  bottom edge (only the case shows) and the figures sit lower. REF_north sees only the mirror's edge (as before).
+- MG1 / MG1_end / MG2 / MG2_end do not see the mirror (they face south): pixel-identical to HEAD (ImageMagick AE 0).
+- Checks: clipcheck / holdcheck on MG_wide, REF_east, REF_north: the same pre-existing items as r5 (couch 84 mm cloth,
+  rug 6 mm, folded hoodie, MG2 pinch); nothing new. Rendered three passes.

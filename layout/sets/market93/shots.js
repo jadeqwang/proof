@@ -47,14 +47,21 @@ const GRAB_R = { m4: 0.033, pull: 0.041, land: 0.0355, lead: 0.037 }, GRAB_K = 0
 const jadeStudy = (o = {}) => ({ at: JADE_STAND.at, yaw: JADE_STAND.yaw, legs: 'stand', spine: { bend: 7 }, head: { look: 'art:tip' },
   L: cradle(ART_HELD, 'L'), R: cradle(ART_HELD, 'R'), ...o });
 // the grandmother behind her cart, both hands on the bar, a little stooped; she waits the whole time
-const grandma = (G, o = {}) => ({ at: G.at, yaw: G.cart.yaw, legs: 'stand', spine: { bend: 15 }, head: { look: 'jade10:head' },
+// r6 (Jade: "cart is right, the arm is weird / unnatural"): she stood 0.21 m behind the grip, so her elbows bent 121-129 deg,
+// flared out (the engine's default elbow swivel) and her wrists sat 18 deg past full pronation with 30 deg ulnar deviation.
+// Now she stands GM_BACK = 0.20 m further back (0.43 m pelvis-to-grip), elbows by her sides (GM_ELBOW, the elbow pole: down,
+// a little out and back; +x = her left), palms down and a little toward each other (GM_PALM: 70 deg pronation, wrists
+// near neutral): elbow bend ~82 deg, forearms near level, flex -9 / ulnar 13 / twist -69 deg, all in range. GM_HOLD: hold r = grip + 8 mm (was + 4): with the tilted
+// palm + 4 / + 6 mm pinched the thumb 5 / 1.7 mm into the grip, + 10 lifts off (adjacent); + 8 closes 0.9 mm off (holdcheck pass).
+const GM_HOLD = 0.008, GM_BACK = 0.20, GM_ELBOW = [0.2, -1, -0.45], GM_PALM = [0.3, -0.9, 0.2];
+const grandma = (G, o = {}) => ({ at: [G.at[0] - GM_BACK * Math.sin(G.cart.yaw * Math.PI / 180), G.at[1] - GM_BACK * Math.cos(G.cart.yaw * Math.PI / 180)], yaw: G.cart.yaw, legs: 'stand', spine: { bend: 15 }, head: { look: 'jade10:head' },
   L: cartGrip('L'), R: cartGrip('R'), ...o });
 // (hold pass 2026-11-26) a power grip round the cart's handle bar (r5: the downloaded cart's red grip, r 18 mm): the bar across the palm, thumb toward the other
 // hand, fingers over the top and round under it (was: a palm target 12 mm above the bar, fingers through it)
 // r5: hold r = the grip's 18.3 mm + 4 mm: the capsule hand then closes 1 mm off the grip (holdcheck pass); at r = 18.3 the
 // capsules pinched 3.5 mm in and the mesh fingers sank 13 mm into the grip (clipcheck); at +8 mm the capsules lift off (adjacent).
-const cartGrip = (n) => ({ to: 'cart:bar' + n, hand: 'grip', palm: 'down', hold: { r: CART.barR + 0.004, prop: false, centre: true, axis: 'to:cart:bar' + (n === 'L' ? 'R' : 'L') },
-  grasp: 'power', object: 'handle bar' });
+const cartGrip = (n) => ({ to: 'cart:bar' + n, hand: 'grip', palm: [n === 'L' ? -GM_PALM[0] : GM_PALM[0], GM_PALM[1], GM_PALM[2]], hold: { r: CART.barR + GM_HOLD, prop: false, centre: true, axis: 'to:cart:bar' + (n === 'L' ? 'R' : 'L') },
+  grasp: 'power', object: 'handle bar', elbow: [n === 'L' ? GM_ELBOW[0] : -GM_ELBOW[0], GM_ELBOW[1], GM_ELBOW[2]] });
 // Mama further up the aisle at the gondola, reading a shelf (out of the beam)
 const mamaAhead = { at: MAMA_AHEAD.at, yaw: MAMA_AHEAD.yaw, legs: 'stand', noApron: true, spine: { bend: 4 }, head: { look: [-0.95, 1.3, 2.9] },
   L: 'side', R: { to: [-0.92, 1.28, 2.82], hand: 'relax', palm: 'down' } };

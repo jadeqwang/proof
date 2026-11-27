@@ -213,3 +213,13 @@ AD_fern_lit was 52 % pure white: the pane fills the frame, and the lit pass adds
 (~2.7x) on top. New per-shot `light: { sky, exposure }` (build.js): `sky` scales only the sky emitter, `exposure` the sun,
 sky fill and ambient. AD_fern `{ sky: 0.3 }`: 52 % -> 0 % pure white, mean 188.6 -> 174.0; the sky reads pale blue
 behind the frost pane. Other shots unchanged.
+
+## 2026-11-26: round-6 decisions (work/decisions/JADE_R6_DECISIONS.md; R6 brief) — market-attic agent
+- **AD_trace: loosen the rest of the fist** (Jade: "maybe loosen the grip on the rest of the fist a bit"). grabpose.js
+  `TRACE_R`: middle / ring / little from the engine's 'point' fist (86-92 / 100 / 60 deg) to 58/66/36, 62/70/40, 66/74/42
+  (moderately curled, the knuckles separate), thumb relaxed (opp 0.7, mcp 30, ip 20 -> 0.55, 16, 12, still resting on the
+  middle finger). Index and fingertip on fernMid unchanged (1.2 mm off the glass). Chosen from trace_preview.mjs variants
+  (tighter 66-74 still read as a fist; looser 48-58 started to read as an open hand).
+- `TRACE_R` is also her hand in AD_grab (same moment), re-rendered too. Checks: clipcheck AD_trace / AD_grab pass (Mama's
+  grip 7.8 mm into the sleeve cloth, as in r5); hold AD_grab pass (1.7 mm); check_bodies AD_trace PASS, AD_grab reports
+  the same sleeve-cloth grip (58 tri pairs, deepest 7.8 mm, cloth) as before: pre-existing, not from this change.

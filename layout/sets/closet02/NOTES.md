@@ -201,3 +201,6 @@ touching. Tried and reverted (shots.js unchanged); asked the hold agent for an e
   lit-pass override (`FL_HAIR_LIT` 0x141214 in build.js, his hair meshes only; other passes and _cast.js unchanged)
   now reads #2f2620 on CL_ots, against the v8 sheet's ~#2e2420. CL_chin reads dark cool brown too.
 - Re-rendered all three passes.
+
+## 2026-11-26: round-6 decisions
+- Hair re-render (r6 final, lead): target = his real hair shade measured from public photos, ~#3f342e (dark, slightly warm brown, a little cool grey, no red). FL_HAIR 0x2b2420 (v8 0x1f1915; ~1.37x lighter, calibrated in normal light, NOT on dim scenes). closet02 lit-only FL_HAIR_LIT 0x1a181b: CL_ots hair samples #40342d. mv10 is a dim set (C2b hair #0e0a08 -> #130e0c). No geometry change. Painter refs: the v8 sheets are darker than the target; next paint session tell the painter #3f342e (or redo the sheet as v9).

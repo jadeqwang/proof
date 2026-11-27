@@ -934,3 +934,20 @@ uncle). Each change was chosen by scanning variants of that hand's fingers / pal
 - uncle (V1a/V1b): cupped R fingers 0.25 to his left, pinching L fingers 0.25 to his right (were radial +8 / ulnar +13).
 - Mugs: props.json's mug grips are now the right way round (handle +x, body centre x -0.015). build.js's own +15 mm shift
   uses the bbox origin, not the grips, so it is unchanged and still correct. Nobody holds a mug here.
+
+## 2026-11-26: round-6 decisions
+Jade (r6, sh_jamb): "Mama's hand on the door jamb (V1e) — is her hand clipping through a door?"
+- **Yes, it was.** clipcheck on the r5 pose (V1e): mama86's right hand 22.5 mm into the north wall at the west jamb,
+  12.4 mm into the jamb lining, 12.9 mm into the room-side architrave; her wrist/forearm 20.5 mm through the folded-back
+  hall door leaves (they stand in the hall against the jamb, x 0.27-0.37, z < -6.25, so a forearm reaching from the hall
+  side crosses them); her slippers 9 mm into the raised teak threshold. In the guide the stiff sideways arm put the hand
+  right on the hinge/leaf edge, which is what read as "through the door".
+- **Re-staged** (shots.js mother(); ~150 variants scanned with clipcheck's checkDump via window.clipDumpSpec, script
+  kept in scratch): she stands 6 cm further into the doorway, on the threshold (floor 0.018); the right palm flat on the
+  west jamb's lining face (x 0.270) at y 1.27 (palm centre), fingers up and leaning back toward the hall
+  ([-0.079, 0.851, -0.52]), palm 8.6 deg off flat, contact -0.8 mm (tolerance 3); the elbow down beside the jamb inside
+  the doorway (elbowAt [0.45, 0.87, -6.10]) so the forearm stays clear of the leaves. Every wrist angle in range
+  (the fingers-up-straight versions were 20-40 deg past pronation; fingers leaning toward the hall fixed it).
+- V1e now has `clip.touch` mama86.handR on the jamb lining (pass). clipcheck: mama86 clear in every shot (the remaining
+  V1e fails are jade3 into the paper drift, pre-existing). check_bodies V1e / V1d_8_end PASS; holdcheck no fails.
+- Changed guides: V1e, V1d_8_end (her arm, behind the bookcase end), REF_beam. Rendered three passes.

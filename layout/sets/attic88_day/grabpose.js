@@ -16,7 +16,10 @@ export const LIFT = 0.0155;
 // clip check pass, joints in range, wrist flex -49 / radial -7 / twist -31, the fingertip's pad 1.2 mm off the glass,
 // i.e. touching it through the frost layer); index a little bent at the tip, the other three curled, thumb resting on the
 // middle finger. Was: palm centre 8.5 cm short of fernMid, hand 'point' (the finger stood vertical: read as a thumbs-up).
-export const TRACE_R = { tip: { finger: 'index', at: 'fernMid', off: [0, 0, 0] }, hand: { shape: 'point', curl: { index: [6, 14, 10] } }, fingers: [0.985, 0.163, 0.059], palm: [0.174, -0.925, -0.337] };
+// r6 (Jade: "maybe loosen the grip on the rest of the fist a bit"): the curled fingers 86-92/100/60 deg (the engine's
+// 'point' fist) -> 58-66/66-74/36-42 (moderately curled, a loose hand), thumb relaxed (opp 0.7 mcp 30 ip 20 -> 0.55/16/12, still
+// resting on the middle finger). The index and the fingertip on fernMid are unchanged. trace_preview.mjs variants a/b/c.
+export const TRACE_R = { tip: { finger: 'index', at: 'fernMid', off: [0, 0, 0] }, hand: { shape: 'point', curl: { index: [6, 14, 10], middle: [58, 66, 36], ring: [62, 70, 40], little: [66, 74, 42] }, thumb: { opp: 0.55, mcp: 16, ip: 12 } }, fingers: [0.985, 0.163, 0.059], palm: [0.174, -0.925, -0.337] };
 export const kidAtSill = (p) => ({ at: [p.cx, +(0.46 * 1.08 + LIFT).toFixed(4), p.cz], yaw: 90 + (p.cyaw || 0), legs: 'stand', spine: { bend: p.cbend }, head: { look: 'fernMid' },
   R: TRACE_R });
 export const mamaGrab = (p) => { const hy = +(0.832 - p.drop + LIFT).toFixed(4), la = { to: 'self:shoulderL', off: [0, -0.5, 0], hand: 'relax', palm: 'in', fingers: 'down' };

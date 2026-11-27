@@ -126,7 +126,12 @@ export const PLANTS = { x0: 0.10, x1: 0.68, z0: -1.75, z1: -0.30, h: 0.42, carto
 export const PRINT = { x: 2.9, y: 1.64, z: -0.025, w: 1.4, h: 1.0 };
 
 // ---------------------------------------------------------------- the rest of the great room (drawing)
-export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 0.95, y1: 2.90, label: 'giant mirror' };   // east wall; round 3 (Jade): hangs HIGHER (was 0.25-2.20), its top now 2.90 on the tall east wall (5.1 m, r5)
+// Round 6 (Jade): "move the mirror up until it's aesthetically centered in the open wall space". The east wall's top is level
+// at VAULT.high (5.10 m); below the mirror the piano's closed lid tops out at about 1.00 m. Free wall 1.00 -> 5.10, centre
+// 3.05: the 1.95 m glass at 2.075-4.025 (frame 2.035-4.065) leaves ~1.04 m of wall above the lid and ~1.04 m below the
+// ceiling. Horizontally unchanged (centre z -3.50): above the 2.38 m stair opening the east wall runs z -7.2 -> 0
+// (centre -3.60), so the mirror is already centred on the open upper wall.
+export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 2.075, y1: 4.025, label: 'giant mirror' };   // east wall; r3: higher (was 0.25-2.20, then 0.95-2.90); r6: centred between the piano lid and the 5.10 m ceiling
 // 7-ft grand (Jade's drawing: "7' concert grand"; a 7-ft grand is strictly a semi-concert "B"-size grand, Steinway B
 // 211 x 148 cm: kept at that size because the drawing says 7'). Round 3 (Jade): "the correct shape of an actual grand":
 // PIANO.outline is a real grand's plan (straight spine on the bass side, a short straight treble side at the keyboard,

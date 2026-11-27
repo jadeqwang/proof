@@ -269,3 +269,27 @@ and measured hits. Times written elsewhere in this file before this section are 
   the fingers curling into the thigh): `grasp: 'palmUnder', object: 'figure:toddler:leg'`. It passes on the mesh body.
   It fails on the mannequin: the mannequin child's leg is 2-3 cm fuller there, and no single hand position touches both
   bodies. The hand is out of frame in PG1 / PG2 / PG2_plate.
+
+## 2026-11-26: round-6 decisions
+
+Jade: "PG1 as rebuilt: the rough shape and size is correct, but the inside of the space shuttle should be hollowed out
+and have seats the way it does in the photo"; "You in socks or sneakers? Socks".
+- Read from inputs/catchair_shuttle.png (look-only): the body between the arched rear section and the nose cowl is an
+  open-topped tub; a black high-backed bucket seat stands right behind the cowl, its back well above the rim.
+- Built (layout.js SHUTTLE.cabin, SEATS; build.js bodyGeo/cabinGeo/seatGeo): outer shape and size unchanged. The nose
+  cowl is now a closed solid from x 0.62 (its flat back face = the cabin's front wall). The cabin (x -1.15..0.62) is ONE
+  closed solid: the body's own outer section below a flat rim at 0.52 m, 7 cm walls, a black padded base at 0.10 m.
+  Two black padded bucket seats (0.42 wide, cushion 0.30, back top 0.82) in TANDEM on the centre line facing the nose:
+  one right behind the cowl (as the photo), one mid-cabin. FLAGGED: the photo shows only one seat; the second seat and
+  tandem (vs side-by-side) are my reading. Tandem was chosen partly because side-by-side seats behind the cowl are
+  hidden behind the girl and Jade in PG1; the mid-cabin seat shows between the boy and the girl.
+- These meshes are solids (no `double`), so clipcheck now tests bodies against them (the old body was a sheet).
+- Restage: the boy's right hand is flat on the rim (boyHandOn [-0.62, 0.546, -1.09], fingers level), spine bend 60 -> 67
+  so he still reaches. The girl unchanged.
+- New reference shot REF_cabin (nobody drawn; hideFigs) to show the cabin; not a film shot.
+- Socks: Jade in white socks (JADE23 sock 0xf0f0ec), as built: confirmed.
+- Checks: clipcheck PG1/PG2/PG2_plate/REF_cabin pass (girl 2.5 mm skin into the cabin's outer wall at her left hand,
+  boy sleeve 3 mm cloth on the rim, boy 1/5.5 mm into the block as before). holdcheck PG1/PG2 pass (0.5 / 1.5 mm, 0/0);
+  PG2_plate and REF_cabin "no object at the hand" because the figures are hidden (as before). check_bodies: eyes all
+  OK; the only body-body overlaps are the two clasps and Dad vs his worn backpack (as before). Pre-existing, not fixed:
+  the girl's left toes ~19 mm into the ramp's black padded frame (foam; clipcheck treats the ramp as a sheet).

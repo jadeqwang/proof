@@ -84,8 +84,16 @@ const V1H_MID = [HEAP[0], 0.43, HEAP[1] + 0.15];
 // heads in through the hallway"): they stand in the hall just past the threshold beside Mother, leaning in to look
 const DOORWAY_HEADS = [1.55, 1.3, -6.15];
 const M = PLACES.mother;
-const mother = (o = {}) => ({ at: M, legs: 'stand', yaw: yawTo(M, PLACES.jadeSit), spine: { bend: 3 }, head: { look: 'jade3:head' },
-  R: { to: [DOOR.x0 + 0.02, 1.35, DOOR.z - 0.04], hand: 'relax', palm: [-0.985, 0, 0.174], fingers: [0.168, 0.259, 0.951], elbow: 'out' }, L: 'side', costume: { sock: 0x8a8478 }, ...o });   // a hand on the west jamb; r5 wrists (engine-body, scanned 200+ variants): the palm on the jamb's reveal at shoulder height, fingers into the room and a little up, elbow out (back put it into the north wall), leaning on the frame (was 1.12 m, fingers straight up: extension +26 / ulnar +57 deg past the range)
+// r6 (Jade, V1e: "is her hand clipping through a door?"): YES, it was. Clip check on the r5 pose: hand 22.5 mm into the
+// north wall's jamb, 12.4 mm into the jamb lining, the wrist/forearm 20.5 mm through the folded-back door leaves (they
+// stand in the hall against the jamb, x 0.27-0.37), 12.9 mm into the room-side architrave; her slippers 9 mm into the
+// raised teak threshold. Re-staged (scanned ~150 variants with clipcheck): she stands 6 cm further into the doorway, ON
+// the threshold (floor 0.018), her right palm flat on the west jamb's lining (face x 0.270) at about head-minus-a-hand
+// height, fingers up and leaning back toward the hall (palm 9 deg off flat, 0.8 mm contact), the elbow down beside the
+// jamb in the doorway (so the forearm stays clear of the folded leaves). Every wrist angle in range.
+const MAT = [M[0], M[1] + 0.06];
+const mother = (o = {}) => ({ at: MAT, floor: 0.018, legs: 'stand', yaw: yawTo(MAT, PLACES.jadeSit), spine: { bend: 3 }, head: { look: 'jade3:head' },
+  R: { to: [DOOR.x0 + 0.045, 1.27, DOOR.z - 0.065], hand: 'flat', palm: [-0.989, 0, 0.15], fingers: [-0.079, 0.851, -0.52], elbowAt: [DOOR.x0 + 0.2, 0.87, DOOR.z] }, L: 'side', costume: { sock: 0x8a8478 }, ...o });   // r5 had: to [x0 + 0.02, 1.35, z - 0.04], relax, palm [-0.985, 0, 0.174], fingers [0.168, 0.259, 0.951], elbow 'out' (clipped: see above)
 // r4 (Jade, r3 review of V1f): "the adults should be peeking to look at where she currently sits, not just vaguely in the
 // room ... wearing socks inside slippers ... maybe the camera position should be over the shoulder shot of mom looking at
 // toddler into the room and we see the backs of their heads". They stay in the hall / on the threshold (r3: not in the
@@ -181,7 +189,7 @@ export const SHOTS = [
     figs: { jade3: { ...ripSit(0.009), L: { to: 'lap', hand: 'relax', palm: [0, -1, 0], fingers: [0.259, 0, 0.966] }, R: 'lap', head: { look: [PLACES.mother[0], 1.4, PLACES.mother[1]] }, spine: { bend: 6, twist: 35 } }, mama86: mother() },   // r5 wrists: L palm down on her lap, fingers 15 deg off world +z (was 'lap': pronation +6 deg)
     paper: { laid: [{ half: [P0.gen, P0.seed, 1], at: PD, yaw: 20 }], bits: { at: [PD[0] + 0.05, PD[1] + 0.02], r: 0.02, gens: { 8: 2, 9: 3, 10: 3 } } },
     header: '0:47.5 INSIDE the end of the V1d_8 pan: across the room to Mother in the hall doorway', intent: 'Inside (POV, the end of the pan): from her eyes, low (cross-legged on the floor), across the room to Mother standing in the wide hall doorway, a hand on the jamb, out of the sun.' },
-  { id: 'V1e', t: [48.14, 50.52], lens: 32, pos: [-0.5, 0.8, -0.25], aim: ['jade3:eyes', 0.3, 0.58], figs: ALONE(8), paper: AFTER,
+  { id: 'V1e', t: [48.14, 50.52], lens: 32, pos: [-0.5, 0.8, -0.25], aim: ['jade3:eyes', 0.3, 0.58], figs: ALONE(8), paper: AFTER, clip: { touch: [['mama86.handR', 'hall French doors (frame)']] },
     header: '0:48.1 "What on earth are you doing?": Mother in the doorway, beyond the reach of the beam',
     intent: 'Low, from the doors, looking into the room: the child frame left in the light, still looking down at the pieces; the light falls on the table and the floor in front of her and stops on the boards; Mother stands in the wide doorway frame right, out of the light. Mother\'s face is drawn.' },
   { id: 'V1f', t: [50.52, 53.93], lens: 30, pos: V1F_CAM, aim: ['jade3:head', 0.5, 0.6], figs: CROWD(8), paper: AFTER,

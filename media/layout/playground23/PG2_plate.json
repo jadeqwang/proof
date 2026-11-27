@@ -105,20 +105,20 @@
   },
   "boy": {
    "px": [
-    -3365.4,
-    3028.4
+    -3268.2,
+    3106.7
    ],
    "eyes": [
-    -2680,
-    2938.2
+    -2613.9,
+    3019
    ],
    "mouth": [
-    -3072.8,
-    3342.6
+    -3001.4,
+    3427.9
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 104
+   "facing_camera_deg": 105
   },
   "jade": {
    "px": [
@@ -139,20 +139,20 @@
   },
   "dad": {
    "px": [
-    -7245.4,
-    984.6
+    -7228.7,
+    988.3
    ],
    "eyes": [
-    -6356.2,
-    1208.1
+    -6329.5,
+    1215.5
    ],
    "mouth": [
-    -7187.6,
-    1501.9
+    -7163.9,
+    1507.1
    ],
    "in_frame": false,
    "visible": false,
-   "facing_camera_deg": 50
+   "facing_camera_deg": 51
   }
  },
  "hands": {
@@ -185,8 +185,8 @@
   },
   "boy.R": {
    "px": [
-    -1815.5,
-    3781.9
+    -1812.2,
+    3820.9
    ],
    "shape": "flat",
    "in_frame": false,
@@ -221,8 +221,8 @@
   },
   "dad.R": {
    "px": [
-    -34841.7,
-    18640.3
+    -35883.7,
+    19214.3
    ],
    "shape": "grip",
    "in_frame": false,
@@ -286,8 +286,8 @@
  "warnings": [
   "wrist: girl L hand turned 12 deg toward the forearm to keep the wrist in range (was flex -56.7, radial -38.4)",
   "wrist: girl R hand turned 16 deg toward the forearm to keep the wrist in range (was flex -26.9, radial 33.9)",
-  "wrist: boy L hand turned 28.7 deg toward the forearm to keep the wrist in range (was flex -17.2, radial 46.7)",
-  "wrist: dad R hand turned 15.8 deg toward the forearm to keep the wrist in range (was flex -1.9, radial 39.4)"
+  "wrist: boy L hand turned 31.3 deg toward the forearm to keep the wrist in range (was flex -13.4, radial 51.7)",
+  "wrist: dad R hand turned 16.3 deg toward the forearm to keep the wrist in range (was flex 1.9, radial 40.7)"
  ],
  "intent": "PG2’s exact camera with the figures not drawn: the clean plate for the beam mask, the mote’s exit and the unfinished gold dotted line.",
  "film": {
@@ -1341,15 +1341,15 @@
     ]
    },
    "head_deg": {
-    "yaw_left": -12.2,
-    "pitch_up": 24.9,
+    "yaw_left": -13.2,
+    "pitch_up": 30.9,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": 14.8,
+    "pitch_up": 18.2,
     "wanted_yaw": 0,
-    "wanted_pitch": 14.8,
+    "wanted_pitch": 18.2,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -1361,17 +1361,17 @@
      "target": "boyHandOn",
      "shape": "flat",
      "world": [
-      -0.6,
-      0.575,
-      -1.08
+      -0.62,
+      0.546,
+      -1.09
      ],
-     "look_off_deg": 43.5
+     "look_off_deg": 45.4
     }
    ],
    "warnings": [],
    "eyes_px": [
-    -2680,
-    2938.2
+    -2613.9,
+    3019
    ],
    "target_px": [
     -548.9,
@@ -1433,21 +1433,21 @@
    "look_target": {
     "name": "boy:head",
     "world": [
-     -0.743,
-     0.953,
-     -0.809
+     -0.744,
+     0.922,
+     -0.825
     ]
    },
    "head_deg": {
-    "yaw_left": -19.5,
-    "pitch_up": -11.7,
+    "yaw_left": -18.4,
+    "pitch_up": -12.3,
     "note": "head relative to the chest"
    },
    "eye_deg": {
     "yaw_left": 0,
-    "pitch_up": -9.8,
+    "pitch_up": -10.2,
     "wanted_yaw": 0,
-    "wanted_pitch": -9.8,
+    "wanted_pitch": -10.2,
     "note": "eyes relative to the head; travel clamped to +-35 yaw, 30 up / 45 down"
    },
    "gaze_error_deg": 0,
@@ -1460,20 +1460,20 @@
      "shape": "grip",
      "world": [
       -0.951,
-      0.762,
-      -0.308
+      0.759,
+      -0.306
      ],
-     "look_off_deg": 48.2
+     "look_off_deg": 47.7
     }
    ],
    "warnings": [],
    "eyes_px": [
-    -6356.2,
-    1208.1
+    -6329.5,
+    1215.5
    ],
    "target_px": [
-    -3365.4,
-    3028.4
+    -3268.2,
+    3106.7
    ],
    "target_in_front": true
   }
@@ -1548,29 +1548,29 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -7.8,
-    "radial_deg": 15.4,
-    "twist_deg": 74.4,
-    "elbow_flex_deg": 47.6,
+    "flex_deg": -8.1,
+    "radial_deg": 17.2,
+    "twist_deg": 75.7,
+    "elbow_flex_deg": 43,
     "before": {
-     "flex_deg": -17.2,
-     "radial_deg": 46.7,
-     "twist_deg": 68.6
+     "flex_deg": -13.4,
+     "radial_deg": 51.7,
+     "twist_deg": 71.3
     },
-    "hand_turned_deg": 28.7,
+    "hand_turned_deg": 31.3,
     "out_of_range": [],
     "grip_reversed": false
    },
    "R": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -11,
-    "radial_deg": -10.8,
+    "flex_deg": -27.3,
+    "radial_deg": -12.2,
     "twist_deg": null,
-    "elbow_flex_deg": 24.2,
+    "elbow_flex_deg": 17.2,
     "before": {
-     "flex_deg": -11,
-     "radial_deg": -10.8,
+     "flex_deg": -27.3,
+     "radial_deg": -12.2,
      "twist_deg": null
     },
     "hand_turned_deg": null,
@@ -1600,16 +1600,16 @@
    "R": {
     "hold": true,
     "elbow_swivel_deg": 0,
-    "flex_deg": -5.7,
-    "radial_deg": 17.4,
+    "flex_deg": -4.2,
+    "radial_deg": 18.4,
     "twist_deg": null,
-    "elbow_flex_deg": 20.3,
+    "elbow_flex_deg": 17.4,
     "before": {
-     "flex_deg": -1.9,
-     "radial_deg": 39.4,
+     "flex_deg": 1.9,
+     "radial_deg": 40.7,
      "twist_deg": null
     },
-    "hand_turned_deg": 15.8,
+    "hand_turned_deg": 16.3,
     "out_of_range": [],
     "grip_reversed": false
    }
@@ -1911,266 +1911,266 @@
       {
        "part": "index1",
        "a": [
-        -0.946,
-        0.737,
-        -0.3546
+        -0.9446,
+        0.734,
+        -0.3524
        ],
        "b": [
-        -0.9648,
-        0.7098,
-        -0.3706
+        -0.9632,
+        0.707,
+        -0.3689
        ],
        "r": 0.0098
       },
       {
        "part": "index2",
        "a": [
-        -0.9648,
-        0.7098,
-        -0.3706
+        -0.9632,
+        0.707,
+        -0.3689
        ],
        "b": [
-        -0.981,
-        0.6954,
-        -0.3793
+        -0.9793,
+        0.6928,
+        -0.3781
        ],
        "r": 0.0088
       },
       {
        "part": "index3",
        "a": [
-        -0.981,
-        0.6954,
-        -0.3793
+        -0.9793,
+        0.6928,
+        -0.3781
        ],
        "b": [
-        -0.9965,
-        0.6877,
-        -0.3842
+        -0.9948,
+        0.6853,
+        -0.3835
        ],
        "r": 0.0079
       },
       {
        "part": "palm:index",
        "a": [
-        -0.9543,
-        0.8117,
-        -0.3063
+        -0.9534,
+        0.8091,
+        -0.3049
        ],
        "b": [
-        -0.946,
-        0.737,
-        -0.3546
+        -0.9446,
+        0.734,
+        -0.3524
        ],
        "r": 0.01
       },
       {
        "part": "middle1",
        "a": [
-        -0.9464,
-        0.725,
-        -0.339
+        -0.9457,
+        0.7221,
+        -0.3367
        ],
        "b": [
-        -0.9681,
-        0.6964,
-        -0.3559
+        -0.9672,
+        0.6937,
+        -0.3543
        ],
        "r": 0.0101
       },
       {
        "part": "middle2",
        "a": [
-        -0.9681,
-        0.6964,
-        -0.3559
+        -0.9672,
+        0.6937,
+        -0.3543
        ],
        "b": [
-        -0.9872,
-        0.6821,
-        -0.3646
+        -0.9862,
+        0.6797,
+        -0.3636
        ],
        "r": 0.0091
       },
       {
        "part": "middle3",
        "a": [
-        -0.9872,
-        0.6821,
-        -0.3646
+        -0.9862,
+        0.6797,
+        -0.3636
        ],
        "b": [
-        -1.0048,
-        0.6753,
-        -0.3691
+        -1.0038,
+        0.6731,
+        -0.3686
        ],
        "r": 0.0081
       },
       {
        "part": "palm:middle",
        "a": [
-        -0.9548,
-        0.804,
-        -0.2927
+        -0.9545,
+        0.8015,
+        -0.2913
        ],
        "b": [
-        -0.9464,
-        0.725,
-        -0.339
+        -0.9457,
+        0.7221,
+        -0.3367
        ],
        "r": 0.01
       },
       {
        "part": "ring1",
        "a": [
-        -0.9472,
-        0.7183,
-        -0.3214
+        -0.9473,
+        0.7155,
+        -0.3192
        ],
        "b": [
-        -0.9668,
-        0.6905,
-        -0.3372
+        -0.9667,
+        0.6879,
+        -0.3355
        ],
        "r": 0.0094
       },
       {
        "part": "ring2",
        "a": [
-        -0.9668,
-        0.6905,
-        -0.3372
+        -0.9667,
+        0.6879,
+        -0.3355
        ],
        "b": [
-        -0.9837,
-        0.6758,
-        -0.3458
+        -0.9835,
+        0.6734,
+        -0.3446
        ],
        "r": 0.0085
       },
       {
        "part": "ring3",
        "a": [
-        -0.9837,
-        0.6758,
-        -0.3458
+        -0.9835,
+        0.6734,
+        -0.3446
        ],
        "b": [
-        -0.9998,
-        0.6682,
-        -0.3505
+        -0.9995,
+        0.6661,
+        -0.3498
        ],
        "r": 0.0076
       },
       {
        "part": "palm:ring",
        "a": [
-        -0.9553,
-        0.7967,
-        -0.2797
+        -0.9556,
+        0.7944,
+        -0.2783
        ],
        "b": [
-        -0.9472,
-        0.7183,
-        -0.3214
+        -0.9473,
+        0.7155,
+        -0.3192
        ],
        "r": 0.01
       },
       {
        "part": "little1",
        "a": [
-        -0.9484,
-        0.7161,
-        -0.3031
+        -0.9491,
+        0.7134,
+        -0.3009
        ],
        "b": [
-        -0.9615,
-        0.6918,
-        -0.3152
+        -0.9622,
+        0.6893,
+        -0.3133
        ],
        "r": 0.0083
       },
       {
        "part": "little2",
        "a": [
-        -0.9615,
-        0.6918,
-        -0.3152
+        -0.9622,
+        0.6893,
+        -0.3133
        ],
        "b": [
-        -0.9722,
-        0.6776,
-        -0.3224
+        -0.9729,
+        0.6752,
+        -0.3208
        ],
        "r": 0.0074
       },
       {
        "part": "little3",
        "a": [
-        -0.9722,
-        0.6776,
-        -0.3224
+        -0.9729,
+        0.6752,
+        -0.3208
        ],
        "b": [
-        -0.983,
-        0.6686,
-        -0.3271
+        -0.9836,
+        0.6664,
+        -0.3258
        ],
        "r": 0.0068
       },
       {
        "part": "palm:little",
        "a": [
-        -0.9557,
-        0.79,
-        -0.2678
+        -0.9565,
+        0.7877,
+        -0.2664
        ],
        "b": [
-        -0.9484,
-        0.7161,
-        -0.3031
+        -0.9491,
+        0.7134,
+        -0.3009
        ],
        "r": 0.01
       },
       {
        "part": "thumb0",
        "a": [
-        -0.9587,
-        0.8009,
-        -0.3127
+        -0.9578,
+        0.7984,
+        -0.3114
        ],
        "b": [
-        -1.0052,
-        0.8015,
-        -0.3141
+        -1.0041,
+        0.7996,
+        -0.3144
        ],
        "r": 0.015
       },
       {
        "part": "thumb1",
        "a": [
-        -1.0052,
-        0.8015,
-        -0.3141
+        -1.0041,
+        0.7996,
+        -0.3144
        ],
        "b": [
-        -1.0319,
-        0.8078,
-        -0.3189
+        -1.0305,
+        0.8063,
+        -0.3202
        ],
        "r": 0.0115
       },
       {
        "part": "thumb2",
        "a": [
-        -1.0319,
-        0.8078,
-        -0.3189
+        -1.0305,
+        0.8063,
+        -0.3202
        ],
        "b": [
-        -1.0523,
-        0.8085,
-        -0.3198
+        -1.0509,
+        0.8074,
+        -0.3219
        ],
        "r": 0.01
       }
@@ -2228,24 +2228,24 @@
     }
    },
    "arms": {
-    "L": 0.92,
-    "R": 0.98
+    "L": 0.93,
+    "R": 0.99
    },
-   "headTurn": -12,
+   "headTurn": -13,
    "body": {
     "mesh": "boy7",
     "scale": 1,
     "face": "blank",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 62,
-     "upperarm_stretch": 1.17,
+     "elbow_bend_deg": 57,
+     "upperarm_stretch": 1.15,
      "forearm_stretch": 1.02,
      "hand_scale": 0.96
     },
     "R": {
-     "elbow_bend_deg": 22,
-     "upperarm_stretch": 1.33,
+     "elbow_bend_deg": 16,
+     "upperarm_stretch": 1.34,
      "forearm_stretch": 1.02,
      "hand_scale": 0.96
     },
@@ -2301,9 +2301,9 @@
    },
    "arms": {
     "L": 0.97,
-    "R": 0.98
+    "R": 0.99
    },
-   "headTurn": -20,
+   "headTurn": -18,
    "body": {
     "mesh": "dad23",
     "scale": 1,
@@ -2316,7 +2316,7 @@
      "hand_scale": 1
     },
     "R": {
-     "elbow_bend_deg": 23,
+     "elbow_bend_deg": 20,
      "upperarm_stretch": 1.06,
      "forearm_stretch": 1.05,
      "hand_scale": 1

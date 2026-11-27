@@ -251,3 +251,34 @@ Per-shot lit lift `shot.litLift = { key, amb }` (shot.light is 'day'/'night' her
 before -> after: K8_glass 22.0 -> 42.2, K0_wide_night 27.6 -> 40.7, K0_plan 28.1 -> 41.9, K0_seat_side 29.5 -> 41.9,
 K1_question_end 31.2 -> 40.1, K7_turns 33.4 -> 41.3. Night shots still read as night: the dark purple fill is lifted, the
 pendant's cone stays the brightest thing.
+
+## 2026-11-26: round-6 decisions (kitchen agent)
+Jade (k_fold_side): "Which foot are you sitting on? Doesn't matter — go google image search for some pictures of what it
+looks like when a person sits with a foot under their butt and fix it until it resembles what you see".
+- Side kept: her LEFT foot under her, right leg dangling (Jade: doesn't matter).
+- References found (look-only, kept in the session scratchpad, not in the repo): an iStock side-view illustration of a
+  woman at a desk sitting on one folded leg (iStock 1495546683 / 1495634969, "half-crossed posture"), and theballetblog's
+  "foot sitter" photo (a woman on a bentwood chair, one foot under her, the other on the floor). What they show: the
+  bottom rests ON the folded foot (the foot lies sole-up under / just behind the buttock); the folded thigh lies along
+  the seat, knee forward and a little out at the seat front; the hips are raised by the foot's thickness, the tucked
+  side a little higher; the other leg hangs straight down off the seat front.
+- What was wrong in r5: her bottom sat ~20 cm in FRONT of the foot (perched on the seat's front edge, thigh steep, the
+  foot sticking out behind her on the seat like a crouch).
+- Re-staged (shots.js FOLD / jadeAtTable): hip back to z -0.29 (was -0.23), y 0.625 (+11 cm over seatHip: the rigged
+  mesh's folded shin and foot need that; at +8 cm they were 13-15 mm into the seat); left ankle on the seat 2 cm ahead
+  of the hip joint, footL toes back (sole up), knee pole forward and out; roll -3 (tucked hip higher), spine side +1;
+  right leg hangs straight down (ankleR 26 cm up, 26 cm forward of the hip), footR relaxed toes forward-down, sole 17 cm
+  off the floor. Homework / writing poses lean in more (bend 16 -> 26) so the hands still reach the page with the
+  wrists in range (with bend 16 the right wrist was 11-19 deg past radial deviation).
+- Checks (all shots, three passes + masks): check_bodies PASS everywhere; Jade vs her chair 0 intersecting pairs
+  (contact, 0.1 mm), vs table 0-0.2 mm (fingertips on the top). clipcheck: every night shot passes (Jade 1.2 mm into
+  the pencil = the pinch); the day-shot FAILs are the pre-existing Mama thumbs wrists / 14.7 mm cloth into her chair
+  (not this change). holdcheck 8/8 pass.
+- Engine: none changed (legOpts footL / footR already existed).
+- (r6 follow-up, lead: "she hunches too much; she sits on her foot to be taller") instead of leaning her in, the night
+  family block moves 5 cm toward the table (shots.js DZ / JADE_CHAIR): her chair (a `chairs` override in the 8 shots
+  she sits in; the day shots keep CHAIRS.jade), she, Dad, Mama and Mama's hands on the chair back, and the
+  K0_seat_side camera. Seat front 4 cm under the table edge, belly ~3 cm from it (by eye; at 8 cm her torso touched
+  the edge, 0.4-1.7 mm). Lean 26 -> 12 deg for homework, 18 while writing (16 put the pencil wrist 1 deg past radial
+  deviation). Re-checked: check_bodies PASS on all shots (Jade vs chair/table 0 pairs); clipcheck night shots pass,
+  the day FAILs are still the old Mama ones; holdcheck 8/8; no Jade wrist warnings.
