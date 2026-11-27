@@ -349,3 +349,4 @@ a groom's two hands round a bride's hand), never committed or sent to a model.
   middle frame is now its last frame, media/gen/hold_refs/ab1_last.jpg). State: stage 1 picked (C1_his_2, projected);
   stage 3 painted C3_H_1 / _2, not picked (_1 drifted: her hand moved up and shrank off the contour; _2 followed the
   contour). Stage 4 (D0_H / D4_H sandwich) never painted. No new takes. Shots C*/D* and V5 left in shots.js; v4 untouched.
+- 2026-11-27 picked: AB_1 + MT_3 (media/gen/hold_FINAL_AB1_MT3.mp4). The continuous-entry prompt fixed the pop-in.
