@@ -10,7 +10,7 @@ Logs read (list-price estimates; the real bill can't be read with the wrangler t
 Rules: failed sync calls (ok=false) are not counted; relay jobs count from submit and are refunded when they error
 (errored runs are normally not billed).
 
-Cap: PROOF_CAP env, else DEFAULT_CAP_USD below (PLACEHOLDER: confirm with Jade). cf.generate(), gen.submit() and
+Cap: PROOF_CAP env, else DEFAULT_CAP_USD below. cf.generate(), gen.submit() and
 vgen.submit() all call check() before spending and refuse to exceed it.
 
     python tools/gen/spend.py            # total, cap, breakdown by model
@@ -28,7 +28,7 @@ VSPEND = os.path.join(ROOT, "media", "gen", "spend.jsonl")
 # ============================================================================================================
 # PROJECT SPEND CAP (USD, list-price estimates). PLACEHOLDER VALUE: the lead / Jade must confirm it before any paid run.
 # (halys-video used $400, raised to $500 by Jade on 2026-11-14.) Override per shell with PROOF_CAP=<usd>.
-DEFAULT_CAP_USD = 150.0  # set by Claude 2026-11-22 for the keyframe pass; Jade has not confirmed a figure
+DEFAULT_CAP_USD = 600.0  # Jade 2026-11-27: project cap $600 (covers ~$84 spent + $500 for the r4-r6 repaint on Cloudflare)
 # ============================================================================================================
 CAP_USD = float(os.environ.get("PROOF_CAP", DEFAULT_CAP_USD))
 
