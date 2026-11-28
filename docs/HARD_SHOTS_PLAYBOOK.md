@@ -196,6 +196,7 @@ These are untested suggestions; prove them on the first shot that needs them.
 - **Painter:** gpt-image via the Codex CLI, run in tmux. It's on a plan rather than paid per call.
   - Give each concurrent job its own tmux session (`FL_SESSION`); jobs that share a session crash without reporting an error.
   - It takes at most 5 reference images (more fails, and Codex retries with its own subset or none). Jobs that need more go to gpt-image-2 through Cloudflare (`tools/kf/kf.py --route gpt2`, up to 16 refs, about $0.24 an image, with the user's OK) rather than being trimmed or tiled (`tools/kf/r4lib.py` MAX_REFS; `combine` is a last resort).
+  - Cloudflare gpt-image-2 returns HTTP 500 when the reference payload is too large (9-11 PNG refs, 18-28 MB). Re-encode refs as JPEG (quality 90, at most 2048 px) before sending (`work/r4/paint_tools/gpt2_cmds.py`). It also tends to frame wider than the guide on close shots: crop in comp.
   - Codex rewrites the prompt unless told to pass it verbatim (`tools/kf/kf.py`, `KF_VERBATIM=1`).
   - Faces: tight crops from `tools/kf/face_crops.py`; faceless guides from `tools/kf/faceless.py`.
 - **Video:** Seedance 2.0 through `tools/gen/gen.py`, which logs spend to `docs/spend_ledger.jsonl`.

@@ -43,17 +43,20 @@ TAKES = 2
 GUIDE_REFS = [
     ("contour", "the layout drawing from the 3D set: camera, composition and the outline of every person and object "
                 "(real body shapes, eyes aimed where each person looks; lines only, no shadows drawn)"),
-    ("form", "the same view as evenly lit clay in the REAL colours: clothes in their real costume colours, skin and "
-             "hair; wall art, book spines and clothing logos are the real fixed images; no cast shadows"),
+    ("form", "the same view as evenly lit clay: the PEOPLE in their real costume colours, skin and hair, and wall art, "
+             "book spines and clothing logos as the real fixed images; furniture, props, floors and walls are PLACEHOLDER "
+             "clay tints (shape only, NOT their colours); no cast shadows"),
     ("light", "the light map: white = in the light, pale grey = weak light, mid grey = shade (where the light falls, "
               "not how dark the picture is)"),
 ]
 GUIDES = ("Images 1-3 come from a 3D model of the real place. Image 1 (lines) fixes the camera, the composition and "
-          "the outline and size of every person and object. Image 2 (clay) shows every surface in its REAL colour: the "
-          "clothes are in their real costume colours, the people are real body shapes (not mannequins), the eyes are "
-          "aimed exactly where each person looks, and any wall art, book spine or clothing logo is the real, fixed image "
-          "that must reappear unchanged. Image 3 says only where the light falls, not how dark the painting is. Paint "
-          "real people and real things over them; do not keep the model's even mechanical line or its flat clay shading.")
+          "the outline and size of every person and object. Image 2 (clay) shows the shapes: the people are real body "
+          "shapes (not mannequins) in their real costume colours, the eyes are aimed exactly where each person looks, and "
+          "any wall art, book spine or clothing logo is the real, fixed image that must reappear unchanged; but its "
+          "furniture, props, floors and walls are PLACEHOLDER clay tints, never their real colours (those come from the "
+          "lit render and the words). Image 3 says only where the light falls, not how dark the painting is. Match image 1's framing "
+          "exactly; do not widen it: anything the words mention that lies outside image 1's frame stays out of the picture. "
+          "Paint real people and real things over them; do not keep the model's even mechanical line or its flat clay shading.")
 RULES = ("Not anime, not cel shading, not a photograph, not a 3D or digital render, no dramatic chiaroscuro, no black "
          "shadows, no glow, no rays, no haze, no bloom. No text, no captions, no subtitles, no letters, no numbers, no "
          "signature, no seal, no border, no frame: captions and labels are added later in code and are never painted. "
@@ -103,6 +106,9 @@ CAPTIONS = "Captions are added at compositing time and are never painted."
 # images, the tight face crop of every visible named face always among them (tools/kf/face_crops.py), the guide face
 # declared a placeholder, and the dropped refs' sentences removed from the prompt.
 MAX_REFS = 5
+INCLUDE_LIT = True   # the lit render goes with every shot as the colour reference (form tints props by class)
+LIT_CAPTION = ("the same view lit in its REAL colours (3D render): the true colours of furniture, props, floors and walls; "
+               "use it for colour only, not as a style or light reference")
 ROUTE_OVER5 = "gpt2"   # paid Cloudflare gpt-image-2 (up to 16 refs) for jobs that need more than MAX_REFS; None = trim to 5
 FACE_FIRST = True   # face crops are images 1..n, the guides follow (mv10 finding: a face ref in slot 4-5 loses)
 FACELESS = True   # blank the guide faces (tools/kf/faceless.py) wherever a named face is in frame
@@ -430,6 +436,14 @@ def compose(set_, shot, spec, cast, look, refs):
     entries = [("contour", (f"{gdir}/{shot}_contour_nf.png" if faceless else f"media/layout/{set_}/{shot}_contour.png", GUIDE_REFS[0][1])),
                ("form", (f"{gdir}/{shot}_form_nf.png" if faceless else f"media/layout/{set_}/{shot}_form.png", GUIDE_REFS[1][1]))]
     entries += [("face:" + f, (FACE_CROPS[f][0], f"{FACE_CROPS[f][2]} (tight crop of the cast head sheet: THE identity)")) for f in faces]
+    # 2026-11-28 (shanghai86 audit): the form pass tints furniture and props with code colours; send the LIT render as
+    # the colour reference unless the shot already carries one (or spec no_lit=True)
+    if INCLUDE_LIT and not spec.get("no_lit") and not any(refs[k][0].endswith("_lit.png") for k in keys):
+        lp = f"media/layout/{set_}/{shot}_lit.png"
+        if os.path.exists(os.path.join(ROOT, lp)):
+            refs = {**refs, "lit_auto": (lp, LIT_CAPTION)}
+            keys = keys + ["lit_auto"]
+            spec = {**spec, "keep": list(spec.get("keep", [])) + ["lit_auto"]}
     first = [k for k in spec.get("keep", []) if k in keys or k in combos]
     first = [combos[k][0] if k in combos else k for k in first]
     entries += [(k, refs[k]) for k in dict.fromkeys(first)]
