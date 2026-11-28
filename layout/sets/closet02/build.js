@@ -7,7 +7,7 @@ import { box, cyl, tag, V, mk } from '../../engine/core.js';
 import { CAST } from '../_cast.js';   // registers the cast
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
-import { WALL, OPEN, ROOM, DOORS, BEDROOM, SHELF, RAIL, CLOTHES, COATS, DUVET, FUTON, CEIL_LIGHT, HANDS, FACE, SUN, SUN_DIR, BEAM, beamAt, WINDOW, SUN_H, MOTE, LIGHTS, TOP_Y } from './layout.js';
+import { WALL, OPEN, ROOM, DOORS, BEDROOM, SHELF, RAIL, CLOTHES, COATS, HAIR, DUVET, FUTON, CEIL_LIGHT, HANDS, FACE, SUN, SUN_DIR, BEAM, beamAt, WINDOW, SUN_H, MOTE, LIGHTS, TOP_Y } from './layout.js';
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from './beam.js';
 import { plaidArt, SETT, SEAL, CARDINAL } from './art.js';
 import { worldUV, artLook } from '../_art.js';
@@ -148,7 +148,7 @@ function closet() {
     if (p) g.add(p); else console.warn('closet02: prop ' + name + ' missing');
     return p;
   };
-  for (const [x, name, col, s] of CLOTHES.items) hang(name, x, col, s, 'hanging clothes');
+  for (const [x, name, col, s, fit] of CLOTHES.items) { const p = hang(name, x, col, s, 'hanging clothes'); if (p && fit === 'hair') p.userData.fitHair = true; }
   for (const [x, name, col, s] of COATS.items) hang(name, x, col, s, 'long coats', COATS.thick);
   // shoes on the floor at the back (mostly behind the panels), the duvet she sits on
   for (const [x, z] of [[-0.62, -0.62], [-0.42, -0.60], [-0.15, -0.63], [0.86, -0.62]]) g.add(tag(box(0.10, 0.09, 0.22, { grey: 0.25, col: 0x2a2420 }, [x, 0.045, z], [0, 6, 0]), 'shoes'));
@@ -273,6 +273,46 @@ function futonClear(root, figs) {
 export const NAMED = { hands: HANDS, face: FACE, opening: [(DOORS.edge + OPEN.x1) / 2, 1.0, 0], beamMid: beamAt(HANDS, -0.35), floorIn: [0.5, 0, -0.4] };
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && p.mid ? { mid: p.mid.map(fix) } : p);
 
+// ---- round 8 (Jade: "clothes hang right down to, and brush, my hair"): fit each garment marked fitHair to her head in
+// THIS shot's pose. Her hair's top and her head skin's top on an 8 mm (x, z) grid; each garment as a solid slab (per 8 mm z-slice: its x extent and its hem's lowest y).
+// The garment's uniform scale about its hook (layout.js HAIR.sMin..sMax) is bisected so its hem goes HAIR.into into the
+// hair shell where it overlaps her head, then lowered further if the hem would come within HAIR.minScalp of the scalp.
+// A garment whose footprint misses her head keeps HAIR.sMax. Returns per garment { x, scale, into_hair_mm, above_scalp_mm }.
+function fitToHair(root, fig) {
+  const C = 0.008, key = (x, z) => (Math.round(x / C) + 5000) * 100000 + (Math.round(z / C) + 5000), cellXZ = (k) => [(Math.floor(k / 100000) - 5000) * C, ((k % 100000) - 5000) * C], v = new V3();
+  const hair = new Map(), scalp = new Map(), up = (m, k, y) => { const o = m.get(k); if (o === undefined || y > o) m.set(k, y); };
+  fig.updateMatrixWorld(true);
+  fig.traverse((o) => { if (!o.isMesh) return; const reg = o.userData.bodyRegion || (o.userData.idGroup || '').split(':').pop() || '';
+    const isHair = /hair/.test(reg), isScalp = /^skinHead/.test(reg); if (!isHair && !isScalp) return;
+    const P = o.geometry.attributes.position; for (let i = 0; i < P.count; i++) { v.fromBufferAttribute(P, i).applyMatrix4(o.matrixWorld); if (v.y > 0.75) up(isHair ? hair : scalp, key(v.x, v.z), v.y); } });
+  const out = [];
+  root.traverse((g) => { if (!g.userData.fitHair) return;
+    const meshes = []; g.traverse((o) => { if (o.isMesh && /garment/i.test(o.material?.name || o.name || '')) meshes.push(o); });
+    const all = meshes.length ? meshes : (() => { const a = []; g.traverse((o) => o.isMesh && a.push(o)); return a; })();
+    // the garment as a SOLID slab (the models are hollow tubes 7-10 cm thick: her crown must not go up between the front and
+    // back panels): per z-slice (8 mm, across the closet), its x extent and its lowest point (the hem) over that extent
+    const meas = (s) => { g.scale.setScalar(s); g.updateMatrixWorld(true); const sl = new Map();
+      const a = new V3(), b = new V3(), c = new V3(), q = new V3(), put = (p) => { const k = Math.round(p.z / C), o = sl.get(k);
+        if (!o) sl.set(k, { x0: p.x, x1: p.x, y: p.y }); else { o.x0 = Math.min(o.x0, p.x); o.x1 = Math.max(o.x1, p.x); o.y = Math.min(o.y, p.y); } };
+      // sample each triangle densely (low-poly hems: triangles up to ~3 cm)
+      for (const o of all) { const P = o.geometry.attributes.position, I = o.geometry.index, n = I ? I.count : P.count, at = (j) => (I ? I.getX(j) : j);
+        for (let t = 0; t + 2 < n; t += 3) { a.fromBufferAttribute(P, at(t)).applyMatrix4(o.matrixWorld); b.fromBufferAttribute(P, at(t + 1)).applyMatrix4(o.matrixWorld); c.fromBufferAttribute(P, at(t + 2)).applyMatrix4(o.matrixWorld);
+          const N = Math.min(8, Math.ceil(Math.max(a.distanceTo(b), b.distanceTo(c), c.distanceTo(a)) / (C / 2)));
+          for (let i = 0; i <= N; i++) for (let j = 0; i + j <= N; j++) { const u = i / N, w = j / N; q.copy(a).multiplyScalar(1 - u - w).addScaledVector(b, u).addScaledVector(c, w); put(q); } } }
+      // into: deepest hem point into the hair; gap: hem above the scalp under the hair; bare: hem above skin with no hair over it (face)
+      let into = -Infinity, gap = Infinity, bare = Infinity;
+      for (const [k, hy] of hair) { const [x, z] = cellXZ(k), o = sl.get(Math.round(z / C)); if (o && x >= o.x0 - C / 2 && x <= o.x1 + C / 2) into = Math.max(into, hy - o.y); }
+      for (const [k, sy] of scalp) { const [x, z] = cellXZ(k), o = sl.get(Math.round(z / C)); if (!o || x < o.x0 - C / 2 || x > o.x1 + C / 2) continue;
+        const h = hair.get(k); if (h !== undefined && h >= sy) gap = Math.min(gap, o.y - sy); else bare = Math.min(bare, o.y - sy); }
+      return { into, gap, bare }; };
+    const bad = (r) => r.into > HAIR.into || r.gap < HAIR.minScalp || r.bare < HAIR.minBare;
+    let lo = HAIR.sMin, hi = HAIR.sMax, m = meas(hi);
+    if (bad(m)) { for (let i = 0; i < 14; i++) { const mid = (lo + hi) / 2, r = meas(mid); if (bad(r)) hi = mid; else lo = mid; } m = meas(lo); }
+    const mm = (q) => (Number.isFinite(q) ? +(q * 1000).toFixed(1) : null);
+    out.push({ x: +g.position.x.toFixed(3), scale: +g.scale.x.toFixed(4), into_hair_mm: mm(m.into), above_scalp_mm: mm(m.gap), above_bare_skin_mm: mm(m.bare) }); });
+  return out;
+}
+
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   root.add(closet());
@@ -291,6 +331,7 @@ export function build(shot, { makeCam }) {
     return P.head.clone().addScaledVector(w, 0.86).addScaledVector(up, 0.32 * R).addScaledVector(fwd, 0.5 * R).addScaledVector(w.normalize(), 0.01); };
   const { figs } = stage(shot.figs || {}, null, (t, figs) => (NAMED[t] ? V(NAMED[t]) : temple(t, figs)));
   for (const f of Object.values(figs)) { root.add(f); f.traverse((o) => { if (o.isMesh && o.userData.look) o.userData.look = { ...o.userData.look, recvShadowLine: true }; }); }
+  if (figs.jade19) shot.hairFit = fitToHair(root, figs.jade19);   // round 8: the clothes over her head brush her hair
   // 2026-11-26 post-sweep (closet-only): under the warm sun + ceiling light, FL_HAIR (v8 0x1f1915, r6 0x262019) rendered warm chestnut in
   // lit (#4a3422 on CL_ots). The v8 sheet (fl_B_backhead_neck_v8) reads dark cool brown (~#2e2420), so his hair's LIT
   // colour here is pre-compensated for the warm key (cooler, darker). Other passes and _cast.js FL_HAIR are untouched.
@@ -330,7 +371,7 @@ export function build(shot, { makeCam }) {
     beam: beamSidecar({ name: BEAM.name, kind: BEAM.kind, solid, anchor, P, cam: c, extra: { sun_altitude_deg: SUN.altitude, sun_azimuth_deg: SUN.azimuth, opening_m: +(OPEN.x1 - DOORS.edge).toFixed(3),
       band_top_at_face_m: TOP_Y, note: 'left edge: the slid-open panels; right edge: the jamb; top edge: the bedroom window head (stand-in slab); bottom: the floor' } }),
     hands: { meet_world: HANDS, meet_px: P(V(HANDS)), each_px: Object.fromEntries(Object.entries(figs).flatMap(([w, f]) => ['L', 'R'].map((n) => [`${w}.${n}`, P(f.userData.P['hand' + n])]))) },
-    motes: { seed: MOTE.seed, count: MOTE.count }, mask: maskInfo, futon_clearance: futonClear(root, figs),
+    motes: { seed: MOTE.seed, count: MOTE.count }, mask: maskInfo, futon_clearance: futonClear(root, figs), hair_fit: shot.hairFit || null,
     points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'chin', 'handL', 'handR', 'hip', 'shoulderC'].map((k) => [k, r3(f.userData.P[k])]))])),
   });
   return { set: 'closet02', scene, root, cam, rig, near: shot.near ?? 0.05, far: shot.far ?? 6, figs, book: null, panes: {}, lights,

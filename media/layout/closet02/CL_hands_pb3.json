@@ -407,6 +407,43 @@
    "verts_inside_mattress": 0
   }
  },
+ "hair_fit": [
+  {
+   "x": 0.405,
+   "scale": 0.9484,
+   "into_hair_mm": 4.3,
+   "above_scalp_mm": 32.1,
+   "above_bare_skin_mm": 15
+  },
+  {
+   "x": 0.45,
+   "scale": 0.9807,
+   "into_hair_mm": 8,
+   "above_scalp_mm": 15.2,
+   "above_bare_skin_mm": 20.1
+  },
+  {
+   "x": 0.495,
+   "scale": 0.9467,
+   "into_hair_mm": -6.7,
+   "above_scalp_mm": 32.9,
+   "above_bare_skin_mm": 15
+  },
+  {
+   "x": 0.54,
+   "scale": 1.0283,
+   "into_hair_mm": 8,
+   "above_scalp_mm": 158.7,
+   "above_bare_skin_mm": 99.3
+  },
+  {
+   "x": 0.59,
+   "scale": 1.06,
+   "into_hair_mm": -3.6,
+   "above_scalp_mm": null,
+   "above_bare_skin_mm": null
+  }
+ ],
  "points_world": {
   "jade19": {
    "eyes": [

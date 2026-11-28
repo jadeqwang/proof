@@ -1,5 +1,20 @@
 # closet02: notes and assumptions
 
+## 2026-11-28: clothes brush her hair (round 8)
+
+Jade (work/decisions/JADE_R8_DECISIONS.md, closet: "Fill it: clothes hang right down to, and brush, my hair"): the gap over
+her head (x 0.38-0.62) is filled with five garments (layout.js CLOTHES items marked 'hair', x 0.405-0.59). build.js
+`fitToHair` fits each one to her head IN EACH SHOT'S POSE: its scale about the hook (0.80-1.06) is bisected so the hem goes
+at most 8 mm into her hair shell, stays 4 mm or more above the scalp and 15 mm or more above bare skin (forehead, face). Each
+garment counts as a SOLID slab (the models are hollow tubes 7-10 cm thick, so her crown must not slip up between their
+panels). She lifts her head in the hold shots (hair top 0.951 in CL_wide / CL_elev, 0.977 in CL_ots), so the hems ride
+up with it by about 2.6 cm. The sidecar's `hair_fit` holds the per-garment numbers. CL_wide: hems -1.5 to +8 mm into the hair
+(all five touching or within 1.5 mm), 20-129 mm above the scalp. CL_ots: three garments 6-8 mm into the hair; the two
+toward the camera side stop 15 mm above her forehead (no hair there). clipcheck still lists "jade19 into hanging clothes"
+(skin up to 36 mm): FALSE POSITIVES of the open-bottomed shells. The flagged vertices are 1.3-2.3 cm BELOW the hems, checked
+point by point. The INFRAME sentences for CL_wide and CL_ots in media/keyframes/r4/closet02/_prompts/_make.py now say the
+hems come down to and brush the top of her hair.
+
 ## 2026-11-27 (late): real hanging garments (supersedes anything below that contradicts it)
 
 Jade: the paintings make the shelving and hanging clothes look compressed and short. Correction from Jade mid-task: the
@@ -55,6 +70,24 @@ re-render of media/layout/closet02/ is the lead's.
 No camera changed. No shot's intent needs the shelf (CL_wide: "under the hanging clothes"; CL_ots: "the hems of the
 hanging clothes just above her head"), so no tilt is proposed. If Jade wants the hangers in CL_wide, tilting up ~6 degrees
 would bring the rod into the top edge but costs the caption room at the bottom.
+
+## 2026-11-28: Jade round 8, CL_hands = the approved demo with a clothing swap
+- Jade (work/decisions/JADE_R8_DECISIONS.md): at 3:30-3:31 ("I honestly don't know") the hold must CLOSELY MATCH the approved
+  hand-clasp demo (media/gen/hold_FINAL_AB1_MT3.mp4 and its layered keyframes), only with a clothing swap. The closet-camera
+  CL_hands guide and its paint-back stages (below) are now a FALLBACK only.
+- His closet top is the same faded forest-green hoodie as in the demo: left as it is (in the closet guides his sleeves are
+  long, in the demo pushed up; same garment and colour). Her sleeve: the demo's cream pushed-up sleeve becomes her closet
+  hoodie, cardinal red, LONG sleeve to the wrist (closet canon, as in CL_wide / CL_ots). Not swapped (flag for Jade): her
+  beige trousers and oatmeal sock in the demo (closet canon: mid-blue jeans, white socks); his charcoal sock.
+- Swap = a mask edit on the four stills of the approved chain (start_2048 = S3_H3b_1, mid_2048 = AB_1's end frame,
+  ab1_last = the clasp, the clip's last frame = the end): media/keyframes/r4/_hold/swap/ (gitignored). Masks cover her
+  forearm from the wrist to the frame edge only; composite.py takes only the masked region from the repaint and checks that
+  nothing outside it changed (hands pixel-identical). run_swap.sh runs it (free Codex). Status 00:45: Codex plan limit hit
+  (resets 02:01); the paid gpt-image-2 route was not run (blocked without an explicit OK).
+- Video PREPARED, not run: swap/run_video.sh (same Seedance 2.0 1080p chain, same prompts and seeds; only "cream sleeves"
+  -> "cardinal-red hoodie sleeves"). Est. $1.85 per take: 3 + 3 takes $11.10, minimum 1 + 1 $3.70.
+- Clothes over her head now brush her hair (garments section). clipcheck "jade19 into hanging clothes" 24-36 mm are false
+  readings (points under the open bottoms of the hollow garment models; checked one by one by the garments agent).
 
 ## 2026-11-27 (late): THE APPROVED HOLD in CL_hands / CL_ots (replaces the cradle)
 Jade picked the hold clip (media/gen/hold_FINAL_AB1_MT3.mp4): her right hand lies across his left, their fingers fold into a

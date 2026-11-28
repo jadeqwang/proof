@@ -58,8 +58,12 @@ export const RAIL = { y: 1.48, z: ROOM.z0 + 0.30, r: 0.014 };              // ro
 // The props' hook-to-hem drop is 0.603 m (tops) / 0.692 (folded trousers) at scale 1, so with the hook on the 1.48 rod the
 // tops' hems land at 0.90-0.94 (the drawing) and the trousers' at ~0.81. Garments are opaque solids pressed together
 // (centres 4.5-6 cm apart; real tops are 7-13 cm thick as modelled, a little overlap reads as compressed cloth).
-// GAP over her head (x 0.38-0.62): she sits under the rod with her crown at ~0.93-0.95, the hems' height, so the
-// hangers there are pushed aside to both sides (a placement choice, flagged for Jade; fixes "jade19 into hanging clothes").
+// OVER HER HEAD (Jade, round 8: "Fill it: clothes hang right down to, and brush, my hair"): the garments over her
+// (5th field 'hair') are fitted per shot in build.js (fitToHair): each one's hem comes down onto her hair, HAIR.into into
+// the hair shell (0-15 mm), never within 4 mm of the scalp, and never within 15 mm of bare skin (her forehead / face). She sits under the rod with her crown at the hems' height, so the
+// clothes rest on her hair: when she lifts her head (the hold shots) they ride up with it (~2.6 cm). (Round 7 had a
+// gap here, x 0.38-0.62.)
+export const HAIR = { into: 0.008, minScalp: 0.004, minBare: 0.015, sMin: 0.80, sMax: 1.06 };   // sMax 1.06: a top 0.55 m long
 const TOP = 'garment_tee', LS = 'garment_shirt', SW = 'garment_sweater', JK = 'garment_jacket', PT = 'garment_pants';
 export const CLOTHES = {
   hookLift: 0.004,            // the hook wire's thickness: the prop origin (top of the hook) sits this far above the rod top
@@ -74,8 +78,13 @@ export const CLOTHES = {
     [0.215, LS, 0x9fb3c8, 0.97],    // light-blue oxford shirt
     [0.265, TOP, 0x9a9a98, 0.95],   // heather-grey tee
     [0.315, SW, 0xc6b796, 0.98],    // oatmeal sweater
-    [0.36, TOP, 0x2e3a52, 0.93],    // navy tee (shortest, nearest her head)
-    // (gap over her head)
+    [0.36, TOP, 0x2e3a52, 0.93],    // navy tee
+    // over her head: hems brush her hair (fitted per shot; the scale here is the upper limit)
+    [0.405, SW, 0x8c7a6b, 1.0, 'hair'],   // taupe sweater
+    [0.45, TOP, 0x5f6f7a, 1.0, 'hair'],   // slate tee
+    [0.495, LS, 0xe0d8c4, 1.0, 'hair'],   // cream shirt
+    [0.54, TOP, 0x7a3b3b, 1.0, 'hair'],   // brick tee
+    [0.59, SW, 0x4f5d4a, 1.0, 'hair'],    // sage sweater
     [0.645, LS, 0x6e2a32, 0.94],    // burgundy shirt
     [0.695, SW, 0x3e5243, 0.97],    // forest-green sweater
     [0.745, PT, 0xb0a07a, 1.00],    // khaki trousers
