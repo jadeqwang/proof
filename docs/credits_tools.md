@@ -73,6 +73,8 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
     - `potted_plant`: "Potted Plant 02" by Rico Cilliers, Poly Haven (CC0). In shanghai86
     - `lemon`: "Lemon" by Kuutti Siitonen, Poly Haven (CC0)
     - `cutting_board`: "Wooden Cutting Board" by Kuutti Siitonen, Poly Haven (CC0)
+    - `planter_box`: "Planter Box 02" by James Ray Cock, Poly Haven (CC0). Downloaded for mv10, NOT USED since 2026-11-27 evening (Jade: the strawberry bed is back at its page-1 place, a hand-built timber bed); drop from the credits unless used elsewhere
+    - `half_barrel`: "Wine Barrel 01" by James Ray Cock, Poly Haven (CC0), cut to a half barrel. In mv10 (the half barrel of mint)
     - `cardboard_box`: "Cardboard Box 01" by Rahul Chaudhary, Poly Haven (CC0). In attic88_day (the storage boxes)
 - **Playwright** + **Chrome** (SwiftShader): headless rendering of the sets.
 - **three-mesh-bvh** (0.8, Garrett Johnson, MIT): triangle-intersection and clearance checks between body meshes and

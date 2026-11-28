@@ -671,5 +671,33 @@
   "source": "Sketchfab/psychofisch (CC BY 4.0), via the Objaverse 1.0 mirror",
   "credit": "\"Sport Waterbottle\" by psychofisch (https://sketchfab.com/3d-models/04b5fcbb2d644e608d7f836bdb136a85), CC BY 4.0",
   "use": "playground23: the two children's water bottles in the side pockets of Dad's backpack (upright along +y; flip-up straw cap)"
+ },
+ "half_barrel": {
+  "label": "half barrel (planter)",
+  "size_m": [
+   0.66,
+   0.388,
+   0.673
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/James Ray Cock (CC0)",
+  "credit": "\"Wine Barrel 01\" by James Ray Cock, Poly Haven (CC0); cut to a half barrel",
+  "use": "mv10: the half barrel of mint"
+ },
+ "planter_box": {
+  "label": "planter box",
+  "size_m": [
+   1.25,
+   0.453,
+   0.467
+  ],
+  "origin": "bottom centre",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/James Ray Cock (CC0)",
+  "credit": "\"Planter Box 02\" by James Ray Cock, Poly Haven (CC0)",
+  "use": "mv10: the strawberry planter by the deck"
  }
 }

@@ -1,0 +1,7 @@
+Model: "Wine Barrel 01" (wine_barrel_01) by James Ray Cock on Poly Haven
+URL: https://polyhaven.com/a/wine_barrel_01
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-27
+Changes (for this film's layout guides): joined into one mesh, CUT AT MID-HEIGHT and the lower half kept (a half-barrel planter, open top; _pipeline/half_barrel_prep.py), scaled to 0.66 m across, origin at the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.660 x 0.388 x 0.673 m
+Used for: mv10: the half barrel of mint in the yard (the mint itself is built in layout/sets/mv10/build.js)

@@ -19,7 +19,10 @@ const jadeRead = (o = {}) => jade({ spine: { bend: 20 }, head: { look: 'handout'
 // distal pad radius (0.040 hand units x 1.097 child finger scale x 0.122 m hand = 5.4 mm), so the pad meets the page on
 // the gap. The finger comes down at 30 deg, so the lowest point of the finger is that pad. She looks at the gap.
 const JADE_PAD_R = 0.0054;
-const jadePoint = (o = {}) => jadeRead({ R: { tip: { finger: 'index', at: JADE_TIP, off: [0, JADE_PAD_R, 0] }, hand: 'point', fingers: [0.1, -0.64, 0.76], palm: [0, -1, 0], grasp: 'tipOn', object: 'yellow handout' }, head: { look: 'gap' }, ...o });   // hold pass: checked as a tap on the page (tipOn); the finger comes down at 40 deg (was 30: her thumb went 6 mm into the page)
+// 2026-11-27 (BO1 = BO2_v3): as BO2_v3 paints it, her forearm comes in from the lower right, elbow out to her right
+// (elbowAt), the index pointing up the page and to the left (fingers was [0.1, -0.64, 0.76]), sleeves pushed up (the
+// prompt always said so; with long sleeves the cuff hid the whole hand from the camera behind her).
+const jadePoint = (o = {}) => jadeRead({ R: { tip: { finger: 'index', at: JADE_TIP, off: [0, JADE_PAD_R, 0] }, hand: 'point', fingers: [0.22, -0.6, 0.77], palm: [0, -1, 0], elbowAt: [-0.5, 0.7, -0.45], grasp: 'tipOn', object: 'yellow handout' }, head: { look: 'gap' }, costume: { sleeves: 'pushed' }, ...o });   // hold pass: checked as a tap on the page (tipOn); the finger comes down at 40 deg (was 30: her thumb went 6 mm into the page)
 // hold pass 2026-11-26: her right hand RESTS on her clipboard (restOn), its fingertips on the notes and the heel of the hand
 // just off them, as a hand lies at rest on a page; the board lies on the table and the table carries it. Was a 'pinch' in
 // the air that closed through the 6 mm board. (The mannequin's wrist sphere is fatter than its palm: with the palm flat on
@@ -76,8 +79,12 @@ const OUTSIDE_CAM = { lens: 65, orbit: { at: 'jade7:eyes', az: -6, el: 0, dist: 
 // white in the lit pass (80-97 % of pixels at 255). POOL lowers the lit pass's exposure (build.js scales the tube spots,
 // the bounce and the ambient) so the paper, the faces and the hands read. Other passes are unchanged.
 const POOL = { light: { exposure: 0.27 } };
-const GAP_CAM = { ...POOL, lens: 40, orbit: { at: 'gap', az: 150, el: 50, dist: 0.5 },   // re-render pass 2026-11-26: az 180 -> 150, on the mesh body her sleeve hid the hand and fingertip from straight behind
-  aim: ['gap', 0.5, 0.56], ...INSIDE };
+// 2026-11-27 (Jade: BO2 pick = BO2_v3; BO1 must "copy sheet and hand positioning from" it): the r4 guides used orbit az 150
+// (the sheet seen steeply from the side), but BO2_v3 was painted from its r3 image reference and so kept the r3 view from
+// straight behind her. The BO1 takes followed the az-150 guide, hence the drift. GAP_CAM is now the camera solved from
+// BO2_v3 itself (its four sheet corners, 40 mm fixed: reprojection error under 1 % of the frame), so both guides match the
+// picked painting. Was: orbit { at: 'gap', az: 150, el: 50, dist: 0.5 }, aim ['gap', 0.5, 0.56].
+const GAP_CAM = { ...POOL, lens: 40, pos: [-0.3729, 1.1002, -0.4312], target: [-0.3823, 0.7206, -0.0863], roll: 1.4, ...INSIDE };
 
 export const SHOTS = [
   // ---------------------------------------------------------------- reference (not in the cut)

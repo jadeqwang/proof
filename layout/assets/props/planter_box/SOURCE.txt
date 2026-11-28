@@ -1,0 +1,7 @@
+Model: "Planter Box 02" (planter_box_02) by James Ray Cock on Poly Haven
+URL: https://polyhaven.com/a/planter_box_02
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-27
+Changes (for this film's layout guides): joined into one mesh, origin at the bottom centre, textures cut to 1024 px JPEG base colour only. Real size kept (1.25 m long).
+Real-world size here (x, y up, z): 1.250 x 0.453 x 0.467 m
+Used for: mv10: the strawberry planter by the deck (the strawberry plants are built in layout/sets/mv10/build.js)

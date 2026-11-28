@@ -1,7 +1,7 @@
 // Build one mv10 shot: 345B (living room, kitchen and dining, the core, the roof), the yard, the neighbours, figures,
 // and the light rig for the shot's section (the real sun for SCENE, ceiling fixtures, fire poi). Everything from layout.js.
 import * as THREE from 'three';
-import { mk, box, cyl, ball, quad, tag, V, rad, slab } from '../../engine/core.js';
+import { mk, box, cyl, ball, quad, tag, V, rad, slab, limb } from '../../engine/core.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, polyMesh, applyBeamMask } from '../_beam.js';
@@ -9,7 +9,7 @@ import { CAST, PROP } from '../_cast.js';
 import { ladleGrip, buildLadle, ladleProp, partyLadlePose } from './ladleGrip.js';
 import { loadProps, prop } from '../_props.js';
 import { SETTLED } from './settled.js';   // props phase 2 (2026-11-26 late): real downloaded models (work/props_audit.md)
-await loadProps(['ladle', 'red_cup', 'juicer', 'pitcher', 'bowl', 'knife', 'lemon', 'cutting_board']);
+await loadProps(['ladle', 'red_cup', 'juicer', 'pitcher', 'bowl', 'knife', 'lemon', 'cutting_board', 'half_barrel']);
 import { glassTable } from './glassTable.js';
 import { spineArt, spineSpec, NAMED } from './spines.js';
 const bookName = (b) => (NAMED.test(b.t) ? b.t : `(blank spine, untitled ${b.lay === 'flat' ? 'book lying flat' : 'book'})`);   // r4: placeholder titles never reach the painter
@@ -76,10 +76,26 @@ function sandals(fig) {
 // socks plain mid-grey; hem 1.2 cm off the floor, ~44 cm round at the hem.
 export const HOUSEWARMING_COSTUME = { jacket: 'thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (disc about 8 cm) on its LEFT chest, EXACTLY the decal layout/assets/art/logos/nasa_meatball.png (pass it as a reference): the real 1959 meatball, blue disc, white stars, white orbit ring, red chevron and its small white NASA lettering, the same in every shot (2026-11-26, Jade: one version of the logo; r4 decision art_meatball: WITH the white lettering, confirmed)',
   tee: 'fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts', pants: 'boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)',
-  feet: 'socks, no shoes (Jade); colour plain mid-grey ASSUMED', before_party: 'same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)', sheet: 'cast/jade_27/j27_costume_housewarming_v1.jpg' };
+  feet: 'at the party (indoors, the deck): socks, no shoes (Jade); colour plain mid-grey ASSUMED', before_party: 'same outfit before the party; OUTDOORS in the yard (V3a, V3b) SNEAKERS, not socks (Jade 2026-11-27): ASSUMED plain black canvas low-tops, white rubber soles and toe bumper; in the kitchen (V3b_prep) socks. NO belt (Jade): the jacket hangs over the waistband', sheet: 'cast/jade_27/j27_costume_housewarming_v1.jpg' };
+// 2026-11-27 (Jade, V3a repaint: "SNEAKERS, not socks: she's outdoors"): before the party, in the yard (V3a, V3b), she
+// wears sneakers. ASSUMED: plain black canvas low-tops with white rubber soles and a white toe bumper (the foot itself is
+// coloured the canvas black through costume.sock). Built like the sandals: a sole slab under the heel-toe line.
+function sneakers(fig) {
+  const g = new THREE.Group(), P = fig.userData.P, RUB = { grey: 0.92, col: 0xf2f0ea }, CANVAS = { grey: 0.2, col: 0x1c1c1f };
+  for (const n of ['L', 'R']) { const h = P['heel' + n], t = P['toe' + n]; if (!h || !t) continue;
+    const ks = P['footLen' + n] ? P['footLen' + n] / h.distanceTo(t) : 1, a = h.clone(), b = t.clone(); a.y -= 0.002; b.y -= 0.002;
+    const d = b.clone().sub(a), side = V(-d.z, 0, d.x).normalize();
+    const A = a.clone().addScaledVector(d, -0.04 - 0.2 * (ks - 1)), B = b.clone().addScaledVector(d, 0.06 + 0.8 * (ks - 1));
+    const sole = slab(A, B, 0.098 * Math.sqrt(ks), 0.03, side, RUB); sole.userData.who = 'jade27'; g.add(tag(sole, `${fig.name}: shoe (white rubber sole)`));
+    // the canvas upper over the toes and the vamp (a half capsule along the foot's front half), white bumper at the toe
+    const up = mk(new THREE.SphereGeometry(0.05, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), CANVAS); up.scale.set(0.95 * Math.sqrt(ks), 0.75, 1.9 * ks);
+    const c = A.clone().lerp(B, 0.7); up.position.copy(c).add(V(0, 0.012, 0)); up.lookAt(c.clone().add(d).add(V(0, 0.012, 0))); up.userData.who = 'jade27'; g.add(tag(up, `${fig.name}: shoe (black canvas upper)`));
+    const bump = mk(new THREE.SphereGeometry(0.03, 12, 8), RUB); bump.scale.set(1.45 * Math.sqrt(ks), 0.55, 0.8); bump.position.copy(B.clone().addScaledVector(d.clone().normalize(), -0.025)).add(V(0, 0.015, 0)); bump.lookAt(bump.position.clone().add(d)); bump.userData.who = 'jade27'; g.add(tag(bump, `${fig.name}: shoe (white toe bumper)`)); }
+  return g;
+}
 function housewarming(fig) {
   const out = new THREE.Group(), P = fig.userData.P, H = P.H; fig.updateMatrixWorld(true);
-  const BLACK_TEE = { grey: 0.3, col: 0x2a2a2e }, MEATBALL = { grey: 0.78, col: 0x0b3d91 }, PANT = { grey: 0.42, col: 0x151517 };
+  const BLACK_TEE = { grey: 0.3, col: 0x2a2a2e }, MEATBALL = { grey: 0.78, col: 0x0b3d91 }, PANT = { grey: 0.42, col: 0x151517, formTint: (() => { const c = new THREE.Color(0x151517); return [c.r, c.g, c.b]; })() };   // formTint: without it the form guide classed the flare as bare 'person' and drew it WHITE (fixed 2026-11-27 evening)
   const hitM = []; fig.traverse((m) => { const g = m.userData?.idGroup; if (m.isMesh && g && (g.endsWith(':torso') || g.endsWith(':pelvis'))) hitM.push(m); });
   const rc = new THREE.Raycaster();
   const surf = (u, v, d) => { const o = P.shoulderC.clone().addScaledVector(P.cy, v).addScaledVector(P.cx, u).addScaledVector(P.cz, 0.4);
@@ -293,6 +309,10 @@ function expedit2() {
 // ---------------------------------------------------------------- the kitchen (2026-11-25 round 2: Jade's fridge, dishwasher, trash can,
 // upper cabinets, dark walnut doors, the giant punchbowl; party food or the lemonade prep). Numbers in layout.js.
 const STEEL = { grey: 0.72, col: 0xb4b6b8 }, PITH = { grey: 0.96, col: 0xf6f1dc }, LEMON = { grey: 0.95, col: 0xf2d21c }, FLESH = { grey: 0.9, col: 0xf4dc5c };
+// the friend's bowl of picked lemons (Jade, 2026-11-27 evening): a FROSTED PLEXIGLASS punch bowl, pale and milky, softly
+// see-through (the lemons read through it as soft shapes). The real bowl model's shape (props/bowl) with a glass look:
+// no library punch bowl was used (none checked: the bowl shape already fits the settled lemons and the hand hold).
+const FROSTED_PLEXI = { grey: 0.93, col: 0xeef1ef, glass: true, opacity: 0.55, flatGrey: 0.9 };
 const LEMONADE = { grey: 0.9, col: 0xf3e38a }, GLASSY = { grey: 0.9, col: 0xdde8e8 }, CERAMIC = { grey: 0.94, col: 0xf2efe6 };
 // a row of cabinet doors on one face. axis 'X': doors along X on the plane z = at; 'Z': along Z on x = at. out = +1 / -1 (the
 // way the face looks). skip: [[s0, s1]] spans with no door (appliances).
@@ -368,7 +388,7 @@ function punchbowl(g, [x, z], y, { fill = 0.8, tool = 'ladle', lab = 'giant punc
 // a real bowl with its settled contents (settled.js, from settle.mjs / Rapier), bottom centre at [x, y, z]; returns the group
 function settledBowl(g, [x, y, z], S, bowlLab, o = {}) {
   const grp = new THREE.Group(); grp.position.set(x, y, z); grp.userData.holdWhole = !!o.holdWhole;
-  const b = prop('bowl', { at: [0, 0, 0], size: { w: S.w }, label: bowlLab }); if (b) grp.add(b);
+  const b = prop('bowl', { at: [0, 0, 0], size: { w: S.w }, label: bowlLab, ...(o.look ? { look: o.look } : {}) }); if (b) grp.add(b);
   let nLeaf = o.leaves || 0;
   for (const it of S.items) { const q = new THREE.Quaternion(...it.quat);
     if (it.kind === 'lemon') { const l = prop('lemon', { at: it.at, rot: q, scale: SETTLED.LEMON_K, label: o.label || bowlLab, look: { grey: 0.9, col: 0xf2d21c } }); if (!l) continue; grp.add(l);   // lemon yellow (the scan's texture reads olive in lit)
@@ -572,16 +592,41 @@ function yard(shot, lt) {
     railRun([P.x0, yT, P.z1], [P.x1, yT, P.z1], 'deck railing');
     railRun([P.x1, yT, P.z1], [P.x1, yT, STAIRS.z1], 'deck railing');
     railRun([STAIRS.x0, yT, STAIRS.z1], [STAIRS.x1 + 0.05, GRADE, STAIRS.z1], 'stair railing (wood)'); }
-  // strawberry bed (raised timber), mint barrel, hose, clothesline, fences
-  { const S = STRAWBERRY, B = { grey: 0.45, col: 0x7a5a3a }, cx = (S.x0 + S.x1) / 2, cz = (S.z0 + S.z1) / 2, y = GRADE + S.h / 2;
-    for (const z of [S.z0, S.z1]) g.add(tag(box(S.x1 - S.x0, S.h, 0.05, B, [cx, y, z]), 'strawberry bed'));
-    for (const x of [S.x0, S.x1]) g.add(tag(box(0.05, S.h, S.z1 - S.z0, B, [x, y, cz]), 'strawberry bed'));
-    g.add(tag(box(S.x1 - S.x0 - 0.06, 0.02, S.z1 - S.z0 - 0.06, { grey: 0.3, col: 0x4a3a2a }, [cx, GRADE + S.h - 0.04, cz]), 'strawberry bed'));
-    for (let k = 0; k < 34; k++) { const x = S.x0 + 0.15 + R() * (S.x1 - S.x0 - 0.3), z = S.z0 + 0.15 + R() * (S.z1 - S.z0 - 0.3), fl = k % 5 === 0;
-      g.add(tag(ball(fl ? 0.05 : 0.09, fl ? { grey: 0.85, col: [0xe060a0, 0xf0d040, 0xf4f0f0][k % 3] } : { grey: 0.45, col: 0x3a6a2a }, [x, GRADE + S.h + (fl ? 0.12 : 0.02), z], [1, 0.6, 1]), fl ? 'flowers' : 'strawberry plants')); } }
-  { const M = MINT, [x, z] = M.at; g.add(tag(cyl(M.r, M.r * 0.9, M.h, { grey: 0.45, col: 0x7a5236 }, [x, GRADE + M.h / 2, z], null, 28), 'barrel of mint'));
-    for (const y of [0.1, 0.35]) g.add(tag(cyl(M.r + 0.008, M.r + 0.008, 0.025, { grey: 0.25, col: 0x3a3a3a }, [x, GRADE + y, z], null, 28), 'barrel of mint'));
-    g.add(tag(ball(M.r * 1.05, { grey: 0.5, col: 0x4a8a3a }, [x, GRADE + M.h + 0.05, z], [1, 0.5, 1]), 'mint')); }
+  // strawberry planter, mint barrel, hose, clothesline, fences
+  // 2026-11-27 (Jade, decision A): the strawberry planter and the mint each have ONE canonical place (layout.js), real
+  // the mint in the library half barrel (props/half_barrel, Poly Haven CC0; props/planter_box dropped 2026-11-27 evening) with the plants built here, so every guide
+  // mode shows them in the same place and the painters stop moving them.
+  // the strawberry BED (2026-11-27 evening, Jade: the before place was right): raised timber sides + soil, the plants as
+  // the library-era crowns (leaves, red berries over the edges, white flowers) on a staggered grid
+  { const S = STRAWBERRY, B = { grey: 0.45, col: 0x7a5a3a }, cx = (S.x0 + S.x1) / 2, cz = (S.z0 + S.z1) / 2, y = GRADE + S.h / 2, top = GRADE + S.h, RS = rng(41);
+    for (const z of [S.z0, S.z1]) g.add(tag(box(S.x1 - S.x0, S.h, 0.05, B, [cx, y, z]), 'strawberry bed (timber)'));
+    for (const x of [S.x0, S.x1]) g.add(tag(box(0.05, S.h, S.z1 - S.z0, B, [x, y, cz]), 'strawberry bed (timber)'));
+    g.add(tag(box(S.x1 - S.x0 - 0.06, 0.02, S.z1 - S.z0 - 0.06, { grey: 0.28, col: 0x3e2e22 }, [cx, top - 0.04, cz]), 'strawberry bed (soil)'));
+    const LEAF = { grey: 0.45, col: 0x3d7a2e }, BERRY = { grey: 0.5, col: 0xc8202a }, FLOWER = { grey: 0.95, col: 0xf4f2ea }, STEM = { grey: 0.4, col: 0x4a6a2a, noCast: true };
+    const nx = 6, nz = 5;
+    for (let ix = 0; ix < nx; ix++) for (let iz = 0; iz < nz; iz++) { const k = ix * nz + iz;
+      const px = S.x0 + 0.2 + (ix + (iz % 2 ? 0.5 : 0)) * (S.x1 - S.x0 - 0.4) / (nx - 0.5) + (RS() - 0.5) * 0.06, pz = S.z0 + 0.2 + iz * (S.z1 - S.z0 - 0.4) / (nz - 1) + (RS() - 0.5) * 0.06, py = top - 0.04;
+      for (let j = 0; j < 9; j++) { const az = j * 2.4 + RS() * 0.6, el = 0.5 + RS() * 0.5, L = 0.12 + RS() * 0.06, dx = Math.cos(az) * Math.cos(el) * L, dz = Math.sin(az) * Math.cos(el) * L, dy = Math.sin(el) * L;
+        const tip = V(px + dx, py + dy, pz + dz); g.add(tag(limb(V(px, py, pz), tip, 0.003, STEM), 'strawberry plants'));
+        for (const o of [-0.7, 0, 0.7]) { const lf = mk(new THREE.SphereGeometry(0.03, 10, 6), LEAF); lf.scale.set(1, 0.18, 0.62); lf.position.set(tip.x + Math.cos(az + o) * 0.025, tip.y + 0.005, tip.z + Math.sin(az + o) * 0.025); lf.rotation.y = -(az + o); g.add(tag(lf, 'strawberry plants')); } }
+      // berries on short runners lying out on the soil (and over the timber at the edges), a few white flowers
+      for (let j = 0; j < 3; j++) { const a2 = RS() * Math.PI * 2, rr = 0.1 + RS() * 0.08; let bx = px + Math.cos(a2) * rr, bz = pz + Math.sin(a2) * rr;
+        bx = Math.min(Math.max(bx, S.x0 - 0.02), S.x1 + 0.02); bz = Math.min(Math.max(bz, S.z0 - 0.02), S.z1 + 0.02);
+        const edge = bx <= S.x0 + 0.03 || bx >= S.x1 - 0.03 || bz <= S.z0 + 0.03 || bz >= S.z1 - 0.03, by = edge ? top - 0.05 - RS() * 0.08 : top - 0.015;
+        g.add(tag(limb(V(px, py + 0.02, pz), V(bx, by + 0.02, bz), 0.002, STEM), 'strawberry plants'));
+        const br = mk(new THREE.ConeGeometry(0.016, 0.035, 10), BERRY); br.rotation.x = edge ? Math.PI : Math.PI / 2; br.position.set(bx, by, bz); g.add(tag(br, 'strawberries (red)')); }
+      if (k % 3 === 1) { const f = ball(0.014, FLOWER, [px + 0.03, py + 0.13, pz - 0.02], [1, 0.4, 1]); g.add(tag(f, 'strawberry flowers (white)')); } } }
+  { const M = MINT, [x, z] = M.at, RM = rng(53);
+    const hb = prop('half_barrel', { at: [x, GRADE, z], rot: [0, 25, 0], label: 'half barrel (of mint)' });
+    if (hb) g.add(hb); else g.add(tag(cyl(M.r, M.r * 0.9, M.h, { grey: 0.45, col: 0x7a5236 }, [x, GRADE + M.h / 2, z], null, 28), 'half barrel (of mint)'));
+    g.add(tag(cyl(M.r - 0.03, M.r - 0.03, 0.02, { grey: 0.28, col: 0x3e2e22 }, [x, GRADE + M.h - 0.05, z], null, 28), 'half barrel (soil)'));
+    // mint: ~40 upright square stems, 0.2-0.45 m, each with 4-5 pairs of opposite oval leaves (the mint habit), a dense mound
+    const MLEAF = { grey: 0.55, col: 0x4e9a3a }, MSTEM = { grey: 0.45, col: 0x5a7a3a, noCast: true };
+    for (let k = 0; k < 70; k++) { const rr = Math.sqrt(RM()) * (M.r - 0.06), a = RM() * Math.PI * 2, bx = x + Math.cos(a) * rr, bz = z + Math.sin(a) * rr, y0 = GRADE + M.h - 0.05, H = 0.16 + RM() * 0.2;
+      const lean = V(Math.cos(a) * rr * 0.5, H, Math.sin(a) * rr * 0.5), tip = V(bx, y0, bz).add(lean);
+      g.add(tag(limb(V(bx, y0, bz), tip, 0.003, MSTEM), 'mint'));
+      for (let j = 1; j <= 5; j++) { const t = j / 5.3, c = V(bx, y0, bz).addScaledVector(lean, t), rot = j * Math.PI / 2 + a, sz2 = 0.032 * (1.15 - t * 0.4);
+        for (const sg of [1, -1]) { const lf = mk(new THREE.SphereGeometry(sz2, 8, 5), MLEAF); lf.scale.set(1, 0.2, 0.6); lf.position.set(c.x + Math.cos(rot) * sg * sz2 * 0.9, c.y, c.z + Math.sin(rot) * sg * sz2 * 0.9); lf.rotation.set(0, -rot, sg * 0.35); g.add(tag(lf, 'mint')); } } } }
   { const [x, z] = HOSE.at, HL = { grey: 0.45, col: 0x2a7a3a };
     for (const r of [HOSE.r, HOSE.r * 0.8, HOSE.r * 0.62]) { const t = mk(new THREE.TorusGeometry(r, 0.012, 6, 40), HL); t.rotation.x = Math.PI / 2; t.position.set(x, GRADE + 0.015, z); g.add(tag(t, 'garden hose')); } }
   { const C = CLOTHESLINE, P = { grey: 0.55, col: 0x8a8a8a };
@@ -592,19 +637,52 @@ function yard(shot, lt) {
   for (const f of FENCES) { const [ax, az] = f.a, [bx, bz] = f.b, alongZ = ax === bx, L = alongZ ? bz - az : bx - ax, cx = (ax + bx) / 2, cz = (az + bz) / 2;
     g.add(tag(box(alongZ ? 0.03 : L, f.h, alongZ ? L : 0.03, FENCE, [cx, GRADE + f.h / 2, cz]), f.name));
     for (let s = 0; s <= L + 1e-6; s += Math.min(2.4, L)) g.add(tag(box(0.09, f.h + 0.06, 0.09, FENCE, alongZ ? [ax, GRADE + (f.h + 0.06) / 2, az + s] : [ax + s, GRADE + (f.h + 0.06) / 2, az]), f.name + ' (post)')); }
-  // the giant lemon tree
-  { const T = TREE, [tx, tz] = T.at, BARK = { grey: 0.35, col: 0x5a4a3a }, LEAF = { grey: 0.4, col: 0x3a5a2a }, cy = T.canopyY;
-    g.add(tag(cyl(T.trunkR * 0.8, T.trunkR, T.trunkH, BARK, [tx, GRADE + T.trunkH / 2, tz], null, 12), 'lemon tree (trunk)'));
-    for (const [dx, dz, rx, rz] of [[0.4, 0.15, 12, -40], [-0.4, -0.1, -10, 40], [0.05, -0.45, -40, 5], [0.0, 0.42, 40, -3]])
-      g.add(tag(cyl(0.05, 0.08, 1.4, BARK, [tx + dx, GRADE + T.trunkH + 0.45, tz + dz], [rx, 0, rz], 8), 'lemon tree (branch)'));
-    g.add(tag(ball(T.canopyR, LEAF, [tx, cy, tz], [1, T.canopyK, 1]), 'lemon tree canopy'));
-    for (const [dx, dy, dz, k] of [[1.0, 0.55, 0.5, 0.6], [-1.05, 0.4, -0.6, 0.58], [0.3, 0.75, -1.0, 0.55], [-0.5, 0.65, 0.9, 0.52]])
-      g.add(tag(ball(T.canopyR * k, LEAF, [tx + dx, cy + dy, tz + dz], [1, 0.8, 1]), 'lemon tree canopy'));
-    const RL = rng(7), LEM = { grey: 0.95, col: 0xf2d21c };
-    for (let k = 0; k < T.lemons; k++) { const a = Math.PI * 2 * (k / T.lemons) + RL() * 0.3, rho = 0.7 + RL() * (T.canopyR - 0.85);
-      const x = tx + Math.cos(a) * rho, z = tz + Math.sin(a) * rho, ys = cy - T.canopyR * T.canopyK * Math.sqrt(Math.max(0, 1 - (rho / T.canopyR) ** 2)), y = Math.max(ys - T.lemonR - 0.05 - RL() * 0.35, GRADE + 1.82);   // hang above head height (she reaches up to them)
-      g.add(tag(ball(T.lemonR, LEM, [x, y, z], [1, 1.22, 1]), 'lemons (pomelo-sized)'));
-      g.add(tag(cyl(0.006, 0.006, ys - y, { grey: 0.3, col: 0x3a4a2a, noCast: true }, [x, (ys + y) / 2 + T.lemonR * 0.6, z], null, 5), 'lemon tree')); } }
+  // the giant lemon tree (2026-11-27, Jade decision A: "way, way bigger ... she can't hug the trunk all the way around,
+  // and canopies the entire corner of the yard"). Trunk 0.80 m across at chest height with a root flare, forking at 1.9 m
+  // into four scaffold limbs that carry the canopy; the canopy is a dome of foliage clumps (lumpy icospheres, so it reads
+  // as leaves, not balls) over the whole NNE / back-fence corner; lemons hang on stalks from leafy twigs on its underside.
+  { const T = TREE, [tx, tz] = T.at, [cx, cz] = T.canopyC, BARK = { grey: 0.35, col: 0x5a4a3a }, LEAF = { grey: 0.4, col: 0x3a5a2a }, LEAF2 = { grey: 0.46, col: 0x46682f };
+    const RT = rng(19), taper = (A, B, r0, r1, lab) => { const d = B.clone().sub(A), m = mk(new THREE.CylinderGeometry(r1, r0, d.length(), 16), BARK);
+      m.position.copy(A).addScaledVector(d, 0.5); m.quaternion.setFromUnitVectors(V(0, 1, 0), d.normalize()); g.add(tag(m, lab)); };
+    const clump = (r, look, at, sq = 0.8) => { const geo = new THREE.SphereGeometry(r, 18, 12), p = geo.attributes.position;   // indexed: smooth normals after the lumps
+      for (let i = 0; i < p.count; i++) { const v = V(p.getX(i), p.getY(i), p.getZ(i)), n = 1 + (Math.sin(v.x * 9.1 + at[0]) * Math.sin(v.y * 7.3 + at[2]) * Math.sin(v.z * 8.7)) * 0.18 + 0; p.setXYZ(i, v.x * n, v.y * n * sq, v.z * n); }
+      geo.computeVertexNormals(); const m = mk(geo, look); m.position.set(...at); return m; };
+    const fork = GRADE + T.trunkH;
+    taper(V(tx, GRADE - 0.05, tz), V(tx, GRADE + 0.45, tz), T.flareR, T.trunkR + 0.02, 'lemon tree (trunk, root flare)');
+    taper(V(tx, GRADE + 0.45, tz), V(tx, fork + 0.15, tz), T.trunkR + 0.02, T.trunkR - 0.05, 'lemon tree (trunk)');
+    // four scaffold limbs from the fork out and up into the dome, each with two secondary branches to the canopy shell
+    const limbs = [[205, 0.25], [140, 0.22], [290, 0.2], [40, 0.17]];   // compass bearing from +Z toward +X (deg), base radius
+    for (const [bd, r0] of limbs) { const b = bd * Math.PI / 180, dir = V(Math.sin(b), 0, Math.cos(b));
+      const A = V(tx, fork, tz).addScaledVector(dir, T.trunkR * 0.45), B = V(tx, GRADE + 3.9, tz).addScaledVector(dir, 2.1 + RT() * 0.5);
+      taper(A, B, r0, r0 * 0.6, 'lemon tree (limb)');
+      for (const s2 of [-0.5, 0.45]) { const d2 = V(Math.sin(b + s2), 0, Math.cos(b + s2)), C = B.clone().addScaledVector(d2, 1.4 + RT() * 0.6).add(V(0, 0.9 + RT() * 0.5, 0));
+        taper(B, C, r0 * 0.55, r0 * 0.3, 'lemon tree (branch)'); } }
+    // the canopy: the upper dome (centre canopyC, radius canopyR, from canopyBase to canopyTop), a ring of skirt clumps at
+    // its rim (bottoms >= canopyBase, so the yard under it stays walkable) and an underside layer with gaps
+    const Hc = T.canopyTop - T.canopyBase, R0 = T.canopyR;
+    for (let i = 0; i < 110; i++) { const u = (i + 0.5) / 110, phi = i * 2.39996, el = Math.asin(u * 0.95), rr = Math.cos(el) * (R0 - 0.75), yy = T.canopyBase + 0.9 + Math.sin(el) * (Hc - 1.6);
+      g.add(tag(clump(0.85 + RT() * 0.45, i % 3 ? LEAF : LEAF2, [cx + Math.cos(phi) * rr, yy, cz + Math.sin(phi) * rr]), 'lemon tree canopy')); }
+    for (let i = 0; i < 34; i++) { const phi = i * 2 * Math.PI / 34 + RT() * 0.1, rr = R0 - 0.6 - RT() * 0.3, r = 0.6 + RT() * 0.25;
+      g.add(tag(clump(r, i % 2 ? LEAF : LEAF2, [cx + Math.cos(phi) * rr, T.canopyBase + r * 0.8 + RT() * 0.25, cz + Math.sin(phi) * rr]), 'lemon tree canopy')); }
+    for (let i = 0; i < 36; i++) { const phi = i * 2.39996, rr = Math.sqrt((i + 0.5) / 36) * (R0 - 1.2), r = 0.55 + RT() * 0.25;
+      const at = [cx + Math.cos(phi) * rr, T.canopyBase + 0.35 + r * 0.6 + RT() * 0.3, cz + Math.sin(phi) * rr];
+      if (Math.hypot(at[0] - tx, at[2] - tz) < 0.9) continue;   // the trunk comes up through here
+      g.add(tag(clump(r, LEAF, at, 0.6), 'lemon tree canopy')); }
+    // lemons (pomelo-sized), each on a stalk from a small leafy twig at the canopy's underside; one more is THE lemon she
+    // reaches for in V3a (T.pick)
+    const RL = rng(7), LEM = { grey: 0.95, col: 0xf2d21c }, STALK = { grey: 0.3, col: 0x3a4a2a, noCast: true };
+    // a short stalk (8 cm) up to a leafy twig (a 0.24 m clump) that hangs down from the canopy's underside, so every
+    // lemon is held by foliage, not by a long string
+    const hang = (x, y, z, lab = 'lemons (pomelo-sized)') => { const ty = y + T.lemonR * 1.22 + 0.08;
+      g.add(tag(ball(T.lemonR, LEM, [x, y, z], [1, 1.22, 1]), lab));
+      g.add(tag(cyl(0.006, 0.006, 0.1, STALK, [x, ty - 0.05, z], null, 5), 'lemon tree (fruit stalk)'));
+      g.add(tag(clump(0.24, LEAF2, [x + 0.04, ty + 0.12, z - 0.03], 0.7), 'lemon tree (leafy twig)'));
+      if (ty + 0.3 < T.canopyBase + 0.4) g.add(tag(limb(V(x + 0.04, ty + 0.2, z - 0.03), V(x + 0.1, T.canopyBase + 0.5, z - 0.08), 0.012, BARK), 'lemon tree (twig)')); };
+    for (let k = 0; k < T.lemons; k++) { const a = Math.PI * 2 * (k / T.lemons) * 3 + RL() * 0.5, rho = 1.1 + Math.sqrt(RL()) * (R0 - 1.6);
+      const x = cx + Math.cos(a) * rho, z = cz + Math.sin(a) * rho;
+      if (Math.hypot(x - tx, z - tz) < 0.8) continue;
+      hang(x, Math.max(T.canopyBase - 0.05 - RL() * 0.35, GRADE + 1.95), z); }
+    if (T.pick) hang(T.pick[0], T.pick[1], T.pick[2], 'THE lemon she reaches for (pomelo-sized)'); }
   // the neighbour's grapefruit tree over the NNE fence
   { const G = GRAPEFRUIT, BARK = { grey: 0.35, col: 0x5a4a3a }, LEAF = { grey: 0.38, col: 0x35552a };
     g.add(tag(cyl(0.1, 0.12, 2.0, BARK, [G.trunk[0], GRADE + 1.0, G.trunk[1]], null, 10), 'grapefruit tree (the neighbour’s)'));
@@ -658,7 +736,7 @@ export function build(shot, { makeCam }) {
   // V3b (before the party): the bowl the childhood friend holds, with the first picked lemons in it
   // r4 props phase 2: the real bowl (36 cm), two pomelo-sized lemons settled in it, one on the other (settled.js); bowl and lemons are ONE held
   // object (holdWhole); its bottom where the old half sphere's was (shot.bowl y - 0.06). The friend's palms: shots.js bowlHands
-  if (shot.bowl) { const [bx, by, bz] = shot.bowl; settledBowl(root, [bx, by - 0.06, bz], SETTLED.friendBowl, 'bowl of picked lemons', { holdWhole: true }); }
+  if (shot.bowl) { const [bx, by, bz] = shot.bowl; settledBowl(root, [bx, by - 0.06, bz], SETTLED.friendBowl, 'frosted plexiglass punch bowl of picked lemons', { holdWhole: true, look: FROSTED_PLEXI }); }
   const extra = (t) => { if (t === 'poiL') return V(poiCentre(1)); if (t === 'poiR') return V(poiCentre(-1)); if (t.startsWith('mark:')) { const m = MARKS[t.slice(5)]; return V(m[0], 1.5, m[1]); } return null; };
   // V3b_prep (Jade r3): the friend's right hand holds the ladle in a real grip; the arm, the hand pose and the ladle are
   // solved together (ladleGrip.js) from where the ladle's bowl sits in the lemonade
@@ -682,6 +760,7 @@ export function build(shot, { makeCam }) {
     for (const f of Object.values(figs)) if (shot.hide.includes(f.name)) f.traverse((o) => { if (o.isMesh) { o.visible = false; o.userData.baseVisible = false; } }); }
   if (figs.firstLove27 && !(shot.hide || []).includes('firstLove27')) root.add(sandals(figs.firstLove27));
   if (figs.jade27 && figs.jade27.userData.spec.costume?.outfit === 'housewarming' && !(shot.hide || []).includes('jade27')) root.add(housewarming(figs.jade27));
+  if (figs.jade27 && figs.jade27.userData.spec.costume?.shoes === 'sneakers' && !(shot.hide || []).includes('jade27')) root.add(sneakers(figs.jade27));
   hideParts(shot.hideParts, figs);
   Object.assign(shot, solveCamera(shot, figs, null, aim));
   const cam = makeCam(shot);
@@ -713,7 +792,7 @@ export function build(shot, { makeCam }) {
   const sunTests = () => { const out = {}; if (!sun.up) return { note: 'sun below the horizon' };
     const put = (k, p) => { const r = sunlit(p, sun); out[k] = r.lit ? 'sunlit' : `shaded by ${r.by}`; };
     if (figs.jade27) put('her_head', figs.jade27.userData.P.head.toArray()); if (figs.firstLove27) put('first_love_head', figs.firstLove27.userData.P.head.toArray());
-    put('lemon_canopy_top', [TREE.at[0], TREE.canopyY + TREE.canopyR * TREE.canopyK * 0.95, TREE.at[1]]); put('lemon_canopy_side_toward_house', [TREE.at[0] - 0.6, TREE.canopyY, TREE.at[1] - 1.9]);
+    put('lemon_canopy_top', [TREE.canopyC[0], TREE.canopyTop - 0.3, TREE.canopyC[1]]); put('lemon_canopy_side_toward_house', [TREE.canopyC[0] - 3.2, TREE.canopyY, TREE.canopyC[1] - 3.6]); put('lemon_tree_trunk', [TREE.at[0], GRADE + 1.3, TREE.at[1]]); if (TREE.pick) put('lemon_she_reaches_for', TREE.pick);
     put('expedit_top_centre', shelfWorld([0, SHELF.h, SHELF.depth + 0.01])); put('lawn_mid', [6, GRADE + 0.05, 15]); return out; };
   const extraOut = (c, P) => {
     const cubePx = (cu) => [[cu.x0, cu.y1], [cu.x1, cu.y1], [cu.x1, cu.y0], [cu.x0, cu.y0]].map(([x, y]) => P(V(...shelfWorld([x, y, SHELF.depth]))));
@@ -729,7 +808,7 @@ export function build(shot, { makeCam }) {
         spines_note: 'Only the lettered spines (Jade\u2019s six titles, plus the textbooks Theoretical Neuroscience, Spikes and Molecular Biology of the Cell; each a likeness of its real edition\u2019s spine, 2026-11-27) carry lettering; every other spine is BLANK and untitled (Jade r4, art_books: "Leave the rest blank"). Paint no words on them.',
         warnings: SHELF_WARN.length ? [...new Set(SHELF_WARN)] : undefined },
       expedit_2x2: { world: { X: [EXPEDIT2.X0, EXPEDIT2.X1], Z: [EXPEDIT2.Zc - EXPEDIT2.W / 2, EXPEDIT2.Zc + EXPEDIT2.W / 2], faces: 'SSW (-X)' }, printer_on_top: true, px: P(V(EXPEDIT2.X0 + 0.2, EXPEDIT2.H + 0.1, EXPEDIT2.Zc)) },
-      lemon_tree_px: P(V(TREE.at[0], TREE.canopyY, TREE.at[1])), poi_px: P(poiP), opening_px: P(V((OPENING.x0 + OPENING.x1) / 2, 1.0, OPENING.z)) };
+      lemon_tree_px: P(V(TREE.canopyC[0], TREE.canopyY, TREE.canopyC[1])), poi_px: P(poiP), opening_px: P(V((OPENING.x0 + OPENING.x1) / 2, 1.0, OPENING.z)) };
     if (shot.timing) out.timing = shot.timing;
     if (shot.ladleGrip) out.ladle_grip = { ...shot.ladleGrip, fist_px: P(V(shot.ladleGrip.fist_centre_world)) };
     if (shot.faceMarks && figs.jade27) { const Pj = figs.jade27.userData.P; out.face_marks = { note: 'her eye and temple, px in THIS frame (start or end key of the push-in): where the overlay begins', who: 'jade27',

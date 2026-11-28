@@ -273,3 +273,20 @@ Jade on X_sw: "the social worker's shoulders are weirdly misshapen".
 - Dad stands 4 cm further back (SEATS dad z -1.04 -> -1.08): his 258 mm feet were 14 mm into Mom's chair. His right
   hand on her shoulder 1 cm higher (off y 0.035 -> 0.045): the fingertips (skin now out to the tip pad) were 14 mm
   into her cardigan.
+
+## 2026-11-27: BO1 copies BO2_v3 (Jade: BO2 pick = BO2_v3; BO1 "copy sheet and hand positioning from" it)
+- **Why the BO1 takes drifted.** BO1 and BO2 already shared GAP_CAM, but the r4 guides used orbit az 150 (re-render pass,
+  2026-11-26), the sheet seen steeply from the side. BO1's takes followed that guide; BO2_v3 instead followed its image-4
+  reference (r3 BO2_v3, painted from the r3 az-180 camera), so the pick and its own guide disagreed.
+- **GAP_CAM** (BO1 = BO2) is now the camera SOLVED from BO2_v3's four sheet corners (40 mm fixed; reprojection error
+  < 1 % of the frame): pos [-0.3729, 1.1002, -0.4312], target [-0.3823, 0.7206, -0.0863], roll 1.4. The model's
+  circle grid then lies on BO2_v3's painted circles and the adult's finger lands on its painted finger (overlays in the
+  lead's scratchpad). gap_px (938.8, 606.4).
+- **Her pointing arm** (`jadePoint`, BO1/BO2 only): sleeves 'pushed' (the prompt always said so; the long cuff hid the
+  whole hand from straight behind, the reason az 180 was dropped), `elbowAt` [-0.5, 0.7, -0.45] (elbow out to her right),
+  fingers [0.22, -0.6, 0.77] (up the page and to the left): her forearm now lies on BO2_v3's painted forearm. No wrist
+  warning for her right hand; pad on the gap (index3 tip = gap_world).
+- Re-rendered BO1 and BO2: default modes + form/contour/light + beam masks. BO1 prompt (_make.py) passes BO2_v3 as image
+  4 and says to copy its sheet, grid, child's hand and style, with no adult hand. Takes BO1_v5/_v6 (free Codex).
+- 2026-11-27 (later): BO1 pick = BO1_v5 (picks.json). Zoom-checked v5 and v6: rows 7-7-7-6-7, pad on the missing slot,
+  thumb tucked, no adult hand; v5 is closer to BO2_v3.

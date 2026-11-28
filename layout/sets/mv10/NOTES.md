@@ -7,6 +7,97 @@ sh layout/sets/mv10/sheet.sh label line lit flat                       # contact
 python3 layout/gallery.py
 ```
 
+
+
+## 2026-11-27 (late evening): Jade's yard corrections (supersede the yard parts of the two sections below)
+
+- **Strawberry:** "the strawberry planter is in the correct spot in the before": the raised timber BED is back at its
+  page-1 place, size and shape (X 1.03..3.89, Z 13.07..15.06, 0.25 m high, 10 cm off the deck's ESE edge). The plants keep
+  the new modelling (30 crowns of trifoliate leaves, red berries on runners, white flowers). The Poly Haven planter box is
+  no longer used (still in `layout/assets/props/planter_box`; credits line marked unused). V3a keeps its downward tilt:
+  the bed's far corner now shows at the bottom right (before the fix it was wholly below frame and painters invented it).
+- **Mint:** "the barrel in the after looks pretty good", moved "to the little corner next to the stair railing, like in
+  the crook of the elbow": the Poly Haven half barrel now sits on the lawn in the inside corner between the deck's NNE
+  edge (X 3.88) and the stairs' open side (Z 11.15), 2 cm clear of both railings' posts: centre (4.275, 11.545). In V3a it
+  is mostly hidden behind the deck railing at the lower left; in V3e it stands at the foot of the stairs.
+- **Tree:** "the size is good but should be moved into the yard a little bit for balance": the whole tree moves by
+  `TREE_SHIFT` (-0.7, -0.6): trunk (10.85, 18.5), canopy centre (10.2, 17.6), r 5.2 m (still 2.9 m past the corner).
+  THE lemon (`TREE.pick`), the tree mark, HE_TREE, FRIEND_AT and V3b's camera / looks move with it.
+  **Knock-on:** the poi mark moved (6.3, 15.6) -> (5.7, 14.6) so the flames stay outside the canopy's reach (5.4 m from its
+  centre); V3e / V3h / SI1 see the spinner a little nearer the house.
+- **The friend's bowl:** a FROSTED PLEXIGLASS punch bowl (Jade): the real bowl model's shape with a translucent milky glass
+  look (`FROSTED_PLEXI` in build.js; lit 55 % opaque, form pale see-through); the two settled lemons show through it. No
+  library punch bowl used. Prompts say "a frosted plexiglass punch bowl" (V3a, V3b, the T0_friendbowl ref caption).
+- **V3a friend:** turned away from the lens (back three-quarter; facing = lens->lemon direction swung 50 deg to frame
+  right), a step nearer the lens at her right, looking up into the tree; the bowl still shows past his right side.
+- **Engine-side fix (set-local):** her boot-cut flare had no `formTint`, so the form guide drew her lower legs WHITE in
+  every housewarming shot (lit was right). `PANT.formTint` set.
+- **State at 19:20 (stopped for a restart):** the full re-render was stopped part-way (see HANDOFF 19:20 for exactly
+  which shots and modes are current). Next: finish the re-render (5 modes, then form/contour/light, then beam twins,
+  sheets, gallery), rebuild `_make.py`, paint V3a v7/v8 (free route, 5 refs), review, update picks. Sheet of this change:
+  scratchpad `yard_before_after_2.jpg`.
+
+## 2026-11-27 (evening): full re-render on the new yard; r4 repaint prompts (Jade decisions B-D)
+
+- Every mv10 shot re-rendered (five modes + form/contour/light, beam twins) with the engine's hand fit B, hand marks,
+  thenar smoothing and the corrected book sizes, and the yard model above. Sheets and `layout/gallery.py` rebuilt.
+- `_make.py`: every shelf shot (BR6, C2a, V3_nailed, V3_rev_temple_a, V3_rcv_obl/_k0/_k3; BRpan_* already) now passes
+  its `_lit.png` as the colour reference and names the fixed colours (Feynman set RED, Expedit espresso). V3a rewritten:
+  the YARD paragraph (one strawberry planter at the deck's foot, one mint half-barrel, the giant tree in the far corner,
+  nothing else), sneakers (per-shot cast override), no belt, the patch visible, lemons stacked; takes v3/v4 (v1/v2 kept).
+  V3e carries the YARD paragraph too. V3b's painted takes predate the new tree (repaint if kept).
+- Painted (free Codex, 2 takes each, V3a 4 more): picks in `media/keyframes/r4/mv10/picks.json`, reasons in
+  `work/r4/PAINT_LOG.md`. Codex image_gen takes AT MOST 5 reference images (`_make.py` CAP5). The planter, mint barrel
+  and tree held their place in all four new V3a takes and in V3e. Model follow-up: turn the V3a friend further from the
+  lens (painters draw his profile from the side-on pose).
+
+## 2026-11-27: the yard model fixed (Jade decision A) and V3a restaged (decision B, model side)
+
+**Jade:** "the strawberry patch and mint plant are incorrectly and flexibly placed between takes, which means we should
+actually fix the model ... the tree also needs to be way, way bigger. large enough she can't hug the trunk all the way
+around, and canopies the entire corner of the yard. the strawberry planter is right by the patio." V3a repaint: NASA patch
+visible, no belt, lemons stacked, SNEAKERS (she is outdoors).
+
+- **Strawberry planter** (`layout.js` STRAWBERRY): ONE wooden planter box, the real model `props/planter_box` ("Planter
+  Box 02", James Ray Cock, Poly Haven, CC0; 1.25 x 0.47 x 0.45 m, real size), on the lawn against the deck's ESE edge
+  by the stairs, centre (3.25, 13.63), its long side running out from the deck (Z 13.0..14.25). Nine strawberry crowns
+  (trifoliate leaves), red berries hanging over both long sides, a few white flowers, built in `build.js`. The old
+  2.9 x 2.0 m raised bed (X 1.03..3.89, Z 13.07..15.06) is GONE. Which part of the deck edge and the orientation: **ASSUMED**.
+- **Mint** (`layout.js` MINT): same place as before (4.84, 14.2), now the real half barrel `props/half_barrel` ("Wine
+  Barrel 01", James Ray Cock, Poly Haven, CC0, cut at mid-height: `_pipeline/half_barrel_prep.py`; 0.66 m across, 0.39 m
+  high) with ~70 upright mint stems with opposite leaf pairs (built). No mint/strawberry plant models in Poly Haven
+  (the nettle model uses alpha-cut leaf cards, which the guide renderer would draw as rectangles).
+- Both show in every guide mode (form, contour, light, line, flat, label, lit) in **V3a** (bottom centre: planter;
+  mid-frame: barrel) and **V3e** (behind the spinner, at the deck foot). In V3h (plan) too.
+- **The lemon tree** (`layout.js` TREE; species kept, Jade's lemons the size of pomelos): trunk moved into the corner,
+  (11.55, 19.1) (was (10.79, 19.07)); 0.80 m across at chest height (2.5 m round; was 0.28 m), root flare 1.1 m at the
+  ground, forks at 1.9 m into four scaffold limbs (r 0.17-0.25 m) and eight branches into the canopy. Canopy: a dome of
+  lumpy foliage clumps centred (10.9, 18.2), radius 5.2 m (10.4 m spread; was r 2.3), from 2.35 m to 7.6 m above the
+  lawn (was ~5.3 m tall); it covers the whole NNE / back-fence corner and overhangs both fences. 44 lemons hang on 8 cm
+  stalks from leafy twigs under the canopy (1.95-2.3 m), plus THE lemon she reaches for in V3a (`TREE.pick`, (9.94,
+  2.0 m, 17.64), **ASSUMED**). Real sizes, look-only (no web image sent anywhere): lemon trees are usually 3-6 m tall
+  (up to ~9 m in ideal climates), single trunk, normally well under 0.5 m across; pomelos 5-15 m. Jade's tree is bigger
+  than any ordinary lemon: her memory, her call. Sources: dimensions.com "Lemon Tree - Large", UF/IFAS HS402 (Morton
+  1987: 3.1-6.1 m), evergreentrees.com.au (Eureka 3-5 m, Lisbon 3-6 m).
+- Knock-ons: the canopy edge reaches ~(6.3, 15.7) toward the house; the poi mark (6.3, 15.6) is just outside it, the
+  clothesline's T-post (8.2, 19.6) is under it (its line passes under the canopy at 1.95 m). Her tree mark (9.9, 17.95)
+  is 2.0 m from the trunk; the V3b friend mark is 1.4 m from it (clear). The sidecar points `lemon_canopy_*`,
+  `lemon_tree_trunk`, `lemon_she_reaches_for` follow.
+- **V3a restaged** (`shots.js` V3A_*): she faces yaw -150 (three-quarter toward the deck-corner lens, her LEFT chest
+  and the meatball decal toward it), right hand up under THE lemon (palm forward, fingers up, hand 26 cm below its
+  centre, not touching), head on it. The friend at (8.85, 18.45), facing the lemon (back three-quarter / profile to
+  us), the real bowl FB_D in front of him; the two settled lemons are STACKED (settled.js friendBowl: one on the other).
+  Camera unchanged (deck corner, 24 mm) but tilted down (her eyes at 0.21 of the height, was 0.46) so the planter and
+  the barrel are in frame; the canopy is cut by the top edge, which reads as the tree filling the corner.
+- **Sneakers** (Jade): in V3a, V3b (and T0_friendbowl) her feet are black canvas (costume.sock 0x1c1c1f, shoes:
+  'sneakers') with `build.js` sneakers(): white rubber sole, black upper, white toe bumper. **ASSUMED** plain black
+  low-tops. V3b_prep (kitchen) and the party keep socks. No belt in the model (nothing at the waist; the painters'
+  belts were invented): HOUSEWARMING_COSTUME now says so.
+- Checks: clipcheck V3a: her hand in range, no contact with the lemon; the friend's palms 6.3 mm into the bowl wall,
+  the same as V3b / T0_friendbowl (6.5 mm, staging unchanged: pre-existing with the new hand fit, a soft-palm contact).
+- **V3b now differs from its painted takes** (bigger trunk and canopy in its upward view; sneakers below frame): repaint
+  if it is kept. Sheet: scratchpad yard_before_after.jpg.
+
 ## 2026-11-25 (r2 review): V3a before the party, 10:30; V3_nailed hand up
 
 **Jade:** V3a and V3b are BEFORE the party, early in the day: she and the childhood friend pick the (pomelo-sized)

@@ -478,8 +478,22 @@ export const RAIL = { h: 0.91, post: 0.09, rail: [0.09, 0.04], baluster: 0.035, 
 // 0.30 m (OURS), width 1.20 m (OURS; her band is 2.8 m deep: the rest is lawn). Railing on the open (ESE) side.
 export const STAIRS = { x0: 3.88, z0: HOUSE.Z, z1: HOUSE.Z + 1.20, risers: 4, run: 0.30, along: 'the ESE house wall, descending NNE (+X)' };
 STAIRS.x1 = STAIRS.x0 + (STAIRS.risers - 1) * STAIRS.run;   // X 4.78: the foot of the flight, on the lawn
-export const STRAWBERRY = { x0: 1.03, x1: 3.89, z0: 13.07, z1: 15.06, h: 0.25, kind: 'strawberry plants and flowers, a raised timber bed' };
-export const MINT = { at: [4.84, 14.2], r: 0.33, h: 0.45, kind: 'half whisky barrel of mint (drawn ~1.7 m across: real size used)' };
+// 2026-11-27 (Jade, decision A: "the strawberry patch and mint plant are incorrectly and flexibly placed between takes ...
+// the strawberry planter is right by the patio"): ONE canonical place each, real library models (props/planter_box,
+// props/half_barrel, both Poly Haven CC0), visible in V3a and V3e. The strawberry planter stands on the lawn against the
+// deck's ESE edge, its long side along the deck (Jade: "right by the patio"; which part of the edge is OURS: the NNE end,
+// by the stairs; long side running OUT from the deck, its near end 1 cm off the deck edge, so it shows from the deck
+// corner (V3a) and from the lawn). The old 2.9 x 2.0 m raised bed is gone.
+// 2026-11-27 (evening, Jade's correction): "the strawberry planter is in the correct spot in the before" -> the strawberry
+// BED is back at its page-1 place, size and shape (a raised timber bed, X 1.03..3.89, Z 13.07..15.06, 0.25 m high, its
+// NNW side 10 cm off the deck's ESE edge); the plants keep the new modelling (crowns of trifoliate leaves, red berries,
+// white flowers). "the mint plant needs to be moved left to the little corner next to the stair railing, like in the
+// crook of the elbow" -> the half barrel sits on the lawn in the inside corner between the deck's NNE edge (X 3.88, its
+// railing) and the stairs' open (ESE) side (Z 11.15, the stair railing), 2 cm clear of both railings' posts.
+export const STRAWBERRY = { x0: 1.03, x1: 3.89, z0: 13.07, z1: 15.06, h: 0.25, plants: 30, kind: 'a raised timber bed of strawberry plants (green leaves, red berries, a few white flowers), on the lawn just off the deck' };
+STRAWBERRY.at = [(STRAWBERRY.x0 + STRAWBERRY.x1) / 2, (STRAWBERRY.z0 + STRAWBERRY.z1) / 2];
+export const MINT = { r: 0.33, h: 0.388, kind: 'half wine/whisky barrel of mint, in the inside corner between the deck and the stair railing (Jade, 2026-11-27)' };
+MINT.at = [+(3.88 + 0.045 + MINT.r + 0.02).toFixed(3), +(11.15 + 0.045 + MINT.r + 0.02).toFixed(3)];   // (4.275, 11.545)
 export const HOSE = { at: [9.57, 11.12], r: 0.26 };
 export const CLOTHESLINE = { x: 8.2, z0: HOUSE.Z, z1: 19.6, y: GRADE + 1.95, kind: 'one line from a bracket on the ESE wall to a T-post by the back fence (Jade drew one line, house to fence)' };
 export const FENCES = [
@@ -489,7 +503,23 @@ export const FENCES = [
 ];
 export const LAWN = { x0: -0.3, x1: 13.1, z0: HOUSE.Z, z1: 20.2 };
 // the GIANT lemon tree by the NNE fence at the far end (Jade); lemons the size of pomelos (r 0.085; a lemon is ~0.035)
-export const TREE = { at: [10.79, 19.07], trunkH: 1.75, trunkR: 0.14, canopyR: 2.3, canopyY: GRADE + 3.45, canopyK: 0.62, lemonR: 0.085, lemons: 26 };
+// 2026-11-27 (Jade, decision A): "the tree also needs to be way, way bigger. large enough she can't hug the trunk all the
+// way around, and canopies the entire corner of the yard." Rebuilt: trunk 0.80 m across at chest height (2.5 m round; her
+// arm span is ~1.6 m), flaring to 1.1 m at the ground, forking at 1.9 m into four scaffold limbs; the canopy 5.2 m in
+// radius (10.4 m spread), 7.6 m tall, over the whole NNE / back-fence corner and over both fences. The trunk moved into
+// the corner (was (10.79, 19.07), r 0.14, canopy r 2.3, 5.3 m tall). Real numbers: lemon trees are usually 3-6 m tall,
+// up to ~9 m in ideal climates, with a single trunk well under 0.5 m; pomelos 5-15 m. Jade's tree is bigger than any
+// ordinary lemon: her memory, her call. canopyC = the dome's centre (offset toward the yard from the trunk).
+// 2026-11-27 evening (Jade: "the tree size is good but should be moved into the yard a little bit for balance"): the
+// whole tree (trunk, canopy, THE lemon, the tree mark, the V3a/V3b figures) moves by TREE_SHIFT, out of the very corner
+// toward the yard's middle; size unchanged. Trunk (11.55, 19.1) -> (10.85, 18.5): 2.25 m off the NNE fence, 1.7 m off the
+// back fence; the canopy (r 5.2 from (10.2, 17.6)) still reaches 2.9 m past the corner.
+export const TREE_SHIFT = [-0.7, -0.6];
+const tsh = ([x, z]) => [+(x + TREE_SHIFT[0]).toFixed(3), +(z + TREE_SHIFT[1]).toFixed(3)];
+export const TREE = { at: tsh([11.55, 19.1]), trunkH: 1.9, trunkR: 0.40, flareR: 0.55, canopyC: tsh([10.9, 18.2]), canopyR: 5.2, canopyBase: GRADE + 2.35, canopyTop: GRADE + 7.6, canopyY: GRADE + 4.6, canopyK: 0.58, lemonR: 0.085, lemons: 44 };
+// V3a (2026-11-27): THE lemon she reaches for, hanging in front of her and to her right at the tree mark (MARKS.tree), its
+// centre 2.00 m above the lawn (she is 1.65 m: a full reach). OURS.
+TREE.pick = [9.94 + TREE_SHIFT[0], GRADE + 2.0, 17.64 + TREE_SHIFT[1]];
 // the neighbour's grapefruit tree; its branches spill over the NNE fence (Jade). Trunk beyond the fence: OURS.
 export const GRAPEFRUIT = { trunk: [14.3, 12.85], at: [13.45, 12.85], canopyR: 1.55, canopyY: GRADE + 3.0, canopyK: 0.75, fruitR: 0.06, fruits: 14 };
 // the lemonade: Jade (2026-11-25 late) made it BEFORE the party with the childhood friend, from lemons they picked off
@@ -499,7 +529,9 @@ export const GRAPEFRUIT = { trunk: [14.3, 12.85], at: [13.45, 12.85], canopyR: 1
 // ESE wall and on the deck. Mark: the open lawn 5 m out from the wall, between the mint barrel and the clothesline,
 // facing the audience's middle (AUDIENCE_AT): OUR pick. Two burning heads, each sweeping a circle beside the body.
 export const AUDIENCE_AT = [5.2, 11.2];
-export const POI = { at: [6.3, 15.6], floor: GRADE, yaw: +(Math.atan2(AUDIENCE_AT[0] - 6.3, AUDIENCE_AT[1] - 15.6) * 180 / Math.PI).toFixed(1), centreY: GRADE + 1.15, r: 0.72, side: 0.42, headR: 0.045 };
+// 2026-11-27 evening: the mark moved 0.6 / 1.0 m toward the house ((6.3, 15.6) -> (5.7, 14.6)) so the flames stay 5.4 m from
+// the shifted canopy's centre (outside its 5.2 m reach), not under the leaves.
+export const POI = { at: [5.7, 14.6], floor: GRADE, yaw: +(Math.atan2(AUDIENCE_AT[0] - 5.7, AUDIENCE_AT[1] - 14.6) * 180 / Math.PI).toFixed(1), centreY: GRADE + 1.15, r: 0.72, side: 0.42, headR: 0.045 };
 export const poiCentre = (s) => { const a = POI.yaw * Math.PI / 180, lx = Math.cos(a), lz = -Math.sin(a), fx = Math.sin(a), fz = Math.cos(a);
   return [POI.at[0] + s * POI.side * lx + 0.2 * fx, POI.centreY, POI.at[1] + s * POI.side * lz + 0.2 * fz]; };
 
@@ -513,7 +545,7 @@ const STAIR_Z = (STAIRS.z0 + STAIRS.z1) / 2;
 export const PATH = [[2.72, 3.30, 0], [2.0, 4.15, 0], [1.15, 5.0, 0], [1.55, 6.05, 0], [2.45, 6.75, 0], [2.55, 7.65, 0], [2.4, 8.6, 0], [1.55, 9.3, 0], [1.21, 9.95, 0],
   [1.6, 10.6, PATIO.top], [2.6, 10.85, PATIO.top], [3.6, STAIR_Z, PATIO.top], [STAIRS.x0, STAIR_Z, PATIO.top], [STAIRS.x1, STAIR_Z, GRADE], [5.6, 11.4, GRADE], [7.2, 15.5, GRADE], [9.0, 17.2, GRADE], [9.9, 17.95, GRADE]];
 // silence (SI1) moved INDOORS (Jade r3: "move SI1 indoors"): just inside the open sliding door, the yard and the poi behind her
-export const MARKS = { shelf: MARK.shelf, crossing: [1.9, 6.4], greeting: [1.21, 9.62], hug: [2.6, 10.85], stairs: [(STAIRS.x0 + STAIRS.x1) / 2, STAIR_Z], tree: [9.9, 17.95], silence: [1.22, 9.58] };
+export const MARKS = { shelf: MARK.shelf, crossing: [1.9, 6.4], greeting: [1.21, 9.62], hug: [2.6, 10.85], stairs: [(STAIRS.x0 + STAIRS.x1) / 2, STAIR_Z], tree: [9.9 + TREE_SHIFT[0], 17.95 + TREE_SHIFT[1]], silence: [1.22, 9.58] };
 export const MARK_FLOOR = { shelf: 0, crossing: 0, greeting: 0, hug: PATIO.top, stairs: GRADE + (PATIO.top - GRADE) / 2, tree: GRADE, silence: 0 };
 
 // ---------------------------------------------------------------- sun visibility (analytic, for the numbers in NOTES and the sidecars)

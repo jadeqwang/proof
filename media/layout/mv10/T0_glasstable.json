@@ -884,6 +884,8 @@
  "sun_tests": {
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "sunlit",
+  "lemon_tree_trunk": "sunlit",
+  "lemon_she_reaches_for": "sunlit",
   "expedit_top_centre": "shaded by ceiling",
   "lawn_mid": "sunlit"
  },
@@ -1920,8 +1922,8 @@
   ]
  },
  "lemon_tree_px": [
-  -936.9,
-  -416.2
+  -875.8,
+  -195.4
  ],
  "poi_px": [
   -448.8,

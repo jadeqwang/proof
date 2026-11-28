@@ -930,6 +930,8 @@
  "sun_tests": {
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
+  "lemon_tree_trunk": "shaded by house",
+  "lemon_she_reaches_for": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
   "lawn_mid": "shaded by house"
  },
@@ -1966,8 +1968,8 @@
   ]
  },
  "lemon_tree_px": [
-  447.1,
-  -1002.5
+  281,
+  -1372.2
  ],
  "poi_px": [
   1248,
@@ -5421,7 +5423,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "T1": 0.1887
+  "T1": 0.185
  },
  "colour_separation": [],
  "figure_report": {

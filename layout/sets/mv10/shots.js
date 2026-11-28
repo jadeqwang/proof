@@ -13,7 +13,7 @@
 // (the lemonade prep), V3_rcv_obl_k0 / _k3 (start / end keys of the new crossing), V3_rcv_obl_legs (diagnostic arrows).
 // RETIRED 2026-11-25 (late): V3d ("nailed it" under the lemons) -> V3_nailed at the Expedit; V3_rev_eye_a/b (Jade chose
 // the temple). V3_rcv is kept as REFERENCE ONLY (Jade chose the oblique V3_rcv_obl). New: BRpan_c (the pan's end, the seam).
-import { MARKS, MARK_FLOOR, POI, AUDIENCE_AT, SHELF, SHELF_W, TREE, GRADE, PATIO, STAIRS, HOUSE, SECTION_KEY, SECTION_LIGHT, SUN, RC_MARKS, ROOM_CROSSING, PUNCHBOWL, punchLadle, COUNTER_H, PREP, PREP_JUICER, DINING } from './layout.js';
+import { TREE_SHIFT, MARKS, MARK_FLOOR, POI, AUDIENCE_AT, SHELF, SHELF_W, TREE, GRADE, PATIO, STAIRS, HOUSE, SECTION_KEY, SECTION_LIGHT, SUN, RC_MARKS, ROOM_CROSSING, PUNCHBOWL, punchLadle, COUNTER_H, PREP, PREP_JUICER, DINING } from './layout.js';
 
 import { graspArms } from '../../engine/grasp.js';
 import { partyLadlePose } from './ladleGrip.js';
@@ -96,7 +96,8 @@ const jadeC2 = (o = {}) => ({ at: SHELF_MARK, yaw: yawTo(SHELF_MARK, HE_C2), leg
 const heC2 = (o = {}) => ({ at: HE_C2, yaw: yawTo(HE_C2, SHELF_MARK), legs: 'stand', spine: { bend: 4 }, head: { look: 'jade27:handR', pitchK: 0.9 }, R: 'side',
   L: { to: 'self:chest', off: rel(yawTo(HE_C2, SHELF_MARK), 0.13, -0.13, 0.27), hand: 'relax', palm: 'down', fingers: 'fwd', elbow: 'down' }, ...o });
 // under the lemon tree: he came out with her and stands on the house side of her
-const TREE_MARK = MARKS.tree, HE_TREE = [9.25, 17.3];
+const TS = ([x, z]) => [+(x + TREE_SHIFT[0]).toFixed(3), +(z + TREE_SHIFT[1]).toFixed(3)], TS3 = ([x, y, z]) => [+(x + TREE_SHIFT[0]).toFixed(3), y, +(z + TREE_SHIFT[1]).toFixed(3)];   // 2026-11-27 evening: the tree moved by TREE_SHIFT; its staging moves with it
+const TREE_MARK = MARKS.tree, HE_TREE = TS([9.25, 17.3]);
 const jadeTree = (o = {}) => ({ at: TREE_MARK, floor: GRADE, yaw: yawTo(TREE_MARK, HE_TREE), legs: 'stand', head: { look: 'firstLove27:eyes' }, L: 'side', R: cupArm('R', yawTo(TREE_MARK, HE_TREE)), ...o });
 const heTree = (o = {}) => ({ at: HE_TREE, floor: GRADE, yaw: yawTo(HE_TREE, TREE_MARK), legs: 'stand', head: { look: 'jade27:eyes' }, L: 'side', R: { to: 'self:chest', off: rel(yawTo(HE_TREE, TREE_MARK), -0.2, 0.0, 0.26), hand: 'palmUp', palm: 'up' }, ...o });
 
@@ -121,8 +122,19 @@ const bowlHands = (bowl, yaw) => { const a = yaw * Math.PI / 180, l = [Math.cos(
 // of his pelvis along his yaw (33), 1.10 above grade (was 0.347 m / 1.00)
 const FB_D = 0.38;   // r4: the bowl's distance in front of his pelvis (tuned against holdcheck with the real bowl)
 // r4: he stands 8 cm further back from the tree than before (FRIEND_AT; was [10.35, 18.55]): the 36 cm bowl reached the trunk
-const FRIEND_AT = [+(10.35 - 0.08 * Math.sin(33 * Math.PI / 180)).toFixed(3), +(18.55 - 0.08 * Math.cos(33 * Math.PI / 180)).toFixed(3)];
+const FRIEND_AT = TS([+(10.35 - 0.08 * Math.sin(33 * Math.PI / 180)).toFixed(3), +(18.55 - 0.08 * Math.cos(33 * Math.PI / 180)).toFixed(3)]);
 const FRIEND_BOWL = [FRIEND_AT[0] + FB_D * Math.sin(33 * Math.PI / 180), Y(1.10, GRADE), FRIEND_AT[1] + FB_D * Math.cos(33 * Math.PI / 180)];
+// V3a (2026-11-27): her yaw (3/4 toward the deck corner lens, left chest to it), the friend at her left a step toward the
+// deck facing THE lemon, and his bowl FB_D in front of him (the same hold as V3b, re-aimed)
+// 2026-11-27 evening: the friend was side-on to the lens (painters drew his profile). Now he stands at her right in frame,
+// a little nearer the lens, turned AWAY from it: his facing is the lens->lemon direction swung 50 deg to frame right
+// (his back three-quarter to us, the bowl in front of him still showing past his right side), looking up into the tree.
+const V3A_CAM = [1.05, 12.85], V3A_D = (() => { const dx = TREE.pick[0] - V3A_CAM[0], dz = TREE.pick[2] - V3A_CAM[1], n = Math.hypot(dx, dz); return [dx / n, dz / n]; })();
+const V3A_R = [-V3A_D[1], V3A_D[0]], V3A_F = [Math.cos(50 * Math.PI / 180) * V3A_D[0] + Math.sin(50 * Math.PI / 180) * V3A_R[0], Math.cos(50 * Math.PI / 180) * V3A_D[1] + Math.sin(50 * Math.PI / 180) * V3A_R[1]];
+const V3A_YAW = -150, V3A_FRIEND = [+(TREE.pick[0] + 0.75 * V3A_R[0] - 0.3 * V3A_D[0]).toFixed(3), +(TREE.pick[2] + 0.75 * V3A_R[1] - 0.3 * V3A_D[1]).toFixed(3)];
+const V3A_FYAW = yawTo(V3A_FRIEND, [V3A_FRIEND[0] + V3A_F[0], V3A_FRIEND[1] + V3A_F[1]]);
+const V3A_FLOOK = [V3A_FRIEND[0] + 1.4 * V3A_F[0], Y(2.6, GRADE), V3A_FRIEND[1] + 1.4 * V3A_F[1]];
+const V3A_BOWL = [V3A_FRIEND[0] + FB_D * Math.sin(V3A_FYAW * Math.PI / 180), Y(1.10, GRADE), V3A_FRIEND[1] + FB_D * Math.cos(V3A_FYAW * Math.PI / 180)];
 const bridgeFigs = (j = {}, h = {}, c = {}) => ({ ...crowd({ noPoi: true, ...c }), jade27: jadeShelf(j), firstLove27: heShelf(h) });
 const partyFigs = (j, h, c = {}) => ({ ...crowd(c), jade27: j, firstLove27: h });
 // the room crossing (2026-11-25 round 2; layout.js ROOM_CROSSING): early in the party, guests still arriving. phase 0 =
@@ -259,11 +271,15 @@ export const SHOTS = [
   // in the day, the lemons should be pomelo shaped". Same camera (the deck's far corner, down the yard); the morning yard,
   // empty: she reaches up into the tree, the friend holds the bowl (V3b's staging, seen wide). No guests, no poi, no first love.
   { id: 'V3a', lens: 24, space: 'yard', time: '2:54.7-2:57.0', section: 'Before the party', pos2: 'outside', amp: 115,
-    pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.46], far: 60, bowl: FRIEND_BOWL,
+    pos: [1.05, Y(1.6, DECK), 12.85], aim: ['jade27:eyes', 0.6, 0.21], far: 60, bowl: V3A_BOWL,
     header: 'Verse 3 2:54.7: "Housewarming, lemonade from the yard": before the party (10:30), she and the childhood friend picking the pomelo-sized lemons, wide from the deck',
-    intent: 'Wide from the deck’s far corner, down the empty morning yard: the stairs and the mint barrel, the strawberry bed, the lawn, the clothesline, and the giant lemon tree by the NNE fence with pomelo-sized lemons. She reaches up into the tree for one; the childhood friend (face never drawn; 1.85 m, dark blond forearm hair) beside her holds a white bowl in both hands, two pomelo-sized lemons in it. No guests yet, no poi, no first love.',
-    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'relax', palm: 'up', fingers: 'fwd' }, L: 'side' }),
-      friend: onGrade(FRIEND_AT, 33, { spine: { bend: 12 }, head: { look: [10.9, Y(2.35, GRADE), 19.3] }, ...bowlHands(FRIEND_BOWL, 33) }) } },
+    intent: 'Wide from the deck’s far corner, tilted down the empty morning yard: in the foreground the wooden strawberry planter against the deck (bottom centre), the half barrel of mint on the lawn beyond it, the deck railing at the left; the lawn, the clothesline, and the GIANT lemon tree in the far corner: its trunk too thick to hug, its canopy over the whole corner and cut by the top of the frame, pomelo-sized lemons hanging under it. Under the canopy she faces three-quarter toward us (the NASA patch on her left chest toward the lens), reaching up with her right hand to one lemon; she wears black canvas sneakers. At her left, a step nearer the deck, the childhood friend (face never drawn; 1.85 m, dark blond forearm hair), back three-quarter to us, holds a white bowl in both hands, two pomelo-sized lemons stacked in it. No guests yet, no poi, no first love.',
+    // 2026-11-27 (Jade decision B, V3a repaint): she faces 3/4 toward the deck (yaw V3A_YAW, her LEFT chest and the
+    // meatball toward the lens), reaching up with her right hand under THE lemon (TREE.pick) in front of her and to her
+    // right, looking at it; the friend at her left, a step toward the deck, his back three-quarter to us, holds the white
+    // bowl (two lemons stacked) toward her. The giant tree's canopy is over them both.
+    figs: { jade27: jadeTree({ yaw: V3A_YAW, head: { look: [TREE.pick[0], TREE.pick[1], TREE.pick[2]] }, R: { to: [TREE.pick[0], TREE.pick[1] - 0.26, TREE.pick[2] + 0.04], hand: 'relax', palm: 'fwd', fingers: 'up' }, L: 'side' }),
+      friend: onGrade(V3A_FRIEND, V3A_FYAW, { spine: { bend: 8 }, head: { look: V3A_FLOOK }, ...bowlHands(V3A_BOWL, V3A_FYAW) }) } },
   // V3b RESTAGED 2026-11-25 (late): Jade: the lemonade was made BEFORE the party: she and the childhood friend picked the
   // lemons; first love, Z and the guests had not arrived. So this is the picking, in the early-afternoon sun (section
   // 'Before the party', 10:30 since Jade's r2 review (was 14:00), OUR clock): her hand up to a lemon, the friend beside her holding the bowl. No first love
@@ -273,11 +289,11 @@ export const SHOTS = [
   // V3b = the picking on "from the" (177.0-178.04), V3b_prep = the prep on "yard" (178.04-179.19), chronological.
   { id: 'V3b', lens: 24, space: 'yard', time: '2:57.0-2:58.0', section: 'Before the party',
     timing: { timeline: TL, line: 'Housewarming, lemonade from the yard', start_s: 177.0, end_s: 178.043, words: '"(lemon)ade from the"', was: '177.0-179.2 (V3b alone)' }, pos2: 'inside', amp: 115, hideParts: { jade27: ['head'] },
-    pos: [9.85, Y(1.52, GRADE), 17.85], target: [10.3, Y(1.98, GRADE), 18.7], bowl: FRIEND_BOWL,
+    pos: TS3([9.85, Y(1.52, GRADE), 17.85]), target: TS3([10.3, Y(1.98, GRADE), 18.7]), bowl: FRIEND_BOWL,
     header: 'Verse 3 2:57.0 (memory, before the party, 10:30): picking the lemons with the childhood friend; her hand comes up to one (then V3b_prep)',
     intent: 'Inside: her view up into the tree, early afternoon, before anyone else has come. Pomelo-sized lemons in the sun; her hand rises into frame toward the nearest; just ahead of her the childhood friend (back to us, face never drawn) looks up into the tree, holding the bowl of the first lemons (below frame here; sidecar shows it). They will make the lemonade from these.',
-    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: [10.4, Y(2.4, GRADE), 18.6] }, R: { to: [10.12, Y(1.85, GRADE), 18.35], hand: 'relax', palm: 'up', fingers: 'fwd' }, L: 'side' }),
-      friend: onGrade(FRIEND_AT, 33, { spine: { bend: 12 }, head: { look: [10.9, Y(2.35, GRADE), 19.3] }, ...bowlHands(FRIEND_BOWL, 33) }) } },   // r4: bend 12 as V3a (the same pose; unbent, the bowl slid in the hold check)
+    figs: { jade27: jadeTree({ yaw: yawTo(TREE_MARK, TREE.at), head: { look: TS3([10.4, Y(2.4, GRADE), 18.6]) }, R: { to: TS3([10.12, Y(1.85, GRADE), 18.35]), hand: 'relax', palm: 'up', fingers: 'fwd' }, L: 'side' }),
+      friend: onGrade(FRIEND_AT, 33, { spine: { bend: 12 }, head: { look: TS3([10.9, Y(2.35, GRADE), 19.3]) }, ...bowlHands(FRIEND_BOWL, 33) }) } },   // r4: bend 12 as V3a (the same pose; unbent, the bowl slid in the hold check)
   // the lemonade prep (2026-11-25 round 2), MOVED (Jade r3 decisions 2026-11-26: "the counter by the sink"; "the making
   // from straight above at 2:58.0"; "the hand should be holding the ladle in a realistic way in the three.js model or image
   // models will be confused"). Straight down, ORTHOGRAPHIC, like the plates (artichoke, romanesco), on the counter by the
@@ -447,7 +463,7 @@ export const SHOTS = [
     ladle: { who: 'friend', medial: [0, 0, -1], elbow: [3.96, 1.12, 8.86] }, header: 'reference: her hands on the real juicer (V3b_prep)', intent: 'Set reference for the juicer holds.', figs: prepFigs() },
   // r4 props phase 2: the friend's bowl of picked lemons (V3a / V3b staging), from his left side, level (set reference)
   { id: 'T0_friendbowl', lens: 40, orbit: { at: 'friend:wristL', az: 100, el: 10, dist: 0.9 }, aim: ['friend:wristL', 0.5, 0.5], near: 0.03, far: 20, space: 'yard', section: 'Before the party', time: 'reference', position: 'reference', bowl: FRIEND_BOWL,
-    header: 'reference: the friend holds the real bowl with two settled lemons (V3a / V3b)', intent: 'Set reference for the bowl hold.', figs: { friend: onGrade(FRIEND_AT, 33, { spine: { bend: 12 }, head: { look: [10.9, Y(2.35, GRADE), 19.3] }, ...bowlHands(FRIEND_BOWL, 33) }) } },
+    header: 'reference: the friend holds the real bowl with two settled lemons (V3a / V3b)', intent: 'Set reference for the bowl hold.', figs: { friend: onGrade(FRIEND_AT, 33, { spine: { bend: 12 }, head: { look: TS3([10.9, Y(2.35, GRADE), 19.3]) }, ...bowlHands(FRIEND_BOWL, 33) }) } },
   // r4 props phase 2: the party ladle (real model) in T1's fist, close (set reference; the party dressing, verse-3 light)
   { id: 'T0_partyladle', lens: 50, orbit: { at: 'T1:wristR', az: 200, el: 25, dist: 0.7 }, aim: ['T1:wristR', 0.5, 0.5], near: 0.03, far: 8, space: 'room', section: 'Verse 3', time: 'reference', position: 'reference',
     hide: ['upper cabinets (dark walnut)', 'upper cabinet doors (dark walnut)', 'upper cabinet doors (dark walnut) (pull)'], light: { amb: 0.8, litAmb: 1.4 },
@@ -462,6 +478,8 @@ for (const s of SHOTS) if (s.same) { const o = SHOTS.find((x) => x.id === s.same
 // and the flare. Also before the party (V3a, V3b, V3b_prep): ASSUMED same outfit, socks outdoors (OPEN: Jade has not answered).
 export const JADE_HOUSEWARMING = { outfit: 'housewarming', top: 0x1b1b1e, legs: 0x151517, sock: 0x8c8c90, sleeves: 'long' };
 for (const s of SHOTS) if (s.figs?.jade27) s.figs.jade27 = { ...s.figs.jade27, costume: JADE_HOUSEWARMING };
+// 2026-11-27 (Jade): SNEAKERS outdoors before the party (V3a, V3b): black canvas (the foot colour) + build.js sneakers()
+for (const s of SHOTS) if (['V3a', 'V3b', 'T0_friendbowl'].includes(s.id) && s.figs?.jade27) s.figs.jade27.costume = { ...JADE_HOUSEWARMING, sock: 0x1c1c1f, shoes: 'sneakers' };
 
 // beam mask twins: every camera has a `beam_<id>` twin (every light that is on in the shot, together) and one per real
 // light with a shaft or a footprint: beam_<id>__sun (shafts through the openings, while the sun is up) and
