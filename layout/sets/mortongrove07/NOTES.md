@@ -1,5 +1,21 @@
 # mortongrove07: notes and assumptions
 
+## 2026-11-27: round-8 answers (Jade)
+- **Mirror bigger, by shrinking only the lower margin** (layout.js MIRROR.gapLid). The top edge stays at 4.065 m, so
+  the top margin under the level 5.10 m ceiling is still **1.035 m**. The glass now runs down to 1.293 m, so the
+  **gap above the closed lid (0.993 m) is 0.30 m** (was 1.035). Widened in proportion to the r6 glass's 2.8 : 1.95:
+  **3.98 m wide x 2.77 m tall** (was 2.92 x 2.04), centred at z -3.50, spanning z -5.49 to -1.51. It clears the
+  stair opening (z -7.2 to -6.35) and the lamp-table corner. Its south end runs over the loveseat, whose back is 0.86 m,
+  well below the glass. In MG_wide the whole mirror is still in frame; the spot and bounce lights follow its new centre.
+- **Armchair** in the couch's rose chintz (the same canonical mg_upholstery.png): overstuffed like the couch, a single
+  seat cushion and a back cushion, each with one repeat centred (two large roses in the middle), rolled arms.
+  Same place and size (0.78 x 0.80 m, facing east).
+- **Small table at the couch's west end:** now a dusty-pink glass-panel table like the others (furnish.js
+  glassTable).
+- Yamaha logo: the emblem is kept (Jade's answer is still open).
+- Re-rendered (three passes); clipcheck, holdcheck and check_bodies unchanged (couch 75 / 34 mm, rug 6.2 mm, folded
+  hoodie 7-10 mm, MG2 cloth; bodies all PASS). Gallery, prompts (armchair, small table, mirror size) and sheets updated.
+
 ## 2026-11-27: round 7 follow-up (Jade on r7: items 2, 3, 5, 6, 8 good; the couch "much better")
 
 1. **A YAMAHA grand, 7'1" = 2.16 m** (the one she trained on for competition until 17). A helper gathered look-only

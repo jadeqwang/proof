@@ -152,7 +152,10 @@ export const MIRROR = { x: ROOM.x1, label: 'giant mirror (frameless, bevelled)',
 // Jade's 7'1" "to be exact" = 2.16 m long (keyboard 1.227 m, body lengthened behind the action), 1.497 m wide, closed lid top
 // 0.993 m; spine 0.740 m from the model's centre line. (A first r7 build used 2.27 m, a Yamaha C7, in error; corrected.)
 export const PIANO = { spineX: 4.55, spineOff: 0.740, kbZ: -5.20, L: 2.16, W: 1.497, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, lidTop: 0.993, logo: { w: 0.20, up: 0 }, label: '7-ft grand piano (7\'1", lid closed)' };
-{ const M = MIRROR; M.marginTop = +(VAULT.high - M.top).toFixed(3); M.y1 = M.top; M.y0 = +(PIANO.lidTop + M.marginTop).toFixed(3);
+// r8 (Jade): bigger, by shrinking the LOWER margin only: the top edge stays at 4.065 m (1.035 m under the ceiling), the
+// glass runs down to 0.30 m above the closed lid, widened in proportion (2.8 : 1.95). Was 1.035 m above the lid (r7).
+MIRROR.gapLid = 0.30;
+{ const M = MIRROR; M.marginTop = +(VAULT.high - M.top).toFixed(3); M.y1 = M.top; M.y0 = +(PIANO.lidTop + M.gapLid).toFixed(3);
   M.marginBottom = +(M.y0 - PIANO.lidTop).toFixed(3); const H = M.y1 - M.y0, W = H * M.aspect; M.z0 = +(M.zc - W / 2).toFixed(3); M.z1 = +(M.zc + W / 2).toFixed(3);
   M.size = [+W.toFixed(3), +H.toFixed(3)]; }
 export const BENCH = { x0: 3.40, x1: 4.15, z0: -5.78, z1: -5.42, h: 0.50, label: 'piano bench' };

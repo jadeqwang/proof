@@ -300,12 +300,14 @@ function furniture() {
     chessSet(g, [p2.x, p2.z], COFFEE_TABLE.h, 'glass chess set (starting position)'); }
   // r7 (Jade: "the lamp on the corner table should be larger"): 0.70 m tall, shade 0.42 m (furnish.js tableLamp)
   { const [cx, cz] = glassTable(g, END_TABLE_E, END_TABLE_E.label + ' (dusty pink, glass panels)'); tableLamp(g, [cx, cz], glassTop(END_TABLE_E), 'table lamp (off)'); }
-  table(g, END_TABLE_W, END_TABLE_W.label);
+  glassTable(g, END_TABLE_W, END_TABLE_W.label + ' (dusty pink, glass panels)');   // r8 (Jade): matches the pink glass-panel tables
   // r7 (Jade: "a loveseat is missing"): the drawing's loveseat east of the rug, facing west, now in the couch's overstuffed
   // floral (same texture, one repeat per cushion); it was a plain grey-brown box before
   { const L = LOVESEAT, ls = overstuffed(L.z1 - L.z0, L.x1 - L.x0, 2, { seat: COUCH.seat, back: COUCH.back, arm: COUCH.arm, armW: COUCH.armW, baseH: COUCH.baseH, backD: COUCH.backD }, L.label);
     ls.rotation.y = -Math.PI / 2; ls.position.set((L.x0 + L.x1) / 2, 0, (L.z0 + L.z1) / 2); g.add(ls); }
-  { const A = ARMCHAIR; g.add(tag(upholstered(A.at, A.yaw, A.w, A.d, { seat: A.seat, back: A.back, arm: A.arm }), 'armchair')); }
+  // r8 (Jade): the armchair in the couch's rose chintz (the same canonical swatch, one repeat centred on its seat and back cushion), overstuffed like the couch
+  { const A = ARMCHAIR, ac = overstuffed(A.w, A.d, 1, { seat: A.seat, back: A.back, arm: A.arm, armW: 0.17, baseH: 0.21, backD: 0.24 }, 'floral armchair');
+    ac.rotation.y = rad(A.yaw); ac.position.set(A.at[0], 0, A.at[1]); g.add(ac); void upholstered; }
   plants(g);
   // the framed picture over the couch (1.4 x 1.0 m; r4: a Chinese ink-and-wash horse at full gallop, art.js)
   g.add(tag(box(PRINT.w, PRINT.h, 0.035, { grey: 0.3, col: 0x4a3e30 }, [PRINT.x, PRINT.y, PRINT.z]), 'framed picture (frame)'));
