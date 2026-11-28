@@ -297,3 +297,17 @@
 {"ts": "2026-11-28T05:09:25Z", "model": "codex/image_gen", "tag": "kf4fd", "ok": true, "est_usd": 0.0, "where": "codex-plan"}
 {"ts": "2026-11-28T05:11:10Z", "model": "codex/image_gen", "tag": "kf4fd", "ok": true, "est_usd": 0.0, "where": "codex-plan"}
 {"ts": "2026-11-28T05:12:46Z", "model": "codex/image_gen", "tag": "kf4fd", "ok": true, "est_usd": 0.0, "where": "codex-plan"}
+{"ts": "2026-11-28T05:22:21Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": false, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:22:21Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": false, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:23:18Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": false, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:23:18Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": false, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:23:18Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": false, "est_usd": 0.3024, "where": "box"}
+{"ts": "2026-11-28T05:23:18Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": false, "est_usd": 0.2768, "where": "box"}
+{"ts": "2026-11-28T05:23:40Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:23:46Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:23:53Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.2768, "where": "box"}
+{"ts": "2026-11-28T05:24:08Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.3024, "where": "box"}
+{"ts": "2026-11-28T05:25:40Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:25:50Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:27:20Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T05:27:33Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.3024, "where": "box"}
