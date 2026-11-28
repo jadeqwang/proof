@@ -70,18 +70,19 @@ const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const ART = (p) => '../layout/assets/art/' + p;
 const D = [
- { sec:"Shanghai 1986", id:"sh_v1b_pick", t:"0:31.6-0:34.5", title:"V1b: pick the camera (both painted)",
-   ctx:"Two takes at each angle. 34° shows the watch face better but reframes the shot. Judge by which keeps the hands accurate.",
-   imgs:[["keyframes/r4/shanghai86/V1b_v1.jpg","22° v1"],["keyframes/r4/shanghai86/V1b_v2.jpg","22° v2"],["keyframes/r4/shanghai86/V1b_el34_v1.jpg","34° v1"],["keyframes/r4/shanghai86/V1b_el34_v2.jpg","34° v2"]],
-   opts:["22° v1","22° v2","34° v1","34° v2","None: repaint (below)"], rec:0 },
- { sec:"Office 1991", id:"pc1_v6", t:"1:17.2-1:21.5", title:"PC1: the new pick on the locked background",
-   ctx:"Painted with PC1_v1 as the expression reference, on the locked classroom wall.",
-   imgs:[["keyframes/r4/office91/PC1_v6.jpg","PC1 v6 (new pick)"],["keyframes/r4/office91/PC1_v1.jpg","PC1 v1 (expression reference)"]],
-   opts:["Good","Expression is off (below)","Something else (below)"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_yamaha_logo", t:"2:39.6-2:42.0", title:"Your Yamaha's fallboard logo",
-   ctx:"Built as the gold tuning-fork emblem in a ring plus YAMAHA. Current C6X/C7X fallboards carry the wordmark only; many older C-series add the emblem. The legs are now Yamaha's square tapered legs on brass casters, and the music desk is Yamaha's solid panel.",
-   imgs:[[L("_sheets/mg_r7_references.jpg"),"piano references"]],
-   opts:["Emblem + YAMAHA","YAMAHA wordmark only","Something else (below)"], rec:0 },
+ { sec:"Wall 1988", id:"wl_crack_len", t:"1:51.0-1:54.5", title:"The light inside the wall: crack length",
+   ctx:"The shaft now comes from a bare 60 W bulb in the back room, down through the crack onto the brick (it no longer rises). To get light onto the brick in WL_in_empty the crack was extended, which also lights Mama's waist and hip in WL_in, so 'out of the beam is safety' holds for everyone but her.",
+   imgs:[["layout/wall88/_light_source_before_after.png","before/after: WL_out, WL_eye, WL_in, WL_in_empty, WL_top (lit and light)"]],
+   opts:["Keep the long crack (Mama's waist lit)","Shorter crack: Mama stays dark, but WL_in_empty loses the light on the brick","New camera for WL_in / WL_in_empty so both work","Something else (below)"], rec:0 },
+ { sec:"Wall 1988", id:"wl_empty_patch", t:"1:51.0-1:54.5", title:"WL_in_empty: the patch of light is small, bottom left",
+   ctx:"A bigger patch needs a new camera for WL_in and WL_in_empty, or moving the bulb, which darkens her eye in WL_out and WL_eye.",
+   imgs:[["layout/wall88/WL_in_empty_lit.png","WL_in_empty guide"]],
+   opts:["Fine small","New camera (keeps her eye lit)","Something else (below)"], rec:0 },
+ { sec:"Office 1991", id:"fe_thumbs_new", t:"0:18.2-0:19.0", title:"FE_thumbs restaged: two-shot from the corridor side",
+   ctx:"Mom stands upright with her arms folded, face in profile; you (10) lean against the wall, head tipped, eyes sliding up to hers. The camera changed so her folded arms show (the old one looked over her back). The smirk and narrowed eye come from the prompt and face crop (the 3D face can't act).",
+   imgs:[["layout/office91/_FE_thumbs_before_after.png","before/after (lit and form)"]],
+   opts:["Good, paint it","Change the staging (below)"], rec:0 },
+
 ];
 
 // What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
