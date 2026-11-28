@@ -175,7 +175,18 @@ export function farRooms({ PLASTER, FLOOR, CEIL, wall: wallFn }) {
       const rc = new THREE.Raycaster(new THREE.Vector3(0, 0.74, 0.6), new THREE.Vector3(0, 0, -1), 0, 1); const hit = rc.intersectObject(pn, true)[0];
       const zp = hit ? hit.point.z + 0.0015 : 0.06; pg.add(box(0.09, 0.022, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, 0.74, zp]));   // the gold nameplate (blank)
       pg.rotation.y = Math.PI / 2; pg.position.set(rx0 + 0.31, 0, pz); P(pg); } else { P(box(0.6, 1.2, 1.5, { grey: 0.2, col: 0x2a1c14, mat: 'sapele' }, [rx0 + 0.3, 0.6, pz])); P(box(0.25, 0.04, 1.4, { grey: 0.9, col: 0xeeeeea }, [rx0 + 0.72, 0.74, pz])); }
-    P(diningChair(rx0 + 1.05, pz, -90, 'music room: piano chair'));
+    // Jade: a real piano BENCH, centred on the keyboard (black lacquer to match the piano, 0.52 m high, 0.85 x 0.38 m, a
+    // lift-up lid with a brass piano hinge and a thin seam, an apron, four tapered square legs, a stretcher); the slat-back
+    // chair stands BESIDE it (for a teacher or a listener), turned toward the keys
+    { const BL = { grey: 0.12, col: 0x1a1412, mat: 'sapele' }, BLD = { grey: 0.1, col: 0x120e0c, mat: 'sapele' }, bx = rx0 + 0.31 + 0.2775 + 0.3, bh = 0.52, bw = 0.85, bd = 0.38, bg = new THREE.Group();
+      bg.add(rbox(bd, 0.035, bw, 0.008, BL, [bx, bh - 0.0175, pz]));                                    // the lift-up lid
+      bg.add(box(bd - 0.02, 0.003, bw - 0.02, { grey: 0.08, col: 0x080606 }, [bx, bh - 0.0365, pz]));     // its seam
+      bg.add(box(bd - 0.03, 0.08, bw - 0.03, BLD, [bx, bh - 0.078, pz]));                                // the box / apron under it
+      bg.add(box(0.006, 0.012, bw - 0.12, { grey: 0.62, col: 0xb08a4a }, [bx - bd / 2 + 0.012, bh - 0.04, pz]));   // brass piano hinge at the back
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) { const L = cyl(0.02, 0.013, bh - 0.115, BL, [bx + sx * (bd / 2 - 0.04), (bh - 0.115) / 2, pz + sz * (bw / 2 - 0.05)], null, 4); L.rotation.y = Math.PI / 4; bg.add(L); }
+      bg.add(box(0.02, 0.02, bw - 0.12, BLD, [bx, 0.12, pz]));                                            // the stretcher
+      P(tag(bg, 'music room: piano bench (black lacquer)'));
+      P(diningChair(bx + 0.15, pz + 0.78, 205, 'music room: chair beside the piano bench')); }
     const rb = new THREE.Group(); rb.add(bookcaseRuns([[-(x1 - rx0) / 2 + 0.75, (x1 - rx0) / 2 - 0.05]], 0, rng(311), 'music room: ')); rb.position.set((rx0 + x1) / 2, 0, zr); P(rb);   // back wall
     const re = new THREE.Group(); re.add(bookcaseRuns([[-depth / 2 + 0.6, depth / 2 - 0.9]], 0, rng(312), 'music room: ')); re.rotation.y = -Math.PI / 2; re.position.set(x1, 0, (zb + zr) / 2); P(re); }   // east wall
   return tag(g, 'across the hall: two rooms behind French doors');

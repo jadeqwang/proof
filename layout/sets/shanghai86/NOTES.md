@@ -1174,6 +1174,9 @@ Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
   its middle; a brass piano lamp on top (a domed round base, a curved stem, a horizontal tubular dark-bronze shade, as in
   the photo; my proportions); the blank gold nameplate (final canon: no brand). The model's fallboard stays open (the
   photo's is closed). View REF_piano.
+- **Piano bench (Jade):** a real upright-piano bench centred on the keyboard: black lacquer to match the piano, 0.52 m high,
+  0.85 x 0.38 m, a lift-up lid with a seam and a brass piano hinge, an apron, four tapered square legs, a stretcher. The
+  slat-back chair now stands BESIDE the bench (as for a teacher or a listener), turned toward the keys.
 - **Wall clock (Jade: the dining-ref clock is a close match):** restyled at its existing, canon position (Jade: on the dining
   room wall; layout.js CLOCK, east wall, z -5.0, y 2.25): 34 cm round, a deep dark-lacquered wood case with a thick rounded
   rim and a small block beneath, an aged cream dial, large black serif Arabic numerals, a ring of minute dots, black spade

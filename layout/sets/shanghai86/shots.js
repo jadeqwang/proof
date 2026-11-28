@@ -216,7 +216,7 @@ export const SHOTS = [
   { id: 'REF_dining_low', lens: 35, pos: [5.6, 0.75, -1.6], aim: [[4.6, 0.5, -2.6], 0.5, 0.5], state: 'A', figs: {},
     header: 'REFERENCE (2026-11-27 canon): a dining chair and the table corner, low from the south-east',
     intent: 'Close: the chair (curved top rail, three slats, tapered legs, stretchers) and the table (cloth, glass, turned leg). Not a shot.' },
-  { id: 'REF_piano', lens: 28, pos: [4.2, 1.45, -9.6], aim: [[2.75, 1.0, -10.6], 0.5, 0.5], state: 'A', figs: {},
+  { id: 'REF_piano', lens: 24, pos: [4.55, 1.55, -9.05], aim: [[3.0, 0.75, -10.55], 0.5, 0.5], state: 'A', figs: {},
     header: 'REFERENCE (round 7 canon): the music-room piano: shiny black, lace runner with a red tassel, the brass piano lamp, the blank gold nameplate',
     intent: 'Inside the music room, close on the piano (camera inside the room, not a shot).' },
   { id: 'REF_clock', lens: 50, pos: [5.6, 1.9, -4.6], aim: [[7.5, 2.25, -5.0], 0.5, 0.5], state: 'A', figs: {},
