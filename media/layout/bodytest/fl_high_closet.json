@@ -1,0 +1,211 @@
+{
+ "shot": "fl_high_closet",
+ "set": "mtest",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0.1908,
+   2.1104,
+   -0.665
+  ],
+  "target": [
+   0,
+   1.5941,
+   0.0471
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -0.9659,
+   0,
+   -0.2588,
+   0,
+   -0.1485,
+   0.8191,
+   0.5541,
+   0,
+   0.212,
+   0.5736,
+   -0.7912,
+   0,
+   0.1908,
+   2.1104,
+   -0.665,
+   1
+  ],
+  "viewMatrix": [
+   -0.9659,
+   -0.1485,
+   0.212,
+   0,
+   0,
+   0.8191,
+   0.5736,
+   0,
+   -0.2588,
+   0.5541,
+   -0.7912,
+   0,
+   0.0122,
+   -1.3318,
+   -1.7772,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "firstLove19": {
+   "px": [
+    960,
+    539.9
+   ],
+   "eyes": [
+    891,
+    449.2
+   ],
+   "mouth": [
+    908,
+    621
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 160,
+   "blocked_by": "firstLove19 first love (19)"
+  }
+ },
+ "hands": {
+  "firstLove19.L": {
+   "px": [
+    529.2,
+    1944.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "firstLove19.R": {
+   "px": [
+    1378.8,
+    1723.5
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [],
+ "warnings": [],
+ "gaze": {
+  "firstLove19": {
+   "face": "none",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": -20,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    891,
+    449.2
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "firstLove19": {
+   "top": "#5a6a58",
+   "legs": "#1c1c1e",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "firstLove19": 0.3022
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "firstLove19": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "firstlove19",
+    "scale": 1,
+    "face": "none",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.02,
+     "forearm_stretch": 1,
+     "hand_scale": 0.93
+    },
+    "R": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.02,
+     "forearm_stretch": 1,
+     "hand_scale": 0.93
+    },
+    "sole_shift_mm_L": 13.8,
+    "sole_shift_mm_R": 13.8,
+    "sole_lowest_y_m": 0.0044
+   }
+  }
+ }
+}

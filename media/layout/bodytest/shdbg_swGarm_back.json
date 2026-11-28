@@ -1,0 +1,564 @@
+{
+ "shot": "shdbg_swGarm_back",
+ "set": "mtest",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.8,
+   1.2874,
+   1.2877
+  ],
+  "target": [
+   -0.8,
+   0.9071,
+   0.472
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0.9063,
+   -0.4226,
+   0,
+   0,
+   0.4226,
+   0.9063,
+   0,
+   -0.8,
+   1.2874,
+   1.2877,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0.9063,
+   0.4226,
+   0,
+   0,
+   -0.4226,
+   0.9063,
+   0,
+   0.8,
+   -0.6227,
+   -1.7111,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "sw": {
+   "px": [
+    4328.9,
+    -180.6
+   ],
+   "eyes": [
+    3992.8,
+    -219.9
+   ],
+   "mouth": [
+    3930.1,
+    -27.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 129
+  },
+  "swNude": {
+   "px": [
+    7697.8,
+    -180.6
+   ],
+   "eyes": [
+    7025.5,
+    -219.9
+   ],
+   "mouth": [
+    6900.2,
+    -27.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 112
+  },
+  "swGarm": {
+   "px": [
+    960,
+    -180.6
+   ],
+   "eyes": [
+    960,
+    -219.9
+   ],
+   "mouth": [
+    960,
+    -27.3
+   ],
+   "in_frame": false,
+   "visible": false,
+   "facing_camera_deg": 178
+  }
+ },
+ "hands": {
+  "sw.L": {
+   "px": [
+    2748.7,
+    610.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "sw.R": {
+   "px": [
+    3260.9,
+    571.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "swNude.L": {
+   "px": [
+    4984.6,
+    610.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "swNude.R": {
+   "px": [
+    5411.3,
+    571.8
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "swGarm.L": {
+   "px": [
+    512.8,
+    610.1
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "swGarm.R": {
+   "px": [
+    1110.5,
+    571.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [],
+ "warnings": [
+  "wrist: sw R beyond the wrist range (pronation +7 deg; flex 18.5, radial 8.4, twist -87.1, after an elbow swivel of 0 deg)",
+  "wrist: swNude R beyond the wrist range (pronation +7 deg; flex 18.5, radial 8.4, twist -87.1, after an elbow swivel of 0 deg)",
+  "wrist: swGarm R beyond the wrist range (pronation +7 deg; flex 18.5, radial 8.4, twist -87.1, after an elbow swivel of 0 deg)"
+ ],
+ "gaze": {
+  "sw": {
+   "face": "blank",
+   "look_target": {
+    "name": null,
+    "world": [
+     0.2,
+     1,
+     -0.6
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0.3,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -0.6,
+    "wanted_yaw": 0,
+    "wanted_pitch": -0.6,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    3992.8,
+    -219.9
+   ],
+   "target_px": [
+    2415.3,
+    -241.8
+   ],
+   "target_in_front": true
+  },
+  "swNude": {
+   "face": "blank",
+   "look_target": {
+    "name": null,
+    "world": [
+     1.2,
+     1,
+     -0.6
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0.3,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -0.6,
+    "wanted_yaw": 0,
+    "wanted_pitch": -0.6,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    7025.5,
+    -219.9
+   ],
+   "target_px": [
+    3870.7,
+    -241.8
+   ],
+   "target_in_front": true
+  },
+  "swGarm": {
+   "face": "blank",
+   "look_target": {
+    "name": null,
+    "world": [
+     -0.8,
+     1,
+     -0.6
+    ]
+   },
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0.3,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": -0.6,
+    "wanted_yaw": 0,
+    "wanted_pitch": -0.6,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    960,
+    -219.9
+   ],
+   "target_px": [
+    960,
+    -241.8
+   ],
+   "target_in_front": true
+  }
+ },
+ "costume": {
+  "sw": {
+   "top": "#b97a78",
+   "legs": "#7088a8",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "swNude": {
+   "top": "#b97a78",
+   "legs": "#7088a8",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "swGarm": {
+   "top": "#b97a78",
+   "legs": "#7088a8",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "wrists": {
+  "sw": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 15.2,
+    "radial_deg": 11.8,
+    "twist_deg": -73.8,
+    "elbow_flex_deg": 103.3,
+    "before": {
+     "flex_deg": 15.2,
+     "radial_deg": 11.8,
+     "twist_deg": -73.8
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 18.5,
+    "radial_deg": 8.4,
+    "twist_deg": -87.1,
+    "elbow_flex_deg": 88.9,
+    "before": {
+     "flex_deg": 18.5,
+     "radial_deg": 8.4,
+     "twist_deg": -87.1
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "pronation +7 deg"
+    ],
+    "grip_reversed": false
+   }
+  },
+  "swNude": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 15.2,
+    "radial_deg": 11.8,
+    "twist_deg": -73.8,
+    "elbow_flex_deg": 103.3,
+    "before": {
+     "flex_deg": 15.2,
+     "radial_deg": 11.8,
+     "twist_deg": -73.8
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 18.5,
+    "radial_deg": 8.4,
+    "twist_deg": -87.1,
+    "elbow_flex_deg": 88.9,
+    "before": {
+     "flex_deg": 18.5,
+     "radial_deg": 8.4,
+     "twist_deg": -87.1
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "pronation +7 deg"
+    ],
+    "grip_reversed": false
+   }
+  },
+  "swGarm": {
+   "L": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 15.2,
+    "radial_deg": 11.8,
+    "twist_deg": -73.8,
+    "elbow_flex_deg": 103.3,
+    "before": {
+     "flex_deg": 15.2,
+     "radial_deg": 11.8,
+     "twist_deg": -73.8
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [],
+    "grip_reversed": false
+   },
+   "R": {
+    "hold": false,
+    "elbow_swivel_deg": 0,
+    "flex_deg": 18.5,
+    "radial_deg": 8.4,
+    "twist_deg": -87.1,
+    "elbow_flex_deg": 88.9,
+    "before": {
+     "flex_deg": 18.5,
+     "radial_deg": 8.4,
+     "twist_deg": -87.1
+    },
+    "hand_turned_deg": null,
+    "out_of_range": [
+     "pronation +7 deg"
+    ],
+    "grip_reversed": false
+   }
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "swGarm": 0.5589
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "sw": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 0.63,
+    "R": 0.72
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "sw",
+    "scale": 1,
+    "face": "blank",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 106,
+     "upperarm_stretch": 1.07,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 90,
+     "upperarm_stretch": 1.03,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 31.2,
+    "sole_shift_mm_R": 31.2,
+    "sole_lowest_y_m": 0
+   }
+  },
+  "swNude": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 0.63,
+    "R": 0.72
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "sw",
+    "scale": 1,
+    "face": "blank",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 106,
+     "upperarm_stretch": 1.07,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 90,
+     "upperarm_stretch": 1.03,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 31.2,
+    "sole_shift_mm_R": 31.2,
+    "sole_lowest_y_m": 0
+   }
+  },
+  "swGarm": {
+   "legs": {
+    "L": {
+     "reach": 0.76
+    },
+    "R": {
+     "reach": 0.76
+    }
+   },
+   "arms": {
+    "L": 0.63,
+    "R": 0.72
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "sw",
+    "scale": 1,
+    "face": "blank",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 106,
+     "upperarm_stretch": 1.07,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 90,
+     "upperarm_stretch": 1.03,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 31.2,
+    "sole_shift_mm_R": 31.2,
+    "sole_lowest_y_m": 0
+   }
+  }
+ }
+}

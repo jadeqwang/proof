@@ -1,0 +1,211 @@
+{
+ "shot": "mama_side",
+ "set": "mtest",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0.749,
+   1.4333,
+   0.0086
+  ],
+  "target": [
+   0,
+   1.4441,
+   0.0086
+  ],
+  "lens_mm": 50,
+  "frame_width_mm": 36,
+  "hfov_deg": 39.598,
+  "vfov_deg": 22.895,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0,
+   0,
+   -1,
+   0,
+   0.0144,
+   0.9999,
+   0,
+   0,
+   0.9999,
+   -0.0144,
+   0,
+   0,
+   0.749,
+   1.4333,
+   0.0086,
+   1
+  ],
+  "viewMatrix": [
+   0,
+   0.0144,
+   0.9999,
+   0,
+   0,
+   0.9999,
+   -0.0144,
+   0,
+   -1,
+   0,
+   0,
+   0,
+   0.0086,
+   -1.4439,
+   -0.7283,
+   1
+  ],
+  "projectionMatrix": [
+   2.7778,
+   0,
+   0,
+   0,
+   0,
+   4.9383,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "mama": {
+   "px": [
+    959.9,
+    540
+   ],
+   "eyes": [
+    633.1,
+    509.3
+   ],
+   "mouth": [
+    632.7,
+    724.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 90
+  }
+ },
+ "hands": {
+  "mama.L": {
+   "px": [
+    854.3,
+    4026.1
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "mama.R": {
+   "px": [
+    899.2,
+    2562
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [],
+ "warnings": [],
+ "gaze": {
+  "mama": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    633.1,
+    509.3
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "mama": {
+   "top": "#6e3a33",
+   "legs": "#3a3632",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "apron": "#b9b2a0",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "mama": 0.3003
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "mama": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "mama",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.1,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.1,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
+    "sole_lowest_y_m": 0.0039
+   }
+  }
+ }
+}

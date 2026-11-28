@@ -1,0 +1,1177 @@
+{
+ "shot": "cast_back",
+ "set": "mtest",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0,
+   1,
+   -7.4
+  ],
+  "target": [
+   0,
+   0.85,
+   0
+  ],
+  "lens_mm": 35,
+  "frame_width_mm": 36,
+  "hfov_deg": 54.432,
+  "vfov_deg": 32.269,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.9998,
+   0.0203,
+   0,
+   0,
+   0.0203,
+   -0.9998,
+   0,
+   0,
+   1,
+   -7.4,
+   1
+  ],
+  "viewMatrix": [
+   -1,
+   0,
+   0,
+   0,
+   0,
+   0.9998,
+   0.0203,
+   0,
+   0,
+   0.0203,
+   -0.9998,
+   0,
+   0,
+   -0.8498,
+   -7.4187,
+   1
+  ],
+  "projectionMatrix": [
+   1.9444,
+   0,
+   0,
+   0,
+   0,
+   3.4568,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "mama": {
+   "px": [
+    1664,
+    390.1
+   ],
+   "eyes": [
+    1655.4,
+    389.3
+   ],
+   "mouth": [
+    1655.2,
+    404.4
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 159,
+   "blocked_by": "mama Mama"
+  },
+  "dad": {
+   "px": [
+    1507.6,
+    363.3
+   ],
+   "eyes": [
+    1500.4,
+    362.8
+   ],
+   "mouth": [
+    1500.3,
+    379
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 163,
+   "blocked_by": "dad Dad"
+  },
+  "jade27": {
+   "px": [
+    1351.1,
+    378.6
+   ],
+   "eyes": [
+    1346.2,
+    377.9
+   ],
+   "mouth": [
+    1346.1,
+    393.5
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 168,
+   "blocked_by": "jade27 Jade (27)"
+  },
+  "jade19": {
+   "px": [
+    1194.7,
+    382.4
+   ],
+   "eyes": [
+    1191.7,
+    381.7
+   ],
+   "mouth": [
+    1191.7,
+    397
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 172,
+   "blocked_by": "jade19 Jade (about 19)"
+  },
+  "jade10": {
+   "px": [
+    1038.2,
+    444.9
+   ],
+   "eyes": [
+    1037.2,
+    443.5
+   ],
+   "mouth": [
+    1037.2,
+    458.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 177,
+   "blocked_by": "jade10 little Jade (10)"
+  },
+  "jade7": {
+   "px": [
+    881.8,
+    481.6
+   ],
+   "eyes": [
+    882.7,
+    479.9
+   ],
+   "mouth": [
+    882.7,
+    493.4
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 178,
+   "blocked_by": "jade7 little Jade (7)"
+  },
+  "littleJade": {
+   "px": [
+    725.6,
+    514.4
+   ],
+   "eyes": [
+    728.1,
+    512.4
+   ],
+   "mouth": [
+    728.1,
+    525.3
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 173,
+   "blocked_by": "littleJade little Jade"
+  },
+  "jade3": {
+   "px": [
+    569.5,
+    548.3
+   ],
+   "eyes": [
+    573.6,
+    546
+   ],
+   "mouth": [
+    573.7,
+    559.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 168,
+   "blocked_by": "jade3 little Jade (3)"
+  },
+  "firstLove27": {
+   "px": [
+    412.3,
+    349.7
+   ],
+   "eyes": [
+    419.7,
+    349.3
+   ],
+   "mouth": [
+    419.8,
+    366.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 163,
+   "blocked_by": "firstLove27 first love (27, never face-on)"
+  },
+  "firstLove19": {
+   "px": [
+    255.8,
+    349.7
+   ],
+   "eyes": [
+    265.4,
+    349.3
+   ],
+   "mouth": [
+    265.5,
+    366.1
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 159,
+   "blocked_by": "firstLove19 first love (19)"
+  }
+ },
+ "hands": {
+  "mama.L": {
+   "px": [
+    1610.6,
+    568.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "mama.R": {
+   "px": [
+    1710.6,
+    568.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "dad.L": {
+   "px": [
+    1451.6,
+    554.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "dad.R": {
+   "px": [
+    1558.4,
+    554.7
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade27.L": {
+   "px": [
+    1297.8,
+    563.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade27.R": {
+   "px": [
+    1400.7,
+    563.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade19.L": {
+   "px": [
+    1142.7,
+    565.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade19.R": {
+   "px": [
+    1244.4,
+    565.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade10.L": {
+   "px": [
+    994,
+    597.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade10.R": {
+   "px": [
+    1081.6,
+    597.3
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.L": {
+   "px": [
+    842.3,
+    615.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade7.R": {
+   "px": [
+    922.1,
+    615.8
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "littleJade.L": {
+   "px": [
+    691.3,
+    632.4
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "littleJade.R": {
+   "px": [
+    762,
+    632.4
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade3.L": {
+   "px": [
+    539.4,
+    650.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "jade3.R": {
+   "px": [
+    602.8,
+    650.6
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.L": {
+   "px": [
+    359.9,
+    547.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove27.R": {
+   "px": [
+    470.1,
+    547.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove19.L": {
+   "px": [
+    204.2,
+    547.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  },
+  "firstLove19.R": {
+   "px": [
+    314.4,
+    547.5
+   ],
+   "shape": "relax",
+   "in_frame": true,
+   "visible": true
+  }
+ },
+ "lights": [],
+ "warnings": [],
+ "gaze": {
+  "mama": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1655.4,
+    389.3
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "dad": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1500.4,
+    362.8
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "jade27": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1346.2,
+    377.9
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "jade19": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1191.7,
+    381.7
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "jade10": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    1037.2,
+    443.5
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "jade7": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    882.7,
+    479.9
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "littleJade": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    728.1,
+    512.4
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "jade3": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    573.7,
+    544.3
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "firstLove27": {
+   "face": "none",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    419.7,
+    349.3
+   ],
+   "target_px": null,
+   "target_in_front": null
+  },
+  "firstLove19": {
+   "face": "none",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    265.4,
+    349.3
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "mama": {
+   "top": "#6e3a33",
+   "legs": "#3a3632",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "apron": "#b9b2a0",
+   "torso": "capsule"
+  },
+  "dad": {
+   "top": "#c8ccd0",
+   "legs": "#3a3e48",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "jade27": {
+   "top": "#d9543a",
+   "legs": "#2c3140",
+   "sleeves": "short",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "jade19": {
+   "top": "#8a94a8",
+   "legs": "#2c3140",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "jade10": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "pushed",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  },
+  "jade7": {
+   "top": "#b8c4d8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "littleJade": {
+   "top": "#f1efe8",
+   "legs": "#4b5a7a",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "band": "#e8792c",
+   "torso": "capsule"
+  },
+  "jade3": {
+   "top": "#e9dcc0",
+   "legs": "#5a6a8a",
+   "sleeves": "short",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "firstLove27": {
+   "top": "#4a5a6a",
+   "legs": "#1c1c1e",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  },
+  "firstLove19": {
+   "top": "#5a6a58",
+   "legs": "#1c1c1e",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "firstLove19": 0.0194,
+  "firstLove27": 0.0189,
+  "dad": 0.0178,
+  "jade19": 0.0164,
+  "jade27": 0.0151,
+  "mama": 0.0163,
+  "jade10": 0.0117,
+  "jade7": 0.0096,
+  "littleJade": 0.0079,
+  "jade3": 0.0057
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "mama": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "mama",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.1,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.1,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.02
+    },
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
+    "sole_lowest_y_m": 0.0039
+   }
+  },
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "dad",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.94
+    },
+    "R": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.94
+    },
+    "sole_shift_mm_L": 17.1,
+    "sole_shift_mm_R": 17.1,
+    "sole_lowest_y_m": 0.0042
+   }
+  },
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade27",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.08,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.08
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.08,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.08
+    },
+    "sole_shift_mm_L": 30.6,
+    "sole_shift_mm_R": 30.6,
+    "sole_lowest_y_m": 0.004
+   }
+  },
+  "jade19": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade19",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.08,
+     "forearm_stretch": 1.08,
+     "hand_scale": 1.08
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.08,
+     "forearm_stretch": 1.08,
+     "hand_scale": 1.08
+    },
+    "sole_shift_mm_L": 28.9,
+    "sole_shift_mm_R": 28.9,
+    "sole_lowest_y_m": 0.004
+   }
+  },
+  "jade10": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade10",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 1.01,
+     "hand_scale": 0.97
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.04,
+     "forearm_stretch": 1.01,
+     "hand_scale": 0.97
+    },
+    "sole_shift_mm_L": 22.6,
+    "sole_shift_mm_R": 22.6,
+    "sole_lowest_y_m": 0.0032
+   }
+  },
+  "jade7": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade07",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.95
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.95
+    },
+    "sole_shift_mm_L": 22.6,
+    "sole_shift_mm_R": 22.6,
+    "sole_lowest_y_m": 0.0028
+   }
+  },
+  "littleJade": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade05",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 0.96,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 0.96,
+     "forearm_stretch": 0.94,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 21.2,
+    "sole_shift_mm_R": 21.2,
+    "sole_lowest_y_m": 0.0023
+   }
+  },
+  "jade3": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade03",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0.007,
+    "L": {
+     "elbow_bend_deg": 39,
+     "upperarm_stretch": 0.89,
+     "forearm_stretch": 0.89,
+     "hand_scale": 0.96
+    },
+    "R": {
+     "elbow_bend_deg": 39,
+     "upperarm_stretch": 0.89,
+     "forearm_stretch": 0.89,
+     "hand_scale": 0.96
+    },
+    "sole_shift_mm_L": 20.2,
+    "sole_shift_mm_R": 20.2,
+    "sole_lowest_y_m": 0.0019
+   }
+  },
+  "firstLove27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "firstlove27",
+    "scale": 1,
+    "face": "none",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.01,
+     "forearm_stretch": 0.98,
+     "hand_scale": 0.9
+    },
+    "R": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.01,
+     "forearm_stretch": 0.98,
+     "hand_scale": 0.9
+    },
+    "sole_shift_mm_L": 13.7,
+    "sole_shift_mm_R": 13.7,
+    "sole_lowest_y_m": 0.0044
+   }
+  },
+  "firstLove19": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "firstlove19",
+    "scale": 1,
+    "face": "none",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.02,
+     "forearm_stretch": 1,
+     "hand_scale": 0.93
+    },
+    "R": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1.02,
+     "forearm_stretch": 1,
+     "hand_scale": 0.93
+    },
+    "sole_shift_mm_L": 13.8,
+    "sole_shift_mm_R": 13.8,
+    "sole_lowest_y_m": 0.0044
+   }
+  }
+ }
+}
