@@ -53,7 +53,7 @@
   <button class="primary" onclick="exportAnswers()">Copy my answers</button>
 </header>
 <main>
-  <p class="note">No open questions right now (round 9 answers taken in, 2026-11-28). Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
+  <p class="note">Round 10, 2026-11-28: open questions only. Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
   <div id="cards"></div>
   <details class="done" id="done"></details>
 </main>
@@ -70,6 +70,33 @@ const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const ART = (p) => '../layout/assets/art/' + p;
 let D = [
+ { sec:"Office 1991", id:"fe_smirk", t:"0:18.3-0:19.0", title:"FE_thumbs: the arms work, the smirk doesn't",
+   ctx:"Mom's folded arms now match the stock photos and the guide. But in both new takes you give Mama a gentle closed-mouth smile, not the one-sided unimpressed smirk with one eye narrowed. Next try: free Codex with a close face crop, the guides tiled to fit its 5 refs (holds framing better).",
+   imgs:[["keyframes/r4/office91/FE_thumbs_v5.jpg","v5"],["keyframes/r4/office91/FE_thumbs_v6.jpg","v6"]],
+   opts:["Retry on Codex for the smirk","The gentle smile works, pick v5","The gentle smile works, pick v6","Something else (below)"], rec:0 },
+ { sec:"Wall 1988", id:"wall_picks", t:"1:40.7-1:54.5", title:"The wall shots with the new light and boards",
+   ctx:"The bulb outside the wall, the long crack (Mama's waist lit) and the 14 cm boards. WL_in came out much wider than its close guide, with the strangers' faces half shown: per your note it will be cropped in comp. WL_eye stays v1 (still matches the light). WL_in_empty paints after the Codex reset.",
+   imgs:[["keyframes/r4/wall88/WL_in_v6.jpg","WL_in v6 (to be cropped)"],[L("wall88/WL_in_lit.png"),"WL_in guide framing"],["keyframes/r4/wall88/WL_out_v6.jpg","WL_out v6"],["keyframes/r4/wall88/WL_top_v6.jpg","WL_top v6"]],
+   opts:["All good","Some need work (below)"], rec:0 },
+ { sec:"Wall 1988", id:"wall_boards", t:"1:51.0-1:54.5", title:"The wall boards: 14 cm weathered pine?",
+   ctx:"One fixed board texture on every board: 14 cm wide, 2 mm gaps, 2 cm thick, rough-sawn weathered pine, butt joints on the studs. Width and wood are guesses.",
+   imgs:[[L("wall88/_boards_before_after.png"),"before/after + WL_boards"]],
+   opts:["Right","Different width or wood (below)"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_picks", t:"2:39.6-2:42.0", title:"Morton Grove repainted from the finished model",
+   ctx:"Yamaha grand, bright mirror, rose chintz couch, loveseat and armchair, pink rug and glass-panel tables, the glass chess set, socks. First love only from behind. MG2 / MG2_end came out wider than their guides and will be cropped in comp.",
+   imgs:[["keyframes/r4/mortongrove07/MG_wide_v4.jpg","MG_wide v4"],["keyframes/r4/mortongrove07/MG1_v1.jpg","MG1 v1"],["keyframes/r4/mortongrove07/MG1_end_v1.jpg","MG1_end v1"],["keyframes/r4/mortongrove07/MG2_v1.jpg","MG2 v1"],["keyframes/r4/mortongrove07/MG2_end_v1.jpg","MG2_end v1"]],
+   opts:["All good","Some need work (below)"], rec:0 },
+ { sec:"Our house 2010 (mv10)", id:"br6_pick", t:"2:37.1", title:"BR6 v3 (finally painted)",
+   ctx:"Her face matches the jade27 sheet; the Feynman set is red.",
+   imgs:[["keyframes/r4/mv10/BR6_v3.jpg","BR6 v3"]],
+   opts:["Good","Needs work (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"v1b_poses_built", t:"0:31.6-0:34.5", title:"V1b: your 3 hand poses, built in 3D",
+   ctx:"c01 (fingertip on the wad, 34°), c05 (wad held over the open palm, 34°), c11 (two cupped palms, 22°). Watch half under the padded cuff, crumpled wad. Caveats: in c05 his thumb pad sinks about 6 mm into the wad (kept so the wad stays visible); in c11 the wrists sit at the engine's turning limit and the watch dial faces down. Next: test-paint each after the Codex reset.",
+   imgs:[[L("_sheets/canon/shanghai86_V1b_poses_2x.jpg"),"the 3 poses: form, contour, lit, 2x hand crops"]],
+   opts:["Test-paint all three","Drop one (below)","Fix first (below)"], rec:0 },
+ { sec:"Cast", id:"mama86_sheet", title:"A new Mama sheet for 1986?",
+   ctx:"Mama's Shanghai costume is now a camel sweater, a long black skirt and slippers in every shot. Her existing sheets show an older costume. A new costume sheet (same face) would keep the painter from mixing them.",
+   opts:["Yes, make a 1986 Mama costume sheet","No, the guide and prompt are enough"], rec:0 },
 
 ];
 D = D.filter(Boolean);   // tolerate stray empty slots (a ,, in the list once broke Copy my answers)
