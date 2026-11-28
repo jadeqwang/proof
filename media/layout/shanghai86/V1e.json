@@ -992,7 +992,7 @@
     "what": "laid on the table",
     "gen": 7,
     "size_cm": [
-     2.3,
+     2.2,
      1.4
     ],
     "world": [
@@ -1024,7 +1024,7 @@
       "10",
       [
        1,
-       1.1
+       1.2
       ]
      ],
      [
@@ -1367,7 +1367,7 @@
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
      "temple_length_mm": 141,
-     "rim_clear_of_face_mm": 6.5
+     "rim_clear_of_face_mm": 5.6
     }
    }
   }

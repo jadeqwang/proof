@@ -172,8 +172,18 @@ export function farRooms({ PLASTER, FLOOR, CEIL, wall: wallFn }) {
         pg.add(mk(new THREE.TubeGeometry(curve, 24, 0.006, 8, false), BR));
         const sh = cyl(0.026, 0.026, 0.27, BZ, [lx, y0 + 0.335, lz + 0.01], [0, 0, 90], 20); pg.add(sh);
         for (const s of [-1, 1]) pg.add(cyl(0.028, 0.028, 0.006, BR, [lx + s * 0.135, y0 + 0.335, lz + 0.01], [0, 0, 90], 20)); }
-      const rc = new THREE.Raycaster(new THREE.Vector3(0, 0.74, 0.6), new THREE.Vector3(0, 0, -1), 0, 1); const hit = rc.intersectObject(pn, true)[0];
-      const zp = hit ? hit.point.z + 0.0015 : 0.06; pg.add(box(0.09, 0.022, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, 0.74, zp]));   // the gold nameplate (blank)
+      // round 8 (Jade: the key cover is CLOSED, as in the photo): a closed fallboard over the keys, black lacquer like the
+      // case: a top board from the key fronts back to the case, a rounded front lip down over the key slip; the blank gold
+      // nameplate on the lip's face. Sized from the model's keys (its white and black key meshes)
+      { pn.updateMatrixWorld(true); const rc2 = new THREE.Raycaster(), dn = V(0, -1, 0); let zF = null, zB = null, yK = 0;
+        for (let z = 0.4; z > -0.1; z -= 0.004) { rc2.set(V(0, 1.6, z), dn); const h = rc2.intersectObject(pn, true)[0]; if (!h) continue;
+          if (h.point.y > 0.45 && h.point.y < 0.8) { if (zF == null) zF = z; zB = z; yK = Math.max(yK, h.point.y); } else if (zF != null && h.point.y >= 0.8) break; }   // the keys' and key slip's span
+        let x1 = 0.6; for (let x = 0.3; x < 0.8; x += 0.005) { rc2.set(V(x, 1.6, (zF + zB) / 2), dn); const h = rc2.intersectObject(pn, true)[0]; if (h && h.point.y >= 0.8) { x1 = x - 0.003; break; } }   // to the cheeks
+        const pb = new THREE.Box3().setFromObject(pn); x1 = Math.max(x1, 0.7);
+        if (zF != null) { const FB = { grey: 0.1, col: 0x0e0d0c }, yT = yK + 0.035, zf = pb.max.z + 0.004, zb = zB - 0.004;
+          pg.add(rbox(2 * x1, 0.018, zf - zb, 0.006, FB, [0, yT - 0.009, (zf + zb) / 2]));                  // the closed cover over the keys
+          pg.add(rbox(2 * x1, 0.09, 0.02, 0.008, FB, [0, yT - 0.045, zf - 0.01]));                          // its front lip
+          pg.add(box(0.09, 0.02, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, yT - 0.03, zf + 0.0012])); } }      // the blank gold nameplate
       pg.rotation.y = Math.PI / 2; pg.position.set(rx0 + 0.31, 0, pz); P(pg); } else { P(box(0.6, 1.2, 1.5, { grey: 0.2, col: 0x2a1c14, mat: 'sapele' }, [rx0 + 0.3, 0.6, pz])); P(box(0.25, 0.04, 1.4, { grey: 0.9, col: 0xeeeeea }, [rx0 + 0.72, 0.74, pz])); }
     // Jade: a real piano BENCH, centred on the keyboard (black lacquer to match the piano, 0.52 m high, 0.85 x 0.38 m, a
     // lift-up lid with a brass piano hinge and a thin seam, an apron, four tapered square legs, a stretcher); the slat-back

@@ -1177,6 +1177,10 @@ Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
 - **Piano bench (Jade):** a real upright-piano bench centred on the keyboard: black lacquer to match the piano, 0.52 m high,
   0.85 x 0.38 m, a lift-up lid with a seam and a brass piano hinge, an apron, four tapered square legs, a stretcher. The
   slat-back chair now stands BESIDE the bench (as for a teacher or a listener), turned toward the keys.
+- **Round 8 (Jade):** the two thermoses are pale MINT / CELADON green (0xb4dcc2): a flat celadon base with the model's own
+  shading at 15 % contrast (build.js celadon), replacing the multiplied recolour that read as grey sage. The piano's key
+  cover is CLOSED, as in the photo (a black lacquered cover over the keys sized from the model's keys, a rounded front lip),
+  the blank gold nameplate on the lip's face.
 - **Wall clock (Jade: the dining-ref clock is a close match):** restyled at its existing, canon position (Jade: on the dining
   room wall; layout.js CLOCK, east wall, z -5.0, y 2.25): 34 cm round, a deep dark-lacquered wood case with a thick rounded
   rim and a small block beneath, an aged cream dial, large black serif Arabic numerals, a ring of minute dots, black spade

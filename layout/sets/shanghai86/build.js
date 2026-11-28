@@ -184,6 +184,19 @@ function wickerChair() {
   top.userData.look = WK; top.castShadow = true; top.receiveShadow = true; top.rotation.set(-Math.PI / 2, 0, 0.25 * Math.PI); top.position.set(0, back - 0.02, 0); g.add(top);
   return tag(g, 'white wicker chair (balcony)');
 }
+// round 8 (Jade: the two thermoses are clearly pale MINT / CELADON green): a flat celadon base with only a trace of the model's
+// own shading (its texture's greys at 15 % contrast, re-centred on the colour), not the greys multiplied by a colour (that
+// read as grey sage)
+const CELADON = 0xb4dcc2;
+function celadon(gp) { if (!gp) return gp; gp.traverse((m) => { if (!m.isMesh) return; const L = m.userData.look || {}, src = (L.artGrey || L.art)?.image;
+  let art = null; if (src && src.width) { const W = src.width, H = src.height, c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d'); g.drawImage(src, 0, 0);
+    const im = g.getImageData(0, 0, W, H), d = im.data; let mean = 0; for (let i = 0; i < d.length; i += 4) mean += d[i]; mean /= d.length / 4; const col = new THREE.Color(CELADON);
+    for (let i = 0; i < d.length; i += 4) { const f = 1 + (d[i] / Math.max(mean, 1) - 1) * 0.15; d[i] = Math.min(255, col.r * 255 * f); d[i + 1] = Math.min(255, col.g * 255 * f); d[i + 2] = Math.min(255, col.b * 255 * f); }
+    g.putImageData(im, 0, 0); art = new THREE.CanvasTexture(c); art.flipY = (L.art || L.artGrey).flipY; art.colorSpace = THREE.NoColorSpace;
+    const c2 = document.createElement('canvas'); c2.width = W; c2.height = H; const g2 = c2.getContext('2d'); const im2 = g2.createImageData(W, H);   // its greys for flat / form
+    for (let i = 0; i < d.length; i += 4) { const v = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]; im2.data[i] = im2.data[i + 1] = im2.data[i + 2] = v; im2.data[i + 3] = 255; }
+    g2.putImageData(im2, 0, 0); var artG = new THREE.CanvasTexture(c2); artG.flipY = art.flipY; artG.colorSpace = THREE.NoColorSpace; }
+  const grey = 0.8; m.userData.look = art ? { ...L, col: CELADON, grey, art, artGrey: artG } : { ...L, col: CELADON, grey }; delete m.userData.look.art_; if (m.userData.mats) m.userData.mats = {}; }); return gp; }
 function furniture(shot) {
   const g = new THREE.Group();
   g.add(couchR5());   // 2026-11-27: the couch is built like the armchairs (joinery.js upholstered): one suite, fully upholstered on every side
@@ -255,7 +268,7 @@ function furniture(shot) {
     // round 7 (Jade: "often a light green thermos hanging out on the dining room table and the side console"): the classic
     // 1980s hot-water flask (暖水瓶), the same downloaded model as the TV-cabinet pair, in ONE canonical pale green, 0.34 m;
     // standing on the dining table's glass (its top at T.h) and on the sideboard (top found from its bounds)
-    const PALE = 0xd8ffe2, th1 = prop('thermos', { at: [xc + 0.22, T.h, zc - 0.55], size: { h: 0.34 }, rot: [0, 30, 0], recolor: PALE, label: 'light green thermos flask (dining table)' }); if (th1) g.add(th1);
+    const th1 = celadon(prop('thermos', { at: [xc + 0.22, T.h, zc - 0.55], size: { h: 0.34 }, rot: [0, 30, 0], label: 'pale celadon-green thermos flask (dining table)' })); if (th1) g.add(th1);
   }
   { const C = CHILD_TABLE; g.add(tableRect(C.cx, C.cz, C.w, C.d, C.h, { look: ASH, topLook: { ...ASH, recvShadowLine: true }, top: 0.025, leg: 0.035, label: 'her small wooden table and chair' }));
     const H = CHILD_CHAIR; g.add(chair(H.at[0], H.at[1], H.yaw, { seat: H.seat, w: H.w, d: H.d, back: H.back, look: ASH, label: 'her small wooden table and chair' })); }
@@ -265,7 +278,7 @@ function furniture(shot) {
     const S = SIDEBOARD, sbp = prop('sideboard', { at: [(S.x0 + S.x1) / 2, 0, ROOM.z0 + 0.515 * 0.93 / 1.171 / 2 + 0.005], size: { w: S.x1 - S.x0 }, label: 'sideboard (碗橱)' });
     g.add(sbp || tag(box(S.x1 - S.x0, S.h, S.z1 - S.z0, WOOD, [(S.x0 + S.x1) / 2, S.h / 2, (S.z0 + S.z1) / 2]), 'sideboard (碗橱)'));
     const topY = sbp ? new THREE.Box3().setFromObject(sbp).max.y : S.h;   // the light green thermos stands on the sideboard
-    const th2 = prop('thermos', { at: [(S.x0 + S.x1) / 2 + 0.2, topY, ROOM.z0 + 0.22], size: { h: 0.34 }, rot: [0, -20, 0], recolor: 0xd8ffe2, label: 'light green thermos flask (sideboard)' }); if (th2) g.add(th2); }
+    const th2 = celadon(prop('thermos', { at: [(S.x0 + S.x1) / 2 + 0.2, topY, ROOM.z0 + 0.22], size: { h: 0.34 }, rot: [0, -20, 0], label: 'pale celadon-green thermos flask (sideboard)' })); if (th2) g.add(th2); }
   return g;
 }
 
