@@ -94,10 +94,13 @@ CAPTIONS = "Captions are added at compositing time and are never painted."
 # images, the tight face crop of every visible named face always among them (tools/kf/face_crops.py), the guide face
 # declared a placeholder, and the dropped refs' sentences removed from the prompt.
 MAX_REFS = 5
+ROUTE_OVER5 = "gpt2"   # paid Cloudflare gpt-image-2 (up to 16 refs) for jobs that need more than MAX_REFS; None = trim to 5
 FACE_FIRST = True   # face crops are images 1..n, the guides follow (mv10 finding: a face ref in slot 4-5 loses)
 FACELESS = True   # blank the guide faces (tools/kf/faceless.py) wherever a named face is in frame
-FACE_RULE_NF = ("FACES. In images 1-2 the faces are left BLANK on purpose (only the head, hair and outline are drawn): "
-                "paint each face from its face image, its head turned and its eyes looking exactly as the words say. ")
+FACE_RULE_NF = ("FACES. In images 1-2 the faces are left BLANK on purpose except the EYES and any GLASSES (the head, hair, "
+                "outline, the eyes aimed at what each person looks at, and the glasses frame are drawn; no brows, nose or mouth): "
+                "paint each face from its face image, its head turned and its eyes looking exactly where the guide's eyes and the "
+                "words say. ")
 FACE_CROPS = {   # key: (crop path, source sheet it replaces, whose face)
     "mama": ("media/keyframes/r4/_faces/mama.png", "inputs/refs_chaosmonkey/mama/mama_H_heads_v3.jpg", "Mama's face"),
     "dad37": ("media/keyframes/r4/_faces/dad37.png", "cast/dad/dad_H_heads_v5_likeness.jpg", "Dad's face at 37"),
@@ -106,6 +109,12 @@ FACE_CROPS = {   # key: (crop path, source sheet it replaces, whose face)
     "lj05": ("media/keyframes/r4/_faces/lj05.png", "inputs/refs_chaosmonkey/little_jade/lj_H_heads_v3.jpg", "little Jade's face at 5"),
     "jade19": ("media/keyframes/r4/_faces/jade19.png", "cast/jade_19/jade19_H_heads_v1.jpg", "Jade's face at 19"),
     "jade27": ("media/keyframes/r4/_faces/jade27.png", "cast/jade_27/jade27_H_heads_v1.jpg", "Jade's face at 27"),
+}
+GLASSES = {   # layout/CAST.md "Glasses" (one canonical frame per wearer; the guides now model it): paint it exactly
+    "mama": "Her glasses exactly as modelled in the guides and as on her face image: a thin round-oval wire frame (softly squared oval), full rim, pale silver, a thin arched bridge, visible nose pads, thin straight arms; clear lenses.",
+    "dad37": "His glasses exactly as modelled in the guides and as on his face image: thin GOLD wire double-bridge teardrop aviators, large lenses with a flat top, the bottom drooping onto the cheekbones, a straight brow bar over the nose; clear lenses, no glare patches.",
+    "jade19": "Her glasses exactly as modelled in the guides and as on her face image: a small thin FULL-rim soft rounded-rectangle wire frame, dark gunmetal, a thin slightly arched bridge, nose pads, thin straight arms; clear lenses.",
+    "jade27": "Her glasses exactly as modelled in the guides and as on her face image: a thin FULL-rim rectangular metal frame with small rounded corners, narrow lenses (about 2:1), dark gunmetal, one thin straight bridge, nose pads, thin straight arms from the top outer corners; clear lenses; NOT browline, NOT half-rim.",
 }
 FACE_RULE = ("FACES. The faces in images 1-2 are PLACEHOLDERS from a generic 3D body: take from them ONLY where each head "
              "is, its size and tilt, and which way the eyes look; never their face shape, eyes, nose, mouth or age. ")
@@ -468,7 +477,7 @@ def compose(set_, shot, spec, cast, look, refs):
         face_txt = ((f"Image{'s' if nf_ > 1 else ''} §1§{'-§' + str(nf_) + '§' if nf_ > 1 else ''} {'are face references' if nf_ > 1 else 'is a face reference'} ONLY: "
                      "{} nothing about the framing, the size of the head in the picture or the pose; the framing, the head size and every "
                      "position come from the layout drawing (image §{}§) alone. ".format('they say' if nf_ > 1 else 'it says', idx["contour"])) if face_first else "") + (FACE_RULE_NF if faceless else FACE_RULE) + " ".join(f"Image §{idx['face:' + f]}§ is {FACE_CROPS[f][2]}: paint exactly THAT person's face "
-                                        f"(face shape, eyes, brows, nose, mouth, glasses, age), as on that image." for f in faces)
+                                        f"(face shape, eyes, brows, nose, mouth, glasses, age), as on that image." + (" " + GLASSES[f] if f in GLASSES else "") for f in faces)
     rep = {
         "FRAMING": framing(sc, cast, spec.get("crop", ""), spec.get("behind", ())),
         "GUIDES": guides + ("\n\n" + face_txt if face_txt else ""),
@@ -562,12 +571,21 @@ def build(set_, shots, cast, look, refs, only=None, show=False):
     for shot, spec in shots.items():
         if only and shot not in only:
             continue
-        text, ref_list = compose(set_, shot, spec, cast, look, refs)
+        route = "codex"
+        if ROUTE_OVER5:   # Jade 2026-11-28: never trim refs; a job needing more than 5 goes to gpt-image-2 with ALL of them
+            full = {**spec, "combine": [], "no_light": False, "max_refs": 16}
+            text, ref_list = compose(set_, shot, full, cast, look, refs)
+            if len(ref_list) > MAX_REFS:
+                route = ROUTE_OVER5
+            else:
+                text, ref_list = compose(set_, shot, spec, cast, look, refs)
+        else:
+            text, ref_list = compose(set_, shot, spec, cast, look, refs)
         with open(os.path.join(here, shot + ".txt"), "w") as f:
             f.write(text)
         jobs[shot] = {"prompt": f"media/keyframes/r4/{set_}/_prompts/{shot}.txt",
                       "outs": [f"media/keyframes/r4/{set_}/{shot}_v{i + 1}.jpg" for i in range(spec.get("takes", TAKES))],
-                      "refs": [f"{p}:{c}" for p, c in ref_list]}
+                      "refs": [f"{p}:{c}" for p, c in ref_list], "route": route}
         if show:
             print(f"===== {set_}/{shot} ({len(ref_list)} refs) =====")
             for i, (p, c) in enumerate(ref_list):

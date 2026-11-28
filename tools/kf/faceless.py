@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Faceless copies of a shot's form + contour guides (2026-11-27 face-drift fix, test).
+"""Faceless copies of a shot's form + contour guides (2026-11-27 face-drift fix). Since 2026-11-28 (Jade) the EYES
+(whites, irises, pupils, aimed at the look target) and the canonical GLASSES stay; brows, nose, mouth and jaw shading go.
 
 The r4 guides draw a generic MakeHuman face; painters copy its shape instead of the cast face crop. This blanks the
 face interior (brows, eyes, nose, mouth) of every listed figure: form -> smooth skin of the same tone, contour -> white
@@ -61,6 +62,18 @@ def region_for(sc, who, cont, form, W, H):
     return ndi.binary_dilation(R, iterations=3) & big
 
 
+def axis_t(sc, who, W, H):
+    """signed position along the eyes->mouth axis, in eye-mouth lengths (0 = eye line, 1 = mouth)."""
+    h = sc["heads"][who]
+    sx, sy = W / sc.get("w", 1920), H / sc.get("h", 1080)
+    e = np.array(h["eyes"]) * [sx, sy]
+    m = np.array(h["mouth"]) * [sx, sy]
+    v = m - e
+    L = max(np.linalg.norm(v), 1e-3)
+    yy, xx = np.mgrid[0:H, 0:W]
+    return ((xx - e[0]) * v[0] + (yy - e[1]) * v[1]) / (L * L)
+
+
 def main():
     set_, shot, figs = sys.argv[1], sys.argv[2], sys.argv[3].split(",")
     sc = json.load(open(f"{ROOT}/media/layout/{set_}/{shot}.json"))
@@ -70,8 +83,31 @@ def main():
     cont = np.asarray(Image.open(f"{ROOT}/media/layout/{set_}/{shot}_contour.png").convert("RGB")).astype(float)
     H, W = form.shape[:2]
     M = np.zeros((H, W), bool)
+    KEEP = np.zeros((H, W), bool)       # eyes (whites, irises, pupils) and glasses stay drawn (Jade 2026-11-28)
+    CKEEP = np.zeros((H, W), bool)
+    from scipy import ndimage as ndi
+    warm = (form[..., 0] - form[..., 2]) > 25
     for f in figs:
-        M |= region_for(sc, f, cont, form, W, H)
+        R = region_for(sc, f, cont, form, W, H)
+        if R.any():   # the brows are outlined in the contour, so the flood fill misses them: add them by shape
+            t0 = axis_t(sc, f, W, H)
+            dk = ~warm & mask_for(sc, f, W, H, 1.15) & (t0 < -0.045) & (t0 > -0.5) & (form.mean(2) < 150)
+            bro = ndi.binary_opening(dk, structure=np.ones((5, 5)))
+            R |= ndi.binary_dilation(bro, iterations=4) & mask_for(sc, f, W, H, 1.15)
+        M |= R
+        if not R.any():
+            continue
+        t = axis_t(sc, f, W, H)
+        nonwarm = R & ~warm
+        thick = ndi.binary_opening(nonwarm, structure=np.ones((5, 5)))      # brows (and irises) are thick; rims are thin
+        eyeband = (t > -0.045) & (t < 0.11)
+        glassband = (t > -0.30) & (t < 0.38)
+        keep = nonwarm & glassband & ~(thick & ~eyeband)
+        keep |= nonwarm & eyeband
+        keep = ndi.binary_dilation(keep, iterations=1) & R
+        KEEP |= keep
+        brow = ndi.binary_dilation(thick & ~eyeband & glassband, iterations=3)
+        CKEEP |= R & glassband & ~brow
     if not M.any():   # faces too small to matter (wide shots): copy the guides unchanged
         Image.fromarray(form.astype(np.uint8)).save(f"{out}/{shot}_form_nf.png")
         Image.fromarray(cont.astype(np.uint8)).save(f"{out}/{shot}_contour_nf.png")
@@ -91,10 +127,11 @@ def main():
     dark = Image.fromarray(((form.mean(2) < skin.mean() * 0.6) * 255).astype(np.uint8))
     hair = (np.asarray(dark.filter(ImageFilter.MinFilter(25)).filter(ImageFilter.MaxFilter(25))) > 0)[..., None]   # big dark areas only
     nf = np.where(hair & (soft > 0), form, nf)
+    nf = np.where(KEEP[..., None], form, nf)
     Image.fromarray(nf.astype(np.uint8)).save(f"{out}/{shot}_form_nf.png")
     inner = np.asarray(Image.fromarray((M * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(7))) > 0
     c2 = cont.copy()
-    c2[inner] = 255
+    c2[inner & ~CKEEP] = 255
     Image.fromarray(c2.astype(np.uint8)).save(f"{out}/{shot}_contour_nf.png")
     print("wrote", f"{out}/{shot}_form_nf.png", f"{out}/{shot}_contour_nf.png")
 

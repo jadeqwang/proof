@@ -1033,3 +1033,9 @@ Jade's answers (verbatim in `work/decisions/JADE_R4_DECISIONS.md`) applied. Supe
   mass-market 17.5 x 10.6 / 17.1 x 10.6 / 17.4 x 10.7 / 17.8 x 11.0. Thicknesses unchanged, so the runs are as wide.
 - Spine textures are drawn at the book's own height (spines.js, 2600 px/m), so Kandel's shorter spine is redrawn, not
   squashed. T0_spines_33/44/42 checked in form and lit (scratchpad bookheights/). mv10 NOT re-rendered into media/layout.
+
+## 2026-11-28: K1 restyled (r4 paint agent; Jade via lead)
+V3_rcv_obl_k0 painted her and K1 swapped in four of four takes. Jade: keep her face visible, make the guest visually
+different. K1 (build.js NEW_CAST) is now 1.88 m with short dark-blond hair (0xa8875a), a mustard-yellow shirt (0xc8a030)
+and khaki trousers (0xb89e72); she stays in black with long black hair. Re-rendered V3_rcv_obl, _k0, _k3 (K1 is in all
+three keys). Their earlier picks show the old blue-grey K1.

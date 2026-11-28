@@ -44,7 +44,9 @@ const NEW_CAST = {
   // the room crossing (Jade, 2026-11-25 round 2): the person she talks to in the kitchen (K1), the person at the shelf who
   // says something (R1), the two guests she welcomes (N1, N2) and the next two at the second doorbell (N3, N4). Jade said
   // "someone"; who they are, their looks and heights are OURS.
-  K1: GUEST('guest K1, talking with her in the kitchen (face undrawn)', 1.75, 0x6a7a8a, 0x2c2c34, 'short'),
+  // 2026-11-28 (Jade, via lead): K1 made VISUALLY UNLIKE her so painters stop swapping them in V3_rcv_obl_k0: a tall man
+  // with short dark-blond hair, a mustard-yellow shirt, khaki trousers (she: black, long black hair). Was 1.75 blue-grey.
+  K1: GUEST('guest K1, talking with her in the kitchen (face undrawn): tall, short dark-blond hair, mustard shirt, khaki trousers', 1.88, 0xc8a030, 0xb89e72, 'short', 'long', { hair: 0xa8875a }),
   R1: GUEST('guest R1, at the shelf: says something (face undrawn)', 1.66, 0xa0805a, 0x34343c, 'long'),
   N1: GUEST('guest N1, arriving (1st doorbell) (face undrawn)', 1.79, 0x4a4a5a, 0x3a3a44, 'short'), N2: GUEST('guest N2, arriving (1st doorbell) (face undrawn)', 1.61, 0xc08a7a, 0x2c3140, 'bob'),
   N3: GUEST('guest N3, arriving (2nd doorbell) (face undrawn)', 1.72, 0x7a9a6a, 0x44403a, 'bun'), N4: GUEST('guest N4, arriving (2nd doorbell) (face undrawn)', 1.83, 0x8a6a4a, 0x30343c, 'short'),
