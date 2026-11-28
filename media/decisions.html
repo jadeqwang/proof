@@ -102,7 +102,16 @@ let D = [
    opts:["Two cards, as shown","One card: tools line small under my credit","Something else (below)"], rec:0 },
  { sec:"Footage", id:"footage_spans", title:"Artichoke and neuron footage spans",
    ctx:"(1) PB1 (piano break) now plays the artichoke from 0 s (7.86x) so its first piece isn't lost, since AD_keys is gone. (2) The closet's neuron piece (footage 44-53.8 s) shows the full arbor rather than early growth. (3) Tail 2 now resumes the neuron at 53.8 s (was 76 s), so it's a little thinner at the frost dissolve.",
-   opts:["All fine","Change (below)"], rec:0 }
+   opts:["All fine","Change (below)"], rec:0 },
+ { sec:"Closet 2002", id:"hold_sleeve", t:"3:30.3-3:32.4", title:"Hand hold: her sleeve in the closet version",
+   ctx:"The approved demo is kept pixel-identical except her sleeve. In the demo she has a cream sleeve pushed up (bare forearm); in the closet she wears the cardinal-red hoodie. Being set up now as a long red sleeve to the wrist. His forest-green hoodie is already the same as in the demo.",
+   opts:["Long red sleeve to the wrist","Red sleeve pushed up (changes less of the image)","Something else (below)"], rec:0 },
+ { sec:"Closet 2002", id:"hold_legs", t:"3:30.3-3:32.4", title:"Hand hold: her trousers and sock",
+   ctx:"In the demo frame she wears beige trousers and an oatmeal sock; the closet costume is mid-blue jeans and white socks, and both show in the frame.",
+   opts:["Swap them too (jeans, white sock)","Leave them"], rec:0 },
+ { sec:"Closet 2002", id:"hold_video", t:"3:30.3-3:32.4", title:"Re-make the hand-hold video with the swapped clothes?",
+   ctx:"The same Seedance 2.0 1080p chain, prompts and seeds as the approved clip, with only the clothing words changed: 3 takes of the clasp, you pick one, then 3 takes of the covering hand from its real last frame. About $11.10 (minimum 1+1 takes: $3.70). Seedance is billed separately from the Cloudflare budget.",
+   opts:["Yes, 3+3 takes (~$11.10)","Yes, 1+1 takes (~$3.70)","Not yet"], rec:0 }
 ];
 D = D.filter(Boolean);   // tolerate stray empty slots (a ,, in the list once broke Copy my answers)
 
