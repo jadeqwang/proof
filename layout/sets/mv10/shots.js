@@ -279,7 +279,7 @@ export const SHOTS = [
     // right, looking at it; the friend at her left, a step toward the deck, his back three-quarter to us, holds the white
     // bowl (two lemons stacked) toward her. The giant tree's canopy is over them both.
     figs: { jade27: jadeTree({ yaw: V3A_YAW, head: { look: [TREE.pick[0], TREE.pick[1], TREE.pick[2]] }, R: { to: [TREE.pick[0], TREE.pick[1] - 0.26, TREE.pick[2] + 0.04], hand: 'relax', palm: 'fwd', fingers: 'up' }, L: 'side' }),
-      friend: onGrade(V3A_FRIEND, V3A_FYAW, { spine: { bend: 8 }, head: { look: V3A_FLOOK }, ...bowlHands(V3A_BOWL, V3A_FYAW) }) } },
+      friend: onGrade(V3A_FRIEND, V3A_FYAW, { spine: { bend: 12 }, head: { look: V3A_FLOOK }, ...bowlHands(V3A_BOWL, V3A_FYAW) }) } },
   // V3b RESTAGED 2026-11-25 (late): Jade: the lemonade was made BEFORE the party: she and the childhood friend picked the
   // lemons; first love, Z and the guests had not arrived. So this is the picking, in the early-afternoon sun (section
   // 'Before the party', 10:30 since Jade's r2 review (was 14:00), OUR clock): her hand up to a lemon, the friend beside her holding the bowl. No first love

@@ -25,6 +25,13 @@ python3 layout/gallery.py
   darker tufts; far off a pale grey tone). Colour shade, pile and fleck scale: OURS (ASSUMED). Kitchen tile and the oak in
   the core rooms unchanged. `_make.py` names it (CARPET in every shot that sees the living-room floor).
 
+- **Bowl hold fixed (2026-11-28):** the frosted plexiglass bowl had a GLASS look, which the engine draws only in lit and
+  form: in line / flat / label / contour the bowl was missing (two lemons floating over his palms), and the hold check
+  (which sees what the last pass drew) hulled the lemons alone: "falls / slides" in T0_friendbowl, V3a, V3b. Now
+  `FROSTED_PLEXI` is an opaque milky-white solid in every mode (the prompts still say frosted, softly see-through). V3a's
+  friend bends 12 deg as in V3b (at 8 the bowl still slid 1.4 cm). Holdcheck: 308 / 308 pass; his wrists turned 23 deg
+  into range by the engine, as before.
+
 ## 2026-11-27 (late evening): Jade's yard corrections (supersede the yard parts of the two sections below)
 
 - **Strawberry:** "the strawberry planter is in the correct spot in the before": the raised timber BED is back at its

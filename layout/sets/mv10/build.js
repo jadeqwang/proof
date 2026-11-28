@@ -316,7 +316,11 @@ const STEEL = { grey: 0.72, col: 0xb4b6b8 }, PITH = { grey: 0.96, col: 0xf6f1dc 
 // the friend's bowl of picked lemons (Jade, 2026-11-27 evening): a FROSTED PLEXIGLASS punch bowl, pale and milky, softly
 // see-through (the lemons read through it as soft shapes). The real bowl model's shape (props/bowl) with a glass look:
 // no library punch bowl was used (none checked: the bowl shape already fits the settled lemons and the hand hold).
-const FROSTED_PLEXI = { grey: 0.93, col: 0xeef1ef, glass: true, opacity: 0.55, flatGrey: 0.9 };
+// 2026-11-28 hold fix: NOT a glass look any more. The engine draws glass looks only in lit (and form), so in line / flat /
+// label / contour the bowl was MISSING (two lemons floating over his palms) and the hold check, which only sees what the
+// last pass drew, hulled the lemons alone ("falls / slides" in T0_friendbowl, V3a, V3b). Now an opaque milky-white
+// solid in every mode (frosted plexiglass is near-opaque anyway; the prompts still say "softly see-through").
+const FROSTED_PLEXI = { grey: 0.9, col: 0xe8ece9, flatGrey: 0.9 };
 const LEMONADE = { grey: 0.9, col: 0xf3e38a }, GLASSY = { grey: 0.9, col: 0xdde8e8 }, CERAMIC = { grey: 0.94, col: 0xf2efe6 };
 // a row of cabinet doors on one face. axis 'X': doors along X on the plane z = at; 'Z': along Z on x = at. out = +1 / -1 (the
 // way the face looks). skip: [[s0, s1]] spans with no door (appliances).
