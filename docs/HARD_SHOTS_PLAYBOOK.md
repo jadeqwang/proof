@@ -6,7 +6,7 @@ _A copy of this playbook is installed as the user-level Claude skill `hard-shots
 
 **Where it comes from:** one shot made on 2026-11-27, a close-up of two people's hands. She lays her hand across his, their fingers fold into a clasp, and he covers both with his other hand.
 
-**How it's organised:** sections 1–4 and 6 apply to any hard shot. Section 5 and the hand checklist are specific to hands. This project's tools are kept in the appendix, so the main text works with any renderer and any image or video model.
+**How it's organised:** sections 0–4, 6 and 8 apply to any hard shot (section 8 is continuity across takes and shots). Section 5 and the hand checklist are specific to hands. This project's tools are kept in the appendix, so the main text works with any renderer and any image or video model.
 
 ## Terms
 
@@ -31,6 +31,17 @@ _A copy of this playbook is installed as the user-level Claude skill `hard-shots
 
 Example guides from this project's repo, 3D renders only, for the clip's start frame: `cast/first_love/_prompts/v10/guide_hb/H3b_guide_{form,contour,lit}.png`, and the close-up `H3b_hold_zoom_pair.png` in the same folder.
 
+## 0. Repainting from an existing guide
+
+Most of the work is repainting shots whose guides already exist, not building a new hard shot. For each one:
+1. Zoom-check the guide's hands (nails, palm tone, overlap lines) before painting.
+2. If the hand is small in the frame, add a crop of it rendered at double resolution as a reference.
+3. Paint 2 takes.
+4. Zoom-check every finger in both takes.
+5. Only if both takes fail, diagnose (section 1), then move to a better camera (section 3) or a layered paint-back (section 4).
+
+In this project's round-4 repaint, no hand shot got past step 4: the hands held from the guides.
+
 ## 1. Diagnose before you retry
 
 - Put each bad painting next to the exact guide images it was given, zoomed in on the problem. Decide which of three things went wrong:
@@ -53,6 +64,7 @@ Image models read guides coarsely, so give them unambiguous cues:
 - **Enlarge small critical details:** also pass a close-up of the region. Render the frame at double resolution and crop the region out; don't enlarge a normal render.
 - **Lock colours:** if the form guide colours objects by type rather than by real colour (ours renders all props blue-grey), also pass the lit render, and name the must-keep colours in the prompt.
 - **Keep two people distinct:** give them different costume colours, keep each on the same side of the frame as in the references, and name both in the prompt. Otherwise the model swaps them.
+- **The main character drifts towards the camera:** a painter will move the main character to wherever her face shows, even swapping her with someone else. If the guide has her facing away, say so in words and describe exactly what is visible (e.g. "only her temple, brow and the corner of her glasses; don't turn her towards the lens"). Name what the other person shows too: their face if the shot calls for it, or the back of their head if their face must stay hidden. Never give a face-forward pose to someone whose face must stay hidden.
 - **No blank surfaces:** give every visible object one fixed, fully textured look in the model, on every visible side: furniture wood, upholstery, hardware, a watch face, a costume print. A plain surface invites the painter to invent something new there (a bookshelf painted into the plain back of an armchair), and details that change between shots are a tell-tale sign of AI.
 - **Faces come from the face image, never from the guide** (round 4 of this project: every family face drifted into "a new cast", as if actors had been cast from a verbal description). Four causes stacked up: the painter took at most 5 images and silently dropped or replaced the rest, often the face sheet; the agent driving the painter rewrote the prompt in its own words; the guides drew the 3D body's generic face, which the painter copied; and long verbal face descriptions competed with the image. Rules:
   - never send more images than the painter takes (Codex image_gen: 5), and check its log for what it actually received. If a job needs more references than that, don't drop or tile them: route it to a painter that takes them all (here gpt-image-2 through Cloudflare, up to 16 images; paid, so only with the user's OK);
