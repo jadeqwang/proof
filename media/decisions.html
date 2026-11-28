@@ -53,7 +53,7 @@
   <button class="primary" onclick="exportAnswers()">Copy my answers</button>
 </header>
 <main>
-  <p class="note">Round 7, 2026-11-27: open questions only. Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
+  <p class="note">Round 8, 2026-11-28: open questions only. Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
   <div id="cards"></div>
   <details class="done" id="done"></details>
 </main>
@@ -70,35 +70,30 @@ const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const ART = (p) => '../layout/assets/art/' + p;
 const D = [
- { sec:"Shanghai 1986", id:"sh_v1b_cam", t:"0:31.6-0:34.5", title:"V1b camera: 22° or 34°?",
-   ctx:"34° shows the uncle's watch face better but reframes the shot. You said it depends on which angle keeps the hands accurate.",
-   imgs:[[L("_sheets/canon/shanghai86_V1b_22_vs_34.jpg"),"22° (now) vs 34°, every guide mode"]],
-   opts:["Test-paint both (2 takes each), then I pick","Keep 22°","Switch to 34°","Something else (below)"], rec:0 },
- { sec:"Shanghai 1986", id:"sh_v1a_watch", t:"0:29.7-0:31.6", title:"V1a: the watch strap on his bent wrist",
-   ctx:"With his hand bent back, the strap reads as a loop sticking off the back of his hand. The engine has no skin under the sleeve, so the watch can't move higher up the arm.",
-   imgs:[[L("shanghai86/V1a_lit.png"),"V1a guide"]],
-   opts:["Tell the painter: the watch sits half under the cuff","Leave the watch out of V1a","Something else (below)"], rec:0 },
- { sec:"Our house 2010 (mv10)", id:"mv_k0", t:"3:14.6", title:"V3_rcv_obl_k0: she keeps swapping with the guest",
-   ctx:"In the model she has her back to the camera. Every take moves her to the guest's spot so her face shows, even with the guest restyled (tall, dark blond, mustard and khaki).",
-   imgs:[[L("mv10/V3_rcv_obl_k0_lit.png"),"guide"],["keyframes/r4/mv10/V3_rcv_obl_k0_v5.jpg","v5 (swapped)"],["keyframes/r4/mv10/V3_rcv_obl_k0_v1.jpg","v1 (current pick)"]],
-   opts:["Restage her so she faces the camera from the far side","Try a layered paint-back with the current staging","Keep v1","Something else (below)"], rec:0 },
- { sec:"Wall 1988", id:"wl_eye", t:"1:40.7-1:45.5", title:"WL_eye: keep v1?",
-   ctx:"The repaint agent kept v1: the new v3 looks the wrong way and v4 makes her eyes look older.",
-   imgs:[["keyframes/r4/wall88/WL_eye_v1.jpg","v1 (pick)"],["keyframes/r4/wall88/WL_eye_v3.jpg","v3"],["keyframes/r4/wall88/WL_eye_v4.jpg","v4"]],
-   opts:["Keep v1","Repaint after the new brows and glasses, with v1 as the expression reference","Something else (below)"], rec:0 },
- { sec:"Office 1991", id:"off_cabinet", t:"1:17.2-1:21.5", title:"Classroom: the new low grey cabinet and honey-oak chairs",
-   ctx:"To lock the background, the wall art now matches PC1 v1. The 'grey cabinet' you liked in v1/v2 was really Mom's chair back, so a low two-drawer grey file cabinet was added there. The chairs are now honey oak, as in the paintings (this changes them in every office shot). The camera is unchanged.",
-   imgs:[[L("office91/PC1_lit.png"),"PC1 guide"],[L("office91/PC2_lit.png"),"PC2 guide"],["keyframes/r4/office91/PC1_v1.jpg","PC1 v1 (the take you liked)"]],
-   opts:["Good","Remove the invented cabinet","Something else (below)"], rec:0 },
- { sec:"Closet 2002", id:"cl_hold", t:"3:28.0-3:29.4", title:"Put the approved hold into CL_hands and CL_ots now?",
-   ctx:"Their guides still show the old cradle hold, not the hold you approved (her hand across his, fingers folding into a clasp, his other hand covering both). Before that, two guide errors need fixing: a clip in the crossed-legs D2 guide and a thorn-shaped thumb in H1. Then the hands sheet and the hands library get the same hold.",
-   opts:["Yes, start now","Later","Something else (below)"], rec:0 },
- { sec:"Song timing", id:"song_times", title:"Four shots whose times disagree with their titles",
-   ctx:"BR2 and BR3 use 2:37.1 and 2:38.1, but their titles say 2:34.5 and 2:37.1. PG2 starts at 4:21.7, but its title says 4:24.1. AD_keys is at 0:13.2, but its title says 0:05.",
-   opts:["Use the times in the titles","Keep the times in use now","I'll check them on the r4 page (below)"], rec:2 },
- { sec:"Workflow", id:"claude_md_frame", title:"Add the framing rule to your global CLAUDE.md?",
-   ctx:"One more bullet in its video section, so the rule applies in every project: \"The guide's frame is the final frame: anything outside it gets invented.\"",
-   opts:["Add it","Don't"], rec:0 },
+ { sec:"Closet 2002", id:"cl_hands_moment", t:"3:28.0-3:29.4", title:"CL_hands (1.4 s): which moment of the hold?",
+   ctx:"The approved hold is now in the closet (sheet: the approved start and end, the 3D match, CL_hands and CL_ots). CL_hands is posed at the END state (his covering hand over both). Her forearm comes in at a different angle than in the clip, because it reaches from her own seat in the closet. Most of the hold is in shade; only his covering fingers catch the sun.",
+   imgs:[["keyframes/r4/_r8/hold_carryover_sheet.jpg","approved start | approved end | 3D match | CL_hands | CL_ots | D sheet"]],
+   opts:["The end state (as built)","The start (her hand across his, before the clasp)","Re-shoot the whole hold clip in the closet from this camera","Something else (below)"], rec:0 },
+ { sec:"Closet 2002", id:"cl_hands_match", t:"3:28.0-3:29.4", title:"The 3D hold is close but not exact",
+   ctx:"In 3D his thumb rests beside her hand rather than over its back, and the 3D hands are about 1.3x the size of the painted ones. The painter usually follows the hands sheet for size.",
+   imgs:[["keyframes/r4/_r8/hold_carryover_sheet.jpg","compare panels 2 and 3"]],
+   opts:["Good enough: paint it (layered: his hand, + hers, + his cover)","Refine first: thumb over her hand, and hands scaled to the painted size","Something else (below)"], rec:0 },
+ { sec:"Closet 2002", id:"cl_clothes_gap", t:"3:23.4-3:34.2", title:"Clothes above your head",
+   ctx:"Shelf and rod now follow your drawing (1.63 m and 1.48 m) with real hanging clothes. Sitting, your head reaches the hems, so the agent left a gap in the rack above you. Your drawing shows clothes there.",
+   imgs:[["keyframes/r4/_r8/clwide_garments_before_after.jpg","before guide | old painting | new guide"]],
+   opts:["Fill it: clothes hang right down to, and brush, my hair","Shorter garments above me (shirts) so the hems clear my head","Keep the gap","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_thermos", title:"The thermos colour",
+   ctx:"The two thermoses read greyish sage in the lit render rather than pale green (the recolour multiplies the model's grey texture).",
+   imgs:[[L("shanghai86/REF_dining_lit.png"),"dining zone"]],
+   opts:["Make them clearly pale (mint/celadon) green","Fine as is","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_fallboard", title:"Piano: key cover open or closed?",
+   ctx:"Your reference photo has the key cover (fallboard) closed; ours is open.",
+   imgs:[[L("shanghai86/REF_piano_lit.png"),"music room piano"]],
+   opts:["Closed, like the photo","Open","Something else (below)"], rec:0 },
+ { sec:"Cast", id:"mama_frame_height", title:"Mama's glasses sit about 2 mm higher than on her sheet",
+   ctx:"In the overlay against her heads sheet the frame is about 2 mm high. Easy to lower.",
+   imgs:[[L("_sheets/glasses_mama.jpg"),"Mama glasses: sheet | guides | scenes"]],
+   opts:["Lower it to match the sheet","Leave it","Something else (below)"], rec:0 },
 ];
 
 // What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
@@ -106,7 +101,7 @@ const DONE_DATE = "";
 const DONE = [
 ];
 
-const KEY = 'proof-decisions-v8';
+const KEY = 'proof-decisions-v9';
 const state = JSON.parse(localStorage.getItem(KEY) || '{}');
 const save = () => { localStorage.setItem(KEY, JSON.stringify(state)); count(); };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
