@@ -438,3 +438,9 @@
 {"ts": "2026-11-28T07:23:05Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
 {"ts": "2026-11-28T07:23:09Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
 {"ts": "2026-11-28T07:23:20Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T07:23:55Z", "model": "bytedance/seedance-2.0", "tag": "hold_CL_AB_1017", "job": "proof/hold_CL_AB_1017-0838a1e045", "event": "submit", "ok": null, "est_usd": 1.85, "where": "box"}
+{"ts": "2026-11-28T07:24:04Z", "model": "bytedance/seedance-2.0", "tag": "hold_CL_AB_2101", "job": "proof/hold_CL_AB_2101-11212244c9", "event": "submit", "ok": null, "est_usd": 1.85, "where": "box"}
+{"ts": "2026-11-28T07:24:05Z", "model": "bytedance/seedance-2.0", "tag": "hold_CL_AB_3307", "job": "proof/hold_CL_AB_3307-91f6fa88cd", "event": "submit", "ok": null, "est_usd": 1.85, "where": "box"}
+{"ts": "2026-11-28T07:28:27Z", "model": "bytedance/seedance-2.0", "tag": "hold_CL_AB_1017", "job": "proof/hold_CL_AB_1017-0838a1e045", "event": "result", "ok": true, "est_usd": 1.85, "where": "box"}
+{"ts": "2026-11-28T07:29:30Z", "model": "bytedance/seedance-2.0", "tag": "hold_CL_AB_2101", "job": "proof/hold_CL_AB_2101-11212244c9", "event": "result", "ok": true, "est_usd": 1.85, "where": "box"}
+{"ts": "2026-11-28T07:29:31Z", "model": "bytedance/seedance-2.0", "tag": "hold_CL_AB_3307", "job": "proof/hold_CL_AB_3307-91f6fa88cd", "event": "result", "ok": true, "est_usd": 1.85, "where": "box"}

@@ -94,8 +94,12 @@ would bring the rod into the top edge but costs the caption room at the bottom.
   a Lab recolour inside SAM 2.1 masks (local model, sam_seg.py; hands mask = the lock), no painter. Check on all four:
   0 changed pixels outside the masks, 0 on the hands. Residual: a few small beige patches of her trousers SAM missed (end,
   bottom centre). Sheet: scratchpad hold_costume_swap_sheet_v3.jpg.
-- Video AB step: specs media/gen/specs/hold_CL_AB_{1017,2101,3307}.json written ($1.85 each); the paid submit was BLOCKED by
-  the permission classifier (00:00 11-28), not run.
+- Jeans PAINTER pass (Jade r8, after the recolour read flat): jeans_prompt.txt, 4 gpt2 calls (~$0.90), region KEY_jeansR.png
+  (her trousers dilated 30 px, minus the hands lock, sleeve, sock and his dark slacks) so the beige patches SAM missed are
+  covered; jeans_layer.py composites it over KEY_swapped_recolour.png -> KEY_swapped.png. 0 px outside the masks, 0 on the
+  hands. Sheet: scratchpad hold_costume_swap_sheet_v4.jpg.
+- Video AB step RUN (Jade's allow rule): proof/hold_CL_AB_{1017,2101,3307} (Seedance 2.0 1080p 5 s, $1.85 each), start =
+  start_swapped, end frame = mid_swapped, the approved prompt with the closet costume named. Jade picks one before `mt`.
 - Video PREPARED, not run: swap/run_video.sh (same Seedance 2.0 1080p chain, same prompts and seeds; only "cream sleeves"
   -> "cardinal-red hoodie sleeves"). Est. $1.85 per take: 3 + 3 takes $11.10, minimum 1 + 1 $3.70.
 - Clothes over her head now brush her hair (garments section). clipcheck "jade19 into hanging clothes" 24-36 mm are false

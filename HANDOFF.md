@@ -28,7 +28,7 @@ After applying, rebuild the page to only the still-open questions (playbook: tes
   deleted, the hand hold runs 3:30.3-3:34.2 (approved demo with her red sleeve, jeans, white sock). One credits card.
   Animatics: `media/keyframes/r4/_animatic/intro.mp4`, `closet.mp4`.
 - Models: shanghai86 furniture/costume canon (tea table, striped rust suite with cream pinline, crochet openwork, clock,
-  stools, celadon thermoses, Yamaha-less upright with closed key cover and bench, nanny's room + music room, Mama in camel
+  stools, celadon thermoses, a black upright piano (blank nameplate, closed key cover, bench, brass lamp), nanny's room + music room, Mama in camel
   sweater + long black skirt); Morton Grove (Yamaha grand 7'1", rose chintz, pink glass-panel tables, chess set, bright
   frameless mirror, socks); closet heights from Jade's drawing; office91 classroom wall locked; wall88 bulb + 14 cm boards;
   canonical glasses and brows per character (engine/glasses.js, brows.js; CAST.md).

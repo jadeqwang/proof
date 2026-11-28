@@ -63,7 +63,9 @@ export const SHARED_CAST = {
   jade19: { name: 'Jade (about 19)', h: 1.63, kind: 'adultJade19', skin: 0xe3b692, hair: 0x0e0d0f, top: 0x8a94a8, legs: 0x2c3140, hairStyle: 'long', sleeves: 'long', glasses: 'jade19', brows: 'jade19' },
   jade27: { name: 'Jade (27)', h: 1.65, kind: 'adultJade27', skin: 0xe3b692, hair: 0x0e0d0f, top: 0xd9543a, legs: 0x2c3140, hairStyle: 'long', sleeves: 'short', glasses: 'jade27', brows: 'jade27' },
   // ---- Mama: one person, one height (the engine's `mama`, restaurant apron, 1988); costume variants by year
-  mama86: mamaAs({ name: 'Mama (1986, Shanghai)', top: 0x6f7f9a, hairStyle: 'perm', sleeves: 'short' }),
+  // round 9 (Jade): Mama in Shanghai 1986 wears a CAMEL / CARAMEL sweater, a LONG BLACK SKIRT and slippers (every shanghai86 shot);
+  // the engine has no long skirt: black trousers here, and shanghai86/build.js mamaSkirt draws the long black skirt over them
+  mama86: mamaAs({ name: 'Mama (1986, Shanghai)', top: 0xb08050, legs: 0x1a1a1c, hairStyle: 'perm', sleeves: 'long' }),
   mama90: mamaAs({ name: 'Mama (1990, Decatur)', top: 0x8a5a52, hairStyle: 'perm', sleeves: 'pushed' }),
   mama91: mamaAs({ name: 'Mama (1991, school office)', top: 0x8a5a6a, hairStyle: 'perm', sleeves: 'long' }),
   // ---- Dad
