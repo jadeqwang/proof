@@ -634,13 +634,16 @@ export const FOOTPRINTS = {
 // sequence is Jade's. Who she talks to (K1), who speaks at the shelf (R1) and the guests (N1..N4) are set-local figures.
 // Real time (invented) is ~19.3 s; the -2sm line lasts 4.13 s (194.59-198.72), so the shot plays it ~4.7x fast (a
 // uniform time-lapse: `slot` times below). Jade CHOSE this (r3 decisions 2026-11-26: "an even time-lapse, about 4.7x"). The old route (shelf -> dining -> sliding door) is gone with it.
-export const RC_MARKS = { kitchen: [1.75, 6.25], door: [4.10, 0.78], stop: [2.55, 2.91], door2: [3.95, 0.70], K1: [2.45, 6.62], R1: [3.25, 3.72] };
+// 2026-11-28 (Jade r7): k0 RESTAGED: she now stands on the FAR side (from the camera) facing it, K1 on the near side with
+// his back to the camera (the painters kept drawing her facing us and swapping the two): their marks are swapped
+// (was kitchen [1.75, 6.25], K1 [2.45, 6.62]); L1 gains a waypoint round K1 on its way to the opening.
+export const RC_MARKS = { kitchen: [2.45, 6.62], door: [4.10, 0.78], stop: [2.55, 2.91], door2: [3.95, 0.70], K1: [1.75, 6.25], R1: [3.25, 3.72] };
 export const ROOM_CROSSING = (() => {
   const M = RC_MARKS, len = (a, b) => Math.hypot(b[0] - a[0], b[1] - a[1]);
   const slot = { lyric: 'Room crossing velocity', timeline: 'media/karaoke_v2/lyrics_timed.json (-2sm), full mix', start_s: 194.59, end_s: 198.72, words_s: { Room: 194.59, crossing: 195.175, velocity: 197.056 } };
   const plan = [
-    { kind: 'stop', id: 'S0', at: M.kitchen, dwell: 2.0, what: 'in the kitchen, just inside the opening, talking with K1 (by the fridge)', events: [{ dt: 1.2, what: 'the doorbell' }, { dt: 1.5, what: 'she excuses herself' }] },
-    { kind: 'leg', id: 'L1', pts: [M.kitchen, [1.20, 5.20], [1.55, 4.25], M.door], speed: 1.30, what: 'to the front door: out through the opening past the 2x2 and its printer, then diagonally across the living room, clear of the Noguchi table' },
+    { kind: 'stop', id: 'S0', at: M.kitchen, dwell: 2.0, what: 'in the kitchen in front of the fridge, facing the opening (and the camera), talking with K1 (between her and the opening, his back to the camera)', events: [{ dt: 1.2, what: 'the doorbell' }, { dt: 1.5, what: 'she excuses herself' }] },
+    { kind: 'leg', id: 'L1', pts: [M.kitchen, [1.95, 5.85], [1.20, 5.20], [1.55, 4.25], M.door], speed: 1.30, what: 'to the front door: round K1, out through the opening past the 2x2 and its printer, then diagonally across the living room, clear of the Noguchi table' },
     { kind: 'stop', id: 'S1', at: M.door, dwell: 4.0, what: 'opens the front door, welcomes N1 and N2 in' },
     { kind: 'leg', id: 'L2', pts: [M.door, M.stop], speed: 1.10, drawOffset: 0.2, what: 'heading back toward the kitchen (aimed at the opening)' },
     { kind: 'stop', id: 'S2', at: M.stop, dwell: 2.5, what: 'R1, at the Expedit, says something; she stops and turns her head to R1', events: [{ dt: 2.0, what: 'the doorbell again' }] },

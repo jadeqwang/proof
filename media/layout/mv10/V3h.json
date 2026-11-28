@@ -679,7 +679,7 @@
     727.6
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 83
   },
   "A2": {
@@ -696,7 +696,7 @@
     689.7
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 91
   },
   "A3": {
@@ -713,7 +713,7 @@
     712
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 115,
    "blocked_by": "A3 guest A3 (face undrawn)"
   },
@@ -731,7 +731,7 @@
     875
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 73
   },
   "B2": {
@@ -748,7 +748,7 @@
     846.7
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 89
   },
   "B1": {
@@ -765,7 +765,7 @@
     937.4
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 104,
    "blocked_by": "B1 guest B1 (face undrawn)"
   },
@@ -783,7 +783,7 @@
     683.1
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 112,
    "blocked_by": "front door (leaf, open)"
   },
@@ -801,7 +801,7 @@
     737.8
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 83
   },
   "C2": {
@@ -818,7 +818,7 @@
     753.8
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 95,
    "blocked_by": "kitchen ceiling light (flush glass dome)"
   },
@@ -836,7 +836,7 @@
     710.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 91
   },
   "T1": {
@@ -853,7 +853,7 @@
     697.1
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 111,
    "blocked_by": "T1 guest T1, at the punchbowl (face undrawn)"
   },
@@ -871,7 +871,7 @@
     864.1
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 92
   },
   "H1": {
@@ -888,7 +888,7 @@
     760.2
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 95
   },
   "W1": {
@@ -905,7 +905,7 @@
     537.8
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 94
   },
   "W2": {
@@ -922,7 +922,7 @@
     493.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 93
   },
   "W3": {
@@ -939,7 +939,7 @@
     445.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 92
   },
   "W4": {
@@ -956,7 +956,7 @@
     360
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 90
   },
   "D1": {
@@ -973,7 +973,7 @@
     823.2
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 92
   },
   "D2": {
@@ -990,7 +990,7 @@
     774.1
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 97
   },
   "poi": {
@@ -1007,7 +1007,7 @@
     586.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 79
   },
   "jade27": {
@@ -1024,7 +1024,7 @@
     795.3
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 106,
    "blocked_by": "jade27 Jade (27)"
   },
@@ -1042,7 +1042,7 @@
     777.5
    ],
    "in_frame": true,
-   "visible": false,
+   "visible": true,
    "facing_camera_deg": 91
   }
  },
@@ -1054,7 +1054,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A1.R": {
    "px": [
@@ -1063,7 +1063,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A2.L": {
    "px": [
@@ -1072,7 +1072,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A2.R": {
    "px": [
@@ -1081,7 +1081,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A3.L": {
    "px": [
@@ -1090,7 +1090,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "A3.R": {
    "px": [
@@ -1099,7 +1099,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "S1.L": {
    "px": [
@@ -1108,7 +1108,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "S1.R": {
    "px": [
@@ -1117,7 +1117,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B2.L": {
    "px": [
@@ -1126,7 +1126,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B2.R": {
    "px": [
@@ -1135,7 +1135,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B1.L": {
    "px": [
@@ -1144,7 +1144,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "B1.R": {
    "px": [
@@ -1153,7 +1153,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "E1.L": {
    "px": [
@@ -1162,7 +1162,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "E1.R": {
    "px": [
@@ -1171,7 +1171,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C1.L": {
    "px": [
@@ -1180,7 +1180,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C1.R": {
    "px": [
@@ -1198,7 +1198,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C2.R": {
    "px": [
@@ -1207,7 +1207,7 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "C3.L": {
    "px": [
@@ -1225,7 +1225,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "T1.L": {
    "px": [
@@ -1234,7 +1234,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "T1.R": {
    "px": [
@@ -1252,7 +1252,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "G1.R": {
    "px": [
@@ -1261,7 +1261,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "H1.L": {
    "px": [
@@ -1270,7 +1270,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "H1.R": {
    "px": [
@@ -1279,7 +1279,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W1.L": {
    "px": [
@@ -1288,7 +1288,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W1.R": {
    "px": [
@@ -1297,7 +1297,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W2.L": {
    "px": [
@@ -1306,7 +1306,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W2.R": {
    "px": [
@@ -1315,7 +1315,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W3.L": {
    "px": [
@@ -1324,7 +1324,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W3.R": {
    "px": [
@@ -1333,7 +1333,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W4.L": {
    "px": [
@@ -1342,7 +1342,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "W4.R": {
    "px": [
@@ -1351,7 +1351,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "D1.L": {
    "px": [
@@ -1360,7 +1360,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "D1.R": {
    "px": [
@@ -1369,7 +1369,7 @@
    ],
    "shape": "grip",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "D2.L": {
    "px": [
@@ -1378,7 +1378,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "D2.R": {
    "px": [
@@ -1387,7 +1387,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "poi.L": {
    "px": [
@@ -1414,7 +1414,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "jade27.R": {
    "px": [
@@ -1423,7 +1423,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "firstLove27.L": {
    "px": [
@@ -1432,7 +1432,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   },
   "firstLove27.R": {
    "px": [
@@ -1441,7 +1441,7 @@
    ],
    "shape": "relax",
    "in_frame": true,
-   "visible": false
+   "visible": true
   }
  },
  "lights": [
@@ -19811,7 +19811,30 @@
    "supports": []
   }
  ],
- "figure_frame_fraction": {},
+ "figure_frame_fraction": {
+  "W4": 0.0003,
+  "W3": 0.0003,
+  "W2": 0.0002,
+  "W1": 0.0003,
+  "poi": 0.0002,
+  "E1": 0.0003,
+  "A2": 0.0003,
+  "T1": 0.0004,
+  "A3": 0.0003,
+  "C3": 0.0002,
+  "C1": 0.0003,
+  "A1": 0.0003,
+  "C2": 0.0003,
+  "H1": 0.0003,
+  "firstLove27": 0.0003,
+  "D2": 0.0003,
+  "jade27": 0.0003,
+  "D1": 0.0003,
+  "B2": 0.0005,
+  "G1": 0.0003,
+  "S1": 0.0005,
+  "B1": 0.0003
+ },
  "colour_separation": [],
  "figure_report": {
   "A1": {
@@ -20572,73 +20595,16 @@
      "frame": "jade27",
      "name": "thin full-rim rectangular dark gunmetal metal",
      "lens_mm": [
-      50,
-      24
+      45.3,
+      23.5
      ],
-     "bridge_mm": 17,
-     "rim_mm": 1.6,
-     "total_width_mm": 121,
+     "bridge_mm": 21.7,
+     "rim_mm": 1.7,
+     "total_width_mm": 118,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
-     "_arm": [
-      [
-       59.1,
-       3,
-       15.9
-      ],
-      [
-       63,
-       4.3,
-       1.5
-      ],
-      [
-       68,
-       5.5,
-       -12.9
-      ],
-      [
-       71.7,
-       6.8,
-       -27.3
-      ],
-      [
-       72.2,
-       8,
-       -41.6
-      ],
-      [
-       76.2,
-       10.4,
-       -56
-      ],
-      [
-       77,
-       10.9,
-       -72.8
-      ],
-      [
-       75.4,
-       7.4,
-       -89.7
-      ],
-      [
-       72.4,
-       -7.6,
-       -96.7
-      ],
-      [
-       66.3,
-       -23.6,
-       -101.7
-      ]
-     ],
-     "_ear": [
-      6.4,
-      -60,
-      -85.7
-     ],
-     "temple_length_mm": 143,
-     "rim_clear_of_face_mm": 3.7
+     "temple_length_mm": 144,
+     "rim_clear_of_face_mm": 4.3
     }
    }
   },

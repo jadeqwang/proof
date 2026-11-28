@@ -13,8 +13,8 @@ await loadProps(['ladle', 'red_cup', 'juicer', 'pitcher', 'bowl', 'knife', 'lemo
 import { glassTable } from './glassTable.js';
 import { spineArt, spineSpec, NAMED } from './spines.js';
 const bookName = (b) => (NAMED.test(b.t) ? b.t : `(blank spine, untitled ${b.lay === 'flat' ? 'book lying flat' : 'book'})`);   // r4: placeholder titles never reach the painter
-import { artPlane, decalMesh } from '../_art.js';
-import { LOGOS, MEATBALL as MB, SR71 } from './art.js';
+import { artPlane, decalMesh, worldUV } from '../_art.js';
+import { LOGOS, MEATBALL as MB, SR71, carpetArt, CARPET_M, CARPET_COL } from './art.js';
 import { HOUSE, GRADE, LIVING, KITCHEN, PARTITION, OPENING, CORE_WALLS, OPENINGS, apertureOf, NEIGHBOURS, SHELF, SHELF_AT, SHELF_W, shelfWorld, EXPEDIT2, PRINTER,
   COUCH, NOGUCHI, GLASS_TABLE, RAIL, COUNTERS, COUNTER_H, SINK, STOVE, DISHWASHER, FRIDGE, TRASH, WALNUT, UPPERS, OTR_MICROWAVE, PUNCHBOWL, PARTY_FOOD, PREP, PREP_JUICER, DINING, CEILING_LIGHTS, PATIO, STAIRS, STRAWBERRY, MINT, HOSE, CLOTHESLINE, FENCES, LAWN,
   TREE, GRAPEFRUIT, POI, punchLadle, AUDIENCE_AT, FLOOR_ABOVE_GRADE, poiCentre, PATH, MARKS, ROOM_CROSSING, SCENE, SUN, SUN_EVENTS, SECTION_KEY, SECTION_LIGHT, LIGHTS, FOOTPRINTS, sunlit, apertureLit, sunFootprints } from './layout.js';
@@ -133,7 +133,7 @@ function housewarming(fig) {
   return out;
 }
 
-const PLASTER = { grey: 0.82, col: 0xcfc6b4 }, STUCCO = { grey: 0.72, col: 0xb8b0a0 }, FLOORW = { grey: 0.6, col: 0x8a6a48 }, TILE = { grey: 0.75, col: 0xbab4a8 };
+const PLASTER = { grey: 0.82, col: 0xcfc6b4 }, STUCCO = { grey: 0.72, col: 0xb8b0a0 }, FLOORW = { grey: 0.6, col: 0x8a6a48 }, CARPET = { grey: 0.7, col: CARPET_COL }, TILE = { grey: 0.75, col: 0xbab4a8 };
 const WOOD = { grey: 0.5, col: 0x8a6440 }, FENCE = { grey: 0.42, col: 0x7a5238 }, DARK = { grey: 0.12, col: 0x161616 }, GLASS = { glass: true, col: 0x9ab0c0, opacity: 0.14, noCast: true };
 const rng = (seed) => () => { seed |= 0; seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
 
@@ -155,8 +155,10 @@ const wallOf = { WNW: { axis: 'X', at: HOUSE.wallT / 2 }, ESE: { axis: 'X', at: 
 // ---------------------------------------------------------------- the house
 function house(shot) {
   const g = new THREE.Group(), H = HOUSE, T = H.wallT, panes = {};
-  // floors: oak in the living room, tile in the kitchen, oak elsewhere; ceiling (hidden in the plan view)
-  g.add(tag(box(LIVING.x1 - LIVING.x0, 0.04, PARTITION.zc - LIVING.z0, FLOORW, [(LIVING.x0 + LIVING.x1) / 2, -0.02, (LIVING.z0 + PARTITION.zc) / 2]), 'living room floor (oak)'));
+  // floors: CARPET in the living room (Jade r7, 2026-11-28: "heathered oatmeal"; art.js carpetArt, the one fixed texture,
+  // 0.5 m repeat at real scale), tile in the kitchen, oak elsewhere; ceiling (hidden in the plan view)
+  { const C = carpetArt(), m = box(LIVING.x1 - LIVING.x0, 0.04, PARTITION.zc - LIVING.z0, { ...CARPET, art: C.art, artGrey: C.artGrey, artEdge: C.artEdge }, [(LIVING.x0 + LIVING.x1) / 2, -0.02, (LIVING.z0 + PARTITION.zc) / 2]);
+    m.userData.art = true; worldUV(m, CARPET_M); g.add(tag(m, 'living room floor (wall-to-wall carpet, heathered oatmeal)')); }
   g.add(tag(box(KITCHEN.x1 - KITCHEN.x0, 0.04, KITCHEN.z1 - PARTITION.zc, TILE, [(KITCHEN.x0 + KITCHEN.x1) / 2, -0.02, (PARTITION.zc + KITCHEN.z1) / 2]), 'kitchen floor (tile)'));
   g.add(tag(box(H.X - 4.89 - T, 0.04, H.Z - 2 * T, FLOORW, [(4.89 + H.X - T) / 2, -0.02, H.Z / 2]), 'floor (core, tea room, bedroom)'));
   g.add(tag(box(H.X, 0.06, H.Z, { ...PLASTER, noCast: true }, [H.X / 2, H.ceil + 0.03, H.Z / 2]), 'ceiling'));

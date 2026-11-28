@@ -9,6 +9,22 @@ python3 layout/gallery.py
 
 
 
+## 2026-11-28: round 7 (Jade): k0 restaged; the living-room floor is carpet
+
+- **V3_rcv_obl_k0 restaged** ("she keeps swapping with the guest: restage her so she faces the camera from the far side"):
+  her S0 mark and K1's are swapped (`layout.js RC_MARKS`: kitchen (1.75, 6.25) -> (2.45, 6.62), K1 (2.45, 6.62) -> (1.75,
+  6.25)). She now stands in front of the fridge on the FAR side from the camera, facing K1 and so the camera (patch and face
+  toward us); K1 (tall, dark blond, mustard / khaki) stands nearer the camera with his back to it. Camera and timing kept.
+  **Continuity:** K1 keeps his new spot in the middle key and k3 (he never moves; he still turns to look into the kitchen,
+  back to the camera). L1 gains a waypoint (1.95, 5.85) so she walks round K1 to the opening; the crossing's real time
+  and speed-up change slightly (sidecar `crossing`). The middle key and k3 are otherwise unchanged. Waypoint: OURS.
+- **Living-room floor = CARPET** ("the living room floor here is carpet, a kind of heathered oatmeal color"): the oak box is
+  now wall-to-wall carpet with ONE fixed texture (`art.js carpetArt`, code-drawn, seeded): oatmeal ground (mean #c4b394)
+  heathered with cream and taupe-brown in soft 1.5-5 cm clusters plus 2-6 mm tuft flecks, 0.5 m repeat at real scale
+  (`worldUV`). It shows in lit (colour), flat / label / form (its greys) and line / contour (a light grey stipple of the
+  darker tufts; far off a pale grey tone). Colour shade, pile and fleck scale: OURS (ASSUMED). Kitchen tile and the oak in
+  the core rooms unchanged. `_make.py` names it (CARPET in every shot that sees the living-room floor).
+
 ## 2026-11-27 (late evening): Jade's yard corrections (supersede the yard parts of the two sections below)
 
 - **Strawberry:** "the strawberry planter is in the correct spot in the before": the raised timber BED is back at its
