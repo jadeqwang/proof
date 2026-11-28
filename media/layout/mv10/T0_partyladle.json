@@ -797,20 +797,20 @@
    "on": true,
    "color": "#ff7a20",
    "world": [
-    6.3,
+    5.7,
     0.45,
-    15.6
+    14.6
    ],
    "px": [
-    1248,
-    -277
+    1377.1,
+    -212.8
    ],
    "in_front": true,
    "travel_dir_px": [
-    0.124,
-    0.992
+    0.316,
+    0.949
    ],
-   "toward_camera": -0.993
+   "toward_camera": -0.992
   }
  ],
  "warnings": [
@@ -1100,9 +1100,9 @@
   },
   "poi_ground": {
    "centre": [
-    6.3,
+    5.7,
     -0.7,
-    15.6
+    14.6
    ],
    "radius": 4.5,
    "note": "falls off with distance; the light source of the silence and of the yard after sunset"
@@ -1968,12 +1968,12 @@
   ]
  },
  "lemon_tree_px": [
-  281,
-  -1372.2
+  356.9,
+  -1424
  ],
  "poi_px": [
-  1248,
-  -277
+  1377.1,
+  -212.8
  ],
  "opening_px": [
   -1009.5,

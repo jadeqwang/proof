@@ -32,6 +32,7 @@ python3 layout/gallery.py
   right), a step nearer the lens at her right, looking up into the tree; the bowl still shows past his right side.
 - **Engine-side fix (set-local):** her boot-cut flare had no `formTint`, so the form guide drew her lower legs WHITE in
   every housewarming shot (lit was right). `PANT.formTint` set.
+- **Done (late, after the restart):** full mv10 re-render finished (13 shots C2a/C2b/SI1/T0_* rendered BLACK in the 5-mode pass and were re-rendered; check `identify -format %[mean]` after big runs), sheets + gallery rebuilt; V3a v7/v8 painted, pick v7.
 - **State at 19:20 (stopped for a restart):** the full re-render was stopped part-way (see HANDOFF 19:20 for exactly
   which shots and modes are current). Next: finish the re-render (5 modes, then form/contour/light, then beam twins,
   sheets, gallery), rebuild `_make.py`, paint V3a v7/v8 (free route, 5 refs), review, update picks. Sheet of this change:

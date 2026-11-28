@@ -1399,20 +1399,20 @@
    "on": true,
    "color": "#ff7a20",
    "world": [
-    6.3,
+    5.7,
     0.45,
-    15.6
+    14.6
    ],
    "px": [
-    2360.5,
-    82.6
+    2279.6,
+    139.1
    ],
    "in_front": true,
    "travel_dir_px": [
-    -0.974,
-    0.228
+    -0.979,
+    0.203
    ],
-   "toward_camera": 0.139
+   "toward_camera": 0.131
   }
  ],
  "warnings": [
@@ -1548,6 +1548,8 @@
   "first_love_head": "shaded by 357 View St",
   "lemon_canopy_top": "sunlit",
   "lemon_canopy_side_toward_house": "shaded by house",
+  "lemon_tree_trunk": "shaded by house",
+  "lemon_she_reaches_for": "shaded by house",
   "expedit_top_centre": "shaded by exterior wall (WNW)",
   "lawn_mid": "shaded by house"
  },
@@ -1716,9 +1718,9 @@
   },
   "poi_ground": {
    "centre": [
-    6.3,
+    5.7,
     -0.7,
-    15.6
+    14.6
    ],
    "radius": 4.5,
    "note": "falls off with distance; the light source of the silence and of the yard after sunset"
@@ -2584,12 +2586,12 @@
   ]
  },
  "lemon_tree_px": [
-  2692.8,
-  -511.6
+  2713.7,
+  -643.3
  ],
  "poi_px": [
-  2360.5,
-  82.6
+  2279.6,
+  139.1
  ],
  "opening_px": [
   1155.3,
@@ -2605,8 +2607,8 @@
   "jacket": "thin black zip-front jacket, worn unzipped and nearly closed over the tee (ASSUMED zip, open); a SMALL NASA meatball insignia (disc about 8 cm) on its LEFT chest, EXACTLY the decal layout/assets/art/logos/nasa_meatball.png (pass it as a reference): the real 1959 meatball, blue disc, white stars, white orbit ring, red chevron and its small white NASA lettering, the same in every shot (2026-11-26, Jade: one version of the logo; r4 decision art_meatball: WITH the white lettering, confirmed)",
   "tee": "fitted black t-shirt with an SR-71 Blackbird print: planform from above, angled down and to the left so it reads like a triangle, dark grey on black, subtle (Jade). Only a sliver shows between the jacket fronts",
   "pants": "boot-cut black yoga pants (fitted to the knee, flaring to the hem, which covers the heel and half the foot)",
-  "feet": "socks, no shoes (Jade); colour plain mid-grey ASSUMED",
-  "before_party": "same outfit and socks outdoors in V3a / V3b / V3b_prep: ASSUMED (OPEN)",
+  "feet": "at the party (indoors, the deck): socks, no shoes (Jade); colour plain mid-grey ASSUMED",
+  "before_party": "same outfit before the party; OUTDOORS in the yard (V3a, V3b) SNEAKERS, not socks (Jade 2026-11-27): ASSUMED plain black canvas low-tops, white rubber soles and toe bumper; in the kitchen (V3b_prep) socks. NO belt (Jade): the jacket hangs over the waistband",
   "sheet": "cast/jade_27/j27_costume_housewarming_v1.jpg"
  },
  "crossing": {
