@@ -1571,3 +1571,4 @@ floor plan at `inputs/refs_mortongrove/Pasted image.png`. `work/kf_logs/CODEX_LI
   in the corner; WHITE bowl), V3e_v1 (planter box at the foot of the deck, barrel mid-lawn; poi mark moved since),
   V3b_v1 (old tree, white bowl). V3b_prep is unaffected (kitchen only). BR6_v2's doorway
   shows the pre-fix yard. SI1_v1 shows no yard furniture (unaffected). Old white bowl: V3a_v1-v6, V3b_v1/v2.
+- 22:20 11-27: checkpoint commit 06441fc (local, not pushed) before Jade's restart. Killed ~65 idle proof-* tmux sessions. RESUME: mv10 next steps in HANDOFF 19:20 / mv10 NOTES (re-render the rest, paint V3a v7/v8 one at a time, review); then the 19:50 TODO list.
