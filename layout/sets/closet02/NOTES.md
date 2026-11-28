@@ -82,8 +82,11 @@ would bring the rod into the top edge but costs the caption room at the bottom.
 - Swap = a mask edit on the four stills of the approved chain (start_2048 = S3_H3b_1, mid_2048 = AB_1's end frame,
   ab1_last = the clasp, the clip's last frame = the end): media/keyframes/r4/_hold/swap/ (gitignored). Masks cover her
   forearm from the wrist to the frame edge only; composite.py takes only the masked region from the repaint and checks that
-  nothing outside it changed (hands pixel-identical). run_swap.sh runs it (free Codex). Status 00:45: Codex plan limit hit
-  (resets 02:01); the paid gpt-image-2 route was not run (blocked without an explicit OK).
+  nothing outside it changed (hands pixel-identical). run_swap.sh runs it (free Codex). 01:00: done on Cloudflare gpt-image-2
+  (Jade approved; 4 x $0.23 = ~$0.90): KEY_paint_g1.png -> KEY_swapped.png, 0 changed pixels outside the mask in all four
+  (composite.py now clamps the feather to the polygon). Sheet: scratchpad hold_sleeve_swap_sheet.jpg. Weak spot: in start the
+  sleeve fills the whole mask polygon, so its top edge reads straight / boxy against the trousers (a tighter mask + retake
+  would fix it).
 - Video PREPARED, not run: swap/run_video.sh (same Seedance 2.0 1080p chain, same prompts and seeds; only "cream sleeves"
   -> "cardinal-red hoodie sleeves"). Est. $1.85 per take: 3 + 3 takes $11.10, minimum 1 + 1 $3.70.
 - Clothes over her head now brush her hair (garments section). clipcheck "jade19 into hanging clothes" 24-36 mm are false

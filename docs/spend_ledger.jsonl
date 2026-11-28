@@ -400,3 +400,7 @@
 {"ts": "2026-11-28T06:30:21Z", "model": "codex/image_gen", "tag": "kf4fd", "ok": true, "est_usd": 0.0, "where": "codex-plan"}
 {"ts": "2026-11-28T06:31:45Z", "model": "codex/image_gen", "tag": "kf4fd", "ok": true, "est_usd": 0.0, "where": "codex-plan"}
 {"ts": "2026-11-28T06:31:54Z", "model": "codex/image_gen", "tag": "kf4fd", "ok": false, "est_usd": 0.0, "where": "codex-plan"}
+{"ts": "2026-11-28T06:51:35Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T06:52:52Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T06:54:08Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T06:55:32Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
