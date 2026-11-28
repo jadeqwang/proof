@@ -55,9 +55,9 @@ Image models read guides coarsely, so give them unambiguous cues:
 - **Keep two people distinct:** give them different costume colours, keep each on the same side of the frame as in the references, and name both in the prompt. Otherwise the model swaps them.
 - **No blank surfaces:** give every visible object one fixed, fully textured look in the model, on every visible side: furniture wood, upholstery, hardware, a watch face, a costume print. A plain surface invites the painter to invent something new there (a bookshelf painted into the plain back of an armchair), and details that change between shots are a tell-tale sign of AI.
 - **Faces come from the face image, never from the guide** (round 4 of this project: every family face drifted into "a new cast", as if actors had been cast from a verbal description). Four causes stacked up: the painter took at most 5 images and silently dropped or replaced the rest, often the face sheet; the agent driving the painter rewrote the prompt in its own words; the guides drew the 3D body's generic face, which the painter copied; and long verbal face descriptions competed with the image. Rules:
-  - send at most as many images as the painter takes (Codex image_gen: 5), and check its log for what it actually received;
+  - never send more images than the painter takes (Codex image_gen: 5), and check its log for what it actually received. If a job needs more references than that, don't drop or tile them: route it to a painter that takes them all (here gpt-image-2 through Cloudflare, up to 16 images; paid, so only with the user's OK);
   - send a tight crop of each visible person's face (front and three-quarter heads), not the whole character sheet, and put it in slot 1;
-  - blank the face inside the head outline in the form and contour guides, keep only head, hair and outline, and give the gaze in words;
+  - blank the face inside the head outline in the form and contour guides, but keep the eyes (whites, irises, pupils) aimed at the look target, plus the glasses; drop the brows, nose and mouth. Without eyes the gaze drifts (a girl looked at the lens instead of her fingertip). Name the gaze target in words too;
   - name each face image in the prompt, describe hair, glasses and age in words, but not the face itself;
   - make the driving agent pass the prompt and the image list verbatim;
   - never use an earlier painting as a face reference: drift compounds from shot to shot.
@@ -182,7 +182,7 @@ These are untested suggestions; prove them on the first shot that needs them.
   - Camera projection is in `layout/engine/paint.js`, used through the figure option `paint`.
 - **Painter:** gpt-image via the Codex CLI, run in tmux. It's on a plan rather than paid per call.
   - Give each concurrent job its own tmux session (`FL_SESSION`); jobs that share a session crash without reporting an error.
-  - It takes at most 5 reference images (more fails, and Codex retries with its own subset or none), so we put extra refs side by side in one image when we need more (`tools/kf/r4lib.py` MAX_REFS, `combine`).
+  - It takes at most 5 reference images (more fails, and Codex retries with its own subset or none). Jobs that need more go to gpt-image-2 through Cloudflare (`tools/kf/kf.py --route gpt2`, up to 16 refs, about $0.24 an image, with the user's OK) rather than being trimmed or tiled (`tools/kf/r4lib.py` MAX_REFS; `combine` is a last resort).
   - Codex rewrites the prompt unless told to pass it verbatim (`tools/kf/kf.py`, `KF_VERBATIM=1`).
   - Faces: tight crops from `tools/kf/face_crops.py`; faceless guides from `tools/kf/faceless.py`.
 - **Video:** Seedance 2.0 through `tools/gen/gen.py`, which logs spend to `docs/spend_ledger.jsonl`.
