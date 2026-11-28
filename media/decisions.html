@@ -111,7 +111,21 @@ let D = [
    opts:["Swap them too (jeans, white sock)","Leave them"], rec:0 },
  { sec:"Closet 2002", id:"hold_video", t:"3:30.3-3:32.4", title:"Re-make the hand-hold video with the swapped clothes?",
    ctx:"The same Seedance 2.0 1080p chain, prompts and seeds as the approved clip, with only the clothing words changed: 3 takes of the clasp, you pick one, then 3 takes of the covering hand from its real last frame. About $11.10 (minimum 1+1 takes: $3.70). Seedance is billed separately from the Cloudflare budget.",
-   opts:["Yes, 3+3 takes (~$11.10)","Yes, 1+1 takes (~$3.70)","Not yet"], rec:0 }
+   opts:["Yes, 3+3 takes (~$11.10)","Yes, 1+1 takes (~$3.70)","Not yet"], rec:0 },
+ { sec:"Shanghai 1986", id:"v1b_stock", t:"0:31.6-0:34.5", title:"V1b hands: pick your top 3 poses (write them below)",
+   ctx:"The hard-shots procedure. c01: index and thumb over a tiny object on an open palm, watch on the wrist, child reaching in (closest). c02: thumb-and-index pinch into a cupped palm. c05: a capsule held up between thumb and index above an open palm. c09: an open palm alone. c11: two hands cradled together. c12: a seated man leaning toward a toddler. Look-only references (mostly stock previews); each pose gets re-posed in 3D as a 40-year-old's hands.",
+   imgs:[["keyframes/r4/shanghai86/_audit/V1b_stock_contact.jpg","the 6 candidates"]],
+   opts:["c01, c02, c05","Other three (write below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"suite_colour", t:"0:29.7-0:58.6", title:"The suite's colour (it drifts between shots)",
+   ctx:"Audit finding: no input ever showed the suite's real colour (the form guide uses code tints, and the lit render wasn't sent), so Codex painted saturated orange-rust and gpt2 muted tan. The canon in the model is a dark rust-brown (0x683826) with a cream pinline. The fix sends a colour card in every shot that shows the suite.",
+   imgs:[["keyframes/r4/shanghai86/_audit/proto/suite_canon_card.png","canon card: armchair, stripe swatch, crochet cover"],["keyframes/r4/shanghai86/_audit/COUCH_across_shots.jpg","the suite across shots and routes"]],
+   opts:["The canon card as shown (dark rust-brown, cream pinline)","Lighter/warmer, like the Codex takes","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"uncle_sheet", t:"0:29.7-0:34.5", title:"The uncle's character sheet is a summer outfit",
+   ctx:"uncle_v1 shows a rolled-sleeve summer shirt, old veiny hands, the watch fully exposed and a round ball. It caused V1b's aged hands, its exposed watches and its round wad. The scene is in a padded jacket.",
+   opts:["Make a winter sheet (padded jacket, 40-year-old hands, watch half under the cuff)","Drop the sheet from the hand shots"], rec:0 },
+ { sec:"Shanghai 1986", id:"mama86_top", t:"0:50.5-0:52.0", title:"Mama's top in V1d_8_end",
+   ctx:"The 3D costume is a blue short-sleeved T-shirt (mama86 in the cast table), while the prompt asks for a cardigan. Which is canon for Mama in 1986 Shanghai?",
+   opts:["Blue T-shirt (as modelled)","A cardigan (describe below)","Something else (below)"], rec:0 }
 ];
 D = D.filter(Boolean);   // tolerate stray empty slots (a ,, in the list once broke Copy my answers)
 
