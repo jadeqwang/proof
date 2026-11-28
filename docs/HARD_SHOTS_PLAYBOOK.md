@@ -173,7 +173,8 @@ These are untested suggestions; prove them on the first shot that needs them.
 4. Add the readability cues from section 2.
 5. Choose a camera that shows every important finger at full length.
 6. Paint in layers. Check every finger with the contour overlay before projecting each layer.
-7. For motion, chain from the real last frame, use no end frame and a prompt that describes the motion, and name every limb by its costume and side.
+7. Where a hand touches a repeated pattern (piano keys, a grid, a row of buttons), count the pattern in a zoomed crop of each take and compare it with the guide. Painters add or drop repeats.
+8. For motion, chain from the real last frame, use no end frame and a prompt that describes the motion, and name every limb by its costume and side.
 
 ## Appendix: this project's tools
 
