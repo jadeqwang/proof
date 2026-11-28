@@ -27,6 +27,11 @@ const adultWith = (h) => ({ ...PROP.adult, hand: JADE_HAND / h, foot: JADE_FOOT 
 // Mama's hair (Jade 2026-11-26: "The jaw-length perm throughout"): a jaw-length, side-parted perm at every age
 // (cast/mama/mama_R_rest_heads_v1; mama.glb hair_perm), never a bun or a straight bob.
 CAST.mama.hairStyle = 'perm';
+// Glasses (2026-11-27): each wearer has ONE canonical frame, read off their cast heads sheet and built at real size by
+// engine/glasses.js (FRAMES); layout/CAST.md "Glasses" has the table. Mama's (thin round-oval pale silver wire) is set
+// here so every year's variant (mama86 / mama90 / mama91) inherits it. Dad: gold aviators in the Decatur years ('dad90');
+// playground23 (2023) gives him his modern semi-rimless frame through its costume ('dad23').
+CAST.mama.glasses = 'mama';
 // first love's hair colour (Jade 2026-11-26 round 5, v8: "Darker ... match the color of gaius baltar's hair"): a deep,
 // cool-to-neutral dark brown, nearly black in shadow, no red/chestnut (cast/first_love/fl_B_backhead_neck_v8, hair median
 // #2e2420). Base tuned on the RENDER: lit pass hue ~20, sat 0.30 under neutral light (was 0x3d2819: sat 0.6-0.7, orange in
@@ -44,17 +49,20 @@ const mamaAs = (o) => ({ ...CAST.mama, apron: undefined, ...o, h: MAMA_H, kind: 
 
 export const SHARED_CAST = {
   // ---- Jade, by age (age 5 = engine `littleJade` 1.08, adult = engine `jade` 1.65)
-  jade3: { name: 'little Jade (3)', h: 0.95, kind: 'child3', ...JADE_KID, top: 0xe9dcc0, legs: 0x5a6a8a, sleeves: 'short' },
+  // 2026-11-27 (Jade, canon everywhere): a coral-red and white GINGHAM top with LONG sleeves gathered at the wrist (the r3
+  // shanghai86 V1d_2 paintings); the 7 mm check itself is drawn by shanghai86/build.js jadeOutfit (textures.js gingham). top =
+  // the check's average colour (flat / form / costume washes)
+  jade3: { name: 'little Jade (3)', h: 0.95, kind: 'child3', ...JADE_KID, top: 0xe3a090, legs: 0x5a6a8a, sleeves: 'long' },
   jade7: { name: 'little Jade (7)', h: 1.22, kind: 'child7', ...JADE_KID, top: 0xb8c4d8, sleeves: 'long' },
   jade10: { name: 'little Jade (10)', h: 1.38, kind: 'child10', ...JADE_KID, top: 0xf1efe8, band: 0xe8792c, sleeves: 'pushed' },
-  jade19: { name: 'Jade (about 19)', h: 1.63, kind: 'adultJade19', skin: 0xe3b692, hair: 0x0e0d0f, top: 0x8a94a8, legs: 0x2c3140, hairStyle: 'long', sleeves: 'long' },
-  jade27: { name: 'Jade (27)', h: 1.65, kind: 'adultJade27', skin: 0xe3b692, hair: 0x0e0d0f, top: 0xd9543a, legs: 0x2c3140, hairStyle: 'long', sleeves: 'short' },
+  jade19: { name: 'Jade (about 19)', h: 1.63, kind: 'adultJade19', skin: 0xe3b692, hair: 0x0e0d0f, top: 0x8a94a8, legs: 0x2c3140, hairStyle: 'long', sleeves: 'long', glasses: 'jade19' },
+  jade27: { name: 'Jade (27)', h: 1.65, kind: 'adultJade27', skin: 0xe3b692, hair: 0x0e0d0f, top: 0xd9543a, legs: 0x2c3140, hairStyle: 'long', sleeves: 'short', glasses: 'jade27' },
   // ---- Mama: one person, one height (the engine's `mama`, restaurant apron, 1988); costume variants by year
   mama86: mamaAs({ name: 'Mama (1986, Shanghai)', top: 0x6f7f9a, hairStyle: 'perm', sleeves: 'short' }),
   mama90: mamaAs({ name: 'Mama (1990, Decatur)', top: 0x8a5a52, hairStyle: 'perm', sleeves: 'pushed' }),
   mama91: mamaAs({ name: 'Mama (1991, school office)', top: 0x8a5a6a, hairStyle: 'perm', sleeves: 'long' }),
   // ---- Dad
-  dad: { name: 'Dad', h: 1.72, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0xc8ccd0, legs: 0x3a3e48, hairStyle: 'short', sleeves: 'long' },
+  dad: { name: 'Dad', h: 1.72, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0xc8ccd0, legs: 0x3a3e48, hairStyle: 'short', sleeves: 'long', glasses: 'dad90' },
   // ---- first love: one height, two costumes (never shot face-on)
   firstLove19: { name: 'first love (19)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x5a6a58, legs: FL_SLACKS, hairStyle: 'short', sleeves: 'long', footSettle: -0.010 },
   firstLove27: { name: 'first love (27, never face-on)', h: FIRST_LOVE_H, kind: 'adultFirstLove', skin: 0xd9ab88, hair: FL_HAIR, top: 0x4a5a6a, legs: FL_SLACKS, hairStyle: 'short', sleeves: 'long', footSettle: -0.010 },

@@ -1152,7 +1152,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.03429,
+   "frame_fraction": 0.03427,
    "bbox_px": [
     754,
     464,
@@ -1317,7 +1317,7 @@
   {
    "label": "window",
    "figure": null,
-   "frame_fraction": 0.01709,
+   "frame_fraction": 0.01712,
    "bbox_px": [
     882,
     318,
@@ -2460,7 +2460,7 @@
  "holds": [],
  "figure_frame_fraction": {
   "littleJade": 0.0222,
-  "mama": 0.0343
+  "mama": 0.0342
  },
  "colour_separation": [],
  "figure_report": {

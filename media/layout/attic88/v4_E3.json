@@ -1019,7 +1019,7 @@
   {
    "label": "knee wall",
    "figure": null,
-   "frame_fraction": 0.28314,
+   "frame_fraction": 0.28331,
    "bbox_px": [
     0,
     130,
@@ -1046,7 +1046,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.12493,
+   "frame_fraction": 0.12476,
    "bbox_px": [
     190,
     160,
@@ -2276,7 +2276,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.1249,
+  "mama": 0.1248,
   "littleJade": 0.0995
  },
  "colour_separation": [

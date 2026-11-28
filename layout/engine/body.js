@@ -142,7 +142,8 @@ export function buildBody(spec0, ctx) {
   if (!gi || gi.face !== 'blank') { const nose = mk(new THREE.ConeGeometry(R * 0.12, R * 0.3, 8), LK.skin); nose.position.copy(HL(0, -0.12, 0.9)); nose.quaternion.copy(qH.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0)))); add(nose); }
   for (const s of [-1, 1]) { if (!gi) add(ball(R * (kid ? 0.1 : 0.075), LK.dark, HL(s * 0.32, 0.06, 0.83).toArray())); add(ball(R * 0.17, LK.skin, HL(s * pr.wk * 0.97, 0.0, 0.0).toArray(), [0.45, 1, 0.75])); }
   { const m = mk(new THREE.BoxGeometry(R * 0.34, R * 0.05, R * 0.05), { grey: 0.3, col: 0x8a3b34 }); m.position.copy(HL(0, -0.48, 0.8)); m.quaternion.copy(qH); add(m); }
-  if (spec.who === 'mama' || spec.who === 'jade') for (const s of [-1, 1]) { const ring = mk(new THREE.TorusGeometry(R * 0.2, R * 0.025, 6, 18), LK.dark); ring.position.copy(HL(s * 0.32, 0.06, 0.95)); ring.quaternion.copy(qH); ring.scale.set(1.2, 0.8, 1); g.add(ring); }   // glasses
+  // glasses: the old placeholder (two flattened torus rings for 'mama' / 'jade') was removed 2026-11-27; every wearer's ONE
+  // canonical frame is built by engine/glasses.js on the rigged mesh body (the default; humanMesh.dressFigure)
   if (FIG2.body) { const hairCol = CAST[spec.who].hair; for (const o of old.children.slice()) { const L = o.userData.look; if (L && L.grey === 0.12 && L.col === hairCol) continue; g.add(o); } }   // the mannequin without its own hair
   hairCap(g, P, R, pr, LK.hair, spec.hair || HAIR4[spec.who]);
   g.traverse((o) => { o.userData.who = spec.who; });

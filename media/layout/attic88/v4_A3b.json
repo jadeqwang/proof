@@ -979,7 +979,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.18096,
+   "frame_fraction": 0.18085,
    "bbox_px": [
     494,
     182,
@@ -994,7 +994,7 @@
   {
    "label": "stair door",
    "figure": null,
-   "frame_fraction": 0.17575,
+   "frame_fraction": 0.17587,
    "bbox_px": [
     316,
     0,
@@ -1002,7 +1002,7 @@
     1080
    ],
    "centroid_px": [
-    589,
+    590,
     488
    ],
    "world_box": [
@@ -2671,7 +2671,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "mama": 0.1807,
+  "mama": 0.1806,
   "littleJade": 0.0074
  },
  "colour_separation": [],

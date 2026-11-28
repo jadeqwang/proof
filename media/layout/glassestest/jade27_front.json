@@ -1,0 +1,277 @@
+{
+ "shot": "jade27_front",
+ "set": "mtest",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   0,
+   1.5201,
+   0.7232
+  ],
+  "target": [
+   0,
+   1.4985,
+   0.1036
+  ],
+  "lens_mm": 85,
+  "frame_width_mm": 36,
+  "hfov_deg": 23.913,
+  "vfov_deg": 13.586,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0.9994,
+   -0.0348,
+   0,
+   0,
+   0.0348,
+   0.9994,
+   0,
+   0,
+   1.5201,
+   0.7232,
+   1
+  ],
+  "viewMatrix": [
+   1,
+   0,
+   0,
+   0,
+   0,
+   0.9994,
+   0.0348,
+   0,
+   0,
+   -0.0348,
+   0.9994,
+   0,
+   0,
+   -1.494,
+   -0.7757,
+   1
+  ],
+  "projectionMatrix": [
+   4.7222,
+   0,
+   0,
+   0,
+   0,
+   8.3951,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "jade27": {
+   "px": [
+    960,
+    575.5
+   ],
+   "eyes": [
+    960,
+    540
+   ],
+   "mouth": [
+    960,
+    994.2
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 2
+  }
+ },
+ "hands": {
+  "jade27.L": {
+   "px": [
+    2250.6,
+    5196.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "jade27.R": {
+   "px": [
+    -330.6,
+    5196.9
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [],
+ "warnings": [],
+ "gaze": {
+  "jade27": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    960,
+    540
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "jade27": {
+   "top": "#d9543a",
+   "legs": "#2c3140",
+   "sleeves": "short",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "jade27": 0.6643
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "jade27": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "jade27",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.08,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.08
+    },
+    "R": {
+     "elbow_bend_deg": 40,
+     "upperarm_stretch": 1.08,
+     "forearm_stretch": 1.1,
+     "hand_scale": 1.08
+    },
+    "sole_shift_mm_L": 30.6,
+    "sole_shift_mm_R": 30.6,
+    "sole_lowest_y_m": 0.004,
+    "glasses": {
+     "frame": "jade27",
+     "name": "thin full-rim rectangular dark gunmetal metal",
+     "lens_mm": [
+      50,
+      24
+     ],
+     "bridge_mm": 17,
+     "rim_mm": 1.6,
+     "total_width_mm": 121,
+     "plane_ahead_of_cornea_mm": 12,
+     "pushed_by_lens_uv_mm": null,
+     "_arm": [
+      [
+       59.1,
+       3,
+       15.9
+      ],
+      [
+       63,
+       3.8,
+       0.1
+      ],
+      [
+       69.6,
+       4.6,
+       -18.6
+      ],
+      [
+       72.6,
+       5.4,
+       -37.3
+      ],
+      [
+       76.2,
+       10.9,
+       -56
+      ],
+      [
+       77,
+       11.4,
+       -72.8
+      ],
+      [
+       75.4,
+       7.4,
+       -89.7
+      ],
+      [
+       72.4,
+       -7.6,
+       -96.7
+      ],
+      [
+       66.3,
+       -23.6,
+       -101.7
+      ]
+     ],
+     "_ear": [
+      6.4,
+      -60,
+      -85.7
+     ],
+     "temple_length_mm": 143,
+     "rim_clear_of_face_mm": 3.7
+    }
+   }
+  }
+ }
+}

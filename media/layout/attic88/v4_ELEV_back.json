@@ -976,7 +976,7 @@
   {
    "label": "knee wall",
    "figure": null,
-   "frame_fraction": 0.15558,
+   "frame_fraction": 0.15559,
    "bbox_px": [
     70,
     670,
@@ -1477,15 +1477,15 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.001,
+   "frame_fraction": 0.00099,
    "bbox_px": [
     1364,
-    826,
+    830,
     1674,
     888
    ],
    "centroid_px": [
-    1546,
+    1545,
     844
    ]
   },

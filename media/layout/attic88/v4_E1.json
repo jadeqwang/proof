@@ -1017,7 +1017,7 @@
   {
    "label": "knee wall",
    "figure": null,
-   "frame_fraction": 0.29482,
+   "frame_fraction": 0.29489,
    "bbox_px": [
     0,
     130,
@@ -1044,7 +1044,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.13665,
+   "frame_fraction": 0.13655,
    "bbox_px": [
     150,
     168,
@@ -1113,7 +1113,7 @@
   {
    "label": "little Jade",
    "figure": "littleJade",
-   "frame_fraction": 0.07929,
+   "frame_fraction": 0.07933,
    "bbox_px": [
     694,
     358,
@@ -1122,7 +1122,7 @@
    ],
    "centroid_px": [
     944,
-    768
+    767
    ]
   },
   {
@@ -2296,8 +2296,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.1367,
-  "littleJade": 0.0793
+  "mama": 0.1366,
+  "littleJade": 0.0794
  },
  "colour_separation": [
   {

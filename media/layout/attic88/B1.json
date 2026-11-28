@@ -338,8 +338,8 @@
  "hands": {
   "mama.L": {
    "px": [
-    236.4,
-    923
+    260.9,
+    915.9
    ],
    "shape": "relax",
    "in_frame": true,
@@ -347,8 +347,8 @@
   },
   "mama.R": {
    "px": [
-    -524.6,
-    1137.5
+    -709.8,
+    1116.3
    ],
    "shape": "relax",
    "in_frame": false,
@@ -551,12 +551,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -77.5,
-    "elbow_flex_deg": 100.4,
+    "twist_deg": -79.9,
+    "elbow_flex_deg": 103.6,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -77.5
+     "twist_deg": -79.9
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -567,12 +567,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -60.3,
-    "elbow_flex_deg": 45.2,
+    "twist_deg": -53.3,
+    "elbow_flex_deg": 47.4,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -60.3
+     "twist_deg": -53.3
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -616,7 +616,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.2809,
+  "mama": 0.2883,
   "littleJade": 0.2198
  },
  "colour_separation": [
@@ -633,14 +633,14 @@
   "mama": {
    "legs": {
     "L": {
-     "reach": 0.56
+     "reach": 0.61
     },
     "R": {
-     "reach": 0.56
+     "reach": 0.33
     }
    },
    "arms": {
-    "L": 0.65,
+    "L": 0.63,
     "R": 0.92
    },
    "headTurn": 51,
@@ -650,20 +650,20 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 110,
-     "upperarm_stretch": 1.12,
+     "elbow_bend_deg": 114,
+     "upperarm_stretch": 1.13,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 48,
-     "upperarm_stretch": 1.07,
+     "elbow_bend_deg": 52,
+     "upperarm_stretch": 1.11,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
-    "sole_lowest_y_m": -0.01
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
+    "sole_lowest_y_m": -0.0002
    }
   },
   "littleJade": {
@@ -697,9 +697,9 @@
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.7,
-    "sole_shift_mm_R": 14.7,
-    "sole_lowest_y_m": 0.0147
+    "sole_shift_mm_L": 21.2,
+    "sole_shift_mm_R": 21.2,
+    "sole_lowest_y_m": 0.0104
    }
   }
  }

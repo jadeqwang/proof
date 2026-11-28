@@ -27,7 +27,7 @@ addCast({
 // r5 (Jade): "he's typically wearing a white polo shirt and black pants"; hair salt-and-pepper, white at the temples
 // (the base colour below is the flecked mid tone; dadHair() paints the canonical salt-and-pepper skin over it). Shoes: dark
 // (not described: FLAGGED). The polo collar and placket are added by poloCollar().
-export const DAD23 = { body: 'dad23', hair: 0x4a4642, top: 0xf4f4f0, legs: 0x18181a, sock: 0x1c1c1e, sleeves: 'short' };
+export const DAD23 = { body: 'dad23', hair: 0x4a4642, top: 0xf4f4f0, legs: 0x18181a, sock: 0x1c1c1e, sleeves: 'short', glasses: 'dad23' };   // glasses: his modern canonical frame (engine/glasses.js FRAMES.dad23; 2026-11-27, replaces the set-local placeholder)
 
 const PAD = (col) => ({ grey: 0.6, col }), BLACK = { grey: 0.1, col: 0x16161a }, NAVY = { grey: 0.18, col: 0x1a1f3a };
 const NET = { glass: true, col: 0x101014, opacity: 0.55, noCast: true, grey: 0.15 }, ACRYL = { glass: true, col: 0xcfe6f4, opacity: 0.14, noCast: true };
@@ -253,17 +253,8 @@ function dressPrints(figs) {
   const w = 0.2, h = 0.1, u0 = -w / 2, v0 = -0.13, c = surf(0, -0.08, 0.004);
   if (c) { const m = decalMesh(chestArt(), (s, t) => surf(u0 + s * w, v0 + t * h, 0.004) || c, { grey: 0.8, col: 0xf4f2ee }); m.userData.who = 'boy'; m.userData.idGroup = 'boy:motif'; f.add(tag(m, 'the boy: sweater motif (one ringed planet, one rocket)')); }
 }
-// Dad's 2023 glasses: thin rectangular semi-rimless (a top bar over each lens, clear lenses, thin temples to the ears)
-function glasses(fig) {
-  const P = fig.userData.P; if (!P?.eyes || !P.headX) return; const g = new THREE.Group(), K = { grey: 0.35, col: 0x4a4a50, noCast: true }, L = { glass: true, col: 0xdfe8f0, opacity: 0.12, noCast: true };
-  const X = P.headX.clone().normalize(), Up = P.headUp.clone().normalize(), F = P.headFwd.clone().normalize(), c = P.eyes.clone().addScaledVector(F, 0.016);
-  for (const s of [-1, 1]) { const lc = c.clone().addScaledVector(X, s * 0.032), tl = lc.clone().addScaledVector(X, -0.025).addScaledVector(Up, 0.014), tr = lc.clone().addScaledVector(X, 0.025).addScaledVector(Up, 0.014);
-    g.add(limb(tl, tr, 0.0018, K)); const q = [tl, tr, tr.clone().addScaledVector(Up, -0.03), tl.clone().addScaledVector(Up, -0.03)];
-    const geo = new THREE.BufferGeometry().setFromPoints([q[0], q[1], q[2], q[0], q[2], q[3]]); geo.computeVertexNormals(); const m = mk(geo, L); m.userData.double = true; g.add(m);
-    const hinge = lc.clone().addScaledVector(X, s * 0.03).addScaledVector(Up, 0.012); g.add(limb(hinge, hinge.clone().addScaledVector(F, -0.095).addScaledVector(Up, -0.012), 0.0015, K)); }
-  g.add(limb(c.clone().addScaledVector(X, -0.008).addScaledVector(Up, 0.012), c.clone().addScaledVector(X, 0.008).addScaledVector(Up, 0.012), 0.0015, K));
-  g.traverse((o) => { if (o.isMesh) { o.userData.who = 'dad'; o.userData.idGroup = 'dad:glasses'; } }); fig.add(tag(g, 'Dad: thin rectangular semi-rimless glasses'));
-}
+// Dad's 2023 glasses: now the engine's canonical frame (engine/glasses.js FRAMES.dad23, via DAD23.glasses); the set-local
+// placeholder (a top bar per lens, quads, straight temples) was removed 2026-11-27.
 
 // ---------------------------------------------------------------- Dad in 2023 (r5): hair, polo collar, backpack, bottles
 // the salt-and-pepper hair: one canonical skin (art.js dadHairArt) mapped round his head
@@ -390,7 +381,7 @@ export function build(shot, { makeCam }) {
     clasp('jade', 'L', 'girl', 'R'); clasp('dad', 'R', 'boy', 'L'); }
   const { figs } = stage(costumed, null, extra);
   for (const f of Object.values(figs)) root.add(f);
-  dressPrints(figs); if (figs.jade) { jadeOutfit(figs.jade); PATCH = sleevePatch(figs.jade); } if (figs.dad) { glasses(figs.dad); dadHair(figs.dad); poloCollar(figs.dad); backpack(figs.dad); }
+  dressPrints(figs); if (figs.jade) { jadeOutfit(figs.jade); PATCH = sleevePatch(figs.jade); } if (figs.dad) { dadHair(figs.dad); poloCollar(figs.dad); backpack(figs.dad); }
   const cs = { ...shot, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   if (shot.eyeline) { const e = (shot.eyelineFrom ? V(shot.eyelineFrom) : figs[shot.eyeline.who].userData.P.eyes.clone()), to = V(fix(shot.eyeline.to)); cs.pos = e.addScaledVector(to.sub(e).normalize(), shot.eyeline.back ?? 0.12).toArray(); delete cs.orbit; }
   Object.assign(shot, solveCamera(cs, figs, null, aim));

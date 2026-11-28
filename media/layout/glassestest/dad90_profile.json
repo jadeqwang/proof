@@ -1,0 +1,276 @@
+{
+ "shot": "dad90_profile",
+ "set": "mtest",
+ "w": 1920,
+ "h": 1080,
+ "desc": "",
+ "camera": {
+  "position": [
+   -0.6196,
+   1.581,
+   0.108
+  ],
+  "target": [
+   0,
+   1.5594,
+   0.108
+  ],
+  "lens_mm": 85,
+  "frame_width_mm": 36,
+  "hfov_deg": 23.913,
+  "vfov_deg": 13.586,
+  "ortho": null,
+  "roll_deg": 0,
+  "near": 0.05,
+  "far": 200,
+  "matrixWorld": [
+   0,
+   0,
+   1,
+   0,
+   0.0348,
+   0.9994,
+   0,
+   0,
+   -0.9994,
+   0.0348,
+   0,
+   0,
+   -0.6196,
+   1.581,
+   0.108,
+   1
+  ],
+  "viewMatrix": [
+   0,
+   0.0348,
+   -0.9994,
+   0,
+   0,
+   0.9994,
+   0.0348,
+   0,
+   1,
+   0,
+   0,
+   0,
+   -0.108,
+   -1.5585,
+   -0.6743,
+   1
+  ],
+  "projectionMatrix": [
+   4.7222,
+   0,
+   0,
+   0,
+   0,
+   8.3951,
+   0,
+   0,
+   0,
+   0,
+   -1.0005,
+   -1,
+   0,
+   0,
+   -0.1,
+   0
+  ],
+  "note": "three.js column-major 4x4; world units metres, y up; pixel = ((ndc.x+1)/2*w, (1-ndc.y)/2*h)"
+ },
+ "safe45_px": [
+  528,
+  1392
+ ],
+ "book": null,
+ "panes": {},
+ "heads": {
+  "dad": {
+   "px": [
+    238.6,
+    608.2
+   ],
+   "eyes": [
+    959.8,
+    540.4
+   ],
+   "mouth": [
+    959.8,
+    1013.7
+   ],
+   "in_frame": true,
+   "visible": true,
+   "facing_camera_deg": 81
+  }
+ },
+ "hands": {
+  "dad.L": {
+   "px": [
+    548.5,
+    4553.4
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  },
+  "dad.R": {
+   "px": [
+    145.7,
+    8636.3
+   ],
+   "shape": "relax",
+   "in_frame": false,
+   "visible": false
+  }
+ },
+ "lights": [],
+ "warnings": [],
+ "gaze": {
+  "dad": {
+   "face": "drawn",
+   "look_target": null,
+   "head_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "note": "head relative to the chest"
+   },
+   "eye_deg": {
+    "yaw_left": 0,
+    "pitch_up": 0,
+    "wanted_yaw": 0,
+    "wanted_pitch": 0,
+    "note": "eyes relative to the head; travel clamped to +-30 yaw, 30 up / 45 down"
+   },
+   "gaze_error_deg": 0,
+   "beyond_eye_range": false,
+   "points": [],
+   "reaches": [],
+   "warnings": [],
+   "eyes_px": [
+    959.8,
+    540.4
+   ],
+   "target_px": null,
+   "target_in_front": null
+  }
+ },
+ "costume": {
+  "dad": {
+   "top": "#c8ccd0",
+   "legs": "#3a3e48",
+   "sleeves": "long",
+   "sock": "#6a6a70",
+   "torso": "capsule"
+  }
+ },
+ "holds": [],
+ "figure_frame_fraction": {
+  "dad": 0.5774
+ },
+ "colour_separation": [],
+ "figure_report": {
+  "dad": {
+   "legs": {
+    "L": {
+     "reach": 1
+    },
+    "R": {
+     "reach": 1
+    }
+   },
+   "arms": {
+    "L": 0.97,
+    "R": 0.97
+   },
+   "headTurn": 0,
+   "body": {
+    "mesh": "dad",
+    "scale": 1,
+    "face": "drawn",
+    "head_short_of_eyes_m": 0,
+    "L": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.94
+    },
+    "R": {
+     "elbow_bend_deg": 36,
+     "upperarm_stretch": 1,
+     "forearm_stretch": 0.99,
+     "hand_scale": 0.94
+    },
+    "sole_shift_mm_L": 17.1,
+    "sole_shift_mm_R": 17.1,
+    "sole_lowest_y_m": 0.0042,
+    "glasses": {
+     "frame": "dad90",
+     "name": "thin gold wire double-bridge teardrop aviator",
+     "lens_mm": [
+      58,
+      50
+     ],
+     "bridge_mm": 16,
+     "rim_mm": 1.6,
+     "total_width_mm": 137,
+     "plane_ahead_of_cornea_mm": 20.1,
+     "_arm": [
+      [
+       67.1,
+       -1.5,
+       26
+      ],
+      [
+       67.1,
+       0,
+       6
+      ],
+      [
+       71.3,
+       1.6,
+       -16.9
+      ],
+      [
+       74.9,
+       3.1,
+       -39.9
+      ],
+      [
+       77.8,
+       12.3,
+       -62.8
+      ],
+      [
+       78.7,
+       12.8,
+       -82.3
+      ],
+      [
+       77.2,
+       8.8,
+       -101.9
+      ],
+      [
+       76.1,
+       -6.2,
+       -108.9
+      ],
+      [
+       71.6,
+       -22.2,
+       -113.9
+      ]
+     ],
+     "_ear": [
+      7.8,
+      -66.8,
+      -97.9
+     ],
+     "temple_length_mm": 165,
+     "rim_clear_of_face_mm": 2
+    }
+   }
+  }
+ }
+}

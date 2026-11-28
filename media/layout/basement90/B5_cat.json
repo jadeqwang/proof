@@ -782,8 +782,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "jade7": 0.2763,
-  "dad": 0.0472
+  "jade7": 0.2762,
+  "dad": 0.0471
  },
  "colour_separation": [
   {
@@ -829,7 +829,25 @@
     },
     "sole_shift_mm_L": 17.1,
     "sole_shift_mm_R": 17.1,
-    "sole_lowest_y_m": 0
+    "sole_lowest_y_m": 0,
+    "glasses": {
+     "frame": "dad90",
+     "name": "thin gold wire double-bridge teardrop aviator",
+     "lens_mm": [
+      58,
+      46
+     ],
+     "bridge_mm": 16,
+     "rim_mm": 1.6,
+     "total_width_mm": 137,
+     "plane_ahead_of_cornea_mm": 13.8,
+     "pushed_by_lens_uv_mm": [
+      -26.5,
+      -10.3
+     ],
+     "temple_length_mm": 157,
+     "rim_clear_of_face_mm": 2
+    }
    }
   },
   "jade7": {

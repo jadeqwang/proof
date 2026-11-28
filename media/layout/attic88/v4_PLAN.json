@@ -1271,7 +1271,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.00447,
+   "frame_fraction": 0.00446,
    "bbox_px": [
     1254,
     142,
@@ -1279,7 +1279,7 @@
     242
    ],
    "centroid_px": [
-    1382,
+    1381,
     191
    ]
   },

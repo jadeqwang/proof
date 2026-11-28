@@ -2323,7 +2323,22 @@
     },
     "sole_shift_mm_L": 15.6,
     "sole_shift_mm_R": 15.6,
-    "sole_lowest_y_m": 0.0042
+    "sole_lowest_y_m": 0.0042,
+    "glasses": {
+     "frame": "dad23",
+     "name": "thin rectangular semi-rimless dark gunmetal (top rim only)",
+     "lens_mm": [
+      54,
+      28
+     ],
+     "bridge_mm": 18,
+     "rim_mm": 1.8,
+     "total_width_mm": 131,
+     "plane_ahead_of_cornea_mm": 12,
+     "pushed_by_lens_uv_mm": null,
+     "temple_length_mm": 157,
+     "rim_clear_of_face_mm": 4.9
+    }
    }
   }
  }

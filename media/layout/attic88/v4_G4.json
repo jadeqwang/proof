@@ -1017,7 +1017,7 @@
   {
    "label": "right gable wall",
    "figure": null,
-   "frame_fraction": 0.24224,
+   "frame_fraction": 0.24231,
    "bbox_px": [
     598,
     0,
@@ -1098,7 +1098,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.0779,
+   "frame_fraction": 0.07784,
    "bbox_px": [
     352,
     196,
@@ -2458,7 +2458,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.0778,
+  "mama": 0.0777,
   "littleJade": 0.0612
  },
  "colour_separation": [

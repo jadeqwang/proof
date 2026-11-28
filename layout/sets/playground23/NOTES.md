@@ -297,3 +297,9 @@ and have seats the way it does in the photo"; "You in socks or sneakers? Socks".
 ## 2026-11-27: real-size feet / hands (engine agent)
 - girl: ankleR y -0.31 -> -0.302 (her longer foot's toes were 8 mm into the ramp); girlHandOn y 0.52 -> 0.527 (the
   fingertips, skin now out to the tip pad, were 7 mm into the rim). Clip check: all shots pass.
+
+## 2026-11-27: Dad's glasses are the engine's canonical frame
+The set-local placeholder glasses() (a top bar per lens, quads, straight temples) is gone: `DAD23.glasses = 'dad23'`
+gives him the canonical semi-rimless frame from `engine/glasses.js` (FRAMES.dad23, layout/CAST.md "Glasses"), fitted to
+the dad23 body (pads on the nose, arms over the ears). His Decatur frame (gold double-bridge aviators, `dad90`) is a
+separate mesh; the prompt names the 2023 one ("NOT his old gold aviators").

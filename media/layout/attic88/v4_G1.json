@@ -1045,7 +1045,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.12608,
+   "frame_fraction": 0.12602,
    "bbox_px": [
     72,
     160,
@@ -1060,7 +1060,7 @@
   {
    "label": "little Jade",
    "figure": "littleJade",
-   "frame_fraction": 0.09385,
+   "frame_fraction": 0.09392,
    "bbox_px": [
     570,
     332,

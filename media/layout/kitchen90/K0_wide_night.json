@@ -697,7 +697,7 @@
  "figure_frame_fraction": {
   "dad": 0.0118,
   "mama90": 0.0197,
-  "jade7": 0.0116
+  "jade7": 0.0115
  },
  "colour_separation": [],
  "figure_report": {
@@ -770,7 +770,25 @@
     },
     "sole_shift_mm_L": 17.1,
     "sole_shift_mm_R": 17.1,
-    "sole_lowest_y_m": 0.0042
+    "sole_lowest_y_m": 0.0042,
+    "glasses": {
+     "frame": "dad90",
+     "name": "thin gold wire double-bridge teardrop aviator",
+     "lens_mm": [
+      58,
+      46
+     ],
+     "bridge_mm": 16,
+     "rim_mm": 1.6,
+     "total_width_mm": 137,
+     "plane_ahead_of_cornea_mm": 13.8,
+     "pushed_by_lens_uv_mm": [
+      -26.5,
+      -10.3
+     ],
+     "temple_length_mm": 157,
+     "rim_clear_of_face_mm": 2
+    }
    }
   },
   "mama90": {
@@ -806,7 +824,22 @@
     },
     "sole_shift_mm_L": 30,
     "sole_shift_mm_R": 30,
-    "sole_lowest_y_m": 0.0039
+    "sole_lowest_y_m": 0.0039,
+    "glasses": {
+     "frame": "mama",
+     "name": "thin round-oval pale silver wire",
+     "lens_mm": [
+      46,
+      33
+     ],
+     "bridge_mm": 18,
+     "rim_mm": 1.4,
+     "total_width_mm": 115,
+     "plane_ahead_of_cornea_mm": 12,
+     "pushed_by_lens_uv_mm": null,
+     "temple_length_mm": 141,
+     "rim_clear_of_face_mm": 2.6
+    }
    }
   }
  }

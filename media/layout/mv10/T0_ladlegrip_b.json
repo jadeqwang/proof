@@ -25788,7 +25788,79 @@
     },
     "sole_shift_mm_L": 30.6,
     "sole_shift_mm_R": 30.6,
-    "sole_lowest_y_m": 0.004
+    "sole_lowest_y_m": 0.004,
+    "glasses": {
+     "frame": "jade27",
+     "name": "thin full-rim rectangular dark gunmetal metal",
+     "lens_mm": [
+      50,
+      24
+     ],
+     "bridge_mm": 17,
+     "rim_mm": 1.6,
+     "total_width_mm": 121,
+     "plane_ahead_of_cornea_mm": 12,
+     "pushed_by_lens_uv_mm": null,
+     "_arm": [
+      [
+       59.1,
+       3,
+       15.9
+      ],
+      [
+       63,
+       4.3,
+       1.5
+      ],
+      [
+       68,
+       5.5,
+       -12.9
+      ],
+      [
+       71.7,
+       6.8,
+       -27.3
+      ],
+      [
+       72.2,
+       8,
+       -41.6
+      ],
+      [
+       76.2,
+       10.4,
+       -56
+      ],
+      [
+       77,
+       10.9,
+       -72.8
+      ],
+      [
+       75.4,
+       7.4,
+       -89.7
+      ],
+      [
+       72.4,
+       -7.6,
+       -96.7
+      ],
+      [
+       66.3,
+       -23.6,
+       -101.7
+      ]
+     ],
+     "_ear": [
+      6.4,
+      -60,
+      -85.7
+     ],
+     "temple_length_mm": 143,
+     "rim_clear_of_face_mm": 3.7
+    }
    }
   },
   "friend": {

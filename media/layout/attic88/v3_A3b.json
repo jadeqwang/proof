@@ -1828,7 +1828,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "mama": 0.1292
+  "mama": 0.129
  },
  "colour_separation": [],
  "figure_report": {
@@ -1863,8 +1863,8 @@
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
     "sole_lowest_y_m": 0.0039
    }
   },
@@ -1899,9 +1899,9 @@
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.7,
-    "sole_shift_mm_R": 14.7,
-    "sole_lowest_y_m": 0.0234
+    "sole_shift_mm_L": 21.2,
+    "sole_shift_mm_R": 21.2,
+    "sole_lowest_y_m": 0.0071
    }
   }
  }

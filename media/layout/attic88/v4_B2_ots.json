@@ -418,7 +418,7 @@
    ],
    "shape": "palmUp",
    "in_frame": true,
-   "visible": true
+   "visible": false
   },
   "littleJade.L": {
    "px": [
@@ -1045,7 +1045,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.28861,
+   "frame_fraction": 0.28687,
    "bbox_px": [
     0,
     38,
@@ -1053,8 +1053,8 @@
     1080
    ],
    "centroid_px": [
-    1360,
-    722
+    1361,
+    723
    ]
   },
   {
@@ -1087,7 +1087,7 @@
   {
    "label": "little Jade",
    "figure": "littleJade",
-   "frame_fraction": 0.11813,
+   "frame_fraction": 0.11987,
    "bbox_px": [
     282,
     216,
@@ -1095,8 +1095,8 @@
     1080
    ],
    "centroid_px": [
-    1002,
-    846
+    1006,
+    843
    ]
   },
   {
@@ -1372,7 +1372,7 @@
      654.3
     ],
     "in_frame": true,
-    "visible": true,
+    "visible": false,
     "w": [
      1.3118,
      0.2926,
@@ -1556,7 +1556,7 @@
      659.4
     ],
     "in_frame": true,
-    "visible": false,
+    "visible": true,
     "w": [
      1.4903,
      0.5278,
@@ -2053,8 +2053,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.2886,
-  "littleJade": 0.1182
+  "mama": 0.2869,
+  "littleJade": 0.12
  },
  "colour_separation": [
   {

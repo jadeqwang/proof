@@ -1016,7 +1016,7 @@
   {
    "label": "right gable wall",
    "figure": null,
-   "frame_fraction": 0.39963,
+   "frame_fraction": 0.39993,
    "bbox_px": [
     0,
     0,
@@ -1043,7 +1043,7 @@
   {
    "label": "Mama",
    "figure": "mama",
-   "frame_fraction": 0.17786,
+   "frame_fraction": 0.17753,
    "bbox_px": [
     302,
     116,
@@ -1052,7 +1052,7 @@
    ],
    "centroid_px": [
     701,
-    725
+    726
    ]
   },
   {
@@ -1085,7 +1085,7 @@
   {
    "label": "little Jade",
    "figure": "littleJade",
-   "frame_fraction": 0.09349,
+   "frame_fraction": 0.09351,
    "bbox_px": [
     622,
     304,
@@ -2321,7 +2321,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.1779,
+  "mama": 0.1775,
   "littleJade": 0.0935
  },
  "colour_separation": [

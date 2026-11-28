@@ -338,8 +338,8 @@
  "hands": {
   "mama.L": {
    "px": [
-    13.3,
-    1160.2
+    82.5,
+    1153.6
    ],
    "shape": "relax",
    "in_frame": false,
@@ -347,8 +347,8 @@
   },
   "mama.R": {
    "px": [
-    -985.9,
-    1367.1
+    -1053.4,
+    1312.5
    ],
    "shape": "relax",
    "in_frame": false,
@@ -449,6 +449,7 @@
   }
  ],
  "warnings": [
+  "wrist: mama L beyond the wrist range (pronation +1 deg; flex 0, radial 0, twist -81.3, after an elbow swivel of 0 deg)",
   "wrist: littleJade L beyond the wrist range (supination +23 deg; flex 0, radial 0, twist 108.4, after an elbow swivel of 0 deg)",
   "wrist: littleJade R beyond the wrist range (supination +27 deg; flex 0, radial 0, twist 112.1, after an elbow swivel of 0 deg)"
  ],
@@ -554,15 +555,17 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -78.3,
-    "elbow_flex_deg": 106.4,
+    "twist_deg": -81.3,
+    "elbow_flex_deg": 108.7,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -78.3
+     "twist_deg": -81.3
     },
     "hand_turned_deg": null,
-    "out_of_range": [],
+    "out_of_range": [
+     "pronation +1 deg"
+    ],
     "grip_reversed": false
    },
    "R": {
@@ -570,12 +573,12 @@
     "elbow_swivel_deg": 0,
     "flex_deg": 0,
     "radial_deg": 0,
-    "twist_deg": -63.4,
-    "elbow_flex_deg": 62.7,
+    "twist_deg": -56.3,
+    "elbow_flex_deg": 64.9,
     "before": {
      "flex_deg": 0,
      "radial_deg": 0,
-     "twist_deg": -63.4
+     "twist_deg": -56.3
     },
     "hand_turned_deg": null,
     "out_of_range": [],
@@ -623,7 +626,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama": 0.3136,
+  "mama": 0.3212,
   "littleJade": 0.3221
  },
  "colour_separation": [
@@ -640,15 +643,15 @@
   "mama": {
    "legs": {
     "L": {
-     "reach": 0.56
+     "reach": 0.61
     },
     "R": {
-     "reach": 0.56
+     "reach": 0.33
     }
    },
    "arms": {
-    "L": 0.61,
-    "R": 0.86
+    "L": 0.59,
+    "R": 0.85
    },
    "headTurn": 76,
    "body": {
@@ -657,20 +660,20 @@
     "face": "drawn",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 116,
-     "upperarm_stretch": 1.12,
+     "elbow_bend_deg": 119,
+     "upperarm_stretch": 1.14,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
     "R": {
-     "elbow_bend_deg": 66,
-     "upperarm_stretch": 1.1,
+     "elbow_bend_deg": 69,
+     "upperarm_stretch": 1.14,
      "forearm_stretch": 1.1,
      "hand_scale": 1.02
     },
-    "sole_shift_mm_L": 19.7,
-    "sole_shift_mm_R": 19.7,
-    "sole_lowest_y_m": -0.01
+    "sole_shift_mm_L": 30,
+    "sole_shift_mm_R": 30,
+    "sole_lowest_y_m": -0.0002
    }
   },
   "littleJade": {
@@ -704,9 +707,9 @@
      "forearm_stretch": 0.94,
      "hand_scale": 0.96
     },
-    "sole_shift_mm_L": 14.7,
-    "sole_shift_mm_R": 14.7,
-    "sole_lowest_y_m": 0.0147
+    "sole_shift_mm_L": 21.2,
+    "sole_shift_mm_R": 21.2,
+    "sole_lowest_y_m": 0.0104
    }
   }
  }

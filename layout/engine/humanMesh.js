@@ -21,6 +21,7 @@ import * as THREE from 'three';
 import { mk } from './core.js';
 import { eyeAim, faceKind } from './gaze.js';
 import { limbWeights, limbMask } from './paint.js';
+import { buildGlasses } from './glasses.js';
 
 export const HUMAN = { on: false, base: '/assets/bodies/', bodies: null, handFit: true, thumbFit: true };   // handFit: the palm fitted to the solver's knuckles (fit B, 2026-11-27); thumbFit: mesh thumb joints at the mesh's own proportions along the solver's thumb (2026-11-27); false = the old hand
 
@@ -737,8 +738,12 @@ export function dressFigure(g, spec, c, P, uid) {
   const face = faceKind(spec.who), drawn = face === 'drawn' && !c.undrawn;
   if (drawn && B.meshes.brows) addPart('brows', hairL, 'brows');
   if (drawn && B.meshes.eyes) eyes(g, B, k, M, TW, uid);
+  // glasses (2026-11-27): the character's ONE canonical frame (engine/glasses.js FRAMES; cast entry `glasses`, a figure's
+  // spec.glasses / costume may override, false = none), fitted to this body's face and carried by the head bone
+  let glassesReport = null; { const gid = spec.glasses !== undefined ? spec.glasses : c.glasses;
+    if (gid && M.head) { const { group, report: gr } = buildGlasses(gid, B, k, M.head, uid); for (const m of [...group.children]) g.add(m); glassesReport = gr; } }
   { let lo = Infinity; for (let f = 0; f < tr.length; f++) if (/^sock/.test(tr[f])) for (let c3 = 0; c3 < 3; c3++) lo = Math.min(lo, pos[idx[f * 3 + c3] * 3 + 1]); report.sole_lowest_y_m = +lo.toFixed(4); }   // world y of the lowest sole vertex (floor at the set's floor height)
-  P.bodyReport = { mesh: id, scale: +k.toFixed(3), face: drawn ? 'drawn' : face, head_short_of_eyes_m: P.headMeshOffset, ...report };
+  P.bodyReport = { mesh: id, scale: +k.toFixed(3), face: drawn ? 'drawn' : face, head_short_of_eyes_m: P.headMeshOffset, ...report, ...(glassesReport ? { glasses: glassesReport } : {}) };
   P.bodyMesh = id;
 }
 

@@ -5,7 +5,7 @@ entries). Every set imports `_cast.js`; none registers a recurring person itself
 
 | key | who | height | proportions | used in | was |
 |---|---|---|---|---|---|
-| `jade3` | little Jade, 3 | 0.95 | `child3` | shanghai86 | shanghai86 local `jade3` |
+| `jade3` | little Jade, 3. **Costume canon (Jade, 2026-11-27): a coral-red and white GINGHAM top (7 mm check, one canonical texture: `shanghai86/textures.js` gingham), LONG sleeves gathered by elastic at the wrist, a plain white round collar** (as in the r3 shanghai86 V1d_2 paintings) | 0.95 | `child3` | shanghai86 (only set with her at 3; bodytest / mtest are engine test sets, unchanged) | shanghai86 local `jade3` |
 | `littleJade` | little Jade, 5 | 1.08 | `child5` (engine) | attic88, attic88_day, wall88 | engine, unchanged |
 | `jade7` | little Jade, 7 | 1.22 | `child7` | office91, basement90, kitchen90 | two local `jade7` (same height, different proportions and costume) |
 | `jade10` | little Jade, about 10 | 1.38 | `child10` | market93 | market93 local `jade10` |
@@ -59,3 +59,43 @@ What changed when the sets were pointed at this table (2026-11-22)
 - Sidecar keys follow the cast keys: `mother` -> `mama86`, `mom` -> `mama91`, `firstLove` -> `firstLove19` /
   `firstLove27`.
 - Colours are for the `lit` preview only; they are placeholders, not costume design.
+
+## Glasses: one canonical frame per wearer (2026-11-27)
+
+The painters drew a different frame in every shot (mv10 V3_rev_temple_b got a browline / half-rim) because the guides had
+no real glasses: two flattened torus rings in the old mannequin path and nothing at all on the rigged mesh bodies. Each
+wearer now has ONE frame, read off their cast heads sheet, built at real size by `layout/engine/glasses.js` (`FRAMES`)
+and fitted to that body's own face. The cast entry names it (`glasses:` in `layout/sets/_cast.js`; a figure's
+`spec.glasses` or `costume.glasses` overrides it, `false` = none). Where the sheet's caption and the sheet's drawing
+disagree, the drawing wins (the painters copy the image).
+
+| key (frame id) | wears it | frame (as drawn on the sheet) | lens w x h | bridge | rim | colour | nose pads | temples / hinges |
+|---|---|---|---|---|---|---|---|---|
+| `jade27` | `jade27` (mv10, mortongrove07) | thin FULL-rim rectangular metal, small rounded corners, narrow (lens about 2:1) | 50 x 24 mm | 17 mm, one thin straight bar at the upper third | 1.6 mm round wire | dark gunmetal `#4a4d55` | yes, on pad arms | thin straight metal arms from the top outer corner, small hinge block |
+| `jade19` | `jade19` (closet02) | small thin FULL-rim soft rounded-rectangle wire (rounder corners than at 27) | 48 x 25 mm | 17 mm, thin bar, a slight arch | 1.6 mm | dark gunmetal `#4f5259` | yes | thin straight arms from the upper outer corner |
+| `mama` | every Mama (`mama`, `mama86`, `mama90`, `mama91`: attic88, attic88_day, wall88, market93, shanghai86, kitchen90, office91) | thin round-oval wire (softly squared oval), full rim | 46 x 33 mm | 18 mm, a thin arched bridge | 1.4 mm | pale silver `#bab6ad` | yes, visible pads on pad arms | thin straight arms from just above mid-height, small end pieces |
+| `dad90` | `dad` in the Decatur years, 1990-91 (basement90, kitchen90, office91) | thin GOLD wire DOUBLE-bridge teardrop aviator: large lenses, flat top, the nasal edge slanting out as it drops, the bottom drooping onto the cheekbones | 58 x 46 mm | 16 mm lower bridge (arched) + a straight brow bar over the nose | 1.6 mm | gold `#c9a24e` | yes | arms from the top outer corner |
+| `dad23` | `dad` in 2023 (playground23, via its `DAD23` costume) | thin rectangular SEMI-rimless: a dark metal rim over the top and down the sides to mid-height, the lower lens edge a thin clear bevel | 54 x 28 mm | 18 mm straight bar | 1.8 mm top rim, 0.7 mm bevel | dark gunmetal `#4a4a50`, bevel light grey | yes | straight arms from the top outer corner |
+
+Sources: `cast/jade_27/jade27_H_heads_v1.jpg`, `cast/jade_19/jade19_H_heads_v1.jpg`, `cast/mama/mama_R_rest_heads_v1.jpg`,
+`cast/dad/dad_H_heads_v5_likeness.jpg` (Decatur aviators; Jade 2026-11-27: the painted aviators have been good, keep
+them). Dad 2023 has no sheet: the frame was modelled from his current photo (`inputs/family_photos/`, LOOK-ONLY: never
+sent to an image model, never a prompt ref) and playground23 NOTES ("thin rectangular semi-rimless glasses").
+Not glasses wearers: the children (little Jade at every age: the lj10 sheet says "no glasses"), first love, the
+Shanghai relatives, the strangers. The engine's adult `jade` (playground23, Jade in 2023) has NO frame yet: no sheet
+shows her at that age (flagged; she is seen from behind there).
+
+Fit (all frames): lens centres at frame PD = lens width + bridge, centred on the eyes; the lens top 6 mm (Dad 7-8 mm)
+above the eye centre, so the top rim sits just under the brow, never on it; the lens plane 12 mm in front of the cornea
+(Dad's aviators 14 mm, pushed out by the nose), 8 deg pantoscopic tilt, 6 deg wrap; every rim point >= 5 mm in front of
+the brows and face above the eye centre (>= 2 mm below it, beside the nose); pads 1.2 mm off the nose; arms 2.5 mm off
+the temples, over the ear top, bending down behind the ear (under long hair, hidden as in life). Lenses are clear
+(`glass` look in lit only, a faint 8 % dark tint; not drawn in any other mode, so the eyes always show).
+The whole frame shares one line id, so line and contour outline it apart from the brows. The sidecar reports the fit
+per figure (`figure_report.<who>.body.glasses`). Test set: `layout/sets/glassestest` (front / three-quarter / profile of
+each frame); contact sheets `media/layout/_sheets/glasses_<frame>.jpg` (sheet crop | guide passes | scene shots).
+
+Painter prompts name the frame in the sheet's words (r4 `_make.py`): "her thin full-rim rectangular dark gunmetal metal
+glasses, exactly as on her heads sheet" (Jade 27); "her small thin full-rim soft rounded-rectangle dark gunmetal wire
+glasses" (Jade 19); "her thin round-oval pale silver wire-rim glasses" (Mama); "his thin gold wire double-bridge teardrop
+aviators" (Dad, Decatur); "his thin rectangular semi-rimless dark gunmetal glasses (rim on top only)" (Dad, 2023).
