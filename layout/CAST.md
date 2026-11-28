@@ -9,10 +9,10 @@ entries). Every set imports `_cast.js`; none registers a recurring person itself
 | `littleJade` | little Jade, 5 | 1.08 | `child5` (engine) | attic88, attic88_day, wall88 | engine, unchanged |
 | `jade7` | little Jade, 7 | 1.22 | `child7` | office91, basement90, kitchen90 | two local `jade7` (same height, different proportions and costume) |
 | `jade10` | little Jade, about 10 | 1.38 | `child10` | market93 | market93 local `jade10` |
-| `jade19` | Jade, about 19 | 1.63 | adult | closet02 | closet02 local `jade19` |
-| `jade27` | Jade, 27 | 1.65 | adult | mv10, mortongrove07 (standing in for about 24) | mv10 local `jade27` |
+| `jade19` | `jade19` (closet02) | thin FULL-rim soft rounded-rectangle wire: the same size as at 27, rounder corners (r 5 / 7.5 mm) | 47.5 x 25 mm outer; lens top 4.8 mm above the pupil | 20 mm, a thin bar a little higher, a slight arch | 1.6 mm | dark gunmetal `#4f5259` | yes | thin straight arms from the upper outer corner |
+| `jade27` | `jade27` (mv10, mortongrove07) and adult `jade` in 2023 (playground23; Jade 2026-11-27: she wears glasses there, the nearest canon) | thin FULL-rim rectangular metal (Jade 2026-11-27: full rim): tight top corners (r 3 mm), rounder bottom corners (r 5 mm), the outer top corner a touch higher | 47 x 25 mm outer (45.3 x 23.5 rim centre line); lens top 4.6 mm above the pupil | 20 mm, one thin straight bar at mid-height of the top half | 1.7 mm round wire | dark gunmetal `#4a4d55` | yes, on pad arms | thin straight metal arms from the top outer corner, small hinge block |
 | `jade` | Jade, adult | 1.65 | adult (engine) | playground23 (and bed26 / car26) | engine, unchanged |
-| `mama` | Mama, 1988, restaurant apron (`noApron: true` drops it); jaw-length side-parted perm | 1.60 | adult (engine) | attic88, attic88_day, market93 | engine, unchanged |
+| `mama` | every Mama (`mama`, `mama86`, `mama90`, `mama91`: attic88, attic88_day, wall88, market93, shanghai86, kitchen90, office91) | thin round-oval wire (a soft wide oval, flattish top and bottom), full rim | 45 x 28 mm outer; lens top 7.4 mm above the pupil | 20 mm, a thin bridge arched up | 1.4 mm | pale silver `#bab6ad` | yes, visible pads on pad arms | thin straight arms from just above mid-height, small end pieces |
 | `mama86` | Mama, Shanghai 1986: blue-grey short-sleeved top, perm | 1.60 | adult | shanghai86 | local `mother` |
 | `mama90` | Mama, Decatur 1990: no apron, sleeves pushed, perm | 1.60 | adult | kitchen90 (basement90's house.js) | local `mama90` |
 | `mama91` | Mama, school office 1991: long sleeves, perm | 1.60 | adult | office91 | local `mom` |
@@ -71,22 +71,22 @@ disagree, the drawing wins (the painters copy the image).
 
 | key (frame id) | wears it | frame (as drawn on the sheet) | lens w x h | bridge | rim | colour | nose pads | temples / hinges |
 |---|---|---|---|---|---|---|---|---|
-| `jade27` | `jade27` (mv10, mortongrove07) | thin FULL-rim rectangular metal, small rounded corners, narrow (lens about 2:1) | 50 x 24 mm | 17 mm, one thin straight bar at the upper third | 1.6 mm round wire | dark gunmetal `#4a4d55` | yes, on pad arms | thin straight metal arms from the top outer corner, small hinge block |
-| `jade19` | `jade19` (closet02) | small thin FULL-rim soft rounded-rectangle wire (rounder corners than at 27) | 48 x 25 mm | 17 mm, thin bar, a slight arch | 1.6 mm | dark gunmetal `#4f5259` | yes | thin straight arms from the upper outer corner |
-| `mama` | every Mama (`mama`, `mama86`, `mama90`, `mama91`: attic88, attic88_day, wall88, market93, shanghai86, kitchen90, office91) | thin round-oval wire (softly squared oval), full rim | 46 x 33 mm | 18 mm, a thin arched bridge | 1.4 mm | pale silver `#bab6ad` | yes, visible pads on pad arms | thin straight arms from just above mid-height, small end pieces |
-| `dad90` | `dad` in the Decatur years, 1990-91 (basement90, kitchen90, office91) | thin GOLD wire DOUBLE-bridge teardrop aviator: large lenses, flat top, the nasal edge slanting out as it drops, the bottom drooping onto the cheekbones | 58 x 46 mm | 16 mm lower bridge (arched) + a straight brow bar over the nose | 1.6 mm | gold `#c9a24e` | yes | arms from the top outer corner |
-| `dad23` | `dad` in 2023 (playground23, via its `DAD23` costume) | thin rectangular SEMI-rimless: a dark metal rim over the top and down the sides to mid-height, the lower lens edge a thin clear bevel | 54 x 28 mm | 18 mm straight bar | 1.8 mm top rim, 0.7 mm bevel | dark gunmetal `#4a4a50`, bevel light grey | yes | straight arms from the top outer corner |
+| `jade27` | `jade27` (mv10, mortongrove07) and adult `jade` in 2023 (playground23; Jade 2026-11-27: she wears glasses there, the nearest canon) | thin FULL-rim rectangular metal (Jade 2026-11-27: full rim): tight top corners (r 3 mm), rounder bottom corners (r 5 mm), the outer top corner a touch higher | 47 x 25 mm outer (45.3 x 23.5 rim centre line); lens top 4.6 mm above the pupil | 20 mm, one thin straight bar at mid-height of the top half | 1.7 mm round wire | dark gunmetal `#4a4d55` | yes, on pad arms | thin straight metal arms from the top outer corner, small hinge block |
+| `jade19` | `jade19` (closet02) | thin FULL-rim soft rounded-rectangle wire: the same size as at 27, rounder corners (r 5 / 7.5 mm) | 47.5 x 25 mm outer; lens top 4.8 mm above the pupil | 20 mm, a thin bar a little higher, a slight arch | 1.6 mm | dark gunmetal `#4f5259` | yes | thin straight arms from the upper outer corner |
+| `mama` | every Mama (`mama`, `mama86`, `mama90`, `mama91`: attic88, attic88_day, wall88, market93, shanghai86, kitchen90, office91) | thin round-oval wire (a soft wide oval, flattish top and bottom), full rim | 45 x 28 mm outer; lens top 7.4 mm above the pupil | 20 mm, a thin bridge arched up | 1.4 mm | pale silver `#bab6ad` | yes, visible pads on pad arms | thin straight arms from just above mid-height, small end pieces |
+| `dad90` | `dad` in the Decatur years, 1990-91 (basement90, kitchen90, office91) | thin GOLD wire DOUBLE-bridge teardrop aviator: flat top, near-vertical outer side, a broad round bottom (r 17 mm) deepest just nasal of centre, the nasal edge slanting out as it drops onto the cheekbones | 56 x 42 mm outer; lens top 13 mm above the pupil, just under the brows | 16 mm lower bridge arched up at pupil height + a straight brow bar soldered across both top rims | 1.4 mm | gold `#c9a24e` | yes | arms from the top outer corner |
+| `dad23` | `dad` in 2023 (playground23, via its `DAD23` costume) | narrow rectangular SEMI-rimless (re-checked on his current photo 2026-11-27): a thin grey metal rim over the top of each lens only, its outer end turning down into the hinge; the lower lens edge rimless (a thin clear edge), rising toward the nose | 55 x 22 mm | 19 mm thin bar high on the lens | 1.7 mm top rim, 0.7 mm lens edge | grey titanium `#67686d`, lens edge light grey | yes | slightly heavier straight grey arms |
 
 Sources: `cast/jade_27/jade27_H_heads_v1.jpg`, `cast/jade_19/jade19_H_heads_v1.jpg`, `cast/mama/mama_R_rest_heads_v1.jpg`,
 `cast/dad/dad_H_heads_v5_likeness.jpg` (Decatur aviators; Jade 2026-11-27: the painted aviators have been good, keep
 them). Dad 2023 has no sheet: the frame was modelled from his current photo (`inputs/family_photos/`, LOOK-ONLY: never
 sent to an image model, never a prompt ref) and playground23 NOTES ("thin rectangular semi-rimless glasses").
-Not glasses wearers: the children (little Jade at every age: the lj10 sheet says "no glasses"), first love, the
-Shanghai relatives, the strangers. The engine's adult `jade` (playground23, Jade in 2023) has NO frame yet: no sheet
-shows her at that age (flagged; she is seen from behind there).
+Not glasses wearers: the children (little Jade at every age: the lj10 sheet says "no glasses"), first love, the Shanghai relatives, the strangers.
 
-Fit (all frames): lens centres at frame PD = lens width + bridge, centred on the eyes; the lens top 6 mm (Dad 7-8 mm)
-above the eye centre, so the top rim sits just under the brow, never on it; the lens plane 12 mm in front of the cornea
+How the shapes were matched (2026-11-27, Jade: "match each frame's SHAPE to the painted reference images, not the captions"): each sheet's front head is scaled so its pupils land on the guide's pupils (61 mm apart) and laid under the guide's line pass; the frames were adjusted until the rims overlay (`media/layout/_sheets/overlay_front.jpg`), then checked in 3/4 and profile. The POV head-hide (`stage.js casterMeshes 'head'`) hides the glasses and brows with the head.
+
+Fit (all frames): lens centres at frame PD = lens width + bridge, centred on the eyes; the lens top where the sheet has it
+(4-7 mm above the pupil, Dad's aviators 13 mm), so the top rim sits under the brow, never on it; the lens plane 12 mm in front of the cornea
 (Dad's aviators 14 mm, pushed out by the nose), 8 deg pantoscopic tilt, 6 deg wrap; every rim point >= 5 mm in front of
 the brows and face above the eye centre (>= 2 mm below it, beside the nose); pads 1.2 mm off the nose; arms 2.5 mm off
 the temples, over the ear top, bending down behind the ear (under long hair, hidden as in life). Lenses are clear
@@ -98,4 +98,26 @@ each frame); contact sheets `media/layout/_sheets/glasses_<frame>.jpg` (sheet cr
 Painter prompts name the frame in the sheet's words (r4 `_make.py`): "her thin full-rim rectangular dark gunmetal metal
 glasses, exactly as on her heads sheet" (Jade 27); "her small thin full-rim soft rounded-rectangle dark gunmetal wire
 glasses" (Jade 19); "her thin round-oval pale silver wire-rim glasses" (Mama); "his thin gold wire double-bridge teardrop
-aviators" (Dad, Decatur); "his thin rectangular semi-rimless dark gunmetal glasses (rim on top only)" (Dad, 2023).
+aviators" (Dad, Decatur); "his thin rectangular semi-rimless grey metal glasses (narrow lenses, a rim over the top only)" (Dad, 2023); adult Jade in 2023 gets the Jade 27 wording.
+
+## Eyebrows: one canonical brow per character (2026-11-27)
+
+Jade: the 3D brows were thick, straight dark bars (the MakeHuman eyebrow001 proxy, sitting low on the lid, 3.6-13 mm above
+the eye centre), unlike the painted brows (thinner, softly arched, tapered tails); in the mv10 temple close-up the painter
+read the bar as a browline frame. Every drawn face now gets its brows from `layout/engine/brows.js` (`BROWS`): a ribbon laid
+on the skin along a centre line (head -> peak -> tail) with a thickness at the head, the peak and the tail, measured on the
+cast heads sheet's front head relative to the pupils (pupil distance P sets the scale), and carried by the head bone. Blunt
+rounded head, tapered pointed tail, hair colour. Cast entry `brows:`; no entry = the plain `adult` or `child` brow;
+`spec.brows: 'proxy'` brings back the old mesh.
+
+| brow id | who | shape (sheet front head) | head / peak / tail height above the pupil | thickness head / peak / tail |
+|---|---|---|---|---|
+| `jade27` | `jade27`, adult `jade` | asymmetric: her RIGHT brow (picture left) straight, sloping a little down to the tail; her LEFT runs straight then lifts into a soft arch two-thirds out | R 16 / 18 / 14 mm, L 16 / 20.5 / 17 mm; head 14.5 mm, tail 47-53 mm from the midline | 4.6 / 4 / 1 mm |
+| `jade19` | `jade19` | the same brows, the left arch a little softer and longer | R 16.5 / 18.5 / 15.5, L 16.5 / 20.5 / 16.5 mm | 4.4 / 3.7 / 1 mm |
+| `mama` | every Mama | clearly drawn, straight-ish, thinner, set higher; her left lifts a little at two-thirds | R 20 / 20.5 / 16.5, L 20.5 / 24 / 21 mm | 3.7 / 3.1 / 0.9 mm |
+| `dad` | `dad` (both eras) | thick, dark, nearly straight, long; the tail tapers late | 20 / 21 / 18 mm; tail 56 mm out | 7 / 6 / 2.7 mm |
+| `child` | little Jade at 3, 5, 7, 10 (lj03 / lj05 / lj07 / lj10 sheets) | short, thin, softly arched, high over the big eyes (mostly under her fringe) | 0.37 / 0.43 / 0.37 P | 0.05 / 0.042 / 0.014 P |
+| `adult` | everyone else with a drawn face | a plain natural brow | 0.30 / 0.345 / 0.285 P | 0.075 / 0.064 / 0.018 P |
+
+The brows sit 10 mm or more above the glasses' top rims in every frame (overlay: `media/layout/_sheets/overlay_front.jpg`).
+Before / after sheets (sheet crop | old guide | new guide): `media/layout/_sheets/brows_<character>.jpg`.

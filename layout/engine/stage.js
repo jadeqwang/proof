@@ -74,7 +74,7 @@ export function casterMeshes(name, figs) {
   // mesh bodies (engine/humanMesh.js, 2026-11-26): exactly the head and neck skin, hair (+ tufts, buns), brows and eyes;
   // the bounding-box test below also took a crouched child's bare arms (their mesh centre is near the head) and missed long hair
   if (part === 'head' && P.bodyMesh) { const out = []; f.traverse((o) => { if (!o.isMesh) return; const r = o.userData.bodyRegion, id = o.userData.idGroup || '';
-    if (r === 'skinHead' || r === 'skinNeck' || /(hair|brows|eye_\w+)$/.test(id)) out.push(o); }); return out; }
+    if (r === 'skinHead' || r === 'skinNeck' || o.userData.glasses || o.userData.headAttach || /(hair|brows|eye_\w+|glasses|glassesLens)$/.test(id)) out.push(o); }); return out; }   // 2026-11-27: + the glasses (engine/glasses.js) and any head attachment (userData.headAttach): a POV head-hide left Mama's frame floating before the lens (kitchen90 K5_thumbs)
   if (part === 'head') { const out = []; f.traverse((o) => { if (o.isMesh) { const c = new THREE.Vector3(); new THREE.Box3().setFromObject(o).getCenter(c); if (c.distanceTo(P.head) < P.headH * 0.75) out.push(o); } }); return out; }
   throw new Error('caster ' + name);
 }

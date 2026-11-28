@@ -21,27 +21,43 @@ import * as THREE from 'three';
 import { mk } from './core.js';
 
 // ---------------------------------------------------------------- the canonical frames (mm, degrees)
-// shape: 'rect' (superellipse, n = corner squareness), 'aviator' (teardrop: flat top, deeper on the nasal side)
-// w, h: lens; dbl: distance between lenses (bridge); rim: rim tube radius (thickness = 2 x rim); topY: lens top above the
-// eye centre; bridge: { v: height on the lens as a fraction of the half-height, arch: mm up at the middle };
-// browBar: aviator double bridge (straight bar over the nose between the lens tops); hingeV: where the end piece leaves
-// the outer rim (fraction of the half-height); semi: semi-rimless (rim on the top only, a thin lens bevel below).
+// Measured 2026-11-27 off each heads sheet's FRONT head (pupil distance = 61 mm sets the scale; Jade: "match each frame's
+// SHAPE to the painted reference images, not the captions"), the 3/4 and profile heads checked on the contact sheets.
+// Sizes are the rim's CENTRE line (the sheet's outer-edge measures minus one rim thickness).
+// shape: 'rrect' (a rounded rectangle: rt / rb = top / bottom corner radius mm; slant = mm the outer top corner sits
+// higher than the inner; nasalCut = how far the nasal edge slants outward toward the bottom, fraction of the half-width),
+// 'oval' (superellipse, n = squareness). w, h: lens; dbl: between the lenses; rim: rim tube radius; topY: lens top
+// (centre line) above the eye centre; bridge: { v: height on the lens as a fraction of the half-height, arch: mm up at
+// the middle }; browBar: the aviator's straight bar over the nose (mm above the top rim at a third of the way in);
+// hingeV: where the end piece leaves the outer rim (fraction of the half-height); semi: semi-rimless (rim over the top
+// only, the lens's thin edge below).
 export const FRAMES = {
+  // sheet front: lens 47 x 25 mm outer, bridge 20 mm, lens top 4.6 mm above the pupil, tight top corners, rounder bottom
+  // outer corner, a straight bridge bar at mid-height of the lens top half, rim ~1.8 mm
   jade27: { name: 'thin full-rim rectangular dark gunmetal metal', sheet: 'cast/jade_27/jade27_H_heads_v1.jpg',
-    shape: 'rect', n: 5.5, w: 50, h: 24, dbl: 17, rim: 0.8, temple: 0.8, topY: 6, bridge: { v: 0.3, arch: 0.6 }, hingeV: 0.75,
+    shape: 'rrect', w: 45.3, h: 23.5, rt: 3, rb: 5, slant: 0.8, dbl: 21.7, rim: 0.85, temple: 0.8, topY: 4.2, bridge: { v: 0.5, arch: -0.3 }, hingeV: 0.75,
     col: 0x4a4d55, grey: 0.26 },
-  jade19: { name: 'small thin full-rim soft rounded-rectangle dark gunmetal wire', sheet: 'cast/jade_19/jade19_H_heads_v1.jpg',
-    shape: 'rect', n: 3.6, w: 48, h: 25, dbl: 17, rim: 0.8, temple: 0.8, topY: 6, bridge: { v: 0.3, arch: 1.0 }, hingeV: 0.7,
+  // sheet front: lens 47.5 x 25 mm outer, bridge 20 mm, lens top 4.8 mm above the pupil; rounder corners all round (the
+  // soft rounded rectangle), the bridge a little higher with a slight arch
+  jade19: { name: 'thin full-rim soft rounded-rectangle dark gunmetal wire', sheet: 'cast/jade_19/jade19_H_heads_v1.jpg',
+    shape: 'rrect', w: 45.8, h: 23.3, rt: 5, rb: 7.5, slant: 0.8, dbl: 21.7, rim: 0.8, temple: 0.8, topY: 4.4, bridge: { v: 0.6, arch: 0.8 }, hingeV: 0.7,
     col: 0x4f5259, grey: 0.28 },
+  // sheet front: lens 45 x 28 mm outer (a soft wide oval, flattish top and bottom), bridge 20 mm arched up, lens top 7.4 mm
+  // above the pupil, rim ~1.4 mm, pale silver
   mama: { name: 'thin round-oval pale silver wire', sheet: 'cast/mama/mama_R_rest_heads_v1.jpg',
-    shape: 'rect', n: 2.3, w: 46, h: 33, dbl: 18, rim: 0.7, temple: 0.75, topY: 6, bridge: { v: 0.35, arch: 3.0 }, hingeV: 0.2,
+    shape: 'oval', n: 2.6, w: 43.6, h: 26.4, dbl: 21.1, rim: 0.7, temple: 0.75, topY: 6.7, bridge: { v: 0.45, arch: 2.5 }, hingeV: 0.25,
     col: 0xbab6ad, grey: 0.72 },
+  // sheet front: lens 56 x 42 mm outer, bridge 16 mm, lens top 13 mm above the pupil (just under the brows), the bottom
+  // 29 mm below it on the cheekbones; flat top, near-vertical outer side, a broad round bottom deepest just nasal of
+  // centre, the nasal edge slanting out as it drops; a straight brow bar soldered across the top rims; rim ~1.4 mm gold
   dad90: { name: 'thin gold wire double-bridge teardrop aviator', sheet: 'cast/dad/dad_H_heads_v5_likeness.jpg',
-    shape: 'aviator', n: 2.5, w: 58, h: 46, dbl: 16, rim: 0.8, temple: 0.8, topY: 8, bridge: { v: 0.25, arch: 3.0 }, browBar: 1.6, hingeV: 0.62,
+    shape: 'rrect', w: 54.6, h: 40.6, rt: 6, rb: 17, slant: 0, nasalCut: 0.2, drop: 0.08, dbl: 17.4, rim: 0.7, temple: 0.75, topY: 12.3, bridge: { v: 0.4, arch: 3.0 }, browBar: 1.2, hingeV: 0.8,
     col: 0xc9a24e, grey: 0.62 },
-  dad23: { name: 'thin rectangular semi-rimless dark gunmetal (top rim only)', sheet: 'inputs/family_photos (look-only photo; no sheet)',
-    shape: 'rect', n: 5, w: 54, h: 28, dbl: 18, rim: 0.9, temple: 0.85, topY: 7, bridge: { v: 0.6, arch: 0.5 }, hingeV: 0.55, semi: true,
-    col: 0x4a4a50, grey: 0.28, bevel: 0xa0a6ac },
+  // his current photo (look-only): a narrow rimless-bottom rectangle, ~55 x 22 mm, the grey metal rim over the top only,
+  // its outer end turning down into the hinge; the lens's lower edge rising toward the nose; grey titanium colour
+  dad23: { name: 'thin narrow rectangular semi-rimless grey metal (rim over the top only)', sheet: 'inputs/family_photos (look-only photo; no sheet)',
+    shape: 'rrect', w: 54, h: 22, rt: 2, rb: 7, slant: 1.0, nasalCut: 0.12, dbl: 19, rim: 0.85, temple: 0.9, topY: 7, bridge: { v: 0.75, arch: 0.3 }, hingeV: 0.75, semi: true,
+    col: 0x67686d, grey: 0.38, bevel: 0xa0a6ac },
 };
 const TILT = 8, WRAP = 6, VERTEX = 12, CLEAR = 5;   // pantoscopic tilt, face-form wrap (deg); vertex distance, face clearance (mm)
 const LENS = { glass: true, only: ['lit'], col: 0x30363c, opacity: 0.08, noCast: true, noRecv: true };   // lit only: a solid in form read as grey-blue lenses; unlit glass must be dark: a pale tint glowed as grey discs on faces in dark shots (kitchen90 K6)
@@ -50,12 +66,18 @@ const zup = (a) => new THREE.Vector3(a[0], a[2], -a[1]);
 const rad = (d) => d * Math.PI / 180;
 
 // the lens outline in its own plane: u outward (temporal), v up, mm; N points counter-clockwise from the temporal side
-function outline(F, N = 72) {
+function outline(F, N = 96) {
   const a = F.w / 2, b = F.h / 2, pts = [];
+  // a rounded box with its own top / bottom corner radii (signed distance), cut along rays from the centre
+  const sd = (u, v) => { const r = Math.min(v > 0 ? F.rt : F.rb, a, b), qx = Math.abs(u) - (a - r), qy = Math.abs(v) - (b - r);
+    return Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - r; };
   for (let i = 0; i < N; i++) { const t = (i / N) * 2 * Math.PI, c = Math.cos(t), s = Math.sin(t);
-    const n = F.shape === 'aviator' ? (s > 0 ? 4.5 : F.n) : F.n;
-    let u = a * Math.sign(c) * Math.abs(c) ** (2 / n), v = b * Math.sign(s) * Math.abs(s) ** (2 / n);
-    if (F.shape === 'aviator') { if (v < 0) { v *= 1 + 0.1 * (-u / a) - 0.04; if (u < 0) u *= 1 - 0.2 * (-v / b) ** 2; } else v -= 0.06 * b * (-u / a); }   // teardrop: the nasal edge slants outward going down (clear of the nose), the bottom deepest just nasal of centre, the top dipping a little to the bridge
+    let u, v;
+    if (F.shape === 'oval') { u = a * Math.sign(c) * Math.abs(c) ** (2 / F.n); v = b * Math.sign(s) * Math.abs(s) ** (2 / F.n); }
+    else { let lo = 0, hi = Math.hypot(a, b) * 1.1; for (let k = 0; k < 30; k++) { const m = (lo + hi) / 2; if (sd(m * c, m * s) < 0) lo = m; else hi = m; } u = lo * c; v = lo * s; }
+    if (F.slant && v > 0) v += F.slant * (u / a) * (v / b) * 0.5;                       // the outer top corner a little higher
+    if (F.nasalCut && u < 0 && v < 0) u *= 1 - F.nasalCut * (-v / b) ** 2;               // the nasal edge slants out going down
+    if (F.drop && v < 0) v *= 1 + F.drop * Math.max(0, -u / a);                           // the bottom deepest toward the nose (teardrop)
     pts.push([u, v]); }
   return pts;
 }

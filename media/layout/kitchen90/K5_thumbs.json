@@ -694,15 +694,15 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama90": 0.1923,
-  "jade7": 0.2484
+  "jade7": 0.2554,
+  "mama90": 0.1717
  },
  "colour_separation": [
   {
-   "a": "mama90",
-   "b": "jade7",
-   "top_a": "#8a5a52",
-   "top_b": "#b8c4d8",
+   "a": "jade7",
+   "b": "mama90",
+   "top_a": "#b8c4d8",
+   "top_b": "#8a5a52",
    "deltaE_top": 46.9,
    "close": false
   }
@@ -782,16 +782,16 @@
      "frame": "mama",
      "name": "thin round-oval pale silver wire",
      "lens_mm": [
-      46,
-      33
+      43.6,
+      26.4
      ],
-     "bridge_mm": 18,
+     "bridge_mm": 21.1,
      "rim_mm": 1.4,
-     "total_width_mm": 115,
+     "total_width_mm": 113,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
      "temple_length_mm": 141,
-     "rim_clear_of_face_mm": 2.6
+     "rim_clear_of_face_mm": 6.5
     }
    }
   }

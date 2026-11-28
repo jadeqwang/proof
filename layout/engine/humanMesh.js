@@ -22,6 +22,7 @@ import { mk } from './core.js';
 import { eyeAim, faceKind } from './gaze.js';
 import { limbWeights, limbMask } from './paint.js';
 import { buildGlasses } from './glasses.js';
+import { buildBrows, browSpecFor } from './brows.js';
 
 export const HUMAN = { on: false, base: '/assets/bodies/', bodies: null, handFit: true, thumbFit: true };   // handFit: the palm fitted to the solver's knuckles (fit B, 2026-11-27); thumbFit: mesh thumb joints at the mesh's own proportions along the solver's thumb (2026-11-27); false = the old hand
 
@@ -736,7 +737,10 @@ export function dressFigure(g, spec, c, P, uid) {
   if (style === 'bun' && !B.meshes.hair_bun__knot) { const b = mk(new THREE.SphereGeometry(P.headH * 0.21, 20, 14), hairL); b.position.copy(P.head).addScaledVector(P.headFwd, -P.headH * 0.7).addScaledVector(P.headUp, P.headH * 0.18); b.scale.set(1, 0.85, 1.0);   // 2026-11-26: higher and further out (was 0.5 back, 0.02 up, z 0.8): it read as a flat disc (ear) from behind
     b.quaternion.setFromRotationMatrix(basis(P.headX, P.headUp, P.headFwd)); b.userData.idGroup = uid + 'hair'; g.add(b); }
   const face = faceKind(spec.who), drawn = face === 'drawn' && !c.undrawn;
-  if (drawn && B.meshes.brows) addPart('brows', hairL, 'brows');
+  // brows (2026-11-27): the character's canonical brows off their heads sheet (engine/brows.js), laid on the skin, instead of
+  // the MakeHuman eyebrow001 proxy (thick straight low bars); spec.brows === 'proxy' keeps the old mesh
+  if (drawn && spec.brows !== 'proxy' && M.head) { for (const m of buildBrows(spec.brows || browSpecFor(c, /^child/.test(c.kind)), B, k, M.head, hairL, uid)) g.add(m); }
+  else if (drawn && B.meshes.brows) addPart('brows', hairL, 'brows');
   if (drawn && B.meshes.eyes) eyes(g, B, k, M, TW, uid);
   // glasses (2026-11-27): the character's ONE canonical frame (engine/glasses.js FRAMES; cast entry `glasses`, a figure's
   // spec.glasses / costume may override, false = none), fitted to this body's face and carried by the head bone

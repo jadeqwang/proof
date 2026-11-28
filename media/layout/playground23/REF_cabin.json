@@ -2290,7 +2290,22 @@
     },
     "sole_shift_mm_L": 31.6,
     "sole_shift_mm_R": 31.6,
-    "sole_lowest_y_m": 0.016
+    "sole_lowest_y_m": 0.016,
+    "glasses": {
+     "frame": "jade27",
+     "name": "thin full-rim rectangular dark gunmetal metal",
+     "lens_mm": [
+      45.3,
+      23.5
+     ],
+     "bridge_mm": 21.7,
+     "rim_mm": 1.7,
+     "total_width_mm": 118,
+     "plane_ahead_of_cornea_mm": 12,
+     "pushed_by_lens_uv_mm": null,
+     "temple_length_mm": 144,
+     "rim_clear_of_face_mm": 4.9
+    }
    }
   },
   "dad": {
@@ -2329,18 +2344,18 @@
     "sole_lowest_y_m": 0.0042,
     "glasses": {
      "frame": "dad23",
-     "name": "thin rectangular semi-rimless dark gunmetal (top rim only)",
+     "name": "thin narrow rectangular semi-rimless grey metal (rim over the top only)",
      "lens_mm": [
       54,
-      28
+      22
      ],
-     "bridge_mm": 18,
-     "rim_mm": 1.8,
-     "total_width_mm": 131,
+     "bridge_mm": 19,
+     "rim_mm": 1.7,
+     "total_width_mm": 133,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
-     "temple_length_mm": 157,
-     "rim_clear_of_face_mm": 4.9
+     "temple_length_mm": 156,
+     "rim_clear_of_face_mm": 5.8
     }
    }
   }

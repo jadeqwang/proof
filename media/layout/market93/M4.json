@@ -32133,73 +32133,16 @@
      "frame": "mama",
      "name": "thin round-oval pale silver wire",
      "lens_mm": [
-      46,
-      33
+      43.6,
+      26.4
      ],
-     "bridge_mm": 18,
+     "bridge_mm": 21.1,
      "rim_mm": 1.4,
-     "total_width_mm": 115,
+     "total_width_mm": 113,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
-     "_arm": [
-      [
-       56.2,
-       -7.2,
-       15.2
-      ],
-      [
-       62,
-       -4.3,
-       1.4
-      ],
-      [
-       65.8,
-       -1.5,
-       -12.4
-      ],
-      [
-       70.1,
-       1.4,
-       -26.3
-      ],
-      [
-       71.7,
-       4.3,
-       -40.1
-      ],
-      [
-       73.2,
-       9.7,
-       -53.9
-      ],
-      [
-       74.2,
-       10.2,
-       -70.5
-      ],
-      [
-       72.6,
-       6.7,
-       -87.2
-      ],
-      [
-       70.1,
-       -8.3,
-       -94.2
-      ],
-      [
-       64.5,
-       -24.3,
-       -99.2
-      ]
-     ],
-     "_ear": [
-      5.7,
-      -57.9,
-      -83.2
-     ],
      "temple_length_mm": 141,
-     "rim_clear_of_face_mm": 2.6
+     "rim_clear_of_face_mm": 6.5
     }
    }
   }
