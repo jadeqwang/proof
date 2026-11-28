@@ -11,6 +11,8 @@ then apply. The cards and what each answer triggers:
 - `mg_picks`: MG_wide v4, MG1 v1, MG1_end v1, MG2 v1, MG2_end v1 (MG2s to be cropped). `br6_pick`: BR6 v3.
 - `v1b_poses_built`: c01 / c05 / c11 built (sheet `media/layout/_sheets/canon/shanghai86_V1b_poses_2x.jpg`).
 - `mama86_sheet`: whether to make a 1986 Mama costume sheet (camel sweater, long black skirt, slippers; same face).
+- `hold_ab_pick`: which Seedance clasp take (1017 / 2101 / 3307, in media/gen/hold_CL_AB_*). Then run
+  `sh media/keyframes/r4/_hold/swap/run_video.sh mt N` (3 covering-hand takes, ~$5.55, from take N's real last frame).
 After applying, rebuild the page to only the still-open questions (playbook: test it headless; see "Decision page" below).
 
 **Running at the end of the session (check their results in PAINT_LOG / picks.json / NOTES):**
@@ -18,7 +20,7 @@ After applying, rebuild the page to only the still-open questions (playbook: tes
   then V1b test paints of c01/c05/c11 (Jade picks), the FE_thumbs smirk retry, WL_in_empty, the V3c forehead edit, a V3b
   repaint, and the rest of shanghai86 from the fixed inputs. It tries **option 2** for close shots (tile two guides so a job
   fits Codex's 5 refs) against gpt2 + crop. Jade: cropping gpt2 is fine; try option 2 since it's free.
-- Closet hand hold: a painter pass on the jeans in the 4 swapped stills (`media/keyframes/r4/_hold/swap/`), then 3 Seedance
+- Closet hand hold: DONE up to the pick. Jeans painted on the 4 swapped stills; 3 Seedance `ab` takes made ($5.55).
   `ab` takes (seeds 1017/2101/3307, ~$5.55). **Stop for Jade to pick one** before the 3 `mt` takes (`run_video.sh mt N`).
   The swapped stills are the CL_hands placeholder in the closet animatic (`build_intro.py` picks the newest automatically).
 

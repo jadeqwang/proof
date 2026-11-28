@@ -97,7 +97,11 @@ let D = [
  { sec:"Cast", id:"mama86_sheet", title:"A new Mama sheet for 1986?",
    ctx:"Mama's Shanghai costume is now a camel sweater, a long black skirt and slippers in every shot. Her existing sheets show an older costume. A new costume sheet (same face) would keep the painter from mixing them.",
    opts:["Yes, make a 1986 Mama costume sheet","No, the guide and prompt are enough"], rec:0 },
-
+,
+ { sec:"Closet 2002", id:"hold_ab_pick", t:"3:30.3-3:34.2", title:"Hand hold re-shoot: pick the clasp take",
+   ctx:"Three Seedance takes from the costume-swapped start frame (red sleeve to the wrist, jeans, white sock), same prompt and chain as the approved AB_1. Agent's read: 1017 follows AB_1 most closely; 3307 is close with a slightly tighter fold; 2101 ends with her hand further right and the clasp lower. Your pick seeds the 3 covering-hand takes (~$5.55).",
+   vids:[["gen/hold_AB_1_e798df7ede.mp4","approved AB_1 (reference)"],["gen/hold_CL_AB_1017_0838a1e045.mp4","take 1017"],["gen/hold_CL_AB_2101_11212244c9.mp4","take 2101"],["gen/hold_CL_AB_3307_91f6fa88cd.mp4","take 3307"]],
+   opts:["1017","2101","3307","None: redo (below)"], rec:0 }
 ];
 D = D.filter(Boolean);   // tolerate stray empty slots (a ,, in the list once broke Copy my answers)
 
