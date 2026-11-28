@@ -9,9 +9,9 @@ import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam
 import * as ART from './art.js';   // 2026-11-26: fixed wall art and spines
 import { artPlane } from '../_art.js';
 import { loadProps, prop } from '../_props.js';   // props phase 2 (2026-11-26): real downloaded models (work/props_audit.md)
-await loadProps(['thermos', 'mug', 'potted_plant', 'bentwood_chair', 'side_table_tall', 'sideboard', 'tv_cabinet']);   // 2026-11-27 canon: + the dining chairs, side table, sideboard, TV cabinet
-import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, slippers, FABRIC, FABRIC_C } from './joinery.js';
-import { dress, dressGarment, watchDialCanvas, strapCanvas, KNIT_RIB, KNIT_V, KNIT_U } from './textures.js';   // 2026-11-27: canonical textures on every surface
+await loadProps(['thermos', 'potted_plant', 'bentwood_chair', 'side_table_tall', 'sideboard', 'tv_cabinet', 'upright_piano']);   // 2026-11-27 canon: + the dining chairs, side table, sideboard, TV cabinet
+import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, newspaperArchive, farRooms, slippers, FABRIC, FABRIC_C } from './joinery.js';
+import { dress, dressGarment, watchDialCanvas, strapCanvas, buttonCanvas, ribCanvas, cupCanvas, lidCanvas, QUILT_U, QUILT_V } from './textures.js';   // 2026-11-27: canonical textures on every surface
 import { artFromCanvas } from '../_art.js';   // r4: real hinges, bookcases, armchairs, slippers
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
@@ -20,7 +20,7 @@ import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW,
 
 // set-local extras only (heights in metres); little Jade (3) = `jade3` and Mama = `mama86` come from ../_cast.js. Faces the film leaves as paper are flagged `undrawn`.
 addCast({
-  uncle: { name: 'uncle (face undrawn)', h: 1.70, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0xe8e4d8, legs: 0x4a5560, hairStyle: 'short', sleeves: 'long', undrawn: true },
+  uncle: { name: 'uncle (face undrawn)', h: 1.70, kind: 'adult', skin: 0xd2a07a, hair: 0x15110f, top: 0x7a8494, legs: 0x4a5560, hairStyle: 'short', sleeves: 'long', undrawn: true },
   aunt: { name: 'aunt (face undrawn)', h: 1.58, kind: 'adult', skin: 0xd8a27c, hair: 0x15110f, top: 0x9a6a5a, legs: 0x3a3632, hairStyle: 'bun', sleeves: 'long', undrawn: true },
   grandma: { name: 'grandmother (face undrawn)', h: 1.50, kind: 'adult', skin: 0xcf9c78, hair: 0x6a6a6a, top: 0x4a4f5a, legs: 0x2e2e30, hairStyle: 'bun', sleeves: 'long', undrawn: true },
 }, CHILD_PROP);
@@ -120,9 +120,10 @@ function room() {
     const DIM = { grey: 0.5, col: 0x8a8070, mat: 'plaster' }, hcx = (HL.x0 + HL.x1) / 2, hw = HL.x1 - HL.x0, hzc = (HL.z0 + HL.z1) / 2, hzl = HL.z1 - HL.z0;
     g.add(tag(box(hw, 0.04, hzl, { grey: 0.4, col: 0x6a4a30, mat: 'parquet' }, [hcx, -0.02, hzc]), 'hall floor'));
     g.add(tag(box(hw, 0.04, hzl, DIM, [hcx, h + 0.02, hzc]), 'hall ceiling'));
-    g.add(tag(box(hw, h, 0.12, DIM, [hcx, h / 2, HL.z0 - 0.06]), 'hall wall'));
+    // 2026-11-27 (Jade, canon): the far hall wall has two pairs of glazed French doors into two rooms (joinery.js farRooms)
+    g.add(farRooms({ PLASTER: DIM, FLOOR: { grey: 0.4, col: 0x6a4a30, mat: 'parquet' }, CEIL: { ...DIM, grey: 0.55 }, wall }));
     for (const x of [HL.x0 - 0.06, HL.x1 + 0.06]) g.add(tag(box(0.12, h, hzl, DIM, [x, h / 2, hzc]), 'hall wall'));
-    g.add(tag(box(1.8, 2.4, 0.6, { grey: 0.45, col: 0x7a5a3a, mat: 'sapele' }, [hcx + 0.9, 1.2, HL.z0 + 0.3]), 'hall: built-in closets (壁橱)'));
+    g.add(tag(box(0.6, 2.4, 1.6, { grey: 0.45, col: 0x7a5a3a, mat: 'sapele' }, [HL.x1 - 0.3, 1.2, hzc]), 'hall: built-in closets (壁橱)'));   // 2026-11-27: moved to the hall's east end wall (the far wall now has the two French doors)
     g.add(tag(box(0.5, 0.02, 0.3, { grey: 0.4, col: 0x6a4a30, mat: 'rattan' }, [hcx + 0.6, 0.005, HL.z1 - 1.2]), 'hall: doormat'));
   }
   const W = WINDOWS[0], panes = { windows: [V(W.x1, W.y1, W.zg), V(W.x0, W.y1, W.zg), V(W.x0, W.y0, W.zg), V(W.x1, W.y0, W.zg)] };   // six windows: TL, TR, BR, BL from inside (east on the left)
@@ -199,6 +200,7 @@ function furniture(shot) {
   // shelving"): real units (plinth, panelled cupboards, ledge, glazed doors, shelf boards, uprights, a pale back) with
   // every book an individual spine, wearing art.js's fixed spine textures: joinery.js bookcases
   g.add(bookcases());
+  g.add(newspaperArchive());   // 2026-11-27 canon (Jade): grandpa's newspapers, tied in red-string bundles on top of the bookcases
   { const T = TV, cx = (T.x0 + T.x1) / 2, cz = (T.z0 + T.z1) / 2;   // east wall, facing west down the room
     // 2026-11-27 canon: the TV stands on a downloaded wooden cabinet (two drawers over two doors; "Old Chest Of Drawers 1" by
     // rhcreations, CC BY), scaled to the stand's 0.72 m height, front to the room (west), its wood recoloured to the room's teak
@@ -369,7 +371,8 @@ function wristWatch(fig, n) {
   fig.updateMatrixWorld(true); const skin = [], cloth = []; fig.traverse((m) => { if (m.isMesh && m.visible) (m.userData.garment ? cloth : skin).push(m); });
   const rc = new THREE.Raycaster(), hitD = (list, p, dir) => { rc.set(p.clone().addScaledVector(dir, -0.055), dir); rc.far = 0.11; const h = rc.intersectObjects(list, false)[0]; return h ? 0.055 - h.distance : null; };   // only surfaces within 55 mm of the wrist axis (not the other hand or a knee)
   let t0 = -0.04; for (let t = -0.04; t <= 0.03; t += 0.002) { if (hitD(cloth, W.clone().addScaledVector(f, t), back.clone().negate()) == null) { t0 = t; break; } t0 = t; }
-  const at = W.clone().addScaledVector(f, t0 + 0.006), under = skin;
+  if (fig.userData.sweaterCuff?.[n] != null) t0 = fig.userData.sweaterCuff[n] - 0.002;   // right after the pullover's ribbed cuff (the strap's near edge meets it)
+  const at = W.clone().addScaledVector(f, t0 + 0.009), under = skin;
   const g = new THREE.Group(), STEEL_W = { grey: 0.75, col: 0xc8c8c0 };
   const X = f.clone().addScaledVector(back, -f.dot(back)).normalize(), Y = new THREE.Vector3().crossVectors(back, X), q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(X, Y, back));
   // the strap hugs the wrist: an elliptical band (the wrist is ~48 mm thick, ~64 mm wide), the case on its back
@@ -388,35 +391,101 @@ function wristWatch(fig, n) {
   const fc = place(mk(new THREE.CircleGeometry(0.0148, 48), { grey: 0.92, col: 0xf0eee6, art: WATCH_ART.art, artGrey: WATCH_ART.artGrey, artEdge: WATCH_ART.artEdge })); fc.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(fc);
   return tag(g, `wristwatch (${n === 'L' ? 'left' : 'right'} wrist, face on the back of the wrist)`);
 }
-// 2026-11-27 canon: the uncle's outfit as built (pale cream hand-knitted pullover, grey-blue trousers) gets real cloth: the
-// pullover a stockinette knit with 2x2 ribbed cuffs and hem (textures.js `knit`; UVs wrap round each arm and the body, v
-// measured from the cuff / hem, so the rib sits exactly at the sleeve ends and the waist), the trousers a worsted twill;
-// a pale blue-grey cotton shirt collar (two points) with one white button shows at the pullover's neck
+// 2026-11-27 canon (Jade: the GREY-BLUE PADDED JACKET of the r3 paintings is canon): the uncle wears a grey-blue quilted
+// cotton-padded jacket (棉袄; colour, quilting, buttons and cuffs matched to media/keyframes/r3/shanghai86/V1b_v1.jpg) over
+// his cream hand-knitted pullover. The body's top garment IS the jacket (CAST uncle.top = JACKET): textures.js `quilt`
+// (stitched horizontal channels ~7 cm apart, soft puffs between; rings round the sleeves), a centre-front placket with five
+// dark grey four-hole buttons, a turn-down collar with the pullover's cream knit showing at the neck, and the pullover's
+// 2x2-ribbed cream cuffs peeking ~2 cm out of each jacket sleeve. Trousers: grey-blue worsted twill.
+const JACKET = 0x7a8494, SWEATER = 0xe8e4d8;
+let BUTTON_ART = null, RIB_ART = null;
+// the end of a sleeve along the forearm (t from the wrist joint, + toward the hand), by rays down onto the garment, and
+// the skin's half-sizes there: { f, back, side, t0, at(t), size(t) }
+function sleeveFrame(fig, n) {
+  const P = fig.userData.P, h = P.hands[n], W = P['wrist' + n], f = W.clone().sub(P['elbow' + n]).normalize(), nm = h.n.clone().normalize(), back = nm.clone().negate().addScaledVector(f, nm.dot(f)).normalize(), side = new THREE.Vector3().crossVectors(back, f);
+  fig.updateMatrixWorld(true); const skin = [], cloth = []; fig.traverse((m) => { if (m.isMesh && m.visible && !m.userData.outfitExtra) (m.userData.garment ? cloth : skin).push(m); });
+  const rc = new THREE.Raycaster(), hitD = (list, p, dir) => { rc.set(p.clone().addScaledVector(dir, -0.055), dir); rc.far = 0.11; const hh = rc.intersectObjects(list, false)[0]; return hh ? 0.055 - hh.distance : null; };
+  let t0 = -0.04; for (let t = -0.06; t <= 0.03; t += 0.002) { t0 = t; if (hitD(cloth, W.clone().addScaledVector(f, t), back.clone().negate()) == null) break; }
+  const cl = (v, lo, hi, d) => (v == null ? d : Math.min(hi, Math.max(lo, v)));
+  const size = (t) => { const p = W.clone().addScaledVector(f, t), dB = cl(hitD(skin, p, back.clone().negate()), 0.012, 0.03, 0.021), dP = cl(hitD(skin, p, back), 0.012, 0.03, 0.021),
+    d1 = cl(hitD(skin, p, side.clone().negate()), 0.018, 0.04, 0.029), d2 = cl(hitD(skin, p, side), 0.018, 0.04, 0.029);
+    return { c: p.addScaledVector(back, (dB - dP) / 2).addScaledVector(side, (d1 - d2) / 2), rb: (dB + dP) / 2, rs: (d1 + d2) / 2 }; };
+  return { f, back, side, t0, W, size };
+}
+const ovalBand = (S, t0, t1, grow, look) => {   // an elliptical open tube round the forearm from t0 to t1 (UV: u round, v along)
+  const a = S.size((t0 + t1) / 2), len = t1 - t0, g = new THREE.CylinderGeometry(1, 1, len, 40, 1, true);
+  g.applyMatrix4(new THREE.Matrix4().makeBasis(S.back.clone().multiplyScalar(a.rb + grow), S.f.clone(), S.side.clone().multiplyScalar(a.rs + grow)).setPosition(a.c)); g.computeVertexNormals();
+  const m = mk(g, look); m.userData.double = true; return m; };
 function uncleOutfit(fig) {
   const P = fig.userData.P; if (!P?.bodyMesh) return null;
+  BUTTON_ART ||= artFromCanvas(buttonCanvas()); RIB_ART ||= artFromCanvas(ribCanvas());
   const tops = [], legs = []; fig.traverse((m) => { if (!m.isMesh || !m.userData.garment) return; const id = m.userData.idGroup || ''; if (/torso$/.test(id)) tops.push(m); else if (/leg[LR]$/.test(id)) legs.push(m); });
   const segD = (p, a, b) => { const ab = b.clone().sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / ab.lengthSq(), 0, 1); return { d: p.distanceTo(a.clone().addScaledVector(ab, t)), t }; };
   const ring = (p, a, b, R) => { const ax = b.clone().sub(a).normalize(), ref = Math.abs(ax.y) < 0.9 ? V(0, 1, 0) : V(1, 0, 0), e1 = ref.clone().addScaledVector(ax, -ref.dot(ax)).normalize(), e2 = new THREE.Vector3().crossVectors(ax, e1), r = p.clone().sub(a);
-    const k = Math.max(1, Math.round((2 * Math.PI * R) / KNIT_U)); return (Math.atan2(r.dot(e2), r.dot(e1)) / (2 * Math.PI) + 0.5) * k; };
+    const k = Math.max(1, Math.round((2 * Math.PI * R) / QUILT_U)); return (Math.atan2(r.dot(e2), r.dot(e1)) / (2 * Math.PI) + 0.5) * k; };
   const neck = P.neck || P.shoulderC, hip = P.hip;
   const part = (w) => { const T = segD(w, hip, neck).d; let best = { k: 'torso', d: T * 0.75 };
     for (const s of ['L', 'R']) for (const [a, b] of [[P['shoulder' + s], P['elbow' + s]], [P['elbow' + s], P['wrist' + s]]]) { const d = segD(w, a, b).d; if (d < best.d) best = { k: s, d }; } return best.k; };
-  for (const m of tops) { m.updateMatrixWorld(true); const pos = m.geometry.attributes.position, w = new THREE.Vector3(), info = [], minV = { torso: 9, L: 9, R: 9 };
+  const SF = { L: sleeveFrame(fig, 'L'), R: sleeveFrame(fig, 'R') };
+  for (const m of tops) { m.updateMatrixWorld(true); const pos = m.geometry.attributes.position, w = new THREE.Vector3(), info = [];
     for (let i = 0; i < pos.count; i++) { w.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld); const k = part(w); let v, u;
-      if (k === 'torso') { const ax = neck.clone().sub(hip).normalize(); v = w.clone().sub(hip).dot(ax); u = ring(w, hip, neck, 0.15); }
+      if (k === 'torso') { const ax = neck.clone().sub(hip).normalize(); v = w.clone().sub(hip).dot(ax); u = ring(w, hip, neck, 0.17); }
       else { const S = P['shoulder' + k], E = P['elbow' + k], Wr = P['wrist' + k], lFore = Wr.distanceTo(E), sf = segD(w, E, Wr), su = segD(w, S, E);
-        v = sf.d <= su.d ? (1 - sf.t) * lFore : lFore + (1 - su.t) * S.distanceTo(E); u = sf.d <= su.d ? ring(w, E, Wr, 0.045) : ring(w, S, E, 0.055); }
-      info.push([k, u, v]); minV[k] = Math.min(minV[k], v); }
-    dressGarment(m, 'knit', m.userData.look.col ?? 0xe8e4d8, m.userData.look.flatGrey ?? m.userData.look.grey ?? 0.62, (_, i) => { const [k, u, v] = info[i]; return [u, (v - minV[k]) / KNIT_V]; }); }
+        v = sf.d <= su.d ? (1 - sf.t) * lFore : lFore + (1 - su.t) * S.distanceTo(E); u = sf.d <= su.d ? ring(w, E, Wr, 0.06) : ring(w, S, E, 0.07); }
+      info.push([u, v / QUILT_V]); }
+    dressGarment(m, 'quilt', JACKET, m.userData.look.flatGrey ?? m.userData.look.grey ?? 0.45, (_, i) => info[i]); }
   for (const m of legs) dressGarment(m, 'twill', m.userData.look.col ?? 0x4a5560, m.userData.look.flatGrey ?? m.userData.look.grey ?? 0.42, (w) => [(w.x + w.z) / 0.012, w.y / 0.012]);
-  // the shirt collar: two flat points lying on the pullover at the neck, and the top button between them
-  const g = new THREE.Group(), SHIRT = { grey: 0.78, col: 0xc4ccd4 };
+  const g = new THREE.Group(), JK = { grey: 0.45, col: JACKET, mat: 'quilt' }, JK_D = { grey: 0.4, col: 0x5c6573 }, KNIT = { grey: 0.88, col: SWEATER, art: RIB_ART.art, artGrey: RIB_ART.artGrey, artEdge: null };
+  // the pullover's ribbed cuffs, 2.2 cm out of each jacket sleeve (the watch sits on the skin just past the LEFT one)
+  fig.userData.sweaterCuff = {};
+  // (tried: trimming the jacket sleeve back 3.5 cm so cuff and watch sit above the wrist joint: the body's clothed forearm is
+  // not modelled under a sleeve, so it opened holes. The cuff peeks 1.4 cm out of the sleeve; the watch sits right after it)
+  for (const n of ['L', 'R']) { const S = SF[n], end = S.t0 + 0.014;
+    const c = ovalBand(S, S.t0 - 0.006, end, 0.0045, KNIT); c.userData.outfitExtra = true; g.add(c); fig.userData.sweaterCuff[n] = end; }
   const pt = (u, v, lift) => chestPoint(fig, u, v, lift);
-  for (const s of [-1, 1]) { const A = pt(0, -0.012, 0.004), B = pt(s * 0.058, 0.012, 0.004), C = pt(s * 0.045, -0.072, 0.004), D = pt(s * 0.008, -0.03, 0.004); if (!A || !B || !C || !D) continue;
-    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute([...A.toArray(), ...B.toArray(), ...C.toArray(), ...D.toArray()], 3)); geo.setIndex([0, 1, 2, 0, 2, 3]); geo.computeVertexNormals();
-    const c = mk(geo, SHIRT); c.userData.double = true; g.add(c); }
-  { const b = pt(0, -0.026, 0.006); if (b) g.add(ball(0.0045, { grey: 0.95, col: 0xf4f2ec }, b.toArray(), [1, 1, 0.5])); }
-  return tag(g, 'uncle: shirt collar under the pullover');
+  const quad = (pts, look) => { if (pts.some((p) => !p)) return; const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts.flatMap((p) => p.toArray()), 3));
+    geo.setIndex(pts.length === 4 ? [0, 1, 2, 0, 2, 3] : [0, 1, 2]); geo.computeVertexNormals(); const m = mk(geo, look); m.userData.double = true; g.add(m); };
+  // the pullover's cream knit in the jacket's open neck, the jacket's turn-down collar points over it
+  quad([pt(-0.045, 0.015, 0.003), pt(0.045, 0.015, 0.003), pt(0, -0.07, 0.003)], { grey: 0.86, col: SWEATER, mat: 'knitflat' });
+  for (const s of [-1, 1]) quad([pt(s * 0.004, -0.07, 0.007), pt(s * 0.05, 0.02, 0.007), pt(s * 0.1, 0.0, 0.007), pt(s * 0.06, -0.1, 0.007)], JK);
+  // the centre-front placket (a 3 cm band, a shade darker) and five buttons
+  { const vs = [-0.07, -0.16, -0.25, -0.34, -0.43, -0.5]; for (let k = 0; k < vs.length - 1; k++) quad([pt(-0.015, vs[k], 0.004), pt(0.015, vs[k], 0.004), pt(0.015, vs[k + 1], 0.004), pt(-0.015, vs[k + 1], 0.004)], JK_D); }
+  for (const v of [-0.1, -0.19, -0.28, -0.37, -0.46]) { const b = pt(0, v, 0.0075); if (!b) continue;
+    const bt = mk(new THREE.CylinderGeometry(0.009, 0.009, 0.004, 24), { grey: 0.25, col: 0x3a3a3c, art: BUTTON_ART.art, artGrey: BUTTON_ART.artGrey, artEdge: BUTTON_ART.artEdge });
+    bt.position.copy(b); bt.quaternion.setFromUnitVectors(V(0, 1, 0), P.cz.clone().normalize()); g.add(bt); }
+  dress(g);
+  return tag(g, 'uncle: padded-jacket collar, placket, buttons; the pullover at the neck and cuffs');
+}
+// 2026-11-27 (Jade, canon): little Jade at 3 wears a coral-red and white GINGHAM top (7 mm check, textures.js gingham) with
+// LONG sleeves gathered by elastic at the wrist (a bunched gingham band round each wrist), as in the r3 V1d_2 paintings,
+// and a plain white round (Peter Pan) collar. UVs wrap round each arm and the body, so the check runs straight along them.
+function jadeOutfit(fig) {
+  const P = fig.userData.P; if (!P?.bodyMesh) return null;
+  const tops = []; fig.traverse((m) => { if (m.isMesh && m.userData.garment && /torso$/.test(m.userData.idGroup || '')) tops.push(m); });
+  const segD = (p, a, b) => { const ab = b.clone().sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / ab.lengthSq(), 0, 1); return { d: p.distanceTo(a.clone().addScaledVector(ab, t)), t }; };
+  const U = 0.014, ring = (p, a, b, R) => { const ax = b.clone().sub(a).normalize(), ref = Math.abs(ax.y) < 0.9 ? V(0, 1, 0) : V(1, 0, 0), e1 = ref.clone().addScaledVector(ax, -ref.dot(ax)).normalize(), e2 = new THREE.Vector3().crossVectors(ax, e1), r = p.clone().sub(a);
+    const k = Math.max(1, Math.round((2 * Math.PI * R) / U)); return (Math.atan2(r.dot(e2), r.dot(e1)) / (2 * Math.PI) + 0.5) * k; };
+  const neck = P.neck || P.shoulderC, hip = P.hip;
+  const part = (w) => { const T = segD(w, hip, neck).d; let best = { k: 'torso', d: T * 0.75 };
+    for (const s of ['L', 'R']) for (const [a, b] of [[P['shoulder' + s], P['elbow' + s]], [P['elbow' + s], P['wrist' + s]]]) { const d = segD(w, a, b).d; if (d < best.d) best = { k: s, d }; } return best.k; };
+  for (const m of tops) { m.updateMatrixWorld(true); const pos = m.geometry.attributes.position, w = new THREE.Vector3(), info = [];
+    for (let i = 0; i < pos.count; i++) { w.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld); const k = part(w); let v, u;
+      if (k === 'torso') { v = w.clone().sub(hip).dot(neck.clone().sub(hip).normalize()); u = ring(w, hip, neck, 0.1); }
+      else { const S = P['shoulder' + k], E = P['elbow' + k], Wr = P['wrist' + k], sf = segD(w, E, Wr), su = segD(w, S, E);
+        v = sf.d <= su.d ? (1 - sf.t) * Wr.distanceTo(E) : Wr.distanceTo(E) + (1 - su.t) * S.distanceTo(E); u = sf.d <= su.d ? ring(w, E, Wr, 0.03) : ring(w, S, E, 0.035); }
+      info.push([u, v / U]); }
+    dressGarment(m, 'gingham', 0xe3a090, m.userData.look.flatGrey ?? m.userData.look.grey ?? 0.7, (_, i) => info[i]); }
+  const g = new THREE.Group(), GATHER = { grey: 0.68, col: 0xe3a090, mat: 'ginghamGather' };
+  for (const n of ['L', 'R']) { const S = sleeveFrame(fig, n); const c = ovalBand(S, S.t0 - 0.016, S.t0 + 0.004, 0.006, GATHER); c.userData.outfitExtra = true; g.add(c); }
+  // the white round collar: two half-round flaps meeting at the front of the neck
+  const pt = (u, v) => chestPoint(fig, u, v, 0.004);
+  for (const s of [-1, 1]) { const pts = [pt(s * 0.004, -0.005)]; for (let k = 0; k <= 8; k++) { const a = (k / 8) * Math.PI; pts.push(pt(s * (0.004 + 0.032 * Math.sin(a)), 0.01 - 0.045 * (1 - Math.cos(a)) / 2 - 0.012 * Math.sin(a))); }
+    if (pts.some((p) => !p)) continue; const pos = pts.flatMap((p) => p.toArray()), idx = []; for (let k = 1; k < pts.length - 1; k++) idx.push(0, k, k + 1);
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setIndex(idx); geo.computeVertexNormals();
+    const c = mk(geo, { grey: 0.95, col: 0xf4f2ec }); c.userData.double = true; g.add(c); }
+  // ovalBand gives cylinder UVs (u round, v along): the gather's folds need no box projection
+  g.traverse((m) => { if (m.isMesh && m.userData.look?.mat === 'ginghamGather') { const L = m.userData.look; m.userData.look = { ...L, mat: undefined }; dressGarment(m, 'ginghamGather', L.col, L.grey, (w, i) => [m.geometry.attributes.uv.getX(i), m.geometry.attributes.uv.getY(i)]); } });
+  return tag(g, 'little Jade: gathered gingham cuffs and white round collar');
 }
 // the stack she brought (34 sheets, straight mill edges)
 function stack() {
@@ -471,6 +540,24 @@ function hairBit(fig) {
   const m = pieceMesh(q, map); return { mesh: tag(m, '草纸: a stray bit in her hair'), world: at.toArray().map((v) => +v.toFixed(3)) };
 }
 // porcelain tea mugs with green tea, and the steam rising through the beam
+let CUP_ART = null, LID_ART = null;
+const CUP_PROFILE = [[0, 0], [0.026, 0], [0.027, 0.007], [0.024, 0.009], [0.028, 0.016], [0.034, 0.05], [0.038, 0.085], [0.041, 0.1], [0.0385, 0.1], [0.0355, 0.086], [0.0315, 0.05], [0.025, 0.016], [0, 0.014]];
+function teaCup(x, y0, z) {
+  CUP_ART ||= artFromCanvas(cupCanvas()); const g = new THREE.Group();
+  const L = { grey: 0.9, col: 0xf0ede4, art: CUP_ART.art, artGrey: CUP_ART.artGrey, artEdge: null };
+  const lg = new THREE.LatheGeometry(CUP_PROFILE.map(([r, y]) => new THREE.Vector2(r, y)), 40), np = CUP_PROFILE.length, pa = lg.attributes.position, ua = lg.attributes.uv;
+  for (let i = 0; i < pa.count; i++) { const j = i % np, outer = j >= 1 && j <= 8; ua.setXY(i, Math.atan2(pa.getZ(i), pa.getX(i)) / (2 * Math.PI) + 0.5, outer ? pa.getY(i) / 0.1 : 0.04); }   // the decoration on the outside only
+  const body = mk(lg, L); body.position.set(x, y0, z); g.add(body);
+  const hd = mk(new THREE.TorusGeometry(0.019, 0.0045, 8, 18, Math.PI * 1.1), { grey: 0.9, col: 0xf0ede4 }); hd.position.set(x + 0.036, y0 + 0.055, z); hd.rotation.set(0, 0, -Math.PI * 0.55); g.add(hd);
+  return tag(g, 'tea cups (盖杯) of green tea');
+}
+function teaLid() {
+  LID_ART ||= artFromCanvas(lidCanvas()); const g = new THREE.Group(), L = { grey: 0.9, col: 0xf0ede4, art: LID_ART.art, artGrey: LID_ART.artGrey, artEdge: null };
+  const lg = new THREE.LatheGeometry([[0.0, 0.016], [0.02, 0.014], [0.036, 0.007], [0.044, 0.0], [0.042, -0.002], [0.034, -0.002], [0.033, -0.008], [0.031, -0.008], [0.0, -0.002]].map(([r, y]) => new THREE.Vector2(r, y)), 40), pa = lg.attributes.position, ua = lg.attributes.uv;
+  for (let i = 0; i < pa.count; i++) ua.setXY(i, 0.5 + pa.getX(i) / 0.09, 0.5 + pa.getZ(i) / 0.09);   // the plum branch seen from above
+  g.add(mk(lg, L)); const kn = mk(new THREE.CylinderGeometry(0.008, 0.01, 0.012, 16), { grey: 0.9, col: 0xf0ede4 }); kn.position.set(0, 0.021, 0); g.add(kn);
+  return g;
+}
 function teaAndSteam(shot = {}) {
   const g = new THREE.Group(), PORC = { grey: 0.9, col: 0xf0ede4 }, steamPts = []; const r = rng(7);
   PLACES.mugs.forEach(([x, z], i) => {
@@ -479,12 +566,14 @@ function teaAndSteam(shot = {}) {
     // lid stay code (no lidded CC BY tea mug was found). Nobody holds a mug in this set.
     // GLB measured (rim vertices): the body's rim is centred at model x -0.015 and the handle is on +x. props.json's mug
     // grips have x the wrong way round (body +0.015, handle -0.046): FLAG for the props owner. So: no turn, shift +15 mm.
-    const pm = prop('mug', { at: [x + 0.015, y0, z], label: 'mugs of green tea', look: PORC });
-    if (pm) g.add(pm); else { g.add(tag(cyl(0.038, 0.034, 0.095, PORC, [x, y0 + 0.0475, z]), 'mugs of green tea'));
-      const hd = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.006, 6, 14, Math.PI), new THREE.MeshBasicMaterial()); hd.userData.look = PORC; hd.castShadow = true; hd.receiveShadow = true;
-      hd.position.set(x + 0.038, y0 + 0.05, z); hd.rotation.set(0, 0, -Math.PI / 2); g.add(tag(hd, 'mugs of green tea')); }
-    g.add(tag(cyl(pm ? 0.031 : 0.032, pm ? 0.031 : 0.032, 0.003, { grey: 0.6, col: 0x9aa050 }, [x, y0 + 0.085, z]), 'mugs of green tea'));
-    if (i === 0) g.add(tag(cyl(0.042, 0.042, 0.008, PORC, [x - 0.07, y0 + 0.004, z - 0.06]), 'mug lid (off)'));
+    // 2026-11-27 canon (Jade: period tea vessels, not modern mugs): a lidded porcelain tea cup (盖杯) of the kind every
+    // Shanghai home and office used, as the r3 paintings drew it: a tall flared white cup on a foot ring, a loop handle (to
+    // +x, as the mug's), a blue flower spray on each side and blue lines at rim and foot; the domed lid with a knob and a red
+    // plum-blossom branch. Same places as the mugs (nobody holds one); the open cup shows the green tea; cup 1's lid lies
+    // beside it on its rim, as before.
+    g.add(teaCup(x, y0, z));
+    g.add(tag(cyl(0.0355, 0.0355, 0.003, { grey: 0.6, col: 0x9aa050 }, [x, y0 + 0.085, z]), 'tea cups (盖杯) of green tea'));
+    if (i === 0) { const ld = teaLid(); ld.position.set(x - 0.075, y0 + 0.008, z - 0.06); g.add(tag(ld, 'tea cup lid (off, beside its cup)')); }
     // r3 open issue (V1h guides: "a stick in a mug"): was two straight 0.42 m tubes from the mug's centre. Now three thin wisps
     // per mug, each starting at a different point of the rim, drifting off to one side as it rises (~0.2-0.26 m), the curl
     // growing with height, and BROKEN into fading dashes, so in line/form guides they read as curling vapour, not a rod
@@ -537,8 +626,9 @@ export function build(shot, { makeCam }) {
     const palm = h.capsules.filter((c) => /^palm/.test(c.part)), gap = (d) => Math.min(...palm.map((c) => segD(P.handR.clone().addScaledVector(n, d), c))) - 0.012;
     let lo = 0, hi = 0.06; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2; if (gap(m) < -0.0003) lo = m; else hi = m; }   // the ball settles 0.3 mm into the palm strips (its weight; a harder squeeze pops it out sideways)
     return P.handR.clone().addScaledVector(n, hi); };
+  if (figs.jade3) { const jo = jadeOutfit(figs.jade3); if (jo) root.add(jo); }   // 2026-11-27 canon: gingham, long gathered sleeves
+  if (figs.uncle) { const col = uncleOutfit(figs.uncle); if (col) root.add(col); }   // 2026-11-27 canon: padded jacket over the pullover (one canonical outfit)
   if (shot.state === 'A' && figs.uncle) root.add(wristWatch(figs.uncle, 'L'));
-  if (figs.uncle) { const col = uncleOutfit(figs.uncle); if (col) root.add(col); }   // 2026-11-27: knit / twill / shirt collar (one canonical outfit)
   // hold pass (2026-11-26): a pinched-up wad of 草纸, faceted (icosahedron), not a perfect sphere: a sphere rolls off any palm
   // that is not exactly level (Rapier has no rolling resistance), a crumpled wad does not
   if (shot.state === 'A' && figs.uncle) { const w = mk(new THREE.IcosahedronGeometry(0.012, 1), PAPER_LOOK); w.position.copy(ballAt(figs)); root.add(tag(w, 'something small (he shapes it)')); }

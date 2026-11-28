@@ -436,7 +436,8 @@
  ],
  "warnings": [
   "wrist: jade3 L hand turned 47.8 deg toward the forearm to keep the wrist in range (was flex -67.4, radial -78.5)",
-  "wrist: jade3 R hand turned 48.2 deg toward the forearm to keep the wrist in range (was flex -68.4, radial -79.3)"
+  "wrist: jade3 R hand turned 48.2 deg toward the forearm to keep the wrist in range (was flex -68.4, radial -79.3)",
+  "costume: uncle and mama86 both fill the frame and their tops are close in colour (dE 6.9: #7a8494 vs #6f7f9a)"
  ],
  "intent": "r4 (Jade): over-the-shoulder from the hall, just behind Mother (frame right, the back of her head and her left shoulder): the grown-ups crowd the wide doorway, NOT in the room, all turned to where the child sits and peeking past the end of the bookcase at her: the grandmother stooping on the threshold, a hand at her mouth, the aunt at the left leaning in, a hand at her mouth, the uncle beyond Mother's right shoulder peering over. We see the backs of their heads. Beyond them, down across the long room, the child small in the sun at the couch group, absorbed in her paper. Everyone in socks inside cotton-padded slippers. The folded-back hall doors on their brass hinges at the right edge.",
  "beam": {
@@ -1151,15 +1152,15 @@
   "generation_pieces": 8,
   "gold_dot_px": [
    [
-    866.7,
-    659.5
+    876.7,
+    655.7
    ]
   ],
   "gold_dot_world": [
    [
-    -1.61,
+    -1.68,
     0.421,
-    -3.502
+    -3.494
    ]
   ],
   "paper_r3": [
@@ -1167,13 +1168,13 @@
     "what": "laid on the table",
     "gen": 7,
     "size_cm": [
-     2.2,
+     2.3,
      1.4
     ],
     "world": [
-     -1.61,
+     -1.6800000000000002,
      0.4206,
-     -3.501818957780646
+     -3.493818957780646
     ]
    },
    {
@@ -1198,7 +1199,7 @@
      [
       "10",
       [
-       0.9,
+       1,
        1.2
       ]
      ],
@@ -1576,9 +1577,9 @@
  },
  "costume": {
   "jade3": {
-   "top": "#e9dcc0",
+   "top": "#e3a090",
    "legs": "#5a6a8a",
-   "sleeves": "short",
+   "sleeves": "long",
    "sock": "#6a6a70",
    "torso": "capsule"
   },
@@ -1597,7 +1598,7 @@
    "torso": "capsule"
   },
   "uncle": {
-   "top": "#e8e4d8",
+   "top": "#7a8494",
    "legs": "#4a5560",
    "sleeves": "long",
    "sock": "#b8bcc0",
@@ -1689,31 +1690,31 @@
   "mama86": 0.0838,
   "aunt": 0.08,
   "grandma": 0.048,
-  "jade3": 0.0043
+  "jade3": 0.0048
  },
  "colour_separation": [
   {
    "a": "uncle",
    "b": "mama86",
-   "top_a": "#e8e4d8",
+   "top_a": "#7a8494",
    "top_b": "#6f7f9a",
-   "deltaE_top": 44.1,
-   "close": false
+   "deltaE_top": 6.9,
+   "close": true
   },
   {
    "a": "uncle",
    "b": "aunt",
-   "top_a": "#e8e4d8",
+   "top_a": "#7a8494",
    "top_b": "#9a6a5a",
-   "deltaE_top": 46.1,
+   "deltaE_top": 32.1,
    "close": false
   },
   {
    "a": "uncle",
    "b": "grandma",
-   "top_a": "#e8e4d8",
+   "top_a": "#7a8494",
    "top_b": "#4a4f5a",
-   "deltaE_top": 58.6,
+   "deltaE_top": 21.5,
    "close": false
   },
   {
@@ -1811,7 +1812,79 @@
     },
     "sole_shift_mm_L": 30,
     "sole_shift_mm_R": 30,
-    "sole_lowest_y_m": 0.0039
+    "sole_lowest_y_m": 0.0039,
+    "glasses": {
+     "frame": "mama",
+     "name": "thin round-oval pale silver wire",
+     "lens_mm": [
+      46,
+      33
+     ],
+     "bridge_mm": 18,
+     "rim_mm": 1.4,
+     "total_width_mm": 115,
+     "plane_ahead_of_cornea_mm": 12,
+     "pushed_by_lens_uv_mm": null,
+     "_arm": [
+      [
+       56.2,
+       -7.2,
+       15.2
+      ],
+      [
+       62,
+       -4.3,
+       1.4
+      ],
+      [
+       65.8,
+       -1.5,
+       -12.4
+      ],
+      [
+       70.1,
+       1.4,
+       -26.3
+      ],
+      [
+       71.7,
+       4.3,
+       -40.1
+      ],
+      [
+       73.2,
+       9.7,
+       -53.9
+      ],
+      [
+       74.2,
+       10.2,
+       -70.5
+      ],
+      [
+       72.6,
+       6.7,
+       -87.2
+      ],
+      [
+       70.1,
+       -8.3,
+       -94.2
+      ],
+      [
+       64.5,
+       -24.3,
+       -99.2
+      ]
+     ],
+     "_ear": [
+      5.7,
+      -57.9,
+      -83.2
+     ],
+     "temple_length_mm": 141,
+     "rim_clear_of_face_mm": 2.6
+    }
    }
   },
   "aunt": {

@@ -68,6 +68,7 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
     - `bentwood_chair`: "Viennese Chair" by romasharf (https://sketchfab.com/3d-models/45405e6ec46b46629e7f4a71da5ccd1b), CC BY 4.0. In shanghai86 (the eight bentwood dining chairs)
     - `sideboard`: "Cabinet" by Wandcaster (https://sketchfab.com/3d-models/fdcb5d8fdac247a3be20c28f4da2b466), CC BY 4.0. In shanghai86 (the dark-wood sideboard, north-east corner)
     - `tv_cabinet`: "Old Chest Of Drawers 1" by rhcreations (https://sketchfab.com/3d-models/93b6cef3362c4e84ac6f12b6af11a8e1), CC BY 4.0. In shanghai86 (the TV cabinet, recoloured to the room's teak)
+    - `upright_piano`: "Upright Piano (WIP)" by catdevpete (https://sketchfab.com/3d-models/eb76131fcae44993a532ad1b99050deb), CC BY 4.0. In shanghai86 (the music room's piano, across the hall)
     - `kids_bottle`: "Sport Waterbottle" by psychofisch (https://sketchfab.com/3d-models/04b5fcbb2d644e608d7f836bdb136a85), CC BY 4.0. In playground23 (the two kids' water bottles, each with its own decal)
   - CC0 (Poly Haven; credit as courtesy):
     - `tv_small`: "Television 02" by Benny Weimer, Poly Haven (CC0). In attic88_day (the small TV on the crate)

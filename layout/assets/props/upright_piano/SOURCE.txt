@@ -1,0 +1,11 @@
+Model: "Upright Piano (WIP)" by catdevpete on Sketchfab
+URL: https://sketchfab.com/3d-models/eb76131fcae44993a532ad1b99050deb
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata and on the live Sketchfab API (licence slug "by"), checked 2026-11-27
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-079/eb76131fcae44993a532ad1b99050deb.glb (uid eb76131fcae44993a532ad1b99050deb)
+Changes (for this film's layout guides): the white "Plywood" back / inner panels recoloured near-black (0.02) to match the black case; joined into one mesh; turned 180 degrees so the keyboard faces +z; scaled uniformly to metres (height 1.20 m, a Pearl River UP-120 type size); origin moved to the floor under the bottom centre. 13,460 tris, no textures (flat material colours: black lacquer case, white / black keys, brass pedals, red key felt).
+Real-world size here (x, y up, z): 1.548 x 1.2 x 0.555 m
+Orientation (glTF / three.js): y up; keyboard and pedals face +z, back toward -z; centred on x = 0 and z = 0 (bbox centre).
+State: fallboard open, keys visible; music desk present; lid closed; no bench; no brand text or logo (no textures at all).
+Used for: shanghai86: the music room across the hall (shiny black upright; add the film's own blank gold nameplate on the fallboard in the set)
+Pipeline: Blender 4.5; _pipeline/upright_piano_prep.py (recolour Plywood), then _pipeline/norm.py {"size":["h",1.2],"rot":[0,180,0],"tris":20000,"tex":1024,"origin":"bottom"}.

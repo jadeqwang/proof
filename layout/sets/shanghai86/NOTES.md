@@ -1093,14 +1093,59 @@ seat at 0.42 m and the cushion top is 0.425 m (the old box couch had its cushion
 compression; a real cushion gives that much). The watch clears the skin (cloth contact 0.4-6.8 mm, within tolerance).
 Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
 
+**Round 2 of the canon (Jade's answers, 2026-11-27; these override the table above where they differ).**
+- **Upholstery:** the plain wool read as plain. Now ONE striped woven wool furnishing cloth on every upholstered surface of
+  the couch and the three armchairs (seats, backs, arms, sides, cushions): per 4 cm repeat a 2 cm rust band, a 2 mm cream
+  pinline, a 1.4 cm darker brown-rust band, a second pinline, the Caban weave over it (textures.js `uphol`, base 0x683826);
+  stripes run up the backs and sides, front to back on the seats, round the arm rolls. Its pinlines are drawn faintly in
+  line / contour too (the only texture with edges), so the pattern is in every guide mode. Period basis: the striped
+  covers in Ba Jin's living room (reference sheet). Welts stay plain dark rust; the crocheted covers stay.
+- **The uncle:** the GREY-BLUE PADDED JACKET of the r3 paintings is canon (colour, quilting, buttons, cuffs from
+  media/keyframes/r3/shanghai86/V1b_v1.jpg): CAST top 0x7a8494, quilted in horizontal channels 7 cm apart (textures.js
+  `quilt`), a centre placket with five dark grey four-hole buttons, a turn-down collar, over the cream pullover (its knit at
+  the neck, its 2x2-ribbed cream cuffs 1.4 cm out of each sleeve). The shirt collar is gone. The watch sits on the wrist
+  right after the left ribbed cuff; its dial shows in V1b. Known: in V1a the strap reads as a loop off the back of the
+  bent hand (the wrist is flexed; the band is round the forearm axis); trimming the sleeve to put the watch above the
+  wrist joint opened holes (no skin is modelled under a sleeve), so it was not done.
+- **V1b camera (undecided, Jade):** both versions rendered in all modes: media/layout/shanghai86/V1b_* (22 deg, current) and
+  media/layout/_v1b_el34/shanghai86/V1b_* (34 deg); side by side in media/layout/_sheets/canon/shanghai86_V1b_22_vs_34.jpg.
+- **Tea cups (replace the modern mugs):** lidded porcelain tea cups (盖杯) as the r3 paintings drew them: tall, flared, foot
+  ring, loop handle, a blue flower spray each side, blue rim and foot lines; the lid (domed, knob) with a red plum-blossom
+  branch; the same three places, cup 1's lid beside it. Modelled (lathe) with code-drawn decoration. The `mug` prop is no
+  longer loaded here.
+- **Grandpa's newspaper archive (no desk):** on top of the bookcases, piles of 4-6 identical month bundles (folded
+  broadsheets 0.39 x 0.27 m, 7 cm thick), each tied crosswise with RED string, the top sheet a greeked front page, a small
+  handwritten date slip (scribble, nothing legible) under the string at the front (joinery.js newspaperArchive, fixed seed).
+- **The table glass** stays over the bare wood.
+- **Little Jade at 3 (canon everywhere):** a coral-red and white GINGHAM top, 7 mm checks (textures.js `gingham`, one scale),
+  LONG sleeves gathered by elastic at the wrists (a gathered band), a plain white round collar (_cast.js jade3: sleeves
+  long, top 0xe3a090; build.js jadeOutfit). She appears at 3 only in shanghai86 (bodytest / mtest are engine test sets).
+  Also in layout/CAST.md and cast/little_jade_03/COSTUME_CANON.txt.
+- **V1d_2 put-down spot (Jade decided: move the spot):** PD is now the table's near (north-west) corner, 2 cm in from both
+  edges, slightly to her right (shots.js PD, LAY_TIP): 0.31 m ahead of her V1d_2 seat; her right elbow bends 79 deg, wrists
+  in range, holds pass. The laid half lies there in V1d_2, V1d_4, V1d_8, V1d_8_end and every after shot (they all use PD).
+  Her position and the cameras are unchanged.
+- **Great room:** unchanged walls / doors / sizes (Jade: final).
+- **Across the hall (Jade, canon):** the far hall wall now has TWO pairs of glazed French doors, each lined up with one half
+  of the great-room doorway (a 12 cm partition on the doorway's centre line), the same joinery (doorLeaf: 5 x 2 lites over
+  a raised panel, brass butt hinges, a brass lever and flush bolts on the meeting leaf, architraves, a transom at the same
+  height), closed. LEFT (west): the NANNY'S ROOM: a single bed under a quilted blue cover with a lace pillow cover, a small
+  two-door wardrobe, a small chest, a bentwood chair. RIGHT (east): the MUSIC ROOM: an upright piano against its left wall
+  (the partition), keys to the east, a piano chair; the household's bookcases (the same units, glazing, brass knobs) along
+  the back and east walls. Plaster, parquet and wood textured like the great room. The hall closets moved to the hall's
+  east end wall (they stood where the doors now are). Before this the far hall wall was a plain box with the closets.
+  New view REF_across_hall (from the great room through its doorway).
+- **Checks after round 2:** full recipe re-rendered (28 views incl. REF_teatable, REF_teatable_low, REF_chair_back,
+  REF_across_hall). holdcheck 14/14 pass (V1d_2's right hand on the half at the new spot: pass, wrists in range).
+  check_bodies 26 pass, 2 fail (V1a / V1b: jade3 vs the uncle, body vs body, poses untouched). clipcheck: no new kinds;
+  jade3's trousers now reach 28 mm into the floor-drift pieces under her (was 11 mm skin; the long-sleeved garment comes
+  with the engine's other garment mesh), the uncle's trousers 47 mm into the couch cushion (seated compression), the
+  slippers 9 mm into the threshold. Sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,line,refs}.jpg,
+  shanghai86_putdown_spot.jpg, shanghai86_V1b_22_vs_34.jpg.
+- **Piano:** shiny black lacquer, a white crocheted lace runner along the top of the lid, a small gold nameplate on the
+  fallboard with no legible text (Jade: final canon; the brand is not named).
+
 **Open (for Jade).**
 - **Watch orientation:** Jade asked for "12 o'clock pointing toward his hand". On a real wristwatch the strap runs across
   the wrist through 12 and 6, so 12 points across the wrist (away from the body when you read it) and the crown at 3
   points toward the hand; the painted V1b_v1 watch is worn that way too. Built the real way; say if you want otherwise.
-- **V1b, watch visibility:** worn on the skin past the cuff (as painted), the dial shows above the cuff in V1b; it is
-  seen edge-on in V1a. A test render with the V1b camera raised from 22 to 34 deg shows the dial better but reframes
-  the shot (the table comes in); not applied.
-- **Uncle's outfit:** the model has a pale knitted pullover only; the r3 paintings put a grey-blue padded jacket over a
-  cream ribbed sweater. If the jacket is "his current outfit", the model needs one.
-- **Mugs:** the tea mugs are modern-shaped white mugs (props phase 2); a lidded porcelain tea cup (盖杯) or enamel mug
-  would be more period. Not changed.

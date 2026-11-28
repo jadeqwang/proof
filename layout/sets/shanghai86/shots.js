@@ -50,7 +50,7 @@ const hold = (dz) => ({ L: { to: [C[0] + LEFT[0] * dz, HOLD_Y, C[1] + LEFT[1] * 
 // palm target (F - 0.09) was 4 cm beyond a three-year-old's reach: the arm fell short and the fingertips sank 6 mm into
 // the table edge. Her spine leans 40 deg (was 30) so the fingertip reaches 8 mm inside the table edge (it lands 1.2 cm short of
 // LAY_TIP, the pad behind the tip)
-const LAY_TIP = [F[0] - 0.05, TABLE.h + 0.0031, F[2] - 0.11];   // y: the paper's top + 2.5 mm (the slanted pad sits under the tip centre)
+const LAY_TIP = [TABLE.cx - TABLE.w / 2 + 0.02, TABLE.h + 0.0031, TABLE.cz - TABLE.d / 2 + 0.028];   // 2026-11-27: on the half at PD (the near corner); was F + (-0.05, -0.11)   // y: the paper's top + 2.5 mm (the slanted pad sits under the tip centre)
 // r6b (Jade, REF_beam: "little Jade's wrists are in kinda unnatural positions"): the after-pose reached for the table
 // 0.4 m away (left arm fully straight, past its reach; right index on the piece, both wrists flexed ~60 deg) with a
 // 40 deg lean. Look-only reference photos (small children sitting on the floor with something small in their hands):
@@ -74,7 +74,11 @@ const jadeSit = (n = 8, o = {}) => ({ at: PLACES.jadeSit, legs: 'cross', legOpts
 //   (gen 8, ~1 cm), the put-down half lying at PD. V1d_8: a gen-10 bit (~5 x 7 mm) between her fingertips, as small as
 //   she can go. V1h: a little heap of the tiniest bits on the clear patch, the big stack nearby.
 const P0 = { gen: 6, seed: 606 };
-const PD = [F[0] - 0.05, F[2] - 0.118];   // where her right hand puts its half down (inside the table's north-west corner; hold pass: was F + (-0.07, 0.02), out of her reach, now 12 mm inside the north edge, under her right fingertip in the after shots)
+// 2026-11-27 (Jade decided V1d_2: "MOVE THE PUT-DOWN SPOT close to her, at the near table corner just in front of her, as in
+// the r3 V1d_2 paintings"): PD is now the table's north-west corner itself, 2 cm in from both edges, slightly to her right
+// (0.31 m ahead of her V1d_2 seat, 7 cm right of centre; was 0.32 m straight ahead, 9 cm further east along the edge). The
+// laid half lies there in every later shot (V1d_4, V1d_8, V1d_8_end, the after shots: they all use PD).
+const PD = [TABLE.cx - TABLE.w / 2 + 0.02, TABLE.cz - TABLE.d / 2 + 0.02];   // where her right hand puts its half down (inside the table's north-west corner; hold pass: was F + (-0.07, 0.02), out of her reach, now 12 mm inside the north edge, under her right fingertip in the after shots)
 const pinchArm = (at, side, o = {}) => ({ tip: { finger: 'index', at }, hand: { shape: 'pinch', spread: 4, curl: { middle: [30, 40, 20], ring: [40, 50, 25], little: [50, 60, 30] } }, palm: 'in', fingers: [FWD[0], -0.25, FWD[1]], ...o });
 // hold pass (2026-11-26): the pinches are checked against the piece they hold (`grasp` / `object`, engine/main.js holdsFor);
 // build.js paperProps lays the piece in the plane between the thumb and index pads (was: a fixed tilt, which ran the paper
@@ -203,6 +207,9 @@ export const SHOTS = [
   { id: 'REF_shelves', lens: 35, pos: [-1.35, 1.3, -3.2], aim: [[-1.35, 1.15, -6.1], 0.5, 0.5], tissue: 8, figs: ALONE(8),
     header: 'REFERENCE (r4): the west bookcases, square on: plinth, panelled cupboards, ledge, glazed doors, shelf boards, books (individual spines)',
     intent: 'Elevation of the west bookcase run behind her spot, with the L armchair in front of it. Not a shot.' },
+  { id: 'REF_across_hall', lens: 28, pos: [2.25, 1.45, -3.6], aim: [[2.25, 1.15, -9.5], 0.5, 0.5], state: 'A', figs: {},
+    header: 'REFERENCE (2026-11-27 canon): across the hall through the great-room doors: the two pairs of French doors (left: the nanny\'s room, right: the music room)',
+    intent: 'From inside the great room, looking north through its open doorway and across the hall into the two rooms through their glazed doors. Not a shot.' },
   { id: 'REF_teatable', lens: 35, pos: [-0.85, 1.0, -2.2], aim: [[-1.425, 0.3, -3.04], 0.5, 0.5], state: 'A', figs: {},
     header: 'REFERENCE (2026-11-27 canon): the coffee table (茶几), three-quarter from above: glass top, bevelled edge, apron, turned legs, lower shelf',
     intent: 'The canonical coffee table alone (state A: bare top). Not a shot.' },

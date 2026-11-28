@@ -1,0 +1,11 @@
+Little Jade at 3: costume canon (Jade, 2026-11-27). Note only, no new sheet.
+
+LONG RED GINGHAM SLEEVES are canon everywhere she appears at age 3: a coral-red and white gingham cotton top with 7 mm checks
+(one canonical check scale), LONG sleeves gathered by elastic at the wrists into soft little frills, a plain white round
+collar; padded dark blue-grey trousers; thick knitted socks in small cotton-padded slippers indoors. Source: the r3
+shanghai86 V1d_2 paintings (media/keyframes/r3/shanghai86/V1d_2_v1.jpg, V1d_2_v2.jpg).
+
+The sheets in this folder (lj03_*_v1/v2) show an older costume (a short-sleeved gingham smock dress, bare arms, black cloth
+shoes): use them for her face, hair, body and hands only, and dress her as above. The 3D model (layout/sets/_cast.js jade3,
+shanghai86/build.js jadeOutfit) and the shanghai86 painter prompts (media/keyframes/r4/shanghai86/_prompts/_make.py) carry
+the canon.

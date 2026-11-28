@@ -62,6 +62,48 @@ SRC.knit = canvas(64, 1024, (g, W, H) => {
 SRC.twill = canvas(128, 128, (g, W) => { g.fillStyle = '#a0a0a0'; g.fillRect(0, 0, W, W); g.strokeStyle = '#c2c2c2'; g.lineWidth = 3;
   for (let k = -W; k < 2 * W; k += 8) { g.beginPath(); g.moveTo(k, 0); g.lineTo(k + W, W); g.stroke(); } });
 
+// the uncle's padded jacket (棉袄): grey-blue cotton, quilted in horizontal channels 7 cm apart (one tile = one channel, 10 cm
+// wide): a stitched seam line (short dashes) with the padding puffing up between seams (soft light-dark gradient), fine weave
+export const QUILT_U = 0.1, QUILT_V = 0.07;
+SRC.quilt = canvas(256, 180, (g, W, H) => { const r = rngOf(70);
+  const grd = g.createLinearGradient(0, 0, 0, H); grd.addColorStop(0, '#6e6e6e'); grd.addColorStop(0.18, '#a6a6a6'); grd.addColorStop(0.5, '#b8b8b8'); grd.addColorStop(0.82, '#a0a0a0'); grd.addColorStop(1, '#6a6a6a');
+  g.fillStyle = grd; g.fillRect(0, 0, W, H);
+  for (let i = 0; i < 2500; i++) { g.fillStyle = `rgba(${r() < 0.5 ? '0,0,0' : '255,255,255'},0.05)`; g.fillRect(r() * W, r() * H, 2, 1); }   // cotton weave
+  g.strokeStyle = '#4a4a4a'; g.lineWidth = 3; g.setLineDash([10, 6]); g.beginPath(); g.moveTo(0, 2); g.lineTo(W, 2); g.stroke(); });
+// a flat stockinette patch (the pullover at the neck)
+SRC.knitflat = canvas(64, 64, (g, W) => { g.fillStyle = '#9a9a9a'; g.fillRect(0, 0, W, W); g.strokeStyle = '#d8d8d8'; g.lineWidth = 3;
+  for (let y = 0; y < W; y += 8) for (let x = 0; x < W; x += 8) { g.beginPath(); g.moveTo(x + 1, y); g.lineTo(x + 4, y + 7); g.lineTo(x + 7, y); g.stroke(); } });
+// 2026-11-27 (Jade: the plain wool read as plain; one canonical upholstery fabric that reads at guide resolution): a woven
+// wool UPHOLSTERY STRIPE in the rust family, the kind of striped furnishing cloth on 1980s Shanghai chairs (Ba Jin's
+// living room: striped covers): per 4 cm repeat a 2 cm rust band, a 2 mm cream pinline, a 1.4 cm darker brown-rust band,
+// a second pinline; the Caban wool's weave (Poly Haven, CC0) over it. Stripes run up the backs and sides, front to back
+// on the seats and round the arm rolls. Its pinlines are also drawn (faintly) in line / contour, so the pattern is in
+// every guide mode.
+export const UPH_STRIPE = 0.04;
+{ const W = 256, c = document.createElement('canvas'); c.width = W; c.height = W; const g = c.getContext('2d');
+  if (SRC.wool) g.drawImage(SRC.wool, 0, 0, Math.round(SRC.wool.width * UPH_STRIPE / 0.274), Math.round(SRC.wool.height * UPH_STRIPE / 0.274), 0, 0, W, W); else { g.fillStyle = '#888'; g.fillRect(0, 0, W, W); }
+  const im = g.getImageData(0, 0, W, W), d = im.data; let m = 0; for (let i = 0; i < W * W; i++) m += 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2]; m /= W * W;
+  const band = (x) => (x < 128 ? 1.06 : x < 141 ? 1.75 : x < 230 ? 0.72 : x < 243 ? 1.75 : 1.06);
+  for (let y = 0; y < W; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4, l = (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]) / m, v = Math.max(0, Math.min(255, 150 * band(x) * (0.75 + 0.25 * l))); d[i] = d[i + 1] = d[i + 2] = v; }
+  g.putImageData(im, 0, 0); SRC.uphol = c;
+  SRC.upholEdge = canvas(W, W, (e) => { e.fillStyle = '#fff'; e.fillRect(0, 0, W, W); e.fillStyle = '#b8b8b8'; e.fillRect(128, 0, 13, W); e.fillRect(230, 0, 13, W); }); }
+// the little girl's top (Jade, canon: LONG RED GINGHAM SLEEVES, as in the r3 V1d_2 paintings): coral-red and white gingham,
+// 7 mm squares (one 14 mm repeat), in its own colours (raw)
+SRC.gingham = canvas(64, 64, (g, W) => { g.fillStyle = '#f4eee4'; g.fillRect(0, 0, W, W); g.fillStyle = 'rgba(206,78,60,0.55)'; g.fillRect(0, 0, W / 2, W); g.fillRect(0, 0, W, W / 2); });
+// her gathered cuffs: the gingham bunched by the elastic (soft vertical folds)
+SRC.ginghamGather = canvas(256, 64, (g, W, H) => { for (let x = 0; x < W; x++) { const f = 0.75 + 0.25 * Math.cos((x / W) * Math.PI * 2 * 18); g.fillStyle = `rgb(${Math.round(240 * f)},${Math.round(160 * f)},${Math.round(145 * f)})`; g.fillRect(x, 0, 1, H); } });
+// the tea cups (盖杯, as the r3 paintings drew them): white porcelain, a blue flower spray on each side, blue lines at rim and
+// foot; the lid's top a red plum-blossom branch
+SRC.cup = canvas(512, 256, (g, W, H) => { g.fillStyle = '#f4f2ec'; g.fillRect(0, 0, W, H); g.fillStyle = '#2c4a8a';
+  g.fillRect(0, 10, W, 5); g.fillRect(0, H - 30, W, 4);   // rim and foot lines (v: 0 at the foot, 1 at the rim; the canvas top is the rim)
+  for (const cx of [W * 0.25, W * 0.75]) { g.strokeStyle = '#2c4a8a'; g.lineWidth = 4; g.beginPath(); g.moveTo(cx - 40, 190); g.quadraticCurveTo(cx - 10, 120, cx + 30, 80); g.stroke();
+    for (const [dx, dy, r] of [[30, 80, 16], [-6, 118, 13], [22, 140, 10], [-30, 160, 11]]) { for (let k = 0; k < 5; k++) { const a = k * 1.2566; g.beginPath(); g.arc(cx + dx + Math.cos(a) * r * 0.7, dy + Math.sin(a) * r * 0.7, r * 0.55, 0, 7); g.fill(); } g.fillStyle = '#f4f2ec'; g.beginPath(); g.arc(cx + dx, dy, r * 0.3, 0, 7); g.fill(); g.fillStyle = '#2c4a8a'; }
+    for (const [dx, dy] of [[-22, 150], [12, 100]]) { g.beginPath(); g.ellipse(cx + dx, dy, 14, 5, -0.6, 0, 7); g.fill(); } } });
+SRC.lid = canvas(256, 256, (g, W) => { g.fillStyle = '#f4f2ec'; g.fillRect(0, 0, W, W); g.strokeStyle = '#4a2a1e'; g.lineWidth = 5; g.beginPath(); g.moveTo(40, 200); g.quadraticCurveTo(110, 150, 200, 70); g.stroke();
+  g.fillStyle = '#c4343a'; for (const [x, y] of [[90, 162], [140, 122], [185, 84], [120, 180]]) for (let k = 0; k < 5; k++) { const a = k * 1.2566; g.beginPath(); g.arc(x + Math.cos(a) * 8, y + Math.sin(a) * 8, 7, 0, 7); g.fill(); }
+  g.fillStyle = '#2c4a8a'; g.fillRect(0, 6, W, 4); });
+// grandpa's newspaper archive: the edge of a tied bundle of folded broadsheets (fine horizontal sheet edges, a few darker)
+SRC.newsstack = canvas(64, 128, (g, W, H) => { const r = rngOf(51); g.fillStyle = '#d8d0bc'; g.fillRect(0, 0, W, H); for (let y = 0; y < H; y += 2) { g.fillStyle = `rgba(90,80,60,${0.15 + r() * 0.35})`; g.fillRect(0, y, W, 1); } });
 // key -> { src, period: [u, v] metres per tile, grain: 'u' | 'v' | null (the texture axis the wood grain runs along), contrast }
 export const MATS = {
   parquet: { src: 'parquet', period: [3.4, 3.4], contrast: 1.0 },          // herringbone blocks ~7 x 35 cm (1930s Shanghai flat; waxed)
@@ -72,6 +114,12 @@ export const MATS = {
   lace: { src: 'lace', period: [0.2, 0.2], contrast: 1.0 },                // crocheted covers: 5 cm motifs
   rattan: { src: 'rattan', period: [0.08, 0.08], contrast: 1.0 },          // cane weave
   knit: { src: 'knit', period: [KNIT_U, KNIT_V], contrast: 0.3, clampV: true },
+  uphol: { src: 'uphol', period: [UPH_STRIPE, UPH_STRIPE], contrast: 1.0, edge: 'upholEdge' },
+  gingham: { src: 'gingham', period: [0.014, 0.014], raw: true },
+  ginghamGather: { src: 'ginghamGather', period: [1, 1], raw: true },
+  newsstack: { src: 'newsstack', period: [0.3, 0.075], contrast: 1.0 },
+  quilt: { src: 'quilt', period: [QUILT_U, QUILT_V], contrast: 0.8 },
+  knitflat: { src: 'knitflat', period: [0.03, 0.03], contrast: 0.5 },
   twill: { src: 'twill', period: [0.012, 0.012], contrast: 0.5 },
 };
 
@@ -87,7 +135,11 @@ function texOf(key, col, grey) {
     g.putImageData(im, 0, 0); const t = new THREE.CanvasTexture(cv); t.wrapS = THREE.RepeatWrapping; t.wrapT = M.clampV ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
     t.anisotropy = 8; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.colorSpace = THREE.NoColorSpace; return t; };
   const cl = (v) => Math.max(0, Math.min(255, Math.round(v * 255)));
-  const out = { art: mkT((f) => [cl(c.r * f), cl(c.g * f), cl(c.b * f)]), artGrey: mkT((f) => { const v = cl(grey * f); return [v, v, v]; }) };
+  let out;
+  if (M.raw) { const t = new THREE.CanvasTexture(src); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; t.colorSpace = THREE.NoColorSpace;   // in its own colours
+    out = { art: t, artGrey: mkT((f) => { const v = cl(grey * f); return [v, v, v]; }) }; }
+  else out = { art: mkT((f) => [cl(c.r * f), cl(c.g * f), cl(c.b * f)]), artGrey: mkT((f) => { const v = cl(grey * f); return [v, v, v]; }) };
+  if (M.edge && SRC[M.edge]) { const e = new THREE.CanvasTexture(SRC[M.edge]); e.wrapS = e.wrapT = THREE.RepeatWrapping; e.colorSpace = THREE.NoColorSpace; out.artEdge = e; }
   TEX.set(k, out); return out;
 }
 
@@ -121,7 +173,7 @@ function writeUV(mesh, M) {
 const LOOKS = new WeakMap();
 function dressedLook(L) {
   if (LOOKS.has(L)) return LOOKS.get(L);
-  const t = texOf(L.mat, L.col ?? 0x808080, L.grey ?? 0.6); const out = t ? { ...L, art: t.art, artGrey: t.artGrey, artEdge: null } : L;
+  const t = texOf(L.mat, L.col ?? 0x808080, L.grey ?? 0.6); const out = t ? { ...L, art: t.art, artGrey: t.artGrey, artEdge: t.artEdge || null } : L;
   LOOKS.set(L, out); return out;
 }
 export function dress(root) {
@@ -137,7 +189,7 @@ export function dressGarment(mesh, key, col, grey, uvAt) {
   const g = mesh.geometry, p = g.attributes.position, uv = new Float32Array(p.count * 2), w = new THREE.Vector3();
   for (let i = 0; i < p.count; i++) { w.fromBufferAttribute(p, i).applyMatrix4(mesh.matrixWorld); const [u, v] = uvAt(w, i); uv[i * 2] = u; uv[i * 2 + 1] = v; }
   g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
-  mesh.userData.look = { ...mesh.userData.look, art: t.art, artGrey: t.artGrey, artEdge: null }; if (mesh.userData.mats) mesh.userData.mats = {};
+  mesh.userData.look = { ...mesh.userData.look, art: t.art, artGrey: t.artGrey, artEdge: t.artEdge || null }; if (mesh.userData.mats) mesh.userData.mats = {};
   return true;
 }
 
@@ -172,3 +224,14 @@ export function newspaperCanvas() {
       g.fillStyle = `rgba(58,54,48,${0.35 + r() * 0.2})`; g.fillRect(20 + col * 62, y, 50 - (r() < 0.15 ? r() * 30 : 0), 3); }
     g.fillStyle = '#9a9488'; g.fillRect(20, 300, 170, 110); });                                     // a photo block
 }
+
+// the pullover's 2x2 ribbed cuff, cream (u round the wrist: 28 rib pairs; v along it)
+export function ribCanvas() { return canvas(448, 32, (g, W, H) => { for (let x = 0; x < W; x += 4) { const k = Math.floor(x / 4) % 4 < 2; g.fillStyle = k ? '#ece8dc' : '#bdb8aa'; g.fillRect(x, 0, 4, H); } }); }
+// a four-hole dark grey jacket button (the cap of a cylinder: UV maps the circle)
+export function buttonCanvas() { return canvas(128, 128, (g, S) => { g.fillStyle = '#2e2e30'; g.fillRect(0, 0, S, S); g.fillStyle = '#4a4a4e'; g.beginPath(); g.arc(S / 2, S / 2, S * 0.42, 0, 7); g.fill();
+  g.strokeStyle = '#2a2a2c'; g.lineWidth = 5; g.beginPath(); g.arc(S / 2, S / 2, S * 0.34, 0, 7); g.stroke(); g.fillStyle = '#141416';
+  for (const [dx, dy] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) { g.beginPath(); g.arc(S / 2 + dx * 12, S / 2 + dy * 12, 6, 0, 7); g.fill(); } }); }
+export const cupCanvas = () => SRC.cup, lidCanvas = () => SRC.lid;
+// a handwritten date slip on a newspaper bundle (blue-black ink scribble: nothing legible)
+export function slipCanvas() { return canvas(180, 120, (g, W, H) => { const r = rngOf(12); g.fillStyle = '#f2eedf'; g.fillRect(0, 0, W, H); g.strokeStyle = '#1e2a4a'; g.lineWidth = 3; g.lineCap = 'round';
+  for (let row = 0; row < 2; row++) { let x = 18; const y = 42 + row * 40; g.beginPath(); g.moveTo(x, y); while (x < W - 30) { x += 6 + r() * 8; g.lineTo(x, y + (r() - 0.5) * 18); } g.stroke(); } }); }

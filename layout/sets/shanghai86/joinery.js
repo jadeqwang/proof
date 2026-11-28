@@ -13,7 +13,8 @@ import { mk, box, cyl, ball, tag, V, rad } from '../../engine/core.js';
 import { ROOM, DOOR, SHELVES, SHELF_FRONT, COUCH } from './layout.js';
 import * as ART from './art.js';   // the background-art agent's fixed greeked spine textures (spineArt), used on every upright book
 import { artPlane, artFromCanvas } from '../_art.js';
-import { newspaperCanvas } from './textures.js';
+import { prop } from '../_props.js';
+import { newspaperCanvas, slipCanvas } from './textures.js';
 
 const rbox = (w, h, d, r, look, at, rot) => { const m = mk(new RoundedBoxGeometry(w, h, d, 3, Math.min(r, w / 2 - 1e-4, h / 2 - 1e-4, d / 2 - 1e-4)), look); if (at) m.position.set(...at); if (rot) m.rotation.set(...rot.map(rad)); return m; };
 function rng(seed) { let s = seed >>> 0; return () => { s = (s + 0x6d2b79f5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
@@ -98,6 +99,76 @@ export function hallDoorLeaves() {
   return g;
 }
 
+// ---------------------------------------------------------------- across the hall: two rooms behind French doors
+// 2026-11-27 (Jade, canon): on the far side of the hall, opposite the great room, two rooms, each entered through its own
+// pair of glazed French doors, each pair lined up exactly with one half (one folding pair) of the great-room doorway
+// across the hall. Same joinery as the great-room doors (doorLeaf: teak-stained 45 mm leaves, a glazed sash of 5 x 2 lites
+// over a raised bottom panel, brass butt hinges, a brass lever on the meeting leaf, flush bolts), the same 2.2 m height and
+// a transom (气窗) above at the same height; closed (a winter morning). A 12 cm partition between the two rooms stands on
+// the doorway's centre line. Behind (Jade): LEFT / west, the NANNY'S ROOM (a single bed, a small wardrobe, a chest, a
+// chair); RIGHT / east, the MUSIC ROOM (an upright piano against its left wall, the household's bookcases on the others).
+export function farRooms({ PLASTER, FLOOR, CEIL, wall: wallFn }) {
+  const g = new THREE.Group(), D = DOOR, HLz = ROOM.z0 - ROOM.wallP - 2.3, T = 0.12, zf = HLz, zb = HLz - T, depth = 3.4, zr = zb - depth, H = ROOM.h;
+  const x0 = D.x0 - 0.5, x1 = D.x1 + 0.5, pier = 0.12, ops = [[D.x0, D.cx - pier / 2], [D.cx + pier / 2, D.x1]];
+  // the far hall wall with the two openings and their transoms (one mesh, holes)
+  g.add(wallFn({ axis: 'z', at: zf, a0: x0, a1: x1, h: H, t: T, out: -1, look: PLASTER, label: 'hall far wall (to the two rooms)', holes: ops.flatMap(([a, b]) => [{ a0: a, a1: b, y0: 0, y1: D.h }, { a0: a + 0.04, a1: b - 0.04, y0: D.trans0, y1: D.trans1 }]) }));
+  const FR = { grey: 0.45, col: 0x6a4a30, mat: 'sapele' }, zc = zf - T / 2;
+  for (const [a, b] of ops) { const wo = b - a, cxo = (a + b) / 2, t = 0.045;
+    g.add(tag(box(wo, 0.025, T, FR, [cxo, D.h - 0.0125, zc]), 'far rooms: French doors (frame)'));
+    for (const [x, s] of [[a, 1], [b, -1]]) g.add(tag(box(0.025, D.h, T, FR, [x + s * 0.0125, D.h / 2, zc]), 'far rooms: French doors (frame)'));
+    g.add(tag(box(wo + 0.1, 0.05, T + 0.04, FR, [cxo, D.trans1 + 0.025, zc]), 'far rooms: transom (气窗)'));
+    for (let k = 1; k < 6; k++) g.add(tag(box(k % 3 ? 0.025 : 0.05, D.trans1 - D.trans0, 0.03, FR, [a + (wo * k) / 6, (D.trans0 + D.trans1) / 2, zc]), 'far rooms: transom (气窗)'));
+    g.add(tag(box(wo, 0.04, T, FR, [cxo, D.trans0 - 0.02, zc]), 'far rooms: transom (气窗)'));
+    g.add(tag(box(wo - 0.05, D.trans1 - D.trans0, 0.004, GLASS, [cxo, (D.trans0 + D.trans1) / 2, zc]), 'glass'));
+    // two closed leaves, hinged at the jambs, meeting in the middle; the east leaf carries the lever and the bolts
+    const lw = (wo - 0.05 - 0.006) / 2, H2 = D.h - 0.035;
+    const A = doorLeaf(lw, H2, t); A.position.set(a + 0.025, 0.008, zc); g.add(tag(A, 'far rooms: French doors (closed)'));
+    const B = doorLeaf(lw, H2, t, { handle: true }); B.rotation.y = Math.PI; B.position.set(b - 0.025, 0.008, zc); g.add(tag(B, 'far rooms: French doors (closed)'));
+    for (const [hx, sx] of [[a + 0.025, 1], [b - 0.025, -1]]) for (const y of HINGE_Y(H2)) {   // butt hinges, knuckles on the hall face
+      const h = buttHinge([0, 0, -1], [sx, 0, 0], [0, 0, -1], [-sx, 0, 0], -HINGE.t / 2, -HINGE.t / 2); h.position.set(hx, y + 0.008, zc + t / 2 + HINGE.r * 0.6); g.add(tag(h, 'far rooms: door hinges (brass)')); }
+    // architraves on the hall face, as the great-room doorway
+    const CAS = { grey: 0.42, col: 0x6a4a30, mat: 'sapele' }, cw = 0.065, ch = D.trans1 + 0.05, zA = zf + 0.013;
+    for (const x of [a - cw / 2 + 0.003, b + cw / 2 - 0.003]) { g.add(tag(box(cw, ch, 0.026, CAS, [x, ch / 2, zA]), 'far rooms: architraves')); g.add(tag(box(cw + 0.02, 0.16, 0.03, CAS, [x, 0.08, zA + 0.004]), 'far rooms: architraves')); }
+    g.add(tag(box(wo + 2 * cw + 0.01, 0.08, 0.03, CAS, [cxo, ch + 0.04, zA]), 'far rooms: architraves'));
+    g.add(tag(box(wo, 0.018, T + 0.01, { grey: 0.4, col: 0x5a3e28, mat: 'sapele' }, [cxo, 0.009, zc]), 'far rooms: threshold')); }
+  // the two rooms: floor, ceiling, walls (plaster), skirting, a window high in each back wall (frosted: the light only)
+  const R = (lab) => (o) => g.add(tag(o, lab));
+  for (const [rx0, rx1, lab] of [[x0, D.cx - pier / 2, "nanny's room (west, across the hall)"], [D.cx + pier / 2, x1, 'music room (east, across the hall)']]) { const P = R(lab), cxr = (rx0 + rx1) / 2, wr = rx1 - rx0;
+    P(box(wr, 0.04, depth, FLOOR, [cxr, -0.02, (zb + zr) / 2])); P(box(wr, 0.04, depth, CEIL, [cxr, H + 0.02, (zb + zr) / 2]));
+    P(box(wr, H, 0.12, PLASTER, [cxr, H / 2, zr - 0.06]));
+    for (const x of [rx0 - 0.06, rx1 + 0.06]) P(box(0.12, H, depth, PLASTER, [x, H / 2, (zb + zr) / 2]));
+    for (const x of [rx0 + 0.01, rx1 - 0.01]) P(box(0.02, 0.12, depth, { grey: 0.42, col: 0x5a3a26, mat: 'sapele' }, [x, 0.06, (zb + zr) / 2]));
+    P(box(wr, 0.12, 0.02, { grey: 0.42, col: 0x5a3a26, mat: 'sapele' }, [cxr, 0.06, zr + 0.01])); }
+  const WD = { grey: 0.4, col: 0x5a3a26, mat: 'sapele' }, WDL = { grey: 0.5, col: 0x7a5636, mat: 'sapele' };
+  { // LEFT (west, as seen from the great room): the NANNY'S ROOM, a plain tidy 1980s bedroom
+    const P = R("nanny's room (west, across the hall)"), rx1 = D.cx - pier / 2;
+    const bz = zr + 1.15, bxx = x0 + 0.5;   // a simple single bed along the west wall, head to the back wall
+    P(box(0.92, 0.36, 1.95, WD, [bxx, 0.18, bz])); P(box(0.88, 0.12, 1.9, { grey: 0.8, col: 0x8aa0b8, mat: 'quilt' }, [bxx, 0.42, bz]));
+    P(box(0.92, 0.8, 0.05, WD, [bxx, 0.4, zr + 0.17])); P(box(0.58, 0.1, 0.34, { grey: 0.92, col: 0xeeeae0, mat: 'lace' }, [bxx, 0.53, zr + 0.42]));
+    // a small two-door wardrobe against the back wall, brass knobs (the household's knob)
+    const wx = rx1 - 0.55; P(box(0.9, 1.75, 0.5, WD, [wx, 0.875, zr + 0.25]));
+    for (const s of [-1, 1]) { P(box(0.42, 1.45, 0.01, WDL, [wx + s * 0.22, 0.95, zr + 0.505])); P(knob([wx + s * 0.035, 0.95, zr + 0.51], 0.8)); }
+    // a small chest at the bed's foot and a plain wooden chair
+    P(box(0.6, 0.45, 0.4, WD, [bxx + 0.15, 0.225, bz + 1.25])); P(knob([bxx + 0.15, 0.3, bz + 1.455], 0.8));
+    const ch = prop('bentwood_chair', { at: [rx1 - 0.45, 0, zr + 1.3], rot: [0, -60, 0], label: "nanny's room: chair" }); if (ch) P(ch); }
+  { // RIGHT (east): the MUSIC ROOM: an upright piano against its LEFT wall (the partition, seen from its doorway), keys to the
+    // east; the household's bookcases (same units, glazing, brass knobs) along the back and east walls
+    const P = R('music room (east, across the hall)'), rx0 = D.cx + pier / 2;
+    // the piano ("Upright Piano (WIP)" by catdevpete, CC BY 4.0, 1.55 x 1.20 x 0.555 m): SHINY BLACK lacquer (Jade), a white
+    // crocheted lace runner along the top of the lid hanging a little down the front, a small gold nameplate on the
+    // fallboard with no legible text (Jade: final canon). Built facing +z at the origin, then turned to face east.
+    const pz = zr + 1.6, pn = prop('upright_piano', { at: [0, 0, 0], label: 'music room: upright piano' });
+    if (pn) { const pg = new THREE.Group(); pg.add(pn); pg.updateMatrixWorld(true);
+      pg.add(box(1.1, 0.004, 0.26, { grey: 0.94, col: 0xf2efe6, mat: 'lace' }, [0, 1.202, -0.14]), box(1.1, 0.1, 0.004, { grey: 0.94, col: 0xf2efe6, mat: 'lace' }, [0, 1.153, 0.003]));
+      const rc = new THREE.Raycaster(new THREE.Vector3(0, 0.8, 0.6), new THREE.Vector3(0, 0, -1), 0, 1); const hit = rc.intersectObject(pn, true)[0];
+      const zp = hit ? hit.point.z + 0.0015 : 0.06; pg.add(box(0.09, 0.022, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, 0.8, zp]));   // the gold nameplate (blank)
+      pg.rotation.y = Math.PI / 2; pg.position.set(rx0 + 0.31, 0, pz); P(pg); } else { P(box(0.6, 1.2, 1.5, { grey: 0.2, col: 0x2a1c14, mat: 'sapele' }, [rx0 + 0.3, 0.6, pz])); P(box(0.25, 0.04, 1.4, { grey: 0.9, col: 0xeeeeea }, [rx0 + 0.72, 0.74, pz])); }
+    const st = prop('bentwood_chair', { at: [rx0 + 1.05, 0, pz], rot: [0, -90, 0], label: 'music room: piano chair' }); if (st) P(st);
+    const rb = new THREE.Group(); rb.add(bookcaseRuns([[-(x1 - rx0) / 2 + 0.75, (x1 - rx0) / 2 - 0.05]], 0, rng(311), 'music room: ')); rb.position.set((rx0 + x1) / 2, 0, zr); P(rb);   // back wall
+    const re = new THREE.Group(); re.add(bookcaseRuns([[-depth / 2 + 0.6, depth / 2 - 0.9]], 0, rng(312), 'music room: ')); re.rotation.y = -Math.PI / 2; re.position.set(x1, 0, (zb + zr) / 2); P(re); }   // east wall
+  return tag(g, 'across the hall: two rooms behind French doors');
+}
+
 // ---------------------------------------------------------------- bookcases
 // North wall, both runs. Each unit (~0.8-1.1 m): a plinth, a two-door panelled cupboard to 0.84 m, a counter ledge,
 // then a glazed two-door bookcase to 2.0 m with three shelves of books, a cornice. Uprights and shelf edges are a paler
@@ -149,10 +220,13 @@ function knob(at, k = 1) {
   g.add(ball(0.0105 * k, BRASS, [0, 0, 0.003 + 0.019 * k], [1, 1, 0.35]));                          // its dome
   return g;
 }
-export function bookcases() {
-  const g = new THREE.Group(), S = SHELVES, z0 = ROOM.z0, zf = SHELF_FRONT, r = rng(253); SPINE_I = 0;
-  const lab = { car: 'bookcase (carcass, cupboard doors, cornice)', sh: 'bookcase shelf boards and uprights', gl: 'bookcase glazed doors', bk: 'books (spines)', back: 'bookcase back (inside)' };
-  for (const [a0, a1] of S.runs) { const n = Math.max(1, Math.round((a1 - a0) / 0.9)), uw = (a1 - a0) / n;
+export function bookcases() { SPINE_I = 0; return bookcaseRuns(SHELVES.runs, ROOM.z0, rng(253)); }
+// one or more runs of the canonical bookcase units against a wall at z = z0 (facing +z); also used, turned, in the music
+// room across the hall (one household, one bookcase design and hardware)
+export function bookcaseRuns(runs, z0, r, labelPrefix = '') {
+  const g = new THREE.Group(), S = SHELVES, zf = z0 + S.d;
+  const lab = { car: labelPrefix + 'bookcase (carcass, cupboard doors, cornice)', sh: labelPrefix + 'bookcase shelf boards and uprights', gl: labelPrefix + 'bookcase glazed doors', bk: labelPrefix + 'books (spines)', back: labelPrefix + 'bookcase back (inside)' };
+  for (const [a0, a1] of runs) { const n = Math.max(1, Math.round((a1 - a0) / 0.9)), uw = (a1 - a0) / n;
     for (let i = 0; i < n; i++) { const ux0 = a0 + uw * i, ux1 = ux0 + uw, ux = (ux0 + ux1) / 2, side = 0.022;
       const P = (o, l) => g.add(tag(o, l));
       // carcass: two uprights (pale front edges), top, plinth, back
@@ -187,6 +261,33 @@ export function bookcases() {
   return g;
 }
 
+// ---------------------------------------------------------------- grandpa's newspaper archive
+// 2026-11-27 (Jade, canon): grandpa kept the newspapers: reams of them stacked on top of the bookcases, folded broadsheets
+// tied in bundles with RED STRING, one bundle a month (all the same size: 0.39 x 0.27 m folded, 7 cm thick), piled by year
+// (four to six months a pile), each with a small handwritten date slip tucked under the string at the front (scribble, nothing
+// legible). Canonical: fixed seed, same in every shot. Sides: the sheet edges (textures.js newsstack); tops: the folded
+// front page (greeked, no readable text).
+const STRING = { grey: 0.32, col: 0xb02a22 };
+function bundle(x, y, z, yaw, r) {
+  const g = new THREE.Group(), W = 0.39, D = 0.27, H = 0.07 + (r() - 0.5) * 0.006;
+  g.add(box(W, H, D, { grey: 0.78, col: 0xd8d0bc, mat: 'newsstack' }, [0, H / 2, 0]));
+  const top = artPlane(NEWS_ART ||= artFromCanvas(newspaperCanvas()), W - 0.004, D - 0.004, { grey: 0.82, col: 0xd8d2c0 }); top.rotation.x = -Math.PI / 2; top.position.set(0, H + 0.0006, 0); g.add(top);
+  const t = 0.003;   // the red string: once round each way, crossing on top
+  g.add(box(W + 0.004, t, t, STRING, [0, H + 0.0015, 0]), box(t, t, D + 0.004, STRING, [0, H + 0.0015, 0]));
+  for (const s of [-1, 1]) { g.add(box(t, H + 0.003, t, STRING, [s * (W / 2 + 0.0015), H / 2, 0]), box(t, H + 0.003, t, STRING, [0, H / 2, s * (D / 2 + 0.0015)])); }
+  const slip = artPlane(SLIP_ART ||= artFromCanvas(slipCanvas()), 0.045, 0.03, { grey: 0.92, col: 0xf0ecdc }); slip.position.set(0.025, H * 0.55, D / 2 + 0.0035); slip.rotation.z = rad((r() - 0.5) * 10); g.add(slip);
+  g.position.set(x, y, z); g.rotation.y = rad(yaw); g.userData.h = H; return g;
+}
+let NEWS_ART = null, SLIP_ART = null;
+export function newspaperArchive() {
+  const g = new THREE.Group(), r = rng(1949), y0 = SHELVES.h, zc = ROOM.z0 + 0.03 + 0.27 / 2 + 0.01;
+  for (const [a0, a1] of SHELVES.runs) { for (let x = a0 + 0.26; x < a1 - 0.22; x += 0.46 + r() * 0.06) {
+      if (r() < 0.12) continue;   // a gap here and there
+      const n = 4 + Math.floor(r() * 3); let y = y0;
+      for (let k = 0; k < n; k++) { const b = bundle(x + (r() - 0.5) * 0.02, y, zc + (r() - 0.5) * 0.015, (r() - 0.5) * 4, r); g.add(b); y += b.userData.h + 0.002; } } }
+  return tag(g, "grandpa's newspaper archive (bundles tied with red string, on the bookcases)");
+}
+
 // ---------------------------------------------------------------- armchair
 // The common Shanghai upholstered armchair of the 1950s-80s (单人沙发): a boxy sprung body on four short tapered dark
 // wood legs, rolled arms, a slightly reclined back with a curved top, one loose seat cushion with piping; in winter a
@@ -199,7 +300,7 @@ export function bookcases() {
 // legs varnished sapele, the covers one canonical crochet pattern (textures.js `lace`), and every side the camera can see
 // carries upholstery detail: welt cords outline the outside back and the base on all four sides, the crocheted cover drapes
 // OVER the back roll and hangs down the back as well as the front. The couch is now built by the same code (one suite).
-export const FABRIC = { grey: 0.30, col: 0x683826, recvShadowLine: true, mat: 'wool' }, FABRIC_C = { grey: 0.36, col: 0x744130, recvShadowLine: true, mat: 'wool' }, PIPE = { grey: 0.26, col: 0x4e281a, mat: 'wool' };
+export const FABRIC = { grey: 0.30, col: 0x683826, recvShadowLine: true, mat: 'uphol' }, FABRIC_C = { grey: 0.34, col: 0x683826, recvShadowLine: true, mat: 'uphol' }, PIPE = { grey: 0.26, col: 0x4e281a, mat: 'wool' };
 const LACE = { grey: 0.95, col: 0xf2efe6, mat: 'lace' }, LEG = { grey: 0.3, col: 0x3e2a1c, mat: 'sapele' };
 // one upholstered piece of the suite. a: { at: [x, z], yaw, w (across), d (depth), id }; o: seats (cushions), seatTop,
 // backTop, armTop, aw (arm width), label. Local frame: +z is the front, x across.

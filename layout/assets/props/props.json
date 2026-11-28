@@ -755,5 +755,19 @@
   "source": "Sketchfab/rhcreations (CC BY 4.0)",
   "credit": "\"Old Chest Of Drawers 1\" by rhcreations (https://sketchfab.com/3d-models/93b6cef3362c4e84ac6f12b6af11a8e1), CC BY 4.0",
   "use": "shanghai86: the low wooden cabinet the TV stands on (two drawers over two doors; light oak/pine)"
+ },
+ "upright_piano": {
+  "label": "upright piano",
+  "size_m": [
+   1.548,
+   1.2,
+   0.555
+  ],
+  "origin": "bottom centre (floor, bbox centre); keyboard faces +z, back toward -z, y up",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/catdevpete (CC BY 4.0)",
+  "credit": "\"Upright Piano (WIP)\" by catdevpete (https://sketchfab.com/3d-models/eb76131fcae44993a532ad1b99050deb), CC BY 4.0",
+  "use": "shanghai86: the music room across the hall"
  }
 }
