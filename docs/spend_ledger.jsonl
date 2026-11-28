@@ -311,3 +311,5 @@
 {"ts": "2026-11-28T05:25:50Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
 {"ts": "2026-11-28T05:27:20Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
 {"ts": "2026-11-28T05:27:33Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.3024, "where": "box"}
+{"ts": "2026-11-28T05:27:56Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.2768, "where": "box"}
+{"ts": "2026-11-28T05:28:58Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
