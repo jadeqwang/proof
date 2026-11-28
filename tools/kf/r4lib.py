@@ -396,8 +396,11 @@ def compose(set_, shot, spec, cast, look, refs):
             continue
         ck = f"combo{n}"
         out = f"media/keyframes/r4/{set_}/_prompts/_combo_{shot}_{n}.png"
-        combine_images([refs[k][0] for k in group], out)
-        pos = ["left", "middle", "right"] if len(group) == 3 else ["left", "right"] if len(group) == 2 else [f"panel {i + 1}" for i in range(len(group))]
+        orient = combine_images([refs[k][0] for k in group], out)
+        if orient == "v":
+            pos = ["top", "middle", "bottom"] if len(group) == 3 else ["top", "bottom"] if len(group) == 2 else [f"panel {i + 1}" for i in range(len(group))]
+        else:
+            pos = ["left", "middle", "right"] if len(group) == 3 else ["left", "right"] if len(group) == 2 else [f"panel {i + 1}" for i in range(len(group))]
         refs = {**refs, ck: (out, "; ".join(f"{pos[i]} panel: {refs[k][1]}" for i, k in enumerate(group)))}
         keys = [ck if k == group[0] else k for k in keys if k not in group[1:]]
         for i, k in enumerate(group):
@@ -441,7 +444,7 @@ def compose(set_, shot, spec, cast, look, refs):
     art_keys = [k for k in spec.get("art", []) if k not in gone]
     art = ""
     if art_keys:
-        art = ("FIXED ART. " + " ".join(f"Image {idx[k]} is the canonical {refs[k][1]}." for k in art_keys)
+        art = ("FIXED ART. " + " ".join(f"Image {idx[k]}" + (f" ({panel[k]} panel)" if k in panel else "") + f" is the canonical {refs[k][1]}." for k in art_keys)
                + " Wherever it appears in images 1-2, paint exactly that image, unchanged: the same picture, colours and "
                "layout, at the size and angle image 1 gives it. Never invent, alter or swap wall art, book spines or logos.")
     text = spec["text"]
@@ -517,14 +520,27 @@ VENV_PY = "/home/jade/Documents/halys-video/.venv/bin/python"
 
 
 def combine_images(paths, out, h=1000):
-    """paths side by side (same height, thin white gutter) -> out (PNG), via the venv's PIL."""
+    """paths side by side (same height, white gutter), or stacked top to bottom when they are very wide together, ->
+    out (PNG, longest side <= 3000 px: Codex rejects huge inputs), via the venv's PIL. Returns 'h' or 'v'."""
     import subprocess
     code = ("import sys\nfrom PIL import Image\nims=[Image.open(p).convert('RGB') for p in sys.argv[2:]]\n"
-            f"ims=[i.resize((max(1,int(i.width*{h}/i.height)),{h}), Image.LANCZOS) for i in ims]\n"
-            f"W=sum(i.width for i in ims)+24*(len(ims)-1); c=Image.new('RGB',(W,{h}),'white'); x=0\n"
-            "for i in ims:\n    c.paste(i,(x,0)); x+=i.width+24\n"
-            "c.save(sys.argv[1])\n")
-    subprocess.run([VENV_PY, "-c", code, os.path.join(ROOT, out)] + [os.path.join(ROOT, p) for p in paths], check=True)
+            "asp=sum(i.width/i.height for i in ims)\n"
+            "if asp<=4:\n"
+            "    ims=[i.resize((max(1,int(i.width*1000/i.height)),1000), Image.LANCZOS) for i in ims]\n"
+            "    W=sum(i.width for i in ims)+24*(len(ims)-1); c=Image.new('RGB',(W,1000),'white'); x=0\n"
+            "    for i in ims:\n        c.paste(i,(x,0)); x+=i.width+24\n"
+            "    o='h'\n"
+            "else:\n"
+            "    ims=[i.resize((2400,max(1,int(i.height*2400/i.width))), Image.LANCZOS) for i in ims]\n"
+            "    H=sum(i.height for i in ims)+24*(len(ims)-1); c=Image.new('RGB',(2400,H),'white'); y=0\n"
+            "    for i in ims:\n        c.paste(i,(0,y)); y+=i.height+24\n"
+            "    o='v'\n"
+            "m=max(c.size)\n"
+            "if m>3000: c=c.resize((int(c.width*3000/m),int(c.height*3000/m)), Image.LANCZOS)\n"
+            "c.save(sys.argv[1]); print(o)\n")
+    r = subprocess.run([VENV_PY, "-c", code, os.path.join(ROOT, out)] + [os.path.join(ROOT, p) for p in paths],
+                       check=True, capture_output=True, text=True)
+    return r.stdout.strip()
 
 
 RUN_SH = """#!/bin/sh
