@@ -1,5 +1,51 @@
 # Proof — handoff for the next session
 
+## NEXT SESSION START HERE (2026-11-28, ~01:35)
+
+**First: Jade pastes her round-10 answers** from `media/decisions.html` (7 cards, storage key `proof-decisions-v9`; the
+page tolerates empty list slots and was tested headless). Save the paste verbatim to `work/decisions/JADE_R10_DECISIONS.md`,
+then apply. The cards and what each answer triggers:
+- `fe_smirk`: FE_thumbs v5/v6 have the right folded arms but a gentle smile, not her unimpressed smirk. Retry on Codex
+  (face crop + tiled guides), or pick v5/v6.
+- `wall_picks`: WL_in v6 (crop in comp to the guide framing), WL_out v6, WL_top v6, WL_eye v1. `wall_boards`: 14 cm pine (a guess).
+- `mg_picks`: MG_wide v4, MG1 v1, MG1_end v1, MG2 v1, MG2_end v1 (MG2s to be cropped). `br6_pick`: BR6 v3.
+- `v1b_poses_built`: c01 / c05 / c11 built (sheet `media/layout/_sheets/canon/shanghai86_V1b_poses_2x.jpg`).
+- `mama86_sheet`: whether to make a 1986 Mama costume sheet (camel sweater, long black skirt, slippers; same face).
+After applying, rebuild the page to only the still-open questions (playbook: test it headless; see "Decision page" below).
+
+**Running at the end of the session (check their results in PAINT_LOG / picks.json / NOTES):**
+- Repaint batch scheduled for **02:01** (Codex reset): the uncle WINTER sheet (`cast/strangers/_prompts/run_winter.sh`),
+  then V1b test paints of c01/c05/c11 (Jade picks), the FE_thumbs smirk retry, WL_in_empty, the V3c forehead edit, a V3b
+  repaint, and the rest of shanghai86 from the fixed inputs. It tries **option 2** for close shots (tile two guides so a job
+  fits Codex's 5 refs) against gpt2 + crop. Jade: cropping gpt2 is fine; try option 2 since it's free.
+- Closet hand hold: a painter pass on the jeans in the 4 swapped stills (`media/keyframes/r4/_hold/swap/`), then 3 Seedance
+  `ab` takes (seeds 1017/2101/3307, ~$5.55). **Stop for Jade to pick one** before the 3 `mt` takes (`run_video.sh mt N`).
+  The swapped stills are the CL_hands placeholder in the closet animatic (`build_intro.py` picks the newest automatically).
+
+**Decided this session (details in work/decisions/JADE_R7..R9_DECISIONS.md and the plan doc):**
+- Opening: PAD (flipped, title) / AD_mote once / frost longer, straight into FE_out / mature neuron / AD_wide from 12.34 /
+  FE_thumbs / speeding-up montage. Closet: starts on "How" (3:24.75), caption "don't want to apply to med school", CL_chin
+  deleted, the hand hold runs 3:30.3-3:34.2 (approved demo with her red sleeve, jeans, white sock). One credits card.
+  Animatics: `media/keyframes/r4/_animatic/intro.mp4`, `closet.mp4`.
+- Models: shanghai86 furniture/costume canon (tea table, striped rust suite with cream pinline, crochet openwork, clock,
+  stools, celadon thermoses, Yamaha-less upright with closed key cover and bench, nanny's room + music room, Mama in camel
+  sweater + long black skirt); Morton Grove (Yamaha grand 7'1", rose chintz, pink glass-panel tables, chess set, bright
+  frameless mirror, socks); closet heights from Jade's drawing; office91 classroom wall locked; wall88 bulb + 14 cm boards;
+  canonical glasses and brows per character (engine/glasses.js, brows.js; CAST.md).
+
+**Rules learned this session (all in docs/HARD_SHOTS_PLAYBOOK.md, synced to the hard-shots skill, and in memory):**
+- Faces: face crop in slot 1, faceless guides keep eyes + brows + glasses, verbatim prompts, no earlier paintings as face refs.
+- The guide is the canon (section 8): model everything visible; the guide's frame is the final frame; name only what's in frame.
+- Refs: never trim; >5 refs -> Cloudflare gpt2 (direct `kf.py --route gpt2` commands match Jade's allow rule; wrapped in a
+  script they get blocked). Re-encode gpt2 refs as JPEG (payload size caused the HTTP 500s). gpt2 widens close shots: crop or tile.
+- The form guide's colours are placeholders for props: send the lit render or a colour card (r4lib does this now).
+- Spend cap $600 (`tools/gen/spend.py`); ~$107 spent. Seedance gen.py also has a user-level allow rule now.
+
+**Decision page:** `media/decisions.html`. When adding cards, append inside `let D = [ ... ]`; the page filters empty slots,
+but always test it headless (pattern in this session: copy to media/_dtest.html, append a script that clicks "Copy my
+answers", run `google-chrome --headless=new --allow-file-access-from-files --virtual-time-budget=5000 --dump-dom`).
+
+
 ## FIRST THING NEXT SESSION (Jade, 2026-11-27 night, reviewing keyframes r4)
 
 **Bake period furniture and costume details into the 3D model, so they stop changing between shots.** In shanghai86 the coffee table, the armchairs, the bookshelf cabinet (colour, styling, handles) and the uncle's watch and outfit keep changing shot to shot. Jade: "I'm not super opinionated on the specific choices and the current outfit of his is fine. It just has to stay consistent between shots and be fully painted or the image model will hallucinate a book shelf right into the plain back of an armchair."
