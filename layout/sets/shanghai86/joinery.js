@@ -158,10 +158,22 @@ export function farRooms({ PLASTER, FLOOR, CEIL, wall: wallFn }) {
     // crocheted lace runner along the top of the lid hanging a little down the front, a small gold nameplate on the
     // fallboard with no legible text (Jade: final canon). Built facing +z at the origin, then turned to face east.
     const pz = zr + 1.6, pn = prop('upright_piano', { at: [0, 0, 0], label: 'music room: upright piano' });
-    if (pn) { const pg = new THREE.Group(); pg.add(pn); pg.updateMatrixWorld(true);
-      pg.add(box(1.1, 0.004, 0.26, { grey: 0.94, col: 0xf2efe6, mat: 'lace' }, [0, 1.202, -0.14]), box(1.1, 0.1, 0.004, { grey: 0.94, col: 0xf2efe6, mat: 'lace' }, [0, 1.153, 0.003]));
-      const rc = new THREE.Raycaster(new THREE.Vector3(0, 0.8, 0.6), new THREE.Vector3(0, 0, -1), 0, 1); const hit = rc.intersectObject(pn, true)[0];
-      const zp = hit ? hit.point.z + 0.0015 : 0.06; pg.add(box(0.09, 0.022, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, 0.8, zp]));   // the gold nameplate (blank)
+    // round 7 (Jade: the piano in the dining ref photo (Zhang Leping's) "is a pretty close match for mine, including the
+    // lamp"): a lower, plainer console upright (scaled to 1.10 m high), the lace runner laid along the lid and hanging ~20 cm
+    // down the front with a small red tassel at its middle, and the brass piano lamp on top: a round domed base, a curved
+    // stem, a horizontal tubular dark-bronze shade (as in the photo; my proportions)
+    if (pn) { const PH = 1.1; pn.scale.y *= PH / 1.2; const pg = new THREE.Group(); pg.add(pn); pg.updateMatrixWorld(true);
+      pg.add(box(1.12, 0.004, 0.28, { grey: 0.94, col: 0xf2efe6, mat: 'lace' }, [0, PH + 0.002, -0.14]), box(1.12, 0.2, 0.004, { grey: 0.94, col: 0xf2efe6, mat: 'lace' }, [0, PH - 0.1, 0.004]));
+      pg.add(cyl(0.006, 0.006, 0.05, { grey: 0.35, col: 0xb02a22 }, [0, PH - 0.225, 0.008], null, 8), ball(0.011, { grey: 0.35, col: 0xb02a22 }, [0, PH - 0.255, 0.008]));   // the red tassel
+      { const BR = { grey: 0.62, col: 0xb08a4a }, BZ = { grey: 0.25, col: 0x3a2e22 }, lx = -0.22, lz = -0.15, y0 = PH + 0.004;
+        pg.add(mk(new THREE.SphereGeometry(0.06, 24, 8, 0, Math.PI * 2, 0, Math.PI / 2), BR)).children.at(-1).position.set(lx, y0, lz);
+        pg.children.at(-1).scale.set(1, 0.45, 1);
+        const curve = new THREE.CatmullRomCurve3([V(lx, y0 + 0.02, lz), V(lx + 0.02, y0 + 0.12, lz), V(lx - 0.015, y0 + 0.22, lz), V(lx, y0 + 0.31, lz)]);
+        pg.add(mk(new THREE.TubeGeometry(curve, 24, 0.006, 8, false), BR));
+        const sh = cyl(0.026, 0.026, 0.27, BZ, [lx, y0 + 0.335, lz + 0.01], [0, 0, 90], 20); pg.add(sh);
+        for (const s of [-1, 1]) pg.add(cyl(0.028, 0.028, 0.006, BR, [lx + s * 0.135, y0 + 0.335, lz + 0.01], [0, 0, 90], 20)); }
+      const rc = new THREE.Raycaster(new THREE.Vector3(0, 0.74, 0.6), new THREE.Vector3(0, 0, -1), 0, 1); const hit = rc.intersectObject(pn, true)[0];
+      const zp = hit ? hit.point.z + 0.0015 : 0.06; pg.add(box(0.09, 0.022, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, 0.74, zp]));   // the gold nameplate (blank)
       pg.rotation.y = Math.PI / 2; pg.position.set(rx0 + 0.31, 0, pz); P(pg); } else { P(box(0.6, 1.2, 1.5, { grey: 0.2, col: 0x2a1c14, mat: 'sapele' }, [rx0 + 0.3, 0.6, pz])); P(box(0.25, 0.04, 1.4, { grey: 0.9, col: 0xeeeeea }, [rx0 + 0.72, 0.74, pz])); }
     P(diningChair(rx0 + 1.05, pz, -90, 'music room: piano chair'));
     const rb = new THREE.Group(); rb.add(bookcaseRuns([[-(x1 - rx0) / 2 + 0.75, (x1 - rx0) / 2 - 0.05]], 0, rng(311), 'music room: ')); rb.position.set((rx0 + x1) / 2, 0, zr); P(rb);   // back wall
@@ -427,6 +439,20 @@ export function diningChair(x, z, yaw, label = 'dining chairs (dark hardwood, sl
   const rail = mk(new THREE.CylinderGeometry(0.42, 0.42, 0.06, 24, 1, true, Math.PI - 0.55, 1.1), TEA); rail.userData.double = true; rail.position.set(0, back - 0.04, -d / 2 + 0.03 + 0.4); g.add(rail);   // the curved top rail
   for (const k of [-1, 0, 1]) g.add(box(0.045, back - seat - 0.1, 0.012, TEA, [k * 0.095, (seat + back - 0.07) / 2, -d / 2 + 0.032]));
   g.add(box(w - 0.06, 0.03, 0.02, TEA_D, [0, seat + 0.07, -d / 2 + 0.03]));
+  g.position.set(x, 0, z); g.rotation.y = rad(yaw); return tag(g, label);
+}
+
+// round 7 (Jade: "footstool style low chairs. we had some of those among the wooden chairs"; dining ref photo: low round
+// wooden stools): a low round stool in the dining chairs' wood and finish: a 30 cm round seat with a rounded edge at 0.32 m,
+// four slightly splayed turned legs, a ring of stretchers
+export function lowStool(x, z, yaw = 0, label = 'low round wooden stool') {
+  const g = new THREE.Group(), seat = 0.32, r = 0.15, up = V(0, 1, 0);
+  const top = mk(new THREE.CylinderGeometry(r, r - 0.008, 0.028, 32), TEA); top.position.set(0, seat - 0.014, 0); g.add(top);
+  const feet = [], heads = [];
+  for (let k = 0; k < 4; k++) { const a = k * Math.PI / 2 + Math.PI / 4; heads.push(V(Math.cos(a) * 0.085, seat - 0.028, Math.sin(a) * 0.085)); feet.push(V(Math.cos(a) * 0.115, 0, Math.sin(a) * 0.115)); }
+  const rod = (a, b, r0, r1, look) => { const d = b.clone().sub(a), m = cyl(r1, r0, d.length(), look, null, null, 10); m.quaternion.setFromUnitVectors(up, d.clone().normalize()); m.position.copy(a).addScaledVector(d, 0.5); return m; };
+  for (let k = 0; k < 4; k++) g.add(rod(feet[k], heads[k], 0.012, 0.016, TEA_D));   // slightly splayed legs
+  for (let k = 0; k < 4; k++) { const t = 0.12 / (seat - 0.028), p0 = feet[k].clone().lerp(heads[k], t), p1 = feet[(k + 1) % 4].clone().lerp(heads[(k + 1) % 4], t); g.add(rod(p0, p1, 0.008, 0.008, TEA_D)); }   // a ring of stretchers
   g.position.set(x, 0, z); g.rotation.y = rad(yaw); return tag(g, label);
 }
 

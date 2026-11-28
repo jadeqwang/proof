@@ -216,6 +216,12 @@ export const SHOTS = [
   { id: 'REF_dining_low', lens: 35, pos: [5.6, 0.75, -1.6], aim: [[4.6, 0.5, -2.6], 0.5, 0.5], state: 'A', figs: {},
     header: 'REFERENCE (2026-11-27 canon): a dining chair and the table corner, low from the south-east',
     intent: 'Close: the chair (curved top rail, three slats, tapered legs, stretchers) and the table (cloth, glass, turned leg). Not a shot.' },
+  { id: 'REF_piano', lens: 28, pos: [4.2, 1.45, -9.6], aim: [[2.75, 1.0, -10.6], 0.5, 0.5], state: 'A', figs: {},
+    header: 'REFERENCE (round 7 canon): the music-room piano: shiny black, lace runner with a red tassel, the brass piano lamp, the blank gold nameplate',
+    intent: 'Inside the music room, close on the piano (camera inside the room, not a shot).' },
+  { id: 'REF_clock', lens: 50, pos: [5.6, 1.9, -4.6], aim: [[7.5, 2.25, -5.0], 0.5, 0.5], state: 'A', figs: {},
+    header: 'REFERENCE (round 7 canon): the wall clock on the east wall of the dining end, 9:30; the light green thermos on the sideboard',
+    intent: 'Close on the clock and the sideboard corner. Not a shot.' },
   { id: 'REF_teatable', lens: 35, pos: [-0.85, 1.0, -2.2], aim: [[-1.425, 0.3, -3.04], 0.5, 0.5], state: 'A', figs: {},
     header: 'REFERENCE (2026-11-27 canon): the coffee table (茶几), three-quarter from above: glass top, bevelled edge, apron, turned legs, lower shelf',
     intent: 'The canonical coffee table alone (state A: bare top). Not a shot.' },
@@ -295,6 +301,11 @@ export const SHOTS = [
 ];
 
 for (const s of SHOTS) if (s.same) { const o = SHOTS.find((x) => x.id === s.same); Object.assign(s, { ...o, ...s, id: s.id }); }
+
+// round 7 (Jade: "V1b camera: 22 or 34 deg? Test-paint both (2 takes each), then I pick"): the 34-degree candidate as its
+// own shot, so it has full guides, a sidecar and its own prompt (media/keyframes/r4/shanghai86/_prompts/V1b_el34.txt)
+{ const b = SHOTS.find((x) => x.id === 'V1b'); SHOTS.push({ ...b, id: 'V1b_el34', orbit: { ...b.orbit, el: 34 }, figs: { ...b.figs },
+  header: b.header + ' [CANDIDATE: camera raised from 22 to 34 deg]' }); }
 
 // beam mask twins (integration pass): every camera has a `beam_<id>` twin; `--prefix beam_ --modes flat --nojson` renders
 // the lit volume white on black. Appended last, so copies made with `same` are already resolved.

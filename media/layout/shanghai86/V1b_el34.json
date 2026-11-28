@@ -1,5 +1,5 @@
 {
- "shot": "V1b",
+ "shot": "V1b_el34",
  "set": "shanghai86",
  "w": 1920,
  "h": 1080,
@@ -3306,7 +3306,7 @@
   }
  ],
  "figure_frame_fraction": {
-  "uncle": 0.3458
+  "uncle": 0.3452
  },
  "colour_separation": [],
  "figure_report": {

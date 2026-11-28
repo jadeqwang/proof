@@ -10,8 +10,8 @@ import * as ART from './art.js';   // 2026-11-26: fixed wall art and spines
 import { artPlane } from '../_art.js';
 import { loadProps, prop } from '../_props.js';   // props phase 2 (2026-11-26): real downloaded models (work/props_audit.md)
 await loadProps(['thermos', 'potted_plant', 'side_table_tall', 'sideboard', 'tv_cabinet', 'upright_piano']);   // 2026-11-27 canon: + the dining chairs, side table, sideboard, TV cabinet
-import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, newspaperArchive, farRooms, diningTable, diningChair, slippers, FABRIC, FABRIC_C } from './joinery.js';
-import { dress, dressGarment, watchDialCanvas, strapCanvas, buttonCanvas, ribCanvas, cupCanvas, lidCanvas, QUILT_U, QUILT_V } from './textures.js';   // 2026-11-27: canonical textures on every surface
+import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, newspaperArchive, farRooms, diningTable, diningChair, lowStool, slippers, FABRIC, FABRIC_C } from './joinery.js';
+import { dress, dressGarment, watchDialCanvas, strapCanvas, buttonCanvas, ribCanvas, cupCanvas, lidCanvas, wallClockDial, QUILT_U, QUILT_V } from './textures.js';   // 2026-11-27: canonical textures on every surface
 import { artFromCanvas } from '../_art.js';   // r4: real hinges, bookcases, armchairs, slippers
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
@@ -228,8 +228,18 @@ function furniture(shot) {
       grp.add(cyl(0.001, 0.001, 0.25, { grey: 0.2, col: 0x222222 }, [ROOM.x0 + 0.006, S.top + 0.12, S.z], null, 4));
       { const [t, sig] = ART.scrollTextFor(si); const p = artPlane(ART.scrollArt(t, sig), S.w, S.h); p.rotation.y = Math.PI / 2; p.position.set(ROOM.x0 + 0.0095, yc, S.z); grp.add(p); }
       g.add(tag(grp, 'calligraphy hanging scrolls (书法挂轴)')); } }
-  g.add(tag(cyl(0.11, 0.11, 0.05, { grey: 0.82, col: 0xe8e4d8 }, [ROOM.x1 - 0.03, CLOCK.y, CLOCK.z], [0, 0, 90]), 'wall clock'));
-  { const f = mk(new THREE.CircleGeometry(0.107, 48), { noCast: true, grey: 0.85, col: 0xeeeeee, ...(({ art, artGrey, artEdge }) => ({ art, artGrey, artEdge }))(ART.clockFace()) }); f.rotation.y = -Math.PI / 2; f.position.set(ROOM.x1 - 0.0555, CLOCK.y, CLOCK.z); g.add(tag(f, 'wall clock')); }
+  // round 7 canon (Jade: the clock in the dining ref photo is a close match for hers): a round wall clock 34 cm across, a deep
+  // dark-lacquered wood case with a thick rounded rim and a small block under it, an aged cream dial with large black serif
+  // Arabic numerals and black spade hands (textures.js wallClockDial), fixed at 9:30. Place: CANON (Jade: on the dining
+  // room wall; layout.js CLOCK, from her round-3b answers), unchanged.
+  { const CL = { grey: 0.2, col: 0x2a1a12, mat: 'sapele' }, x = ROOM.x1, cg = new THREE.Group(), R = 0.17;
+    cg.add(cyl(R - 0.01, R - 0.012, 0.07, CL, [x - 0.035, CLOCK.y, CLOCK.z], [0, 0, 90], 40));                                       // the case body
+    const rim = mk(new THREE.TorusGeometry(R - 0.012, 0.014, 12, 48), CL); rim.rotation.y = Math.PI / 2; rim.position.set(x - 0.072, CLOCK.y, CLOCK.z); cg.add(rim);   // the rounded rim
+    cg.add(box(0.05, 0.05, 0.09, CL, [x - 0.025, CLOCK.y - R - 0.01, CLOCK.z]));                                                         // the block under it
+    CLOCK_ART ||= artFromCanvas(wallClockDial());
+    const f = mk(new THREE.CircleGeometry(R - 0.024, 64), { noCast: true, grey: 0.85, col: 0xe8e0c8, art: CLOCK_ART.art, artGrey: CLOCK_ART.artGrey, artEdge: CLOCK_ART.artEdge });
+    f.rotation.y = -Math.PI / 2; f.position.set(x - 0.0705, CLOCK.y, CLOCK.z); cg.add(f);
+    g.add(tag(cg, 'wall clock (dark wood case, cream dial, 9:30)')); }
   { const pm = prop('potted_plant', { at: [PLANT[0], 0, PLANT[1]], size: { h: 0.6 } });   // props phase 2: Poly Haven potted_plant_02 (CC0), 0.6 m
     if (pm) g.add(pm); else { g.add(tag(cyl(0.12, 0.09, 0.22, { grey: 0.5, col: 0x8a5a3a }, [PLANT[0], 0.11, PLANT[1]]), 'potted plant'));
       g.add(tag(ball(0.2, { grey: 0.45, col: 0x4a6a3a }, [PLANT[0], 0.4, PLANT[1]], [1, 0.9, 1]), 'potted plant')); } }
@@ -240,6 +250,12 @@ function furniture(shot) {
     const dch = (x, z, yaw) => diningChair(x, z, yaw);   // 2026-11-27 canon: dark hardwood slat-back chairs (bentwood chairs dropped)
     for (const i of [-1, 0, 1]) for (const s of [-1, 1]) g.add(dch(xc + s * (T.w / 2 + 0.2), zc + i * 0.6, s > 0 ? -90 : 90));   // three a side (east and west)
     for (const s of [-1, 1]) g.add(dch(xc, zc + s * (T.l / 2 + 0.22), s > 0 ? 180 : 0));                 // one at each end (north and south)
+    // round 7 (Jade): low round wooden stools among the chairs: two in the dining zone, one in the living zone (my places)
+    g.add(lowStool(xc + 1.25, zc + 1.35, 20)); g.add(lowStool(xc - 1.1, zc - 1.15, -15)); g.add(lowStool(-0.3, -5.45, 10));
+    // round 7 (Jade: "often a light green thermos hanging out on the dining room table and the side console"): the classic
+    // 1980s hot-water flask (暖水瓶), the same downloaded model as the TV-cabinet pair, in ONE canonical pale green, 0.34 m;
+    // standing on the dining table's glass (its top at T.h) and on the sideboard (top found from its bounds)
+    const PALE = 0xd8ffe2, th1 = prop('thermos', { at: [xc + 0.22, T.h, zc - 0.55], size: { h: 0.34 }, rot: [0, 30, 0], recolor: PALE, label: 'light green thermos flask (dining table)' }); if (th1) g.add(th1);
   }
   { const C = CHILD_TABLE; g.add(tableRect(C.cx, C.cz, C.w, C.d, C.h, { look: ASH, topLook: { ...ASH, recvShadowLine: true }, top: 0.025, leg: 0.035, label: 'her small wooden table and chair' }));
     const H = CHILD_CHAIR; g.add(chair(H.at[0], H.at[1], H.yaw, { seat: H.seat, w: H.w, d: H.d, back: H.back, look: ASH, label: 'her small wooden table and chair' })); }
@@ -247,7 +263,9 @@ function furniture(shot) {
     // 2026-11-27 canon: a downloaded dark-wood sideboard (three drawers over two panelled doors, on a plinth; "Cabinet" by
     // Wandcaster, CC BY), scaled to the corner's 0.93 m width (0.76 m high), against the north wall, front to the room
     const S = SIDEBOARD, sbp = prop('sideboard', { at: [(S.x0 + S.x1) / 2, 0, ROOM.z0 + 0.515 * 0.93 / 1.171 / 2 + 0.005], size: { w: S.x1 - S.x0 }, label: 'sideboard (碗橱)' });
-    g.add(sbp || tag(box(S.x1 - S.x0, S.h, S.z1 - S.z0, WOOD, [(S.x0 + S.x1) / 2, S.h / 2, (S.z0 + S.z1) / 2]), 'sideboard (碗橱)')); }
+    g.add(sbp || tag(box(S.x1 - S.x0, S.h, S.z1 - S.z0, WOOD, [(S.x0 + S.x1) / 2, S.h / 2, (S.z0 + S.z1) / 2]), 'sideboard (碗橱)'));
+    const topY = sbp ? new THREE.Box3().setFromObject(sbp).max.y : S.h;   // the light green thermos stands on the sideboard
+    const th2 = prop('thermos', { at: [(S.x0 + S.x1) / 2 + 0.2, topY, ROOM.z0 + 0.22], size: { h: 0.34 }, rot: [0, -20, 0], recolor: 0xd8ffe2, label: 'light green thermos flask (sideboard)' }); if (th2) g.add(th2); }
   return g;
 }
 
@@ -439,8 +457,11 @@ function uncleOutfit(fig) {
   fig.userData.sweaterCuff = {};
   // (tried: trimming the jacket sleeve back 3.5 cm so cuff and watch sit above the wrist joint: the body's clothed forearm is
   // not modelled under a sleeve, so it opened holes. The cuff peeks 1.4 cm out of the sleeve; the watch sits right after it)
-  for (const n of ['L', 'R']) { const S = SF[n], end = S.t0 + 0.014;
-    const c = ovalBand(S, S.t0 - 0.006, end, 0.0045, KNIT); c.userData.outfitExtra = true; g.add(c); fig.userData.sweaterCuff[n] = end; }
+  // round 7 (Jade: "the watch sits half under the cuff"): on the LEFT wrist the watch is pushed half under the jacket cuff
+  // (its strap centred on the sleeve's end), so no pullover rib shows there; the RIGHT wrist shows the ribbed cuff
+  for (const n of ['L', 'R']) { const S = SF[n];
+    if (n === 'L') { fig.userData.sweaterCuff[n] = S.t0 - 0.007; continue; }
+    const end = S.t0 + 0.014, c = ovalBand(S, S.t0 - 0.006, end, 0.0045, KNIT); c.userData.outfitExtra = true; g.add(c); fig.userData.sweaterCuff[n] = end; }
   const pt = (u, v, lift) => chestPoint(fig, u, v, lift);
   const quad = (pts, look) => { if (pts.some((p) => !p)) return; const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts.flatMap((p) => p.toArray()), 3));
     geo.setIndex(pts.length === 4 ? [0, 1, 2, 0, 2, 3] : [0, 1, 2]); geo.computeVertexNormals(); const m = mk(geo, look); m.userData.double = true; g.add(m); };
@@ -540,7 +561,7 @@ function hairBit(fig) {
   const m = pieceMesh(q, map); return { mesh: tag(m, '草纸: a stray bit in her hair'), world: at.toArray().map((v) => +v.toFixed(3)) };
 }
 // porcelain tea mugs with green tea, and the steam rising through the beam
-let CUP_ART = null, LID_ART = null;
+let CUP_ART = null, LID_ART = null, CLOCK_ART = null;
 const CUP_PROFILE = [[0, 0], [0.026, 0], [0.027, 0.007], [0.024, 0.009], [0.028, 0.016], [0.034, 0.05], [0.038, 0.085], [0.041, 0.1], [0.0385, 0.1], [0.0355, 0.086], [0.0315, 0.05], [0.025, 0.016], [0, 0.014]];
 function teaCup(x, y0, z) {
   CUP_ART ||= artFromCanvas(cupCanvas()); const g = new THREE.Group();

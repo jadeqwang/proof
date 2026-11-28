@@ -240,3 +240,15 @@ export const cupCanvas = () => SRC.cup, lidCanvas = () => SRC.lid;
 // a handwritten date slip on a newspaper bundle (blue-black ink scribble: nothing legible)
 export function slipCanvas() { return canvas(180, 120, (g, W, H) => { const r = rngOf(12); g.fillStyle = '#f2eedf'; g.fillRect(0, 0, W, H); g.strokeStyle = '#1e2a4a'; g.lineWidth = 3; g.lineCap = 'round';
   for (let row = 0; row < 2; row++) { let x = 18; const y = 42 + row * 40; g.beginPath(); g.moveTo(x, y); while (x < W - 30) { x += 6 + r() * 8; g.lineTo(x, y + (r() - 0.5) * 18); } g.stroke(); } }); }
+
+// round 7 (Jade: the wall clock in the dining ref photo is "a pretty close match" for hers): an aged cream dial, large black
+// serif Arabic numerals, a ring of minute dots, black spade hands; fixed at 9:30 (the scene's hour) in every shot
+export function wallClockDial() { return canvas(512, 512, (g, S) => { const c = S / 2;
+  g.fillStyle = '#2a1a12'; g.fillRect(0, 0, S, S); const grd = g.createRadialGradient(c, c, 20, c, c, c); grd.addColorStop(0, '#efe7d2'); grd.addColorStop(1, '#ddd2b6');
+  g.fillStyle = grd; g.beginPath(); g.arc(c, c, c * 0.98, 0, 7); g.fill();
+  g.fillStyle = '#141210'; for (let t = 0; t < 60; t++) { const a = t * Math.PI / 30; g.beginPath(); g.arc(c + Math.sin(a) * c * 0.9, c - Math.cos(a) * c * 0.9, t % 5 ? 3 : 5, 0, 7); g.fill(); }
+  g.font = 'bold 74px "Liberation Serif", "DejaVu Serif", serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  for (let n = 1; n <= 12; n++) { const a = n * Math.PI / 6; g.fillText(String(n), c + Math.sin(a) * c * 0.72, c - Math.cos(a) * c * 0.72 + 3); }
+  const spade = (a, len, w) => { g.save(); g.translate(c, c); g.rotate(a); g.fillStyle = '#141210'; g.fillRect(-w / 2, -len * 0.75, w, len * 0.95);
+    g.beginPath(); g.moveTo(0, -len); g.lineTo(w * 3, -len * 0.78); g.lineTo(0, -len * 0.62); g.lineTo(-w * 3, -len * 0.78); g.closePath(); g.fill(); g.restore(); };
+  spade((9.5 * Math.PI) / 6, c * 0.5, 8); spade(Math.PI, c * 0.78, 6); g.beginPath(); g.arc(c, c, 12, 0, 7); g.fill(); }); }

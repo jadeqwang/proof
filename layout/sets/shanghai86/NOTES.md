@@ -1155,6 +1155,30 @@ Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
 - **Piano:** shiny black lacquer, a white crocheted lace runner along the top of the lid, a small gold nameplate on the
   fallboard with no legible text (Jade: final canon; the brand is not named).
 
+**Round 7 (Jade, work/decisions/JADE_R7_DECISIONS.md; overrides the above where they differ).**
+- **V1a watch:** "the watch sits half under the cuff": on the LEFT wrist the strap is now centred on the jacket sleeve's
+  end, so the near half of strap and case is under the cuff (no pullover rib on that wrist; the right wrist keeps its
+  ribbed cuff). The prompt says so and forbids a loop off the hand.
+- **V1b, both cameras get test-painted:** the 34-degree camera is now its own shot `V1b_el34` (shots.js; full guides and
+  sidecar in media/layout/shanghai86/V1b_el34_*), prompt `V1b_el34` beside `V1b` in _make.py / _jobs.json (same text).
+  The old media/layout/_v1b_el34/ folder is gone.
+- **Low stools (Jade: "footstool style low chairs ... among the wooden chairs"):** joinery.js lowStool: a 30 cm round seat at
+  0.32 m on four splayed turned legs with a ring of stretchers, the dining chairs' dark red-brown wood. Three: two at the
+  dining end ((5.85, -1.65), (3.5, -4.15)), one in the living end in front of the west bookcases (-0.3, -5.45) (places my
+  choice).
+- **Light green thermos (Jade: "often on the dining room table and the side console"):** the same downloaded 暖水瓶 model as
+  the TV-cabinet pair, ONE canonical pale green (recolour 0xd8ffe2 over its greys), 0.34 m, standing on the dining
+  table's glass (at the table height) and on the sideboard (its top from the model's bounds).
+- **Piano (Jade: the dining-ref piano, Zhang Leping's, "is a pretty close match for mine, including the lamp"):** scaled to
+  a 1.10 m console height, shiny black; the lace runner along the lid hangs ~20 cm down the front with a small red tassel at
+  its middle; a brass piano lamp on top (a domed round base, a curved stem, a horizontal tubular dark-bronze shade, as in
+  the photo; my proportions); the blank gold nameplate (final canon: no brand). The model's fallboard stays open (the
+  photo's is closed). View REF_piano.
+- **Wall clock (Jade: the dining-ref clock is a close match):** restyled at its existing, canon position (Jade: on the dining
+  room wall; layout.js CLOCK, east wall, z -5.0, y 2.25): 34 cm round, a deep dark-lacquered wood case with a thick rounded
+  rim and a small block beneath, an aged cream dial, large black serif Arabic numerals, a ring of minute dots, black spade
+  hands fixed at 9:30 in every shot (textures.js wallClockDial). View REF_clock.
+
 **Open (for Jade).**
 - **Watch orientation:** Jade asked for "12 o'clock pointing toward his hand". On a real wristwatch the strap runs across
   the wrist through 12 and 6, so 12 points across the wrist (away from the body when you read it) and the crown at 3
