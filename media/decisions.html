@@ -53,8 +53,7 @@
   <button class="primary" onclick="exportAnswers()">Copy my answers</button>
 </header>
 <main>
-  <p class="note">Rebuilt 2026-11-26 (night) for round 6, after your round-5 answers were taken in (all answers so far are listed at the bottom). Each card is one open decision. Choose an option or write a note; nothing is required, and anything you leave blank keeps the current choice (marked <span style="color:var(--gold)">current / suggested</span>). Your answers are saved in this browser as you go. When you're done, press <b>Copy my answers</b> and paste the text into the chat. Click any picture to enlarge it. Renders are layout guides (rigged bodies, flat colour, blank faces): judge layout, staging and light, not looks. Cards about a shot carry its time in the song and are in song order; the bar at the bottom plays the song (space bar too) and walks the page with it. Scroll yourself and it stops following; <b>Play from here</b> resumes at the card in view, and clicking a card's time plays from there.</p>
-  <p class="note"><b>Keyframes:</b> the new round painted from these renders is reviewed on its own page, <a href="keyframes/r4/index.html">keyframes/r4/index.html</a>. It is local only (keyframes stay out of the public repo), so the link works only on your computer, and only once that round is finished.</p>
+  <p class="note">Round 7, 2026-11-27: open questions only. Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
   <div id="cards"></div>
   <details class="done" id="done"></details>
 </main>
@@ -71,229 +70,43 @@ const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const ART = (p) => '../layout/assets/art/' + p;
 const D = [
- // ---------------------------------------------------------------- Office 1991
- { sec:"Office 1991", id:"off_shoulder", t:"1:35.6-1:36.0", title:"The social worker's shoulders: fixed?",
-   ctx:"Found the cause: a twist error in the engine hit every figure turned away from the camera's main axis (her, and Mama whenever she turns). The parents faced the other way, which is why theirs looked right. Fixed for everyone: her upper-arm twist went from about 175° to 0-1°.",
-   imgs:[[L("office91/REF_sw_back_lit.png"),"From behind"],[L("office91/REF_sw_side_lit.png"),"From the side"],[L("office91/X_sw_lit.png"),"X_sw"]],
-   opts:["Fixed","Still wrong (say where, below)"], rec:0 },
- { sec:"Office 1991", id:"bo2_finger", t:"1:34.7-1:35.6", title:"BO2: your finger on the middle of the gap?",
-   ctx:"Your fingertip now lands on the middle of the missing slot, in line with the column above and below (it was 6.4 mm past it). The social worker's finger stays on ANXIOUS. The frame is no longer blown out.",
-   imgs:[[L("office91/BO2_lit.png"),"BO2"]],
-   opts:["Right","Still off (below)"], rec:0 },
- // ---------------------------------------------------------------- Market 1993
- { sec:"Market 1993", id:"mk_cart_size", t:"2:15.2-2:16.1", title:"The grandmother's cart",
-   ctx:"Swapped for a downloaded supermarket cart (the market is a US supermarket): chrome wire, red handle and trim, a child seat, no logos, a medium US size (0.98 m tall). Settled on its wheels with the physics engine.",
-   imgs:[[L("market93/M4b_lit.png"),"M4b"]],
-   opts:["Right","Bigger","Something else (below)"], rec:0 },
- // ---------------------------------------------------------------- Attic
- { sec:"Attic", id:"ad_trace_read", t:"1:36.0-1:37.4", title:"AD_trace: does it read as tracing?",
-   ctx:"No longer a thumbs-up: your index fingertip is on the frost fern, the other fingers curled, and the camera is now at your right side (from straight behind, even a correct finger read as a raised digit). It is a plain cut from BO2.",
-   imgs:[[L("attic88_day/AD_trace_lit.png"),"AD_trace"]],
-   opts:["Reads as tracing","Still reads as pointing (below)","Something else (below)"], rec:0 },
- // ---------------------------------------------------------------- Wall
- { sec:"Wall", id:"wl_top_look", t:"1:51.0-1:52.2", title:"WL_top as built",
-   ctx:"Now a real shot at 1:51.0-1:52.2, straight down into the cavity onto the five heads in their stud bays, the blade of light across the floor. WL_in follows at 1:52.2-1:54.5. The stray hand by Mama's ear in WL_in was the praying worker's; it's now tucked away.",
-   imgs:[[L("wall88/WL_top_lit.png"),"WL_top"],[L("wall88/WL_in_lit.png"),"WL_in"]],
-   opts:["Good","Change it (below)"], rec:0 },
- // ---------------------------------------------------------------- Basement and kitchen
- { sec:"Basement and kitchen (Decatur 1990)", id:"b_glow", t:"2:17.2-2:18.3", title:"The screen's glow on faces, now the screen is blue",
-   ctx:"The screen is QBasic's default light grey on blue. The light it throws on your faces is still the cool white you chose in round 4.",
-   imgs:[[L("basement90/B2_face_lit.png"),"B2"],[L("basement90/B3_finger_lit.png"),"B3"]],
-   opts:["Keep cool white","A light blue cast","Something else (below)"], rec:0 },
- { sec:"Basement and kitchen (Decatur 1990)", id:"k_fold_side", t:"2:22.2-2:23.7", title:"Which foot are you sitting on?",
-   ctx:"Built: at 7, sitting on your folded left foot (10 cm higher), the right leg dangling off the chair front. The side is our guess.",
-   imgs:[[L("kitchen90/K0_seat_side_form.png"),"Side view (form)"],[L("kitchen90/K0_wide_night_form.png"),"K0 wide"]],
-   opts:["Left foot under, right dangling","The other way","Doesn't matter"], rec:0 },
- // ---------------------------------------------------------------- Morton Grove 2007
- { sec:"Morton Grove 2007", id:"mg_ceiling_high", t:"2:39.6-2:42.0", title:"Ceiling height on the mirror side",
-   ctx:"From the street view: scale from the front door (36 × 80 in), the wall plate at 8 ft, the front gable pitch about 7 in 12 (30°), the two-storey wing's ridge about 5.35 m above the main floor. Carrying 30° across the whole 6.3 m room would give 6.0 m, above the wing's ridge, so the photo rules it out. Built: one plane from 2.44 m at the dining wall to 5.10 m on the mirror side (about 23°). The wall behind the couch runs 3.05-5.10 m.",
-   imgs:[[L("mortongrove07/REF_north_lit.png"),"REF north"],[L("mortongrove07/MG_wide_lit.png"),"MG wide"]],
-   opts:["5.1 m, as built","6.0 m (the gable pitch all the way)","5.2 m with a flat 8 ft stretch over the dining side","Something else (below)"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_horse", t:"2:39.6-2:42.0", title:"The horse and the piano",
-   ctx:"The horse gallops left, with one vermilion seal at the upper right (the old invented inscription is painted out). The piano is polished black all over; only the keys and brass pedals aren't. Still open: the two hands pinching the hoodie fold sit about 15 mm into it in the model (every fix showed the Truth print); the painter is told to draw them on the cloth.",
-   imgs:[[ART("mortongrove07/mg_picture.png"),"The horse"],[L("mortongrove07/MG_wide_lit.png"),"In the room"]],
-   opts:["Good","Change (below)"], rec:0 },
- // ---------------------------------------------------------------- Shanghai 1986
- { sec:"Shanghai 1986", id:"sh_jamb", t:"0:48.1-0:50.5", title:"Mama's hand on the door jamb (V1e)",
-   ctx:"Every wrist in Shanghai is now in a natural range. To get there, Mama's hand on the jamb is at shoulder height with her arm held out, and in V1e it reads a little stiff. Her elbow can't go back further without going into the wall.",
-   imgs:[[L("shanghai86/V1e_lit.png"),"V1e"]],
-   opts:["Fine","Lower it, even if her elbow has to move away from the wall","Something else (below)"], rec:0 },
- // ---------------------------------------------------------------- Cast
- { sec:"Cast", id:"fl_hair_v8", title:"First love's hair v8",
-   ctx:"Remade with the prompt asking for the hair colour of Gaius Baltar (the character, not the actor): a deep, cool dark brown, nearly black in shadow, no red. The 3D hair is darkened to match.",
-   imgs:[["../cast/first_love/fl_B_backhead_neck_v8.png","B v8"]],
-   opts:["Right","Still too light/red","Something else (below)"], rec:0 },
- // ---------------------------------------------------------------- Playground 2023
- { sec:"Playground 2023", id:"pg_look", t:"4:21.7-4:24.1", title:"PG1 as rebuilt",
-   ctx:"The shuttle follows your photo (low white body, black-and-white panelled ramp, black block, arch). From behind, the girl climbs the ramp holding your hand, the boy steps up holding Dad's. Dad: salt-and-pepper, white temples, semi-rimless glasses, white polo, black pants, a plain black backpack with a black-and-green pixel bottle and a pink cat bottle. You: the Rare Earth outfit (the back circle blank; the trousers come out slimmer than your sheet, and the painter is told to widen them). The boy is in grey socks.",
-   imgs:[[L("playground23/PG1_lit.png"),"PG1"],[L("playground23/PG2_lit.png"),"PG2"]],
-   opts:["Good","Change (below)"], rec:0 },
- { sec:"Playground 2023", id:"pg_shoes_jade", t:"4:21.7-4:24.1", title:"You in socks or sneakers?",
-   ctx:"Built in white socks (the play area's rule for climbers). Your Rare Earth outfit has white sneakers.",
-   opts:["Socks","White sneakers","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_v1b_cam", t:"0:31.6-0:34.5", title:"V1b camera: 22° or 34°?",
+   ctx:"34° shows the uncle's watch face better but reframes the shot. You said it depends on which angle keeps the hands accurate.",
+   imgs:[[L("_sheets/canon/shanghai86_V1b_22_vs_34.jpg"),"22° (now) vs 34°, every guide mode"]],
+   opts:["Test-paint both (2 takes each), then I pick","Keep 22°","Switch to 34°","Something else (below)"], rec:0 },
+ { sec:"Shanghai 1986", id:"sh_v1a_watch", t:"0:29.7-0:31.6", title:"V1a: the watch strap on his bent wrist",
+   ctx:"With his hand bent back, the strap reads as a loop sticking off the back of his hand. The engine has no skin under the sleeve, so the watch can't move higher up the arm.",
+   imgs:[[L("shanghai86/V1a_lit.png"),"V1a guide"]],
+   opts:["Tell the painter: the watch sits half under the cuff","Leave the watch out of V1a","Something else (below)"], rec:0 },
+ { sec:"Our house 2010 (mv10)", id:"mv_k0", t:"3:14.6", title:"V3_rcv_obl_k0: she keeps swapping with the guest",
+   ctx:"In the model she has her back to the camera. Every take moves her to the guest's spot so her face shows, even with the guest restyled (tall, dark blond, mustard and khaki).",
+   imgs:[[L("mv10/V3_rcv_obl_k0_lit.png"),"guide"],["keyframes/r4/mv10/V3_rcv_obl_k0_v5.jpg","v5 (swapped)"],["keyframes/r4/mv10/V3_rcv_obl_k0_v1.jpg","v1 (current pick)"]],
+   opts:["Restage her so she faces the camera from the far side","Try a layered paint-back with the current staging","Keep v1","Something else (below)"], rec:0 },
+ { sec:"Wall 1988", id:"wl_eye", t:"1:40.7-1:45.5", title:"WL_eye: keep v1?",
+   ctx:"The repaint agent kept v1: the new v3 looks the wrong way and v4 makes her eyes look older.",
+   imgs:[["keyframes/r4/wall88/WL_eye_v1.jpg","v1 (pick)"],["keyframes/r4/wall88/WL_eye_v3.jpg","v3"],["keyframes/r4/wall88/WL_eye_v4.jpg","v4"]],
+   opts:["Keep v1","Repaint after the new brows and glasses, with v1 as the expression reference","Something else (below)"], rec:0 },
+ { sec:"Office 1991", id:"off_cabinet", t:"1:17.2-1:21.5", title:"Classroom: the new low grey cabinet and honey-oak chairs",
+   ctx:"To lock the background, the wall art now matches PC1 v1. The 'grey cabinet' you liked in v1/v2 was really Mom's chair back, so a low two-drawer grey file cabinet was added there. The chairs are now honey oak, as in the paintings (this changes them in every office shot). The camera is unchanged.",
+   imgs:[[L("office91/PC1_lit.png"),"PC1 guide"],[L("office91/PC2_lit.png"),"PC2 guide"],["keyframes/r4/office91/PC1_v1.jpg","PC1 v1 (the take you liked)"]],
+   opts:["Good","Remove the invented cabinet","Something else (below)"], rec:0 },
+ { sec:"Closet 2002", id:"cl_hold", t:"3:28.0-3:29.4", title:"Put the approved hold into CL_hands and CL_ots now?",
+   ctx:"Their guides still show the old cradle hold, not the hold you approved (her hand across his, fingers folding into a clasp, his other hand covering both). Before that, two guide errors need fixing: a clip in the crossed-legs D2 guide and a thorn-shaped thumb in H1. Then the hands sheet and the hands library get the same hold.",
+   opts:["Yes, start now","Later","Something else (below)"], rec:0 },
+ { sec:"Song timing", id:"song_times", title:"Four shots whose times disagree with their titles",
+   ctx:"BR2 and BR3 use 2:37.1 and 2:38.1, but their titles say 2:34.5 and 2:37.1. PG2 starts at 4:21.7, but its title says 4:24.1. AD_keys is at 0:13.2, but its title says 0:05.",
+   opts:["Use the times in the titles","Keep the times in use now","I'll check them on the r4 page (below)"], rec:2 },
+ { sec:"Workflow", id:"claude_md_frame", title:"Add the framing rule to your global CLAUDE.md?",
+   ctx:"One more bullet in its video section, so the rule applies in every project: \"The guide's frame is the final frame: anything outside it gets invented.\"",
+   opts:["Add it","Don't"], rec:0 },
 ];
 
 // What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
-const DONE_DATE = "2026-11-26 (rounds 1 to 5)";
+const DONE_DATE = "";
 const DONE = [
- ["Round 5 · Office and market", [
-  "Her skirt: washed-blue denim. BO2 -> X_sw -> AD_trace: plain cuts, no finger match; your finger on the middle of the gap. Her shoulders: fixed at the root (engine).",
-  "The grandmother's cart: a downloaded model."]],
- ["Round 5 · Attic, wall, basement, kitchen", [
-  "AD_grab: the wider 24 mm. WL_top: in, at 1:51.0-1:52.2.",
-  "QBasic: default light grey on blue. At the kitchen table you sit on one foot, the other dangling."]],
- ["Round 5 · Morton Grove", [
-  "Ceiling steeper, computed from the street view; piano all black; the horse gallops left with a vermilion seal."]],
- ["Round 5 · Cast and playground", [
-  "First love's hair: darker, matched to Gaius Baltar's.",
-  "Playground: restaged on your photo of the shuttle; you with the girl, Dad with the boy; Dad about 66-67, salt-and-pepper, white temples, semi-rimless glasses, white polo, black pants, black backpack with the kids' bottles; the boy in socks; you in the Rare Earth outfit; Catch Air."]],
- ["Round 4 · Song and plan", [
-  "The cliff: cut on the drum hit (3:54.9).",
-  "Bloom: BR1 goes to the neuron a line early; only the coda bar shows the bloom (~7.8x).",
-  "Repaint r4 without the rest of the r3 review, but hold it until the next session; check every guide's brightness first."]],
- ["Round 4 · Plates and captions", [
-  "Closet caption: the plates' caption type, small and low, 3:23.4-3:26.1.",
-  "“Were you afraid during the raid?”: the same caption type, on the new X_sw shot at 1:35.6-1:36.0 (BO2 shortened to 1:34.7-1:35.6).",
-  "Voyager ring: draws on as the pull-back lands (1:59.2); the ring alone, no quote.",
-  "Artichoke shimmer: as is."]],
- ["Round 4 · Cast", [
-  "First love's hair: the part is right; made lived-in and finger-combed (v6), then the colour and messiness matched to the reference you named (v7). Turnaround figure 1 redrawn notch-only.",
-  "Mama: the jaw-length perm throughout; the part over her right eye is fine."]],
- ["Round 4 · Mountain View 2010", [
-  "Childhood friend: 1.85 m, Ukrainian, Russian-speaking; his arm hair is dark blond. He holds the ladle in a fist, thumb on top.",
-  "SI1: at the Expedit, no poi. Shelf: the rest of the spines blank. 345B: bare walls. NASA patch: with the white lettering."]],
- ["Round 4 · Shanghai 1986", [
-  "The railings were on your flat anyway.",
-  "Couch and armchairs: plain brown-rust.",
-  "Two scrolls on the hallway side; none on the balcony side."]],
- ["Round 4 · Morton Grove 2007", [
-  "Ceiling: one plane, tilting from high on the mirror side to low on the dining side; the wall behind the couch is a trapezoid.",
-  "Grand piano: 7'1\".",
-  "Picture: 1.4 x 1.0 m, a Chinese ink-and-wash horse mid-gallop, hooves fully visible.",
-  "Hoodie: a vertical pleat through the seal hides Truth; your hands must not clip through the fabric."]],
- ["Round 4 · Closet", [
-  "Light: the window sun over his shoulder in a crisp wedge, plus a ceiling light.",
-  "Futon: in the same spot, turned 90 degrees so its matte black rounded-square railing shows. Tartan: close enough.",
-  "Four hands first in CL_hands (3:28). Over-the-shoulder camera: lower, as on the sheet.",
-  "You wear your existing hoodie recoloured cardinal red, with a clean white seal (no lettering) at the left chest, broken by folds, and white socks."]],
- ["Round 4 · Basement and kitchen (Decatur 1990)", [
-  "Screen light: cool white. Your eyes not crossed; no clipping between your body and Dad's.",
-  "Program: QBasic, a weekend project with his friend, a real-time chat app with two side-by-side WordPerfect-like panes.",
-  "Chair: black base, charcoal blue-grey tweed. Floppy: 5.25\". Kitchen: honey oak and almond."]],
- ["Round 4 · Office 1991", [
-  "Table: almond woodgrain laminate, brown edge. Children's art, corridor art and alphabet line: keep.",
-  "Social worker: geese on dusty rose, with clean bows (redrawn); her misshapen shoulders fixed."]],
- ["Round 4 · Attic and wall", [
-  "AD_grab: nobody kneels; you both stand. Mama's arm re-solved with a physics engine, no clipping through the window.",
-  "WL_in: her palm on the brick in a physically possible pose; the brick texture drawn into the wall.",
-  "Five people in the wall. A brief overhead shot might be interesting (see the WL_top card)."]],
- ["Round 4 · Playground 2023", [
-  "It's an indoor, space-themed play centre in Austin, lit by overhead lights, far from windows; no branding.",
-  "The beam comes from a space-theme light. You and Dad offer a hand to two kids getting into a play shuttle, shot from behind; the kids' faces are never readable.",
-  "The kids: a girl of 4 and a boy of 7 (tall for his age, with a larger head, so he looks like a younger kid who is tall).",
-  "Dad's hair as in his photo."]],
- ["Round 3 · Song and plan", [
-  "Bud opening: one coda bar at 4:16.8, in place of “the finished count”.",
-  "“Good catch!”: toner label “DAD: GOOD CATCH!” beside his head.",
-  "“Artichoke” caption: a small lowercase specimen label in the plates' caption type, beside it.",
-  "Basement ceiling light: a bare bulb in a porcelain pull-chain holder."]],
- ["Round 3 · Mountain View 2010", [
-  "Room crossing: an even time-lapse, about 4.7x.",
-  "Kitchen and shelf: unnamed guests; the childhood friend was helping.",
-  "First love during the arrivals: at the shelf briefly, then off talking to an unnamed guest elsewhere.",
-  "Lemonade: picking at 2:57.0, then the making from straight above at 2:58.0, with the hand holding the ladle realistically in the model.",
-  "Where: the counter by the sink. Fridge: against the wall behind the 2x2, dark beige.",
-  "“Fifteen percent above amplitude”: cut away to the poi spinner; the stairs descend beside the house wall.",
-  "Lemon tree: first love never under it; SI1 moves indoors. Deck: punchbowl only, no table."]],
- ["Round 3 · Shanghai 1986", [
-  "Time: 9:30 with a cheated, lower sun that only just reaches you.",
-  "Room: as built, 1 m longer along the balcony.",
-  "Wicker lounger: west of the small wooden table and chair, facing the TV. Uncle: the end of the couch.",
-  "Wicker chair: at the west end of the balcony; the balcony has white-painted iron railings."]],
- ["Round 3 · Morton Grove 2007", [
-  "The top of your plan faces the street; the piano is a real grand piano shape.",
-  "Front window 1.5 m; the framed picture 4x larger, the mirror higher, the whole east wall tall so the angle of the house shows.",
-  "Ceiling highest over the middle of the great room (~3.6 m); piano side and mirror wall very tall; dining room the short side.",
-  "Sweatshirt: he hands it to you as pictured, and you turn it round to face you. Left of the rug: a loveseat."]],
- ["Round 3 · Closet", [
-  "6 ft wide; a futon to the right in bed mode that just reaches the closet, matte black frame, navy plaid blanket.",
-  "He sits outside on the carpet, directly in line with you and matching you; realistic torsos for both.",
-  "Opening: you look down, fingers to temples, thinking; caption “I don't want to apply to medical school.”"]],
- ["Round 3 · Cast", [
-  "First love's hair v4: the left four studies are good; the right two don't match (the part is in the wrong place).",
-  "IAS seal: frame it so Truth falls in the folds; the soft sweatshirt moves as you hold and turn it (modelled in three.js)."]],
- ["Round 2 · Song and plan", [
-  "Interlude merge: keep it; find the bud opening another place (see the new card).",
-  "Dad's written answer: neither; no written “it was correct”. “Good catch!” is attributed to Dad on screen instead, and the basement gets a ceiling light (B4 was too dark).",
-  "“Hug durations, pitch contours”: hug on “Hug durations”, spectrogram on “pitch contours” (current)."]],
- ["Round 2 · Mountain View 2010", [
-  "The thick wall: 0.78 m as built; the room looks good. Kitchen: appetizers on the dining table, snacks on the counters, a giant punchbowl of lemonade right of the stove with ladle and cups, fridge near the 2x2, step-lid trash can right of the sink, dishwasher right of the stove, dark walnut upper and lower cabinets.",
-  "“I nod, past hour reviewed”: at the shelf, straight after the whisper (it was never under the lemon tree).",
-  "V3b: the picking, plus making the lemonade in the kitchen, drawn a little like a botanical plate.",
-  "Shelf pan: cross to the science half and come back to the seam (current).",
-  "Room crossing facing: fine. The crossing itself: mostly the living room; kitchen chat, doorbell, two guests, stopped at the shelf, doorbell again, more guests."]],
- ["Round 2 · Shanghai 1986", [
-  "Your face at 9:30: move the light, not you.",
-  "Hall doorway: centred on the whole north wall. No window wall: a continuous balcony of doors with latches; side walls maybe wider; a white wicker chair on the balcony; the wicker lounger faces the TV.",
-  "Cross-legged in both scenes."]],
- ["Round 2 · Morton Grove 2007", [
-  "Ridge: parallel to the street. There is another window; the room is rebuilt from your floor plan."]],
- ["Round 2 · Cast", [
-  "First love's hair v3: reads as him, almost; the part is good, but the fade was too gradual: a top half over a buzz grown out ~6 months, a distinct step (redrawn as v4).",
-  "Weak spots: the IAS seal much larger, nearly the whole front, with the sweatshirt unfolded to show it."]],
- ["Round 2 · Plates", [
-  "Spiral aloe: an alternate for now.",
-  "Market close-ups M7, M8, M8b: alternates (current)."]],
- ["Round 2 · Ear checks", [
-  "Tail-2 vocalise: a backing layer (wanted there live).",
-  "“Made flesh”.",
-  "“Shelved”.",
-  "“Artichoke”: caption it (see the new card on style).",
-  "Whisper 2: loud enough; cut on it.",
-  "The cliff at 3:55.0: couldn't tell (measured; see the new card)."]],
- ["Round 1 · Song and plan", [
-  "Which recording: Proof (-2sm) is the master; the plan and all sets are retimed to it.",
-  "Revise the plan: yes, here; done (every row on -2sm times, with a “was” column).",
-  "“From inside, I can't tell the difference”: hold on the shelf; the pan lands on the seam.",
-  "Push to GitHub: commit and push everything except the private folders (done).",
-  "Repaint keyframes: wait until the sets settle; then a full round on a local review page (under way)."]],
- ["Round 1 · Mountain View 2010", [
-  "Date: 2 Oct 2010 is fine.",
-  "Digitised house: looks right.",
-  "Wall: really thick, as thick as the 2x2 is deep, the 2x2 almost flush (built 0.78 m).",
-  "Windows: one in the front wall and one along the side wall (“I think”).",
-  "Glass-top table: a semicircle, flat side to the wall, about 3 ft wide and 1 ft deep.",
-  "Patio: deck level with the floor, sliding glass door, wood stairs and railing, at least 3-4 steps down.",
-  "Shelf pan: shelf only.",
-  "Room crossing: steep oblique.",
-  "“I nod, past hour reviewed”: push into the temple.",
-  "Party: lemons picked and lemonade made before the party with the childhood friend; “nailed it” whispered close by the shelf; guests along the side of the house and on the patio, poi spinner in the yard facing them; Noguchi table base looked up and rebuilt.",
-  "IAS seal mirrored: hadn't noticed; keep the shelf as remembered."]],
- ["Round 1 · Shanghai 1986", [
-  "Time: 21 Dec, about 9:30 am.",
-  "The room: cross-legged; more paper, messier, one bit in her hair; dining table turned 90 degrees and moved north; hall doorway two to three times wider, centred on that wall.",
-  "Third armchair: the two armchairs face each other across the table.",
-  "Sideboard and invented details: keep.",
-  "Hall doors: open into the hall.",
-  "Uncle's hands (V1b): good enough as a guide."]],
- ["Round 1 · Decatur 1990", [
-  "“Already a cat under the desk” replaced: she holds her right fist up and pretends to lick her wrist, a cat cleaning itself; she does not hide."]],
- ["Round 1 · Morton Grove 2007", [
-  "Room and light: right. Date: about right. Ceiling: vaulted. His ear showing: fine."]],
- ["Round 1 · Cast", [
-  "First love's hair: less round, centre part to a crown point at the top, a clean line back from the fringe (redrawn as v3).",
-  "First love's details: no bracelet; the slate-blue shirt is a plain long-sleeve, not a henley; one profile had the wrong hand (replaced).",
-  "Dad's sheets: good.",
-  "Older open items (little Jade's clothes, Jade at 19, attic sign, kitchen outro): leave as the agents guessed."]],
- ["Round 1 · Plates", [
-  "Neuron (Plate IX): love it.",
-  "Spectrogram (Plate XXI): short version, drawing left to right.",
-  "Spirals: the artichoke count becomes the plate at 2:07-2:16; the completed count lands on the romanesco (~2:30-2:34)."]],
- ["Round 1 · Other", [
-  "Airbnb listing: skip; the drawing is enough."]],
 ];
 
-const KEY = 'proof-decisions-v7';
+const KEY = 'proof-decisions-v8';
 const state = JSON.parse(localStorage.getItem(KEY) || '{}');
 const save = () => { localStorage.setItem(KEY, JSON.stringify(state)); count(); };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -328,7 +141,7 @@ function render() {
     c.innerHTML = h; root.appendChild(c);
   }
   document.getElementById('nav').innerHTML = secs.map((s, i) => `<a href="#sec-${i + 1}">${esc(s.replace(/^No song time · /, ''))}</a>`).join('') + '<a href="#done">Answered</a>';
-  document.getElementById('done').innerHTML = `<summary>Answered ${esc(DONE_DATE)}: what was taken in</summary>` + DONE.map(([sec, lines]) => `<h4>${esc(sec)}</h4><ul>${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`).join('');
+  if (!DONE.length) document.getElementById('done').remove(); else document.getElementById('done').innerHTML = `<summary>Answered ${esc(DONE_DATE)}: what was taken in</summary>` + DONE.map(([sec, lines]) => `<h4>${esc(sec)}</h4><ul>${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`).join('');
   root.addEventListener('change', (e) => { if (e.target.type === 'radio') { (state[e.target.name] ||= {}).choice = +e.target.value; save(); mark(); } });
   root.addEventListener('input', (e) => { if (e.target.tagName === 'TEXTAREA') { (state[e.target.dataset.id] ||= {}).note = e.target.value; save(); mark(); } });
   root.addEventListener('click', (e) => { if (e.target.tagName === 'IMG') { const z = document.getElementById('zoom'); z.querySelector('img').src = e.target.src; z.style.display = 'flex'; } });
