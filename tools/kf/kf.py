@@ -16,6 +16,7 @@ Rules that hold for every call (HANDOFF.md): only generated sheets, renders of t
 script may be passed as --ref. Never anything under inputs/refs_chaosmonkey/source_refs or a real photograph.
 """
 import argparse
+import json
 import os
 import shlex
 import subprocess
@@ -56,6 +57,16 @@ def run_codex(prompt, refs, out, timeout=1500):
             "largest size it offers." + (f" The attached images are references in this order: {order}." if refs else "")
             + f" Prompt for the image:\n\n{prompt}\n\nSave the generated image to {png} . Do not write or change any other "
             "file. Reply with the saved path only.")
+    if os.environ.get("KF_VERBATIM") == "1":   # 2026-11-27 face-drift fix: no paraphrase, no ref subset
+        if len(refs) > 5:
+            raise SystemExit(f"codex image_gen takes at most 5 refs, got {len(refs)} ({out})")
+        paths = ", ".join(json.dumps(os.path.abspath(p)) for p, _ in refs)
+        task = ("Call the built-in image_gen tool exactly once (do not write code to draw it) to make exactly ONE 16:9 "
+                "landscape image at the largest size it offers. Pass referenced_image_paths EXACTLY this list, all of them, "
+                f"in this order: [{paths}]. Pass the prompt between the markers below as the image_gen prompt VERBATIM: "
+                "copy it character for character; do not shorten, summarise, reword, reorder or add to it.\n\n"
+                f"<<<PROMPT\n{prompt}\nPROMPT>>>\n\nSave the generated image to {png} . Do not write or change any other "
+                "file. Reply with the saved path only.")
     tf = os.path.join(LOGS, job + ".task.txt")
     with open(tf, "w") as f:
         f.write(task)

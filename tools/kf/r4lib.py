@@ -87,6 +87,29 @@ BASEMENT_GLOW = ("The computer screen's light is COOL WHITE: a clean, cool, fain
                  "it, never deep blue, never warm.")
 CAPTIONS = "Captions are added at compositing time and are never painted."
 
+# ------------------------------------------------------------------------------------------ face-drift fix (11-27)
+# Codex image_gen takes AT MOST 5 reference images ('referenced_image_paths must contain at most 5 paths'); given more,
+# it retried with its own subset (often dropping the face sheet) or with none, and rewrote the prompt in its own words.
+# The 3D guides also carry a generic MakeHuman face. Together the r4 faces drifted ("a new cast"). So: at most MAX_REFS
+# images, the tight face crop of every visible named face always among them (tools/kf/face_crops.py), the guide face
+# declared a placeholder, and the dropped refs' sentences removed from the prompt.
+MAX_REFS = 5
+FACE_FIRST = True   # face crops are images 1..n, the guides follow (mv10 finding: a face ref in slot 4-5 loses)
+FACELESS = True   # blank the guide faces (tools/kf/faceless.py) wherever a named face is in frame
+FACE_RULE_NF = ("FACES. In images 1-2 the faces are left BLANK on purpose (only the head, hair and outline are drawn): "
+                "paint each face from its face image, its head turned and its eyes looking exactly as the words say. ")
+FACE_CROPS = {   # key: (crop path, source sheet it replaces, whose face)
+    "mama": ("media/keyframes/r4/_faces/mama.png", "inputs/refs_chaosmonkey/mama/mama_H_heads_v3.jpg", "Mama's face"),
+    "dad37": ("media/keyframes/r4/_faces/dad37.png", "cast/dad/dad_H_heads_v5_likeness.jpg", "Dad's face at 37"),
+    "lj07": ("media/keyframes/r4/_faces/lj07.png", "cast/little_jade_07/lj07_H_heads_v1.jpg", "little Jade's face at 7"),
+    "lj10": ("media/keyframes/r4/_faces/lj10.png", "cast/little_jade_10/lj10_H_heads_v1.jpg", "little Jade's face at 10"),
+    "lj05": ("media/keyframes/r4/_faces/lj05.png", "inputs/refs_chaosmonkey/little_jade/lj_H_heads_v3.jpg", "little Jade's face at 5"),
+    "jade19": ("media/keyframes/r4/_faces/jade19.png", "cast/jade_19/jade19_H_heads_v1.jpg", "Jade's face at 19"),
+    "jade27": ("media/keyframes/r4/_faces/jade27.png", "cast/jade_27/jade27_H_heads_v1.jpg", "Jade's face at 27"),
+}
+FACE_RULE = ("FACES. The faces in images 1-2 are PLACEHOLDERS from a generic 3D body: take from them ONLY where each head "
+             "is, its size and tilt, and which way the eyes look; never their face shape, eyes, nose, mouth or age. ")
+
 # -------------------------------------------------------------------------------------------------------- colours
 NAMED = [  # (name, hex): plain painter's names, nearest in CIE Lab wins
     ("white", "f4f2ec"), ("off-white", "ece6d8"), ("cream", "efe3c4"), ("ivory", "f1ebd6"), ("oatmeal", "d9ccb0"),
@@ -141,8 +164,9 @@ class Person:
     top / legs / sock / band / apron / dress, plus 'extra' (no colour: shoes, glasses...); fallback: {slot: hex} used
     when the sidecar has no costume for this figure (old renders)."""
 
-    def __init__(self, name, pron="she", face=True, wear=None, fallback=None, first_love=False):
+    def __init__(self, name, pron="she", face=True, wear=None, fallback=None, first_love=False, face_ref=None):
         self.name, self.pron, self.face, self.wear, self.fallback = name, pron, face, wear or {}, fallback or {}
+        self.face_ref = face_ref   # key in FACE_CROPS: the tight face crop sent whenever this face is in frame
         self.first_love = first_love
         if first_love:
             self.face = False
@@ -345,22 +369,106 @@ def compose(set_, shot, spec, cast, look, refs):
     if spec.get("cast"):
         cast = {**cast, **spec["cast"]}   # per-shot override of some figures (another costume, another name)
     keys = list(spec.get("refs", [])) + [k for k in spec.get("art", []) if k not in spec.get("refs", [])]
-    ref_list = [(f"media/layout/{set_}/{shot}_{m}.png", cap) for m, cap in GUIDE_REFS]
     for k in keys:
         if k not in refs:
             raise SystemExit(f"{set_}/{shot}: unknown ref key {k}")
-        ref_list.append(refs[k])
-    idx = {k: i + 4 for i, k in enumerate(keys)}
-    art_keys = spec.get("art", [])
+    # faces in frame (drawn, not from behind) -> their tight face crops, first after the two main guides
+    faces = list(spec.get("faces", []))
+    if spec.get("faces") is None:
+        for who, p in cast.items():
+            h = (sc.get("heads") or {}).get(who, {})
+            if (p.face_ref and p.face is True and who not in spec.get("behind", ()) and h.get("in_frame")
+                    and h.get("visible") is not False and where(h.get("px", (-1, -1))) and p.face_ref not in faces):
+                faces.append(p.face_ref)
+    face_figs = [who for who, p in cast.items() if p.face_ref in faces and p.face is True
+                 and (sc.get("heads") or {}).get(who, {}).get("in_frame") and who not in spec.get("behind", ())]
+    faceless = bool(spec.get("faceless", FACELESS)) and bool(face_figs)
+    gdir = f"media/keyframes/r4/{set_}/_prompts/_guides"
+    if faceless:
+        import subprocess
+        subprocess.run([VENV_PY, os.path.join(ROOT, "tools/kf/faceless.py"), set_, shot, ",".join(face_figs)],
+                       check=True, capture_output=True)
+    # spec combine=[[key, key, ...], ...]: tile those refs side by side into ONE image (left to right) so they fit the cap
+    combos = {}
+    for n, group in enumerate(spec.get("combine", [])):
+        group = [k for k in group if k in keys]
+        if len(group) < 2:
+            continue
+        ck = f"combo{n}"
+        out = f"media/keyframes/r4/{set_}/_prompts/_combo_{shot}_{n}.png"
+        combine_images([refs[k][0] for k in group], out)
+        pos = ["left", "middle", "right"] if len(group) == 3 else ["left", "right"] if len(group) == 2 else [f"panel {i + 1}" for i in range(len(group))]
+        refs = {**refs, ck: (out, "; ".join(f"{pos[i]} panel: {refs[k][1]}" for i, k in enumerate(group)))}
+        keys = [ck if k == group[0] else k for k in keys if k not in group[1:]]
+        for i, k in enumerate(group):
+            combos[k] = (ck, pos[i])
+    src2face = {FACE_CROPS[f][1]: f for f in faces}
+    alias = {k: "face:" + src2face[refs[k][0]] for k in keys if refs[k][0] in src2face}   # sheet key -> its crop
+    keys = [k for k in keys if k not in alias]
+    entries = [("contour", (f"{gdir}/{shot}_contour_nf.png" if faceless else f"media/layout/{set_}/{shot}_contour.png", GUIDE_REFS[0][1])),
+               ("form", (f"{gdir}/{shot}_form_nf.png" if faceless else f"media/layout/{set_}/{shot}_form.png", GUIDE_REFS[1][1]))]
+    entries += [("face:" + f, (FACE_CROPS[f][0], f"{FACE_CROPS[f][2]} (tight crop of the cast head sheet: THE identity)")) for f in faces]
+    first = [k for k in spec.get("keep", []) if k in keys or k in combos]
+    first = [combos[k][0] if k in combos else k for k in first]
+    entries += [(k, refs[k]) for k in dict.fromkeys(first)]
+    if not spec.get("no_light"):
+        entries += [("light", (f"media/layout/{set_}/{shot}_light.png", GUIDE_REFS[2][1]))]
+    entries += [(k, refs[k]) for k in keys if k not in first]
+    cap = spec.get("max_refs", MAX_REFS)
+    kept, dropped = entries[:cap], [k for k, _ in entries[cap:]]
+    if any(k.startswith("face:") for k in dropped):
+        raise SystemExit(f"{set_}/{shot}: too many faces for {cap} refs")
+    if dropped:
+        print(f"  {shot}: {len(entries)} refs -> {cap}; dropped {dropped}", file=sys.stderr)
+    # paint order: the guides first (light stays image 3 when kept), then the faces, then the rest
+    face_first = bool(spec.get("face_first", FACE_FIRST))
+    rank = lambda k: (-1 if face_first and k.startswith("face:") else 0 if k == "contour" else 1 if k == "form" else 2 if k == "light"
+                      else 3 if k.startswith("face:") else 4)
+    kept = sorted(kept, key=lambda e: rank(e[0]))
+    ref_list = [e for _, e in kept]
+    idx = {k: i + 1 for i, (k, _) in enumerate(kept)}
+    for k, f in alias.items():
+        idx[k] = idx[f]
+    panel = {}
+    for k, (ck, pos) in combos.items():
+        if ck in idx:
+            idx[k] = idx[ck]
+            panel[k] = pos
+        else:
+            dropped.append(k)
+    has_light = "light" in idx
+    gone = set(dropped) | {k for k in re.findall(r"<<IMG:([\w\-]+)>>", spec["text"]) if k not in idx and k not in alias}
+    art_keys = [k for k in spec.get("art", []) if k not in gone]
     art = ""
     if art_keys:
         art = ("FIXED ART. " + " ".join(f"Image {idx[k]} is the canonical {refs[k][1]}." for k in art_keys)
                + " Wherever it appears in images 1-2, paint exactly that image, unchanged: the same picture, colours and "
                "layout, at the size and angle image 1 gives it. Never invent, alter or swap wall art, book spines or logos.")
     text = spec["text"]
+    # remove every sentence that names a dropped ref (paragraph by paragraph)
+    if gone:
+        pat = re.compile(r"<<IMG:(" + "|".join(re.escape(k) for k in gone) + r")>>")
+        paras = []
+        for para in text.split("\n"):
+            sents = re.split(r"(?<=[.!?;])\s+(?=\S)", para)
+            paras.append(" ".join(x for x in sents if not pat.search(x)))
+        text = "\n".join(paras)
+    guides = GUIDES if has_light else (GUIDES.replace("Images 1-3 come", "Images 1-2 come")
+                                       .replace(" Image 3 says only where the light falls, not how dark the painting is.", ""))
+    if faceless:
+        guides = guides.replace("the eyes are aimed exactly where each person looks, and ", "")
+    if not has_light:
+        guides += " (No light map is attached: the light is as the words describe.)"
+    face_txt = ""
+    if faces:
+        nf_ = len(faces)
+        face_txt = ((f"Image{'s' if nf_ > 1 else ''} §1§{'-§' + str(nf_) + '§' if nf_ > 1 else ''} {'are face references' if nf_ > 1 else 'is a face reference'} ONLY: "
+                     "{} nothing about the framing, the size of the head in the picture or the pose; the framing, the head size and every "
+                     "position come from the layout drawing (image §{}§) alone. ".format('they say' if nf_ > 1 else 'it says', idx["contour"])) if face_first else "") + (FACE_RULE_NF if faceless else FACE_RULE) + " ".join(f"Image §{idx['face:' + f]}§ is {FACE_CROPS[f][2]}: paint exactly THAT person's face "
+                                        f"(face shape, eyes, brows, nose, mouth, glasses, age), as on that image." for f in faces)
     rep = {
         "FRAMING": framing(sc, cast, spec.get("crop", ""), spec.get("behind", ())),
-        "GUIDES": GUIDES,
+        "GUIDES": guides + ("\n\n" + face_txt if face_txt else ""),
         "GAZE": spec.get("gaze") or gaze(sc, cast, look, spec.get("targets")),
         "WEAR": wear(sc, cast, spec.get("wear_who")),
         "HOLDS": holds(sc, cast, spec.get("hold_words")),
@@ -371,9 +479,27 @@ def compose(set_, shot, spec, cast, look, refs):
     for k in ("FRAMING", "GUIDES", "GAZE", "WEAR", "ART", "RULES"):
         if f"<<{k}>>" not in text and rep[k]:
             text = text.rstrip() + f"\n\n<<{k}>>"
+    if face_first and faces:   # renumber the guides' fixed "image 1/2/3" wording
+        c, f_, l = idx["contour"], idx["form"], idx.get("light")
+        def renum(t):
+            if not l:
+                t = re.sub(r"\s*\((?:see )?image 3\)", "", t)
+                t = re.sub(r"\b[Ii]mage 3 is white\b", "the light falls", t)
+                t = re.sub(r"\b[Ii]mage 3\b", "the light described here", t)
+            t = re.sub(r"\b([Ii]mages) 1-3\b", lambda m: f"{m.group(1)} {c}-{l}" if l else f"{m.group(1)} {c}-{f_}", t)
+            t = re.sub(r"\b([Ii]mages) 1-2\b", lambda m: f"{m.group(1)} {c}-{f_}", t)
+            t = re.sub(r"\b([Ii]mages) 1 and 2\b", lambda m: f"{m.group(1)} {c} and {f_}", t)
+            t = re.sub(r"\b([Ii]mage) ([123])\b", lambda m: f"{m.group(1)} " + str({"1": c, "2": f_, "3": l or "?"}[m.group(2)]), t)
+            return t
+        text = renum(text)
+        rep = {k: renum(v) for k, v in rep.items()}
     for k, v in rep.items():
         text = text.replace(f"<<{k}>>", v)
-    text = re.sub(r"<<IMG:([\w\-]+)>>", lambda m: f"image {idx[m.group(1)]}", text)
+    text = re.sub(r"§(\d+)§", r"\1", text)
+    text = re.sub(r"<<IMG:([\w\-]+)>>", lambda m: f"image {idx[m.group(1)]}" + (f" ({panel[m.group(1)]} panel)" if m.group(1) in panel else ""), text)
+    if not has_light:   # shot text that points at the light map (always image 3) loses the pointer
+        text = re.sub(r"\s*\((?:see )?image 3\)", "", text)
+        text = re.sub(r"\b[Ii]mage 3\b", "the light described here", text)
     if "<<" in text:
         raise SystemExit(f"{set_}/{shot}: unresolved token {re.search(r'<<[^>]*>>', text).group(0)}")
     text = re.sub(r"(^|[.!?]\s+|\n)image (\d)", lambda m: m.group(1) + "Image " + m.group(2), text)
@@ -385,6 +511,20 @@ def compose(set_, shot, spec, cast, look, refs):
         if not os.path.exists(os.path.join(ROOT, p)):
             print(f"  WARNING {shot}: missing ref {p}", file=sys.stderr)
     return text, ref_list
+
+
+VENV_PY = "/home/jade/Documents/halys-video/.venv/bin/python"
+
+
+def combine_images(paths, out, h=1000):
+    """paths side by side (same height, thin white gutter) -> out (PNG), via the venv's PIL."""
+    import subprocess
+    code = ("import sys\nfrom PIL import Image\nims=[Image.open(p).convert('RGB') for p in sys.argv[2:]]\n"
+            f"ims=[i.resize((max(1,int(i.width*{h}/i.height)),{h}), Image.LANCZOS) for i in ims]\n"
+            f"W=sum(i.width for i in ims)+24*(len(ims)-1); c=Image.new('RGB',(W,{h}),'white'); x=0\n"
+            "for i in ims:\n    c.paste(i,(x,0)); x+=i.width+24\n"
+            "c.save(sys.argv[1])\n")
+    subprocess.run([VENV_PY, "-c", code, os.path.join(ROOT, out)] + [os.path.join(ROOT, p) for p in paths], check=True)
 
 
 RUN_SH = """#!/bin/sh
