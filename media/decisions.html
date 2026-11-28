@@ -53,7 +53,7 @@
   <button class="primary" onclick="exportAnswers()">Copy my answers</button>
 </header>
 <main>
-  <p class="note">Round 8, 2026-11-28: open questions only. Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
+  <p class="note">Round 8 (updated): open questions only. Choose an option or write a note on each card, then press "Copy my answers" and paste the result into the chat.</p>
   <div id="cards"></div>
   <details class="done" id="done"></details>
 </main>
@@ -93,7 +93,34 @@ const D = [
  { sec:"Cast", id:"mama_frame_height", title:"Mama's glasses sit about 2 mm higher than on her sheet",
    ctx:"In the overlay against her heads sheet the frame is about 2 mm high. Easy to lower.",
    imgs:[[L("_sheets/glasses_mama.jpg"),"Mama glasses: sheet | guides | scenes"]],
-   opts:["Lower it to match the sheet","Leave it","Something else (below)"], rec:0 },
+   opts:["Lower it to match the sheet","Leave it","Something else (below)"], rec:0 },,
+ { sec:"Opening (0:00-0:30)", id:"intro_reading", t:"0:00-0:29.7", title:"The new opening: reading A or B?",
+   ctx:"Both cut to the measured music (first tap 4.87, whisper 1 at 8.78, the high Db6 at 13.56, whisper 2 at 18.25, groove at 19.04). A (recommended), a straight swap: PAD + title / AD_mote first half 4.87 / neurons 6.87 / FE_out held to 11.75 / mote returns, gold ring / AD_wide on the high note 13.56, playing the melody / FE_thumbs / montage. B: the mote shot whole at 4.87-8.76, FE_out, then the neurons at 11.75 as if answering the whisper, then AD_wide. The neuron footage already exists (Plate IX).",
+   vids:[["keyframes/r4/_animatic/intro_A.mp4","Animatic A"],["keyframes/r4/_animatic/intro_B.mp4","Animatic B"]],
+   opts:["A","B","Something else (below)"], rec:0 },
+ { sec:"Opening (0:00-0:30)", id:"intro_highnote", t:"0:12.3-0:13.6", title:"AD_wide starts on which note?",
+   ctx:"The Db6 at 13.56 is the peak of the intro's piano phrase. A C6 at 12.34 climbs up to it; starting there she plays the whole climb.",
+   opts:["13.56 (the peak)","12.34 (the whole climb)"], rec:0 },
+ { sec:"Opening (0:00-0:30)", id:"intro_montage", t:"0:19.0-0:29.7", title:"Preview montage rhythm",
+   ctx:"Proposed: WL_in_empty and the sheet a bar each, then M2 / V3_rcv_obl / V3_nailed two beats each (speeding up), PG1 held to the verse pickup. The alternative is an even 3 beats per image, which crosses bar lines.",
+   opts:["Speeding up (as in the animatic)","Even 3 beats each","Something else (below)"], rec:0 },
+ { sec:"Opening (0:00-0:30)", id:"intro_unfold", t:"0:13.6-0:18.3", title:"The printout unfolding",
+   ctx:"AD_wide used to open on her hands unfolding the taped printout. On the high note she is already playing.",
+   opts:["Drop the unfolding","Move it to AD_piano at 0:58.6","Something else (below)"], rec:1 },
+ { sec:"Opening (0:00-0:30)", id:"intro_pad_dir", t:"0:00-0:04.9", title:"PAD's diagonal vs the attic beam",
+   ctx:"PAD's unpainted band runs the opposite way to the attic beam, and AD_mote now follows the pad straight away. The credits reuse the PAD image (mock-up: title + credit line on the band).",
+   imgs:[["keyframes/r4/_animatic/credits_on_PAD.png","credits on PAD (mock-up)"]],
+   opts:["Flip PAD to match the beam (start and credits)","Keep PAD exactly as approved"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_mirror_size", t:"2:39.6-2:42.0", title:"Mirror size",
+   ctx:"Under the equal-margins rule (top margin kept), the mirror only grows about 4%. A noticeably bigger mirror needs smaller margins.",
+   imgs:[[L("_sheets/mg_r7_before_after.jpg"),"before/after"]],
+   opts:["Fine as is","Bigger: shrink both margins equally","Something else (below)"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_armchair", t:"2:39.6-2:42.0", title:"The armchair",
+   ctx:"Still plain grey-brown in the model; the painting made it floral.",
+   opts:["Same rose chintz as the couch","Keep it plain","Something else (below)"], rec:0 },
+ { sec:"Morton Grove 2007", id:"mg_west_table", t:"2:39.6-2:42.0", title:"The small table at the couch's west end",
+   ctx:"Still wood; the coffee and lamp tables are now dusty pink with glass panels.",
+   opts:["Match the pink glass-panel tables","Keep it wood"], rec:0 }
 ];
 
 // What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
