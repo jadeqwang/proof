@@ -99,6 +99,8 @@ const BASE = [
     header: 'WIDE (reference): from the couch\'s east end, looking north-west: piano, mirror, front door, closet, dining table, kitchen slider',
     intent: 'The rest of the great room as Jade drew it, for checking: the 7-ft grand along the giant mirror (east wall, frame right), the dining table with six chairs by the dining window, the front door in the jog and the coat closet, the sliding door to the kitchen and the stairs in the far corner, the one tilted ceiling plane rising from the dining (west) wall to the high mirror (east) wall, the north wall a trapezoid. No figures (this camera would face him). Not a shot.',
     figs: {} },
+  { id: 'REF_piano_top', lens: 0, ...T, position: 'reference', ortho: { w: 3.8 }, pos: [3.81, 9, -4.10], target: [3.81, 0, -4.10], up: [0, 0, 1], near: 3.8, far: 10.5, hide: ['ceiling (one tilted plane', 'daylight outside', 'giant mirror', 'IAS ', 'hoodie', 'seal'], hoodie: 'folded', figs: {},
+    header: 'REFERENCE (r7 follow-up): the grand from directly above, keyboard at the bottom, as Yamaha\'s plan drawing', intent: 'Plan of the grand to compare with Yamaha\'s C6X / C7X drawings. Not a shot.' },
   { id: 'REF_plan', lens: 0, ...T, position: 'reference', ortho: { w: 15.0 }, pos: [1.75, 9, -3.55], target: [1.75, 0, -3.55], up: [0, 0, 1], near: 6.62, far: 10.5, hide: ['ceiling (one tilted plane', 'daylight outside'],
     header: 'PLAN as Jade drew it: SOUTH (Capri Lane) UP, west right; white outlines = the 15:30 sun through the three windows',
     hoodie: 'folded', intent: 'Top view of the main floor, oriented like Jade\'s hand-drawn plan (street at the top), to compare against it. Not a shot.', figs: figs(handover.her, handover.him) },
@@ -106,8 +108,10 @@ const BASE = [
   ...[['REF_piano_a', 24, [2.55, 1.50, -6.75], [3.85, 0.72, -4.65], 'the grand from the keyboard end (bass side to the mirror): key slip, keys, cheek blocks, fallboard, music desk, closed lid with its front flap, legs on casters, pedal lyre with three pedals'],
       ['REF_piano_b', 24, [2.25, 1.55, -1.85], [3.90, 0.72, -4.15], 'the grand from the tail and treble side: the bentside and tail curve of the rim, the closed lid, the tail leg, the lyre under the keyboard end'],
       ['REF_couch', 24, [2.90, 1.25, -2.95], [2.90, 0.52, -0.45], 'the overstuffed floral couch square on: two large roses centred on every seat and back cushion, rolled arms, the pink floral rug, the dusty-pink glass-panel coffee table'],
+      ['REF_piano_low', 28, [3.81, 0.55, -7.05], [3.81, 0.62, -5.0], 'Yamaha check (r7 follow-up): the grand straight on from the keyboard end, low (the bench and floor lamp hidden): legs, casters, lyre and pedals, cheek blocks, key slip, fallboard and its gold logo, music desk'],
+      ['REF_piano_side', 28, [0.95, 0.80, -4.12], [3.80, 0.72, -4.12], 'Yamaha check (r7 follow-up): the grand from its treble side, square on: the bentside and tail, rim depth, lid, legs, lyre brace'],
       ['REF_loveseat', 26, [2.15, 1.30, -2.55], [4.45, 0.48, -1.70], 'the overstuffed floral loveseat east of the rug, facing west: two cushions, the same upholstery, two large roses centred on each cushion; the lamp table and lamp beyond']]
-    .map(([id, lens, pos, target, what]) => ({ id, lens, ...T, position: 'reference', hoodie: 'folded', pos, target, hide: ['IAS ', 'hoodie', 'seal'], figs: {},
+    .map(([id, lens, pos, target, what]) => ({ id, lens, ...T, position: 'reference', hoodie: 'folded', pos, target, hide: ['IAS ', 'hoodie', 'seal', ...(id === 'REF_piano_low' ? ['piano bench', 'floor lamp'] : id === 'REF_piano_side' ? ['dining', 'coat closet'] : [])], figs: {},
       header: 'REFERENCE (r7): ' + what, intent: 'Reference render (r7, Jade\'s notes on the house): ' + what + '. No figures. Not a shot.' })),
 ];
 // with { surf: true } each shot also gets beam_<id>__surf: the lit surfaces only (MG1 and MG2 look through the broad shaft)

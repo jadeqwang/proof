@@ -287,27 +287,6 @@
   }
  ],
  "warnings": [],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {},
-  "glass_in_front_of_camera": true
- },
  "intent": "The east wall square on, looking up a little: the giant mirror (frameless, bevelled; r7 size in layout.js MIRROR.size) r7: frameless with polished bevelled edges, reflecting the room; equal bare-plaster margins above the closed piano lid and below the level ceiling line (MIRROR.marginTop / marginBottom), centred on the wall left to right; the stairs at the far left, the floor lamp, the grand piano's lid along the bottom. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",

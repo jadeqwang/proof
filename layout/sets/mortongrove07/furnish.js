@@ -17,13 +17,14 @@ import { loadArt, artLook, artPlane, repeatArt } from '../_art.js';
 export const ART = await loadArt({
   uph: ['/assets/art/mortongrove07/mg_upholstery.png', { edgeBlur: 2, edgeMax: 0.42 }],
   rug: ['/assets/art/mortongrove07/mg_rug.png', { edgeBlur: 2, edgeMax: 0.42 }],
+  mirror: ['/assets/art/mortongrove07/mg_mirror.png', { edgeBlur: 3, edgeGain: 1.6, edgeMax: 0.55, maxPx: 1460 }],   // r7 follow-up: the mirror's canonical face (no reflection)
 });
 if (ART.uph) repeatArt(ART.uph);
 
 // plain fallbacks (no image): the old dusty rose
 const FLORAL = { grey: 0.68, col: 0xc9a39a, recvShadowLine: true }, FLORAL_D = { grey: 0.6, col: 0xb08a84, recvShadowLine: true };
 const UPH = (dark) => (ART.uph ? artLook(ART.uph, { grey: dark ? 0.62 : 0.7, col: 0xd8b8b0, recvShadowLine: true }) : dark ? FLORAL_D : FLORAL);
-export const DUSTY_PINK = { grey: 0.42, col: 0x9a5a68 };   // dusty dark pink lacquer (Jade)
+export const DUSTY_PINK = { grey: 0.5, col: 0xb0707a };   // dusty dark pink lacquer (Jade); r7 follow-up: a touch lighter, toward the rug's rose border (was 0x9a5a68)
 const GLASS_LIT = { glass: true, col: 0xcfe2de, opacity: 0.32, noCast: true };
 const GLASS_GUIDE = { grey: 0.86, col: 0xc6dcd8, hide: ['lit'], noCast: true };   // the same panel, opaque pale green-grey, in every non-lit mode (engine glass is invisible there)
 const WOOD_D = { grey: 0.32, col: 0x5a3e28 };
@@ -89,20 +90,26 @@ export function rug(R) {
 }
 
 // a DUSTY DARK PINK table with GLASS PANELS set into it (Jade): square legs, an apron, the top a pink frame round an inset
-// glass panel, and a lower shelf: a pink frame round a second glass panel. T = { x0, x1, z0, z1, h }.
-export function glassTable(g, T, label) {
+// glass panel, and a lower shelf: a pink frame round a second glass panel. T = { x0, x1, z0, z1, h }. n = the number of
+// EQUAL glass panels in the top (Jade: the long coffee table has 3), divided by 5 cm cross rails. Returns [cx, cz, panels]
+// (the top panels' centres and sizes, west to east).
+export function glassTable(g, T, label, n = 1) {
   const w = T.x1 - T.x0, d = T.z1 - T.z0, cx = (T.x0 + T.x1) / 2, cz = (T.z0 + T.z1) / 2, L = 0.045, rail = Math.min(0.07, w * 0.14), th = 0.032;
-  const frame = (y, t, lab) => {   // a rectangular frame of four rails, inner opening for the glass
+  const cr = 0.05, panels = [];
+  const frame = (y, t, lab, k = 1) => {   // a rectangular frame of four rails (+ k - 1 cross rails), k equal openings for the glass
     g.add(tag(box(w, t, rail, DUSTY_PINK, [cx, y, T.z0 + rail / 2]), lab)); g.add(tag(box(w, t, rail, DUSTY_PINK, [cx, y, T.z1 - rail / 2]), lab));
     g.add(tag(box(rail, t, d - 2 * rail, DUSTY_PINK, [T.x0 + rail / 2, y, cz]), lab)); g.add(tag(box(rail, t, d - 2 * rail, DUSTY_PINK, [T.x1 - rail / 2, y, cz]), lab));
-    const pw = w - 2 * rail + 0.01, pd = d - 2 * rail + 0.01;   // the panel sits in a rebate, 5 mm under each rail
-    g.add(tag(box(pw, 0.008, pd, GLASS_LIT, [cx, y + t / 2 - 0.01, cz]), lab + ': glass panel'));
-    g.add(tag(box(pw, 0.008, pd, GLASS_GUIDE, [cx, y + t / 2 - 0.01, cz]), lab + ': glass panel')); };
-  frame(T.h - th / 2, th, label);
+    const ow = (w - 2 * rail - (k - 1) * cr) / k, pd = d - 2 * rail + 0.01;   // each panel sits in a rebate, 5 mm under the rails
+    for (let i = 0; i < k; i++) { const px = T.x0 + rail + ow / 2 + i * (ow + cr);
+      if (i) g.add(tag(box(cr, t, d - 2 * rail, DUSTY_PINK, [px - ow / 2 - cr / 2, y, cz]), lab));
+      g.add(tag(box(ow + 0.01, 0.008, pd, GLASS_LIT, [px, y + t / 2 - 0.01, cz]), lab + ': glass panel'));
+      g.add(tag(box(ow + 0.01, 0.008, pd, GLASS_GUIDE, [px, y + t / 2 - 0.01, cz]), lab + ': glass panel'));
+      if (k === n && y > 0.2) panels.push({ x: px, z: cz, w: ow, d: d - 2 * rail }); } };
+  frame(T.h - th / 2, th, label, n);
   g.add(tag(box(w - 0.02, 0.06, 0.02, DUSTY_PINK, [cx, T.h - th - 0.03, T.z0 + 0.012]), label)); g.add(tag(box(w - 0.02, 0.06, 0.02, DUSTY_PINK, [cx, T.h - th - 0.03, T.z1 - 0.012]), label));
   for (const sx of [-1, 1]) for (const sz of [-1, 1]) g.add(tag(box(L, T.h - th, L, DUSTY_PINK, [cx + sx * (w / 2 - L / 2), (T.h - th) / 2, cz + sz * (d / 2 - L / 2)]), label));
   frame(0.12, 0.024, label + ' (lower shelf)');
-  return [cx, cz];
+  return [cx, cz, panels];
 }
 // the top of a glassTable's top glass panel (objects stand on it): the panel's centre T.h - 0.01, 8 mm thick
 export const glassTop = (T) => T.h - 0.006;
@@ -121,4 +128,49 @@ export function tableLamp(g, [x, z], y, label) {
   const sh = mk(new THREE.CylinderGeometry(0.16, 0.21, 0.28, 40, 1, true), SHADE); sh.position.set(x, y + 0.53, z); sh.userData.double = true; g.add(tag(sh, label + ': shade'));
   g.add(tag(cyl(0.012, 0.006, 0.03, BRASS, [x, y + 0.685, z], null, 10), label));                     // finial (top 0.70)
   return y + 0.70;
+}
+
+// A GLASS CHESS SET in the STARTING POSITION (Jade, r7 follow-up): all 32 pieces on their home squares, no game in
+// progress; clear and frosted glass pieces on a glass board of alternating clear and frosted squares. Real size: 45 mm
+// squares, a 0.38 m board (8 x 45 mm + a 10 mm frosted border all round), 10 mm thick; king 85 mm, queen 75, bishop 64,
+// knight 56, rook 50, pawn 42 mm; turned (lathe) Staunton-like profiles, the knight a turned base with a carved head.
+// FROSTED (the "white" side) toward the couch (south, +z), CLEAR toward the dining side; a1 at the board's south-west
+// corner seen from the couch, so each side has a light (frosted) square at its right (h1 / a8). Glass is invisible in the
+// engine's non-lit modes, so: frosted parts are an opaque pale white-grey everywhere; clear parts are see-through glass
+// in lit plus an opaque pale aqua-grey stand-in in every other mode (as the table panels).
+const FROST = { grey: 0.93, col: 0xeef1f0 };
+const CLEAR_LIT = { glass: true, col: 0xd6ecee, opacity: 0.5, noCast: true }, CLEAR_GUIDE = { grey: 0.7, col: 0xa9c4c8, hide: ['lit'] };
+const lathe = (prof, look) => mk(new THREE.LatheGeometry(prof.map(([r, h]) => new THREE.Vector2(r, h)), 24), look);
+const BASE = (r) => [[0, 0], [r, 0], [r, 0.004], [r * 0.85, 0.008], [r * 0.78, 0.012]];
+const PROF = {
+  P: [...BASE(0.0105), [0.0055, 0.022], [0.009, 0.025], [0.0045, 0.028], [0.0085, 0.033], [0.008, 0.038], [0.005, 0.041], [0, 0.042]],
+  R: [...BASE(0.0125), [0.009, 0.032], [0.0115, 0.036], [0.0115, 0.050], [0, 0.050]],
+  B: [...BASE(0.0125), [0.006, 0.034], [0.010, 0.037], [0.005, 0.040], [0.0085, 0.047], [0.008, 0.055], [0.0045, 0.060], [0.003, 0.062], [0.0035, 0.064], [0, 0.064]],
+  Q: [...BASE(0.0135), [0.0065, 0.045], [0.011, 0.049], [0.006, 0.052], [0.0095, 0.066], [0.007, 0.070], [0.004, 0.072], [0.0045, 0.075], [0, 0.075]],
+  K: [...BASE(0.014), [0.007, 0.050], [0.012, 0.054], [0.0065, 0.057], [0.010, 0.072], [0.008, 0.074], [0, 0.074]],
+  N: [...BASE(0.0125), [0.0085, 0.022], [0, 0.022]],
+};
+function chessPiece(type, look, guide, facing) {
+  const g = new THREE.Group(), add = (m) => { g.add(m); if (guide) { const c = m.clone(); c.material = m.material; c.userData = { ...m.userData, look: guide }; g.add(c); } };
+  add(lathe(PROF[type], look));
+  if (type === 'K') { add(at(box(0.004, 0.016, 0.004, look), [0, 0.082, 0])); add(at(box(0.012, 0.004, 0.004, look), [0, 0.084, 0])); }
+  if (type === 'N') {   // the horse's head and neck, carved: a tapered block leaning forward, a muzzle, two ears
+    add(at(box(0.016, 0.026, 0.012, look), [0, 0.034, 0.001], [-12, 0, 0])); add(at(box(0.012, 0.012, 0.022, look), [0, 0.046, 0.009], [-25, 0, 0]));
+    add(at(box(0.004, 0.008, 0.004, look), [0.004, 0.055, -0.003])); add(at(box(0.004, 0.008, 0.004, look), [-0.004, 0.055, -0.003])); }
+  g.rotation.y = facing; return g;
+}
+export function chessSet(g, [x, z], y, label = 'glass chess set (starting position)') {
+  const S = 0.045, B = 8 * S + 0.02, T = 0.010, set = new THREE.Group(); set.position.set(x, y, z);
+  // the board: a frosted base plate with alternating clear squares set flush on top (the dark squares of a normal board = clear)
+  set.add(tag(box(B, T - 0.002, B, FROST, [0, (T - 0.002) / 2, 0]), label + ': board'));
+  for (let f = 0; f < 8; f++) for (let r = 0; r < 8; r++) { const sx = (f - 3.5) * S, sz = (3.5 - r) * S;   // file a..h = west..east, rank 1 at the couch (+z)
+    const dark = (f + r) % 2 === 0;   // a1 dark
+    if (dark) { set.add(tag(box(S, 0.002, S, CLEAR_LIT, [sx, T - 0.001, sz]), label + ': board')); set.add(tag(box(S, 0.002, S, CLEAR_GUIDE, [sx, T - 0.001, sz]), label + ': board')); }
+    else set.add(tag(box(S, 0.002, S, FROST, [sx, T - 0.001, sz]), label + ': board')); }
+  const back = ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'];
+  for (const side of ['frosted', 'clear']) { const fr = side === 'frosted', look = fr ? FROST : CLEAR_LIT, guide = fr ? null : CLEAR_GUIDE;
+    const r1 = fr ? 0 : 7, r2 = fr ? 1 : 6, facing = fr ? Math.PI : 0;   // knights face the opponent
+    for (let f = 0; f < 8; f++) { for (const [r, t] of [[r1, back[f]], [r2, 'P']]) { const p = chessPiece(t, look, guide, facing);
+      p.position.set((f - 3.5) * S, T, (3.5 - r) * S); p.traverse((o) => { if (o.isMesh) tag(o, label + ': ' + side + ' pieces'); }); set.add(p); } } }
+  g.add(set); return set;
 }

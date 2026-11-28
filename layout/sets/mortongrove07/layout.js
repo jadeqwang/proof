@@ -151,7 +151,7 @@ export const MIRROR = { x: ROOM.x1, label: 'giant mirror (frameless, bevelled)',
 // Round 7 (Jade: "it has missing parts"): the fuller downloaded grand (wendyyim, CC BY 4.0, layout/assets/props/grand_piano_c7):
 // Jade's 7'1" "to be exact" = 2.16 m long (keyboard 1.227 m, body lengthened behind the action), 1.497 m wide, closed lid top
 // 0.993 m; spine 0.740 m from the model's centre line. (A first r7 build used 2.27 m, a Yamaha C7, in error; corrected.)
-export const PIANO = { spineX: 4.55, spineOff: 0.740, kbZ: -5.20, L: 2.16, W: 1.497, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, lidTop: 0.993, label: '7-ft grand piano (7\'1", lid closed)' };
+export const PIANO = { spineX: 4.55, spineOff: 0.740, kbZ: -5.20, L: 2.16, W: 1.497, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, lidTop: 0.993, logo: { w: 0.20, up: 0 }, label: '7-ft grand piano (7\'1", lid closed)' };
 { const M = MIRROR; M.marginTop = +(VAULT.high - M.top).toFixed(3); M.y1 = M.top; M.y0 = +(PIANO.lidTop + M.marginTop).toFixed(3);
   M.marginBottom = +(M.y0 - PIANO.lidTop).toFixed(3); const H = M.y1 - M.y0, W = H * M.aspect; M.z0 = +(M.zc - W / 2).toFixed(3); M.z1 = +(M.zc + W / 2).toFixed(3);
   M.size = [+W.toFixed(3), +H.toFixed(3)]; }

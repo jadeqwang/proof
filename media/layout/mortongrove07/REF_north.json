@@ -287,27 +287,6 @@
   }
  ],
  "warnings": [],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {},
-  "glass_in_front_of_camera": true
- },
  "intent": "The rest of the great room as Jade drew it, for checking: the 7-ft grand along the giant mirror (east wall, frame right), the dining table with six chairs by the dining window, the front door in the jog and the coat closet, the sliding door to the kitchen and the stairs in the far corner, the one tilted ceiling plane rising from the dining (west) wall to the high mirror (east) wall, the north wall a trapezoid. No figures (this camera would face him). Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",

@@ -362,56 +362,6 @@
  "warnings": [
   "wrist: jade27 L grip cannot be reached naturally (ulnar deviation +23 deg, pronation +6 deg; flex -57.9, radial -53.5, twist -86.2, after an elbow swivel of 0 deg)"
  ],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {
-   "jade27": {
-    "px": [
-     -9530.1,
-     1230.4
-    ],
-    "world": [
-     7.4966,
-     1.1398,
-     -0.7386
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 104,
-    "face_in_reflection": false
-   },
-   "firstLove27": {
-    "px": [
-     -27508.7,
-     2371.5
-    ],
-    "world": [
-     7.7399,
-     1.5433,
-     -1.26
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 68,
-    "face_in_reflection": false
-   }
-  },
-  "glass_in_front_of_camera": false
- },
  "intent": "END of the continuous move, just before the cut to the Expedit pan: the same camera past his left shoulder. She holds the white hoodie up by its shoulder seams, hands about half a metre apart at chin height, arms a little forward, and has turned it round so the FRONT (the blue IAS seal) faces HER: we see the plain white back of the hoodie, soft folds, the hood hanging on our side, and her face just above it, looking down at the seal. Truth falls in the folds as it turns (Jade). Cloth from the cloth module.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",

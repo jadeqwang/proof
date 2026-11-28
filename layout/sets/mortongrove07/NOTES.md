@@ -1,5 +1,59 @@
 # mortongrove07: notes and assumptions
 
+## 2026-11-27: round 7 follow-up (Jade on r7: items 2, 3, 5, 6, 8 good; the couch "much better")
+
+1. **A YAMAHA grand, 7'1" = 2.16 m** (the one she trained on for competition until 17). A helper gathered look-only
+   photos (Yamaha's own C-series and CFX pages, Wikimedia Commons; private, scratchpad only, never to an image model) and
+   Yamaha's C6X / C7X plan drawings. New reference cameras: REF_piano_low (straight on, low, bench and floor lamp
+   hidden), REF_piano_side (treble side, square on), REF_piano_top (plan, ortho). Side-by-side sheet (private, holds the
+   real photos): work/mg_r7/yamaha_compare.jpg. Mismatches found and fixed in build.js `yamahaParts()`:
+   - **Legs:** the model had curved cabriole legs with scroll brackets (Steinway-like). Now Yamaha's plain SQUARE TAPERED
+     legs: a 135 mm square collar block, a small step, the shaft 105 -> 70 mm, no toe caps, on brass TWIN-WHEEL casters.
+     They stand at the model's own leg positions, clustered from its caster vertices. The model's legs and casters are hidden.
+   - **Music desk:** the model's had an arched top with raised ears. Now a solid black panel 0.78 x 0.29 m with a
+     STRAIGHT top edge, rounded corners and a slight flare at the foot, leaning back 17 deg on a thin ledge.
+   - **Fallboard logo:** ONE canonical decal drawn in code (build.js `yamahaLogoArt`, no image model): the gold
+     three-tuning-fork emblem in a ring plus the YAMAHA wordmark in spaced capitals, 0.20 m wide, centred on the
+     fallboard's player-facing surface (found by a ray from the bench). decalMesh keeps only the logo's pixels, so line
+     and contour see it too. Chosen over a blank plate because it reads clearly and Jade asked for emblem + wordmark.
+     NB: Yamaha's current C6X / C7X fallboards carry the wordmark only (the emblem sits on the CFX's case side).
+     Many older C-series fallboards add the emblem; her 1990s piano's exact logo is unknown. FLAGGED.
+   - **Matches already, kept from the model:** the case and bentside (a straight treble run, then a short concave bend
+     and a long convex sweep to a round tail), the rim depth (37 cm; Yamaha's is 40 cm from the lid top), the lid with its
+     front flap and brass flap hinge, the S-scroll cheek blocks, the plain key slip, the fallboard, and the two-post lyre
+     with pedal rods and three brass pedals.
+   - **Left as is (small):** the model is 1.50 m wide at 2.16 m long; a C6X is 1.54 m at 2.12 m. Widening it would
+     also widen the real 1.227 m keyboard. Yamaha's stepped moulding along the case bottom and the spine-side lid
+     hinges (against the wall) are not modelled.
+7. **Tables:** the dusty pink is a touch lighter, toward the rug's rose border: 0xb0707a (was 0x9a5a68). The long
+   coffee table's top now has **THREE EQUAL glass panels** (each 0.337 x 0.41 m, divided by 5 cm cross rails).
+   **Glass chess set in the starting position** (furnish.js `chessSet`), canonical, real size:
+   - Board: 45 mm squares on a 0.38 m board, 10 mm thick, frosted and clear glass squares, a1 dark.
+   - Pieces: turned Staunton-like profiles; king 85 mm (with a cross), queen 75, bishop 64, knight 56 (carved head,
+     facing the opponent), rook 50, pawn 42.
+   - All 32 pieces stand on their home squares. Frosted pieces sit on the couch side (south), clear on the dining side.
+     Each queen is on her own colour and a light square is at each player's right.
+   - It stands on the east panel, the board resting on the cross rail and the end rail.
+   - Rendering: frosted parts are opaque pale white-grey everywhere. Clear parts are see-through glass in lit, plus an
+     opaque pale aqua-grey stand-in in the other modes (the engine hides glass there).
+   - The notebook is on the west panel, the textbook and mug on the middle one.
+9. **Mirror: no reflection; it reflects the ambient light** (the engine reflection composite is now off: shot.mirror
+   true would bring it back).
+   - One canonical face, `layout/assets/art/mortongrove07/mg_mirror.png` (+ .txt; drawn in code): a cool silver
+     gradient with soft diagonal sheen streaks, the conventional mirror look. It shows in every mode, its streaks drawn
+     in line and contour. The 25 mm bevel is a bright band, and there are 4 clips.
+   - Lit pass: a soft, even spotlight in front of the glass (no decay, wide penumbra) makes it a bright silver panel
+     with a faint glow on the wall round it. A dim shadowless point light just behind the glass throws light back into
+     the room.
+   - It is not an emitter, so it doesn't bloom into the pure-white window look. In the guides it reads as a mirror on
+     the wall, not a window (windows are flat bright white with mullions).
+   - Size unchanged: 2.04 x 2.92 m, with 1.035 m margins above and below.
+- Re-rendered (three passes, 15 shots including the 3 new piano refs); clipcheck / holdcheck / check_bodies unchanged
+  from r7 (couch 75 / 34 mm, rug 6.2 mm, folded hoodie 7-10 mm; MG2 cloth as before; bodies all PASS). Gallery rebuilt,
+  prompts regenerated: the Yamaha grand and its gold logo, the rose-pink glass-panel tables, the three equal panels, the
+  glass chess set in the starting position, and the bright silver mirror with no reflection.
+- Sheets: media/layout/_sheets/mg_r7_before_after.jpg, mg_r7_references.jpg (now including REF_piano_low/side/top and REF_east).
+
 ## 2026-11-27: round 7, Jade's notes on the house (done)
 
 Before renders kept in work/mg_r7/before/ (lit + form of every shot, private). Each fix is in the model.

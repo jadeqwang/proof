@@ -1,0 +1,6 @@
+canonical mirror face for layout/assets/art/mortongrove07/mg_mirror.png (the giant frameless mirror on the east wall)
+date: 2026-11-27 (round 7 follow-up). Jade: the mirror need not show a reflection; it should reflect ambient light for
+  brightness and read as a mirror (bright smooth glass with a bevel), never as a window.
+what: drawn in code (ImageMagick), no image model: a cool silver gradient (brighter at the top) with two soft diagonal
+  white sheen streaks and two faint grey-blue bands, the conventional "mirror" look. No reflected scene, no figures.
+size: 1460 x 1020 RGB PNG (the glass's 2.92 : 2.04).

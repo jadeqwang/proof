@@ -287,27 +287,6 @@
   }
  ],
  "warnings": [],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {},
-  "glass_in_front_of_camera": true
- },
  "intent": "Reference render (r7, Jade's notes on the house): the grand from the tail and treble side: the bentside and tail curve of the rim, the closed lid, the tail leg, the lyre under the keyboard end. No figures. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",

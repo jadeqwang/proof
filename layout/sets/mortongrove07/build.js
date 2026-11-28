@@ -15,7 +15,8 @@ import { sweatshirt, lapColliders, foldedSeal } from './sweatshirt.js';
 import { graspArms } from '../../engine/grasp.js';
 import { loadProps, prop } from '../_props.js';   // downloaded props (phase 2)
 import { framedPictureArt } from './art.js';   // fixed picture texture (background-art agent)
-import { overstuffed, rug, glassTable, glassTop, tableLamp } from './furnish.js';   // r7: canonical upholstery + rug textures, glass-panel tables, real-size lamp
+import { overstuffed, rug, glassTable, glassTop, tableLamp, chessSet, ART as FART } from './furnish.js';
+import { artPlane, artFromCanvas, decalMesh } from '../_art.js';   // r7: canonical upholstery + rug textures, glass-panel tables, real-size lamp
 import { footwear, mirrorMatrix, pointInQuad } from '../basement90/kit.js';   // r7: socks; the mirror's reflection
 import { SOCKS } from './shots.js';
 import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
@@ -187,6 +188,79 @@ function piano() {
   return g;
 }
 
+// r7 follow-up (Jade: "a YAMAHA concert grand", the one she trained on): the gold YAMAHA logo on the fallboard, ONE canonical
+// decal drawn in code (furnish.js-style, no image model): the three-tuning-fork emblem in a ring + the YAMAHA wordmark,
+// gold, on a transparent ground; mapped onto the fallboard's player-facing surface, found by a ray from the bench.
+// The decal keeps only the logo's own pixels (decalMesh), so every mode (line included) sees its real outline.
+let LOGO = null;
+function yamahaLogoArt() {
+  if (LOGO) return LOGO;
+  const W = 1200, H = 300, c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  const GOLD = '#caa34c'; g.strokeStyle = GOLD; g.fillStyle = GOLD; g.lineCap = 'round';
+  // the emblem: a ring with three tuning forks crossing at its centre, tines outward (120 deg apart)
+  const cx = 160, cy = 150, R = 120; g.lineWidth = 16; g.beginPath(); g.arc(cx, cy, R, 0, Math.PI * 2); g.stroke();
+  for (let k = 0; k < 3; k++) { const a = -Math.PI / 2 + k * 2 * Math.PI / 3, ux = Math.cos(a), uy = Math.sin(a), vx = -uy, vy = ux;
+    const P = (s, t) => [cx + ux * s + vx * t, cy + uy * s + vy * t];
+    g.lineWidth = 14; g.beginPath(); g.moveTo(...P(-62, 0)); g.lineTo(...P(30, 0)); g.stroke();               // the stem through the centre
+    g.lineWidth = 12; g.beginPath(); g.moveTo(...P(92, -24)); g.lineTo(...P(42, -24)); g.arc(...P(42, 0), 24, a - Math.PI / 2 + Math.PI, a + Math.PI / 2 + Math.PI, true);
+    g.lineTo(...P(92, 24)); g.stroke(); }                                                                       // the U-shaped tines
+  // the wordmark in widely spaced capitals, as on Yamaha's fallboards (letters spaced about one letter width apart)
+  g.font = 'bold 138px "DejaVu Sans", "Liberation Sans", sans-serif'; g.textBaseline = 'middle'; g.letterSpacing = '30px'; g.fillText('YAMAHA', 320, 156);
+  return (LOGO = artFromCanvas(c, { edgeBlur: 1, edgeMax: 0.9 }));
+}
+function fallboardLogo(pm) {
+  pm.updateMatrixWorld(true); let fb = null; pm.traverse((m) => { if (m.isMesh && /fallboard/i.test(m.userData.part || '')) fb = m; });
+  if (!fb) return null;
+  const c = new THREE.Box3().setFromObject(fb).getCenter(new THREE.Vector3());
+  // the bench is NORTH of the keyboard (-z): cast from there, slightly above, toward the fallboard's centre
+  const o = V(c.x, c.y + 0.12, c.z - 0.8), dir = c.clone().sub(o).normalize();
+  const side = fb.material.side; fb.material.side = THREE.DoubleSide; const hit = new THREE.Raycaster(o, dir).intersectObject(fb, false)[0]; fb.material.side = side;
+  if (!hit) return null;
+  const n = hit.face.normal.clone().transformDirection(fb.matrixWorld).normalize(); if (n.dot(dir) > 0) n.negate();
+  const right = new THREE.Vector3(0, 1, 0).cross(n).normalize(), up = n.clone().cross(right).normalize();   // as the player reads it
+  const w = PIANO.logo.w, h = w / 4, at = hit.point.clone().addScaledVector(n, 0.0015).addScaledVector(up, PIANO.logo.up || 0);
+  const a = yamahaLogoArt(), m = decalMesh(a, (s, t) => at.clone().addScaledVector(right, (s - 0.5) * w).addScaledVector(up, (t - 0.5) * h), { grey: 0.78, col: 0xcaa34c }, 160);
+  return tag(m, 'piano fallboard logo (gold YAMAHA)');
+}
+
+// r7 follow-up (Jade: "a YAMAHA concert grand"): checked against Yamaha's own C6X / C7X photos and plan drawings
+// (look-only, private). The downloaded model's LEGS were curved cabriole legs with scroll brackets and its MUSIC DESK had
+// an arched top with raised ears (Steinway-like); a Yamaha C-series has plain SQUARE TAPERED legs (about 105 mm square
+// under a 135 mm square collar block with a small step, 70 mm at the foot, no toe caps) on brass TWIN-WHEEL casters, and a
+// solid desk with a STRAIGHT top edge and rounded corners, slightly flared at the bottom, leaning back on a thin ledge.
+// Those parts of the model are hidden and rebuilt here at the model's own leg positions; the case, lid, cheek blocks,
+// key slip, fallboard, keys and lyre are the model's (they match).
+function yamahaParts(g, pm) {
+  pm.updateMatrixWorld(true); const hide = (re) => pm.traverse((m) => { if (m.isMesh && re.test(m.userData.part || '')) { m.visible = false; m.userData.baseVisible = false; } });
+  // leg positions: the model's caster vertices, clustered round three seeds (bass front, treble front, tail)
+  const pts = []; const v = new THREE.Vector3();
+  pm.traverse((m) => { if (!m.isMesh || !/caster/i.test(m.userData.part || '')) return; const p = m.geometry.attributes.position; for (let i = 0; i < p.count; i += 3) pts.push(v.fromBufferAttribute(p, i).applyMatrix4(m.matrixWorld).clone()); });
+  if (pts.length < 30) return;
+  const zs = pts.map((p) => p.z), zmin = Math.min(...zs), zmax = Math.max(...zs), xs = pts.map((p) => p.x);
+  let C = [V(Math.max(...xs), 0, zmin), V(Math.min(...xs), 0, zmin), V((Math.max(...xs) + Math.min(...xs)) / 2, 0, zmax)];
+  for (let it = 0; it < 8; it++) { const acc = C.map(() => [V(), 0]); for (const p of pts) { let b = 0; C.forEach((c, k) => { if (p.distanceToSquared(c) < p.distanceToSquared(C[b])) b = k; }); acc[b][0].add(p); acc[b][1]++; }
+    C = acc.map(([s2, n], k) => (n ? s2.multiplyScalar(1 / n).setY(0) : C[k])); }
+  hide(/^(legs|casters|music_desk)$/i);
+  const BLK = EBONY, BR = { grey: 0.6, col: 0xc0a050 }, Y0 = 0.622, CAST = 0.075;   // case bottom; caster height
+  for (const c of C) { const lg = new THREE.Group(); lg.position.set(c.x, 0, c.z);
+    lg.add(box(0.135, 0.030, 0.135, BLK, [0, Y0 - 0.015, 0]));                                   // the square collar block
+    lg.add(box(0.118, 0.014, 0.118, BLK, [0, Y0 - 0.037, 0]));                                   // the small step under it
+    const sh = mk(new THREE.CylinderGeometry(0.105 / Math.SQRT2, 0.070 / Math.SQRT2, Y0 - 0.044 - CAST - 0.010, 4, 1), BLK); sh.rotation.y = Math.PI / 4;
+    sh.position.y = CAST + 0.010 + (Y0 - 0.044 - CAST - 0.010) / 2; lg.add(sh);                  // the square tapered shaft
+    lg.add(box(0.070, 0.010, 0.070, BLK, [0, CAST + 0.005, 0]));                                 // the foot
+    lg.add(box(0.050, 0.014, 0.040, BR, [0, CAST - 0.007, 0]));                                  // brass caster plate + yoke
+    for (const sx of [-1, 1]) { lg.add(cyl(0.031, 0.031, 0.022, BR, [sx * 0.014, 0.031, 0.004], [0, 0, 90], 20)); }   // twin brass wheels (rolling along z)
+    lg.traverse((o) => { if (o.isMesh) tag(o, 'piano leg (Yamaha square tapered, brass twin casters)'); }); g.add(lg); }
+  // the music desk: straight top, rounded corners, a slight flare at the foot; 0.78 x 0.29 m, 18 mm, leaning back 17 deg
+  // toward the tail (+z here: the keyboard faces north) on a thin ledge
+  { const w = 0.78, h = 0.29, r = 0.035, sh = new THREE.Shape(); sh.moveTo(-w / 2 - 0.012, 0); sh.lineTo(w / 2 + 0.012, 0); sh.quadraticCurveTo(w / 2, 0.02, w / 2, 0.05);
+    sh.lineTo(w / 2, h - r); sh.quadraticCurveTo(w / 2, h, w / 2 - r, h); sh.lineTo(-w / 2 + r, h); sh.quadraticCurveTo(-w / 2, h, -w / 2, h - r); sh.lineTo(-w / 2, 0.05); sh.quadraticCurveTo(-w / 2, 0.02, -w / 2 - 0.012, 0);
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: 0.018, bevelEnabled: true, bevelThickness: 0.003, bevelSize: 0.003, bevelSegments: 2, curveSegments: 6 });
+    const d = mk(geo, BLK), x = PIANO.spineX - PIANO.spineOff, z = PIANO.kbZ + 0.415, y = 0.982;
+    d.position.set(x, y, z); d.rotation.set(rad(17), Math.PI, 0); g.add(tag(d, 'piano music desk (Yamaha: straight top)'));
+    g.add(tag(box(0.80, 0.012, 0.045, BLK, [x, 0.978, z + 0.006]), 'piano music desk ledge')); }
+}
+
 // the egg-carton seedlings: cartons in rows along the west-wall table, each with sprouts and a hand-written label stake
 function plants(g) {
   const P = PLANTS, C = P.cartons, CART = { grey: 0.78, col: 0xc8bca0 }, LEAF = { grey: 0.46, col: 0x4f9a2e }, COTY = { grey: 0.5, col: 0x6cb83a }, LBL = { grey: 0.97, col: 0xffffff };
@@ -215,11 +289,15 @@ function furniture() {
   g.add(rug(RUG));   // r7: soft pink floral (Jade), one canonical image (furnish.js rug, mg_rug.png); was plain red
   // r7 (Jade): the coffee table and the lamp side table DUSTY DARK PINK with GLASS PANELS set into them (furnish.js glassTable);
   // the things on the coffee table stand on its top glass panel
-  { const [cx, cz] = glassTable(g, COFFEE_TABLE, 'coffee table (dusty pink, glass panels)'), y = glassTop(COFFEE_TABLE);
-    g.add(tag(box(0.22, 0.03, 0.28, { grey: 0.82, col: 0xe0d8c4 }, [cx + 0.2, y + 0.015, cz], [0, -10, 0]), 'papers / a notebook'));
-    { const m = prop('mug', { at: [cx - 0.1, y, cz - 0.1], rot: [0, 140, 0], label: 'mug' });   // "Cup" by saleviim, CC BY 4.0
-      g.add(m || tag(cyl(0.04, 0.035, 0.1, { grey: 0.85, col: 0xe8e0d0 }, [cx - 0.1, y + 0.05, cz - 0.1], null, 16), 'mug')); }
-    g.add(tag(box(0.18, 0.025, 0.24, { grey: 0.3, col: 0x3a4a6a }, [cx + 0.45, y + 0.0125, cz + 0.05], [0, 14, 0]), 'textbook')); }
+  // r7 follow-up (Jade): the long coffee table has THREE EQUAL glass panels in its top; a GLASS CHESS SET in the starting
+  // position stands on its east end (the board spans the east panel, resting on the cross rail and the end rail); the
+  // notebook on the west panel, the textbook and mug on the middle one
+  { const [, , pan] = glassTable(g, COFFEE_TABLE, 'coffee table (dusty pink, glass panels)', 3), y = glassTop(COFFEE_TABLE), [p0, p1, p2] = pan;
+    g.add(tag(box(0.22, 0.03, 0.28, { grey: 0.82, col: 0xe0d8c4 }, [p0.x, y + 0.015, p0.z], [0, -8, 0]), 'papers / a notebook'));
+    { const m = prop('mug', { at: [p1.x + 0.08, y, p1.z - 0.12], rot: [0, 140, 0], label: 'mug' });   // "Cup" by saleviim, CC BY 4.0
+      g.add(m || tag(cyl(0.04, 0.035, 0.1, { grey: 0.85, col: 0xe8e0d0 }, [p1.x + 0.08, y + 0.05, p1.z - 0.12], null, 16), 'mug')); }
+    g.add(tag(box(0.18, 0.025, 0.24, { grey: 0.3, col: 0x3a4a6a }, [p1.x - 0.03, y + 0.0125, p1.z + 0.06], [0, 14, 0]), 'textbook'));
+    chessSet(g, [p2.x, p2.z], COFFEE_TABLE.h, 'glass chess set (starting position)'); }
   // r7 (Jade: "the lamp on the corner table should be larger"): 0.70 m tall, shade 0.42 m (furnish.js tableLamp)
   { const [cx, cz] = glassTable(g, END_TABLE_E, END_TABLE_E.label + ' (dusty pink, glass panels)'); tableLamp(g, [cx, cz], glassTop(END_TABLE_E), 'table lamp (off)'); }
   table(g, END_TABLE_W, END_TABLE_W.label);
@@ -236,11 +314,15 @@ function furniture() {
   // the far part: mirror, piano + bench, floor lamp, dining table + six chairs
   // r7 (Jade): the mirror FRAMELESS (bare glass, polished bevelled edges) and a bit larger: its top edge kept where the old
   // frame's top was, extended down (and widened in proportion) until the gap above the closed piano lid equals the gap
-  // under the ceiling (layout.js MIRROR). It now REFLECTS (engine mirror composite, as kitchen90's cabinet glass): the glass
-  // meshes show the room mirrored in every guide mode; the bevel is a 25 mm band of brighter glass round the edge.
+  // under the ceiling (layout.js MIRROR). r7 follow-up (Jade): NO reflection; it reflects the ambient light, a bright smooth
+  // silver glass that brightens the room: one canonical face (mg_mirror.png: a cool silver gradient with soft diagonal
+  // sheen streaks, the conventional mirror look, never a window's flat white) in every mode, a 25 mm bright bevel band,
+  // and in the lit pass a soft light in front of it (rig below) so it reads bright without an emitter's bloom.
   { const M = MIRROR, yc = (M.y0 + M.y1) / 2, zc = (M.z0 + M.z1) / 2, H = M.y1 - M.y0, Wd = M.z1 - M.z0, bv = M.bevel, xg = M.x - M.standoff - M.t;
-    g.add(tag(box(M.t, H - 2 * bv, Wd - 2 * bv, { grey: 0.62, col: 0xe6ecf0, noCast: true }, [xg + M.t / 2, yc, zc]), 'giant mirror (glass, reflecting)'));
-    const BEV = { grey: 0.93, col: 0xf4f7f8, noCast: true };   // the bevel catches the light: a bright band in every mode
+    const glass = FART.mirror ? artPlane(FART.mirror, Wd - 2 * bv, H - 2 * bv, { grey: 0.9, col: 0xe6ecf0, noCast: true }) : mk(new THREE.PlaneGeometry(Wd - 2 * bv, H - 2 * bv), { grey: 0.9, col: 0xe6ecf0, noCast: true });
+    glass.rotation.y = -Math.PI / 2; glass.position.set(xg - 0.0005, yc, zc); g.add(tag(glass, 'giant mirror (glass)'));
+    g.add(tag(box(M.t, H - 2 * bv, Wd - 2 * bv, { grey: 0.75, col: 0xc8d0d4, noCast: true }, [xg + M.t / 2, yc, zc]), 'giant mirror (glass)'));
+    const BEV = { grey: 0.97, col: 0xf6f8f9, noCast: true };   // the bevel catches the light: a bright band in every mode
     for (const s of [-1, 1]) { g.add(tag(box(M.t * 0.6, bv, Wd, BEV, [xg + M.t * 0.3 + M.t * 0.2, yc + s * (H / 2 - bv / 2), zc]), 'giant mirror (bevelled edge)'));
       g.add(tag(box(M.t * 0.6, H - 2 * bv, bv, BEV, [xg + M.t * 0.3 + M.t * 0.2, yc, zc + s * (Wd / 2 - bv / 2)]), 'giant mirror (bevelled edge)')); }
     for (const [y, z] of [[M.y0, M.z0 + 0.3], [M.y0, M.z1 - 0.3], [M.y1, M.z0 + 0.3], [M.y1, M.z1 - 0.3]]) g.add(tag(box(0.012, 0.03, 0.05, { grey: 0.7, col: 0xb0b4b8 }, [M.x - 0.008, y + (y === M.y0 ? -0.008 : 0.008), z]), 'giant mirror (clip)')); }
@@ -262,7 +344,7 @@ function furniture() {
       lookMat: { ...BLACK, piano_keys_white: { grey: 0.92, col: 0xf2eee2 }, piano_keys_black: { grey: 0.1, col: 0x101010 }, piano_brass: { grey: 0.6, col: 0xc0a050 }, piano_brass_casters: { grey: 0.6, col: 0xc0a050 } } });
     if (!pm) pm = prop('grand_piano', { at: [PIANO.spineX - 1.452 / 2, 0, PIANO.kbZ], rot: [0, 180, 0], label: PIANO.label,
       lookMat: { ...blk, gpiano_w_keys: { grey: 0.92, col: 0xf2eee2 }, gpiano_b_keys: { grey: 0.1, col: 0x101010 }, gpiano_brass: { grey: 0.6, col: 0xc0a050 } } });
-    g.add(pm || piano()); }
+    g.add(pm || piano()); if (pm && PIANO.logo) { const lg = fallboardLogo(pm); if (lg) g.add(lg); } if (pm) yamahaParts(g, pm); }
   { const B = BENCH; const [cx, cz] = table(g, { ...B, h: B.h }, B.label, EBONY); g.add(tag(box(B.x1 - B.x0, 0.06, B.z1 - B.z0, EBONY, [cx, B.h + 0.03, cz]), B.label)); }
   { const F = FLOOR_LAMP; g.add(tag(cyl(0.14, 0.14, 0.03, WOOD_D, [F.at[0], 0.015, F.at[1]], null, 18), F.label)); g.add(tag(cyl(0.012, 0.012, F.h - 0.3, WOOD_D, [F.at[0], (F.h - 0.3) / 2, F.at[1]], null, 8), F.label));
     const sh = mk(new THREE.CylinderGeometry(0.16, 0.22, 0.3, 24, 1, true), { grey: 0.86, col: 0xeee4cc }); sh.position.set(F.at[0], F.h - 0.15, F.at[1]); sh.userData.double = true; g.add(tag(sh, F.label)); }
@@ -467,7 +549,13 @@ export function build(shot, { makeCam }) {
     if (mode === 'mask') return [mkSun(0xffffff, 3)];
     if (mode === 'lit') { const sky = new THREE.DirectionalLight(0xc8d4e8, 0.95); sky.position.set(-2.0, 2.0, 3); sky.target.position.set(2.5, 0.6, -2);
       // r5 brightness pass: ambient 0.75 -> 1.3, sky 0.7 -> 0.95, the mirror a pale glass (MG_wide_lit was nearly black; painters could not read it)
-      return [mkSun(SUN.color, 3.0), sky, new THREE.AmbientLight(0x9aa2b0, 1.3)]; }
+      // r7 follow-up (Jade: the mirror reflects the ambient light and brightens the room): a soft spot in front of the glass
+      // lights its face (and a little of the wall round it), and a dim, shadowless point light at the glass throws that
+      // light back into the room
+      const M = MIRROR, mc = V(M.x - 0.05, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2);
+      const spot = new THREE.SpotLight(0xf2f4f6, 1.1, 0, 0.40, 0.85, 0); spot.position.copy(mc).add(V(-3.4, -0.4, 0)); spot.target.position.copy(mc); spot.castShadow = false;   // far, no decay: an even wash over the glass, no hot spot
+      const bounce = new THREE.PointLight(0xeef0f2, 1.4, 8.0, 1.0); bounce.position.copy(mc).add(V(0.4, 0, 0)); bounce.castShadow = false;   // just behind the glass: it lights the room, not its own wall (no hot spot)
+      return [mkSun(SUN.color, 3.0), sky, new THREE.AmbientLight(0x9aa2b0, 1.3), spot, bounce]; }
     const d = new THREE.DirectionalLight(0xffffff, 0.55); d.position.set(4.0, 3.0, -3.0);
     return [mkSun(0xffffff, 2.2), new THREE.AmbientLight(0xffffff, 1.25), d];
   };
@@ -520,11 +608,11 @@ export function build(shot, { makeCam }) {
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'chin', 'handL', 'handR', 'hip', 'shoulderC', 'kneeL', 'kneeR'].map((k) => [k, r3(f.userData.P[k])]))])),
     };
   };
-  // r7: the mirror reflects (engine/render.js composite: the root drawn reflected in the glass plane, pasted into the glass's
+  // r7: the mirror CAN reflect (shot.mirror: true; off by default since the r7 follow-up, Jade: no reflection) (engine/render.js composite: the root drawn reflected in the glass plane, pasted into the glass's
   // visible pixels, outlined in line / contour). The sidecar's `mirror` reports each figure's reflected eyes: inside the
   // glass on screen or not, and how far the face is turned toward the glass (first love's face must never show in it).
   let mirror = null;
-  if (!shot.beamMask && shot.mirror !== false) { const M = MIRROR, xg = M.x - M.standoff, n = V(-1, 0, 0), d = n.dot(V(xg, 0, 0)), R = mirrorMatrix(n, d);
+  if (!shot.beamMask && shot.mirror === true) { const M = MIRROR, xg = M.x - M.standoff, n = V(-1, 0, 0), d = n.dot(V(xg, 0, 0)), R = mirrorMatrix(n, d);
     const meshes = []; root.traverse((o) => { if (o.isMesh && o.userData.label === 'giant mirror (glass, reflecting)') meshes.push(o); });
     const cs = [[xg, M.y1, M.z1], [xg, M.y1, M.z0], [xg, M.y0, M.z0], [xg, M.y0, M.z1]].map((p) => V(p));   // TL, TR, BR, BL seen from the room (looking east)
     const quadPx = (cm) => cs.map((v) => { const p = v.clone().project(cm); return [(p.x + 1) / 2 * 1920, (1 - p.y) / 2 * 1080]; });

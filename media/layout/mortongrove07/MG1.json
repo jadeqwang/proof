@@ -362,56 +362,6 @@
  "warnings": [
   "wrist: firstLove27 R grip cannot be reached naturally (radial deviation +4 deg; flex -17.7, radial 24.4, twist 60.9, after an elbow swivel of 20 deg)"
  ],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {
-   "jade27": {
-    "px": [
-     -5541.8,
-     888.8
-    ],
-    "world": [
-     7.5026,
-     1.1844,
-     -0.7246
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 114,
-    "face_in_reflection": false
-   },
-   "firstLove27": {
-    "px": [
-     -10276.3,
-     1157.3
-    ],
-    "world": [
-     7.717,
-     1.5155,
-     -1.2015
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 69,
-    "face_in_reflection": false
-   }
-  },
-  "glass_in_front_of_camera": false
- },
  "intent": "START of one continuous move. Over first love’s left shoulder, from behind and a little above: the back of his head and his dark brown straight hair large and soft in the foreground at frame right (his ear shows; never his face), his left shoulder and arm reaching in. She sits forward on the floral couch against the front wall, looking up at him; between them, held by both, the white hoodie FOLDED into a neat rectangle, front up: the IAS seal (a blue filled disc, figures in white reverse) upright to us, its lower part hidden under the folded-up waistband, whose ribbed edge lies across it. His hands on the stack's near side edges, hers closing on its far side edges. The front window beside her (frame right) backlights her hair with the low November sun. The camera pushes in past his shoulder through the shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",

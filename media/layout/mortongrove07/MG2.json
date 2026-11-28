@@ -363,56 +363,6 @@
   "wrist: jade27 L grip cannot be reached naturally (pronation +2 deg; flex -34, radial -21.1, twist -82.4, after an elbow swivel of -15 deg)",
   "wrist: jade27 R grip cannot be reached naturally (ulnar deviation +10 deg, pronation +34 deg; flex -28.3, radial -40.1, twist -114, after an elbow swivel of 0 deg)"
  ],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {
-   "jade27": {
-    "px": [
-     -8737.8,
-     1022
-    ],
-    "world": [
-     7.4935,
-     1.1918,
-     -0.6894
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 113,
-    "face_in_reflection": false
-   },
-   "firstLove27": {
-    "px": [
-     -23117.2,
-     2041.7
-    ],
-    "world": [
-     7.7438,
-     1.5509,
-     -1.2618
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 68,
-    "face_in_reflection": false
-   }
-  },
-  "glass_in_front_of_camera": false
- },
  "intent": "END of the continuous move (MG2 continues MG1 on the same axis; not a close-up insert, no reverse angle). Further in past his left shoulder (only a soft edge of his hair or shoulder at frame right, or nothing): she has lifted the white hoodie by its shoulder seams, both hands at the top corners, and it is unfolding in front of her: the front hangs from her hands toward us, the blue filled-disc IAS seal upright and now almost fully revealed (only its bottom sliver round the last fold), TRUTH left, BEAUTY right, the drawstrings either side; below it the lower part still folded, swinging down and out toward us, half open. Her face above the neckline, looking up at him. The sun from the window behind her rims her hair and the hoodie's edges. Then cut to the Expedit pan on \"truth by reference\".",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",

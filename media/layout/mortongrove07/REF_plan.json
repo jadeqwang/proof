@@ -364,56 +364,6 @@
  "warnings": [
   "wrist: firstLove27 R grip cannot be reached naturally (radial deviation +4 deg; flex -17.7, radial 24.4, twist 60.9, after an elbow swivel of 20 deg)"
  ],
- "mirror": {
-  "pane": "giant mirror (east wall, frameless, bevelled)",
-  "plane": "x = 4.894",
-  "normal": [
-   -1,
-   0,
-   0
-  ],
-  "glass_m": {
-   "y": [
-    2.028,
-    4.065
-   ],
-   "z": [
-    -4.962,
-    -2.038
-   ]
-  },
-  "reflected_faces": {
-   "jade27": {
-    "px": [
-     223.7,
-     178.4
-    ],
-    "world": [
-     7.5026,
-     1.1844,
-     -0.7246
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 114,
-    "face_in_reflection": false
-   },
-   "firstLove27": {
-    "px": [
-     196.2,
-     239.4
-    ],
-    "world": [
-     7.717,
-     1.5155,
-     -1.2015
-    ],
-    "inside_glass": false,
-    "faces_the_glass_deg": 69,
-    "face_in_reflection": false
-   }
-  },
-  "glass_in_front_of_camera": false
- },
  "intent": "Top view of the main floor, oriented like Jade's hand-drawn plan (street at the top), to compare against it. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",
