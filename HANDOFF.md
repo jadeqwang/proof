@@ -1,5 +1,18 @@
 # Proof — handoff for the next session
 
+## FIRST THING NEXT SESSION (Jade, 2026-11-27 night, reviewing keyframes r4)
+
+**Bake period furniture and costume details into the 3D model, so they stop changing between shots.** In shanghai86 the coffee table, the armchairs, the bookshelf cabinet (colour, styling, handles) and the uncle's watch and outfit keep changing shot to shot. Jade: "I'm not super opinionated on the specific choices and the current outfit of his is fine. It just has to stay consistent between shots and be fully painted or the image model will hallucinate a book shelf right into the plain back of an armchair."
+
+Have an agent:
+- choose time- and period-appropriate furniture for the setting (1986 Shanghai);
+- model or source each piece, with real dimensions, from model libraries (check licences, credit in docs/credits_tools.md);
+- give each piece a canonical colour, texture, wood grain, upholstery and hardware (the cabinet's handles), fully textured on every side, including the BACKS of the armchairs;
+- give the uncle's watch a canonical design (a decal or texture). Keep his current outfit, but texture it fully;
+- make all of it visible in every guide mode, and name it in the painter prompts.
+
+**General rule:** any surface the camera can see must carry its real texture. A blank surface invites the painter to invent something there. Apply the same check to the other sets.
+
 ## NEXT SESSION START HERE (2026-11-26, after round 6)
 
 **State:** every round-6 answer is applied and committed. Jade's paste is saved verbatim in
