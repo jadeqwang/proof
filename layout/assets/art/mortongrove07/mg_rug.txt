@@ -1,0 +1,10 @@
+canonical rug for layout/assets/art/mortongrove07/mg_rug.png (the living-room rug, 2.44 x 1.50 m, 5 x 8 ft)
+date: 2026-11-27 (round 7). Jade: "RUG: soft pink floral like the couch was just painted (the MG_wide_v1 painting),
+  with patterning at a similar scale" (was plain red).
+route: Codex image_gen (headless codex exec, tmux proof-mgfix, on plan, $0); prompt in work/art_mg/r7/rug_task.txt (private);
+  same colour reference as mg_upholstery (a crop of the generated painting MG_wide_v1).
+what: the whole rug from directly above, edge to edge: an Aubusson / needlepoint-style wool rug, pale dusty-rose field
+  with scattered pink cabbage-rose sprays, a central wreath of roses round a cream medallion, a deeper dusty-rose border
+  with a trailing rose-and-leaf vine between thin cream lines. Roses about a tenth of the rug's width (like the couch's
+  smaller roses).
+size: 1536 x 944 RGB PNG (the 1536 x 1024 original stretched 8% to the rug's 1.63 : 1).

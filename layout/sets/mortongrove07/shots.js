@@ -44,12 +44,16 @@ void edge;
 
 // her: on the couch's west cushion (next to the front window), turned toward him; default = MG2: she has lifted the
 // hoodie by the shoulder seams and it is unfolding, its front (the seal) toward him; she looks up at him
-const her = (o = {}) => ({ at: HER.at, yaw: HER.yaw, legs: 'seat', legOpts: { seatH, footFwd: 0.40 }, spine: { bend: 8 }, head: { look: 'firstLove27:eyes' }, costume: { top: 0x7d8fa8, sleeves: 'long' },
+const her = (o = {}) => ({ at: HER.at, yaw: HER.yaw, legs: 'seat', legOpts: { seatH, footFwd: 0.40 }, spine: { bend: 8 }, head: { look: 'firstLove27:eyes' }, costume: { top: 0x7d8fa8, sleeves: 'long', sock: SOCKS.jade27 },
   L: seam('herL'), R: seam('herR'), ...o });
 // him: standing at the west end of the coffee table, in front of her, leaning in a little; he has just let go of it
 // (hands low and open); sleeves pushed up (forearms show); looks at her (away from every camera)
-const him = (o = {}) => ({ at: HIM.at, yaw: HIM.yaw, legs: 'stand', spine: { bend: 14 }, head: { look: 'jade27:eyes' }, costume: { sleeves: 'pushed', sock: 0xd9ab88 },
+const him = (o = {}) => ({ at: HIM.at, yaw: HIM.yaw, legs: 'stand', spine: { bend: 14 }, head: { look: 'jade27:eyes' }, costume: { sleeves: 'pushed', sock: SOCKS.firstLove27 },
   L: 'side', R: 'side', ...o });
+// r7 (Jade 2026-11-27): BOTH wear SOCKS indoors (no bare feet, no sandals: no toe shots, and more accurate). Her: plain
+// white cotton crew socks (with the blue-grey top and indigo jeans); him: plain charcoal dress socks (with the black slacks).
+// build.js adds a cuff up each shin (basement90 kit.js footwear) so the sock tops read under the trouser hems.
+export const SOCKS = { jade27: 0xf2efe8, firstLove27: 0x2e2e33, cuff: { jade27: 0.10, firstLove27: 0.12 } };
 const figs = (h = {}, j = {}) => ({ jade27: her(h), firstLove27: him(j) });
 const T = { section: FILM.section, time: FILM.time, t: FILM.t, lyric: FILM.sung_here };
 const az = (v) => +(Math.atan2(v[0], v[2]) * 180 / Math.PI).toFixed(1);
@@ -90,7 +94,7 @@ const BASE = [
   // piano lid to the level 5.10 m ceiling, so the centring can be judged. Not a shot.
   { id: 'REF_east', lens: 16, ...T, position: 'reference', pos: [1.2, 1.6, -3.5], target: [4.9, 2.9, -3.5],
     header: 'REFERENCE (r6): the east (mirror) wall face-on: the giant mirror centred between the piano lid and the 5.10 m ceiling',
-    intent: 'The east wall square on, looking up a little: the giant mirror (2.8 x 1.95 m, dark wood frame) hung with about 1.04 m of bare plaster above the closed piano lid and 1.04 m below the level ceiling line, centred on the wall left to right; the stairs at the far left, the floor lamp, the grand piano\'s lid along the bottom. Not a shot.' },
+    intent: 'The east wall square on, looking up a little: the giant mirror (frameless, bevelled; r7 size in layout.js MIRROR.size) r7: frameless with polished bevelled edges, reflecting the room; equal bare-plaster margins above the closed piano lid and below the level ceiling line (MIRROR.marginTop / marginBottom), centred on the wall left to right; the stairs at the far left, the floor lamp, the grand piano\'s lid along the bottom. Not a shot.' },
   { id: 'REF_north', lens: 18, ...T, position: 'reference', pos: [4.3, 1.75, -0.6], target: [0.6, 1.1, -5.6],
     header: 'WIDE (reference): from the couch\'s east end, looking north-west: piano, mirror, front door, closet, dining table, kitchen slider',
     intent: 'The rest of the great room as Jade drew it, for checking: the 7-ft grand along the giant mirror (east wall, frame right), the dining table with six chairs by the dining window, the front door in the jog and the coat closet, the sliding door to the kitchen and the stairs in the far corner, the one tilted ceiling plane rising from the dining (west) wall to the high mirror (east) wall, the north wall a trapezoid. No figures (this camera would face him). Not a shot.',
@@ -98,6 +102,13 @@ const BASE = [
   { id: 'REF_plan', lens: 0, ...T, position: 'reference', ortho: { w: 15.0 }, pos: [1.75, 9, -3.55], target: [1.75, 0, -3.55], up: [0, 0, 1], near: 6.62, far: 10.5, hide: ['ceiling (one tilted plane', 'daylight outside'],
     header: 'PLAN as Jade drew it: SOUTH (Capri Lane) UP, west right; white outlines = the 15:30 sun through the three windows',
     hoodie: 'folded', intent: 'Top view of the main floor, oriented like Jade\'s hand-drawn plan (street at the top), to compare against it. Not a shot.', figs: figs(handover.her, handover.him) },
+  // r7 (Jade's notes on the house): close references of the rebuilt pieces, no figures, the folded hoodie hidden. Not shots.
+  ...[['REF_piano_a', 24, [2.55, 1.50, -6.75], [3.85, 0.72, -4.65], 'the grand from the keyboard end (bass side to the mirror): key slip, keys, cheek blocks, fallboard, music desk, closed lid with its front flap, legs on casters, pedal lyre with three pedals'],
+      ['REF_piano_b', 24, [2.25, 1.55, -1.85], [3.90, 0.72, -4.15], 'the grand from the tail and treble side: the bentside and tail curve of the rim, the closed lid, the tail leg, the lyre under the keyboard end'],
+      ['REF_couch', 24, [2.90, 1.25, -2.95], [2.90, 0.52, -0.45], 'the overstuffed floral couch square on: two large roses centred on every seat and back cushion, rolled arms, the pink floral rug, the dusty-pink glass-panel coffee table'],
+      ['REF_loveseat', 26, [2.15, 1.30, -2.55], [4.45, 0.48, -1.70], 'the overstuffed floral loveseat east of the rug, facing west: two cushions, the same upholstery, two large roses centred on each cushion; the lamp table and lamp beyond']]
+    .map(([id, lens, pos, target, what]) => ({ id, lens, ...T, position: 'reference', hoodie: 'folded', pos, target, hide: ['IAS ', 'hoodie', 'seal'], figs: {},
+      header: 'REFERENCE (r7): ' + what, intent: 'Reference render (r7, Jade\'s notes on the house): ' + what + '. No figures. Not a shot.' })),
 ];
 // with { surf: true } each shot also gets beam_<id>__surf: the lit surfaces only (MG1 and MG2 look through the broad shaft)
 export const SHOTS = BASE.concat(maskTwins(BASE, { surf: true }));

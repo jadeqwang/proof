@@ -115,9 +115,14 @@ COUCH.z0 = COUCH.z1 - COUCH.d;                       // front edge of the frame 
 COUCH.seatZ1 = COUCH.z1 - COUCH.backD;               // front face of the back cushions
 export const END_TABLE_E = { x0: 4.15, x1: 4.60, z0: -0.52, z1: -0.08, h: 0.60, label: 'side table (lamp)' };   // drawing: "side table w/ lamp", couch's east end
 export const END_TABLE_W = { x0: 1.32, x1: 1.72, z0: -0.50, z1: -0.10, h: 0.52, label: 'small table' };          // drawing: "table", couch's west end, under the window's corner
-export const RUG = { x0: 1.85, x1: 4.15, z0: -2.15, z1: -0.94 };                                                 // drawing: red
+// r7 (Jade 2026-11-27): "soft pink floral like the couch" (was plain red), one canonical texture (RUG_ART); a real 5 x 8 ft
+// rug (2.44 x 1.50 m), its south edge just clear of the couch's front feet; the image is stretched 8% to the rug's 1.63:1
+export const RUG = { x0: 1.70, x1: 4.14, z0: -2.45, z1: -0.95, art: '/assets/art/mortongrove07/mg_rug.png', label: 'pink floral rug' };
 export const COFFEE_TABLE = { x0: 2.55, x1: 3.80, z0: -1.85, z1: -1.30, h: 0.42 };                              // on the rug (shortened at its west end so he can stand there)
-export const LOVESEAT = { x0: 4.10, x1: 4.88, z0: -2.15, z1: -0.95, label: 'loveseat (two cushions, facing west)' };   // drawing: the two-part block left of the rug (Jade r3: a loveseat)
+// r7 (Jade: "a loveseat is missing"): it was here since round 2 (the drawing's two-part block east of the rug, facing west;
+// Jade r3: "loveseat" confirmed) but as a plain grey-brown box, mostly hidden behind the piano in MG_wide. Now a real
+// two-seat size (1.45 m long, 0.88 deep, was 1.20 x 0.78) in the couch's overstuffed floral upholstery; same place.
+export const LOVESEAT = { x0: 4.02, x1: 4.88, z0: -2.42, z1: -0.97, label: 'floral loveseat (two cushions, facing west)' };   // drawing: the two-part block left of the rug (Jade r3: a loveseat)
 export const ARMCHAIR = { at: [1.35, -1.20], yaw: 90, w: 0.78, d: 0.80, seat: 0.43, back: 0.88, arm: 0.6 };         // drawing: right of the rug, facing east
 export const PLANTS = { x0: 0.10, x1: 0.68, z0: -1.75, z1: -0.30, h: 0.42, cartons: { rows: 9, cols: 2, l: 0.28, w: 0.105, h: 0.065 },
   label: 'coffee table: germinating plants in egg cartons, carefully labelled' };                                // drawing: along the west wall under the window
@@ -131,7 +136,11 @@ export const PRINT = { x: 2.9, y: 1.64, z: -0.025, w: 1.4, h: 1.0 };
 // 3.05: the 1.95 m glass at 2.075-4.025 (frame 2.035-4.065) leaves ~1.04 m of wall above the lid and ~1.04 m below the
 // ceiling. Horizontally unchanged (centre z -3.50): above the 2.38 m stair opening the east wall runs z -7.2 -> 0
 // (centre -3.60), so the mirror is already centred on the open upper wall.
-export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 2.075, y1: 4.025, label: 'giant mirror' };   // east wall; r3: higher (was 0.25-2.20, then 0.95-2.90); r6: centred between the piano lid and the 5.10 m ceiling
+// r7 (Jade 2026-11-27): FRAMELESS (bare glass, polished bevelled edges), a bit larger. Her rule: keep the CURRENT gap
+// between the mirror's top edge and the top of the wall (the r6 frame's top, 4.065 m, under the level 5.10 m ceiling:
+// 1.035 m), extend it DOWN until the gap above the closed piano lid is about the same, and widen it in proportion (the
+// r6 glass's 2.8 : 1.95). MIRROR is filled in after PIANO below (it needs the lid's height).
+export const MIRROR = { x: ROOM.x1, label: 'giant mirror (frameless, bevelled)', standoff: 0.006, t: 0.012, bevel: 0.025, top: 4.065, aspect: 2.8 / 1.95, zc: -3.50 };   // east wall; r3: higher (was 0.25-2.20, then 0.95-2.90); r6: centred between the piano lid and the 5.10 m ceiling
 // 7-ft grand (Jade's drawing: "7' concert grand"; a 7-ft grand is strictly a semi-concert "B"-size grand, Steinway B
 // 211 x 148 cm: kept at that size because the drawing says 7'). Round 3 (Jade): "the correct shape of an actual grand":
 // PIANO.outline is a real grand's plan (straight spine on the bass side, a short straight treble side at the keyboard,
@@ -139,7 +148,13 @@ export const MIRROR = { x: ROOM.x1, z0: -4.90, z1: -2.10, y0: 2.075, y1: 4.025, 
 // west, keyboard at the NORTH end with the bench there, so the pianist faces south toward the living room.
 // Round 4 (Jade): "7'1\" to be exact" = 2.16 m long (keyboard front to tail); width 1.452 m = the downloaded model's
 // (layout/assets/props/grand_piano, "Grand Piano" by thanhthanh, CC BY 4.0; its keyboard is the real 1.22 m).
-export const PIANO = { spineX: 4.55, kbZ: -5.20, L: 2.16, W: 1.452, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, label: '7-ft grand piano' };
+// Round 7 (Jade: "it has missing parts"): the fuller downloaded grand (wendyyim, CC BY 4.0, layout/assets/props/grand_piano_c7):
+// Jade's 7'1" "to be exact" = 2.16 m long (keyboard 1.227 m, body lengthened behind the action), 1.497 m wide, closed lid top
+// 0.993 m; spine 0.740 m from the model's centre line. (A first r7 build used 2.27 m, a Yamaha C7, in error; corrected.)
+export const PIANO = { spineX: 4.55, spineOff: 0.740, kbZ: -5.20, L: 2.16, W: 1.497, caseY0: 0.62, caseY1: 0.95, kbDepth: 0.26, lidTop: 0.993, label: '7-ft grand piano (7\'1", lid closed)' };
+{ const M = MIRROR; M.marginTop = +(VAULT.high - M.top).toFixed(3); M.y1 = M.top; M.y0 = +(PIANO.lidTop + M.marginTop).toFixed(3);
+  M.marginBottom = +(M.y0 - PIANO.lidTop).toFixed(3); const H = M.y1 - M.y0, W = H * M.aspect; M.z0 = +(M.zc - W / 2).toFixed(3); M.z1 = +(M.zc + W / 2).toFixed(3);
+  M.size = [+W.toFixed(3), +H.toFixed(3)]; }
 export const BENCH = { x0: 3.40, x1: 4.15, z0: -5.78, z1: -5.42, h: 0.50, label: 'piano bench' };
 export const FLOOR_LAMP = { at: [4.62, -6.02], h: 1.62, label: 'floor lamp (off)' };
 export const CLOSET = { x0: JOG.xW, x1: -0.15, z0: -4.05, z1: -3.00, h: 2.20, label: 'coat closet' };   // drawing: by the front door; its door on the east face (GUESS)

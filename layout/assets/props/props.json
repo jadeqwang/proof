@@ -869,17 +869,17 @@
   "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
  },
  "grand_piano_c7": {
-  "label": "grand piano (Yamaha C7-size, 2.27 m long, ebony, lid closed, desk up)",
+  "label": "grand piano (7'1\", 2.16 m long, ebony, lid closed, desk up)",
   "size_m": [
    1.497,
    1.2072,
-   2.27
+   2.16
   ],
-  "origin": "floor directly under the centre of the keyboard front edge (key slip); keyboard faces +z (tail at z=-2.27), straight bass-side spine on -x (player's left), y up; lid node pivots on its hinge at x=-0.740, y=0.972 (axis +z)",
+  "origin": "floor directly under the centre of the keyboard front edge (key slip); keyboard faces +z (tail at z=-2.16), straight bass-side spine on -x (player's left), y up; lid node pivots on its hinge at x=-0.740, y=0.972 (axis +z)",
   "grips": {},
   "defaults": {},
   "source": "Sketchfab/wendyyim (jiong_2000) (CC BY 4.0)",
   "credit": "\"Grand Piano\" by wendyyim (https://sketchfab.com/3d-models/ee82222af7644df5bff9002314ad4838), CC BY 4.0",
-  "use": "mortongrove07 living-room grand piano (Yamaha C7-size)"
+  "use": "mortongrove07 living-room grand piano (7'1\", 2.16 m)"
  }
 }

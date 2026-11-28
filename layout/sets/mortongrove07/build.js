@@ -14,11 +14,14 @@ import { wall, hexa, kitchenChair, r3, hideLabels } from '../basement90/kit.js';
 import { sweatshirt, lapColliders, foldedSeal } from './sweatshirt.js';
 import { graspArms } from '../../engine/grasp.js';
 import { loadProps, prop } from '../_props.js';   // downloaded props (phase 2)
-import { framedPictureArt } from './art.js';   // fixed picture texture (background-art agent)   // the cloth hoodie (round 3)
+import { framedPictureArt } from './art.js';   // fixed picture texture (background-art agent)
+import { overstuffed, rug, glassTable, glassTop, tableLamp } from './furnish.js';   // r7: canonical upholstery + rug textures, glass-panel tables, real-size lamp
+import { footwear, mirrorMatrix, pointInQuad } from '../basement90/kit.js';   // r7: socks; the mirror's reflection
+import { SOCKS } from './shots.js';
 import { YEAR, FILM, HOUSE, SCENE, SUN, SUN_DIR, APERTURES, BEAM, sunMargin, sunMargins, sunCos, ROOM, JOG, VAULT, ceilAt, PICTURE, WIN_W, WIN_D, FRONT_DOOR, SLIDER,
   KITCHEN, STAIR, COUCH, END_TABLE_E, END_TABLE_W, RUG, COFFEE_TABLE, LOVESEAT, ARMCHAIR, PLANTS, PRINT, MIRROR, PIANO, BENCH, FLOOR_LAMP, CLOSET, DINING,
   HER, HIM, SHIRT, GRIP, SEAL, FOLD, FSEAL, TURN, GARMENT, LIGHTS } from './layout.js';
-await loadProps(['mug', 'grand_piano']);
+await loadProps(['mug', 'grand_piano', 'grand_piano_c7']);
 
 // cast: `jade27` (kind adultJade27; stands in for Jade at about 24) and `firstLove27` (kind adultFirstLove, 1.78 m), both from ../_cast.js
 void CAST;
@@ -77,7 +80,11 @@ function room() {
   const P = PICTURE, Ww = WIN_W, Wd = WIN_D, D = FRONT_DOOR, S = SLIDER, St = STAIR;
   g.add(vwall({ axis: 'z', at: z1, a0: x0 - T, a1: x1 + T, t: T, out: 1, holes: [{ a0: P.x0, a1: P.x1, y0: P.sill, y1: P.head }], look: PLASTER, label: 'front wall (south, Capri Lane; a trapezoid under the tilted ceiling)' }));
   g.add(vwall({ axis: 'x', at: x0, a0: zJ, a1: z1, t: T, out: -1, holes: [{ a0: Ww.z0, a1: Ww.z1, y0: Ww.sill, y1: Ww.head }], look: PLASTER, label: 'west wall of the living room (egg-carton window)' }));
-  g.add(vwall({ axis: 'z', at: zJ, a0: xW - T, a1: x0, t: T, out: 1, holes: [{ a0: D.x0, a1: D.x1, y0: 0, y1: D.h }], look: PLASTER, label: 'entry wall (front door, faces the street)' }));
+  // r7 (Jade: "a weird wood beam near the door that isn't there"): this wall used to run on to x0 and overlap the living
+  // room's west wall in the 0.2 x 0.2 m corner block, two coplanar faces on each side of the corner: the line / contour /
+  // form guides drew the z-fighting as a dense black hatched strip from floor to ceiling, which the painter read as a
+  // tall wooden post. It now stops at the west wall's outer face (x0 - T): one face per side, no overlap.
+  g.add(vwall({ axis: 'z', at: zJ, a0: xW - T, a1: x0 - T, t: T, out: 1, holes: [{ a0: D.x0, a1: D.x1, y0: 0, y1: D.h }], look: PLASTER, label: 'entry wall (front door, faces the street)' }));
   g.add(vwall({ axis: 'x', at: xW, a0: z0 - Ti, a1: zJ, t: T, out: -1, holes: [{ a0: Wd.z0, a1: Wd.z1, y0: Wd.sill, y1: Wd.head }], look: PLASTER, label: 'west wall (dining window; the ceiling\'s low side)' }));
   g.add(vwall({ axis: 'z', at: z0, a0: xW - T, a1: x1 + T, t: Ti, out: -1, holes: [{ a0: S.x0, a1: S.x1, y0: 0, y1: S.h }], look: PLASTER, label: 'north wall (sliding door to the kitchen)' }));
   g.add(vwall({ axis: 'x', at: x1, a0: z0 - Ti, a1: z1 + T, t: Ti, out: 1, holes: [{ a0: St.z0, a1: St.z1, y0: 0, y1: ROOM.h - 0.06 }], look: PLASTER, label: 'east wall (the ceiling\'s high side, level top: mirror, piano; split-level wing beyond)' }));
@@ -110,21 +117,13 @@ function room() {
   return g;
 }
 
-// three-seat sofa against the south wall, facing north (-z)
+// three-seat sofa against the south wall, facing north (-z). r7 (Jade): OVERSTUFFED (rounder, fuller cushions and arms),
+// larger florals with two LARGE roses in the middle of each cushion (furnish.js overstuffed(), mg_upholstery.png)
 function couch() {
-  const g = new THREE.Group(); const C = COUCH, cx = (C.x0 + C.x1) / 2, W = C.x1 - C.x0, zc = (C.z0 + C.z1) / 2;
-  const ix0 = C.x0 + C.armW, ix1 = C.x1 - C.armW, iw = ix1 - ix0;
-  g.add(box(W, C.baseH, C.d, FLORAL_D, [cx, C.baseH / 2 + 0.06, zc]));
-  for (const x of [C.x0 + 0.05, C.x1 - 0.05]) for (const z of [C.z0 + 0.05, C.z1 - 0.05]) g.add(cyl(0.02, 0.016, 0.06, WOOD_D, [x, 0.03, z], null, 10));
-  g.add(box(W, C.back - C.baseH - 0.06, 0.18, FLORAL_D, [cx, (C.back + C.baseH + 0.06) / 2, C.z1 - 0.09]));
-  for (const s of [-1, 1]) { const ax = s < 0 ? C.x0 + C.armW / 2 : C.x1 - C.armW / 2;
-    g.add(box(C.armW, C.arm - 0.08 - C.baseH, C.d, FLORAL_D, [ax, (C.arm - 0.08 + C.baseH) / 2 + 0.03, zc]));
-    g.add(cyl(0.1, 0.1, C.d, FLORAL_D, [ax, C.arm - 0.1, zc], [90, 0, 0], 20)); }
-  for (let k = 0; k < 3; k++) { const x = ix0 + iw * (k + 0.5) / 3;
-    g.add(box(iw / 3 - 0.012, C.seat - C.baseH - 0.06, C.seatZ1 - C.z0 + 0.02, FLORAL, [x, (C.seat + C.baseH + 0.06) / 2, (C.seatZ1 + C.z0) / 2 - 0.01]));
-    g.add(box(iw / 3 - 0.012, C.back - C.seat + 0.02, C.backD - 0.08, FLORAL, [x, (C.back + C.seat) / 2 + 0.01, C.z1 - 0.18 - (C.backD - 0.08) / 2], [8, 0, 0])); }
-  g.add(box(0.36, 0.34, 0.12, { grey: 0.5, col: 0x8a6a5a }, [C.x1 - C.armW - 0.2, C.seat + 0.17, C.seatZ1 - 0.08], [12, 18, 0]));   // throw pillow, east end
-  return tag(g, 'floral couch');
+  const C = COUCH, g = overstuffed(C.x1 - C.x0, C.d, 3, { seat: C.seat, back: C.back, arm: C.arm, armW: C.armW, baseH: C.baseH, backD: C.backD }, 'floral couch');
+  g.rotation.y = Math.PI; g.position.set((C.x0 + C.x1) / 2, 0, (C.z0 + C.z1) / 2);   // local +z (the sitter's front) -> world -z (north)
+  g.add(box(0.36, 0.34, 0.12, { grey: 0.55, col: 0xb07a80 }, [-(C.x1 - C.x0) / 2 + C.armW + 0.2, C.seat + 0.19, -C.d / 2 + C.backD + 0.08], [-12, -18, 0]));   // throw pillow (dusty-rose velvet), east end
+  return g;
 }
 
 // an upholstered seat (armchair or loveseat) at [x, z], yaw (0 = the sitter faces +z)
@@ -190,7 +189,7 @@ function piano() {
 
 // the egg-carton seedlings: cartons in rows along the west-wall table, each with sprouts and a hand-written label stake
 function plants(g) {
-  const P = PLANTS, C = P.cartons, CART = { grey: 0.78, col: 0xc8bca0 }, LEAF = { grey: 0.5, col: 0x5e8a3a }, LBL = { grey: 0.97, col: 0xffffff };
+  const P = PLANTS, C = P.cartons, CART = { grey: 0.78, col: 0xc8bca0 }, LEAF = { grey: 0.46, col: 0x4f9a2e }, COTY = { grey: 0.5, col: 0x6cb83a }, LBL = { grey: 0.97, col: 0xffffff };
   const cx = (P.x0 + P.x1) / 2; const tbl = { x0: P.x0, x1: P.x1, z0: P.z0, z1: P.z1, h: P.h };
   table(g, tbl, P.label);
   const dz = (P.z1 - P.z0 - 0.06) / C.rows; let k = 0;
@@ -198,7 +197,9 @@ function plants(g) {
     const z = P.z0 + 0.03 + dz * (i + 0.5), x = cx + (j - (C.cols - 1) / 2) * (C.l + 0.01);
     g.add(tag(box(C.l, C.h, C.w, CART, [x, P.h + C.h / 2, z]), 'egg cartons (germinating plants)'));
     for (let s = 0; s < 6; s++) { const sx = x - C.l / 2 + C.l * (s + 0.5) / 6 + ((k * 7 + s * 3) % 5 - 2) * 0.004, hgt = 0.03 + ((k + s) % 4) * 0.012;
-      for (const sz of [-1, 1]) g.add(tag(cyl(0.004, 0.003, hgt, LEAF, [sx, P.h + C.h + hgt / 2, z + sz * 0.025], null, 5), 'seedlings')); }
+      for (const sz of [-1, 1]) { const y1 = P.h + C.h + hgt; g.add(tag(cyl(0.003, 0.0025, hgt, LEAF, [sx, P.h + C.h + hgt / 2, z + sz * 0.025], null, 5), 'seedlings'));
+        // r7 (Jade: "make its PLANTS GREENER"): each sprout opens two fresh green seed leaves (cotyledons), 2.4 x 1.2 cm
+        for (const s2 of [-1, 1]) g.add(tag(box(0.024, 0.002, 0.012, COTY, [sx + s2 * 0.011, y1 + 0.002, z + sz * 0.025], [0, (k * 37 + s * 23) % 180, s2 * 18]), 'seedlings')); } }
     g.add(tag(box(0.012, 0.07, 0.03, LBL, [x - C.l / 2 + 0.02, P.h + C.h + 0.03, z], [0, 0, -10]), 'labels (carefully hand-lettered)'));
     k++; }
 }
@@ -208,22 +209,24 @@ function table(g, T, label, look = WOOD) {
   for (const sx of [-1, 1]) for (const sz of [-1, 1]) g.add(tag(box(0.04, T.h - 0.04, 0.04, look, [cx + sx * ((T.x1 - T.x0) / 2 - 0.035), (T.h - 0.04) / 2, cz + sz * ((T.z1 - T.z0) / 2 - 0.035)]), label));
   return [cx, cz];
 }
-function lamp(g, at, y, label) {
-  g.add(tag(cyl(0.07, 0.09, 0.26, { grey: 0.7, col: 0xc0b49a }, [at[0], y + 0.13, at[1]], null, 18), label));
-  const sh = mk(new THREE.CylinderGeometry(0.12, 0.17, 0.24, 24, 1, true), { grey: 0.86, col: 0xeee4cc }); sh.position.set(at[0], y + 0.36, at[1]); sh.userData.double = true; g.add(tag(sh, label));
-}
 
 function furniture() {
   const g = new THREE.Group();
-  g.add(tag(box(RUG.x1 - RUG.x0, 0.012, RUG.z1 - RUG.z0, { grey: 0.42, col: 0x9a2a26, recvShadowLine: true }, [(RUG.x0 + RUG.x1) / 2, 0.006, (RUG.z0 + RUG.z1) / 2]), 'red rug'));
-  { const [cx, cz] = table(g, COFFEE_TABLE, 'coffee table');
-    g.add(tag(box(0.22, 0.03, 0.28, { grey: 0.82, col: 0xe0d8c4 }, [cx + 0.2, COFFEE_TABLE.h + 0.015, cz], [0, -10, 0]), 'papers / a notebook'));
-    { const m = prop('mug', { at: [cx - 0.1, COFFEE_TABLE.h, cz - 0.1], rot: [0, 140, 0], label: 'mug' });   // "Cup" by saleviim, CC BY 4.0
-      g.add(m || tag(cyl(0.04, 0.035, 0.1, { grey: 0.85, col: 0xe8e0d0 }, [cx - 0.1, COFFEE_TABLE.h + 0.05, cz - 0.1], null, 16), 'mug')); }
-    g.add(tag(box(0.18, 0.025, 0.24, { grey: 0.3, col: 0x3a4a6a }, [cx + 0.45, COFFEE_TABLE.h + 0.045, cz + 0.05], [0, 14, 0]), 'textbook')); }
-  { const [cx, cz] = table(g, END_TABLE_E, END_TABLE_E.label); lamp(g, [cx, cz], END_TABLE_E.h, 'table lamp (off)'); }
+  g.add(rug(RUG));   // r7: soft pink floral (Jade), one canonical image (furnish.js rug, mg_rug.png); was plain red
+  // r7 (Jade): the coffee table and the lamp side table DUSTY DARK PINK with GLASS PANELS set into them (furnish.js glassTable);
+  // the things on the coffee table stand on its top glass panel
+  { const [cx, cz] = glassTable(g, COFFEE_TABLE, 'coffee table (dusty pink, glass panels)'), y = glassTop(COFFEE_TABLE);
+    g.add(tag(box(0.22, 0.03, 0.28, { grey: 0.82, col: 0xe0d8c4 }, [cx + 0.2, y + 0.015, cz], [0, -10, 0]), 'papers / a notebook'));
+    { const m = prop('mug', { at: [cx - 0.1, y, cz - 0.1], rot: [0, 140, 0], label: 'mug' });   // "Cup" by saleviim, CC BY 4.0
+      g.add(m || tag(cyl(0.04, 0.035, 0.1, { grey: 0.85, col: 0xe8e0d0 }, [cx - 0.1, y + 0.05, cz - 0.1], null, 16), 'mug')); }
+    g.add(tag(box(0.18, 0.025, 0.24, { grey: 0.3, col: 0x3a4a6a }, [cx + 0.45, y + 0.0125, cz + 0.05], [0, 14, 0]), 'textbook')); }
+  // r7 (Jade: "the lamp on the corner table should be larger"): 0.70 m tall, shade 0.42 m (furnish.js tableLamp)
+  { const [cx, cz] = glassTable(g, END_TABLE_E, END_TABLE_E.label + ' (dusty pink, glass panels)'); tableLamp(g, [cx, cz], glassTop(END_TABLE_E), 'table lamp (off)'); }
   table(g, END_TABLE_W, END_TABLE_W.label);
-  { const L = LOVESEAT; g.add(tag(upholstered([(L.x0 + L.x1) / 2, (L.z0 + L.z1) / 2], -90, L.z1 - L.z0, L.x1 - L.x0, { cushions: 2 }), L.label)); }
+  // r7 (Jade: "a loveseat is missing"): the drawing's loveseat east of the rug, facing west, now in the couch's overstuffed
+  // floral (same texture, one repeat per cushion); it was a plain grey-brown box before
+  { const L = LOVESEAT, ls = overstuffed(L.z1 - L.z0, L.x1 - L.x0, 2, { seat: COUCH.seat, back: COUCH.back, arm: COUCH.arm, armW: COUCH.armW, baseH: COUCH.baseH, backD: COUCH.backD }, L.label);
+    ls.rotation.y = -Math.PI / 2; ls.position.set((L.x0 + L.x1) / 2, 0, (L.z0 + L.z1) / 2); g.add(ls); }
   { const A = ARMCHAIR; g.add(tag(upholstered(A.at, A.yaw, A.w, A.d, { seat: A.seat, back: A.back, arm: A.arm }), 'armchair')); }
   plants(g);
   // the framed picture over the couch (1.4 x 1.0 m; r4: a Chinese ink-and-wash horse at full gallop, art.js)
@@ -231,20 +234,34 @@ function furniture() {
   g.add(tag(box(PRINT.w - 0.12, PRINT.h - 0.12, 0.01, { grey: 0.55, col: 0x8a8270 }, [PRINT.x, PRINT.y, PRINT.z - 0.02]), 'framed picture (backing)'));
   g.add(framedPictureArt());
   // the far part: mirror, piano + bench, floor lamp, dining table + six chairs
-  // r5 (brightness pass): in the lit guide the mirror read as a blank dark slab (it faces west, away from the sun). A real
-  // mirror shows the bright room: the lit pass gets a pale silvery glass (0xe6ecf0; no reflection is rendered, no glow);
-  // the other passes keep the plain grey panel
-  { const M = MIRROR, at = [M.x - 0.02, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2];
-    g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0x9aa4a8, hide: ['lit'] }, at), 'giant mirror (not reflecting in these renders)'));
-    g.add(tag(box(0.03, M.y1 - M.y0, M.z1 - M.z0, { grey: 0.62, col: 0xe6ecf0, only: ['lit'], noCast: true }, at), 'giant mirror (not reflecting in these renders)'));
-    g.add(tag(box(0.045, M.y1 - M.y0 + 0.08, M.z1 - M.z0 + 0.08, { grey: 0.4, col: 0x6a5a40 }, [M.x - 0.01, (M.y0 + M.y1) / 2, (M.z0 + M.z1) / 2]), 'giant mirror frame')); }
+  // r7 (Jade): the mirror FRAMELESS (bare glass, polished bevelled edges) and a bit larger: its top edge kept where the old
+  // frame's top was, extended down (and widened in proportion) until the gap above the closed piano lid equals the gap
+  // under the ceiling (layout.js MIRROR). It now REFLECTS (engine mirror composite, as kitchen90's cabinet glass): the glass
+  // meshes show the room mirrored in every guide mode; the bevel is a 25 mm band of brighter glass round the edge.
+  { const M = MIRROR, yc = (M.y0 + M.y1) / 2, zc = (M.z0 + M.z1) / 2, H = M.y1 - M.y0, Wd = M.z1 - M.z0, bv = M.bevel, xg = M.x - M.standoff - M.t;
+    g.add(tag(box(M.t, H - 2 * bv, Wd - 2 * bv, { grey: 0.62, col: 0xe6ecf0, noCast: true }, [xg + M.t / 2, yc, zc]), 'giant mirror (glass, reflecting)'));
+    const BEV = { grey: 0.93, col: 0xf4f7f8, noCast: true };   // the bevel catches the light: a bright band in every mode
+    for (const s of [-1, 1]) { g.add(tag(box(M.t * 0.6, bv, Wd, BEV, [xg + M.t * 0.3 + M.t * 0.2, yc + s * (H / 2 - bv / 2), zc]), 'giant mirror (bevelled edge)'));
+      g.add(tag(box(M.t * 0.6, H - 2 * bv, bv, BEV, [xg + M.t * 0.3 + M.t * 0.2, yc, zc + s * (Wd / 2 - bv / 2)]), 'giant mirror (bevelled edge)')); }
+    for (const [y, z] of [[M.y0, M.z0 + 0.3], [M.y0, M.z1 - 0.3], [M.y1, M.z0 + 0.3], [M.y1, M.z1 - 0.3]]) g.add(tag(box(0.012, 0.03, 0.05, { grey: 0.7, col: 0xb0b4b8 }, [M.x - 0.008, y + (y === M.y0 ? -0.008 : 0.008), z]), 'giant mirror (clip)')); }
   // r5 (Jade): "make the piano fully black": polished ebony everywhere (case, lid, legs, lyre, music desk, bench);
   // only the keys and the brass (pedals, casters) stay non-black.
   // r4: a real downloaded 7'1" grand ("Grand Piano" by thanhthanh, CC BY 4.0; 2.16 x 1.45 m, lid closed). Model frame:
   // keyboard faces +z, spine on -x (player's left); turned 180 deg so the keyboard faces NORTH (bench side) and the spine
   // (player's left = east) runs along the mirror. Fallback: the hand-built piano().
-  { const pm = prop('grand_piano', { at: [PIANO.spineX - PIANO.W / 2, 0, PIANO.kbZ], rot: [0, 180, 0], label: '7-ft grand piano',
-      lookMat: { gpiano_main: EBONY, gpiano_w_keys: { grey: 0.92, col: 0xf2eee2 }, gpiano_b_keys: { grey: 0.1, col: 0x101010 }, gpiano_brass: { grey: 0.6, col: 0xc0a050 } } });
+  // r7 (Jade: "it has missing parts"): a fuller downloaded grand, "Grand Piano" by wendyyim (Sketchfab, CC BY 4.0;
+  // layout/assets/props/grand_piano_c7/SOURCE.txt): full case and bentside rim, separate lid (closed, front flap folded
+  // back), prop stick (stowed under the lid), music desk up, fallboard open, key slip and cheek blocks, 88 real keys, three
+  // legs on brass casters, the lyre with three pedals; keyboard scaled to the real 1.227 m, the body lengthened behind the
+  // action to Jade's 7'1" = 2.16 m (1.50 m wide, lid top 0.993 m). No brand text. Model frame: keyboard toward +z, spine
+  // at x -0.740; turned 180 deg so the keyboard faces NORTH (bench) and the spine runs along the mirror at PIANO.spineX.
+  // Fallbacks: the r4 model, then the hand-built piano().
+  { const blk = { gpiano_main: EBONY };
+    const BLACK = Object.fromEntries(['piano_case', 'piano_case_front', 'piano_lid', 'piano_propstick', 'piano_desk', 'piano_fallboard', 'piano_legs', 'piano_lyre'].map((k) => [k, EBONY]));
+    let pm = prop('grand_piano_c7', { at: [PIANO.spineX - PIANO.spineOff, 0, PIANO.kbZ], rot: [0, 180, 0], label: PIANO.label,
+      lookMat: { ...BLACK, piano_keys_white: { grey: 0.92, col: 0xf2eee2 }, piano_keys_black: { grey: 0.1, col: 0x101010 }, piano_brass: { grey: 0.6, col: 0xc0a050 }, piano_brass_casters: { grey: 0.6, col: 0xc0a050 } } });
+    if (!pm) pm = prop('grand_piano', { at: [PIANO.spineX - 1.452 / 2, 0, PIANO.kbZ], rot: [0, 180, 0], label: PIANO.label,
+      lookMat: { ...blk, gpiano_w_keys: { grey: 0.92, col: 0xf2eee2 }, gpiano_b_keys: { grey: 0.1, col: 0x101010 }, gpiano_brass: { grey: 0.6, col: 0xc0a050 } } });
     g.add(pm || piano()); }
   { const B = BENCH; const [cx, cz] = table(g, { ...B, h: B.h }, B.label, EBONY); g.add(tag(box(B.x1 - B.x0, 0.06, B.z1 - B.z0, EBONY, [cx, B.h + 0.03, cz]), B.label)); }
   { const F = FLOOR_LAMP; g.add(tag(cyl(0.14, 0.14, 0.03, WOOD_D, [F.at[0], 0.015, F.at[1]], null, 18), F.label)); g.add(tag(cyl(0.012, 0.012, F.h - 0.3, WOOD_D, [F.at[0], (F.h - 0.3) / 2, F.at[1]], null, 8), F.label));
@@ -434,7 +451,8 @@ export function build(shot, { makeCam }) {
 
   const { figs } = stage(shot.figs || {}, null, (t) => (NAMED[t] ? V(NAMED[t]) : null));
   for (const f of Object.values(figs)) { root.add(f); f.traverse((o) => { if (o.isMesh && o.userData.look) o.userData.look = { ...o.userData.look, recvShadowLine: true }; }); }
-  if (figs.firstLove27 && shot.sandals !== false) root.add(sandals(figs.firstLove27));
+  // r7 (Jade): both in socks (shots.js SOCKS: the foot colour + a cuff up the shin); his cork sandals are gone (indoors)
+  void sandals; for (const [w, f] of Object.entries(figs)) if (SOCKS[w]) root.add(footwear(f, { cuff: { h: SOCKS.cuff[w], look: { grey: w === 'jade27' ? 0.95 : 0.12, col: SOCKS[w] } } }));
   const cs = { ...shot, orbit: shot.orbit ? { ...shot.orbit, at: fix(shot.orbit.at) } : undefined, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   Object.assign(shot, solveCamera(cs, figs, null, aim));
   hideParts(shot.hideParts, figs);
@@ -492,7 +510,7 @@ export function build(shot, { makeCam }) {
       cloth_grips: clothGrips || undefined,
       first_love: { who: 'first love (a real person: never named, never face-on)', face_shown: false,
         facing_camera_deg: he ? +(Math.acos(Math.max(-1, Math.min(1, he.headFwd.dot(c.position.clone().sub(he.head).normalize())))) * 180 / Math.PI).toFixed(0) : null,
-        hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', trousers: 'plain black slacks (dress trousers: straight leg, belt loops, a slight crease), not jeans (Jade 2026-11-26; CAST FL_SLACKS)', feet: 'Birkenstock-type cork sandals (Naot), bare feet', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',
+        hair: 'dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)', trousers: 'plain black slacks (dress trousers: straight leg, belt loops, a slight crease), not jeans (Jade 2026-11-26; CAST FL_SLACKS)', feet: 'plain charcoal dress socks, no shoes (r7, Jade 2026-11-27: socks indoors; the cork sandals are dropped here)', forearms: 'sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE',
         hands: 'same absolute size as hers (18.3 cm); feet 24.8 cm (cast kind adultFirstLove)' },
       jade: { cast: 'jade27 (kind adultJade27) standing in for Jade at about 24; no closer age in the cast table' },
       sun: { scene: SCENE, elevation_deg: SUN.altitude, azimuth_deg: SUN.azimuth, travel_dir: SUN_DIR.map((v) => +v.toFixed(4)), note: 'computed for Morton Grove (NOAA equations); date and time are a STAGING CHOICE (sweep.mjs)',
@@ -502,7 +520,23 @@ export function build(shot, { makeCam }) {
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'chin', 'handL', 'handR', 'hip', 'shoulderC', 'kneeL', 'kneeR'].map((k) => [k, r3(f.userData.P[k])]))])),
     };
   };
+  // r7: the mirror reflects (engine/render.js composite: the root drawn reflected in the glass plane, pasted into the glass's
+  // visible pixels, outlined in line / contour). The sidecar's `mirror` reports each figure's reflected eyes: inside the
+  // glass on screen or not, and how far the face is turned toward the glass (first love's face must never show in it).
+  let mirror = null;
+  if (!shot.beamMask && shot.mirror !== false) { const M = MIRROR, xg = M.x - M.standoff, n = V(-1, 0, 0), d = n.dot(V(xg, 0, 0)), R = mirrorMatrix(n, d);
+    const meshes = []; root.traverse((o) => { if (o.isMesh && o.userData.label === 'giant mirror (glass, reflecting)') meshes.push(o); });
+    const cs = [[xg, M.y1, M.z1], [xg, M.y1, M.z0], [xg, M.y0, M.z0], [xg, M.y0, M.z1]].map((p) => V(p));   // TL, TR, BR, BL seen from the room (looking east)
+    const quadPx = (cm) => cs.map((v) => { const p = v.clone().project(cm); return [(p.x + 1) / 2 * 1920, (1 - p.y) / 2 * 1080]; });
+    mirror = { R, meshes, clipPlane: new THREE.Plane(n.clone().negate(), d - 0.03), quadPx,
+      report: (cm, P) => { const out = { pane: 'giant mirror (east wall, frameless, bevelled)', plane: 'x = ' + xg.toFixed(3), normal: [-1, 0, 0], glass_m: { y: [M.y0, M.y1], z: [M.z0, M.z1] }, reflected_faces: {} };
+        cm.updateMatrixWorld(); const ahead = (v) => v.clone().applyMatrix4(cm.matrixWorldInverse).z < -cm.near;   // in front of the lens (a point behind it projects to a false pixel)
+        const glassAhead = cs.every(ahead); out.glass_in_front_of_camera = glassAhead;
+        for (const [w, f] of Object.entries(figs)) { const Hr = f.userData.P.eyes.clone().applyMatrix4(R), px = P(Hr), inside = !!px && glassAhead && ahead(Hr) && pointInQuad(px, quadPx(cm));
+          const deg = +(Math.acos(THREE.MathUtils.clamp(f.userData.P.headFwd.dot(V(1, 0, 0)), -1, 1)) * 180 / Math.PI).toFixed(0);
+          out.reflected_faces[w] = { px, world: r3(Hr), inside_glass: inside, faces_the_glass_deg: deg, face_in_reflection: inside && deg < 100 }; }
+        return out; } }; }
   return { set: 'mortongrove07', scene, root, cam, rig, near: shot.near ?? 0.05, far: shot.far ?? 20, figs, book: null, panes, lights,
     header: shot.header || '', shadowLine: !shot.beamMask && shot.shadowLine !== false, shadowPolys: null, subject: anchor,
-    litBg: 0x202020, flatBg: shot.beamMask ? 0x000000 : 0xe0ddd4, extra: extraOut };
+    litBg: 0x202020, flatBg: shot.beamMask ? 0x000000 : 0xe0ddd4, extra: extraOut, ...(mirror ? { mirror } : {}) };
 }

@@ -1,0 +1,44 @@
+Model: "Grand Piano" by wendyyim (Sketchfab user jiong_2000; listed as yimchingtung in Objaverse 1.0), published 2021-07-27
+URL: https://sketchfab.com/3d-models/ee82222af7644df5bff9002314ad4838
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: Objaverse 1.0 metadata (allenai/objaverse, metadata shard 000-031) gives licence "by"; the live Sketchfab API
+  (api.sketchfab.com/v3/models/ee82222af7644df5bff9002314ad4838) also gives slug "by", CC Attribution 4.0, downloadable. Checked 2026-11-28.
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-031/ee82222af7644df5bff9002314ad4838.glb
+Brand text: none. No logo, name or text on the fallboard, lid or any texture (all 12 textures inspected).
+
+Changes (for this film's layout guides), by _pipeline/grand_piano_c7_prep.py (Blender 4.5):
+- The source is triangle soup grouped by texture; it was sorted into named parts (below) by loose component position, and
+  keys / casters by sampling the base-colour texture. Coincident vertices welded.
+- Lid closed: the source lid stood open ~33.5 deg on the prop stick; rotated flat about its spine-side hinge and seated on the
+  rim (also levelled a ~1.3 deg lean along the length). The front flap stays folded back onto the lid (brass flap hinge
+  visible), so the music desk can stand up in front of it, as on a played piano with the lid down.
+- Prop stick folded down flat inside the case, under the closed lid (it pivots on the treble rim; it now lies across the
+  piano toward the bass side, at y 0.93-0.95 m).
+- Music desk moved 2.3 cm toward the keys so it clears the closed lid's front edge.
+- Size: scaled uniformly so the 88-key keyboard is 1.227 m wide (real Yamaha key span); key tops then sit at 0.729 m and the rim
+  top at 0.972 m, both true to a Yamaha grand. At that scale the source is a ~1.95 m grand (C5/C6 size), so the body behind
+  the action (everything more than 0.75 m behind the key slip) was lengthened x1.266 along its length to make keyboard
+  front to tail = 2.16 m (7'1", Jade's spec; an earlier r7 build used 2.27 m, a Yamaha C7, in error). Keys, action, fallboard, desk, front legs, lyre and prop stick are unchanged; the rear
+  leg and its caster were moved back, not stretched. (A uniform scale to 2.16 m would have made the keyboard 1.42 m wide and
+  key tops 0.85 m high.) Width stays the source's 1.497 m (a real 7' grand is about 1.48-1.55 m wide: no width change needed).
+- Strings and action (hidden under the lid / fallboard) decimated; normal / roughness / metal maps dropped (base colour only).
+- 70,014 tris. Textures: 11 x 1024 px JPEG (base colour).
+
+Real-world size here (x, y up, z): 1.497 x 1.207 x 2.16 m (y includes the raised music desk; closed lid top y 0.993 m,
+  top of the folded flap 1.073 m; rim top 0.972 m; key tops 0.729 m; keyboard 1.227 m wide; tail stretch 1.171)
+Orientation (glTF / three.js): y up; the keyboard faces +z (key slip front edge at z = 0, tail at z = -2.16); the straight
+  bass-side spine is on -x (x = -0.74); origin on the floor under the centre of the keyboard front edge (keys centred on x = 0).
+Parts (glTF nodes = objects, one material each):
+  case (piano_case: rim, inner rim veneer, bottom), case_front (piano_case_front: keybed, key slip, cheek blocks, desk rails),
+  lid (piano_lid), prop_stick (piano_propstick), music_desk (piano_desk), fallboard (piano_fallboard, open),
+  keys_white (piano_keys_white), keys_black (piano_keys_black), legs (piano_legs, 3), casters (piano_brass_casters),
+  lyre (piano_lyre, with the 3 pedal rods), pedals (piano_brass, 3), action (piano_felt_action: hammers / dampers),
+  strings (piano_strings), plate (piano_plate), soundboard (piano_soundboard), ribs (piano_ribs).
+Pivots: the lid node's origin is ON THE HINGE: the line x = -0.740, y = 0.972 (top of the spine rim), running along z
+  (from z = -0.53 at the lid's front edge to z = -2.16 at the tail). To open: rotate the lid node about its local +z by
+  +theta (the treble edge rises; the source stood at 33.5 deg, a real full-stick opening is ~30-35 deg).
+  The prop_stick node's origin is its pivot on the treble rim, (0.697, 0.944, -0.683). Folded, it lies flat toward -x;
+  rotating the node about its local +z by -60.8 deg puts it back where it stood in the source (upper end up and inward,
+  under the open lid's edge). Opening both together has not been fitted or checked.
+State: lid closed (front flap folded back), music desk up, fallboard open (keys visible), prop stick folded inside.
+Used for: mortongrove07 living-room grand piano (7'1", 2.16 m)

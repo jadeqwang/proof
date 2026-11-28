@@ -1,0 +1,12 @@
+canonical upholstery for layout/assets/art/mortongrove07/mg_upholstery.png (the floral couch AND the loveseat)
+date: 2026-11-27 (round 7, Jade's notes on the house)
+route: Codex image_gen (headless codex exec, tmux proof-mgfix, on plan, $0); prompt in work/art_mg/r7/couch_task.txt (private);
+  colour/style reference: a crop of the couch in media/keyframes/r4/mortongrove07/MG_wide_v1.jpg (an earlier generated
+  painting of this room; no real photo).
+what: a seamless square swatch of a soft cotton chintz: warm cream ground, faded soft-pink and dusty-rose cabbage roses,
+  sage / grey-green leaves; TWO LARGE roses (each about a third of the swatch) together in the CENTRE, smaller roses,
+  buds and leaves round them. Tiles seamlessly (checked 2 x 2).
+mapping (furnish.js overstuffed / centredUV): every seat and back cushion carries exactly one repeat across its width,
+  centred on the cushion, so each cushion shows its two big roses in the middle (Jade: "a couple of LARGE FLOWERS in
+  the middle of each cushion"); arms, back frame and base repeat at the same physical scale.
+size: 1024 x 1024 RGB PNG (resized from 1254).

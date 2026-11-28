@@ -59,7 +59,8 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
     - `typewriter`: "IBM Selectric II Typewriter" by maxdragon (https://sketchfab.com/3d-models/bef0f699a5374ca1a8fe8e27fb77788a), CC BY 4.0. In office91
     - `thermos`: "a thermos kettle" by downpink97 (https://sketchfab.com/3d-models/99f750217a8e47df8445cb63bbaa66ec), CC BY 4.0. In shanghai86 (the two hot-water flasks)
     - `mug`: "Cup" by saleviim (https://sketchfab.com/3d-models/12652c6e0aaf44dda32aab816f433baf), CC BY 4.0. In shanghai86 (the tea mugs) and mortongrove07 (the coffee-table mug)
-    - `grand_piano`: "Grand Piano" by thanhthanh (https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b), CC BY 4.0. In mortongrove07 (the 7'1" grand; bench removed, scaled to 2.16 m)
+    - `grand_piano`: "Grand Piano" by thanhthanh (https://sketchfab.com/3d-models/c4b11ae7ddb34b20a6207e4a3f244e2b), CC BY 4.0. Was the mortongrove07 grand until r7 (bench removed, scaled to 2.16 m; kept as a fallback)
+    - `grand_piano_c7`: "Grand Piano" by wendyyim (https://sketchfab.com/3d-models/ee82222af7644df5bff9002314ad4838), CC BY 4.0. In mortongrove07 from r7 (2026-11-27): the 7'1" grand (separate lid, prop stick, music desk, real keys, lyre; keyboard scaled to 1.227 m, body lengthened to 2.16 m)
     - `tissue_box`: "Tissue Box Low Poly" by anand9556 (https://sketchfab.com/3d-models/2f93ae57a77e464b9e71cc38eefdbf09), CC BY 4.0. In office91
     - `pencil_cup`: "Pens with Pencil holder - desk props" by janexx (https://sketchfab.com/3d-models/1f33e40c27fe451e9efda612c69010ae), CC BY 4.0. In office91
     - `shopping_cart`: "Carro De La Compra" by alexvladimircm (https://sketchfab.com/3d-models/c22286ade5ea493b890b3269e57b191f), CC BY 4.0. In market93 (the grandmother's supermarket cart; scaled to 0.98 m, handle grip split)

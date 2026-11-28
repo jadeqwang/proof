@@ -362,6 +362,56 @@
  "warnings": [
   "wrist: firstLove27 R grip cannot be reached naturally (radial deviation +4 deg; flex -17.7, radial 24.4, twist 60.9, after an elbow swivel of 20 deg)"
  ],
+ "mirror": {
+  "pane": "giant mirror (east wall, frameless, bevelled)",
+  "plane": "x = 4.894",
+  "normal": [
+   -1,
+   0,
+   0
+  ],
+  "glass_m": {
+   "y": [
+    2.028,
+    4.065
+   ],
+   "z": [
+    -4.962,
+    -2.038
+   ]
+  },
+  "reflected_faces": {
+   "jade27": {
+    "px": [
+     543.7,
+     765.2
+    ],
+    "world": [
+     7.5026,
+     1.1844,
+     -0.7246
+    ],
+    "inside_glass": false,
+    "faces_the_glass_deg": 114,
+    "face_in_reflection": false
+   },
+   "firstLove27": {
+    "px": [
+     482.6,
+     725
+    ],
+    "world": [
+     7.717,
+     1.5155,
+     -1.2015
+    ],
+    "inside_glass": false,
+    "faces_the_glass_deg": 69,
+    "face_in_reflection": false
+   }
+  },
+  "glass_in_front_of_camera": true
+ },
  "intent": "The living room as the two shots see it, and the house's angle (Jade r3): the room's ceiling is ONE tilted plane (Jade r4), highest (5.1 m, r5) along the whole EAST wall, whose top is level, falling west toward the dining side; the front wall behind the couch is a trapezoid, tall at the mirror end; the giant mirror hung high on it above the 7-ft grand; the floral couch against the front (south) wall under the large framed picture (1.4 x 1.0 m), the 1.5 m front window beside it throwing the low November-afternoon sun across her and onto the rug; the loveseat left of the rug, the armchair right. He stands back to camera handing her the folded hoodie. Not a shot.",
  "time": "2:39.6-2:42.0",
  "plan_time": "2:39.6-2:42.0",
@@ -595,7 +645,7 @@
   "facing_camera_deg": 141,
   "hair": "dark brown, straight: centre part, crisp top half over a grown-out buzzed lower part (cast sheets v3)",
   "trousers": "plain black slacks (dress trousers: straight leg, belt loops, a slight crease), not jeans (Jade 2026-11-26; CAST FL_SLACKS)",
-  "feet": "Birkenstock-type cork sandals (Naot), bare feet",
+  "feet": "plain charcoal dress socks, no shoes (r7, Jade 2026-11-27: socks indoors; the cork sandals are dropped here)",
   "forearms": "sleeves pushed up: FOREARM HAIR CLEARLY VISIBLE",
   "hands": "same absolute size as hers (18.3 cm); feet 24.8 cm (cast kind adultFirstLove)"
  },
@@ -1000,14 +1050,14 @@
    "top": "#7d8fa8",
    "legs": "#2c3140",
    "sleeves": "long",
-   "sock": "#6a6a70",
+   "sock": "#f2efe8",
    "torso": "capsule"
   },
   "firstLove27": {
    "top": "#4a5a6a",
    "legs": "#1c1c1e",
    "sleeves": "pushed",
-   "sock": "#d9ab88",
+   "sock": "#2e2e33",
    "torso": "capsule"
   }
  },
@@ -5996,8 +6046,8 @@
   }
  ],
  "figure_frame_fraction": {
-  "firstLove27": 0.008,
-  "jade27": 0.0039
+  "firstLove27": 0.0077,
+  "jade27": 0.0036
  },
  "colour_separation": [],
  "figure_report": {
@@ -6039,73 +6089,16 @@
      "frame": "jade27",
      "name": "thin full-rim rectangular dark gunmetal metal",
      "lens_mm": [
-      50,
-      24
+      45.3,
+      23.5
      ],
-     "bridge_mm": 17,
-     "rim_mm": 1.6,
-     "total_width_mm": 121,
+     "bridge_mm": 21.7,
+     "rim_mm": 1.7,
+     "total_width_mm": 118,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
-     "_arm": [
-      [
-       59.1,
-       3,
-       15.9
-      ],
-      [
-       63,
-       4.3,
-       1.5
-      ],
-      [
-       68,
-       5.5,
-       -12.9
-      ],
-      [
-       71.7,
-       6.8,
-       -27.3
-      ],
-      [
-       72.2,
-       8,
-       -41.6
-      ],
-      [
-       76.2,
-       10.4,
-       -56
-      ],
-      [
-       77,
-       10.9,
-       -72.8
-      ],
-      [
-       75.4,
-       7.4,
-       -89.7
-      ],
-      [
-       72.4,
-       -7.6,
-       -96.7
-      ],
-      [
-       66.3,
-       -23.6,
-       -101.7
-      ]
-     ],
-     "_ear": [
-      6.4,
-      -60,
-      -85.7
-     ],
-     "temple_length_mm": 143,
-     "rim_clear_of_face_mm": 3.7
+     "temple_length_mm": 144,
+     "rim_clear_of_face_mm": 4.3
     }
    }
   },

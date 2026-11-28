@@ -1,5 +1,86 @@
 # mortongrove07: notes and assumptions
 
+## 2026-11-27: round 7, Jade's notes on the house (done)
+
+Before renders kept in work/mg_r7/before/ (lit + form of every shot, private). Each fix is in the model.
+1. **Piano: replaced** with "Grand Piano" by wendyyim (Sketchfab, **CC BY 4.0**, checked in the Objaverse metadata and on
+   the live Sketchfab API; credited in docs/credits_tools.md; `layout/assets/props/grand_piano_c7/`, prep script
+   `_pipeline/grand_piano_c7_prep.py`). It has every part on Jade's list: the full case with a real bentside and tail, a
+   separate LID (closed, its front flap folded back, so the music desk stands), the PROP STICK (stowed flat inside the
+   case, under the lid), the music desk, the fallboard (open), the key slip and cheek blocks, 88 real keys, three legs
+   on brass casters, and the lyre with 3 pedals and rods. The action, strings, plate and soundboard show between the
+   desk and the flap, as on a real grand. There is no brand text (all 12 textures checked). Size: the keyboard is scaled to
+   the real 1.227 m (key tops 0.729, rim 0.972, lid top 0.993 m), and the body behind the action is lengthened (x1.171) to
+   Jade's **7'1" = 2.16 m**, 1.497 m wide (a 7' grand is about 1.48-1.55 m wide: no width change). A helper searched about 28 models first (Objaverse, CC BY /
+   CC0 only; Poly Haven has no piano): the others had fused lids, box keyboards or brand text. Ebony everywhere except
+   the keys and the brass; the strings and plate keep the model's own colours. The r4 model (thanhthanh) remains a
+   fallback. **Corrected the same day:** the first r7 build used 2.27 m (a Yamaha C7, from the lead's brief); the lead
+   confirmed Jade's spec, 7'1" "to be exact" = 2.16 m: prep re-run (LENGTH 2.16), set re-rendered and re-checked. New REF_piano_a (keyboard end) and REF_piano_b (tail and treble side).
+   Lid hinge (model frame): x -0.740, y 0.972 along z; the lid can be opened on the stick later.
+2. **"Weird wood beam near the door": a z-fighting artefact, now fixed.** It was the corner of the entry jog (x 0,
+   z -2.0, between the egg-carton window and the front door). The entry wall ran on to x 0 and overlapped the living
+   room's west wall in a 0.2 x 0.2 m block, leaving two coplanar faces on each side of the corner. The line, contour
+   and form guides drew the flicker as a dense black hatched strip from the floor to the ceiling; the painter turned
+   it into a grey wooden post. It was not a light, a beam mask or a shadow-catcher. Fix (build.js room()): the entry
+   wall now stops at the west wall's outer face (x0 - T), so each side has one face. The corner itself is real: Jade's
+   drawing has the jog.
+3. **Rug: soft pink floral** (canonical `layout/assets/art/mortongrove07/mg_rug.png` + .txt; Codex, $0): a 5 x 8 ft
+   rug, 2.44 x 1.50 m (RUG x 1.70-4.14, z -2.45 to -0.95; was 2.30 x 1.21 plain red). Its south edge stops just short
+   of the couch's front feet.
+4. **Couch overstuffed, larger florals** (canonical `mg_upholstery.png` + .txt; Codex, $0; `furnish.js overstuffed()`):
+   rounded boxes, crowned seat cushions (+3 cm) and back cushions (+4.5 cm toward the sitter), fat rolled arms with
+   scrolled fronts. Every cushion carries exactly one repeat of the swatch, centred on it, so each shows its two large
+   roses in the middle; the frame repeats at the same scale. Seat height, arm width and back depth are unchanged,
+   because her pose and the hoodie's lap colliders depend on them.
+5. **Loveseat:** it has been in the model since round 2 (the drawing's two-part block east of the rug, facing west;
+   Jade r3 "loveseat" confirmed), but as a plain grey-brown box, mostly hidden behind the piano in MG_wide. Same place
+   (from the drawing, so not a new guess), now a real two-seater, 1.45 x 0.86 m (was 1.20 x 0.78), in the same
+   overstuffed floral. New REF_loveseat.
+6. **Table lamp** on the corner (side) table: 0.70 m overall (was 0.50), drum shade 0.42 m across the bottom (was
+   0.34); a cream ceramic urn base on a wood plinth, brass neck, harp and finial (furnish.js tableLamp).
+7. **Coffee table + lamp side table: dusty dark pink (0x9a5a68) with glass panels** (furnish.js glassTable): square
+   legs, apron, the top a pink frame round an inset glass panel, and a lower shelf with a second glass panel. The glass
+   is see-through in lit; in the other modes it is an opaque pale green-grey panel, because the engine hides glass
+   there. The mug, notebook and textbook stand on the top glass. The small table at the couch's west end stays wood:
+   Jade named only the side table and the coffee table. **The egg-carton table keeps its material; plants greener:**
+   seedling stems 0x4f9a2e (was a grey 0x5e8a3a), and each sprout now opens two fresh-green seed leaves (0x6cb83a).
+8. **Socks:** hers plain white crew socks 0xf2efe8, his plain charcoal dress socks 0x2e2e33 (shots.js SOCKS). Each has
+   a sock cuff up the shin (basement90 kit.js footwear, 10 / 12 cm). His cork sandals are dropped indoors (FLAGGED: Jade
+   said sandals in round 1; with socks indoors, no shoes seemed the natural reading). Recorded in layout/CAST.md.
+9. **Mirror frameless and larger** (Jade, via the lead): bare glass with a polished bevelled edge (a 25 mm bright
+   band) on four small clips, no frame. It now REFLECTS: the engine mirror composite, as in kitchen90, is visible in
+   every guide mode and outlined in line and contour. **Size, by Jade's rule (via the lead):** keep the top margin and
+   make the bottom margin equal to it. The top edge stays at 4.065 m (the r6 frame's top), so the margin under the
+   level 5.10 m ceiling is **1.035 m**. The bottom is 1.035 m above the closed lid (0.993 m), at 2.028 m, so the bottom
+   margin is **1.035 m**. The glass is **2.04 m tall x 2.92 m wide** (the r6 glass was 1.95 x 2.80 inside a 2.03 x 2.88
+   frame), centred at z -3.50. NB: the r6 frame's margins were already equal (round 6 centred it), so under this rule the
+   mirror only grows into the frame's old footprint, about 4% each way. A bigger mirror needs smaller margins:
+   proposed question for Jade. Face check: the sidecar's `mirror` block tests each figure's reflected eyes, inside
+   the glass on screen and facing it. First love's face is in no reflection; the mirror is in front of the camera only
+   in MG_wide, REF_east and REF_north. In MG_wide the glass reflects the upper west wall and the ceiling. In lit it
+   reads as a mid-dark grey panel, darker than r5's pale stand-in: the engine composites the true reflection at 0.85,
+   and that is engine-side.
+
+Every new surface carries its texture or material in every mode: upholstery and rug through the art path (colour in
+lit, greys in flat and label, modulated form, edge lines in line and contour); glass as the pale panel. The armchair is
+still plain grey-brown (Jade did not mention it; the MG_wide_v1 painter made it floral too): a possible question.
+- **Checks** (after the final three-pass re-render; the cameras are unchanged, so his facing angles are unchanged at 132-141 deg):
+  - clipcheck: the same items as r5/r6 and nothing new. jade27 into the couch is now 75 mm cloth / 34 mm skin (was
+    82-85 / 40); the rug is 6.2 mm; the folded hoodie 7-10 mm; the MG2 cloth sheet is meaningless (an open sheet).
+  - holdcheck: MG1, MG1_end, MG_wide and REF_plan pass; MG2 and MG2_end are soft bodies, as before.
+  - check_bodies (MG1, MG1_end, MG2, MG2_end, MG_wide, REF_plan): all PASS.
+  - The rug went from 12 to 6 mm thick (a flat-woven Aubusson), so the feet stand no deeper in it than before.
+- Sheets: media/layout/_sheets/mg_r7_before_after.jpg (lit + form, before / after, every shot) and
+  mg_r7_references.jpg (REF_piano_a/b, REF_couch, REF_loveseat; lit, form, line).
+- Prompts: media/keyframes/r4/mortongrove07/_prompts/_make.py names each canonical piece: the overstuffed couch and
+  loveseat in one chintz with two large roses per cushion (mg_upholstery.png as FIXED ART), the pink floral rug
+  (mg_rug.png), the dusty-pink glass-panel tables, the tall lamp, the frameless reflecting mirror, the 7'1" grand with
+  its parts, and socks (no bare feet). Regenerated. The stale r3 ceiling words in MG_wide (ridge, soffit) are corrected.
+- Repaint: every MG shot (couch, rug, socks; MG_wide also the piano, mirror, loveseat, tables, lamp and the corner post).
+- **For Jade to confirm:** the mirror's size under her
+  equal-margins rule (it barely grows); the loveseat's place (from her drawing, unchanged); socks only, so his sandals
+  are dropped indoors; the small table at the couch's west end left wood; the armchair still plain.
+
 ## 2026-11-26: round-3 decisions
 
 Jade's answers (work/decisions/JADE_R3_DECISIONS.md). r3 review page snapshot taken first

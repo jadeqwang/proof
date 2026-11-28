@@ -36,6 +36,12 @@ in every set, `FL_SLACKS` 0x1c1c1e in `_cast.js` (a touch off pure black so fold
 (dark indigo at 27, light-blue loose frayed jeans at 19). Tops, sandals and socks are unchanged. The engine has one
 trouser garment (the jeans mesh), so the guide changes colour only; the painter prompts carry the "slacks" wording.
 
+Socks in mortongrove07 (Jade 2026-11-27: "both characters wear SOCKS", which avoids toe shots and is more accurate):
+`jade27` plain white cotton crew socks `0xf2efe8` (with the blue-grey top and indigo jeans), `firstLove27` plain
+charcoal dress socks `0x2e2e33` (with the black slacks). No shoes indoors: his cork sandals are dropped in this set.
+Set per shot (`shots.js SOCKS` -> `costume.sock`, plus a sock cuff up each shin from `basement90/kit.js footwear()`,
+10 cm hers, 12 cm his); not in the cast table, because other sets dress them differently.
+
 Rules
 - One person, one height. Mama's three variants are built from the engine's `mama` (`mamaAs()` in `_cast.js`), so her
   height exists once; the two first-love keys share `FIRST_LOVE_H`.
