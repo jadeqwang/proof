@@ -65,7 +65,6 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
     - `shopping_cart`: "Carro De La Compra" by alexvladimircm (https://sketchfab.com/3d-models/c22286ade5ea493b890b3269e57b191f), CC BY 4.0. In market93 (the grandmother's supermarket cart; scaled to 0.98 m, handle grip split)
     - `keyboard`: "Keyboard - Classic IBM Design" by matthew.leiher (https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f), CC BY 4.0. In basement90 (the PC keyboard)
     - `backpack`: "Diaper Bags" by fabbear (https://sketchfab.com/3d-models/040089295e3a4ee684d4562a8fabce9f), CC BY 4.0. In playground23 (Dad's plain black laptop backpack; recoloured black, the patch logo texture removed)
-    - `bentwood_chair`: "Viennese Chair" by romasharf (https://sketchfab.com/3d-models/45405e6ec46b46629e7f4a71da5ccd1b), CC BY 4.0. In shanghai86 (the eight bentwood dining chairs)
     - `sideboard`: "Cabinet" by Wandcaster (https://sketchfab.com/3d-models/fdcb5d8fdac247a3be20c28f4da2b466), CC BY 4.0. In shanghai86 (the dark-wood sideboard, north-east corner)
     - `tv_cabinet`: "Old Chest Of Drawers 1" by rhcreations (https://sketchfab.com/3d-models/93b6cef3362c4e84ac6f12b6af11a8e1), CC BY 4.0. In shanghai86 (the TV cabinet, recoloured to the room's teak)
     - `upright_piano`: "Upright Piano (WIP)" by catdevpete (https://sketchfab.com/3d-models/eb76131fcae44993a532ad1b99050deb), CC BY 4.0. In shanghai86 (the music room's piano, across the hall)
@@ -106,5 +105,6 @@ Seedream 5 Pro, Whisper large-v3, HT Demucs, MMS forced alignment, three.js, and
 - Video models for the motion step (plan steps 6-8): none chosen yet.
 
 ## Not credited (looked at, not used for the film)
+- `bentwood_chair`: "Viennese Chair" by romasharf (Sketchfab, CC BY 4.0): downloaded for shanghai86 2026-11-27, NOT USED (Jade: dining chairs period-checked; replaced by modelled hardwood slat-back chairs). Drop unless used elsewhere.
 - The many models in `tools/gen/catalog.py` (Seedance, Kling, Veo, FLUX, Gemini TTS, etc.) are a price catalogue,
   not things that ran. fal models were searched on 2026-11-26 (Meshy / Hyper3D rigging, Hunyuan Motion), not used.

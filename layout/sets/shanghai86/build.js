@@ -9,8 +9,8 @@ import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam
 import * as ART from './art.js';   // 2026-11-26: fixed wall art and spines
 import { artPlane } from '../_art.js';
 import { loadProps, prop } from '../_props.js';   // props phase 2 (2026-11-26): real downloaded models (work/props_audit.md)
-await loadProps(['thermos', 'potted_plant', 'bentwood_chair', 'side_table_tall', 'sideboard', 'tv_cabinet', 'upright_piano']);   // 2026-11-27 canon: + the dining chairs, side table, sideboard, TV cabinet
-import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, newspaperArchive, farRooms, slippers, FABRIC, FABRIC_C } from './joinery.js';
+await loadProps(['thermos', 'potted_plant', 'side_table_tall', 'sideboard', 'tv_cabinet', 'upright_piano']);   // 2026-11-27 canon: + the dining chairs, side table, sideboard, TV cabinet
+import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, newspaperArchive, farRooms, diningTable, diningChair, slippers, FABRIC, FABRIC_C } from './joinery.js';
 import { dress, dressGarment, watchDialCanvas, strapCanvas, buttonCanvas, ribCanvas, cupCanvas, lidCanvas, QUILT_U, QUILT_V } from './textures.js';   // 2026-11-27: canonical textures on every surface
 import { artFromCanvas } from '../_art.js';   // r4: real hinges, bookcases, armchairs, slippers
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
@@ -236,9 +236,8 @@ function furniture(shot) {
   for (const P of [PENDANT, PENDANT2]) { g.add(tag(cyl(0.004, 0.004, P.drop, { grey: 0.1, col: 0x111111 }, [P.x, ROOM.h - P.drop / 2, P.z], null, 6), 'ceiling lights (off)'));
     g.add(tag(cyl(0.04, 0.2, 0.12, { grey: 0.88, col: 0xeeeae0 }, [P.x, ROOM.h - P.drop - 0.04, P.z], null, 20), 'ceiling lights (off)')); }
   // the old dining room's end: the long table (long axis north-south since the decision page), chairs, sideboard
-  { const T = DINING_TABLE, [xc, zc] = T.at; g.add(tableRect(xc, zc, T.w, T.l, T.h, { look: WOOD, topLook: WOOD_L, label: 'dining table (long, rectangular: Jade not sure)' }));
-    // 2026-11-27 canon: eight bentwood (Thonet No. 14 type) chairs, downloaded ("Viennese Chair" by romasharf, CC BY), dark varnish
-    const dch = (x, z, yaw) => prop('bentwood_chair', { at: [x, 0, z], rot: [0, yaw, 0], label: 'dining chairs (bentwood)' }) || chair(x, z, yaw, { look: WOOD, label: 'dining chairs' });
+  { const T = DINING_TABLE, [xc, zc] = T.at; g.add(diningTable(T));   // 2026-11-27 canon: dark hardwood, glass over a cloth (joinery.js)
+    const dch = (x, z, yaw) => diningChair(x, z, yaw);   // 2026-11-27 canon: dark hardwood slat-back chairs (bentwood chairs dropped)
     for (const i of [-1, 0, 1]) for (const s of [-1, 1]) g.add(dch(xc + s * (T.w / 2 + 0.2), zc + i * 0.6, s > 0 ? -90 : 90));   // three a side (east and west)
     for (const s of [-1, 1]) g.add(dch(xc, zc + s * (T.l / 2 + 0.22), s > 0 ? 180 : 0));                 // one at each end (north and south)
   }
@@ -446,8 +445,9 @@ function uncleOutfit(fig) {
   const quad = (pts, look) => { if (pts.some((p) => !p)) return; const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pts.flatMap((p) => p.toArray()), 3));
     geo.setIndex(pts.length === 4 ? [0, 1, 2, 0, 2, 3] : [0, 1, 2]); geo.computeVertexNormals(); const m = mk(geo, look); m.userData.double = true; g.add(m); };
   // the pullover's cream knit in the jacket's open neck, the jacket's turn-down collar points over it
-  quad([pt(-0.045, 0.015, 0.003), pt(0.045, 0.015, 0.003), pt(0, -0.07, 0.003)], { grey: 0.86, col: SWEATER, mat: 'knitflat' });
-  for (const s of [-1, 1]) quad([pt(s * 0.004, -0.07, 0.007), pt(s * 0.05, 0.02, 0.007), pt(s * 0.1, 0.0, 0.007), pt(s * 0.06, -0.1, 0.007)], JK);
+  // (kept below the chin: in V1f he leans his head forward and the chin came down through a collar set higher)
+  quad([pt(-0.04, -0.02, 0.003), pt(0.04, -0.02, 0.003), pt(0, -0.08, 0.003)], { grey: 0.86, col: SWEATER, mat: 'knitflat' });
+  for (const s of [-1, 1]) quad([pt(s * 0.004, -0.08, 0.007), pt(s * 0.045, -0.015, 0.007), pt(s * 0.09, -0.03, 0.007), pt(s * 0.055, -0.11, 0.007)], JK);
   // the centre-front placket (a 3 cm band, a shade darker) and five buttons
   { const vs = [-0.07, -0.16, -0.25, -0.34, -0.43, -0.5]; for (let k = 0; k < vs.length - 1; k++) quad([pt(-0.015, vs[k], 0.004), pt(0.015, vs[k], 0.004), pt(0.015, vs[k + 1], 0.004), pt(-0.015, vs[k + 1], 0.004)], JK_D); }
   for (const v of [-0.1, -0.19, -0.28, -0.37, -0.46]) { const b = pt(0, v, 0.0075); if (!b) continue;

@@ -1076,7 +1076,7 @@ geometry carries line, depth, contour and light. Garments: `dressGarment` (UVs f
 | coffee table 茶几 | modelled (`joinery.js coffeeTable`) to the old footprint (0.95 x 0.55 m, glass top at 0.42 m: paper, holds and her pose unchanged) + Poly Haven "Sapele Veneer" (CC0) | dark red-brown 栗壳色 varnish 0x5c2c1c (0.36), darker apron 0x4c2416; rounded bevelled top edge; 6 mm plate glass with pale green edges over the bare wood (no lace under it: the white paper bits would mix with lace); moulded apron with a bead; four TURNED legs; lower shelf on stretchers with a folded greeked newspaper and two journals | V1a-V1h, REF_*, REF_teatable, REF_teatable_low |
 | bookcases | modelled (r4, `joinery.js bookcases`) + sapele texture | carcass 0x5a3a26, panels 0x6a4a30, pale shelf edges 0x8a6440, back 0x9a7c5a; ONE handle: a cast-brass mushroom knob (30 mm round rose, neck, 24 mm domed cap; 0.8 scale on the glazed doors); brass keyhole plates with a dark slot | V1a, V1c, V1e, V1f, V1g, REF_* |
 | side table | Poly Haven `side_table_tall_01` (James Ray Cock), CC0, real size 0.38 x 0.76 m | round dark plant-stand table with a ring shelf (its own texture) | V1e, V1f, REF_armchairs, REF_wide |
-| dining chairs (8) | "Viennese Chair" by romasharf, Sketchfab, CC BY 4.0 | dark varnished Thonet-type bentwood, round wooden seat | REF_wide, V1b (far background), V1f |
+| dining chairs (8) | superseded: see "Dining zone" below | (was bentwood) | REF_wide, V1b (far background), V1f |
 | sideboard | "Cabinet" by Wandcaster, Sketchfab, CC BY 4.0, scaled to 0.93 m wide | dark wood, three drawers over two panelled doors, plinth | REF_wide, V1e (edge) |
 | TV cabinet | "Old Chest Of Drawers 1" by rhcreations, Sketchfab, CC BY 4.0, scaled to 0.72 m high, recoloured 0x8a6440 | mid-brown wood, two drawers over two doors; the 14" TV on it in wood-grain vinyl under the lace cloth | REF_wide, REF_doors |
 | dining table, joinery (hall doors, architraves, skirting, picture rail, frames), hall closets | modelled + sapele texture | each in its existing canonical colour | as before |
@@ -1142,6 +1142,16 @@ Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
   with the engine's other garment mesh), the uncle's trousers 47 mm into the couch cushion (seated compression), the
   slippers 9 mm into the threshold. Sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,line,refs}.jpg,
   shanghai86_putdown_spot.jpg, shanghai86_V1b_22_vs_34.jpg.
+- **Dining zone (Jade: period-check the table and chairs):** the reference photos (Zhang Leping's and lane-house dining
+  rooms: media sheet in the agent scratchpad, refs 14, 15, 17) show solid dark red-brown hardwood tables, the top under
+  glass laid over a cloth, and plain dark hardwood side chairs with vertical-slat backs; no bentwood chair appears in any
+  of them, so the downloaded bentwood chairs are dropped (credits: moved to "not used"). Now (joinery.js diningTable,
+  diningChair; modelled, as no CC0 / CC BY chair or table matched): the table keeps its size and place (1.9 x 0.88 m,
+  0.76 m, long axis north-south) in the tea table's finish (dark red-brown sapele, turned legs, an apron), plate glass over a
+  sage-green and cream woven check cotton cloth (2.5 cm squares, textures.js `tablecloth`) hanging 5 cm with a crocheted
+  edging; eight chairs: tapered square legs, side and front stretchers, a rounded seat, a curved top rail and three
+  vertical slats, seat 0.45 m. The nanny's-room chair and the piano chair are the same chair. Views: REF_dining,
+  REF_dining_low.
 - **Piano:** shiny black lacquer, a white crocheted lace runner along the top of the lid, a small gold nameplate on the
   fallboard with no legible text (Jade: final canon; the brand is not named).
 

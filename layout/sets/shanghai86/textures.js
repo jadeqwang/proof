@@ -104,6 +104,10 @@ SRC.lid = canvas(256, 256, (g, W) => { g.fillStyle = '#f4f2ec'; g.fillRect(0, 0,
   g.fillStyle = '#2c4a8a'; g.fillRect(0, 6, W, 4); });
 // grandpa's newspaper archive: the edge of a tied bundle of folded broadsheets (fine horizontal sheet edges, a few darker)
 SRC.newsstack = canvas(64, 128, (g, W, H) => { const r = rngOf(51); g.fillStyle = '#d8d0bc'; g.fillRect(0, 0, W, H); for (let y = 0; y < H; y += 2) { g.fillStyle = `rgba(90,80,60,${0.15 + r() * 0.35})`; g.fillRect(0, y, W, 1); } });
+// the dining tablecloth (台布) under the glass: a woven cotton check in pale sage green and cream, 2.5 cm squares with a
+// thin darker green line at each square's edge (raw colours, one canonical cloth)
+SRC.tablecloth = canvas(128, 128, (g, W) => { g.fillStyle = '#ece6d2'; g.fillRect(0, 0, W, W); g.fillStyle = 'rgba(122,150,112,0.45)'; g.fillRect(0, 0, W / 2, W); g.fillRect(0, 0, W, W / 2);
+  g.fillStyle = 'rgba(70,100,70,0.55)'; for (const v of [0, W / 2]) { g.fillRect(v, 0, 2, W); g.fillRect(0, v, W, 2); } });
 // key -> { src, period: [u, v] metres per tile, grain: 'u' | 'v' | null (the texture axis the wood grain runs along), contrast }
 export const MATS = {
   parquet: { src: 'parquet', period: [3.4, 3.4], contrast: 1.0 },          // herringbone blocks ~7 x 35 cm (1930s Shanghai flat; waxed)
@@ -115,6 +119,7 @@ export const MATS = {
   rattan: { src: 'rattan', period: [0.08, 0.08], contrast: 1.0 },          // cane weave
   knit: { src: 'knit', period: [KNIT_U, KNIT_V], contrast: 0.3, clampV: true },
   uphol: { src: 'uphol', period: [UPH_STRIPE, UPH_STRIPE], contrast: 1.0, edge: 'upholEdge' },
+  tablecloth: { src: 'tablecloth', period: [0.05, 0.05], raw: true },
   gingham: { src: 'gingham', period: [0.014, 0.014], raw: true },
   ginghamGather: { src: 'ginghamGather', period: [1, 1], raw: true },
   newsstack: { src: 'newsstack', period: [0.3, 0.075], contrast: 1.0 },
@@ -131,7 +136,7 @@ function texOf(key, col, grey) {
   const W = src.width, H = src.height, d = src.getContext('2d').getImageData(0, 0, W, H).data, L = new Float32Array(W * H); let mean = 0;
   for (let i = 0; i < W * H; i++) { L[i] = 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2]; mean += L[i]; } mean /= W * H;
   const c = new THREE.Color(col), mkT = (fn) => { const cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g = cv.getContext('2d'), im = g.createImageData(W, H);
-    for (let i = 0; i < W * H; i++) { const f = Math.max(0, 1 + (L[i] / mean - 1) * M.contrast), [r, gg, b] = fn(f); im.data[i * 4] = r; im.data[i * 4 + 1] = gg; im.data[i * 4 + 2] = b; im.data[i * 4 + 3] = 255; }
+    for (let i = 0; i < W * H; i++) { const f = Math.max(0, 1 + (L[i] / mean - 1) * (M.contrast ?? 1)), [r, gg, b] = fn(f); im.data[i * 4] = r; im.data[i * 4 + 1] = gg; im.data[i * 4 + 2] = b; im.data[i * 4 + 3] = 255; }
     g.putImageData(im, 0, 0); const t = new THREE.CanvasTexture(cv); t.wrapS = THREE.RepeatWrapping; t.wrapT = M.clampV ? THREE.ClampToEdgeWrapping : THREE.RepeatWrapping;
     t.anisotropy = 8; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; t.colorSpace = THREE.NoColorSpace; return t; };
   const cl = (v) => Math.max(0, Math.min(255, Math.round(v * 255)));

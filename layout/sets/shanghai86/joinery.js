@@ -150,7 +150,7 @@ export function farRooms({ PLASTER, FLOOR, CEIL, wall: wallFn }) {
     for (const s of [-1, 1]) { P(box(0.42, 1.45, 0.01, WDL, [wx + s * 0.22, 0.95, zr + 0.505])); P(knob([wx + s * 0.035, 0.95, zr + 0.51], 0.8)); }
     // a small chest at the bed's foot and a plain wooden chair
     P(box(0.6, 0.45, 0.4, WD, [bxx + 0.15, 0.225, bz + 1.25])); P(knob([bxx + 0.15, 0.3, bz + 1.455], 0.8));
-    const ch = prop('bentwood_chair', { at: [rx1 - 0.45, 0, zr + 1.3], rot: [0, -60, 0], label: "nanny's room: chair" }); if (ch) P(ch); }
+    P(diningChair(rx1 - 0.45, zr + 1.3, -60, "nanny's room: chair")); }
   { // RIGHT (east): the MUSIC ROOM: an upright piano against its LEFT wall (the partition, seen from its doorway), keys to the
     // east; the household's bookcases (same units, glazing, brass knobs) along the back and east walls
     const P = R('music room (east, across the hall)'), rx0 = D.cx + pier / 2;
@@ -163,7 +163,7 @@ export function farRooms({ PLASTER, FLOOR, CEIL, wall: wallFn }) {
       const rc = new THREE.Raycaster(new THREE.Vector3(0, 0.8, 0.6), new THREE.Vector3(0, 0, -1), 0, 1); const hit = rc.intersectObject(pn, true)[0];
       const zp = hit ? hit.point.z + 0.0015 : 0.06; pg.add(box(0.09, 0.022, 0.002, { grey: 0.75, col: 0xc8a04a }, [0, 0.8, zp]));   // the gold nameplate (blank)
       pg.rotation.y = Math.PI / 2; pg.position.set(rx0 + 0.31, 0, pz); P(pg); } else { P(box(0.6, 1.2, 1.5, { grey: 0.2, col: 0x2a1c14, mat: 'sapele' }, [rx0 + 0.3, 0.6, pz])); P(box(0.25, 0.04, 1.4, { grey: 0.9, col: 0xeeeeea }, [rx0 + 0.72, 0.74, pz])); }
-    const st = prop('bentwood_chair', { at: [rx0 + 1.05, 0, pz], rot: [0, -90, 0], label: 'music room: piano chair' }); if (st) P(st);
+    P(diningChair(rx0 + 1.05, pz, -90, 'music room: piano chair'));
     const rb = new THREE.Group(); rb.add(bookcaseRuns([[-(x1 - rx0) / 2 + 0.75, (x1 - rx0) / 2 - 0.05]], 0, rng(311), 'music room: ')); rb.position.set((rx0 + x1) / 2, 0, zr); P(rb);   // back wall
     const re = new THREE.Group(); re.add(bookcaseRuns([[-depth / 2 + 0.6, depth / 2 - 0.9]], 0, rng(312), 'music room: ')); re.rotation.y = -Math.PI / 2; re.position.set(x1, 0, (zb + zr) / 2); P(re); }   // east wall
   return tag(g, 'across the hall: two rooms behind French doors');
@@ -392,6 +392,42 @@ export function coffeeTable(T) {
   for (const [k, c, th] of [[0, 0x2f4b3c, 0.012], [1, 0xa44c3a, 0.009]]) { const b = rbox(0.185, th, 0.26, 0.002, { grey: 0.35, col: c, mat: 'wool' }, [T.cx + 0.02, sy + 0.001 + (k ? 0.012 + th / 2 : th / 2), T.cz - 0.2]); b.rotation.y = rad(k ? -9 : 4); sh2.add(b); }
   t.add(tag(sh2, 'on the coffee table shelf: a folded newspaper and two journals'));
   return t;
+}
+
+// ---------------------------------------------------------------- the dining zone
+// 2026-11-27 (Jade: the dining table and chairs period-right for this household). Reference photos (NOTES): Shanghai
+// lane-house and writers' dining tables are solid dark red-brown varnished hardwood, the top under plate glass laid over a
+// cloth that hangs over the edges; the chairs are plain dark hardwood side chairs with vertical-slat backs (no bentwood
+// seen in any of them, so the downloaded bentwood chairs are out). The table keeps its size and place (1.9 x 0.88 m,
+// 0.76 m, long axis north-south, decided earlier); its wood and finish are the tea table's (TEA / TEA_D, turned legs).
+// Modelled: no library chair or table matched (the CC0 / CC BY chairs are Western ladder-backs, gothic, painted or modern).
+const CLOTH_T = { grey: 0.8, col: 0xc8d0b8, mat: 'tablecloth' }, CLOTH_EDGE = { grey: 0.9, col: 0xf2efe6, mat: 'lace' };
+export function diningTable(T) {
+  const [xc, zc] = T.at, g = new THREE.Group(), gt = 0.006, topT = 0.032, ty = T.h - gt - 0.002, legH = ty - topT, inset = 0.07, ap = 0.08, W = T.w, L = T.l;
+  g.add(rbox(W, topT, L, 0.01, TEA, [xc, ty - topT / 2, zc]));
+  // the cloth: a sage-and-cream woven check cotton cloth over the top, hanging 5 cm down each side, a crocheted edging
+  const drop = 0.05, cw = W + 0.006, cl = L + 0.006;
+  g.add(box(cw, 0.002, cl, CLOTH_T, [xc, ty + 0.001, zc]));
+  for (const s of [-1, 1]) { g.add(box(cw, drop, 0.002, CLOTH_T, [xc, ty - drop / 2, zc + s * cl / 2])); g.add(box(0.002, drop, cl, CLOTH_T, [xc + s * cw / 2, ty - drop / 2, zc]));
+    g.add(box(cw, 0.035, 0.003, CLOTH_EDGE, [xc, ty - drop - 0.0175, zc + s * (cl / 2 + 0.0005)])); g.add(box(0.003, 0.035, cl, CLOTH_EDGE, [xc + s * (cw / 2 + 0.0005), ty - drop - 0.0175, zc])); }
+  g.add(box(W - 0.01, gt, L - 0.01, { glass: true, col: 0x9fb8b0, opacity: 0.14, noCast: true }, [xc, ty + 0.002 + gt / 2, zc]));   // plate glass over the cloth
+  for (const s of [-1, 1]) { g.add(box(W - 0.01, gt, 0.003, GLASS_EDGE, [xc, ty + 0.002 + gt / 2, zc + s * (L / 2 - 0.0065)])); g.add(box(0.003, gt, L - 0.01, GLASS_EDGE, [xc + s * (W / 2 - 0.0065), ty + 0.002 + gt / 2, zc])); }
+  for (const s of [-1, 1]) { g.add(rbox(W - 2 * inset, ap, 0.022, 0.006, TEA_D, [xc, ty - topT - ap / 2, zc + s * (L / 2 - inset)])); g.add(rbox(0.022, ap, L - 2 * inset, 0.006, TEA_D, [xc + s * (W / 2 - inset), ty - topT - ap / 2, zc])); }
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) { const Lg = turnedLeg(legH, TEA); Lg.scale.set(1.25, 1, 1.25); Lg.position.set(xc + sx * (W / 2 - inset), 0, zc + sz * (L / 2 - inset)); g.add(Lg); }
+  return tag(g, 'dining table (dark hardwood, glass over a cloth)', true);
+}
+// a plain dark hardwood dining side chair: tapered square legs, side and front stretchers, a solid seat with a rounded
+// front, two back posts with a curved top rail and three vertical slats (as in the lane-house photos); seat 0.45 m
+export function diningChair(x, z, yaw, label = 'dining chairs (dark hardwood, slat back)') {
+  const g = new THREE.Group(), w = 0.44, d = 0.42, seat = 0.45, back = 0.92, lg = 0.034;
+  g.add(rbox(w, 0.025, d, 0.008, TEA, [0, seat - 0.0125, 0]));
+  for (const sx of [-1, 1]) for (const sz of [-1, 1]) { const hgt = sz < 0 ? back : seat - 0.025; const L = cyl(lg / 2, lg * 0.36, hgt, TEA_D, [sx * (w / 2 - 0.03), hgt / 2, sz * (d / 2 - 0.03)], null, 4); L.rotation.y = Math.PI / 4; g.add(L); }
+  for (const sx of [-1, 1]) g.add(box(0.018, 0.022, d - 0.06, TEA_D, [sx * (w / 2 - 0.03), 0.15, 0]));
+  g.add(box(w - 0.06, 0.022, 0.018, TEA_D, [0, 0.12, d / 2 - 0.03])); g.add(box(w - 0.06, 0.05, 0.02, TEA_D, [0, seat - 0.05, d / 2 - 0.03]));
+  const rail = mk(new THREE.CylinderGeometry(0.42, 0.42, 0.06, 24, 1, true, Math.PI - 0.55, 1.1), TEA); rail.userData.double = true; rail.position.set(0, back - 0.04, -d / 2 + 0.03 + 0.4); g.add(rail);   // the curved top rail
+  for (const k of [-1, 0, 1]) g.add(box(0.045, back - seat - 0.1, 0.012, TEA, [k * 0.095, (seat + back - 0.07) / 2, -d / 2 + 0.032]));
+  g.add(box(w - 0.06, 0.03, 0.02, TEA_D, [0, seat + 0.07, -d / 2 + 0.03]));
+  g.position.set(x, 0, z); g.rotation.y = rad(yaw); return tag(g, label);
 }
 
 // ---------------------------------------------------------------- slippers
