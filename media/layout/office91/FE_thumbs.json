@@ -1022,7 +1022,7 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "mama91": 0.1835,
+  "mama91": 0.1834,
   "jade10": 0.1298
  },
  "colour_separation": [
@@ -1119,7 +1119,7 @@
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
      "temple_length_mm": 141,
-     "rim_clear_of_face_mm": 6.5
+     "rim_clear_of_face_mm": 5.6
     }
    }
   }

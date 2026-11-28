@@ -45,7 +45,7 @@ export const FRAMES = {
   // sheet front: lens 45 x 28 mm outer (a soft wide oval, flattish top and bottom), bridge 20 mm arched up, lens top 7.4 mm
   // above the pupil, rim ~1.4 mm, pale silver
   mama: { name: 'thin round-oval pale silver wire', sheet: 'cast/mama/mama_R_rest_heads_v1.jpg',
-    shape: 'oval', n: 2.6, w: 43.6, h: 26.4, dbl: 21.1, rim: 0.7, temple: 0.75, topY: 6.7, bridge: { v: 0.45, arch: 2.5 }, hingeV: 0.25,
+    shape: 'oval', n: 2.6, w: 43.6, h: 26.4, dbl: 21.1, rim: 0.7, temple: 0.75, topY: 5.4, bridge: { v: 0.45, arch: 2.5 }, hingeV: 0.25,
     col: 0xbab6ad, grey: 0.72 },
   // sheet front: lens 56 x 42 mm outer, bridge 16 mm, lens top 13 mm above the pupil (just under the brows), the bottom
   // 29 mm below it on the cheekbones; flat top, near-vertical outer side, a broad round bottom deepest just nasal of

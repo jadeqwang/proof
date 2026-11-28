@@ -23,8 +23,8 @@ export const BROWS = {
             L: { pts: [[0.246, 0.27], [0.52, 0.335], [0.91, 0.27]], w: [0.072, 0.058, 0.014], peak: 0.45 } },
   // Mama (mama_R_rest_heads_v1): clearly drawn, straight-ish and thinner, set higher above the eye; her LEFT lifts a
   // little more at two-thirds
-  mama: { R: { pts: [[0.31, 0.33], [0.50, 0.335], [0.85, 0.27]], w: [0.06, 0.052, 0.014], peak: 0.4 },
-          L: { pts: [[0.295, 0.34], [0.64, 0.39], [0.87, 0.34]], w: [0.06, 0.05, 0.014], peak: 0.6 } },
+  mama: { R: { pts: [[0.31, 0.30], [0.50, 0.305], [0.85, 0.24]], w: [0.06, 0.052, 0.014], peak: 0.4 },   // 2026-11-28: 1.8 mm lower (front overlay)
+          L: { pts: [[0.295, 0.31], [0.64, 0.36], [0.87, 0.31]], w: [0.06, 0.05, 0.014], peak: 0.6 } },
   // Dad (dad_H_heads_v5_likeness; his photo for 2023): thick, dark and nearly straight, long, tail tapering late
   dad: { R: { pts: [[0.23, 0.325], [0.55, 0.345], [0.92, 0.30]], w: [0.115, 0.1, 0.045], peak: 0.55 } },
   // little Jade (lj03 / lj05 / lj07 / lj10 heads sheets): short, thin, softly arched, high over big eyes (mostly under
