@@ -87,6 +87,15 @@ would bring the rod into the top edge but costs the caption room at the bottom.
   (composite.py now clamps the feather to the polygon). Sheet: scratchpad hold_sleeve_swap_sheet.jpg. Weak spot: in start the
   sleeve fills the whole mask polygon, so its top edge reads straight / boxy against the trousers (a tighter mask + retake
   would fix it).
+- v3 (lead's review: boxy sleeves): organic dilated mask (KEY_mask2.png), new prompt (sleeve_prompt2.txt), 4 more gpt2 calls
+  (~$0.90). sleeve_layer.py takes ONLY the painted sleeve, slid along x so the cuff starts at the wrist line (the painter
+  put it over the wrist bone), over the original background; the old cream cuff where it would peek out is inpainted
+  (OpenCV) from the surrounding original. Jade r8: her trousers -> mid-blue jeans and her sock -> white too: recolour.py,
+  a Lab recolour inside SAM 2.1 masks (local model, sam_seg.py; hands mask = the lock), no painter. Check on all four:
+  0 changed pixels outside the masks, 0 on the hands. Residual: a few small beige patches of her trousers SAM missed (end,
+  bottom centre). Sheet: scratchpad hold_costume_swap_sheet_v3.jpg.
+- Video AB step: specs media/gen/specs/hold_CL_AB_{1017,2101,3307}.json written ($1.85 each); the paid submit was BLOCKED by
+  the permission classifier (00:00 11-28), not run.
 - Video PREPARED, not run: swap/run_video.sh (same Seedance 2.0 1080p chain, same prompts and seeds; only "cream sleeves"
   -> "cardinal-red hoodie sleeves"). Est. $1.85 per take: 3 + 3 takes $11.10, minimum 1 + 1 $3.70.
 - Clothes over her head now brush her hair (garments section). clipcheck "jade19 into hanging clothes" 24-36 mm are false
