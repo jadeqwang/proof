@@ -826,7 +826,7 @@
   "corner_order": "source: the lit opening on the inner face of the window wall, a convex polygon starting top-east (TL as seen from inside), then top-west, down the west side, along the bottom; footprints: the clipped caps of the beam solid on each plane",
   "note": "the lit volume is the aperture swept along travel_dir and clipped by the room; render the mask twin beam_<id> (furniture and figures occlude it); cast shadows are in flat / lit",
   "in_beam": {},
-  "steam_points_in_beam": "117 of 117",
+  "steam_points_in_beam": "39 of 39",
   "mugs_in_beam": [
    true,
    true,
@@ -853,10 +853,798 @@
   "door_gap_m": 0.88
  },
  "tissue": null,
+ "wad_tip_gap_mm": null,
  "state": "A: the uncle explains (no drift yet)",
  "tissue_pieces": 0,
  "times": null,
  "points_world": {},
+ "objects": [
+  {
+   "label": "dining chairs (dark hardwood, slat back)",
+   "figure": null,
+   "frame_fraction": 0.38482,
+   "bbox_px": [
+    0,
+    16,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    995,
+    682
+   ],
+   "world_box": [
+    [
+     3.75,
+     0,
+     -4.38
+    ],
+    [
+     5.45,
+     0.92,
+     -1.62
+    ]
+   ]
+  },
+  {
+   "label": "dining table (dark hardwood, glass over a cloth)",
+   "figure": null,
+   "frame_fraction": 0.2448,
+   "bbox_px": [
+    0,
+    184,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    868,
+    380
+   ],
+   "world_box": [
+    [
+     4.155,
+     0,
+     -3.955
+    ],
+    [
+     5.045,
+     0.76,
+     -2.045
+    ]
+   ]
+  },
+  {
+   "label": "waxed wooden floor (打蜡地板)",
+   "figure": null,
+   "frame_fraction": 0.21293,
+   "bbox_px": [
+    0,
+    382,
+    1910,
+    1080
+   ],
+   "centroid_px": [
+    859,
+    756
+   ],
+   "world_box": [
+    [
+     -3.15,
+     -0.04,
+     -6.25
+    ],
+    [
+     7.65,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "nanny's room (west, across the hall)",
+   "figure": null,
+   "frame_fraction": 0.02415,
+   "bbox_px": [
+    1240,
+    0,
+    1596,
+    194
+   ],
+   "centroid_px": [
+    1418,
+    95
+   ],
+   "world_box": [
+    [
+     -0.37,
+     -0.04,
+     -12.19
+    ],
+    [
+     2.31,
+     3.09,
+     -8.67
+    ]
+   ]
+  },
+  {
+   "label": "far rooms: French doors (closed)",
+   "figure": null,
+   "frame_fraction": 0.02106,
+   "bbox_px": [
+    1216,
+    0,
+    1920,
+    422
+   ],
+   "centroid_px": [
+    1545,
+    161
+   ],
+   "world_box": [
+    [
+     0.275,
+     0.008,
+     -8.671
+    ],
+    [
+     4.225,
+     2.173,
+     -8.549
+    ]
+   ]
+  },
+  {
+   "label": "pale celadon-green thermos flask (dining table)",
+   "figure": null,
+   "frame_fraction": 0.01675,
+   "bbox_px": [
+    1680,
+    0,
+    1902,
+    198
+   ],
+   "centroid_px": [
+    1806,
+    94
+   ],
+   "world_box": [
+    [
+     4.682,
+     0.76,
+     -3.689
+    ],
+    [
+     4.958,
+     1.1,
+     -3.411
+    ]
+   ]
+  },
+  {
+   "label": "hall wall",
+   "figure": null,
+   "frame_fraction": 0.01221,
+   "bbox_px": [
+    872,
+    0,
+    1126,
+    188
+   ],
+   "centroid_px": [
+    993,
+    79
+   ],
+   "world_box": [
+    [
+     -0.37,
+     0,
+     -8.55
+    ],
+    [
+     4.87,
+     3.05,
+     -6.25
+    ]
+   ]
+  },
+  {
+   "label": "hall floor",
+   "figure": null,
+   "frame_fraction": 0.00963,
+   "bbox_px": [
+    1202,
+    390,
+    1920,
+    526
+   ],
+   "centroid_px": [
+    1488,
+    435
+   ],
+   "world_box": [
+    [
+     -0.25,
+     -0.04,
+     -8.55
+    ],
+    [
+     4.75,
+     0,
+     -6.25
+    ]
+   ]
+  },
+  {
+   "label": "books (spines)",
+   "figure": null,
+   "frame_fraction": 0.00884,
+   "bbox_px": [
+    292,
+    0,
+    696,
+    184
+   ],
+   "centroid_px": [
+    528,
+    99
+   ],
+   "world_box": [
+    [
+     -2.961,
+     0.868,
+     -5.972
+    ],
+    [
+     6.485,
+     1.884,
+     -5.759
+    ]
+   ]
+  },
+  {
+   "label": "bookcase (carcass, cupboard doors, cornice)",
+   "figure": null,
+   "frame_fraction": 0.00801,
+   "bbox_px": [
+    290,
+    0,
+    778,
+    182
+   ],
+   "centroid_px": [
+    593,
+    58
+   ],
+   "world_box": [
+    [
+     -3.002,
+     0,
+     -6.108
+    ],
+    [
+     6.522,
+     2.05,
+     -5.69
+    ]
+   ]
+  },
+  {
+   "label": "west wall",
+   "figure": null,
+   "frame_fraction": 0.00785,
+   "bbox_px": [
+    0,
+    0,
+    290,
+    360
+   ],
+   "centroid_px": [
+    160,
+    107
+   ],
+   "world_box": [
+    [
+     -3.15,
+     0,
+     -6.25
+    ],
+    [
+     -3,
+     3.05,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "hall French doors (folded back into the hall)",
+   "figure": null,
+   "frame_fraction": 0.00667,
+   "bbox_px": [
+    832,
+    0,
+    1038,
+    188
+   ],
+   "centroid_px": [
+    935,
+    75
+   ],
+   "world_box": [
+    [
+     0.283,
+     0,
+     -7.246
+    ],
+    [
+     4.217,
+     2.19,
+     -6.258
+    ]
+   ]
+  },
+  {
+   "label": "bookcase glazed doors",
+   "figure": null,
+   "frame_fraction": 0.00665,
+   "bbox_px": [
+    282,
+    0,
+    696,
+    182
+   ],
+   "centroid_px": [
+    491,
+    85
+   ],
+   "world_box": [
+    [
+     -2.976,
+     0.875,
+     -5.743
+    ],
+    [
+     6.496,
+     1.99,
+     -5.7
+    ]
+   ]
+  },
+  {
+   "label": "far rooms: architraves",
+   "figure": null,
+   "frame_fraction": 0.0054,
+   "bbox_px": [
+    1194,
+    0,
+    1652,
+    408
+   ],
+   "centroid_px": [
+    1517,
+    137
+   ],
+   "world_box": [
+    [
+     0.178,
+     0,
+     -8.552
+    ],
+    [
+     4.322,
+     2.85,
+     -8.518
+    ]
+   ]
+  },
+  {
+   "label": "hall far wall (to the two rooms)",
+   "figure": null,
+   "frame_fraction": 0.00487,
+   "bbox_px": [
+    1124,
+    0,
+    1198,
+    190
+   ],
+   "centroid_px": [
+    1164,
+    81
+   ],
+   "world_box": [
+    [
+     -0.25,
+     0,
+     -8.67
+    ],
+    [
+     4.75,
+     3.05,
+     -8.55
+    ]
+   ]
+  },
+  {
+   "label": "calligraphy hanging scrolls (书法挂轴)",
+   "figure": null,
+   "frame_fraction": 0.00427,
+   "bbox_px": [
+    0,
+    0,
+    194,
+    158
+   ],
+   "centroid_px": [
+    115,
+    70
+   ],
+   "world_box": [
+    [
+     -2.997,
+     0.988,
+     -5.269
+    ],
+    [
+     -2.974,
+     2.745,
+     -4.189
+    ]
+   ]
+  },
+  {
+   "label": "hall doorway threshold (teak)",
+   "figure": null,
+   "frame_fraction": 0.00379,
+   "bbox_px": [
+    1342,
+    462,
+    1910,
+    544
+   ],
+   "centroid_px": [
+    1634,
+    503
+   ],
+   "world_box": [
+    [
+     0.25,
+     0,
+     -6.255
+    ],
+    [
+     4.25,
+     0.018,
+     -6.095
+    ]
+   ]
+  },
+  {
+   "label": "bookcase shelf boards and uprights",
+   "figure": null,
+   "frame_fraction": 0.00373,
+   "bbox_px": [
+    280,
+    0,
+    758,
+    190
+   ],
+   "centroid_px": [
+    480,
+    91
+   ],
+   "world_box": [
+    [
+     -3,
+     0.84,
+     -6.1
+    ],
+    [
+     6.52,
+     2.01,
+     -5.695
+    ]
+   ]
+  },
+  {
+   "label": "low round wooden stool",
+   "figure": null,
+   "frame_fraction": 0.00294,
+   "bbox_px": [
+    1058,
+    466,
+    1208,
+    646
+   ],
+   "centroid_px": [
+    1126,
+    548
+   ],
+   "world_box": [
+    [
+     -0.474,
+     -0.002,
+     -5.624
+    ],
+    [
+     6.042,
+     0.32,
+     -1.458
+    ]
+   ]
+  },
+  {
+   "label": "far rooms: French doors (frame)",
+   "figure": null,
+   "frame_fraction": 0.00212,
+   "bbox_px": [
+    1208,
+    0,
+    1662,
+    402
+   ],
+   "centroid_px": [
+    1476,
+    116
+   ],
+   "world_box": [
+    [
+     0.25,
+     0,
+     -8.67
+    ],
+    [
+     4.25,
+     2.2,
+     -8.55
+    ]
+   ]
+  },
+  {
+   "label": "hall French doors (frame)",
+   "figure": null,
+   "frame_fraction": 0.00195,
+   "bbox_px": [
+    794,
+    0,
+    830,
+    184
+   ],
+   "centroid_px": [
+    809,
+    75
+   ],
+   "world_box": [
+    [
+     0.245,
+     0,
+     -6.25
+    ],
+    [
+     4.255,
+     2.205,
+     -6.1
+    ]
+   ]
+  },
+  {
+   "label": "music room (east, across the hall)",
+   "figure": null,
+   "frame_fraction": 0.00156,
+   "bbox_px": [
+    1680,
+    6,
+    1730,
+    196
+   ],
+   "centroid_px": [
+    1700,
+    95
+   ],
+   "world_box": [
+    [
+     2.19,
+     -0.04,
+     -12.19
+    ],
+    [
+     4.87,
+     3.09,
+     -8.67
+    ]
+   ]
+  },
+  {
+   "label": "armchair (beside)",
+   "figure": null,
+   "frame_fraction": 0.0012,
+   "bbox_px": [
+    60,
+    170,
+    292,
+    414
+   ],
+   "centroid_px": [
+    190,
+    279
+   ],
+   "world_box": [
+    [
+     -2.167,
+     -0.004,
+     -5.111
+    ],
+    [
+     -1.373,
+     0.921,
+     -4.251
+    ]
+   ]
+  },
+  {
+   "label": "far rooms: threshold",
+   "figure": null,
+   "frame_fraction": 0.00119,
+   "bbox_px": [
+    1442,
+    388,
+    1920,
+    428
+   ],
+   "centroid_px": [
+    1694,
+    408
+   ],
+   "world_box": [
+    [
+     0.25,
+     0,
+     -8.675
+    ],
+    [
+     4.25,
+     0.018,
+     -8.545
+    ]
+   ]
+  },
+  {
+   "label": "bookcase back (inside)",
+   "figure": null,
+   "frame_fraction": 0.00104,
+   "bbox_px": [
+    358,
+    0,
+    688,
+    132
+   ],
+   "centroid_px": [
+    556,
+    46
+   ],
+   "world_box": [
+    [
+     -2.978,
+     0.87,
+     -6.1
+    ],
+    [
+     6.498,
+     2,
+     -6.088
+    ]
+   ]
+  },
+  {
+   "label": "hall doorway architraves",
+   "figure": null,
+   "frame_fraction": 0.00099,
+   "bbox_px": [
+    776,
+    0,
+    834,
+    184
+   ],
+   "centroid_px": [
+    792,
+    57
+   ],
+   "world_box": [
+    [
+     0.178,
+     0,
+     -6.287
+    ],
+    [
+     4.322,
+     2.85,
+     -6.063
+    ]
+   ]
+  },
+  {
+   "label": "skirting",
+   "figure": null,
+   "frame_fraction": 0.00044,
+   "bbox_px": [
+    0,
+    356,
+    74,
+    388
+   ],
+   "centroid_px": [
+    34,
+    371
+   ],
+   "world_box": [
+    [
+     -3,
+     0,
+     -6.1
+    ],
+    [
+     7.5,
+     0.12,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "hall: doormat",
+   "figure": null,
+   "frame_fraction": 0.00009,
+   "bbox_px": [
+    1536,
+    428,
+    1586,
+    442
+   ],
+   "centroid_px": [
+    1554,
+    434
+   ],
+   "world_box": [
+    [
+     2.6,
+     -0.005,
+     -7.6
+    ],
+    [
+     3.1,
+     0.015,
+     -7.3
+    ]
+   ]
+  },
+  {
+   "label": "far rooms: door hinges (brass)",
+   "figure": null,
+   "frame_fraction": 0.00006,
+   "bbox_px": [
+    1216,
+    92,
+    1658,
+    138
+   ],
+   "centroid_px": [
+    1456,
+    116
+   ],
+   "world_box": [
+    [
+     0.268,
+     0.244,
+     -8.622
+    ],
+    [
+     4.232,
+     2.007,
+     -8.577
+    ]
+   ]
+  }
+ ],
+ "joints": {},
+ "layout_version": 4,
  "gaze": {},
  "costume": {},
  "holds": [],

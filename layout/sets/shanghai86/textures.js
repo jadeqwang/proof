@@ -83,8 +83,12 @@ export const UPH_STRIPE = 0.04;
 { const W = 256, c = document.createElement('canvas'); c.width = W; c.height = W; const g = c.getContext('2d');
   if (SRC.wool) g.drawImage(SRC.wool, 0, 0, Math.round(SRC.wool.width * UPH_STRIPE / 0.274), Math.round(SRC.wool.height * UPH_STRIPE / 0.274), 0, 0, W, W); else { g.fillStyle = '#888'; g.fillRect(0, 0, W, W); }
   const im = g.getImageData(0, 0, W, W), d = im.data; let m = 0; for (let i = 0; i < W * W; i++) m += 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2]; m /= W * W;
-  const band = (x) => (x < 128 ? 1.06 : x < 141 ? 1.75 : x < 230 ? 0.72 : x < 243 ? 1.75 : 1.06);
-  for (let y = 0; y < W; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4, l = (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]) / m, v = Math.max(0, Math.min(255, 150 * band(x) * (0.75 + 0.25 * l))); d[i] = d[i + 1] = d[i + 2] = v; }
+  // round 9 (Jade: the canon card as shown: dark rust-brown 0x683826 with a CREAM pinline): drawn in its real colours (raw),
+  // the wool's weave modulating each band by +-12 %: rust 0x683826, cream pinline 0xe8dcc0, darker band 0x4a2618
+  const RUST = [0x68, 0x38, 0x26], CREAM = [0xe8, 0xdc, 0xc0], DARK = [0x4a, 0x26, 0x18];
+  const band = (x) => (x < 128 ? RUST : x < 141 ? CREAM : x < 230 ? DARK : x < 243 ? CREAM : RUST);
+  for (let y = 0; y < W; y++) for (let x = 0; x < W; x++) { const i = (y * W + x) * 4, l = (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]) / m, k = 0.88 + 0.12 * l, c = band(x);
+    d[i] = Math.min(255, c[0] * k); d[i + 1] = Math.min(255, c[1] * k); d[i + 2] = Math.min(255, c[2] * k); }
   g.putImageData(im, 0, 0); SRC.uphol = c;
   SRC.upholEdge = canvas(W, W, (e) => { e.fillStyle = '#fff'; e.fillRect(0, 0, W, W); e.fillStyle = '#b8b8b8'; e.fillRect(128, 0, 13, W); e.fillRect(230, 0, 13, W); }); }
 // the little girl's top (Jade, canon: LONG RED GINGHAM SLEEVES, as in the r3 V1d_2 paintings): coral-red and white gingham,
@@ -118,7 +122,7 @@ export const MATS = {
   lace: { src: 'lace', period: [0.2, 0.2], contrast: 1.0 },                // crocheted covers: 5 cm motifs
   rattan: { src: 'rattan', period: [0.08, 0.08], contrast: 1.0 },          // cane weave
   knit: { src: 'knit', period: [KNIT_U, KNIT_V], contrast: 0.3, clampV: true },
-  uphol: { src: 'uphol', period: [UPH_STRIPE, UPH_STRIPE], contrast: 1.0, edge: 'upholEdge' },
+  uphol: { src: 'uphol', period: [UPH_STRIPE, UPH_STRIPE], raw: true, edge: 'upholEdge' },
   tablecloth: { src: 'tablecloth', period: [0.05, 0.05], raw: true },
   gingham: { src: 'gingham', period: [0.014, 0.014], raw: true },
   ginghamGather: { src: 'ginghamGather', period: [1, 1], raw: true },

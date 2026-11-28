@@ -826,7 +826,7 @@
   "corner_order": "source: the lit opening on the inner face of the window wall, a convex polygon starting top-east (TL as seen from inside), then top-west, down the west side, along the bottom; footprints: the clipped caps of the beam solid on each plane",
   "note": "the lit volume is the aperture swept along travel_dir and clipped by the room; render the mask twin beam_<id> (furniture and figures occlude it); cast shadows are in flat / lit",
   "in_beam": {},
-  "steam_points_in_beam": "117 of 117",
+  "steam_points_in_beam": "39 of 39",
   "mugs_in_beam": [
    true,
    true,
@@ -853,10 +853,258 @@
   "door_gap_m": 0.88
  },
  "tissue": null,
+ "wad_tip_gap_mm": null,
  "state": "A: the uncle explains (no drift yet)",
  "tissue_pieces": 0,
  "times": null,
  "points_world": {},
+ "objects": [
+  {
+   "label": "music room (east, across the hall)",
+   "figure": null,
+   "frame_fraction": 0.52004,
+   "bbox_px": [
+    0,
+    0,
+    1522,
+    1080
+   ],
+   "centroid_px": [
+    683,
+    485
+   ],
+   "world_box": [
+    [
+     2.19,
+     -0.04,
+     -12.19
+    ],
+    [
+     4.87,
+     3.09,
+     -8.67
+    ]
+   ]
+  },
+  {
+   "label": "music room: bookcase (carcass, cupboard doors, cornice)",
+   "figure": null,
+   "frame_fraction": 0.22662,
+   "bbox_px": [
+    1298,
+    0,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    1680,
+    578
+   ],
+   "world_box": [
+    [
+     3.058,
+     0,
+     -12.078
+    ],
+    [
+     4.758,
+     2.05,
+     -9.568
+    ]
+   ]
+  },
+  {
+   "label": "music room: upright piano",
+   "figure": null,
+   "frame_fraction": 0.10114,
+   "bbox_px": [
+    296,
+    266,
+    1146,
+    998
+   ],
+   "centroid_px": [
+    662,
+    580
+   ],
+   "world_box": [
+    [
+     2.342,
+     0,
+     -11.244
+    ],
+    [
+     2.898,
+     1.1,
+     -9.696
+    ]
+   ]
+  },
+  {
+   "label": "music room: chair beside the piano bench",
+   "figure": null,
+   "frame_fraction": 0.05507,
+   "bbox_px": [
+    358,
+    692,
+    888,
+    1080
+   ],
+   "centroid_px": [
+    605,
+    929
+   ],
+   "world_box": [
+    [
+     3.059,
+     0,
+     -9.973
+    ],
+    [
+     3.636,
+     0.92,
+     -9.407
+    ]
+   ]
+  },
+  {
+   "label": "music room: piano bench (black lacquer)",
+   "figure": null,
+   "frame_fraction": 0.04482,
+   "bbox_px": [
+    740,
+    608,
+    1240,
+    1080
+   ],
+   "centroid_px": [
+    985,
+    772
+   ],
+   "world_box": [
+    [
+     3.008,
+     0,
+     -10.895
+    ],
+    [
+     3.387,
+     0.52,
+     -10.045
+    ]
+   ]
+  },
+  {
+   "label": "music room: books (spines)",
+   "figure": null,
+   "frame_fraction": 0.02123,
+   "bbox_px": [
+    1362,
+    0,
+    1846,
+    1028
+   ],
+   "centroid_px": [
+    1497,
+    215
+   ],
+   "world_box": [
+    [
+     3.106,
+     0.868,
+     -11.94
+    ],
+    [
+     4.664,
+     1.882,
+     -9.601
+    ]
+   ]
+  },
+  {
+   "label": "music room: bookcase glazed doors",
+   "figure": null,
+   "frame_fraction": 0.01312,
+   "bbox_px": [
+    1342,
+    0,
+    1640,
+    424
+   ],
+   "centroid_px": [
+    1487,
+    217
+   ],
+   "world_box": [
+    [
+     3.084,
+     0.875,
+     -11.713
+    ],
+    [
+     4.676,
+     1.99,
+     -9.594
+    ]
+   ]
+  },
+  {
+   "label": "music room: bookcase back (inside)",
+   "figure": null,
+   "frame_fraction": 0.00989,
+   "bbox_px": [
+    1430,
+    40,
+    1654,
+    386
+   ],
+   "centroid_px": [
+    1539,
+    166
+   ],
+   "world_box": [
+    [
+     3.082,
+     0.87,
+     -12.07
+    ],
+    [
+     4.75,
+     2,
+     -9.592
+    ]
+   ]
+  },
+  {
+   "label": "music room: bookcase shelf boards and uprights",
+   "figure": null,
+   "frame_fraction": 0.00807,
+   "bbox_px": [
+    1328,
+    0,
+    1664,
+    1080
+   ],
+   "centroid_px": [
+    1473,
+    281
+   ],
+   "world_box": [
+    [
+     3.06,
+     0.84,
+     -12.07
+    ],
+    [
+     4.75,
+     2.01,
+     -9.57
+    ]
+   ]
+  }
+ ],
+ "joints": {},
+ "layout_version": 4,
  "gaze": {},
  "costume": {},
  "holds": [],

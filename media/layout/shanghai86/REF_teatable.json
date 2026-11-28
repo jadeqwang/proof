@@ -826,7 +826,7 @@
   "corner_order": "source: the lit opening on the inner face of the window wall, a convex polygon starting top-east (TL as seen from inside), then top-west, down the west side, along the bottom; footprints: the clipped caps of the beam solid on each plane",
   "note": "the lit volume is the aperture swept along travel_dir and clipped by the room; render the mask twin beam_<id> (furniture and figures occlude it); cast shadows are in flat / lit",
   "in_beam": {},
-  "steam_points_in_beam": "117 of 117",
+  "steam_points_in_beam": "39 of 39",
   "mugs_in_beam": [
    true,
    true,
@@ -853,10 +853,150 @@
   "door_gap_m": 0.88
  },
  "tissue": null,
+ "wad_tip_gap_mm": null,
  "state": "A: the uncle explains (no drift yet)",
  "tissue_pieces": 0,
  "times": null,
  "points_world": {},
+ "objects": [
+  {
+   "label": "coffee table (茶几)",
+   "figure": null,
+   "frame_fraction": 0.49587,
+   "bbox_px": [
+    22,
+    72,
+    1632,
+    1080
+   ],
+   "centroid_px": [
+    858,
+    608
+   ],
+   "world_box": [
+    [
+     -1.7,
+     0,
+     -3.514
+    ],
+    [
+     -1.15,
+     0.42,
+     -2.564
+    ]
+   ]
+  },
+  {
+   "label": "waxed wooden floor (打蜡地板)",
+   "figure": null,
+   "frame_fraction": 0.3175,
+   "bbox_px": [
+    0,
+    0,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    1376,
+    635
+   ],
+   "world_box": [
+    [
+     -3.15,
+     -0.04,
+     -6.25
+    ],
+    [
+     7.65,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "three-seat couch (west wall)",
+   "figure": null,
+   "frame_fraction": 0.1546,
+   "bbox_px": [
+    0,
+    0,
+    868,
+    600
+   ],
+   "centroid_px": [
+    341,
+    209
+   ],
+   "world_box": [
+    [
+     -3.084,
+     -0.004,
+     -3.94
+    ],
+    [
+     -2.156,
+     0.901,
+     -2.138
+    ]
+   ]
+  },
+  {
+   "label": "armchair (beside)",
+   "figure": null,
+   "frame_fraction": 0.03029,
+   "bbox_px": [
+    1118,
+    0,
+    1668,
+    212
+   ],
+   "centroid_px": [
+    1414,
+    61
+   ],
+   "world_box": [
+    [
+     -2.167,
+     -0.004,
+     -5.111
+    ],
+    [
+     -1.373,
+     0.921,
+     -4.251
+    ]
+   ]
+  },
+  {
+   "label": "on the coffee table shelf: a folded newspaper and two journals",
+   "figure": null,
+   "frame_fraction": 0.00174,
+   "bbox_px": [
+    492,
+    944,
+    712,
+    1064
+   ],
+   "centroid_px": [
+    570,
+    991
+   ],
+   "world_box": [
+    [
+     -1.582,
+     0.12,
+     -3.382
+    ],
+    [
+     -1.293,
+     0.142,
+     -2.703
+    ]
+   ]
+  }
+ ],
+ "joints": {},
+ "layout_version": 4,
  "gaze": {},
  "costume": {},
  "holds": [],

@@ -826,7 +826,7 @@
   "corner_order": "source: the lit opening on the inner face of the window wall, a convex polygon starting top-east (TL as seen from inside), then top-west, down the west side, along the bottom; footprints: the clipped caps of the beam solid on each plane",
   "note": "the lit volume is the aperture swept along travel_dir and clipped by the room; render the mask twin beam_<id> (furniture and figures occlude it); cast shadows are in flat / lit",
   "in_beam": {},
-  "steam_points_in_beam": "117 of 117",
+  "steam_points_in_beam": "39 of 39",
   "mugs_in_beam": [
    true,
    true,
@@ -956,10 +956,123 @@
   "hair_bit_world": null,
   "hair_bit_px": null
  },
+ "wad_tip_gap_mm": null,
  "state": "B: a week later, the drift",
  "tissue_pieces": 8,
  "times": null,
  "points_world": {},
+ "objects": [
+  {
+   "label": "hall French doors (folded back into the hall)",
+   "figure": null,
+   "frame_fraction": 0.46166,
+   "bbox_px": [
+    896,
+    0,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    1473,
+    535
+   ],
+   "world_box": [
+    [
+     0.283,
+     0,
+     -7.246
+    ],
+    [
+     4.217,
+     2.19,
+     -6.258
+    ]
+   ]
+  },
+  {
+   "label": "hall French doors (frame)",
+   "figure": null,
+   "frame_fraction": 0.30719,
+   "bbox_px": [
+    0,
+    0,
+    784,
+    1080
+   ],
+   "centroid_px": [
+    302,
+    538
+   ],
+   "world_box": [
+    [
+     0.245,
+     0,
+     -6.25
+    ],
+    [
+     4.255,
+     2.205,
+     -6.1
+    ]
+   ]
+  },
+  {
+   "label": "hall door hinges (brass butt hinges)",
+   "figure": null,
+   "frame_fraction": 0.22453,
+   "bbox_px": [
+    528,
+    2,
+    1068,
+    1064
+   ],
+   "centroid_px": [
+    804,
+    548
+   ],
+   "world_box": [
+    [
+     0.27,
+     0.236,
+     -7.257
+    ],
+    [
+     4.23,
+     2.024,
+     -6.218
+    ]
+   ]
+  },
+  {
+   "label": "hall doorway architraves",
+   "figure": null,
+   "frame_fraction": 0.00662,
+   "bbox_px": [
+    772,
+    0,
+    900,
+    1080
+   ],
+   "centroid_px": [
+    819,
+    542
+   ],
+   "world_box": [
+    [
+     0.178,
+     0,
+     -6.287
+    ],
+    [
+     4.322,
+     2.85,
+     -6.063
+    ]
+   ]
+  }
+ ],
+ "joints": {},
+ "layout_version": 4,
  "gaze": {},
  "costume": {},
  "holds": [],

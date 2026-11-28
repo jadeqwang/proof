@@ -948,7 +948,7 @@
     }
    }
   },
-  "steam_points_in_beam": "117 of 117",
+  "steam_points_in_beam": "39 of 39",
   "mugs_in_beam": [
    true,
    true,
@@ -1123,6 +1123,7 @@
    1554.9
   ]
  },
+ "wad_tip_gap_mm": null,
  "state": "B: a week later, the drift",
  "tissue_pieces": 0,
  "times": [
@@ -1185,6 +1186,789 @@
    ]
   }
  },
+ "objects": [
+  {
+   "label": "waxed wooden floor (打蜡地板)",
+   "figure": null,
+   "frame_fraction": 0.60888,
+   "bbox_px": [
+    0,
+    0,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    951,
+    420
+   ],
+   "world_box": [
+    [
+     -3.15,
+     -0.04,
+     -6.25
+    ],
+    [
+     7.65,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "label": "little Jade (3)",
+   "figure": "jade3",
+   "frame_fraction": 0.26916,
+   "bbox_px": [
+    154,
+    350,
+    1774,
+    1080
+   ],
+   "centroid_px": [
+    969,
+    765
+   ]
+  },
+  {
+   "label": "草纸: the drift (torn halves ... 1/512, ragged edges)",
+   "figure": null,
+   "frame_fraction": 0.06393,
+   "bbox_px": [
+    0,
+    0,
+    1920,
+    1080
+   ],
+   "centroid_px": [
+    964,
+    571
+   ],
+   "world_box": [
+    [
+     -2.657,
+     0.001,
+     -4.656
+    ],
+    [
+     -0.843,
+     0.435,
+     -2.387
+    ]
+   ]
+  },
+  {
+   "label": "little Jade: gathered gingham cuffs and white round collar",
+   "figure": null,
+   "frame_fraction": 0.04416,
+   "bbox_px": [
+    446,
+    718,
+    1476,
+    1020
+   ],
+   "centroid_px": [
+    962,
+    894
+   ],
+   "world_box": [
+    [
+     -1.761,
+     0.25,
+     -3.713
+    ],
+    [
+     -1.619,
+     0.315,
+     -3.635
+    ]
+   ]
+  },
+  {
+   "label": "coffee table (茶几)",
+   "figure": null,
+   "frame_fraction": 0.01376,
+   "bbox_px": [
+    946,
+    0,
+    1164,
+    228
+   ],
+   "centroid_px": [
+    1082,
+    104
+   ],
+   "world_box": [
+    [
+     -1.7,
+     0,
+     -3.514
+    ],
+    [
+     -1.15,
+     0.42,
+     -2.564
+    ]
+   ]
+  },
+  {
+   "label": "草纸: the tiny pieces (in her hands / just torn)",
+   "figure": null,
+   "frame_fraction": 0.00012,
+   "bbox_px": [
+    894,
+    608,
+    1028,
+    630
+   ],
+   "centroid_px": [
+    957,
+    615
+   ],
+   "world_box": [
+    [
+     -1.692,
+     0.314,
+     -3.656
+    ],
+    [
+     -1.616,
+     0.421,
+     -3.463
+    ]
+   ]
+  }
+ ],
+ "joints": {
+  "jade3": {
+   "head": {
+    "px": [
+     960.8,
+     3222.6
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7452,
+     0.4759,
+     -3.8259
+    ]
+   },
+   "eyes": {
+    "px": [
+     960.5,
+     1694.6
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7199,
+     0.445,
+     -3.7562
+    ]
+   },
+   "mouth": {
+    "px": [
+     960.4,
+     1908.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7283,
+     0.3985,
+     -3.7795
+    ]
+   },
+   "chin": {
+    "px": [
+     960.5,
+     2438.7
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7454,
+     0.3749,
+     -3.8263
+    ]
+   },
+   "neck": {
+    "px": [
+     960.6,
+     3240.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7598,
+     0.4055,
+     -3.866
+    ]
+   },
+   "shoulderL": {
+    "px": [
+     -283,
+     3094.9
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.6613,
+     0.3811,
+     -3.9065
+    ]
+   },
+   "shoulderR": {
+    "px": [
+     2204.1,
+     3094.6
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.8613,
+     0.3811,
+     -3.8337
+    ]
+   },
+   "elbowL": {
+    "px": [
+     86.6,
+     1645.4
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.6133,
+     0.259,
+     -3.8189
+    ]
+   },
+   "elbowR": {
+    "px": [
+     1833.9,
+     1645.2
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.8418,
+     0.259,
+     -3.7357
+    ]
+   },
+   "wristL": {
+    "px": [
+     563.3,
+     864.4
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     -1.6396,
+     0.2862,
+     -3.6973
+    ]
+   },
+   "wristR": {
+    "px": [
+     1357.1,
+     864.3
+    ],
+    "in_frame": true,
+    "visible": false,
+    "w": [
+     -1.7435,
+     0.2862,
+     -3.6595
+    ]
+   },
+   "handL": {
+    "px": [
+     609.5,
+     678.8
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     -1.6382,
+     0.2981,
+     -3.6724
+    ]
+   },
+   "handR": {
+    "px": [
+     1310.8,
+     678.7
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     -1.7286,
+     0.2981,
+     -3.6395
+    ]
+   },
+   "indexL": {
+    "px": [
+     925.5,
+     594.3
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     -1.6768,
+     0.32,
+     -3.6512
+    ]
+   },
+   "indexR": {
+    "px": [
+     994.8,
+     594.2
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     -1.6853,
+     0.32,
+     -3.6481
+    ]
+   },
+   "hip": {
+    "px": [
+     960.3,
+     2200.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.77,
+     0.0808,
+     -3.894
+    ]
+   },
+   "hipL": {
+    "px": [
+     703.2,
+     2200.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7236,
+     0.0808,
+     -3.9109
+    ]
+   },
+   "hipR": {
+    "px": [
+     1217.4,
+     2200.2
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.8164,
+     0.0808,
+     -3.8771
+    ]
+   },
+   "kneeL": {
+    "px": [
+     209.1,
+     1288.8
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.5646,
+     0.0771,
+     -3.7894
+    ]
+   },
+   "kneeR": {
+    "px": [
+     1667.2,
+     1260.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.8493,
+     0.0796,
+     -3.6797
+    ]
+   },
+   "ankleL": {
+    "px": [
+     1026.6,
+     1567.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.7457,
+     0.0461,
+     -3.7855
+    ]
+   },
+   "ankleR": {
+    "px": [
+     924.9,
+     863.5
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     -1.6724,
+     0.0393,
+     -3.6498
+    ]
+   },
+   "footL": {
+    "px": [
+     1354.4,
+     1374.1
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     -1.8035,
+     0.0212,
+     -3.7235
+    ]
+   },
+   "footR": {
+    "px": [
+     836.6,
+     527.5
+    ],
+    "in_frame": true,
+    "visible": true,
+    "w": [
+     -1.6228,
+     0.0254,
+     -3.578
+    ]
+   }
+  },
+  "mama86": {
+   "head": {
+    "px": [
+     7948.9,
+     -2152.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5857,
+     1.4578,
+     -6.0294
+    ]
+   },
+   "eyes": {
+    "px": [
+     7865.1,
+     -2119.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5191,
+     1.4478,
+     -5.9665
+    ]
+   },
+   "mouth": {
+    "px": [
+     8263.6,
+     -2311.4
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.528,
+     1.3886,
+     -5.9747
+    ]
+   },
+   "chin": {
+    "px": [
+     8638.2,
+     -2488.4
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5625,
+     1.3465,
+     -6.007
+    ]
+   },
+   "neck": {
+    "px": [
+     8681.8,
+     -2504
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.6065,
+     1.3541,
+     -6.0486
+    ]
+   },
+   "shoulderL": {
+    "px": [
+     9557.1,
+     -2349.9
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.724,
+     1.3104,
+     -5.9134
+    ]
+   },
+   "shoulderR": {
+    "px": [
+     8526.6,
+     -2957.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.4937,
+     1.3104,
+     -6.1879
+    ]
+   },
+   "elbowL": {
+    "px": [
+     13648.5,
+     -3722.4
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.7928,
+     1.0231,
+     -5.8772
+    ]
+   },
+   "elbowR": {
+    "px": [
+     11282.2,
+     -4117.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.4874,
+     1.0463,
+     -6.051
+    ]
+   },
+   "wristL": {
+    "px": [
+     19391,
+     -6315.9
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.7363,
+     0.7974,
+     -5.8975
+    ]
+   },
+   "wristR": {
+    "px": [
+     9185.7,
+     -3716.9
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.297,
+     1.153,
+     -6.1341
+    ]
+   },
+   "handL": {
+    "px": [
+     21412.5,
+     -7144
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.7363,
+     0.7524,
+     -5.8975
+    ]
+   },
+   "handR": {
+    "px": [
+     8909.7,
+     -3631.1
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.297,
+     1.18,
+     -6.17
+    ]
+   },
+   "indexL": {
+    "px": [
+     27359.5,
+     -9933.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.6899,
+     0.65,
+     -5.9045
+    ]
+   },
+   "indexR": {
+    "px": [
+     8098.2,
+     -3319.1
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.279,
+     1.2711,
+     -6.2407
+    ]
+   },
+   "hip": {
+    "px": [
+     15726.2,
+     -5906.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.62,
+     0.85,
+     -6.06
+    ]
+   },
+   "hipL": {
+    "px": [
+     16489.3,
+     -5751.4
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.6776,
+     0.85,
+     -5.9914
+    ]
+   },
+   "hipR": {
+    "px": [
+     15021,
+     -6049.8
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5624,
+     0.85,
+     -6.1286
+    ]
+   },
+   "kneeL": {
+    "px": [
+     66971.6,
+     -28356.1
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.6524,
+     0.4442,
+     -5.9615
+    ]
+   },
+   "kneeR": {
+    "px": [
+     47781.8,
+     -23228.6
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5286,
+     0.4442,
+     -6.109
+    ]
+   },
+   "ankleL": {
+    "px": [
+     -32903.4,
+     16308.8
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.6858,
+     0.0718,
+     -5.9816
+    ]
+   },
+   "ankleR": {
+    "px": [
+     -40596.5,
+     22972.5
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5542,
+     0.0718,
+     -6.1384
+    ]
+   },
+   "footL": {
+    "px": [
+     -29781.3,
+     15018.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.5755,
+     0.0718,
+     -5.889
+    ]
+   },
+   "footR": {
+    "px": [
+     -36249.8,
+     20961.3
+    ],
+    "in_frame": false,
+    "visible": false,
+    "w": [
+     0.4439,
+     0.0718,
+     -6.0459
+    ]
+   }
+  }
+ },
+ "layout_version": 4,
  "gaze": {
   "jade3": {
    "face": "drawn",
@@ -1270,9 +2054,9 @@
    "torso": "capsule"
   },
   "mama86": {
-   "top": "#6f7f9a",
-   "legs": "#3a3632",
-   "sleeves": "short",
+   "top": "#b08050",
+   "legs": "#1a1a1c",
+   "sleeves": "long",
    "sock": "#8a8478",
    "torso": "capsule"
   }

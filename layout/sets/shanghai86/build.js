@@ -414,11 +414,15 @@ function wristWatch(fig, n) {
   const strap = mk(sg, { grey: 0.3, col: 0x3e2a1c, art: STRAP_ART.art, artGrey: STRAP_ART.artGrey, artEdge: null }); strap.userData.double = true; g.add(strap);
   const place = (m, local) => { m.quaternion.copy(q).multiply(local || new THREE.Quaternion()); return m; };
   const toZ = new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0));   // cylinder axis (y) -> the dial normal (local z)
-  const cs = place(mk(new THREE.CylinderGeometry(0.0175, 0.0175, 0.008, 32), STEEL_W), toZ); cs.position.copy(at).addScaledVector(back, RB + 0.004); g.add(cs);
-  const bz = place(mk(new THREE.TorusGeometry(0.0158, 0.0016, 8, 40), { grey: 0.85, col: 0xe0e0d8 })); bz.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(bz);   // polished bezel
-  for (const sy of [-1, 1]) for (const sx of [-1, 1]) { const lug = place(mk(new THREE.BoxGeometry(0.003, 0.006, 0.0035), STEEL_W)); lug.position.copy(at).addScaledVector(back, RB + 0.003).addScaledVector(Y, sy * 0.0185).addScaledVector(X, sx * 0.0075); g.add(lug); }
+  // audit 2026-11-28 (Jade, r7: "the watch sits half under the cuff"): ONE placement in every shot: the strap centred on the
+  // jacket sleeve's end, so its near half is under the cuff; only the half of the watch toward the hand is modelled (the
+  // other half is under the cuff), so nothing pokes through the sleeve as a floating disc: half case, half bezel, half dial
+  // (12-3-6), two lugs and the crown
+  const cs = place(mk(new THREE.CylinderGeometry(0.0175, 0.0175, 0.008, 32, 1, false, 0, Math.PI), STEEL_W), toZ); cs.position.copy(at).addScaledVector(back, RB + 0.004); g.add(cs);
+  const bzg = new THREE.TorusGeometry(0.0158, 0.0016, 8, 24, Math.PI); bzg.rotateZ(-Math.PI / 2); const bz = place(mk(bzg, { grey: 0.85, col: 0xe0e0d8 })); bz.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(bz);   // polished bezel
+  for (const sy of [-1, 1]) for (const sx of [1]) { const lug = place(mk(new THREE.BoxGeometry(0.003, 0.006, 0.0035), STEEL_W)); lug.position.copy(at).addScaledVector(back, RB + 0.003).addScaledVector(Y, sy * 0.0185).addScaledVector(X, sx * 0.0075); g.add(lug); }
   const cr = place(mk(new THREE.CylinderGeometry(0.0028, 0.0028, 0.004, 12), STEEL_W), new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, Math.PI / 2))); cr.position.copy(at).addScaledVector(back, RB + 0.004).addScaledVector(X, 0.0195); g.add(cr);   // crown at 3
-  const fc = place(mk(new THREE.CircleGeometry(0.0148, 48), { grey: 0.92, col: 0xf0eee6, art: WATCH_ART.art, artGrey: WATCH_ART.artGrey, artEdge: WATCH_ART.artEdge })); fc.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(fc);
+  const fc = place(mk(new THREE.CircleGeometry(0.0148, 48, -Math.PI / 2, Math.PI), { grey: 0.92, col: 0xf0eee6, art: WATCH_ART.art, artGrey: WATCH_ART.artGrey, artEdge: WATCH_ART.artEdge })); fc.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(fc);
   return tag(g, `wristwatch (${n === 'L' ? 'left' : 'right'} wrist, face on the back of the wrist)`);
 }
 // 2026-11-27 canon (Jade: the GREY-BLUE PADDED JACKET of the r3 paintings is canon): the uncle wears a grey-blue quilted
@@ -521,6 +525,22 @@ function jadeOutfit(fig) {
   g.traverse((m) => { if (m.isMesh && m.userData.look?.mat === 'ginghamGather') { const L = m.userData.look; m.userData.look = { ...L, mat: undefined }; dressGarment(m, 'ginghamGather', L.col, L.grey, (w, i) => [m.geometry.attributes.uv.getX(i), m.geometry.attributes.uv.getY(i)]); } });
   return tag(g, 'little Jade: gathered gingham cuffs and white round collar');
 }
+// round 9 (Jade): Mama's LONG BLACK SKIRT. The engine's body has no long skirt (and its short skirt is missing on her body),
+// so she wears black trousers (CAST) and this draws the skirt over them: a flared black wool skirt from the waist to just
+// above the ankles (a lathe round the body's vertical axis, an oval following her hips, soft folds), textured in twill
+function mamaSkirt(fig) {
+  const P = fig.userData.P; if (!P?.hip || !P.hipL || !P.hipR) return null;
+  const ank = Math.min(P.ankleL.y, P.ankleR.y), yTop = P.hip.y + 0.07, yHem = ank + 0.07, hipW = P.hipL.distanceTo(P.hipR);
+  const feet = P.ankleL.clone().add(P.ankleR).multiplyScalar(0.5), spread = P.ankleL.distanceTo(P.ankleR);
+  const prof = [[0.0, yTop + 0.001], [hipW * 0.95, yTop], [hipW * 1.25, P.hip.y - 0.05], [hipW * 1.35 + spread * 0.25, (P.hip.y + yHem) / 2], [Math.max(hipW * 1.55, spread * 0.6 + 0.12), yHem + 0.02], [Math.max(hipW * 1.6, spread * 0.6 + 0.13), yHem]];
+  const g = new THREE.LatheGeometry(prof.map(([r, y]) => new THREE.Vector2(r, y - P.hip.y)), 48), pa = g.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < pa.count; i++) { v.fromBufferAttribute(pa, i); const a = Math.atan2(v.z, v.x), t = (P.hip.y - (v.y + P.hip.y)) / (P.hip.y - yHem); const k = 1 + 0.035 * Math.sin(a * 9) * Math.max(0, t); v.x *= k; v.z *= k * 0.8; pa.setXYZ(i, v.x, v.y, v.z); }   // soft folds, an oval
+  g.computeVertexNormals();
+  const across = P.hipL.clone().sub(P.hipR).setY(0).normalize(), q = new THREE.Quaternion().setFromUnitVectors(V(1, 0, 0), across);
+  const m = mk(g, { grey: 0.14, col: 0x1c1c1e, mat: 'twill', costumeCol: 0x1c1c1e }); m.quaternion.copy(q);
+  const c = P.hip.clone(); c.x = (c.x + feet.x) / 2 * 0 + c.x; m.position.copy(c); m.userData.double = true;
+  const gr = new THREE.Group(); gr.add(m); dress(gr); return tag(gr, 'Mama: long black wool skirt');
+}
 // the stack she brought (34 sheets, straight mill edges)
 function stack() {
   const g = new THREE.Group(), S = PLACES.stack, n = 9, r = rng(34);
@@ -608,10 +628,11 @@ function teaAndSteam(shot = {}) {
     g.add(teaCup(x, y0, z));
     g.add(tag(cyl(0.0355, 0.0355, 0.003, { grey: 0.6, col: 0x9aa050 }, [x, y0 + 0.085, z]), 'tea cups (盖杯) of green tea'));
     if (i === 0) { const ld = teaLid(); ld.position.set(x - 0.075, y0 + 0.008, z - 0.06); g.add(tag(ld, 'tea cup lid (off, beside its cup)')); }
+    else { const ld = teaLid(); ld.position.set(x, y0 + 0.1 + 0.008, z); g.add(tag(ld, 'tea cups (盖杯) of green tea')); }   // audit: the other cups wear their lids (the canon is lidded)
     // r3 open issue (V1h guides: "a stick in a mug"): was two straight 0.42 m tubes from the mug's centre. Now three thin wisps
     // per mug, each starting at a different point of the rim, drifting off to one side as it rises (~0.2-0.26 m), the curl
     // growing with height, and BROKEN into fading dashes, so in line/form guides they read as curling vapour, not a rod
-    for (let w = 0; w < 3; w++) {
+    for (let w = 0; w < (i === 0 ? 3 : 0); w++) {   // steam only from the open cup (the others are lidded)
       const pts = []; const ph = r() * 6.28, a0 = r() * 6.28, rr = 0.012 + 0.012 * r(), drift = 0.05 + 0.05 * r(), da = r() * 6.28, H = 0.2 + 0.06 * r();
       const bx = x + rr * Math.cos(a0), bz = z + rr * Math.sin(a0);
       for (let k = 0; k <= 24; k++) { const t = k / 24, amp = 0.004 + 0.03 * t * t;
@@ -622,7 +643,7 @@ function teaAndSteam(shot = {}) {
         const rad0 = 0.0016 * (1 - 0.45 * s0);
         const tube = (look) => { const m = mk(new THREE.TubeGeometry(c2, 12, rad0, 5, false), look); m.castShadow = false; m.receiveShadow = false; return m; };
         // shot.steam === 'soft': no opaque line tubes (top-down POVs, where a rising wisp foreshortens into a rod), only the faint volume
-        if (shot.steam !== 'soft') g.add(tag(tube({ grey: 0.97, col: 0xffffff, only: ['label', 'line'], noCast: true, noRecv: true }), 'steam (green tea)'));
+        if (false) g.add(tag(tube({ grey: 0.97, col: 0xffffff, only: ['label', 'line'], noCast: true, noRecv: true }), 'steam (green tea)'));
         g.add(tag(tube({ glass: true, col: 0xfff6e0, opacity: 0.22 * (1 - 0.6 * s0), noCast: true, noRecv: true }), 'steam (green tea)')); }
     }
   });
@@ -660,12 +681,37 @@ export function build(shot, { makeCam }) {
     const palm = h.capsules.filter((c) => /^palm/.test(c.part)), gap = (d) => Math.min(...palm.map((c) => segD(P.handR.clone().addScaledVector(n, d), c))) - 0.012;
     let lo = 0, hi = 0.06; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2; if (gap(m) < -0.0003) lo = m; else hi = m; }   // the ball settles 0.3 mm into the palm strips (its weight; a harder squeeze pops it out sideways)
     return P.handR.clone().addScaledVector(n, hi); };
-  if (figs.jade3) { const jo = jadeOutfit(figs.jade3); if (jo) root.add(jo); }   // 2026-11-27 canon: gingham, long gathered sleeves
+  if (figs.jade3) { const jo = jadeOutfit(figs.jade3); if (jo) root.add(jo); }
+  if (figs.mama86) { const sk = mamaSkirt(figs.mama86); if (sk) root.add(sk); }   // round 9: the long black skirt   // 2026-11-27 canon: gingham, long gathered sleeves
   if (figs.uncle) { const col = uncleOutfit(figs.uncle); if (col) root.add(col); }   // 2026-11-27 canon: padded jacket over the pullover (one canonical outfit)
   if (shot.state === 'A' && figs.uncle) root.add(wristWatch(figs.uncle, 'L'));
   // hold pass (2026-11-26): a pinched-up wad of 草纸, faceted (icosahedron), not a perfect sphere: a sphere rolls off any palm
   // that is not exactly level (Rapier has no rolling resistance), a crumpled wad does not
-  if (shot.state === 'A' && figs.uncle) { const w = mk(new THREE.IcosahedronGeometry(0.012, 1), PAPER_LOOK); w.position.copy(ballAt(figs)); root.add(tag(w, 'something small (he shapes it)')); }
+  // audit 2026-11-28: the wad lay at the palm's centre, a finger-length from his pinching fingertip, and read as a smooth ball.
+  // Now a CRUMPLED wad (an icosphere pushed in and out by fixed noise: folds and facets, ~2 cm) lying in the cupped right
+  // palm right under his LEFT index fingertip (the tip projected onto the palm, then settled onto the palm's skin), so the
+  // fingertip touches it. The camera still aims at the old ball point (ballAt), so no camera moves.
+  let WAD_GAP = null;
+  if (shot.state === 'A' && figs.uncle) { const P = figs.uncle.userData.P, h = P.hands.R, n = h.n.clone().normalize(), tip = P.indexL || P.handL;
+    const segD = (p, c) => { const ab = c.b.clone().sub(c.a), t = Math.min(1, Math.max(0, p.clone().sub(c.a).dot(ab) / ab.lengthSq())); return p.distanceTo(c.a.clone().addScaledVector(ab, t)) - c.r; };
+    const palm = h.capsules.filter((c) => /^palm|^middle1|^ring1|^index1/.test(c.part)), RW = 0.0105;
+    const rel = tip.clone().sub(P.handR), base = P.handR.clone().add(rel.clone().addScaledVector(n, -rel.dot(n)));
+    const gap = (d) => Math.min(...palm.map((c) => segD(base.clone().addScaledVector(n, d), c))) - RW;
+    let lo = -0.02, hi = 0.08; for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (gap(m) < -0.0003) lo = m; else hi = m; }
+    let at = base.clone().addScaledVector(n, hi);
+    // round 9 (Jade picked stock poses c01 / c05 / c11 for V1b): 'pinchL' = the wad held up between his LEFT thumb and index
+    // pads (c05), 'cradle' = the wad lying where his two cupped palms meet (c11); default = on the right palm under his
+    // left index tip (c01)
+    if (shot.wad === 'pinchL') { const cL = P.hands.L.capsules, ix = cL.find((c) => c.part === 'index3'), th = cL.find((c) => c.part === 'thumb2');
+      if (ix && th) { at = ix.b.clone().add(th.b).multiplyScalar(0.5); const free = ix.b.distanceTo(th.b) - ix.r - th.r; shot.__wadScale = Math.max(0.4, (free / 2 + 0.0008) / RW); } }   // the wad fills the gap between the pads
+    else if (shot.wad === 'cradle') { const caps = [...P.hands.R.capsules, ...P.hands.L.capsules].filter((c) => /^palm/.test(c.part)), up = V(0, 1, 0);
+      const mid = P.handL.clone().add(P.handR).multiplyScalar(0.5); const gp = (d) => Math.min(...caps.map((c) => segD(mid.clone().addScaledVector(up, d), c))) - RW;
+      let lo2 = -0.04, hi2 = 0.1; for (let i = 0; i < 40; i++) { const m2 = (lo2 + hi2) / 2; if (gp(m2) < -0.0003) lo2 = m2; else hi2 = m2; } at = mid.clone().addScaledVector(up, hi2); }
+    const g = new THREE.IcosahedronGeometry(RW, 2).toNonIndexed(), pa = g.attributes.position, vv = new THREE.Vector3();
+    const nz = (x, y, z) => Math.sin(x * 9.1 + y * 3.3) * Math.cos(y * 7.7 - z * 5.2) + 0.6 * Math.sin(z * 13.3 + x * 4.1);
+    for (let i = 0; i < pa.count; i++) { vv.fromBufferAttribute(pa, i); const u = vv.clone().normalize(), k = 1 + 0.18 * nz(u.x * 3, u.y * 3, u.z * 3); vv.copy(u).multiplyScalar(RW * k); vv.y *= 0.8; pa.setXYZ(i, vv.x, vv.y, vv.z); }
+    g.computeVertexNormals(); const w = mk(g, PAPER_LOOK); w.position.copy(at); w.quaternion.setFromUnitVectors(V(0, 1, 0), n); if (shot.__wadScale) w.scale.setScalar(shot.__wadScale); root.add(tag(w, 'something small (he shapes it)'));
+    WAD_GAP = +((tip.distanceTo(at) - RW) * 1000).toFixed(1); }
   // the beam: the lit aperture (overhang, parapet, reveals) swept along the sun into the room, clipped by its planes
   const clip = [{ name: 'floor', n: [0, -1, 0], d: 0 }, { name: 'east wall', n: [1, 0, 0], d: ROOM.x1 }, { name: 'west wall', n: [-1, 0, 0], d: -ROOM.x0 },
     { name: 'north wall', n: [0, 0, -1], d: -ROOM.z0 }, { name: 'ceiling', n: [0, 1, 0], d: ROOM.h }];
@@ -731,9 +777,21 @@ export function build(shot, { makeCam }) {
       door_gap_m: (() => { const pts = SOURCES.length ? solids.flatMap((so) => so.caps.floor || []) : []; let best = 9; for (let x = ROOM.x0 + 0.02; x < ROOM.x1; x += 0.025) for (let z = -0.02; z > ROOM.z0; z -= 0.025) if (inBeam([x, 0.001, z])) best = Math.min(best, Math.hypot(Math.max(DOOR.x0 - x, 0, x - DOOR.x1), z - ROOM.z0)); return +best.toFixed(2); })() },
       tissue: shot.state === 'A' ? null : { generation_pieces: shot.tissue ?? 8, gold_dot_px: hero.filter((h) => h.world).map((h) => P(V(h.world))), gold_dot_world: hero.filter((h) => h.world).map((h) => h.world.map((v) => +v.toFixed(3))), paper_r3: shot.paper ? hero : null,
         sheet_cm: [PAPER.w * 100, PAPER.h * 100], stack_sheets: PAPER.stack, drift: dr ? dr.userData.stats : null, hair_bit_world: hb ? hb.world : null, hair_bit_px: hb ? P(V(hb.world)) : null },
+      wad_tip_gap_mm: WAD_GAP,
       state: shot.state === 'A' ? 'A: the uncle explains (no drift yet)' : 'B: a week later, the drift', tissue_pieces: shot.tissue || 0, times: shot.t || null,
       points_world: Object.fromEntries(Object.entries(figs).map(([w, f]) => [w, Object.fromEntries(['eyes', 'head', 'handL', 'handR', 'hip'].map((k) => [k, r3(f.userData.P[k])]))])) };
   };
+  // audit 2026-11-28: the form guide was captioned "REAL colours" but tinted furniture and props by class codes (the suite
+  // read taupe, the floor grey, the cups blue). In shanghai86 every set mesh now carries its canonical colour as its form
+  // tint (as costumes already do); textured surfaces are lifted so tint x texture greys averages back to the colour
+  { const FT = new WeakMap();
+    const tintOf = (L) => { const c = new THREE.Color(L.col ?? 0x808080); if (!L.art) return [c.r, c.g, c.b].map((v) => Math.min(1, v * 1.1));
+      const k = 1 / (0.3 + 0.7 * (L.grey ?? 0.6)); return [c.r, c.g, c.b].map((v) => Math.min(1, v * k)); };
+    root.traverse((m) => { if (!m.isMesh || m.userData.who) return; const L = m.userData.look; if (!L || L.formTint || L.glass || L.emit || L.only || L.material || L.map) return;
+      if (!FT.has(L)) FT.set(L, { ...L, formTint: tintOf(L) }); m.userData.look = FT.get(L); if (m.userData.mats) delete m.userData.mats.form; }); }
+  // audit: short stray contour dashes on the fingers (the skin-crease marks drawn as their own line ids): the creases now
+  // share the hand skin's line id (the nails keep theirs)
+  for (const f of Object.values(figs)) f.traverse((m) => { if (m.isMesh && /crease$/.test(m.userData.idGroup || '')) m.userData.idGroup = m.userData.idGroup.replace(/crease$/, 'skin'); });
   if (shot.beamMask) applyBeamMask(root, sunks, { label: 'sun shaft (mask)', cam, surfaceOnly: !!shot.beamSurf });
   return { set: 'shanghai86', scene, root, cam, rig, near: shot.near ?? 0.05, far: shot.far ?? 60, figs, book: null, panes, lights: lightList,
     edgeNT: shot.edgeNT, header: shot.header || '', shadowLine: !shot.beamMask && shot.beamLine !== false, shadowPolys: null, subject: V(shot.subject || NAMES.pool), litBg: 0x15130f, flatBg: shot.beamMask ? 0x000000 : undefined, extra: extraOut };

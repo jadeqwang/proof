@@ -12,7 +12,7 @@ import { RoundedBoxGeometry } from '/three/examples/jsm/geometries/RoundedBoxGeo
 import { mk, box, cyl, ball, tag, V, rad } from '../../engine/core.js';
 import { ROOM, DOOR, SHELVES, SHELF_FRONT, COUCH } from './layout.js';
 import * as ART from './art.js';   // the background-art agent's fixed greeked spine textures (spineArt), used on every upright book
-import { artPlane, artFromCanvas } from '../_art.js';
+import { artPlane, artFromCanvas, decalMesh } from '../_art.js';
 import { prop } from '../_props.js';
 import { newspaperCanvas, slipCanvas } from './textures.js';
 
@@ -335,6 +335,27 @@ export function newspaperArchive() {
 // OVER the back roll and hangs down the back as well as the front. The couch is now built by the same code (one suite).
 export const FABRIC = { grey: 0.30, col: 0x683826, recvShadowLine: true, mat: 'uphol' }, FABRIC_C = { grey: 0.34, col: 0x683826, recvShadowLine: true, mat: 'uphol' }, PIPE = { grey: 0.26, col: 0x4e281a, mat: 'wool' };
 const LACE = { grey: 0.95, col: 0xf2efe6, mat: 'lace' }, LEG = { grey: 0.3, col: 0x3e2a1c, mat: 'sapele' };
+// audit 2026-11-28: the crocheted covers were a flat printed sheet (no openwork) whose motif vanished at guide size. Now
+// OPENWORK: the canonical motif (round flowers 5 cm across: a solid centre, spokes, a ring, a ring of picot loops, chain bars
+// between motifs, a solid scalloped border) drawn at real size, the holes cut out of the mesh (decalMesh drops the
+// transparent cells), so every guide mode shows the holes and the fabric through them
+const LACE_ART = new Map();
+function laceArt(w, h) {
+  const k = `${w.toFixed(3)}x${h.toFixed(3)}`; if (LACE_ART.has(k)) return LACE_ART.get(k);
+  const PX = 900, W = Math.round(w * PX), H = Math.round(h * PX), c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+  g.clearRect(0, 0, W, H); g.strokeStyle = '#f4f0e4'; g.fillStyle = '#f4f0e4'; g.lineCap = 'round';
+  const m = 0.05 * PX, nx = Math.max(1, Math.round(w / 0.05)), ny = Math.max(1, Math.round(h / 0.05)), sx = W / nx, sy = H / ny;
+  for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) { const cx = (i + 0.5) * sx, cy = (j + 0.5) * sy, r = Math.min(sx, sy);
+    g.beginPath(); g.arc(cx, cy, r * 0.12, 0, 7); g.fill(); g.lineWidth = Math.max(3, r * 0.06); g.beginPath(); g.arc(cx, cy, r * 0.28, 0, 7); g.stroke();
+    for (let q = 0; q < 8; q++) { const a = q * Math.PI / 4; g.beginPath(); g.moveTo(cx + Math.cos(a) * r * 0.12, cy + Math.sin(a) * r * 0.12); g.lineTo(cx + Math.cos(a) * r * 0.28, cy + Math.sin(a) * r * 0.28); g.stroke();
+      g.beginPath(); g.arc(cx + Math.cos(a + 0.39) * r * 0.37, cy + Math.sin(a + 0.39) * r * 0.37, r * 0.07, 0, 7); g.stroke(); }
+    if (i < nx - 1) { g.beginPath(); g.moveTo(cx + r * 0.44, cy); g.lineTo(cx + sx - r * 0.44, cy); g.stroke(); }
+    if (j < ny - 1) { g.beginPath(); g.moveTo(cx, cy + r * 0.44); g.lineTo(cx, cy + sy - r * 0.44); g.stroke(); } }
+  const b = Math.max(4, 0.006 * PX); g.fillRect(0, 0, W, b); g.fillRect(0, H - b, W, b); g.fillRect(0, 0, b, H); g.fillRect(W - b, 0, b, H);   // the edging
+  for (let x = 0; x < W; x += 0.012 * PX) { g.beginPath(); g.arc(x, H - b, 0.006 * PX, 0, Math.PI); g.fill(); }   // scallops on the lower edge
+  const a = artFromCanvas(c); LACE_ART.set(k, a); return a;
+}
+function laceCover(w, h, place) { const n = Math.round(Math.max(w, h) / 0.0028); const m = decalMesh(laceArt(w, h), place, { grey: 0.95, col: 0xf2efe6, formTint: [0.92, 0.9, 0.84] }, Math.min(220, n)); m.userData.double = true; return m; }
 // one upholstered piece of the suite. a: { at: [x, z], yaw, w (across), d (depth), id }; o: seats (cushions), seatTop,
 // backTop, armTop, aw (arm width), label. Local frame: +z is the front, x across.
 function upholstered(a, o = {}) {
@@ -364,8 +385,12 @@ function upholstered(a, o = {}) {
     // the crocheted cover(s): over the top roll (a curved shell), hanging 0.2 m down the front and 0.15 m down the back
     const cvW = n > 1 ? Math.min(0.42, cw - 0.06) : 0.42, R = 0.09;
     for (let k = 0; k < n; k++) { const cx = n > 1 ? -iw / 2 + cw * (k + 0.5) : 0;
-      const shell = mk(new THREE.CylinderGeometry(R, R, cvW, 20, 1, true, 0, Math.PI), LACE); shell.rotation.z = Math.PI / 2; shell.position.set(cx, bh - 0.02, 0); bk.add(shell);   // the upper half round the roll
-      bk.add(box(cvW, 0.2, 0.005, LACE, [cx, bh - 0.02 - 0.1, R + 0.004])); bk.add(box(cvW, 0.15, 0.005, LACE, [cx, bh - 0.02 - 0.075, -R - 0.002])); }
+      // one cover: down the back 0.15 m, over the roll (a half turn), down the front 0.2 m: one continuous openwork piece
+      const yc = bh - 0.02, L1 = 0.15, L2 = Math.PI * R, L3 = 0.2, Lt = L1 + L2 + L3;
+      bk.add(laceCover(cvW, Lt, (u, t) => { const d = t * Lt, x = cx + (u - 0.5) * cvW;   // t: 0 at the front hem, 1 at the back hem
+        if (d < L3) return V(x, yc - L3 + d, R + 0.004);
+        if (d < L3 + L2) { const a = (d - L3) / R; return V(x, yc + Math.sin(a) * (R + 0.004), Math.cos(a) * (R + 0.004)); }
+        return V(x, yc - (d - L3 - L2), -R - 0.004); })); }
     g.add(bk); }
   // rolled arms: a straight upholstered side topped by a roll that overhangs outward, a piped scroll face at the front;
   // the outside of each arm outlined by a welt along its foot
@@ -374,10 +399,11 @@ function upholstered(a, o = {}) {
     // 15 mm behind the base's front; the roll 7.5 mm ahead of the arm; the piped scroll panel 6 mm ahead of the roll's end
     g.add(rbox(aw - 0.014, armTop - legH - 0.05, d - 0.065, 0.025, FABRIC, [x + s * 0.003, (legH + armTop - 0.05) / 2, -0.0025]));
     g.add(cyl(0.06, 0.06, d - 0.06, FABRIC, [x + s * 0.008, armTop - 0.055, 0.0025], [90, 0, 0], 20));
-    g.add(cyl(0.062, 0.062, 0.012, PIPE, [x + s * 0.008, armTop - 0.055, d / 2 - 0.0275], [90, 0, 0], 20));   // the scroll's piped front panel
+    g.add(cyl(0.062, 0.062, 0.012, FABRIC, [x + s * 0.008, armTop - 0.055, d / 2 - 0.0275], [90, 0, 0], 24));   // the scroll's front panel: the same striped cloth (audit: it was a blank dark disc)
+    { const ring = mk(new THREE.TorusGeometry(0.058, 0.0055, 8, 32), PIPE); ring.position.set(x + s * 0.008, armTop - 0.055, d / 2 - 0.021); g.add(ring); }   // its welt round the edge
     g.add(cyl(0.006, 0.006, d - 0.12, PIPE, [x + s * (aw / 2 - 0.005), armTop - 0.11, 0.01], [90, 0, 0], 8));   // welt under the roll, outside
-    const cov = mk(new THREE.CylinderGeometry(0.064, 0.064, 0.3, 16, 1, true, Math.PI / 2 - 0.5, Math.PI + 1.0), LACE);   // arm cover draped over the roll
-    cov.rotation.x = Math.PI / 2; cov.position.set(x + s * 0.008, armTop - 0.055, 0.12); g.add(cov); }
+    { const xc = x + s * 0.008, yc = armTop - 0.055, rr = 0.065, a0 = -0.6, a1 = Math.PI + 0.6;   // the arm cover draped over the roll (openwork)
+      g.add(laceCover(0.3, rr * (a1 - a0), (u, t) => { const a = a0 + t * (a1 - a0); return V(xc + Math.cos(a) * rr, yc + Math.sin(a) * rr, 0.12 + (u - 0.5) * 0.3); })); } }
   return tag(g, o.label || `armchair (${a.id})`);
 }
 export function armchair(a) { return upholstered(a); }

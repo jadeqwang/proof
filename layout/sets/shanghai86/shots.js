@@ -36,7 +36,7 @@ const uncleShape = (o = {}) => ({ costume: { sock: 0xb8bcc0 }, at: PLACES.uncleS
 const UNCLE_LH = 0.108 * 1.70, BALL_R = 0.012;
 const uncleHold = (o = {}) => { const U = uncleShape(o);
   return { ...U, R: { ...U.R, grasp: 'palmUnder', object: 'something small' },
-    L: { ...U.L, tip: { finger: 'index', at: [BALL[0], BALL[1] + BALL_R + 0.045 * UNCLE_LH - 0.0012, BALL[2]] }, grasp: 'tipOn', object: 'something small' } }; };
+    L: { ...U.L, tip: { finger: 'index', at: [BALL[0], BALL[1] + BALL_R + 0.045 * UNCLE_LH - 0.0062, BALL[2]] }, grasp: 'tipOn', object: 'something small' } }; };
 // she sits CROSS-LEGGED at her spot (round 2 answers: cross-legged in BOTH scenes), watching his hands across the table
 // corner; his hands are held low (8 cm over the table top) so she looks a little down into them
 const jadeWatch = (o = {}) => ({ at: PLACES.jadeStand, legs: 'cross', legOpts: { front: 'R' }, yaw: yawTo(PLACES.jadeStand, [H[0], H[2]]), spine: { bend: 8 }, head: { look: BALL }, L: 'lap', R: 'lap', ...o });
@@ -302,10 +302,29 @@ export const SHOTS = [
 
 for (const s of SHOTS) if (s.same) { const o = SHOTS.find((x) => x.id === s.same); Object.assign(s, { ...o, ...s, id: s.id }); }
 
+// round 9 (Jade picked stock poses 1, 3, 5 of the V1b stock sheet = c01, c05, c11): two more pose candidates for V1b, each
+// at both cameras (a 40-year-old's hands; the watch half under the left cuff; the wad touched / held). c01 is V1b itself.
+//   c05: the wad held UP between his left thumb and index pads, 5 cm over his open right palm (palm up, fingers relaxed)
+//   c11: his two hands cradled together, both palms up and cupped, the little-finger edges touching, the wad where they meet
+const uncleP5 = () => { const U = uncleShape(); const up = [BALL[0], BALL[1] + 0.055, BALL[2]];
+  return { ...U, R: { ...U.R, hand: { shape: 'flat', spread: 8, curl: { index: [8, 10, 4], middle: [10, 12, 5], ring: [12, 14, 6], little: [14, 16, 7] } } },
+    L: { tip: { finger: 'index', at: up }, hand: { shape: 'pinch', spread: 18, curl: { middle: [45, 55, 28], ring: [55, 65, 32], little: [65, 75, 38] } }, palm: 'down', fingers: [UF[0] - 0.25 * ULF[0], -0.5, UF[1] - 0.25 * ULF[1]], grasp: 'pinch', object: 'something small' } }; };
+const uncleP11 = () => { const U = uncleShape(); const CUP = { shape: 'cup', spread: 3, curl: { index: [30, 34, 14], middle: [32, 36, 15], ring: [34, 38, 16], little: [36, 40, 17] } };
+  return { ...U, R: { to: [H[0] - 0.03 * ULF[0], H[1], H[2] - 0.03 * ULF[1]], hand: CUP, palm: 'up', fingers: [UF[0] + 0.35 * ULF[0], 0.15, UF[1] + 0.35 * ULF[1]], grasp: 'palmUnder', object: 'something small' },
+    L: { to: [H[0] + 0.03 * ULF[0], H[1], H[2] + 0.03 * ULF[1]], hand: CUP, palm: 'up', fingers: [UF[0] - 0.35 * ULF[0], 0.15, UF[1] - 0.35 * ULF[1]], grasp: 'palmUnder', object: 'something small' } }; };
+{ const b = SHOTS.find((x) => x.id === 'V1b');
+  for (const [id, fig, wad] of [['V1b_c05', uncleP5, 'pinchL'], ['V1b_c11', uncleP11, 'cradle']]) for (const el of [22, 34])
+    SHOTS.push({ ...b, id: el === 22 ? id : id + '_el34', orbit: { ...b.orbit, el }, wad, figs: { ...b.figs, uncle: fig() }, header: `${b.header} [POSE CANDIDATE ${id.slice(4)} (Jade's stock pick), camera ${el} deg]` }); }
+
 // round 7 (Jade: "V1b camera: 22 or 34 deg? Test-paint both (2 takes each), then I pick"): the 34-degree candidate as its
 // own shot, so it has full guides, a sidecar and its own prompt (media/keyframes/r4/shanghai86/_prompts/V1b_el34.txt)
 { const b = SHOTS.find((x) => x.id === 'V1b'); SHOTS.push({ ...b, id: 'V1b_el34', orbit: { ...b.orbit, el: 34 }, figs: { ...b.figs },
   header: b.header + ' [CANDIDATE: camera raised from 22 to 34 deg]' }); }
+
+// audit 2026-11-28: every shot lists the labelled objects in frame in its sidecar (`objects`: engine/main.js v4 pass), so
+// the prompts describe only what the frame holds; the lit haze volume is hidden in the uncle's hand shots (it made his hands
+// look see-through in lit)
+for (const s of SHOTS) { s.v4 = true; if (/^V1[ab]/.test(s.id)) s.hide = [...(s.hide || []), 'sun beam (volume)']; }
 
 // beam mask twins (integration pass): every camera has a `beam_<id>` twin; `--prefix beam_ --modes flat --nojson` renders
 // the lit volume white on black. Appended last, so copies made with `same` are already resolved.

@@ -1186,6 +1186,44 @@ Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
   rim and a small block beneath, an aged cream dial, large black serif Arabic numerals, a ring of minute dots, black spade
   hands fixed at 9:30 in every shot (textures.js wallClockDial). View REF_clock.
 
+**Audit fixes (work/r4/AUDIT_shanghai86.md, 2026-11-28).**
+- **Watch (V1b, V1b_el34, all candidates):** ONE placement: the strap centred on the jacket sleeve's end; only the half of
+  the watch toward the hand is modelled (half case, half bezel, half dial 12-3-6, two lugs, the crown), the other half is
+  under the cuff, so nothing pokes through the sleeve as a floating disc.
+- **Wad:** a CRUMPLED wad (an icosphere pushed in and out by fixed noise), on the cupped right palm right under the left index
+  tip; the left index target was lowered 5 mm, so the pad touches it (holdcheck: index pressing 0.9 mm, pass). The camera
+  still aims at the old ball point (no camera moved).
+- **Contour dashes on the fingers:** the skin-crease marks now share the skin's line id (the nails keep theirs).
+- **See-through hands in lit:** caused by the lit beam haze volume over the hands; hidden in V1a / V1b shots.
+- **Arm-roll fronts:** the striped cloth with a welt ring (was a blank dark disc).
+- **Crochet covers:** OPENWORK (decalMesh cuts the holes out of the mesh; the motif at real size), one continuous piece over
+  each back roll (front 0.2 m, over the roll, back 0.15 m) and over each arm roll; visible in every mode.
+- **Form guide in REAL colours (shanghai86):** every set mesh carries its canonical colour as its form tint (textures lifted
+  so tint x greys averages back to the colour); the gingham cuffs' blue band is gone.
+- **Tea cups:** two cups wear their lids; the first is open with its lid beside it; steam only from the open cup, and only as
+  the faint lit volume (no opaque rods in any guide).
+- **Prompts:** each shot's furnishings paragraph is built from the sidecar's in-frame objects (all shanghai86 shots run the
+  engine's v4 object pass); the coffee-table paragraph mentions cups only if cups are in frame; V1b's knees / chest crop
+  clause and "turned up toward us" are gone (one watch sentence: half under the cuff); V1e gets no painting; V1f has Mama
+  from behind, no face crops (5 refs); the LIGHT paragraph keeps sunlit upholstery, wood and clothes in their colours.
+- Held for Jade: none now (round 9 answered them).
+
+**Round 9 (Jade, work/decisions/JADE_R9_DECISIONS.md).**
+- **Suite colour:** the canon card as shown: dark rust-brown 0x683826 with a CREAM pinline (0xe8dcc0) and a darker band
+  0x4a2618: the stripe is now drawn in its real colours (textures.js uphol, raw) with the wool weave over it. The suite card
+  (_audit/proto/suite_canon_card.png, regenerated from the fixed model, no lettering) goes to every shot where the suite
+  fills at least 1 % of the frame.
+- **Mama 1986 (every shanghai86 shot):** a CAMEL / CARAMEL sweater (0xb08050, long sleeves), a LONG BLACK SKIRT to just above
+  the ankles, socks in slippers (_cast.js mama86; the engine has no long skirt, so build.js mamaSkirt draws a flared black
+  wool skirt over black trousers). Her sheets in inputs/refs_chaosmonkey/mama/ (turnaround v3) show another costume and
+  need an update (flagged, not regenerated).
+- **The uncle's winter sheet:** prompt and runner ready (cast/strangers/_prompts/uncle_v2_winter.txt, run_winter.sh); the
+  first try hit the Codex plan limit; uncle_v1 stays in V1a / V1b with a caption that names its faults until it exists.
+- **V1b poses (Jade's stock picks 1, 3, 5 = c01, c05, c11):** shots V1b (c01, the index on the wad in the right palm),
+  V1b_c05 (the wad held up between the left thumb and index over the open right palm), V1b_c11 (both hands cradled, palms
+  up, the wad where they meet), each also at 34 deg (_el34). c05's pinch is the readable one but its thumb pad sinks ~6 mm
+  into the wad (holdcheck fail); c11's left wrist is 11 deg past supination at the engine's limit, and its watch is on the
+  underside (no dial shows).
 **Open (for Jade).**
 - **Watch orientation:** Jade asked for "12 o'clock pointing toward his hand". On a real wristwatch the strap runs across
   the wrist through 12 and 6, so 12 points across the wrist (away from the body when you read it) and the crown at 3
