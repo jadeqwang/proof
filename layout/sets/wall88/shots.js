@@ -132,4 +132,9 @@ const TWINS = BASE.map((s) => ({ ...s, id: 'beam_' + s.id, beamMask: true, heade
 const PLAN = { id: 'WL_plan', lens: 0, ortho: { w: 3.9 }, pos: [0, 6, 0.95], target: [0, 0, 0.95], up: [1, 0, 0], near: 3.5, far: 7,
   hide: ['top plate'], light: PLAN_LIFT, position: 'plan', header: 'PLAN (reference, not painted): the cavity from above, 32 cm clear; boards at the bottom, brick at the top',
   intent: 'r4 check: cavity width, stud bays, feet.', figs: { littleJade: jadeStand(), ...WORKER_FIGS }, clip: { touch: [...CLIP_KID.touch, ...CLIP_FILE.touch] } };
-export const SHOTS = BASE.concat(TWINS, [PLAN]);
+// 2026-11-28 (Jade round 9: one canonical board texture): the boards seen square-on from the brick (not painted): checks the
+// 140 mm boards, the butt joints on the studs, the nails, the knots and the crack, as every shot maps them
+const BOARDS_REF = { id: 'WL_boards', lens: 14, pos: [0.155, 1.1, -0.1], target: [-0.16, 1.1, -0.1], position: 'reference', light: PLAN_LIFT,
+  header: 'BOARDS (reference, not painted): the partition seen square-on from the brick, the crack across the middle',
+  intent: 'Check: 140 mm boards, butt joints on studs, two nails per stud, knots; the same texture in every shot and mode.', figs: {} };
+export const SHOTS = BASE.concat(TWINS, [PLAN, BOARDS_REF]);

@@ -1,5 +1,22 @@
 # office91 — notes and assumptions
 
+## 2026-11-28 (later): round 9, FE_thumbs fold re-posed from stock photos (Jade: "look up stock photos of what arms folded look like"; SUPERSEDES the fold and camera numbers in the section below)
+- **References:** 16 look-only stock previews of women standing with arms crossed, front and 3/4 views (iStock search
+  previews for "woman standing arms crossed" and "mother arms folded standing"; Unsplash, Pexels, Shutterstock and Adobe Stock
+  refused automated access). Never sent to a model. Refs-vs-render sheet in the lead's scratchpad:
+  `arms2/FE_thumbs_fold_refs_vs_render.jpg` (16 refs above; the FE_thumbs camera, front and low 3/4 renders below).
+- **The common fold, matched:** forearms crossed at mid-torso and resting against the body, elbows in by the ribs,
+  shoulders relaxed; the top forearm's hand rests with its fingers on the outside of the opposite upper arm just above the
+  elbow; the other hand is tucked under the opposite upper arm. Her LEFT forearm is now on top, so the visible hand (her left,
+  on her right upper arm) faces the FE_thumbs camera; her right hand is tucked under her left upper arm. `FOLD` in shots.js.
+  Wrists in range (the engine turns her right hand 13.7 deg); clipcheck pass, check_bodies pass.
+- **Turn toward the camera:** her body is now 55 deg short of square-on to her daughter (was 35), head `turn: -10`, so the
+  fold reads three-quarter front in FE_thumbs; she still looks at the girl's eyes (gaze error 0).
+- **Camera:** same position family (az -75, el 0, 40 mm), pulled back to dist 1.8 (was 1.5) and aim v 0.30 (was 0.36), so
+  the folded arms sit clear above the bottom edge: Mama from the thighs up, the girl to mid-thigh.
+- Fold views `REF_fold_*` now at dist 1.7 (the whole torso). Prompt: the fold text and crop updated (left forearm on top,
+  left hand visible, right hand tucked). Before/after: media/layout/office91/_FE_thumbs_before_after.png.
+
 ## 2026-11-28: FE_thumbs restaged (Jade, r4 keyframe notes: "Wrong staging ... replace with: little jade has an unimpressed smirk, and slightly narrows one eye, and mom has arms folded")
 - **The cheek-push is gone** (`momThumbs` / `CHEEK_HAND` kept in shots.js for reference, unused). Corridor at ten, right
   after "But not like that" (-2sm 18.23-19.0, unchanged).

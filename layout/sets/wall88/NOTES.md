@@ -1,5 +1,20 @@
 # wall88: notes and assumptions
 
+## 2026-11-28 (later): round 9 (Jade): keep the long crack and the small patch; ONE canonical board texture
+- Kept as built: the long crack (Mama's waist lit is fine) and the small patch of light on the brick in WL_in_empty.
+- **Boards** (`boards.js`, new; used in build.js `cavity()`): one partition-wide texture drawn in code at true size, like the
+  brick: horizontal rough-sawn pine boards 140 mm wide (the existing `CAVITY.board.h`; 2 mm gaps), 20 mm thick, weathered
+  grey-brown, long grain, one or two knots per length, each board two lengths butt-jointed on a stud (staggered), two nails
+  per stud (on the room side, under the studs). Mapped by world position (u = z from the closed end, v = height) onto every
+  board face, the crack's lips included, in every guide mode (lit colour, flat / form greys, a drawn edge map for line /
+  contour). ASSUMED (flag): the board size and wood. Board meshes get their own geometry (box() geometries cloned) so each
+  carries its own UVs.
+- New reference view `WL_boards` (not painted): the partition square-on from the brick, to check the boards.
+- Prompts: the CAVITY paragraph now names "boards exactly 14 cm wide and 2 cm thick ... about seven boards to a metre; never
+  wider planks, never panels or plywood".
+- Checks: clipcheck all pass; holdcheck nothing held; check_bodies as before (WL_in / WL_top / WL_plan: the workers' cloth,
+  pre-existing; WL_boards PASS). Before/after: media/layout/wall88/_boards_before_after.png.
+
 ## 2026-11-28: the light source is modelled outside the wall (Jade on WL_in_empty: "the light shaft is going the wrong way, it needs to follow physics. put a light source outside of the wall")
 - **What went wrong.** The 3D light was already a point source beyond the boards (a spot at `BULB`, shadowed by the
   boards), but (a) the source itself was not modelled (a flat emissive card sat behind the crack), and (b) from the inside

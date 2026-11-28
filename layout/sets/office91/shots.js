@@ -87,20 +87,25 @@ const momThumbs = () => ({ at: [HALL_KID[0] - 0.5, HALL_KID[1] - 0.03], legs: 's
 // 20 deg less of the look (toward the camera), the eyes the rest
 const MOM_HALL2 = [-2.68, 0.06];
 const yawTo = (from, to) => Math.atan2(to[0] - from[0], to[1] - from[1]) * 180 / Math.PI;
-const MOM_YAW2 = +(yawTo(MOM_HALL2, HALL_KID) - 35).toFixed(1);
+const MOM_YAW2 = +(yawTo(MOM_HALL2, HALL_KID) - 55).toFixed(1);
 const bodyVec = (yaw, [lf, up, fw]) => { const y = yaw * Math.PI / 180; return [+(lf * Math.cos(y) + fw * Math.sin(y)).toFixed(4), up, +(-lf * Math.sin(y) + fw * Math.cos(y)).toFixed(4)]; };
 // (from the shoulder-girdle centre `self:shoulderC`: the left arm is solved before the right shoulder point exists; Mom's
 // shoulder joints sit 0.179 m either side of it and 0.019 m below)
-export const FOLD = {   // body-frame offsets (m) from shoulderC; tuned against clipcheck and the REF_fold views
-  // right hand (top forearm) on the front-outer face of the left upper arm, 22 cm under the shoulder line; the knuckles run
-  // on along the forearm's line, turned back 35 deg round the arm, fingers curled round its outside; palm toward the arm
-  R: { off: [0.185, -0.255, 0.125], fingers: [0.8, -0.15, -0.55], palm: [-0.55, 0, -0.8], elbow: [-0.25, -1, 0.5] },
-  // left hand (under forearm, nearer the body) the same on the right upper arm, 4 cm lower, partly hidden by the right forearm
-  L: { off: [-0.15, -0.23, 0.07], fingers: [-0.35, 0.2, -0.9], palm: [0.9, 0, -0.35], elbow: [0.25, -1, 0.4] },
+// 2026-11-28 round 9 (Jade: "look up stock photos of what arms folded look like"): re-posed to the most common fold in 16
+// look-only stock previews (iStock search "woman standing arms crossed" / "mother arms folded standing", front and 3/4
+// views; contact sheet in the lead's scratchpad arms2/): forearms crossed at mid-torso, pressed close to the body, elbows
+// in by the ribs; the TOP forearm's hand rests with its fingers on the outside of the opposite upper arm just above the
+// elbow; the bottom forearm's hand is tucked under the opposite upper arm, between it and the ribs; shoulders relaxed.
+// Her LEFT forearm is on top, so the visible hand (left hand, on her right upper arm) is on the camera side in FE_thumbs.
+export const FOLD = {   // body-frame offsets (m) from shoulderC (lf = her left, up, fw = forward)
+  // left hand (top forearm): palm on the front-outer face of her right upper arm just above the elbow, fingers round its outside
+  L: { off: [-0.165, -0.245, 0.115], fingers: [-0.8, -0.12, -0.55], palm: [0.55, 0, -0.8], elbow: [0.25, -1, 0.3] },
+  // right hand (under forearm): tucked between her left upper arm and her ribs, fingers back toward the armpit
+  R: { off: [0.125, -0.255, 0.07], fingers: [0.45, 0.1, -0.9], palm: [-0.85, 0, -0.45], elbow: [-0.25, -1, 0.25] },
 };
 const FOLD_HAND = { shape: 'flat', curl: { index: [30, 40, 18], middle: [32, 42, 18], ring: [34, 42, 18], little: [36, 42, 18] }, spread: 2, thumb: { opp: 0.3, sweep: 30, abd: 20, mcp: 8, ip: 10 } };
 const foldArm = (n, yaw) => { const f = FOLD[n]; return { to: 'self:shoulderC', off: bodyVec(yaw, f.off), hand: FOLD_HAND, fingers: bodyVec(yaw, f.fingers), palm: bodyVec(yaw, f.palm), elbow: bodyVec(yaw, f.elbow) }; };
-const momFolded = (o = {}) => ({ at: MOM_HALL2, legs: 'stand', yaw: MOM_YAW2, spine: { bend: 4 }, head: { look: 'jade10:eyes', nod: 4, turn: -20 },
+const momFolded = (o = {}) => ({ at: MOM_HALL2, legs: 'stand', yaw: MOM_YAW2, spine: { bend: 4 }, head: { look: 'jade10:eyes', nod: 4, turn: -10 },
   L: foldArm('L', MOM_YAW2), R: foldArm('R', MOM_YAW2), ...o });
 // the girl: back to the wall, turned a little toward Mom, looking UP at Mom's eyes; head tipped to her own right (toward the
 // wall-side shoulder), chin a touch down, so she looks up from under her brows
@@ -183,13 +188,13 @@ export const SHOTS = [
   // little wider than FE_out so both faces AND Mom's folded arms are in frame: the old FE_thumbs camera looked over Mom's
   // back and could not show her arms. Same canonical corridor wall (the class-art board at frame left, plain wall behind
   // the girl, the counselor's door at frame right).
-  { id: 'FE_thumbs', hall: true, t: [18.23, 19.0], lens: 40, orbit: { at: { mid: ['jade10:eyes', 'mama91:eyes'] }, az: -75, el: 0, dist: 1.5 }, aim: [{ mid: ['jade10:eyes', 'mama91:eyes'] }, 0.5, 0.36], focus: ['jade10', 'mama91'],
+  { id: 'FE_thumbs', hall: true, t: [18.23, 19.0], lens: 40, orbit: { at: { mid: ['jade10:eyes', 'mama91:eyes'] }, az: -75, el: 0, dist: 1.8 }, aim: [{ mid: ['jade10:eyes', 'mama91:eyes'] }, 0.5, 0.3], focus: ['jade10', 'mama91'],
     figs: { jade10: kidSmirk(), mama91: momFolded() },
     header: '0:18.2 OUTSIDE, closer: "But not like that": Mom, arms folded; the girl\'s unimpressed one-sided smirk',
     intent: 'r4 restage (Jade). The corridor at ten, right after "But not like that". Two-shot from down the corridor on the door side: Mom (frame left) stands upright a step in front of her daughter, ARMS FOLDED (right forearm on top, each hand on the other upper arm), looking down at her. The girl (frame right), back to the wall beside the counselor\'s door, looks up at Mom with an UNIMPRESSED one-sided SMIRK: one corner of the mouth pulled up, the eye on that side slightly narrowed; head tipped a little, chin a touch down. Unimpressed, not mean. Corridor light from the ceiling panel.' },
   // 2026-11-28: Mom's folded arms alone, for checking the fold (not shots)
   ...[['front', 0, 0], ['side', -75, 0], ['top', 10, 70], ['low', -35, -20]].map(([k, az, el]) => ({ id: 'REF_fold_' + k, hall: true, lens: 50,
-    orbit: { at: 'mama91:chest', az: MOM_YAW2 + az, el, dist: 1.0 }, aim: ['mama91:chest', 0.5, 0.5], figs: { mama91: momFolded({ head: { look: [-2.17, 1.2, 0.52] } }) },
+    orbit: { at: 'mama91:chest', az: MOM_YAW2 + az, el, dist: 1.7 }, aim: ['mama91:chest', 0.5, 0.42], figs: { mama91: momFolded({ head: { look: [-2.17, 1.2, 0.52] } }) },
     header: `FOLD CHECK (reference): Mom's folded arms, ${k}`, intent: 'Not a shot: forearms stacked, hands on the upper arms, no arm through the body.' })),
   // shoulder check (Jade on X_sw: "the social worker's shoulders are weirdly misshapen"): the social worker alone, as
   // staged in PC1-PC4 / X_sw, from the front, her right side, above and behind. Not shots.

@@ -19,7 +19,8 @@ function undraw(fig) {
     if (t === 'ConeGeometry' || L.col === 0x8a3b34 || (L.col === 0x111111 && t === 'SphereGeometry')) { o.visible = false; o.userData.baseVisible = false; } });
 }
 import { beamSolid, beamMesh, beamWire, beamSidecar } from './beam.js';
-import { brickArt, BRICK as BRICK_SIZE } from './brick.js';   // r4b: the brick face as one exact texture
+import { brickArt, BRICK as BRICK_SIZE } from './brick.js';
+import { boardArt, mapBoardUV } from './boards.js';   // 2026-11-28: the boards as one canonical texture   // r4b: the brick face as one exact texture
 
 const BOARD = { grey: 0.42, col: 0x4a3a2a, recvShadowLine: true }, STUD = { grey: 0.5, col: 0x6a5238, recvShadowLine: true };
 const BRICK = { grey: 0.36, col: 0x4a342c, recvShadowLine: true }, FLOOR = { grey: 0.3, col: 0x2a221c, recvShadowLine: true };
@@ -28,10 +29,18 @@ function cavity() {
   const g = new THREE.Group(); const C = CAVITY, L = C.z1 - C.z0, zc = (C.z0 + C.z1) / 2, B = C.board;
   // the boarded partition: boards stacked away from the crack, which is a real slot (the light is a real light)
   const bx = C.x0 - B.t / 2; const lo = CRACK.y - CRACK.gap / 2, hi = CRACK.y + CRACK.gap / 2;
-  for (let y = lo, k = 0; y > 0; y -= B.h, k++) { const h = Math.min(B.h, y); g.add(tag(box(B.t, h - 0.002, L, BOARD, [bx, y - h / 2, zc]), 'boarded partition')); }
-  for (let y = hi; y < C.h; y += B.h) { const h = Math.min(B.h, C.h - y); g.add(tag(box(B.t, h - 0.002, L, BOARD, [bx, y + h / 2, zc]), 'boarded partition')); }
-  g.add(tag(box(B.t, CRACK.gap, CRACK.z0 - C.z0, BOARD, [bx, CRACK.y, (C.z0 + CRACK.z0) / 2]), 'boarded partition'));
-  g.add(tag(box(B.t, CRACK.gap, C.z1 - CRACK.z1, BOARD, [bx, CRACK.y, (C.z1 + CRACK.z1) / 2]), 'boarded partition'));
+  // 2026-11-28 (Jade round 9): every board carries ONE canonical board texture (boards.js: 140 mm boards, butt joints on studs,
+  // grain, knots, two nails per stud), mapped by world position, so the board size reads the same in every shot and mode
+  const rows = [];
+  for (let y = lo; y > 0; y -= B.h) { const h = Math.min(B.h, y); rows.push({ y0: y - h + 0.001, y1: y - 0.001 }); }
+  for (let y = hi; y < C.h; y += B.h) { const h = Math.min(B.h, C.h - y); rows.push({ y0: y + 0.001, y1: y + h - 0.001 }); }
+  rows.push({ y0: lo, y1: hi });   // the crack-level strip beyond the crack's two ends
+  const bA = boardArt(L, C.h, C.z0, rows, C.stud.z), BLOOK = { ...BOARD, art: bA.art, artGrey: bA.artGrey, artEdge: bA.artEdge };
+  const addBoard = (m) => { mapBoardUV(m, L, C.h, C.z0); g.add(tag(m, 'boarded partition')); };
+  for (let y = lo; y > 0; y -= B.h) { const h = Math.min(B.h, y); addBoard(box(B.t, h - 0.002, L, BLOOK, [bx, y - h / 2, zc])); }
+  for (let y = hi; y < C.h; y += B.h) { const h = Math.min(B.h, C.h - y); addBoard(box(B.t, h - 0.002, L, BLOOK, [bx, y + h / 2, zc])); }
+  addBoard(box(B.t, CRACK.gap, CRACK.z0 - C.z0, BLOOK, [bx, CRACK.y, (C.z0 + CRACK.z0) / 2]));
+  addBoard(box(B.t, CRACK.gap, C.z1 - CRACK.z1, BLOOK, [bx, CRACK.y, (C.z1 + CRACK.z1) / 2]));
   // 2026-11-28: the flat emissive card behind the crack is gone: through the crack one now sees the modelled back room
   // (backRoom(), lit by its bulb)
   for (const z of C.stud.z) g.add(tag(box(C.stud.d, C.h, C.stud.w, STUD, [C.x0 + C.stud.d / 2, C.h / 2, z]), 'stud'));
