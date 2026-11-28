@@ -124,13 +124,13 @@
  },
  "hands": {
   "meet_world": [
-   0.5,
-   0.41,
-   -0.02
+   0.175,
+   0.359,
+   0.002
   ],
   "meet_px": [
-   1211.2,
-   932.3
+   729.5,
+   876.3
   ],
   "each_px": {
    "jade19.L": [
@@ -142,8 +142,8 @@
     523.3
    ],
    "firstLove19.L": [
-    1038.8,
-    1066.6
+    586.2,
+    989
    ],
    "firstLove19.R": [
     891.1,
@@ -168,10 +168,10 @@
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.003,
-    1
+    0.335,
+    0.942
    ],
-   "toward_camera": -0.947,
+   "toward_camera": -0.941,
    "aim_world": [
     0.5,
     0.8,
@@ -194,10 +194,10 @@
    ],
    "in_front": false,
    "travel_dir_px": [
-    0.564,
-    0.826
+    0.647,
+    0.763
    ],
-   "toward_camera": -0.858,
+   "toward_camera": -0.826,
    "aim_world": [
     0.75,
     0,
@@ -207,7 +207,8 @@
  ],
  "warnings": [
   "wrist: jade19 L hand turned 43.1 deg toward the forearm to keep the wrist in range (was flex -19, radial -71.8)",
-  "wrist: jade19 R hand turned 44.2 deg toward the forearm to keep the wrist in range (was flex 91.8, radial 94.9)"
+  "wrist: jade19 R hand turned 44.2 deg toward the forearm to keep the wrist in range (was flex 91.8, radial 94.9)",
+  "wrist: firstLove19 L hand turned 30.5 deg toward the forearm to keep the wrist in range (was flex 34.5, radial -59)"
  ],
  "intent": "From his right side and a little behind, in the bedroom: his jaw line in near-profile, never his face square on; she beyond him at the closet mouth, lit. Both lean in; he has brought her right hand up out of the light and rubs its BACK on his chin. His left hand stays palm-up in the light where hers lay; her left hand rests on her lap.",
  "film": {
@@ -352,24 +353,24 @@
    }
   },
   "anchor_world": [
-   0.5,
-   0.41,
-   -0.02
+   0.175,
+   0.359,
+   0.002
   ],
   "anchor_px": [
-   1211.2,
-   932.3
+   729.5,
+   876.3
   ],
   "on_screen": {
    "from_px": [
-    1199.9,
-    890.5
+    682.1,
+    837.4
    ],
    "to_px": [
-    1220.6,
-    967.4
+    770.5,
+    909.9
    ],
-   "angle_deg": 74.9,
+   "angle_deg": 39.4,
    "travel": "left-to-right"
   },
   "rhyme": {
@@ -382,7 +383,7 @@
     ],
     "tolerance_deg": 3
    },
-   "angle_error_deg": 34.9,
+   "angle_error_deg": -0.6,
    "travel_ok": false
   },
   "mask": "render the twin shot beam_<id> in flat mode: the lit volume is white, everything else black (figures and furniture in front of it occlude it)",
@@ -462,9 +463,9 @@
     0.2746
    ],
    "handL": [
-    0.444,
-    0.344,
-    0.045
+    0.119,
+    0.293,
+    0.067
    ],
    "handR": [
     0.4999,
@@ -564,11 +565,11 @@
      "target": "hands",
      "shape": "palmUp",
      "world": [
-      0.444,
-      0.344,
-      0.045
+      0.119,
+      0.293,
+      0.067
      ],
-     "look_off_deg": 71.7
+     "look_off_deg": 78.5
     },
     {
      "arm": "R",
@@ -649,16 +650,16 @@
    "L": {
     "hold": false,
     "elbow_swivel_deg": 0,
-    "flex_deg": -2.4,
-    "radial_deg": 2.3,
-    "twist_deg": 76.5,
-    "elbow_flex_deg": 88.6,
+    "flex_deg": 9.8,
+    "radial_deg": -25.6,
+    "twist_deg": 74.2,
+    "elbow_flex_deg": 77.9,
     "before": {
-     "flex_deg": -2.4,
-     "radial_deg": 2.3,
-     "twist_deg": 76.5
+     "flex_deg": 34.5,
+     "radial_deg": -59,
+     "twist_deg": 57.9
     },
-    "hand_turned_deg": null,
+    "hand_turned_deg": 30.5,
     "out_of_range": [],
     "grip_reversed": false
    },
@@ -682,8 +683,8 @@
  },
  "holds": [],
  "figure_frame_fraction": {
-  "firstLove19": 0.4379,
-  "jade19": 0.3331
+  "firstLove19": 0.4345,
+  "jade19": 0.3365
  },
  "colour_separation": [
   {
@@ -732,75 +733,18 @@
     "sole_lowest_y_m": 0.0886,
     "glasses": {
      "frame": "jade19",
-     "name": "small thin full-rim soft rounded-rectangle dark gunmetal wire",
+     "name": "thin full-rim soft rounded-rectangle dark gunmetal wire",
      "lens_mm": [
-      48,
-      25
+      45.8,
+      23.3
      ],
-     "bridge_mm": 17,
+     "bridge_mm": 21.7,
      "rim_mm": 1.6,
-     "total_width_mm": 115,
+     "total_width_mm": 119,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
-     "_arm": [
-      [
-       56.2,
-       2.3,
-       17.2
-      ],
-      [
-       65.3,
-       3.5,
-       2.3
-      ],
-      [
-       70.5,
-       4.8,
-       -12.7
-      ],
-      [
-       74.4,
-       6.1,
-       -27.7
-      ],
-      [
-       77.1,
-       7.4,
-       -42.6
-      ],
-      [
-       78,
-       9.8,
-       -57.6
-      ],
-      [
-       80.2,
-       10.3,
-       -74.8
-      ],
-      [
-       78.4,
-       6.8,
-       -92.1
-      ],
-      [
-       75.2,
-       -8.2,
-       -99.1
-      ],
-      [
-       68.7,
-       -24.2,
-       -104.1
-      ]
-     ],
-     "_ear": [
-      5.8,
-      -61.6,
-      -88.1
-     ],
-     "temple_length_mm": 149,
-     "rim_clear_of_face_mm": 4.5
+     "temple_length_mm": 148,
+     "rim_clear_of_face_mm": 4.8
     }
    }
   },
@@ -814,7 +758,7 @@
     }
    },
    "arms": {
-    "L": 0.72,
+    "L": 0.78,
     "R": 0.41
    },
    "headTurn": 0,
@@ -824,8 +768,8 @@
     "face": "none",
     "head_short_of_eyes_m": 0,
     "L": {
-     "elbow_bend_deg": 82,
-     "upperarm_stretch": 1.03,
+     "elbow_bend_deg": 70,
+     "upperarm_stretch": 1.04,
      "forearm_stretch": 1,
      "hand_scale": 0.93
     },

@@ -1,0 +1,9 @@
+Model: "Jacket" by connectionsxr on Sketchfab
+URL: https://sketchfab.com/3d-models/0ef825d04a05436f8a91c1ac489366cf
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard 000-012), checked 2026-11-27
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-012/0ef825d04a05436f8a91c1ac489366cf.glb (uid 0ef825d04a05436f8a91c1ac489366cf)
+Also uses: the wire hanger (and its hook) from "Hangers and Pants" by dudecon (https://sketchfab.com/3d-models/37b92fbde5ca45448c50fc2cb6a376d8), CC BY 4.0
+Changes (for this film's layout guides): kept a 3D scan of a coat hanging (the scan chunks joined, duplicate vertices merged, normals made consistent); width fitted to 0.52 m and thickness to 0.09 m (a coat pressed among others in a 0.61 m closet); the scan texture (with its reflective bands) dropped; joined into two meshes, "garment" and "hanger" (materials of the same names); scaled so the garment hangs to the closet drawing's hem heights; origin at the TOP OF THE HANGER HOOK (x/z centre of the hook); hanger bar along x, y up; decimated; all textures dropped (the set gives each garment one canonical colour). Processing script: layout/assets/props/_pipeline/garment_prep.py.
+Real-world size here (x, y up, z), hook included: 0.5201 x 1.1055 x 0.0902 m (garment hangs from y = -1.105 at its hem)
+Used for: closet02 (the hanging clothes on the closet rod)

@@ -1,0 +1,8 @@
+Model: "Hanging Shirt By Camille Kleinman" by camillekleinman on Sketchfab
+URL: https://sketchfab.com/3d-models/117fc4a6e8304a858dfaf2adc2c782a0
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard 000-065), checked 2026-11-27
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-065/117fc4a6e8304a858dfaf2adc2c782a0.glb (uid 117fc4a6e8304a858dfaf2adc2c782a0)
+Changes (for this film's layout guides): kept the top (all its layers) and its hanger; joined into two meshes, "garment" and "hanger" (materials of the same names); scaled so the garment hangs to the closet drawing's hem heights; origin at the TOP OF THE HANGER HOOK (x/z centre of the hook); hanger bar along x, y up; decimated; all textures dropped (the set gives each garment one canonical colour). Processing script: layout/assets/props/_pipeline/garment_prep.py.
+Real-world size here (x, y up, z), hook included: 0.3979 x 0.6045 x 0.1066 m (garment hangs from y = -0.604 at its hem)
+Used for: closet02 (the hanging clothes on the closet rod)

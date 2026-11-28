@@ -9,6 +9,7 @@
 //   node layout/render.mjs --set fl_hands --shots D2_guide,D3_guide --modes form,contour,lit --w 3072 --h 1728 --out <dir>
 import '../_cast.js';
 import { preloadPaint } from '../../engine/paint.js';
+import { HOLD as HOLD6, holdArms } from '../_hold.js';
 export const HER = { at: [0, -0.48], yaw: 0 }, HIM = { at: [0, 0.48], yaw: 180 };   // hips 0.96 m apart (their crossed knees just clear)
 // her right hand's palm centre (world): over his crossed shins, in front of his lap
 export const HOLD = [-0.02, 0.26, 0.04];
@@ -27,10 +28,11 @@ export const himFig = (o = {}) => ({ ...HIM, legs: 'cross', spine: { bend: 16 },
 const FIGS = { jade19: herFig(), firstLove19: himFig() };
 const HIDE = { jade19: ['head'], firstLove19: ['head'] };
 export const SHOTS = [
-  // study 2: from above, him at the top of the frame, her at the bottom; the hands in the middle
-  { id: 'D2_guide', lens: 50, pos: [HOLD[0], 1.55, HOLD[2] - 0.12], target: [HOLD[0], 0.2, HOLD[2] + 0.02], hideParts: HIDE, header: 'D study 2: her hand resting on his two upturned palms, from above', figs: FIGS },
-  // study 3: from the side (her on the left, him on the right), at the height of the hands
-  { id: 'D3_guide', lens: 50, pos: [HOLD[0] - 0.85, 0.36, HOLD[2]], target: [HOLD[0], 0.24, HOLD[2]], hideParts: HIDE, header: 'D study 3: the same, from the side', figs: FIGS },
+  // 2026-11-27 (late): the cradle studies (D2_guide / D3_guide on FIGS) are superseded by the APPROVED hold (bottom of
+  // this file: D2_guide / D3_guide = v5 END). The cradle seating (square on, hips 0.96 m) also failed clipcheck after the
+  // cross-legged engine pose changed: legs 46 mm into each other. Its cameras are kept as D2_cradle / D3_cradle (debug).
+  { id: 'D2_cradle', lens: 50, pos: [HOLD[0], 1.55, HOLD[2] - 0.12], target: [HOLD[0], 0.2, HOLD[2] + 0.02], hideParts: HIDE, header: 'OLD D study 2 (cradle, superseded): from above', figs: FIGS },
+  { id: 'D3_cradle', lens: 50, pos: [HOLD[0] - 0.85, 0.36, HOLD[2]], target: [HOLD[0], 0.24, HOLD[2]], hideParts: HIDE, header: 'OLD D study 3 (cradle, superseded): from the side', figs: FIGS },
   { id: 'D_hold_close_top', lens: 50, pos: [HOLD[0], 0.75, HOLD[2] - 0.08], target: HOLD, hideParts: HIDE, header: 'hold close, from above', figs: FIGS },
   { id: 'D_hold_close_side', lens: 50, pos: [HOLD[0] - 0.42, 0.30, HOLD[2]], target: HOLD, hideParts: HIDE, header: 'hold close, from the side', figs: FIGS },
 ];
@@ -56,7 +58,10 @@ const P0 = { // per-hold tunables (hold points: her palm centre; his palm-up han
   H2: { at: [-0.12, 0.298, 0.05], under: 0.0745, along: 0.06, over: 0.0755 },
   H3: { at: [-0.15, 0.222, 0.1], under: 0.082, side: 0.03, along: 0.05 },
 };
-const HER_HAND = { shape: 'relax', spread: 2, thumb: { opp: 0, sweep: 18, abd: 0, mcp: 4, ip: 6 } };
+// 2026-11-27 (late): thumb from sweep 18 / abd 0 (adducted flat against the index: the skinned web folded into the
+// 'thorn' crease on the back of her hands, the thumb nail floating mid-hand) to her v3 resting thumb (HBX.herL: curled
+// down beside the index). HB.p's spread thumb (sweep 55) was tried first: on her lower H1 hand it stuck up like a hitchhiker's.
+const HER_HAND = { shape: 'relax', spread: 2, thumb: { opp: 0.2, sweep: 40, abd: 2, mcp: 16, ip: 20 } };
 // H1 (photo 1): both pairs of hands joined low between the knees, forearms along the thighs, wrists neutral. Each pair:
 // his hand palm-up underneath, hers palm-down in it, fingers over each other; each pair rests across the two knees
 // on its side (hers and his).
@@ -350,3 +355,54 @@ SHOTS.push(
   { id: 'D0_H', ...CAM_P, hideParts: HHIDE, header: 'v5 END: clasp + his right hand on top (sandwich), nothing painted', figs: v5End() },
   { id: 'D4_H', ...CAM_P, hideParts: HHIDE, header: 'v5 END stage 4: clasp painting on both, his covering right hand 3D', figs: (() => { const f = v5End();
     f.firstLove19.paint = { url: PAINT_V5.C3, hands: ['L'], limbs: { armL: 1 } }; f.jade19.paint = { url: PAINT_V5.C3, hands: ['R'], limbs: { armR: 1 } }; return f; })() });
+
+// ======================================================================================================================
+// 2026-11-27 (late) V6 = THE APPROVED END, posed to match the approved clip (media/gen/hold_FINAL_AB1_MT3.mp4), whose
+// end was never a 3D frame (the clasp and the covering hand came from the video model). Matched by overlaying CAM_P
+// contours on the clip's clasp frame (t 4.9 s) and its last frame. Base: v3 END (her hand in his palm at START's
+// heading, his fingers closing round it, wrist pronated), then: her fingers fold round the edge of his hand (clasp), his
+// thumb lies over the back of her hand, and his right hand lands over both from the lower left, fingers toward her wrist.
+// The numbers live in layout/sets/_hold.js (HOLD), shared with closet02 and every other use of the hold.
+export const V6 = { her: { to: HOLD6.her.to, fingers: HOLD6.her.fingers, thumb: HOLD6.her.hand.thumb, curl: HOLD6.her.hand.curl },
+  him: { to: HOLD6.him.to, palm: HOLD6.him.palm, fingers: HOLD6.him.fingers, hand: HOLD6.him.hand }, cover: HOLD6.cover, herFrame: HOLD6.herFrame };
+export function v6Clasp(o = V6) { const f = ovFigs(h3bFigs());
+  f.jade19.R = { ...f.jade19.R, to: o.her.to, fingers: nz(o.her.fingers), hand: { ...f.jade19.R.hand, thumb: o.her.thumb, curl: o.her.curl } };
+  f.firstLove19.L = { ...f.firstLove19.L, to: o.him.to, palm: nz(o.him.palm), fingers: nz(o.him.fingers), hand: o.him.hand, grasp: 'palmUnder' };
+  return f; }
+export function v6End(o = V6) { const f = v6Clasp(o), c = o.cover, F = o.herFrame, d = nz(F.dors), a = nz(F.fingers), x = nz(F.across);
+  const to = F.palm.map((p, i) => p + d[i] * c.up + a[i] * c.along + x[i] * c.across);
+  const fing = nz(a.map((v, i) => v * c.fa + x[i] * c.fx - d[i] * c.fd));
+  f.firstLove19.R = { to: to.map((v) => +v.toFixed(4)), hand: c.hand, palm: d.map((v) => -v), fingers: fing, ...(c.elbow ? { elbow: c.elbow } : {}), object: 'figure:jade19' };
+  return f; }
+SHOTS.push(
+  { id: 'A0_clasp', ...CAM_P, hideParts: HHIDE, logHands: true, header: 'V6 approved CLASP (3D, nothing painted)', figs: v6Clasp() },
+  { id: 'A0_end', ...CAM_P, hideParts: HHIDE, header: 'V6 approved END: clasp + his right hand over both (3D, nothing painted)', figs: v6End() });
+// debug views of the V6 clasp: from the side along her forearm (+x side, her thumb side) and from -x, and from above
+{ const c = V6.herFrame.palm;
+  SHOTS.push(
+    { id: 'dbg_A0_side', lens: 50, pos: [c[0] + 0.45, c[1] + 0.03, c[2] - 0.05], target: c, hideParts: HHIDE, header: 'debug V6 clasp side (+x)', figs: v6Clasp() },
+    { id: 'dbg_A0_side2', lens: 50, pos: [c[0] - 0.45, c[1] + 0.03, c[2] + 0.05], target: c, hideParts: HHIDE, header: 'debug V6 clasp side (-x)', figs: v6Clasp() },
+    { id: 'dbg_A0_top', lens: 50, pos: [c[0], c[1] + 0.45, c[2] - 0.01], target: c, hideParts: HHIDE, header: 'debug V6 clasp top', figs: v6Clasp() },
+    { id: 'dbg_A0e_side', lens: 50, pos: [c[0] + 0.45, c[1] + 0.03, c[2] - 0.05], target: c, hideParts: HHIDE, header: 'debug V6 END side (+x)', figs: v6End() },
+    { id: 'dbg_A0e_side2', lens: 50, pos: [c[0] + 0.1, c[1] + 0.02, c[2] - 0.45], target: c, hideParts: HHIDE, header: 'debug V6 END side (from her side, -z)', figs: v6End() },
+    { id: 'dbg_A0_his', lens: 50, pos: [c[0], c[1] + 0.45, c[2] - 0.01], target: c, hideParts: { jade19: ['all'], firstLove19: ['head'] }, header: 'debug V6 his hand alone, top', figs: v6Clasp() }); }
+
+// ======================================================================================================================
+// 2026-11-27 (late): THE APPROVED HOLD for the D hands sheet, studies 2 and 3 (Jade picked the clip AB_1 + MT_3,
+// media/gen/hold_FINAL_AB1_MT3.mp4: START S3_H3b_1 = V3.her on his open hand; it lands in the finger clasp and his right
+// hand slides in and covers both). The clip's end state is v5 END (D0_H): V5.her clasp curl, V5.him soft curl, his
+// right hand over both (COVER + V5.cover). Same joint values, same seating (H: offset 0.2 m each side, which clears
+// their crossed legs; the old square-on cradle seating did not). Socks (ovFigs), heads hidden.
+// The hold centre (her palm, V5.herFrame.palm) is the target of both cameras.
+export const APPROVED = { figs: () => v5End(), hold: V5.herFrame.palm, start: () => v3Start() };
+SHOTS.push(
+  // study 2: from above, from her side a little to his right, as the approved keyframe's overhead camera (CAM_P: az -40,
+  // el 88) but wider, so both crossed-legged laps show; him at the top / left, her at the bottom / right
+  { id: 'D2_guide', ...camAt([-0.1, 0.25, 0.02], -40, 80, 0.85, 35), hideParts: HHIDE, header: 'D study 2: the approved hold (clasp, his right hand over both), from above', figs: APPROVED.figs() },
+  // study 3: from the side at hand height (camera on -x: her on the left, him on the right)
+  { id: 'D3_guide', ...camAt([-0.12, 0.29, 0.0], 180, 12, 1.0, 35), hideParts: HHIDE, header: 'D study 3: the approved hold, from the side', figs: APPROVED.figs() },
+  // the hold alone, close, from the same two directions (2x zoom crops are cut from 6144x3456 renders of D2 / D3)
+  { id: 'D_hold_close_top2', ...camAt(V6.herFrame.palm, -40, 78, 0.45, 35), hideParts: HHIDE, header: 'approved hold close, from above', figs: APPROVED.figs() });
+// check: _hold.js holdArms() (what other sets use) gives exactly A0_end (pixel-compare A0_end_check with A0_end)
+{ const f = ovFigs(h3bFigs()), H = holdArms(0, 0); f.jade19.R = H.herR; f.firstLove19.L = H.himL; f.firstLove19.R = H.himR; f.firstLove19.spine = H.himSpine;
+  SHOTS.push({ id: 'A0_end_check', ...CAM_P, hideParts: HHIDE, header: 'check: holdArms(0, 0) = A0_end', figs: f }); }

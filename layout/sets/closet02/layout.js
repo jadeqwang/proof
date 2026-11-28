@@ -8,6 +8,7 @@
 //   x: left -> right as seen from the bedroom (the drawing's viewpoint). The opening is centred on x = 0.
 //   z: + = the bedroom; z = 0 is the bedroom face of the closet wall; the back wall of the closet is at z = -0.73.
 // A camera in the bedroom looking into the closet (toward -z) has +x on frame-RIGHT, as in the drawing.
+import { FL_HIM, holdArms } from '../_hold.js';
 const rad = (d) => (d * Math.PI) / 180;
 
 // ---------------------------------------------------------------- the closet
@@ -45,15 +46,48 @@ FUTON.x1 = FUTON.mx1 + FUTON.armGap; FUTON.z1 = FUTON.z0 + FUTON.w; FUTON.top = 
 export const CEIL_LIGHT = { at: [0.75, WALL.h, 1.85], r: 0.165, h: 0.12, color: 0xffd6a0 };
 
 // ---------------------------------------------------------------- what is in the closet (from the drawing)
-// Drawing heights scaled to the 2.03 m opening: shelf ~1.63, rod ~1.48, clothes' hems ~0.94, coats ~0.40. A real
-// closet has the shelf at ~1.73 and the rod at ~1.68; ASSUMPTION: between the two (shelf 1.72, rod 1.60) so that
-// the hems still land at about two-thirds of the way down, as drawn.
-export const SHELF = { y: 1.72, d: 0.30, t: 0.02 };                        // top surface y; depth from the back wall
-export const RAIL = { y: 1.60, z: ROOM.z0 + 0.30 };                        // rod centre, 30 cm off the back wall
-// hanging clothes: simple masses along the whole rod (the left ones are behind the closed panels)
-export const CLOTHES = { from: -0.90, to: 0.92, step: 0.055, w: 0.44, hem: [0.94, 0.88, 1.00, 0.92, 0.97, 0.86, 1.04, 0.93] };
-// a few long coats down the LEFT edge of the open half (drawing: from the panel's edge to ~15 cm right of it)
-export const COATS = { xs: [0.07, 0.12, 0.17], hem: [0.40, 0.46, 0.42], w: 0.50, t: 0.07 };
+// Heights FROM THE DRAWING (Jade, 2026-11-27 late: "the closet must match my drawing"), scaled to the 2.03 m opening:
+// shelf ~1.63 (textbooks and shoeboxes on it), the rod right below it ~1.48, most clothes hang to ~0.91-0.94 ("clothes
+// mostly to here"), a few long coats at the LEFT end of the open half hang to ~0.37-0.40. (Was a compromise between the
+// drawing and a stock closet, shelf 1.72 / rod 1.60; removed.)
+export const SHELF = { y: 1.63, d: 0.30, t: 0.02 };                        // top surface y; depth from the back wall
+export const RAIL = { y: 1.48, z: ROOM.z0 + 0.30, r: 0.014 };              // rod centre, 30 cm off the back wall; rod radius
+// hanging clothes (2026-11-27 late): REAL garments on hangers (layout/assets/props/garment_*, CC BY 4.0, credited in
+// docs/credits_tools.md), each hook resting on the rod, hanger bar across the closet (front to back), opaque, one
+// canonical colour each (a 2002 student's wardrobe: muted, varied). Each entry: [x of the hook, prop, colour, scale].
+// The props' hook-to-hem drop is 0.603 m (tops) / 0.692 (folded trousers) at scale 1, so with the hook on the 1.48 rod the
+// tops' hems land at 0.90-0.94 (the drawing) and the trousers' at ~0.81. Garments are opaque solids pressed together
+// (centres 4.5-6 cm apart; real tops are 7-13 cm thick as modelled, a little overlap reads as compressed cloth).
+// GAP over her head (x 0.38-0.62): she sits under the rod with her crown at ~0.93-0.95, the hems' height, so the
+// hangers there are pushed aside to both sides (a placement choice, flagged for Jade; fixes "jade19 into hanging clothes").
+const TOP = 'garment_tee', LS = 'garment_shirt', SW = 'garment_sweater', JK = 'garment_jacket', PT = 'garment_pants';
+export const CLOTHES = {
+  hookLift: 0.004,            // the hook wire's thickness: the prop origin (top of the hook) sits this far above the rod top
+  items: [
+    // left half, behind the slid panels (mostly hidden; seen past the panel edge in CL_elev)
+    [-0.88, JK, 0x3d3a36, 1.00], [-0.82, PT, 0x2f3a55, 1.00], [-0.765, LS, 0xc9c3b4, 0.97], [-0.71, SW, 0x6b5a4a, 0.98],
+    [-0.655, TOP, 0x4a5468, 0.95], [-0.60, LS, 0x7a8490, 0.97], [-0.545, PT, 0x8a7d63, 1.00], [-0.49, TOP, 0x8a5a4a, 0.96],
+    [-0.435, SW, 0x5a4a60, 0.98], [-0.38, LS, 0xa09a88, 0.97], [-0.325, TOP, 0x34343a, 0.95], [-0.27, JK, 0x4b5a6e, 0.99],
+    [-0.215, LS, 0xb8a890, 0.96], [-0.16, TOP, 0x6a7a62, 0.95],
+    // open half, right of the coats
+    [0.165, JK, 0x59573f, 1.00],    // olive canvas jacket
+    [0.215, LS, 0x9fb3c8, 0.97],    // light-blue oxford shirt
+    [0.265, TOP, 0x9a9a98, 0.95],   // heather-grey tee
+    [0.315, SW, 0xc6b796, 0.98],    // oatmeal sweater
+    [0.36, TOP, 0x2e3a52, 0.93],    // navy tee (shortest, nearest her head)
+    // (gap over her head)
+    [0.645, LS, 0x6e2a32, 0.94],    // burgundy shirt
+    [0.695, SW, 0x3e5243, 0.97],    // forest-green sweater
+    [0.745, PT, 0xb0a07a, 1.00],    // khaki trousers
+    [0.795, TOP, 0xd6d1c6, 0.96],   // off-white tee
+    [0.84, PT, 0x3c4e6a, 1.00],     // jeans
+    [0.885, JK, 0x2a2a2c, 0.98],    // black jacket
+  ],
+};
+// the long coats at the LEFT end of the open half (drawing: tight against the panel edge, hems ~0.37-0.40). Scanned coats
+// (layout/assets/props/coat_long_*), knee length (0.98 m), pressed together: thickness scaled to 0.063 m each. They must
+// stay at x < 0.14 at y 0.43-0.49 (her right elbow reaches to x ~0.17 in CL_hands / CL_ots / CL_chin).
+export const COATS = { items: [[-0.01, 'coat_long_b', 0x2b2d33, 1.0], [0.04, 'coat_long_a', 0x7a6248, 1.0], [0.09, 'coat_long_b', 0x3b4250, 0.99]], thick: 0.7 };
 // the folded duvet cover she sits on (drawing: a low block under her, a little narrower than her knees)
 export const DUVET = { at: [0.55, -0.40], w: 0.58, d: 0.58, h: 0.09 };
 
@@ -67,7 +101,12 @@ export const SEATS = {
   firstLove: { at: [0.50, 0.48], yaw: 180 },   // 2026-11-27 (cross-legged pose from photos): 10 cm back, 2 cm left: his crossed feet reach further forward now (were 45 mm into her duvet, knees into hers)
   // was [0.52, 0.38]:   // 2026-11-26 post-sweep: x 0.55 -> 0.52 (3 cm off her centre line): with the soles fix his crossed foot was 15.8 mm into the right jamb (bedroom wall); stepping back instead put it into the casing
 };
-export const HANDS = [0.50, 0.41, -0.02];   // 2026-11-27 x 0.55 -> 0.50 with the seats                                    // where the four hands meet: at the door line, on the shared centre line
+// where the hands meet. 2026-11-27 (late): THE APPROVED HOLD (layout/sets/_hold.js), carried over rigidly with HIS seat,
+// so it rests on his LEFT knee as in the approved clip: her right palm centre. (Was [0.50, 0.41, -0.02], the cradle at the
+// door line on the shared centre line.)
+export const HOLD_DX = +(SEATS.firstLove.at[0] - FL_HIM.at[0]).toFixed(4), HOLD_DZ = +(SEATS.firstLove.at[1] - FL_HIM.at[1] + 0.03).toFixed(4);   // + 3 cm toward him: clears her right knee (shots.js)
+export const HOLD_DY = 0;
+export const HANDS = holdArms(HOLD_DX, HOLD_DZ, undefined, HOLD_DY).herR.to;
 export const FACE = [0.50, 0.80, -0.26];   // 2026-11-27 x 0.55 -> 0.50                                     // about where her face is (for the light)
 
 // ---------------------------------------------------------------- the light

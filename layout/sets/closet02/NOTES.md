@@ -1,5 +1,92 @@
 # closet02: notes and assumptions
 
+## 2026-11-27 (late): real hanging garments (supersedes anything below that contradicts it)
+
+Jade: the paintings make the shelving and hanging clothes look compressed and short. Correction from Jade mid-task: the
+closet must match HER DRAWING (`inputs/refs_closet.png`, private, look-only), not generic dorm specs.
+
+**Cause (checked):** a guide problem, not a proportion problem. (1) In CL_wide the steep camera puts the shelf (~0.2 of
+the frame height) and the rod (~0.1) ABOVE the top edge, so the clothes enter cut off at the shoulders and end just above
+her head, a band in the top quarter of the frame. (2) The clothes were plain slabs in the walls' beige in form mode (only
+lit had muted colours), which did not read as garments. The painter (CL_wide_v1) filled the gap with an invented
+bookshelf and a full rack inside the frame, squashed down to her head height (and widened the framing).
+
+**What changed**
+- **Heights from the drawing** (the lead's measurements, scaled to the 2.03 m opening): shelf 1.72 -> **1.63**, rod
+  1.60 -> **1.48** (`SHELF`, `RAIL` in layout.js; the old "between a stock closet and the drawing" compromise is gone).
+  The shelf contents move with `SHELF.y`. Opening 2.03, width 1.80, depth 0.61 unchanged.
+- **Real garments on hangers** replace the slabs and coat slabs (`CLOTHES.items`, `COATS.items` in layout.js; `hang()`
+  in build.js): 25 garments along the rod (14 behind the panels, 11 in the open half) + 3 long coats tight to the panel
+  edge. Each is a downloaded model (below), opaque, one canonical colour per garment in every guide mode (lit, flat,
+  label, and form as a tint), hook resting on the rod, hanger bar across the closet, fronts toward +x. Hangers: black
+  velvet (tees, shirts), wire (the rest). Hems: tops 0.90-0.94 (the drawing's "clothes mostly to here"), folded trousers
+  ~0.81, coats 0.39-0.40 (knee-length, 0.98 m). Tops are 0.50-0.52 m long: short, but real (2002 fitted / cropped).
+- **A gap over her head** (x 0.38-0.62): her crown is at ~0.93-0.95, the hems' height, and she sits under the rod, so
+  the hangers there are pushed aside to both sides. FLAG for Jade: the drawing shows clothes over her; this is the only way
+  real-length clothes clear her head (fixes the old "jade19 into hanging clothes 20 mm").
+- **Coats** at x -0.01 / 0.04 / 0.09, thickness scaled to 0.063 m each (pressed together): their max x is 0.121, clear of
+  her reaching right elbow (x ~0.17) by 6-8 cm (probed: moving the front coat 6 cm right still clears; 8 cm right hits).
+
+**Sources and licences** (all CC BY 4.0, Sketchfab via the Objaverse 1.0 mirror; licence from the Objaverse metadata;
+credited in `docs/credits_tools.md`; each prop has SOURCE.txt + LICENSE.txt; processing:
+`layout/assets/props/_pipeline/garment_prep.py`, Blender 4.5): `garment_tee`, `garment_shirt`, `garment_pants`
+(dudecon, "Hangers and ..." series; also the wire hanger for the jacket and coats), `garment_sweater` (camillekleinman,
+"Hanging Shirt"), `garment_jacket` (snugl.buniez, "hanging jackets2", one jacket), `coat_long_a` / `coat_long_b`
+(connectionsxr, "Jacket", 3D scans of hanging coats; scan texture with reflective bands dropped). All textures dropped
+(the dudecon shirts carried a printed web address). Poly Haven has no garments.
+
+**Checks:** clipcheck CL_wide, CL_ots, CL_hands, CL_chin: nothing into the hanging clothes or coats (the remaining FAILs are
+body-vs-body / grip, owned by the hold work, and firstLove19 8.9 mm into the duvet). Scratch renders only; the set
+re-render of media/layout/closet02/ is the lead's.
+
+**Framing: one sentence per shot for the painter prompt**
+- CL_wide: "The closet's shelf and rod are above the top edge of the frame, so do not draw a shelf, rod, books or boxes;
+  the hanging clothes come in from the top edge cut just below their shoulders and end just above her head, and the long
+  dark coats at the left of the open half hang lower, past her shoulders."
+- CL_ots: "The shelf, the rod and the hangers are above the top edge of the frame, so do not draw them; only the lower
+  parts of the hanging clothes show, their hems just above her head, with the long dark coats hanging toward the floor
+  frame-left behind her."
+- CL_chin: "The closet's shelf, rod and hanging clothes are all above the top edge of the frame, so do not draw them;
+  only the lower halves of the long dark coats show behind and between them."
+- CL_hands: "No part of the closet's shelf, rod or hanging clothes is in frame; do not draw them."
+- CL_elev: "The shelf (textbooks, shoeboxes) at about four-fifths of the opening's height, the rod just below it, the
+  clothes hanging to about her head height with a gap over her, and the long coats at the left of the open half hanging
+  nearly to the floor are all in frame: draw them as the guide shows."
+No camera changed. No shot's intent needs the shelf (CL_wide: "under the hanging clothes"; CL_ots: "the hems of the
+hanging clothes just above her head"), so no tilt is proposed. If Jade wants the hangers in CL_wide, tilting up ~6 degrees
+would bring the rod into the top edge but costs the caption room at the bottom.
+
+## 2026-11-27 (late): THE APPROVED HOLD in CL_hands / CL_ots (replaces the cradle)
+Jade picked the hold clip (media/gen/hold_FINAL_AB1_MT3.mp4): her right hand lies across his left, their fingers fold into a
+clasp, his right hand covers both. One source: layout/sets/_hold.js (fl_hands V6, the 3D match of the clip's end; see
+fl_hands NOTES). Here it is moved rigidly with HIS seat (he has the same yaw as in fl_hands, so a translation: dx 0.30,
+dz -0.02 + 0.03), so his arms keep the exact targets and joint values (hold on his left knee, spine bend 36 / twist 30 /
+side -12, his left hand solo-lit); her right arm reaches it from her own seat (to her right).
+- Adaptations (each measured): (1) the cluster 3 cm toward him: in this seating HER right knee is under the hold and his
+  curled fingers went 27 mm into her jeans (lifting 3 cm made it worse). (2) her right elbow hint [-0.3, -0.9, 0.1]: free it
+  swung into the long coats; tucked in, her wrist went out of range (radial +19..49 deg). Her hand keeps the approved heading.
+- layout.js HANDS (= her right palm centre of the hold) moved from the door-line centre [0.50, 0.41, -0.02] to the hold over
+  his left knee ([0.175, 0.359, 0.002]); beamAnchor / sidecar "hands" follow it.
+- CL_hands camera: camAt(midpoint of her palm and his covering palm, az -40, el 80, 0.5 m, 35 mm); his head is hidden too
+  (he faces this camera; at 0.6 m the top of his bowed head entered the frame), from above on her side, close to the clip's own camera
+  (fl_hands CAM_P az -40 el 88 0.42 m), so the clip frames are near-exact hand references; him on the LEFT. Was an orbit
+  from her eye-line (el 68) at the door-line point. FLAG: most of the hold is now in the warm shade, only his covering
+  fingers catch the sun (lit pass); the old intent said "in the light".
+- CL_ots: hands below the frame, as before; his trunk is turned toward the hold (twist 30 to his left), a small change to
+  his back and shoulder in frame.
+- Layered paint-back (playbook section 4) prepared, not painted: shots CL_hands_pb1 (his left hand alone), _pb2 (+ her 3D
+  hand, his painted), _pb3 (+ his covering hand in 3D, both painted), same camera; projections from
+  layout/assets/paint/closet02/ (gitignored); build.js now calls aimPaint. Jobs and the run order in
+  media/keyframes/r4/closet02/_prompts/_make.py; zoom crops and red-contour overlays: _prompts/_handcheck.py.
+- build.js: her sweatshirt extras (socks, tee, seal, folds) are skipped when her whole figure is hidden (pb1 showed a
+  floating white sock).
+- Prompts (_make.py): every closet shot now says what of the closet is in frame (INFRAME, from the garments section above).
+  CL_chin (dropped by Jade) still uses the old cradle him(); its hands follow the moved HANDS point and clip (42 mm): not fixed.
+- Sheets: scratchpad hold_carryover_sheet.jpg (approved keyframe | clip last frame | 3D match | CL_hands | CL_ots | D studies).
+- Checks: clipcheck CL_hands / CL_ots / pb1-3: grip 4.3 mm (her fingertips pressing his palm; soft, over the 3 mm hard
+  limit; fl_hands 2.4), joints in range; the remaining FAILs are the pre-existing feet (body vs body 10.3 / 13.3 mm, the same
+  in CL_wide). holdcheck (capsule hands, ~5 mm off the mesh): contact -10, palm 10 mm (fl_hands A0_end -6.1 / 6.1).
+
 ## 2026-11-26 (late): round-4 decisions (supersedes anything below that contradicts it)
 
 Jade's answers: `work/decisions/JADE_R4_DECISIONS.md` (Closet), plus a direction sent mid-session.

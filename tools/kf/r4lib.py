@@ -77,7 +77,16 @@ FIRST_LOVE_REFS = {
                 "tousled texture and dark, slightly warm brown colour)"),
     "fl_ots": ("cast/first_love/fl_G_ots_hair_v11.png", "his over-the-shoulder hair sheet (how the hair reads from behind "
                "and the side; face never shown)"),
-    "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (the current one; hands only)"),
+    # D v4's studies 2/3 show an OLD hold (four hands in a knot); until D v5 (cast/first_love/_prompts/v10/run7.sh, the approved
+    # hold) is accepted, this sheet is for his hands' look only, and every hold uses fl_hold below.
+    "fl_hands": ("cast/first_love/fl_D_hands_forearms_v4.jpg", "his hands and forearms sheet (his hands' size, shape and forearm "
+                 "hair ONLY; IGNORE how the hands hold each other there: that hold is out of date)"),
+    # THE APPROVED HOLD (Jade 2026-11-27 19:40; layout/sets/_hold.js): the last frame of the approved clip
+    # media/gen/hold_FINAL_AB1_MT3.mp4, copied to media/keyframes/r4/_hold/ (gitignored, like all first-love hand takes;
+    # also hold_start.png = keyframe takes_v3/S3_H3b_1 and hold_clasp.png = the clip at 4.9 s)
+    "fl_hold": ("media/keyframes/r4/_hold/hold_final.png", "the director's APPROVED HOLD, painted from straight above (his left "
+                "arm from the top left, his right hand laid over both from the lower left, her right hand clasped under it): how "
+                "the three hands sit and overlap; NOT the framing, NOT the painting style, NOT the clothes colours"),
 }
 PAPER_KEYBOARD = ("The paper keyboard is a flat printed paper strip taped down, 37 keys from C to C at real piano-key "
                   "size, with white paper margins; its black keys run in groups of 2-3-2-3-2-3, with NO black key "
@@ -97,8 +106,8 @@ MAX_REFS = 5
 ROUTE_OVER5 = "gpt2"   # paid Cloudflare gpt-image-2 (up to 16 refs) for jobs that need more than MAX_REFS; None = trim to 5
 FACE_FIRST = True   # face crops are images 1..n, the guides follow (mv10 finding: a face ref in slot 4-5 loses)
 FACELESS = True   # blank the guide faces (tools/kf/faceless.py) wherever a named face is in frame
-FACE_RULE_NF = ("FACES. In images 1-2 the faces are left BLANK on purpose except the EYES and any GLASSES (the head, hair, "
-                "outline, the eyes aimed at what each person looks at, and the glasses frame are drawn; no brows, nose or mouth): "
+FACE_RULE_NF = ("FACES. In images 1-2 the faces are left BLANK on purpose except the EYES, BROWS and any GLASSES (the head, "
+                "hair, outline, the eyes aimed at what each person looks at, the brows and the glasses frame are drawn; no nose or mouth): "
                 "paint each face from its face image, its head turned and its eyes looking exactly where the guide's eyes and the "
                 "words say. ")
 FACE_CROPS = {   # key: (crop path, source sheet it replaces, whose face)
@@ -106,6 +115,7 @@ FACE_CROPS = {   # key: (crop path, source sheet it replaces, whose face)
     "dad37": ("media/keyframes/r4/_faces/dad37.png", "cast/dad/dad_H_heads_v5_likeness.jpg", "Dad's face at 37"),
     "lj07": ("media/keyframes/r4/_faces/lj07.png", "cast/little_jade_07/lj07_H_heads_v1.jpg", "little Jade's face at 7"),
     "lj10": ("media/keyframes/r4/_faces/lj10.png", "cast/little_jade_10/lj10_H_heads_v1.jpg", "little Jade's face at 10"),
+    "lj03": ("media/keyframes/r4/_faces/lj03.png", "cast/little_jade_03/lj03_H_heads_v1.jpg", "little Jade's face at 3"),
     "lj05": ("media/keyframes/r4/_faces/lj05.png", "inputs/refs_chaosmonkey/little_jade/lj_H_heads_v3.jpg", "little Jade's face at 5"),
     "jade19": ("media/keyframes/r4/_faces/jade19.png", "cast/jade_19/jade19_H_heads_v1.jpg", "Jade's face at 19"),
     "jade27": ("media/keyframes/r4/_faces/jade27.png", "cast/jade_27/jade27_H_heads_v1.jpg", "Jade's face at 27"),

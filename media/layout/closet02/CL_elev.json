@@ -106,13 +106,13 @@
  },
  "hands": {
   "meet_world": [
-   0.5,
-   0.41,
-   -0.02
+   0.175,
+   0.359,
+   0.002
   ],
   "meet_px": [
-   1181.5,
-   845.6
+   1037.8,
+   869.4
   ],
   "each_px": {
    "jade19.L": [
@@ -539,75 +539,18 @@
     "sole_lowest_y_m": 0.0886,
     "glasses": {
      "frame": "jade19",
-     "name": "small thin full-rim soft rounded-rectangle dark gunmetal wire",
+     "name": "thin full-rim soft rounded-rectangle dark gunmetal wire",
      "lens_mm": [
-      48,
-      25
+      45.8,
+      23.3
      ],
-     "bridge_mm": 17,
+     "bridge_mm": 21.7,
      "rim_mm": 1.6,
-     "total_width_mm": 115,
+     "total_width_mm": 119,
      "plane_ahead_of_cornea_mm": 12,
      "pushed_by_lens_uv_mm": null,
-     "_arm": [
-      [
-       56.2,
-       2.3,
-       17.2
-      ],
-      [
-       65.3,
-       3.5,
-       2.3
-      ],
-      [
-       70.5,
-       4.8,
-       -12.7
-      ],
-      [
-       74.4,
-       6.1,
-       -27.7
-      ],
-      [
-       77.1,
-       7.4,
-       -42.6
-      ],
-      [
-       78,
-       9.8,
-       -57.6
-      ],
-      [
-       80.2,
-       10.3,
-       -74.8
-      ],
-      [
-       78.4,
-       6.8,
-       -92.1
-      ],
-      [
-       75.2,
-       -8.2,
-       -99.1
-      ],
-      [
-       68.7,
-       -24.2,
-       -104.1
-      ]
-     ],
-     "_ear": [
-      5.8,
-      -61.6,
-      -88.1
-     ],
-     "temple_length_mm": 149,
-     "rim_clear_of_face_mm": 4.5
+     "temple_length_mm": 148,
+     "rim_clear_of_face_mm": 4.8
     }
    }
   }

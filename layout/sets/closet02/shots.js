@@ -4,7 +4,9 @@
 // her: he is never shot face-on (back of head, over-the-shoulder, jaw line in near-profile from behind only).
 // Set points usable as targets: hands, face, opening, beamMid, floorIn. Every film shot has twins `beam_<id>` and
 // `beam_<id>__surf` (flat = beam mask). CL_elev is a reference elevation for comparing with the drawing (not in the film, no twin).
-import { SEATS } from './layout.js';
+import { SEATS, HOLD_DX, HOLD_DZ, HOLD_DY } from './layout.js';
+import { HOLD as HOLD_BASE, holdArms } from '../_hold.js';
+import { preloadPaint } from '../../engine/paint.js';
 import { maskTwins } from './beam.js';
 
 // cross-legged on the duvet, leaning in a little; the hands meet at `hands` (the cradle, below)
@@ -40,20 +42,44 @@ const temples = (o = {}) => jade({ spine: { bend: 12 }, head: { look: [0.50, 0.1
   L: { tip: { finger: 'middle', at: 'jade19:templeL' }, hand: 'relax', fingers: 'up', palm: 'in', elbow: [0.35, -0.75, 0.55] },
   R: { tip: { finger: 'middle', at: 'jade19:templeR' }, hand: 'relax', fingers: 'up', palm: 'in', elbow: [-0.35, -0.75, 0.55] }, ...o });
 const waiting = (o = {}) => him({ L: 'kneeL', R: 'kneeR', ...o });
+// 2026-11-27 (late): THE APPROVED HOLD (Jade 19:40: clip media/gen/hold_FINAL_AB1_MT3.mp4; layout/sets/_hold.js = fl_hands
+// V6 / A0_end). Her right hand lies across his left hand, their fingers folded into a clasp, his right hand over both
+// from his side. The same joint values and targets as the fl_hands guide, moved rigidly with HIS seat (the hold rests on
+// his left knee, his trunk turned toward it: spine bend 36 / twist 30 / side -12, as there); her arm reaches it from her
+// own seat. His left (under) hand is solo-lit as in fl_hands (no cast shadow from her hand on it). Replaces the cradle.
+// The one adaptation of the hold itself: here HER right knee sits right under the hold (in fl_hands the seats are offset sideways, so it did
+// not): his curled under-fingers went 27 mm into her jeans. The whole cluster moves 3 cm toward him (HOLD_DZ in layout.js
+// includes it): still on his left knee, his fingertips now clear her knee (lifting it 3 cm instead made it worse; moving his
+// covering hand 2 cm along her hand did not matter: it was never her sleeve).
+const HOLD = holdArms(HOLD_DX, HOLD_DZ, HOLD_BASE, HOLD_DY);
+// Soft contact left: her fingertips press 4-5 mm into his palm (clipcheck grip; fl_hands 2.4). His under-hand 5-6 mm lower
+// or higher did not reduce it.
+// her elbow a little out and down: free, it swung further out into the long coats; tucked in, her wrist went out of range
+// (radial deviation +19..49 deg), because she reaches the hold from her own seat, to her right
+const jadeHold = (o = {}) => jade({ R: { ...HOLD.herR, elbow: [-0.3, -0.9, 0.1] }, ...o });
+// CL_hands camera: from above on her side of the hold (her eye-line down), close to the approved clip's own camera
+// (fl_hands CAM_P: az -40, el 88, 0.42 m) so the approved keyframe and clip frames serve as near-exact hand references:
+// him on the LEFT (his left arm from the top left, his covering arm from the lower left), her arm from the right.
+// Playbook section 3: overhead is the view that showed his under-fingers at full length. Aimed between her palm and his
+// covering palm, 0.5 m (at 0.6 m the top of his bowed head came into the frame: his head is hidden in this shot anyway,
+// he faces this camera).
+const camAt = (t, az, el, d, lens) => { const a = az * Math.PI / 180, e = el * Math.PI / 180;
+  return { lens, pos: [t[0] + Math.cos(a) * Math.cos(e) * d, t[1] + Math.sin(e) * d, t[2] + Math.sin(a) * Math.cos(e) * d].map((x) => +x.toFixed(3)), target: t }; };
+const himHold = (o = {}) => him({ spine: HOLD.himSpine, soloLight: ['L'], L: HOLD.himL, R: HOLD.himR, ...o });
 
 const BASE = [
   { id: 'CL_wide', lens: 28, pos: [1.35, 2.0, 1.9], aim: ['jade19:eyes', 0.50, 0.34], position: 'wide', time: '3:23.4-3:28.0', section: 'Chorus 2a (drums alone; caption)', beamAnchor: 'face', caption: { text: "I don't want to apply to medical school.", zone: 'bottom 22 % of the frame, kept clear of her face and hands' },
     header: '3:23.4 OPENING / RHYME FRAME: the closet door half open, the same diagonal of light; she looks down, fingertips to her temples, thinking; caption low in frame',
     intent: 'The scene opens (round 3, Jade): from high in the bedroom behind first love, over his right shoulder, looking into the open half of the closet. The closed panels are a pale slab frame-left; the sun from the window behind him crosses upper right to lower left past his right shoulder into the open half and onto her face. She sits cross-legged on the folded duvet under the hanging clothes, looking down, the fingertips of both hands at her temples: thinking, not crying, her face NOT covered. He sits on the carpet squarely in front of her, mirroring her, hands on his knees: a back and the back of a head in the foreground. The futon (navy plaid blanket, black frame) at frame-right. The lower fifth of the frame is carpet and his back: room for the caption "I don\'t want to apply to medical school." The hands meet at 3:28 (CL_hands).',
     figs: { jade19: temples(), firstLove19: waiting() } },
-  { id: 'CL_hands', lens: 35, orbit: { at: 'hands', rel: 'jade19', az: 180, el: 68, dist: 0.62 }, aim: ['hands', 0.5, 0.5], hideParts: { jade19: ['head'] }, position: 'inside', time: '3:28.0-3:29.4', section: 'Chorus 2a', beamAnchor: 'hands',
+  { id: 'CL_hands', ...camAt(HOLD.herR.to.map((v, i) => +((v + HOLD.himR.to[i]) / 2).toFixed(4)), -40, 80, 0.5, 35), hideParts: { jade19: ['head'], firstLove19: ['head'] }, position: 'inside', time: '3:28.0-3:29.4', section: 'Chorus 2a', beamAnchor: 'hands',
     header: '3:28 INSIDE: her eye-line down to her hand resting on his two upturned palms, in the light',
     intent: 'Her own view down (her head hidden for the POV): his two hands side by side, palms up, cupped a little, and her right hand resting palm-down on them, fingers gently curved, at the door line, the sun on them from the bedroom; her left hand relaxed on her lap; his knees and the carpet beyond. No field note.',
-    figs: { jade19: jade({ head: { look: 'hands' } }), firstLove19: him({ head: { look: 'hands' } }) } },
+    figs: { jade19: jadeHold({ head: { look: 'hands' } }), firstLove19: himHold({ head: { look: 'hands' } }) } },
   { id: 'CL_ots', lens: 50, pos: [1.05, 0.76, 1.40], aim: ['jade19:eyes', 0.56, 0.40], focus: ['jade19'], sync: 'lip', singers: ['jade19'], position: 'outside', time: '3:29.4-3:32.5', section: 'Chorus 2a ("I honestly don\'t know", sung to him)', beamAnchor: 'face',
     header: '3:29.4 OUTSIDE, over his shoulder: level on her face, in the light; "I honestly don\'t know", sung to him',
     intent: 'Over his right shoulder, low (round 4, Jade: lower, as on cast/first_love/fl_G_ots_hair_v5.png: the camera at about his ear height, looking a touch up at her, so the back of his head is seen level, not from above), locked off. Sung shot (synced). Her whole face is in the sun that comes over his shoulder; the hems of the hanging clothes just above her head, the long coats dark frame-left behind her; his shoulder and the back of his head are the dark frame-left edge. Same question as the school office; here the answer is enough.',
-    figs: { jade19: jade(), firstLove19: him() } },
+    figs: { jade19: jadeHold(), firstLove19: himHold() } },
   { id: 'CL_chin', lens: 40, pos: [1.05, 0.84, 0.80], aim: ['firstLove19:chin', 0.40, 0.45], position: 'outside', time: '3:32.5-3:34.2', section: 'Chorus 2a', beamAnchor: 'hands',
     header: '3:32.5 the back of her hand against his chin',
     intent: 'From his right side and a little behind, in the bedroom: his jaw line in near-profile, never his face square on; she beyond him at the closet mouth, lit. Both lean in; he has brought her right hand up out of the light and rubs its BACK on his chin. His left hand stays palm-up in the light where hers lay; her left hand rests on her lap.',
@@ -69,4 +95,26 @@ const ELEV = { id: 'CL_elev', lens: 50, pos: [0.0, 1.10, 6.0], target: [0.0, 1.1
   intent: 'The closet from the bedroom, square on, nearly orthographic: sliding panels over the left half; shelf with textbooks and shoeboxes, rod and clothes to two-thirds down, long coats at the left edge of the open half; Jade low right of centre on the folded duvet, looking down, fingertips to her temples (round 3: the opening pose, not head in hands); the futon at frame-right.',
   figs: { jade19: temples() } };
 
-export const SHOTS = BASE.concat(TWINS, [ELEV]);
+// LAYERED PAINT-BACK for CL_hands (playbook section 4), all from CL_hands' own camera (a projection is valid only from the
+// camera it was painted from). Not film shots (no beam twins); the repaint agent runs them in order
+// (media/keyframes/r4/closet02/_prompts/_make.py, CL_hands_pb1 -> pb2 -> pb3):
+//   pb1  his LEFT hand alone (her whole figure hidden, his right hand on his knee): paint it
+//   pb2  pb1's pick projected onto his left hand + forearm; her right hand in 3D in the clasp (his right hand still on his knee)
+//   pb3  pb2's pick projected onto his left hand + arm AND her right hand + arm; his covering right hand in 3D
+// The picks go to layout/assets/paint/closet02/ (gitignored, like fl_hands'); until a pick exists its stage renders plain 3D.
+const PAINT_CL = { pb1: '/assets/paint/closet02/CL_hands_pb1_best.png', pb2: '/assets/paint/closet02/CL_hands_pb2_best.png' };
+await preloadPaint(Object.values(PAINT_CL));
+const HANDS_SHOT = BASE.find((x) => x.id === 'CL_hands');
+const pbBase = { ...HANDS_SHOT, position: 'paint-back stage (not in the film)', time: null, noBeamVolume: true };
+const himKnee = (o = {}) => himHold({ R: 'kneeR', ...o });
+const PB = [
+  { ...pbBase, id: 'CL_hands_pb1', hideParts: { jade19: ['all'], firstLove19: ['head'] }, header: 'CL_hands paint-back stage 1: his left hand alone (her hidden)',
+    figs: { jade19: jadeHold({ head: { look: 'hands' } }), firstLove19: himKnee({ head: { look: 'hands' } }) } },
+  { ...pbBase, id: 'CL_hands_pb2', header: 'CL_hands paint-back stage 2: his painted left hand, her 3D right hand clasped in it',
+    figs: { jade19: jadeHold({ head: { look: 'hands' } }), firstLove19: himKnee({ head: { look: 'hands' }, paint: { url: PAINT_CL.pb1, hands: ['L'], limbs: { armL: 1 } } }) } },
+  { ...pbBase, id: 'CL_hands_pb3', header: 'CL_hands paint-back stage 3: both painted, his covering right hand in 3D',
+    figs: { jade19: jadeHold({ head: { look: 'hands' }, paint: { url: PAINT_CL.pb2, hands: ['R'], limbs: { armR: 1 } } }),
+      firstLove19: himHold({ head: { look: 'hands' }, paint: { url: PAINT_CL.pb2, hands: ['L'], limbs: { armL: 1 } } }) } },
+];
+
+export const SHOTS = BASE.concat(TWINS, [ELEV], PB);

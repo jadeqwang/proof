@@ -11,13 +11,17 @@ import { WALL, OPEN, ROOM, DOORS, BEDROOM, SHELF, RAIL, CLOTHES, COATS, DUVET, F
 import { beamSolid, beamMesh, beamWire, beamSidecar, applyBeamMask } from './beam.js';
 import { plaidArt, SETT, SEAL, CARDINAL } from './art.js';
 import { worldUV, artLook } from '../_art.js';
+import { aimPaint } from '../../engine/paint.js';
+import { loadProps, prop } from '../_props.js';
+
+// the hanging clothes and long coats (2026-11-27 late): downloaded garments on hangers (CC BY 4.0; layout.js CLOTHES / COATS)
+await loadProps(['garment_tee', 'garment_shirt', 'garment_sweater', 'garment_jacket', 'garment_pants', 'coat_long_a', 'coat_long_b']);
 
 // cast: `jade19` and `firstLove19` come from ../_cast.js (one table for every set)
 
 const V3 = THREE.Vector3;
 const WALLS = { grey: 0.66, col: 0x9a9286, recvShadowLine: true }, CARPET = { grey: 0.5, col: 0x7a6a58, recvShadowLine: true };
 const TRIM = { grey: 0.78, col: 0xd8d0c2 }, PANEL = { grey: 0.74, col: 0xcfc6b4, recvShadowLine: true };
-const GARB = [0x4a5468, 0x8a5a4a, 0x34343a, 0xa09a88, 0x6a7a62, 0xb8a890, 0x5a4a60, 0x7a8490];
 
 // ---- matte black rounded-square tube (Jade, round 4: "the railing should be a rounded square"): a rounded-square profile
 // swept along a polyline (corners rounded by arcs); the profile's second axis is the path plane's normal `nrm`
@@ -122,7 +126,7 @@ function closet() {
   // shelf with textbooks and shoeboxes
   const sz = R.z0 + SHELF.d / 2;
   g.add(tag(box(R.x1 - R.x0, SHELF.t, SHELF.d, TRIM, [cx, SHELF.y - SHELF.t / 2, sz]), 'shelf'));
-  g.add(tag(cyl(0.014, 0.014, R.x1 - R.x0, { grey: 0.5, col: 0x9a9a9a }, [cx, RAIL.y, RAIL.z], [0, 0, 90], 10), 'rod'));
+  g.add(tag(cyl(RAIL.r, RAIL.r, R.x1 - R.x0, { grey: 0.5, col: 0x9a9a9a }, [cx, RAIL.y, RAIL.z], [0, 0, 90], 10), 'rod'));
   const books = [[0.18, 0.045, 0.27, 0x7a2a2a], [0.225, 0.04, 0.26, 0x2a3a6a], [0.265, 0.05, 0.28, 0x3a5a3a], [0.31, 0.035, 0.25, 0xa08a40],
     [0.345, 0.045, 0.27, 0x5a2a4a], [0.385, 0.04, 0.24, 0x2a5a6a], [-0.60, 0.05, 0.27, 0x6a3a2a], [-0.55, 0.04, 0.26, 0x2a2a5a]];
   for (const [x, t, h, c] of books) g.add(tag(box(t, h, 0.21, { grey: 0.32 + (h * 3) % 0.2, col: c }, [x, SHELF.y + h / 2, R.z0 + 0.12]), 'textbooks'));
@@ -130,18 +134,22 @@ function closet() {
   const shoe = { grey: 0.62, col: 0xb09a78 }, shoe2 = { grey: 0.5, col: 0x8a8070 };
   for (const [x, y, L] of [[0.62, 0, shoe], [0.62, 0.12, shoe2], [0.63, 0.24, shoe], [0.80, 0, shoe2], [0.80, 0.12, shoe], [-0.25, 0, shoe], [-0.25, 0.12, shoe2]])
     g.add(tag(box(0.32, 0.115, 0.19, L, [x, SHELF.y + y + 0.0575, R.z0 + 0.11]), 'shoeboxes'));
-  // hanging clothes: simple masses (a hanger-shouldered slab each) all along the rod
-  let k = 0;
-  for (let x = CLOTHES.from; x <= CLOTHES.to + 1e-6; x += CLOTHES.step, k++) {
-    if (x > COATS.xs[0] - 0.05 && x < COATS.xs[COATS.xs.length - 1] + 0.05) continue;   // the coats take that stretch
-    const hem = CLOTHES.hem[k % CLOTHES.hem.length], top = RAIL.y - 0.05, d = top - hem, t = 0.03 + (k % 3) * 0.012, gw = CLOTHES.w - (k % 2) * 0.05;
-    const G = new THREE.Group(), L = { grey: 0.3 + (k % 4) * 0.1, col: GARB[k % GARB.length] };
-    G.add(box(t, d, gw, L, [x, top - d / 2, RAIL.z]));
-    G.add(box(t * 0.6, 0.04, gw * 0.7, L, [x, top + 0.015, RAIL.z]));   // shoulders on the hanger
-    g.add(tag(G, 'hanging clothes'));
-  }
-  COATS.xs.forEach((x, i) => { const top = RAIL.y - 0.05, d = top - COATS.hem[i], L = { grey: 0.22 + i * 0.08, col: [0x2a2c34, 0x5a4636, 0x3a3e46][i] };
-    g.add(tag(box(COATS.t, d, COATS.w, L, [x, top - d / 2, RAIL.z]), 'long coats')); });
+  // hanging clothes and long coats: real garments on hangers (props garment_* / coat_long_*), each hook resting on the
+  // rod's top (prop origin = top of the hook), hanger bar across the closet (model x -> world -z), fronts toward +x.
+  // Opaque, one canonical colour each (layout.js CLOTHES / COATS); hangers: black velvet for the tees and shirts (their
+  // own hangers), wire for the rest.
+  const hookY = RAIL.y + RAIL.r + CLOTHES.hookLift;
+  const HANGER = { garment_tee: 0x2a2a2c, garment_shirt: 0x2a2a2c }, WIRE = 0x9a9a98;
+  // the colour in every guide mode (lit, flat / label, and form as a tint, as the costumes do), so no pass shows blank clay
+  const tint = (col) => { const c = new THREE.Color(col); return { col, flatCol: col, formTint: [c.r, c.g, c.b], grey: Math.min(0.92, Math.max(0.1, 0.299 * c.r + 0.587 * c.g + 0.114 * c.b)) }; };
+  const hang = (name, x, col, s, label, thick = 1) => {
+    const p = prop(name, { at: [x, hookY, RAIL.z], rot: [0, 90, 0], scale: [s, s, s * thick], label,
+      lookMat: { garment: tint(col), hanger: tint(HANGER[name] ?? WIRE) } });
+    if (p) g.add(p); else console.warn('closet02: prop ' + name + ' missing');
+    return p;
+  };
+  for (const [x, name, col, s] of CLOTHES.items) hang(name, x, col, s, 'hanging clothes');
+  for (const [x, name, col, s] of COATS.items) hang(name, x, col, s, 'long coats', COATS.thick);
   // shoes on the floor at the back (mostly behind the panels), the duvet she sits on
   for (const [x, z] of [[-0.62, -0.62], [-0.42, -0.60], [-0.15, -0.63], [0.86, -0.62]]) g.add(tag(box(0.10, 0.09, 0.22, { grey: 0.25, col: 0x2a2420 }, [x, 0.045, z], [0, 6, 0]), 'shoes'));
   { const D = DUVET, L = { grey: 0.84, col: 0xe8e0d0, recvShadowLine: true };
@@ -287,11 +295,12 @@ export function build(shot, { makeCam }) {
   // lit (#4a3422 on CL_ots). The v8 sheet (fl_B_backhead_neck_v8) reads dark cool brown (~#2e2420), so his hair's LIT
   // colour here is pre-compensated for the warm key (cooler, darker). Other passes and _cast.js FL_HAIR are untouched.
   if (figs.firstLove19) figs.firstLove19.traverse((o) => { if (o.isMesh && /hair$/.test(o.userData.idGroup || '') && o.userData.look) o.userData.look = { ...o.userData.look, col: FL_HAIR_LIT }; });
-  if (figs.jade19 && !shot.noSweat) root.add(sweatshirt(figs.jade19));   // round 4: her red sweatshirt's pocket, seal and folds
+  if (figs.jade19 && !shot.noSweat && !(shot.hideParts?.jade19 || []).includes('all')) root.add(sweatshirt(figs.jade19));   // (not when her whole figure is hidden: CL_hands_pb1)   // round 4: her red sweatshirt's pocket, seal and folds
   const cs = { ...shot, orbit: shot.orbit ? { ...shot.orbit, at: fix(shot.orbit.at) } : undefined, aim: shot.aim ? [fix(shot.aim[0]), shot.aim[1], shot.aim[2]] : undefined, target: fix(shot.target) };
   Object.assign(shot, solveCamera(cs, figs, null, aim));
   hideParts(shot.hideParts, figs);
   const cam = makeCam(shot);
+  aimPaint(figs, cam);   // projected paint (figure spec paint; the layered paint-back of CL_hands): the shot camera is the projector
 
   const anchor = V(fix(shot.beamAnchor || 'hands'));
   const mkSun = (color, I) => { const s = new THREE.DirectionalLight(color, I); const c0 = V([0.45, 0.9, -0.2]); s.target.position.copy(c0); s.position.copy(c0).addScaledVector(V(SUN_DIR), -12); s.castShadow = true;

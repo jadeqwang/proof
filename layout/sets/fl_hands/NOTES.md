@@ -350,3 +350,30 @@ a groom's two hands round a bride's hand), never committed or sent to a model.
   stage 3 painted C3_H_1 / _2, not picked (_1 drifted: her hand moved up and shrank off the contour; _2 followed the
   contour). Stage 4 (D0_H / D4_H sandwich) never painted. No new takes. Shots C*/D* and V5 left in shots.js; v4 untouched.
 - 2026-11-27 picked: AB_1 + MT_3 (media/gen/hold_FINAL_AB1_MT3.mp4). The continuous-entry prompt fixed the pop-in.
+
+## 2026-11-27 (late): THE APPROVED HOLD in 3D (V6), the D sheet studies, the H1 thumb
+Jade picked the clip AB_1 + MT_3 (media/gen/hold_FINAL_AB1_MT3.mp4). Its start is the v3 START (S3_H3b_1, pose V3.her);
+the clasp and the covering hand came from the video model, so there was no 3D frame of the approved END.
+- v5 END (D0_H) was the obvious candidate but did NOT match the clip (contour + 50 % blend overlays from CAM_P on the clip's
+  clasp frame t 4.9 s and its last frame): v5 moved her hand toward him, the clip keeps it near START and brings HIS hand
+  to hers; v5's covering hand lay across her hand, the clip's points along it toward her wrist.
+- V6 (shots A0_clasp, A0_end; numbers in layout/sets/_hold.js HOLD, which fl_hands now imports, so every set shares one
+  source): her right hand 2.6 cm along her fingers from START and 3.7 cm up, START heading, fingers curled 26/40/20 ..
+  32/48/24 (the clasp); his left hand moved 6 cm toward her, palm-up pronated 12 deg (V3.end), fingers 26/40/20 .. 38/52/26,
+  thumb lifted (opp 0.3, sweep 25, abd 45); his right hand in her solved hand frame (up 2.5 cm, along 7 cm, fingers toward
+  her wrist). Found by overlays + clipcheck sweeps (her height, his x / y): grip 2.4 mm, joints in range, cover resting on
+  her hand (side views). holdcheck (capsule hands): contact -6.1, palm 6.1 mm "penetrates" (capsules sit ~5 mm off the mesh).
+  A0_end_check (holdArms(0, 0) from _hold.js) renders the same as A0_end (589 px differ, rounding).
+- Limits: the clip shows his thumb over the back of her hand; in V6 it lies beside her hand's thumb side (lifting it more put
+  it through her hand). The 3D hands draw ~1.3x larger than the clip's painted ones from CAM_P (the painter shrank them).
+- D sheet studies 2 / 3: D2_guide / D3_guide are now V6 on the H seating (offset 0.2 m each side), socks, heads hidden;
+  D2 from above (az -40, el 80, as the clip), D3 from the side at hand height. Renders + a 2x zoom pair (D2_hold_zoom_*) in
+  cast/first_love/_prompts/v10/guide/. The old cradle studies stay as D2_cradle / D3_cradle (debug). Paint job PREPARED, not
+  run: cast/first_love/_prompts/v10/D5.txt + run7.sh (5 refs, free Codex; image 5 = the clip's last frame).
+- D2_guide crossed-legs clip (46 mm, FAIL since the cross-legged engine pose changed): fixed by the re-pose (the H seating
+  clears). clipcheck D2_guide / D3_guide pass (grip 2.4 mm).
+- H1 / HER_HAND thorn thumb (playbook section 1: an extreme joint angle): her thumb was adducted flat against the index
+  (sweep 18, abd 0), the skinned web folded into a spike and the thumb nail floated mid-hand. HER_HAND's thumb is now her v3
+  resting thumb (opp 0.2, sweep 40, abd 2, mcp 16, ip 20). HB.p's spread thumb (sweep 55) was tried first: on her lower H1
+  hand it stuck up like a hitchhiker's. clipcheck H1 pass (grip 0.2 mm); dbgng_H1 4.4 mm unchanged. Re-rendered
+  guide/H1_guide_{form,contour,lit}.png. Before / after: scratchpad r0/h1_zoom_before.png, r2/h1_zoom_after.png.

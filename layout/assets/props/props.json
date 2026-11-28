@@ -769,5 +769,117 @@
   "source": "Sketchfab/catdevpete (CC BY 4.0)",
   "credit": "\"Upright Piano (WIP)\" by catdevpete (https://sketchfab.com/3d-models/eb76131fcae44993a532ad1b99050deb), CC BY 4.0",
   "use": "shanghai86: the music room across the hall"
+ },
+ "garment_tee": {
+  "credit": "\"Hangers and Tee-shirt\" by dudecon (https://sketchfab.com/3d-models/44e260855c7f4c1ca611af8d2370195a), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "hanging T-shirt",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.3667,
+   0.6025,
+   0.0742
+  ],
+  "source": "Sketchfab/dudecon (CC BY 4.0), via the Objaverse 1.0 mirror",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "garment_shirt": {
+  "credit": "\"Hangers and Long Sleeve Shirt\" by dudecon (https://sketchfab.com/3d-models/14cc81980a06473a820f811596418fae), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "hanging long-sleeve shirt",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.366,
+   0.6045,
+   0.0973
+  ],
+  "source": "Sketchfab/dudecon (CC BY 4.0), via the Objaverse 1.0 mirror",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "garment_pants": {
+  "credit": "\"Hangers and Pants\" by dudecon (https://sketchfab.com/3d-models/37b92fbde5ca45448c50fc2cb6a376d8), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "trousers folded over a hanger",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.3372,
+   0.6916,
+   0.0553
+  ],
+  "source": "Sketchfab/dudecon (CC BY 4.0), via the Objaverse 1.0 mirror",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "garment_sweater": {
+  "credit": "\"Hanging Shirt By Camille Kleinman\" by camillekleinman (https://sketchfab.com/3d-models/117fc4a6e8304a858dfaf2adc2c782a0), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "hanging sweater",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.3979,
+   0.6045,
+   0.1066
+  ],
+  "source": "Sketchfab/camillekleinman (CC BY 4.0), via the Objaverse 1.0 mirror",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "garment_jacket": {
+  "credit": "\"hanging jackets2\" by snugl.buniez (https://sketchfab.com/3d-models/de5af3ad431c44cba666cb7a37a351c3), CC BY 4.0; with the wire hanger (and its hook) from \"Hangers and Pants\" by dudecon (https://sketchfab.com/3d-models/37b92fbde5ca45448c50fc2cb6a376d8), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "hanging jacket",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.335,
+   0.6011,
+   0.1291
+  ],
+  "source": "Sketchfab/snugl.buniez (CC BY 4.0), via the Objaverse 1.0 mirror + dudecon wire hanger (CC BY 4.0)",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "coat_long_a": {
+  "credit": "\"Jacket\" by connectionsxr (https://sketchfab.com/3d-models/0ef825d04a05436f8a91c1ac489366cf), CC BY 4.0; with the wire hanger (and its hook) from \"Hangers and Pants\" by dudecon (https://sketchfab.com/3d-models/37b92fbde5ca45448c50fc2cb6a376d8), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "long coat on a hanger",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.5201,
+   1.1055,
+   0.0902
+  ],
+  "source": "Sketchfab/connectionsxr (CC BY 4.0), via the Objaverse 1.0 mirror + dudecon wire hanger (CC BY 4.0)",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "coat_long_b": {
+  "credit": "\"Jacket\" by connectionsxr (https://sketchfab.com/3d-models/0a73a5ed52994c989b4a5a34ab14fd1b), CC BY 4.0; with the wire hanger (and its hook) from \"Hangers and Pants\" by dudecon (https://sketchfab.com/3d-models/37b92fbde5ca45448c50fc2cb6a376d8), CC BY 4.0",
+  "defaults": {},
+  "grips": {},
+  "label": "long coat on a hanger",
+  "origin": "top of the hanger hook (hook x/z centre); hanger bar along x",
+  "size_m": [
+   0.5002,
+   1.1024,
+   0.0901
+  ],
+  "source": "Sketchfab/connectionsxr (CC BY 4.0), via the Objaverse 1.0 mirror + dudecon wire hanger (CC BY 4.0)",
+  "use": "closet02: hanging clothes on the rod (lookMat garment / hanger give the colours)"
+ },
+ "grand_piano_c7": {
+  "label": "grand piano (Yamaha C7-size, 2.27 m long, ebony, lid closed, desk up)",
+  "size_m": [
+   1.497,
+   1.2072,
+   2.27
+  ],
+  "origin": "floor directly under the centre of the keyboard front edge (key slip); keyboard faces +z (tail at z=-2.27), straight bass-side spine on -x (player's left), y up; lid node pivots on its hinge at x=-0.740, y=0.972 (axis +z)",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/wendyyim (jiong_2000) (CC BY 4.0)",
+  "credit": "\"Grand Piano\" by wendyyim (https://sketchfab.com/3d-models/ee82222af7644df5bff9002314ad4838), CC BY 4.0",
+  "use": "mortongrove07 living-room grand piano (Yamaha C7-size)"
  }
 }

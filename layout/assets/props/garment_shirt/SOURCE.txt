@@ -1,0 +1,8 @@
+Model: "Hangers and Long Sleeve Shirt" by dudecon on Sketchfab
+URL: https://sketchfab.com/3d-models/14cc81980a06473a820f811596418fae
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard 000-118), checked 2026-11-27
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-118/14cc81980a06473a820f811596418fae.glb (uid 14cc81980a06473a820f811596418fae)
+Changes (for this film's layout guides): kept the shirt and the velvet hanger (with its metal hook) that sits inside it; the other four hangers dropped; joined into two meshes, "garment" and "hanger" (materials of the same names); scaled so the garment hangs to the closet drawing's hem heights; origin at the TOP OF THE HANGER HOOK (x/z centre of the hook); hanger bar along x, y up; decimated; all textures dropped (the set gives each garment one canonical colour). Processing script: layout/assets/props/_pipeline/garment_prep.py.
+Real-world size here (x, y up, z), hook included: 0.366 x 0.6045 x 0.0973 m (garment hangs from y = -0.604 at its hem)
+Used for: closet02 (the hanging clothes on the closet rod)
