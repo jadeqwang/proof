@@ -118,6 +118,19 @@ Example video prompt, the one that was chosen:
 - **Feedback loop:** the director names what feels off ("stubby", "horn", "flat motion", "over-acted"). The pipeline's job is to turn each note into a change in the scene, the camera, or the layer order.
 - **When to stop:** if a part still fails after you've checked readability, tried a better camera and painted it in layers, the pose itself is probably unreadable from that angle. Restage it, or then cut around it. In this shot every failure was fixed by one of those three.
 
+## 8. Continuity across takes and shots: the guide is the canon
+
+The painter copies whatever the guide shows, and invents whatever it leaves out, differently in every take. Most continuity drift in round 4 of this project traced back to a gap or a placeholder in the guide, not to the painter.
+- **Model everything the camera can see:** wall art, furniture, upholstery, floors, costume prints, watches. Give each one canonical texture, fully textured on every visible side. A blank wall, a plain chair back or a flat-coloured couch gets filled with something new in each take.
+- **The guide's frame is the final frame:** anything outside the guide's edges gets invented. In this project the classroom cabinet, clock and posters moved between takes because the guide was framed tighter than the paintings. Render the guide at the final framing and tell the painter "match the guide's framing exactly; do not widen". Label any ref with a different framing (a face crop, an earlier painting) as "not framing".
+- **Identity details come from the model, matched to the cast sheet:** glasses (frame shape, rim, colour), brow shape, hair, accessories. Crude placeholders get copied faithfully: torus-ring glasses and thick bar brows produced browline frames and heavy brows. Match the 3D shape to the painted reference side by side (front, three-quarter, profile), and follow the drawing, not the sheet's caption. If something can't be modelled to match, blank it in the guide and send a tight crop of the sheet instead (as with faces, section 2).
+- **Things that change over time get one canonical version per era,** assigned by set (e.g. a parent's 1990s aviators versus their present-day frame).
+- **Check what the painter actually received:** reference caps silently drop images, and a driving agent may reword the prompt. Read the log.
+- **Review continuity before picking:**
+  - put the same landmarks (wall art, furniture, accessory, glasses, brows) side by side across all takes, and across all shots of the same set;
+  - use the contour overlay to catch a take that has re-framed the shot;
+  - pick for consistency with the neighbouring shots, not only for the best single image.
+
 ## Mapping to other hard shots
 
 | Shot | Hidden or tangled part, painted first | Camera choice | Contact cues |
