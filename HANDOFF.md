@@ -21,7 +21,6 @@ After applying, rebuild the page to only the still-open questions (playbook: tes
   repaint, and the rest of shanghai86 from the fixed inputs. It tries **option 2** for close shots (tile two guides so a job
   fits Codex's 5 refs) against gpt2 + crop. Jade: cropping gpt2 is fine; try option 2 since it's free.
 - Closet hand hold: DONE up to the pick. Jeans painted on the 4 swapped stills; 3 Seedance `ab` takes made ($5.55).
-  `ab` takes (seeds 1017/2101/3307, ~$5.55). **Stop for Jade to pick one** before the 3 `mt` takes (`run_video.sh mt N`).
   The swapped stills are the CL_hands placeholder in the closet animatic (`build_intro.py` picks the newest automatically).
 
 **Decided this session (details in work/decisions/JADE_R7..R9_DECISIONS.md and the plan doc):**

@@ -450,6 +450,24 @@ def compose(set_, shot, spec, cast, look, refs):
     if not spec.get("no_light"):
         entries += [("light", (f"media/layout/{set_}/{shot}_light.png", GUIDE_REFS[2][1]))]
     entries += [(k, refs[k]) for k in keys if k not in first]
+    # option 2 (Jade 2026-11-28): TILE the guides so a close shot fits Codex's 5 refs with nothing dropped:
+    # [lines | clay] as one image, [light map | lit render] as another
+    tiled = {}
+    if spec.get("tile"):
+        ed = dict(entries)
+        tdir = os.path.join(ROOT, gdir); os.makedirs(tdir, exist_ok=True)
+        if "contour" in ed and "form" in ed:
+            out = f"{gdir}/{shot}_tile_guides.png"
+            combine_images([ed["contour"][0], ed["form"][0]], out)
+            cap = ("TWO GUIDES SIDE BY SIDE (the same view twice): LEFT half = " + ed["contour"][1] + "; RIGHT half = " + ed["form"][1])
+            entries = [("contour", (out, cap)) if k == "contour" else (k, v) for k, v in entries if k != "form"]
+            tiled["form"] = ("contour", "right half"); tiled["contour1"] = "left half"
+        if "light" in ed and "lit_auto" in ed:
+            out = f"{gdir}/{shot}_tile_lights.png"
+            combine_images([ed["light"][0], ed["lit_auto"][0]], out)
+            cap = "TWO MAPS SIDE BY SIDE (the same view): LEFT half = " + ed["light"][1] + "; RIGHT half = " + ed["lit_auto"][1]
+            entries = [("light", (out, cap)) if k == "light" else (k, v) for k, v in entries if k != "lit_auto"]
+            tiled["lit_auto"] = ("light", "right half"); tiled["light1"] = "left half"
     cap = spec.get("max_refs", MAX_REFS)
     kept, dropped = entries[:cap], [k for k, _ in entries[cap:]]
     if any(k.startswith("face:") for k in dropped):
@@ -465,6 +483,9 @@ def compose(set_, shot, spec, cast, look, refs):
     idx = {k: i + 1 for i, (k, _) in enumerate(kept)}
     for k, f in alias.items():
         idx[k] = idx[f]
+    for k, v in tiled.items():
+        if isinstance(v, tuple) and v[0] in idx:
+            idx[k] = idx[v[0]]
     panel = {}
     for k, (ck, pos) in combos.items():
         if ck in idx:
@@ -515,9 +536,19 @@ def compose(set_, shot, spec, cast, look, refs):
     for k in ("FRAMING", "GUIDES", "GAZE", "WEAR", "ART", "RULES"):
         if f"<<{k}>>" not in text and rep[k]:
             text = text.rstrip() + f"\n\n<<{k}>>"
-    if face_first and faces:   # renumber the guides' fixed "image 1/2/3" wording
+    if (face_first and faces) or tiled:   # renumber the guides' fixed "image 1/2/3" wording
         c, f_, l = idx["contour"], idx["form"], idx.get("light")
+        c_, l_ = c, l
+        if tiled:   # name the half of a tiled image
+            c_, f2, l_ = c, f_, l
+            c = f"{c_} (its left half)" if "contour1" in tiled else c_
+            f_ = f"{f2} (its right half)" if "form" in tiled else f2
+            if l and "light1" in tiled:
+                l = f"{l_} (its left half)"
         def renum(t):
+            if tiled:
+                t = re.sub(r"\b([Ii])mages 1-3\b", lambda m: f"{m.group(1)}mages {c_} and {l_}" if l else f"{m.group(1)}mage {c_}", t)
+                t = re.sub(r"\b([Ii])mages (1-2|1 and 2)\b", lambda m: f"{m.group(1)}mage {c_} (both halves)", t)
             if not l:
                 t = re.sub(r"\s*\((?:see )?image 3\)", "", t)
                 t = re.sub(r"\b[Ii]mage 3 is white\b", "the light falls", t)
@@ -596,7 +627,12 @@ def build(set_, shots, cast, look, refs, only=None, show=False):
         if only and shot not in only:
             continue
         route = "codex"
-        if ROUTE_OVER5:   # Jade 2026-11-28: never trim refs; a job needing more than 5 goes to gpt-image-2 with ALL of them
+        if spec.get("tile") and ROUTE_OVER5:   # option 2: tiled guides on free Codex if that fits 5, else gpt2 untiled
+            text, ref_list = compose(set_, shot, {**spec, "combine": [], "no_light": False, "max_refs": 16}, cast, look, refs)
+            if len(ref_list) > MAX_REFS:
+                route = ROUTE_OVER5
+                text, ref_list = compose(set_, shot, {**spec, "tile": False, "combine": [], "no_light": False, "max_refs": 16}, cast, look, refs)
+        elif ROUTE_OVER5:   # Jade 2026-11-28: never trim refs; a job needing more than 5 goes to gpt-image-2 with ALL of them
             full = {**spec, "combine": [], "no_light": False, "max_refs": 16}
             text, ref_list = compose(set_, shot, full, cast, look, refs)
             if len(ref_list) > MAX_REFS:
