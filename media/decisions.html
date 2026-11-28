@@ -69,7 +69,7 @@
 const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const ART = (p) => '../layout/assets/art/' + p;
-const D = [
+let D = [
  { sec:"Wall 1988", id:"wl_crack_len", t:"1:51.0-1:54.5", title:"The light inside the wall: crack length",
    ctx:"The shaft now comes from a bare 60 W bulb in the back room, down through the crack onto the brick (it no longer rises). To get light onto the brick in WL_in_empty the crack was extended, which also lights Mama's waist and hip in WL_in, so 'out of the beam is safety' holds for everyone but her.",
    imgs:[["layout/wall88/_light_source_before_after.png","before/after: WL_out, WL_eye, WL_in, WL_in_empty, WL_top (lit and light)"]],
@@ -82,8 +82,29 @@ const D = [
    ctx:"Mom stands upright with her arms folded, face in profile; you (10) lean against the wall, head tipped, eyes sliding up to hers. The camera changed so her folded arms show (the old one looked over her back). The smirk and narrowed eye come from the prompt and face crop (the 3D face can't act).",
    imgs:[["layout/office91/_FE_thumbs_before_after.png","before/after (lit and form)"]],
    opts:["Good, paint it","Change the staging (below)"], rec:0 },
-
+ { sec:"Opening (0:00-0:30)", id:"intro_decided", t:"0:00-0:29.7", title:"The opening as decided: does it flow?",
+   ctx:"Reading B, the empty attic split as attic / frost fractals (Plate XIV) / attic (the mote leaves, then returns ringed). FE_out held 2.4 s; the neurons start at 11.15; AD_wide plays the whole climb from 12.34; FE_thumbs at 18.25 (old take until the new smirk is painted); the speeding-up montage; PAD flipped, with the title. The other reading of 'split ... and replace it with the smirk' would put the smirk inside the attic stretch.",
+   vids:[["keyframes/r4/_animatic/intro.mp4","Opening animatic"]],
+   opts:["Good","Change (below)"], rec:0 },
+ { sec:"Closet 2002", id:"closet_start", t:"3:23.4-3:25.0", title:"Where the closet starts",
+   ctx:"Built: SI1 holds over the drums-alone bar, and the closet starts on 'How' (3:24.75), with 'Inside?' (3:27.45) on the neurons, CL_ots at 3:29.45, the hand hold from 3:30.33 and CL_chin at 3:32.4. A middle option is the strong drum hit at 3:24.15; the earliest is the bar at 3:23.4.",
+   vids:[["keyframes/r4/_animatic/closet.mp4","Closet animatic (3:19-3:36)"]],
+   opts:["On 'How' (3:24.75), as built","On the drum hit (3:24.15)","At the bar (3:23.4)","Something else (below)"], rec:0 },
+ { sec:"Closet 2002", id:"closet_caption", t:"3:24.75-3:29.1", title:"The on-screen caption wording",
+   ctx:"Shown over CL_wide and the neurons, in the plates' caption type (IM FELL italic, small, low, on a faint cream strip).",
+   opts:["I don't want to apply to medical school.","don't want to apply to med school","Something else (below)"], rec:0 },
+ { sec:"Closet 2002", id:"closet_chin", t:"3:32.4-3:34.2", title:"CL_chin (her hand against his chin) is back in the timeline",
+   ctx:"An earlier agent had marked CL_chin as dropped (its guide still has the old pose and clips by 42 mm). The retimed closet puts it on 'know' (3:32.4) after the hand hold.",
+   opts:["Keep CL_chin there (fix its pose)","Drop it: hold the hand hold longer","Something else (below)"], rec:0 },
+ { sec:"Credits", id:"credits_cards", t:"4:24.1-4:34", title:"Credits: one card or two?",
+   ctx:"Card 1 (from 4:24.06): the title where it sat at 0:00 and your credit word for word. Recommended: the tools-and-models line on a separate, smaller card 2 in the silence after, so your credit stands alone.",
+   imgs:[["keyframes/r4/_animatic/credits_card1.png","card 1"],["keyframes/r4/_animatic/credits_card2.png","card 2"]],
+   opts:["Two cards, as shown","One card: tools line small under my credit","Something else (below)"], rec:0 },
+ { sec:"Footage", id:"footage_spans", title:"Artichoke and neuron footage spans",
+   ctx:"(1) PB1 (piano break) now plays the artichoke from 0 s (7.86x) so its first piece isn't lost, since AD_keys is gone. (2) The closet's neuron piece (footage 44-53.8 s) shows the full arbor rather than early growth. (3) Tail 2 now resumes the neuron at 53.8 s (was 76 s), so it's a little thinner at the frost dissolve.",
+   opts:["All fine","Change (below)"], rec:0 }
 ];
+D = D.filter(Boolean);   // tolerate stray empty slots (a ,, in the list once broke Copy my answers)
 
 // What was taken in from earlier rounds (shown collapsed at the bottom; not part of the copy-out).
 const DONE_DATE = "";
