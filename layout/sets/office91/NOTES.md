@@ -1,5 +1,50 @@
 # office91 — notes and assumptions
 
+## 2026-11-27: the PC1 background locked (Jade: the grey cabinet, the wall art and the clock moved from take to take)
+- **Cause.** The PC1 guide's frame showed two turkeys and half the board. The prompt named three turkeys, five board pictures,
+  "two more pictures beyond the board", a wall clock and "at the far right edge, the narrow side of a grey steel filing
+  cabinet". Neither the clock nor a cabinet was in the frame, so each take squeezed in what was missing in its own way. The
+  "cabinet" the takes painted at the right edge was really **Mom's chair back**, the only object the guide had there. v1/v2
+  were also given the r3 painting as a reference, and v3/v4 the full art sheet: they added the pilgrim drawing and a clock.
+- **Framing decision: keep the camera and move the wall.** Measured against the paintings, the girl's size and place in
+  PC1_v1/v2 match the guide to within about 5%. The paintings are not wider; only their wall was rearranged. Widening the
+  lens would bring Mom (x 0.42, beside her) into the right edge, where the paintings show the cabinet.
+  - `OUTSIDE_CAM` (PC1 = PC4): unchanged (65 mm, orbit az -6, dist 2.1) except `aim` v 0.42 -> 0.47, a tilt of under
+    1 deg. Her eyes now sit where v1 has them vertically. She and her pose are unchanged.
+  - The wall was re-laid to the PC1_v1 painting: each v1 landmark was mapped to the guide frame (her eyes as the anchor,
+    scale 1.05) and projected back onto the wall through the PC1 camera:
+    - `ART`: turkeys at x -1.12 / -0.89 / -0.655, y 1.305.
+    - Board pictures: house (0.064, 1.215), turkey_4 (0.27, 1.215), rainbow (0.488, 1.215), family (0.163, 0.995),
+      snowman (0.415, 0.995), resized to v1's proportions.
+    - `BOARD` x -0.125..0.62, y 0.84..1.375.
+    - `ALPHA` y 1.47 -> 1.49.
+    - drawing_2 and turkey_6 stay at x 1.05: PC2 sees them, PC1/PC4 do not.
+  - In PC1 the right part of the board runs out of frame, as in v1: the rainbow and the snowman are cut by the edge.
+- **New: `FILE2`**, a low two-drawer grey steel letter file (0.38 x 0.56 x 0.74 m, x 0.12..0.50, z -1.49..-0.93)
+  against the back wall between her chair and Mom's. In PC1/PC4 it shows right of her left shoulder under the board
+  (82-100% across, top 76-81% down), with Mom's chair post in front of it at the very edge. It stands 2 cm behind Mom's
+  chair back and clear of Dad (clipcheck reports nothing new). In PC2 it is hidden behind Mom.
+  - The tall four-drawer `CABINET` stays in the back-right corner; PC2 shows it.
+  - Both cabinets are now a cool grey enamel (`FILE_STEEL` 0x7e848a, with a grey formTint). The old warm STEEL rendered
+    almond in the form guide.
+  - ASSUMED/INVENTED: the second cabinet. It stands for what Jade liked in v1/v2.
+- **Chairs** are honey oak (0xa57e52; was blue-grey 0x4a5a6a), as every PC1 painting and prompt has them. This changes
+  the chair colour in every office shot.
+- **The clock** stays at (0.95, 2.1), above every PC frame: PC1 v -0.64, PC2 v -0.27. The prompts now say there is no
+  clock in frame.
+- **Toner-label patch.** The bare wall left of her face, below the turkeys, is the only bare wall in PC1/PC4, kept on
+  purpose for the toner label.
+- **Prompts** (media/keyframes/r4/office91/_prompts/_make.py):
+  - `WALL_PC1` names every piece in frame with its % position, the cabinet and Mom's chair post, and says no clock and no
+    other art. `WALL_PC2` does the same for PC2.
+  - `NO_WIDEN` ("match the layout drawing's framing exactly ... do not widen") is added to PC1, PC4 and PC2.
+  - A PC1-only art sheet, `_art_backwall_pc1.png`, holds the eight in-frame pieces.
+  - The captions no longer say "image 1 places them": the face crop is image 1 now. They say "the layout drawing".
+  - The r3 painting ref is replaced by `pc1_r4`, a frozen copy of r4 PC1_v1 (`_ref_PC1_r4v1.jpg`), passed for the child
+    and her expression only.
+  - The face-crop line ("Image 1 is a face reference ONLY ...") is present.
+- Contact sheet: media/layout/office91/_PC_background_sheet.png. Repaint: PC1, PC4, PC2.
+
 ## 2026-11-26: r4 set fixes (from Jade's r3 review; work/decisions/R4_SET_BRIEF.md) — newest first
 
 - **Who did what.** Set agent (this section): the table, PC2's camera, BO1/BO2's finger, PC5 clean-up, REF_table.

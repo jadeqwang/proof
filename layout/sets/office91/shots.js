@@ -74,7 +74,11 @@ const momThumbs = () => ({ at: [HALL_KID[0] - 0.5, HALL_KID[1] - 0.03], legs: 's
 const ALL = (j = jade(), s = sw(), m = mom()) => ({ jade7: j, sw: s, mama91: m, dad: dad() });
 const INSIDE = { hideParts: { jade7: ['head'] } };
 // the two cameras that recur
-const OUTSIDE_CAM = { lens: 65, orbit: { at: 'jade7:eyes', az: -6, el: 0, dist: 2.1 }, aim: ['jade7:eyes', 0.66, 0.42], focus: ['jade7'] };
+// 2026-11-27 (Jade: the PC1 background drifted take to take): her eyes 0.42 -> 0.47 down the frame, the frame of the PC1_v1 /
+// v2 paintings Jade liked (a tilt of under 1 deg; the camera stays where it was, level, 65 mm; she does not move). The lens
+// stays: widening brings Mom's chair and arm in at the right edge. The back wall's art was moved to where v1 paints it instead
+// (layout.js ALPHA / BOARD / ART / FILE2), so everything the painter is told about is inside the guide.
+const OUTSIDE_CAM = { lens: 65, orbit: { at: 'jade7:eyes', az: -6, el: 0, dist: 2.1 }, aim: ['jade7:eyes', 0.66, 0.47], focus: ['jade7'] };
 // r5 (lead: BO2_lit was blown out white): the close shots inside the tube's pool (the handout under the tube) clipped to
 // white in the lit pass (80-97 % of pixels at 255). POOL lowers the lit pass's exposure (build.js scales the tube spots,
 // the bounce and the ambient) so the paper, the faces and the hands read. Other passes are unchanged.

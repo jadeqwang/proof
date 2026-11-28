@@ -87,22 +87,30 @@ export const WINDOW = { x: 1.8, z: 0.0, w: 1.2, sill: 0.9, h: 1.1 };            
 export const CABINET = { x0: 1.34, x1: 1.78, z0: -1.46, z1: -0.82, h: 1.32 };                  // four-drawer filing cabinet, back right corner
 export const SHELF = { x0: -1.78, x1: -1.48, z0: -1.3, z1: -0.1, h: 0.9 };                     // low bookshelf of games and books
 export const DESK = { cx: 1.42, cz: 1.4, w: 0.7, d: 1.1, h: 0.74 };                            // the social worker's desk
-export const CLOCK = { x: 0.95, y: 2.1, r: 0.15 };                                             // on the back wall, frame-right of her
+export const CLOCK = { x: 0.95, y: 2.1, r: 0.15 };
+// 2026-11-27: a LOW two-drawer steel letter file against the back wall between her chair and Mom's (15 x 22 x 29 in), its side
+// at the right edge of PC1 / PC4 under the board: the grey cabinet the PC1_v1/v2 paintings put there (they painted it over
+// Mom's chair back, which is all the old guide had at that edge). 2 cm behind Mom's chair back, clear of Dad.
+export const FILE2 = { x0: 0.12, x1: 0.50, z0: -1.49, z1: -0.93, h: 0.74 };                                             // on the back wall, frame-right of her
 // ---------------------------------------------------------------- the back wall's art (r3, Jade: "decor on the wall behind
 // her: an alphabet, turkeys drawn as handprints, other elementary school children's art"). ONE wall, fixed here, seen in
 // PC1 = PC4 and PC2. November/December 1991: Thanksgiving handprint turkeys still up. Kept clear: a patch frame-left of her
 // face (x < -0.72, y 0.78..1.22) for the toner labels.
-export const ALPHA = { x0: -1.66, x1: 1.66, y: 1.47, h: 0.15, n: 26, card: 0xf8f4e8 };
-export const BOARD = { x0: -0.2, x1: 0.78, y0: 0.82, y1: 1.36, frame: 0.025 };                  // cork board right of her head (frame-right)
+export const ALPHA = { x0: -1.66, x1: 1.66, y: 1.49, h: 0.15, n: 26, card: 0xf8f4e8 };   // 2026-11-27: y 1.47 -> 1.49 (PC1_v1: only the cards' picture row shows under the top edge)
+export const BOARD = { x0: -0.125, x1: 0.62, y0: 0.84, y1: 1.375, frame: 0.025 };               // cork board right of her head (frame-right); 2026-11-27 re-laid to PC1_v1 (was x -0.2..0.78, y 0.82..1.36)
 // children's pictures: [cx, cy, w, h, kind, image]; kind = 'turkey' (handprint turkey on construction paper) | 'drawing';
 // image = layout/assets/art/office91/<image>.png (2026-11-26: fixed textures, every picture INVENTED, flagged in NOTES).
 // The board holds the five pictures the r3 painting PC1_v1 showed (house and sun, a turkey, a rainbow; a stick family,
 // pines and a snowman), in its arrangement; it had seven blank ones before.
+// 2026-11-27 (Jade: the PC1 background drifted from take to take): ONE arrangement, measured off the painting Jade liked
+// (media/keyframes/r4/office91/PC1_v1.jpg) and projected back onto this wall through the PC1 camera (her eyes as the anchor),
+// so every piece the PC1 prompt names is inside the PC1 guide and sits where v1 painted it. Was: turkeys at x -1.38/-1.12/-0.86,
+// the board's pictures on a 0.33 m pitch (the rainbow and half the board outside the PC1 frame, so the painter squeezed them in).
 export const ART = [
-  [-1.38, 1.30, 0.21, 0.16, 'turkey', 'turkey_1'], [-1.12, 1.31, 0.21, 0.16, 'turkey', 'turkey_2'], [-0.86, 1.30, 0.21, 0.16, 'turkey', 'turkey_3'],   // a row of three turkeys, upper left
-  [-0.06, 1.21, 0.2, 0.24, 'drawing', 'board_house'], [0.27, 1.22, 0.22, 0.17, 'turkey', 'turkey_4'], [0.6, 1.21, 0.2, 0.24, 'drawing', 'board_rainbow'],   // on the board, top row
-  [0.1, 0.95, 0.28, 0.19, 'drawing', 'board_family'], [0.5, 0.95, 0.28, 0.19, 'drawing', 'board_snowman'],                                           // on the board, bottom row
-  [1.05, 1.15, 0.22, 0.28, 'drawing', 'drawing_2'], [1.05, 0.86, 0.22, 0.17, 'turkey', 'turkey_6'],
+  [-1.12, 1.305, 0.21, 0.16, 'turkey', 'turkey_1'], [-0.89, 1.305, 0.21, 0.16, 'turkey', 'turkey_2'], [-0.655, 1.305, 0.21, 0.16, 'turkey', 'turkey_3'],   // a row of three turkeys, upper left (orange "Happy Thanksgiving Kevin", yellow "I am thankful for my mom", brown)
+  [0.064, 1.215, 0.18, 0.22, 'drawing', 'board_house'], [0.27, 1.215, 0.2, 0.15, 'turkey', 'turkey_4'], [0.488, 1.215, 0.18, 0.22, 'drawing', 'board_rainbow'],   // on the board, top row
+  [0.163, 0.995, 0.22, 0.165, 'drawing', 'board_family'], [0.415, 0.995, 0.22, 0.165, 'drawing', 'board_snowman'],                                           // on the board, bottom row
+  [1.05, 1.15, 0.22, 0.28, 'drawing', 'drawing_2'], [1.05, 0.86, 0.22, 0.17, 'turkey', 'turkey_6'],   // beyond the board (seen in PC2, not in PC1 / PC4)
 ];
 // the corridor board's eight pictures (a later school year, about 1993-94): image names, in build order
 export const HALL_ART = ['corridor_turkey_1', 'corridor_drawing_1', 'corridor_drawing_2', 'corridor_turkey_2', 'corridor_drawing_3', 'corridor_drawing_4', 'corridor_turkey_3', 'corridor_drawing_5'];

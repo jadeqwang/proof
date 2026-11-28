@@ -5,7 +5,7 @@ import { CAST, PROP } from '../../engine/mannequin.js';
 import { chestPoint } from '../../engine/humanMesh.js';
 import { aim } from '../../engine/aim.js';
 import { prismSolid, splitAtTop, applyBeamMask } from '../_beam.js';
-import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL_ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
+import { ROOM, TABLE, TUBE, CUT, TROFFER, BEAM, BEAM_SOURCE, beamFootprint, inBeam, HANDOUT, cellPitch, cell, rowCount, GAP, ANXIOUS, LABELS, SEATS, CHAIR, DICT, DAD_PALM, CLIPBOARD, DOOR, WINDOW, CABINET, FILE2, SHELF, DESK, CLOCK, ALPHA, BOARD, ART, HALL_ART, HALL, HALL_LIGHT, HALL_BOARD } from './layout.js';
 import { ART_TEX, alphabetCard, clockFace, SW_PRINT, SW_ROSE, decalMesh } from './art.js';
 import { artPlane } from '../_art.js';
 import { loadProps, prop } from '../_props.js';
@@ -20,6 +20,7 @@ addCast({
 
 const WALL = { grey: 0.8, col: 0xcfc9b8 }, CARPET = { grey: 0.45, col: 0x5a5f68, recvShadowLine: true }, LAM = { grey: 0.7, col: 0xb8a888, recvShadowLine: true }, STEEL = { grey: 0.6, col: 0x8a8a80 }, DARK = { grey: 0.25, col: 0x2a2a2a };
 const TOP = TABLE.h;
+const FILE_STEEL = { grey: 0.6, col: 0x7e848a, formTint: [0.66, 0.69, 0.72] };   // 2026-11-27: the filing cabinets' cool grey enamel (STEEL's warm grey read as almond in the form guide)
 
 function room() {
   const g = new THREE.Group(); const { x0, x1, z0, z1, h, wallT: t } = ROOM;
@@ -96,15 +97,19 @@ function schoolTable(T) {
 function furniture() {
   const g = new THREE.Group(); const T = TABLE;
   g.add(schoolTable(T));
-  const CH = { grey: 0.4, col: 0x4a5a6a };
+  const CH = { grey: 0.5, col: 0xa57e52 };   // 2026-11-27: honey-oak school chairs, as every PC1 painting and prompt has them (was blue-grey 0x4a5a6a)
   g.add(chair(SEATS.jade[0], SEATS.jade[1] - 0.03, 0, { look: CH, label: "little Jade's chair" }));
   g.add(chair(SEATS.socialWorker[0], SEATS.socialWorker[1] + 0.03, 180, { look: CH, label: "social worker's chair" }));
   g.add(chair(SEATS.mom[0], SEATS.mom[1] - 0.03, 0, { look: CH, label: "Mom's chair" }));
   // r3: Dad stands behind Mom; his chair is pushed in at the table's +x end, empty
   g.add(chair(TABLE.cx + TABLE.w / 2 + 0.12, TABLE.cz, -90, { look: CH, label: "empty chair (Dad stands)" }));
-  { const C = CABINET, cx = (C.x0 + C.x1) / 2, cz = (C.z0 + C.z1) / 2, grp = new THREE.Group(); grp.add(box(C.x1 - C.x0, C.h, C.z1 - C.z0, STEEL, [cx, C.h / 2, cz]));
-    for (let k = 0; k < 4; k++) { grp.add(box(C.x1 - C.x0 - 0.04, 0.29, 0.012, { grey: 0.66, col: 0x9a9a90 }, [cx, 0.18 + k * 0.32, C.z1 + 0.006])); grp.add(box(0.1, 0.02, 0.02, DARK, [cx, 0.27 + k * 0.32, C.z1 + 0.02])); }
+  { const C = CABINET, cx = (C.x0 + C.x1) / 2, cz = (C.z0 + C.z1) / 2, grp = new THREE.Group(); grp.add(box(C.x1 - C.x0, C.h, C.z1 - C.z0, FILE_STEEL, [cx, C.h / 2, cz]));
+    for (let k = 0; k < 4; k++) { grp.add(box(C.x1 - C.x0 - 0.04, 0.29, 0.012, { grey: 0.66, col: 0x8e949a, formTint: [0.72, 0.75, 0.78] }, [cx, 0.18 + k * 0.32, C.z1 + 0.006])); grp.add(box(0.1, 0.02, 0.02, DARK, [cx, 0.27 + k * 0.32, C.z1 + 0.02])); }
     g.add(tag(grp, 'filing cabinet')); g.add(prop('tissue_box', { at: [cx, C.h, cz + 0.1] }) || tag(box(0.24, 0.12, 0.13, { grey: 0.7, col: 0x8aa0b8 }, [cx, C.h + 0.06, cz + 0.1]), 'box of tissues')); }
+  // 2026-11-27: the low two-drawer file (FILE2) behind the table, between her chair and Mom's
+  { const C = FILE2, cx = (C.x0 + C.x1) / 2, cz = (C.z0 + C.z1) / 2, grp = new THREE.Group(); grp.add(box(C.x1 - C.x0, C.h, C.z1 - C.z0, FILE_STEEL, [cx, C.h / 2, cz]));
+    for (let k = 0; k < 2; k++) { grp.add(box(C.x1 - C.x0 - 0.04, 0.31, 0.012, { grey: 0.66, col: 0x8e949a, formTint: [0.72, 0.75, 0.78] }, [cx, 0.2 + k * 0.35, C.z1 + 0.006])); grp.add(box(0.1, 0.02, 0.02, DARK, [cx, 0.3 + k * 0.35, C.z1 + 0.02])); }
+    g.add(tag(grp, 'low two-drawer filing cabinet')); }
   { const S = SHELF, cx = (S.x0 + S.x1) / 2, cz = (S.z0 + S.z1) / 2, d = S.z1 - S.z0, grp = new THREE.Group(), WD = { grey: 0.5, col: 0x8a6a48 };
     for (const y of [0.02, 0.45, S.h - 0.01]) grp.add(box(S.x1 - S.x0, 0.02, d, WD, [cx, y, cz])); for (const s of [-1, 1]) grp.add(box(S.x1 - S.x0, S.h, 0.02, WD, [cx, S.h / 2, cz + s * (d / 2 - 0.01)]));
     g.add(tag(grp, 'low bookshelf'));
