@@ -53,6 +53,7 @@ Image models read guides coarsely, so give them unambiguous cues:
 - **Enlarge small critical details:** also pass a close-up of the region. Render the frame at double resolution and crop the region out; don't enlarge a normal render.
 - **Lock colours:** if the form guide colours objects by type rather than by real colour (ours renders all props blue-grey), also pass the lit render, and name the must-keep colours in the prompt.
 - **Keep two people distinct:** give them different costume colours, keep each on the same side of the frame as in the references, and name both in the prompt. Otherwise the model swaps them.
+- **No blank surfaces:** give every visible object one fixed, fully textured look in the model, on every visible side: furniture wood, upholstery, hardware, a watch face, a costume print. A plain surface invites the painter to invent something new there (a bookshelf painted into the plain back of an armchair), and details that change between shots are a tell-tale sign of AI.
 - **One cue that backfired:** a fine skin texture on the palm, meant to show curvature the way bricks show a wall receding. Painters read its lines as extra finger joints.
 
 ## 3. Choose the camera that shows the hard part
