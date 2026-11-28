@@ -424,3 +424,17 @@
 {"ts": "2026-11-28T07:17:07Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
 {"ts": "2026-11-28T07:17:11Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.328, "where": "box"}
 {"ts": "2026-11-28T07:17:39Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.328, "where": "box"}
+{"ts": "2026-11-28T07:19:10Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T07:19:47Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.2768, "where": "box"}
+{"ts": "2026-11-28T07:19:57Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:20:12Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.2768, "where": "box"}
+{"ts": "2026-11-28T07:20:37Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T07:21:04Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:21:31Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:21:40Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:21:55Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
+{"ts": "2026-11-28T07:22:29Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:22:49Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:23:05Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:23:09Z", "model": "openai/gpt-image-2", "tag": "kf4fd", "ok": true, "est_usd": 0.264, "where": "box"}
+{"ts": "2026-11-28T07:23:20Z", "model": "openai/gpt-image-2", "tag": "holdswap", "ok": true, "est_usd": 0.2256, "where": "box"}
