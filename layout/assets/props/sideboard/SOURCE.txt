@@ -1,0 +1,8 @@
+Model: "Cabinet" by Wandcaster on Sketchfab
+URL: https://sketchfab.com/3d-models/fdcb5d8fdac247a3be20c28f4da2b466
+Licence: CC BY 4.0 (Creative Commons Attribution 4.0 International)
+Licence check: the Sketchfab licence recorded in Objaverse 1.0 metadata (allenai/objaverse, metadata shard), checked 2026-11-27
+Downloaded from: Objaverse 1.0 mirror on Hugging Face, glbs/000-062/fdcb5d8fdac247a3be20c28f4da2b466.glb (uid fdcb5d8fdac247a3be20c28f4da2b466)
+Changes (for this film's layout guides): joined into one mesh, origin moved to the bottom centre (already in metres; size kept), textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 1.1715 x 0.9581 x 0.515 m
+Used for: shanghai86: the wooden sideboard / buffet (three drawers over two doors, dark wood)

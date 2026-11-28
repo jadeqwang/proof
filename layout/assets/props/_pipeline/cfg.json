@@ -119,5 +119,19 @@
  },
  "lemon": {},
  "cutting_board": {},
- "cardboard_box": {}
+ "cardboard_box": {},
+ "bentwood_chair": {
+  "size": [
+   "h",
+   0.895
+  ]
+ },
+ "side_table_tall": {},
+ "sideboard": {},
+ "tv_cabinet": {
+  "size": [
+   "w",
+   0.9
+  ]
+ }
 }

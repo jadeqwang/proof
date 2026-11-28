@@ -2,14 +2,17 @@
 // + the torn 草纸 + tea steam + the computed sun for each render mode.
 import { THREE, mk, box, cyl, ball, quad, tag, V, rad, addCast, CHILD_PROP, wall, undraw, resolvePts, rng, chair, tableRect } from './common.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
+import { chestPoint } from '../../engine/humanMesh.js';
 import { CAST } from '../../engine/mannequin.js';
 import { aim } from '../../engine/aim.js';
 import { beamSolid, beamMesh, beamWire, polyMesh, applyBeamMask } from '../_beam.js';
 import * as ART from './art.js';   // 2026-11-26: fixed wall art and spines
 import { artPlane } from '../_art.js';
 import { loadProps, prop } from '../_props.js';   // props phase 2 (2026-11-26): real downloaded models (work/props_audit.md)
-await loadProps(['thermos', 'mug', 'potted_plant']);
-import { hallDoorLeaves, bookcases, armchair as armchairR4, slippers, FABRIC, FABRIC_C } from './joinery.js';   // r4: real hinges, bookcases, armchairs, slippers
+await loadProps(['thermos', 'mug', 'potted_plant', 'bentwood_chair', 'side_table_tall', 'sideboard', 'tv_cabinet']);   // 2026-11-27 canon: + the dining chairs, side table, sideboard, TV cabinet
+import { hallDoorLeaves, bookcases, armchair as armchairR4, couch as couchR5, coffeeTable, slippers, FABRIC, FABRIC_C } from './joinery.js';
+import { dress, dressGarment, watchDialCanvas, strapCanvas, KNIT_RIB, KNIT_V, KNIT_U } from './textures.js';   // 2026-11-27: canonical textures on every surface
+import { artFromCanvas } from '../_art.js';   // r4: real hinges, bookcases, armchairs, slippers
 import { tearTree, tearOne, pieceMesh, centroid, area, outline, splitPiece, PAPER_LOOK } from './paper.js';
 import { FLAT, SCENE, FACADE_BEARING, FLOOR_ABOVE_GARDEN, ROOM, WINDOWS, WINDOW, JOIN, BALCONY, DOOR, HALL, SHELVES, SHELF_FRONT, SUN, SUN_DIR, SUN_SLOPES, BEAM, BEAM_SOURCE, SOURCES, APS,
   APERTURE_GLASS, inBeam, beamWindow, beamMargin, PLACES, PAPER, DRIFT_COUNTS, COUCH, COUCH_TO_CORNER, SHELF_CLEAR, TABLE, SIDE_TABLE, CHILD_TABLE, CHILD_CHAIR, BALCONY_CHAIR, beamFor, ARMCHAIRS, LOUNGER, TV, DINING_TABLE, SIDEBOARD, RADIATOR, CALENDAR,
@@ -22,10 +25,10 @@ addCast({
   grandma: { name: 'grandmother (face undrawn)', h: 1.50, kind: 'adult', skin: 0xcf9c78, hair: 0x6a6a6a, top: 0x4a4f5a, legs: 0x2e2e30, hairStyle: 'bun', sleeves: 'long', undrawn: true },
 }, CHILD_PROP);
 
-const PLASTER = { grey: 0.76, col: 0xc9c2ae }, PLASTER_RX = { ...PLASTER, recvShadowLine: true };
-const FLOOR = { grey: 0.56, col: 0x8a5a34, recvShadowLine: true }, WOOD = { grey: 0.42, col: 0x5a3a26 }, WOOD_L = { grey: 0.55, col: 0x8a6a44 };
-const STEEL = { grey: 0.32, col: 0x3c4a44 }, RENDER = { grey: 0.82, col: 0xe2d6b0 }, GLASS = { glass: true, col: 0x9ab0b8, opacity: 0.1, noCast: true, noRecv: true };
-const CLOTH = (g, c, o = {}) => ({ grey: g, col: c, ...o }), LACE = { grey: 0.95, col: 0xf2efe6 };
+const PLASTER = { grey: 0.76, col: 0xc9c2ae, mat: 'plaster' }, PLASTER_RX = { ...PLASTER, recvShadowLine: true };
+const FLOOR = { grey: 0.56, col: 0x8a5a34, recvShadowLine: true, mat: 'parquet' }, WOOD = { grey: 0.42, col: 0x5a3a26, mat: 'sapele' }, WOOD_L = { grey: 0.55, col: 0x8a6a44, mat: 'sapele' }, ASH = { grey: 0.55, col: 0x8a6a44, mat: 'ash' };
+const STEEL = { grey: 0.32, col: 0x3c4a44 }, RENDER = { grey: 0.82, col: 0xe2d6b0, mat: 'plaster' }, GLASS = { glass: true, col: 0x9ab0b8, opacity: 0.1, noCast: true, noRecv: true };
+const CLOTH = (g, c, o = {}) => ({ grey: g, col: c, ...o }), LACE = { grey: 0.95, col: 0xf2efe6, mat: 'lace' };
 
 // ---------------------------------------------------------------- architecture
 function room() {
@@ -33,9 +36,9 @@ function room() {
   const cx = (x0 + x1) / 2, wx = x1 - x0;
   // one floor, one ceiling: the living room and the old dining room joined into one space (the grandparents, before 1986)
   g.add(tag(box(wx + 2 * wallP, 0.04, z1 - z0 + wallP, FLOOR, [cx, -0.02, (z1 + z0 - wallP) / 2]), 'waxed wooden floor (打蜡地板)'));
-  g.add(tag(box(wx + 2 * wallP, 0.2, z1 - z0 + wallS + wallP, { grey: 0.8, col: 0xd8d2c0 }, [cx, h + 0.1, (z1 + wallS + z0 - wallP) / 2]), 'ceiling'));
+  g.add(tag(box(wx + 2 * wallP, 0.2, z1 - z0 + wallS + wallP, { grey: 0.8, col: 0xd8d2c0, mat: 'plaster' }, [cx, h + 0.1, (z1 + wallS + z0 - wallP) / 2]), 'ceiling'));
   // the trace of the old partition: a shallow soffit across the ceiling (subtle; a guess, see NOTES)
-  g.add(tag(box(JOIN.w, JOIN.drop, z1 - z0, { grey: 0.8, col: 0xd8d2c0 }, [JOIN.x, h - JOIN.drop / 2, (z0 + z1) / 2]), 'soffit (where the old partition stood)'));
+  g.add(tag(box(JOIN.w, JOIN.drop, z1 - z0, { grey: 0.8, col: 0xd8d2c0, mat: 'plaster' }, [JOIN.x, h - JOIN.drop / 2, (z0 + z1) / 2]), 'soffit (where the old partition stood)'));
   // south (window) wall with both sets of French windows; the facade carried on beyond the room for the views out
   g.add(wall({ axis: 'z', at: 0, a0: x0 - wallP, a1: x1 + wallP, h: ROOM.storey, t: wallS, out: 1, look: PLASTER, label: 'window wall', holes: WINDOWS.map((W) => ({ a0: W.x0, a1: W.x1, y0: W.y0, y1: W.y1 })) }));
   for (const [x, s] of [[x0 - wallP, -1], [x1 + wallP, 1]]) g.add(tag(box(3.5, ROOM.storey + 3.4, wallS, RENDER, [x + s * 1.75, (ROOM.storey + 3.4) / 2 - 0.2, wallS / 2]), 'facade (roughcast)'));
@@ -102,7 +105,7 @@ function room() {
   }
   // ---- hall doors: a 4.0 m glazed opening in the north wall (Jade: 2-3x the old pair, centred), transom (气窗) above;
   //      four leaves, folded back in pairs against each jamb, into the hall
-  { const zw = D.z - wallP / 2, FR = { grey: 0.45, col: 0x6a4a30 }, xc = (D.x0 + D.x1) / 2, wd = D.x1 - D.x0;
+  { const zw = D.z - wallP / 2, FR = { grey: 0.45, col: 0x6a4a30, mat: 'sapele' }, xc = (D.x0 + D.x1) / 2, wd = D.x1 - D.x0;
     // r4: the jamb and head linings sit INSIDE the opening (proud of the reveal by 2 cm), not flush with it: the old frame
     // boxes shared the reveal's plane, and that z-fight drew the comb ("messed up notebook") down the jamb in the guides
     g.add(tag(box(wd, 0.025, wallP, FR, [xc, D.h - 0.0075, zw]), 'hall French doors (frame)'));
@@ -114,13 +117,13 @@ function room() {
     // jamb, 4.5 cm apart. Now each pair really folds (leaf A on the jamb, leaf B on A's far edge, flat back against it) on
     // modelled brass butt hinges, with architraves and a threshold: joinery.js hallDoorLeaves
     g.add(hallDoorLeaves());
-    const DIM = { grey: 0.5, col: 0x8a8070 }, hcx = (HL.x0 + HL.x1) / 2, hw = HL.x1 - HL.x0, hzc = (HL.z0 + HL.z1) / 2, hzl = HL.z1 - HL.z0;
-    g.add(tag(box(hw, 0.04, hzl, { grey: 0.4, col: 0x6a4a30 }, [hcx, -0.02, hzc]), 'hall floor'));
+    const DIM = { grey: 0.5, col: 0x8a8070, mat: 'plaster' }, hcx = (HL.x0 + HL.x1) / 2, hw = HL.x1 - HL.x0, hzc = (HL.z0 + HL.z1) / 2, hzl = HL.z1 - HL.z0;
+    g.add(tag(box(hw, 0.04, hzl, { grey: 0.4, col: 0x6a4a30, mat: 'parquet' }, [hcx, -0.02, hzc]), 'hall floor'));
     g.add(tag(box(hw, 0.04, hzl, DIM, [hcx, h + 0.02, hzc]), 'hall ceiling'));
     g.add(tag(box(hw, h, 0.12, DIM, [hcx, h / 2, HL.z0 - 0.06]), 'hall wall'));
     for (const x of [HL.x0 - 0.06, HL.x1 + 0.06]) g.add(tag(box(0.12, h, hzl, DIM, [x, h / 2, hzc]), 'hall wall'));
-    g.add(tag(box(1.8, 2.4, 0.6, { grey: 0.45, col: 0x7a5a3a }, [hcx + 0.9, 1.2, HL.z0 + 0.3]), 'hall: built-in closets (壁橱)'));
-    g.add(tag(box(0.5, 0.02, 0.3, { grey: 0.4, col: 0x6a4a30 }, [hcx + 0.6, 0.005, HL.z1 - 1.2]), 'hall: doormat'));
+    g.add(tag(box(1.8, 2.4, 0.6, { grey: 0.45, col: 0x7a5a3a, mat: 'sapele' }, [hcx + 0.9, 1.2, HL.z0 + 0.3]), 'hall: built-in closets (壁橱)'));
+    g.add(tag(box(0.5, 0.02, 0.3, { grey: 0.4, col: 0x6a4a30, mat: 'rattan' }, [hcx + 0.6, 0.005, HL.z1 - 1.2]), 'hall: doormat'));
   }
   const W = WINDOWS[0], panes = { windows: [V(W.x1, W.y1, W.zg), V(W.x0, W.y1, W.zg), V(W.x0, W.y0, W.zg), V(W.x1, W.y0, W.zg)] };   // six windows: TL, TR, BR, BL from inside (east on the left)
   return { g, panes };
@@ -155,7 +158,7 @@ function armchair(a) {
 }
 function lounger() {
   const Lr = LOUNGER, g = new THREE.Group(); g.position.set(Lr.at[0], 0, Lr.at[1]); g.rotation.y = rad(Lr.yaw);
-  const RAT = { grey: 0.7, col: 0xc8a868 }, w = Lr.w;
+  const RAT = { grey: 0.7, col: 0xc8a868, mat: 'rattan' }, w = Lr.w;
   const slab = (len, at, tilt) => { const m = box(w - 0.1, 0.03, len, RAT, at); m.rotation.x = rad(tilt); g.add(m); };
   slab(0.72, [0, 0.66, -0.5], -52);   // reclined back
   slab(0.46, [0, 0.36, -0.02], -6);   // seat
@@ -167,7 +170,7 @@ function lounger() {
 // a white wicker armchair (白藤椅) on the balcony (Jade, round 2 answers): round barrel back, rolled arms, woven skirt
 function wickerChair() {
   const B = BALCONY_CHAIR, g = new THREE.Group(); g.position.set(B.at[0], BALCONY.floor, B.at[1]); g.rotation.y = rad(B.yaw);
-  const WK = { grey: 0.93, col: 0xf2eee2 }, WKd = { grey: 0.86, col: 0xe4decf }, { seat, back } = B, R = 0.29, ARM = seat + 0.24;
+  const WK = { grey: 0.93, col: 0xf2eee2, mat: 'rattan' }, WKd = { grey: 0.86, col: 0xe4decf, mat: 'rattan' }, { seat, back } = B, R = 0.29, ARM = seat + 0.24;
   g.add(cyl(R - 0.02, R - 0.02, 0.07, WK, [0, seat - 0.035, 0], null, 24));                                   // round seat cushion
   g.add(cyl(R - 0.03, R + 0.01, seat - 0.07, WKd, [0, (seat - 0.07) / 2, 0], null, 24));                     // woven tub base (skirt)
   const T0 = -0.12 * Math.PI, T1 = 1.12 * Math.PI, N = 34;                                                  // the back wraps 245 deg, open at the front (+z)
@@ -182,11 +185,13 @@ function wickerChair() {
 }
 function furniture(shot) {
   const g = new THREE.Group();
-  g.add(couch());
-  { const T = TABLE, t = tableRect(T.cx, T.cz, T.w, T.d, T.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'coffee table (茶几)' });
-    t.add(box(T.w - 0.1, 0.02, T.d - 0.1, WOOD, [T.cx, 0.12, T.cz])); g.add(tag(t, 'coffee table (茶几)', true)); }
+  g.add(couchR5());   // 2026-11-27: the couch is built like the armchairs (joinery.js upholstered): one suite, fully upholstered on every side
+  g.add(coffeeTable(TABLE));   // 2026-11-27 canon: a period Shanghai hardwood 茶几 under plate glass (joinery.js)
   for (const a of ARMCHAIRS) g.add(armchairR4(a));   // r4 (Jade, V1g): real armchairs (joinery.js); the old box armchair() is unused   // round-3 decisions: the uncle sits in the 'beside' armchair at the couch's north end (no chair is moved in state A)
-  { const S = SIDE_TABLE; g.add(tableRect(S.cx, S.cz, S.w, S.d, S.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'side table' }));
+  // 2026-11-27 canon: the side table is a downloaded round plant-stand table (Poly Haven side_table_tall_01, CC0), dark
+  // varnished, at its real size (0.38 m across, 0.76 m high); the old hand-built square table only if the model is missing
+  const stp = prop('side_table_tall', { at: [SIDE_TABLE.cx, 0, SIDE_TABLE.cz], label: 'side table (round, dark wood)' });
+  if (stp) g.add(stp); else { const S = SIDE_TABLE; g.add(tableRect(S.cx, S.cz, S.w, S.d, S.h, { look: WOOD, topLook: { ...WOOD_L, recvShadowLine: true }, label: 'side table' }));
     const sh = box(S.w - 0.08, 0.02, S.d - 0.08, WOOD, [S.cx, 0.15, S.cz]); g.add(tag(sh, 'side table')); }
   g.add(lounger());
   g.add(wickerChair());
@@ -195,8 +200,11 @@ function furniture(shot) {
   // every book an individual spine, wearing art.js's fixed spine textures: joinery.js bookcases
   g.add(bookcases());
   { const T = TV, cx = (T.x0 + T.x1) / 2, cz = (T.z0 + T.z1) / 2;   // east wall, facing west down the room
-    g.add(tag(box(T.x1 - T.x0, T.h, T.z1 - T.z0, WOOD, [cx, T.h / 2, cz]), 'TV cabinet'));
-    g.add(tag(box(0.34, 0.32, 0.42, { grey: 0.3, col: 0x3a3a38 }, [cx, T.h + 0.16, cz]), 'TV (14", under a cloth)'));
+    // 2026-11-27 canon: the TV stands on a downloaded wooden cabinet (two drawers over two doors; "Old Chest Of Drawers 1" by
+    // rhcreations, CC BY), scaled to the stand's 0.72 m height, front to the room (west), its wood recoloured to the room's teak
+    const tvc = prop('tv_cabinet', { at: [T.x1 - 0.262, 0, cz], rot: [0, -90, 0], size: { h: T.h }, recolor: 0x8a6440, label: 'TV cabinet' });
+    g.add(tvc || tag(box(T.x1 - T.x0, T.h, T.z1 - T.z0, WOOD, [cx, T.h / 2, cz]), 'TV cabinet'));
+    g.add(tag(box(0.34, 0.32, 0.42, { grey: 0.3, col: 0x4a3a2e, mat: 'sapele' }, [cx, T.h + 0.16, cz]), 'TV (14", under a cloth)'));   // 2026-11-27 canon: a wood-grain vinyl TV cabinet (dark walnut tone), the screen under the lace cloth
     g.add(tag(box(0.36, 0.006, 0.48, LACE, [cx, T.h + 0.323, cz]), 'TV (14", under a cloth)'));
     g.add(tag(box(0.005, 0.24, 0.44, LACE, [cx - 0.175, T.h + 0.21, cz]), 'TV (14", under a cloth)'));
     // props phase 2: the downloaded 暖水瓶 (thermos, CC BY, docs/credits_tools.md), 0.36 m tall; the red one as modelled, the green
@@ -209,7 +217,7 @@ function furniture(shot) {
     const p = artPlane(ART.calendarArt(), C.w, C.h); p.rotation.y = -Math.PI / 2; p.position.set(ROOM.x1 - 0.0115, C.y, C.z); g.add(tag(p, 'wall calendar (挂历)')); }
   // west wall: one large framed traditional Chinese painting over the couch; two calligraphy hanging scrolls (挂轴) on its hall half (r4)
   { const Pn = PAINTING, x = ROOM.x0 + 0.02;
-    g.add(tag(box(0.035, Pn.h + 0.1, Pn.w + 0.1, { grey: 0.3, col: 0x3a2a1a }, [x, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
+    g.add(tag(box(0.035, Pn.h + 0.1, Pn.w + 0.1, { grey: 0.3, col: 0x3a2a1a, mat: 'sapele' }, [x, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
     g.add(tag(box(0.01, Pn.h, Pn.w, { grey: 0.88, col: 0xe4dcc4, recvShadowLine: true }, [x + 0.02, Pn.y, Pn.z]), 'framed traditional Chinese painting (国画)'));
     if (ART.ART_TEX.painting) { const p = artPlane(ART.ART_TEX.painting, Pn.w, Pn.h); p.rotation.y = Math.PI / 2; p.position.set(x + 0.0255, Pn.y, Pn.z); g.add(tag(p, 'framed traditional Chinese painting (国画)')); }
     for (const S of [...SCROLLS].sort((a, b) => a.z - b.z)) { const si = [...SCROLLS].sort((a, b) => a.z - b.z).indexOf(S), yc = S.top - S.h / 2, grp = new THREE.Group();
@@ -227,13 +235,18 @@ function furniture(shot) {
     g.add(tag(cyl(0.04, 0.2, 0.12, { grey: 0.88, col: 0xeeeae0 }, [P.x, ROOM.h - P.drop - 0.04, P.z], null, 20), 'ceiling lights (off)')); }
   // the old dining room's end: the long table (long axis north-south since the decision page), chairs, sideboard
   { const T = DINING_TABLE, [xc, zc] = T.at; g.add(tableRect(xc, zc, T.w, T.l, T.h, { look: WOOD, topLook: WOOD_L, label: 'dining table (long, rectangular: Jade not sure)' }));
-    for (const i of [-1, 0, 1]) for (const s of [-1, 1]) g.add(chair(xc + s * (T.w / 2 + 0.2), zc + i * 0.6, s > 0 ? -90 : 90, { look: WOOD, label: 'dining chairs' }));   // three a side (east and west)
-    for (const s of [-1, 1]) g.add(chair(xc, zc + s * (T.l / 2 + 0.22), s > 0 ? 180 : 0, { look: WOOD, label: 'dining chairs' }));                 // one at each end (north and south)
+    // 2026-11-27 canon: eight bentwood (Thonet No. 14 type) chairs, downloaded ("Viennese Chair" by romasharf, CC BY), dark varnish
+    const dch = (x, z, yaw) => prop('bentwood_chair', { at: [x, 0, z], rot: [0, yaw, 0], label: 'dining chairs (bentwood)' }) || chair(x, z, yaw, { look: WOOD, label: 'dining chairs' });
+    for (const i of [-1, 0, 1]) for (const s of [-1, 1]) g.add(dch(xc + s * (T.w / 2 + 0.2), zc + i * 0.6, s > 0 ? -90 : 90));   // three a side (east and west)
+    for (const s of [-1, 1]) g.add(dch(xc, zc + s * (T.l / 2 + 0.22), s > 0 ? 180 : 0));                 // one at each end (north and south)
   }
-  { const C = CHILD_TABLE; g.add(tableRect(C.cx, C.cz, C.w, C.d, C.h, { look: WOOD_L, topLook: { ...WOOD_L, recvShadowLine: true }, top: 0.025, leg: 0.035, label: 'her small wooden table and chair' }));
-    const H = CHILD_CHAIR; g.add(chair(H.at[0], H.at[1], H.yaw, { seat: H.seat, w: H.w, d: H.d, back: H.back, look: WOOD_L, label: 'her small wooden table and chair' })); }
+  { const C = CHILD_TABLE; g.add(tableRect(C.cx, C.cz, C.w, C.d, C.h, { look: ASH, topLook: { ...ASH, recvShadowLine: true }, top: 0.025, leg: 0.035, label: 'her small wooden table and chair' }));
+    const H = CHILD_CHAIR; g.add(chair(H.at[0], H.at[1], H.yaw, { seat: H.seat, w: H.w, d: H.d, back: H.back, look: ASH, label: 'her small wooden table and chair' })); }
   {
-    const S = SIDEBOARD; g.add(tag(box(S.x1 - S.x0, S.h, S.z1 - S.z0, WOOD, [(S.x0 + S.x1) / 2, S.h / 2, (S.z0 + S.z1) / 2]), 'sideboard (碗橱)')); }
+    // 2026-11-27 canon: a downloaded dark-wood sideboard (three drawers over two panelled doors, on a plinth; "Cabinet" by
+    // Wandcaster, CC BY), scaled to the corner's 0.93 m width (0.76 m high), against the north wall, front to the room
+    const S = SIDEBOARD, sbp = prop('sideboard', { at: [(S.x0 + S.x1) / 2, 0, ROOM.z0 + 0.515 * 0.93 / 1.171 / 2 + 0.005], size: { w: S.x1 - S.x0 }, label: 'sideboard (碗橱)' });
+    g.add(sbp || tag(box(S.x1 - S.x0, S.h, S.z1 - S.z0, WOOD, [(S.x0 + S.x1) / 2, S.h / 2, (S.z0 + S.z1) / 2]), 'sideboard (碗橱)')); }
   return g;
 }
 
@@ -342,14 +355,68 @@ function paperProps(spec, figs, out) {
     out.push({ what: 'heap of the tiniest bits', gens: B.gens, at: B.at, example_size_cm: Object.keys(B.gens).map((gs) => [gs, sizeCm(tearOne(1, +gs))]) }); }
   return tag(g, '草纸: the tiny pieces (in her hands / just torn)');
 }
-// a wristwatch on the back of a wrist (r3, Jade: "watch face should be visible": the face is on the side opposite the palm)
+// a wristwatch on the back of a wrist (r3, Jade: "watch face should be visible": the face is on the side opposite the palm).
+// 2026-11-27 canon: the design the painters already drew (textures.js watchDialCanvas: r3 V1b_v1), worn the real way: on
+// the skin of his LEFT wrist just past the sweater cuff, the face on the back of the wrist, the strap across the wrist (12
+// and 6 at the lugs), the crown at 3 pointing toward the hand; a ~34 mm round polished steel case, a 18 mm leather strap
+// fitted to the wrist (its size found by rays onto the skin)
+let WATCH_ART = null, STRAP_ART = null;
 function wristWatch(fig, n) {
+  WATCH_ART ||= artFromCanvas(watchDialCanvas()); STRAP_ART ||= artFromCanvas(strapCanvas());
   const P = fig.userData.P, h = P.hands[n], W = P['wrist' + n], f = W.clone().sub(P['elbow' + n]).normalize(), nm = h.n.clone().normalize(), back = nm.clone().negate().addScaledVector(f, nm.dot(f)).normalize();   // f: the forearm axis
-  const g = new THREE.Group(), at = W.clone().addScaledVector(f, -0.028), BAND = { grey: 0.3, col: 0x3a2a1e }, CASE = { grey: 0.75, col: 0xc8c8c0 }, FACE = { grey: 0.97, col: 0xf6f2e6 };
-  const band = mk(new THREE.TorusGeometry(0.03, 0.0045, 6, 24), BAND); band.position.copy(at); band.quaternion.setFromUnitVectors(V(0, 0, 1), f); band.scale.set(1, 1, 1); g.add(band);
-  const cs = mk(new THREE.CylinderGeometry(0.0155, 0.0155, 0.007, 24), CASE); cs.position.copy(at).addScaledVector(back, 0.026); cs.quaternion.setFromUnitVectors(V(0, 1, 0), back); g.add(cs);
-  const fc = mk(new THREE.CylinderGeometry(0.0125, 0.0125, 0.0015, 24), FACE); fc.position.copy(at).addScaledVector(back, 0.0302); fc.quaternion.setFromUnitVectors(V(0, 1, 0), back); g.add(fc);
+  // where it sits: on the skin 6 mm past the end of the sleeve (as in the paintings). Rays down the back-of-wrist direction
+  // find the sleeve's end along the forearm, then the skin under the strap (its two radii)
+  fig.updateMatrixWorld(true); const skin = [], cloth = []; fig.traverse((m) => { if (m.isMesh && m.visible) (m.userData.garment ? cloth : skin).push(m); });
+  const rc = new THREE.Raycaster(), hitD = (list, p, dir) => { rc.set(p.clone().addScaledVector(dir, -0.055), dir); rc.far = 0.11; const h = rc.intersectObjects(list, false)[0]; return h ? 0.055 - h.distance : null; };   // only surfaces within 55 mm of the wrist axis (not the other hand or a knee)
+  let t0 = -0.04; for (let t = -0.04; t <= 0.03; t += 0.002) { if (hitD(cloth, W.clone().addScaledVector(f, t), back.clone().negate()) == null) { t0 = t; break; } t0 = t; }
+  const at = W.clone().addScaledVector(f, t0 + 0.006), under = skin;
+  const g = new THREE.Group(), STEEL_W = { grey: 0.75, col: 0xc8c8c0 };
+  const X = f.clone().addScaledVector(back, -f.dot(back)).normalize(), Y = new THREE.Vector3().crossVectors(back, X), q = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(X, Y, back));
+  // the strap hugs the wrist: an elliptical band (the wrist is ~48 mm thick, ~64 mm wide), the case on its back
+  const side = new THREE.Vector3().crossVectors(back, f), cl = (v, lo, hi, d) => (v == null ? d : Math.min(hi, Math.max(lo, v))),
+    dB = cl(hitD(under, at, back.clone().negate()), 0.012, 0.03, 0.021), dP = cl(hitD(under, at, back), 0.012, 0.03, 0.021), dS1 = cl(hitD(under, at, side.clone().negate()), 0.018, 0.04, 0.029), dS2 = cl(hitD(under, at, side), 0.018, 0.04, 0.029);
+  at.addScaledVector(back, (dB - dP) / 2).addScaledVector(side, (dS1 - dS2) / 2);   // centre the band on the wrist's cross-section (the joint point is not its centre)
+  const RB = (dB + dP) / 2 + 0.0025, RS = (dS1 + dS2) / 2 + 0.0025, sg = new THREE.CylinderGeometry(1, 1, 0.018, 40, 1, true);
+  sg.applyMatrix4(new THREE.Matrix4().makeBasis(back.clone().multiplyScalar(RB), f.clone(), side.clone().multiplyScalar(RS)).setPosition(at)); sg.computeVertexNormals();
+  const strap = mk(sg, { grey: 0.3, col: 0x3e2a1c, art: STRAP_ART.art, artGrey: STRAP_ART.artGrey, artEdge: null }); strap.userData.double = true; g.add(strap);
+  const place = (m, local) => { m.quaternion.copy(q).multiply(local || new THREE.Quaternion()); return m; };
+  const toZ = new THREE.Quaternion().setFromEuler(new THREE.Euler(Math.PI / 2, 0, 0));   // cylinder axis (y) -> the dial normal (local z)
+  const cs = place(mk(new THREE.CylinderGeometry(0.0175, 0.0175, 0.008, 32), STEEL_W), toZ); cs.position.copy(at).addScaledVector(back, RB + 0.004); g.add(cs);
+  const bz = place(mk(new THREE.TorusGeometry(0.0158, 0.0016, 8, 40), { grey: 0.85, col: 0xe0e0d8 })); bz.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(bz);   // polished bezel
+  for (const sy of [-1, 1]) for (const sx of [-1, 1]) { const lug = place(mk(new THREE.BoxGeometry(0.003, 0.006, 0.0035), STEEL_W)); lug.position.copy(at).addScaledVector(back, RB + 0.003).addScaledVector(Y, sy * 0.0185).addScaledVector(X, sx * 0.0075); g.add(lug); }
+  const cr = place(mk(new THREE.CylinderGeometry(0.0028, 0.0028, 0.004, 12), STEEL_W), new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, Math.PI / 2))); cr.position.copy(at).addScaledVector(back, RB + 0.004).addScaledVector(X, 0.0195); g.add(cr);   // crown at 3
+  const fc = place(mk(new THREE.CircleGeometry(0.0148, 48), { grey: 0.92, col: 0xf0eee6, art: WATCH_ART.art, artGrey: WATCH_ART.artGrey, artEdge: WATCH_ART.artEdge })); fc.position.copy(at).addScaledVector(back, RB + 0.0082); g.add(fc);
   return tag(g, `wristwatch (${n === 'L' ? 'left' : 'right'} wrist, face on the back of the wrist)`);
+}
+// 2026-11-27 canon: the uncle's outfit as built (pale cream hand-knitted pullover, grey-blue trousers) gets real cloth: the
+// pullover a stockinette knit with 2x2 ribbed cuffs and hem (textures.js `knit`; UVs wrap round each arm and the body, v
+// measured from the cuff / hem, so the rib sits exactly at the sleeve ends and the waist), the trousers a worsted twill;
+// a pale blue-grey cotton shirt collar (two points) with one white button shows at the pullover's neck
+function uncleOutfit(fig) {
+  const P = fig.userData.P; if (!P?.bodyMesh) return null;
+  const tops = [], legs = []; fig.traverse((m) => { if (!m.isMesh || !m.userData.garment) return; const id = m.userData.idGroup || ''; if (/torso$/.test(id)) tops.push(m); else if (/leg[LR]$/.test(id)) legs.push(m); });
+  const segD = (p, a, b) => { const ab = b.clone().sub(a), t = THREE.MathUtils.clamp(p.clone().sub(a).dot(ab) / ab.lengthSq(), 0, 1); return { d: p.distanceTo(a.clone().addScaledVector(ab, t)), t }; };
+  const ring = (p, a, b, R) => { const ax = b.clone().sub(a).normalize(), ref = Math.abs(ax.y) < 0.9 ? V(0, 1, 0) : V(1, 0, 0), e1 = ref.clone().addScaledVector(ax, -ref.dot(ax)).normalize(), e2 = new THREE.Vector3().crossVectors(ax, e1), r = p.clone().sub(a);
+    const k = Math.max(1, Math.round((2 * Math.PI * R) / KNIT_U)); return (Math.atan2(r.dot(e2), r.dot(e1)) / (2 * Math.PI) + 0.5) * k; };
+  const neck = P.neck || P.shoulderC, hip = P.hip;
+  const part = (w) => { const T = segD(w, hip, neck).d; let best = { k: 'torso', d: T * 0.75 };
+    for (const s of ['L', 'R']) for (const [a, b] of [[P['shoulder' + s], P['elbow' + s]], [P['elbow' + s], P['wrist' + s]]]) { const d = segD(w, a, b).d; if (d < best.d) best = { k: s, d }; } return best.k; };
+  for (const m of tops) { m.updateMatrixWorld(true); const pos = m.geometry.attributes.position, w = new THREE.Vector3(), info = [], minV = { torso: 9, L: 9, R: 9 };
+    for (let i = 0; i < pos.count; i++) { w.fromBufferAttribute(pos, i).applyMatrix4(m.matrixWorld); const k = part(w); let v, u;
+      if (k === 'torso') { const ax = neck.clone().sub(hip).normalize(); v = w.clone().sub(hip).dot(ax); u = ring(w, hip, neck, 0.15); }
+      else { const S = P['shoulder' + k], E = P['elbow' + k], Wr = P['wrist' + k], lFore = Wr.distanceTo(E), sf = segD(w, E, Wr), su = segD(w, S, E);
+        v = sf.d <= su.d ? (1 - sf.t) * lFore : lFore + (1 - su.t) * S.distanceTo(E); u = sf.d <= su.d ? ring(w, E, Wr, 0.045) : ring(w, S, E, 0.055); }
+      info.push([k, u, v]); minV[k] = Math.min(minV[k], v); }
+    dressGarment(m, 'knit', m.userData.look.col ?? 0xe8e4d8, m.userData.look.flatGrey ?? m.userData.look.grey ?? 0.62, (_, i) => { const [k, u, v] = info[i]; return [u, (v - minV[k]) / KNIT_V]; }); }
+  for (const m of legs) dressGarment(m, 'twill', m.userData.look.col ?? 0x4a5560, m.userData.look.flatGrey ?? m.userData.look.grey ?? 0.42, (w) => [(w.x + w.z) / 0.012, w.y / 0.012]);
+  // the shirt collar: two flat points lying on the pullover at the neck, and the top button between them
+  const g = new THREE.Group(), SHIRT = { grey: 0.78, col: 0xc4ccd4 };
+  const pt = (u, v, lift) => chestPoint(fig, u, v, lift);
+  for (const s of [-1, 1]) { const A = pt(0, -0.012, 0.004), B = pt(s * 0.058, 0.012, 0.004), C = pt(s * 0.045, -0.072, 0.004), D = pt(s * 0.008, -0.03, 0.004); if (!A || !B || !C || !D) continue;
+    const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute([...A.toArray(), ...B.toArray(), ...C.toArray(), ...D.toArray()], 3)); geo.setIndex([0, 1, 2, 0, 2, 3]); geo.computeVertexNormals();
+    const c = mk(geo, SHIRT); c.userData.double = true; g.add(c); }
+  { const b = pt(0, -0.026, 0.006); if (b) g.add(ball(0.0045, { grey: 0.95, col: 0xf4f2ec }, b.toArray(), [1, 1, 0.5])); }
+  return tag(g, 'uncle: shirt collar under the pullover');
 }
 // the stack she brought (34 sheets, straight mill edges)
 function stack() {
@@ -452,7 +519,7 @@ export function build(shot, { makeCam }) {
   const BX = shot.scene ? beamFor({ ...SCENE, cheat: undefined, ...shot.scene }) : DEFB;
   { const { SUN, SUN_DIR, SUN_SLOPES, BEAM_SOURCE, SOURCES, APS, APERTURE_GLASS, inBeam, beamWindow, beamMargin } = BX;
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
-  const { g: roomG, panes } = room(); root.add(roomG); root.add(furniture(shot));
+  const { g: roomG, panes } = room(); root.add(roomG); root.add(furniture(shot)); dress(root);   // textures.js: every `mat` look gets its canonical texture
   const extra = (t) => (NAMES[t] ? V(NAMES[t]) : null);
   const { figs } = stage(shot.figs, null, extra);
   for (const [who, f] of Object.entries(figs)) { if (CAST[who].undrawn) undraw(f); root.add(f); }
@@ -471,6 +538,7 @@ export function build(shot, { makeCam }) {
     let lo = 0, hi = 0.06; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2; if (gap(m) < -0.0003) lo = m; else hi = m; }   // the ball settles 0.3 mm into the palm strips (its weight; a harder squeeze pops it out sideways)
     return P.handR.clone().addScaledVector(n, hi); };
   if (shot.state === 'A' && figs.uncle) root.add(wristWatch(figs.uncle, 'L'));
+  if (figs.uncle) { const col = uncleOutfit(figs.uncle); if (col) root.add(col); }   // 2026-11-27: knit / twill / shirt collar (one canonical outfit)
   // hold pass (2026-11-26): a pinched-up wad of 草纸, faceted (icosahedron), not a perfect sphere: a sphere rolls off any palm
   // that is not exactly level (Rapier has no rolling resistance), a crumpled wad does not
   if (shot.state === 'A' && figs.uncle) { const w = mk(new THREE.IcosahedronGeometry(0.012, 1), PAPER_LOOK); w.position.copy(ballAt(figs)); root.add(tag(w, 'something small (he shapes it)')); }

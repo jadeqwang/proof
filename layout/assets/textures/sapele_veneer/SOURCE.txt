@@ -1,0 +1,7 @@
+Texture: "Sapele Veneer" (sapele_veneer) by Jenelle van Heerden on Poly Haven
+URL: https://polyhaven.com/a/sapele_veneer
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, diffuse map, 2k JPG, 2026-11-27
+Changes: re-saved as JPEG quality 80. In the layout engine the greys are tinted to one canonical colour per material (layout/sets/shanghai86/textures.js).
+Real-world size of one tile: 0.5 x 0.5 m
+Used for: shanghai86: varnished dark wood of the cabinetry, tables, joinery (tinted per piece)

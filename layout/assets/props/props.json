@@ -699,5 +699,61 @@
   "source": "Poly Haven/James Ray Cock (CC0)",
   "credit": "\"Planter Box 02\" by James Ray Cock, Poly Haven (CC0)",
   "use": "mv10: the strawberry planter by the deck"
+ },
+ "bentwood_chair": {
+  "label": "bentwood chair",
+  "size_m": [
+   0.4512,
+   0.895,
+   0.5171
+  ],
+  "origin": "bottom centre; front faces +z",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/romasharf (CC BY 4.0)",
+  "credit": "\"Viennese Chair\" by romasharf (https://sketchfab.com/3d-models/45405e6ec46b46629e7f4a71da5ccd1b), CC BY 4.0",
+  "use": "shanghai86: the eight Thonet-type bentwood dining chairs (No. 14 / No. 18 type, dark varnish) round the dining table"
+ },
+ "side_table_tall": {
+  "label": "tall side table (plant stand)",
+  "size_m": [
+   0.384,
+   0.7612,
+   0.384
+  ],
+  "origin": "bottom centre; front faces +z",
+  "grips": {},
+  "defaults": {},
+  "source": "Poly Haven/James Ray Cock (CC0)",
+  "credit": "\"Side Table Tall 01\" by James Ray Cock, Poly Haven (CC0)",
+  "use": "shanghai86: the tall round side table / plant stand"
+ },
+ "sideboard": {
+  "label": "sideboard",
+  "size_m": [
+   1.1715,
+   0.9581,
+   0.515
+  ],
+  "origin": "bottom centre; front faces +z",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/Wandcaster (CC BY 4.0)",
+  "credit": "\"Cabinet\" by Wandcaster (https://sketchfab.com/3d-models/fdcb5d8fdac247a3be20c28f4da2b466), CC BY 4.0",
+  "use": "shanghai86: the wooden sideboard / buffet (three drawers over two doors, dark wood)"
+ },
+ "tv_cabinet": {
+  "label": "low wooden cabinet (TV stand)",
+  "size_m": [
+   0.9,
+   0.6645,
+   0.4837
+  ],
+  "origin": "bottom centre; front faces +z",
+  "grips": {},
+  "defaults": {},
+  "source": "Sketchfab/rhcreations (CC BY 4.0)",
+  "credit": "\"Old Chest Of Drawers 1\" by rhcreations (https://sketchfab.com/3d-models/93b6cef3362c4e84ac6f12b6af11a8e1), CC BY 4.0",
+  "use": "shanghai86: the low wooden cabinet the TV stands on (two drawers over two doors; light oak/pine)"
  }
 }

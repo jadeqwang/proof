@@ -148,5 +148,35 @@
   "url": "https://sketchfab.com/3d-models/a2b56b6bebfa4388a349eba131572a6f",
   "path": "glbs/000-158/a2b56b6bebfa4388a349eba131572a6f.glb",
   "faces": 2336
+ },
+ "bentwood_chair": {
+  "uid": "45405e6ec46b46629e7f4a71da5ccd1b",
+  "name": "Viennese Chair",
+  "lic": "by",
+  "user": "romasharf",
+  "url": "https://sketchfab.com/3d-models/45405e6ec46b46629e7f4a71da5ccd1b",
+  "faces": 3436,
+  "shard": "000-112",
+  "path": "glbs/000-112/45405e6ec46b46629e7f4a71da5ccd1b.glb"
+ },
+ "sideboard": {
+  "uid": "fdcb5d8fdac247a3be20c28f4da2b466",
+  "name": "Cabinet",
+  "lic": "by",
+  "user": "Wandcaster",
+  "url": "https://sketchfab.com/3d-models/fdcb5d8fdac247a3be20c28f4da2b466",
+  "faces": 454,
+  "shard": "000-062",
+  "path": "glbs/000-062/fdcb5d8fdac247a3be20c28f4da2b466.glb"
+ },
+ "tv_cabinet": {
+  "uid": "93b6cef3362c4e84ac6f12b6af11a8e1",
+  "name": "Old Chest Of Drawers 1",
+  "lic": "by",
+  "user": "rhcreations",
+  "url": "https://sketchfab.com/3d-models/93b6cef3362c4e84ac6f12b6af11a8e1",
+  "faces": 1622,
+  "shard": "000-025",
+  "path": "glbs/000-025/93b6cef3362c4e84ac6f12b6af11a8e1.glb"
  }
 }

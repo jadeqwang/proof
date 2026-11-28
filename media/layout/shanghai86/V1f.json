@@ -1687,8 +1687,8 @@
  "figure_frame_fraction": {
   "uncle": 0.09,
   "mama86": 0.0838,
-  "aunt": 0.0801,
-  "grandma": 0.0481,
+  "aunt": 0.08,
+  "grandma": 0.048,
   "jade3": 0.0043
  },
  "colour_separation": [

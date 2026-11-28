@@ -1,0 +1,7 @@
+Texture: "Herringbone Parquet" (herringbone_parquet) by Jenelle van Heerden, Sergej Majboroda on Poly Haven
+URL: https://polyhaven.com/a/herringbone_parquet
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, diffuse map, 2k JPG, 2026-11-27
+Changes: re-saved as JPEG quality 80. In the layout engine the greys are tinted to one canonical colour per material (layout/sets/shanghai86/textures.js).
+Real-world size of one tile: 3.4 x 3.4 m
+Used for: shanghai86: the waxed parquet floor (打蜡地板) of the living room and the hall

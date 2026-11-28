@@ -1026,3 +1026,81 @@ low in the lap or close in front of the chest, elbows bent and down.
   (shots.js X_SIT = { front: 'R' }, jadeSit and ripSit): with the default (left in front) her crossed foot was 23 mm
   into the coffee table in V1d_2 / REF_V1d_2_side. Paper drift contact went 21.9 -> 4.4 mm.
 - Pre-existing, slightly deeper: V1a / V1b jade3 vs uncle body overlap (skin 15.5 -> 23 mm). Feet are real size now.
+
+## 2026-11-27: furniture / costume canon (Jade: "consistent between shots and fully painted")
+
+**Read this before changing any furniture, surface or the uncle's costume.** Jade (HANDOFF "FIRST THING"): the coffee
+table, armchairs, bookcase cabinet (colour, styling, handles) and the uncle's watch and outfit changed shot to shot in the
+paintings; "fully painted or the image model will hallucinate a book shelf right into the plain back of an armchair".
+Every visible surface now carries ONE fixed texture on every side, and every piece has one canonical look.
+
+**The household (Jade, canon) and how it shaped the choices.** The family lives in the former French Concession; the
+toddler's father is among the top physicists in China: an educated, cultured household of 1986, comfortable for its time
+but in the state-allocated era, in an older Concession-era flat (original wood floors, tall steel doors, mouldings).
+Solid good-quality furniture rather than the cheapest state-factory pieces, a few older inherited pieces, lots of books,
+nothing lavish or Western-luxury. Hence: hardwood (not chipboard) tea table under plate glass; the upholstered suite kept
+as the good 1950s-80s Shanghai 单人沙发 type in plain wool; glass-fronted bookcases full of books (kept); inherited pre-1949
+pieces at the dining end (Thonet-type bentwood chairs, a dark-wood sideboard), all of which Shanghai flats of this kind
+kept through the 1980s; a newspaper and journals on the tea table's shelf (the scholarly touch). Not added (proposals for
+Jade, not built): a writing desk with papers by the windows, a valve radio on the sideboard.
+
+**Great room (Jade, canon).** The house's previously subdivided parts were remodelled and joined; her grandparents made
+the living and the dining area into ONE large great room, which is why it is much larger than the schematics an earlier
+session found. The room as built (10.5 x 6.1 m, one floor, one ceiling, the old partition only a shallow soffit) is
+correct (Jade: walls, balcony, doors and dimensions are worked out and stay). Furnished as one space with two zones: the
+living zone at the west end (couch, three armchairs and the tea table round her spot, the side table, the painting and
+scrolls on the west wall, bookcases along the north wall), the middle by the windows (her small table and chair, the
+wicker lounger facing the TV), the dining zone at the east end (the long table with eight bentwood chairs, the sideboard
+in the north-east corner, the TV cabinet on the east wall).
+
+**Reference photos (look-only, kept in the agent scratchpad, never sent to a model).** 22 photos, mostly writers' homes in
+Shanghai kept as lived in through the 1980s (Ba Jin's former residence, Ke Ling, Zhang Leping), lane-house interiors and
+1970s-90s museum rooms. They show: low dark red-brown varnished tea tables ~90-110 x 45-55 cm, 40-45 cm high, under a
+loose sheet of glass (often over cloth or crochet), softened edges, an open lower shelf, square, curved-sled or turned
+legs; boxy upholstered armchairs (often slip-covered) with white crocheted antimacassars round the tea table, a small
+round dark side table with a ring shelf; dark glass-fronted bookcases over closed cupboards standing in a row; desks
+under thick glass. The tea table, side table, crochet covers and bookcases follow these.
+
+**How it works.** `textures.js`: any look with `mat: '<key>'` gets its texture in `dress(root)` (build.js, right after
+the room and furniture are built): UVs box-projected at the texture's real size (wood grain along each face's longer side,
+cylinders wrapped), the texture re-centred so its mean is exactly the look's canonical colour (lit) and canonical grey
+(flat / label; form is modulated by it). No texture edges in line / contour (wood grain would be drawn as objects);
+geometry carries line, depth, contour and light. Garments: `dressGarment` (UVs from the figure's arm / body axes).
+
+| piece | source / licence | canonical look | in shots |
+|---|---|---|---|
+| floor (living + hall) | Poly Haven "Herringbone Parquet" (Jenelle van Heerden, Sergej Majboroda), CC0 | waxed honey-brown herringbone parquet, blocks ~7 x 35 cm, colour 0x8a5a34 (grey 0.56) | every shot |
+| walls, ceiling, soffit, facade | Poly Haven "Plastered Wall" (Amal Kumar), CC0 | smooth lime plaster, walls 0xc9c2ae (0.76), ceiling 0xd8d2c0 (0.8); contrast kept low (0.8) so it reads smooth, not stucco | every shot with a wall |
+| couch + three armchairs (one suite) | modelled (`joinery.js upholstered`; nothing in Poly Haven / Objaverse matches the Shanghai 单人沙发: the libraries' armchairs are French bergeres, rococo or club chairs, or Ming hardwood) + Poly Haven "Caban" wool (colormass, Rico Cilliers), CC0 | PLAIN brown-rust wool 0x683826, cushions 0x744130, welts 0x4e281a; boxy, rolled arms with piped scroll fronts, welt cords along every edge on all four sides (base top and foot, outside back border, under the rolls), loose seat and back cushions (three on the couch), tapered sapele legs; the backs are the same wool with a welt border | V1a, V1b, V1c, V1e, V1f, V1g, V1h, REF_* |
+| crocheted covers (沙发巾) | code-drawn (`textures.js` lace), canonical | cream thread 0xf2efe6, a grid of round flower motifs (5 cm) with picots and chain bars; over each back roll hanging 20 cm down the FRONT and 15 cm down the BACK, and over both arm rolls; also the TV cloth | same as the suite |
+| coffee table 茶几 | modelled (`joinery.js coffeeTable`) to the old footprint (0.95 x 0.55 m, glass top at 0.42 m: paper, holds and her pose unchanged) + Poly Haven "Sapele Veneer" (CC0) | dark red-brown 栗壳色 varnish 0x5c2c1c (0.36), darker apron 0x4c2416; rounded bevelled top edge; 6 mm plate glass with pale green edges over the bare wood (no lace under it: the white paper bits would mix with lace); moulded apron with a bead; four TURNED legs; lower shelf on stretchers with a folded greeked newspaper and two journals | V1a-V1h, REF_*, REF_teatable, REF_teatable_low |
+| bookcases | modelled (r4, `joinery.js bookcases`) + sapele texture | carcass 0x5a3a26, panels 0x6a4a30, pale shelf edges 0x8a6440, back 0x9a7c5a; ONE handle: a cast-brass mushroom knob (30 mm round rose, neck, 24 mm domed cap; 0.8 scale on the glazed doors); brass keyhole plates with a dark slot | V1a, V1c, V1e, V1f, V1g, REF_* |
+| side table | Poly Haven `side_table_tall_01` (James Ray Cock), CC0, real size 0.38 x 0.76 m | round dark plant-stand table with a ring shelf (its own texture) | V1e, V1f, REF_armchairs, REF_wide |
+| dining chairs (8) | "Viennese Chair" by romasharf, Sketchfab, CC BY 4.0 | dark varnished Thonet-type bentwood, round wooden seat | REF_wide, V1b (far background), V1f |
+| sideboard | "Cabinet" by Wandcaster, Sketchfab, CC BY 4.0, scaled to 0.93 m wide | dark wood, three drawers over two panelled doors, plinth | REF_wide, V1e (edge) |
+| TV cabinet | "Old Chest Of Drawers 1" by rhcreations, Sketchfab, CC BY 4.0, scaled to 0.72 m high, recoloured 0x8a6440 | mid-brown wood, two drawers over two doors; the 14" TV on it in wood-grain vinyl under the lace cloth | REF_wide, REF_doors |
+| dining table, joinery (hall doors, architraves, skirting, picture rail, frames), hall closets | modelled + sapele texture | each in its existing canonical colour | as before |
+| her small table and chair | modelled + Poly Haven "Ash Veneer" (CC0) | pale wood 0x8a6a44 | REF_wide, REF_doors |
+| wicker lounger, balcony chair, hall doormat | modelled + code rattan weave | cane 0xc8a868 / white 0xf2eee2 | REF_wide, REF_balcony, V1f |
+| uncle's watch | modelled; the DESIGN taken from the paintings (Jade: keep the painted one): media/keyframes/r3/shanghai86/V1b_v1.jpg (the r3 pick, the clearest; r2 V1a/V1b and r3 V1a agree on round steel + brown leather) | round polished-steel case ~34 mm with a slim bezel, four lugs, crown at 3; PLAIN IVORY dial, twelve tiny dark hour dots, two thin straight dark hands at 9:30, no numerals or lettering; dark-brown leather strap 18 mm with pale edge stitching, fitted to the wrist by rays onto the skin. Worn on the SKIN of the LEFT wrist 6 mm past the sweater cuff, dial on the back of the wrist, strap across the wrist, crown toward the hand | V1a, V1b |
+| uncle's outfit (as built, colours unchanged) | code-drawn knit and twill | pale cream stockinette pullover (0xe8e4d8) with 2x2 ribbed cuffs and hem (the rib sits exactly at the sleeve ends and the waist), a pale blue-grey shirt collar (two points) with a white top button at the neck, grey-blue worsted twill trousers (0x4a5560) | V1a, V1b, V1f |
+
+**Checks (2026-11-27).** Rendered with the recipe (all modes, beam masks). holdcheck: all 14 holds pass. check_bodies:
+22 of 24 pass; V1a / V1b fail on jade3 vs the uncle (body vs body; poses untouched by this pass). clipcheck: only the
+known failures (jade3 into the drift pieces; aunt / grandmother slippers 9 mm into the threshold; jade3 / uncle bodies in
+V1a / V1b) plus the uncle's trousers 47 mm into the couch's seat cushion in V1a / V1b: he sits on the front of the north
+seat at 0.42 m and the cushion top is 0.425 m (the old box couch had its cushion top at 0.42 m, so this is the same seated
+compression; a real cushion gives that much). The watch clears the skin (cloth contact 0.4-6.8 mm, within tolerance).
+Contact sheets: media/layout/_sheets/canon/shanghai86_canon_{lit,form,refs}.jpg.
+
+**Open (for Jade).**
+- **Watch orientation:** Jade asked for "12 o'clock pointing toward his hand". On a real wristwatch the strap runs across
+  the wrist through 12 and 6, so 12 points across the wrist (away from the body when you read it) and the crown at 3
+  points toward the hand; the painted V1b_v1 watch is worn that way too. Built the real way; say if you want otherwise.
+- **V1b, watch visibility:** worn on the skin past the cuff (as painted), the dial shows above the cuff in V1b; it is
+  seen edge-on in V1a. A test render with the V1b camera raised from 22 to 34 deg shows the dial better but reframes
+  the shot (the table comes in); not applied.
+- **Uncle's outfit:** the model has a pale knitted pullover only; the r3 paintings put a grey-blue padded jacket over a
+  cream ribbed sweater. If the jacket is "his current outfit", the model needs one.
+- **Mugs:** the tea mugs are modern-shaped white mugs (props phase 2); a lidded porcelain tea cup (盖杯) or enamel mug
+  would be more period. Not changed.

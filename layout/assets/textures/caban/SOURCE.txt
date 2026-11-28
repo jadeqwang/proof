@@ -1,0 +1,7 @@
+Texture: "Caban" (caban) by colormass, Rico Cilliers on Poly Haven
+URL: https://polyhaven.com/a/caban
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, diffuse map, 1k JPG, 2026-11-27
+Changes: re-saved as JPEG quality 80. In the layout engine the greys are tinted to one canonical colour per material (layout/sets/shanghai86/textures.js).
+Real-world size of one tile: 0.274 x 0.273 m
+Used for: shanghai86: the plain wool upholstery of the couch and armchairs (tinted to the canonical brown-rust)

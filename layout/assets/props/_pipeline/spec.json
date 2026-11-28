@@ -246,7 +246,7 @@
  },
  "thermos": {
   "label": "thermos flasks",
-  "use": "shanghai86: the hot-water flasks (暖水瓶)"
+  "use": "shanghai86: the hot-water flasks (\u6696\u6c34\u74f6)"
  },
  "mug": {
   "label": "mug",
@@ -392,5 +392,29 @@
   "ph": "cardboard_box_01",
   "label": "storage boxes",
   "use": "attic88_day: the storage boxes"
+ },
+ "bentwood_chair": {
+  "label": "bentwood chair",
+  "use": "shanghai86: the eight Thonet-type bentwood dining chairs (No. 14 / No. 18 type, dark varnish) round the dining table",
+  "origin": "bottom centre; front faces +z",
+  "changes": "joined into one mesh, scaled from centimetres to metres (real size kept: 0.895 m tall, seat top 0.45 m), origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only"
+ },
+ "side_table_tall": {
+  "ph": "side_table_tall_01",
+  "label": "tall side table (plant stand)",
+  "use": "shanghai86: the tall round side table / plant stand",
+  "origin": "bottom centre; front faces +z"
+ },
+ "sideboard": {
+  "label": "sideboard",
+  "use": "shanghai86: the wooden sideboard / buffet (three drawers over two doors, dark wood)",
+  "origin": "bottom centre; front faces +z",
+  "changes": "joined into one mesh, origin moved to the bottom centre (already in metres; size kept), textures cut to 1024 px JPEG base colour only"
+ },
+ "tv_cabinet": {
+  "label": "low wooden cabinet (TV stand)",
+  "use": "shanghai86: the low wooden cabinet the TV stands on (two drawers over two doors; light oak/pine)",
+  "origin": "bottom centre; front faces +z",
+  "changes": "joined into one mesh, scaled to 0.90 m wide, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only"
  }
 }

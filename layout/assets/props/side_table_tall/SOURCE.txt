@@ -1,0 +1,7 @@
+Model: "Side Table Tall 01" (side_table_tall_01) by James Ray Cock on Poly Haven
+URL: https://polyhaven.com/a/side_table_tall_01
+Licence: CC0 1.0 (public domain dedication; https://polyhaven.com/license)
+Downloaded: Poly Haven API, glTF 1k, 2026-11-27
+Changes (for this film's layout guides): joined into one mesh, scaled to metres, origin moved to the bottom centre, textures cut to 1024 px JPEG base colour only.
+Real-world size here (x, y up, z): 0.384 x 0.7612 x 0.384 m
+Used for: shanghai86: the tall round side table / plant stand
