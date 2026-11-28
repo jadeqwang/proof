@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Faceless copies of a shot's form + contour guides (2026-11-27 face-drift fix). Since 2026-11-28 (Jade) the EYES
-(whites, irises, pupils, aimed at the look target) and the canonical GLASSES stay; brows, nose, mouth and jaw shading go.
+(whites, irises, pupils, aimed at the look target), the BROWS (engine/brows.js, from the sheets) and the GLASSES stay;
+nose, mouth and jaw shading go.
 
 The r4 guides draw a generic MakeHuman face; painters copy its shape instead of the cast face crop. This blanks the
 face interior (brows, eyes, nose, mouth) of every listed figure: form -> smooth skin of the same tone, contour -> white
@@ -89,11 +90,6 @@ def main():
     warm = (form[..., 0] - form[..., 2]) > 25
     for f in figs:
         R = region_for(sc, f, cont, form, W, H)
-        if R.any():   # the brows are outlined in the contour, so the flood fill misses them: add them by shape
-            t0 = axis_t(sc, f, W, H)
-            dk = ~warm & mask_for(sc, f, W, H, 1.15) & (t0 < -0.045) & (t0 > -0.5) & (form.mean(2) < 150)
-            bro = ndi.binary_opening(dk, structure=np.ones((5, 5)))
-            R |= ndi.binary_dilation(bro, iterations=4) & mask_for(sc, f, W, H, 1.15)
         M |= R
         if not R.any():
             continue
@@ -102,12 +98,10 @@ def main():
         thick = ndi.binary_opening(nonwarm, structure=np.ones((5, 5)))      # brows (and irises) are thick; rims are thin
         eyeband = (t > -0.045) & (t < 0.11)
         glassband = (t > -0.30) & (t < 0.38)
-        keep = nonwarm & glassband & ~(thick & ~eyeband)
-        keep |= nonwarm & eyeband
+        keep = nonwarm & glassband          # eyes, BROWS (engine/brows.js, measured from the sheets, 2026-11-28) and glasses
         keep = ndi.binary_dilation(keep, iterations=1) & R
         KEEP |= keep
-        brow = ndi.binary_dilation(thick & ~eyeband & glassband, iterations=3)
-        CKEEP |= R & glassband & ~brow
+        CKEEP |= R & glassband
     if not M.any():   # faces too small to matter (wide shots): copy the guides unchanged
         Image.fromarray(form.astype(np.uint8)).save(f"{out}/{shot}_form_nf.png")
         Image.fromarray(cont.astype(np.uint8)).save(f"{out}/{shot}_contour_nf.png")

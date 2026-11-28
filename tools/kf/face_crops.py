@@ -16,6 +16,7 @@ CROPS = {
     "dad37": ("cast/dad/dad_H_heads_v5_likeness.jpg", TOP2),
     "lj07": ("cast/little_jade_07/lj07_H_heads_v1.jpg", TOP2),
     "lj10": ("cast/little_jade_10/lj10_H_heads_v1.jpg", TOP2),
+    "lj03": ("cast/little_jade_03/lj03_H_heads_v1.jpg", TOP2),
     "lj05": ("inputs/refs_chaosmonkey/little_jade/lj_H_heads_v3.jpg", TOP2),
     "jade19": ("cast/jade_19/jade19_H_heads_v1.jpg", TOP2),
     "jade27": ("cast/jade_27/jade27_H_heads_v1.jpg", TOP2),
