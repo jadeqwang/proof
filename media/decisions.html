@@ -19,7 +19,9 @@
   h2 small { color:var(--mute); font-size:14px; margin-left:8px; }
   .card { background:#fffdf7; border:1px solid var(--line); border-left:4px solid var(--gold); margin:16px 0; padding:16px 20px; border-radius:3px; }
   .card.answered { border-left-color:var(--done); }
-  .card h3 { margin:0 0 6px; font-size:18px; }
+  .card h3 { margin:0 0 6px; font-size:18px; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+  .card h3 .t { color:var(--gold); font-size:15px; font-family:ui-monospace, Menlo, monospace; }
+  .card h3 .set { color:var(--mute); font-size:13px; font-weight:normal; }
   .card .ctx { color:var(--mute); font-size:15px; margin:0 0 10px; }
   .imgs { display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 12px; }
   .imgs figure { margin:0; flex:1 1 300px; max-width:560px; }
@@ -51,7 +53,7 @@
   <button class="primary" onclick="exportAnswers()">Copy my answers</button>
 </header>
 <main>
-  <p class="note">Rebuilt 2026-11-26 (night) for round 6, after your round-5 answers were taken in (all answers so far are listed at the bottom). Each card is one open decision. Choose an option or write a note; nothing is required, and anything you leave blank keeps the current choice (marked <span style="color:var(--gold)">current / suggested</span>). Your answers are saved in this browser as you go. When you're done, press <b>Copy my answers</b> and paste the text into the chat. Click any picture to enlarge it. Renders are layout guides (rigged bodies, flat colour, blank faces): judge layout, staging and light, not looks.</p>
+  <p class="note">Rebuilt 2026-11-26 (night) for round 6, after your round-5 answers were taken in (all answers so far are listed at the bottom). Each card is one open decision. Choose an option or write a note; nothing is required, and anything you leave blank keeps the current choice (marked <span style="color:var(--gold)">current / suggested</span>). Your answers are saved in this browser as you go. When you're done, press <b>Copy my answers</b> and paste the text into the chat. Click any picture to enlarge it. Renders are layout guides (rigged bodies, flat colour, blank faces): judge layout, staging and light, not looks. Cards about a shot carry its time in the song and are in song order; the bar at the bottom plays the song (space bar too) and walks the page with it. Scroll yourself and it stops following; <b>Play from here</b> resumes at the card in view, and clicking a card's time plays from there.</p>
   <p class="note"><b>Keyframes:</b> the new round painted from these renders is reviewed on its own page, <a href="keyframes/r4/index.html">keyframes/r4/index.html</a>. It is local only (keyframes stay out of the public repo), so the link works only on your computer, and only once that round is finished.</p>
   <div id="cards"></div>
   <details class="done" id="done"></details>
@@ -60,55 +62,59 @@
 <div id="out"><b>Paste this into the chat:</b><textarea id="outText" readonly></textarea><div><button class="primary" onclick="copyOut()">Copy to clipboard</button> <button onclick="document.getElementById('out').style.display='none'">Close</button> <span id="copied" class="note"></span></div></div>
 
 <script>
+// Cards: { sec, id, t?, title, ctx, imgs?, audio?, vids?, opts, rec }. t = the song time (-2sm master, "m:ss.s" or
+// "m:ss.s-m:ss.s") of the shot the card is about: look it up with `python3 tools/pages/songfollow.py time <SHOT>`.
+// Cards with t are shown in song order under the song's sections and are followed by the player bar
+// (tools/pages/songfollow.js, the block at the end of the page); cards without t go to the end, grouped by sec.
 // Image paths are relative to this file (media/). L = layout renders, ART = canonical background-art images, A = audio excerpts of inputs/Proof (-2sm).wav. vids = video clips.
 const L = (p) => 'layout/' + p;
 const A = (p) => 'decisions_audio/' + p;
 const ART = (p) => '../layout/assets/art/' + p;
 const D = [
  // ---------------------------------------------------------------- Office 1991
- { sec:"Office 1991", id:"off_shoulder", title:"The social worker's shoulders: fixed?",
+ { sec:"Office 1991", id:"off_shoulder", t:"1:35.6-1:36.0", title:"The social worker's shoulders: fixed?",
    ctx:"Found the cause: a twist error in the engine hit every figure turned away from the camera's main axis (her, and Mama whenever she turns). The parents faced the other way, which is why theirs looked right. Fixed for everyone: her upper-arm twist went from about 175° to 0-1°.",
    imgs:[[L("office91/REF_sw_back_lit.png"),"From behind"],[L("office91/REF_sw_side_lit.png"),"From the side"],[L("office91/X_sw_lit.png"),"X_sw"]],
    opts:["Fixed","Still wrong (say where, below)"], rec:0 },
- { sec:"Office 1991", id:"bo2_finger", title:"BO2: your finger on the middle of the gap?",
+ { sec:"Office 1991", id:"bo2_finger", t:"1:34.7-1:35.6", title:"BO2: your finger on the middle of the gap?",
    ctx:"Your fingertip now lands on the middle of the missing slot, in line with the column above and below (it was 6.4 mm past it). The social worker's finger stays on ANXIOUS. The frame is no longer blown out.",
    imgs:[[L("office91/BO2_lit.png"),"BO2"]],
    opts:["Right","Still off (below)"], rec:0 },
  // ---------------------------------------------------------------- Market 1993
- { sec:"Market 1993", id:"mk_cart_size", title:"The grandmother's cart",
+ { sec:"Market 1993", id:"mk_cart_size", t:"2:15.2-2:16.1", title:"The grandmother's cart",
    ctx:"Swapped for a downloaded supermarket cart (the market is a US supermarket): chrome wire, red handle and trim, a child seat, no logos, a medium US size (0.98 m tall). Settled on its wheels with the physics engine.",
    imgs:[[L("market93/M4b_lit.png"),"M4b"]],
    opts:["Right","Bigger","Something else (below)"], rec:0 },
  // ---------------------------------------------------------------- Attic
- { sec:"Attic", id:"ad_trace_read", title:"AD_trace: does it read as tracing?",
+ { sec:"Attic", id:"ad_trace_read", t:"1:36.0-1:37.4", title:"AD_trace: does it read as tracing?",
    ctx:"No longer a thumbs-up: your index fingertip is on the frost fern, the other fingers curled, and the camera is now at your right side (from straight behind, even a correct finger read as a raised digit). It is a plain cut from BO2.",
    imgs:[[L("attic88_day/AD_trace_lit.png"),"AD_trace"]],
    opts:["Reads as tracing","Still reads as pointing (below)","Something else (below)"], rec:0 },
  // ---------------------------------------------------------------- Wall
- { sec:"Wall", id:"wl_top_look", title:"WL_top as built",
+ { sec:"Wall", id:"wl_top_look", t:"1:51.0-1:52.2", title:"WL_top as built",
    ctx:"Now a real shot at 1:51.0-1:52.2, straight down into the cavity onto the five heads in their stud bays, the blade of light across the floor. WL_in follows at 1:52.2-1:54.5. The stray hand by Mama's ear in WL_in was the praying worker's; it's now tucked away.",
    imgs:[[L("wall88/WL_top_lit.png"),"WL_top"],[L("wall88/WL_in_lit.png"),"WL_in"]],
    opts:["Good","Change it (below)"], rec:0 },
  // ---------------------------------------------------------------- Basement and kitchen
- { sec:"Basement and kitchen (Decatur 1990)", id:"b_glow", title:"The screen's glow on faces, now the screen is blue",
+ { sec:"Basement and kitchen (Decatur 1990)", id:"b_glow", t:"2:17.2-2:18.3", title:"The screen's glow on faces, now the screen is blue",
    ctx:"The screen is QBasic's default light grey on blue. The light it throws on your faces is still the cool white you chose in round 4.",
    imgs:[[L("basement90/B2_face_lit.png"),"B2"],[L("basement90/B3_finger_lit.png"),"B3"]],
    opts:["Keep cool white","A light blue cast","Something else (below)"], rec:0 },
- { sec:"Basement and kitchen (Decatur 1990)", id:"k_fold_side", title:"Which foot are you sitting on?",
+ { sec:"Basement and kitchen (Decatur 1990)", id:"k_fold_side", t:"2:22.2-2:23.7", title:"Which foot are you sitting on?",
    ctx:"Built: at 7, sitting on your folded left foot (10 cm higher), the right leg dangling off the chair front. The side is our guess.",
    imgs:[[L("kitchen90/K0_seat_side_form.png"),"Side view (form)"],[L("kitchen90/K0_wide_night_form.png"),"K0 wide"]],
    opts:["Left foot under, right dangling","The other way","Doesn't matter"], rec:0 },
  // ---------------------------------------------------------------- Morton Grove 2007
- { sec:"Morton Grove 2007", id:"mg_ceiling_high", title:"Ceiling height on the mirror side",
+ { sec:"Morton Grove 2007", id:"mg_ceiling_high", t:"2:39.6-2:42.0", title:"Ceiling height on the mirror side",
    ctx:"From the street view: scale from the front door (36 × 80 in), the wall plate at 8 ft, the front gable pitch about 7 in 12 (30°), the two-storey wing's ridge about 5.35 m above the main floor. Carrying 30° across the whole 6.3 m room would give 6.0 m, above the wing's ridge, so the photo rules it out. Built: one plane from 2.44 m at the dining wall to 5.10 m on the mirror side (about 23°). The wall behind the couch runs 3.05-5.10 m.",
    imgs:[[L("mortongrove07/REF_north_lit.png"),"REF north"],[L("mortongrove07/MG_wide_lit.png"),"MG wide"]],
    opts:["5.1 m, as built","6.0 m (the gable pitch all the way)","5.2 m with a flat 8 ft stretch over the dining side","Something else (below)"], rec:0 },
- { sec:"Morton Grove 2007", id:"mg_horse", title:"The horse and the piano",
+ { sec:"Morton Grove 2007", id:"mg_horse", t:"2:39.6-2:42.0", title:"The horse and the piano",
    ctx:"The horse gallops left, with one vermilion seal at the upper right (the old invented inscription is painted out). The piano is polished black all over; only the keys and brass pedals aren't. Still open: the two hands pinching the hoodie fold sit about 15 mm into it in the model (every fix showed the Truth print); the painter is told to draw them on the cloth.",
    imgs:[[ART("mortongrove07/mg_picture.png"),"The horse"],[L("mortongrove07/MG_wide_lit.png"),"In the room"]],
    opts:["Good","Change (below)"], rec:0 },
  // ---------------------------------------------------------------- Shanghai 1986
- { sec:"Shanghai 1986", id:"sh_jamb", title:"Mama's hand on the door jamb (V1e)",
+ { sec:"Shanghai 1986", id:"sh_jamb", t:"0:48.1-0:50.5", title:"Mama's hand on the door jamb (V1e)",
    ctx:"Every wrist in Shanghai is now in a natural range. To get there, Mama's hand on the jamb is at shoulder height with her arm held out, and in V1e it reads a little stiff. Her elbow can't go back further without going into the wall.",
    imgs:[[L("shanghai86/V1e_lit.png"),"V1e"]],
    opts:["Fine","Lower it, even if her elbow has to move away from the wall","Something else (below)"], rec:0 },
@@ -118,11 +124,11 @@ const D = [
    imgs:[["../cast/first_love/fl_B_backhead_neck_v8.png","B v8"]],
    opts:["Right","Still too light/red","Something else (below)"], rec:0 },
  // ---------------------------------------------------------------- Playground 2023
- { sec:"Playground 2023", id:"pg_look", title:"PG1 as rebuilt",
+ { sec:"Playground 2023", id:"pg_look", t:"4:21.7-4:24.1", title:"PG1 as rebuilt",
    ctx:"The shuttle follows your photo (low white body, black-and-white panelled ramp, black block, arch). From behind, the girl climbs the ramp holding your hand, the boy steps up holding Dad's. Dad: salt-and-pepper, white temples, semi-rimless glasses, white polo, black pants, a plain black backpack with a black-and-green pixel bottle and a pink cat bottle. You: the Rare Earth outfit (the back circle blank; the trousers come out slimmer than your sheet, and the painter is told to widen them). The boy is in grey socks.",
    imgs:[[L("playground23/PG1_lit.png"),"PG1"],[L("playground23/PG2_lit.png"),"PG2"]],
    opts:["Good","Change (below)"], rec:0 },
- { sec:"Playground 2023", id:"pg_shoes_jade", title:"You in socks or sneakers?",
+ { sec:"Playground 2023", id:"pg_shoes_jade", t:"4:21.7-4:24.1", title:"You in socks or sneakers?",
    ctx:"Built in white socks (the play area's rule for climbers). Your Rare Earth outfit has white sneakers.",
    opts:["Socks","White sneakers","Something else (below)"], rec:0 },
 ];
@@ -292,14 +298,27 @@ const state = JSON.parse(localStorage.getItem(KEY) || '{}');
 const save = () => { localStorage.setItem(KEY, JSON.stringify(state)); count(); };
 const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
+const songT = (v) => { const m = String(v ?? '').match(/^~?(\d+):(\d+(?:\.\d+)?)/); return m ? +m[1] * 60 + +m[2] : null; };
+const fmtT = (x) => `${Math.floor(x / 60)}:${(x % 60).toFixed(1).padStart(4, '0')}`;
+function order() {
+  // timed cards in song order under the song's sections (from tools/pages/song_m2sm.js); untimed ones after, by topic
+  const timed = D.filter(d => songT(d.t) != null), untimed = D.filter(d => songT(d.t) == null);
+  if (!timed.length) return D.map(d => [d, d.sec, '', '']);
+  const S = (window.SONG_M2SM || {}).sections || [];
+  const secOf = (t) => { let x = null; for (const s of S) if (s.t <= t + 1e-6) x = s; return x; };
+  timed.sort((a, b) => songT(a.t) - songT(b.t));
+  return timed.map(d => { const x = secOf(songT(d.t)); return [d, x ? x.short : 'Song', x ? `${fmtT(x.t)}-${fmtT(x.end)}` : '', d.sec]; })
+    .concat(untimed.map(d => [d, 'No song time · ' + d.sec, '', '']));
+}
 function render() {
   const root = document.getElementById('cards'); const secs = [];
   let cur = null;
-  for (const d of D) {
-    if (d.sec !== cur) { cur = d.sec; secs.push(cur); const h = document.createElement('h2'); h.id = 'sec-' + secs.length; h.innerHTML = esc(cur); root.appendChild(h); }
+  for (const [d, sec, secTime, topic] of order()) {
+    if (sec !== cur) { cur = sec; secs.push(cur); const h = document.createElement('h2'); h.id = 'sec-' + secs.length; h.innerHTML = esc(cur) + (secTime ? `<small>${esc(secTime)}</small>` : ''); root.appendChild(h); }
     const s = state[d.id] || {};
     const c = document.createElement('div'); c.className = 'card'; c.id = d.id;
-    let h = `<h3>${esc(d.title)}</h3>`;
+    if (songT(d.t) != null) c.dataset.t = d.t;
+    let h = `<h3>${songT(d.t) != null ? `<span class="t">${esc(d.t)}</span> ` : ''}${esc(d.title)}${topic ? `<span class="set">${esc(topic)}</span>` : ''}</h3>`;
     if (d.ctx) h += `<p class="ctx">${esc(d.ctx)}</p>`;
     if (d.imgs) h += '<div class="imgs">' + d.imgs.map(([src, cap]) => `<figure><img src="${esc(src)}" loading="lazy" alt="${esc(cap)}" onerror="this.outerHTML='<div class=missing>not rendered yet: ${esc(src)}</div>'"><figcaption>${esc(cap)}</figcaption></figure>`).join('') + '</div>';
     if (d.audio) h += '<div class="auds">' + d.audio.map(([src, cap]) => `<figure><audio controls preload="none" src="${esc(src)}"></audio><figcaption>${esc(cap)}</figcaption></figure>`).join('') + '</div>';
@@ -308,7 +327,7 @@ function render() {
     h += `<textarea placeholder="Notes or corrections (optional)" data-id="${d.id}">${esc(s.note || '')}</textarea>`;
     c.innerHTML = h; root.appendChild(c);
   }
-  document.getElementById('nav').innerHTML = secs.map((s, i) => `<a href="#sec-${i + 1}">${esc(s)}</a>`).join('') + '<a href="#done">Answered</a>';
+  document.getElementById('nav').innerHTML = secs.map((s, i) => `<a href="#sec-${i + 1}">${esc(s.replace(/^No song time · /, ''))}</a>`).join('') + '<a href="#done">Answered</a>';
   document.getElementById('done').innerHTML = `<summary>Answered ${esc(DONE_DATE)}: what was taken in</summary>` + DONE.map(([sec, lines]) => `<h4>${esc(sec)}</h4><ul>${lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>`).join('');
   root.addEventListener('change', (e) => { if (e.target.type === 'radio') { (state[e.target.name] ||= {}).choice = +e.target.value; save(); mark(); } });
   root.addEventListener('input', (e) => { if (e.target.tagName === 'TEXTAREA') { (state[e.target.dataset.id] ||= {}).note = e.target.value; save(); mark(); } });
@@ -332,7 +351,13 @@ function exportAnswers() {
   document.getElementById('out').style.display = 'flex'; document.getElementById('copied').textContent = '';
 }
 function copyOut() { const t = document.getElementById('outText'); t.select(); navigator.clipboard?.writeText(t.value).then(() => document.getElementById('copied').textContent = 'Copied.', () => { document.execCommand('copy'); document.getElementById('copied').textContent = 'Copied.'; }); }
-render();
+document.addEventListener('DOMContentLoaded', render);   // after tools/pages/song_m2sm.js (end of the page) has loaded
 </script>
+<!-- songfollow:begin -->
+<link rel="stylesheet" href="../tools/pages/songfollow.css">
+<script src="../tools/pages/song_m2sm.js"></script>
+<script src="../tools/pages/songfollow.js"></script>
+<script>SongFollow.init({"audio": "../inputs/Proof%20%28-2sm%29.mp3", "cards": ".card", "timeLabel": ".t", "groupUntimed": false});</script>
+<!-- songfollow:end -->
 </body>
 </html>

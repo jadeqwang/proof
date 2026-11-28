@@ -14,6 +14,10 @@ Built from r3_page.py (same cards, film order, lyric, answers). What r4 adds:
   carried cards show the r3 guides (the r3 snapshot) and repainted cards also show the r3 pick for comparison.
 - Jade's r3 verdict + note on every card she answered. Answers persist in localStorage under 'proof-kf-r4'; "Copy my
   answers" produces a block beginning `Keyframes r4 (from media/keyframes/r4/index.html):`.
+- Song follow (tools/pages/songfollow.js): a player bar plays inputs/Proof (-2sm).mp3 and walks the cards with it. Each
+  card's song time (data-t, -2sm) is cross-checked against layout/sets/<set>/shots.js: where shots.js is newer (a time
+  picks.json lacks, or one it disagrees with) shots.js wins and the card says so ("Song time" line, amber); every such
+  card is also listed in the intro. Cards with no time at all go to the "Untimed" group at the end.
 """
 import html
 import json
@@ -23,6 +27,8 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "pages"))
+import songfollow  # noqa: E402  (tools/pages: the song player bar)
 import r2_page  # noqa: E402
 import r3_page  # noqa: E402  (PLATES, SLOT_PLATES, SETS, time helpers, the r3 snapshot paths, TEMPLATE)
 
@@ -77,6 +83,92 @@ def load(p):
     return json.load(open(p)) if os.path.exists(p) else {}
 
 
+UNTIMED_SEC = "Untimed: references, alternates and shots with no song time"
+_TIME = r"~?(\d+):(\d+(?:\.\d+)?)"
+
+
+def secs(m, i=1):
+    return int(m.group(i)) * 60 + float(m.group(i + 1))
+
+
+def label_span(label):
+    """'2:17.2-2:18.3 Verse 2b' -> (137.2, 138.3); a single time -> (t, None); no time -> (None, None)."""
+    m = re.match(r"\s*" + _TIME + r"(?:\s*[-\u2013]\s*" + _TIME + ")?", label or "")
+    if not m:
+        return None, None
+    return secs(m), (secs(m, 3) if m.group(3) else None)
+
+
+_SHOTS_JS = {}
+
+
+def shots_js(st):
+    """layout/sets/<set>/shots.js -> {id: (start or None, end or None, label)} from `t: [a, b]` or `time: '...'`.
+    A plain text scan (the modules import three.js): only the block from one `id: '...'` to the next is read."""
+    if st in _SHOTS_JS:
+        return _SHOTS_JS[st]
+    out = {}
+    p = os.path.join(ROOT, "layout", "sets", st, "shots.js")
+    src = open(p).read() if os.path.exists(p) else ""
+    for m in re.finditer(r"\bid: '([\w\-]+)'", src):
+        blk = src[m.end():m.end() + 4000]
+        nx = re.search(r"\bid: '", blk)
+        blk = blk[:nx.start()] if nx else blk
+        t = re.search(r"\bt: \[([\d.]+), ([\d.]+)\]", blk)
+        tm = re.search(r"\btime: '((?:[^'\\]|\\.)*)'", blk)
+        hd = re.search(r"\bheader: '((?:[^'\\]|\\.)*)'", blk)
+        if hd:
+            out.setdefault("_header", {})[m.group(1)] = hd.group(1).replace("\\'", "'")
+        if t:
+            a, b = float(t.group(1)), float(t.group(2))
+            out.setdefault(m.group(1), (a, b, f"{r3_page.mmss(a)}-{r3_page.mmss(b)}"))
+        elif tm:
+            lab = tm.group(1).replace("\\'", "'")
+            a, b = label_span(lab)
+            out.setdefault(m.group(1), (a, b, lab))
+    _SHOTS_JS[st] = out
+    return out
+
+
+def check_time(sid, st, t, label, header, footage):
+    """Cross-check a shot card's time with shots.js and its header -> (t, label, end, [flags]).
+    t >= 9000 means no time. shots.js wins over picks.json where they differ (it is edited later: Jade's decisions
+    land there first); footage cards keep footage_slots.json's time (the plan's)."""
+    flags = []
+    a, b = label_span(label) if t < 9000 else (None, None)
+    end = b
+    sj = shots_js(st).get(sid)
+    if sj:
+        sa, sb, slab = sj
+        if footage:
+            if sa is not None and abs(sa - t) > 0.3:
+                flags.append(f"shots.js says {slab}; footage_slots.json's {label} is kept (footage cards follow the plan)")
+        elif sa is None and t < 9000 and "alternate" in slab.lower():
+            flags.append(f"shots.js: {slab}; untimed here (picks.json said {label})")
+            return 9999, "alternate (untimed)", None, flags
+        elif sa is not None and (t >= 9000 or abs(sa - t) > 0.3 or (sb and b and abs(sb - b) > 0.3)):
+            was = "no time in picks.json" if t >= 9000 else f"picks.json said {label}"
+            flags.append(f"{was}; using shots.js: {slab}")
+            t, label, end = sa, (f"{r3_page.mmss(sa)}-{r3_page.mmss(sb)}" if sb else r3_page.mmss(sa)), sb
+    if t >= 9000:
+        header = header or shots_js(st).get("_header", {}).get(sid, "")
+        m = re.match(r"\s*" + _TIME + r"(?:\s*[-\u2013]\s*" + _TIME + ")?", header or "")
+        if m:
+            t, end = secs(m), (secs(m, 3) if m.group(3) else None)
+            label = r3_page.mmss(t) + (f"-{r3_page.mmss(end)}" if end else "")
+            flags.append(f"no time in picks.json or shots.js; placed at the header's {label}")
+        else:
+            flags.append("no song time anywhere (picks.json, shots.js, header): untimed")
+            return 9999, "untimed", None, flags
+    elif not sid.endswith("_end"):
+        m = re.search(_TIME, header or "")
+        if m and abs(secs(m) - t) > 0.6:
+            flags.append(f"the header says {m.group(0)}, the card {label}")
+    if t > songfollow.DURATION:
+        flags.append(f"{r3_page.mmss(t)} is past the end of the song ({r3_page.mmss(songfollow.DURATION)})")
+    return t, label, end, flags
+
+
 def main():
     lines = json.load(open(os.path.join(ROOT, "media", "karaoke_v2", "lyrics_timed.json")))["lines"]
     slots = json.load(open(os.path.join(R3, "footage_slots.json")))["shots"]
@@ -102,13 +194,14 @@ def main():
             if t is None:
                 t = r3_page.FALLBACK.get(sid, r3_page.R2T.get(sid, 9000))
                 label = (label + " " if label else "") + f"(no time in picks.json; placed at {r3_page.mmss(t)})"
-            if sid == "X_sw":
-                t, label = 95.0, "spare (not timed)"
+            foot = bool(slot) or (pk3.get("source") == "footage" and not (pk4 or job))
+            t, label, t_end, tflags = check_time(sid, s, t, label, base.get("header") or "", foot)
             jv, jn = jade.get(sid, ("", ""))
             c = {"id": sid, "set": s, "t": t, "time": label, "header": base.get("header") or "", "kind": "shot",
                  "status": (pk4 or {}).get("status", ""), "note": (pk4 or {}).get("note", ""),
                  "jade": (jv + (" — " + jn if jn else "")) if jv else "(not reviewed in r3)",
-                 "isnew": sid in NEW_IDS and not pk3, "guides": [], "takes": [], "pairs": []}
+                 "isnew": sid in NEW_IDS and not pk3, "guides": [], "takes": [], "pairs": [],
+                 "tEnd": t_end, "tflag": "; ".join(tflags)}
             new_guides = []
             for kind in ("contour", "form", "light"):
                 g = f"media/layout/{s}/{sid}_{kind}.png"
@@ -186,15 +279,28 @@ def main():
         retired.append([sid, s, why, ""])
     rank = {k: i for i, k in enumerate(r3_page.TIEBREAK)}
     cards.sort(key=lambda c: (r3_page.SORT_T.get(c["id"], c["t"]), rank.get(c["id"], 0)))
+    flagged = []
     for c in cards:
         sec = [x for x in r2_page.SECTIONS if x[0] <= c["t"] + 1e-6][-1]
         c["sec"], c["secTime"] = sec[1], sec[2]
+        if c["t"] >= 9000:   # no song time: the untimed group at the end, never highlighted
+            c["sec"], c["secTime"], c["sf"] = UNTIMED_SEC, "", None
+        else:
+            c["sf"] = round(r3_page.SORT_T.get(c["id"], c["t"]), 2)
+            if c.get("tEnd") is None:
+                c["tEnd"] = label_span(c["time"])[1]
+        if c.get("tflag"):
+            flagged.append(f"<a href=\"#c-{html.escape(c['id'])}\">{html.escape(c['id'])}</a>: {html.escape(c['tflag'])}")
     unreviewed = sum(1 for c in cards if c.get("jade") == "(not reviewed in r3)")
     head = [
         "<b>New guides.</b> Every set was re-rendered with rigged human bodies, eyes aimed at what each person looks at, the real clothing colours, and fixed wall art, book spines, logos and screens. Each repainted take is shown next to the guide it was painted from.",
         f"<b>What is new:</b> {counts['painted']} shots repainted, {counts['pending']} queued or waiting; {counts['carried']} carried from r3 (marked Good, or not reviewed yet: {unreviewed} cards had no r3 answer); {counts['footage']} footage cards and the plates unchanged; dropped: {', '.join(DROPPED) or 'none'}.",
         "<b>Your r3 answer</b> is on every card you answered (purple). Repainted cards also show the r3 pick small, for comparison.",
+        "<b>Play the song</b> with the bar at the bottom (or the space bar): the page scrolls to the card on screen at that moment and marks it; the cards already passed are dimmed. Scroll yourself and it stops following (or pauses: your choice in the bar); <b>Play from here</b> resumes at the first card in view, and clicking a card's time plays from that card.",
     ]
+    if flagged:
+        head.append(f"<b>Song times to check ({len(flagged)}):</b> amber \"Song time\" line on each card.<ul class=\"note\">"
+                    + "".join(f"<li>{x}</li>" for x in flagged) + "</ul>")
     qs = {}
     page = (r3_page.TEMPLATE.replace("__DATA__", json.dumps(cards, ensure_ascii=False))
             .replace("__RETIRED__", json.dumps(retired, ensure_ascii=False))
@@ -211,7 +317,11 @@ def main():
             .replace("if (c.takes.length) h += `<div class=\"note\">${c.kind === 'footage' ? 'set agent\\'s still' : 'other takes'}</div>",
                      "if (c.pairs && c.pairs.length) h += '<div class=\"note\">r4 takes, each beside its new guide</div>' + c.pairs.map(p => '<div class=\"takes\">' + fig(p[0]) + (p[1] ? fig(p[1]) : '') + '</div>').join('');\n      if (c.takes.length) h += `<div class=\"note\">${c.kind === 'footage' ? 'set agent\\'s still' : 'earlier / other takes'}</div>")
             .replace("if (c.kind === 'plate') {\n      h += '<div class=\"imgs\">'", "if (c.kind === 'plate') {\n      if (c.jade) h += `<p class=\"ctx jade\"><b>Your r3 answer:</b> ${esc(c.jade)}</p>`;\n      h += '<div class=\"imgs\">'"))
-    for must in (f"const KEY = '{KEY}';", "r4 takes, each beside its new guide", "Keyframes r4 (from"):
+    page = (page.replace("d.className = 'card ' + c.kind; d.id = 'c-' + c.id;",
+                         "d.className = 'card ' + c.kind; d.id = 'c-' + c.id;\n    if (c.sf != null) { d.dataset.t = c.sf; if (c.tEnd) d.dataset.tEnd = c.tEnd; }")
+            .replace("    if (c.diff) h +=", "    if (c.tflag) h += `<p class=\"ctx diff\"><b>Song time:</b> ${esc(c.tflag)}</p>`;\n    if (c.diff) h +="))
+    page = songfollow.inject(page, os.path.join(R4, "index.html"), cards=".card", time_label="h3 .t")
+    for must in (f"const KEY = '{KEY}';", "r4 takes, each beside its new guide", "Keyframes r4 (from", "d.dataset.t = c.sf", "Song time:</b>", "songfollow:begin"):
         if must not in page:
             raise SystemExit(f"template patch failed: {must!r} not found (r3_page.TEMPLATE changed?)")
     os.makedirs(R4, exist_ok=True)
