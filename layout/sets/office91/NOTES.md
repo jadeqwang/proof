@@ -1,5 +1,40 @@
 # office91 — notes and assumptions
 
+## 2026-11-28: FE_thumbs restaged (Jade, r4 keyframe notes: "Wrong staging ... replace with: little jade has an unimpressed smirk, and slightly narrows one eye, and mom has arms folded")
+- **The cheek-push is gone** (`momThumbs` / `CHEEK_HAND` kept in shots.js for reference, unused). Corridor at ten, right
+  after "But not like that" (-2sm 18.23-19.0, unchanged).
+- **Mom, arms folded** (`momFolded`, `FOLD`, `foldArm` in shots.js): upright (bend 4), at `MOM_HALL2` [-2.68, 0.06], body
+  turned 35 deg short of square-on to her daughter (open to the camera), head and eyes on the girl (`turn: -20`: the eyes
+  take the last 20 deg). Posed from look-only reference photos (Wikimedia Commons image search "woman arms crossed
+  standing", six photos, kept in the lead's scratchpad `armsref/`, never sent to a model; compare sheet
+  `armsref/fold_refs_vs_render.jpg`): forearms stacked across the body just under the bust, RIGHT forearm on top, elbows
+  by the sides and a little forward, shoulders down; her right hand on the front-outer face of her left upper arm at the
+  elbow, fingers curled round it; her left hand on the outside of her right upper arm, under the right forearm. Targets
+  are body-frame offsets from `self:shoulderC` (the left arm is solved before the right shoulder point exists).
+  Wrists: the engine's natural-wrist pass turns her left hand 6.7 deg (flex 66.7 -> in range); right in range.
+  Fold checks (not shots): `REF_fold_front / _side / _top / _low`.
+- **Little Jade (10)** (`kidSmirk`): back to the wall, body yaw -100 (10 deg toward Mom), head `look: 'mama91:eyes'`,
+  `turn: 25` (the head stays 25 deg short of Mom, toward the camera; the eyes slide the rest, 25.7 deg, up 13 deg), tilt
+  7 toward her right shoulder, nod 3. Eyes aimed at Mom's eyes (gaze error 0, check_bodies: rays meet at 0.53 m).
+- **The smirk and the narrowed eye are NOT in the 3D face**: the MPFB bodies have no lid or mouth controls (no eyelid
+  bones, no shape keys), and the painter takes faces from the face crop (faceless guides keep eyes, brows, glasses). So
+  the prompt carries them: one corner of the mouth (her LEFT, the corner nearer the camera, the right-hand side of her
+  face in the picture) pulled up, lips closed; the eye on that side slightly narrowed; unimpressed, not mean.
+- **Camera changed** (it had to: the old one looked over Mom's back, so her arms could not show): FE_out's side of the
+  corridor, orbit at the mid-point of the two pairs of eyes, az -75, el 0, dist 1.5, 40 mm, aim (0.5, 0.36). Mom at the
+  left from the knees up (face in profile, folded arms at the middle of the left half), the girl right of centre,
+  three-quarter to the lens, cut at the hips. Background is the canonical corridor: the class-art board (city street,
+  handprint turkey) at the left edge, plain wall and the dark nameplate behind the girl, the counselor's door and knob
+  at the right edge.
+- **Checks**: clipcheck FE_thumbs pass (no body vs body, joints in range); check_bodies FE_thumbs PASS (clearance > 50 mm);
+  holdcheck: nothing held. (FE_out FAILS both, pre-existing and untouched here: Mom's right hand 48 mm into the girl's
+  shoulder; flag for whoever owns FE_out.)
+- **Prompt** (media/keyframes/r4/office91/_prompts/_make.py `HALL["FE_thumbs"]`): new SUBJECT / crop / gaze; refs her10_face +
+  mama_face (the expressions sheet and the hands sheet dropped: the sheet has no smirk and its grins would pull the
+  mouth). 6 images in all, so the job routes to gpt2 (paid route: needs Jade's OK) as before; FE_thumbs.gpt2.txt in that
+  folder is the OLD cheek-push text, stale.
+- Before/after: media/layout/office91/_FE_thumbs_before_after.png (lit, form).
+
 ## 2026-11-27: the PC1 background locked (Jade: the grey cabinet, the wall art and the clock moved from take to take)
 - **Cause.** The PC1 guide's frame showed two turkeys and half the board. The prompt named three turkeys, five board pictures,
   "two more pictures beyond the board", a wall clock and "at the far right edge, the narrow side of a grey steel filing

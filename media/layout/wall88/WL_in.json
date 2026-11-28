@@ -270,7 +270,7 @@
  "lights": [
   {
    "name": "blade",
-   "kind": "bare bulb in the room beyond, through the crack",
+   "kind": "bare 60 W bulb hanging in the back room beyond the boards (outside the wall), through the crack",
    "on": true,
    "color": "#ffe2b0",
    "world": [
@@ -291,7 +291,7 @@
    "aim_world": [
     -0.16,
     1.161,
-    -0.25
+    -0.025
    ]
   }
  ],
@@ -303,7 +303,7 @@
   "wrist: w3 L hand turned 52.1 deg toward the forearm to keep the wrist in range (was flex -107.3, radial -122.9)",
   "wrist: w3 R hand turned 62 deg toward the forearm to keep the wrist in range (was flex -113.9, radial -128.1)"
  ],
- "intent": "r3 (Jade): they blink in and out. A single file of Chinese restaurant workers, backs to the brick (frame-left), facing the boards (frame-right), holding their breath, terrified, some praying silently. They blink in and out of existence and then it is the empty wall space again (WL_in_empty). The blade crosses them at the waist. Faces unreached (strangers): fear and prayer are in hands, shoulders and bowed heads.",
+ "intent": "r3 (Jade): they blink in and out. A single file of Chinese restaurant workers, backs to the brick (frame-left), facing the boards (frame-right), holding their breath, terrified, some praying silently. They blink in and out of existence and then it is the empty wall space again (WL_in_empty). The blade (from the bare bulb in the back room beyond the boards, through the crack, falling right to left) crosses Mama and the praying woman low, at the waist; the three beyond them stand in the dark. Faces unreached (strangers): fear and prayer are in hands, shoulders and bowed heads.",
  "film": {
   "time": "1:52.2-1:54.5 (they blink in and out; r5: after WL_top 1:51.0-1:52.2)",
   "section": "Chorus 1 (\"Nowhere to go\") into Tail 1",
@@ -311,7 +311,7 @@
  },
  "beam": {
   "name": "blade",
-  "kind": "a blade of light through a crack between two boards (bare bulb in the room beyond)",
+  "kind": "a blade of light through a crack between two boards (a bare bulb hanging in the back room beyond the boards, high and toward the closed end)",
   "model": "diverging from a point source",
   "source_world": [
    -1.38,
@@ -332,12 +332,12 @@
    [
     -0.16,
     1.1592,
-    0.1
+    0.55
    ],
    [
     -0.16,
     1.146,
-    0.1
+    0.55
    ],
    [
     -0.16,
@@ -351,12 +351,12 @@
     -259.5
    ],
    [
-    1217.6,
-    548.9
+    1154.5,
+    590.4
    ],
    [
-    1217.9,
-    579.8
+    1154.6,
+    610.2
    ],
    [
     2458.7,
@@ -374,12 +374,12 @@
      [
       0.16,
       0.8902,
-      0.0738
+      0.6418
      ],
      [
       0.16,
       0.8736,
-      0.0738
+      0.6418
      ],
      [
       0.16,
@@ -393,12 +393,12 @@
       -2962.4
      ],
      [
-      447.3,
-      1200
+      699.9,
+      972.6
      ],
      [
-      446.5,
-      1241.5
+      699.6,
+      996.3
      ],
      [
       5030,
@@ -492,12 +492,12 @@
     -259.5
    ],
    [
-    1217.6,
-    548.9
+    1154.5,
+    590.4
    ],
    [
-    1217.9,
-    579.8
+    1154.6,
+    610.2
    ],
    [
     2458.7,

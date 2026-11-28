@@ -2,10 +2,10 @@
 // explicit geometry (thin wedge from the bulb through the crack), one child.
 //   shot.beamMask (the generated twins beam_<id>): flat mode renders the blade white on black = the beam mask
 import * as THREE from 'three';
-import { box, ball, tag, V, rad } from '../../engine/core.js';
+import { box, ball, cyl, tag, V, rad } from '../../engine/core.js';
 import { stage, solveCamera, hideParts } from '../../engine/stage.js';
 import { aim } from '../../engine/aim.js';
-import { CAVITY, SEAT, STAND, CRACK, BULB, BEAM, bladeY, EYE, MOTE, LIGHTS, SLOPE, WORKERS, FILE_LOOK } from './layout.js';
+import { CAVITY, SEAT, STAND, CRACK, BULB, BACK_ROOM, BEAM, bladeY, EYE, MOTE, LIGHTS, SLOPE, WORKERS, FILE_LOOK } from './layout.js';
 import { CAST, addCast } from '../_cast.js';   // the shared cast table (this set uses the engine's littleJade)
 
 // r3: the restaurant workers in WL_in (set-local strangers, faces undrawn). Kitchen whites, aprons, a waiter's white
@@ -32,8 +32,8 @@ function cavity() {
   for (let y = hi; y < C.h; y += B.h) { const h = Math.min(B.h, C.h - y); g.add(tag(box(B.t, h - 0.002, L, BOARD, [bx, y + h / 2, zc]), 'boarded partition')); }
   g.add(tag(box(B.t, CRACK.gap, CRACK.z0 - C.z0, BOARD, [bx, CRACK.y, (C.z0 + CRACK.z0) / 2]), 'boarded partition'));
   g.add(tag(box(B.t, CRACK.gap, C.z1 - CRACK.z1, BOARD, [bx, CRACK.y, (C.z1 + CRACK.z1) / 2]), 'boarded partition'));
-  // the lit room seen through the crack (emissive, casts nothing)
-  g.add(tag(box(0.004, CRACK.gap + 0.03, CRACK.z1 - CRACK.z0 + 0.06, { grey: 1, col: 0xffe2b0, emit: 0xffe2b0, emitI: 1.4, flatEmit: 1, noCast: true }, [C.x0 - B.t - 0.012, CRACK.y, (CRACK.z0 + CRACK.z1) / 2]), 'the crack (lit room beyond)'));
+  // 2026-11-28: the flat emissive card behind the crack is gone: through the crack one now sees the modelled back room
+  // (backRoom(), lit by its bulb)
   for (const z of C.stud.z) g.add(tag(box(C.stud.d, C.h, C.stud.w, STUD, [C.x0 + C.stud.d / 2, C.h / 2, z]), 'stud'));
   // r4: no sole plate in the cavity (it would sit under the workers' toes); the studs stand on the floor
   // the outer wall, the floor, the two ends, the top
@@ -52,6 +52,31 @@ function cavity() {
   return g;
 }
 
+// 2026-11-28 (Jade: "put a light source outside of the wall"): the light source, modelled. The restaurant's back room
+// beyond the boarded partition, with a bare 60 W incandescent bulb (A19: 60 mm glass, 108 mm long) hanging on a short flex
+// from a ceiling rose, 1.2 m back from the partition, high (2.18 m), toward the cavity's closed end (layout.js BULB). The
+// real light (the shadow-casting spot in rig()) sits in this bulb; the boards stop it everywhere but the crack. The room's
+// surfaces are lit by the bulb: drawn as dim warm self-lit surfaces (they are only ever seen through the crack), brighter
+// near the bulb. Not built for the overhead cutaway (WL_top) or the plan: there everything outside the cavity stays dark.
+function backRoom() {
+  const g = new THREE.Group(), R = BACK_ROOM, Lz = R.z1 - R.z0, zc = (R.z0 + R.z1) / 2, W = R.x1 - R.x0, xc = (R.x0 + R.x1) / 2;
+  const lit = (i, col = 0xd9c3a0) => ({ grey: 0.75, col, emit: col, emitI: i, flatEmit: 0.55, noCast: true });
+  g.add(tag(box(W, 0.02, Lz, lit(0.34, 0x9a8466), [xc, -0.01, zc]), 'back room floor (lit by the bulb)'));
+  g.add(tag(box(W, 0.02, Lz, lit(0.42, 0xe6dcc8), [xc, R.h + 0.01, zc]), 'back room ceiling (lit by the bulb)'));
+  g.add(tag(box(0.02, R.h, Lz, lit(0.5, 0xe8dcc0), [R.x0 - 0.01, R.h / 2, zc]), 'back room far wall (lit by the bulb)'));
+  g.add(tag(box(W, R.h, 0.02, lit(0.45, 0xe8dcc0), [xc, R.h / 2, R.z0 - 0.01]), 'back room end wall (lit by the bulb)'));
+  g.add(tag(box(W, R.h, 0.02, lit(0.3, 0xe8dcc0), [xc, R.h / 2, R.z1 + 0.01]), 'back room end wall (lit by the bulb)'));
+  // the bulb: glass globe (60 mm) + neck, brass cap in a black bakelite lamp-holder, flex up to a white ceiling rose
+  const [bx, by, bz] = BULB, glow = { grey: 1, col: 0xfff3d6, emit: 0xfff3d6, emitI: 2.2, flatEmit: 1, noCast: true };
+  g.add(tag(ball(0.030, glow, [bx, by, bz]), 'the light source: bare bulb (outside the wall)'));
+  g.add(tag(cyl(0.017, 0.026, 0.035, glow, [bx, by + 0.035, bz]), 'the light source: bare bulb (outside the wall)'));
+  g.add(tag(cyl(0.0135, 0.0135, 0.022, { grey: 0.6, col: 0xb08a3c, noCast: true }, [bx, by + 0.063, bz]), 'bulb cap (brass)'));
+  g.add(tag(cyl(0.020, 0.020, 0.055, { grey: 0.1, col: 0x161412, noCast: true }, [bx, by + 0.1, bz]), 'lamp-holder (bakelite)'));
+  const top = by + 0.128; g.add(tag(cyl(0.003, 0.003, R.h - top, { grey: 0.15, col: 0x1e1c1a, noCast: true }, [bx, (top + R.h) / 2, bz]), 'flex'));
+  g.add(tag(cyl(0.04, 0.045, 0.03, { grey: 0.85, col: 0xeeeae2, noCast: true }, [bx, R.h - 0.015, bz]), 'ceiling rose'));
+  return g;
+}
+
 export const NAMED = { mote: MOTE.hero, eye: EYE, crack: [CRACK.x, CRACK.y, (CRACK.z0 + CRACK.z1) / 2], bladeMid: [0, bladeY(0), -0.1],
   toMama: FILE_LOOK, daughter: [STAND.at[0] - 0.05, 0.95, STAND.at[1] + 0.03] };   // r4: her look target; where Mama looks (her daughter's eyes)
 const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && p.mid ? { mid: p.mid.map(fix) } : p);
@@ -59,6 +84,7 @@ const fix = (p) => (typeof p === 'string' && NAMED[p] ? NAMED[p].slice() : p && 
 export function build(shot, { makeCam }) {
   const scene = new THREE.Scene(); const root = new THREE.Group(); scene.add(root);
   root.add(cavity());
+  if (!(shot.position === 'plan' || shot.position?.startsWith('overhead'))) root.add(backRoom());
   const solid = beamSolid({ aperture: BEAM.aperture, src: BEAM.src, clip: BEAM.clip, length: 4 });
   const sunk = beamSolid({ aperture: BEAM.aperture, src: BEAM.src, clip: BEAM.clip, length: 4, sink: 0.004 });
   root.add(tag(beamWire(solid, { grey: 1, col: 0xffe9a0, emit: 0xffe9a0, flatEmit: 1, only: ['label'] }, 0.0015), 'blade of light (volume edges)'));
@@ -79,8 +105,12 @@ export function build(shot, { makeCam }) {
   const anchor = V(fix(shot.beamAnchor || 'mote'));
   const bulb = V(BULB), crackMid = V(NAMED.crack);
   // r3: the cone is wider (30 deg, was 17) so it covers the longer crack
-  const mkSpot = (color, I) => { const s = new THREE.SpotLight(color, I, 0, rad(30), 0.02, 0); s.position.copy(bulb); s.target.position.copy(crackMid); s.castShadow = true;
-    s.shadow.camera.near = 0.6; s.shadow.camera.far = 4; s.shadow.bias = -0.0002; s.shadow.normalBias = 0.001; s.shadow.radius = 1; return s; };
+  // 2026-11-28: the bulb is a modelled object now and the crack is longer (layout.js BULB, CRACK). The spot is the bulb's light: a bare bulb shines every
+  // way, but only the crack lets it into the cavity, so the cone is narrowed to the crack (24 deg half-angle; the crack spans
+  // 39 deg from the bulb, about +-20 round its middle) and the boards' shadow does the rest. Shadow far 4 -> 7 m and a 2048 map: at 4 m the far end of
+  // the cavity (4.8 m from the bulb) fell outside the shadow camera and was lit straight through the boards.
+  const mkSpot = (color, I) => { const s = new THREE.SpotLight(color, I, 0, rad(24), 0.02, 0); s.position.copy(bulb); s.target.position.copy(crackMid); s.castShadow = true;
+    s.shadow.mapSize.set(2048, 2048); s.shadow.camera.near = 0.6; s.shadow.camera.far = 7; s.shadow.bias = -0.0002; s.shadow.normalBias = 0.001; s.shadow.radius = 1; return s; };
   const rig = (mode) => {
     if (mode === 'none' || shot.beamMask) return [];
     if (mode === 'mask') return [mkSpot(0xffffff, 6)];

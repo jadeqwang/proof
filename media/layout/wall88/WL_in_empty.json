@@ -90,7 +90,7 @@
  "lights": [
   {
    "name": "blade",
-   "kind": "bare bulb in the room beyond, through the crack",
+   "kind": "bare 60 W bulb hanging in the back room beyond the boards (outside the wall), through the crack",
    "on": true,
    "color": "#ffe2b0",
    "world": [
@@ -111,12 +111,12 @@
    "aim_world": [
     -0.16,
     1.161,
-    -0.25
+    -0.025
    ]
   }
  ],
  "warnings": [],
- "intent": "r3. The same camera as WL_in with nobody there: the empty wall space. The crack is a bright slit on the boards frame-right, the blade falls from it, upper right to lower left at 40 degrees. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.",
+ "intent": "r3; light source 2026-11-28 (Jade: \"the light shaft is going the wrong way, it needs to follow physics. put a light source outside of the wall\"). The same camera as WL_in with nobody there: the empty wall space. The light comes from a bare bulb hanging high in the back room beyond the boards (outside the wall, behind the camera and to the right): through the crack, a bright slit on the boards frame-right, it falls DOWN and away from us, upper right to lower left at 40 degrees, and lands low on the brick (frame bottom left, about 27 cm below the crack, receding down the cavity) and on the near face of the stud beside the crack. Nothing above the crack's height is lit. The pull-back to the Voyager frame starts here: the blade becomes the band, the mote the dot.",
  "film": {
   "time": "1:52.2-1:54.5, end state; start of the 1:54.5 pull-back",
   "section": "Chorus 1 (\"Nowhere to go\") into Tail 1",
@@ -124,7 +124,7 @@
  },
  "beam": {
   "name": "blade",
-  "kind": "a blade of light through a crack between two boards (bare bulb in the room beyond)",
+  "kind": "a blade of light through a crack between two boards (a bare bulb hanging in the back room beyond the boards, high and toward the closed end)",
   "model": "diverging from a point source",
   "source_world": [
    -1.38,
@@ -145,12 +145,12 @@
    [
     -0.16,
     1.1592,
-    0.1
+    0.55
    ],
    [
     -0.16,
     1.146,
-    0.1
+    0.55
    ],
    [
     -0.16,
@@ -164,12 +164,12 @@
     -259.5
    ],
    [
-    1217.6,
-    548.9
+    1154.5,
+    590.4
    ],
    [
-    1217.9,
-    579.8
+    1154.6,
+    610.2
    ],
    [
     2458.7,
@@ -187,12 +187,12 @@
      [
       0.16,
       0.8902,
-      0.0738
+      0.6418
      ],
      [
       0.16,
       0.8736,
-      0.0738
+      0.6418
      ],
      [
       0.16,
@@ -206,12 +206,12 @@
       -2962.4
      ],
      [
-      447.3,
-      1200
+      699.9,
+      972.6
      ],
      [
-      446.5,
-      1241.5
+      699.6,
+      996.3
      ],
      [
       5030,
@@ -305,12 +305,12 @@
     -259.5
    ],
    [
-    1217.6,
-    548.9
+    1154.5,
+    590.4
    ],
    [
-    1217.9,
-    579.8
+    1154.6,
+    610.2
    ],
    [
     2458.7,

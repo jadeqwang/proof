@@ -1,5 +1,43 @@
 # wall88: notes and assumptions
 
+## 2026-11-28: the light source is modelled outside the wall (Jade on WL_in_empty: "the light shaft is going the wrong way, it needs to follow physics. put a light source outside of the wall")
+- **What went wrong.** The 3D light was already a point source beyond the boards (a spot at `BULB`, shadowed by the
+  boards), but (a) the source itself was not modelled (a flat emissive card sat behind the crack), and (b) from the inside
+  camera (WL_in / WL_in_empty) everything the light lands on was out of frame: the stripe on the brick ended at z 0.07,
+  which projects below the bottom edge. The guide showed only the slit and the translucent sheet seen from 2 cm above
+  (a wedge), and the r4 painter (WL_in_empty_v1) invented a stripe RISING up the brick from the crack.
+- **Source (build.js `backRoom()`, layout.js `BULB`, `BACK_ROOM`):** the restaurant's back room beyond the boards: floor,
+  ceiling at 2.5 m, walls, all lit by the bulb (drawn as dim warm self-lit surfaces; they are only seen through the crack),
+  and a bare 60 W incandescent bulb (A19 globe 60 mm, brass cap, black bakelite lamp-holder, flex, ceiling rose) at
+  `BULB` = 1.2 m back from the partition, 2.18 m up, z 0.2. The emissive card behind the crack is gone. Not built for the
+  overhead cutaway or the plan (everything outside the cavity stays dark there). The light is still the shadow-casting spot
+  at the bulb, its cone narrowed to the crack (24 deg); shadow far 4 -> 7 m and a 2048 map (at 4 m the far end of the cavity
+  was outside the shadow camera and lit straight through the boards). ASSUMED: a lamp, not the sun: the far side of the
+  boards is a room inside the restaurant, the scene is dark, and the plan already said "a bare ceiling bulb in the room
+  beyond".
+- **The crack is longer: z -0.60 .. 0.55 (was 0.10).** The sheet's plane, its 40 deg slope and where it crosses her eye are
+  unchanged (sidecar `blade_on_face`: left eye 0.0 cm, in the lit length). Through the new far part the light lands on the
+  brick, 27 cm below the crack, out to z 0.64, and that part is IN WL_in / WL_in_empty's frame at the bottom left, so every
+  shot now shows source -> crack -> landing in one direction: down from the crack, toward the brick.
+- **Tried and rejected:** moving the bulb 3 m, then 0.6 m, toward the closed end (to rake a long stripe down the cavity):
+  the light then came from behind her head and her eye went dark in WL_out / WL_eye. The bulb has to stay at about her
+  position along the cavity.
+- **Consequence for the story:** the sheet now crosses Mama (first in the file) low, across her waist, hip and the arm at
+  her side, in WL_in. The others stay in the dark. The r3 idea "being out of the beam is safety" now holds for everyone but
+  Mama (FLAG for Jade; the fix if she wants Mama dark too is a shorter crack, which takes the landing out of WL_in_empty).
+- **Rhyme (sidecars):** unchanged from before, as the plane is unchanged: WL_in_empty / WL_in 40.3 deg right-to-left (error 0.3), WL_out 41.1, WL_eye 43.5. Beam masks
+  (beam_ twins) re-rendered from the same solid; before/after: media/layout/wall88/_beam_masks_before_after.png.
+- **Checks:** clipcheck all five shots pass; holdcheck nothing held; check_bodies WL_out / WL_eye / WL_in_empty PASS, WL_in /
+  WL_top / WL_plan FAIL on the workers' cloth/torso touching each other and cloth in the brick (pre-existing: no figure
+  was changed; clipcheck passes them within its 12 mm cloth tolerance).
+- **Prompts** (media/keyframes/r4/wall88/_prompts/_make.py): a shared `SOURCE` paragraph (one bare bulb high in the back
+  room beyond the boards, outside the wall; the light travels in straight lines through the crack and DOWN; it lands on
+  the brick lower than the crack; nothing above the crack is lit) plus a per-shot direction: WL_out from the crack at the
+  LEFT down to the right; WL_eye down from the upper left; WL_in / WL_in_empty from the crack at the RIGHT down to the
+  left, landing at the lower left (never upward); WL_top: nothing lit from above.
+- Before/after (lit + light): media/layout/wall88/_light_source_before_after.png. WL_eye (pick v1, HELD) can be re-checked:
+  the blade on her eye is unchanged.
+
 ## 2026-11-26: round-5 decisions (Jade's r5 answers + the fix list; SUPERSEDES everything below where they differ)
 - DONE: all three changes made; three passes rendered and looked at; clipcheck all pass; holdcheck: nothing held.
 - **WL_top is a real shot at 1:51.0-1:52.2** (Jade, wl_top: "Try it at 1:51.0-1:52.2"). No longer an alternate: in BASE

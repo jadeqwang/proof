@@ -306,7 +306,7 @@
  "lights": [
   {
    "name": "blade",
-   "kind": "bare bulb in the room beyond, through the crack",
+   "kind": "bare 60 W bulb hanging in the back room beyond the boards (outside the wall), through the crack",
    "on": true,
    "color": "#ffe2b0",
    "world": [
@@ -327,7 +327,7 @@
    "aim_world": [
     -0.16,
     1.161,
-    -0.25
+    -0.025
    ]
   }
  ],
@@ -347,7 +347,7 @@
  },
  "beam": {
   "name": "blade",
-  "kind": "a blade of light through a crack between two boards (bare bulb in the room beyond)",
+  "kind": "a blade of light through a crack between two boards (a bare bulb hanging in the back room beyond the boards, high and toward the closed end)",
   "model": "diverging from a point source",
   "source_world": [
    -1.38,
@@ -368,12 +368,12 @@
    [
     -0.16,
     1.1592,
-    0.1
+    0.55
    ],
    [
     -0.16,
     1.146,
-    0.1
+    0.55
    ],
    [
     -0.16,
@@ -387,11 +387,11 @@
     618.8
    ],
    [
-    541.5,
+    763.1,
     618.8
    ],
    [
-    541.5,
+    763.1,
     618.8
    ],
    [
@@ -410,12 +410,12 @@
      [
       0.16,
       0.8902,
-      0.0738
+      0.6418
      ],
      [
       0.16,
       0.8736,
-      0.0738
+      0.6418
      ],
      [
       0.16,
@@ -429,11 +429,11 @@
       461.2
      ],
      [
-      528.6,
+      808.3,
       461.2
      ],
      [
-      528.6,
+      808.3,
       461.2
      ],
      [
@@ -528,11 +528,11 @@
     618.8
    ],
    [
-    541.5,
+    763.1,
     618.8
    ],
    [
-    541.5,
+    763.1,
     618.8
    ],
    [

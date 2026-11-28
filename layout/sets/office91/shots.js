@@ -71,6 +71,43 @@ const CHEEK_HAND = { shape: 'flat', thumb: { opp: 0.15, sweep: 46, abd: 28, mcp:
 const momThumbs = () => ({ at: [HALL_KID[0] - 0.5, HALL_KID[1] - 0.03], legs: 'stand', yaw: 92, spine: { bend: 16 }, head: { look: 'jade10:eyes' },
   R: { to: 'jade10:mouth', off: [0.05, -0.012, 0.072], hand: CHEEK_HAND, palm: [0, 0, -1], fingers: [0.6, 0.75, 0], thumb: [-0.75, 0.45, -0.4] },
   L: { to: 'jade10:mouth', off: [0.05, -0.012, -0.072], hand: CHEEK_HAND, palm: [0, 0, 1], fingers: [0.6, 0.75, 0], thumb: [-0.75, 0.45, 0.4] } });
+// 2026-11-28 (Jade, r4 keyframe notes, FE_thumbs "Wrong staging": "replace with: little jade has an unimpressed smirk, and
+// slightly narrows one eye, and mom has arms folded"). The cheek-push (momThumbs above, kept for reference) is gone. Mom
+// stands upright a step back from her, ARMS FOLDED, looking down at her; the girl (10) looks up at Mom, head tipped a little
+// to her right, chin a touch down: the unimpressed look. The smirk and the narrowed eye are not in the 3D face (MPFB has no
+// lid / mouth controls here, and painters take the face from the face crop, not the guide): they are written in the
+// prompt (media/keyframes/r4/office91/_prompts/_make.py FE_thumbs).
+// Folded arms posed from look-only reference photos (Wikimedia Commons, 2026-11-28, scratchpad armsref/: two standing women
+// and four men with arms crossed): the forearms stacked across the body just under the bust, the elbows by the sides and a
+// little forward, each hand resting on the OUTSIDE of the other upper arm just above the elbow, fingers round the back of
+// the arm, shoulders down. Her RIGHT forearm is on top (in front); her left forearm under it, nearer the body. Targets are
+// in her own frame (lf = toward her left, up, fw = forward), from each shoulder: see foldArms().
+// Mom stands a step back from FE_out's stoop, upright; her body is turned 20 deg less than straight at her daughter (open to
+// the camera, as people stand when they square up beside someone), her head and eyes on the girl. turn -20: the head takes
+// 20 deg less of the look (toward the camera), the eyes the rest
+const MOM_HALL2 = [-2.68, 0.06];
+const yawTo = (from, to) => Math.atan2(to[0] - from[0], to[1] - from[1]) * 180 / Math.PI;
+const MOM_YAW2 = +(yawTo(MOM_HALL2, HALL_KID) - 35).toFixed(1);
+const bodyVec = (yaw, [lf, up, fw]) => { const y = yaw * Math.PI / 180; return [+(lf * Math.cos(y) + fw * Math.sin(y)).toFixed(4), up, +(-lf * Math.sin(y) + fw * Math.cos(y)).toFixed(4)]; };
+// (from the shoulder-girdle centre `self:shoulderC`: the left arm is solved before the right shoulder point exists; Mom's
+// shoulder joints sit 0.179 m either side of it and 0.019 m below)
+export const FOLD = {   // body-frame offsets (m) from shoulderC; tuned against clipcheck and the REF_fold views
+  // right hand (top forearm) on the front-outer face of the left upper arm, 22 cm under the shoulder line; the knuckles run
+  // on along the forearm's line, turned back 35 deg round the arm, fingers curled round its outside; palm toward the arm
+  R: { off: [0.185, -0.255, 0.125], fingers: [0.8, -0.15, -0.55], palm: [-0.55, 0, -0.8], elbow: [-0.25, -1, 0.5] },
+  // left hand (under forearm, nearer the body) the same on the right upper arm, 4 cm lower, partly hidden by the right forearm
+  L: { off: [-0.15, -0.23, 0.07], fingers: [-0.35, 0.2, -0.9], palm: [0.9, 0, -0.35], elbow: [0.25, -1, 0.4] },
+};
+const FOLD_HAND = { shape: 'flat', curl: { index: [30, 40, 18], middle: [32, 42, 18], ring: [34, 42, 18], little: [36, 42, 18] }, spread: 2, thumb: { opp: 0.3, sweep: 30, abd: 20, mcp: 8, ip: 10 } };
+const foldArm = (n, yaw) => { const f = FOLD[n]; return { to: 'self:shoulderC', off: bodyVec(yaw, f.off), hand: FOLD_HAND, fingers: bodyVec(yaw, f.fingers), palm: bodyVec(yaw, f.palm), elbow: bodyVec(yaw, f.elbow) }; };
+const momFolded = (o = {}) => ({ at: MOM_HALL2, legs: 'stand', yaw: MOM_YAW2, spine: { bend: 4 }, head: { look: 'jade10:eyes', nod: 4, turn: -20 },
+  L: foldArm('L', MOM_YAW2), R: foldArm('R', MOM_YAW2), ...o });
+// the girl: back to the wall, turned a little toward Mom, looking UP at Mom's eyes; head tipped to her own right (toward the
+// wall-side shoulder), chin a touch down, so she looks up from under her brows
+// turn +25: the head stays 25 deg short of Mom (toward the camera), the eyes slide the rest of the way up to her: a sideways,
+// up-from-under look, which is how an unimpressed child looks at a parent (and keeps her face three-quarter to the lens)
+const kidSmirk = (o = {}) => kid10({ yaw: -100, spine: { bend: -3 }, head: { look: 'mama91:eyes', turn: 25, tilt: 7, nod: 3 }, ...o });
+
 const ALL = (j = jade(), s = sw(), m = mom()) => ({ jade7: j, sw: s, mama91: m, dad: dad() });
 const INSIDE = { hideParts: { jade7: ['head'] } };
 // the two cameras that recur
@@ -141,9 +178,19 @@ export const SHOTS = [
   // "You need facial expressions" (-2sm 8.76-10.51), FE_thumbs on "But not like that" (18.23-18.94).
   { id: 'FE_out', hall: true, t: [8.76, 10.51], lens: 50, orbit: { at: 'jade10:eyes', az: -58, el: 0, dist: 1.75 }, aim: ['jade10:eyes', 0.6, 0.4], focus: ['jade10', 'mama91'], figs: { jade10: kid10(), mama91: momHall() },
     header: '0:08.8 OUTSIDE, the corridor at ten: "You need facial expressions" (whispered)', intent: 'Frontal, level, locked off on her face: ten years old, her back against the corridor wall beside the closed counselor\'s door (frame right). Mom stoops in from frame left, her right hand on her daughter\'s shoulder, saying it. Corridor light from a ceiling panel.' },
-  { id: 'FE_thumbs', hall: true, t: [18.23, 19.0], lens: 40, orbit: { at: 'jade10:eyes', az: -52, el: 2, dist: 0.95 }, aim: ['jade10:eyes', 0.62, 0.42], focus: ['jade10', 'mama91'],
-    figs: { jade10: kid10({ spine: { bend: -6 }, head: { look: [-3.2, 1.3, 0.62] } }), mama91: momThumbs() },
-    header: '0:18.2 OUTSIDE, closer: "But not like that": Mom\'s thumbs push her cheeks into a smile', intent: 'Closer, three-quarter from the door side: Mom stoops squarely in front of her (Mom in near profile, frame left), her hands cupping her daughter\'s jaw, the thumbs pressing the cheeks up into a smile under a deepening frown; the girl pulls her head back against the wall.' },
+  // 2026-11-28 restaged (Jade: "little jade has an unimpressed smirk, and slightly narrows one eye, and mom has arms folded").
+  // Camera: the FE_out camera's side of the corridor (az -58, from down the corridor on the door side, level), closer and a
+  // little wider than FE_out so both faces AND Mom's folded arms are in frame: the old FE_thumbs camera looked over Mom's
+  // back and could not show her arms. Same canonical corridor wall (the class-art board at frame left, plain wall behind
+  // the girl, the counselor's door at frame right).
+  { id: 'FE_thumbs', hall: true, t: [18.23, 19.0], lens: 40, orbit: { at: { mid: ['jade10:eyes', 'mama91:eyes'] }, az: -75, el: 0, dist: 1.5 }, aim: [{ mid: ['jade10:eyes', 'mama91:eyes'] }, 0.5, 0.36], focus: ['jade10', 'mama91'],
+    figs: { jade10: kidSmirk(), mama91: momFolded() },
+    header: '0:18.2 OUTSIDE, closer: "But not like that": Mom, arms folded; the girl\'s unimpressed one-sided smirk',
+    intent: 'r4 restage (Jade). The corridor at ten, right after "But not like that". Two-shot from down the corridor on the door side: Mom (frame left) stands upright a step in front of her daughter, ARMS FOLDED (right forearm on top, each hand on the other upper arm), looking down at her. The girl (frame right), back to the wall beside the counselor\'s door, looks up at Mom with an UNIMPRESSED one-sided SMIRK: one corner of the mouth pulled up, the eye on that side slightly narrowed; head tipped a little, chin a touch down. Unimpressed, not mean. Corridor light from the ceiling panel.' },
+  // 2026-11-28: Mom's folded arms alone, for checking the fold (not shots)
+  ...[['front', 0, 0], ['side', -75, 0], ['top', 10, 70], ['low', -35, -20]].map(([k, az, el]) => ({ id: 'REF_fold_' + k, hall: true, lens: 50,
+    orbit: { at: 'mama91:chest', az: MOM_YAW2 + az, el, dist: 1.0 }, aim: ['mama91:chest', 0.5, 0.5], figs: { mama91: momFolded({ head: { look: [-2.17, 1.2, 0.52] } }) },
+    header: `FOLD CHECK (reference): Mom's folded arms, ${k}`, intent: 'Not a shot: forearms stacked, hands on the upper arms, no arm through the body.' })),
   // shoulder check (Jade on X_sw: "the social worker's shoulders are weirdly misshapen"): the social worker alone, as
   // staged in PC1-PC4 / X_sw, from the front, her right side, above and behind. Not shots.
   ...[['front', -165, 8], ['side', -95, 8], ['top', -160, 60], ['back', 25, 20]].map(([k, az, el]) => ({ id: 'REF_sw_' + k, lens: 35,

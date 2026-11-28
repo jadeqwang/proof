@@ -40,13 +40,28 @@ export const SLOPE = 40;
 // in the sidecar `blade_on_face`). Length unchanged (0.7 m): the file of workers in WL_in stands beyond the light, in
 // the dark ("being out of the beam is safety"; a longer crack was tried and put the sheet over the outside camera).
 export const CRACK_Y = 1.161;   // r4b: 4.5 cm lower again (she stands 2.2 cm further from the brick and 1.55 cm higher: sidecar blade_on_face had her left eye 4.5 cm under the sheet). r4: 1.206
-export const CRACK = { x: CAVITY.x0, y: CRACK_Y, z0: -0.60, z1: 0.10, gap: 0.03 };
-export const BULB = [CRACK.x - CAVITY.board.t - 1.2, CRACK.y + (1.2 + CAVITY.board.t) * Math.tan(rad(SLOPE)), 0.2];
+// 2026-11-28 (Jade on WL_in_empty: "the light shaft is going the wrong way, it needs to follow physics. put a light source
+// outside of the wall"): the source is now a MODELLED bare bulb hanging from the ceiling of the restaurant's back room beyond
+// the boards (build.js backRoom(): bulb, lamp-holder, flex, ceiling rose, the room's floor / ceiling / walls), still 1.2 m
+// back from the partition and at the same height (so the sheet's plane, its 40 deg slope and where it crosses her eye are
+// unchanged), and at the same place along the cavity as before (z 0.2): the light has to come at her face from in front of
+// it, or her eye goes dark (tried: the bulb 3 m and then 0.6 m toward the closed end put the light behind her head and
+// brow; the eye in the blade is the point of WL_out / WL_eye). What changes is the crack: it runs on past the next stud to
+// z 0.55 (was 0.10). Through that far part the light falls DOWN and on along the cavity, so the stripe it lays on the brick
+// (0.87-0.89 m up, 27 cm below the crack) runs from the closed end to z +0.64 and its far part is IN the inside camera's
+// frame (bottom left, below the crack, receding) instead of all behind / under the camera, where the painter could not see
+// it (WL_in_empty r4 v1 painted it rising up the brick instead). Consequence: the sheet now also crosses Mama (first in the
+// file, z 0.405) low, at the waist and hips, in WL_in; the praying woman and the others stay in the dark.
+export const CRACK = { x: CAVITY.x0, y: CRACK_Y, z0: -0.60, z1: 0.55, gap: 0.03 };
+export const BULB_Z = 0.2;
+export const BULB = [CRACK.x - CAVITY.board.t - 1.2, CRACK.y + (1.2 + CAVITY.board.t) * Math.tan(rad(SLOPE)), BULB_Z];
+// the back room the bulb hangs in (outside the wall): its floor is the cavity's floor level, ceiling 2.5 m
+export const BACK_ROOM = { x0: -3.6, x1: CAVITY.x0 - CAVITY.board.t, z0: -2.6, z1: CAVITY.z1, h: 2.5 };
 // what gets through a 30 mm gap in a 20 mm board at this slope, measured at the board's inner face
 const shade = CAVITY.board.t * Math.tan(rad(SLOPE));
 const ya = CRACK.y - CRACK.gap / 2, yb = CRACK.y + CRACK.gap / 2 - shade;
 export const BEAM = {
-  name: 'blade', kind: 'a blade of light through a crack between two boards (bare bulb in the room beyond)',
+  name: 'blade', kind: 'a blade of light through a crack between two boards (a bare bulb hanging in the back room beyond the boards, high and toward the closed end)',
   src: BULB,
   aperture: [[CRACK.x, yb, CRACK.z0], [CRACK.x, yb, CRACK.z1], [CRACK.x, ya, CRACK.z1], [CRACK.x, ya, CRACK.z0]],
   thickness: yb - ya,
@@ -80,6 +95,6 @@ export const WORKERS = [
 ];
 
 export const LIGHTS = {
-  blade: { kind: 'bare bulb in the room beyond, through the crack', pos: BULB, color: 0xffe2b0 },
+  blade: { kind: 'bare 60 W bulb hanging in the back room beyond the boards (outside the wall), through the crack', pos: BULB, color: 0xffe2b0 },
   // nothing else: the cavity has no other light. No header and no gold in this scene.
 };
